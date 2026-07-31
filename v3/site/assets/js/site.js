@@ -789,7 +789,11 @@
      no new title/sub source for banners beyond the baked set. */
   function applyHeroBannerVars(bg, banner) {
     bg.style.removeProperty('background-image');
-    bg.style.setProperty('--hero-image', 'url(' + banner.image + ')');
+    /* --hero-image is consumed via var() inside main.css, so a relative URL
+       here would resolve against main.css's own location instead of the
+       page; resolve to an absolute URL first (no-op for data:/absolute URLs). */
+    var resolvedImage = banner.image ? new URL(banner.image, document.baseURI).href : banner.image;
+    bg.style.setProperty('--hero-image', 'url(' + resolvedImage + ')');
     bg.style.setProperty('--hero-position', banner.position || 'center');
     bg.style.setProperty('--hero-mobile-position', banner.mobilePosition || banner.position || 'center');
   }
