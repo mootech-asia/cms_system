@@ -220,7 +220,7 @@
      FAQ_ZH/FAQ_KO/FAQ_TH and SWEEP_PAIRS/SWEEP_PAIRS_KO/SWEEP_PAIRS_TH
      en-keyed dictionaries — and swapped in via the same exact-string-match
      mechanism this file already used for zh<->en. The trigger button itself
-     (globe icon + current short label + chevron, wrapped in a `.relative`
+     (globe icon + current short label + chevron, wrapped in a `.dd-trigger-wrap`
      div) has no unique id/class in the baked HTML, so it's matched the same
      defensive way other structural triggers in this file are: by its exact
      rendered content. Two copies of this trigger exist per page (desktop
@@ -507,11 +507,10 @@
   }
 
   /* ============================ nav dd-panel ============================= */
-  /* AppHeader.vue hover dropdown (Sports/Live) — already server-rendered via
-     v-show (style="display:none"), only needs show/hide wiring. */
+  /* Header 導覽列 hover 下拉選單(Sports/Live) */
 
   function initNavDropdowns() {
-    $all('nav .relative').forEach(function (wrap) {
+    $all('nav .dd-trigger-wrap').forEach(function (wrap) {
       var panel = $('.dd-panel', wrap);
       if (!panel) return;
       var timer = null;
@@ -788,7 +787,7 @@
 
   function localeTriggerHtml() {
     return (
-      '<div class="lang-trigger-wrap"><button class="header-locale-trigger">' +
+      '<div class="dd-trigger-wrap"><button class="header-locale-trigger">' +
       iconSvg('globe', 'icon-sm') + '<span>中文</span>' + iconSvg('chevron-down', 'icon-xs') +
       '</button></div>'
     );
@@ -2412,7 +2411,7 @@
     return cells;
   }
   function qrSvgHtml(seed, altText) {
-    var parts = ['<svg viewBox="-2 -2 25 25" class="h-[196px] w-[196px]" role="img" aria-label="' + escapeHtml(altText) + '">',
+    var parts = ['<svg viewBox="-2 -2 25 25" class="deposit-qr-svg" role="img" aria-label="' + escapeHtml(altText) + '">',
       '<rect x="-2" y="-2" width="25" height="25" fill="#ffffff" />'];
     QR_FINDERS.forEach(function (p) {
       parts.push('<rect x="' + p.x + '" y="' + p.y + '" width="7" height="7" fill="#000000" />');
@@ -2436,19 +2435,19 @@
     if (!formCard) return;
     [gatewayTabs, paymentTabs, formCard].forEach(function (el) { if (el) el.style.display = 'none'; });
     var section = document.createElement('section');
-    section.className = 'payment-card text-center';
+    section.className = 'payment-card deposit-qr-step';
     section.setAttribute('data-deposit-qr', '');
     section.innerHTML =
       '<div class="transfer-pill">' + escapeHtml(t8.pill || 'Scan to Pay') + '</div>' +
-      '<p class="text-ink-2 text-sm md:text-base mb-6">' + escapeHtml(t8.hint || '') + '</p>' +
-      '<div class="mb-6 flex w-full justify-center"><div class="rounded-ui overflow-hidden">' +
+      '<p class="deposit-qr-hint">' + escapeHtml(t8.hint || '') + '</p>' +
+      '<div class="deposit-qr-code-wrap"><div class="deposit-qr-code-box">' +
       qrSvgHtml(methodId + '|' + addr, t8.altText || 'Payment QR code') + '</div></div>' +
-      '<div class="mx-auto mb-2 max-w-md text-left">' +
-      '<label class="mb-2 block text-sm font-semibold text-ink-2">' + escapeHtml(isAddress ? (t8.addressLabel || 'Payment Address') : (t8.linkLabel || 'Payment Link')) + '</label>' +
-      '<div class="flex gap-2.5"><input class="pay-field" value="' + escapeHtml(addr) + '" readonly>' +
-      '<button type="button" class="btn-ghost btn-md shrink-0" data-qr-copy>' + escapeHtml(t8.copy || 'Copy') + '</button></div></div>' +
-      '<p class="mx-auto mb-6 max-w-md text-xs text-ink-3 md:text-sm">' + escapeHtml(t8.note || '') + '</p>' +
-      '<div class="flex items-center justify-between gap-4">' +
+      '<div class="deposit-qr-field-wrap">' +
+      '<label class="deposit-qr-field-label">' + escapeHtml(isAddress ? (t8.addressLabel || 'Payment Address') : (t8.linkLabel || 'Payment Link')) + '</label>' +
+      '<div class="deposit-qr-field-row"><input class="pay-field" value="' + escapeHtml(addr) + '" readonly>' +
+      '<button type="button" class="btn-ghost btn-md deposit-qr-copy-btn" data-qr-copy>' + escapeHtml(t8.copy || 'Copy') + '</button></div></div>' +
+      '<p class="deposit-qr-note">' + escapeHtml(t8.note || '') + '</p>' +
+      '<div class="deposit-qr-actions">' +
       '<button type="button" class="btn-back" data-qr-back>' + escapeHtml(t8.back || 'Back') + '</button>' +
       '<button type="button" class="complete" data-qr-next><span>' + escapeHtml(t8.confirm || 'Next') + '</span></button></div>';
     formCard.parentElement.insertBefore(section, formCard.nextSibling);
