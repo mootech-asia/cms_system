@@ -1984,3 +1984,14 @@ select.pay-field {
   .campaign-hero-media { animation: none; }
   .operation-banner-media, .operation-promo-media, .operation-promo-poster-media { transition: none; }
 }
+
+/* ── Homepage win ticker ─────────────────────────────────────────────── */
+.ticker-bar { background-color: rgb(var(--c-bg) / 1); border-top: 1px solid rgb(var(--c-border-soft) / 1); border-bottom: 1px solid rgb(var(--c-border-soft) / 1); padding: 0.5rem 0; overflow: hidden; }
+.ticker-viewport { overflow: hidden; }
+.ticker-track { display: flex; gap: 0; white-space: nowrap; animation: ticker-scroll 30s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes ticker-scroll { 0% { transform: translate(0); } to { transform: translate(-50%); } }
+.ticker-item { font-size: 0.75rem; line-height: 1rem; color: rgb(var(--c-text-3) / 1); padding: 0 1rem; flex-shrink: 0; }
+.ticker-name { color: rgb(var(--c-primary) / 1); }
+.ticker-amount { color: rgb(var(--c-text) / 1); }
+.ticker-sep { margin: 0 0.75rem; color: rgb(var(--c-border) / 1); }
