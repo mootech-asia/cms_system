@@ -1,0 +1,804 @@
+<!doctype html>
+<html class="dark-mode" data-theme="win100">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CMS_前台_v2</title>
+    <link rel="stylesheet" href="assets/css/app.css" />
+  </head>
+  <body>
+    <div id="__nuxt">
+      <div>
+        <div></div>
+        <div class="min-h-screen overflow-x-hidden bg-surface-deep">
+          <header class="bg-surface border-b border-line-soft sticky top-0 z-50">
+            <div class="px-4">
+              <div class="flex items-center h-16">
+                <a href="index.html" class="flex items-center gap-3 text-ink-2 hover:text-ink transition-colors"
+                  ><img src="logo.png" alt="Casino Logo" class="h-10 mix-blend-lighten"
+                /></a>
+                <div class="md:hidden ml-auto flex items-center gap-3">
+                  <div class="relative">
+                    <button class="text-ink-2 hover:text-ink flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewbox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="w-4 h-4"
+                      >
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                        <path d="M2 12h20"></path></svg
+                      ><span>中文</span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewbox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="w-3 h-3"
+                      >
+                        <path d="m6 9 6 6 6-6"></path>
+                      </svg>
+                    </button>
+                  </div>
+                  <button class="text-ink-2 hover:text-ink" aria-label="Menu">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewbox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-6 h-6"
+                    >
+                      <line x1="4" x2="20" y1="12" y2="12"></line>
+                      <line x1="4" x2="20" y1="6" y2="6"></line>
+                      <line x1="4" x2="20" y1="18" y2="18"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="min-h-[calc(100vh-4rem)]">
+            <aside
+              class="fixed bottom-0 left-0 top-16 z-40 hidden w-64 overflow-y-auto border-r border-line-soft bg-surface md:block"
+            >
+              <nav class="p-4 space-y-2">
+                <a
+                  aria-current="page"
+                  href="account.html"
+                  class="router-link-active router-link-exact-active flex items-center gap-3 px-4 py-3 rounded-lg transition-all bg-g-primary text-on-primary font-semibold"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewbox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-5 h-5 flex-shrink-0"
+                  >
+                    <rect width="7" height="9" x="3" y="3" rx="1"></rect>
+                    <rect width="7" height="5" x="14" y="3" rx="1"></rect>
+                    <rect width="7" height="9" x="14" y="12" rx="1"></rect>
+                    <rect width="7" height="5" x="3" y="16" rx="1"></rect></svg
+                  ><span class="text-sm">Account Overview</span></a
+                ><a
+                  href="deposit.html"
+                  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-ink-2 hover:bg-surface-deep hover:text-ink"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewbox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-5 h-5 flex-shrink-0"
+                  >
+                    <path d="M12 17V3"></path>
+                    <path d="m6 11 6 6 6-6"></path>
+                    <path d="M19 21H5"></path></svg
+                  ><span class="text-sm">Deposit</span></a
+                ><a
+                  href="withdrawal.html"
+                  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-ink-2 hover:bg-surface-deep hover:text-ink"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewbox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-5 h-5 flex-shrink-0"
+                  >
+                    <path d="M12 21V7"></path>
+                    <path d="m6 11 6-6 6 6"></path>
+                    <path d="M5 3h14"></path></svg
+                  ><span class="text-sm">Withdrawal</span></a
+                ><a
+                  href="betting-record.html"
+                  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-ink-2 hover:bg-surface-deep hover:text-ink"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewbox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-5 h-5 flex-shrink-0"
+                  >
+                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                    <path d="M3 3v5h5"></path>
+                    <path d="M12 7v5l4 2"></path></svg
+                  ><span class="text-sm">Betting Record</span></a
+                ><a
+                  href="deposit-record.html"
+                  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-ink-2 hover:bg-surface-deep hover:text-ink"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewbox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-5 h-5 flex-shrink-0"
+                  >
+                    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+                    <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                    <path d="M16 13H8"></path>
+                    <path d="M16 17H8"></path></svg
+                  ><span class="text-sm">Deposit Record</span></a
+                ><a
+                  href="profit-loss.html"
+                  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-ink-2 hover:bg-surface-deep hover:text-ink"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewbox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-5 h-5 flex-shrink-0"
+                  >
+                    <path d="M16 7h6v6"></path>
+                    <path d="m22 7-8.5 8.5-5-5L2 17"></path></svg
+                  ><span class="text-sm">Profit And Loss</span></a
+                ><a
+                  href="withdrawal-record.html"
+                  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-ink-2 hover:bg-surface-deep hover:text-ink"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewbox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-5 h-5 flex-shrink-0"
+                  >
+                    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+                    <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                    <path d="M16 13H8"></path>
+                    <path d="M16 17H8"></path></svg
+                  ><span class="text-sm">Withdrawal Record</span></a
+                ><a
+                  href="account-record.html"
+                  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-ink-2 hover:bg-surface-deep hover:text-ink"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewbox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-5 h-5 flex-shrink-0"
+                  >
+                    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+                    <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                    <path d="M16 13H8"></path>
+                    <path d="M16 17H8"></path></svg
+                  ><span class="text-sm">Account Record</span></a
+                ><a
+                  href="personal-info.html"
+                  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-ink-2 hover:bg-surface-deep hover:text-ink"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewbox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-5 h-5 flex-shrink-0"
+                  >
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle></svg
+                  ><span class="text-sm">Personal Info</span></a
+                ><a
+                  href="security.html"
+                  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-ink-2 hover:bg-surface-deep hover:text-ink"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewbox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-5 h-5 flex-shrink-0"
+                  >
+                    <path
+                      d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                    ></path></svg
+                  ><span class="text-sm">Security Center</span></a
+                ><button
+                  class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-ink-2 hover:bg-surface-deep hover:text-ink"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewbox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-5 h-5 flex-shrink-0"
+                  >
+                    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg
+                  ><span class="text-sm">Customer Service</span>
+                </button>
+              </nav>
+            </aside>
+            <main class="min-w-0 p-4 pb-24 md:ml-64 md:p-8 md:pb-24">
+              <div class="flex flex-col">
+                <h1 class="text-ink text-2xl md:text-3xl mb-6 md:mb-8 w-full">Account Overview</h1>
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8 w-full">
+                  <div
+                    class="relative overflow-hidden flex-shrink-0 rounded-2xl p-4 md:p-6 w-full account-hero-bg lg:col-span-3"
+                  >
+                    <svg
+                      class="absolute inset-0 w-full h-full pointer-events-none"
+                      viewBox="0 0 1200 320"
+                      preserveAspectRatio="none"
+                      fill="none"
+                    >
+                      <path
+                        d="M0,305 C300,255 620,365 1200,150 L1200,320 L0,320 Z"
+                        fill="rgb(var(--c-primary) / 0.02)"
+                      ></path>
+                      <path
+                        d="M0,255 C340,185 740,325 1200,120 L1200,320 L0,320 Z"
+                        fill="rgb(var(--c-primary) / 0.025)"
+                      ></path>
+                      <path
+                        d="M0,232 C380,162 780,300 1200,92 L1200,150 C780,332 380,205 0,278 Z"
+                        fill="rgb(var(--c-primary) / 0.03)"
+                      ></path>
+                      <path
+                        d="M0,232 C380,162 780,300 1200,92"
+                        stroke="rgb(var(--c-primary) / 0.05)"
+                        stroke-width="1.2"
+                      ></path>
+                    </svg>
+                    <div class="relative flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6">
+                      <div class="w-20 h-20 rounded-full bg-g-primary flex items-center justify-center flex-shrink-0">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-user w-10 h-10 text-on-primary"
+                        >
+                          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                          <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                      </div>
+                      <div class="flex-1 text-center md:text-left w-full">
+                        <div class="flex flex-col md:flex-row items-center md:items-center gap-2 md:gap-3 mb-2">
+                          <div class="flex items-center gap-2">
+                            <h2 class="text-ink text-xl md:text-2xl font-semibold">meqomcao</h2>
+                            <a
+                              href="personal-info.html"
+                              class="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 text-primary transition-colors hover:bg-primary/20"
+                              aria-label="Change nickname"
+                              title="Change nickname"
+                              ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewbox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="h-4 w-4"
+                              >
+                                <path d="M21.17 6.81a2.83 2.83 0 0 0-4-4L4 16l-1 5 5-1Z"></path>
+                                <path d="m15 5 4 4"></path></svg
+                            ></a>
+                          </div>
+                          <span class="bg-g-primary text-on-primary px-3 py-1 rounded-full text-xs font-semibold"
+                            >VIP1</span
+                          >
+                        </div>
+                        <div class="grid grid-cols-1 gap-4 mt-4">
+                          <div>
+                            <p class="text-ink-3 text-sm mb-1">Current Balance</p>
+                            <p class="text-primary text-xl md:text-2xl font-bold">₩1,000,000,000</p>
+                          </div>
+                          <div>
+                            <p class="text-ink-3 text-sm mb-1">Member Since</p>
+                            <p class="text-ink text-base md:text-lg">August 2025</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="text-center md:text-right flex-shrink-0">
+                        <p class="text-xl md:text-2xl font-bold mb-1 text-gold">Rollover</p>
+                        <p class="text-ink text-sm md:text-base font-semibold mb-1">Remaining Turnover Amount:</p>
+                        <p class="text-ink-2 text-xl md:text-2xl font-mono">₩16,517.41</p>
+                      </div>
+                    </div>
+                    <div class="rewards-bar" style="--rk-pct: 62%">
+                      <div class="rk-rw-top"><span class="rk-rw-label">Rewards · Day 27, 03:26 UTC</span></div>
+                      <div
+                        class="rk-track"
+                        role="progressbar"
+                        aria-label="Rewards progress"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-valuenow="62"
+                      >
+                        <div class="rk-fill"></div>
+                      </div>
+                      <div class="rk-meta">
+                        <span class="rk-cur">Current: <b>Unranked</b><i class="rk-dot rk-dot-gray"></i></span
+                        ><span class="rk-pts">62%</span
+                        ><span class="rk-rw-next">Next: <b>Bronze</b><i class="rk-dot rk-dot-bronze"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bg-surface border border-line-soft rounded-lg p-4 md:p-6 lg:col-span-1">
+                    <h3 class="text-ink text-lg font-semibold mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                      <a
+                        class="block w-full bg-g-primary text-on-primary py-3 rounded-lg hover:opacity-90 transition-opacity font-semibold text-center text-sm md:text-base"
+                        href="deposit.html"
+                        >Deposit Now</a
+                      ><a
+                        class="block w-full bg-surface-2 text-ink py-3 rounded-lg hover:opacity-90 transition-opacity text-center text-sm md:text-base"
+                        href="withdrawal.html"
+                        >Withdraw</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 w-full">
+                  <div class="bg-surface border border-line-soft rounded-lg p-4 md:p-6 reg-module">
+                    <div class="flex items-center justify-between mb-4">
+                      <h3 class="text-ink text-lg font-semibold">Banking Details</h3>
+                      <div class="flex items-center gap-2">
+                        <button
+                          class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface-2 text-ink-3 hover:text-ink transition-colors"
+                          aria-label="Previous bank account"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-4 h-4"
+                          >
+                            <path d="m15 18-6-6 6-6"></path>
+                          </svg></button
+                        ><span class="text-ink-3 text-sm">1/3</span
+                        ><button
+                          class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface-2 text-ink-3 hover:text-ink transition-colors"
+                          aria-label="Next bank account"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-4 h-4"
+                          >
+                            <path d="m9 18 6-6-6-6"></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="space-y-3">
+                      <div class="flex items-center gap-3 text-ink-2 text-sm md:text-base">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-credit-card w-5 h-5 text-ink-4 flex-shrink-0"
+                        >
+                          <rect width="20" height="14" x="2" y="5" rx="2"></rect>
+                          <line x1="2" x2="22" y1="10" y2="10"></line></svg
+                        ><span>**** **** **** 1234</span
+                        ><button
+                          class="ml-auto text-ink-4 hover:text-ink transition-colors"
+                          aria-label="Delete bank account"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-4 h-4"
+                          >
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                          </svg>
+                        </button>
+                      </div>
+                      <div class="flex items-center gap-3 text-ink-2 text-sm md:text-base">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-building w-5 h-5 text-ink-4 flex-shrink-0"
+                        >
+                          <rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect>
+                          <path d="M9 22v-4h6v4"></path>
+                          <path d="M8 6h.01"></path>
+                          <path d="M16 6h.01"></path>
+                          <path d="M12 6h.01"></path>
+                          <path d="M12 10h.01"></path>
+                          <path d="M12 14h.01"></path>
+                          <path d="M16 10h.01"></path>
+                          <path d="M16 14h.01"></path>
+                          <path d="M8 10h.01"></path>
+                          <path d="M8 14h.01"></path></svg
+                        ><span>KB Bank</span>
+                      </div>
+                      <a
+                        class="text-primary hover:text-primary-soft text-sm transition-colors reg-add"
+                        href="withdrawal.html?tab=management"
+                        >+ Add New Bank Account</a
+                      >
+                    </div>
+                  </div>
+                  <div class="bg-surface border border-line-soft rounded-lg p-4 md:p-6 reg-module">
+                    <div class="flex items-center justify-between mb-4">
+                      <h3 class="text-ink text-lg font-semibold">Crypto Wallet</h3>
+                    </div>
+                    <div class="space-y-3">
+                      <div data-account-wallet-body></div>
+                      <a
+                        class="text-primary hover:text-primary-soft text-sm transition-colors reg-add"
+                        href="withdrawal.html?tab=management"
+                        data-account-wallet-add
+                        ><span style="font-size: 16px; line-height: 1">+</span>Add wallet</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-surface border border-line-soft rounded-lg p-4 md:p-6 w-full">
+                  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+                    <h3 class="text-ink text-lg font-semibold">Recent Transactions</h3>
+                    <button
+                      class="text-primary hover:text-primary-soft text-sm transition-colors text-left md:text-right"
+                    >
+                      View More Records →
+                    </button>
+                  </div>
+                  <div class="md:hidden space-y-4">
+                    <div class="bg-surface-deep border border-line-soft rounded-lg p-4">
+                      <div class="flex justify-between items-start mb-2">
+                        <div>
+                          <p class="text-ink font-semibold">SABA Bet Started</p>
+                          <p class="text-ink-3 text-sm">2025-08-12 15:48</p>
+                        </div>
+                        <span class="bg-success text-on-primary px-3 py-1 rounded-full text-xs font-semibold"
+                          >Completed</span
+                        >
+                      </div>
+                      <p class="text-lg font-semibold text-success">+₩ 1,000</p>
+                    </div>
+                    <div class="bg-surface-deep border border-line-soft rounded-lg p-4">
+                      <div class="flex justify-between items-start mb-2">
+                        <div>
+                          <p class="text-ink font-semibold">SABA Bet Started</p>
+                          <p class="text-ink-3 text-sm">2025-08-12 14:30</p>
+                        </div>
+                        <span class="bg-success text-on-primary px-3 py-1 rounded-full text-xs font-semibold"
+                          >Completed</span
+                        >
+                      </div>
+                      <p class="text-lg font-semibold text-danger">-₩ 500</p>
+                    </div>
+                    <div class="bg-surface-deep border border-line-soft rounded-lg p-4">
+                      <div class="flex justify-between items-start mb-2">
+                        <div>
+                          <p class="text-ink font-semibold">SABA Bet Started</p>
+                          <p class="text-ink-3 text-sm">2025-08-11 18:20</p>
+                        </div>
+                        <span class="bg-success text-on-primary px-3 py-1 rounded-full text-xs font-semibold"
+                          >Completed</span
+                        >
+                      </div>
+                      <p class="text-lg font-semibold text-success">+₩ 2,500</p>
+                    </div>
+                    <div class="bg-surface-deep border border-line-soft rounded-lg p-4">
+                      <div class="flex justify-between items-start mb-2">
+                        <div>
+                          <p class="text-ink font-semibold">SABA Bet Started</p>
+                          <p class="text-ink-3 text-sm">2025-08-11 12:15</p>
+                        </div>
+                        <span class="bg-success text-on-primary px-3 py-1 rounded-full text-xs font-semibold"
+                          >Completed</span
+                        >
+                      </div>
+                      <p class="text-lg font-semibold text-danger">-₩ 1,000</p>
+                    </div>
+                    <div class="bg-surface-deep border border-line-soft rounded-lg p-4">
+                      <div class="flex justify-between items-start mb-2">
+                        <div>
+                          <p class="text-ink font-semibold">SABA Bet Started</p>
+                          <p class="text-ink-3 text-sm">2025-08-10 16:45</p>
+                        </div>
+                        <span class="bg-success text-on-primary px-3 py-1 rounded-full text-xs font-semibold"
+                          >Completed</span
+                        >
+                      </div>
+                      <p class="text-lg font-semibold text-success">+₩ 750</p>
+                    </div>
+                  </div>
+                  <div class="hidden md:block overflow-x-auto">
+                    <table class="w-full">
+                      <thead>
+                        <tr class="border-b border-line-soft">
+                          <th class="text-left text-ink-3 text-sm py-3 px-4">Type</th>
+                          <th class="text-left text-ink-3 text-sm py-3 px-4">Amount</th>
+                          <th class="text-left text-ink-3 text-sm py-3 px-4">Date</th>
+                          <th class="text-left text-ink-3 text-sm py-3 px-4">Time</th>
+                          <th class="text-left text-ink-3 text-sm py-3 px-4">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="border-b border-line-soft hover:bg-surface-deep transition-colors">
+                          <td class="text-ink py-4 px-4">SABA Bet Started</td>
+                          <td class="py-4 px-4 font-semibold text-success">+₩ 1,000</td>
+                          <td class="text-ink-2 py-4 px-4">2025-08-12</td>
+                          <td class="text-ink-2 py-4 px-4">15:48</td>
+                          <td class="py-4 px-4">
+                            <span class="bg-success text-on-primary px-3 py-1 rounded-full text-xs font-semibold"
+                              >Completed</span
+                            >
+                          </td>
+                        </tr>
+                        <tr class="border-b border-line-soft hover:bg-surface-deep transition-colors">
+                          <td class="text-ink py-4 px-4">SABA Bet Started</td>
+                          <td class="py-4 px-4 font-semibold text-danger">-₩ 500</td>
+                          <td class="text-ink-2 py-4 px-4">2025-08-12</td>
+                          <td class="text-ink-2 py-4 px-4">14:30</td>
+                          <td class="py-4 px-4">
+                            <span class="bg-success text-on-primary px-3 py-1 rounded-full text-xs font-semibold"
+                              >Completed</span
+                            >
+                          </td>
+                        </tr>
+                        <tr class="border-b border-line-soft hover:bg-surface-deep transition-colors">
+                          <td class="text-ink py-4 px-4">SABA Bet Started</td>
+                          <td class="py-4 px-4 font-semibold text-success">+₩ 2,500</td>
+                          <td class="text-ink-2 py-4 px-4">2025-08-11</td>
+                          <td class="text-ink-2 py-4 px-4">18:20</td>
+                          <td class="py-4 px-4">
+                            <span class="bg-success text-on-primary px-3 py-1 rounded-full text-xs font-semibold"
+                              >Completed</span
+                            >
+                          </td>
+                        </tr>
+                        <tr class="border-b border-line-soft hover:bg-surface-deep transition-colors">
+                          <td class="text-ink py-4 px-4">SABA Bet Started</td>
+                          <td class="py-4 px-4 font-semibold text-danger">-₩ 1,000</td>
+                          <td class="text-ink-2 py-4 px-4">2025-08-11</td>
+                          <td class="text-ink-2 py-4 px-4">12:15</td>
+                          <td class="py-4 px-4">
+                            <span class="bg-success text-on-primary px-3 py-1 rounded-full text-xs font-semibold"
+                              >Completed</span
+                            >
+                          </td>
+                        </tr>
+                        <tr class="border-b border-line-soft hover:bg-surface-deep transition-colors">
+                          <td class="text-ink py-4 px-4">SABA Bet Started</td>
+                          <td class="py-4 px-4 font-semibold text-success">+₩ 750</td>
+                          <td class="text-ink-2 py-4 px-4">2025-08-10</td>
+                          <td class="text-ink-2 py-4 px-4">16:45</td>
+                          <td class="py-4 px-4">
+                            <span class="bg-success text-on-primary px-3 py-1 rounded-full text-xs font-semibold"
+                              >Completed</span
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+          <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface-deep border-t border-line-soft z-50">
+            <div class="grid grid-cols-5 h-16">
+              <button class="flex flex-col items-center justify-center gap-1 text-ink-3 transition-all">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-menu w-6 h-6"
+                >
+                  <line x1="4" x2="20" y1="12" y2="12"></line>
+                  <line x1="4" x2="20" y1="6" y2="6"></line>
+                  <line x1="4" x2="20" y1="18" y2="18"></line></svg
+                ><span class="text-xs">瀏覽</span></button
+              ><a href="index.html" class="flex flex-col items-center justify-center gap-1 transition-all text-ink-3"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-house w-6 h-6"
+                >
+                  <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                  <path
+                    d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                  ></path></svg
+                ><span class="text-xs">首頁</span></a
+              ><a href="deposit.html" class="flex flex-col items-center justify-center gap-1 transition-all text-ink-3"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-down-to-line w-6 h-6"
+                >
+                  <path d="M12 17V3"></path>
+                  <path d="m6 11 6 6 6-6"></path>
+                  <path d="M19 21H5"></path></svg
+                ><span class="text-xs">儲值</span></a
+              ><a
+                href="promotion.html"
+                class="flex flex-col items-center justify-center gap-1 transition-all text-ink-3"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-gift w-6 h-6"
+                >
+                  <rect x="3" y="8" width="18" height="4" rx="1"></rect>
+                  <path d="M12 8v13"></path>
+                  <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path>
+                  <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg
+                ><span class="text-xs">優惠活動</span></a
+              ><a
+                aria-current="page"
+                href="account.html"
+                class="router-link-active router-link-exact-active flex flex-col items-center justify-center gap-1 transition-all text-primary"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-user w-6 h-6"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle></svg
+                ><span class="text-xs">會員</span></a
+              >
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div id="teleports"></div>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>
