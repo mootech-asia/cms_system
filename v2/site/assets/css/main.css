@@ -170,7 +170,7 @@ img, video { max-width: 100%; height: auto; }
   display: block;
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
   background-color: rgb(var(--c-bg) / 1);
-  border-top: 1px solid rgb(var(--c-border-soft) / 1);
+  border-color: rgb(var(--c-border-soft) / 1); border-top-width: 1px;
 }
 @media (min-width: 768px) { .mobile-bottom-nav { display: none; } }
 .mobile-bottom-nav-grid { display: grid; grid-template-columns: repeat(5, minmax(0px, 1fr)); height: 4rem; }
@@ -2001,12 +2001,19 @@ select.pay-field {
 .live-sport-section > .app-container { padding-left: 1rem; padding-right: 1rem; }
 .rail-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
 .rail-title { color: rgb(var(--c-text) / 1); display: flex; align-items: center; gap: 0.5rem; }
+.rail-title--tight { gap: 0.375rem; }
 .rail-title-icon { width: 1.25rem; height: 1.25rem; }
 .rail-title-icon--primary { color: rgb(var(--c-primary) / 1); }
 .rail-title-icon--orange { color: rgb(251 146 60 / 1); }
+.rail-title-icon--responsive { width: 1rem; height: 1rem; }
+@media (min-width: 768px) { .rail-title-icon--responsive { width: 1.25rem; height: 1.25rem; } }
 .rail-title-text { font-size: 1rem; line-height: 1.5rem; }
 @media (min-width: 768px) { .rail-title-text { font-size: 1.125rem; line-height: 1.75rem; } }
+.rail-title-text--compact { font-size: 0.875rem; line-height: 1.25rem; }
+@media (min-width: 768px) { .rail-title-text--compact { font-size: 1.125rem; line-height: 1.75rem; } }
 .rail-actions { display: flex; align-items: center; gap: 0.5rem; }
+.rail-actions--tight { gap: 0.25rem; }
+@media (min-width: 768px) { .rail-actions--tight { gap: 0.5rem; } }
 .rail-view-all {
   color: rgb(var(--c-text-3) / 1); font-size: 0.75rem; line-height: 1rem; padding: 0.375rem 0.75rem;
   border: 1px solid rgb(var(--c-border) / 1); border-radius: 0.25rem;
@@ -2024,7 +2031,11 @@ select.pay-field {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 0.15s;
 }
 .rail-nav-btn:hover { color: rgb(var(--c-text) / 1); }
+.rail-nav-btn--compact { padding: 0.25rem; }
+@media (min-width: 768px) { .rail-nav-btn--compact { padding: 0.375rem; } }
 .rail-nav-icon { width: 1rem; height: 1rem; }
+.rail-nav-icon--responsive { width: 0.75rem; height: 0.75rem; }
+@media (min-width: 768px) { .rail-nav-icon--responsive { width: 1rem; height: 1rem; } }
 
 /* ── Game card (rail item; reused across hot-games/mini-games/etc.) ─── */
 .game-rail { display: flex; overflow-x: auto; gap: 0.75rem; scroll-snap-type: x mandatory; padding-bottom: 0.5rem; }
@@ -2168,3 +2179,82 @@ select.pay-field {
   transition-property: opacity; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 0.15s;
 }
 .match-card-cta:hover { opacity: 0.9; }
+
+/* ── Homepage promotion cards ────────────────────────────────────────── */
+.promotion-section { padding: 1.5rem 0; background-color: rgb(var(--c-surface) / 1); }
+.promotion-section > .app-container { padding-left: 1rem; padding-right: 1rem; }
+.promo-grid-desktop { display: none; }
+@media (min-width: 768px) { .promo-grid-desktop { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; } }
+.promo-rail-mobile { display: flex; overflow-x: auto; gap: 0.75rem; scroll-snap-type: x mandatory; padding-bottom: 0.5rem; }
+@media (min-width: 768px) { .promo-rail-mobile { display: none; } }
+.promo-rail-mobile-item { flex-shrink: 0; scroll-snap-align: start; width: 220px; }
+.promo-tile {
+  background-color: rgb(var(--c-bg) / 1); border: 1px solid rgb(var(--c-border-soft) / 1); border-radius: 0.75rem;
+  overflow: hidden; cursor: pointer;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 0.15s;
+}
+.promo-tile:hover { border-color: rgb(var(--c-primary) / 1); }
+.promo-tile-art {
+  background: linear-gradient(135deg, rgb(var(--c-primary-faint)) 0, rgb(var(--c-surface)), rgb(var(--c-bg)));
+  position: relative; height: 7rem; overflow: hidden;
+}
+.operation-promo-media { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: cover; }
+.operation-promo-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(var(--c-bg) / 0.78) 0, rgb(var(--c-surface) / 0.54) 56%, rgb(var(--c-scrim) / 0.3)); }
+.promo-tile-body { padding: 1rem; }
+.promo-tile-title { color: rgb(var(--c-text) / 1); font-size: 0.875rem; line-height: 1.25rem; margin-bottom: 0.75rem; text-align: center; }
+.promo-tile-actions > * + * { margin-top: 0.5rem; }
+.promo-tile-cta {
+  width: 100%; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; line-height: 1rem;
+  color: rgb(var(--c-on-primary) / 1); display: flex; align-items: center; justify-content: center;
+  background-image: var(--g-primary);
+  transition-property: opacity; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 0.15s;
+}
+.promo-tile-cta:hover { opacity: 0.9; }
+
+/* ── Homepage footer ─────────────────────────────────────────────────── */
+.site-footer { background-color: rgb(var(--c-surface) / 1); border-color: rgb(var(--c-border-soft) / 1); border-top-width: 1px; padding: 3rem 0 6rem; }
+@media (min-width: 768px) { .site-footer { padding-bottom: 4rem; } }
+.site-footer > .app-container { padding-left: 1rem; padding-right: 1rem; }
+.site-footer-inner { display: flex; flex-direction: column; align-items: center; }
+.site-footer-logo { height: 3rem; mix-blend-mode: lighten; margin-bottom: 1.5rem; }
+.site-footer-notice { text-align: center; max-width: 42rem; }
+.site-footer-notice p { color: rgb(var(--c-text-3) / 1); font-size: 0.75rem; line-height: 1.625; margin-bottom: 0.75rem; }
+.site-footer-notice p:last-child { margin-bottom: 0; }
+.site-footer-divider { height: 1px; width: 100%; background-color: rgb(var(--c-border-soft) / 1); max-width: 42rem; margin: 24px 0; }
+.site-footer-copyright { font-size: 0.75rem; line-height: 1rem; color: rgb(var(--c-text-4) / 1); }
+
+/* ── Lobby-page mobile bottom nav ────────────────────────────────────── */
+.mobile-bottom-nav-item.is-active { color: rgb(var(--c-primary) / 1); }
+
+/* ── Floating QR/social rail ─────────────────────────────────────────── */
+.qr-rail {
+  position: fixed; right: 14px; top: 50%; transform: translateY(-58%); z-index: 9000;
+  display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 12px 8px;
+  border-radius: 44px; background: rgb(var(--c-surface) / 0.9); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border: 1px solid hsla(0, 0%, 100%, 0.08); box-shadow: 0 10px 30px #0006, 0 0 18px rgb(var(--c-primary) / 0.25);
+  opacity: 1; transition: box-shadow 0.2s ease;
+}
+.qr-rail:focus-within, .qr-rail:hover { box-shadow: 0 10px 30px #0006, 0 0 26px rgb(var(--c-primary) / 0.4); }
+.qr-btn {
+  background-color: rgb(var(--c-surface-2) / 1); color: rgb(var(--c-primary) / 1); position: relative;
+  width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 18px #00000059; transition: transform 0.15s ease, background 0.15s ease; text-decoration: none;
+}
+.qr-btn:hover { transform: scale(1.06); background: rgb(var(--c-border)); }
+.qr-btn img { width: 40px; height: 40px; object-fit: contain; }
+.qr-btn svg { width: 26px; height: 26px; }
+.qr-label {
+  background-color: rgb(var(--c-bg) / 1); color: rgb(var(--c-text) / 1); position: absolute;
+  right: calc(100% + 14px); top: 50%; transform: translateY(-50%) translate(10px); white-space: nowrap;
+  font-weight: 700; font-size: 16px; padding: 12px 22px; border-radius: 14px; opacity: 0; pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease; box-shadow: 0 10px 28px #00000073;
+}
+.qr-btn:focus-visible .qr-label, .qr-btn:hover .qr-label { opacity: 1; transform: translateY(-50%) translate(0); }
+@media (max-width: 768px) {
+  .qr-rail { right: 10px; gap: 12px; padding: 9px 6px; top: 64%; transform: translateY(-50%); }
+  .qr-btn { width: 48px; height: 48px; }
+  .qr-btn img { width: 34px; height: 34px; }
+  .qr-btn svg { width: 22px; height: 22px; }
+  .qr-label { font-size: 14px; padding: 10px 16px; }
+}
