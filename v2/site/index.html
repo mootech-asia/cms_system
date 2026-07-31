@@ -790,11 +790,11 @@
                 </div>
               </div>
             </section>
-            <section data-studio-block="mini-games" class="bg-surface-deep py-12">
-              <div class="container mx-auto px-4">
-                <div class="mb-7 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <section data-studio-block="mini-games" class="mini-games-section">
+              <div class="app-container">
+                <div class="game-tabs-head">
                   <div
-                    class="grid grid-cols-3 gap-2 md:flex md:items-center"
+                    class="game-tabs"
                     role="tablist"
                     aria-label="Game categories"
                   >
@@ -802,31 +802,13 @@
                       id="games-tab-mini"
                       type="button"
                       role="tab"
-                      class="text-ink bg-primary/10 border-primary/30 relative flex min-h-11 items-center justify-center gap-2 rounded-lg border px-3 py-2 font-semibold transition-colors md:min-w-32"
+                      class="game-tab is-active"
                       aria-selected="true"
                       aria-controls="games-panel-mini"
                       tabindex="0"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewbox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="h-4 w-4 shrink-0"
-                      >
-                        <line x1="6" x2="10" y1="11" y2="11"></line>
-                        <line x1="8" x2="8" y1="9" y2="13"></line>
-                        <line x1="15" x2="15.01" y1="12" y2="12"></line>
-                        <line x1="18" x2="18.01" y1="10" y2="10"></line>
-                        <path
-                          d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"
-                        ></path></svg
-                      ><span class="text-xs md:text-sm">迷你遊戲</span
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="game-tab-icon"><line x1="6" x2="10" y1="11" y2="11"></line><line x1="8" x2="8" y1="9" y2="13"></line><line x1="15" x2="15.01" y1="12" y2="12"></line><line x1="18" x2="18.01" y1="10" y2="10"></line><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"></path></svg>
+                      <span class="game-tab-label">迷你遊戲</span
                       ><span aria-hidden="true" class="mini-countdown-bar"
                         ><span style="width: 100%"></span
                       ></span></button
@@ -834,801 +816,757 @@
                       id="games-tab-slot"
                       type="button"
                       role="tab"
-                      class="text-ink-4 border-transparent hover:border-line hover:bg-surface hover:text-ink-2 relative flex min-h-11 items-center justify-center gap-2 rounded-lg border px-3 py-2 font-semibold transition-colors md:min-w-32"
+                      class="game-tab"
                       aria-selected="false"
                       aria-controls="games-panel-slot"
                       tabindex="-1"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewbox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="h-4 w-4 shrink-0"
-                      >
-                        <path d="M2 17a5 5 0 0 0 10 0c0-2.76-2.5-5-5-3-2.5-2-5 .24-5 3Z"></path>
-                        <path d="M12 17a5 5 0 0 0 10 0c0-2.76-2.5-5-5-3-2.5-2-5 .24-5 3Z"></path>
-                        <path d="M7 14c3.22-2.91 4.29-8.75 5-12 1.66 2.38 4.94 9 5 12"></path>
-                        <path d="M22 9c-4.29 0-7.14-2.33-10-7 5.71 0 10 4.67 10 7Z"></path></svg
-                      ><span class="text-xs md:text-sm">老虎機</span></button
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="game-tab-icon"><path d="M2 17a5 5 0 0 0 10 0c0-2.76-2.5-5-5-3-2.5-2-5 .24-5 3Z"></path><path d="M12 17a5 5 0 0 0 10 0c0-2.76-2.5-5-5-3-2.5-2-5 .24-5 3Z"></path><path d="M7 14c3.22-2.91 4.29-8.75 5-12 1.66 2.38 4.94 9 5 12"></path><path d="M22 9c-4.29 0-7.14-2.33-10-7 5.71 0 10 4.67 10 7Z"></path></svg>
+                      <span class="game-tab-label">老虎機</span></button
                     ><button
                       id="games-tab-live"
                       type="button"
                       role="tab"
-                      class="text-ink-4 border-transparent hover:border-line hover:bg-surface hover:text-ink-2 relative flex min-h-11 items-center justify-center gap-2 rounded-lg border px-3 py-2 font-semibold transition-colors md:min-w-32"
+                      class="game-tab"
                       aria-selected="false"
                       aria-controls="games-panel-live"
                       tabindex="-1"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewbox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="h-4 w-4 shrink-0"
-                      >
-                        <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path>
-                        <rect x="2" y="6" width="14" height="12" rx="2"></rect></svg
-                      ><span class="text-xs md:text-sm">真人娛樂</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="game-tab-icon"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg>
+                      <span class="game-tab-label">真人娛樂</span>
                     </button>
                   </div>
-                  <div class="flex items-center justify-end gap-2">
+                  <div class="game-tabs-actions">
                     <span class="mini-countdown-chip" aria-live="polite">8s</span
                     ><a
                       href="mini-games.html"
-                      class="rounded border border-line px-3 py-1.5 text-xs text-ink-3 transition-colors hover:border-primary hover:text-ink"
+                      class="game-tabs-view-all"
                       >查看全部</a
                     ><button
                       type="button"
                       aria-label="Previous games"
-                      class="rounded border border-line p-1.5 text-ink-3 transition-colors hover:border-primary hover:text-ink"
+                      class="game-tabs-nav-btn"
                     >
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="h-4 w-4"
-                      >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
                         <path d="m15 18-6-6 6-6"></path>
                       </svg></button
                     ><button
                       type="button"
                       aria-label="Next games"
-                      class="rounded border border-line p-1.5 text-ink-3 transition-colors hover:border-primary hover:text-ink"
+                      class="game-tabs-nav-btn"
                     >
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="h-4 w-4"
-                      >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
                         <path d="m9 18 6-6-6-6"></path>
                       </svg>
                     </button>
                   </div>
                 </div>
-                <div class="overflow-hidden">
+                <div class="mini-game-panel-wrap">
                   <div
                     id="games-panel-mini"
                     role="tabpanel"
                     aria-labelledby="games-tab-mini"
-                    class="scrollbar-hide flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth pb-4 animate-slideIn"
+                    class="mini-game-panel"
                   >
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1534620780923-1ce0db377c3f__w-200"
                           alt="Mega Fortune"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Mega Fortune</h3>
+                      <h3 class="mini-game-card-name">Mega Fortune</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028297236-42130c7dcc3a__w-200"
                           alt="Starburst"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Starburst</h3>
+                      <h3 class="mini-game-card-name">Starburst</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028296525-8304e1a4969f__w-200"
                           alt="Limbo"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Limbo</h3>
+                      <h3 class="mini-game-card-name">Limbo</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1771775606196-70dccc0d9bde__w-200"
                           alt="Mines"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Mines</h3>
+                      <h3 class="mini-game-card-name">Mines</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1525018667593-176858caed6a__w-200"
                           alt="Plinko"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Plinko</h3>
+                      <h3 class="mini-game-card-name">Plinko</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1590336225155-d7e19a3a954f__w-200"
                           alt="Dice"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Dice</h3>
+                      <h3 class="mini-game-card-name">Dice</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1534620780923-1ce0db377c3f__w-200"
                           alt="Tower"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Tower</h3>
+                      <h3 class="mini-game-card-name">Tower</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028297236-42130c7dcc3a__w-200"
                           alt="Keno"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Keno</h3>
+                      <h3 class="mini-game-card-name">Keno</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028296525-8304e1a4969f__w-200"
                           alt="Hilo"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Hilo</h3>
+                      <h3 class="mini-game-card-name">Hilo</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1771775606196-70dccc0d9bde__w-200"
                           alt="Wheel"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Wheel</h3>
+                      <h3 class="mini-game-card-name">Wheel</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1525018667593-176858caed6a__w-200"
                           alt="Crash"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Crash</h3>
+                      <h3 class="mini-game-card-name">Crash</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1590336225155-d7e19a3a954f__w-200"
                           alt="Coin Flip"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Coin Flip</h3>
+                      <h3 class="mini-game-card-name">Coin Flip</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1534620780923-1ce0db377c3f__w-200"
                           alt="Rocket"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Rocket</h3>
+                      <h3 class="mini-game-card-name">Rocket</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028297236-42130c7dcc3a__w-200"
                           alt="Caves"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Caves</h3>
+                      <h3 class="mini-game-card-name">Caves</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028296525-8304e1a4969f__w-200"
                           alt="Video Poker"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Video Poker</h3>
+                      <h3 class="mini-game-card-name">Video Poker</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1771775606196-70dccc0d9bde__w-200"
                           alt="Scratch Card"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Scratch Card</h3>
+                      <h3 class="mini-game-card-name">Scratch Card</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1525018667593-176858caed6a__w-200"
                           alt="Aviator"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Aviator</h3>
+                      <h3 class="mini-game-card-name">Aviator</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1590336225155-d7e19a3a954f__w-200"
                           alt="Spaceman"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Spaceman</h3>
+                      <h3 class="mini-game-card-name">Spaceman</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1534620780923-1ce0db377c3f__w-200"
                           alt="JetX"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">JetX</h3>
+                      <h3 class="mini-game-card-name">JetX</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028297236-42130c7dcc3a__w-200"
                           alt="Balloon"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Balloon</h3>
+                      <h3 class="mini-game-card-name">Balloon</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028296525-8304e1a4969f__w-200"
                           alt="Penalty Shoot-out"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Penalty Shoot-out</h3>
+                      <h3 class="mini-game-card-name">Penalty Shoot-out</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1771775606196-70dccc0d9bde__w-200"
                           alt="Goal Rush"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Goal Rush</h3>
+                      <h3 class="mini-game-card-name">Goal Rush</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1525018667593-176858caed6a__w-200"
                           alt="Cricket Crash"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Cricket Crash</h3>
+                      <h3 class="mini-game-card-name">Cricket Crash</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1590336225155-d7e19a3a954f__w-200"
                           alt="Zeppelin"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Zeppelin</h3>
+                      <h3 class="mini-game-card-name">Zeppelin</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1534620780923-1ce0db377c3f__w-200"
                           alt="Magic Keno"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Magic Keno</h3>
+                      <h3 class="mini-game-card-name">Magic Keno</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028297236-42130c7dcc3a__w-200"
                           alt="Turbo Mines"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Turbo Mines</h3>
+                      <h3 class="mini-game-card-name">Turbo Mines</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028296525-8304e1a4969f__w-200"
                           alt="Royal Dice"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Royal Dice</h3>
+                      <h3 class="mini-game-card-name">Royal Dice</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1771775606196-70dccc0d9bde__w-200"
                           alt="Lucky Wheel"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Lucky Wheel</h3>
+                      <h3 class="mini-game-card-name">Lucky Wheel</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1525018667593-176858caed6a__w-200"
                           alt="Neon Tower"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Neon Tower</h3>
+                      <h3 class="mini-game-card-name">Neon Tower</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1590336225155-d7e19a3a954f__w-200"
                           alt="Bomb Squad"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Bomb Squad</h3>
+                      <h3 class="mini-game-card-name">Bomb Squad</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1534620780923-1ce0db377c3f__w-200"
                           alt="Cave Dash"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Cave Dash</h3>
+                      <h3 class="mini-game-card-name">Cave Dash</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028297236-42130c7dcc3a__w-200"
                           alt="Gem Flip"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Gem Flip</h3>
+                      <h3 class="mini-game-card-name">Gem Flip</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028296525-8304e1a4969f__w-200"
                           alt="Star Rocket"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Star Rocket</h3>
+                      <h3 class="mini-game-card-name">Star Rocket</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1771775606196-70dccc0d9bde__w-200"
                           alt="Hyper Plinko"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Hyper Plinko</h3>
+                      <h3 class="mini-game-card-name">Hyper Plinko</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1525018667593-176858caed6a__w-200"
                           alt="Double Hilo"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Double Hilo</h3>
+                      <h3 class="mini-game-card-name">Double Hilo</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1590336225155-d7e19a3a954f__w-200"
                           alt="Quantum Crash"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Quantum Crash</h3>
+                      <h3 class="mini-game-card-name">Quantum Crash</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1534620780923-1ce0db377c3f__w-200"
                           alt="Aqua Dice"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Aqua Dice</h3>
+                      <h3 class="mini-game-card-name">Aqua Dice</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028297236-42130c7dcc3a__w-200"
                           alt="Vegas Coin"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Vegas Coin</h3>
+                      <h3 class="mini-game-card-name">Vegas Coin</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028296525-8304e1a4969f__w-200"
                           alt="Sky Drop"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Sky Drop</h3>
+                      <h3 class="mini-game-card-name">Sky Drop</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1771775606196-70dccc0d9bde__w-200"
                           alt="Loot Box"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Loot Box</h3>
+                      <h3 class="mini-game-card-name">Loot Box</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1525018667593-176858caed6a__w-200"
                           alt="Chicken Road"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Chicken Road</h3>
+                      <h3 class="mini-game-card-name">Chicken Road</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1590336225155-d7e19a3a954f__w-200"
                           alt="Fortune Rings"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Fortune Rings</h3>
+                      <h3 class="mini-game-card-name">Fortune Rings</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1534620780923-1ce0db377c3f__w-200"
                           alt="Blast Off"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Blast Off</h3>
+                      <h3 class="mini-game-card-name">Blast Off</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028297236-42130c7dcc3a__w-200"
                           alt="Mine Runner"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Mine Runner</h3>
+                      <h3 class="mini-game-card-name">Mine Runner</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028296525-8304e1a4969f__w-200"
                           alt="Pixel Keno"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Pixel Keno</h3>
+                      <h3 class="mini-game-card-name">Pixel Keno</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1771775606196-70dccc0d9bde__w-200"
                           alt="Flip Master"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Flip Master</h3>
+                      <h3 class="mini-game-card-name">Flip Master</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1525018667593-176858caed6a__w-200"
                           alt="Rocket Queen"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Rocket Queen</h3>
+                      <h3 class="mini-game-card-name">Rocket Queen</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1590336225155-d7e19a3a954f__w-200"
                           alt="Cosmic Caves"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Cosmic Caves</h3>
+                      <h3 class="mini-game-card-name">Cosmic Caves</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1534620780923-1ce0db377c3f__w-200"
                           alt="Turbo Tower"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Turbo Tower</h3>
+                      <h3 class="mini-game-card-name">Turbo Tower</h3>
                     </div>
-                    <div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">
+                    <div data-game-card class="mini-game-card">
                       <div
-                        class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32"
+                        class="mini-game-card-media"
                       >
                         <img
                           src="_external/images.unsplash.com/photo-1604028297236-42130c7dcc3a__w-200"
                           alt="Golden Plinko"
-                          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          class="mini-game-card-img"
                           style="object-position: center"
                           loading="lazy"
                         />
                       </div>
-                      <h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">Golden Plinko</h3>
+                      <h3 class="mini-game-card-name">Golden Plinko</h3>
                     </div>
                   </div>
                 </div>

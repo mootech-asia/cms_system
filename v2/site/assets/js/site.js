@@ -974,10 +974,10 @@
     });
   }
   function buildMiniCard(g) {
-    return '<div data-game-card class="group w-28 flex-shrink-0 snap-start cursor-pointer md:w-32">' +
-      '<div class="h-28 w-28 overflow-hidden rounded-lg border-2 border-line transition-colors group-hover:border-primary md:h-32 md:w-32">' +
-      '<img src="' + g.img + '" alt="' + escapeHtml(g.title) + '" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" style="object-position:' + g.focalPoint + ';" loading="lazy"></div>' +
-      '<h3 class="mt-2 truncate text-center text-xs text-ink md:text-sm">' + escapeHtml(g.title) + '</h3></div>';
+    return '<div data-game-card class="mini-game-card">' +
+      '<div class="mini-game-card-media">' +
+      '<img src="' + g.img + '" alt="' + escapeHtml(g.title) + '" class="mini-game-card-img" style="object-position:' + g.focalPoint + ';" loading="lazy"></div>' +
+      '<h3 class="mini-game-card-name">' + escapeHtml(g.title) + '</h3></div>';
   }
 
   function initMiniGamesGrid() {
@@ -1007,7 +1007,7 @@
       panel.id = 'games-panel-' + key;
       panel.setAttribute('role', 'tabpanel');
       panel.setAttribute('aria-labelledby', 'games-tab-' + key);
-      panel.className = 'scrollbar-hide flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth pb-4 animate-slideIn';
+      panel.className = 'mini-game-panel';
       panel.innerHTML = games.map(buildMiniCard).join('');
       if (oldPanel) railWrap.replaceChild(panel, oldPanel); else railWrap.appendChild(panel);
     }
@@ -1022,14 +1022,12 @@
         btn.setAttribute('aria-controls', 'games-panel-' + k);
         btn.tabIndex = active ? 0 : -1;
         if (active) {
-          btn.classList.add('text-ink', 'bg-primary/10', 'border-primary/30');
-          btn.classList.remove('text-ink-4', 'border-transparent', 'hover:border-line', 'hover:bg-surface', 'hover:text-ink-2');
+          btn.classList.add('is-active');
           if (!btn.querySelector('.mini-countdown-bar')) {
             btn.insertAdjacentHTML('beforeend', '<span aria-hidden="true" class="mini-countdown-bar"><span style="width:100%"></span></span>');
           }
         } else {
-          btn.classList.remove('text-ink', 'bg-primary/10', 'border-primary/30');
-          btn.classList.add('text-ink-4', 'border-transparent', 'hover:border-line', 'hover:bg-surface', 'hover:text-ink-2');
+          btn.classList.remove('is-active');
           var oldBar = btn.querySelector('.mini-countdown-bar');
           if (oldBar) oldBar.remove();
         }
