@@ -1879,8 +1879,8 @@
      (same array withdrawal.html?tab=management writes to; capped at 1 entry
      so no carousel, unlike the bank card above) ------------------------- */
 
-  var TRASH_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>';
-  var COPY_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>';
+  var TRASH_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>';
+  var COPY_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>';
   function initAccountWalletCard() {
     if (pageName() !== 'account') return;
     var body = document.querySelector('[data-account-wallet-body]');
@@ -1893,29 +1893,21 @@
         return;
       }
       var w = wallets[0];
-      /* wallet-card:蓋掉 .registered-card 共用的深色底(業主嫌是個「深色洞」),
-         只加在這張錢包卡上 —— 銀行卡輪播(initAccountBankCarousel)共用同一個
-         .registered-card,沒有這個 class,深色底不受影響(global.css 定義)。 */
-      /* 對齊帳戶頁銀行卡的「圖示列」排版(業主 2026-07-28:加密卡要跟銀行卡同一種
-         對齊方式)——改用與上方 .space-y-3 銀行列相同的 flex 圖示列,取代原先的
-         registered-card/wallet-card 扁平卡;不新增等價樣式,沿用既有 Tailwind class。 */
-      body.className = 'space-y-3';
-      /* 複製鈕文案沿用 deposit QR 步驟已有的 copy/copied 語系字典
-         (D.DEPOSIT_QR[locale].copy/.copied,四語系皆有),不新增等價定義。 */
+      body.className = 'acct-panel-list';
       var qrDict = D.DEPOSIT_QR || {};
       var qrT = qrDict[currentLocale()] || qrDict.en || {};
       var copyLabel = qrT.copy || '複製';
       var copiedLabel = qrT.copied || '已複製';
       body.innerHTML =
-        '<div class="flex items-center gap-3 text-ink-2 text-sm md:text-base">' +
-          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide w-5 h-5 text-ink-4 flex-shrink-0"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>' +
+        '<div class="acct-panel-row">' +
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="acct-panel-row-icon"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>' +
           '<span>' + escapeHtml(w.type) + '</span>' +
-          '<button type="button" class="ml-auto text-ink-4 hover:text-ink transition-colors" data-wallet-del aria-label="Delete wallet">' + TRASH_SVG + '</button>' +
+          '<button type="button" class="acct-panel-row-del" data-wallet-del aria-label="Delete wallet">' + TRASH_SVG + '</button>' +
         '</div>' +
-        '<div class="flex items-center gap-3 text-ink-2 text-sm md:text-base">' +
-          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide w-5 h-5 text-ink-4 flex-shrink-0"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-4M12 8v8"></path></svg>' +
+        '<div class="acct-panel-row">' +
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="acct-panel-row-icon"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-4M12 8v8"></path></svg>' +
           '<span>' + escapeHtml(walletMask(w.address)) + '</span>' +
-          '<button type="button" class="ml-auto text-ink-4 hover:text-ink transition-colors" data-wallet-copy aria-label="' + escapeHtml(copyLabel) + '">' + COPY_SVG + '</button>' +
+          '<button type="button" class="acct-panel-row-del" data-wallet-copy aria-label="' + escapeHtml(copyLabel) + '">' + COPY_SVG + '</button>' +
         '</div>';
       on(body.querySelector('[data-wallet-copy]'), 'click', function (e) {
         e.stopPropagation();
