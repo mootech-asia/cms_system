@@ -34,8 +34,7 @@
     var seg = (location.pathname.split('/').pop() || 'index.html');
     return seg.replace(/\.html?$/, '') || 'index';
   }
-  /* 會員/帳號頁清單(業主 2026-07-21:圖1帳號列要出現在圖2 member 頁 header)——
-     單一權威清單,member-quick-links 的 Back 按鈕與 header 帳號列注入共用同一份,
+  /* 單一權威清單:member-quick-links 的 Back 按鈕與 header 帳號列注入共用同一份,
      避免兩處各自維護一份、日後漏改。 */
   var MEMBER_PAGES = ['account', 'account-record', 'betting-record',
     'change-password', 'deposit', 'deposit-record', 'personal-info', 'profit-loss',
@@ -51,8 +50,7 @@
     else document.addEventListener('DOMContentLoaded', fn);
   }
   /* 錢包位址遮罩:前 6 碼 + … + 後 4 碼(withdrawal.html 管理頁/Crypto 面板與
-     account.html Crypto Wallet 卡共用同一份遮罩規則,業主:圖3圖4 銀行同步鐵則
-     比照套用到 Crypto Wallet)*/
+     account.html Crypto Wallet 卡共用同一份遮罩規則)*/
   function walletMask(addr) {
     var s = addr || '';
     return s.length > 10 ? s.slice(0, 6) + '...' + s.slice(-4) : s;
@@ -533,21 +531,20 @@
   function mobileLoggedInBlockHtml() {
     var T = D.T || {};
     return (
-      '<div class="flex items-center gap-4">' +
-      '<div class="w-12 h-12 min-[400px]:w-14 min-[400px]:h-14 rounded-full bg-g-primary text-on-primary flex items-center justify-center flex-shrink-0">' + iconSvg('user', 'w-7 h-7') + '</div>' +
-      '<div class="min-w-0"><div class="flex items-center gap-3"><span class="text-ink text-lg min-[400px]:text-xl font-bold truncate">meqomcao</span><span class="bg-g-primary text-on-primary text-xs min-[400px]:text-sm font-bold px-2.5 py-1 rounded-full leading-none">VIP1</span></div>' +
-      '<div class="mt-1 text-sm min-[400px]:text-base font-semibold whitespace-nowrap"><span class="text-ink-3">' + escapeHtml(T.accountBalance) + '</span><span class="text-ink-3">: </span><span class="text-primary">₩1,000,000,000</span></div>' +
-      '<div class="text-sm min-[400px]:text-base font-semibold"><span class="text-ink-3">' + escapeHtml(T.accountPoints) + '</span><span class="text-ink-3">: </span><span class="text-primary">0.00</span></div></div></div>' +
-      '<a href="account.html" class="mt-3 block text-center rounded-lg bg-g-primary text-on-primary text-sm font-bold" style="padding:10px 18px;text-decoration:none">' + escapeHtml(T.accountView) + '</a>'
+      '<div class="mobile-account-block">' +
+      '<div class="mobile-account-avatar">' + iconSvg('user', 'mobile-account-avatar-icon') + '</div>' +
+      '<div class="mobile-account-info"><div class="mobile-account-name-row"><span class="mobile-account-name">meqomcao</span><span class="mobile-account-vip">VIP1</span></div>' +
+      '<div class="mobile-account-stat-row mobile-account-stat-row--first"><span class="mobile-account-stat-label">' + escapeHtml(T.accountBalance) + '</span><span class="mobile-account-stat-label">: </span><span class="mobile-account-stat-value">₩1,000,000,000</span></div>' +
+      '<div class="mobile-account-stat-row"><span class="mobile-account-stat-label">' + escapeHtml(T.accountPoints) + '</span><span class="mobile-account-stat-label">: </span><span class="mobile-account-stat-value">0.00</span></div></div></div>' +
+      '<a href="account.html" class="mobile-account-view-btn" style="padding:10px 18px;text-decoration:none">' + escapeHtml(T.accountView) + '</a>'
     );
   }
 
   function navLinksHtml() {
     return (D.NAV_LINKS || []).map(function (l) {
       var active = isActivePage(l.href);
-      return '<a href="' + l.href + '" class="mx-6 min-h-0 flex items-center gap-4 rounded-xl px-6 text-[17px] min-[400px]:text-[20px] font-semibold transition-colors ' +
-        (active ? 'bg-g-primary text-on-primary' : 'text-ink-2 hover:text-ink') +
-        '" style="text-decoration:none" data-mobile-nav-link>' + iconSvg(l.icon, 'w-6 h-6 flex-shrink-0') + '<span>' + escapeHtml(l.label) + '</span></a>';
+      return '<a href="' + l.href + '" class="mobile-nav-link' + (active ? ' is-active' : '') +
+        '" style="text-decoration:none" data-mobile-nav-link>' + iconSvg(l.icon, 'mobile-nav-link-icon') + '<span>' + escapeHtml(l.label) + '</span></a>';
     }).join('');
   }
 
@@ -559,13 +556,13 @@
       '<button class="btn-primary w-full" style="padding:12px 14px;font-size:15px;margin-top:4px" data-mobile-register>' + escapeHtml(T.register) + '</button>'
     );
     return (
-      '<div class="fixed inset-0 z-[10001]" style="background:rgba(0,0,0,.6)" data-mobile-overlay>' +
-      '<div class="absolute inset-0 flex flex-col overflow-hidden bg-surface pb-16">' +
-      '<div class="flex justify-between items-center h-[76px] min-[400px]:h-[92px] px-6 border-b border-line-soft flex-shrink-0">' +
-      '<img src="logo.png" alt="Casino Logo" class="h-12 mix-blend-lighten">' +
-      '<button class="text-ink-2 hover:text-ink" aria-label="Close menu" data-mobile-close>' + iconSvg('x', 'w-7 h-7') + '</button></div>' +
-      '<nav class="grid flex-1 min-h-0 py-2" style="grid-template-rows:repeat(' + links.length + ',minmax(0,1fr))">' + navLinksHtml() + '</nav>' +
-      '<div class="mx-6 py-3 border-t border-line flex-shrink-0" data-mobile-bottom>' + bottom + '</div>' +
+      '<div class="header-mobile-menu-overlay" style="background:rgba(0,0,0,.6)" data-mobile-overlay>' +
+      '<div class="header-mobile-menu-panel">' +
+      '<div class="header-mobile-menu-head">' +
+      '<img src="logo.png" alt="Casino Logo" class="header-mobile-menu-logo">' +
+      '<button class="header-mobile-menu-close" aria-label="Close menu" data-mobile-close>' + iconSvg('x', 'icon-xl') + '</button></div>' +
+      '<nav class="header-mobile-menu-nav" style="grid-template-rows:repeat(' + links.length + ',minmax(0,1fr))">' + navLinksHtml() + '</nav>' +
+      '<div class="header-mobile-menu-foot" data-mobile-bottom>' + bottom + '</div>' +
       '</div></div>'
     );
   }
@@ -573,13 +570,13 @@
   function buildMemberHeaderMobileMenu() {
     var links = D.NAV_LINKS || [];
     return (
-      '<div class="fixed inset-0 z-[10001]" style="background:rgba(0,0,0,.6)" data-mobile-overlay>' +
-      '<div class="absolute inset-0 flex flex-col overflow-hidden bg-surface pb-16">' +
-      '<div class="flex justify-between items-center h-[76px] min-[400px]:h-[92px] px-6 border-b border-line-soft flex-shrink-0">' +
-      '<img src="logo.png" alt="Casino Logo" class="h-12 mix-blend-lighten">' +
-      '<button class="text-ink-2 hover:text-ink" aria-label="Close menu" data-mobile-close>' + iconSvg('x', 'w-7 h-7') + '</button></div>' +
-      '<nav class="grid flex-1 min-h-0 py-2" style="grid-template-rows:repeat(' + links.length + ',minmax(0,1fr))">' + navLinksHtml() + '</nav>' +
-      '<div class="mx-6 py-3 border-t border-line flex-shrink-0">' + mobileLoggedInBlockHtml() + '</div>' +
+      '<div class="header-mobile-menu-overlay" style="background:rgba(0,0,0,.6)" data-mobile-overlay>' +
+      '<div class="header-mobile-menu-panel">' +
+      '<div class="header-mobile-menu-head">' +
+      '<img src="logo.png" alt="Casino Logo" class="header-mobile-menu-logo">' +
+      '<button class="header-mobile-menu-close" aria-label="Close menu" data-mobile-close>' + iconSvg('x', 'icon-xl') + '</button></div>' +
+      '<nav class="header-mobile-menu-nav" style="grid-template-rows:repeat(' + links.length + ',minmax(0,1fr))">' + navLinksHtml() + '</nav>' +
+      '<div class="header-mobile-menu-foot">' + mobileLoggedInBlockHtml() + '</div>' +
       '</div></div>'
     );
   }
@@ -615,16 +612,15 @@
   function buildMemberDrawerHtml() {
     var links = D.MEMBER_MENU_LINKS || [];
     var rows = links.map(function (l) {
-      /* Customer Service 已改為 CS modal(業主:support.html 移除,
-         沒有這個項目),用 csOpen 旗標讓這一列改走 data-cs-open 代理點擊,
-         不再導去已刪除的頁面(見 initCsOpenTriggers)。 */
+      /* Customer Service 一列改走 data-cs-open 代理點擊 openCsModal(),
+         不導頁(見 initCsOpenTriggers)。 */
       var active = !l.csOpen && isActivePage(l.href);
       return '<a href="' + l.href + '" class="mmd-row' + (active ? ' active' : '') + '"' + (l.csOpen ? ' data-cs-open' : '') + '>' + iconSvg(l.icon, 'mmd-icon') + '<span>' + escapeHtml(l.label) + '</span></a>';
     }).join('');
     return (
       '<div class="mmd-overlay" data-mmd-overlay>' +
       '<div class="mmd-panel">' +
-      '<div class="mmd-head"><span>Menu</span><button type="button" aria-label="Close menu" data-mmd-close>' + iconSvg('x', 'w-6 h-6') + '</button></div>' +
+      '<div class="mmd-head"><span>Menu</span><button type="button" aria-label="Close menu" data-mmd-close>' + iconSvg('x', 'icon-md') + '</button></div>' +
       '<nav class="mmd-links" style="grid-template-rows:repeat(' + links.length + ',minmax(0,1fr))">' + rows + '</nav>' +
       '</div></div>'
     );
@@ -645,7 +641,7 @@
 
   function initMobileBottomNav() {
     var browseLabel = (D.T || {}).browse || '瀏覽';
-    var browseBtn = $all('nav.md\\:hidden button').filter(function (b) {
+    var browseBtn = $all('.mobile-bottom-nav button').filter(function (b) {
       return (b.textContent || '').replace(/\s+/g, '') === browseLabel;
     })[0];
     on(browseBtn, 'click', openMemberDrawer);
@@ -753,22 +749,21 @@
     );
   }
 
-  /* 已登入帳號列(業主 2026-07-21:圖1帳號列要同步出現在圖2 member 頁 header) ——
-     單一權威 markup,前台頁(取代 Login/Register 鈕)與 member 頁(插入 header
-     右側)共用同一份,不重複維護兩份等價 HTML。 */
+  /* 已登入帳號列:單一權威 markup,前台頁(取代 Login/Register 鈕)與 member 頁
+     (插入 header 右側)共用同一份,不重複維護兩份等價 HTML。 */
   function accountBarHtml() {
     var T = D.T || {};
     return (
-      '<a href="account.html" class="flex text-ink-2 hover:text-ink transition-colors" aria-label="Account">' + iconSvg('user', 'w-5 h-5') + '</a>' +
-      '<a href="account.html" class="flex items-center gap-3 text-ink-2 hover:text-ink transition-colors whitespace-nowrap">' +
-      '<span class="text-ink-2 font-semibold">' + escapeHtml(T.accountId) + '</span><span class="text-ink-2 font-semibold">:</span>' +
-      '<span class="text-ink font-semibold">meqomcao</span>' +
-      '<span class="bg-g-primary text-on-primary text-sm font-bold px-3 py-1 rounded-full leading-none">VIP1</span></a>' +
-      '<span class="h-5 w-px bg-line"></span>' +
-      '<a href="account.html" class="flex items-center gap-2 whitespace-nowrap hover:opacity-90 transition-opacity">' +
-      '<span class="text-ink-3 font-semibold">' + escapeHtml(T.accountBalance) + '</span><span class="text-ink-3 font-semibold">:</span><span class="text-ink font-bold">₩1,000,000,000</span>' +
-      '<span class="text-ink-3 font-semibold ml-2">' + escapeHtml(T.accountPoints) + '</span><span class="text-ink-3 font-semibold">:</span><span class="text-ink font-bold">0.00</span></a>' +
-      '<button type="button" class="flex text-ink-2 hover:text-ink transition-colors" data-logout aria-label="' + escapeHtml(T.logout) + '">' + iconSvg('log-out', 'w-5 h-5') + '</button>'
+      '<a href="account.html" class="header-account-link" aria-label="Account">' + iconSvg('user', 'icon-lg') + '</a>' +
+      '<a href="account.html" class="header-account-link header-account-link--id">' +
+      '<span class="header-account-id-label">' + escapeHtml(T.accountId) + '</span><span class="header-account-id-label">:</span>' +
+      '<span class="header-account-id-value">meqomcao</span>' +
+      '<span class="header-account-vip">VIP1</span></a>' +
+      '<span class="header-account-divider"></span>' +
+      '<a href="account.html" class="header-account-balance">' +
+      '<span class="header-balance-label">' + escapeHtml(T.accountBalance) + '</span><span class="header-balance-label">:</span><span class="header-balance-value">₩1,000,000,000</span>' +
+      '<span class="header-balance-label header-balance-label--spaced">' + escapeHtml(T.accountPoints) + '</span><span class="header-balance-label">:</span><span class="header-balance-value">0.00</span></a>' +
+      '<button type="button" class="header-account-link" data-logout aria-label="' + escapeHtml(T.logout) + '">' + iconSvg('log-out', 'icon-lg') + '</button>'
     );
   }
   function bindAccountBarLogout(root) {
@@ -791,15 +786,10 @@
     });
   }
 
-  /* member/帳號頁 header 右側原本沒有桌機版容器(只有 md:hidden 的行動版
-     語系切換+漢堡鈕),故新增一個 hidden md:flex 容器插入同一列,內容沿用
-     accountBarHtml() 並比照桌機版頭部另附一份語系切換觸發鈕(桌機/行動各一份
-     觸發鈕本就是全站既有慣例,見 initLocaleSwitcher 註解)。member 頁本身即代表
-     已登入情境,固定顯示,不看 localStorage 登入旗標。 */
   function localeTriggerHtml() {
     return (
-      '<div class="relative"><button class="text-ink-2 hover:text-ink flex items-center gap-1">' +
-      iconSvg('globe', 'w-4 h-4') + '<span>中文</span>' + iconSvg('chevron-down', 'w-3 h-3') +
+      '<div class="lang-trigger-wrap"><button class="header-locale-trigger">' +
+      iconSvg('globe', 'icon-sm') + '<span>中文</span>' + iconSvg('chevron-down', 'icon-xs') +
       '</button></div>'
     );
   }
@@ -807,11 +797,11 @@
     if (!isMemberPage()) return;
     $all('header').forEach(function (header) {
       if (header.querySelector('[data-member-account-bar]')) return;
-      var mobileWrap = header.querySelector('[class~="md:hidden"]');
-      var row = mobileWrap ? mobileWrap.parentElement : header.querySelector('.flex.items-center.h-16');
+      var mobileWrap = header.querySelector('.header-mobile-controls');
+      var row = mobileWrap ? mobileWrap.parentElement : header.querySelector('.site-header-row');
       if (!row) return;
       var bar = document.createElement('div');
-      bar.className = 'hidden md:flex items-center gap-3 ml-auto text-sm';
+      bar.className = 'header-account-bar';
       bar.setAttribute('data-member-account-bar', '');
       bar.innerHTML = accountBarHtml() + localeTriggerHtml();
       if (mobileWrap) row.insertBefore(bar, mobileWrap);
@@ -1322,7 +1312,7 @@
         wrap.remove();
       }
     }
-    /* 搜尋框 placeholder 隨層級變動(業主 2026-07-22:廠商列表層搜的是廠商名稱,
+    /* 搜尋框 placeholder 隨層級變動(廠商列表層搜的是廠商名稱,
        鑽進特定廠商後才是搜遊戲名稱)。不能沿用「先寫死 zh 字串、靠 applyLocale
        事後掃過去」這個套路 —— 那套機制靠的是 MutationObserver 監聽新增節點,
        但這裡是對「既有」input 元素改 placeholder 屬性(非新增節點),開機後
@@ -1358,9 +1348,9 @@
       }
     }
 
-    /* ---- Vendor / Favorites 頁簽(業主 2026-07-21:恢復轉靜態站時遺失的收藏
-       功能,收藏清單為全站共用 — 任一分頁的 Favorites 頁簽都顯示同一份清單,
-       而非只顯示本頁 kind 的收藏)。沿用共用 .mode-tabs,不另創頁簽樣式。 ---- */
+    /* ---- Vendor / Favorites 頁簽:收藏清單為全站共用 — 任一分頁的 Favorites
+       頁簽都顯示同一份清單,而非只顯示本頁 kind 的收藏。沿用共用 .mode-tabs,
+       不另創頁簽樣式。 ---- */
     function favoritesGamesList() {
       return favoriteIds()
         .map(parseFavId)
@@ -1935,7 +1925,7 @@
     render();
   }
 
-  /* 提款頁銀行卡輪播與「帳戶管理」共用同一份 D.BANK_ACCOUNTS(業主:圖3圖4 要同步);
+  /* 提款頁銀行卡輪播與「帳戶管理」共用同一份 D.BANK_ACCOUNTS;
      管理頁新增帳戶後透過這個 api 讓輪播即時反映。 */
   var withdrawalCarouselApi = null;
   function initWithdrawalBankCarousel() {
@@ -2049,7 +2039,7 @@
       '<div data-mgmt-bank>' +
       '<div class="account-summary"><h2 class="pay-section-title">Registered Withdrawal Accounts <span data-mgmt-count>(0/5)</span></h2>' +
       '<div data-mgmt-list></div></div>' +
-      /* 新增入口(業主 2026-07-28):表單預設收起,由這顆「+」帶出。沿用本頁既有的
+      /* 新增入口:表單預設收起,由這顆「+」帶出。沿用本頁既有的
          .add-wallet(提款 Crypto 面板同一顆),不另創樣式;收合用 inline
          style="display:none" 比照上面 [data-mgmt-crypto] 的既有寫法。 */
       '<button class="add-wallet" data-mgmt-add="bank" aria-expanded="false"><span style="font-size:20px;line-height:1">+</span>Add bank account</button>' +
@@ -2098,7 +2088,7 @@
     }
     renderMgmtList();
 
-    /* 錢包管理清單(業主:圖3圖4 銀行同步鐵則比照套用到 Crypto Wallet;
+    /* 錢包管理清單:與帳戶頁 Crypto Wallet 卡同一份 D.WALLET_ACCOUNTS;
        walletMask 已上移為檔案層共用函式,見上方 utils)*/
     function renderMgmtWalletList() {
       var wrap = mgmtSection.querySelector('[data-mgmt-wallet-list]');
@@ -2167,7 +2157,7 @@
           var pw = isBankMgmt.querySelector('input[type="password"]');
           if (pw) pw.value = '';
         } else if (isWalletMgmt) {
-          /* 新增錢包 → 寫回共用陣列,清單與 Withdraw 面板同步刷新(業主:1 個上限)*/
+          /* 新增錢包 → 寫回共用陣列,清單與 Withdraw 面板同步刷新(上限 1 個)*/
           var walletSel = isWalletMgmt.querySelector('select');
           var walletInput = $all('input', isWalletMgmt).filter(function (i) { return !i.disabled && i.type !== 'password'; })[0];
           if (!walletSel || !walletSel.value || !walletInput || !walletInput.value.trim()) return;
@@ -2312,17 +2302,13 @@
 
   /* ============================ data-backoffice hint ======================= */
 
-  /* ============================================================
-   * 業主回報批次:CS 側欄鈕、View More Records、member 頁 Back
-   * ========================================================== */
-  /* 客服彈窗(業主 2026-07-20:CS 不進內容頁,改跳彈窗;內容藍本 =
-     同設計體系 v3 CustomerServiceModal:Live Chat / Telegram / Email 三列) */
+  /* 客服彈窗:CS 不進內容頁,改跳彈窗;Live Chat / Telegram / Email 三列 */
   var csModalRoot = null;
   function closeCsModal() { if (csModalRoot) { csModalRoot.remove(); csModalRoot = null; } }
   function openCsModal() {
     if (csModalRoot) return;
     csModalRoot = document.createElement('div');
-    csModalRoot.className = 'fixed inset-0 z-[999] flex bg-scrim/70 p-4';
+    csModalRoot.className = 'cs-modal-overlay';
     var rows = [
       {
         href: '#', strong: 'Live Chat Support', small: '24/7 instant help from our team',
@@ -2339,14 +2325,14 @@
       },
     ];
     csModalRoot.innerHTML =
-      '<div class="relative m-auto w-full max-w-[400px] rounded-2xl border border-line-soft bg-surface shadow-2xl">' +
-      '<div class="flex items-center justify-between gap-3 border-b border-line-soft px-[22px] py-4">' +
-      '<div class="flex items-center gap-3">' +
+      '<div class="cs-modal-box">' +
+      '<div class="cs-modal-head">' +
+      '<div class="cs-modal-head-left">' +
       '<span class="cs-modal-ico"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 16 0v4a3 3 0 0 1-3 3h-2v-7h5M4 12v4a3 3 0 0 0 3 3h2v-7H4"/></svg></span>' +
-      '<h3 class="m-0 text-lg font-bold text-ink">Customer Service</h3>' +
+      '<h3 class="cs-modal-title">Customer Service</h3>' +
       '</div>' +
-      '<button type="button" class="flex-shrink-0 rounded-full p-1.5 text-ink-3 hover:text-ink hover:bg-surface-deep transition-colors" data-cs-close aria-label="Close">' + iconSvg('x', 'w-4 h-4') + '</button>' +
-      '</div><div class="p-[22px]">' +
+      '<button type="button" class="cs-modal-close" data-cs-close aria-label="Close">' + iconSvg('x', 'icon-sm') + '</button>' +
+      '</div><div class="cs-modal-body">' +
       '<p class="cs-box-title">Select a channel</p>' +
       rows.map(function (r) {
         return '<a href="' + r.href + '"' + (r.href.indexOf('http') === 0 ? ' target="_blank" rel="noopener"' : '') +
@@ -2361,12 +2347,11 @@
     document.body.appendChild(csModalRoot);
   }
 
-  /* 全站通用 [data-cs-open] 觸發器(業主 2026-07-22:support.html「即將推出」頁
-     已整頁移除 — 客服改一律走 CS modal,不再導頁)。事件代理掛在 document 上,
-     任何頁面、任何時間點插入的 [data-cs-open] 元素(qr-rail Live Chat、mobile
-     drawer Customer Service 列等)都會生效,不需個別綁定;既有 deposit 轉帳
-     步驟裡的區域綁定(showDepositTransferStep)保留不動,兩者並存不衝突
-     (openCsModal 本身對已開啟的 modal 是 no-op)。 */
+  /* 全站通用 [data-cs-open] 觸發器:客服一律走 CS modal,不導頁。事件代理掛在
+     document 上,任何頁面、任何時間點插入的 [data-cs-open] 元素(qr-rail Live
+     Chat、mobile drawer Customer Service 列等)都會生效,不需個別綁定;既有
+     deposit 轉帳步驟裡的區域綁定(showDepositTransferStep)保留不動,兩者並存
+     不衝突(openCsModal 本身對已開啟的 modal 是 no-op)。 */
   function initCsOpenTriggers() {
     document.addEventListener('click', function (e) {
       var trigger = e.target.closest('[data-cs-open]');
@@ -2394,7 +2379,7 @@
         var btn = document.createElement('button');
         btn.type = 'button';
         btn.setAttribute('data-member-back', '');
-        btn.className = 'flex items-center gap-2 text-ink-3 hover:text-ink text-sm mb-4 bg-transparent border-0 cursor-pointer p-0';
+        btn.className = 'member-back-btn';
         btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg><span>Back</span>';
         on(btn, 'click', function () {
           if (window.history.length > 1) window.history.back();
@@ -2406,8 +2391,7 @@
   }
 
   /* ============================================================
-   * 存款非銀行方式的 QR 中繼步驟(pages/deposit.vue step==='qr' 對應;
-   * QR 一律黑白不套 token — 業主 2026-07-17 掃碼對比鐵則)
+   * 存款非銀行方式的 QR 中繼步驟;QR 一律黑白不套 token,確保掃碼對比度
    * ========================================================== */
   var QR_SIZE = 21;
   var QR_FINDERS = [{ x: 0, y: 0 }, { x: QR_SIZE - 7, y: 0 }, { x: 0, y: QR_SIZE - 7 }];
