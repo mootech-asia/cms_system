@@ -720,30 +720,30 @@
     var fields = AUTH_FIELDS[mode] || AUTH_FIELDS.login;
     var fieldsHtml = fields.map(function (f) {
       return (
-        '<label class="mb-2 block text-body font-semibold text-ink-2">' + f.label + '</label>' +
-        '<div class="relative mb-4">' +
-        '<input data-field="' + f.name + '" type="' + f.type + '" placeholder="' + f.placeholder + '" class="a-input' + (f.eye ? ' pr-11' : '') + '">' +
-        (f.eye ? '<button type="button" data-eye="' + f.name + '" class="absolute right-3 top-1/2 flex -translate-y-1/2 border-0 bg-transparent p-0 text-ink-3">' + iconSvg('eye') + '</button>' : '') +
+        '<label class="auth-field-label">' + f.label + '</label>' +
+        '<div class="auth-field-wrap">' +
+        '<input data-field="' + f.name + '" type="' + f.type + '" placeholder="' + f.placeholder + '" class="a-input' + (f.eye ? ' a-input--eye' : '') + '">' +
+        (f.eye ? '<button type="button" data-eye="' + f.name + '" class="auth-field-eye">' + iconSvg('eye') + '</button>' : '') +
         '</div>' +
-        '<p data-error="' + f.name + '" class="-mt-2.5 mb-3 text-note text-danger" hidden></p>'
+        '<p data-error="' + f.name + '" class="auth-field-error" hidden></p>'
       );
     }).join('');
     return (
       fieldsHtml +
       (mode === 'login'
-        ? '<div class="-mt-0.5 mb-[18px] flex items-center justify-between text-body"><label class="flex cursor-pointer items-center gap-2 text-ink-3"><input type="checkbox" class="accent-primary">Remember me</label><a class="a-link font-semibold" data-auth-goto="forgot">Forgot Password?</a></div>'
+        ? '<div class="auth-remember-row"><label class="auth-remember-label"><input type="checkbox" class="auth-remember-checkbox">Remember me</label><a class="a-link font-semibold" data-auth-goto="forgot">Forgot Password?</a></div>'
         : '') +
       '<button class="a-btn" type="button" data-auth-submit>' + (mode === 'register' ? 'Next Step' : mode === 'forgot' ? 'Send Reset Link' : 'Login') + '</button>' +
-      (mode === 'login' ? '<p class="mb-0.5 mt-4 text-center text-body text-ink-3">Don’t have an account? <a class="a-link" data-auth-goto="register">Register</a></p>'
-        : mode === 'register' ? '<p class="mb-0.5 mt-4 text-center text-body text-ink-3">Already have an account? <a class="a-link" data-auth-goto="login">Login</a></p>'
-        : '<p class="mb-0.5 mt-4 text-center text-body text-ink-3">Remember your password? <a class="a-link" data-auth-goto="login">Back to Login</a></p>')
+      (mode === 'login' ? '<p class="auth-switch-text">Don’t have an account? <a class="a-link" data-auth-goto="register">Register</a></p>'
+        : mode === 'register' ? '<p class="auth-switch-text">Already have an account? <a class="a-link" data-auth-goto="login">Login</a></p>'
+        : '<p class="auth-switch-text">Remember your password? <a class="a-link" data-auth-goto="login">Back to Login</a></p>')
     );
   }
 
   function authResetSentHtml() {
     return (
-      '<p class="mb-1.5 mt-2 text-center text-[15px] font-semibold text-primary">Reset link sent</p>' +
-      '<p class="mb-5 text-center text-body text-ink-3">If the account exists, password reset instructions have been sent to your email.</p>' +
+      '<p class="auth-reset-title">Reset link sent</p>' +
+      '<p class="auth-reset-desc">If the account exists, password reset instructions have been sent to your email.</p>' +
       '<button class="a-btn" type="button" data-auth-goto="login">Back to Login</button>'
     );
   }
@@ -819,7 +819,7 @@
         if (!input) return;
         var showing = input.type === 'text';
         input.type = showing ? 'password' : 'text';
-        btn.classList.toggle('text-primary', !showing);
+        btn.classList.toggle('is-active', !showing);
       });
     });
     var submitBtn = authRoot.querySelector('[data-auth-submit]');
@@ -865,12 +865,12 @@
     var title = AUTH_TITLES[mode] || 'Login';
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="fixed inset-0 z-[10000] flex items-start justify-center overflow-y-auto bg-scrim/70 px-4 py-6" data-auth-overlay>' +
-      '<div class="relative m-auto w-full max-w-[400px] rounded-2xl border border-line-soft bg-surface shadow-2xl">' +
-      '<div class="flex items-center justify-between border-b border-line-soft px-[22px] py-[18px]">' +
-      '<h3 class="m-0 text-lg font-bold text-ink">' + title + '</h3>' +
-      '<button type="button" data-auth-close class="border-0 bg-transparent p-0 text-[22px] leading-none text-ink-3">×</button>' +
-      '</div><div class="p-[22px]" data-auth-body>' + authBodyHtml(mode) + '</div></div></div>';
+      '<div class="auth-modal-overlay" data-auth-overlay>' +
+      '<div class="auth-modal-box">' +
+      '<div class="auth-modal-head">' +
+      '<h3 class="auth-modal-title">' + title + '</h3>' +
+      '<button type="button" data-auth-close class="auth-modal-close">×</button>' +
+      '</div><div class="auth-modal-body" data-auth-body>' + authBodyHtml(mode) + '</div></div></div>';
     authRoot = wrap.firstElementChild;
     document.body.appendChild(authRoot);
     document.addEventListener('keydown', onAuthKeydown);
