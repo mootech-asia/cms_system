@@ -140,10 +140,7 @@
   function updateSkinUI(key) {
     $all('[data-skin-option]').forEach(function (el) {
       var active = el.getAttribute('data-skin-option') === key;
-      el.classList.toggle('font-bold', active);
-      el.classList.toggle('text-primary', active);
-      el.classList.toggle('font-normal', !active);
-      el.classList.toggle('text-ink-2', !active);
+      el.classList.toggle('is-active', active);
     });
   }
 
@@ -174,7 +171,7 @@
     var pub = (cfg && cfg.publicSkins) || [];
     if (pub.length) keys = keys.filter(function (k) { return pub.indexOf(k) !== -1; });
     return keys.map(function (k) {
-      return '<div class="cursor-pointer whitespace-nowrap rounded-md px-3.5 py-2.5 text-sm hover:bg-surface-deep" data-skin-option="' + k + '">' + escapeHtml(labels[k] || k) + '</div>';
+      return '<div class="dd-panel-link" data-skin-option="' + k + '">' + escapeHtml(labels[k] || k) + '</div>';
     }).join('');
   }
 
@@ -188,11 +185,11 @@
       }
       function open() {
         backdrop = document.createElement('div');
-        backdrop.className = 'fixed inset-0 z-[999]';
+        backdrop.className = 'dd-backdrop';
         on(backdrop, 'click', close);
         wrap.appendChild(backdrop);
         panel = document.createElement('div');
-        panel.className = 'dd-panel right-0';
+        panel.className = 'dd-panel dd-panel--right';
         panel.innerHTML = buildSkinPanelHtml();
         wrap.appendChild(panel);
         updateSkinUI(document.documentElement.getAttribute('data-theme') || 'win100');
@@ -234,8 +231,7 @@
     var cur = currentLocale();
     return locales.map(function (l) {
       var active = l.code === cur;
-      return '<div class="cursor-pointer whitespace-nowrap rounded-md px-3.5 py-2.5 text-sm hover:bg-surface-deep' +
-        (active ? ' font-bold text-primary' : ' font-normal text-ink-2') + '" data-locale-option="' + l.code + '">' +
+      return '<div class="dd-panel-link' + (active ? ' is-active' : '') + '" data-locale-option="' + l.code + '">' +
         escapeHtml(l.label) + '</div>';
     }).join('');
   }
@@ -485,11 +481,11 @@
       }
       function open() {
         backdrop = document.createElement('div');
-        backdrop.className = 'fixed inset-0 z-[999]';
+        backdrop.className = 'dd-backdrop';
         on(backdrop, 'click', close);
         wrap.appendChild(backdrop);
         panel = document.createElement('div');
-        panel.className = 'dd-panel right-0';
+        panel.className = 'dd-panel dd-panel--right';
         panel.innerHTML = buildLocalePanelHtml();
         wrap.appendChild(panel);
         $all('[data-locale-option]', panel).forEach(function (opt) {
@@ -1083,13 +1079,15 @@
   /* ============================ home rails (P1) =========================== */
   /* HotGamesRail / SportsPromo / Promotion(home) — index.html only. No shared
      class/aria-label on the chevrons, so scope by structural position: a
-     ".flex items-center justify-between mb-4" header whose container also
-     holds exactly one ".overflow-x-auto" rail. */
+     ".rail-head" header whose container also holds exactly one scrollable
+     rail (".match-rail" / ".game-rail" / ".promo-grid-desktop" — the live
+     sport rail isn't header's immediate sibling since a hero banner sits
+     between them, so match by the rail's own class instead of adjacency). */
 
   function initHomeRails() {
-    $all('.flex.items-center.justify-between.mb-4').forEach(function (header) {
+    $all('.rail-head').forEach(function (header) {
       var container = header.parentElement;
-      var rail = container ? container.querySelector('[class*="overflow-x-auto"]') : null;
+      var rail = container ? container.querySelector('.match-rail, .game-rail, .promo-grid-desktop') : null;
       if (!rail) return;
       var buttons = $all('button', header).filter(function (b) { return b.querySelector('svg'); });
       if (buttons.length < 2) return;
@@ -1521,48 +1519,48 @@
 
   function buildPromoDetailHtml(p) {
     return '' +
-      '<section class="py-8 min-h-[600px] bg-surface-deep">' +
-      '<div class="container mx-auto px-4">' +
-      '<div class="mx-auto max-w-[1180px] text-ink" data-promo-detail>' +
-      '<button type="button" class="btn-back mb-[22px] text-base md:mb-7 md:text-[15px]" aria-label="Back" data-promo-back>' +
+      '<section class="promotion-page-section">' +
+      '<div class="app-container">' +
+      '<div class="promotion-detail-wrap" data-promo-detail>' +
+      '<button type="button" class="btn-back btn-back--promo-detail" aria-label="Back" data-promo-back>' +
       iconSvg('back') + '<span>Back</span></button>' +
-      '<div class="flex flex-col items-center gap-7">' +
-      '<h2 class="inline-flex items-center m-0 text-ink text-[28px] md:text-display font-extrabold leading-none">Promotion</h2>' +
-      '<div class="promotion-detail-poster-bg relative w-full max-w-[760px] overflow-hidden rounded-lg border border-primary/[0.26] shadow-[0_24px_70px_rgba(0,0,0,0.34)] px-[22px] pt-9 pb-8 text-center md:px-[54px] md:pt-[46px] md:pb-[42px]">' +
-      '<img src="' + p.img + '" alt="" aria-hidden="true" class="operation-promo-poster-media absolute inset-0 h-full w-full object-cover" style="object-position:' + p.focalPoint + ';">' +
-      '<div class="operation-promo-poster-scrim absolute inset-0"></div>' +
-      '<div class="relative z-[1] flex min-h-[640px] flex-col items-center justify-between gap-[26px] md:min-h-[680px]">' +
-      '<img class="h-[42px] object-contain mix-blend-lighten" src="logo.png" alt="WIN100%">' +
+      '<div class="promotion-detail-body">' +
+      '<h2 class="promotion-detail-title">Promotion</h2>' +
+      '<div class="promotion-detail-poster-bg">' +
+      '<img src="' + p.img + '" alt="" aria-hidden="true" class="operation-promo-poster-media" style="object-position:' + p.focalPoint + ';">' +
+      '<div class="operation-promo-poster-scrim"></div>' +
+      '<div class="promotion-detail-poster-content">' +
+      '<img class="promotion-detail-logo" src="logo.png" alt="WIN100%">' +
       '<div>' +
-      '<p class="m-0 text-primary text-body font-extrabold tracking-[0.22em] uppercase">Special Offer</p>' +
-      '<h3 class="text-gradient-primary mt-2 text-[36px] md:text-[50px] font-extrabold leading-[1.08] tracking-normal">' + escapeHtml(p.headline) + '</h3>' +
-      '<p class="mt-3 text-ink text-[19px] md:text-[22px] font-extrabold">' + escapeHtml(p.title) + '</p>' +
+      '<p class="promotion-detail-eyebrow">Special Offer</p>' +
+      '<h3 class="text-gradient-primary promotion-detail-headline">' + escapeHtml(p.headline) + '</h3>' +
+      '<p class="promotion-detail-subtitle">' + escapeHtml(p.title) + '</p>' +
       '</div>' +
-      '<div class="mt-0.5 grid w-full grid-cols-1 gap-[22px] md:grid-cols-2 md:gap-[18px]">' +
-      '<div class="relative rounded-lg border border-primary/[0.24] bg-surface-deep px-[18px] pt-7 pb-[22px] shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">' +
-      '<div class="absolute -top-[15px] left-1/2 flex h-7 w-[34px] -translate-x-1/2 items-center justify-center rounded-full bg-g-primary text-surface-deep text-body font-extrabold shadow-[0_8px_18px_rgba(0,0,0,0.28)]">1</div>' +
-      '<h4 class="mb-2.5 text-primary-soft text-[19px] font-extrabold">' + escapeHtml(p.primary) + '</h4>' +
-      '<strong class="block text-ink text-display leading-none">' + escapeHtml(p.primaryRate) + '</strong>' +
-      '<span class="block mt-2.5 text-ink-3 text-body font-bold">Max reward / rollover applies</span>' +
+      '<div class="promotion-detail-grid">' +
+      '<div class="promotion-detail-stat-card">' +
+      '<div class="promotion-detail-stat-badge">1</div>' +
+      '<h4 class="promotion-detail-stat-label">' + escapeHtml(p.primary) + '</h4>' +
+      '<strong class="promotion-detail-stat-value">' + escapeHtml(p.primaryRate) + '</strong>' +
+      '<span class="promotion-detail-stat-note">Max reward / rollover applies</span>' +
       '</div>' +
-      '<div class="relative rounded-lg border border-primary/[0.24] bg-surface-deep px-[18px] pt-7 pb-[22px] shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">' +
-      '<div class="absolute -top-[15px] left-1/2 flex h-7 w-[34px] -translate-x-1/2 items-center justify-center rounded-full bg-g-primary text-surface-deep text-body font-extrabold shadow-[0_8px_18px_rgba(0,0,0,0.28)]">2</div>' +
-      '<h4 class="mb-2.5 text-primary-soft text-[19px] font-extrabold">' + escapeHtml(p.secondary) + '</h4>' +
-      '<strong class="block text-ink text-display leading-none">' + escapeHtml(p.secondaryRate) + '</strong>' +
-      '<span class="block mt-2.5 text-ink-3 text-body font-bold">Max reward / rollover applies</span>' +
+      '<div class="promotion-detail-stat-card">' +
+      '<div class="promotion-detail-stat-badge">2</div>' +
+      '<h4 class="promotion-detail-stat-label">' + escapeHtml(p.secondary) + '</h4>' +
+      '<strong class="promotion-detail-stat-value">' + escapeHtml(p.secondaryRate) + '</strong>' +
+      '<span class="promotion-detail-stat-note">Max reward / rollover applies</span>' +
       '</div>' +
       '</div>' +
-      '<div class="w-full m-0 py-[18px] px-5 md:py-[22px] md:px-[26px] rounded-lg border border-primary/[0.18] bg-surface-deep/[0.78] text-left">' +
-      '<h4 class="m-0 mb-3 text-center text-primary-soft text-h2">Promotion Terms</h4>' +
-      '<ol class="m-0 pl-[18px] text-ink-2 text-sm leading-[1.7] md:text-[15px]">' +
+      '<div class="promotion-detail-terms">' +
+      '<h4 class="promotion-detail-terms-title">Promotion Terms</h4>' +
+      '<ol class="promotion-detail-terms-list">' +
       '<li>Bonus rewards are calculated from eligible deposits and game turnover.</li>' +
       '<li>Cancelled bets, refunds, cashouts, and invalid results are not included.</li>' +
       '<li>Members must keep an active balance and meet rollover requirements.</li>' +
       '<li>Each completed promotion can only be claimed once.</li>' +
       '</ol>' +
       '</div>' +
-      '<button class="w-full max-w-[420px] border-0 rounded-lg bg-g-primary text-on-primary text-[17px] font-extrabold px-[18px] py-3.5 cursor-pointer transition-opacity hover:opacity-[0.88]" type="button">Claim Promotion</button>' +
-      '<p class="m-0 text-ink-3 text-[13px] leading-[1.6]">win100% reserves the right to adjust, pause, or end this promotion at any time.</p>' +
+      '<button class="promotion-detail-claim-btn" type="button">Claim Promotion</button>' +
+      '<p class="promotion-detail-disclaimer">win100% reserves the right to adjust, pause, or end this promotion at any time.</p>' +
       '</div>' +
       '</div>' +
       '</div>' +
@@ -1601,13 +1599,13 @@
     }
 
     if (pageName() === 'promotion') {
-      var firstCard = $all('[class*="cursor-pointer"]').filter(function (el) { return el.querySelector('h3'); })[0];
+      var firstCard = $all('.promotion-page-card, .promo-tile').filter(function (el) { return el.querySelector('h3'); })[0];
       listSection = firstCard ? firstCard.closest('section') : null;
       mount = listSection ? listSection.parentElement : null;
     }
 
     findPromoDetailButtons().forEach(function (btn) {
-      var card = btn.closest('[class*="cursor-pointer"]');
+      var card = btn.closest('.promotion-page-card, .promo-tile');
       var h3 = card && card.querySelector('h3');
       var promo = h3 && promoByTitle(h3.textContent.trim());
       if (!promo) return;
@@ -1777,10 +1775,10 @@
         var label = pSelect.querySelector('.rb-select-label') || pSelect;
         label.classList.add('rb-status-trigger');
         var menu = document.createElement('div');
-        menu.className = 'rb-status-menu dd-panel left-0';
+        menu.className = 'rb-status-menu dd-panel dd-panel--left';
         STATUSES.forEach(function (s) {
           var o = document.createElement('div');
-          o.className = 'rb-status-opt cursor-pointer whitespace-nowrap rounded-md px-3.5 py-2.5 text-sm hover:bg-surface-deep';
+          o.className = 'rb-status-opt dd-panel-link';
           o.setAttribute('data-status', s);
           o.textContent = s;
           menu.appendChild(o);
