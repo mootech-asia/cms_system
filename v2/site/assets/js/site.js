@@ -1610,20 +1610,18 @@
 
   function initSportProviderTabs() {
     if (pageName() !== 'sport') return;
-    var wrap = document.querySelector('.border-b.border-line-soft.mb-8');
+    var wrap = document.querySelector('.sport-tabs');
     if (!wrap) return;
     var buttons = $all('button', wrap).filter(function (b) { return b.parentElement === wrap; });
     if (buttons.length !== 3) return;
     function activate(btn) {
       buttons.forEach(function (o) {
-        var bar = o.querySelector('.absolute.bottom-0');
+        var bar = o.querySelector('.sport-tab-underline');
         if (bar) bar.remove();
-        o.classList.remove('text-primary');
-        o.classList.add('text-ink-3', 'hover:text-ink-2');
+        o.classList.remove('is-active');
       });
-      btn.classList.remove('text-ink-3', 'hover:text-ink-2');
-      btn.classList.add('text-primary');
-      btn.insertAdjacentHTML('beforeend', '<div class="absolute bottom-0 left-0 right-0 h-0.5 bg-g-primary"></div>');
+      btn.classList.add('is-active');
+      btn.insertAdjacentHTML('beforeend', '<div class="sport-tab-underline"></div>');
     }
     buttons.forEach(function (b) { on(b, 'click', function () { activate(b); }); });
     var qs = new URLSearchParams(location.search);
@@ -1637,7 +1635,7 @@
   function initSportLoadMore() {
     if (pageName() !== 'sport') return;
     var matches = D.SPORT_MATCHES || [];
-    var grid = document.querySelector('.grid.grid-cols-1.sm\\:grid-cols-2');
+    var grid = document.querySelector('.sport-match-grid');
     var wrap = document.querySelector('.cms-load-more-wrap');
     if (!grid || !matches.length) return;
     var loads = 0;
@@ -1645,15 +1643,15 @@
     var STAR = '<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>';
     var RADIO = '<path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/>';
     function card(m) {
-      return '<div class="cursor-pointer bg-surface border border-line-soft rounded-xl hover:border-primary transition-colors"><div class="p-4">' +
-        '<div class="flex items-center justify-between mb-3"><span class="text-ink-4 text-[10px] truncate max-w-[120px]">' + escapeHtml(m.league) + '</span>' +
-        '<div class="flex items-center gap-2"><button class="focus:outline-none transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-ink-4">' + STAR + '</svg></button>' +
-        '<span class="flex items-center gap-1 text-[10px] bg-danger/20 text-danger border border-danger/30 px-1.5 py-0.5 rounded"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 animate-pulse">' + RADIO + '</svg>LIVE</span></div></div>' +
-        '<div class="flex items-center justify-between gap-2 mb-4">' +
-        '<div class="flex flex-col items-center gap-1.5 flex-1"><div class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"><span class="text-[10px] text-ink-2 font-semibold">' + escapeHtml(m.home.abbr) + '</span></div><span class="text-ink text-[10px] text-center leading-tight">' + escapeHtml(m.home.name) + '</span></div>' +
-        '<div class="text-center flex-shrink-0"><div class="text-primary text-xl font-bold leading-none">' + escapeHtml(m.score) + '</div><div class="text-ink-4 text-[10px] mt-0.5">' + escapeHtml(m.time) + '</div></div>' +
-        '<div class="flex flex-col items-center gap-1.5 flex-1"><div class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"><span class="text-[10px] text-ink-2 font-semibold">' + escapeHtml(m.away.abbr) + '</span></div><span class="text-ink text-[10px] text-center leading-tight">' + escapeHtml(m.away.name) + '</span></div>' +
-        '</div><button class="w-full py-1.5 rounded-lg text-xs text-on-primary transition-opacity hover:opacity-90 bg-g-primary">Place Bet</button></div></div>';
+      return '<div class="sport-match-card"><div class="match-card-body">' +
+        '<div class="match-card-head"><span class="match-card-league">' + escapeHtml(m.league) + '</span>' +
+        '<div class="sport-match-actions"><button type="button" class="sport-match-fav"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sport-match-fav-icon">' + STAR + '</svg></button>' +
+        '<span class="match-card-live-badge"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon">' + RADIO + '</svg>LIVE</span></div></div>' +
+        '<div class="match-card-teams">' +
+        '<div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">' + escapeHtml(m.home.abbr) + '</span></div><span class="match-card-team-name">' + escapeHtml(m.home.name) + '</span></div>' +
+        '<div class="match-card-score-wrap"><div class="match-card-score">' + escapeHtml(m.score) + '</div><div class="match-card-status">' + escapeHtml(m.time) + '</div></div>' +
+        '<div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">' + escapeHtml(m.away.abbr) + '</span></div><span class="match-card-team-name">' + escapeHtml(m.away.name) + '</span></div>' +
+        '</div><button type="button" class="match-card-cta">Place Bet</button></div></div>';
     }
     var btn = wrap ? wrap.querySelector('button') : null;
     on(btn, 'click', function () {

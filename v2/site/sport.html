@@ -146,36 +146,34 @@
             </div>
           </header>
           <div>
-            <section class="category-hero-media relative overflow-hidden bg-g-hero py-16 md:py-20">
+            <section class="category-hero-media">
               <img
                 src="https://images.pexels.com/photos/30651230/pexels-photo-30651230.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                 alt=""
                 aria-hidden="true"
-                class="category-hero-image absolute inset-0 h-full w-full object-cover"
+                class="category-hero-image"
                 style="object-position: 50% 54%"
                 fetchpriority="high"
               />
-              <div class="category-hero-scrim absolute inset-0"></div>
-              <div
-                class="category-hero-content container relative z-10 mx-auto flex flex-col justify-center px-6 text-left md:px-12 xl:px-16"
-              >
-                <p class="mb-3 text-note font-bold tracking-wide2 text-primary">LIVE ODDS</p>
-                <h1 class="category-hero-title text-4xl font-extrabold text-ink md:text-7xl">SPORTS BETTING</h1>
+              <div class="category-hero-scrim"></div>
+              <div class="category-hero-content app-container">
+                <p class="category-hero-eyebrow">LIVE ODDS</p>
+                <h1 class="category-hero-title">SPORTS BETTING</h1>
               </div>
             </section>
-            <section class="py-8 bg-surface-deep min-h-[400px]">
-              <div class="container mx-auto px-4">
-                <div class="flex items-center gap-8 border-b border-line-soft mb-8">
-                  <button class="text-primary pb-4 px-2 transition-colors relative">
+            <section class="game-listing-section">
+              <div class="app-container">
+                <div class="sport-tabs">
+                  <button class="sport-tab is-active">
                     BTI
-                    <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-g-primary"></div></button
-                  ><button class="text-ink-3 hover:text-ink-2 pb-4 px-2 transition-colors relative">SABA</button
-                  ><button class="text-ink-3 hover:text-ink-2 pb-4 px-2 transition-colors relative">Favorites</button>
+                    <div class="sport-tab-underline"></div></button
+                  ><button class="sport-tab">SABA</button
+                  ><button class="sport-tab">Favorites</button>
                 </div>
-                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
-                  <h2 class="text-ink text-2xl md:text-3xl">Live Matches</h2>
-                  <div class="flex items-center gap-3">
-                    <div class="relative flex-1 md:w-64">
+                <div class="sport-header-row">
+                  <h2 class="sport-header-title">Live Matches</h2>
+                  <div class="sport-header-controls">
+                    <div class="sport-search-wrap">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -186,18 +184,18 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="lucide lucide-search absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-3"
+                        class="sport-search-icon"
                       >
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.3-4.3"></path></svg
                       ><input
                         type="text"
                         placeholder="Search"
-                        class="w-full bg-surface border border-line rounded-lg pl-10 pr-4 py-2 text-ink placeholder-gray-400 focus:outline-none focus:border-primary"
+                        class="sport-search-input"
                       />
                     </div>
                     <button
-                      class="bg-g-primary text-on-primary px-6 py-2 rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2"
+                      class="sport-filter-btn"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -209,627 +207,27 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="lucide lucide-funnel w-4 h-4"
+                        class="sport-filter-icon"
                       >
                         <path
                           d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"
                         ></path></svg
-                      ><span class="hidden md:inline">Filter</span>
+                      ><span class="sport-filter-label">Filter</span>
                     </button>
                   </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                  <div
-                    class="cursor-pointer bg-surface border border-line-soft rounded-xl hover:border-primary transition-colors"
-                  >
-                    <div class="p-4">
-                      <div class="flex items-center justify-between mb-3">
-                        <span class="text-ink-4 text-[10px] truncate max-w-[120px]">Premier League</span>
-                        <div class="flex items-center gap-2">
-                          <button class="focus:outline-none transition-colors">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-star w-3.5 h-3.5 text-ink-4"
-                            >
-                              <path
-                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
-                              ></path>
-                            </svg></button
-                          ><span
-                            class="flex items-center gap-1 text-[10px] bg-danger/20 text-danger border border-danger/30 px-1.5 py-0.5 rounded"
-                            ><svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-radio w-2.5 h-2.5 animate-pulse"
-                            >
-                              <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path>
-                              <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path>
-                              <circle cx="12" cy="12" r="2"></circle>
-                              <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path>
-                              <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
-                            >LIVE</span
-                          >
-                        </div>
-                      </div>
-                      <div class="flex items-center justify-between gap-2 mb-4">
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">MU</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Manchester United</span>
-                        </div>
-                        <div class="text-center flex-shrink-0">
-                          <div class="text-primary text-xl font-bold leading-none">2 - 1</div>
-                          <div class="text-ink-4 text-[10px] mt-0.5">Live 67&#39;</div>
-                        </div>
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">LIV</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Liverpool</span>
-                        </div>
-                      </div>
-                      <button
-                        class="w-full py-1.5 rounded-lg text-xs text-on-primary transition-opacity hover:opacity-90 bg-g-primary"
-                      >
-                        Place Bet
-                      </button>
-                    </div>
-                  </div>
-                  <div
-                    class="cursor-pointer bg-surface border border-line-soft rounded-xl hover:border-primary transition-colors"
-                  >
-                    <div class="p-4">
-                      <div class="flex items-center justify-between mb-3">
-                        <span class="text-ink-4 text-[10px] truncate max-w-[120px]">NBA</span>
-                        <div class="flex items-center gap-2">
-                          <button class="focus:outline-none transition-colors">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-star w-3.5 h-3.5 text-ink-4"
-                            >
-                              <path
-                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
-                              ></path>
-                            </svg></button
-                          ><span
-                            class="flex items-center gap-1 text-[10px] bg-danger/20 text-danger border border-danger/30 px-1.5 py-0.5 rounded"
-                            ><svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-radio w-2.5 h-2.5 animate-pulse"
-                            >
-                              <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path>
-                              <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path>
-                              <circle cx="12" cy="12" r="2"></circle>
-                              <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path>
-                              <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
-                            >LIVE</span
-                          >
-                        </div>
-                      </div>
-                      <div class="flex items-center justify-between gap-2 mb-4">
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">LAL</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Lakers</span>
-                        </div>
-                        <div class="text-center flex-shrink-0">
-                          <div class="text-primary text-xl font-bold leading-none">98 - 105</div>
-                          <div class="text-ink-4 text-[10px] mt-0.5">Live Q3</div>
-                        </div>
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">GSW</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Warriors</span>
-                        </div>
-                      </div>
-                      <button
-                        class="w-full py-1.5 rounded-lg text-xs text-on-primary transition-opacity hover:opacity-90 bg-g-primary"
-                      >
-                        Place Bet
-                      </button>
-                    </div>
-                  </div>
-                  <div
-                    class="cursor-pointer bg-surface border border-line-soft rounded-xl hover:border-primary transition-colors"
-                  >
-                    <div class="p-4">
-                      <div class="flex items-center justify-between mb-3">
-                        <span class="text-ink-4 text-[10px] truncate max-w-[120px]">La Liga</span>
-                        <div class="flex items-center gap-2">
-                          <button class="focus:outline-none transition-colors">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-star w-3.5 h-3.5 text-ink-4"
-                            >
-                              <path
-                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
-                              ></path>
-                            </svg></button
-                          ><span
-                            class="flex items-center gap-1 text-[10px] bg-danger/20 text-danger border border-danger/30 px-1.5 py-0.5 rounded"
-                            ><svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-radio w-2.5 h-2.5 animate-pulse"
-                            >
-                              <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path>
-                              <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path>
-                              <circle cx="12" cy="12" r="2"></circle>
-                              <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path>
-                              <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
-                            >LIVE</span
-                          >
-                        </div>
-                      </div>
-                      <div class="flex items-center justify-between gap-2 mb-4">
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">RMA</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Real Madrid</span>
-                        </div>
-                        <div class="text-center flex-shrink-0">
-                          <div class="text-primary text-xl font-bold leading-none">1 - 1</div>
-                          <div class="text-ink-4 text-[10px] mt-0.5">Live 82&#39;</div>
-                        </div>
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">FCB</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Barcelona</span>
-                        </div>
-                      </div>
-                      <button
-                        class="w-full py-1.5 rounded-lg text-xs text-on-primary transition-opacity hover:opacity-90 bg-g-primary"
-                      >
-                        Place Bet
-                      </button>
-                    </div>
-                  </div>
-                  <div
-                    class="cursor-pointer bg-surface border border-line-soft rounded-xl hover:border-primary transition-colors"
-                  >
-                    <div class="p-4">
-                      <div class="flex items-center justify-between mb-3">
-                        <span class="text-ink-4 text-[10px] truncate max-w-[120px]">MLB</span>
-                        <div class="flex items-center gap-2">
-                          <button class="focus:outline-none transition-colors">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-star w-3.5 h-3.5 text-ink-4"
-                            >
-                              <path
-                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
-                              ></path>
-                            </svg></button
-                          ><span
-                            class="flex items-center gap-1 text-[10px] bg-danger/20 text-danger border border-danger/30 px-1.5 py-0.5 rounded"
-                            ><svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-radio w-2.5 h-2.5 animate-pulse"
-                            >
-                              <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path>
-                              <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path>
-                              <circle cx="12" cy="12" r="2"></circle>
-                              <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path>
-                              <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
-                            >LIVE</span
-                          >
-                        </div>
-                      </div>
-                      <div class="flex items-center justify-between gap-2 mb-4">
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">NYY</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Yankees</span>
-                        </div>
-                        <div class="text-center flex-shrink-0">
-                          <div class="text-primary text-xl font-bold leading-none">4 - 3</div>
-                          <div class="text-ink-4 text-[10px] mt-0.5">Live 7th</div>
-                        </div>
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">BOS</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Red Sox</span>
-                        </div>
-                      </div>
-                      <button
-                        class="w-full py-1.5 rounded-lg text-xs text-on-primary transition-opacity hover:opacity-90 bg-g-primary"
-                      >
-                        Place Bet
-                      </button>
-                    </div>
-                  </div>
-                  <div
-                    class="cursor-pointer bg-surface border border-line-soft rounded-xl hover:border-primary transition-colors"
-                  >
-                    <div class="p-4">
-                      <div class="flex items-center justify-between mb-3">
-                        <span class="text-ink-4 text-[10px] truncate max-w-[120px]">Champions League</span>
-                        <div class="flex items-center gap-2">
-                          <button class="focus:outline-none transition-colors">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-star w-3.5 h-3.5 text-ink-4"
-                            >
-                              <path
-                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
-                              ></path>
-                            </svg></button
-                          ><span
-                            class="flex items-center gap-1 text-[10px] bg-danger/20 text-danger border border-danger/30 px-1.5 py-0.5 rounded"
-                            ><svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-radio w-2.5 h-2.5 animate-pulse"
-                            >
-                              <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path>
-                              <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path>
-                              <circle cx="12" cy="12" r="2"></circle>
-                              <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path>
-                              <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
-                            >LIVE</span
-                          >
-                        </div>
-                      </div>
-                      <div class="flex items-center justify-between gap-2 mb-4">
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">PSG</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">PSG</span>
-                        </div>
-                        <div class="text-center flex-shrink-0">
-                          <div class="text-primary text-xl font-bold leading-none">3 - 2</div>
-                          <div class="text-ink-4 text-[10px] mt-0.5">Live 55&#39;</div>
-                        </div>
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">FCB</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Bayern Munich</span>
-                        </div>
-                      </div>
-                      <button
-                        class="w-full py-1.5 rounded-lg text-xs text-on-primary transition-opacity hover:opacity-90 bg-g-primary"
-                      >
-                        Place Bet
-                      </button>
-                    </div>
-                  </div>
-                  <div
-                    class="cursor-pointer bg-surface border border-line-soft rounded-xl hover:border-primary transition-colors"
-                  >
-                    <div class="p-4">
-                      <div class="flex items-center justify-between mb-3">
-                        <span class="text-ink-4 text-[10px] truncate max-w-[120px]">NBA</span>
-                        <div class="flex items-center gap-2">
-                          <button class="focus:outline-none transition-colors">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-star w-3.5 h-3.5 text-ink-4"
-                            >
-                              <path
-                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
-                              ></path>
-                            </svg></button
-                          ><span
-                            class="flex items-center gap-1 text-[10px] bg-danger/20 text-danger border border-danger/30 px-1.5 py-0.5 rounded"
-                            ><svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-radio w-2.5 h-2.5 animate-pulse"
-                            >
-                              <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path>
-                              <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path>
-                              <circle cx="12" cy="12" r="2"></circle>
-                              <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path>
-                              <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
-                            >LIVE</span
-                          >
-                        </div>
-                      </div>
-                      <div class="flex items-center justify-between gap-2 mb-4">
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">BOS</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Celtics</span>
-                        </div>
-                        <div class="text-center flex-shrink-0">
-                          <div class="text-primary text-xl font-bold leading-none">102 - 99</div>
-                          <div class="text-ink-4 text-[10px] mt-0.5">Live Q4</div>
-                        </div>
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">MIA</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Heat</span>
-                        </div>
-                      </div>
-                      <button
-                        class="w-full py-1.5 rounded-lg text-xs text-on-primary transition-opacity hover:opacity-90 bg-g-primary"
-                      >
-                        Place Bet
-                      </button>
-                    </div>
-                  </div>
-                  <div
-                    class="cursor-pointer bg-surface border border-line-soft rounded-xl hover:border-primary transition-colors"
-                  >
-                    <div class="p-4">
-                      <div class="flex items-center justify-between mb-3">
-                        <span class="text-ink-4 text-[10px] truncate max-w-[120px]">Premier League</span>
-                        <div class="flex items-center gap-2">
-                          <button class="focus:outline-none transition-colors">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-star w-3.5 h-3.5 text-ink-4"
-                            >
-                              <path
-                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
-                              ></path>
-                            </svg></button
-                          ><span
-                            class="flex items-center gap-1 text-[10px] bg-danger/20 text-danger border border-danger/30 px-1.5 py-0.5 rounded"
-                            ><svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-radio w-2.5 h-2.5 animate-pulse"
-                            >
-                              <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path>
-                              <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path>
-                              <circle cx="12" cy="12" r="2"></circle>
-                              <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path>
-                              <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
-                            >LIVE</span
-                          >
-                        </div>
-                      </div>
-                      <div class="flex items-center justify-between gap-2 mb-4">
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">ARS</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Arsenal</span>
-                        </div>
-                        <div class="text-center flex-shrink-0">
-                          <div class="text-primary text-xl font-bold leading-none">1 - 0</div>
-                          <div class="text-ink-4 text-[10px] mt-0.5">Live 78&#39;</div>
-                        </div>
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">CHE</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Chelsea</span>
-                        </div>
-                      </div>
-                      <button
-                        class="w-full py-1.5 rounded-lg text-xs text-on-primary transition-opacity hover:opacity-90 bg-g-primary"
-                      >
-                        Place Bet
-                      </button>
-                    </div>
-                  </div>
-                  <div
-                    class="cursor-pointer bg-surface border border-line-soft rounded-xl hover:border-primary transition-colors"
-                  >
-                    <div class="p-4">
-                      <div class="flex items-center justify-between mb-3">
-                        <span class="text-ink-4 text-[10px] truncate max-w-[120px]">Serie A</span>
-                        <div class="flex items-center gap-2">
-                          <button class="focus:outline-none transition-colors">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-star w-3.5 h-3.5 text-ink-4"
-                            >
-                              <path
-                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
-                              ></path>
-                            </svg></button
-                          ><span
-                            class="flex items-center gap-1 text-[10px] bg-danger/20 text-danger border border-danger/30 px-1.5 py-0.5 rounded"
-                            ><svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="lucide lucide-radio w-2.5 h-2.5 animate-pulse"
-                            >
-                              <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path>
-                              <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path>
-                              <circle cx="12" cy="12" r="2"></circle>
-                              <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path>
-                              <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
-                            >LIVE</span
-                          >
-                        </div>
-                      </div>
-                      <div class="flex items-center justify-between gap-2 mb-4">
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">JUV</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Juventus</span>
-                        </div>
-                        <div class="text-center flex-shrink-0">
-                          <div class="text-primary text-xl font-bold leading-none">0 - 0</div>
-                          <div class="text-ink-4 text-[10px] mt-0.5">Live 23&#39;</div>
-                        </div>
-                        <div class="flex flex-col items-center gap-1.5 flex-1">
-                          <div
-                            class="w-9 h-9 rounded-full bg-surface-deep border border-line flex items-center justify-center"
-                          >
-                            <span class="text-[10px] text-ink-2 font-semibold">INT</span>
-                          </div>
-                          <span class="text-ink text-[10px] text-center leading-tight">Inter Milan</span>
-                        </div>
-                      </div>
-                      <button
-                        class="w-full py-1.5 rounded-lg text-xs text-on-primary transition-opacity hover:opacity-90 bg-g-primary"
-                      >
-                        Place Bet
-                      </button>
-                    </div>
-                  </div>
+                <div class="sport-match-grid">
+                  <div class="sport-match-card"><div class="match-card-body"><div class="match-card-head"><span class="match-card-league">Premier League</span><div class="sport-match-actions"><button type="button" class="sport-match-fav"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sport-match-fav-icon"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg></button><span class="match-card-live-badge"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg>LIVE</span></div></div><div class="match-card-teams"><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">MU</span></div><span class="match-card-team-name">Manchester United</span></div><div class="match-card-score-wrap"><div class="match-card-score">2 - 1</div><div class="match-card-status">Live 67&#39;</div></div><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">LIV</span></div><span class="match-card-team-name">Liverpool</span></div></div><button type="button" class="match-card-cta">Place Bet</button></div></div>
+                  <div class="sport-match-card"><div class="match-card-body"><div class="match-card-head"><span class="match-card-league">NBA</span><div class="sport-match-actions"><button type="button" class="sport-match-fav"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sport-match-fav-icon"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg></button><span class="match-card-live-badge"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg>LIVE</span></div></div><div class="match-card-teams"><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">LAL</span></div><span class="match-card-team-name">Lakers</span></div><div class="match-card-score-wrap"><div class="match-card-score">98 - 105</div><div class="match-card-status">Live Q3</div></div><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">GSW</span></div><span class="match-card-team-name">Warriors</span></div></div><button type="button" class="match-card-cta">Place Bet</button></div></div>
+                  <div class="sport-match-card"><div class="match-card-body"><div class="match-card-head"><span class="match-card-league">La Liga</span><div class="sport-match-actions"><button type="button" class="sport-match-fav"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sport-match-fav-icon"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg></button><span class="match-card-live-badge"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg>LIVE</span></div></div><div class="match-card-teams"><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">RMA</span></div><span class="match-card-team-name">Real Madrid</span></div><div class="match-card-score-wrap"><div class="match-card-score">1 - 1</div><div class="match-card-status">Live 82&#39;</div></div><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">FCB</span></div><span class="match-card-team-name">Barcelona</span></div></div><button type="button" class="match-card-cta">Place Bet</button></div></div>
+                  <div class="sport-match-card"><div class="match-card-body"><div class="match-card-head"><span class="match-card-league">MLB</span><div class="sport-match-actions"><button type="button" class="sport-match-fav"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sport-match-fav-icon"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg></button><span class="match-card-live-badge"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg>LIVE</span></div></div><div class="match-card-teams"><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">NYY</span></div><span class="match-card-team-name">Yankees</span></div><div class="match-card-score-wrap"><div class="match-card-score">4 - 3</div><div class="match-card-status">Live 7th</div></div><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">BOS</span></div><span class="match-card-team-name">Red Sox</span></div></div><button type="button" class="match-card-cta">Place Bet</button></div></div>
+                  <div class="sport-match-card"><div class="match-card-body"><div class="match-card-head"><span class="match-card-league">Champions League</span><div class="sport-match-actions"><button type="button" class="sport-match-fav"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sport-match-fav-icon"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg></button><span class="match-card-live-badge"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg>LIVE</span></div></div><div class="match-card-teams"><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">PSG</span></div><span class="match-card-team-name">PSG</span></div><div class="match-card-score-wrap"><div class="match-card-score">3 - 2</div><div class="match-card-status">Live 55&#39;</div></div><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">FCB</span></div><span class="match-card-team-name">Bayern Munich</span></div></div><button type="button" class="match-card-cta">Place Bet</button></div></div>
+                  <div class="sport-match-card"><div class="match-card-body"><div class="match-card-head"><span class="match-card-league">NBA</span><div class="sport-match-actions"><button type="button" class="sport-match-fav"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sport-match-fav-icon"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg></button><span class="match-card-live-badge"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg>LIVE</span></div></div><div class="match-card-teams"><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">BOS</span></div><span class="match-card-team-name">Celtics</span></div><div class="match-card-score-wrap"><div class="match-card-score">102 - 99</div><div class="match-card-status">Live Q4</div></div><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">MIA</span></div><span class="match-card-team-name">Heat</span></div></div><button type="button" class="match-card-cta">Place Bet</button></div></div>
+                  <div class="sport-match-card"><div class="match-card-body"><div class="match-card-head"><span class="match-card-league">Premier League</span><div class="sport-match-actions"><button type="button" class="sport-match-fav"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sport-match-fav-icon"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg></button><span class="match-card-live-badge"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg>LIVE</span></div></div><div class="match-card-teams"><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">ARS</span></div><span class="match-card-team-name">Arsenal</span></div><div class="match-card-score-wrap"><div class="match-card-score">1 - 0</div><div class="match-card-status">Live 78&#39;</div></div><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">CHE</span></div><span class="match-card-team-name">Chelsea</span></div></div><button type="button" class="match-card-cta">Place Bet</button></div></div>
+                  <div class="sport-match-card"><div class="match-card-body"><div class="match-card-head"><span class="match-card-league">Serie A</span><div class="sport-match-actions"><button type="button" class="sport-match-fav"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sport-match-fav-icon"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg></button><span class="match-card-live-badge"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg>LIVE</span></div></div><div class="match-card-teams"><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">JUV</span></div><span class="match-card-team-name">Juventus</span></div><div class="match-card-score-wrap"><div class="match-card-score">0 - 0</div><div class="match-card-status">Live 23&#39;</div></div><div class="match-card-team"><div class="match-card-team-badge"><span class="match-card-team-code">INT</span></div><span class="match-card-team-name">Inter Milan</span></div></div><button type="button" class="match-card-cta">Place Bet</button></div></div>
                 </div>
-                <div class="cms-load-more-wrap flex justify-center mt-8">
-                  <button type="button" class="cms-load-more-button px-8 py-3 rounded-lg transition-colors">
+                <div class="cms-load-more-wrap">
+                  <button type="button" class="cms-load-more-button">
                     Load More
                   </button>
                 </div>
