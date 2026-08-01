@@ -1735,20 +1735,17 @@
         return;
       }
 
-      /* Status filter trigger: RecordPage.vue renders this as a UiSelect
-         (PrimeVue Select), baked into the static HTML as a `.p-select` /
-         [role=combobox] widget (label defaults to "All") — there is no
-         "Status: X" text button in the real markup, PrimeVue's own JS runtime
-         (removed along with the rest of Vue/Nuxt) drove the listbox. Rebuild
-         that interaction here, reusing the existing STATUSES/filterRows
+      /* Status filter trigger: `.rb-select` / [role=combobox] widget (label
+         defaults to "All") has no built-in dropdown behavior of its own —
+         rebuild that interaction here, reusing the existing STATUSES/filterRows
          logic and the site-wide .dd-panel dropdown look. Only present on
          deposit-record / withdrawal-record / account-record (betting-record
          and profit-loss have no status column, see stores/records.ts). */
-      var pSelect = target.closest('.p-select');
+      var pSelect = target.closest('.rb-select');
       if (pSelect) {
         e.preventDefault();
         if (root.querySelector('.rb-status-menu')) { closeStatusMenus(); return; }
-        var label = pSelect.querySelector('.p-select-label') || pSelect;
+        var label = pSelect.querySelector('.rb-select-label') || pSelect;
         label.classList.add('rb-status-trigger');
         var menu = document.createElement('div');
         menu.className = 'rb-status-menu dd-panel left-0';

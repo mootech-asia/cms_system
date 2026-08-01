@@ -1603,9 +1603,63 @@ select.pay-field {
   }
 }
 
-/* Record-table status pill centering (overrides p-datatable's default
-   left-aligned td so the pill lines up under a centered header). */
-.record-table .p-datatable-tbody > tr > td.text-center { text-align: center; }
+/* ── Record pages (betting/deposit/withdrawal-record, profit-loss, account-record) ── */
+.record-page-title { color: rgb(var(--c-text) / 1); font-size: 1.875rem; line-height: 2.25rem; margin-bottom: 2rem; }
+.rb-toolbar { margin-bottom: 1rem; display: flex; width: 100%; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.rb-select-wrap { width: 9rem; flex-shrink: 0; }
+.rb-select {
+  position: relative; display: inline-flex; width: 100%; height: 42px; cursor: pointer; border-radius: 6px;
+  border: 1px solid rgb(var(--c-surface-600) / 1); background-color: rgb(var(--c-surface-950) / 1);
+  box-shadow: 0 1px 2px 0 rgba(18, 18, 23, 0.05);
+}
+.rb-select-label { display: block; overflow: hidden; white-space: nowrap; padding: 8px 12px; color: rgb(var(--c-text) / 1); }
+.rb-select-caret { display: flex; width: 40px; height: 40px; align-items: center; justify-content: center; color: rgb(var(--c-text-3) / 1); }
+.rb-select-caret-icon { width: 14px; height: 14px; }
+.rb-daterange-wrap { width: 100%; min-width: 0; }
+@media (min-width: 640px) { .rb-daterange-wrap { width: 20rem; } }
+@media (max-width: 639px) { .rb-toolbar > .rb-daterange-wrap { flex: 1 1 50%; width: auto; } }
+.rb-daterange { display: inline-flex; width: 100%; max-width: 100%; }
+.rb-daterange-input {
+  display: block; width: 1%; flex: 1 1 auto; height: 42px; border-radius: 6px 0 0 6px; border: 1px solid rgb(var(--c-surface-600) / 1);
+  background-color: rgb(var(--c-surface-950) / 1); padding: 8px 12px; color: rgb(var(--c-text) / 1);
+  box-shadow: 0 1px 2px 0 rgba(18, 18, 23, 0.05);
+}
+.rb-daterange-input::placeholder { color: rgb(var(--c-text-4) / 1); }
+.rb-daterange-btn {
+  display: flex; width: 40px; height: 42px; flex-shrink: 0; align-items: center; justify-content: center;
+  border-radius: 0 6px 6px 0; border: 1px solid rgb(var(--c-surface-600) / 1); background-color: rgb(var(--c-surface) / 1); color: rgb(var(--c-text-3) / 1);
+}
+.rb-daterange-icon { width: 14px; height: 14px; }
+.rb-confirm-btn { height: 2.5rem; padding-left: 1.5rem; padding-right: 1.5rem; font-size: var(--fs-body); line-height: var(--lh-body); }
+.record-table-frame { width: 100%; overflow: hidden; border-radius: 0.75rem; border: 1px solid rgb(var(--c-border-soft) / 1); }
+.record-table-container { overflow-x: auto; }
+.record-table-el { width: 100%; border-collapse: collapse; font-size: var(--fs-body); line-height: var(--lh-body); }
+.record-table-thead { position: sticky; }
+.record-table-thead > tr { background-image: var(--g-primary); }
+.record-table-th {
+  white-space: nowrap; border-width: 0; background-color: transparent; padding: 0.75rem 1rem; text-align: left;
+  font-size: var(--fs-caption); line-height: var(--lh-body); font-weight: 800; text-transform: uppercase; letter-spacing: var(--ls-wide);
+  color: rgb(var(--c-on-primary) / 1);
+}
+.record-table-th-content { display: flex; align-items: center; gap: 0.5rem; }
+.record-table-th-content--end { justify-content: flex-end; }
+.record-table-tbody > tr { background-color: transparent; color: rgb(var(--c-text-2) / 1); }
+.record-table-tbody > tr:nth-child(2n) > td { background: #ffffff05; }
+.record-table-tbody > tr:hover > td { background-color: rgb(var(--c-bg) / 1); }
+.record-table-tbody > tr > td {
+  white-space: nowrap; border-width: 1px 0 0; border-style: solid; border-color: rgb(var(--c-border-soft) / 1);
+  padding: 0.875rem 1rem; font-size: var(--fs-body); line-height: var(--lh-body); font-variant-numeric: tabular-nums;
+}
+.record-table-tbody > tr > td.text-right { text-align: right; color: rgb(var(--c-text) / 1); }
+.record-table-tbody > tr > td.text-center { text-align: center; }
+.rt-strong { font-weight: 600; color: rgb(var(--c-text) / 1); }
+.rt-muted { color: rgb(var(--c-text-3) / 1); }
+.rt-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: var(--fs-caption); line-height: var(--lh-body); letter-spacing: 0.05em; color: rgb(var(--c-text-3) / 1);
+}
+.rt-positive { font-weight: 700; color: rgb(var(--c-success) / 1); }
+.rt-negative { font-weight: 700; color: rgb(var(--c-danger) / 1); }
 
 .text-danger { color: rgb(var(--c-danger) / 1); }
 
