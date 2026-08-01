@@ -453,6 +453,10 @@ img, video { max-width: 100%; height: auto; }
 .uikit-type-scale { margin-top: 1.5rem; }
 .uikit-type-scale > * + * { margin-top: 0.25rem; }
 .uikit-demo-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+.uikit-variant-row { margin-bottom: 1rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.uikit-variant-row .uikit-variant-active-label { margin-left: auto; font-size: var(--fs-caption); line-height: var(--lh-body); color: rgb(var(--c-primary) / 1); }
+.uikit-preview-frame { overflow: hidden; border-radius: 0.75rem; border: 1px solid rgb(var(--c-border-soft) / 1); background-color: rgb(var(--c-bg) / 1); }
+.uikit-catalog-header { padding-top: 2rem; }
 .uikit-accordion-panel { border-bottom: 1px solid rgb(var(--c-border-soft) / 1); }
 .uikit-accordion-header {
   all: unset; box-sizing: border-box; display: flex; width: 100%; align-items: center; justify-content: space-between; cursor: pointer;
@@ -880,6 +884,7 @@ select.pay-field {
   padding: 22px 26px;
 }
 .bound-inner {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 106px;
