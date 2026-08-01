@@ -1470,6 +1470,35 @@
     });
   }
 
+  function initUiKitTabsDemo() {
+    if (pageName() !== 'ui-kit') return;
+    var tabsWrap = document.querySelector('.mode-tabs');
+    if (tabsWrap) {
+      var buttons = $all(':scope > button', tabsWrap);
+      var panels = [];
+      var node = tabsWrap.nextElementSibling;
+      while (node && panels.length < buttons.length) { panels.push(node); node = node.nextElementSibling; }
+      if (buttons.length && panels.length === buttons.length) {
+        buttons.forEach(function (b, i) {
+          on(b, 'click', function () {
+            buttons.forEach(function (bb, bi) { bb.classList.toggle('active', bi === i); });
+            panels.forEach(function (p, pi) { p.style.display = pi === i ? '' : 'none'; });
+          });
+        });
+      }
+    }
+    $all('.uikit-accordion-panel').forEach(function (panel) {
+      var btn = panel.querySelector('.uikit-accordion-header');
+      var body = panel.querySelector('.uikit-accordion-body');
+      if (!btn || !body) return;
+      on(btn, 'click', function () {
+        var open = panel.classList.toggle('is-open');
+        body.style.display = open ? '' : 'none';
+        btn.setAttribute('aria-expanded', String(open));
+      });
+    });
+  }
+
   /* ============================ promotion detail =========================== */
   /* pages/promotion.vue PROMOS[] + list/detail toggle via ?detail=<id>. The
      "Detail" / "查看詳情" buttons exist in two places: promotion.html's own
@@ -2747,6 +2776,7 @@
     initDepositFlow();
     initVendorBrowser();
     initAboutTabs();
+    initUiKitTabsDemo();
     initPromotionDetail();
     initSportProviderTabs();
     initSportLoadMore();
