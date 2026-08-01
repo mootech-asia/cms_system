@@ -1218,12 +1218,12 @@
     var m = operationalMedia(kind, i);
     var isLive = kind === 'live';
     var T = D.T || {};
-    return '<button type="button" class="vnd-card group relative isolate min-h-[136px] overflow-hidden">' +
-      '<img src="' + m.image + '" alt="" aria-hidden="true" class="vnd-card-media absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" style="object-position:' + m.focalPoint + ';" loading="lazy">' +
-      '<div class="vnd-card-scrim absolute inset-0"></div>' +
-      '<span class="relative z-[1] flex h-full w-full flex-col items-center justify-end gap-2 p-4">' +
+    return '<button type="button" class="vnd-card">' +
+      '<img src="' + m.image + '" alt="" aria-hidden="true" class="vnd-card-media" style="object-position:' + m.focalPoint + ';" loading="lazy">' +
+      '<div class="vnd-card-scrim"></div>' +
+      '<span class="vnd-card-body">' +
       '<span class="vnd-name">' + escapeHtml(name) + '</span>' +
-      (isLive ? '<span class="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface-deep/85 px-2.5 py-1 text-[10px] font-extrabold tracking-[0.14em] text-ink-2"><span class="h-1.5 w-1.5 rounded-full bg-danger animate-pulse"></span>' + escapeHtml(T.liveStudio) + '</span>' : '') +
+      (isLive ? '<span class="vnd-card-live-badge"><span class="vnd-card-live-dot"></span>' + escapeHtml(T.liveStudio) + '</span>' : '') +
       '</span></button>';
   }
   function buildGameCard(provider, i, kind) {
@@ -1232,12 +1232,12 @@
     var T = D.T || {};
     var title = isLive ? (D.LIVE_GAME_NAMES || ['Game'])[i % (D.LIVE_GAME_NAMES || ['Game']).length] : T.gamePlaceholder;
     var favId = favIdFor(provider, i, kind);
-    return '<div class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary">' +
-      '<div class="aspect-[4/3] relative overflow-hidden">' +
-      '<img src="' + m.image + '" alt="' + escapeHtml(title) + '" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" style="object-position:' + m.focalPoint + ';" loading="lazy">' +
-      (isLive ? '<div class="absolute inset-0 bg-gradient-to-t from-surface-deep/65 via-transparent to-transparent"></div><span class="absolute left-2 top-2 inline-flex items-center gap-1.5 rounded-full border border-line bg-surface-deep/90 px-2 py-1 text-[10px] font-extrabold tracking-[0.12em] text-ink"><span class="h-1.5 w-1.5 rounded-full bg-danger animate-pulse"></span>' + escapeHtml(T.liveDealer) + '</span>' : '') +
+    return '<div class="game-listing-card">' +
+      '<div class="game-listing-card-media">' +
+      '<img src="' + m.image + '" alt="' + escapeHtml(title) + '" class="game-listing-card-img" style="object-position:' + m.focalPoint + ';" loading="lazy">' +
+      (isLive ? '<div class="game-listing-card-live-scrim"></div><span class="game-listing-card-live-badge"><span class="vnd-card-live-dot"></span>' + escapeHtml(T.liveDealer) + '</span>' : '') +
       favToggleHtml(favId) +
-      '</div><div class="p-4"><h3 class="mb-1 truncate text-ink">' + escapeHtml(title) + '</h3><p class="mb-3 truncate text-note text-ink-3">' + escapeHtml(provider) + '</p><button type="button" class="btn-primary btn-sm w-full">' + escapeHtml(T.playNow) + '</button></div></div>';
+      '</div><div class="game-listing-card-body"><h3 class="game-listing-card-name">' + escapeHtml(title) + '</h3><p class="game-listing-card-provider">' + escapeHtml(provider) + '</p><button type="button" class="btn-primary btn-sm">' + escapeHtml(T.playNow) + '</button></div></div>';
   }
 
   function initVendorBrowser() {
@@ -1289,7 +1289,7 @@
       var showBack = !direct && !!state.provider;
       if (showBack && !existing) {
         var wrap = document.createElement('div');
-        wrap.className = 'pb-[18px]';
+        wrap.className = 'vnd-back-wrap';
         wrap.innerHTML = '<button type="button" class="btn-back">' + iconSvg('back', '') + '<span>' + escapeHtml(T.back) + '</span></button>';
         container.insertBefore(wrap, head);
       } else if (!showBack && existing) {
@@ -1301,8 +1301,8 @@
       if (show && state.loads < MAX_LOADS) {
         if (!wrap) {
           wrap = document.createElement('div');
-          wrap.className = 'cms-load-more-wrap mt-8 flex justify-center';
-          wrap.innerHTML = '<button type="button" class="cms-load-more-button rounded-lg px-8 py-3 transition-colors">' + escapeHtml(T.loadMore) + '</button>';
+          wrap.className = 'cms-load-more-wrap';
+          wrap.innerHTML = '<button type="button" class="cms-load-more-button">' + escapeHtml(T.loadMore) + '</button>';
           container.appendChild(wrap);
         }
       } else if (wrap) {
@@ -1329,7 +1329,7 @@
       var showingVendors = !direct && !state.provider;
       updateSearchPlaceholder();
       var oldVnd = container.querySelector('.vnd-grid');
-      var oldGame = container.querySelector('.grid.grid-cols-2');
+      var oldGame = container.querySelector('.game-listing-grid');
       if (showingVendors) {
         if (oldGame) oldGame.remove();
         var grid = oldVnd;
@@ -1339,7 +1339,7 @@
       } else {
         if (oldVnd) oldVnd.remove();
         var gGrid = oldGame;
-        if (!gGrid) { gGrid = document.createElement('div'); gGrid.className = 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4'; container.appendChild(gGrid); }
+        if (!gGrid) { gGrid = document.createElement('div'); gGrid.className = 'game-listing-grid'; container.appendChild(gGrid); }
         gGrid.innerHTML = gamesList().map(function (g) { return buildGameCard(g.provider, g.i, kind); }).join('');
         updateLoadMore(true);
       }
@@ -1356,8 +1356,8 @@
     function renderFavorites() {
       var oldVnd = container.querySelector('.vnd-grid');
       if (oldVnd) oldVnd.remove();
-      var gGrid = container.querySelector('.grid.grid-cols-2');
-      if (!gGrid) { gGrid = document.createElement('div'); gGrid.className = 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4'; container.appendChild(gGrid); }
+      var gGrid = container.querySelector('.game-listing-grid');
+      if (!gGrid) { gGrid = document.createElement('div'); gGrid.className = 'game-listing-grid'; container.appendChild(gGrid); }
       var list = favoritesGamesList();
       gGrid.innerHTML = list.length
         ? list.map(function (p) { return buildGameCard(p.provider, p.i, p.kind); }).join('')

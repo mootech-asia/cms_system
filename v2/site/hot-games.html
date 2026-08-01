@@ -146,25 +146,23 @@
             </div>
           </header>
           <div>
-            <section class="category-hero-media relative overflow-hidden bg-g-hero py-16 md:py-20">
+            <section class="category-hero-media">
               <img
                 src="https://images.pexels.com/photos/7862503/pexels-photo-7862503.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                 alt=""
                 aria-hidden="true"
-                class="category-hero-image absolute inset-0 h-full w-full object-cover"
+                class="category-hero-image"
                 style="object-position: 68% 50%"
                 fetchpriority="high"
               />
-              <div class="category-hero-scrim absolute inset-0"></div>
-              <div
-                class="category-hero-content container relative z-10 mx-auto flex flex-col justify-center px-6 text-left md:px-12 xl:px-16"
-              >
-                <p class="mb-3 text-note font-bold tracking-wide2 text-primary">TRENDING NOW</p>
-                <h1 class="category-hero-title text-4xl font-extrabold text-ink md:text-7xl">HOT GAMES</h1>
+              <div class="category-hero-scrim"></div>
+              <div class="category-hero-content app-container">
+                <p class="category-hero-eyebrow">TRENDING NOW</p>
+                <h1 class="category-hero-title">HOT GAMES</h1>
               </div>
             </section>
-            <section class="py-8 bg-surface-deep min-h-[400px]">
-              <div class="container mx-auto px-4">
+            <section class="game-listing-section">
+              <div class="app-container">
                 <div class="vnd-head">
                   <h2 class="vnd-title">Hot Games</h2>
                   <div class="vnd-search">
@@ -184,550 +182,490 @@
                     </button>
                   </div>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                <div class="game-listing-grid">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/29825627/pexels-photo-29825627.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 58% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Pragmatic Play</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Pragmatic Play</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594128/pexels-photo-7594128.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 52%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">PG Soft</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">PG Soft</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594183/pexels-photo-7594183.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">CQ9 Gaming</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">CQ9 Gaming</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594310/pexels-photo-7594310.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 55% 40%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Hacksaw Gaming</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Hacksaw Gaming</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/6664128/pexels-photo-6664128.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 48%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">NetEnt</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">NetEnt</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/27568815/pexels-photo-27568815.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 62% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Nolimit City</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Nolimit City</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/29825627/pexels-photo-29825627.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 58% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Big Time Gaming</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Big Time Gaming</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594128/pexels-photo-7594128.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 52%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Booongo</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Booongo</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594183/pexels-photo-7594183.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">JILI</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">JILI</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594310/pexels-photo-7594310.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 55% 40%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">PlayStar</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">PlayStar</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/6664128/pexels-photo-6664128.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 48%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Yggdrasil</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Yggdrasil</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/27568815/pexels-photo-27568815.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 62% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Evoplay</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Evoplay</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/29825627/pexels-photo-29825627.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 58% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Skywind</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Skywind</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594128/pexels-photo-7594128.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 52%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Spadegaming</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Spadegaming</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594183/pexels-photo-7594183.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Play&#39;n GO</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Play&#39;n GO</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594310/pexels-photo-7594310.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 55% 40%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Microgaming</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Microgaming</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/6664128/pexels-photo-6664128.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 48%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Habanero</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Habanero</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/27568815/pexels-photo-27568815.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 62% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Playtech</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Playtech</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/29825627/pexels-photo-29825627.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 58% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Red Tiger</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Red Tiger</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594128/pexels-photo-7594128.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 52%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Relax Gaming</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Relax Gaming</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594183/pexels-photo-7594183.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Push Gaming</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Push Gaming</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594310/pexels-photo-7594310.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 55% 40%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Wazdan</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Wazdan</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/6664128/pexels-photo-6664128.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 48%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Blueprint</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Blueprint</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/27568815/pexels-photo-27568815.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 62% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Quickspin</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Quickspin</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/29825627/pexels-photo-29825627.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 58% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Thunderkick</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Thunderkick</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594128/pexels-photo-7594128.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 52%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">ELK Studios</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">ELK Studios</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594183/pexels-photo-7594183.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Playson</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Playson</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/7594310/pexels-photo-7594310.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 55% 40%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Kalamba</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Kalamba</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/6664128/pexels-photo-6664128.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 50% 48%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Fantasma</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Fantasma</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
-                  <div
-                    class="group cursor-pointer overflow-hidden rounded-lg border border-line-soft bg-surface transition-colors hover:border-primary"
-                  >
-                    <div class="aspect-[4/3] relative overflow-hidden">
+                  <div class="game-listing-card">
+                    <div class="game-listing-card-media">
                       <img
                         src="https://images.pexels.com/photos/27568815/pexels-photo-27568815.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                         alt="遊戲名稱"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="game-listing-card-img"
                         style="object-position: 62% 50%"
                         loading="lazy"
                       />
                     </div>
-                    <div class="p-4">
-                      <h3 class="mb-1 truncate text-ink">遊戲名稱</h3>
-                      <p class="mb-3 truncate text-note text-ink-3">Dragoon Soft</p>
+                    <div class="game-listing-card-body">
+                      <h3 class="game-listing-card-name">遊戲名稱</h3>
+                      <p class="game-listing-card-provider">Dragoon Soft</p>
                       <button class="btn-primary btn-sm w-full">立即遊玩</button>
                     </div>
                   </div>
                 </div>
                 <div class="cms-load-more-wrap mt-8 flex justify-center">
-                  <button type="button" class="cms-load-more-button rounded-lg px-8 py-3 transition-colors">
+                  <button type="button" class="cms-load-more-button">
                     載入更多
                   </button>
                 </div>
