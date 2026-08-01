@@ -1661,6 +1661,13 @@ select.pay-field {
 }
 .rt-positive { font-weight: 700; color: rgb(var(--c-success) / 1); }
 .rt-negative { font-weight: 700; color: rgb(var(--c-danger) / 1); }
+.record-total-bar {
+  position: fixed; left: 0; right: 0; bottom: 64px; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 24px; background: rgb(var(--c-surface)); border-top: 1px solid rgb(var(--c-gold) / 0.3);
+  color: rgb(var(--c-gold)); font-weight: 600;
+}
+@media (min-width: 768px) { .record-total-bar { left: 256px; bottom: 0; } }
 .pill-ok, .pill-warn, .pill-bad { display: inline-block; border-radius: 9999px; padding: 0.25rem 0.625rem; font-size: var(--fs-caption); line-height: 1; font-weight: 700; }
 .pill-ok { background-color: rgb(var(--c-success) / 0.1); color: rgb(var(--c-success) / 1); }
 .pill-warn { background-color: rgb(var(--c-gold) / 0.1); color: rgb(var(--c-gold) / 1); }
