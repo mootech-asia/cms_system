@@ -1011,6 +1011,7 @@ select.pay-field {
   color: transparent;
 }
 .promo-card-art {
+  position: relative; overflow: hidden;
   background: linear-gradient(
     135deg,
     rgb(var(--c-primary-faint)) 0,
@@ -2197,8 +2198,7 @@ select.pay-field {
 }
 .promo-tile:hover { border-color: rgb(var(--c-primary) / 1); }
 .promo-tile-art {
-  background: linear-gradient(135deg, rgb(var(--c-primary-faint)) 0, rgb(var(--c-surface)), rgb(var(--c-bg)));
-  position: relative; height: 7rem; overflow: hidden;
+  height: 7rem;
 }
 .operation-promo-media { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: cover; }
 .operation-promo-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(var(--c-bg) / 0.78) 0, rgb(var(--c-surface) / 0.54) 56%, rgb(var(--c-scrim) / 0.3)); }
@@ -2286,3 +2286,68 @@ select.pay-field {
 .input-ui-invalid { border-color: rgb(var(--c-danger) / 1); }
 .auth-field-eye.is-active { color: rgb(var(--c-primary) / 1); }
 .auth-remember-checkbox { accent-color: rgb(var(--c-primary) / 1); }
+
+/* ── Category page hero banner (promotion/hot-games/slot/fish/live/sport/mini-games) ── */
+.category-hero-media {
+  position: relative; overflow: hidden; background-image: var(--g-hero); padding: 4rem 0;
+  min-height: 300px; background-color: rgb(var(--c-bg)); border-block: 2px solid rgb(var(--c-primary) / 0.62); isolation: isolate;
+}
+@media (min-width: 768px) { .category-hero-media { padding: 5rem 0; } }
+.category-hero-image { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: cover; transform: scale(1.02); }
+.category-hero-scrim {
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 76% 52%, rgb(var(--c-primary) / 0.28), transparent 32%),
+    linear-gradient(90deg, rgb(var(--c-bg) / 0.88) 0, rgb(var(--c-bg) / 0.66) 38%, rgb(var(--c-surface) / 0.18) 66%, rgb(var(--c-scrim) / 0.22));
+  box-shadow: inset 0 1px rgb(var(--c-primary) / 0.52), inset 0 -1px rgb(var(--c-primary) / 0.48), inset 0 -24px 54px rgb(var(--c-primary) / 0.08);
+}
+.category-hero-content {
+  min-height: inherit; position: relative; z-index: 10; display: flex; flex-direction: column; justify-content: center;
+  text-align: left; padding: 0 1.5rem;
+}
+@media (min-width: 768px) { .category-hero-content { padding: 0 3rem; } }
+@media (min-width: 1280px) { .category-hero-content { padding: 0 4rem; } }
+.category-hero-eyebrow {
+  margin-bottom: 0.75rem; font-size: var(--fs-caption); line-height: var(--lh-body); font-weight: 700; letter-spacing: var(--ls-wide);
+  color: rgb(var(--c-primary-soft) / 1); width: fit-content; padding: 7px 12px; border: 1px solid rgb(var(--c-primary) / 0.56); border-radius: 4px;
+  background: rgb(var(--c-bg) / 0.58); box-shadow: 0 0 20px rgb(var(--c-primary) / 0.16); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.category-hero-title {
+  max-width: 900px; font-style: italic; text-transform: uppercase; letter-spacing: 0; color: rgb(var(--c-text) / 1);
+  font-size: 2.25rem; line-height: 2.5rem; font-weight: 800;
+  text-shadow: 0 3px 0 rgb(var(--c-bg) / 0.92), 0 0 18px rgb(var(--c-primary) / 0.76), 0 0 46px rgb(var(--c-primary) / 0.42);
+}
+@media (min-width: 768px) { .category-hero-title { font-size: 4.5rem; line-height: 1; } }
+@media (max-width: 767px) {
+  .category-hero-media { min-height: 220px; }
+  .category-hero-scrim {
+    background: linear-gradient(180deg, rgb(var(--c-scrim) / 0.06), rgb(var(--c-bg) / 0.62)),
+      linear-gradient(90deg, rgb(var(--c-bg) / 0.86) 0, rgb(var(--c-bg) / 0.62) 64%, rgb(var(--c-scrim) / 0.22));
+  }
+  .category-hero-title { max-width: 88%; }
+}
+
+/* ── Full-page promotion grid (promotion.html) ───────────────────────── */
+.promotion-page-section { padding: 2rem 0; min-height: 600px; background-color: rgb(var(--c-bg) / 1); }
+.promotion-page-section > .app-container { padding-left: 1rem; padding-right: 1rem; }
+.promotion-page-grid { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1.5rem; }
+@media (min-width: 640px) { .promotion-page-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 768px) { .promotion-page-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .promotion-page-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.promotion-page-card {
+  cursor: pointer; background-color: rgb(var(--c-surface) / 1); border: 1px solid rgb(var(--c-border-soft) / 1);
+  border-radius: 0.5rem; overflow: hidden;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 0.15s;
+}
+.promotion-page-card:hover { border-color: rgb(var(--c-primary) / 1); }
+.promotion-page-card:focus-visible { outline: 2px solid rgb(var(--c-primary) / 1); outline-offset: 3px; }
+.promo-card-art--lg { height: 8rem; }
+.promotion-page-card-body { padding: 1.5rem; }
+.promotion-page-card-title { color: rgb(var(--c-text) / 1); font-size: 1.25rem; line-height: 1.75rem; margin-bottom: 1rem; text-align: center; }
+.promotion-page-card-actions > * + * { margin-top: 0.75rem; }
+.promotion-page-card-cta {
+  width: 100%; background-image: var(--g-primary); color: rgb(var(--c-on-primary) / 1); padding: 0.75rem 1rem;
+  border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: 600;
+  transition-property: opacity; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 0.15s;
+}
+.promotion-page-card-cta:hover { opacity: 0.9; }
