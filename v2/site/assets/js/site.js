@@ -1461,21 +1461,11 @@
     }
 
     var faqPanel = panels[panels.length - 1];
-    $all('.card-ui', faqPanel).forEach(function (card) {
+    $all('.faq-card', faqPanel).forEach(function (card) {
       var btn = card.querySelector('button');
-      var body = card.querySelector('div.overflow-hidden');
-      var chevron = btn ? btn.querySelector('svg') : null;
-      if (!btn || !body) return;
+      if (!btn) return;
       on(btn, 'click', function () {
-        var open = body.classList.contains('max-h-[600px]');
-        if (open) {
-          body.classList.remove('max-h-[600px]', 'pb-[18px]');
-          body.classList.add('max-h-0');
-        } else {
-          body.classList.remove('max-h-0');
-          body.classList.add('max-h-[600px]', 'pb-[18px]');
-        }
-        if (chevron) chevron.classList.toggle('rotate-180', !open);
+        card.classList.toggle('is-open');
       });
     });
   }
