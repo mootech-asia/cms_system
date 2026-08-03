@@ -6115,16 +6115,6 @@ header.web3-module { position: sticky; }
   }
 }
 
-/* 首頁分類頁簽(迷你遊戲/老虎機/真人娛樂...)的倒數進度條(業主 2026-07-21
-   回報 F:填充方向相反)。.mini-countdown-bar > span 用 width 從 100% 倒數
-   到 0%,預設是一般 block,固定在左緣、從右側往左消退;業主要的是相反
-   方向 —— 讓外層改用 flex + justify-content:flex-end,使內層那顆 span
-   固定貼右緣,寬度縮小時改成從左側往右消退,不動 JS 倒數邏輯。 */
-.mini-countdown-bar {
-  display: flex;
-  justify-content: flex-end;
-}
-
 /* ============ 業主 2026-07-22 手機版排版批次 ============ */
 
 /* 圖1:儲值付款方式(.payment-tabs 目前是 auto-fill grid,手機會排成 2×2)。

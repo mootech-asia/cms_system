@@ -1037,7 +1037,7 @@
         if (active) {
           btn.classList.add('is-active');
           if (!btn.querySelector('.mini-countdown-bar')) {
-            btn.insertAdjacentHTML('beforeend', '<span aria-hidden="true" class="mini-countdown-bar"><span style="width:100%"></span></span>');
+            btn.insertAdjacentHTML('beforeend', '<span aria-hidden="true" class="mini-countdown-bar"><span style="width:0%"></span></span>');
           }
         } else {
           btn.classList.remove('is-active');
@@ -1053,7 +1053,7 @@
       remainingMs -= 250;
       if (chip) chip.textContent = Math.max(1, Math.ceil(remainingMs / 1000)) + 's';
       var barSpan = tabs[current].querySelector('.mini-countdown-bar > span');
-      if (barSpan) barSpan.style.width = Math.max(0, Math.min(100, (remainingMs / INTERVAL) * 100)) + '%';
+      if (barSpan) barSpan.style.width = Math.max(0, Math.min(100, ((INTERVAL - remainingMs) / INTERVAL) * 100)) + '%';
       if (remainingMs <= 0) advance();
     }
     function advance() {

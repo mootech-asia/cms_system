@@ -2404,7 +2404,7 @@ select.pay-field {
 .game-tab-icon { width: 1rem; height: 1rem; flex-shrink: 0; }
 .game-tab-label { font-size: 0.75rem; line-height: 1rem; }
 @media (min-width: 768px) { .game-tab-label { font-size: 0.875rem; line-height: 1.25rem; } }
-.mini-countdown-bar { position: absolute; right: 12px; bottom: -1px; left: 12px; height: 3px; overflow: hidden; border-radius: 999px; background: rgb(var(--c-primary) / 0.16); display: flex; justify-content: flex-end; }
+.mini-countdown-bar { position: absolute; right: 12px; bottom: -1px; left: 12px; height: 3px; overflow: hidden; border-radius: 999px; background: rgb(var(--c-primary) / 0.16); }
 .mini-countdown-bar > span, .mini-countdown-track > span { display: block; height: 100%; border-radius: inherit; background: rgb(var(--c-primary) / 0.9); transition: width 0.25s linear; }
 .mini-countdown-chip {
   display: inline-flex; min-width: 36px; height: 28px; align-items: center; justify-content: center;
