@@ -2560,14 +2560,13 @@
 
   /* ============================ date range filter ======================== */
   /* Record pages (betting/deposit/withdrawal/account-record, profit-loss)
-     ship a baked PrimeVue "p-datepicker-input" + dropdown button + Confirm
-     button with no runtime behind them. Owner wants the single-field look
-     kept (no HTML edits, no split into two native <input type=date>), so
-     this builds a small vanilla range-calendar popup anchored under the
-     input and wires Confirm to hide/show <tbody> rows by their first
-     YYYY-MM-DD cell. Rows with no parseable date (profit-loss.html's
-     game-type aggregates) are always left visible — Confirm is then a
-     graceful no-op there. */
+     ship a single "rb-daterange-input" field plus a "rb-daterange-btn"
+     dropdown button and Confirm button, kept as one field rather than split
+     into two native <input type=date>. This builds a small vanilla
+     range-calendar popup anchored under the input and wires Confirm to
+     hide/show <tbody> rows by their first YYYY-MM-DD cell. Rows with no
+     parseable date (profit-loss.html's game-type aggregates) are always left
+     visible — Confirm is then a graceful no-op there. */
 
   function drpParseRange(v) {
     var m = /^(\d{4})-(\d{2})-(\d{2})\s*~\s*(\d{4})-(\d{2})-(\d{2})$/.exec((v || '').trim());
@@ -2600,7 +2599,7 @@
   function drpFindToolbar(input) {
     var node = input.parentElement;
     while (node && node !== document.body) {
-      if (node.classList && node.classList.contains('mb-4') && node.classList.contains('flex')) return node;
+      if (node.classList && node.classList.contains('rb-toolbar')) return node;
       node = node.parentElement;
     }
     return input.parentElement;
@@ -2620,11 +2619,11 @@
   var DRP_WEEKDAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
   function initDateRangeFilter() {
-    var input = $('input.p-datepicker-input');
+    var input = $('input.rb-daterange-input');
     if (!input) return;
 
     var toolbar = drpFindToolbar(input);
-    var dropdownBtn = $('button.p-datepicker-dropdown', toolbar) || document.querySelector('button.p-datepicker-dropdown');
+    var dropdownBtn = $('button.rb-daterange-btn', toolbar) || document.querySelector('button.rb-daterange-btn');
     var confirmBtn = drpFindConfirmBtn(toolbar);
     var table = drpFindTable(toolbar);
 
