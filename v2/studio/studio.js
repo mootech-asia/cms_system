@@ -81,6 +81,7 @@
       siteName: DEFAULT_SITE,
       skin: 'win100',
       publicSkins: THEME_KEYS.slice(),
+      knownSkins: THEME_KEYS.slice(),
       publicLocales: APP_LOCALES.map(function (l) { return l.code; }),
       chrome: { header: 'v1', footer: 'v1' },
       pages: {
@@ -106,7 +107,17 @@
     if (pub) {
       if (pub.siteName && String(pub.siteName).trim()) d.siteName = String(pub.siteName).trim();
       if (pub.skin && THEME_KEYS.indexOf(pub.skin) !== -1) d.skin = pub.skin;
-      if (Array.isArray(pub.publicSkins)) d.publicSkins = pub.publicSkins.slice();
+      if (Array.isArray(pub.publicSkins)) {
+        /* 新增皮膚預設前台可見:pub.knownSkins 是上次套用時存在的皮膚清單,
+           THEME_KEYS 裡不在其中的一律視為「新皮膚」補進可見清單,不然舊的
+           publicSkins 快照永遠不會自動長出後來新增的皮膚(需要手動勾選)。 */
+        var known = Array.isArray(pub.knownSkins) ? pub.knownSkins : pub.publicSkins;
+        var visible = pub.publicSkins.slice();
+        THEME_KEYS.forEach(function (k) {
+          if (known.indexOf(k) === -1 && visible.indexOf(k) === -1) visible.push(k);
+        });
+        d.publicSkins = visible;
+      }
       if (Array.isArray(pub.publicLocales) && pub.publicLocales.length) d.publicLocales = pub.publicLocales.slice();
       if (pub.chrome) {
         d.chrome = { header: pub.chrome.header || 'v1', footer: pub.chrome.footer || 'v1' };
@@ -500,6 +511,7 @@
       siteName: (draft.siteName && draft.siteName.trim()) || DEFAULT_SITE,
       skin: draft.skin,
       publicSkins: draft.publicSkins.slice(),
+      knownSkins: THEME_KEYS.slice(),
       publicLocales: draft.publicLocales.slice(),
       chrome: { header: draft.chrome.header, footer: draft.chrome.footer },
       homeVariants: sectionsOf('home').map(function (s) {
