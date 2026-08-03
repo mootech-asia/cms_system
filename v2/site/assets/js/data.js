@@ -27,14 +27,13 @@
   }
 
   // ---- Skins (frontend/app/utils/themes.ts THEME_KEYS / THEME_LABELS) --------
-  var THEME_KEYS = ['win100', 'aurora', 'noir', 'fashion-blue', 'rose-graphite', 'cyber-green', 'cosmic-pink'];
+  var THEME_KEYS = ['win100', 'aurora', 'noir', 'fashion-blue', 'rose-graphite', 'cosmic-pink'];
   var THEME_LABELS = {
     win100: 'Emerald',
     aurora: 'Aurora',
     noir: 'Noir Gold',
     'fashion-blue': 'Fashion Blue',
     'rose-graphite': 'Rose Graphite',
-    'cyber-green': 'Cyber Green',
     'cosmic-pink': 'Cosmic Pink',
   };
 
