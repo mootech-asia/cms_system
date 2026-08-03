@@ -393,20 +393,9 @@
   }
 
   function headerHTML() {
-    var dirty = isDirty();
     return '<header class="studio-header">' +
-        '<div>' +
-          '<div class="studio-eyebrow">' + esc(ts('eyebrow', 'CMS v3 / Site Factory /studio')) + '</div>' +
-          '<div class="studio-title-row">' +
-            '<h1>' + esc(ts('title', 'Design Studio')) + '</h1>' +
-            '<span class="studio-schema">' + esc(ts('schema', 'Schema')) + ' 1</span>' +
-            (dirty ? '<span class="studio-unsaved">' + esc(ts('unsaved', 'Unsaved')) + '</span>' : '') +
-          '</div>' +
-          '<p>' + esc(ts('intro', '')) + '</p>' +
-        '</div>' +
-        '<div class="studio-header-actions">' +
-          '<button class="studio-button quiet studio-desktop-hide" type="button" data-act="view-site">' + esc(ts('viewSite', 'View site')) + '</button>' +
-        '</div>' +
+        '<a class="studio-back" href="../site/index.html">← ' + esc(ts('viewSite', 'View site')) + '</a>' +
+        '<h1 class="studio-title">' + esc(ts('title', 'Design Studio')) + ' <span class="studio-title-sub">/studio</span></h1>' +
       '</header>';
   }
 
@@ -544,12 +533,8 @@
     return '<section class="studio-factory-section">' +
         '<div class="studio-draft-actions">' +
           '<button class="studio-button quiet" type="button" data-act="reset-draft"' + (dirty ? '' : ' disabled') + '>' + esc(ts('resetDraft', 'Reset draft')) + '</button>' +
-          '<button class="studio-button primary" type="button" data-act="apply"' + (dirty ? '' : ' disabled') + '>' + esc(ts('apply', 'Apply')) + '</button>' +
+          '<button class="studio-button quiet" type="button" data-act="apply"' + (dirty ? '' : ' disabled') + '>' + esc(ts('apply', 'Apply')) + '</button>' +
         '</div>' +
-        '<div class="studio-panel-head studio-factory-heading"><div>' +
-          '<span>' + esc(ts('siteFactory', 'Site Factory')) + '</span>' +
-          '<small>' + esc(ts('siteFactorySub', '')) + '</small>' +
-        '</div></div>' +
         factoryGroupHTML('siteName', ts('siteNameGroup', 'Site name / Preview language'), (draft.siteName || DEFAULT_SITE_NAME) + ' ・ ' + ((LANGS[LOCALE] && LANGS[LOCALE].label) || LOCALE), siteNameGroupHTML()) +
         factoryGroupHTML('previewSkin', ts('previewSkin', 'Preview skin'), (findSkin(draft.skin) || SKINS[0]).label, skinPickerHTML(), 'studio-desktop-hide') +
         factoryGroupHTML('frontendLocales', ts('frontendLocales', 'Frontend locales'), ts('visibleLocaleCount', '{visible} / {total} visible', { visible: draft.visibleLocaleIds.length, total: Object.keys(LANGS).length }), localeListHTML()) +
