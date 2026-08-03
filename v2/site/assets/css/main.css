@@ -2406,11 +2406,6 @@ select.pay-field {
 @media (min-width: 768px) { .game-tab-label { font-size: 0.875rem; line-height: 1.25rem; } }
 .mini-countdown-bar { position: absolute; right: 12px; bottom: -1px; left: 12px; height: 3px; overflow: hidden; border-radius: 999px; background: rgb(var(--c-primary) / 0.16); }
 .mini-countdown-bar > span, .mini-countdown-track > span { display: block; height: 100%; border-radius: inherit; background: rgb(var(--c-primary) / 0.9); transition: width 0.25s linear; }
-.mini-countdown-chip {
-  display: inline-flex; min-width: 36px; height: 28px; align-items: center; justify-content: center;
-  border: 1px solid rgb(var(--c-primary) / 0.22); border-radius: 999px; background: rgb(var(--c-primary-faint) / 0.72);
-  color: rgb(var(--c-accent) / 1); font-size: 11px; font-weight: 700; line-height: 1;
-}
 .game-tabs-actions { display: flex; align-items: center; justify-content: flex-end; gap: 0.5rem; }
 .game-tabs-view-all {
   border-radius: 0.25rem; border: 1px solid rgb(var(--c-border) / 1); padding: 0.375rem 0.75rem;
@@ -2609,10 +2604,9 @@ select.pay-field {
   position: fixed; right: 14px; top: 50%; transform: translateY(-58%); z-index: 9000;
   display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 12px 8px;
   border-radius: 44px; background: rgb(var(--c-surface) / 0.9); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-  border: 1px solid hsla(0, 0%, 100%, 0.08); box-shadow: 0 10px 30px #0006, 0 0 18px rgb(var(--c-primary) / 0.25);
-  opacity: 1; transition: box-shadow 0.2s ease;
+  border: 1px solid hsla(0, 0%, 100%, 0.08); box-shadow: 0 10px 30px #0006;
+  opacity: 1;
 }
-.qr-rail:focus-within, .qr-rail:hover { box-shadow: 0 10px 30px #0006, 0 0 26px rgb(var(--c-primary) / 0.4); }
 .qr-btn {
   background-color: rgb(var(--c-surface-2) / 1); color: rgb(var(--c-primary) / 1); position: relative;
   width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center;

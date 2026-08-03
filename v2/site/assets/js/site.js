@@ -1001,8 +1001,7 @@
       tabs[keys[i]] = document.getElementById('games-tab-' + keys[i]);
       if (!tabs[keys[i]]) return;
     }
-    var chip = document.querySelector('.mini-countdown-chip');
-    var headerRight = chip ? chip.parentElement : null;
+    var headerRight = document.querySelector('.game-tabs-actions');
     var showAllLink = headerRight ? headerRight.querySelector('a') : null;
     var initialPanel = document.querySelector('[id^="games-panel-"]');
     var railWrap = initialPanel ? initialPanel.parentElement : null;
@@ -1051,7 +1050,6 @@
 
     function tick() {
       remainingMs -= 250;
-      if (chip) chip.textContent = Math.max(1, Math.ceil(remainingMs / 1000)) + 's';
       var barSpan = tabs[current].querySelector('.mini-countdown-bar > span');
       if (barSpan) barSpan.style.width = Math.max(0, Math.min(100, ((INTERVAL - remainingMs) / INTERVAL) * 100)) + '%';
       if (remainingMs <= 0) advance();

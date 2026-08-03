@@ -722,20 +722,6 @@ video {
   background: rgb(var(--c-primary) / 0.9);
   transition: width 0.25s linear;
 }
-.mini-countdown-chip {
-  display: inline-flex;
-  min-width: 36px;
-  height: 28px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgb(var(--c-primary) / 0.22);
-  border-radius: 999px;
-  background: rgb(var(--c-primary-faint) / 0.72);
-  color: rgb(var(--c-accent) / 1);
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1;
-}
 .banner-art {
   background: linear-gradient(
     105deg,
@@ -2036,17 +2022,8 @@ select.pay-field {
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border: 1px solid hsla(0, 0%, 100%, 0.08);
-  box-shadow:
-    0 10px 30px #0006,
-    0 0 18px rgb(var(--c-primary) / 0.25);
+  box-shadow: 0 10px 30px #0006;
   opacity: 1;
-  transition: box-shadow 0.2s ease;
-}
-.qr-rail:focus-within,
-.qr-rail:hover {
-  box-shadow:
-    0 10px 30px #0006,
-    0 0 26px rgb(var(--c-primary) / 0.4);
 }
 .qr-btn {
   --tw-bg-opacity: 1;
