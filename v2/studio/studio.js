@@ -503,7 +503,7 @@
       publicLocales: draft.publicLocales.slice(),
       chrome: { header: draft.chrome.header, footer: draft.chrome.footer },
       homeVariants: sectionsOf('home').map(function (s) {
-        return { id: s.id, block: s.block, variant: s.variant || 'v1' };
+        return { id: s.id, block: s.block, variant: s.variant || 'v1', enabled: s.enabled !== false };
       }),
     };
     try { localStorage.setItem(PUBLIC_KEY, JSON.stringify(cfg)); } catch (e) {}

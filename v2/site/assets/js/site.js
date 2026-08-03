@@ -369,13 +369,30 @@
     if (cfg.skin && (D.THEME_KEYS || []).indexOf(cfg.skin) !== -1) {
       applyTheme(cfg.skin, false);
     }
-    /* 已發佈的 chrome / 區塊變體 —— 真站頂層才套用;/studio 預覽 iframe 由 draft 驅動 */
+    /* 已發佈的 chrome / 區塊順序·顯示開關·變體 —— 真站頂層才套用;
+       /studio 預覽 iframe 由 draft 直接驅動(見 applyStudioSectionsNow)。
+       homeVariants 的陣列順序即發佈時的區塊順序,邏輯對照
+       applyStudioSectionsNow:陣列外的區塊隱藏,陣列內依序重排 +
+       套用 enabled/variant。 */
     if (window.self === window.top) {
       if (cfg.chrome) applyChromeVariant(cfg.chrome);
       if (cfg.homeVariants && cfg.homeVariants.length) {
+        var blocks = $all('[data-studio-block]');
         var byId = {};
-        $all('[data-studio-block]').forEach(function (el) { byId[el.getAttribute('data-studio-block')] = el; });
-        cfg.homeVariants.forEach(function (s) { applyWeb3Variant(byId[s.id], s.block, s.variant); });
+        blocks.forEach(function (el) { byId[el.getAttribute('data-studio-block')] = el; });
+        var parent = blocks[0] && blocks[0].parentNode;
+        var want = {};
+        cfg.homeVariants.forEach(function (s) { want[s.id] = true; });
+        blocks.forEach(function (el) {
+          if (!want[el.getAttribute('data-studio-block')]) el.style.display = 'none';
+        });
+        cfg.homeVariants.forEach(function (s) {
+          var el = byId[s.id];
+          if (!el) return;
+          el.style.display = (s.enabled === false) ? 'none' : '';
+          if (parent) parent.appendChild(el);
+          applyWeb3Variant(el, s.block, s.variant);
+        });
       }
     }
   }
