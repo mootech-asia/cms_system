@@ -33,8 +33,10 @@
   --c-success: 94 227 168; /* #5EE3A8 */
   --c-gold: 255 189 92;    /* #FFBD5C */
 
-  /* ---- 漸層 / 陰影 ---- */
-  --g-primary: linear-gradient(90deg, rgb(var(--c-primary-soft)), rgb(var(--c-primary)));
+  /* ---- 漸層 / 陰影 ----
+     此皮膚按鈕/主色漸層為特例:不用其他皮膚共用的「soft→primary」單色階
+     公式,改成桃粉→暖金雙色,對齊參考圖(Play Now/註冊按鈕)的日落感。 */
+  --g-primary: linear-gradient(90deg, rgb(var(--c-primary)), rgb(var(--c-accent)));
   --g-hero: linear-gradient(90deg, #4A1442 0%, #E0339B 55%, #FFB05C 100%);
   --shadow-mint: 0 8px 20px rgb(var(--c-primary) / .22);
 
