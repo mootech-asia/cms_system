@@ -1157,10 +1157,19 @@
     var langItem = t.closest('.sb-lang-item');
     if (langItem) { var loc = langItem.getAttribute('data-locale'); closeLangMenu(); if (loc) setLocale(loc); return; }
 
-    var collapseSidebarBtn = t.closest('.sb-collapse-account, .sb-collapse-money');
+    var collapseSidebarBtn = t.closest('.sb-collapse-money');
     if (collapseSidebarBtn) { var shell1 = document.querySelector('.shell'); var sbC = document.querySelector('.sidebar'); if (shell1) shell1.classList.add('collapsed'); if (sbC) sbC.classList.add('collapsed'); return; }
-    var expandSidebarBtn = t.closest('.sb-collapse-compact');
-    if (expandSidebarBtn) { var shell2 = document.querySelector('.shell'); var sbE = document.querySelector('.sidebar'); if (shell2) shell2.classList.remove('collapsed'); if (sbE) sbE.classList.remove('collapsed'); return; }
+    var toggleSidebarBtn = t.closest('.sb-collapse-toggle');
+    if (toggleSidebarBtn) {
+      var shell3 = document.querySelector('.shell');
+      var sb3 = document.querySelector('.sidebar');
+      var collapsedNow = sb3 ? sb3.classList.toggle('collapsed') : false;
+      if (shell3) shell3.classList.toggle('collapsed', collapsedNow);
+      var toggleLabel = collapsedNow ? 'Expand sidebar' : 'Collapse sidebar';
+      toggleSidebarBtn.setAttribute('aria-label', toggleLabel);
+      toggleSidebarBtn.setAttribute('title', toggleLabel);
+      return;
+    }
 
     var sectionToggleBtn = t.closest('.sb-section-toggle');
     if (sectionToggleBtn) {
