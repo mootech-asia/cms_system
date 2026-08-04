@@ -224,74 +224,31 @@ img { max-width: 100%; display: block; }
   font-weight: 700;
 }
 
-/* Featured live-casino carousel (tall, spans the narrow column).
-   Diagonal brand panel over a full-bleed photo, plus a stacked vendor
-   rail pinned to the right edge. */
-.feature-carousel { position: relative; min-height: 340px; }
+/* Featured live-casino carousel (tall, spans the narrow column) */
+.feature-carousel { position: relative; min-height: 300px; }
 .feature-card {
   position: absolute; inset: 0;
   border-radius: var(--radius-lg);
   overflow: hidden;
+  display: flex;
+  align-items: flex-end;
   isolation: isolate;
   opacity: 0;
   transition: opacity 0.5s ease;
   pointer-events: none;
 }
 .feature-card.active { opacity: 1; pointer-events: auto; }
+.feature-dots { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); display: flex; gap: 6px; z-index: 4; }
+.feature-dot { width: 7px; height: 7px; border-radius: 50%; border: 0; padding: 0; background: rgba(255, 255, 255, 0.45); transition: background 0.15s, width 0.15s; }
+.feature-dot.active { background: var(--gold-hi); width: 18px; border-radius: 4px; }
 .feature-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: -2; }
-.feature-card-body {
-  position: absolute; inset: 0 44px 0 0;
-  clip-path: polygon(0 0, 72% 0, 56% 100%, 0 100%);
-  background: linear-gradient(160deg, rgba(156, 15, 40, 0.97) 0%, rgba(122, 11, 31, 0.96) 55%, rgba(90, 8, 24, 0.92) 100%);
-  padding: 20px 18px;
-  color: #fff6ea;
-  display: flex;
-  flex-direction: column;
-}
-.feature-card-brand { display: flex; align-items: center; gap: 7px; }
-.feature-card-brand-icon { width: 18px; height: 18px; color: var(--gold-hi); flex-shrink: 0; }
-.feature-card-brand-name { font-size: 12px; font-weight: 800; letter-spacing: 0.14em; }
-.feature-card-rule { width: 76%; height: 1px; margin: 12px 0; background-image: linear-gradient(90deg, var(--gold-hi) 0 4px, transparent 4px 8px); background-size: 8px 1px; opacity: 0.85; }
+.feature-card-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(20, 6, 10, 0.9) 0%, rgba(20, 6, 10, 0.35) 55%, rgba(20, 6, 10, 0.05) 100%); z-index: -1; }
+.feature-card-body { padding: 20px; color: #fff6ea; width: 100%; }
 .feature-card-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--gold-hi); margin-bottom: 6px; }
-.feature-card-title { font-size: 19px; font-weight: 800; margin: 0 0 12px; line-height: 1.25; max-width: 82%; }
-.feature-tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
-.feature-tag { padding: 4px 9px; border-radius: 6px; background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.22); font-size: 10.5px; font-weight: 600; }
-.feature-card-cta {
-  margin-top: auto;
-  align-self: flex-start;
-  display: inline-block;
-  padding: 11px 24px;
-  border-radius: 12px;
-  background: linear-gradient(180deg, var(--gold-hi) 0%, var(--gold) 100%);
-  color: #3a2604;
-  font-weight: 800;
-  font-size: 13.5px;
-  box-shadow: var(--shadow-gold);
-}
-.feature-vendor-rail {
-  position: absolute; right: 0; top: 0; bottom: 0; width: 44px;
-  display: flex; flex-direction: column;
-  background: rgba(10, 8, 9, 0.6);
-  z-index: 1;
-}
-.feature-vendor-chip {
-  flex: 1;
-  display: flex; align-items: center; justify-content: center;
-  text-align: center;
-  padding: 2px 3px;
-  border: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: transparent;
-  font: inherit;
-  font-size: 9.5px; font-weight: 700; letter-spacing: 0.01em;
-  color: #f2e7d8;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-}
-.feature-vendor-chip:last-child { border-bottom: 0; }
-.feature-vendor-chip:hover { background: rgba(255, 255, 255, 0.1); }
-.feature-vendor-chip.active { background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: #3a2604; }
-.feature-vendor-chip.active:hover { background: linear-gradient(180deg, var(--gold-hi), var(--gold)); }
+.feature-card-title { font-size: 20px; font-weight: 800; margin: 0 0 10px; }
+.feature-vendor-rail { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.feature-vendor-chip { padding: 3px 9px; border-radius: 999px; background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.22); font-size: 10.5px; font-weight: 600; }
+.feature-card-cta { display: inline-block; padding: 9px 22px; border-radius: 999px; background: var(--gold-grad); color: #3a2604; font-weight: 700; font-size: 13px; }
 
 /* ── FLOATING QUICK RAIL ────────────────── */
 .quick-rail {
