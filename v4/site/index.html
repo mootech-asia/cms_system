@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CMS_前台_v4</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-top">
+      <a href="index.html" class="brand-link"><img src="logo.png" alt="Bet100" class="brand-logo" /></a>
+      <nav class="header-nav">
+        <a href="index.html" class="header-nav-link active"><svg class="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1v-8Z"/></svg>大廳</a>
+        <a href="#" class="header-nav-link"><svg class="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h3v6H7zM14 9h3v6h-3z"/></svg>老虎機</a>
+        <a href="#" class="header-nav-link"><svg class="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>真人娛樂</a>
+        <a href="#" class="header-nav-link"><svg class="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>棋牌遊戲</a>
+        <a href="#" class="header-nav-link"><svg class="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12c3-4 8-5 12-4l4-2v12l-4-2c-4 1-9 0-12-4Z"/></svg>捕魚達人</a>
+        <a href="#" class="header-nav-link"><svg class="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m12 3 2.5 6M21 12l-6 2.5M12 21l-2.5-6M3 12l6-2.5"/></svg>體育</a>
+        <a href="#" class="header-nav-link"><svg class="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M12 9v12M3 13h18"/></svg>優惠活動</a>
+      </nav>
+      <div class="header-auth">
+        <button type="button" class="btn-gold quiet">立即註冊</button>
+        <input class="header-input" type="text" placeholder="用戶名" />
+        <input class="header-input" type="password" placeholder="密碼" />
+        <span class="header-forgot">忘記密碼</span>
+        <button type="button" class="btn-gold">登錄</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="notice-bar">
+    <div class="container notice-bar-inner">
+      <div class="notice-msg">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+        <span>公告：系統將於今日凌晨進行例行維護，期間下注功能將暫停使用，造成不便敬請見諒。</span>
+      </div>
+      <div class="notice-links">
+        <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>手機版</a>
+        <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8"/><path d="M12 17h.01"/></svg>常見問題</a>
+        <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>線上客服</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="container hero-wrap">
+      <div class="hero" id="hero">
+        <div class="hero-slide active">
+          <div class="hero-bg" style="--hero-image: url(assets/mock/hero-1.webp); --hero-position: center;"></div>
+          <div class="hero-content">
+            <span class="hero-eyebrow">新會員專屬</span>
+            <h1 class="hero-title">首存加碼 <em>100%</em><br />贏在起跑點</h1>
+            <p class="hero-sub">即日起完成首次儲值，即可領取加碼金，額度全站最高。</p>
+            <button type="button" class="btn-gold">立即領取</button>
+          </div>
+        </div>
+        <div class="hero-slide">
+          <div class="hero-bg" style="--hero-image: url(assets/mock/game-02.webp); --hero-position: center;"></div>
+          <div class="hero-content">
+            <span class="hero-eyebrow">熱門推薦</span>
+            <h1 class="hero-title">Crash 100<br />倍率最高 <em>1,000,000×</em></h1>
+            <p class="hero-sub">旗艦原創遊戲，公平驗證機制，人人都能參與。</p>
+            <button type="button" class="btn-gold">馬上遊戲</button>
+          </div>
+        </div>
+        <div class="hero-slide">
+          <div class="hero-bg" style="--hero-image: url(assets/mock/live-01.webp); --hero-position: center;"></div>
+          <div class="hero-content">
+            <span class="hero-eyebrow">真人娛樂</span>
+            <h1 class="hero-title">頂級真人賭桌<br />每日 <em>24 小時</em> 開放</h1>
+            <p class="hero-sub">多家指定廠商同步直播，畫質清晰、荷官親切。</p>
+            <button type="button" class="btn-gold">進入真人館</button>
+          </div>
+        </div>
+        <button type="button" class="hero-arrow prev" aria-label="Previous"><svg width="16" height="16" viewBox="0 0 24 24"><path d="m14 6-6 6 6 6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="hero-arrow next" aria-label="Next"><svg width="16" height="16" viewBox="0 0 24 24"><path d="m10 6 6 6-6 6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="hero-dots">
+          <button type="button" class="hero-dot active" aria-label="Slide 1"></button>
+          <button type="button" class="hero-dot" aria-label="Slide 2"></button>
+          <button type="button" class="hero-dot" aria-label="Slide 3"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container lobby-grid">
+      <div class="lobby-col">
+        <section class="panel">
+          <div class="panel-head">
+            <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span>
+            <h2 class="panel-title">熱門遊戲</h2>
+            <a href="#" class="panel-more">查看更多 →</a>
+          </div>
+          <div class="tile-grid">
+            <article class="game-tile">
+              <div class="game-tile-art"><span class="game-tile-tag">獨家</span><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">Sugar Rush 9000</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+            <article class="game-tile">
+              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">Golden Hex</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+            <article class="game-tile">
+              <div class="game-tile-art"><span class="game-tile-tag">熱門</span><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">Crown of Aether</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <h2 class="panel-title">棋牌遊戲</h2>
+            <a href="#" class="panel-more">查看更多 →</a>
+          </div>
+          <div class="tile-grid cols-6">
+            <article class="game-tile">
+              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">European Roulette</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+            <article class="game-tile">
+              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">Single Deck Blackjack</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+            <article class="game-tile">
+              <div class="game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">Pai Gow</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+            <article class="game-tile">
+              <div class="game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">Texas Hold'em</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+            <article class="game-tile">
+              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">Caribbean Stud</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+            <article class="game-tile">
+              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">Three Card Poker</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></span>
+            <h2 class="panel-title">迷你遊戲</h2>
+            <a href="#" class="panel-more">查看更多 →</a>
+          </div>
+          <div class="tile-grid">
+            <article class="game-tile">
+              <div class="game-tile-art"><span class="game-tile-tag">熱門</span><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">Crash 100</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+            <article class="game-tile">
+              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">Mines</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+            <article class="game-tile">
+              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">Plinko</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <div class="lobby-col">
+        <section class="panel" style="padding: 0; overflow: hidden;">
+          <div class="feature-card">
+            <div class="feature-card-bg" style="background-image: url(assets/mock/live-02.webp);"></div>
+            <div class="feature-card-body">
+              <div class="feature-card-eyebrow">真人娛樂</div>
+              <h2 class="feature-card-title">Lightning Roulette</h2>
+              <div class="feature-vendor-rail">
+                <span class="feature-vendor-chip">Evolution Gaming</span>
+                <span class="feature-vendor-chip">Pragmatic Play Live</span>
+                <span class="feature-vendor-chip">SA Gaming</span>
+                <span class="feature-vendor-chip">Ezugi</span>
+                <span class="feature-vendor-chip">WM Casino</span>
+              </div>
+              <a href="#" class="feature-card-cta">進入真人館</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12c3-4 8-5 12-4l4-2v12l-4-2c-4 1-9 0-12-4Z"/></svg></span>
+            <h2 class="panel-title">捕魚達人</h2>
+            <a href="#" class="panel-more">查看更多 →</a>
+          </div>
+          <div class="tile-grid">
+            <article class="game-tile">
+              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">深海獵手</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+            <article class="game-tile">
+              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">黃金礁岩</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+            <article class="game-tile">
+              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
+              <div class="game-tile-name">風暴潮汐</div>
+              <a href="#" class="game-tile-cta">開始遊戲</a>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div class="quick-rail">
+    <a href="#" class="quick-rail-btn" aria-label="線上客服" title="線上客服"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></a>
+    <a href="#" class="quick-rail-btn" aria-label="留言" title="留言"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m22 2-7 20-4-9-9-4Z"/></svg></a>
+    <a href="#" class="quick-rail-btn" aria-label="掃碼" title="掃碼"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v3M14 20h3M20 20v.01"/></svg></a>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 Bet100. 本站僅供介面展示，不涉及任何實際投注行為。</span>
+      <span><a href="../../index.html">回到 CMS 統一預覽</a></span>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
