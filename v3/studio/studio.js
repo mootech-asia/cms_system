@@ -29,7 +29,8 @@
     { id: 'obsidian-copper', label: 'Obsidian Copper', theme: 'dark', swatch: '#d8a06b', surface: '#0d0e0f' },
     { id: 'crimson-noir', label: 'Crimson Noir', theme: 'dark', swatch: '#df7b89', surface: '#11090d' },
     { id: 'blue', label: 'Sapphire Royale', theme: 'dark', swatch: '#2473ff', surface: '#05080f' },
-    { id: 'cosmic-spectrum-purple', label: 'Cosmic Amethyst', theme: 'dark', swatch: '#6a48ff', surface: '#0b0a25' }
+    { id: 'cosmic-spectrum-purple', label: 'Cosmic Amethyst', theme: 'dark', swatch: '#6a48ff', surface: '#0b0a25' },
+    { id: 'jade-jackpot', label: 'Jade Jackpot', theme: 'dark', swatch: '#39ff7c', surface: '#050e09' }
   ];
   var DEFAULT_SKIN = 'blue';
   var DEFAULT_SITE_NAME = 'CMS_前台_v3';
