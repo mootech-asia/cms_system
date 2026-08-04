@@ -805,14 +805,21 @@
        inline background-image this removes is the only other source of the
        picture. */
     if (!banner || typeof banner.image !== 'string' || !banner.image) return;
-    bg.style.removeProperty('background-image');
     /* --hero-image is consumed via var() inside main.css, so a relative URL
        here would resolve against main.css's own location instead of the
        page; resolve to an absolute URL first (no-op for data:/absolute URLs). */
     var resolvedImage = new URL(banner.image, document.baseURI).href;
-    bg.style.setProperty('--hero-image', 'url(' + resolvedImage + ')');
-    bg.style.setProperty('--hero-position', banner.position || 'center');
-    bg.style.setProperty('--hero-mobile-position', banner.mobilePosition || banner.position || 'center');
+    /* A stored URL can point at a file that no longer exists (renamed/removed
+       asset from an older localStorage snapshot) — probe it first so a 404
+       leaves the slide's existing background alone instead of going blank. */
+    var probe = new Image();
+    probe.onload = function () {
+      bg.style.removeProperty('background-image');
+      bg.style.setProperty('--hero-image', 'url(' + resolvedImage + ')');
+      bg.style.setProperty('--hero-position', banner.position || 'center');
+      bg.style.setProperty('--hero-mobile-position', banner.mobilePosition || banner.position || 'center');
+    };
+    probe.src = resolvedImage;
   }
   function applyHeroBanners(banners) {
     var hero = document.querySelector('.hero');
