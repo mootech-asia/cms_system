@@ -780,6 +780,34 @@
       if (el) el.style.display = 'none';
     });
   }
+  /* Top-of-page blocks (hero banner / ticker / rewards card) — /studio →
+     'cms-v3:top-block-layout'. Reordered in place relative to .cat-tabs so
+     the reorderable lobby-section-list below is untouched. */
+  var TOP_BLOCK_SELECTOR = { 'hero-banner': '.hero', ticker: '.promo-ribbon', 'rewards-banner': '.rewards-wrap' };
+  function applyTopBlockLayout() {
+    var raw = null;
+    try { raw = localStorage.getItem('cms-v3:top-block-layout'); } catch (e) { return; }
+    if (!raw) return;
+    var parsed = null;
+    try { parsed = JSON.parse(raw); } catch (e) { return; }
+    var hidden = parsed && parsed.hidden;
+    if (Array.isArray(hidden)) {
+      hidden.forEach(function (slug) {
+        var el = document.querySelector(TOP_BLOCK_SELECTOR[slug]);
+        if (el) el.style.display = 'none';
+      });
+    }
+    var order = parsed && parsed.order;
+    if (Array.isArray(order) && order.length) {
+      var catTabs = document.querySelector('.cat-tabs');
+      if (catTabs && catTabs.parentNode) {
+        order.forEach(function (slug) {
+          var el = document.querySelector(TOP_BLOCK_SELECTOR[slug]);
+          if (el) catTabs.parentNode.insertBefore(el, catTabs);
+        });
+      }
+    }
+  }
   /* /studio → 'cms-v3:show-skin-button'. Absent key = shown (default). */
   function applySkinButtonVisibility() {
     var raw = null;
@@ -2408,6 +2436,7 @@
     safe(applySavedDesign);
     safe(applySavedSectionVariants);
     safe(applyLobbyLayout);
+    safe(applyTopBlockLayout);
     safe(applyAccountSections);
     safe(applySavedChrome);
     safe(applyStudioChromeNow);

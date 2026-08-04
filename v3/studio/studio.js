@@ -93,6 +93,13 @@
     promotions: 'promotion-card', providers: 'ticker', 'featured-games': 'spotlight'
   };
 
+  /* Top-of-page blocks (hero banner / ticker / rewards card) sit above the
+     cat-tabs, outside the reorderable lobby-section-list — a separate small
+     order+visibility list, same interaction pattern as Home composition. */
+  var DEFAULT_TOP_BLOCK_ORDER = ['hero-banner', 'ticker', 'rewards-banner'];
+  var TOP_BLOCK_LABELS = { 'hero-banner': 'Hero banner', ticker: 'Ticker', 'rewards-banner': 'Rewards card' };
+  var TOP_BLOCK_SELECTOR = { 'hero-banner': '.hero', ticker: '.promo-ribbon', 'rewards-banner': '.rewards-wrap' };
+
   var DEFAULT_ACCOUNT_SECTIONS = ['account-quick-actions', 'account-banking-details', 'account-crypto-wallet', 'account-recent-transactions'];
   var ACCOUNT_SECTION_LABELS = {
     'account-quick-actions': 'Quick Actions', 'account-banking-details': 'Banking Details',
@@ -145,7 +152,8 @@
     locale: 'cms-v3:locale',
     sectionVariants: 'cms-v3:section-variants',
     siteName: 'cms-v3:site-name',
-    showSkinButton: 'cms-v3:show-skin-button'
+    showSkinButton: 'cms-v3:show-skin-button',
+    topBlockLayout: 'cms-v3:top-block-layout'
   };
   var MAX_BANNER_BYTES = 300 * 1024;
 
@@ -208,20 +216,24 @@
     var out = Object.keys(LANGS).filter(function (id) { return set[id]; });
     return out.length ? out : Object.keys(LANGS);
   }
-  function normalizeOrder(order) {
+  function normalizeOrderAgainst(order, universe) {
     var input = Array.isArray(order) ? order : [];
-    var known = input.filter(function (id) { return DEFAULT_LOBBY_ORDER.indexOf(id) >= 0; });
-    DEFAULT_LOBBY_ORDER.forEach(function (id) { if (known.indexOf(id) < 0) known.push(id); });
+    var known = input.filter(function (id) { return universe.indexOf(id) >= 0; });
+    universe.forEach(function (id) { if (known.indexOf(id) < 0) known.push(id); });
     var seen = {}, out = [];
     known.forEach(function (id) { if (!seen[id]) { seen[id] = 1; out.push(id); } });
     return out;
   }
-  function normalizeHidden(hidden) {
+  function normalizeHiddenAgainst(hidden, universe) {
     var input = Array.isArray(hidden) ? hidden : [];
     var seen = {}, out = [];
-    input.forEach(function (id) { if (DEFAULT_LOBBY_ORDER.indexOf(id) >= 0 && !seen[id]) { seen[id] = 1; out.push(id); } });
+    input.forEach(function (id) { if (universe.indexOf(id) >= 0 && !seen[id]) { seen[id] = 1; out.push(id); } });
     return out;
   }
+  function normalizeOrder(order) { return normalizeOrderAgainst(order, DEFAULT_LOBBY_ORDER); }
+  function normalizeHidden(hidden) { return normalizeHiddenAgainst(hidden, DEFAULT_LOBBY_ORDER); }
+  function normalizeTopBlockOrder(order) { return normalizeOrderAgainst(order, DEFAULT_TOP_BLOCK_ORDER); }
+  function normalizeTopBlockHidden(hidden) { return normalizeHiddenAgainst(hidden, DEFAULT_TOP_BLOCK_ORDER); }
   function normalizeAccountHidden(hidden) {
     var input = Array.isArray(hidden) ? hidden : [];
     var seen = {}, out = [];
@@ -311,6 +323,7 @@
   var savedSectionVariants = (function () { return normalizeSectionVariants(readJSON(STORAGE.sectionVariants)); })();
   var savedSiteName = (function () { try { return localStorage.getItem(STORAGE.siteName) || DEFAULT_SITE_NAME; } catch (e) { return DEFAULT_SITE_NAME; } })();
   var savedShowSkinButton = (function () { var raw = readJSON(STORAGE.showSkinButton); return raw === false ? false : true; })();
+  var savedTopBlockLayout = (function () { var raw = readJSON(STORAGE.topBlockLayout); return { order: normalizeTopBlockOrder(raw && raw.order), hidden: normalizeTopBlockHidden(raw && raw.hidden) }; })();
 
   var draft = {
     modules: normalizeModules(savedModules),
@@ -324,7 +337,9 @@
     chrome: normalizeChrome(savedChrome),
     sectionVariants: normalizeSectionVariants(savedSectionVariants),
     siteName: savedSiteName,
-    showSkinButton: savedShowSkinButton
+    showSkinButton: savedShowSkinButton,
+    topBlockOrder: savedTopBlockLayout.order.slice(),
+    topBlockHidden: savedTopBlockLayout.hidden.slice()
   };
   var applied = {
     modules: normalizeModules(savedModules),
@@ -336,13 +351,15 @@
     chrome: normalizeChrome(savedChrome),
     sectionVariants: normalizeSectionVariants(savedSectionVariants),
     siteName: savedSiteName,
-    showSkinButton: savedShowSkinButton
+    showSkinButton: savedShowSkinButton,
+    topBlockLayout: { order: savedTopBlockLayout.order.slice(), hidden: savedTopBlockLayout.hidden.slice() }
   };
 
   var selectedModuleId = MODULES[0].id;
   var deviceMode = 'desktop';
-  var factoryGroupOpen = { siteName: true, previewSkin: true, frontendLocales: false, frontendSkins: false, homeComposition: false, accountComposition: false, chrome: false };
+  var factoryGroupOpen = { siteName: true, previewSkin: true, frontendLocales: false, frontendSkins: false, topBlocks: false, homeComposition: false, accountComposition: false, chrome: false };
   var layoutDragId = null;
+  var topBlockDragId = null;
   var noticeTimer = null;
 
   function moduleLabel(m) { return t(['studio', 'modules', m.id, 'label'], m.label); }
@@ -352,6 +369,7 @@
   function categoryLabel(cat) { return t(['studio', 'categories', cat], cat); }
   function layoutLabel(id) { return t(['lobby', 'sections', id], LOBBY_SECTION_LABELS[id] || id); }
   function accountSectionLabel(id) { return ACCOUNT_SECTION_LABELS[id] || id; }
+  function topBlockLabel(id) { return TOP_BLOCK_LABELS[id] || id; }
   function localeLabel(id) { return (LANGS[id] && LANGS[id].label) || id; }
   function skinTheme(id) { var s = findSkin(id); return s ? s.theme : 'dark'; }
   function isVisibleSkin(id) { return draft.visibleSkinIds.indexOf(id) >= 0; }
@@ -370,7 +388,8 @@
       || JSON.stringify(normalizeChrome(draft.chrome)) !== JSON.stringify(normalizeChrome(applied.chrome))
       || JSON.stringify(normalizeSectionVariants(draft.sectionVariants)) !== JSON.stringify(normalizeSectionVariants(applied.sectionVariants))
       || (draft.siteName || DEFAULT_SITE_NAME) !== (applied.siteName || DEFAULT_SITE_NAME)
-      || (draft.showSkinButton !== false) !== (applied.showSkinButton !== false);
+      || (draft.showSkinButton !== false) !== (applied.showSkinButton !== false)
+      || JSON.stringify({ order: normalizeTopBlockOrder(draft.topBlockOrder), hidden: normalizeTopBlockHidden(draft.topBlockHidden) }) !== JSON.stringify(applied.topBlockLayout);
   }
 
   /* ============================================================
@@ -514,6 +533,22 @@
       '<ul class="studio-layout-list">' + items + '</ul>';
   }
 
+  function topBlockListHTML() {
+    var items = draft.topBlockOrder.map(function (id, index) {
+      var hidden = draft.topBlockHidden.indexOf(id) >= 0;
+      return '<li class="studio-layout-item' + (hidden ? ' is-hidden' : '') + '" draggable="true" data-top-block-id="' + id + '">' +
+        '<span class="studio-layout-grip" aria-hidden="true">' + GRIP_ICON + '</span>' +
+        '<span class="studio-layout-name">' + esc(topBlockLabel(id)) + '</span>' +
+        '<button class="studio-visibility-toggle" type="button" role="switch" aria-checked="' + (!hidden) + '" data-top-block-toggle="' + id + '"><span></span></button>' +
+        '<span class="studio-layout-move">' +
+          '<button type="button" data-top-block-move="up" data-index="' + index + '"' + (index === 0 ? ' disabled' : '') + '>↑</button>' +
+          '<button type="button" data-top-block-move="down" data-index="' + index + '"' + (index === draft.topBlockOrder.length - 1 ? ' disabled' : '') + '>↓</button>' +
+        '</span>' +
+      '</li>';
+    }).join('');
+    return '<ul class="studio-layout-list">' + items + '</ul>';
+  }
+
   function accountListHTML() {
     var items = DEFAULT_ACCOUNT_SECTIONS.map(function (id) {
       var hidden = draft.accountHiddenSections.indexOf(id) >= 0;
@@ -544,6 +579,7 @@
 
   function factorySectionHTML() {
     var visibleLayoutCount = draft.layoutOrder.length - draft.hiddenSections.length;
+    var visibleTopBlockCount = draft.topBlockOrder.length - draft.topBlockHidden.length;
     var visibleAccountCount = DEFAULT_ACCOUNT_SECTIONS.length - draft.accountHiddenSections.length;
     var dirty = isDirty();
     return '<section class="studio-factory-section">' +
@@ -555,6 +591,7 @@
         factoryGroupHTML('previewSkin', ts('previewSkin', 'Preview skin'), (findSkin(draft.skin) || SKINS[0]).label, skinPickerHTML(), 'studio-desktop-hide') +
         factoryGroupHTML('frontendLocales', ts('frontendLocales', 'Frontend locales'), ts('visibleLocaleCount', '{visible} / {total} visible', { visible: draft.visibleLocaleIds.length, total: Object.keys(LANGS).length }), localeListHTML()) +
         factoryGroupHTML('frontendSkins', ts('frontendSkins', 'Frontend skins'), ts('visibleSkinCount', '{visible} / {total} visible', { visible: draft.visibleSkinIds.length, total: SKINS.length }), skinListHTML()) +
+        factoryGroupHTML('topBlocks', ts('topBlocks', 'Top blocks'), ts('visibleCount', '{visible} / {total} shown', { visible: visibleTopBlockCount, total: draft.topBlockOrder.length }), topBlockListHTML()) +
         factoryGroupHTML('homeComposition', ts('homeComposition', 'Home composition'), ts('visibleCount', '{visible} / {total} shown', { visible: visibleLayoutCount, total: draft.layoutOrder.length }), layoutListHTML()) +
         factoryGroupHTML('accountComposition', ts('accountComposition', 'Account overview panels'), ts('visibleCount', '{visible} / {total} shown', { visible: visibleAccountCount, total: DEFAULT_ACCOUNT_SECTIONS.length }), accountListHTML()) +
         factoryGroupHTML('chrome', ts('chromeTitle', 'Site chrome (header / footer)'), draft.chrome.header.toUpperCase() + ' / ' + draft.chrome.footer.toUpperCase(), chromeSectionHTML()) +
@@ -718,6 +755,14 @@
     });
     var skinWraps = doc.querySelectorAll('.tb-skin-wrap');
     for (var si = 0; si < skinWraps.length; si++) skinWraps[si].style.display = (draft.showSkinButton === false) ? 'none' : '';
+    var topBlockOrder = normalizeTopBlockOrder(draft.topBlockOrder);
+    var catTabsEl = doc.querySelector('.cat-tabs');
+    topBlockOrder.forEach(function (slug) {
+      var el = doc.querySelector(TOP_BLOCK_SELECTOR[slug]);
+      if (!el) return;
+      el.style.display = (draft.topBlockHidden.indexOf(slug) >= 0) ? 'none' : '';
+      if (catTabsEl && el.parentNode) el.parentNode.insertBefore(el, catTabsEl);
+    });
     // Reflect the draft chrome + hero banners + per-section variants instantly
     // through the front-end's own appliers (site.js window.__cmsApplyChrome /
     // __cmsApplyHeroBanners / __cmsApplySectionVariants); no persistence until
@@ -765,6 +810,8 @@
       localStorage.setItem(STORAGE.sectionVariants, JSON.stringify(normalizeSectionVariants(draft.sectionVariants)));
       localStorage.setItem(STORAGE.siteName, draft.siteName || DEFAULT_SITE_NAME);
       localStorage.setItem(STORAGE.showSkinButton, JSON.stringify(draft.showSkinButton !== false));
+      var topBlockLayout = { order: normalizeTopBlockOrder(draft.topBlockOrder), hidden: normalizeTopBlockHidden(draft.topBlockHidden) };
+      localStorage.setItem(STORAGE.topBlockLayout, JSON.stringify({ version: 1, order: topBlockLayout.order, hidden: topBlockLayout.hidden }));
     } catch (e) {}
     applied.modules = normalizeModules(draft.modules);
     applied.skin = nextSkin;
@@ -776,6 +823,7 @@
     applied.sectionVariants = normalizeSectionVariants(draft.sectionVariants);
     applied.siteName = draft.siteName || DEFAULT_SITE_NAME;
     applied.showSkinButton = draft.showSkinButton !== false;
+    applied.topBlockLayout = { order: normalizeTopBlockOrder(draft.topBlockOrder), hidden: normalizeTopBlockHidden(draft.topBlockHidden) };
     render();
     reloadFrame();
     showNotice(ts('noticeApplied', 'Applied to the site.'));
@@ -792,6 +840,8 @@
     draft.sectionVariants = normalizeSectionVariants(applied.sectionVariants);
     draft.siteName = applied.siteName;
     draft.showSkinButton = applied.showSkinButton !== false;
+    draft.topBlockOrder = applied.topBlockLayout.order.slice();
+    draft.topBlockHidden = applied.topBlockLayout.hidden.slice();
     render();
     showNotice(ts('noticeReset', 'Draft reset.'));
   }
@@ -905,6 +955,20 @@
       : draft.accountHiddenSections.concat([id]);
     render();
   }
+  function moveTopBlock(from, to) {
+    if (to < 0 || to >= draft.topBlockOrder.length || from === to) return;
+    var next = draft.topBlockOrder.slice();
+    var moved = next.splice(from, 1)[0];
+    next.splice(to, 0, moved);
+    draft.topBlockOrder = next;
+    render();
+  }
+  function toggleTopBlockSection(id) {
+    draft.topBlockHidden = draft.topBlockHidden.indexOf(id) >= 0
+      ? draft.topBlockHidden.filter(function (x) { return x !== id; })
+      : draft.topBlockHidden.concat([id]);
+    render();
+  }
 
   /* ============================================================
    * Event delegation
@@ -950,6 +1014,15 @@
 
     var accountToggle = el.closest('[data-account-toggle]');
     if (accountToggle) { toggleAccountSection(accountToggle.getAttribute('data-account-toggle')); return; }
+
+    var topBlockMove = el.closest('[data-top-block-move]');
+    if (topBlockMove) {
+      var tIndex = parseInt(topBlockMove.getAttribute('data-index'), 10);
+      moveTopBlock(tIndex, topBlockMove.getAttribute('data-top-block-move') === 'up' ? tIndex - 1 : tIndex + 1);
+      return;
+    }
+    var topBlockToggle = el.closest('[data-top-block-toggle]');
+    if (topBlockToggle) { toggleTopBlockSection(topBlockToggle.getAttribute('data-top-block-toggle')); return; }
 
     var skinButtonToggle = el.closest('[data-skin-button-toggle]');
     if (skinButtonToggle) { draft.showSkinButton = draft.showSkinButton === false; render(); return; }
@@ -1033,19 +1106,31 @@
 
   function onStudioDragstart(e) {
     var item = e.target.closest('[data-layout-id]');
-    if (item) layoutDragId = item.getAttribute('data-layout-id');
+    if (item) { layoutDragId = item.getAttribute('data-layout-id'); return; }
+    var topItem = e.target.closest('[data-top-block-id]');
+    if (topItem) topBlockDragId = topItem.getAttribute('data-top-block-id');
   }
   function onStudioDragover(e) {
-    if (e.target.closest('[data-layout-id]')) e.preventDefault();
+    if (e.target.closest('[data-layout-id]') || e.target.closest('[data-top-block-id]')) e.preventDefault();
   }
   function onStudioDrop(e) {
     var item = e.target.closest('[data-layout-id]');
-    if (!item || !layoutDragId) return;
-    e.preventDefault();
-    var from = draft.layoutOrder.indexOf(layoutDragId);
-    var to = draft.layoutOrder.indexOf(item.getAttribute('data-layout-id'));
-    if (from >= 0 && to >= 0) moveLayout(from, to);
-    layoutDragId = null;
+    if (item && layoutDragId) {
+      e.preventDefault();
+      var from = draft.layoutOrder.indexOf(layoutDragId);
+      var to = draft.layoutOrder.indexOf(item.getAttribute('data-layout-id'));
+      if (from >= 0 && to >= 0) moveLayout(from, to);
+      layoutDragId = null;
+      return;
+    }
+    var topItem = e.target.closest('[data-top-block-id]');
+    if (topItem && topBlockDragId) {
+      e.preventDefault();
+      var tFrom = draft.topBlockOrder.indexOf(topBlockDragId);
+      var tTo = draft.topBlockOrder.indexOf(topItem.getAttribute('data-top-block-id'));
+      if (tFrom >= 0 && tTo >= 0) moveTopBlock(tFrom, tTo);
+      topBlockDragId = null;
+    }
   }
 
   function setStudioLocale(loc) {
