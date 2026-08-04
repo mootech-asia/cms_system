@@ -238,9 +238,6 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
 }
 .feature-card.active { opacity: 1; pointer-events: auto; }
-.feature-dots { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); display: flex; gap: 6px; z-index: 4; }
-.feature-dot { width: 7px; height: 7px; border-radius: 50%; border: 0; padding: 0; background: rgba(255, 255, 255, 0.45); transition: background 0.15s, width 0.15s; }
-.feature-dot.active { background: var(--gold-hi); width: 18px; border-radius: 4px; }
 .feature-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: -2; }
 .feature-card-body {
   position: absolute; inset: 0 44px 0 0;
@@ -282,12 +279,19 @@ img { max-width: 100%; display: block; }
   display: flex; align-items: center; justify-content: center;
   text-align: center;
   padding: 2px 3px;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  font: inherit;
   font-size: 9.5px; font-weight: 700; letter-spacing: 0.01em;
   color: #f2e7d8;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
 }
 .feature-vendor-chip:last-child { border-bottom: 0; }
+.feature-vendor-chip:hover { background: rgba(255, 255, 255, 0.1); }
 .feature-vendor-chip.active { background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: #3a2604; }
+.feature-vendor-chip.active:hover { background: linear-gradient(180deg, var(--gold-hi), var(--gold)); }
 
 /* ── FLOATING QUICK RAIL ────────────────── */
 .quick-rail {

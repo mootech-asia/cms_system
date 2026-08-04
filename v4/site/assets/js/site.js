@@ -37,7 +37,7 @@
     var carousel = document.getElementById('featureCarousel');
     if (!carousel) return;
     var slides = Array.prototype.slice.call(carousel.querySelectorAll('.feature-card'));
-    var dots = Array.prototype.slice.call(carousel.querySelectorAll('.feature-dot'));
+    var dots = Array.prototype.slice.call(carousel.querySelectorAll('.feature-vendor-chip'));
     var len = slides.length;
     if (!len) return;
     var idx = 0;
