@@ -83,6 +83,7 @@
       publicSkins: THEME_KEYS.slice(),
       knownSkins: THEME_KEYS.slice(),
       publicLocales: APP_LOCALES.map(function (l) { return l.code; }),
+      showSkinButton: true,
       chrome: { header: 'v1', footer: 'v1' },
       pages: {
         home: {
@@ -119,6 +120,7 @@
         d.publicSkins = visible;
       }
       if (Array.isArray(pub.publicLocales) && pub.publicLocales.length) d.publicLocales = pub.publicLocales.slice();
+      if (typeof pub.showSkinButton === 'boolean') d.showSkinButton = pub.showSkinButton;
       if (pub.chrome) {
         d.chrome = { header: pub.chrome.header || 'v1', footer: pub.chrome.footer || 'v1' };
       }
@@ -199,9 +201,12 @@
   function publicLocaleSummary() {
     return draft.publicLocales.length > 1 ? '前台顯示 ' + draft.publicLocales.length + ' 種語言' : '前台語言切換藏起來';
   }
+  function skinButtonSummary() {
+    return draft.showSkinButton !== false ? '切換按鈕顯示中' : '切換按鈕已隱藏';
+  }
   function updateSummaries() {
     $('st-summary-site').textContent = (draft.siteName || '未命名') + ' ・ ' + localeLabel(previewLocale);
-    $('st-summary-skin').textContent = themeLabel(draft.skin) + ' ・ ' + publicSkinSummary() + ' ・ ' + publicLocaleSummary();
+    $('st-summary-skin').textContent = themeLabel(draft.skin) + ' ・ ' + publicSkinSummary() + ' ・ ' + publicLocaleSummary() + ' ・ ' + skinButtonSummary();
     $('st-summary-chrome').textContent = 'header:' + draft.chrome.header + ' / footer:' + draft.chrome.footer;
     $('st-summary-sections').textContent = currentPage + ' ・ ' + sectionsOf(currentPage).length + ' 個區塊';
   }
@@ -310,6 +315,25 @@
         renderPublicLocales();
         updateSummaries();
       });
+    });
+  }
+
+  function renderSkinButtonSwitch() {
+    var btn = $('st-skin-button-switch');
+    if (!btn) return;
+    var on = draft.showSkinButton !== false;
+    btn.classList.toggle('is-on', on);
+    btn.setAttribute('aria-checked', String(on));
+    btn.title = on ? '顯示中' : '已隱藏';
+  }
+  function initSkinButtonToggle() {
+    var btn = $('st-skin-button-switch');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      draft.showSkinButton = draft.showSkinButton === false;
+      persistDraft();
+      renderSkinButtonSwitch();
+      updateSummaries();
     });
   }
 
@@ -513,6 +537,7 @@
       publicSkins: draft.publicSkins.slice(),
       knownSkins: THEME_KEYS.slice(),
       publicLocales: draft.publicLocales.slice(),
+      showSkinButton: draft.showSkinButton !== false,
       chrome: { header: draft.chrome.header, footer: draft.chrome.footer },
       homeVariants: sectionsOf('home').map(function (s) {
         return { id: s.id, block: s.block, variant: s.variant || 'v1', enabled: s.enabled !== false };
@@ -540,6 +565,7 @@
     renderSkins();
     renderPublicSkins();
     renderPublicLocales();
+    renderSkinButtonSwitch();
     renderChrome();
     renderSections();
     updateSummaries();
@@ -550,6 +576,7 @@
   persistDraft(); /* 首次即寫入 draft,讓預覽 iframe 一載入就能讀到 */
   initGroups();
   initSiteName();
+  initSkinButtonToggle();
   initSectionListEvents();
   renderPageSelect();
   renderAddSelect();

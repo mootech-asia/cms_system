@@ -777,14 +777,6 @@ img { display: block; }
   background-repeat: no-repeat;
   z-index: -1;
 }
-.hero-bg::after {
-  content: '';
-  position: absolute; inset: 0;
-  background-image:
-    repeating-linear-gradient(45deg, rgba(255,255,255,.025) 0 1px, transparent 1px 14px),
-    radial-gradient(circle at 80% 80%, rgba(255,255,255,.04) 0 1px, transparent 1px);
-  background-size: auto, 24px 24px;
-}
 .hero-content {
   padding: 56px 60px;
   display: flex;

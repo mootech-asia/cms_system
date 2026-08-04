@@ -2208,12 +2208,6 @@ select.pay-field {
   touch-action: pan-y; background: rgb(var(--c-bg)); border-bottom: 2px solid rgb(var(--c-primary) / 0.78);
 }
 .campaign-hero-stage { position: relative; }
-.campaign-hero-stage:before {
-  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background-image: linear-gradient(rgb(var(--c-primary) / 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(var(--c-primary) / 0.055) 1px, transparent 1px);
-  background-size: 56px 56px; mix-blend-mode: screen; opacity: 0.72;
-}
 .campaign-hero-media { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: cover; animation: campaign-media-in 0.7s ease both; }
 .campaign-hero-content { position: relative; z-index: 10; display: flex; margin: 0 auto; padding: 0 1.5rem; }
 @media (min-width: 768px) { .campaign-hero-content { padding: 0 3rem; } }

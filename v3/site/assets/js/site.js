@@ -780,6 +780,17 @@
       if (el) el.style.display = 'none';
     });
   }
+  /* /studio → 'cms-v3:show-skin-button'. Absent key = shown (default). */
+  function applySkinButtonVisibility() {
+    var raw = null;
+    try { raw = localStorage.getItem('cms-v3:show-skin-button'); } catch (e) { return; }
+    if (!raw) return;
+    var show = true;
+    try { show = JSON.parse(raw) !== false; } catch (e) { return; }
+    if (show) return;
+    var wraps = document.querySelectorAll('.tb-skin-wrap');
+    for (var i = 0; i < wraps.length; i++) wraps[i].style.display = 'none';
+  }
   /* Hero banners (/studio → 'cms-v3:hero-banners'). The baked hero-bg markup
      already carries --hero-image/--hero-position/--hero-mobile-* custom
      props for exactly this override (see main.css .hero-bg); only the
@@ -788,11 +799,17 @@
      shipped 5 — cloning cycles copy from the original slides since there's
      no new title/sub source for banners beyond the baked set. */
   function applyHeroBannerVars(bg, banner) {
+    /* A banner with no image (corrupt/legacy localStorage entry) must leave
+       the slide's existing background untouched — writing '--hero-image:
+       url(undefined)' blanks the layer with no visible fallback, since the
+       inline background-image this removes is the only other source of the
+       picture. */
+    if (!banner || typeof banner.image !== 'string' || !banner.image) return;
     bg.style.removeProperty('background-image');
     /* --hero-image is consumed via var() inside main.css, so a relative URL
        here would resolve against main.css's own location instead of the
        page; resolve to an absolute URL first (no-op for data:/absolute URLs). */
-    var resolvedImage = banner.image ? new URL(banner.image, document.baseURI).href : banner.image;
+    var resolvedImage = new URL(banner.image, document.baseURI).href;
     bg.style.setProperty('--hero-image', 'url(' + resolvedImage + ')');
     bg.style.setProperty('--hero-position', banner.position || 'center');
     bg.style.setProperty('--hero-mobile-position', banner.mobilePosition || banner.position || 'center');
@@ -2370,6 +2387,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     safe(initI18n);
     safe(restoreSkin);
+    safe(applySkinButtonVisibility);
     safe(applySavedSiteName);
     safe(applySavedDesign);
     safe(applySavedSectionVariants);

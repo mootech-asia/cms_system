@@ -369,6 +369,11 @@
     if (cfg.skin && (D.THEME_KEYS || []).indexOf(cfg.skin) !== -1) {
       applyTheme(cfg.skin, false);
     }
+    if (typeof cfg.showSkinButton === 'boolean') {
+      $all('.skin-switcher-trigger').forEach(function (btn) {
+        (btn.closest('.dd-trigger-wrap') || btn).style.display = cfg.showSkinButton ? '' : 'none';
+      });
+    }
     /* 已發佈的 chrome / 區塊順序·顯示開關·變體 —— 真站頂層才套用;
        /studio 預覽 iframe 由 draft 直接驅動(見 applyStudioSectionsNow)。
        homeVariants 的陣列順序即發佈時的區塊順序,邏輯對照

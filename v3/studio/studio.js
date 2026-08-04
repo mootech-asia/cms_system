@@ -143,7 +143,8 @@
     chrome: 'cms-v3:chrome',
     locale: 'cms-v3:locale',
     sectionVariants: 'cms-v3:section-variants',
-    siteName: 'cms-v3:site-name'
+    siteName: 'cms-v3:site-name',
+    showSkinButton: 'cms-v3:show-skin-button'
   };
   var MAX_BANNER_BYTES = 300 * 1024;
 
@@ -308,6 +309,7 @@
   var savedChrome = (function () { var raw = readJSON(STORAGE.chrome); return normalizeChrome(raw && (raw.chrome || raw)); })();
   var savedSectionVariants = (function () { return normalizeSectionVariants(readJSON(STORAGE.sectionVariants)); })();
   var savedSiteName = (function () { try { return localStorage.getItem(STORAGE.siteName) || DEFAULT_SITE_NAME; } catch (e) { return DEFAULT_SITE_NAME; } })();
+  var savedShowSkinButton = (function () { var raw = readJSON(STORAGE.showSkinButton); return raw === false ? false : true; })();
 
   var draft = {
     modules: normalizeModules(savedModules),
@@ -320,7 +322,8 @@
     banners: savedBanners.slice(),
     chrome: normalizeChrome(savedChrome),
     sectionVariants: normalizeSectionVariants(savedSectionVariants),
-    siteName: savedSiteName
+    siteName: savedSiteName,
+    showSkinButton: savedShowSkinButton
   };
   var applied = {
     modules: normalizeModules(savedModules),
@@ -331,7 +334,8 @@
     banners: savedBanners.slice(),
     chrome: normalizeChrome(savedChrome),
     sectionVariants: normalizeSectionVariants(savedSectionVariants),
-    siteName: savedSiteName
+    siteName: savedSiteName,
+    showSkinButton: savedShowSkinButton
   };
 
   var selectedModuleId = MODULES[0].id;
@@ -364,7 +368,8 @@
       || JSON.stringify(draft.banners) !== JSON.stringify(applied.banners)
       || JSON.stringify(normalizeChrome(draft.chrome)) !== JSON.stringify(normalizeChrome(applied.chrome))
       || JSON.stringify(normalizeSectionVariants(draft.sectionVariants)) !== JSON.stringify(normalizeSectionVariants(applied.sectionVariants))
-      || (draft.siteName || DEFAULT_SITE_NAME) !== (applied.siteName || DEFAULT_SITE_NAME);
+      || (draft.siteName || DEFAULT_SITE_NAME) !== (applied.siteName || DEFAULT_SITE_NAME)
+      || (draft.showSkinButton !== false) !== (applied.showSkinButton !== false);
   }
 
   /* ============================================================
@@ -452,6 +457,15 @@
       '<div class="studio-skin-pill-grid">' + rows + '</div></div>';
   }
 
+  function skinButtonToggleHTML() {
+    var on = draft.showSkinButton !== false;
+    return '<ul class="studio-layout-list">' +
+        '<li class="studio-layout-item studio-layout-item-static">' +
+          '<span class="studio-layout-name">' + esc(ts('skinButtonVisible', 'Skin switch button')) + '</span>' +
+          '<button class="studio-visibility-toggle" type="button" role="switch" aria-checked="' + on + '" data-skin-button-toggle><span></span></button>' +
+        '</li>' +
+      '</ul>';
+  }
   function skinListHTML() {
     var rows = SKINS.map(function (skin) {
       var vis = isVisibleSkin(skin.id), locked = isOnlyVisibleSkin(skin.id);
@@ -461,6 +475,7 @@
       '</label>';
     }).join('');
     return '<div class="studio-front-skin-control"><small class="studio-factory-group-sub">' + esc(ts('frontendSkinsSub', '')) + '</small>' +
+      skinButtonToggleHTML() +
       '<div class="studio-skin-pill-grid">' + rows + '</div></div>';
   }
 
@@ -700,6 +715,8 @@
       var sec = doc.querySelector('[data-section="' + id + '"]');
       if (sec) sec.style.display = (draft.accountHiddenSections.indexOf(id) >= 0) ? 'none' : '';
     });
+    var skinWraps = doc.querySelectorAll('.tb-skin-wrap');
+    for (var si = 0; si < skinWraps.length; si++) skinWraps[si].style.display = (draft.showSkinButton === false) ? 'none' : '';
     // Reflect the draft chrome + hero banners + per-section variants instantly
     // through the front-end's own appliers (site.js window.__cmsApplyChrome /
     // __cmsApplyHeroBanners / __cmsApplySectionVariants); no persistence until
@@ -746,6 +763,7 @@
       localStorage.setItem(STORAGE.chrome, JSON.stringify({ version: 1, chrome: normalizeChrome(draft.chrome), updatedAt: new Date().toISOString() }));
       localStorage.setItem(STORAGE.sectionVariants, JSON.stringify(normalizeSectionVariants(draft.sectionVariants)));
       localStorage.setItem(STORAGE.siteName, draft.siteName || DEFAULT_SITE_NAME);
+      localStorage.setItem(STORAGE.showSkinButton, JSON.stringify(draft.showSkinButton !== false));
     } catch (e) {}
     applied.modules = normalizeModules(draft.modules);
     applied.skin = nextSkin;
@@ -756,6 +774,7 @@
     applied.chrome = normalizeChrome(draft.chrome);
     applied.sectionVariants = normalizeSectionVariants(draft.sectionVariants);
     applied.siteName = draft.siteName || DEFAULT_SITE_NAME;
+    applied.showSkinButton = draft.showSkinButton !== false;
     render();
     reloadFrame();
     showNotice(ts('noticeApplied', 'Applied to the site.'));
@@ -771,6 +790,7 @@
     draft.chrome = normalizeChrome(applied.chrome);
     draft.sectionVariants = normalizeSectionVariants(applied.sectionVariants);
     draft.siteName = applied.siteName;
+    draft.showSkinButton = applied.showSkinButton !== false;
     render();
     showNotice(ts('noticeReset', 'Draft reset.'));
   }
@@ -790,7 +810,7 @@
       layout: { order: normalizeOrder(draft.layoutOrder), hidden: normalizeHidden(draft.hiddenSections) },
       banners: normalizeBanners(draft.banners), modules: normalizeModules(draft.modules),
       chrome: normalizeChrome(draft.chrome), sectionVariants: normalizeSectionVariants(draft.sectionVariants),
-      siteName: draft.siteName || DEFAULT_SITE_NAME
+      siteName: draft.siteName || DEFAULT_SITE_NAME, showSkinButton: draft.showSkinButton !== false
     }, null, 2);
     var blob = new Blob([payload], { type: 'application/json' });
     var url = URL.createObjectURL(blob);
@@ -816,6 +836,7 @@
         if (payload.chrome) draft.chrome = normalizeChrome(payload.chrome);
         if (payload.sectionVariants) draft.sectionVariants = normalizeSectionVariants(payload.sectionVariants);
         if (payload.siteName && String(payload.siteName).trim()) draft.siteName = String(payload.siteName).trim();
+        if (typeof payload.showSkinButton === 'boolean') draft.showSkinButton = payload.showSkinButton;
         render();
         showNotice(ts('noticeImported', 'Configuration imported as a draft.'));
       } catch (e) {
@@ -928,6 +949,9 @@
 
     var accountToggle = el.closest('[data-account-toggle]');
     if (accountToggle) { toggleAccountSection(accountToggle.getAttribute('data-account-toggle')); return; }
+
+    var skinButtonToggle = el.closest('[data-skin-button-toggle]');
+    if (skinButtonToggle) { draft.showSkinButton = draft.showSkinButton === false; render(); return; }
 
     var bannerAdd = el.closest('[data-banner-add]');
     if (bannerAdd) { pendingBannerId = null; var bf = document.querySelector('[data-banner-file]'); if (bf) bf.click(); return; }
