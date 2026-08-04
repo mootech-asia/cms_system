@@ -195,6 +195,9 @@ img { max-width: 100%; display: block; }
 
 .tile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .tile-grid.cols-6 { grid-template-columns: repeat(6, 1fr); }
+.tile-grid.compact { grid-template-columns: repeat(auto-fill, minmax(110px, 130px)); justify-content: start; gap: 10px; }
+.tile-grid.compact .game-tile-name { font-size: 11px; padding: 6px 6px 0; }
+.tile-grid.compact .game-tile-cta { margin: 6px; padding: 5px 0; font-size: 10.5px; }
 .game-tile { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--line); background: var(--bg-panel); transition: transform 0.15s, box-shadow 0.15s; }
 .game-tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); border-color: var(--line-hi); }
 .game-tile-art { position: relative; aspect-ratio: 1; background: #efe7d8; overflow: hidden; }
@@ -221,16 +224,23 @@ img { max-width: 100%; display: block; }
   font-weight: 700;
 }
 
-/* Featured live-casino card (tall, spans the narrow column) */
+/* Featured live-casino carousel (tall, spans the narrow column) */
+.feature-carousel { position: relative; min-height: 300px; }
 .feature-card {
-  position: relative;
+  position: absolute; inset: 0;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  min-height: 300px;
   display: flex;
   align-items: flex-end;
   isolation: isolate;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
 }
+.feature-card.active { opacity: 1; pointer-events: auto; }
+.feature-dots { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); display: flex; gap: 6px; z-index: 4; }
+.feature-dot { width: 7px; height: 7px; border-radius: 50%; border: 0; padding: 0; background: rgba(255, 255, 255, 0.45); transition: background 0.15s, width 0.15s; }
+.feature-dot.active { background: var(--gold-hi); width: 18px; border-radius: 4px; }
 .feature-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: -2; }
 .feature-card-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(20, 6, 10, 0.9) 0%, rgba(20, 6, 10, 0.35) 55%, rgba(20, 6, 10, 0.05) 100%); z-index: -1; }
 .feature-card-body { padding: 20px; color: #fff6ea; width: 100%; }

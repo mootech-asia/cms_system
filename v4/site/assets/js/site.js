@@ -33,7 +33,33 @@
     resetAuto();
   }
 
+  function initFeatureCarousel() {
+    var carousel = document.getElementById('featureCarousel');
+    if (!carousel) return;
+    var slides = Array.prototype.slice.call(carousel.querySelectorAll('.feature-card'));
+    var dots = Array.prototype.slice.call(carousel.querySelectorAll('.feature-dot'));
+    var len = slides.length;
+    if (!len) return;
+    var idx = 0;
+    var timer = null;
+
+    function apply() {
+      slides.forEach(function (s, i) { s.classList.toggle('active', i === idx); });
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
+    }
+    function resetAuto() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(function () { idx = (idx + 1) % len; apply(); }, 5000);
+    }
+    function goTo(i) { idx = i; apply(); resetAuto(); }
+
+    dots.forEach(function (d, i) { d.addEventListener('click', function () { goTo(i); }); });
+
+    resetAuto();
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     safe(initHero);
+    safe(initFeatureCarousel);
   });
 })();
