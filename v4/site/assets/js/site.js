@@ -58,8 +58,50 @@
     resetAuto();
   }
 
+  function initRails() {
+    var rails = Array.prototype.slice.call(document.querySelectorAll('.tile-grid.rail'));
+    rails.forEach(function (rail) {
+      var panel = rail.closest('.panel');
+      var prevBtn = panel ? panel.querySelector('.rail-arrow-prev') : null;
+      var nextBtn = panel ? panel.querySelector('.rail-arrow-next') : null;
+
+      function updateArrows() {
+        var maxScroll = rail.scrollWidth - rail.clientWidth;
+        if (prevBtn) prevBtn.disabled = rail.scrollLeft <= 4;
+        if (nextBtn) nextBtn.disabled = maxScroll <= 4 || rail.scrollLeft >= maxScroll - 4;
+      }
+      if (prevBtn) prevBtn.addEventListener('click', function () { rail.scrollBy({ left: -rail.clientWidth * 0.9, behavior: 'smooth' }); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { rail.scrollBy({ left: rail.clientWidth * 0.9, behavior: 'smooth' }); });
+      rail.addEventListener('scroll', updateArrows);
+      window.addEventListener('resize', updateArrows);
+      updateArrows();
+
+      // 滑鼠可直接按住拖曳橫向捲動（觸控裝置原生滑動已可用，這裡補上桌機滑鼠操作）。
+      var dragging = false;
+      var startX = 0;
+      var startScroll = 0;
+      rail.addEventListener('mousedown', function (e) {
+        dragging = true;
+        rail.classList.add('dragging');
+        startX = e.pageX;
+        startScroll = rail.scrollLeft;
+      });
+      window.addEventListener('mouseup', function () {
+        if (!dragging) return;
+        dragging = false;
+        rail.classList.remove('dragging');
+      });
+      window.addEventListener('mousemove', function (e) {
+        if (!dragging) return;
+        e.preventDefault();
+        rail.scrollLeft = startScroll - (e.pageX - startX);
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     safe(initHero);
     safe(initFeatureCarousel);
+    safe(initRails);
   });
 })();
