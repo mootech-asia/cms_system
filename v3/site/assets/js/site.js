@@ -729,7 +729,7 @@
    * custom properties so variants.css restyles this live page. Guarded: with
    * no saved config nothing is written and the v1 baseline is untouched.
    * ========================================================== */
-  var DESIGN_MODULE_IDS = ['game-card', 'promotion-card', 'banner', 'ticker', 'button', 'tabs', 'form', 'tag', 'table', 'profile', 'panel', 'navigation', 'section-title', 'modal'];
+  var DESIGN_MODULE_IDS = ['game-card', 'promotion-card', 'spotlight', 'banner', 'ticker', 'button', 'tabs', 'form', 'tag', 'table', 'profile', 'panel', 'navigation', 'section-title', 'modal'];
   var DESIGN_VARIANT_TOKENS = {
     v1: { radius: 'var(--radius-card)', border: '1px solid var(--line)', surface: 'var(--bg-card)', shadow: 'none', inset: 'none', backdrop: 'none', clip: 'none', space: '16px', gap: '12px', weight: 'var(--weight-semibold)', hover: 'translateY(-1px)' },
     v2: { radius: '10px', border: '1px dashed color-mix(in oklch, var(--accent) 62%, var(--line-hi))', surface: 'linear-gradient(135deg, color-mix(in oklch, var(--accent) 16%, var(--bg-card)) 0 28%, var(--bg-card) 28% 72%, color-mix(in oklch, var(--accent-2) 14%, var(--bg-card)) 72% 100%)', shadow: '0 12px 0 color-mix(in oklch, var(--accent) 18%, transparent)', inset: 'inset 0 0 0 1px color-mix(in oklch, var(--text) 8%, transparent)', backdrop: 'none', clip: 'polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)', space: '18px', gap: '14px', weight: 'var(--weight-bold)', hover: 'translateY(-4px) rotate(-.3deg)', motif: '"TICKET"', motifSize: '46px', motifOpacity: '.14' },
@@ -894,7 +894,7 @@
      are intentionally not offered this control. */
   var PER_SECTION_MODULE = {
     'live-casino': 'game-card', 'recently-played': 'game-card', slots: 'game-card', 'top-wins': 'table',
-    promotions: 'promotion-card', providers: 'ticker'
+    promotions: 'promotion-card', providers: 'ticker', 'featured-games': 'spotlight'
   };
   function applySectionVariants(map) {
     map = (map && typeof map === 'object') ? map : {};

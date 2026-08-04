@@ -1309,6 +1309,41 @@ img { display: block; }
   filter: brightness(1.06);
 }
 
+/* ── SPOTLIGHT / FEATURED GAME CARDS ─────── */
+.rail.rail-spotlight { grid-auto-columns: minmax(320px, 360px); }
+.spotlight-card {
+  --promo-hue: var(--accent);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: 100%;
+  padding: 22px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklch, var(--promo-hue) 22%, transparent) 0%, transparent 60%),
+    var(--bg-card);
+  isolation: isolate;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+.spotlight-card-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+.spotlight-card-art {
+  width: 112px;
+  height: 112px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--preview-neutral-900);
+}
+.spotlight-card-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 /* Promotion detail uses the same page, title, button, and section hierarchy as account pages. */
 .promotion-detail { padding-bottom: 36px; }
 .promotion-detail .ap-h1 { margin-bottom: 8px; color: var(--text); }

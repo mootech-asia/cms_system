@@ -37,6 +37,7 @@
   var MODULES = [
     { id: 'game-card', label: 'Game Cards', category: 'Content', description: 'Artwork, metadata, status, and hover treatment.' },
     { id: 'promotion-card', label: 'Promotion Cards', category: 'Content', description: 'Campaign artwork, offer copy, and calls to action.' },
+    { id: 'spotlight', label: 'Spotlight Game Cards', category: 'Content', description: 'Featured game cards with a badge, copy, and call to action.' },
     { id: 'banner', label: 'Hero & Banners', category: 'Content', description: 'Primary campaign and feature media containers.' },
     { id: 'ticker', label: 'Ticker & Marquee', category: 'Content', description: 'Announcements, values, and real-time information.' },
     { id: 'button', label: 'Buttons', category: 'Controls', description: 'Primary, secondary, quiet, and destructive commands.' },
@@ -77,19 +78,19 @@
     navigation: { assetKey: 'logo', label: 'Brand logo', width: 640, height: 160, ratio: '4:1', formats: 'Transparent WEBP / PNG', maxSize: '1 MB', note: 'Use transparent artwork with no built-in background or shadow.' }
   };
 
-  var DEFAULT_LOBBY_ORDER = ['recently-played', 'slots', 'live-casino', 'live-sport', 'top-wins', 'promotions', 'providers'];
+  var DEFAULT_LOBBY_ORDER = ['featured-games', 'recently-played', 'slots', 'live-casino', 'live-sport', 'top-wins', 'promotions', 'providers'];
   var LOBBY_SECTION_LABELS = {
-    'recently-played': 'Recently played', slots: 'Slots', 'live-casino': 'Live Casino',
+    'featured-games': 'Featured Games', 'recently-played': 'Recently played', slots: 'Slots', 'live-casino': 'Live Casino',
     'top-wins': 'Top wins', 'live-sport': 'Live sport', promotions: 'Promotions', providers: 'Providers'
   };
   // Sections with an unambiguous 1:1 module mapping only — verified against each
   // block's real markup (.gcard rails / .leaderboard / .promo-card /
-  // .providers-marquee). live-sport (tournament cards) and the 4 account
-  // panels have no matching module in MODULES, so they're deliberately not
-  // offered a variant chip.
+  // .providers-marquee / .spotlight-card). live-sport (tournament cards) and
+  // the 4 account panels have no matching module in MODULES, so they're
+  // deliberately not offered a variant chip.
   var PER_SECTION_MODULE = {
     'live-casino': 'game-card', 'recently-played': 'game-card', slots: 'game-card', 'top-wins': 'table',
-    promotions: 'promotion-card', providers: 'ticker'
+    promotions: 'promotion-card', providers: 'ticker', 'featured-games': 'spotlight'
   };
 
   var DEFAULT_ACCOUNT_SECTIONS = ['account-quick-actions', 'account-banking-details', 'account-crypto-wallet', 'account-recent-transactions'];

@@ -240,6 +240,7 @@ const TRANSLATIONS = Object.freeze({
     lobby: Object.freeze({
       search: '搜尋遊戲或供應商',
       sections: Object.freeze({
+        'featured-games': '主打遊戲',
         'recently-played': '最近玩過',
         slots: '老虎機',
         'live-casino': '真人娛樂',
@@ -421,6 +422,7 @@ const TRANSLATIONS = Object.freeze({
       modules: Object.freeze({
         'game-card': Object.freeze({ label: '遊戲卡片', description: '遊戲圖、資訊、狀態與 hover 視覺。' }),
         'promotion-card': Object.freeze({ label: '優惠卡片', description: '活動圖片、優惠內容與行動按鈕。' }),
+        spotlight: Object.freeze({ label: '主打遊戲卡片', description: '搭配徽章、文案與行動按鈕的推薦遊戲卡片。' }),
         banner: Object.freeze({ label: '主視覺與橫幅', description: '主要活動與重點媒體容器。' }),
         ticker: Object.freeze({ label: '跑馬燈', description: '公告、數值與即時資訊。' }),
         button: Object.freeze({ label: '按鈕', description: '主要、次要、靜態與警示操作。' }),
@@ -495,6 +497,7 @@ const TRANSLATIONS = Object.freeze({
     lobby: Object.freeze({
       search: 'Search any game or provider',
       sections: Object.freeze({
+        'featured-games': 'Featured Games',
         'recently-played': 'Recently played',
         slots: 'Slots',
         'live-casino': 'Live Casino',
@@ -670,6 +673,7 @@ const TRANSLATIONS = Object.freeze({
       modules: Object.freeze({
         'game-card': Object.freeze({ label: 'Game card', description: 'Artwork, metadata, status, and hover treatment.' }),
         'promotion-card': Object.freeze({ label: 'Promotion card', description: 'Campaign artwork, offer copy, and CTA.' }),
+        spotlight: Object.freeze({ label: 'Spotlight game card', description: 'Featured game cards with a badge, copy, and call to action.' }),
         banner: Object.freeze({ label: 'Hero and banner', description: 'Primary campaign and featured media containers.' }),
         ticker: Object.freeze({ label: 'Ticker and marquee', description: 'Announcements, figures, and real-time signals.' }),
         button: Object.freeze({ label: 'Buttons', description: 'Primary, secondary, quiet, and alert actions.' }),
@@ -744,6 +748,7 @@ const TRANSLATIONS = Object.freeze({
     lobby: Object.freeze({
       search: '게임 또는 공급사 검색',
       sections: Object.freeze({
+        'featured-games': '추천 게임',
         'recently-played': '최근 플레이',
         slots: '슬롯',
         'live-casino': '라이브 카지노',
@@ -915,6 +920,7 @@ const TRANSLATIONS = Object.freeze({
       modules: Object.freeze({
         'game-card': Object.freeze({ label: '게임 카드', description: '아트워크, 메타 정보, 상태 및 hover 처리.' }),
         'promotion-card': Object.freeze({ label: '프로모션 카드', description: '캠페인 이미지, 혜택 문구, CTA.' }),
+        spotlight: Object.freeze({ label: '추천 게임 카드', description: '배지, 문구, CTA가 있는 추천 게임 카드.' }),
         banner: Object.freeze({ label: '히어로와 배너', description: '주요 캠페인과 피처 미디어 컨테이너.' }),
         ticker: Object.freeze({ label: '티커와 마키', description: '공지, 수치, 실시간 정보.' }),
         button: Object.freeze({ label: '버튼', description: '주요, 보조, 조용한, 위험 동작.' }),
@@ -989,6 +995,7 @@ const TRANSLATIONS = Object.freeze({
     lobby: Object.freeze({
       search: 'ค้นหาเกมหรือผู้ให้บริการ',
       sections: Object.freeze({
+        'featured-games': 'เกมแนะนำ',
         'recently-played': 'เล่นล่าสุด',
         slots: 'สล็อต',
         'live-casino': 'คาสิโนสด',
@@ -1156,6 +1163,7 @@ const TRANSLATIONS = Object.freeze({
       modules: Object.freeze({
         'game-card': Object.freeze({ label: 'การ์ดเกม', description: 'ภาพเกม ข้อมูล สถานะ และเอฟเฟกต์ hover' }),
         'promotion-card': Object.freeze({ label: 'การ์ดโปรโมชัน', description: 'ภาพแคมเปญ เนื้อหาโปรโมชัน และปุ่มเรียกร้องให้ดำเนินการ' }),
+        spotlight: Object.freeze({ label: 'การ์ดเกมแนะนำ', description: 'การ์ดเกมแนะนำพร้อมป้ายกำกับ ข้อความ และปุ่มเรียกร้องให้ดำเนินการ' }),
         banner: Object.freeze({ label: 'ภาพหลักและแบนเนอร์', description: 'คอนเทนเนอร์สื่อสำหรับแคมเปญหลักและไฮไลต์' }),
         ticker: Object.freeze({ label: 'แถบข้อความวิ่ง', description: 'ประกาศ ตัวเลข และข้อมูลแบบเรียลไทม์' }),
         button: Object.freeze({ label: 'ปุ่ม', description: 'การทำงานหลัก รอง แบบเงียบ และแจ้งเตือน' }),

@@ -36,6 +36,22 @@
 }
 :is(:root, [data-design-preview], [data-section])[data-ui-promotion-card]:not([data-ui-promotion-card="v1"]) .promo-card::before { display: none; }
 
+:is(:root, [data-design-preview], [data-section])[data-ui-spotlight]:not([data-ui-spotlight="v1"]) .spotlight-card {
+  gap: var(--ui-spotlight-gap);
+  padding: var(--ui-spotlight-space);
+  border: var(--ui-spotlight-border);
+  border-radius: var(--ui-spotlight-radius);
+  background: var(--ui-spotlight-surface);
+  box-shadow: var(--ui-spotlight-shadow-stack);
+  clip-path: var(--ui-spotlight-clip);
+  backdrop-filter: var(--ui-spotlight-backdrop);
+  transition: transform var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard);
+}
+:is(:root, [data-design-preview], [data-section])[data-ui-spotlight]:not([data-ui-spotlight="v1"]) .spotlight-card:hover {
+  transform: var(--ui-spotlight-hover);
+  border-color: var(--accent);
+}
+
 :is(:root, [data-design-preview], [data-section])[data-ui-banner]:not([data-ui-banner="v1"]) .hero {
   border: var(--ui-banner-border);
   border-radius: var(--ui-banner-radius);
@@ -224,6 +240,7 @@
 
 :is(:root, [data-design-preview], [data-section])[data-ui-game-card]:not([data-ui-game-card="v1"]) .gcard { --ui-motif: var(--ui-game-card-motif, ""); --ui-motif-size: var(--ui-game-card-motifSize, 42px); --ui-motif-opacity: var(--ui-game-card-motifOpacity, .12); }
 :is(:root, [data-design-preview], [data-section])[data-ui-promotion-card]:not([data-ui-promotion-card="v1"]) .promo-card { --ui-motif: var(--ui-promotion-card-motif, ""); --ui-motif-size: var(--ui-promotion-card-motifSize, 42px); --ui-motif-opacity: var(--ui-promotion-card-motifOpacity, .12); }
+:is(:root, [data-design-preview], [data-section])[data-ui-spotlight]:not([data-ui-spotlight="v1"]) .spotlight-card { --ui-motif: var(--ui-spotlight-motif, ""); --ui-motif-size: var(--ui-spotlight-motifSize, 42px); --ui-motif-opacity: var(--ui-spotlight-motifOpacity, .12); }
 :is(:root, [data-design-preview], [data-section])[data-ui-banner]:not([data-ui-banner="v1"]) .hero { --ui-motif: var(--ui-banner-motif, ""); --ui-motif-size: var(--ui-banner-motifSize, 56px); --ui-motif-opacity: var(--ui-banner-motifOpacity, .10); }
 :is(:root, [data-design-preview], [data-section])[data-ui-ticker]:not([data-ui-ticker="v1"]) :is(.promo-ribbon, .providers-marquee) { --ui-motif: var(--ui-ticker-motif, ""); --ui-motif-size: var(--ui-ticker-motifSize, 32px); --ui-motif-opacity: var(--ui-ticker-motifOpacity, .10); }
 :is(:root, [data-design-preview], [data-section])[data-ui-button]:not([data-ui-button="v1"]) :is(.ui-button, .btn, .ap-btn, .ap-btn-wide, .rec-confirm, .cv-view-all, .promo-card-cta, .sb-deposit, .sb-withdraw) { --ui-motif: var(--ui-button-motif, ""); --ui-motif-size: var(--ui-button-motifSize, 28px); --ui-motif-opacity: var(--ui-button-motifOpacity, .10); }
@@ -239,6 +256,7 @@
 :is(:root, [data-design-preview], [data-section]) :is(
   .gcard,
   .promo-card,
+  .spotlight-card,
   .hero,
   .promo-ribbon,
   .providers-marquee,
@@ -282,6 +300,7 @@
 :is(:root, [data-design-preview], [data-section]) :is(
   .gcard,
   .promo-card,
+  .spotlight-card,
   .hero,
   .promo-ribbon,
   .providers-marquee,

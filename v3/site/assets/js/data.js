@@ -103,6 +103,19 @@ const HERO_SLIDES = [
   }
 ];
 
+const SPOTLIGHT_GAMES = [
+  { tag: '獨家', title: 'Sugar Rush 9000', sub: 'Evolution', cta: '馬上遊戲', image: assetPath('assets/mock/game-01.webp') },
+  { tag: '熱門', title: 'Crash 100', sub: '公平驗證 · 最高 1,000,000×', cta: '查看更多', image: assetPath('assets/mock/game-02.webp') },
+  { tag: '新遊戲', title: 'Volt Strike', sub: 'Microgaming', cta: '馬上遊戲', image: assetPath('assets/mock/game-03.webp') },
+  { tag: '限時活動', title: '每日競賽 · 瓜分 $100,000', sub: '天天投注天天贏', cta: '立即競賽', image: assetPath('assets/mock/game-04.webp') },
+  { tag: '獨家', title: 'Golden Hex', sub: 'Pragmatic Play', cta: '馬上遊戲', image: assetPath('assets/mock/game-05.webp') },
+  { tag: 'VIP', title: 'Crown of Aether', sub: 'NetEnt', cta: '馬上遊戲', image: assetPath('assets/mock/game-06.webp') },
+  { tag: '熱門', title: 'Lightning Roulette', sub: 'Evolution', cta: '查看更多', image: assetPath('assets/mock/game-07.webp') },
+  { tag: '新遊戲', title: 'Plinko', sub: '原創遊戲', cta: '馬上遊戲', image: assetPath('assets/mock/game-08.webp') },
+  { tag: '限時活動', title: '新會員迎新加碼', sub: '首存 100% 上不封頂', cta: '立即領取', image: assetPath('assets/mock/game-09.webp') },
+  { tag: '獨家', title: 'Cosmic Drift', sub: 'Bti', cta: '馬上遊戲', image: assetPath('assets/mock/game-10.webp') },
+];
+
 const PROMOS = [
   { title: '100% First Deposit', sub: 'Up to 10,000 USDT',  icon: '◉', hue: 290 },
   { title: 'Daily Reload',       sub: '15% back, every day', icon: '◇', hue: 200 },
@@ -140,5 +153,5 @@ const RECENTLY_PLAYED = [
   GAMES.slots[7], GAMES.table[0]
 ];
 
-window.CMS_DATA = { PROVIDERS, GAMES, HERO_SLIDES, PROMOS, WINNERS, TOURNAMENTS, TOURNAMENT_HERO_IMAGE, RECENTLY_PLAYED };
+window.CMS_DATA = { PROVIDERS, GAMES, HERO_SLIDES, SPOTLIGHT_GAMES, PROMOS, WINNERS, TOURNAMENTS, TOURNAMENT_HERO_IMAGE, RECENTLY_PLAYED };
 })();
