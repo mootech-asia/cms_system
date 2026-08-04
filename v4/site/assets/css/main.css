@@ -171,9 +171,11 @@ img { max-width: 100%; display: block; }
   grid-template-columns: minmax(0, 1fr) 340px;
   gap: 20px;
   padding: 20px 0 40px;
-  align-items: start;
+  align-items: stretch;
 }
 .lobby-col { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.lobby-col > *:last-child { flex: 1; }
+.panel-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .panel {
   background: var(--bg-panel);
   border: 1px solid var(--line);
@@ -286,6 +288,7 @@ img { max-width: 100%; display: block; }
   .hero-title { font-size: 26px; }
   .tile-grid { grid-template-columns: repeat(2, 1fr); }
   .tile-grid.cols-6 { grid-template-columns: repeat(3, 1fr); }
+  .panel-row { grid-template-columns: 1fr; }
   .quick-rail { right: 10px; }
   .quick-rail-btn { width: 40px; height: 40px; }
 }
