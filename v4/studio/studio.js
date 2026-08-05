@@ -14,6 +14,7 @@
     { key: 'live', label: '真人娛樂' },
     { key: 'electronic', label: '電子遊戲' },
     { key: 'fish', label: '捕魚達人' },
+    { key: 'sport', label: '體育專區' },
   ];
 
   var PAGES = [

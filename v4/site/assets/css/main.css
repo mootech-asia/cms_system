@@ -13,10 +13,10 @@
   --text-mid: #6b5f54;
   --text-dim: #a49a8c;
   --text-on-header: #fff6ea;
-  --gold: #cf9a3e;
-  --gold-hi: #e8bd63;
-  --gold-deep: #9c7226;
-  --gold-grad: linear-gradient(180deg, #f3d489 0%, #d9a94a 45%, #b17f2e 100%);
+  --gold: #f2a924;
+  --gold-hi: #ffd452;
+  --gold-deep: #b87a0a;
+  --gold-grad: linear-gradient(180deg, #ffe58f 0%, #ffc23c 45%, #f0a020 100%);
   --red: #c8102e;
   --red-deep: #9c0f28;
   --shadow-card: 0 2px 0 rgba(43, 36, 32, 0.03), 0 10px 24px rgba(43, 36, 32, 0.08);
