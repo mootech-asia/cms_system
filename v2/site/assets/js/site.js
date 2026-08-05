@@ -21,6 +21,26 @@
   function $(sel, root) { return (root || document).querySelector(sel); }
   function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
   function on(el, ev, fn, opts) { if (el) el.addEventListener(ev, fn, opts); }
+  /* 全螢幕/遮罩型 overlay 開啟時鎖住背景捲動,避免瀏覽器原生 scrollbar
+     軌道穿插在 overlay 上層(position:fixed 蓋不到 viewport 的 scrollbar 溝槽)。
+     用計數器而非布林值,允許巢狀開關(例如已開啟一個 overlay 時又開了另一個)
+     仍能在最後一個關閉時才真正解鎖。 */
+  var scrollLockCount = 0;
+  function lockBodyScroll() {
+    if (scrollLockCount === 0) {
+      /* 實際捲動的是 document.scrollingElement(=<html>),只鎖 body 蓋不住。 */
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    }
+    scrollLockCount++;
+  }
+  function unlockBodyScroll() {
+    scrollLockCount = Math.max(0, scrollLockCount - 1);
+    if (scrollLockCount === 0) {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+  }
   function escapeHtml(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -599,13 +619,14 @@
   }
 
   var mobileOverlayRoot = null;
-  function closeMobileOverlay() { if (mobileOverlayRoot) { mobileOverlayRoot.remove(); mobileOverlayRoot = null; } }
+  function closeMobileOverlay() { if (mobileOverlayRoot) { mobileOverlayRoot.remove(); mobileOverlayRoot = null; unlockBodyScroll(); } }
   function openMobileOverlay(html) {
     closeMobileOverlay();
     var wrap = document.createElement('div');
     wrap.innerHTML = html;
     mobileOverlayRoot = wrap.firstElementChild;
     document.body.appendChild(mobileOverlayRoot);
+    lockBodyScroll();
     on(mobileOverlayRoot, 'click', function (e) { if (e.target === mobileOverlayRoot) closeMobileOverlay(); });
     on(mobileOverlayRoot.querySelector('[data-mobile-close]'), 'click', closeMobileOverlay);
     $all('[data-mobile-nav-link]', mobileOverlayRoot).forEach(function (a) { on(a, 'click', closeMobileOverlay); });
@@ -644,13 +665,14 @@
   }
 
   var memberDrawerRoot = null;
-  function closeMemberDrawer() { if (memberDrawerRoot) { memberDrawerRoot.remove(); memberDrawerRoot = null; } }
+  function closeMemberDrawer() { if (memberDrawerRoot) { memberDrawerRoot.remove(); memberDrawerRoot = null; unlockBodyScroll(); } }
   function openMemberDrawer() {
     closeMemberDrawer();
     var wrap = document.createElement('div');
     wrap.innerHTML = buildMemberDrawerHtml();
     memberDrawerRoot = wrap.firstElementChild;
     document.body.appendChild(memberDrawerRoot);
+    lockBodyScroll();
     on(memberDrawerRoot, 'click', function (e) { if (e.target === memberDrawerRoot) closeMemberDrawer(); });
     on(memberDrawerRoot.querySelector('[data-mmd-close]'), 'click', closeMemberDrawer);
     $all('.mmd-row', memberDrawerRoot).forEach(function (a) { on(a, 'click', closeMemberDrawer); });
@@ -729,7 +751,7 @@
   var authRoot = null;
 
   function closeAuth() {
-    if (authRoot) { authRoot.remove(); authRoot = null; }
+    if (authRoot) { authRoot.remove(); authRoot = null; unlockBodyScroll(); }
     document.removeEventListener('keydown', onAuthKeydown);
   }
   function onAuthKeydown(e) { if (e.key === 'Escape') closeAuth(); }
@@ -891,6 +913,7 @@
       '</div><div class="auth-modal-body" data-auth-body>' + authBodyHtml(mode) + '</div></div></div>';
     authRoot = wrap.firstElementChild;
     document.body.appendChild(authRoot);
+    lockBodyScroll();
     document.addEventListener('keydown', onAuthKeydown);
     on(authRoot, 'click', function (e) { if (e.target === authRoot) closeAuth(); });
     on(authRoot.querySelector('[data-auth-close]'), 'click', closeAuth);
@@ -1702,7 +1725,7 @@
   /* ======================= member modal + member pages ===================== */
 
   var memberModalRoot = null;
-  function closeMemberModal() { if (memberModalRoot) { memberModalRoot.remove(); memberModalRoot = null; } }
+  function closeMemberModal() { if (memberModalRoot) { memberModalRoot.remove(); memberModalRoot = null; unlockBodyScroll(); } }
   function showMemberModal(opts) {
     closeMemberModal();
     var type = opts.type || 'success';
@@ -1731,6 +1754,7 @@
       '</div>';
     document.body.appendChild(wrap);
     memberModalRoot = wrap;
+    lockBodyScroll();
     on(wrap, 'click', function (e) { if (e.target === wrap) closeMemberModal(); });
     on(wrap.querySelector('[data-mf-confirm]'), 'click', function () { closeMemberModal(); if (opts.onConfirm) opts.onConfirm(); });
     on(wrap.querySelector('[data-mf-cancel]'), 'click', function () { closeMemberModal(); if (opts.onCancel) opts.onCancel(); });
@@ -2333,7 +2357,7 @@
 
   /* 客服彈窗:CS 不進內容頁,改跳彈窗;Live Chat / Telegram / Email 三列 */
   var csModalRoot = null;
-  function closeCsModal() { if (csModalRoot) { csModalRoot.remove(); csModalRoot = null; } }
+  function closeCsModal() { if (csModalRoot) { csModalRoot.remove(); csModalRoot = null; unlockBodyScroll(); } }
   function openCsModal() {
     if (csModalRoot) return;
     csModalRoot = document.createElement('div');
@@ -2374,6 +2398,7 @@
     on(csModalRoot, 'click', function (e) { if (e.target === csModalRoot) closeCsModal(); });
     on(csModalRoot.querySelector('[data-cs-close]'), 'click', closeCsModal);
     document.body.appendChild(csModalRoot);
+    lockBodyScroll();
   }
 
   /* 全站通用 [data-cs-open] 觸發器:客服一律走 CS modal,不導頁。事件代理掛在
