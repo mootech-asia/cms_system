@@ -570,7 +570,8 @@
     return (
       '<div class="mobile-account-block">' +
       '<div class="mobile-account-avatar">' + iconSvg('user', 'mobile-account-avatar-icon') + '</div>' +
-      '<div class="mobile-account-info"><div class="mobile-account-name-row"><span class="mobile-account-name">meqomcao</span><span class="mobile-account-vip">VIP1</span></div>' +
+      '<div class="mobile-account-info"><div class="mobile-account-name-row"><span class="mobile-account-name">meqomcao</span><span class="mobile-account-vip">VIP1</span>' +
+      '<button type="button" class="header-account-link" style="margin-left:auto" data-logout aria-label="' + escapeHtml(T.logout) + '">' + iconSvg('log-out', 'icon-lg') + '</button></div>' +
       '<div class="mobile-account-stat-row mobile-account-stat-row--first"><span class="mobile-account-stat-label">' + escapeHtml(T.accountBalance) + '</span><span class="mobile-account-stat-label">: </span><span class="mobile-account-stat-value">₩1,000,000,000</span></div>' +
       '<div class="mobile-account-stat-row"><span class="mobile-account-stat-label">' + escapeHtml(T.accountPoints) + '</span><span class="mobile-account-stat-label">: </span><span class="mobile-account-stat-value">0.00</span></div></div></div>' +
       '<a href="account.html" class="mobile-account-view-btn" style="padding:10px 18px;text-decoration:none">' + escapeHtml(T.accountView) + '</a>'
@@ -632,6 +633,7 @@
     $all('[data-mobile-nav-link]', mobileOverlayRoot).forEach(function (a) { on(a, 'click', closeMobileOverlay); });
     on(mobileOverlayRoot.querySelector('[data-mobile-login]'), 'click', function () { closeMobileOverlay(); openAuth('login'); });
     on(mobileOverlayRoot.querySelector('[data-mobile-register]'), 'click', function () { closeMobileOverlay(); openAuth('register'); });
+    bindAccountBarLogout(mobileOverlayRoot);
   }
 
   function initHeaderMobileMenus() {
