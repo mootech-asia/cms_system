@@ -37,34 +37,25 @@
     var carousel = document.getElementById('featureCarousel');
     if (!carousel) return;
     var slides = Array.prototype.slice.call(carousel.querySelectorAll('.feature-card'));
-    var dots = Array.prototype.slice.call(carousel.querySelectorAll('.feature-dot'));
     var len = slides.length;
     if (!len) return;
     var idx = 0;
-    var timer = null;
-
-    function apply() {
+    setInterval(function () {
+      idx = (idx + 1) % len;
       slides.forEach(function (s, i) { s.classList.toggle('active', i === idx); });
-      dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
-    }
-    function resetAuto() {
-      if (timer) clearInterval(timer);
-      timer = setInterval(function () { idx = (idx + 1) % len; apply(); }, 5000);
-    }
-    function goTo(i) { idx = i; apply(); resetAuto(); }
-
-    dots.forEach(function (d, i) { d.addEventListener('click', function () { goTo(i); }); });
-
-    resetAuto();
+    }, 5000);
   }
 
   function initVendorSelect() {
     var rails = Array.prototype.slice.call(document.querySelectorAll('.vendor-rail'));
     rails.forEach(function (rail) {
+      var card = rail.closest('.feature-card');
+      var bg = card ? card.querySelector('.feature-card-bg') : null;
       var chips = Array.prototype.slice.call(rail.querySelectorAll('.feature-vendor-chip'));
       chips.forEach(function (chip) {
         chip.addEventListener('click', function () {
           chips.forEach(function (c) { c.classList.toggle('active', c === chip); });
+          if (bg && chip.dataset.bg) bg.style.backgroundImage = 'url(' + chip.dataset.bg + ')';
         });
       });
     });
