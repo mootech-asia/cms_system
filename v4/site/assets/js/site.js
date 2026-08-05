@@ -189,6 +189,14 @@
     input.addEventListener('keydown', function (e) { if (e.key === 'Enter') run(); });
   }
 
+  /* 會員頁 header／安全中心的登出:此站沒有真正的登入態切換
+     （首頁固定訪客態、會員頁固定登入態），點擊登出導回首頁即可。 */
+  function initMemberLogout() {
+    Array.prototype.slice.call(document.querySelectorAll('[data-logout]')).forEach(function (btn) {
+      btn.addEventListener('click', function () { location.href = 'index.html'; });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     safe(initHero);
     safe(initFeatureCarousel);
@@ -197,5 +205,6 @@
     safe(initFavorites);
     safe(initListingTabs);
     safe(initListingSearch);
+    safe(initMemberLogout);
   });
 })();

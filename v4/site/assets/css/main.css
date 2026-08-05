@@ -352,6 +352,111 @@ img { max-width: 100%; display: block; }
 .promo-card-more { font-size: 12.5px; font-weight: 700; color: var(--gold-deep); }
 .promo-card-more:hover { color: var(--red); }
 
+/* ── 會員中心（帳戶總覽/儲值/提款/各類紀錄/個人資料/安全中心） ── */
+.member-shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 20px; padding: 20px 0 48px; padding-right: 92px; align-items: start; }
+@media (max-width: 720px) { .member-shell { padding-right: 20px; grid-template-columns: 1fr; } }
+.member-sidebar { position: sticky; top: 20px; padding: 10px; }
+.member-sidebar-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  font-size: 13.5px; font-weight: 700;
+  color: var(--text-mid);
+  transition: background 0.15s, color 0.15s;
+}
+.member-sidebar-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+.member-sidebar-link:hover { background: var(--bg); color: var(--text); }
+.member-sidebar-link.active { background: var(--gold-grad); color: #3a2604; }
+.member-sidebar-divider { height: 1px; background: var(--line); margin: 8px 4px; }
+.member-main { min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.member-page-title { font-size: 20px; font-weight: 800; margin: 0; }
+
+.acct-hero {
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  background: linear-gradient(135deg, #fff9ec 0%, var(--bg-panel) 60%);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-card);
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.acct-avatar {
+  width: 64px; height: 64px; flex-shrink: 0;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--gold-grad);
+  color: #3a2604;
+}
+.acct-avatar svg { width: 30px; height: 30px; }
+.acct-info { flex: 1; min-width: 200px; }
+.acct-name-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.acct-name { font-size: 19px; font-weight: 800; margin: 0; color: var(--text); }
+.acct-vip-badge { padding: 3px 10px; border-radius: 999px; background: var(--gold-grad); color: #3a2604; font-size: 11.5px; font-weight: 800; }
+.acct-stats-grid { display: flex; gap: 32px; flex-wrap: wrap; }
+.acct-stat-label { font-size: 12px; color: var(--text-dim); margin: 0 0 2px; }
+.acct-stat-value { font-size: 17px; font-weight: 800; color: var(--gold-deep); margin: 0; }
+.acct-actions { display: flex; gap: 10px; flex-shrink: 0; }
+
+.member-panel { border-radius: var(--radius-lg); border: 1px solid var(--line); background: var(--bg-panel); box-shadow: var(--shadow-card); padding: 18px; }
+.member-panel-title { font-size: 15px; font-weight: 800; margin: 0 0 14px; color: var(--text); }
+.member-panels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 900px) { .member-panels-grid { grid-template-columns: 1fr; } }
+
+.bank-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; font-weight: 600; color: var(--text); }
+.bank-row:last-child { border-bottom: 0; }
+.bank-row svg { width: 22px; height: 22px; color: var(--text-mid); flex-shrink: 0; }
+
+/* 儲值 / 提款表單 */
+.pay-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.pay-tab { padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg-panel); color: var(--text-mid); font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+.pay-tab svg { width: 16px; height: 16px; }
+.pay-tab.active { background: var(--gold-grad); border-color: var(--gold-hi); color: #3a2604; }
+.pay-amount-grid { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+.pay-amount-btn { padding: 10px 20px; border-radius: var(--radius-md); border: 1px solid var(--line); background: var(--bg); font-size: 13.5px; font-weight: 700; color: var(--text); }
+.pay-amount-btn.selected { background: var(--gold-grad); border-color: var(--gold-hi); color: #3a2604; }
+.pay-field { width: 100%; padding: 12px 14px; border-radius: var(--radius-md); border: 1px solid var(--line); background: var(--bg); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.pay-note { font-size: 12px; color: var(--text-dim); margin: 0 0 16px; }
+.pay-submit { display: block; width: 100%; margin-top: 8px; }
+
+/* 交易/投注紀錄表格 */
+.record-filters { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.record-filters select, .record-filters input { padding: 8px 12px; border-radius: var(--radius-md); border: 1px solid var(--line); background: var(--bg-panel); font-size: 13px; color: var(--text); font-family: inherit; }
+.record-table-wrap { overflow-x: auto; border-radius: var(--radius-md); border: 1px solid var(--line); }
+.record-table { width: 100%; border-collapse: collapse; font-size: 13px; white-space: nowrap; }
+.record-table th { text-align: left; padding: 10px 14px; background: var(--bg); color: var(--text-mid); font-weight: 700; font-size: 12px; border-bottom: 1px solid var(--line); }
+.record-table td { padding: 10px 14px; border-bottom: 1px solid var(--line); color: var(--text); }
+.record-table tr:last-child td { border-bottom: 0; }
+.record-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.record-table .mono { font-family: ui-monospace, monospace; color: var(--text-mid); }
+.record-table .positive { color: #1a7f4c; font-weight: 700; }
+.record-table .negative { color: var(--red); font-weight: 700; }
+.record-empty-note { padding: 32px; text-align: center; color: var(--text-dim); font-size: 13px; }
+
+/* 個人資料 */
+.pi-field-list { display: flex; flex-direction: column; }
+.pi-field { display: flex; align-items: center; gap: 14px; padding: 14px 4px; border-bottom: 1px solid var(--line); }
+.pi-field:last-child { border-bottom: 0; }
+.pi-field svg { width: 20px; height: 20px; color: var(--text-mid); flex-shrink: 0; }
+.pi-field-label { font-size: 12.5px; color: var(--text-dim); width: 110px; flex-shrink: 0; }
+.pi-field-value { flex: 1; font-size: 14px; font-weight: 700; color: var(--text); }
+.pi-field-edit { font-size: 12.5px; font-weight: 700; color: var(--gold-deep); }
+.pi-field-edit:hover { color: var(--red); }
+
+/* 安全中心 */
+.sec-list { display: flex; flex-direction: column; }
+.sec-item { display: flex; align-items: center; gap: 14px; padding: 16px 4px; border-bottom: 1px solid var(--line); cursor: pointer; }
+.sec-item:last-child { border-bottom: 0; }
+.sec-item-icon { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--bg); color: var(--gold-deep); flex-shrink: 0; }
+.sec-item-icon svg { width: 18px; height: 18px; }
+.sec-item-title { font-size: 14px; font-weight: 700; color: var(--text); }
+.sec-item-desc { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+.sec-item-value { margin-left: auto; font-size: 12.5px; color: var(--text-dim); }
+.sec-item:hover { background: var(--bg); }
+
+.form-field { margin-bottom: 16px; }
+.form-label { display: block; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.form-input { width: 100%; padding: 11px 14px; border-radius: var(--radius-md); border: 1px solid var(--line); background: var(--bg); font-size: 14px; color: var(--text); font-family: inherit; }
+.form-hint { font-size: 12px; color: var(--text-dim); margin-top: 14px; }
+
 /* Featured live-casino carousel (tall, spans the narrow column) */
 .feature-carousel { position: relative; min-height: 300px; }
 .feature-card {
