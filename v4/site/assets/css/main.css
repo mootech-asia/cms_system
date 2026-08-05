@@ -229,7 +229,7 @@ img { max-width: 100%; display: block; }
   user-select: none;
 }
 .tile-grid.rail::-webkit-scrollbar { display: none; }
-.tile-grid.rail.compact { grid-auto-columns: 130px; }
+.tile-grid.rail.compact { grid-template-columns: none; grid-auto-columns: 130px; }
 .tile-grid.rail .game-tile { scroll-snap-align: start; min-width: 0; }
 .tile-grid.rail.dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
 .tile-grid.compact { grid-template-columns: repeat(auto-fill, minmax(110px, 130px)); justify-content: start; gap: 10px; }
