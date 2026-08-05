@@ -2335,10 +2335,10 @@
   /* security.vue's last Security Setting row ("Logout" / "Logout safely") is a
      plain <div> with no @click in the Nuxt source either — but the identical
      action already works from the header member dropdown (data-logout ->
-     location.reload(), see applyLoggedInHeaderUI above), so wire this row to
-     the same, already-established behaviour instead of leaving a row that
-     looks exactly like its four sibling links (same layout, cursor-pointer)
-     but does nothing when clicked. */
+     persistLogin(false) + location.reload(), see bindAccountBarLogout above),
+     so wire this row to the same, already-established behaviour instead of
+     leaving a row that looks exactly like its four sibling links (same layout,
+     cursor-pointer) but does nothing when clicked. */
 
   function initSecurityPage() {
     if (pageName() !== 'security') return;
@@ -2350,7 +2350,7 @@
     if (!list) return;
     var last = list.lastElementChild;
     if (!last || last.tagName === 'A' || !/Logout/.test(last.textContent || '')) return;
-    on(last, 'click', function () { location.reload(); });
+    on(last, 'click', function () { persistLogin(false); location.reload(); });
   }
 
   /* ============================ data-backoffice hint ======================= */
