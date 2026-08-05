@@ -3,6 +3,7 @@
   'use strict';
 
   function safe(fn) { try { fn(); } catch (e) { /* 避免單一功能失敗拖垮整頁 */ } }
+  function on(el, ev, fn) { if (el) el.addEventListener(ev, fn); }
 
   function initHero() {
     var hero = document.getElementById('hero');
@@ -189,11 +190,165 @@
     input.addEventListener('keydown', function (e) { if (e.key === 'Enter') run(); });
   }
 
-  /* 會員頁 header／安全中心的登出:此站沒有真正的登入態切換
-     （首頁固定訪客態、會員頁固定登入態），點擊登出導回首頁即可。 */
+  /* 會員頁 header／安全中心／手機選單的登出:此站沒有真正的登入態切換
+     （首頁固定訪客態、會員頁固定登入態），點擊登出導回首頁即可。
+     事件代理掛在 document,手機選單是點擊 hamburger 後才動態插入 DOM,
+     逐一綁定會抓不到後來才出現的登出按鈕。 */
   function initMemberLogout() {
-    Array.prototype.slice.call(document.querySelectorAll('[data-logout]')).forEach(function (btn) {
-      btn.addEventListener('click', function () { location.href = 'index.html'; });
+    on(document, 'click', function (e) {
+      var btn = e.target.closest && e.target.closest('[data-logout]');
+      if (!btn) return;
+      location.href = 'index.html';
+    });
+  }
+
+  /* 全螢幕/遮罩型 overlay 開啟時鎖住背景捲動。計數器管理,避免多個
+     overlay 疊開時互相解鎖;實際捲動的是 document.scrollingElement(=<html>),
+     只鎖 body 蓋不住。 */
+  var scrollLockCount = 0;
+  function lockScroll() {
+    if (scrollLockCount === 0) {
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    }
+    scrollLockCount++;
+  }
+  function unlockScroll() {
+    scrollLockCount = Math.max(0, scrollLockCount - 1);
+    if (scrollLockCount === 0) {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+  }
+
+  var USER_ICON = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+
+  /* ── 手機版全螢幕選單:導覽連結直接複製桌面版 .header-nav,
+     避免另外維護一份重複資料。 ── */
+  var mobileMenuRoot = null;
+  function closeMobileMenu() { if (mobileMenuRoot) { mobileMenuRoot.remove(); mobileMenuRoot = null; unlockScroll(); } }
+  function openMobileMenu() {
+    closeMobileMenu();
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll('.header-nav .header-nav-link'));
+    var navHtml = navLinks.map(function (a) {
+      return '<a href="' + a.getAttribute('href') + '" class="mobile-menu-link' + (a.classList.contains('active') ? ' active' : '') + '">' + a.innerHTML + '</a>';
+    }).join('');
+    var isLoggedIn = !!document.querySelector('.header-auth [data-logout]');
+    var footHtml = isLoggedIn
+      ? '<div class="mobile-menu-account">' + USER_ICON + '<span>meqomcao・餘額 ₩1,000,000,000</span></div>' +
+        '<button type="button" class="btn-gold quiet" style="width:100%" data-logout>登出</button>'
+      : '<button type="button" class="btn-gold quiet" style="width:100%;margin-bottom:8px" data-mobile-login>登錄</button>' +
+        '<button type="button" class="btn-gold" style="width:100%" data-mobile-register>立即註冊</button>';
+    var wrap = document.createElement('div');
+    wrap.innerHTML =
+      '<div class="mobile-menu-overlay" data-mobile-overlay>' +
+      '<div class="mobile-menu-panel">' +
+      '<div class="mobile-menu-head"><img src="logo.png" alt="Bet100" class="mobile-menu-logo">' +
+      '<button type="button" class="mobile-menu-close" aria-label="關閉選單" data-mobile-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
+      '<nav class="mobile-menu-nav">' + navHtml + '</nav>' +
+      '<div class="mobile-menu-foot">' + footHtml + '</div>' +
+      '</div></div>';
+    mobileMenuRoot = wrap.firstElementChild;
+    document.body.appendChild(mobileMenuRoot);
+    lockScroll();
+    on(mobileMenuRoot, 'click', function (e) { if (e.target === mobileMenuRoot) closeMobileMenu(); });
+    on(mobileMenuRoot.querySelector('[data-mobile-close]'), 'click', closeMobileMenu);
+    var loginBtn = mobileMenuRoot.querySelector('[data-mobile-login]');
+    var registerBtn = mobileMenuRoot.querySelector('[data-mobile-register]');
+    if (loginBtn) on(loginBtn, 'click', function () { closeMobileMenu(); openAuthModal('login'); });
+    if (registerBtn) on(registerBtn, 'click', function () { closeMobileMenu(); openAuthModal('register'); });
+  }
+  function initHeaderMobileMenu() {
+    Array.prototype.slice.call(document.querySelectorAll('.header-menu-trigger')).forEach(function (btn) {
+      on(btn, 'click', openMobileMenu);
+    });
+  }
+
+  /* ── 登入／註冊彈窗:純前端展示,提交不驗證,純粹關閉彈窗。 ── */
+  var authModalRoot = null;
+  function closeAuthModal() { if (authModalRoot) { authModalRoot.remove(); authModalRoot = null; unlockScroll(); } }
+  function authModalBodyHtml(mode) {
+    var isRegister = mode === 'register';
+    return (
+      '<div class="auth-modal-tabs">' +
+      '<button type="button" class="auth-modal-tab' + (isRegister ? '' : ' active') + '" data-auth-switch="login">登錄</button>' +
+      '<button type="button" class="auth-modal-tab' + (isRegister ? ' active' : '') + '" data-auth-switch="register">註冊</button>' +
+      '</div>' +
+      '<div class="form-field"><label class="form-label">用戶名</label><input type="text" class="form-input" placeholder="請輸入用戶名"></div>' +
+      '<div class="form-field"><label class="form-label">密碼</label><input type="password" class="form-input" placeholder="請輸入密碼"></div>' +
+      (isRegister ? '<div class="form-field"><label class="form-label">確認密碼</label><input type="password" class="form-input" placeholder="請再次輸入密碼"></div>' : '') +
+      '<a href="#" class="btn-gold auth-modal-submit" data-auth-submit>' + (isRegister ? '註冊' : '登錄') + '</a>'
+    );
+  }
+  function openAuthModal(mode) {
+    closeAuthModal();
+    var wrap = document.createElement('div');
+    wrap.innerHTML =
+      '<div class="auth-modal-overlay" data-auth-overlay>' +
+      '<div class="auth-modal-box">' +
+      '<div class="auth-modal-head"><h3 class="auth-modal-title" data-auth-title></h3>' +
+      '<button type="button" class="auth-modal-close" aria-label="關閉" data-auth-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
+      '<div class="auth-modal-body" data-auth-body></div>' +
+      '</div></div>';
+    authModalRoot = wrap.firstElementChild;
+    document.body.appendChild(authModalRoot);
+    lockScroll();
+    on(authModalRoot, 'click', function (e) { if (e.target === authModalRoot) closeAuthModal(); });
+    on(authModalRoot.querySelector('[data-auth-close]'), 'click', closeAuthModal);
+    function render(m) {
+      authModalRoot.querySelector('[data-auth-title]').textContent = m === 'register' ? '註冊' : '登錄';
+      var body = authModalRoot.querySelector('[data-auth-body]');
+      body.innerHTML = authModalBodyHtml(m);
+      Array.prototype.slice.call(body.querySelectorAll('[data-auth-switch]')).forEach(function (tab) {
+        on(tab, 'click', function () { render(tab.getAttribute('data-auth-switch')); });
+      });
+      on(body.querySelector('[data-auth-submit]'), 'click', function (e) { e.preventDefault(); closeAuthModal(); });
+    }
+    render(mode || 'login');
+  }
+  function initAuthTriggers() {
+    Array.prototype.slice.call(document.querySelectorAll('.header-auth')).forEach(function (bar) {
+      if (bar.querySelector('[data-logout]')) return; /* 已登入態,不需要登入/註冊觸發 */
+      var buttons = Array.prototype.slice.call(bar.querySelectorAll('button'));
+      buttons.forEach(function (btn) {
+        var text = (btn.textContent || '').trim();
+        if (text === '登錄') on(btn, 'click', function () { openAuthModal('login'); });
+        if (text === '立即註冊') on(btn, 'click', function () { openAuthModal('register'); });
+      });
+    });
+  }
+
+  /* ── 客服彈窗 ── */
+  var csModalRoot = null;
+  function closeCsModal() { if (csModalRoot) { csModalRoot.remove(); csModalRoot = null; unlockScroll(); } }
+  function openCsModal() {
+    if (csModalRoot) return;
+    var rows = [
+      { icon: '<path d="M21 12c0 4.4-4 8-9 8a10 10 0 0 1-3.6-.7L3 21l1.4-4.5A8 8 0 0 1 3 12c0-4.4 4-8 9-8s9 3.6 9 8Z"/>', title: '線上客服', desc: '24 小時即時支援' },
+      { icon: '<path d="m22 2-7 20-4-9-9-4Z"/>', title: 'Telegram 頻道', desc: '最新活動與公告' },
+      { icon: '<path d="M4 6h16v12H4zM4 7l8 6 8-6"/>', title: 'Email 信箱', desc: 'support@bet100.gg' },
+    ];
+    var wrap = document.createElement('div');
+    wrap.innerHTML =
+      '<div class="cs-modal-overlay" data-cs-overlay>' +
+      '<div class="cs-modal-box">' +
+      '<div class="cs-modal-head"><h3 class="cs-modal-title">聯絡客服</h3>' +
+      '<button type="button" class="cs-modal-close" aria-label="關閉" data-cs-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
+      '<div class="cs-modal-body">' +
+      rows.map(function (r) {
+        return '<a href="#" class="cs-opt"><span class="cs-opt-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">' + r.icon + '</svg></span>' +
+          '<span class="cs-opt-text"><strong>' + r.title + '</strong><small>' + r.desc + '</small></span></a>';
+      }).join('') +
+      '</div></div></div>';
+    csModalRoot = wrap.firstElementChild;
+    document.body.appendChild(csModalRoot);
+    lockScroll();
+    on(csModalRoot, 'click', function (e) { if (e.target === csModalRoot) closeCsModal(); });
+    on(csModalRoot.querySelector('[data-cs-close]'), 'click', closeCsModal);
+  }
+  function initCsTriggers() {
+    Array.prototype.slice.call(document.querySelectorAll('.quick-rail-btn[aria-label="線上客服"], .mobile-account-view-btn[data-cs-open]')).forEach(function (btn) {
+      on(btn, 'click', function (e) { e.preventDefault(); openCsModal(); });
     });
   }
 
@@ -206,5 +361,8 @@
     safe(initListingTabs);
     safe(initListingSearch);
     safe(initMemberLogout);
+    safe(initHeaderMobileMenu);
+    safe(initAuthTriggers);
+    safe(initCsTriggers);
   });
 })();

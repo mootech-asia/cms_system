@@ -543,10 +543,87 @@ img { max-width: 100%; display: block; }
 .site-footer-copyright a { color: var(--text-dim); }
 .site-footer-copyright a:hover { color: var(--gold-hi); }
 
+/* ── 手機版選單觸發按鈕 ─────────────────── */
+.header-menu-trigger {
+  display: none;
+  width: 38px; height: 38px;
+  align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--text-on-header);
+  flex-shrink: 0;
+}
+.header-menu-trigger:hover { background: rgba(255, 255, 255, 0.22); }
+
+/* ── 手機版全螢幕選單 ───────────────────── */
+.mobile-menu-overlay { position: fixed; inset: 0; z-index: 10001; background: rgba(20, 6, 10, 0.6); }
+.mobile-menu-panel {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  background: var(--bg);
+  overflow-y: auto;
+}
+.mobile-menu-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--header-grad);
+  flex-shrink: 0;
+}
+.mobile-menu-logo { height: 32px; width: auto; filter: brightness(0) invert(1); }
+.mobile-menu-close { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; color: var(--text-on-header); background: rgba(255, 255, 255, 0.14); }
+.mobile-menu-nav { display: flex; flex-direction: column; padding: 10px; flex: 1; }
+.mobile-menu-link {
+  display: flex; align-items: center; gap: 12px;
+  padding: 13px 12px;
+  border-radius: var(--radius-md);
+  font-size: 14.5px; font-weight: 700;
+  color: var(--text);
+}
+.mobile-menu-link svg { width: 20px; height: 20px; color: var(--text-mid); flex-shrink: 0; }
+.mobile-menu-link:hover, .mobile-menu-link.active { background: var(--bg-panel); }
+.mobile-menu-link.active { color: var(--red); }
+.mobile-menu-link.active svg { color: var(--red); }
+.mobile-menu-foot { padding: 14px 20px 22px; border-top: 1px solid var(--line); flex-shrink: 0; }
+.mobile-menu-foot .btn-gold { display: block; text-align: center; text-decoration: none; margin-bottom: 8px; }
+/* .btn-gold.quiet 是為深色 header 背景設計的白字透明底,套在這裡的淺色
+   選單背景會看不清楚,改用深色文字 + 淡邊框。 */
+.mobile-menu-foot .btn-gold.quiet { background: var(--bg-panel); color: var(--gold-deep); border-color: var(--line-hi); box-shadow: none; }
+.mobile-menu-account { display: flex; align-items: center; gap: 10px; padding: 6px 0 14px; font-size: 13.5px; font-weight: 700; color: var(--text); }
+.mobile-menu-account svg { width: 22px; height: 22px; color: var(--gold-deep); }
+
+/* ── 登入／註冊彈窗 ─────────────────────── */
+.auth-modal-overlay { position: fixed; inset: 0; z-index: 10002; display: flex; align-items: center; justify-content: center; background: rgba(20, 6, 10, 0.6); padding: 20px; }
+.auth-modal-box { width: 100%; max-width: 380px; border-radius: var(--radius-lg); background: var(--bg-panel); box-shadow: var(--shadow-card); overflow: hidden; }
+.auth-modal-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+.auth-modal-title { margin: 0; font-size: 16px; font-weight: 800; color: var(--text); }
+.auth-modal-close { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; color: var(--text-mid); }
+.auth-modal-close:hover { background: var(--bg); }
+.auth-modal-body { padding: 20px; }
+.auth-modal-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+.auth-modal-tab { flex: 1; padding: 9px 0; text-align: center; border-radius: 999px; border: 1px solid var(--line); font-size: 13px; font-weight: 700; color: var(--text-mid); }
+.auth-modal-tab.active { background: var(--gold-grad); border-color: var(--gold-hi); color: #3a2604; }
+.auth-modal-submit { display: block; width: 100%; text-align: center; text-decoration: none; margin-top: 6px; }
+
+/* ── 客服彈窗 ───────────────────────────── */
+.cs-modal-overlay { position: fixed; inset: 0; z-index: 10002; display: flex; align-items: center; justify-content: center; background: rgba(20, 6, 10, 0.6); padding: 20px; }
+.cs-modal-box { width: 100%; max-width: 340px; border-radius: var(--radius-lg); background: var(--bg-panel); box-shadow: var(--shadow-card); overflow: hidden; }
+.cs-modal-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+.cs-modal-title { margin: 0; font-size: 15.5px; font-weight: 800; color: var(--text); }
+.cs-modal-close { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; color: var(--text-mid); }
+.cs-modal-close:hover { background: var(--bg); }
+.cs-modal-body { padding: 10px; }
+.cs-opt { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: var(--radius-md); text-decoration: none; }
+.cs-opt:hover { background: var(--bg); }
+.cs-opt-icon { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-grad); color: #3a2604; flex-shrink: 0; }
+.cs-opt-icon svg { width: 17px; height: 17px; }
+.cs-opt-text strong { display: block; font-size: 13.5px; color: var(--text); }
+.cs-opt-text small { font-size: 12px; color: var(--text-dim); }
+
 /* ── RESPONSIVE ─────────────────────────── */
 @media (max-width: 1080px) {
   .lobby-grid { grid-template-columns: 1fr; }
   .header-nav { display: none; }
+  .header-menu-trigger { display: flex; }
 }
 @media (max-width: 720px) {
   .header-top { flex-wrap: wrap; }
