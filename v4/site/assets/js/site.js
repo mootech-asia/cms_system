@@ -197,10 +197,14 @@
     function run() {
       var q = (input.value || '').trim().toLowerCase();
       var shown = 0;
-      Array.prototype.slice.call(grid.querySelectorAll('.game-tile')).forEach(function (tile) {
-        var name = (tile.querySelector('.game-tile-name') || {}).textContent || '';
+      /* .game-tile 用卡片名稱比對;.match-card（體育賽事）沒有單一名稱欄位,
+         改比對 data-search（聯賽+雙方隊伍）。 */
+      Array.prototype.slice.call(grid.querySelectorAll('.game-tile, .match-card')).forEach(function (card) {
+        var name = card.classList.contains('match-card')
+          ? (card.getAttribute('data-search') || '')
+          : ((card.querySelector('.game-tile-name') || {}).textContent || '');
         var show = !q || name.toLowerCase().indexOf(q) !== -1;
-        tile.hidden = !show;
+        card.hidden = !show;
         if (show) shown++;
       });
       var empty = document.getElementById('listingEmpty');
