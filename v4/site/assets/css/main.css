@@ -46,12 +46,16 @@ img { max-width: 100%; display: block; }
 /* ── HEADER ─────────────────────────────── */
 .site-header { background: var(--header-grad); }
 .header-top {
-  display: flex; align-items: center; gap: 28px;
+  display: flex; align-items: center; justify-content: space-between; gap: 28px;
   padding: 14px 0;
 }
 .brand-link { display: flex; align-items: center; flex-shrink: 0; }
 .brand-logo { height: 40px; width: auto; filter: brightness(0) invert(1); }
-.header-nav { display: flex; align-items: center; gap: 4px; flex: 1; flex-wrap: wrap; }
+.header-nav {
+  display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+  padding: 10px 0 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
 .header-nav-link {
   display: flex; align-items: center; gap: 6px;
   padding: 8px 14px;
