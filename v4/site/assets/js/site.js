@@ -5,6 +5,27 @@
   function safe(fn) { try { fn(); } catch (e) { /* 避免單一功能失敗拖垮整頁 */ } }
   function on(el, ev, fn) { if (el) el.addEventListener(ev, fn); }
 
+  /* studio（設計後台）套用首頁區塊顯示/隱藏：與 studio.js 的
+     STUDIO_SECTIONS_KEY 共用同一把 localStorage key,同源即可跨資料夾
+     （../site/、../studio/）讀取,不受路徑影響。 */
+  var STUDIO_SECTIONS_KEY = 'cms-v4-studio-sections';
+  function applyStudioSections() {
+    var raw;
+    try { raw = JSON.parse(localStorage.getItem(STUDIO_SECTIONS_KEY)); } catch (e) { raw = null; }
+    if (!raw) return;
+    Array.prototype.slice.call(document.querySelectorAll('[data-section]')).forEach(function (el) {
+      var name = el.getAttribute('data-section');
+      if (raw[name] === false) el.style.display = 'none';
+    });
+  }
+  var STUDIO_SITENAME_KEY = 'cms-v4-studio-sitename';
+  function applyStudioSiteName() {
+    var name;
+    try { name = localStorage.getItem(STUDIO_SITENAME_KEY); } catch (e) { name = null; }
+    if (!name) return;
+    document.title = document.title.replace(/^CMS_前台_v4/, name);
+  }
+
   function initHero() {
     var hero = document.getElementById('hero');
     if (!hero) return;
@@ -389,5 +410,7 @@
     safe(initCsTriggers);
     safe(initAboutTabs);
     safe(initFaqAccordion);
+    safe(applyStudioSections);
+    safe(applyStudioSiteName);
   });
 })();
