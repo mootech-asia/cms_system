@@ -194,9 +194,7 @@ img { max-width: 100%; display: block; }
 .panel-head-icon {
   width: 26px; height: 26px; flex-shrink: 0;
   display: grid; place-items: center;
-  border-radius: 8px;
-  background: linear-gradient(180deg, #f3d489, #d9a94a);
-  color: #4a3105;
+  color: var(--gold-deep);
 }
 .panel-title { font-size: 15.5px; font-weight: 800; color: var(--text); margin: 0; flex: 1; }
 .panel-more { font-size: 12px; color: var(--gold-deep); font-weight: 600; }
