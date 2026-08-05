@@ -102,10 +102,100 @@
     });
   }
 
+  /* 收藏：以 localStorage 保存，事件代理掛在 document 上,
+     讓 tab 切換重繪卡片後仍然有效。 */
+  var FAV_KEY = 'cms-v4-favorites';
+  function favIds() {
+    try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch (e) { return []; }
+  }
+  function saveFavIds(ids) {
+    try { localStorage.setItem(FAV_KEY, JSON.stringify(ids)); } catch (e) {}
+  }
+  function initFavorites() {
+    var ids = favIds();
+    Array.prototype.slice.call(document.querySelectorAll('.game-tile-fav')).forEach(function (btn) {
+      var on = ids.indexOf(btn.getAttribute('data-fav-id')) !== -1;
+      btn.classList.toggle('is-active', on);
+      btn.setAttribute('aria-pressed', String(on));
+    });
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest && e.target.closest('.game-tile-fav');
+      if (!btn) return;
+      e.preventDefault();
+      e.stopPropagation();
+      var id = btn.getAttribute('data-fav-id');
+      if (!id) return;
+      var list = favIds();
+      var idx = list.indexOf(id);
+      if (idx === -1) list.push(id); else list.splice(idx, 1);
+      saveFavIds(list);
+      btn.classList.toggle('is-active', idx === -1);
+      btn.setAttribute('aria-pressed', String(idx === -1));
+      applyListingTab();
+    });
+  }
+
+  /* 分類頁「廠商 / 收藏」頁簽：收藏頁只顯示已收藏的卡片。 */
+  function applyListingTab() {
+    var grid = document.getElementById('listingGrid');
+    if (!grid) return;
+    var active = document.querySelector('.listing-tab.active');
+    var mode = active ? active.getAttribute('data-listing-tab') : 'all';
+    var ids = favIds();
+    var shown = 0;
+    Array.prototype.slice.call(grid.querySelectorAll('.game-tile')).forEach(function (tile) {
+      var btn = tile.querySelector('.game-tile-fav');
+      var id = btn ? btn.getAttribute('data-fav-id') : '';
+      var show = mode !== 'fav' || ids.indexOf(id) !== -1;
+      tile.hidden = !show;
+      if (show) shown++;
+    });
+    var empty = document.getElementById('listingEmpty');
+    if (empty) empty.hidden = shown !== 0;
+  }
+  function initListingTabs() {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.listing-tab'));
+    if (!tabs.length) return;
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
+        applyListingTab();
+      });
+    });
+    applyListingTab();
+  }
+
+  /* 分類頁搜尋：即時過濾卡片名稱（前台靜態站無後端,純前端比對）。 */
+  function initListingSearch() {
+    var wrap = document.querySelector('.listing-search');
+    var grid = document.getElementById('listingGrid');
+    if (!wrap || !grid) return;
+    var input = wrap.querySelector('input');
+    var btn = wrap.querySelector('button');
+    function run() {
+      var q = (input.value || '').trim().toLowerCase();
+      var shown = 0;
+      Array.prototype.slice.call(grid.querySelectorAll('.game-tile')).forEach(function (tile) {
+        var name = (tile.querySelector('.game-tile-name') || {}).textContent || '';
+        var show = !q || name.toLowerCase().indexOf(q) !== -1;
+        tile.hidden = !show;
+        if (show) shown++;
+      });
+      var empty = document.getElementById('listingEmpty');
+      if (empty) empty.hidden = shown !== 0;
+    }
+    input.addEventListener('input', run);
+    if (btn) btn.addEventListener('click', run);
+    input.addEventListener('keydown', function (e) { if (e.key === 'Enter') run(); });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     safe(initHero);
     safe(initFeatureCarousel);
     safe(initVendorSelect);
     safe(initRails);
+    safe(initFavorites);
+    safe(initListingTabs);
+    safe(initListingSearch);
   });
 })();
