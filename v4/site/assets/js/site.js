@@ -352,6 +352,29 @@
     });
   }
 
+  /* 關於我們頁：頁籤切換 + FAQ 手風琴。支援 ?tab= 帶入指定分頁,
+     讓其他頁面（如首頁公告列「常見問題」）可以直接連到對應分頁。 */
+  function initAboutTabs() {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.about-tab'));
+    if (!tabs.length) return;
+    function activate(tab) {
+      tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
+      var target = tab.getAttribute('data-about-tab');
+      Array.prototype.slice.call(document.querySelectorAll('.about-panel')).forEach(function (panel) {
+        panel.hidden = panel.getAttribute('data-about-panel') !== target;
+      });
+    }
+    tabs.forEach(function (tab) { on(tab, 'click', function () { activate(tab); }); });
+    var wanted = new URLSearchParams(location.search).get('tab');
+    var match = wanted && tabs.filter(function (t) { return t.getAttribute('data-about-tab') === wanted; })[0];
+    if (match) activate(match);
+  }
+  function initFaqAccordion() {
+    Array.prototype.slice.call(document.querySelectorAll('.faq-trigger')).forEach(function (btn) {
+      on(btn, 'click', function () { btn.closest('.faq-card').classList.toggle('open'); });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     safe(initHero);
     safe(initFeatureCarousel);
@@ -364,5 +387,7 @@
     safe(initHeaderMobileMenu);
     safe(initAuthTriggers);
     safe(initCsTriggers);
+    safe(initAboutTabs);
+    safe(initFaqAccordion);
   });
 })();

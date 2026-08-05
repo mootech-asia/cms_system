@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CMS_前台_v4 — UI Kit</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-top">
+      <a href="index.html" class="brand-link"><img src="logo.png" alt="Bet100" class="brand-logo" /></a>
+      <button type="button" class="header-menu-trigger" aria-label="選單"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <div class="header-auth">
+        <button type="button" class="btn-gold quiet">立即註冊</button>
+        <input class="header-input" type="text" placeholder="用戶名" />
+        <input class="header-input" type="password" placeholder="密碼" />
+        <span class="header-forgot">忘記密碼</span>
+        <button type="button" class="btn-gold">登錄</button>
+      </div>
+    </div>
+    <nav class="container header-nav">
+      <a href="index.html" class="header-nav-link"><svg class="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1v-8Z"/></svg>大廳</a>
+      <a href="slot.html" class="header-nav-link"><svg class="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h3v6H7zM14 9h3v6h-3z"/></svg>老虎機</a>
+      <a href="live.html" class="header-nav-link"><svg class="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>真人娛樂</a>
+      <a href="hot-games.html" class="header-nav-link"><svg class="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>電子遊戲</a>
+      <a href="fish.html" class="header-nav-link"><svg class="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12c3-4 8-5 12-4l4-2v12l-4-2c-4 1-9 0-12-4Z"/></svg>捕魚達人</a>
+      <a href="sport.html" class="header-nav-link"><svg class="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m12 3 2.5 6M21 12l-6 2.5M12 21l-2.5-6M3 12l6-2.5"/></svg>體育</a>
+      <a href="promotion.html" class="header-nav-link"><svg class="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M12 9v12M3 13h18"/></svg>優惠活動</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container uikit-wrap">
+      <h1 class="about-title">UI Kit（元件展示 / 開發參考）</h1>
+
+      <div class="uikit-section">
+        <h2 class="uikit-section-title">色彩 Token</h2>
+        <div class="uikit-row">
+          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--red)"></div>--red</div>
+          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--red-deep)"></div>--red-deep</div>
+          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--gold)"></div>--gold</div>
+          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--gold-hi)"></div>--gold-hi</div>
+          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--gold-deep)"></div>--gold-deep</div>
+          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--bg)"></div>--bg</div>
+          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--bg-panel)"></div>--bg-panel</div>
+          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--text)"></div>--text</div>
+        </div>
+      </div>
+
+      <div class="uikit-section">
+        <h2 class="uikit-section-title">按鈕 Buttons</h2>
+        <div class="uikit-row">
+          <button type="button" class="btn-gold">btn-gold</button>
+          <span style="background:var(--header-grad);padding:8px 10px;border-radius:999px;display:inline-flex"><button type="button" class="btn-gold quiet">btn-gold quiet（僅用於深色底）</button></span>
+          <button type="button" class="listing-tab active">listing-tab active</button>
+          <button type="button" class="listing-tab">listing-tab</button>
+          <button type="button" class="about-tab active">about-tab active</button>
+          <button type="button" class="rail-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
+        </div>
+      </div>
+
+      <div class="uikit-section">
+        <h2 class="uikit-section-title">卡片 Cards</h2>
+        <div class="uikit-grid">
+          <article class="game-tile">
+            <div class="game-tile-art"><span class="game-tile-tag">獨家</span><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
+            <div class="game-tile-name">game-tile 範例</div>
+            <a href="#" class="game-tile-cta">開始遊戲</a>
+          </article>
+        </div>
+      </div>
+
+      <div class="uikit-section">
+        <h2 class="uikit-section-title">表單 Forms</h2>
+        <div class="uikit-row" style="flex-direction:column;align-items:stretch;max-width:320px">
+          <input class="form-input" placeholder="form-input" />
+          <input class="pay-field" placeholder="pay-field" />
+          <div class="listing-search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="text" placeholder="listing-search" /><button type="button">搜尋</button></div>
+        </div>
+      </div>
+
+      <div class="uikit-section">
+        <h2 class="uikit-section-title">標籤 Tags</h2>
+        <div class="uikit-row">
+          <span class="game-tile-tag" style="position:static">獨家</span>
+          <span class="acct-vip-badge">VIP1</span>
+          <span class="promo-card-tag" style="position:static;display:inline-block">限時</span>
+        </div>
+      </div>
+
+      <div class="uikit-section">
+        <h2 class="uikit-section-title">表格 Table</h2>
+        <div class="record-table-wrap">
+          <table class="record-table">
+            <thead><tr><th>欄位一</th><th class="num">欄位二</th></tr></thead>
+            <tbody><tr><td class="mono">範例資料</td><td class="num positive">+1,000</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer-inner">
+      <img src="logo.png" alt="Bet100" class="site-footer-logo" />
+      <div class="site-footer-notice">
+        <p>博彩可能造成成癮，請理性遊玩。如需支援資訊，請前往責任博彩協助頁面。</p>
+        <p>當您存取、繼續使用或瀏覽本站，即表示您同意我們使用部分瀏覽器 Cookie，以改善您的使用體驗。</p>
+      </div>
+      <div class="site-footer-divider"></div>
+      <div class="site-footer-copyright">
+        <span>© 2026 Bet100 版權所有，受法律保護。本站僅供介面展示，不涉及任何實際投注行為。</span>
+        <a href="../../index.html">回到 CMS 統一預覽</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="quick-rail">
+    <a href="#" class="quick-rail-btn" aria-label="線上客服"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span class="quick-rail-label">線上客服</span></a>
+    <a href="#" class="quick-rail-btn" aria-label="留言"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m22 2-7 20-4-9-9-4Z"/></svg><span class="quick-rail-label">留言</span></a>
+    <a href="#" class="quick-rail-btn" aria-label="掃碼"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v3M14 20h3M20 20v.01"/></svg><span class="quick-rail-label">掃碼</span></a>
+  </div>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
