@@ -283,9 +283,20 @@ img { max-width: 100%; display: block; }
 .feature-card-body { padding: 20px; color: #fff6ea; width: 100%; }
 .feature-card-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--gold-hi); margin-bottom: 6px; }
 .feature-card-title { font-size: 20px; font-weight: 800; margin: 0 0 10px; }
-.feature-vendor-rail { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-.feature-vendor-chip { padding: 3px 9px; border-radius: 999px; background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.22); font-size: 10.5px; font-weight: 600; }
-.feature-card-cta { display: inline-block; padding: 9px 22px; border-radius: 999px; background: var(--gold-grad); color: #3a2604; font-weight: 700; font-size: 13px; }
+.tile-grid.rail.vendor-rail { grid-auto-columns: max-content; gap: 8px; }
+.feature-vendor-chip {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font: inherit;
+  font-size: 11px; font-weight: 700;
+  color: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.feature-vendor-chip.active { background: var(--gold-grad); border-color: var(--gold-hi); color: #3a2604; }
 
 /* ── FLOATING QUICK RAIL ────────────────── */
 .quick-rail {

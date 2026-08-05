@@ -58,6 +58,18 @@
     resetAuto();
   }
 
+  function initVendorSelect() {
+    var rails = Array.prototype.slice.call(document.querySelectorAll('.vendor-rail'));
+    rails.forEach(function (rail) {
+      var chips = Array.prototype.slice.call(rail.querySelectorAll('.feature-vendor-chip'));
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          chips.forEach(function (c) { c.classList.toggle('active', c === chip); });
+        });
+      });
+    });
+  }
+
   function initRails() {
     var rails = Array.prototype.slice.call(document.querySelectorAll('.tile-grid.rail'));
     rails.forEach(function (rail) {
@@ -102,6 +114,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     safe(initHero);
     safe(initFeatureCarousel);
+    safe(initVendorSelect);
     safe(initRails);
   });
 })();
