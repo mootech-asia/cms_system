@@ -313,10 +313,13 @@ img { max-width: 100%; display: block; }
   width: 48px; height: 48px;
   display: grid; place-items: center;
   border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--bg-panel);
   color: var(--red);
-  transition: transform 0.15s, background 0.15s, color 0.15s;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.15s, background 0.15s, color 0.15s, border-color 0.15s;
 }
-.quick-rail-btn:hover { transform: scale(1.08); background: rgba(200, 16, 46, 0.08); color: var(--red-deep); }
+.quick-rail-btn:hover { transform: scale(1.08); background: rgba(200, 16, 46, 0.08); border-color: var(--red); color: var(--red-deep); }
 .quick-rail-label {
   position: absolute; right: calc(100% + 12px); top: 50%;
   transform: translateY(-50%) translateX(6px);
