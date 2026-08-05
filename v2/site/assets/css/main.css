@@ -2004,6 +2004,7 @@ select.pay-field {
   font-size: clamp(15px, 2.1dvh, 18px); line-height: 1.15; font-weight: 700; cursor: pointer; margin: 1px 0;
 }
 .mmd-row.active { background-image: var(--g-primary); color: rgb(var(--c-on-primary) / 1); }
+.mmd-icon { width: 1.25rem; height: 1.25rem; flex-shrink: 0; }
 
 /* ── Customer-service modal ──────────────────────────────────────────── */
 .cs-modal-overlay { position: fixed; inset: 0; z-index: 999; display: flex; background-color: rgb(var(--c-scrim) / 0.7); padding: 1rem; }
