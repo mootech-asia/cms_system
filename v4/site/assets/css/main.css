@@ -419,7 +419,10 @@ img { max-width: 100%; display: block; }
 .promo-card-more:hover { color: var(--red); }
 
 /* ── 會員中心（帳戶總覽/儲值/提款/各類紀錄/個人資料/安全中心） ── */
-.member-shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 20px; padding: 20px 0 48px; padding-right: 92px; align-items: start; }
+/* padding-top/bottom 用 longhand,避免 3-value shorthand 把 .container
+   本身的左右 padding（0 20px）一起蓋成 0；padding-right 另外加大只是
+   為了替右側 quick-rail 浮動按鈕留空間,左側應維持 .container 的 20px。 */
+.member-shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 20px; padding-top: 20px; padding-bottom: 48px; padding-right: 92px; align-items: start; }
 @media (max-width: 720px) { .member-shell { padding-right: 20px; grid-template-columns: 1fr; } }
 .member-sidebar { position: sticky; top: 20px; padding: 10px; }
 .member-sidebar-link {
