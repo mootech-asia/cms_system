@@ -497,6 +497,12 @@ img { display: block; }
   display: grid; place-items: center;
 }
 .sb-collapse:hover { color: var(--text); border-color: var(--line-hi); }
+/* collapse-toggle arrow: hidden at rest, shown on hover; direction flips with sidebar state */
+.sb-collapse-arrow { opacity: 0; transition: opacity var(--duration-fast); }
+.sb-collapse-arrow-right { display: none; }
+.sidebar.collapsed .sb-collapse-arrow-left { display: none; }
+.sidebar.collapsed .sb-collapse-arrow-right { display: block; }
+.sb-collapse:hover .sb-collapse-arrow { opacity: 1; }
 
 /* ── PROMO RIBBON ──────────────────────── */
 .promo-ribbon {
