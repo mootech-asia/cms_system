@@ -57,8 +57,10 @@ img { max-width: 100%; display: block; }
 
 /* ── HEADER ─────────────────────────────── */
 .site-header { background: var(--header-grad); }
+/* justify-content 交給 .header-lang 的 margin-left:auto 處理（見下方語系
+   切換樣式）,logo 之後的項目（語系／漢堡／header-auth）整群被推到最右。 */
 .header-top {
-  display: flex; align-items: center; justify-content: space-between; gap: 28px;
+  display: flex; align-items: center; gap: 12px;
   padding: 14px 0;
 }
 .brand-link { display: flex; align-items: center; flex-shrink: 0; }
@@ -603,8 +605,15 @@ img { max-width: 100%; display: block; }
 /* .vendor-marquee-track 裡放兩份完全相同的 .vendor-marquee-row（第二份
    aria-hidden，僅供視覺無縫循環用）,寬度合計為單份的兩倍,animation 移動
    自身寬度的 50%（＝單份寬度）即可無縫接回起點,不需要 JS 量測寬度。 */
-.vendor-marquee { background: var(--bg-panel); border-top: 1px solid var(--line); padding: 22px 0; overflow: hidden; flex-shrink: 0; }
+.vendor-marquee { background: var(--bg-panel); border-top: 1px solid var(--line); padding: 22px 0; flex-shrink: 0; }
+/* 跟 .hero-wrap／.header-top 一樣的做法：這裡的 .container 只借用
+   max-width:1360px + margin:auto 置中，水平 padding 清零，讓廠商跑馬燈
+   的可視寬度跟 hero／footer 等區塊的外緣對齊，而不是內縮多一層 padding。 */
+.vendor-marquee .container { padding: 0; }
 .vendor-marquee-title { margin: 0 0 12px; font-size: 12px; font-weight: 700; color: var(--text-dim); text-align: center; letter-spacing: 0.06em; }
+/* 裁切邊界放在 .container 寬度（跟其他區塊同寬對齊），而不是整個
+   .vendor-marquee（滿版背景）,跑馬燈才會在跟其餘內容一樣的寬度內捲動。 */
+.vendor-marquee-viewport { overflow: hidden; }
 .vendor-marquee-track { display: flex; width: max-content; animation: vendor-marquee-scroll 48s linear infinite; }
 .vendor-marquee-track:hover { animation-play-state: paused; }
 .vendor-marquee-row { display: flex; align-items: center; gap: 12px; flex-shrink: 0; padding-right: 12px; }
@@ -637,6 +646,43 @@ img { max-width: 100%; display: block; }
 .site-footer-copyright { font-size: 12px; color: var(--text-dim); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; }
 .site-footer-copyright a { color: var(--text-dim); }
 .site-footer-copyright a:hover { color: var(--gold-hi); }
+
+/* ── 語系切換 ───────────────────────────── */
+/* margin-left:auto 把「語言切換／漢堡／header-auth」這群右側項目推到最
+   右邊,logo 維持在最左,不需要另外包一層 wrapper div 或用 space-between。 */
+.header-lang { position: relative; margin-left: auto; }
+.header-lang-trigger {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--text-on-header);
+  font-size: 12.5px; font-weight: 700;
+}
+.header-lang-trigger:hover { background: rgba(255, 255, 255, 0.22); }
+.header-lang-trigger svg { flex-shrink: 0; }
+.header-lang-menu {
+  position: absolute; top: calc(100% + 8px); right: 0;
+  min-width: 128px;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 6px;
+  z-index: 90;
+}
+.header-lang-menu[hidden] { display: none; }
+.header-lang-option {
+  display: block; width: 100%; text-align: left;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 13px; font-weight: 600;
+  background: transparent;
+}
+.header-lang-option:hover { background: var(--bg); }
+.header-lang-option.active { color: var(--gold-deep); background: rgba(207, 154, 62, 0.12); font-weight: 800; }
 
 /* ── 手機版選單觸發按鈕 ─────────────────── */
 .header-menu-trigger {

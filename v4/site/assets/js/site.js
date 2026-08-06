@@ -258,6 +258,9 @@
     return String(s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; });
   }
   function currentPage() { return location.pathname.split('/').pop() || 'index.html'; }
+  /* i18n.js 需在 site.js 之前載入,見各頁 <head>；tr() 只是薄包裝,
+     萬一漏載入也不會整頁壞掉,退回原始中文。 */
+  function tr(key, fallback) { return window.CMS_I18N ? window.CMS_I18N.t(key) : fallback; }
   function loadAuth() {
     try { return JSON.parse(localStorage.getItem(AUTH_KEY)) || null; } catch (e) { return null; }
   }
@@ -267,16 +270,16 @@
   function isLoggedIn() { return !!loadAuth(); }
 
   function guestAuthHtml() {
-    return '<button type="button" class="btn-gold quiet" data-auth-open="register">立即註冊</button>' +
-      '<input class="header-input" type="text" placeholder="用戶名" data-auth-username />' +
-      '<input class="header-input" type="password" placeholder="密碼" data-auth-password />' +
-      '<span class="header-forgot">忘記密碼</span>' +
-      '<button type="button" class="btn-gold" data-auth-open="login">登錄</button>';
+    return '<button type="button" class="btn-gold quiet" data-auth-open="register">' + tr('auth.registerNow', '立即註冊') + '</button>' +
+      '<input class="header-input" type="text" placeholder="' + tr('auth.usernamePlaceholder', '用戶名') + '" data-auth-username />' +
+      '<input class="header-input" type="password" placeholder="' + tr('auth.passwordPlaceholder', '密碼') + '" data-auth-password />' +
+      '<span class="header-forgot">' + tr('auth.forgot', '忘記密碼') + '</span>' +
+      '<button type="button" class="btn-gold" data-auth-open="login">' + tr('auth.login', '登錄') + '</button>';
   }
   function memberAuthHtml(user) {
     return '<a href="account.html" class="header-nav-link" style="gap:8px">' + USER_ICON + escapeHtml(user.name) + '</a>' +
-      '<span class="header-forgot">餘額：' + escapeHtml(user.balance) + '</span>' +
-      '<button type="button" class="btn-gold quiet" data-logout>登出</button>';
+      '<span class="header-forgot">' + tr('auth.balancePrefix', '餘額：') + escapeHtml(user.balance) + '</span>' +
+      '<button type="button" class="btn-gold quiet" data-logout>' + tr('auth.logout', '登出') + '</button>';
   }
   /* 依登入狀態重繪 header-auth,取代原本每頁寫死的訪客/會員版面。
      訪客態的「登錄」直接讀 header 上的用戶名輸入框,有填就直接登入,
@@ -296,6 +299,9 @@
       on(bar.querySelector('[data-auth-open="register"]'), 'click', function () { openAuthModal('register'); });
     }
   }
+  // header-auth 是常駐可見的動態區塊,換語系時要立即重繪；其餘彈窗/選單
+  // 本來就是每次開啟才重新產生 HTML,下次開啟自然是當前語系,不需另外處理。
+  on(document, 'cms-v4:locale-changed', function () { renderHeaderAuth(); });
   function doLogin(name) {
     saveAuth({ name: name || '會員', balance: DEFAULT_BALANCE });
     renderHeaderAuth();
@@ -355,10 +361,10 @@
     }).join('');
     var mobileUser = loadAuth();
     var footHtml = mobileUser
-      ? '<div class="mobile-menu-account">' + USER_ICON + '<span>' + escapeHtml(mobileUser.name) + '・餘額 ' + escapeHtml(mobileUser.balance) + '</span></div>' +
-        '<button type="button" class="btn-gold quiet" style="width:100%" data-logout>登出</button>'
-      : '<button type="button" class="btn-gold quiet" style="width:100%;margin-bottom:8px" data-mobile-login>登錄</button>' +
-        '<button type="button" class="btn-gold" style="width:100%" data-mobile-register>立即註冊</button>';
+      ? '<div class="mobile-menu-account">' + USER_ICON + '<span>' + escapeHtml(mobileUser.name) + '・' + tr('auth.balancePrefix', '餘額：') + escapeHtml(mobileUser.balance) + '</span></div>' +
+        '<button type="button" class="btn-gold quiet" style="width:100%" data-logout>' + tr('auth.logout', '登出') + '</button>'
+      : '<button type="button" class="btn-gold quiet" style="width:100%;margin-bottom:8px" data-mobile-login>' + tr('auth.login', '登錄') + '</button>' +
+        '<button type="button" class="btn-gold" style="width:100%" data-mobile-register>' + tr('auth.registerNow', '立即註冊') + '</button>';
     var wrap = document.createElement('div');
     wrap.innerHTML =
       '<div class="mobile-menu-overlay" data-mobile-overlay>' +
@@ -392,13 +398,13 @@
     var isRegister = mode === 'register';
     return (
       '<div class="auth-modal-tabs">' +
-      '<button type="button" class="auth-modal-tab' + (isRegister ? '' : ' active') + '" data-auth-switch="login">登錄</button>' +
-      '<button type="button" class="auth-modal-tab' + (isRegister ? ' active' : '') + '" data-auth-switch="register">註冊</button>' +
+      '<button type="button" class="auth-modal-tab' + (isRegister ? '' : ' active') + '" data-auth-switch="login">' + tr('auth.login', '登錄') + '</button>' +
+      '<button type="button" class="auth-modal-tab' + (isRegister ? ' active' : '') + '" data-auth-switch="register">' + tr('auth.register', '註冊') + '</button>' +
       '</div>' +
-      '<div class="form-field"><label class="form-label">用戶名</label><input type="text" class="form-input" placeholder="請輸入用戶名" data-auth-username></div>' +
-      '<div class="form-field"><label class="form-label">密碼</label><input type="password" class="form-input" placeholder="請輸入密碼"></div>' +
-      (isRegister ? '<div class="form-field"><label class="form-label">確認密碼</label><input type="password" class="form-input" placeholder="請再次輸入密碼"></div>' : '') +
-      '<a href="#" class="btn-gold auth-modal-submit" data-auth-submit>' + (isRegister ? '註冊' : '登錄') + '</a>'
+      '<div class="form-field"><label class="form-label">' + tr('auth.usernameLabel', '用戶名') + '</label><input type="text" class="form-input" placeholder="' + tr('auth.usernameInputPlaceholder', '請輸入用戶名') + '" data-auth-username></div>' +
+      '<div class="form-field"><label class="form-label">' + tr('auth.passwordLabel', '密碼') + '</label><input type="password" class="form-input" placeholder="' + tr('auth.passwordInputPlaceholder', '請輸入密碼') + '"></div>' +
+      (isRegister ? '<div class="form-field"><label class="form-label">' + tr('auth.confirmPasswordLabel', '確認密碼') + '</label><input type="password" class="form-input" placeholder="' + tr('auth.confirmPasswordPlaceholder', '請再次輸入密碼') + '"></div>' : '') +
+      '<a href="#" class="btn-gold auth-modal-submit" data-auth-submit>' + (isRegister ? tr('auth.register', '註冊') : tr('auth.login', '登錄')) + '</a>'
     );
   }
   function openAuthModal(mode) {
@@ -417,7 +423,7 @@
     on(authModalRoot, 'click', function (e) { if (e.target === authModalRoot) closeAuthModal(); });
     on(authModalRoot.querySelector('[data-auth-close]'), 'click', closeAuthModal);
     function render(m) {
-      authModalRoot.querySelector('[data-auth-title]').textContent = m === 'register' ? '註冊' : '登錄';
+      authModalRoot.querySelector('[data-auth-title]').textContent = m === 'register' ? tr('auth.register', '註冊') : tr('auth.login', '登錄');
       var body = authModalRoot.querySelector('[data-auth-body]');
       body.innerHTML = authModalBodyHtml(m);
       Array.prototype.slice.call(body.querySelectorAll('[data-auth-switch]')).forEach(function (tab) {
@@ -439,15 +445,15 @@
   function openCsModal() {
     if (csModalRoot) return;
     var rows = [
-      { icon: '<path d="M21 12c0 4.4-4 8-9 8a10 10 0 0 1-3.6-.7L3 21l1.4-4.5A8 8 0 0 1 3 12c0-4.4 4-8 9-8s9 3.6 9 8Z"/>', title: '線上客服', desc: '24 小時即時支援' },
-      { icon: '<path d="m22 2-7 20-4-9-9-4Z"/>', title: 'Telegram 頻道', desc: '最新活動與公告' },
-      { icon: '<path d="M4 6h16v12H4zM4 7l8 6 8-6"/>', title: 'Email 信箱', desc: 'support@bet100.gg' },
+      { icon: '<path d="M21 12c0 4.4-4 8-9 8a10 10 0 0 1-3.6-.7L3 21l1.4-4.5A8 8 0 0 1 3 12c0-4.4 4-8 9-8s9 3.6 9 8Z"/>', title: tr('cs.liveChatTitle', '線上客服'), desc: tr('cs.liveChatDesc', '24 小時即時支援') },
+      { icon: '<path d="m22 2-7 20-4-9-9-4Z"/>', title: tr('cs.telegramTitle', 'Telegram 頻道'), desc: tr('cs.telegramDesc', '最新活動與公告') },
+      { icon: '<path d="M4 6h16v12H4zM4 7l8 6 8-6"/>', title: tr('cs.emailTitle', 'Email 信箱'), desc: 'support@bet100.gg' },
     ];
     var wrap = document.createElement('div');
     wrap.innerHTML =
       '<div class="cs-modal-overlay" data-cs-overlay>' +
       '<div class="cs-modal-box">' +
-      '<div class="cs-modal-head"><h3 class="cs-modal-title">聯絡客服</h3>' +
+      '<div class="cs-modal-head"><h3 class="cs-modal-title">' + tr('cs.title', '聯絡客服') + '</h3>' +
       '<button type="button" class="cs-modal-close" aria-label="關閉" data-cs-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
       '<div class="cs-modal-body">' +
       rows.map(function (r) {
