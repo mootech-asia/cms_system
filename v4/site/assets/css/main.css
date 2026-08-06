@@ -50,7 +50,10 @@ body {
 }
 main { flex: 1 0 auto; }
 a { color: inherit; text-decoration: none; }
-button { font-family: inherit; cursor: pointer; }
+/* border/background 清零：瀏覽器原生 button 邊框在淺色背景（如下拉選單）
+   上很明顯是灰色立體邊框，很醜；個別元件想要邊框/底色都已各自宣告一次，
+   class 的 specificity 比這裡的 element selector 高，不會被蓋掉。 */
+button { font-family: inherit; cursor: pointer; border: 0; background: none; }
 img { max-width: 100%; display: block; }
 
 .container { max-width: 1360px; margin: 0 auto; padding: 0 20px; }
