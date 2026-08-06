@@ -608,10 +608,24 @@ img { max-width: 100%; display: block; }
 /* .vendor-marquee-track 裡放兩份完全相同的 .vendor-marquee-row（第二份
    aria-hidden，僅供視覺無縫循環用）,寬度合計為單份的兩倍,animation 移動
    自身寬度的 50%（＝單份寬度）即可無縫接回起點,不需要 JS 量測寬度。 */
-.vendor-marquee { background: var(--bg-panel); border-top: 1px solid var(--line); padding: 22px 0; flex-shrink: 0; }
-/* 跟 .hero-wrap／.header-top 一樣的做法：這裡的 .container 只借用
-   max-width:1360px + margin:auto 置中，水平 padding 清零，讓廠商跑馬燈
-   的可視寬度跟 hero／footer 等區塊的外緣對齊，而不是內縮多一層 padding。 */
+/* 跟 .tile-grid／.member-panel 等內容卡片一樣的做法：套用跟 .container
+   相同的 max-width:1360px + margin:auto，讓整個卡片（含背景/邊框）本身
+   跟其他內容同寬，不是滿版背景橫跨到瀏覽器邊緣。 */
+.vendor-marquee {
+  /* width:100% 是關鍵：body 是 flex column,.vendor-marquee 用
+     margin:auto 置中會關掉 align-items:stretch,若不給明確 width,
+     瀏覽器會用內容（未裁切前的整排徽章,超寬）去算 shrink-to-fit 寬度,
+     手機版反而撐成 max-width 那麼寬,不會縮到視窗寬度。 */
+  width: 100%;
+  max-width: 1360px;
+  margin: 20px auto 0;
+  padding: 22px 20px;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
 .vendor-marquee .container { padding: 0; }
 .vendor-marquee-title { margin: 0 0 12px; font-size: 12px; font-weight: 700; color: var(--text-dim); text-align: center; letter-spacing: 0.06em; }
 /* 裁切邊界放在 .container 寬度（跟其他區塊同寬對齊），而不是整個
