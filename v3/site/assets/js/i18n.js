@@ -204,6 +204,10 @@ const TRANSLATIONS = Object.freeze({
       localTime: '本地時間',
       comingSoon: '即將推出',
     }),
+    footer: Object.freeze({
+      notice: '博彩可能造成成癮，請理性遊玩。如需支援資訊，請前往責任博彩協助頁面。\n當您存取、繼續使用或瀏覽本站，即表示您同意我們使用部分瀏覽器 Cookie，以改善您的使用體驗。',
+      copy: 'win100% © 版權所有，受法律保護',
+    }),
     nav: Object.freeze({
       Menu: '選單',
       'My Account': '我的帳戶',
@@ -462,6 +466,10 @@ const TRANSLATIONS = Object.freeze({
   }),
   en: Object.freeze({
     common: Object.freeze({ all: 'All', favorites: 'Favorites', loadMore: 'Load More', seeAll: 'See all', expand: 'Expand', collapse: 'Collapse', localTime: 'Local time', comingSoon: 'coming soon' }),
+    footer: Object.freeze({
+      notice: 'Gambling can be addictive, please play responsibly. For information on support measures, please visit our Responsible Gambling Help page.\nBy accessing, continuing to use or navigating throughout this site you accept that we will use certain browser cookies to improve your customer experience with us.',
+      copy: 'win100% © All rights reserved and protected by law',
+    }),
     nav: Object.freeze({
       Menu: 'Menu',
       'My Account': 'My Account',
@@ -714,6 +722,10 @@ const TRANSLATIONS = Object.freeze({
   }),
   ko: Object.freeze({
     common: Object.freeze({ all: '전체', favorites: '즐겨찾기', loadMore: '더 보기', seeAll: '전체 보기', expand: '펼치기', collapse: '접기', localTime: '현지 시간', comingSoon: '곧 공개' }),
+    footer: Object.freeze({
+      notice: '도박은 중독성이 있을 수 있으니 책임감 있게 플레이해 주세요. 지원 정보는 책임 있는 게임 도움말 페이지를 참고하세요.\n본 사이트에 접속하거나 계속 이용 또는 탐색하시면 고객 경험 개선을 위해 당사가 특정 브라우저 쿠키를 사용하는 것에 동의하시는 것으로 간주됩니다.',
+      copy: 'win100% © 모든 권리 보유, 법률에 의해 보호됩니다',
+    }),
     nav: Object.freeze({
       Menu: '메뉴',
       'My Account': '내 계정',
@@ -962,6 +974,10 @@ const TRANSLATIONS = Object.freeze({
   }),
   th: Object.freeze({
     common: Object.freeze({ all: 'ทั้งหมด', favorites: 'รายการโปรด', loadMore: 'โหลดเพิ่มเติม', seeAll: 'ดูทั้งหมด', expand: 'ขยาย', collapse: 'ย่อ', localTime: 'เวลาท้องถิ่น', comingSoon: 'เร็วๆ นี้' }),
+    footer: Object.freeze({
+      notice: 'การพนันอาจทำให้เกิดการเสพติดได้ กรุณาเล่นอย่างมีความรับผิดชอบ สำหรับข้อมูลการสนับสนุน กรุณาไปที่หน้าช่วยเหลือการเล่นอย่างมีความรับผิดชอบของเรา\nการเข้าถึง ใช้งานต่อ หรือเรียกดูเว็บไซต์นี้ถือว่าคุณยอมรับว่าเราจะใช้คุกกี้ของเบราว์เซอร์บางประเภทเพื่อปรับปรุงประสบการณ์การใช้งานของคุณ',
+      copy: 'win100% © สงวนสิทธิ์ทั้งหมดและได้รับการคุ้มครองตามกฎหมาย',
+    }),
     nav: Object.freeze({
       Menu: 'เมนู',
       'My Account': 'บัญชีของฉัน',
