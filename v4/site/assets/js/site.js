@@ -5,26 +5,54 @@
   function safe(fn) { try { fn(); } catch (e) { /* 避免單一功能失敗拖垮整頁 */ } }
   function on(el, ev, fn) { if (el) el.addEventListener(ev, fn); }
 
-  /* studio（設計後台）套用首頁區塊顯示/隱藏：與 studio.js 的
-     STUDIO_SECTIONS_KEY 共用同一把 localStorage key,同源即可跨資料夾
-     （../site/、../studio/）讀取,不受路徑影響。 */
+  /* studio（設計後台）套用首頁區塊顯示/站點名稱/skin：與 studio.js 共用同一把
+     localStorage key,同源即可跨資料夾（../site/、../studio/）讀取,不受路徑影響。
+     每個 applyStudioXxx 拆成「核心套用函式（接參數，可重複呼叫）」與「讀
+     localStorage 的載入包裝」，讓 studio 開著 iframe 即時操作時可直接呼叫
+     window.__cmsV4StudioApply 核心函式立即反映，不必等按下「套用到本站」、
+     也不必整頁重整。 */
+  var ORIGINAL_TITLE = document.title;
   var STUDIO_SECTIONS_KEY = 'cms-v4-studio-sections';
+  var STUDIO_SITENAME_KEY = 'cms-v4-studio-sitename';
+  var STUDIO_SKIN_KEY = 'cms-v4-studio-skin';
+
+  function applySections(map) {
+    Array.prototype.slice.call(document.querySelectorAll('[data-section]')).forEach(function (el) {
+      var name = el.getAttribute('data-section');
+      el.style.display = (map && map[name] === false) ? 'none' : '';
+    });
+  }
+  function applySiteName(name) {
+    document.title = name ? ORIGINAL_TITLE.replace(/^CMS_前台_v4/, name) : ORIGINAL_TITLE;
+  }
+  function applySkin(skinId) {
+    document.documentElement.setAttribute('data-skin', skinId || 'festive-red-gold');
+  }
+
   function applyStudioSections() {
     var raw;
     try { raw = JSON.parse(localStorage.getItem(STUDIO_SECTIONS_KEY)); } catch (e) { raw = null; }
-    if (!raw) return;
-    Array.prototype.slice.call(document.querySelectorAll('[data-section]')).forEach(function (el) {
-      var name = el.getAttribute('data-section');
-      if (raw[name] === false) el.style.display = 'none';
-    });
+    if (raw) applySections(raw);
   }
-  var STUDIO_SITENAME_KEY = 'cms-v4-studio-sitename';
   function applyStudioSiteName() {
     var name;
     try { name = localStorage.getItem(STUDIO_SITENAME_KEY); } catch (e) { name = null; }
-    if (!name) return;
-    document.title = document.title.replace(/^CMS_前台_v4/, name);
+    if (name) applySiteName(name);
   }
+  function applyStudioSkin() {
+    var id;
+    try { id = localStorage.getItem(STUDIO_SKIN_KEY); } catch (e) { id = null; }
+    if (id) applySkin(id);
+  }
+
+  /* studio 父頁（同源）在 iframe load 後或任何控制項變動時直接呼叫這個函式，
+     即時把草稿反映到畫面上，不經過 localStorage、不需重整。 */
+  window.__cmsV4StudioApply = function (draft) {
+    if (!draft) return;
+    if (draft.sections) applySections(draft.sections);
+    if ('sitename' in draft) applySiteName(draft.sitename);
+    if (draft.skin) applySkin(draft.skin);
+  };
 
   function initHero() {
     var hero = document.getElementById('hero');
@@ -215,15 +243,82 @@
     input.addEventListener('keydown', function (e) { if (e.key === 'Enter') run(); });
   }
 
-  /* 會員頁 header／安全中心／手機選單的登出:此站沒有真正的登入態切換
-     （首頁固定訪客態、會員頁固定登入態），點擊登出導回首頁即可。
-     事件代理掛在 document,手機選單是點擊 hamburger 後才動態插入 DOM,
-     逐一綁定會抓不到後來才出現的登出按鈕。 */
+  /* ── 登入機制:前端模擬,無真實後端驗證 ──
+     登入狀態存 localStorage（同源跨頁、跨 ../site/ ../studio/ 資料夾共用），
+     任何非空用戶名即視為登入成功。header-auth 依狀態動態渲染,取代原本
+     「首頁固定訪客態、會員頁固定登入態」的寫死版面;會員限定頁在未登入
+     時直接導回首頁。 */
+  var AUTH_KEY = 'cms-v4-auth';
+  var DEFAULT_BALANCE = '₩1,000,000,000';
+  var MEMBER_PAGES = ['account.html', 'deposit.html', 'withdrawal.html', 'betting-record.html',
+    'deposit-record.html', 'withdrawal-record.html', 'account-record.html', 'profit-loss.html',
+    'personal-info.html', 'security.html', 'change-password.html'];
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; });
+  }
+  function currentPage() { return location.pathname.split('/').pop() || 'index.html'; }
+  function loadAuth() {
+    try { return JSON.parse(localStorage.getItem(AUTH_KEY)) || null; } catch (e) { return null; }
+  }
+  function saveAuth(user) {
+    try { if (user) localStorage.setItem(AUTH_KEY, JSON.stringify(user)); else localStorage.removeItem(AUTH_KEY); } catch (e) {}
+  }
+  function isLoggedIn() { return !!loadAuth(); }
+
+  function guestAuthHtml() {
+    return '<button type="button" class="btn-gold quiet" data-auth-open="register">立即註冊</button>' +
+      '<input class="header-input" type="text" placeholder="用戶名" data-auth-username />' +
+      '<input class="header-input" type="password" placeholder="密碼" data-auth-password />' +
+      '<span class="header-forgot">忘記密碼</span>' +
+      '<button type="button" class="btn-gold" data-auth-open="login">登錄</button>';
+  }
+  function memberAuthHtml(user) {
+    return '<a href="account.html" class="header-nav-link" style="gap:8px">' + USER_ICON + escapeHtml(user.name) + '</a>' +
+      '<span class="header-forgot">餘額：' + escapeHtml(user.balance) + '</span>' +
+      '<button type="button" class="btn-gold quiet" data-logout>登出</button>';
+  }
+  /* 依登入狀態重繪 header-auth,取代原本每頁寫死的訪客/會員版面。
+     訪客態的「登錄」直接讀 header 上的用戶名輸入框,有填就直接登入,
+     沒填才開登入彈窗（與立即註冊一致，皆為彈窗）。 */
+  function renderHeaderAuth() {
+    var bar = document.querySelector('.header-auth');
+    if (!bar) return;
+    var user = loadAuth();
+    bar.innerHTML = user ? memberAuthHtml(user) : guestAuthHtml();
+    if (!user) {
+      var loginBtn = bar.querySelector('[data-auth-open="login"]');
+      var usernameInput = bar.querySelector('[data-auth-username]');
+      on(loginBtn, 'click', function () {
+        var name = (usernameInput && usernameInput.value || '').trim();
+        if (name) doLogin(name); else openAuthModal('login');
+      });
+      on(bar.querySelector('[data-auth-open="register"]'), 'click', function () { openAuthModal('register'); });
+    }
+  }
+  function doLogin(name) {
+    saveAuth({ name: name || '會員', balance: DEFAULT_BALANCE });
+    renderHeaderAuth();
+  }
+  function doLogout() {
+    saveAuth(null);
+    if (MEMBER_PAGES.indexOf(currentPage()) !== -1) { location.href = 'index.html'; return; }
+    renderHeaderAuth();
+  }
+  /* 會員限定頁在未登入時直接導回首頁;訪客可瀏覽的頁面不受影響。
+     在 studio 的 iframe 預覽中略過此導向,否則設計後台無法預覽會員頁。 */
+  function initAuthGuard() {
+    if (window !== window.top) return;
+    if (MEMBER_PAGES.indexOf(currentPage()) !== -1 && !isLoggedIn()) location.href = 'index.html';
+  }
+  /* 登出按鈕散落在會員頁 header／安全中心／手機選單,事件代理掛在
+     document,手機選單是點擊 hamburger 後才動態插入 DOM,逐一綁定會
+     抓不到後來才出現的登出按鈕。 */
   function initMemberLogout() {
     on(document, 'click', function (e) {
       var btn = e.target.closest && e.target.closest('[data-logout]');
       if (!btn) return;
-      location.href = 'index.html';
+      doLogout();
     });
   }
 
@@ -258,9 +353,9 @@
     var navHtml = navLinks.map(function (a) {
       return '<a href="' + a.getAttribute('href') + '" class="mobile-menu-link' + (a.classList.contains('active') ? ' active' : '') + '">' + a.innerHTML + '</a>';
     }).join('');
-    var isLoggedIn = !!document.querySelector('.header-auth [data-logout]');
-    var footHtml = isLoggedIn
-      ? '<div class="mobile-menu-account">' + USER_ICON + '<span>meqomcao・餘額 ₩1,000,000,000</span></div>' +
+    var mobileUser = loadAuth();
+    var footHtml = mobileUser
+      ? '<div class="mobile-menu-account">' + USER_ICON + '<span>' + escapeHtml(mobileUser.name) + '・餘額 ' + escapeHtml(mobileUser.balance) + '</span></div>' +
         '<button type="button" class="btn-gold quiet" style="width:100%" data-logout>登出</button>'
       : '<button type="button" class="btn-gold quiet" style="width:100%;margin-bottom:8px" data-mobile-login>登錄</button>' +
         '<button type="button" class="btn-gold" style="width:100%" data-mobile-register>立即註冊</button>';
@@ -289,7 +384,8 @@
     });
   }
 
-  /* ── 登入／註冊彈窗:純前端展示,提交不驗證,純粹關閉彈窗。 ── */
+  /* ── 登入／註冊彈窗:前端模擬,不檢查密碼是否正確,送出即視為登入成功
+     （與 header 上的即時登入共用 doLogin）。 ── */
   var authModalRoot = null;
   function closeAuthModal() { if (authModalRoot) { authModalRoot.remove(); authModalRoot = null; unlockScroll(); } }
   function authModalBodyHtml(mode) {
@@ -299,7 +395,7 @@
       '<button type="button" class="auth-modal-tab' + (isRegister ? '' : ' active') + '" data-auth-switch="login">登錄</button>' +
       '<button type="button" class="auth-modal-tab' + (isRegister ? ' active' : '') + '" data-auth-switch="register">註冊</button>' +
       '</div>' +
-      '<div class="form-field"><label class="form-label">用戶名</label><input type="text" class="form-input" placeholder="請輸入用戶名"></div>' +
+      '<div class="form-field"><label class="form-label">用戶名</label><input type="text" class="form-input" placeholder="請輸入用戶名" data-auth-username></div>' +
       '<div class="form-field"><label class="form-label">密碼</label><input type="password" class="form-input" placeholder="請輸入密碼"></div>' +
       (isRegister ? '<div class="form-field"><label class="form-label">確認密碼</label><input type="password" class="form-input" placeholder="請再次輸入密碼"></div>' : '') +
       '<a href="#" class="btn-gold auth-modal-submit" data-auth-submit>' + (isRegister ? '註冊' : '登錄') + '</a>'
@@ -327,20 +423,14 @@
       Array.prototype.slice.call(body.querySelectorAll('[data-auth-switch]')).forEach(function (tab) {
         on(tab, 'click', function () { render(tab.getAttribute('data-auth-switch')); });
       });
-      on(body.querySelector('[data-auth-submit]'), 'click', function (e) { e.preventDefault(); closeAuthModal(); });
+      on(body.querySelector('[data-auth-submit]'), 'click', function (e) {
+        e.preventDefault();
+        var nameInput = body.querySelector('[data-auth-username]');
+        doLogin(nameInput && nameInput.value);
+        closeAuthModal();
+      });
     }
     render(mode || 'login');
-  }
-  function initAuthTriggers() {
-    Array.prototype.slice.call(document.querySelectorAll('.header-auth')).forEach(function (bar) {
-      if (bar.querySelector('[data-logout]')) return; /* 已登入態,不需要登入/註冊觸發 */
-      var buttons = Array.prototype.slice.call(bar.querySelectorAll('button'));
-      buttons.forEach(function (btn) {
-        var text = (btn.textContent || '').trim();
-        if (text === '登錄') on(btn, 'click', function () { openAuthModal('login'); });
-        if (text === '立即註冊') on(btn, 'click', function () { openAuthModal('register'); });
-      });
-    });
   }
 
   /* ── 客服彈窗 ── */
@@ -401,6 +491,8 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    safe(initAuthGuard);
+    safe(renderHeaderAuth);
     safe(initHero);
     safe(initFeatureCarousel);
     safe(initVendorSelect);
@@ -410,11 +502,11 @@
     safe(initListingSearch);
     safe(initMemberLogout);
     safe(initHeaderMobileMenu);
-    safe(initAuthTriggers);
     safe(initCsTriggers);
     safe(initAboutTabs);
     safe(initFaqAccordion);
     safe(applyStudioSections);
     safe(applyStudioSiteName);
+    safe(applyStudioSkin);
   });
 })();

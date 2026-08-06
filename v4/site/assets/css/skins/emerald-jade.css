@@ -1,0 +1,19 @@
+/* CMS v4 skin — 富貴翡翠（Emerald Jade）。
+   只覆寫介面色（背景/面板/文字/標頭漸層），金／紅兩色維持品牌色不變，
+   繼承自 main.css 的 :root 預設值。 */
+:root[data-skin="emerald-jade"] {
+  --bg: #071a12;
+  --bg-panel: #0e2a1c;
+  --header-grad: linear-gradient(180deg, #12704a 0%, #073822 100%);
+  --header-grad-hi: #2bbf7a;
+  --notice-bg: #0f2a1c;
+  --notice-text: #9ceec0;
+  --line: #163829;
+  --line-hi: #2c7a52;
+  --text: #eafff2;
+  --text-mid: #a8d9bd;
+  --text-dim: #6f9c84;
+  --text-on-header: #eafff2;
+  --panel-tint: #17402b;
+  --shadow-card: 0 2px 0 rgba(0, 0, 0, 0.25), 0 10px 24px rgba(0, 0, 0, 0.45);
+}

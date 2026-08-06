@@ -1,12 +1,25 @@
 // CMS_設計後台_v4 — 靜態版行為層（vanilla，無框架、無 build）。
-// 左側是「草稿」狀態，只有按下「套用到本站」才寫入 localStorage，
-// 讓 ../site/ 的 site.js（applyStudioSections / applyStudioSiteName）讀取套用。
-// 同源（同一個網域）localStorage 才會共用，不受 studio/ 與 site/ 資料夾路徑影響。
+// 左側是「草稿」狀態；每次操作（切 skin／切區塊／改站名）都會透過
+// window.__cmsV4StudioApply 直接呼叫 iframe（同源）內 site.js 的核心套用函式，
+// 立即反映在右側預覽，不需等按下「套用到本站」。
+// 「套用到本站」只負責把草稿寫進 localStorage，讓離開設計後台、直接瀏覽 ../site/
+// 時也套用同一份設定；同源（同一個網域）localStorage 才會共用，不受 studio/
+// 與 site/ 資料夾路徑影響。
 (function () {
   'use strict';
 
   var SECTIONS_KEY = 'cms-v4-studio-sections';
   var SITENAME_KEY = 'cms-v4-studio-sitename';
+  var SKIN_KEY = 'cms-v4-studio-skin';
+
+  var SKINS = [
+    { id: 'festive-red-gold', label: '紅金喜慶（預設）', dot: 'linear-gradient(135deg,#d21f3c,#f2a924)' },
+    { id: 'imperial-purple', label: '尊爵紫金', dot: 'linear-gradient(135deg,#5b2a86,#f2a924)' },
+    { id: 'emerald-jade', label: '富貴翡翠', dot: 'linear-gradient(135deg,#12704a,#f2a924)' },
+    { id: 'sapphire-blue', label: '尊爵藍鑽', dot: 'linear-gradient(135deg,#1b3f91,#f2a924)' }
+  ];
+  var DEFAULT_SKIN = 'festive-red-gold';
+  function findSkin(id) { for (var i = 0; i < SKINS.length; i++) if (SKINS[i].id === id) return SKINS[i]; return null; }
 
   var SECTIONS = [
     { key: 'hot-games', label: '熱門遊戲' },
@@ -41,19 +54,55 @@
     { path: 'ui-kit.html', label: 'UI Kit' },
   ];
 
-  // ---- 草稿狀態：只存在記憶體/畫面上，按「套用」才寫進 localStorage ----
-  var draft = { sections: {}, sitename: '' };
+  // ---- 草稿狀態：即時反映到 iframe 預覽；按「套用」才額外寫進 localStorage ----
+  var draft = { sections: {}, sitename: '', skin: DEFAULT_SKIN };
 
   function loadApplied() {
     var sections = {};
     try { sections = JSON.parse(localStorage.getItem(SECTIONS_KEY)) || {}; } catch (e) {}
     var sitename = '';
     try { sitename = localStorage.getItem(SITENAME_KEY) || ''; } catch (e) {}
-    return { sections: sections, sitename: sitename };
+    var skin = DEFAULT_SKIN;
+    try { skin = findSkin(localStorage.getItem(SKIN_KEY)) ? localStorage.getItem(SKIN_KEY) : DEFAULT_SKIN; } catch (e) {}
+    return { sections: sections, sitename: sitename, skin: skin };
   }
 
   function isApplied() {
-    try { return !!localStorage.getItem(SECTIONS_KEY) || !!localStorage.getItem(SITENAME_KEY); } catch (e) { return false; }
+    try { return !!localStorage.getItem(SECTIONS_KEY) || !!localStorage.getItem(SITENAME_KEY) || !!localStorage.getItem(SKIN_KEY); } catch (e) { return false; }
+  }
+
+  /* 即時預覽：直接呼叫 iframe（同源）內 site.js 暴露的核心套用函式，
+     不經過 localStorage、不需重整分頁。iframe 尚未載入完成時安靜跳過，
+     交給 frame 的 load 事件補一次。 */
+  function liveApply() {
+    var frame = document.getElementById('st-frame');
+    var win = frame && frame.contentWindow;
+    if (win && win.__cmsV4StudioApply) {
+      try { win.__cmsV4StudioApply({ sections: draft.sections, sitename: draft.sitename, skin: draft.skin }); } catch (e) {}
+    }
+  }
+
+  function renderSkins() {
+    var wrap = document.getElementById('st-skins');
+    wrap.innerHTML = '';
+    SKINS.forEach(function (s) {
+      var on = draft.skin === s.id;
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'seg-btn st-skin-btn' + (on ? ' active' : '');
+      btn.setAttribute('data-skin-option', s.id);
+      btn.innerHTML = '<span class="st-skin-dot" style="background:' + s.dot + '"></span>' + s.label;
+      wrap.appendChild(btn);
+    });
+    document.getElementById('st-summary-skin').textContent = (findSkin(draft.skin) || SKINS[0]).label;
+    Array.prototype.slice.call(wrap.querySelectorAll('[data-skin-option]')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        draft.skin = btn.getAttribute('data-skin-option');
+        document.documentElement.setAttribute('data-skin', draft.skin); // studio 自己的 chrome 也跟著換膚
+        renderSkins();
+        liveApply();
+      });
+    });
   }
 
   function renderSections() {
@@ -75,6 +124,7 @@
         var next = draft.sections[key] === false; // 目前是 false（關）→ 打開；否則關掉
         draft.sections[key] = next;
         renderSections();
+        liveApply();
       });
     });
   }
@@ -134,20 +184,23 @@
         localStorage.setItem(SECTIONS_KEY, JSON.stringify(draft.sections));
         if (draft.sitename) localStorage.setItem(SITENAME_KEY, draft.sitename);
         else localStorage.removeItem(SITENAME_KEY);
+        localStorage.setItem(SKIN_KEY, draft.skin);
       } catch (e) {}
       refreshAppliedTag();
-      document.getElementById('st-frame').contentWindow && document.getElementById('st-frame').contentWindow.location.reload();
+      liveApply(); // 預覽本來就已即時反映草稿，這裡只是連同「已套用」狀態一起確認
     });
 
     document.getElementById('st-reset').addEventListener('click', function () {
-      try { localStorage.removeItem(SECTIONS_KEY); localStorage.removeItem(SITENAME_KEY); } catch (e) {}
+      try { localStorage.removeItem(SECTIONS_KEY); localStorage.removeItem(SITENAME_KEY); localStorage.removeItem(SKIN_KEY); } catch (e) {}
       var loaded = loadApplied();
-      draft = { sections: loaded.sections, sitename: loaded.sitename };
+      draft = { sections: loaded.sections, sitename: loaded.sitename, skin: loaded.skin };
+      document.documentElement.setAttribute('data-skin', draft.skin);
       document.getElementById('st-sitename').value = draft.sitename;
       document.getElementById('st-summary-site').textContent = draft.sitename || 'CMS_前台_v4';
       renderSections();
+      renderSkins();
       refreshAppliedTag();
-      document.getElementById('st-frame').contentWindow && document.getElementById('st-frame').contentWindow.location.reload();
+      liveApply();
     });
   }
 
@@ -157,18 +210,24 @@
     input.addEventListener('input', function () {
       draft.sitename = input.value;
       document.getElementById('st-summary-site').textContent = draft.sitename || 'CMS_前台_v4';
+      liveApply();
     });
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     var loaded = loadApplied();
-    draft = { sections: loaded.sections, sitename: loaded.sitename };
+    draft = { sections: loaded.sections, sitename: loaded.sitename, skin: loaded.skin };
+    document.documentElement.setAttribute('data-skin', draft.skin); // studio 自己的 chrome 也跟著換膚
     renderSections();
+    renderSkins();
     renderPageSelect();
     initCollapse();
     initPaneSwitch();
     initWidthToggle();
     initApplyReset();
     initSiteName();
+    // iframe 換頁（含首次載入）後都要重新即時套用一次草稿，否則新頁面會是預設樣式
+    document.getElementById('st-frame').addEventListener('load', liveApply);
+    liveApply();
   });
 })();

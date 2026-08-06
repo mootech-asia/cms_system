@@ -1,10 +1,13 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-skin="festive-red-gold">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CMS_設計後台_v4</title>
   <link rel="stylesheet" href="../site/assets/css/main.css" />
+  <link rel="stylesheet" href="../site/assets/css/skins/imperial-purple.css" />
+  <link rel="stylesheet" href="../site/assets/css/skins/emerald-jade.css" />
+  <link rel="stylesheet" href="../site/assets/css/skins/sapphire-blue.css" />
   <link rel="stylesheet" href="studio.css" />
 </head>
 <body>
@@ -30,6 +33,20 @@
             <span class="st-tag st-tag-ok">已套用（僅存於此瀏覽器）</span>
           </div>
         </div>
+
+        <section class="collapse-sec">
+          <button type="button" class="collapse-head" aria-expanded="true" data-group-toggle="skin">
+            <span class="st-head-text">
+              <span class="st-head-title">外觀 Skin</span>
+              <span class="st-head-sub" id="st-summary-skin">紅金喜慶（預設）</span>
+            </span>
+            <svg class="collapse-chevron is-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+          </button>
+          <div class="collapse-body" data-group-body="skin">
+            <p class="st-sub-label">切換後即時反映在右側預覽，按「套用到本站」才會保留到離開設計後台之後</p>
+            <div class="st-skin-grid" id="st-skins"></div>
+          </div>
+        </section>
 
         <section class="collapse-sec">
           <button type="button" class="collapse-head" aria-expanded="true" data-group-toggle="site">

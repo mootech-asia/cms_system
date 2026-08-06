@@ -1,0 +1,24 @@
+/* CMS v4 skin — 尊爵藍鑽（Sapphire Blue）。
+   只覆寫介面色（背景/面板/文字/標頭漸層），金／紅兩色維持品牌色不變，
+   繼承自 main.css 的 :root 預設值。 */
+:root[data-skin="sapphire-blue"] {
+  --bg: #070f1f;
+  --bg-panel: #0d1930;
+  --header-grad: linear-gradient(180deg, #1b3f91 0%, #0e2358 100%);
+  --header-grad-hi: #3b6fe0;
+  --notice-bg: #101f3d;
+  --notice-text: #a8c6ff;
+  --line: #1c2c4d;
+  --line-hi: #3a5590;
+  --text: #eaf1ff;
+  --text-mid: #a9bfe6;
+  --text-dim: #6c85b3;
+  --text-on-header: #eaf1ff;
+  --panel-tint: #17264a;
+  --shadow-card: 0 2px 0 rgba(0, 0, 0, 0.25), 0 10px 24px rgba(0, 0, 0, 0.45);
+
+  /* hero 疊層／badge 用的次品牌色改為桃紅，與藍色背景形成互補對比；
+     金色與此色搭配的按鈕、CTA 維持不變。 */
+  --red: #e0245e;
+  --red-deep: #a01846;
+}
