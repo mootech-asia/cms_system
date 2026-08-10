@@ -36,6 +36,7 @@
     'auth.register': { zh: '註冊', en: 'Register', ko: '가입하기', th: 'ลงทะเบียน' },
     'auth.logout': { zh: '登出', en: 'Logout', ko: '로그아웃', th: 'ออกจากระบบ' },
     'auth.balancePrefix': { zh: '餘額：', en: 'Balance: ', ko: '잔액: ', th: 'ยอดเงิน: ' },
+    'auth.pointsPrefix': { zh: '點數：', en: 'Points: ', ko: '포인트: ', th: 'พอยท์: ' },
     'auth.usernameLabel': { zh: '用戶名', en: 'Username', ko: '사용자명', th: 'ชื่อผู้ใช้' },
     'auth.usernameInputPlaceholder': { zh: '請輸入用戶名', en: 'Enter your username', ko: '사용자명을 입력하세요', th: 'กรุณากรอกชื่อผู้ใช้' },
     'auth.passwordLabel': { zh: '密碼', en: 'Password', ko: '비밀번호', th: 'รหัสผ่าน' },

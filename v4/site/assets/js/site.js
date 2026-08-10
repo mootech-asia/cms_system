@@ -335,6 +335,7 @@
      時直接導回首頁。 */
   var AUTH_KEY = 'cms-v4-auth';
   var DEFAULT_BALANCE = '₩1,000,000,000';
+  var DEFAULT_POINTS = '0.00';
   var MEMBER_PAGES = ['account.html', 'deposit.html', 'withdrawal.html', 'betting-record.html',
     'deposit-record.html', 'withdrawal-record.html', 'account-record.html', 'profit-loss.html',
     'personal-info.html', 'security.html', 'change-password.html'];
@@ -364,6 +365,7 @@
   function memberAuthHtml(user) {
     return '<a href="account.html" class="header-nav-link" style="gap:8px">' + USER_ICON + escapeHtml(user.name) + '</a>' +
       '<span class="header-forgot">' + tr('auth.balancePrefix', '餘額：') + escapeHtml(user.balance) + '</span>' +
+      '<span class="header-forgot">' + tr('auth.pointsPrefix', '點數：') + escapeHtml(user.points || DEFAULT_POINTS) + '</span>' +
       '<button type="button" class="btn-gold quiet" data-logout>' + tr('auth.logout', '登出') + '</button>';
   }
   /* 依登入狀態重繪 header-auth,取代原本每頁寫死的訪客/會員版面。
@@ -388,7 +390,7 @@
   // 本來就是每次開啟才重新產生 HTML,下次開啟自然是當前語系,不需另外處理。
   on(document, 'cms-v4:locale-changed', function () { renderHeaderAuth(); });
   function doLogin(name) {
-    saveAuth({ name: name || '會員', balance: DEFAULT_BALANCE });
+    saveAuth({ name: name || '會員', balance: DEFAULT_BALANCE, points: DEFAULT_POINTS });
     renderHeaderAuth();
   }
   function doLogout() {
@@ -401,6 +403,14 @@
   function initAuthGuard() {
     if (window !== window.top) return;
     if (MEMBER_PAGES.indexOf(currentPage()) !== -1 && !isLoggedIn()) location.href = 'index.html';
+  }
+  /* 個人資料頁的「暱稱」要跟 header 顯示的登入名稱同一個來源(loadAuth().name),
+     不能各自寫死一份,否則登入名稱一改兩處就對不上。 */
+  function initPersonalInfoNickname() {
+    var el = document.querySelector('[data-pi-nickname]');
+    if (!el) return;
+    var user = loadAuth();
+    if (user && user.name) el.textContent = user.name;
   }
   /* 登出按鈕散落在會員頁 header／安全中心／手機選單,事件代理掛在
      document,手機選單是點擊 hamburger 後才動態插入 DOM,逐一綁定會
@@ -869,6 +879,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     safe(initAuthGuard);
     safe(renderHeaderAuth);
+    safe(initPersonalInfoNickname);
     safe(initHero);
     safe(initFeatureCarousel);
     safe(initVendorSelect);
