@@ -432,10 +432,14 @@ img { max-width: 100%; display: block; }
 @media (max-width: 720px) { .member-shell { padding-right: 20px; grid-template-columns: 1fr; } }
 /* 手機版側邊選單直向 9 項會把表單內容整個推到貼近視窗底部,跟後來加的
    .mobile-tabbar 打架（表單首排按鈕會被固定定位的快捷列蓋住）,改成橫向
-   可滑動的一行,大幅壓低高度。 */
+   可滑動的一行;每項改成跟 .pay-tab／.about-tab 同款的藥丸樣式(圖示文字
+   同行、統一邊框底色),而非圖示文字上下疊放的方塊,避免項目間因文字
+   長短不一而高矮不一、顯得凌亂。 */
 @media (max-width: 720px) {
-  .member-sidebar { display: flex; gap: 6px; overflow-x: auto; padding: 8px; position: static; }
-  .member-sidebar-link { flex-direction: column; gap: 4px; padding: 8px 10px; font-size: 11px; white-space: nowrap; flex-shrink: 0; }
+  .member-sidebar { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 6px; position: static; }
+  .member-sidebar-link { flex-direction: row; gap: 6px; padding: 9px 14px; font-size: 13px; white-space: nowrap; flex-shrink: 0; border-radius: 999px; border: 1px solid var(--line); background: var(--bg-panel); }
+  .member-sidebar-link svg { width: 15px; height: 15px; }
+  .member-sidebar-link.active { border-color: var(--gold-hi); }
   .member-sidebar-divider { display: none; }
 }
 .member-sidebar { position: sticky; top: 20px; padding: 10px; }

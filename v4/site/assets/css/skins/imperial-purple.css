@@ -1,24 +1,14 @@
 /* CMS v4 skin — 尊爵紫金（Imperial Purple）。
-   只覆寫介面色（背景/面板/文字/標頭漸層），金／紅兩色維持品牌色不變，
-   繼承自 main.css 的 :root 預設值。 */
+   換色只換掉「紅色」這個主題色（header 漸層／notice 底色／--red 次品牌
+   強調色）,背景/面板/文字維持跟預設 festive-red-gold 一樣的白色基底,
+   不覆寫 --bg／--bg-panel／--text 等 token,直接繼承 main.css 的 :root
+   淺色預設值。金色（--gold 系列）為全 skin 共用品牌色,同樣不覆寫。 */
 :root[data-skin="imperial-purple"] {
-  --bg: #150c1f;
-  --bg-panel: #1f1330;
-  --header-grad: linear-gradient(180deg, #5b2a86 0%, #2f1350 100%);
-  --header-grad-hi: #8b4fd6;
-  --notice-bg: #2a1a42;
-  --notice-text: #d9bdfa;
-  --line: #362448;
-  --line-hi: #6b3fa0;
-  --text: #f3e8ff;
-  --text-mid: #c3a8e0;
-  --text-dim: #8871a3;
-  --text-on-header: #f6ecff;
-  --panel-tint: #372753;
-  --shadow-card: 0 2px 0 rgba(0, 0, 0, 0.25), 0 10px 24px rgba(0, 0, 0, 0.45);
+  --header-grad: linear-gradient(180deg, #6b3fa0 0%, #4a2570 100%);
+  --header-grad-hi: #9c6fc2;
+  --notice-bg: #f3ecf9;
+  --notice-text: #5b2a86;
 
-  /* hero 疊層／badge 用的次品牌色改為玫紅，與紫色背景更協調；
-     金色與此色搭配的按鈕、CTA 維持不變。 */
-  --red: #d6336c;
-  --red-deep: #9c1f52;
+  --red: #6b3fa0;
+  --red-deep: #4a2570;
 }
