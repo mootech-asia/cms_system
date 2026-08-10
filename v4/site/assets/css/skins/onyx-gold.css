@@ -23,7 +23,11 @@
   --panel-glass: rgba(24, 20, 15, 0.85);
   --footer-logo-filter: brightness(0) invert(1);
 
-  /* 次品牌強調色改為深酒紅,跟黑金基調協調,取代預設的正紅。 */
-  --red: #8c1c2b;
-  --red-deep: #5c1119;
+  /* --red／--red-deep 在全站是「skin 識別色」而非固定警示色(hero 遮罩、
+     快捷列圖示、獨家/熱門標籤底色...都直接吃這兩個 token),留成酒紅會
+     讓 hero 橫幅跟深海尊爵改之前同樣的問題——像沒換乾淨。改成深古銅金,
+     跟黑金基調同一色系;比 --gold-deep 更深,搭配 --text-on-header 的
+     淺色文字才夠對比,不會跟明亮的 --gold 系 CTA 撞色。 */
+  --red: #8a5c0a;
+  --red-deep: #5c3d06;
 }
