@@ -349,16 +349,30 @@
 
   var USER_ICON = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
 
-  /* ── 手機版全螢幕選單:導覽連結直接複製桌面版 .header-nav,
-     避免另外維護一份重複資料。 ── */
+  /* ── 手機版全螢幕選單:「我的帳戶」快捷清單,跟底部 .mobile-tabbar 互補
+     （大廳／儲值／優惠活動已經在 tabbar,這裡只放會員專區次要頁面）,
+     icon 沿用 .member-sidebar-link／FAQ 連結既有的 svg path。 ── */
+  var MEMBER_MENU_ITEMS = [
+    { href: 'account.html', label: '帳戶總覽', icon: '<rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>' },
+    { href: 'betting-record.html', label: '投注紀錄', icon: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/>' },
+    { href: 'deposit-record.html', label: '儲值紀錄', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
+    { href: 'profit-loss.html', label: '損益報表', icon: '<path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/>' },
+    { href: 'withdrawal-record.html', label: '提款紀錄', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
+    { href: 'account-record.html', label: '帳戶紀錄', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
+    { href: 'personal-info.html', label: '個人資料', icon: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>' },
+    { href: 'security.html', label: '安全中心', icon: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>' },
+    { href: 'about.html?tab=faq', label: '常見問題', icon: '<circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8"/><path d="M12 17h.01"/>' },
+  ];
   var mobileMenuRoot = null;
   function closeMobileMenu() { if (mobileMenuRoot) { mobileMenuRoot.remove(); mobileMenuRoot = null; unlockScroll(); } }
   function openMobileMenu() {
     closeMobileMenu();
-    var navLinks = Array.prototype.slice.call(document.querySelectorAll('.header-nav .header-nav-link'));
-    var navHtml = navLinks.map(function (a) {
-      return '<a href="' + a.getAttribute('href') + '" class="mobile-menu-link' + (a.classList.contains('active') ? ' active' : '') + '">' + a.innerHTML + '</a>';
-    }).join('');
+    var page = currentPage();
+    var navHtml = '<div class="mobile-menu-section"><span>我的帳戶</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></div>' +
+      MEMBER_MENU_ITEMS.map(function (item) {
+        var active = item.href.split('?')[0] === page;
+        return '<a href="' + item.href + '" class="mobile-menu-link' + (active ? ' active' : '') + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + item.icon + '</svg><span>' + item.label + '</span></a>';
+      }).join('');
     var mobileUser = loadAuth();
     var footHtml = mobileUser
       ? '<div class="mobile-menu-account">' + USER_ICON + '<span>' + escapeHtml(mobileUser.name) + '・' + tr('auth.balancePrefix', '餘額：') + escapeHtml(mobileUser.balance) + '</span></div>' +
@@ -526,6 +540,201 @@
     });
   }
 
+  /* 通用結果/表單彈窗:外殼沿用 .auth-modal-* class(純容器樣式,登入彈窗與
+     這裡的儲值/提款流程共用,不含 auth 專屬邏輯)。 */
+  var payModalRoot = null;
+  function closePayModal() { if (payModalRoot) { payModalRoot.remove(); payModalRoot = null; unlockScroll(); } }
+  function openPayModal(title, bodyHtml) {
+    closePayModal();
+    var wrap = document.createElement('div');
+    wrap.innerHTML =
+      '<div class="auth-modal-overlay" data-pay-overlay>' +
+      '<div class="auth-modal-box">' +
+      '<div class="auth-modal-head"><h3 class="auth-modal-title">' + title + '</h3>' +
+      '<button type="button" class="auth-modal-close" aria-label="關閉" data-pay-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
+      '<div class="auth-modal-body">' + bodyHtml + '</div>' +
+      '</div></div>';
+    payModalRoot = wrap.firstElementChild;
+    document.body.appendChild(payModalRoot);
+    lockScroll();
+    on(payModalRoot, 'click', function (e) { if (e.target === payModalRoot) closePayModal(); });
+    on(payModalRoot.querySelector('[data-pay-close]'), 'click', closePayModal);
+    return payModalRoot;
+  }
+  function simplePayModal(title, message) {
+    var root = openPayModal(title, '<p class="about-text">' + message + '</p><button type="button" class="btn-gold" style="width:100%">確定</button>');
+    on(root.querySelector('.auth-modal-body .btn-gold'), 'click', closePayModal);
+    return root;
+  }
+
+  /* 儲值送出流程:銀行卡先給轉帳資訊、LinePay/USDT 先給收款位址,使用者按
+     「已完成」才算成功——純前端模擬,不接真實金流。 */
+  var PAY_ADDR = { linepay: 'https://line.example/pay/8f3c1a92b7d4e05f', trc20: 'TXk9YmR2pQ7sN3vB1cE6hK8jL0tUw', erc20: '0x8f3c1a92b7d4e05fA1cE6hK8jL0tUw12' };
+  function payMethodId(root) {
+    var act = (root || document).querySelector('.pay-tabs .pay-tab.active');
+    var label = act ? act.textContent.trim() : '銀行卡';
+    if (/LinePay/i.test(label)) return 'linepay';
+    if (/TRC20/i.test(label)) return 'trc20';
+    if (/ERC20/i.test(label)) return 'erc20';
+    return 'bank';
+  }
+  function depositSuccessModal() {
+    simplePayModal('儲值成功', '您的儲值申請已送出，請至「儲值紀錄」查看處理進度。');
+  }
+  function depositStepModal(methodId, amountVal) {
+    var isBank = methodId === 'bank';
+    var body;
+    if (isBank) {
+      body =
+        '<div class="bank-row"><span>收款銀行</span><strong style="margin-left:auto">國民銀行</strong></div>' +
+        '<div class="bank-row"><span>收款帳號</span><strong class="mono" style="margin-left:auto">881-234-567890</strong></div>' +
+        '<div class="bank-row"><span>儲值金額</span><strong style="margin-left:auto">' + escapeHtml(amountVal) + '</strong></div>' +
+        '<p class="pay-note">完成轉帳後請點擊下方按鈕，系統將盡快為您確認入帳。</p>' +
+        '<button type="button" class="btn-gold" style="width:100%" data-pay-done>我已完成轉帳</button>';
+    } else {
+      var addr = PAY_ADDR[methodId] || PAY_ADDR.linepay;
+      body =
+        '<p class="about-text">請使用 ' + (methodId === 'linepay' ? 'LinePay' : 'USDT') + ' 掃描或複製下方' + (methodId === 'linepay' ? '付款連結' : '收款地址') + ' 完成付款。</p>' +
+        '<input class="pay-field" value="' + escapeHtml(addr) + '" readonly />' +
+        '<p class="pay-note">此為示意用途，非真實收款位址。</p>' +
+        '<button type="button" class="btn-gold" style="width:100%" data-pay-done>我已完成付款</button>';
+    }
+    var root = openPayModal(isBank ? '轉帳資訊' : '掃碼付款', body);
+    on(root.querySelector('[data-pay-done]'), 'click', depositSuccessModal);
+  }
+
+  /* 提款帳戶管理:localStorage 模擬已綁定的收款帳戶清單,「提款」頁籤沒有
+     任何帳戶時停用送出按鈕,呼應真實產品「先綁定收款帳戶才能提款」的流程。 */
+  var WD_ACCOUNTS_KEY = 'cms-v4-withdraw-accounts';
+  var WD_TYPE_LABEL = { bank: '銀行卡', trc20: 'USDT-TRC20', erc20: 'USDT-ERC20' };
+  var WD_TYPE_ICON = {
+    bank: '<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>',
+    trc20: '<circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/>',
+    erc20: '<circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/>',
+  };
+  function loadWdAccounts() {
+    var list;
+    try { list = JSON.parse(localStorage.getItem(WD_ACCOUNTS_KEY)); } catch (e) { list = null; }
+    if (!Array.isArray(list)) {
+      // 預設帶一筆既有銀行卡,對齊此頁原本寫死的示範資料,避免剛上線就是空清單。
+      list = [{ type: 'bank', bankName: '國民銀行', holder: '', account: '**** **** **** 1234' }];
+      try { localStorage.setItem(WD_ACCOUNTS_KEY, JSON.stringify(list)); } catch (e2) {}
+    }
+    return list;
+  }
+  function saveWdAccounts(list) {
+    try { localStorage.setItem(WD_ACCOUNTS_KEY, JSON.stringify(list)); } catch (e) {}
+  }
+  function wdAccountLabel(acc) {
+    if (acc.type === 'bank') return escapeHtml(acc.account || '') + '（' + escapeHtml(acc.bankName || '') + '）';
+    return WD_TYPE_LABEL[acc.type] + '：' + escapeHtml(acc.account || '');
+  }
+  function wdAccountRowHtml(acc, idx, withRemove) {
+    return '<div class="bank-row"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (WD_TYPE_ICON[acc.type] || WD_TYPE_ICON.bank) + '</svg> <span>' + wdAccountLabel(acc) + '</span>' +
+      (withRemove ? '<button type="button" class="auth-modal-close" aria-label="刪除" style="margin-left:auto" data-wd-remove="' + idx + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button>' : '') +
+      '</div>';
+  }
+  function renderWdAccounts() {
+    var accounts = loadWdAccounts();
+    var listBox = document.querySelector('[data-wd-account-list]');
+    if (listBox) {
+      listBox.innerHTML = accounts.length
+        ? accounts.map(function (acc, idx) { return wdAccountRowHtml(acc, idx, true); }).join('')
+        : '<p class="pay-note">尚未綁定任何提款帳戶。</p>';
+    }
+    var current = document.querySelector('[data-wd-current-account]');
+    var submitBtn = document.querySelector('.pay-submit');
+    if (currentPage() !== 'withdrawal.html') return;
+    if (current) {
+      current.innerHTML = accounts.length
+        ? wdAccountRowHtml(accounts[0], 0, false)
+        : '<p class="pay-note">尚未綁定提款帳戶,請先至「帳戶管理」新增。</p>';
+    }
+    if (submitBtn) submitBtn.disabled = accounts.length === 0;
+  }
+
+  /* 提款頁頂層「提款／帳戶管理」頁籤,做法同 initAboutTabs:切換 active +
+     顯示對應 data-wd-panel。 */
+  function initWithdrawalTabs() {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-wd-tab]'));
+    if (!tabs.length) return;
+    tabs.forEach(function (tab) {
+      on(tab, 'click', function () {
+        tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
+        var target = tab.getAttribute('data-wd-tab');
+        Array.prototype.slice.call(document.querySelectorAll('[data-wd-panel]')).forEach(function (panel) {
+          panel.hidden = panel.getAttribute('data-wd-panel') !== target;
+        });
+      });
+    });
+    renderWdAccounts();
+  }
+  function initWithdrawalAccountForm() {
+    var typeBtns = Array.prototype.slice.call(document.querySelectorAll('[data-wd-add-type] .pay-tab'));
+    if (!typeBtns.length) return;
+    var bankFields = document.querySelector('[data-wd-fields="bank"]');
+    var cryptoFields = document.querySelector('[data-wd-fields="crypto"]');
+    typeBtns.forEach(function (btn) {
+      on(btn, 'click', function () {
+        var type = btn.getAttribute('data-wd-type');
+        if (bankFields) bankFields.hidden = type !== 'bank';
+        if (cryptoFields) cryptoFields.hidden = type === 'bank';
+      });
+    });
+    var submitBtn = document.querySelector('[data-wd-add-submit]');
+    if (!submitBtn) return;
+    on(submitBtn, 'click', function () {
+      var type = (document.querySelector('[data-wd-add-type] .pay-tab.active') || {}).getAttribute
+        ? document.querySelector('[data-wd-add-type] .pay-tab.active').getAttribute('data-wd-type')
+        : 'bank';
+      var acc = { type: type };
+      if (type === 'bank') {
+        var bankName = (document.querySelector('[data-wd-field="bankName"]') || {}).value || '';
+        var holder = (document.querySelector('[data-wd-field="holder"]') || {}).value || '';
+        var account = (document.querySelector('[data-wd-field="account"]') || {}).value || '';
+        if (!bankName.trim() || !holder.trim() || !account.trim()) { simplePayModal('提示', '請完整填寫銀行名稱、收款人姓名與銀行卡號。'); return; }
+        acc.bankName = bankName.trim(); acc.holder = holder.trim(); acc.account = account.trim();
+      } else {
+        var address = (document.querySelector('[data-wd-field="address"]') || {}).value || '';
+        if (!address.trim()) { simplePayModal('提示', '請填寫收款錢包地址。'); return; }
+        acc.account = address.trim();
+      }
+      var accounts = loadWdAccounts();
+      accounts.push(acc);
+      saveWdAccounts(accounts);
+      Array.prototype.slice.call(document.querySelectorAll('[data-wd-add-type] input, [data-wd-fields] input')).forEach(function (i) { i.value = ''; });
+      renderWdAccounts();
+      simplePayModal('新增成功', '提款帳戶已新增，可於「提款」頁籤選用。');
+    });
+    on(document, 'click', function (e) {
+      var btn = e.target.closest && e.target.closest('[data-wd-remove]');
+      if (!btn) return;
+      var idx = Number(btn.getAttribute('data-wd-remove'));
+      var accounts = loadWdAccounts();
+      accounts.splice(idx, 1);
+      saveWdAccounts(accounts);
+      renderWdAccounts();
+    });
+  }
+
+  /* 儲值／提款頁的「確認」送出按鈕:依目前頁面分流,兩者共用同一顆
+     .pay-submit,行為完全不同,用 currentPage() 判斷比另外掛 data 屬性省事。 */
+  function initPaySubmitHandlers() {
+    var btn = document.querySelector('.pay-submit');
+    if (!btn) return;
+    var page = currentPage();
+    on(btn, 'click', function () {
+      if (btn.disabled) return;
+      if (page === 'withdrawal.html') {
+        var pwField = document.querySelector('[data-wd-panel="withdraw"] .pay-field[type="password"]');
+        if (pwField && !pwField.value.trim()) { pwField.focus(); simplePayModal('提示', '請先輸入提款密碼。'); return; }
+        simplePayModal('提款成功', '您的提款申請已送出，將於 1–24 小時內處理完成，請至「提款紀錄」查看進度。');
+      } else if (page === 'deposit.html') {
+        depositStepModal(payMethodId(), (document.querySelector('.pay-field') || {}).value || '');
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     safe(initAuthGuard);
     safe(renderHeaderAuth);
@@ -543,6 +752,9 @@
     safe(initFaqAccordion);
     safe(initPayTabs);
     safe(initPayAmount);
+    safe(initWithdrawalTabs);
+    safe(initWithdrawalAccountForm);
+    safe(initPaySubmitHandlers);
     safe(applyStudioSections);
     safe(applyStudioSiteName);
     safe(applyStudioSkin);
