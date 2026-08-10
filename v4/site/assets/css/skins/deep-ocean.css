@@ -22,8 +22,11 @@
   --panel-glass: rgba(14, 37, 40, 0.85);
   --footer-logo-filter: brightness(0) invert(1);
 
-  /* 次品牌強調色改為寶石紅,在深青黑底上維持「熱門/獨家」標籤該有的
-     警示感,不跟著背景色調變成青色。 */
-  --red: #c02348;
-  --red-deep: #7d1730;
+  /* --red／--red-deep 在全站是「skin 識別色」而非固定警示色(熱門標籤、
+     hero 遮罩、快捷列圖示、record 負值...都直接吃這兩個 token,跟其他
+     light skin 一樣把它們換成主題色本身),之前留成寶石紅導致 hero 橫幅
+     跟快捷列圖示還是紅色,像沒換乾淨,改成跟 header 同一色系的青色才會
+     整頁一致。 */
+  --red: #1fae9f;
+  --red-deep: #116b62;
 }
