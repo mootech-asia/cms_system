@@ -3057,7 +3057,8 @@ select.twk-field {
   line-height: 1.5;
 }
 .ap-rollover .muted { color: var(--text-mid); }
-.ap-rollover-detail { display: inline-block; margin-left: 8px; padding: 2px 12px; border-radius: 999px; background: var(--accent-grad); color: var(--accent-ink); font-size: 11px; font-weight: 700; vertical-align: middle; }
+.ap-rollover-detail { display: inline-block; margin-left: 8px; padding: 1px 11px; border-radius: 999px; border: 1px solid rgba(239, 68, 68, .5); background: rgba(239, 68, 68, .12); color: #ef4444; font-size: 11px; font-weight: 700; vertical-align: middle; transition: background .15s; }
+.ap-rollover-detail:hover { background: rgba(239, 68, 68, .22); }
 
 /* 儲值流程步驟卡（轉帳明細 / 掃碼付款 QR）— 對齊 v2 deposit 流程 */
 .dp-step { display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
