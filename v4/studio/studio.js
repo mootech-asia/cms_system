@@ -48,18 +48,21 @@
   function cloneLayout(layout) { return layout.map(function (item) { return { key: item.key, span: item.span, variant: item.variant || 'v1' }; }); }
 
   /* 區塊變體:10 種可選版式,實際樣式定義在 site 端的
-     assets/css/section-variants.css,這裡只負責選單文字。 */
+     assets/css/section-variants.css。short 是 chip 格內顯示的短字,
+     label 是完整名稱(用於 title 提示),排列方式仿照 v2/v3 設計後台的
+     variant-grid/variant-card 選取器 —— 一列可見的按鈕格,點哪個亮哪個,
+     不用下拉選單藏起其餘 9 個選項。 */
   var VARIANTS = [
-    { id: 'v1', label: '現況' },
-    { id: 'v2', label: '圓潤糖果' },
-    { id: 'v3', label: '銳利競技' },
-    { id: 'v4', label: '金屬質感' },
-    { id: 'v5', label: '復古票根' },
-    { id: 'v6', label: '霓虹夜店' },
-    { id: 'v7', label: '工業風格' },
-    { id: 'v8', label: '奢華尊爵' },
-    { id: 'v9', label: '極簡通風' },
-    { id: 'v10', label: '卡片疊層' },
+    { id: 'v1', short: '現況', label: '現況' },
+    { id: 'v2', short: '糖果', label: '圓潤糖果' },
+    { id: 'v3', short: '競技', label: '銳利競技' },
+    { id: 'v4', short: '金屬', label: '金屬質感' },
+    { id: 'v5', short: '票根', label: '復古票根' },
+    { id: 'v6', short: '夜店', label: '霓虹夜店' },
+    { id: 'v7', short: '工業', label: '工業風格' },
+    { id: 'v8', short: '尊爵', label: '奢華尊爵' },
+    { id: 'v9', short: '通風', label: '極簡通風' },
+    { id: 'v10', short: '疊層', label: '卡片疊層' },
   ];
 
   var PAGES = [
@@ -175,10 +178,11 @@
   }
 
   /* 每個模組一行:上排是拖曳把手（原生 HTML5 drag&drop,依 draft.layout
-     陣列順序重新排列）、名稱、顯示/隱藏開關;下排是跨欄數 <select>
-     （3~12,對應 12 欄版位系統）與變體 <select>（10 種區塊版式,對應
-     section-variants.css）。渲染順序＝draft.layout 順序,這樣排版跟畫面
-     所見一致。 */
+     陣列順序重新排列）、名稱、顯示/隱藏開關;中排是跨欄數 <select>
+     （3~12,對應 12 欄版位系統）;下排是變體選取格(variant-grid,仿 v2
+     設計後台 5 欄 chip 陣列與 v3 的 variant-card——10 個按鈕平鋪出來,
+     點哪個亮哪個,不用下拉選單把其餘選項藏起來)。渲染順序＝draft.layout
+     順序,這樣排版跟畫面所見一致。 */
   function renderSections() {
     var ul = document.getElementById('st-sections');
     ul.innerHTML = '';
@@ -200,9 +204,13 @@
         '<select class="st-span-select" aria-label="' + sectionLabel(key) + ' 寬度" data-span-select="' + key + '">' +
         SPAN_OPTIONS.map(function (n) { return '<option value="' + n + '"' + (item.span === n ? ' selected' : '') + '>' + n + ' / 12</option>'; }).join('') +
         '</select>' +
-        '<select class="st-variant-select" aria-label="' + sectionLabel(key) + ' 變體" data-variant-select="' + key + '">' +
-        VARIANTS.map(function (v) { return '<option value="' + v.id + '"' + (variant === v.id ? ' selected' : '') + '>' + v.label + '</option>'; }).join('') +
-        '</select>' +
+        '</div>' +
+        '<div class="st-variant-grid" role="radiogroup" aria-label="' + sectionLabel(key) + ' 變體">' +
+        VARIANTS.map(function (v) {
+          var sel = variant === v.id;
+          return '<button type="button" role="radio" aria-checked="' + sel + '" class="st-variant-chip' + (sel ? ' active' : '') +
+            '" title="' + v.label + '" data-variant-chip="' + v.id + '" data-section-key="' + key + '">' + v.short + '</button>';
+        }).join('') +
         '</div>';
       ul.appendChild(li);
     });
@@ -226,12 +234,14 @@
         liveApply();
       });
     });
-    Array.prototype.slice.call(ul.querySelectorAll('[data-variant-select]')).forEach(function (sel) {
-      sel.addEventListener('change', function () {
-        var key = sel.getAttribute('data-variant-select');
+    Array.prototype.slice.call(ul.querySelectorAll('[data-variant-chip]')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var key = btn.getAttribute('data-section-key');
+        var vId = btn.getAttribute('data-variant-chip');
         for (var i = 0; i < draft.layout.length; i++) {
-          if (draft.layout[i].key === key) { draft.layout[i].variant = sel.value; break; }
+          if (draft.layout[i].key === key) { draft.layout[i].variant = vId; break; }
         }
+        renderSections();
         liveApply();
       });
     });
