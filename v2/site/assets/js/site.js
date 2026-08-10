@@ -58,7 +58,7 @@
      避免兩處各自維護一份、日後漏改。 */
   var MEMBER_PAGES = ['account', 'account-record', 'betting-record',
     'change-password', 'deposit', 'deposit-record', 'personal-info', 'profit-loss',
-    'security', 'withdrawal', 'withdrawal-record'];
+    'security', 'withdrawal', 'withdrawal-record', 'withdrawal-detail'];
   function isMemberPage() { return MEMBER_PAGES.indexOf(pageName()) !== -1; }
   function isActivePage(href) {
     var target = href.replace(/\.html$/, '');

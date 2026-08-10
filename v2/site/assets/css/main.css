@@ -1784,6 +1784,8 @@ select.pay-field {
 .wd-stat-label { color: rgb(var(--c-danger) / 1); font-size: 0.875rem; line-height: 1.25rem; }
 .wd-stat-value { color: rgb(var(--c-danger) / 1); font-weight: 600; font-size: 0.875rem; line-height: 1.25rem; }
 @media (min-width: 768px) { .wd-stat-value { font-size: 1rem; line-height: 1.5rem; } }
+.wd-stat-value-row { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.wd-detail-link { padding: 3px 14px; border-radius: 999px; background-image: var(--g-primary); color: rgb(var(--c-on-primary) / 1); font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
 .wd-field-wrap { margin-bottom: 1rem; }
 .wd-field-wrap--relative { margin-bottom: 1rem; position: relative; }
 .wd-eye-btn {
