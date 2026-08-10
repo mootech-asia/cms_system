@@ -496,7 +496,9 @@
     on(csModalRoot.querySelector('[data-cs-close]'), 'click', closeCsModal);
   }
   function initCsTriggers() {
-    Array.prototype.slice.call(document.querySelectorAll('.quick-rail-btn[aria-label="線上客服"], .mobile-account-view-btn[data-cs-open]')).forEach(function (btn) {
+    /* [data-cs-open]：任何元素只要掛這個屬性都能開客服彈窗（首頁公告列
+       「線上客服」連結即用此屬性),不綁定特定 class。 */
+    Array.prototype.slice.call(document.querySelectorAll('.quick-rail-btn[aria-label="線上客服"], [data-cs-open]')).forEach(function (btn) {
       on(btn, 'click', function (e) { e.preventDefault(); openCsModal(); });
     });
   }
