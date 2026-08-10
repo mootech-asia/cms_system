@@ -337,7 +337,7 @@
   var DEFAULT_BALANCE = '₩1,000,000,000';
   var DEFAULT_POINTS = '0.00';
   var MEMBER_PAGES = ['account.html', 'deposit.html', 'withdrawal.html', 'betting-record.html',
-    'deposit-record.html', 'withdrawal-record.html', 'account-record.html', 'profit-loss.html',
+    'deposit-record.html', 'withdrawal-record.html', 'withdrawal-detail.html', 'account-record.html', 'profit-loss.html',
     'personal-info.html', 'security.html', 'change-password.html'];
 
   function escapeHtml(s) {
@@ -456,6 +456,7 @@
     { href: 'deposit-record.html', label: '儲值紀錄', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
     { href: 'profit-loss.html', label: '損益報表', icon: '<path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/>' },
     { href: 'withdrawal-record.html', label: '提款紀錄', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
+    { href: 'withdrawal-detail.html', label: '提款明細', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
     { href: 'account-record.html', label: '帳戶紀錄', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
     { href: 'personal-info.html', label: '個人資料', icon: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>' },
     { href: 'security.html', label: '安全中心', icon: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>' },
