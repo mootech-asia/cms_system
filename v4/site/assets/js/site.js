@@ -15,6 +15,7 @@
   var STUDIO_SECTIONS_KEY = 'cms-v4-studio-sections';
   var STUDIO_SITENAME_KEY = 'cms-v4-studio-sitename';
   var STUDIO_SKIN_KEY = 'cms-v4-studio-skin';
+  var STUDIO_LAYOUT_KEY = 'cms-v4-studio-layout';
 
   function applySections(map) {
     Array.prototype.slice.call(document.querySelectorAll('[data-section]')).forEach(function (el) {
@@ -27,6 +28,20 @@
   }
   function applySkin(skinId) {
     document.documentElement.setAttribute('data-skin', skinId || 'festive-red-gold');
+  }
+  /* 首頁 12 欄版位:layout 是 [{key,span}] 陣列,依陣列順序把對應
+     [data-section] 元素依序 appendChild 回 .grid12(對已存在文件中的節點
+     appendChild 等同於搬移到新位置,藉此同時做到「重新排序」),並更新
+     data-span 決定跨欄數。跟 studio 的拖曳排序／寬度選單共用這份格式。 */
+  function applyLayout(layout) {
+    var grid = document.querySelector('.grid12');
+    if (!grid || !Array.isArray(layout)) return;
+    layout.forEach(function (item) {
+      var el = grid.querySelector('[data-section="' + item.key + '"]');
+      if (!el) return;
+      el.setAttribute('data-span', item.span || 3);
+      grid.appendChild(el);
+    });
   }
 
   function applyStudioSections() {
@@ -44,6 +59,11 @@
     try { id = localStorage.getItem(STUDIO_SKIN_KEY); } catch (e) { id = null; }
     if (id) applySkin(id);
   }
+  function applyStudioLayout() {
+    var raw;
+    try { raw = JSON.parse(localStorage.getItem(STUDIO_LAYOUT_KEY)); } catch (e) { raw = null; }
+    if (raw) applyLayout(raw);
+  }
 
   /* studio 父頁（同源）在 iframe load 後或任何控制項變動時直接呼叫這個函式，
      即時把草稿反映到畫面上，不經過 localStorage、不需重整。 */
@@ -52,6 +72,7 @@
     if (draft.sections) applySections(draft.sections);
     if ('sitename' in draft) applySiteName(draft.sitename);
     if (draft.skin) applySkin(draft.skin);
+    if (draft.layout) applyLayout(draft.layout);
   };
 
   function initHero() {
@@ -798,5 +819,6 @@
     safe(applyStudioSections);
     safe(applyStudioSiteName);
     safe(applyStudioSkin);
+    safe(applyStudioLayout);
   });
 })();

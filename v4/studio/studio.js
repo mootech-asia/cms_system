@@ -11,6 +11,7 @@
   var SECTIONS_KEY = 'cms-v4-studio-sections';
   var SITENAME_KEY = 'cms-v4-studio-sitename';
   var SKIN_KEY = 'cms-v4-studio-skin';
+  var LAYOUT_KEY = 'cms-v4-studio-layout';
 
   var SKINS = [
     { id: 'festive-red-gold', label: '紅金喜慶（預設）', dot: 'linear-gradient(135deg,#d21f3c,#f2a924)' },
@@ -30,6 +31,20 @@
     { key: 'fish', label: '捕魚達人' },
     { key: 'sport', label: '體育專區' },
   ];
+  function sectionLabel(key) { for (var i = 0; i < SECTIONS.length; i++) if (SECTIONS[i].key === key) return SECTIONS[i].label; return key; }
+  /* 12 欄版位系統:span 3~12 決定模組跨幾欄,陣列順序決定排列順序（跟
+     site.js 的 applyLayout 用 appendChild 依序搬移 DOM 節點一致）。這裡
+     的預設值還原首頁改版前「大欄(熱門+迷你/電子遊戲) + 固定小欄
+     (真人娛樂/捕魚達人) + 體育滿版跨欄」的版面比例。 */
+  var DEFAULT_LAYOUT = [
+    { key: 'hot-games', span: 5 },
+    { key: 'mini-games', span: 4 },
+    { key: 'live', span: 3 },
+    { key: 'electronic', span: 9 },
+    { key: 'fish', span: 3 },
+    { key: 'sport', span: 12 },
+  ];
+  function cloneLayout(layout) { return layout.map(function (item) { return { key: item.key, span: item.span }; }); }
 
   var PAGES = [
     { path: 'index.html', label: '首頁' },
@@ -56,7 +71,7 @@
   ];
 
   // ---- 草稿狀態：即時反映到 iframe 預覽；按「套用」才額外寫進 localStorage ----
-  var draft = { sections: {}, sitename: '', skin: DEFAULT_SKIN };
+  var draft = { sections: {}, sitename: '', skin: DEFAULT_SKIN, layout: cloneLayout(DEFAULT_LAYOUT) };
 
   function loadApplied() {
     var sections = {};
@@ -65,11 +80,16 @@
     try { sitename = localStorage.getItem(SITENAME_KEY) || ''; } catch (e) {}
     var skin = DEFAULT_SKIN;
     try { skin = findSkin(localStorage.getItem(SKIN_KEY)) ? localStorage.getItem(SKIN_KEY) : DEFAULT_SKIN; } catch (e) {}
-    return { sections: sections, sitename: sitename, skin: skin };
+    var layout = cloneLayout(DEFAULT_LAYOUT);
+    try {
+      var raw = JSON.parse(localStorage.getItem(LAYOUT_KEY));
+      if (Array.isArray(raw) && raw.length) layout = raw;
+    } catch (e) {}
+    return { sections: sections, sitename: sitename, skin: skin, layout: layout };
   }
 
   function isApplied() {
-    try { return !!localStorage.getItem(SECTIONS_KEY) || !!localStorage.getItem(SITENAME_KEY) || !!localStorage.getItem(SKIN_KEY); } catch (e) { return false; }
+    try { return !!localStorage.getItem(SECTIONS_KEY) || !!localStorage.getItem(SITENAME_KEY) || !!localStorage.getItem(SKIN_KEY) || !!localStorage.getItem(LAYOUT_KEY); } catch (e) { return false; }
   }
 
   /* 即時預覽：直接呼叫 iframe（同源）內 site.js 暴露的核心套用函式，
@@ -79,7 +99,7 @@
     var frame = document.getElementById('st-frame');
     var win = frame && frame.contentWindow;
     if (win && win.__cmsV4StudioApply) {
-      try { win.__cmsV4StudioApply({ sections: draft.sections, sitename: draft.sitename, skin: draft.skin }); } catch (e) {}
+      try { win.__cmsV4StudioApply({ sections: draft.sections, sitename: draft.sitename, skin: draft.skin, layout: draft.layout }); } catch (e) {}
     }
   }
 
@@ -106,24 +126,80 @@
     });
   }
 
+  var SPAN_OPTIONS = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  var dragKey = null; // 目前被拖曳的模組 key,drop 時用來找出來源/目標 index
+
+  function moveLayoutItem(fromKey, toKey) {
+    if (fromKey === toKey) return;
+    var from = -1, to = -1;
+    for (var i = 0; i < draft.layout.length; i++) {
+      if (draft.layout[i].key === fromKey) from = i;
+      if (draft.layout[i].key === toKey) to = i;
+    }
+    if (from === -1 || to === -1) return;
+    var moved = draft.layout.splice(from, 1)[0];
+    draft.layout.splice(to, 0, moved);
+  }
+
+  /* 每個模組一行:拖曳把手（原生 HTML5 drag&drop,依 draft.layout 陣列
+     順序重新排列)、名稱、跨欄數 <select>（3~12,對應 12 欄版位系統)、
+     顯示/隱藏開關。渲染順序＝draft.layout 順序,這樣排版跟畫面所見一致。 */
   function renderSections() {
     var ul = document.getElementById('st-sections');
     ul.innerHTML = '';
-    SECTIONS.forEach(function (s) {
-      var on = draft.sections[s.key] !== false;
+    draft.layout.forEach(function (item) {
+      var key = item.key;
+      var on = draft.sections[key] !== false;
       var li = document.createElement('li');
       li.className = 'st-section-row';
+      li.draggable = true;
+      li.setAttribute('data-section-key', key);
       li.innerHTML =
-        '<span class="st-section-name">' + s.label + '</span>' +
-        '<button type="button" role="switch" class="st-switch' + (on ? ' is-on' : '') + '" aria-checked="' + on + '" data-section-switch="' + s.key + '"><span class="st-switch-knob"></span></button>';
+        '<span class="st-drag-handle" aria-hidden="true" title="拖曳排序"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="6" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="18" r="1"/></svg></span>' +
+        '<span class="st-section-name">' + sectionLabel(key) + '</span>' +
+        '<select class="st-span-select" aria-label="' + sectionLabel(key) + ' 寬度" data-span-select="' + key + '">' +
+        SPAN_OPTIONS.map(function (n) { return '<option value="' + n + '"' + (item.span === n ? ' selected' : '') + '>' + n + ' / 12</option>'; }).join('') +
+        '</select>' +
+        '<button type="button" role="switch" class="st-switch' + (on ? ' is-on' : '') + '" aria-checked="' + on + '" data-section-switch="' + key + '"><span class="st-switch-knob"></span></button>';
       ul.appendChild(li);
     });
-    document.getElementById('st-summary-sections').textContent = SECTIONS.filter(function (s) { return draft.sections[s.key] !== false; }).length + ' / ' + SECTIONS.length + ' 個顯示中';
+    document.getElementById('st-summary-sections').textContent = draft.layout.filter(function (item) { return draft.sections[item.key] !== false; }).length + ' / ' + draft.layout.length + ' 個顯示中';
+
     Array.prototype.slice.call(ul.querySelectorAll('[data-section-switch]')).forEach(function (btn) {
       btn.addEventListener('click', function () {
         var key = btn.getAttribute('data-section-switch');
         var next = draft.sections[key] === false; // 目前是 false（關）→ 打開；否則關掉
         draft.sections[key] = next;
+        renderSections();
+        liveApply();
+      });
+    });
+    Array.prototype.slice.call(ul.querySelectorAll('[data-span-select]')).forEach(function (sel) {
+      sel.addEventListener('change', function () {
+        var key = sel.getAttribute('data-span-select');
+        for (var i = 0; i < draft.layout.length; i++) {
+          if (draft.layout[i].key === key) { draft.layout[i].span = Number(sel.value); break; }
+        }
+        liveApply();
+      });
+    });
+    Array.prototype.slice.call(ul.querySelectorAll('.st-section-row')).forEach(function (row) {
+      row.addEventListener('dragstart', function (e) {
+        dragKey = row.getAttribute('data-section-key');
+        row.classList.add('is-dragging');
+        if (e.dataTransfer) {
+          e.dataTransfer.effectAllowed = 'move';
+          try { e.dataTransfer.setData('text/plain', dragKey); } catch (e2) {}
+        }
+      });
+      row.addEventListener('dragend', function () { row.classList.remove('is-dragging'); dragKey = null; });
+      row.addEventListener('dragover', function (e) { e.preventDefault(); row.classList.add('is-drop-target'); });
+      row.addEventListener('dragleave', function () { row.classList.remove('is-drop-target'); });
+      row.addEventListener('drop', function (e) {
+        e.preventDefault();
+        row.classList.remove('is-drop-target');
+        var targetKey = row.getAttribute('data-section-key');
+        if (dragKey) moveLayoutItem(dragKey, targetKey);
         renderSections();
         liveApply();
       });
@@ -186,15 +262,16 @@
         if (draft.sitename) localStorage.setItem(SITENAME_KEY, draft.sitename);
         else localStorage.removeItem(SITENAME_KEY);
         localStorage.setItem(SKIN_KEY, draft.skin);
+        localStorage.setItem(LAYOUT_KEY, JSON.stringify(draft.layout));
       } catch (e) {}
       refreshAppliedTag();
       liveApply(); // 預覽本來就已即時反映草稿，這裡只是連同「已套用」狀態一起確認
     });
 
     document.getElementById('st-reset').addEventListener('click', function () {
-      try { localStorage.removeItem(SECTIONS_KEY); localStorage.removeItem(SITENAME_KEY); localStorage.removeItem(SKIN_KEY); } catch (e) {}
+      try { localStorage.removeItem(SECTIONS_KEY); localStorage.removeItem(SITENAME_KEY); localStorage.removeItem(SKIN_KEY); localStorage.removeItem(LAYOUT_KEY); } catch (e) {}
       var loaded = loadApplied();
-      draft = { sections: loaded.sections, sitename: loaded.sitename, skin: loaded.skin };
+      draft = { sections: loaded.sections, sitename: loaded.sitename, skin: loaded.skin, layout: loaded.layout };
       document.documentElement.setAttribute('data-skin', draft.skin);
       document.getElementById('st-sitename').value = draft.sitename;
       document.getElementById('st-summary-site').textContent = draft.sitename || 'CMS_前台_v4';
@@ -217,7 +294,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     var loaded = loadApplied();
-    draft = { sections: loaded.sections, sitename: loaded.sitename, skin: loaded.skin };
+    draft = { sections: loaded.sections, sitename: loaded.sitename, skin: loaded.skin, layout: loaded.layout };
     document.documentElement.setAttribute('data-skin', draft.skin); // studio 自己的 chrome 也跟著換膚
     renderSections();
     renderSkins();

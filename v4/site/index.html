@@ -87,9 +87,8 @@
       </div>
     </div>
 
-    <div class="container lobby-grid">
-      <div class="panel-row">
-          <section class="panel" data-section="hot-games">
+    <div class="container grid12">
+          <section class="panel" data-section="hot-games" data-span="5">
             <div class="panel-head">
               <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span>
               <h2 class="panel-title">熱門遊戲</h2>
@@ -254,7 +253,7 @@
               </div>
             </div>
           </section>
-          <section class="panel" data-section="mini-games">
+          <section class="panel" data-section="mini-games" data-span="4">
             <div class="panel-head">
               <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></span>
               <h2 class="panel-title">迷你遊戲</h2>
@@ -419,9 +418,100 @@
               </div>
             </div>
           </section>
-        </div>
 
-        <section class="panel" data-section="electronic">
+        <section class="panel" data-section="live" data-span="3" style="padding: 0; overflow: hidden;">
+          <div class="feature-carousel" id="featureCarousel">
+            <div class="feature-card active">
+              <div class="feature-card-bg" style="background-image: url(assets/mock/live-02.webp);"></div>
+              <div class="feature-card-body">
+                <div class="feature-card-eyebrow">真人娛樂</div>
+                <h2 class="feature-card-title">Lightning Roulette</h2>
+                <div class="tile-grid rail vendor-rail" role="tablist" aria-label="選擇廠商">
+                  <button type="button" class="feature-vendor-chip active" title="Evolution Gaming" data-bg="assets/mock/live-02.webp">EVO</button>
+                  <button type="button" class="feature-vendor-chip" title="WE Casino" data-bg="assets/mock/live-01.webp">WE</button>
+                  <button type="button" class="feature-vendor-chip" title="BG Big Gaming" data-bg="assets/mock/live-04.webp">BG</button>
+                  <button type="button" class="feature-vendor-chip" title="Pragmatic Play Live" data-bg="assets/mock/live-05.webp">PP</button>
+                  <button type="button" class="feature-vendor-chip" title="BBIN" data-bg="assets/mock/live-02.webp">BBIN</button>
+                  <button type="button" class="feature-vendor-chip" title="Allbet" data-bg="assets/mock/live-01.webp">AB</button>
+                  <button type="button" class="feature-vendor-chip" title="Yeebet Live" data-bg="assets/mock/live-04.webp">YB</button>
+                  <button type="button" class="feature-vendor-chip" title="SA Gaming" data-bg="assets/mock/live-05.webp">SA</button>
+                  <button type="button" class="feature-vendor-chip" title="WM Casino" data-bg="assets/mock/live-02.webp">WM</button>
+                  <button type="button" class="feature-vendor-chip" title="Playtech Live" data-bg="assets/mock/live-01.webp">PT</button>
+                  <button type="button" class="feature-vendor-chip" title="Dream Gaming" data-bg="assets/mock/live-04.webp">DG</button>
+                  <button type="button" class="feature-vendor-chip" title="Asia Gaming" data-bg="assets/mock/live-05.webp">AG</button>
+                  <button type="button" class="feature-vendor-chip" title="Sexy Gaming" data-bg="assets/mock/live-02.webp">SG</button>
+                  <button type="button" class="feature-vendor-chip" title="Ezugi" data-bg="assets/mock/live-01.webp">EZ</button>
+                  <button type="button" class="feature-vendor-chip" title="Venus Casino" data-bg="assets/mock/live-04.webp">VR</button>
+                  <button type="button" class="feature-vendor-chip" title="Gold Deluxe" data-bg="assets/mock/live-05.webp">GD</button>
+                  <button type="button" class="feature-vendor-chip" title="JDB Live" data-bg="assets/mock/live-02.webp">JDB</button>
+                  <button type="button" class="feature-vendor-chip" title="Kingmaker" data-bg="assets/mock/live-01.webp">KM</button>
+                  <button type="button" class="feature-vendor-chip" title="Oriental Game" data-bg="assets/mock/live-04.webp">OG</button>
+                  <button type="button" class="feature-vendor-chip" title="MG Live" data-bg="assets/mock/live-05.webp">MG</button>
+                </div>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-card-bg" style="background-image: url(assets/mock/live-04.webp);"></div>
+              <div class="feature-card-body">
+                <div class="feature-card-eyebrow">真人娛樂</div>
+                <h2 class="feature-card-title">Crazy Time Live</h2>
+                <div class="tile-grid rail vendor-rail" role="tablist" aria-label="選擇廠商">
+                  <button type="button" class="feature-vendor-chip active" title="Evolution Gaming" data-bg="assets/mock/live-04.webp">EVO</button>
+                  <button type="button" class="feature-vendor-chip" title="WE Casino" data-bg="assets/mock/live-01.webp">WE</button>
+                  <button type="button" class="feature-vendor-chip" title="BG Big Gaming" data-bg="assets/mock/live-02.webp">BG</button>
+                  <button type="button" class="feature-vendor-chip" title="Pragmatic Play Live" data-bg="assets/mock/live-05.webp">PP</button>
+                  <button type="button" class="feature-vendor-chip" title="BBIN" data-bg="assets/mock/live-04.webp">BBIN</button>
+                  <button type="button" class="feature-vendor-chip" title="Allbet" data-bg="assets/mock/live-01.webp">AB</button>
+                  <button type="button" class="feature-vendor-chip" title="Yeebet Live" data-bg="assets/mock/live-02.webp">YB</button>
+                  <button type="button" class="feature-vendor-chip" title="SA Gaming" data-bg="assets/mock/live-05.webp">SA</button>
+                  <button type="button" class="feature-vendor-chip" title="WM Casino" data-bg="assets/mock/live-04.webp">WM</button>
+                  <button type="button" class="feature-vendor-chip" title="Playtech Live" data-bg="assets/mock/live-01.webp">PT</button>
+                  <button type="button" class="feature-vendor-chip" title="Dream Gaming" data-bg="assets/mock/live-02.webp">DG</button>
+                  <button type="button" class="feature-vendor-chip" title="Asia Gaming" data-bg="assets/mock/live-05.webp">AG</button>
+                  <button type="button" class="feature-vendor-chip" title="Sexy Gaming" data-bg="assets/mock/live-04.webp">SG</button>
+                  <button type="button" class="feature-vendor-chip" title="Ezugi" data-bg="assets/mock/live-01.webp">EZ</button>
+                  <button type="button" class="feature-vendor-chip" title="Venus Casino" data-bg="assets/mock/live-02.webp">VR</button>
+                  <button type="button" class="feature-vendor-chip" title="Gold Deluxe" data-bg="assets/mock/live-05.webp">GD</button>
+                  <button type="button" class="feature-vendor-chip" title="JDB Live" data-bg="assets/mock/live-04.webp">JDB</button>
+                  <button type="button" class="feature-vendor-chip" title="Kingmaker" data-bg="assets/mock/live-01.webp">KM</button>
+                  <button type="button" class="feature-vendor-chip" title="Oriental Game" data-bg="assets/mock/live-02.webp">OG</button>
+                  <button type="button" class="feature-vendor-chip" title="MG Live" data-bg="assets/mock/live-05.webp">MG</button>
+                </div>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-card-bg" style="background-image: url(assets/mock/live-05.webp);"></div>
+              <div class="feature-card-body">
+                <div class="feature-card-eyebrow">真人娛樂</div>
+                <h2 class="feature-card-title">Speed Baccarat</h2>
+                <div class="tile-grid rail vendor-rail" role="tablist" aria-label="選擇廠商">
+                  <button type="button" class="feature-vendor-chip active" title="Evolution Gaming" data-bg="assets/mock/live-05.webp">EVO</button>
+                  <button type="button" class="feature-vendor-chip" title="WE Casino" data-bg="assets/mock/live-01.webp">WE</button>
+                  <button type="button" class="feature-vendor-chip" title="BG Big Gaming" data-bg="assets/mock/live-02.webp">BG</button>
+                  <button type="button" class="feature-vendor-chip" title="Pragmatic Play Live" data-bg="assets/mock/live-04.webp">PP</button>
+                  <button type="button" class="feature-vendor-chip" title="BBIN" data-bg="assets/mock/live-05.webp">BBIN</button>
+                  <button type="button" class="feature-vendor-chip" title="Allbet" data-bg="assets/mock/live-01.webp">AB</button>
+                  <button type="button" class="feature-vendor-chip" title="Yeebet Live" data-bg="assets/mock/live-02.webp">YB</button>
+                  <button type="button" class="feature-vendor-chip" title="SA Gaming" data-bg="assets/mock/live-04.webp">SA</button>
+                  <button type="button" class="feature-vendor-chip" title="WM Casino" data-bg="assets/mock/live-05.webp">WM</button>
+                  <button type="button" class="feature-vendor-chip" title="Playtech Live" data-bg="assets/mock/live-01.webp">PT</button>
+                  <button type="button" class="feature-vendor-chip" title="Dream Gaming" data-bg="assets/mock/live-02.webp">DG</button>
+                  <button type="button" class="feature-vendor-chip" title="Asia Gaming" data-bg="assets/mock/live-04.webp">AG</button>
+                  <button type="button" class="feature-vendor-chip" title="Sexy Gaming" data-bg="assets/mock/live-05.webp">SG</button>
+                  <button type="button" class="feature-vendor-chip" title="Ezugi" data-bg="assets/mock/live-01.webp">EZ</button>
+                  <button type="button" class="feature-vendor-chip" title="Venus Casino" data-bg="assets/mock/live-02.webp">VR</button>
+                  <button type="button" class="feature-vendor-chip" title="Gold Deluxe" data-bg="assets/mock/live-04.webp">GD</button>
+                  <button type="button" class="feature-vendor-chip" title="JDB Live" data-bg="assets/mock/live-05.webp">JDB</button>
+                  <button type="button" class="feature-vendor-chip" title="Kingmaker" data-bg="assets/mock/live-01.webp">KM</button>
+                  <button type="button" class="feature-vendor-chip" title="Oriental Game" data-bg="assets/mock/live-02.webp">OG</button>
+                  <button type="button" class="feature-vendor-chip" title="MG Live" data-bg="assets/mock/live-04.webp">MG</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" data-section="electronic" data-span="9">
           <div class="panel-head">
             <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></span>
             <h2 class="panel-title">電子遊戲</h2>
@@ -587,99 +677,7 @@
           </div>
         </section>
 
-        <section class="panel" data-section="live" style="padding: 0; overflow: hidden;">
-          <div class="feature-carousel" id="featureCarousel">
-            <div class="feature-card active">
-              <div class="feature-card-bg" style="background-image: url(assets/mock/live-02.webp);"></div>
-              <div class="feature-card-body">
-                <div class="feature-card-eyebrow">真人娛樂</div>
-                <h2 class="feature-card-title">Lightning Roulette</h2>
-                <div class="tile-grid rail vendor-rail" role="tablist" aria-label="選擇廠商">
-                  <button type="button" class="feature-vendor-chip active" title="Evolution Gaming" data-bg="assets/mock/live-02.webp">EVO</button>
-                  <button type="button" class="feature-vendor-chip" title="WE Casino" data-bg="assets/mock/live-01.webp">WE</button>
-                  <button type="button" class="feature-vendor-chip" title="BG Big Gaming" data-bg="assets/mock/live-04.webp">BG</button>
-                  <button type="button" class="feature-vendor-chip" title="Pragmatic Play Live" data-bg="assets/mock/live-05.webp">PP</button>
-                  <button type="button" class="feature-vendor-chip" title="BBIN" data-bg="assets/mock/live-02.webp">BBIN</button>
-                  <button type="button" class="feature-vendor-chip" title="Allbet" data-bg="assets/mock/live-01.webp">AB</button>
-                  <button type="button" class="feature-vendor-chip" title="Yeebet Live" data-bg="assets/mock/live-04.webp">YB</button>
-                  <button type="button" class="feature-vendor-chip" title="SA Gaming" data-bg="assets/mock/live-05.webp">SA</button>
-                  <button type="button" class="feature-vendor-chip" title="WM Casino" data-bg="assets/mock/live-02.webp">WM</button>
-                  <button type="button" class="feature-vendor-chip" title="Playtech Live" data-bg="assets/mock/live-01.webp">PT</button>
-                  <button type="button" class="feature-vendor-chip" title="Dream Gaming" data-bg="assets/mock/live-04.webp">DG</button>
-                  <button type="button" class="feature-vendor-chip" title="Asia Gaming" data-bg="assets/mock/live-05.webp">AG</button>
-                  <button type="button" class="feature-vendor-chip" title="Sexy Gaming" data-bg="assets/mock/live-02.webp">SG</button>
-                  <button type="button" class="feature-vendor-chip" title="Ezugi" data-bg="assets/mock/live-01.webp">EZ</button>
-                  <button type="button" class="feature-vendor-chip" title="Venus Casino" data-bg="assets/mock/live-04.webp">VR</button>
-                  <button type="button" class="feature-vendor-chip" title="Gold Deluxe" data-bg="assets/mock/live-05.webp">GD</button>
-                  <button type="button" class="feature-vendor-chip" title="JDB Live" data-bg="assets/mock/live-02.webp">JDB</button>
-                  <button type="button" class="feature-vendor-chip" title="Kingmaker" data-bg="assets/mock/live-01.webp">KM</button>
-                  <button type="button" class="feature-vendor-chip" title="Oriental Game" data-bg="assets/mock/live-04.webp">OG</button>
-                  <button type="button" class="feature-vendor-chip" title="MG Live" data-bg="assets/mock/live-05.webp">MG</button>
-                </div>
-              </div>
-            </div>
-            <div class="feature-card">
-              <div class="feature-card-bg" style="background-image: url(assets/mock/live-04.webp);"></div>
-              <div class="feature-card-body">
-                <div class="feature-card-eyebrow">真人娛樂</div>
-                <h2 class="feature-card-title">Crazy Time Live</h2>
-                <div class="tile-grid rail vendor-rail" role="tablist" aria-label="選擇廠商">
-                  <button type="button" class="feature-vendor-chip active" title="Evolution Gaming" data-bg="assets/mock/live-04.webp">EVO</button>
-                  <button type="button" class="feature-vendor-chip" title="WE Casino" data-bg="assets/mock/live-01.webp">WE</button>
-                  <button type="button" class="feature-vendor-chip" title="BG Big Gaming" data-bg="assets/mock/live-02.webp">BG</button>
-                  <button type="button" class="feature-vendor-chip" title="Pragmatic Play Live" data-bg="assets/mock/live-05.webp">PP</button>
-                  <button type="button" class="feature-vendor-chip" title="BBIN" data-bg="assets/mock/live-04.webp">BBIN</button>
-                  <button type="button" class="feature-vendor-chip" title="Allbet" data-bg="assets/mock/live-01.webp">AB</button>
-                  <button type="button" class="feature-vendor-chip" title="Yeebet Live" data-bg="assets/mock/live-02.webp">YB</button>
-                  <button type="button" class="feature-vendor-chip" title="SA Gaming" data-bg="assets/mock/live-05.webp">SA</button>
-                  <button type="button" class="feature-vendor-chip" title="WM Casino" data-bg="assets/mock/live-04.webp">WM</button>
-                  <button type="button" class="feature-vendor-chip" title="Playtech Live" data-bg="assets/mock/live-01.webp">PT</button>
-                  <button type="button" class="feature-vendor-chip" title="Dream Gaming" data-bg="assets/mock/live-02.webp">DG</button>
-                  <button type="button" class="feature-vendor-chip" title="Asia Gaming" data-bg="assets/mock/live-05.webp">AG</button>
-                  <button type="button" class="feature-vendor-chip" title="Sexy Gaming" data-bg="assets/mock/live-04.webp">SG</button>
-                  <button type="button" class="feature-vendor-chip" title="Ezugi" data-bg="assets/mock/live-01.webp">EZ</button>
-                  <button type="button" class="feature-vendor-chip" title="Venus Casino" data-bg="assets/mock/live-02.webp">VR</button>
-                  <button type="button" class="feature-vendor-chip" title="Gold Deluxe" data-bg="assets/mock/live-05.webp">GD</button>
-                  <button type="button" class="feature-vendor-chip" title="JDB Live" data-bg="assets/mock/live-04.webp">JDB</button>
-                  <button type="button" class="feature-vendor-chip" title="Kingmaker" data-bg="assets/mock/live-01.webp">KM</button>
-                  <button type="button" class="feature-vendor-chip" title="Oriental Game" data-bg="assets/mock/live-02.webp">OG</button>
-                  <button type="button" class="feature-vendor-chip" title="MG Live" data-bg="assets/mock/live-05.webp">MG</button>
-                </div>
-              </div>
-            </div>
-            <div class="feature-card">
-              <div class="feature-card-bg" style="background-image: url(assets/mock/live-05.webp);"></div>
-              <div class="feature-card-body">
-                <div class="feature-card-eyebrow">真人娛樂</div>
-                <h2 class="feature-card-title">Speed Baccarat</h2>
-                <div class="tile-grid rail vendor-rail" role="tablist" aria-label="選擇廠商">
-                  <button type="button" class="feature-vendor-chip active" title="Evolution Gaming" data-bg="assets/mock/live-05.webp">EVO</button>
-                  <button type="button" class="feature-vendor-chip" title="WE Casino" data-bg="assets/mock/live-01.webp">WE</button>
-                  <button type="button" class="feature-vendor-chip" title="BG Big Gaming" data-bg="assets/mock/live-02.webp">BG</button>
-                  <button type="button" class="feature-vendor-chip" title="Pragmatic Play Live" data-bg="assets/mock/live-04.webp">PP</button>
-                  <button type="button" class="feature-vendor-chip" title="BBIN" data-bg="assets/mock/live-05.webp">BBIN</button>
-                  <button type="button" class="feature-vendor-chip" title="Allbet" data-bg="assets/mock/live-01.webp">AB</button>
-                  <button type="button" class="feature-vendor-chip" title="Yeebet Live" data-bg="assets/mock/live-02.webp">YB</button>
-                  <button type="button" class="feature-vendor-chip" title="SA Gaming" data-bg="assets/mock/live-04.webp">SA</button>
-                  <button type="button" class="feature-vendor-chip" title="WM Casino" data-bg="assets/mock/live-05.webp">WM</button>
-                  <button type="button" class="feature-vendor-chip" title="Playtech Live" data-bg="assets/mock/live-01.webp">PT</button>
-                  <button type="button" class="feature-vendor-chip" title="Dream Gaming" data-bg="assets/mock/live-02.webp">DG</button>
-                  <button type="button" class="feature-vendor-chip" title="Asia Gaming" data-bg="assets/mock/live-04.webp">AG</button>
-                  <button type="button" class="feature-vendor-chip" title="Sexy Gaming" data-bg="assets/mock/live-05.webp">SG</button>
-                  <button type="button" class="feature-vendor-chip" title="Ezugi" data-bg="assets/mock/live-01.webp">EZ</button>
-                  <button type="button" class="feature-vendor-chip" title="Venus Casino" data-bg="assets/mock/live-02.webp">VR</button>
-                  <button type="button" class="feature-vendor-chip" title="Gold Deluxe" data-bg="assets/mock/live-04.webp">GD</button>
-                  <button type="button" class="feature-vendor-chip" title="JDB Live" data-bg="assets/mock/live-05.webp">JDB</button>
-                  <button type="button" class="feature-vendor-chip" title="Kingmaker" data-bg="assets/mock/live-01.webp">KM</button>
-                  <button type="button" class="feature-vendor-chip" title="Oriental Game" data-bg="assets/mock/live-02.webp">OG</button>
-                  <button type="button" class="feature-vendor-chip" title="MG Live" data-bg="assets/mock/live-04.webp">MG</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel" data-section="fish">
+        <section class="panel" data-section="fish" data-span="3">
           <div class="panel-head">
             <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12c3-4 8-5 12-4l4-2v12l-4-2c-4 1-9 0-12-4Z"/></svg></span>
             <h2 class="panel-title">捕魚達人</h2>
@@ -845,7 +843,7 @@
           </div>
         </section>
 
-        <section class="panel" data-section="sport">
+        <section class="panel" data-section="sport" data-span="12">
           <div class="panel-head">
             <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m12 3 2.5 6M21 12l-6 2.5M12 21l-2.5-6M3 12l6-2.5"/></svg></span>
             <h2 class="panel-title">體育專區</h2>
