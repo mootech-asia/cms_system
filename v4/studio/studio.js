@@ -14,7 +14,7 @@
   var LAYOUT_KEY = 'cms-v4-studio-layout';
 
   var SKINS = [
-    { id: 'festive-red-gold', label: '紅金喜慶（預設）', dot: 'linear-gradient(135deg,#d21f3c,#f2a924)' },
+    { id: 'festive-red-gold', label: '紅金喜慶', dot: 'linear-gradient(135deg,#d21f3c,#f2a924)' },
     { id: 'imperial-purple', label: '尊爵紫金', dot: 'linear-gradient(135deg,#5b2a86,#f2a924)' },
     { id: 'emerald-jade', label: '富貴翡翠', dot: 'linear-gradient(135deg,#12704a,#f2a924)' },
     { id: 'sapphire-blue', label: '尊爵藍鑽', dot: 'linear-gradient(135deg,#1b3f91,#f2a924)' },
