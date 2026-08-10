@@ -24,6 +24,9 @@
     'nav.fish': { zh: '捕魚達人', en: 'Fishing Master', ko: '낚시의 달인', th: 'เซียนยิงปลา' },
     'nav.sport': { zh: '體育', en: 'Sports', ko: '스포츠', th: 'กีฬา' },
     'nav.promotion': { zh: '優惠活動', en: 'Promotions', ko: '프로모션', th: 'โปรโมชั่น' },
+    'nav.deposit': { zh: '儲值', en: 'Deposit', ko: '충전', th: 'เติมเงิน' },
+    'nav.member': { zh: '會員', en: 'Account', ko: '계정', th: 'บัญชี' },
+    'nav.menu': { zh: '選單', en: 'Menu', ko: '메뉴', th: 'เมนู' },
 
     'auth.registerNow': { zh: '立即註冊', en: 'Register Now', ko: '지금 가입', th: 'ลงทะเบียนเลย' },
     'auth.usernamePlaceholder': { zh: '用戶名', en: 'Username', ko: '사용자명', th: 'ชื่อผู้ใช้' },

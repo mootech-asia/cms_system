@@ -62,15 +62,17 @@ img { max-width: 100%; display: block; }
 .site-header { background: var(--header-grad); }
 /* justify-content 交給 .header-lang 的 margin-left:auto 處理（見下方語系
    切換樣式）,logo 之後的項目（語系／漢堡／header-auth）整群被推到最右。 */
+/* padding 用 longhand（同下方 .member-shell 註解的理由）：3-value/2-value
+   shorthand 會把 .container 的左右 padding 一起蓋成 0。 */
 .header-top {
   display: flex; align-items: center; gap: 12px;
-  padding: 14px 0;
+  padding-top: 14px; padding-bottom: 14px;
 }
 .brand-link { display: flex; align-items: center; flex-shrink: 0; }
 .brand-logo { height: 40px; width: auto; filter: brightness(0) invert(1); }
 .header-nav {
   display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
-  padding: 10px 0 12px;
+  padding-top: 10px; padding-bottom: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.14);
 }
 .header-nav-link {
@@ -119,7 +121,7 @@ img { max-width: 100%; display: block; }
 }
 .notice-bar-inner {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 9px 0;
+  padding-top: 9px; padding-bottom: 9px;
   font-size: 12.5px;
   color: var(--notice-text);
 }
@@ -146,7 +148,7 @@ img { max-width: 100%; display: block; }
 .notice-links a:hover { color: var(--red); }
 
 /* ── HERO ───────────────────────────────── */
-.hero-wrap { padding: 18px 0 0; }
+.hero-wrap { padding-top: 18px; }
 .hero {
   position: relative;
   border-radius: var(--radius-lg);
@@ -208,7 +210,7 @@ img { max-width: 100%; display: block; }
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
   gap: 20px;
-  padding: 20px 0 40px;
+  padding-top: 20px; padding-bottom: 40px;
   align-items: stretch;
 }
 @media (min-width: 1081px) {
@@ -336,7 +338,7 @@ img { max-width: 100%; display: block; }
 
 /* ── 分類頁列表（熱門/老虎機/真人/捕魚/體育/迷你遊戲） ── */
 /* 右側留出浮動客服列的寬度,避免搜尋框/卡片被蓋住。 */
-.listing-wrap { padding: 20px 0 40px; padding-right: 92px; }
+.listing-wrap { padding-top: 20px; padding-bottom: 40px; padding-right: 92px; }
 @media (max-width: 720px) { .listing-wrap { padding-right: 20px; } }
 .listing-head { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
 .listing-title { font-size: 22px; font-weight: 800; margin: 0; flex: 1; }
@@ -427,6 +429,14 @@ img { max-width: 100%; display: block; }
    為了替右側 quick-rail 浮動按鈕留空間,左側應維持 .container 的 20px。 */
 .member-shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 20px; padding-top: 20px; padding-bottom: 48px; padding-right: 92px; align-items: start; }
 @media (max-width: 720px) { .member-shell { padding-right: 20px; grid-template-columns: 1fr; } }
+/* 手機版側邊選單直向 9 項會把表單內容整個推到貼近視窗底部,跟後來加的
+   .mobile-tabbar 打架（表單首排按鈕會被固定定位的快捷列蓋住）,改成橫向
+   可滑動的一行,大幅壓低高度。 */
+@media (max-width: 720px) {
+  .member-sidebar { display: flex; gap: 6px; overflow-x: auto; padding: 8px; position: static; }
+  .member-sidebar-link { flex-direction: column; gap: 4px; padding: 8px 10px; font-size: 11px; white-space: nowrap; flex-shrink: 0; }
+  .member-sidebar-divider { display: none; }
+}
 .member-sidebar { position: sticky; top: 20px; padding: 10px; }
 .member-sidebar-link {
   display: flex; align-items: center; gap: 10px;
@@ -606,6 +616,19 @@ img { max-width: 100%; display: block; }
 }
 .quick-rail-btn:hover .quick-rail-label,
 .quick-rail-btn:focus-visible .quick-rail-label { opacity: 1; transform: translateY(-50%) translateX(0); }
+
+/* ── 手機底部快捷列（僅窄螢幕顯示，見 @media (max-width: 720px)；
+   桌機用 .header-nav 已足夠導覽，不重複顯示） ── */
+.mobile-tabbar { display: none; }
+.mobile-tabbar-btn {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 6px 2px;
+  font-size: 11px; font-weight: 600;
+  color: var(--text-mid);
+}
+.mobile-tabbar-btn svg { width: 20px; height: 20px; }
+.mobile-tabbar-btn.active { color: var(--red); }
 
 /* ── 合作廠商跑馬燈 ─────────────────────── */
 /* .vendor-marquee-track 裡放兩份完全相同的 .vendor-marquee-row（第二份
@@ -790,6 +813,16 @@ img { max-width: 100%; display: block; }
   /* 手機版帳號/登入操作已收進漢堡選單（見 mobile-menu-*），header 上的
      inline 登入表單／使用者資訊在窄螢幕會擠成第二行,直接隱藏改用選單。 */
   .header-auth { display: none; }
+  /* body 留出跟快捷列等高的底部空間,避免頁尾內容被固定定位的快捷列蓋住。 */
+  body { padding-bottom: 56px; }
+  .mobile-tabbar {
+    display: flex;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 500;
+    background: var(--bg-panel);
+    border-top: 1px solid var(--line);
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 16px rgba(43, 36, 32, 0.06);
+  }
   .hero { height: 220px; }
   .hero-content { padding: 0 24px; }
   .hero-title { font-size: 26px; }
@@ -811,7 +844,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* ── 關於我們 / 常見問題（about.html） ── */
-.about-wrap { padding: 24px 0 48px; max-width: 880px; margin: 0 auto; padding-right: 92px; }
+.about-wrap { padding-top: 24px; padding-bottom: 48px; max-width: 880px; margin: 0 auto; padding-right: 92px; }
 @media (max-width: 720px) { .about-wrap { padding-right: 20px; } }
 .about-title { font-size: 22px; font-weight: 800; margin: 0 0 16px; }
 .about-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
@@ -831,7 +864,7 @@ img { max-width: 100%; display: block; }
 .faq-card.open .faq-answer { display: block; }
 
 /* ── UI Kit（元件展示頁，開發參考用） ── */
-.uikit-wrap { padding: 24px 0 48px; padding-right: 92px; }
+.uikit-wrap { padding-top: 24px; padding-bottom: 48px; padding-right: 92px; }
 @media (max-width: 720px) { .uikit-wrap { padding-right: 20px; } }
 .uikit-section { margin-bottom: 32px; }
 .uikit-section-title { font-size: 16px; font-weight: 800; margin: 0 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--gold-hi); display: inline-block; }

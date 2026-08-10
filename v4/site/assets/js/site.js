@@ -385,7 +385,10 @@
     if (registerBtn) on(registerBtn, 'click', function () { closeMobileMenu(); openAuthModal('register'); });
   }
   function initHeaderMobileMenu() {
-    Array.prototype.slice.call(document.querySelectorAll('.header-menu-trigger')).forEach(function (btn) {
+    /* .mobile-tabbar-menu：底部快捷列的「選單」鍵，跟 header 的漢堡鍵開同一個
+       選單，但外觀走 tabbar 自己的樣式，故用另一個 class 掛行為,不共用
+       .header-menu-trigger（那個 class 帶圓形按鈕樣式，會蓋掉 tabbar 排版）。 */
+    Array.prototype.slice.call(document.querySelectorAll('.header-menu-trigger, .mobile-tabbar-menu')).forEach(function (btn) {
       on(btn, 'click', openMobileMenu);
     });
   }
@@ -496,6 +499,33 @@
     });
   }
 
+  /* 儲值／提款頁：付款方式頁籤 + 金額快選按鈕。兩頁共用同一套 class
+     （pay-tabs/pay-amount-grid/pay-field），金額輸入框在標記中緊接於金額
+     grid 之後，用 nextElementSibling 取得對應欄位。 */
+  function initPayTabs() {
+    Array.prototype.slice.call(document.querySelectorAll('.pay-tabs')).forEach(function (group) {
+      var tabs = Array.prototype.slice.call(group.querySelectorAll('.pay-tab'));
+      tabs.forEach(function (tab) {
+        on(tab, 'click', function () {
+          tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
+        });
+      });
+    });
+  }
+  function initPayAmount() {
+    Array.prototype.slice.call(document.querySelectorAll('.pay-amount-grid')).forEach(function (grid) {
+      var btns = Array.prototype.slice.call(grid.querySelectorAll('.pay-amount-btn'));
+      var field = grid.nextElementSibling;
+      if (!field || !field.classList.contains('pay-field')) field = null;
+      btns.forEach(function (btn) {
+        on(btn, 'click', function () {
+          btns.forEach(function (b) { b.classList.toggle('selected', b === btn); });
+          if (field) field.value = '₩ ' + btn.textContent.trim();
+        });
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     safe(initAuthGuard);
     safe(renderHeaderAuth);
@@ -511,6 +541,8 @@
     safe(initCsTriggers);
     safe(initAboutTabs);
     safe(initFaqAccordion);
+    safe(initPayTabs);
+    safe(initPayAmount);
     safe(applyStudioSections);
     safe(applyStudioSiteName);
     safe(applyStudioSkin);
