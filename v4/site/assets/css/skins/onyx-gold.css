@@ -18,6 +18,10 @@
   --text-on-header: #f7efe0;
   --panel-tint: #241d13;
   --shadow-card: 0 2px 0 rgba(0, 0, 0, 0.4), 0 10px 24px rgba(0, 0, 0, 0.6);
+  /* quick-rail 懸浮球玻璃底、footer logo 這兩處預設值是「白底站點」寫死
+     的白色/黑色,深色 skin 要跟著換,不然會在深色背景上顯得突兀或看不見。 */
+  --panel-glass: rgba(24, 20, 15, 0.85);
+  --footer-logo-filter: brightness(0) invert(1);
 
   /* 次品牌強調色改為深酒紅,跟黑金基調協調,取代預設的正紅。 */
   --red: #8c1c2b;

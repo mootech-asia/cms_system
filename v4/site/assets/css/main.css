@@ -18,6 +18,9 @@
   --text-dim: #a49a8c;
   --text-on-header: #fff6ea;
   --panel-tint: #fff9ec;
+  --panel-glass: rgba(255, 255, 255, 0.85);
+  --logo-filter: brightness(0) invert(1);
+  --footer-logo-filter: brightness(0);
   --gold: #f2a924;
   --gold-hi: #ffd452;
   --gold-deep: #b87a0a;
@@ -609,7 +612,7 @@ img { max-width: 100%; display: block; }
   display: flex; flex-direction: column; gap: 10px;
   padding: 10px 6px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--panel-glass);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border: 1px solid var(--line-hi);
@@ -706,7 +709,7 @@ img { max-width: 100%; display: block; }
 /* ── FOOTER ─────────────────────────────── */
 .site-footer { background: var(--bg-panel); border-top: 1px solid var(--line); padding: 40px 0 32px; margin-top: 20px; flex-shrink: 0; }
 .site-footer-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.site-footer-logo { height: 32px; width: auto; margin-bottom: 18px; filter: brightness(0); opacity: 0.82; }
+.site-footer-logo { height: 32px; width: auto; margin-bottom: 18px; filter: var(--footer-logo-filter); opacity: 0.82; }
 .site-footer-notice { max-width: 640px; }
 .site-footer-notice p { color: var(--text-mid); font-size: 12px; line-height: 1.7; margin: 0 0 8px; }
 .site-footer-notice p:last-child { margin-bottom: 0; }
