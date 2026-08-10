@@ -432,17 +432,16 @@ img { max-width: 100%; display: block; }
 @media (max-width: 720px) { .member-shell { padding-right: 20px; grid-template-columns: 1fr; } }
 /* 手機版側邊選單直向 9 項會把表單內容整個推到貼近視窗底部,跟後來加的
    .mobile-tabbar 打架（表單首排按鈕會被固定定位的快捷列蓋住）,改成橫向
-   可滑動的深色捷徑列（.member-sidebar.member-panel 疊 class 提高
-   specificity,蓋掉 .member-panel 的白底/淺邊框),圖示文字同行、統一
-   高度,未選中項目淺色文字、選中項目維持全站一致的金色底,而非圖示文字
-   上下疊放的方塊。 */
+   可滑動的底線式 tab（.member-sidebar.member-panel 疊 class 提高
+   specificity,蓋掉 .member-panel 的白底/陰影/圓角),不做色塊背景,靠
+   底線＋文字變色標示目前項目,跟頁面白底融合,不會有色塊硬凑的問題。 */
 @media (max-width: 720px) {
-  .member-sidebar.member-panel { background: var(--text); border-color: var(--text); }
-  .member-sidebar { display: flex; gap: 4px; overflow-x: auto; padding: 6px; position: static; }
-  .member-sidebar-link { flex-direction: row; gap: 6px; padding: 9px 14px; font-size: 13px; white-space: nowrap; flex-shrink: 0; border-radius: 999px; color: var(--text-on-header); }
-  .member-sidebar-link svg { width: 15px; height: 15px; }
-  .member-sidebar-link:hover { background: rgba(255, 255, 255, 0.1); color: var(--text-on-header); }
-  .member-sidebar-link.active { background: var(--gold-grad); color: #3a2604; }
+  .member-sidebar.member-panel { background: none; border: none; border-radius: 0; box-shadow: none; border-bottom: 1px solid var(--line); }
+  .member-sidebar { display: flex; gap: 4px; overflow-x: auto; padding: 0; position: static; }
+  .member-sidebar-link { flex-direction: row; gap: 6px; padding: 12px 14px; font-size: 13px; white-space: nowrap; flex-shrink: 0; border-radius: 0; border-bottom: 2px solid transparent; color: var(--text-mid); }
+  .member-sidebar-link svg { width: 16px; height: 16px; }
+  .member-sidebar-link:hover { background: none; color: var(--text); }
+  .member-sidebar-link.active { background: none; color: var(--gold-deep); border-bottom-color: var(--gold-deep); }
   .member-sidebar-divider { display: none; }
 }
 .member-sidebar { position: sticky; top: 20px; padding: 10px; }
@@ -485,6 +484,22 @@ img { max-width: 100%; display: block; }
 .acct-stat-label { font-size: 12px; color: var(--text-dim); margin: 0 0 2px; }
 .acct-stat-value { font-size: 17px; font-weight: 800; color: var(--gold-deep); margin: 0; }
 .acct-actions { display: flex; gap: 10px; flex-shrink: 0; }
+/* 窄屏下 .acct-hero 原本的橫向 flex-wrap 排列（頭像/資訊/按鈕三塊自由
+   換行）會讓頭像因 align-items:center 飄在很高的多行內容正中間,跟旁邊
+   文字對不齊;統計數據 32px 固定 gap 換行後也長短不一、間距失控。改成
+   直向堆疊 + 統計數據用三欄等寬 grid,對齊更清楚。 */
+@media (max-width: 720px) {
+  .acct-hero { flex-direction: column; align-items: center; text-align: center; gap: 14px; }
+  .acct-info { width: 100%; }
+  .acct-name-row { justify-content: center; }
+  /* 三欄等寬會讓「目前餘額」這種長數字擠到換行,改成餘額獨占一整行、
+     其餘兩項平分,較長的金額才有足夠寬度。 */
+  .acct-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 14px; text-align: center; }
+  .acct-stats-grid > div:first-child { grid-column: 1 / -1; }
+  .acct-stat-value { font-size: 16px; word-break: break-word; }
+  .acct-actions { width: 100%; }
+  .acct-actions .btn-gold { flex: 1; text-align: center; }
+}
 
 .member-panel { border-radius: var(--radius-lg); border: 1px solid var(--line); background: var(--bg-panel); box-shadow: var(--shadow-card); padding: 18px; }
 .member-panel-title { font-size: 15px; font-weight: 800; margin: 0 0 14px; color: var(--text); }
