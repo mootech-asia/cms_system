@@ -100,7 +100,24 @@
     var win = frame && frame.contentWindow;
     if (win && win.__cmsV4StudioApply) {
       try { win.__cmsV4StudioApply({ sections: draft.sections, sitename: draft.sitename, skin: draft.skin, layout: draft.layout }); } catch (e) {}
+      // 換頁後 iframe 是全新的 document,__cmsV4StudioApply 裡也會在 editMode 開著時
+      // 重掛拖曳把手,但首頁區塊面板只在首頁才有意義,其他頁面呼叫也無害(找不到 .grid12 就跳過)。
+      if (win.__cmsV4StudioSetEditMode) { try { win.__cmsV4StudioSetEditMode(true); } catch (e) {} }
     }
+  }
+
+  /* 直接在右側 iframe 預覽拖曳模組排序:iframe 內(site.js)完成 DOM
+     reorder 後用 postMessage 回報最新順序,這裡更新 draft.layout 並重繪
+     左側清單面板,讓兩種操作方式（清單拖曳／預覽拖曳）保持同一份狀態。 */
+  function initReorderListener() {
+    window.addEventListener('message', function (e) {
+      var frame = document.getElementById('st-frame');
+      if (!frame || e.source !== frame.contentWindow) return;
+      var data = e.data;
+      if (!data || data.type !== 'cms-v4-studio-reorder' || !Array.isArray(data.layout)) return;
+      draft.layout = data.layout;
+      renderSections();
+    });
   }
 
   function renderSkins() {
@@ -304,6 +321,7 @@
     initWidthToggle();
     initApplyReset();
     initSiteName();
+    initReorderListener();
     // iframe 換頁（含首次載入）後都要重新即時套用一次草稿，否則新頁面會是預設樣式
     document.getElementById('st-frame').addEventListener('load', liveApply);
     liveApply();

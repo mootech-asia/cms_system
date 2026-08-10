@@ -65,6 +65,66 @@
     if (raw) applyLayout(raw);
   }
 
+  /* 12 欄版位的「直接在預覽畫面拖曳排序」:只有 studio 呼叫過
+     __cmsV4StudioSetEditMode(true) 才會啟用,一般訪客直接開 index.html
+     不會出現任何拖曳 UI／行為。每個模組左上角疊一個把手,只有從把手
+     mousedown 才把該模組設成 draggable,放開/拖曳結束都還原,避免拖到
+     模組內部的按鈕、輪播箭頭等既有互動。drop 完成後直接在 iframe 內
+     appendChild 重新排序(同 applyLayout 的做法),再把最新順序透過
+     postMessage 回報給同源的 studio 父頁,讓左側清單／localStorage 保持
+     同步。 */
+  var gridEditModeOn = false;
+  function currentGridLayout() {
+    var grid = document.querySelector('.grid12');
+    if (!grid) return [];
+    return Array.prototype.slice.call(grid.querySelectorAll('[data-section]')).map(function (el) {
+      return { key: el.getAttribute('data-section'), span: Number(el.getAttribute('data-span')) || 3 };
+    });
+  }
+  function notifyStudioReorder() {
+    try { window.parent.postMessage({ type: 'cms-v4-studio-reorder', layout: currentGridLayout() }, location.origin); } catch (e) {}
+  }
+  function initGrid12DragEdit() {
+    var grid = document.querySelector('.grid12');
+    if (!grid) return;
+    var dragEl = null;
+    Array.prototype.slice.call(grid.querySelectorAll('[data-section]')).forEach(function (el) {
+      if (el.querySelector('.grid12-drag-handle')) return; // 重複呼叫時不要疊加把手
+      var handle = document.createElement('span');
+      handle.className = 'grid12-drag-handle';
+      handle.setAttribute('aria-hidden', 'true');
+      handle.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="6" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="18" r="1"/></svg>';
+      el.style.position = el.style.position || 'relative';
+      el.appendChild(handle);
+      on(handle, 'mousedown', function () { el.setAttribute('draggable', 'true'); });
+      on(el, 'dragstart', function (e) {
+        dragEl = el;
+        el.classList.add('grid12-dragging');
+        if (e.dataTransfer) e.dataTransfer.effectAllowed = 'move';
+      });
+      on(el, 'dragend', function () {
+        el.classList.remove('grid12-dragging');
+        el.removeAttribute('draggable');
+        dragEl = null;
+        Array.prototype.slice.call(grid.querySelectorAll('[data-section]')).forEach(function (o) { o.classList.remove('grid12-drop-target'); });
+      });
+      on(el, 'dragover', function (e) { e.preventDefault(); if (dragEl && dragEl !== el) el.classList.add('grid12-drop-target'); });
+      on(el, 'dragleave', function () { el.classList.remove('grid12-drop-target'); });
+      on(el, 'drop', function (e) {
+        e.preventDefault();
+        el.classList.remove('grid12-drop-target');
+        if (!dragEl || dragEl === el) return;
+        grid.insertBefore(dragEl, el);
+        notifyStudioReorder();
+      });
+    });
+  }
+  window.__cmsV4StudioSetEditMode = function (on) {
+    gridEditModeOn = !!on;
+    document.documentElement.classList.toggle('cms-v4-grid-edit', gridEditModeOn);
+    if (gridEditModeOn) safe(initGrid12DragEdit);
+  };
+
   /* studio 父頁（同源）在 iframe load 後或任何控制項變動時直接呼叫這個函式，
      即時把草稿反映到畫面上，不經過 localStorage、不需重整。 */
   window.__cmsV4StudioApply = function (draft) {
@@ -73,6 +133,7 @@
     if ('sitename' in draft) applySiteName(draft.sitename);
     if (draft.skin) applySkin(draft.skin);
     if (draft.layout) applyLayout(draft.layout);
+    if (gridEditModeOn) safe(initGrid12DragEdit); // layout 套用後可能重新排過 DOM,把手要重新確保存在
   };
 
   function initHero() {

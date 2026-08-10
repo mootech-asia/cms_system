@@ -228,6 +228,12 @@ img { max-width: 100%; display: block; }
 .grid12 > [data-span="10"] { grid-column: span 10; }
 .grid12 > [data-span="11"] { grid-column: span 11; }
 .grid12 > [data-span="12"] { grid-column: span 12; }
+/* 版位拖曳編輯模式:只有 studio 呼叫 __cmsV4StudioSetEditMode(true) 後
+   <html> 才會帶 .cms-v4-grid-edit,一般訪客瀏覽不會看到這顆把手。 */
+.grid12-drag-handle { display: none; position: absolute; top: 8px; left: 8px; z-index: 5; width: 26px; height: 26px; border-radius: 50%; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.55); color: #fff; cursor: grab; }
+.cms-v4-grid-edit .grid12-drag-handle { display: flex; }
+.grid12-dragging { opacity: 0.4; }
+.grid12-drop-target { outline: 2px dashed var(--gold-hi); outline-offset: 4px; }
 .panel {
   background: var(--bg-panel);
   border: 1px solid var(--line);
