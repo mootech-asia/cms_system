@@ -2223,6 +2223,7 @@
               '<button type="button" class="ap-wd-arrow" data-action="bank-next" aria-label="Next account"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10 6 6 6-6 6"/></svg></button>' +
             '</div>' +
             '<div class="ap-wd-card">' +
+              '<button type="button" class="ap-wd-card-add" data-action="goto-manage-bank" aria-label="Add bank account"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>' +
               '<span class="ap-wd-card-name">' + escapeHtml(b.bank) + '</span>' +
               '<div class="ap-wd-card-acc"><span class="ap-wd-card-acc-label">Account Number</span><span class="ap-wd-card-acc-num">' + escapeHtml(acctTail(b.number)) + '</span></div>' +
               '<span class="ap-wd-card-holder">M＊＊＊＊＊＊＊</span>' +

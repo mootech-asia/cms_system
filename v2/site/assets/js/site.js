@@ -2298,6 +2298,17 @@
       if (cryptoTab) cryptoTab.click();
     });
 
+    /* 銀行卡卡面右上角的「+」→ 跳到管理分頁的 Bank 子頁並直接展開新增表單,
+       與上面 Crypto「Add wallet」同一套跳轉模式。 */
+    on(bankSection, 'click', function (e) {
+      if (!e.target.closest('[data-wd-card-add]')) return;
+      showMode('management');
+      var bankTab = mgmtSection.querySelector('[data-mgmt-tab="bank"]');
+      if (bankTab) bankTab.click();
+      var addBtn = mgmtSection.querySelector('[data-mgmt-add="bank"]');
+      if (addBtn && addBtn.getAttribute('aria-expanded') !== 'true') addBtn.click();
+    });
+
     /* account 頁「+ 新增銀行帳戶」深連結:withdrawal.html?tab=management */
     if (new URLSearchParams(location.search).get('tab') === 'management') {
       showMode('management');

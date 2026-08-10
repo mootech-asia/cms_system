@@ -789,6 +789,12 @@
         });
       });
     });
+    // 提領帳戶卡面上的「+」→ 直接跳到「帳戶管理」頁籤,沿用同一顆分頁按鈕的點擊邏輯。
+    var gotoBtn = document.querySelector('[data-wd-goto-accounts]');
+    if (gotoBtn) on(gotoBtn, 'click', function () {
+      var accountsTab = document.querySelector('[data-wd-tab="accounts"]');
+      if (accountsTab) accountsTab.click();
+    });
     renderWdAccounts();
   }
   function initWithdrawalAccountForm() {

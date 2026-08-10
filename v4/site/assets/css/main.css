@@ -541,6 +541,11 @@ img { max-width: 100%; display: block; }
 .bank-row:last-child { border-bottom: 0; }
 .bank-row svg { width: 22px; height: 22px; color: var(--text-mid); flex-shrink: 0; }
 
+.bank-row-flex { display: flex; align-items: center; gap: 10px; }
+.bank-row-flex > [data-wd-current-account] { flex: 1; min-width: 0; }
+.bank-row-add { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; border: 0; flex-shrink: 0; background: var(--gold-grad); color: #3a2604; cursor: pointer; transition: filter 0.15s; }
+.bank-row-add:hover { filter: brightness(1.05); }
+
 /* 儲值 / 提款表單 */
 .pay-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
 .pay-tab { padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg-panel); color: var(--text-mid); font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
