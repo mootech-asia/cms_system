@@ -16,7 +16,8 @@
     { id: 'festive-red-gold', label: '紅金喜慶（預設）', dot: 'linear-gradient(135deg,#d21f3c,#f2a924)' },
     { id: 'imperial-purple', label: '尊爵紫金', dot: 'linear-gradient(135deg,#5b2a86,#f2a924)' },
     { id: 'emerald-jade', label: '富貴翡翠', dot: 'linear-gradient(135deg,#12704a,#f2a924)' },
-    { id: 'sapphire-blue', label: '尊爵藍鑽', dot: 'linear-gradient(135deg,#1b3f91,#f2a924)' }
+    { id: 'sapphire-blue', label: '尊爵藍鑽', dot: 'linear-gradient(135deg,#1b3f91,#f2a924)' },
+    { id: 'onyx-gold', label: '尊爵黑金', dot: 'linear-gradient(135deg,#1a1710,#f2a924)' }
   ];
   var DEFAULT_SKIN = 'festive-red-gold';
   function findSkin(id) { for (var i = 0; i < SKINS.length; i++) if (SKINS[i].id === id) return SKINS[i]; return null; }

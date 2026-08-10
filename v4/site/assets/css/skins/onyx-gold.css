@@ -1,0 +1,25 @@
+/* CMS v4 skin — 尊爵黑金（Onyx Gold）。
+   使用者明確要求的深色（dark）版本,其餘 skin 一律維持白色 light 基底,
+   只有這個例外。背景/面板/文字全部改為深色調,搭配金色 CTA、深酒紅次
+   品牌色,呈現黑金奢華質感;金色（--gold 系列）為全 skin 共用品牌色,
+   不覆寫。 */
+:root[data-skin="onyx-gold"] {
+  --bg: #0d0b08;
+  --bg-panel: #18140f;
+  --header-grad: linear-gradient(180deg, #211b12 0%, #080705 100%);
+  --header-grad-hi: #d4af37;
+  --notice-bg: #1c170f;
+  --notice-text: #d4af37;
+  --line: #2b241a;
+  --line-hi: #8a6d2e;
+  --text: #f0e6cf;
+  --text-mid: #b5a684;
+  --text-dim: #7a6f57;
+  --text-on-header: #f7efe0;
+  --panel-tint: #241d13;
+  --shadow-card: 0 2px 0 rgba(0, 0, 0, 0.4), 0 10px 24px rgba(0, 0, 0, 0.6);
+
+  /* 次品牌強調色改為深酒紅,跟黑金基調協調,取代預設的正紅。 */
+  --red: #8c1c2b;
+  --red-deep: #5c1119;
+}
