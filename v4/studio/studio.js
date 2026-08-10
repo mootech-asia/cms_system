@@ -35,16 +35,32 @@
   /* 12 欄版位系統:span 3~12 決定模組跨幾欄,陣列順序決定排列順序（跟
      site.js 的 applyLayout 用 appendChild 依序搬移 DOM 節點一致）。這裡
      的預設值還原首頁改版前「大欄(熱門+迷你/電子遊戲) + 固定小欄
-     (真人娛樂/捕魚達人) + 體育滿版跨欄」的版面比例。 */
+     (真人娛樂/捕魚達人) + 體育滿版跨欄」的版面比例。variant 對應
+     assets/css/section-variants.css 的 10 種區塊版式,v1 = 不覆寫現況。 */
   var DEFAULT_LAYOUT = [
-    { key: 'hot-games', span: 5 },
-    { key: 'mini-games', span: 4 },
-    { key: 'live', span: 3 },
-    { key: 'electronic', span: 9 },
-    { key: 'fish', span: 3 },
-    { key: 'sport', span: 12 },
+    { key: 'hot-games', span: 5, variant: 'v1' },
+    { key: 'mini-games', span: 4, variant: 'v1' },
+    { key: 'live', span: 3, variant: 'v1' },
+    { key: 'electronic', span: 9, variant: 'v1' },
+    { key: 'fish', span: 3, variant: 'v1' },
+    { key: 'sport', span: 12, variant: 'v1' },
   ];
-  function cloneLayout(layout) { return layout.map(function (item) { return { key: item.key, span: item.span }; }); }
+  function cloneLayout(layout) { return layout.map(function (item) { return { key: item.key, span: item.span, variant: item.variant || 'v1' }; }); }
+
+  /* 區塊變體:10 種可選版式,實際樣式定義在 site 端的
+     assets/css/section-variants.css,這裡只負責選單文字。 */
+  var VARIANTS = [
+    { id: 'v1', label: '現況' },
+    { id: 'v2', label: '圓潤糖果' },
+    { id: 'v3', label: '銳利競技' },
+    { id: 'v4', label: '金屬質感' },
+    { id: 'v5', label: '復古票根' },
+    { id: 'v6', label: '霓虹夜店' },
+    { id: 'v7', label: '工業風格' },
+    { id: 'v8', label: '奢華尊爵' },
+    { id: 'v9', label: '極簡通風' },
+    { id: 'v10', label: '卡片疊層' },
+  ];
 
   var PAGES = [
     { path: 'index.html', label: '首頁' },
@@ -158,26 +174,36 @@
     draft.layout.splice(to, 0, moved);
   }
 
-  /* 每個模組一行:拖曳把手（原生 HTML5 drag&drop,依 draft.layout 陣列
-     順序重新排列)、名稱、跨欄數 <select>（3~12,對應 12 欄版位系統)、
-     顯示/隱藏開關。渲染順序＝draft.layout 順序,這樣排版跟畫面所見一致。 */
+  /* 每個模組一行:上排是拖曳把手（原生 HTML5 drag&drop,依 draft.layout
+     陣列順序重新排列）、名稱、顯示/隱藏開關;下排是跨欄數 <select>
+     （3~12,對應 12 欄版位系統）與變體 <select>（10 種區塊版式,對應
+     section-variants.css）。渲染順序＝draft.layout 順序,這樣排版跟畫面
+     所見一致。 */
   function renderSections() {
     var ul = document.getElementById('st-sections');
     ul.innerHTML = '';
     draft.layout.forEach(function (item) {
       var key = item.key;
       var on = draft.sections[key] !== false;
+      var variant = item.variant || 'v1';
       var li = document.createElement('li');
       li.className = 'st-section-row';
       li.draggable = true;
       li.setAttribute('data-section-key', key);
       li.innerHTML =
+        '<div class="st-section-row-top">' +
         '<span class="st-drag-handle" aria-hidden="true" title="拖曳排序"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="6" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="18" r="1"/></svg></span>' +
         '<span class="st-section-name">' + sectionLabel(key) + '</span>' +
+        '<button type="button" role="switch" class="st-switch' + (on ? ' is-on' : '') + '" aria-checked="' + on + '" data-section-switch="' + key + '"><span class="st-switch-knob"></span></button>' +
+        '</div>' +
+        '<div class="st-section-row-bottom">' +
         '<select class="st-span-select" aria-label="' + sectionLabel(key) + ' 寬度" data-span-select="' + key + '">' +
         SPAN_OPTIONS.map(function (n) { return '<option value="' + n + '"' + (item.span === n ? ' selected' : '') + '>' + n + ' / 12</option>'; }).join('') +
         '</select>' +
-        '<button type="button" role="switch" class="st-switch' + (on ? ' is-on' : '') + '" aria-checked="' + on + '" data-section-switch="' + key + '"><span class="st-switch-knob"></span></button>';
+        '<select class="st-variant-select" aria-label="' + sectionLabel(key) + ' 變體" data-variant-select="' + key + '">' +
+        VARIANTS.map(function (v) { return '<option value="' + v.id + '"' + (variant === v.id ? ' selected' : '') + '>' + v.label + '</option>'; }).join('') +
+        '</select>' +
+        '</div>';
       ul.appendChild(li);
     });
     document.getElementById('st-summary-sections').textContent = draft.layout.filter(function (item) { return draft.sections[item.key] !== false; }).length + ' / ' + draft.layout.length + ' 個顯示中';
@@ -196,6 +222,15 @@
         var key = sel.getAttribute('data-span-select');
         for (var i = 0; i < draft.layout.length; i++) {
           if (draft.layout[i].key === key) { draft.layout[i].span = Number(sel.value); break; }
+        }
+        liveApply();
+      });
+    });
+    Array.prototype.slice.call(ul.querySelectorAll('[data-variant-select]')).forEach(function (sel) {
+      sel.addEventListener('change', function () {
+        var key = sel.getAttribute('data-variant-select');
+        for (var i = 0; i < draft.layout.length; i++) {
+          if (draft.layout[i].key === key) { draft.layout[i].variant = sel.value; break; }
         }
         liveApply();
       });

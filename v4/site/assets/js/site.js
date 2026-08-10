@@ -29,10 +29,12 @@
   function applySkin(skinId) {
     document.documentElement.setAttribute('data-skin', skinId || 'festive-red-gold');
   }
-  /* 首頁 12 欄版位:layout 是 [{key,span}] 陣列,依陣列順序把對應
+  /* 首頁 12 欄版位:layout 是 [{key,span,variant}] 陣列,依陣列順序把對應
      [data-section] 元素依序 appendChild 回 .grid12(對已存在文件中的節點
      appendChild 等同於搬移到新位置,藉此同時做到「重新排序」),並更新
-     data-span 決定跨欄數。跟 studio 的拖曳排序／寬度選單共用這份格式。 */
+     data-span 決定跨欄數、data-variant 決定套用哪一種區塊變體(見
+     assets/css/section-variants.css,v1 = 不覆寫,維持現況版面)。跟 studio
+     的拖曳排序／寬度選單／變體選單共用這份格式。 */
   function applyLayout(layout) {
     var grid = document.querySelector('.grid12');
     if (!grid || !Array.isArray(layout)) return;
@@ -40,6 +42,7 @@
       var el = grid.querySelector('[data-section="' + item.key + '"]');
       if (!el) return;
       el.setAttribute('data-span', item.span || 3);
+      el.setAttribute('data-variant', item.variant || 'v1');
       grid.appendChild(el);
     });
   }
@@ -78,7 +81,7 @@
     var grid = document.querySelector('.grid12');
     if (!grid) return [];
     return Array.prototype.slice.call(grid.querySelectorAll('[data-section]')).map(function (el) {
-      return { key: el.getAttribute('data-section'), span: Number(el.getAttribute('data-span')) || 3 };
+      return { key: el.getAttribute('data-section'), span: Number(el.getAttribute('data-span')) || 3, variant: el.getAttribute('data-variant') || 'v1' };
     });
   }
   function notifyStudioReorder() {
