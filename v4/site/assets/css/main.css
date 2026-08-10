@@ -494,6 +494,23 @@ img { max-width: 100%; display: block; }
 .acct-stat-label { font-size: 12px; color: var(--text-dim); margin: 0 0 2px; }
 .acct-stat-value { font-size: 17px; font-weight: 800; color: var(--gold-deep); margin: 0; }
 .acct-actions { display: flex; gap: 10px; flex-shrink: 0; }
+/* 會員等級/獎勵進度條:金色漸層沿用 --gold-grad,跟站內其他 CTA 一致;
+   「下一級」用 --gold-deep 標示,不是任意色碼——銅色調本身就接近既有
+   金色系,不需要另外新增 token。 */
+.acct-level { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); display: grid; gap: 8px; }
+.acct-level-label { margin: 0; color: var(--text-mid); font-size: 12px; font-weight: 700; }
+.acct-level-track { height: 8px; overflow: hidden; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); }
+.acct-level-fill { height: 100%; border-radius: inherit; background: var(--gold-grad); transition: width 0.3s ease; }
+.acct-level-meta { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; color: var(--text-mid); font-size: 12px; }
+.acct-level-meta strong { color: var(--text); font-weight: 800; }
+.acct-level-value { color: var(--text-dim); text-align: center; }
+.acct-level-next { text-align: right; }
+.acct-level-next strong { color: var(--gold-deep); }
+.acct-level-dot { display: inline-block; width: 8px; height: 8px; margin-left: 4px; border-radius: 50%; vertical-align: 1px; }
+.acct-level-dot.current { background: var(--text-dim); }
+.acct-level-dot.next { background: var(--gold-deep); }
+@media (max-width: 400px) { .acct-level-meta { font-size: 11px; gap: 8px; } }
+
 /* 窄屏下 .acct-hero 原本的橫向 flex-wrap 排列（頭像/資訊/按鈕三塊自由
    換行）會讓頭像因 align-items:center 飄在很高的多行內容正中間,跟旁邊
    文字對不齊;統計數據 32px 固定 gap 換行後也長短不一、間距失控。改成
