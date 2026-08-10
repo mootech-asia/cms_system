@@ -2204,10 +2204,14 @@
       var digits = String(num || '').replace(/\D/g, '');
       return '＊＊＊＊' + (digits.slice(-4) || '0000');
     }
-    /* 流水列（紅字、主錢包上下各一條）— 對照 v2 提款銀行面板 rollover 兩欄 */
-    function rolloverRowHTML() {
+    /* 流水列（紅字、主錢包上下各一條）— 對照 v2 提款銀行面板 rollover 兩欄。
+       withDetail 只給第一次呼叫(卡片上方)加「Detail」捷徑,對照設計稿只
+       出現一次,提交前的第二條流水列不重複加。 */
+    function rolloverRowHTML(withDetail) {
       return '<div class="ap-rollover">' +
-        '<div><div>*Rollover Achieved</div><div><strong>amount: ₩0.00</strong></div></div>' +
+        '<div><div>*Rollover Achieved</div><div><strong>amount: ₩0.00</strong>' +
+          (withDetail ? ' <a href="withdrawal-detail.html" class="ap-rollover-detail">Detail</a>' : '') +
+        '</div></div>' +
         '<div><div>Target amount:</div><div><strong>₩0.00</strong></div></div>' +
       '</div>';
     }
@@ -2235,7 +2239,7 @@
           '<button type="button" class="wd-empty-action" data-action="goto-manage-bank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Add bank account</button>';
       return '<h2 class="ap-section-h"><span class="ap-mark"></span>Bank Card</h2>' + cardBlock +
         '<div class="ap-wallet"><div class="ap-wallet-label">Main Wallet</div><div class="ap-wallet-amt">₩ 0.00</div></div>' +
-        rolloverRowHTML() +
+        rolloverRowHTML(true) +
         '<h2 class="ap-section-h"><span class="ap-mark"></span>Withdrawal Amount &amp; Password</h2>' +
         '<input class="ap-input" data-f="amount" inputmode="numeric" placeholder="₩ 10,000 ~ ₩ 9,000,000">' +
         '<div class="ap-input-wrap"><input class="ap-input" data-f="password" type="password" placeholder="* * * * * *"><button type="button" class="ap-eye" data-action="toggle-pw" aria-label="Show password">' + EYE_SVG + '</button></div>' +
