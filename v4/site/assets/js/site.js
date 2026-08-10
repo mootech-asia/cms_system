@@ -368,7 +368,7 @@
   function openMobileMenu() {
     closeMobileMenu();
     var page = currentPage();
-    var navHtml = '<div class="mobile-menu-section"><span>我的帳戶</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></div>' +
+    var navHtml = '<div class="mobile-menu-section">我的帳戶</div>' +
       MEMBER_MENU_ITEMS.map(function (item) {
         var active = item.href.split('?')[0] === page;
         return '<a href="' + item.href + '" class="mobile-menu-link' + (active ? ' active' : '') + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + item.icon + '</svg><span>' + item.label + '</span></a>';

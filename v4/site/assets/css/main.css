@@ -757,7 +757,7 @@ img { max-width: 100%; display: block; }
 .mobile-menu-logo { height: 32px; width: auto; filter: brightness(0) invert(1); }
 .mobile-menu-close { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; color: var(--text-on-header); background: rgba(255, 255, 255, 0.14); }
 .mobile-menu-nav { display: flex; flex-direction: column; padding: 10px; flex: 1; }
-.mobile-menu-section { display: flex; align-items: center; justify-content: space-between; padding: 12px 12px 6px; font-size: 12px; font-weight: 700; color: var(--text-dim); }
+.mobile-menu-section { padding: 12px 12px 6px; font-size: 12px; font-weight: 700; color: var(--text-dim); }
 .mobile-menu-link {
   display: flex; align-items: center; gap: 12px;
   padding: 13px 12px;
