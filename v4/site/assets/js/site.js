@@ -349,9 +349,12 @@
 
   var USER_ICON = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
 
-  /* ── 手機版全螢幕選單:「我的帳戶」快捷清單,跟底部 .mobile-tabbar 互補
-     （大廳／儲值／優惠活動已經在 tabbar,這裡只放會員專區次要頁面）,
-     icon 沿用 .member-sidebar-link／FAQ 連結既有的 svg path。 ── */
+  /* ── 手機版全螢幕選單:header 漢堡鍵跟底部 tabbar「選單」鍵是兩個各自
+     獨立目的的選單,不是同一顆——漢堡鍵開的是主要遊戲分類導覽（複製桌面
+     .header-nav,避免另外維護一份重複資料）；tabbar「選單」開的是「我的
+     帳戶」會員專區捷徑清單,icon 沿用 .member-sidebar-link／FAQ 連結既有
+     的 svg path。兩者共用同一套 overlay/footer 渲染邏輯,只有 nav 清單
+     內容不同。 ── */
   var MEMBER_MENU_ITEMS = [
     { href: 'account.html', label: '帳戶總覽', icon: '<rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>' },
     { href: 'betting-record.html', label: '投注紀錄', icon: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/>' },
@@ -365,14 +368,8 @@
   ];
   var mobileMenuRoot = null;
   function closeMobileMenu() { if (mobileMenuRoot) { mobileMenuRoot.remove(); mobileMenuRoot = null; unlockScroll(); } }
-  function openMobileMenu() {
+  function openMobileOverlay(navHtml) {
     closeMobileMenu();
-    var page = currentPage();
-    var navHtml = '<div class="mobile-menu-section">我的帳戶</div>' +
-      MEMBER_MENU_ITEMS.map(function (item) {
-        var active = item.href.split('?')[0] === page;
-        return '<a href="' + item.href + '" class="mobile-menu-link' + (active ? ' active' : '') + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + item.icon + '</svg><span>' + item.label + '</span></a>';
-      }).join('');
     var mobileUser = loadAuth();
     var footHtml = mobileUser
       ? '<div class="mobile-menu-account">' + USER_ICON + '<span>' + escapeHtml(mobileUser.name) + '・' + tr('auth.balancePrefix', '餘額：') + escapeHtml(mobileUser.balance) + '</span></div>' +
@@ -398,12 +395,26 @@
     if (loginBtn) on(loginBtn, 'click', function () { closeMobileMenu(); openAuthModal('login'); });
     if (registerBtn) on(registerBtn, 'click', function () { closeMobileMenu(); openAuthModal('register'); });
   }
+  function openHeaderMenu() {
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll('.header-nav .header-nav-link'));
+    var navHtml = navLinks.map(function (a) {
+      return '<a href="' + a.getAttribute('href') + '" class="mobile-menu-link' + (a.classList.contains('active') ? ' active' : '') + '">' + a.innerHTML + '</a>';
+    }).join('');
+    openMobileOverlay(navHtml);
+  }
+  function openMemberMenu() {
+    var page = currentPage();
+    var navHtml = '<div class="mobile-menu-section">我的帳戶</div>' +
+      MEMBER_MENU_ITEMS.map(function (item) {
+        var active = item.href.split('?')[0] === page;
+        return '<a href="' + item.href + '" class="mobile-menu-link' + (active ? ' active' : '') + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + item.icon + '</svg><span>' + item.label + '</span></a>';
+      }).join('');
+    openMobileOverlay(navHtml);
+  }
   function initHeaderMobileMenu() {
-    /* .mobile-tabbar-menu：底部快捷列的「選單」鍵，跟 header 的漢堡鍵開同一個
-       選單，但外觀走 tabbar 自己的樣式，故用另一個 class 掛行為,不共用
-       .header-menu-trigger（那個 class 帶圓形按鈕樣式，會蓋掉 tabbar 排版）。 */
-    Array.prototype.slice.call(document.querySelectorAll('.header-menu-trigger, .mobile-tabbar-menu')).forEach(function (btn) {
-      on(btn, 'click', openMobileMenu);
+    on(document.querySelector('.header-menu-trigger'), 'click', openHeaderMenu);
+    Array.prototype.slice.call(document.querySelectorAll('.mobile-tabbar-menu')).forEach(function (btn) {
+      on(btn, 'click', openMemberMenu);
     });
   }
 
