@@ -278,8 +278,13 @@ img { max-width: 100%; display: block; }
   scroll-snap-type: x proximity;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  padding: 2px 2px 6px;
-  margin: -2px -2px -6px;
+  /* padding-top 只給 2px,小於卡片 hover 的 translateY(-3px) 位移量,
+     設定 overflow-x 會連帶讓 overflow-y 變成 auto(非 visible),於是
+     hover 時卡片被容器硬生生裁掉一小塊,邊框/陰影缺角。加大到 6px 讓
+     位移＋陰影暈開都留在容器內,margin-top 對應改回 -6px 抵消,不影響
+     外部排版。 */
+  padding: 6px 2px 6px;
+  margin: -6px -2px -6px;
   cursor: grab;
   user-select: none;
 }
