@@ -430,19 +430,10 @@ img { max-width: 100%; display: block; }
    為了替右側 quick-rail 浮動按鈕留空間,左側應維持 .container 的 20px。 */
 .member-shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 20px; padding-top: 20px; padding-bottom: 48px; padding-right: 92px; align-items: start; }
 @media (max-width: 720px) { .member-shell { padding-right: 20px; grid-template-columns: 1fr; } }
-/* 手機版側邊選單直向 9 項會把表單內容整個推到貼近視窗底部,跟後來加的
-   .mobile-tabbar 打架（表單首排按鈕會被固定定位的快捷列蓋住）,改成橫向
-   可滑動的底線式 tab（.member-sidebar.member-panel 疊 class 提高
-   specificity,蓋掉 .member-panel 的白底/陰影/圓角),不做色塊背景,靠
-   底線＋文字變色標示目前項目,跟頁面白底融合,不會有色塊硬凑的問題。 */
+/* 手機版底部已有 .mobile-tabbar「會員」與「選單」（我的帳戶清單）涵蓋
+   同一組會員頁連結,這裡的側邊選單重複、多餘,窄屏直接隱藏。 */
 @media (max-width: 720px) {
-  .member-sidebar.member-panel { background: none; border: none; border-radius: 0; box-shadow: none; border-bottom: 1px solid var(--line); }
-  .member-sidebar { display: flex; gap: 4px; overflow-x: auto; padding: 0; position: static; }
-  .member-sidebar-link { flex-direction: row; gap: 6px; padding: 12px 14px; font-size: 13px; white-space: nowrap; flex-shrink: 0; border-radius: 0; border-bottom: 2px solid transparent; color: var(--text-mid); }
-  .member-sidebar-link svg { width: 16px; height: 16px; }
-  .member-sidebar-link:hover { background: none; color: var(--text); }
-  .member-sidebar-link.active { background: none; color: var(--gold-deep); border-bottom-color: var(--gold-deep); }
-  .member-sidebar-divider { display: none; }
+  .member-sidebar { display: none; }
 }
 .member-sidebar { position: sticky; top: 20px; padding: 10px; }
 .member-sidebar-link {
