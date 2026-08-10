@@ -581,6 +581,21 @@
   function depositSuccessModal() {
     simplePayModal('儲值成功', '您的儲值申請已送出，請至「儲值紀錄」查看處理進度。');
   }
+  /* 示意用 QR Code:固定 seed 產生,只求視覺像 QR(三個定位角 + 隨機模組),
+     不編碼真實內容,純介面展示。 */
+  function fakeQrModules() {
+    var s = '', seed = 7;
+    function finder(x, y) {
+      return '<rect x="' + x + '" y="' + y + '" width="7" height="7" fill="#0b0e13"></rect><rect x="' + (x + 1) + '" y="' + (y + 1) + '" width="5" height="5" fill="#fff"></rect><rect x="' + (x + 2) + '" y="' + (y + 2) + '" width="3" height="3" fill="#0b0e13"></rect>';
+    }
+    s += finder(0, 0) + finder(22, 0) + finder(0, 22);
+    for (var y = 0; y < 29; y++) for (var x = 0; x < 29; x++) {
+      if ((x < 8 && y < 8) || (x > 20 && y < 8) || (x < 8 && y > 20)) continue;
+      seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+      if ((seed >> 16) % 100 < 46) s += '<rect x="' + x + '" y="' + y + '" width="1" height="1" fill="#0b0e13"></rect>';
+    }
+    return s;
+  }
   function depositStepModal(methodId, amountVal) {
     var isBank = methodId === 'bank';
     var body;
@@ -593,13 +608,25 @@
         '<button type="button" class="btn-gold" style="width:100%" data-pay-done>我已完成轉帳</button>';
     } else {
       var addr = PAY_ADDR[methodId] || PAY_ADDR.linepay;
+      var addrLabel = methodId === 'linepay' ? '付款網址' : '收款地址';
       body =
-        '<p class="about-text">請使用 ' + (methodId === 'linepay' ? 'LinePay' : 'USDT') + ' 掃描或複製下方' + (methodId === 'linepay' ? '付款連結' : '收款地址') + ' 完成付款。</p>' +
-        '<input class="pay-field" value="' + escapeHtml(addr) + '" readonly />' +
-        '<p class="pay-note">此為示意用途，非真實收款位址。</p>' +
+        '<p class="about-text">請使用手機掃描下方 QR Code，或複製' + addrLabel + '完成付款。</p>' +
+        '<div style="text-align:center;margin-bottom:14px"><svg width="176" height="176" viewBox="0 0 29 29" shape-rendering="crispEdges" role="img" aria-label="付款 QR Code"><rect width="29" height="29" fill="#fff"></rect>' + fakeQrModules() + '</svg></div>' +
+        '<label class="member-panel-title" style="font-size:12.5px;margin-bottom:6px;display:block">' + addrLabel + '</label>' +
+        '<div style="display:flex;gap:8px">' +
+        '<input class="pay-field" style="width:auto;flex:1" value="' + escapeHtml(addr) + '" readonly />' +
+        '<button type="button" class="btn-gold" style="padding:0 16px" data-pay-copy>複製</button>' +
+        '</div>' +
+        '<p class="pay-note">此為示意用 QR Code 與' + addrLabel + '，僅供介面展示。</p>' +
         '<button type="button" class="btn-gold" style="width:100%" data-pay-done>我已完成付款</button>';
     }
     var root = openPayModal(isBank ? '轉帳資訊' : '掃碼付款', body);
+    var copyBtn = root.querySelector('[data-pay-copy]');
+    if (copyBtn) on(copyBtn, 'click', function () {
+      try { navigator.clipboard.writeText(PAY_ADDR[methodId] || ''); } catch (e) {}
+      var original = copyBtn.textContent; copyBtn.textContent = '已複製';
+      setTimeout(function () { copyBtn.textContent = original; }, 1500);
+    });
     on(root.querySelector('[data-pay-done]'), 'click', depositSuccessModal);
   }
 
