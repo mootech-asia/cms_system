@@ -51,7 +51,6 @@
       'gameType.types.sports': '스포츠',
       'gameType.types.fish': '낚시',
       'common.next': '다음',
-      'common.back': '이전',
       'userCenter.sidebar.gameLobby': '게임 로비',
       'userCenter.sidebar.accountOverview': '나의 계정',
       'userCenter.sidebar.bettingRecord': '베팅 기록',
@@ -210,6 +209,30 @@
       'userCenter.changePassword.success': '비밀번호가 성공적으로 변경되었습니다.',
       'common.profileUpdateSuccess': '프로필이 성공적으로 업데이트되었습니다.',
       'common.bankCardAddedSuccess': '은행 카드가 성공적으로 추가되었습니다',
+      'common.search': '검색',
+      'common.gameName': '게임 이름',
+      'common.vendorName': '공급업체명',
+      'common.readMore': '더보기',
+      'common.noData': '데이터 없음',
+      'common.openingGame': '새 창에서 게임을 여는 중입니다...',
+      'gameType.options.vendor': '공급업체',
+      'gameType.options.favorites': '즐겨찾기',
+      'gameList.options.all': '전체 게임',
+      'gameList.options.favorite': '즐겨찾기',
+      'promotionList.categories.all': '전체',
+      'promotionList.categories.slot': '슬롯',
+      'promotionList.categories.live': '라이브',
+      'promotionList.categories.sports': '스포츠',
+      'promotionList.categories.new': '신규',
+      'about.title': '회사 소개',
+      'about.tabs.support': '고객센터',
+      'about.tabs.notice': '공지',
+      'about.tabs.about': '소개',
+      'about.tabs.privacy': '개인정보',
+      'about.tabs.info': '정보',
+      'about.tabs.addiction': '과몰입 방지',
+      'about.tabs.rules': '규정',
+      'about.tabs.faq': '자주 묻는 질문',
     },
     en: {
       'navbar.top.hotGames': 'Hot Games',
@@ -253,7 +276,6 @@
       'gameType.types.sports': 'Sports',
       'gameType.types.fish': 'Fish',
       'common.next': 'Next',
-      'common.back': 'Back',
       'userCenter.sidebar.gameLobby': 'Game Lobby',
       'userCenter.sidebar.accountOverview': 'Account Overview',
       'userCenter.sidebar.bettingRecord': 'Betting Record',
@@ -412,6 +434,30 @@
       'userCenter.changePassword.success': 'Password changed successfully.',
       'common.profileUpdateSuccess': 'Profile updated successfully.',
       'common.bankCardAddedSuccess': 'Bank card added successfully',
+      'common.search': 'Search',
+      'common.gameName': 'Game Name',
+      'common.vendorName': 'Vendor Name',
+      'common.readMore': 'Read more',
+      'common.noData': 'No Data',
+      'common.openingGame': 'Opening the game in a new tab...',
+      'gameType.options.vendor': 'Vendor',
+      'gameType.options.favorites': 'Favorites',
+      'gameList.options.all': 'All Games',
+      'gameList.options.favorite': 'Favorite',
+      'promotionList.categories.all': 'All',
+      'promotionList.categories.slot': 'Slot',
+      'promotionList.categories.live': 'Live',
+      'promotionList.categories.sports': 'Sports',
+      'promotionList.categories.new': 'New',
+      'about.title': 'ABOUT US',
+      'about.tabs.support': 'Support',
+      'about.tabs.notice': 'Notice',
+      'about.tabs.about': 'About',
+      'about.tabs.privacy': 'Privacy',
+      'about.tabs.info': 'Info',
+      'about.tabs.addiction': 'Addiction',
+      'about.tabs.rules': 'Rules',
+      'about.tabs.faq': 'FAQ',
     },
   };
 
@@ -581,6 +627,395 @@
     { recordId: 1, createdAt: '2026-08-11 15:00:00', category: 1, itemName: '신규 가입 첫 입금 50%', depositFlowAmount: 50000, bonusFlowAmount: 25000, achieved: '45,000', target: '225,000', gameTypes: [] },
   ];
 
+
+  /* ---- 遊戲廠商清單(GameProviderList.vue,對照 assets/images/index/mainGame/live 廠商 Logo 檔名) ---- */
+  var GAME_VENDORS = {
+    live: [
+      { vendor: 'Evolution', logo: 'Evolution.png' },
+      { vendor: 'SAGaming', logo: 'SAGaming.png' },
+      { vendor: 'AllbetLive', logo: 'AllbetLive.png' },
+      { vendor: 'SexyCasino', logo: 'SexyCasino.png' },
+      { vendor: 'DreamGame', logo: 'DreamGame.png' },
+      { vendor: 'WMLIVE', logo: 'WMLIVE.png' },
+      { vendor: 'PrettyGaming', logo: 'PrettyGaming.png' },
+      { vendor: 'HoGaming', logo: 'HoGaming.png' },
+      { vendor: 'VivoGaming', logo: 'VivoGaming.png' },
+      { vendor: 'BigGaming', logo: 'BigGaming.png' },
+    ],
+    sports: [
+      { vendor: 'Saba Sports', logo: 'Saba Sports.svg' },
+      { vendor: 'BTI Sports', logo: 'BTI.svg' },
+      { vendor: 'PINGAPI', logo: 'sport_PINGAPI_big.png' },
+    ],
+    slot: [
+      { vendor: 'PP', logo: 'PP.png' },
+      { vendor: 'MG', logo: 'MG.png' },
+      { vendor: 'PT', logo: 'PT.png' },
+      { vendor: 'JDB', logo: 'JDB.png' },
+      { vendor: 'CQ9', logo: 'CQ9.png' },
+      { vendor: 'Joker', logo: 'Joker.png' },
+      { vendor: 'RelaxGaming', logo: 'RelaxGaming.png' },
+      { vendor: 'NoLimitCity', logo: 'NoLimitCity.png' },
+      { vendor: 'Skywind', logo: 'Skywind.png' },
+      { vendor: 'YGGDrasil', logo: 'YGGDrasil.png' },
+    ],
+    mini_game: [
+      { vendor: 'JDB', logo: 'JDB.png' },
+      { vendor: 'KingMidas', logo: 'KingMidas.png' },
+      { vendor: 'FastSpin', logo: 'FastSpin.png' },
+      { vendor: 'RoyalCasino', logo: 'RoyalCasino.png' },
+      { vendor: 'GameArt', logo: 'GameArt.png' },
+      { vendor: 'LUCKY365', logo: 'LUCKY365.png' },
+    ],
+    fish: [
+      { vendor: 'JDB', logo: 'JDB.png' },
+      { vendor: 'CQ9', logo: 'CQ9.png' },
+      { vendor: 'GameArt', logo: 'GameArt.png' },
+      { vendor: 'FastSpin', logo: 'FastSpin.png' },
+      { vendor: 'KingMidas', logo: 'KingMidas.png' },
+    ],
+  };
+
+  /* ---- 遊戲卡片假資料產生(GameList.vue,圖片重複使用 index/mainGame/other 靜態圖) ---- */
+  var GAME_NAME_POOL = [
+    'Gates of Olympus', 'Sweet Bonanza', 'Crazy Time', 'Lightning Roulette', 'Book of Dead',
+    'Wild Bandito', 'Fortune Tiger', 'Mahjong Ways', 'Golden Empire', 'Big Bass Bonanza',
+    'Starlight Princess', 'Buffalo King', 'Money Train', 'Wanted Dead or a Wild', 'Sugar Rush',
+    'Fishing God', 'Dragon Fortune', 'Speed Baccarat', 'Dream Catcher', 'Extra Chilli',
+  ];
+  function buildGames(type, vendor, count, seed) {
+    var list = [];
+    var len = GAME_NAME_POOL.length;
+    for (var i = 0; i < count; i++) {
+      list.push({
+        game_id: type + '-' + vendor.replace(/\s+/g, '') + '-' + i,
+        display_name: GAME_NAME_POOL[(seed + i) % len],
+        provider: vendor,
+        gateway: vendor.toLowerCase().replace(/\s+/g, ''),
+        desktop_icon_url: 'index/mainGame/other/slot ' + ((seed + i) % 26) + '.png',
+        isFavorite: false,
+      });
+    }
+    return list;
+  }
+  function buildFlatGames(type, perVendor) {
+    var vendors = GAME_VENDORS[type] || [];
+    var out = [];
+    vendors.forEach(function (v, idx) {
+      out = out.concat(buildGames(type, v.vendor, perVendor, idx * perVendor));
+    });
+    return out;
+  }
+  /* ---- 各分類的完整遊戲清單(GameList.vue「全部遊戲」/「我的最愛」頁籤共用) ---- */
+  var FLAT_GAMES = {
+    slot: buildFlatGames('slot', 4),
+    mini_game: buildFlatGames('mini_game', 4),
+    fish: buildFlatGames('fish', 4),
+    hotgames: HOT_GAMES.map(function (g) {
+      return {
+        game_id: 'hotgames-' + g.id,
+        display_name: g.name,
+        provider: 'PP',
+        gateway: 'pp',
+        desktop_icon_url: g.image,
+        isFavorite: false,
+      };
+    }),
+  };
+
+  /* ---- 促銷活動假資料(promotionList.vue/promotionDetail.vue,圖片重複使用 index/promotion 靜態圖) ---- */
+  var PROMOTIONS = [
+    {
+      promotion_id: 1, category: 'new', image: 'index.png', startDate: 0, endDate: 0,
+      title: { ko: '신규 가입 첫 입금 200% 보너스', en: 'New Member First Deposit 200% Bonus' },
+      content: {
+        ko: '<p>win10096에 처음 가입하신 회원님을 위한 특별 혜택입니다. 첫 입금 시 200% 보너스를 즉시 지급해 드립니다.</p><p>· 최소 입금 금액: ₩ 30,000<br>· 최대 보너스 금액: ₩ 500,000<br>· 유효 베팅 조건: 입금 및 보너스 합산 금액의 1배</p><p>자세한 내용은 고객센터로 문의해 주세요.</p>',
+        en: '<p>A special offer for members joining win10096 for the first time. Receive an instant 200% bonus on your first deposit.</p><p>· Minimum deposit: ₩ 30,000<br>· Maximum bonus: ₩ 500,000<br>· Turnover requirement: 1x of deposit + bonus amount</p><p>Please contact customer service for more details.</p>',
+      },
+    },
+    {
+      promotion_id: 2, category: 'new', image: 'promotion2.png', startDate: 1785542400, endDate: 1788134400,
+      title: { ko: '매일 출석 체크 포인트 지급', en: 'Daily Check-in Points' },
+      content: {
+        ko: '<p>매일 로그인 후 출석 체크만 하면 포인트가 자동으로 적립됩니다.</p><p>· 지급 시간: 매일 00:00 초기화<br>· 연속 출석 시 추가 포인트 지급</p>',
+        en: '<p>Simply check in after logging in every day to automatically earn points.</p><p>· Reset time: 00:00 daily<br>· Extra points for consecutive check-ins</p>',
+      },
+    },
+    {
+      promotion_id: 3, category: 'slot', image: 'promotionDetail.png', startDate: 1785888000, endDate: 1788566400,
+      title: { ko: '슬롯 롤링 캐시백 1.5%', en: 'Slot Rolling Cashback 1.5%' },
+      content: {
+        ko: '<p>모든 슬롯 게임 유효 베팅 금액에 대해 매주 1.5% 캐시백을 지급합니다.</p><p>· 정산 주기: 매주 월요일<br>· 최대 캐시백 금액: ₩ 1,000,000</p>',
+        en: '<p>Receive a weekly 1.5% cashback on the total valid bets placed across all slot games.</p><p>· Settlement: every Monday<br>· Maximum cashback: ₩ 1,000,000</p>',
+      },
+    },
+    {
+      promotion_id: 4, category: 'slot', image: 'index.png', startDate: 0, endDate: 0,
+      title: { ko: '슬롯 무료 스핀 이벤트', en: 'Slot Free Spin Event' },
+      content: {
+        ko: '<p>지정된 슬롯 게임에서 무료 스핀 50회를 매주 제공합니다.</p><p>· 참여 방법: 고객센터로 신청<br>· 지급 게임: 매주 변경</p>',
+        en: '<p>Get 50 free spins every week on selected slot games.</p><p>· How to join: apply via customer service<br>· Featured games rotate weekly</p>',
+      },
+    },
+    {
+      promotion_id: 5, category: 'live', image: 'promotion2.png', startDate: 1784073600, endDate: 1787184000,
+      title: { ko: '라이브 카지노 첫 입금 30% 보너스', en: 'Live Casino First Deposit 30% Bonus' },
+      content: {
+        ko: '<p>라이브 카지노 첫 입금 시 30% 보너스를 지급합니다.</p><p>· 최소 입금 금액: ₩ 50,000<br>· 최대 보너스 금액: ₩ 300,000</p>',
+        en: '<p>Get a 30% bonus on your first live casino deposit.</p><p>· Minimum deposit: ₩ 50,000<br>· Maximum bonus: ₩ 300,000</p>',
+      },
+    },
+    {
+      promotion_id: 6, category: 'live', image: 'promotionDetail.png', startDate: 0, endDate: 0,
+      title: { ko: '라이브 바카라 패배 리베이트', en: 'Live Baccarat Loss Rebate' },
+      content: {
+        ko: '<p>라이브 바카라 게임에서 발생한 손실 금액의 0.8%를 리베이트로 지급합니다.</p><p>· 정산 주기: 매일 자동 정산</p>',
+        en: '<p>Receive a 0.8% rebate on losses incurred while playing live baccarat.</p><p>· Settlement: automatic, daily</p>',
+      },
+    },
+    {
+      promotion_id: 7, category: 'sports', image: 'index.png', startDate: 1787184000, endDate: 1788566400,
+      title: { ko: '스포츠 베팅 프로모션', en: 'Sports Betting Promotion' },
+      content: {
+        ko: '<p>스포츠 단일 경기 베팅 적중 시 추가 보너스를 지급합니다.</p><p>· 대상: 배당률 1.8 이상 단일 경기<br>· 지급 방식: 적중 시 익일 자동 지급</p>',
+        en: '<p>Get an extra bonus when your single-match sports bet wins.</p><p>· Applies to: single matches with odds of 1.8 or higher<br>· Payout: automatically credited the next day after a win</p>',
+      },
+    },
+    {
+      promotion_id: 8, category: 'new', image: 'promotion2.png', startDate: 0, endDate: 0,
+      title: { ko: '친구 추천 이벤트', en: 'Refer a Friend Event' },
+      content: {
+        ko: '<p>친구를 추천하고 친구가 첫 입금을 완료하면 추천인과 피추천인 모두에게 보너스를 지급합니다.</p><p>· 지급 조건: 피추천인 첫 입금 완료 후 24시간 내<br>· 추천 횟수 제한 없음</p>',
+        en: '<p>Refer a friend and once they complete their first deposit, both you and your friend receive a bonus.</p><p>· Payout condition: within 24 hours after the referred friend completes their first deposit<br>· No limit on the number of referrals</p>',
+      },
+    },
+  ];
+
+  var ABOUT_CONTENT = {
+  "ko": {
+    "support": {
+      "items": [
+        {
+          "title": "고객센터로 문의하세요."
+        }
+      ]
+    },
+    "notice": {
+      "items": [
+        {
+          "title": "긴급공지 - 인투88 공식 텔레그램 변경.",
+          "detail": "최근 win10096을 사칭하는 사례가 증가하고 있습니다.\n \n win10096은 공식 텔레그램 채널 한 곳을 통해서만 안내를 제공합니다.\n 기존 텔레그램에 문제가 발생할 경우, 해당 채널 또는 라이브 채팅을 통해서만 공지합니다.\n \n win10096 공식 텔레그램 공지 채널:\n https://t.me/win10096cs\n \n 기존 텔레그램을 통해 연락이 되지 않는 경우, 사칭 피해를 방지하기 위해 라이브 채팅으로 문의하여 확인 후 진행해 주시기 바랍니다."
+        },
+        {
+          "title": "입금계좌 문의방법",
+          "detail": "입금 계좌 문의는 가입 후 라이브챗 또는 고객센터 텔레그램으로 문의해 주시기 바랍니다."
+        }
+      ]
+    },
+    "about": {
+      "items": [
+        {
+          "title": "win10096 소개",
+          "detail": "본 정책은 win10096(이하 “회사”)이 고객이 제공한 정보 및 데이터를 어떻게 사용하며, 해당 정보가 win10096과 고객 간에 어떻게 처리되는지를 설명합니다.\n \n 회사는 win10096(또는 웹사이트) 회원가입 양식이나 기타 방법을 통해 제공된 내용, 또는 회사가 이미 보유하고 있는 개인정보를 기반으로 고객의 개인정보를 처리합니다.\n 고객이 정보를 제출하고 사이트를 이용함으로써, 본 개인정보 처리방침에 따라 정보가 사용되는 것에 동의한 것으로 간주됩니다.\n 본 정책에 동의하지 않는 경우, 사이트를 이용하거나 개인정보를 제공하지 마시기 바랍니다."
+        }
+      ]
+    },
+    "privacy": {
+      "items": [
+        {
+          "title": "개인 정보 보호 정책",
+          "detail": "본 정책은 win10096이 귀하의 개인정보를 어떻게 수집, 사용 및 보호하는지에 대해 설명합니다.\n 또한 win10096은 공식 채널을 통해서만 안내를 제공하며, 기존 채널에 문제가 발생할 경우 본 페이지 또는 라이브 채팅을 통해서만 공지합니다."
+        },
+        {
+          "title": "정보 수집 및 사용처",
+          "detail": "회사는 다음을 포함하여 고객에 관한 정보 및 데이터를 수집, 이용 및 폐기합니다:\n \n 이메일 또는 웹사이트를 통해 제출된 모든 정보\n \n 이메일, 전화 또는 채팅을 통한 커뮤니케이션을 기록하는 기타 모든 수단\n \n 설문조사 또는 고객 설문지에 대한 응답\n \n 웹사이트와 관련된 거래 이력\n \n 트래픽 데이터, 위치 데이터, 블로그 및 기타 커뮤니케이션 데이터를 포함한 사이트 방문 관련 정보\n \n 수집된 개인정보는 다음의 목적을 위해 처리됩니다:\n \n 오프라인 및 온라인 결제를 포함한 결제 거래 처리\n \n 베팅 거래 처리\n \n 고객 계정 관리 및 회원 프로필 구축\n \n 법적 및 규제상 의무 준수\n \n 고객 조사, 설문 및 데이터 분석\n \n 이벤트, 상품 및 서비스 제공\n \n 사기, 비정상적인 베팅 행위, 자금 세탁, 보너스 악용, 공모 행위 방지 및 고객 간 부정행위 거래 모니터링"
+        }
+      ]
+    },
+    "info": {
+      "items": [
+        {
+          "title": "추가 설명",
+          "detail": "win10096은 내부 또는 외부 웹사이트의 콘텐츠나 정확성에 대해 책임을 지지 않습니다.\n \n 회사가 제공하는 모든 정보는 사실에 기반하고 있으나, 해당 정보와 관련된 오류 또는 누락에 대해서는 책임을 지지 않습니다. 또한 회사는 명백한 오류를 수정할 권리를 보유합니다.\n \n 회사는 본 이용약관을 수시로 수정, 업데이트 및 변경할 수 있는 독점적 권리를 보유합니다.\n \n 개정·업데이트·변경된 약관은 웹사이트에 게시되며, 게시 즉시 효력이 발생합니다."
+        }
+      ]
+    },
+    "addiction": {
+      "items": [
+        {
+          "title": "게임 과몰입 방지",
+          "detail": "win10096은 회원이 과도한 플레이를 예방하면서 게임을 즐길 수 있도록 장려합니다.\n 계정 관리 페이지를 통해 회원이 자신의 한계를 인식하고 책임 있는 게임 한도를 직접 설정할 수 있도록 지원합니다.\n \n 게임은 하나의 엔터테인먼트 수단이며, 감정적 또는 재정적 부담이 되어서는 안 됩니다.\n 돈을 빌리거나 다른 용도로 사용해야 할 자금을 게임에 사용하는 것은 바람직하지 않으며, 본인과 주변 사람들에게 심각한 문제를 초래할 수 있습니다.\n win10096에서 책임감 있게 게임을 즐기시길 바랍니다.\n \n 책임 있는 게임에 대해 궁금한 점이 있으시면 고객센터로 문의해 주시기 바랍니다.\n 다음과 같은 도움을 제공하고 있습니다:\n \n 자가 진단\n \n 베팅 관리\n \n 입금 한도 설정\n \n 자녀 보호\n \n 도움 및 권장 사항"
+        },
+        {
+          "title": "자가 진단",
+          "detail": "지루하거나 행복하지 않은 삶에서 벗어나기 위해 게임을 하고 있습니까?\n \n 게임에서 손실을 본 후, 잃은 돈을 되찾기 위해 가능한 한 빨리 다시 이겨야 한다고 생각한 적이 있습니까?\n \n 보통 게임을 할 때 보유 금액이 모두 소진될 때까지 계속하는 편입니까?\n \n 도박에 사용한 돈이나 시간을 숨기기 위해 거짓말을 한 적이 있습니까?\n \n 도박으로 인해 가족, 친구 또는 취미에 대한 관심을 잃은 적이 있습니까?\n \n 게임 중 돈이 없어졌을 때 절망감이나 실망감을 느끼며, 다시 빨리 게임을 해야겠다고 생각한 적이 있습니까?\n \n 도박으로 인해 우울감을 느끼거나 자살 충동을 느낀 적이 있습니까?\n 위 질문 중 대부분에 **“예”**라고 답했다면, 게임 중독일 가능성이 있습니다.\n \n 이에 대해 누군가와 이야기하거나 무료 또는 독립적인 상담을 받고 싶으신 경우,\n Gambling Therapy와 같은 전문 기관(https://www.gamblingtherapy.org/\n ) 또는 저희 고객센터로 문의해 주시기 바랍니다."
+        },
+        {
+          "title": "배팅 관리",
+          "detail": "대다수의 사람들이 도박을 하는 반면 일부 사람들에게는 도박이 문제가 될 수 있습니다.\n다음을 기억하는 데 도움이 될 수 있습니다:\n1. 도박은 즐겁게 해야하며 돈을 버는 방법으로 보지 않아야 합니다.\n2. 재정적으로 부담되지 않는 선에서 이용하시기 바랍니다.\n3. 도박에 소비하는 시간과 금액을 기록하는 습관을 가지기 바랍니다.\n4. Betfilter www.betfilter.com 또는 www.gamblock.com 같은 겜블링 사이트 접속 차단 소프트웨어를 모바일 또는 태블릿에 설치하시기 바랍니다.\n5. 게임 과몰입 문제에 대하여 상담하고 싶으신 경우, 저희에게 연락주시거나 위에 언급된 상담 단체로 연락주시기 바랍니다."
+        }
+      ]
+    },
+    "rules": {
+      "items": [
+        {
+          "title": "규칙 및 규정",
+          "detail": "저희 win10096은 양방 베팅, 베팅 관련 프로그램 사용자, 신고 및 해킹, 협박, 프로모션 악용, 조직적인 그룹 베팅 등 비정상적인 방법으로 사이트를 이용할 목적으로 가입한 회원에 대해 엄중히 처벌하고 있습니다. 명시된 규칙 및 규정을 위반하는 회원으로 판단되는 경우, win10096은 사전 경고 없이 회원의 계정을 몰수 시킬 권한이 있습니다. 회원이 win10096에 가입 후 이용을 하시는 것은, 모든 이용 약관, 규칙 및 규정을 이해하시고 동의하시는 것으로 간주됩니다."
+        },
+        {
+          "title": "입출금 관련",
+          "detail": "문의 없이 잘못된 계좌로 입금한 경우, 그로 인해 발생하는 손실에 대해 win10096은 책임지지 않습니다.\n \n 이벤트/프로모션에 별도 명시가 없는 한, 모든 시간은 GMT+8 기준으로 합니다.\n \n 입금 및 출금은 본인의 등록된 은행 정보로만 신청할 수 있으며, 타인의 정보로는 처리되지 않습니다.\n \n 은행 계좌 정보는 가족, 친척, 지인 등 제3자 명의로 등록할 수 없으며, 사이트 실제 이용자 명의와 일치해야 합니다.\n \n 가상계좌 사용은 엄격히 금지되어 있으며, 가상계좌를 통한 입·출금은 허용되지 않습니다.\n \n 본인 명의가 아닌 계좌로 입금한 경우 해당 입금은 처리될 수 없으며, win10096은 거래 처리를 위해 관련 서류를 요청할 수 있습니다.\n \n 자금 세탁 및 금융 사기를 방지하기 위해, 출금 전 입금 금액 전액을 베팅해야 합니다.\n \n 수표 또는 어음을 통한 입금은 받지 않습니다."
+        }
+      ]
+    },
+    "faq": {
+      "categories": [
+        {
+          "title": "일반 정보",
+          "items": [
+            {
+              "title": "win10096 소개",
+              "detail": "win10096은 신뢰할 수 있고 검증된 게임을 제공하는 해외 베팅 사이트입니다. 스포츠, 슬롯 게임, 라이브 카지노부터 미니 게임까지 온라인 엔터테인먼트 트렌드를 면밀히 반영하기 위해 최선을 다하고 있습니다. 다양한 고객 로열티 프로그램과 같은 매력적인 프로모션과 보너스 등 여러 혜택을 받으며 흥미진진한 게임을 즐기실 수 있습니다."
+            },
+            {
+              "title": "사이트에서 제공되는 게임은 공정한가요?",
+              "detail": "win10096 사이트는 법적으로 등록된 회사로, 게임 결과는 절대적으로 공평하고 공정하며 사실에 근거합니다."
+            },
+            {
+              "title": "내 개인 정보는 안전한가요?",
+              "detail": "당사는 귀하의 개인정보를 최우선으로 생각합니다. win10096 은 규제와 관련 법률 및 규정 또는 법원의 명령에 관여하지 않은 제 3자와 절대 공유하지 않습니다."
+            }
+          ]
+        },
+        {
+          "title": "계정 관리",
+          "items": [
+            {
+              "title": "비밀번호는 어떻게 변경하나요?",
+              "detail": "사이트 로그인 후, 정보센터 > 내 정보를 클릭하세요. \"로그인 비밀번호\" 메뉴를 통해 비밀번호 변경이 가능합니다."
+            },
+            {
+              "title": "비밀번호를 분실했는데, 어떻게 재발급받을 수 있나요?",
+              "detail": "계정 비밀번호를 분실하신 경우, \"비밀번호 찾기\" 버튼을 클릭해주세요. 회원님의 아이디와 가입시 등록하신 이메일을 입력하세요. 입력하신 정보가 올바른 경우, 이메일로 임시 비밀번호가 발송됩니다."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "en": {
+    "support": {
+      "items": [
+        {
+          "title": "Please contact customer service."
+        }
+      ]
+    },
+    "notice": {
+      "items": [
+        {
+          "title": "Urgent Notice - win10096 official Telegram updated.",
+          "detail": "There has been an increase in impersonators pretending to be win10096.\nwin10096 provides guidance only through one official Telegram. If there is an issue with the existing Telegram, we will announce it only via this channel or live chat.\n\nOfficial win10096 Telegram announcement channel: https://t.me/win10096cs\n\nIf you cannot reach us through the previous Telegram, please contact us via live chat to verify and proceed to avoid impersonation."
+        },
+        {
+          "title": "How to inquire about deposit account",
+          "detail": "For deposit account inquiries, please register first and then contact us via live chat or the customer service Telegram."
+        }
+      ]
+    },
+    "about": {
+      "items": [
+        {
+          "title": "About win10096",
+          "detail": "This policy describes how win10096 (\"we\") uses the information and data provided by customers and how it is handled between win10096 and customers.\n\nWe process your personal information based on the provisions provided through the win10096 (or website) registration form or other methods, or based on personal information we already hold. By submitting your information and using the site, you agree to the use of your information in accordance with this Privacy Policy. If you do not agree with this policy, please do not use the site or provide personal information."
+        }
+      ]
+    },
+    "privacy": {
+      "items": [
+        {
+          "title": "Privacy Policy",
+          "detail": "This policy explains how your personal information is collected, used, and protected by win10096. We only provide guidance via our official channels. If the existing channel has issues, announcements will be made via this page or live chat only."
+        },
+        {
+          "title": "Data collection and usage",
+          "detail": "We collect, use, and dispose of information and data about you including:\n1. Any information submitted via email or the website;\n2. Any other means that record communications via email, phone, or chat;\n3. Responses to surveys or customer questionnaires;\n4. Transaction history related to the website;\n5. Details of site visits such as traffic data, location data, blogs, and other communication data.\n\nYour personal information is processed for the following purposes:\n1. Payment transactions, including offline and online payments;\n2. Betting transactions;\n3. Managing customer accounts and building member profiles;\n4. Compliance with our legal and regulatory obligations;\n5. Customer research, surveys, and analytics;\n6. Events, products, and services;\n7. Preventing fraud, irregular betting activity, money laundering, bonus abuse, collusion, and monitoring transactions between customers for misconduct."
+        }
+      ]
+    },
+    "info": {
+      "items": [
+        {
+          "title": "Additional Information",
+          "detail": "win10096 is not responsible for the content or accuracy of internal or external websites.\nAll information provided by the company is based on facts; however, the company is not liable for errors or omissions related to the information. The company reserves the right to correct obvious errors.\nWe reserve the exclusive right to amend, update, and modify these Terms of Use from time to time.\nRevised, updated, or modified terms will be posted on the website(s) and will take effect immediately upon posting."
+        }
+      ]
+    },
+    "addiction": {
+      "items": [
+        {
+          "title": "Responsible Gaming",
+          "detail": "win10096 encourages members to enjoy gaming while preventing excessive play. We help members recognize their limits and set their own responsible gaming limits through the account management page.\nGaming is a form of entertainment and should not become an emotional or financial burden. Borrowing money or using funds for other purposes is unwise and can cause serious problems for you and those around you. We hope you enjoy games responsibly at win10096!\nIf you have questions about responsible gaming, please contact customer support. We offer help such as:\n1. Self-assessment\n2. Bet management\n3. Deposit limits\n4. Parental protection\n5. Help and suggestions"
+        },
+        {
+          "title": "Self-assessment",
+          "detail": "1. Do you play to escape from a boring or unhappy life?\n2. After losing, do you feel the urge to win back what you lost as soon as possible?\n3. When you play, do you tend to continue until all available funds are exhausted?\n4. Have you ever lied to conceal the amount of money or time spent on gambling?\n5. Have you lost interest in family, friends, or hobbies because of gambling?\n6. When you run out of money while playing, have you felt despair or disappointment and wanted to play again quickly?\n\nDo you feel depressed or suicidal due to gambling? If most of your answers are \"Yes\", you may be experiencing gambling addiction. For free and independent advice, please contact organizations such as Gambling Therapy (https://www.gamblingtherapy.org/) or contact us."
+        },
+        {
+          "title": "Bet management",
+          "detail": "While most people gamble recreationally, for some it can become a problem.\nYou may find it helpful to remember:\n1. Gambling should be fun and not seen as a way to make money.\n2. Only gamble within your financial means.\n3. Keep track of the time and money you spend on gambling.\n4. Consider installing gambling site blocking software such as Betfilter (www.betfilter.com) or Gamblock (www.gamblock.com) on your mobile or tablet.\n5. If you want to talk to someone about problem gambling, contact us or one of the organizations mentioned above."
+        }
+      ]
+    },
+    "rules": {
+      "items": [
+        {
+          "title": "Rules and Regulations",
+          "detail": "win10096 strictly penalizes members who register with the intention of using the site in abnormal ways such as arbitrage betting, using betting tools, reporting and hacking, intimidation, promotion abuse, or organized group betting. If a member is determined to have violated the stated rules and regulations, win10096 reserves the right to confiscate the member's account without prior warning. By registering and using win10096, you are considered to understand and agree to all terms, rules, and regulations."
+        },
+        {
+          "title": "Deposits and Withdrawals",
+          "detail": "- If you deposit to an incorrect account without prior verification, win10096 is not responsible for any resulting loss.\n- Unless otherwise stated in the event/promotion, all time references are based on GMT+8.\n- Deposit and withdrawal requests can only be made using the account holder’s own registered bank details; requests using another person’s details cannot be processed.\n- Bank account information cannot be registered under family, relatives, acquaintances, or any other names; it must match the actual user of the site.\n- The use of virtual accounts is strictly prohibited. Deposits or withdrawals using virtual accounts are not allowed.\n- If you deposit using an account that is not in your name, the deposit cannot be processed and win10096 may request related documents to handle the transaction.\n- To prevent money laundering and financial fraud, the deposited amount must be wagered in full before withdrawals are allowed.\n- Deposits via checks or bills are not accepted."
+        }
+      ]
+    },
+    "faq": {
+      "categories": [
+        {
+          "title": "General Information",
+          "items": [
+            {
+              "title": "About win10096",
+              "detail": "win10096 is an overseas betting site that provides trusted and verified games. From sports, slot games, live casinos to mini games, we are doing our best to closely follow the trends of online entertainment products. You can experience exciting games while receiving various benefits such as attractive promotions and bonuses like various customer loyalty programs."
+            },
+            {
+              "title": "Are the games provided on the site fair?",
+              "detail": "The win10096 site is a legally registered company, and all game results are absolutely fair, impartial, and based on factual outcomes."
+            },
+            {
+              "title": "Is my personal information safe?",
+              "detail": "We prioritize your personal information above all else. win10096 will never share your information with any third party unless required by regulations, applicable laws and regulations, or a court order."
+            }
+          ]
+        },
+        {
+          "title": "Account Management",
+          "items": [
+            {
+              "title": "How do I change my password?",
+              "detail": "After logging into the site, click Information Center > My Information. You can change your password through the “Login Password” menu."
+            },
+            {
+              "title": "I lost my password, how can I get it reissued?",
+              "detail": "If you have forgotten your account password, please click the “Forgot Password” button. Enter your username and the email address registered during signup. If the information provided is correct, a temporary password will be sent to your email."
+            }
+          ]
+        }
+      ]
+    }
+  }
+};
+
   window.WIN15_DATA = {
     I18N: I18N,
     DESKTOP_NAV: DESKTOP_NAV,
@@ -594,6 +1029,10 @@
     BANNER_SLIDES_MOBILE: BANNER_SLIDES_MOBILE,
     HOT_GAMES: HOT_GAMES,
     GAME_TYPES: GAME_TYPES,
+    GAME_VENDORS: GAME_VENDORS,
+    FLAT_GAMES: FLAT_GAMES,
+    PROMOTIONS: PROMOTIONS,
+    ABOUT_CONTENT: ABOUT_CONTENT,
     MOCK_PROFILE: MOCK_PROFILE,
     USER_SIDEBAR_ITEMS: USER_SIDEBAR_ITEMS,
     MOCK_TRANSACTIONS: MOCK_TRANSACTIONS,

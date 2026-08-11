@@ -225,16 +225,18 @@
    * 浮動客服/活動 SideBar(components/SideBar.vue)
    * ================================================================ */
   function quickSidebarHtml() {
+    /* 對照 components/SideBar.vue items(液晶客服/Telegram 推播頻道/常見問題,分別導向
+       客服彈窗(尚未實作)/官方 Telegram/about.html?tab=faq) */
     var rightItems = [
-      { icon: 'sidebar-service.svg', menu: ['문의(라이브채팅)'] },
-      { icon: 'sidebar-telegram.svg', menu: ['문의(텔레그램)'] },
-      { icon: 'sidebar-helps.svg', menu: ['자주 묻는 질문'] },
+      { icon: 'sidebar-service.svg', menu: [{ label: '문의(라이브채팅)', action: 'liveChat' }] },
+      { icon: 'sidebar-telegram.svg', menu: [{ label: '문의(텔레그램)', action: 'telegram' }] },
+      { icon: 'sidebar-helps.svg', menu: [{ label: '자주 묻는 질문', action: 'faq' }] },
     ];
     var rightHtml = rightItems.map(function (item, i) {
       return (
         '<div class="quick-sidebar-item" data-quick-item="' + i + '">' +
         '<button type="button" class="quick-sidebar-btn"><img src="' + icon(item.icon) + '" alt=""></button>' +
-        '<div class="quick-sidebar-popover">' + item.menu.map(function (m) { return '<button type="button">' + m + '</button>'; }).join('') + '</div>' +
+        '<div class="quick-sidebar-popover">' + item.menu.map(function (m) { return '<button type="button" data-quick-action="' + m.action + '">' + m.label + '</button>'; }).join('') + '</div>' +
         '</div>'
       );
     }).join('');
@@ -253,6 +255,18 @@
     qsa('[data-quick-item]', root).forEach(function (item) {
       on(item, 'mouseenter', function () { item.classList.add('is-open'); });
       on(item, 'mouseleave', function () { item.classList.remove('is-open'); });
+    });
+    qsa('[data-quick-action]', root).forEach(function (btn) {
+      on(btn, 'click', function () {
+        var action = btn.getAttribute('data-quick-action');
+        if (action === 'telegram') {
+          window.open('https://t.me/win10096cs', '_blank', 'noopener,noreferrer');
+        } else if (action === 'faq') {
+          location.href = 'about.html?tab=faq';
+        } else {
+          window.alert('此為靜態設計預覽,客服視窗尚未實作。');
+        }
+      });
     });
   }
 

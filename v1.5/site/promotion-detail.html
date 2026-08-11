@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CMS_前台_v1.5</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div data-mount="header"></div>
+
+      <main class="promotion-detail-page">
+        <a class="page-back-link" href="promotion-list.html">
+          <img src="assets/images/icon/back-white.svg" alt="back" />
+          <span data-i18n="common.back">뒤로</span>
+        </a>
+
+        <h1 class="promotion-detail-title text-gradient" data-i18n="navbar.desktop.promotion">프로모션</h1>
+        <div class="promotion-detail-content" data-promo-detail-content></div>
+      </main>
+
+      <div data-mount="footer"></div>
+      <div data-mount="bottom-nav"></div>
+      <div data-mount="quick-sidebar"></div>
+    </div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/site.js"></script>
+    <script>
+      window.WIN15_PAGE_INIT = function () {
+        var D = window.WIN15_DATA;
+        var W = window.WIN15;
+        var id = Number(new URLSearchParams(location.search).get('id'));
+        var promo = D.PROMOTIONS.filter(function (p) { return p.promotion_id === id; })[0];
+        var contentEl = W.qs('[data-promo-detail-content]');
+        contentEl.innerHTML = promo ? promo.content[W.currentLocale()] : W.t('common.noData');
+      };
+    </script>
+  </body>
+</html>

@@ -1034,6 +1034,7 @@ input {
   gap: 16px;
 }
 .home-promotion-card {
+  display: block;
   border-radius: 16px;
   overflow: hidden;
   background: var(--c-navy-soft);
@@ -2572,4 +2573,595 @@ input {
 }
 .bd-select-dropdown button:hover {
   background: #f5f7fb;
+}
+
+/* ============================================================
+   Phase 5 — 共用漸層邊框(矩形版,對照原始碼 .border-gradient-primary-mask)
+   ============================================================ */
+.border-gradient-mask {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.border-gradient-mask::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--g-primary-270);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.border-gradient-mask:hover {
+  background: var(--c-pink-hover);
+}
+.border-gradient-mask:hover::before {
+  opacity: 0;
+}
+.border-gradient-mask:hover .text-gradient {
+  background-image: none;
+  -webkit-text-fill-color: #fff;
+  color: #fff;
+}
+
+/* ---- 返回連結(about.vue/promotionDetail.vue/gameList.vue 共用的「< 뒤로」箭頭連結) ---- */
+.page-back-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.page-back-link img {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---- 遊戲/促銷清單共用的「載入更多」按鈕與空狀態 ---- */
+.load-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+.load-more-btn {
+  padding: 10px 32px;
+  font-weight: 700;
+  background: transparent;
+}
+.list-empty-state {
+  padding: 64px 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+}
+
+/* ============================================================
+   about.html(pages/about.vue)
+   ============================================================ */
+.about-page {
+  background: var(--c-navy);
+  min-height: 60vh;
+  padding: 16px 20px 48px;
+}
+.about-title-row {
+  display: inline-block;
+  border-bottom: 2px solid transparent;
+  border-image: var(--g-primary);
+  border-image-slice: 1;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+.about-title-row h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+.about-tabs {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  border-bottom: 1px solid #4f4f4f;
+}
+.about-tabs::-webkit-scrollbar {
+  display: none;
+}
+.about-tab {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding: 8px 16px;
+  color: #fff;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+}
+.about-tab.is-active {
+  border-image: var(--g-primary);
+  border-image-slice: 1;
+}
+.about-content {
+  margin-top: 16px;
+}
+.about-card {
+  background: #1d2647;
+  border: 1px solid #4f4f4f;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.about-card-title {
+  padding: 8px 16px;
+  font-weight: 700;
+}
+.about-card-title.has-detail {
+  border-bottom: 1px solid #4f4f4f;
+}
+.about-card-detail {
+  padding: 8px 16px;
+  color: #e7e7e7;
+  font-size: 14px;
+  white-space: pre-line;
+  line-height: 1.6;
+}
+.about-faq-category-title {
+  font-weight: 700;
+  margin: 16px 0;
+}
+.about-faq-item {
+  background: #1d2647;
+  border: 1px solid #4f4f4f;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.about-faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.about-faq-question svg {
+  width: 16px;
+  height: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  flex-shrink: 0;
+  margin-left: 12px;
+  transition: transform 0.3s;
+}
+.about-faq-item.is-open .about-faq-question svg {
+  transform: rotate(180deg);
+}
+.about-faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 16px;
+  color: #e7e7e7;
+  font-size: 14px;
+  white-space: pre-line;
+  line-height: 1.6;
+  transition: max-height 0.3s;
+}
+.about-faq-item.is-open .about-faq-answer {
+  max-height: 1000px;
+  padding: 0 16px 12px;
+}
+@media (min-width: 1280px) {
+  .about-page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 64px 0;
+  }
+  .about-title-row h1 {
+    font-size: 28px;
+  }
+  .about-tab {
+    font-size: 16px;
+  }
+  .about-card-title {
+    font-size: 18px;
+  }
+}
+
+/* ============================================================
+   GameFilter(components/GameFilter.vue) — game-type.html / game-list.html 共用
+   ============================================================ */
+.game-filter-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.game-filter-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+.game-filter-vendor-sep {
+  width: 1px;
+  height: 16px;
+  background: #b0b0b0;
+}
+.game-filter-vendor-name {
+  color: #b0b0b0;
+  font-weight: 700;
+}
+.game-filter-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+.game-filter-tabs {
+  display: flex;
+}
+.game-filter-tab {
+  flex: 1;
+  text-align: center;
+  padding: 8px 16px;
+  font-weight: 700;
+  color: #fff;
+  border-bottom: 1px solid #4f4f4f;
+  white-space: nowrap;
+}
+.game-filter-tab.is-active {
+  border-image: var(--g-primary);
+  border-image-slice: 1;
+}
+.game-filter-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.game-filter-search input {
+  flex: 1;
+  height: 40px;
+  border-radius: 8px;
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 0 16px;
+  font-size: 14px;
+}
+.game-filter-search input::placeholder {
+  color: #e7e7e7;
+}
+.game-filter-search-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  font-weight: 700;
+}
+.game-filter-search-btn img {
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
+}
+@media (min-width: 768px) {
+  .game-filter-row {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+  .game-filter-tabs {
+    flex: none;
+  }
+  .game-filter-tab {
+    flex: none;
+  }
+  .game-filter-search {
+    margin-left: auto;
+  }
+  .game-filter-search input {
+    width: 288px;
+  }
+}
+@media (min-width: 1280px) {
+  .game-filter-title {
+    font-size: 28px;
+  }
+}
+
+/* ============================================================
+   game-type.html / game-list.html — 遊戲/廠商卡片
+   ============================================================ */
+.game-type-page,
+.game-list-page {
+  background: var(--c-navy);
+  min-height: 60vh;
+  padding: 24px 20px;
+}
+@media (min-width: 1280px) {
+  .game-type-page,
+  .game-list-page {
+    padding: 64px 96px;
+  }
+}
+
+.game-provider-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+}
+.game-provider-card {
+  position: relative;
+  height: 160px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #0b1733;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+.game-provider-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.game-provider-card-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 55%;
+  max-height: 55%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
+}
+@media (min-width: 768px) {
+  .game-provider-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 1280px) {
+  .game-provider-grid {
+    gap: 28px;
+  }
+}
+
+.game-list-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+}
+.game-card {
+  cursor: pointer;
+}
+.game-card-thumb {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  background: #0b1733;
+}
+.game-card-thumb img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  transition: transform 1s ease-out;
+}
+.game-card:hover .game-card-thumb img {
+  transform: scale(1.15);
+}
+.game-card-info {
+  padding: 8px 4px 0;
+}
+.game-card-name {
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.game-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2px;
+}
+.game-card-provider {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.game-card-fav-btn {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+.game-card-fav-btn img {
+  width: 100%;
+  height: 100%;
+}
+@media (min-width: 768px) {
+  .game-list-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+@media (min-width: 1536px) {
+  .game-list-grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+@media (min-width: 1280px) {
+  .game-card-name {
+    font-size: 18px;
+  }
+}
+
+/* ============================================================
+   promotion-list.html(pages/promotionList.vue)
+   ============================================================ */
+.promotion-list-page {
+  background: var(--c-navy);
+}
+.promotion-list-body {
+  padding: 16px 20px 48px;
+}
+.promotion-list-title-row {
+  display: inline-block;
+  border-bottom: 2px solid transparent;
+  border-image: var(--g-primary);
+  border-image-slice: 1;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+.promotion-list-title-row h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+.promotion-categories {
+  display: flex;
+  overflow-x: auto;
+  border-bottom: 1px solid #4f4f4f;
+}
+.promotion-categories::-webkit-scrollbar {
+  display: none;
+}
+.promotion-category-tab {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding: 8px 16px;
+  color: #fff;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+}
+.promotion-category-tab.is-active {
+  border-image: var(--g-primary);
+  border-image-slice: 1;
+}
+.promotion-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 16px;
+}
+.promotion-card {
+  border-radius: 28px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.promotion-card-thumb {
+  height: 168px;
+  overflow: hidden;
+}
+.promotion-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease-out;
+}
+.promotion-card:hover .promotion-card-thumb img {
+  transform: scale(1.1);
+}
+.promotion-card-badge {
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--c-navy);
+  background: var(--g-primary);
+  padding: 4px 0;
+}
+.promotion-card-footer {
+  background: #e7e7e7;
+  border-radius: 0 0 28px 28px;
+  padding: 16px;
+}
+.promotion-card-title {
+  color: #000;
+  font-size: 12px;
+  font-weight: 600;
+}
+@media (min-width: 768px) {
+  .promotion-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1280px) {
+  .promotion-list-body {
+    padding: 64px 96px;
+  }
+  .promotion-list-title-row h1 {
+    font-size: 28px;
+  }
+  .promotion-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+}
+
+/* ============================================================
+   promotion-detail.html(pages/promotionDetail.vue)
+   ============================================================ */
+.promotion-detail-page {
+  background: var(--c-navy);
+  min-height: 60vh;
+  padding: 16px 20px 48px;
+}
+.promotion-detail-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 16px;
+}
+.promotion-detail-content {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #fff;
+}
+.promotion-detail-content p {
+  margin: 0 0 16px;
+  line-height: 1.7;
+}
+.promotion-detail-content img {
+  width: 100%;
+  border-radius: 12px;
+}
+@media (min-width: 1280px) {
+  .promotion-detail-page {
+    padding: 56px 96px;
+  }
+  .promotion-detail-title {
+    font-size: 28px;
+  }
+}
+
+/* ============================================================
+   sports.html(pages/sports.vue — 第三方遊戲開啟橋接頁)
+   ============================================================ */
+.game-frame-page {
+  background: var(--c-navy);
+  padding-top: 32px;
+}
+.game-frame-iframe {
+  width: 100%;
+  height: calc(100vh - 64px);
+  border: 0;
+  display: block;
+}
+.game-frame-mobile-msg {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+  padding: 0 20px;
+}
+@media (min-width: 1280px) {
+  .game-frame-page {
+    padding-top: 64px;
+  }
+  .game-frame-iframe {
+    height: calc(100vh - 128px);
+  }
 }
