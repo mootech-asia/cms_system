@@ -1050,3 +1050,1015 @@ input {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+/* ============================================================
+   會員中心殼 — UserNavbar.vue(手機頂部標題列)+ UserSidebar.vue
+   ============================================================ */
+.user-navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 32px;
+  z-index: 50;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+.user-navbar-title {
+  color: var(--c-navy);
+  font-size: 20px;
+  text-align: center;
+  flex: 1;
+}
+.user-navbar-toggle {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-navbar-toggle svg {
+  width: 24px;
+  height: 24px;
+  color: var(--c-navy);
+}
+@media (min-width: 1280px) {
+  .user-navbar {
+    display: none;
+  }
+}
+
+.usercenter-main {
+  padding-top: 0;
+}
+@media (min-width: 1280px) {
+  .usercenter-main {
+    padding-top: 137px;
+  }
+}
+.usercenter-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.usercenter-content {
+  width: 100%;
+  background: #fff;
+  overflow-x: hidden;
+}
+/* .user-sidebar 在桌機用 position:fixed 脫離文檔流(見下方規則),不佔用
+   grid 欄位,所以這裡維持單欄、改由 .usercenter-content 自己讓出左側
+   260px,避免 grid 誤留一欄空白導致內容被擠到看不見。 */
+@media (min-width: 1280px) {
+  .usercenter-content {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+  }
+}
+
+/* ---- UserSidebar ---- */
+.user-sidebar {
+  position: relative;
+  width: 100%;
+  background: #fff;
+}
+.user-sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  top: 32px;
+  z-index: 10;
+  background: transparent;
+}
+.user-sidebar-overlay.is-open {
+  display: block;
+}
+.user-sidebar-mobile-panel {
+  display: none;
+}
+.user-sidebar-mobile-panel.is-open {
+  display: block;
+  position: fixed;
+  top: 32px;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  overflow-y: auto;
+  z-index: 20;
+  background: #fff;
+}
+.user-sidebar-toggles {
+  display: flex;
+  gap: 8px;
+  padding: 6px 24px;
+  margin-bottom: 16px;
+}
+.user-sidebar-toggle-btn {
+  flex: 1;
+  text-align: center;
+  font-weight: 700;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: transparent;
+}
+.user-sidebar-list-item {
+  padding: 0 24px;
+  margin-bottom: 16px;
+}
+.user-sidebar-nav-item {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+  border-radius: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--c-navy);
+}
+.user-sidebar-nav-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  background-image: var(--g-primary);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+.user-sidebar-nav-label {
+  flex: 1;
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 8px;
+  text-align: left;
+  font-weight: 600;
+}
+.user-sidebar-mobile-actions {
+  display: flex;
+  gap: 8px;
+  padding: 0 24px 24px;
+}
+.user-sidebar-mobile-actions button {
+  flex: 1;
+  background: var(--c-navy);
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  padding: 8px;
+  border-radius: 10px;
+}
+@media (min-width: 1280px) {
+  .user-sidebar {
+    position: fixed;
+    top: 124px;
+    bottom: 0;
+    left: 0;
+    width: 260px;
+    background: var(--c-navy);
+    padding: 18px 0;
+    overflow-y: auto;
+  }
+  .user-sidebar-overlay,
+  .user-sidebar-mobile-actions {
+    display: none !important;
+  }
+  .user-sidebar-mobile-panel {
+    display: block !important;
+    position: static;
+    background: transparent;
+  }
+  .user-sidebar-nav-item {
+    color: #fff;
+  }
+  .user-sidebar-nav-item:hover:not(.is-active) {
+    background: var(--c-pink-hover);
+    border-color: transparent;
+  }
+  .user-sidebar-nav-item:hover:not(.is-active) .user-sidebar-nav-label {
+    color: #fff;
+    background: transparent;
+  }
+  .user-sidebar-nav-item:hover:not(.is-active) .user-sidebar-nav-icon {
+    background: #fff;
+  }
+  .user-sidebar-nav-item.is-active {
+    background-image: var(--g-primary);
+    border-color: transparent;
+  }
+  .user-sidebar-nav-item.is-active .user-sidebar-nav-icon {
+    background: var(--c-navy);
+  }
+  .user-sidebar-nav-item.is-active .user-sidebar-nav-label {
+    background: transparent;
+    color: var(--c-navy);
+  }
+}
+
+/* ============================================================
+   帳戶總覽(pages/userCenter/index.vue)
+   ============================================================ */
+.account-page {
+  background: #f4f4f4;
+  padding-bottom: 80px;
+  min-height: 60vh;
+}
+.account-page-title {
+  display: none;
+}
+@media (min-width: 1280px) {
+  .account-page-title {
+    display: block;
+    height: 62px;
+    background: #fff;
+    color: var(--c-navy);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 64px;
+    border-bottom: 1px solid var(--c-border);
+    padding: 0 32px;
+    margin-bottom: 16px;
+  }
+}
+.account-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 1280px) {
+  .account-layout {
+    grid-template-columns: 1fr 320px;
+    padding: 0 40px 24px;
+  }
+}
+
+.account-hero {
+  background: var(--c-navy-2);
+  color: #fff;
+  overflow: hidden;
+}
+@media (min-width: 1280px) {
+  .account-hero {
+    border-radius: 10px;
+  }
+}
+.account-hero-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 16px 16px;
+}
+.account-hero-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px #fff;
+}
+.account-hero-name-row {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 4px;
+}
+.account-hero-name-row .username {
+  font-size: 18px;
+  font-weight: 700;
+}
+.account-hero-level {
+  display: inline-flex;
+  width: fit-content;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background-image: var(--g-primary);
+  color: var(--c-navy);
+  font-weight: 700;
+  font-size: 12px;
+}
+.account-hero-nickname {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  margin-top: 4px;
+}
+.account-hero-balance {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+.account-hero-balance .text-gradient {
+  font-weight: 700;
+}
+.account-hero-balance img {
+  width: 20px;
+  height: 20px;
+}
+.account-hero-actions-mobile {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 16px;
+  flex-wrap: wrap;
+}
+.account-action-btn {
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: var(--g-action);
+  color: var(--c-navy);
+  font-weight: 700;
+  font-size: 16px;
+}
+.account-action-outline {
+  height: 32px;
+  padding: 0 8px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.account-hero-rollover-mobile {
+  padding: 16px;
+  text-align: right;
+}
+.account-rollover-title {
+  font-size: 24px;
+  font-weight: 700;
+}
+.account-rollover-note {
+  font-weight: 700;
+  color: #fff;
+}
+.account-rollover-value {
+  font-weight: 400;
+}
+.account-hero-desktop-actions {
+  display: none;
+}
+@media (min-width: 1280px) {
+  .account-hero-top {
+    padding: 24px 16px;
+  }
+  .account-hero-avatar {
+    width: 94px;
+    height: 94px;
+  }
+  .account-hero-name-row {
+    flex-direction: row;
+    align-items: center;
+  }
+  .account-hero-name-row .username {
+    font-size: 24px;
+  }
+  .account-hero-actions-mobile {
+    display: none;
+  }
+  .account-hero-rollover-mobile {
+    display: none;
+  }
+  .account-hero-top {
+    align-items: flex-start;
+  }
+  .account-hero-desktop-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-left: auto;
+  }
+  .account-hero-desktop-actions .btn-row {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+  .account-hero-desktop-rollover {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    text-align: right;
+    flex-direction: column;
+  }
+}
+
+.account-recent {
+  margin: 16px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+@media (min-width: 1280px) {
+  .account-recent {
+    margin: 24px 0;
+  }
+}
+.account-recent-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--c-border);
+  padding: 8px 0;
+}
+.account-recent-head h4 {
+  color: var(--c-navy-2);
+  font-weight: 700;
+  margin: 0;
+}
+.account-recent-body {
+  padding: 16px;
+}
+.account-recent-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--c-border);
+}
+.account-recent-row:last-child {
+  border-bottom: 0;
+  margin-bottom: 0;
+}
+.account-recent-row .type {
+  color: var(--c-navy);
+  font-weight: 700;
+  font-size: 14px;
+}
+.account-recent-row .time {
+  color: var(--c-navy);
+  font-size: 12px;
+  margin-top: 2px;
+}
+.account-recent-row .amount {
+  color: var(--c-navy);
+  font-size: 14px;
+  text-align: right;
+}
+.account-recent-row .status {
+  font-size: 12px;
+  text-align: right;
+  margin-top: 2px;
+}
+.status-approved { color: #1dbf73; }
+.status-reject { color: #e11d48; }
+.status-pending { color: #f0bc00; }
+
+.account-quick-links {
+  padding: 16px;
+}
+@media (min-width: 1280px) {
+  .account-quick-links {
+    padding: 0 0 0 32px;
+  }
+}
+.account-quick-list {
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+.account-quick-list > button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--c-border-soft);
+}
+.account-quick-list > button:last-child {
+  border-bottom: 0;
+}
+.account-quick-list img {
+  width: 20px;
+  height: 20px;
+}
+.account-quick-list .qtitle {
+  font-size: 14px;
+  color: var(--c-navy);
+  font-weight: 700;
+}
+.account-quick-list .qdesc {
+  font-size: 12px;
+  color: #6d6d6d;
+}
+.account-quick-status {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ============================================================
+   全站彈窗(components/AlertModal.vue)
+   ============================================================ */
+.alert-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(40, 38, 46, 0.8);
+  padding: 16px;
+}
+.alert-box {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  border-radius: 28px;
+  background: #3a3a3a;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 3px solid transparent;
+  background-image: linear-gradient(#3a3a3a, #3a3a3a), var(--g-primary);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+.alert-box-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 24px 16px;
+}
+.alert-icon {
+  width: 80px;
+  height: 80px;
+}
+.alert-title {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+}
+.alert-message {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 16px;
+  text-align: center;
+  margin: 0;
+}
+.alert-actions {
+  padding: 0 24px 20px;
+}
+.alert-confirm-btn {
+  width: 100%;
+  height: 40px;
+  border-radius: 999px;
+  background-image: var(--g-primary);
+  color: rgba(6, 12, 52, 0.8);
+  font-size: 18px;
+  font-weight: 700;
+}
+.alert-cancel-btn {
+  margin-top: 8px;
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+}
+
+/* ============================================================
+   儲值頁(pages/userCenter/deposit.vue)
+   ============================================================ */
+.pay-page {
+  background: #fff;
+}
+.pay-page-title {
+  display: none;
+}
+@media (min-width: 1280px) {
+  .pay-page-title {
+    display: block;
+    color: var(--c-navy);
+    font-size: 32px;
+    font-weight: 700;
+    padding: 16px 32px 8px;
+    border-bottom: 1px solid var(--c-border-soft);
+  }
+}
+.pay-section {
+  padding: 16px 16px 80px;
+}
+@media (min-width: 1280px) {
+  .pay-section {
+    padding: 16px 32px 40px;
+    margin-left: 260px;
+  }
+}
+.pay-section-inner {
+  max-width: 945px;
+  margin: 0 auto;
+}
+.pay-pill-label {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 16px;
+  padding: 4px 24px;
+  border-radius: 999px;
+  background: var(--c-navy-2);
+  color: #fff;
+  font-size: 14px;
+}
+.pay-amount-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+}
+@media (min-width: 1280px) {
+  .pay-amount-grid {
+    gap: 20px;
+  }
+}
+.pay-amount-btn {
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid var(--c-border);
+  background: #fff;
+  color: #6d6d6d;
+  font-size: 12px;
+}
+@media (min-width: 1280px) {
+  .pay-amount-btn {
+    height: 80px;
+    font-size: 16px;
+  }
+}
+.pay-amount-btn.is-selected {
+  border-color: var(--c-gold);
+  background: var(--c-gold);
+  color: var(--c-navy);
+  font-weight: 700;
+}
+.pay-input {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--c-subtitle);
+  padding: 0 16px;
+  color: var(--c-navy);
+  margin-top: 16px;
+}
+.pay-input::placeholder {
+  color: #6d6d6d;
+}
+.pay-note {
+  color: var(--c-danger);
+  font-size: 12px;
+  margin-top: 16px;
+}
+.promo-card {
+  border-radius: 10px;
+  border: 1px solid var(--c-subtitle);
+  background: #fff;
+  padding: 4px 8px;
+  margin-top: 16px;
+  cursor: pointer;
+}
+@media (min-width: 1280px) {
+  .promo-card {
+    padding: 12px 16px;
+  }
+}
+.promo-card.is-selected {
+  background: var(--c-gold);
+  border-color: transparent;
+  font-weight: 700;
+}
+.promo-card-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.promo-radio {
+  margin-top: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 2px solid var(--c-navy-2);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.promo-radio-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--c-navy-2);
+  display: none;
+}
+.promo-card.is-selected .promo-radio-dot {
+  display: block;
+}
+.promo-card-body {
+  flex: 1;
+  color: var(--c-navy);
+  font-size: 14px;
+}
+.promo-card-remark {
+  color: var(--c-navy);
+  margin-top: 4px;
+}
+.promo-card-hr {
+  border: 0;
+  border-top: 1px solid var(--c-navy);
+  margin: 8px 0;
+}
+.promo-card-turnover {
+  color: #6b7280;
+  font-size: 12px;
+}
+.pay-next-btn {
+  width: 100%;
+  height: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--c-navy-2);
+  font-weight: 700;
+  margin-top: 40px;
+}
+.pay-next-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.pay-back-btn {
+  width: 100%;
+  height: 48px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--c-navy);
+  color: var(--c-navy);
+  font-weight: 700;
+  background: #fff;
+}
+
+/* ============================================================
+   提款頁(pages/userCenter/withdrawal.vue)
+   ============================================================ */
+.wd-card-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #3f3f42;
+  margin-top: 8px;
+}
+.wd-card-nav img {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.wd-bank-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  color: #fff;
+  margin-top: 16px;
+  height: 175px;
+}
+.wd-bank-card img.card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.wd-bank-card-inner {
+  position: relative;
+  height: 100%;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.wd-bank-name {
+  width: 114px;
+  height: 25px;
+  background: rgba(6, 12, 52, 0.8);
+  border-radius: 4px;
+  text-align: center;
+  line-height: 25px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.wd-bank-card-mid {
+  text-align: center;
+}
+.wd-bank-card-mid .num {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.wd-bank-card-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.wd-bank-card-foot .holder {
+  color: var(--c-gold);
+  font-weight: 700;
+}
+.wd-refresh-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+  color: var(--c-navy-2);
+}
+.wd-refresh-row button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.wd-wallet-row {
+  display: flex;
+  justify-content: center;
+  gap: 210px;
+  text-align: center;
+  margin-top: 40px;
+}
+.wd-wallet-row .wallet-label {
+  color: var(--c-navy);
+}
+.wd-wallet-row .wallet-amount {
+  color: var(--c-navy);
+  font-weight: 700;
+  font-size: 24px;
+}
+.wd-turnover-note {
+  text-align: center;
+  color: var(--c-danger);
+  font-size: 12px;
+  margin-top: 8px;
+}
+.wd-turnover-note .detail-btn {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 4px 10px;
+  border-radius: 15px;
+  background: var(--c-danger);
+  color: #fff;
+}
+.wd-empty {
+  text-align: center;
+  background: #ededed;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 16px;
+}
+.wd-empty img {
+  width: 100px;
+  margin: 0 auto;
+}
+.wd-empty p {
+  color: var(--c-navy);
+  font-weight: 700;
+  margin-top: 16px;
+}
+.wd-empty button {
+  height: 27px;
+  border-radius: 999px;
+  background: var(--c-gold);
+  color: var(--c-navy);
+  font-weight: 700;
+  padding: 4px 16px;
+  margin-top: 8px;
+  box-shadow: 0 4px 0 var(--c-navy-2);
+}
+.pw-input-wrap {
+  position: relative;
+  margin-top: 16px;
+}
+.pw-input-wrap .pay-input {
+  margin-top: 0;
+  padding-right: 40px;
+}
+.pw-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.pw-toggle img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ============================================================
+   轉帳明細(pages/userCenter/transactionInfo.vue)
+   ============================================================ */
+.txinfo-page-title {
+  display: none;
+}
+@media (min-width: 1280px) {
+  .txinfo-page-title {
+    display: block;
+    margin-left: 260px;
+    height: 62px;
+    color: var(--c-navy);
+    font-size: 32px;
+    font-weight: 700;
+    padding: 8px 32px;
+    border-bottom: 1px solid var(--c-border-soft);
+  }
+}
+.txinfo-section {
+  padding: 24px 28px 100px;
+}
+@media (min-width: 1280px) {
+  .txinfo-section {
+    margin-left: 260px;
+    padding: 32px 28px;
+  }
+}
+.txinfo-inner {
+  max-width: 945px;
+  margin: 0 auto;
+}
+.txinfo-pill {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 40px;
+  padding: 4px 24px;
+  border-radius: 999px;
+  background: var(--c-navy-2);
+  color: #fff;
+}
+.txinfo-card {
+  border: 1px solid var(--c-border);
+  border-radius: 12px;
+  padding: 12px 24px 0;
+}
+.txinfo-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+}
+.txinfo-row .label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-navy);
+}
+.txinfo-row .value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--c-navy);
+}
+.txinfo-row.is-bonus {
+  border-bottom: 1px solid var(--c-border-soft);
+}
+.txinfo-row.is-bonus .value {
+  color: #0e8d6c;
+  font-size: 16px;
+}
+.txinfo-account-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 16px;
+}
+.txinfo-account-row span {
+  color: var(--c-navy);
+  font-weight: 700;
+}
+.txinfo-desc {
+  color: #4f4f4f;
+  padding: 0 16px;
+  margin-top: 16px;
+}
+.txinfo-cs-link {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 0 16px;
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+.txinfo-actions {
+  margin-top: 64px;
+}
+.txinfo-complete-btn {
+  width: 100%;
+  height: 48px;
+  border-radius: 8px;
+  background: var(--c-navy);
+  font-weight: 700;
+}
+.txinfo-back-btn {
+  width: 100%;
+  height: 48px;
+  margin-top: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--c-navy);
+  color: var(--c-navy);
+  font-weight: 700;
+  background: #fff;
+}

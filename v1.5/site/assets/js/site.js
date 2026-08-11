@@ -21,6 +21,11 @@
     return seg.replace(/\.html?$/, '') || 'index';
   }
   function icon(name) { return IMG + 'icon/' + name; }
+  /* 對照 layouts/usercenter.vue 覆蓋的頁面清單 */
+  var USER_CENTER_PAGES = ['account', 'deposit', 'withdrawal', 'betting-record', 'deposit-record',
+    'profit-loss', 'withdrawal-record', 'withdrawal-detail', 'account-record', 'banking-details',
+    'personal-info', 'security', 'change-password', 'transaction-info'];
+  function isUserCenterPage() { return USER_CENTER_PAGES.indexOf(pageName()) !== -1; }
 
   function currentLocale() {
     try {
@@ -60,7 +65,7 @@
 
   function headerHtml() {
     var profile = D.MOCK_PROFILE;
-    var isUserCenter = /^\/v1\.5\/site\/(account|deposit|withdrawal|betting-record|deposit-record|profit-loss|withdrawal-record|withdrawal-detail|account-record|banking-details|personal-info|security|change-password|transaction-info)/.test(location.pathname) || ['account', 'deposit', 'withdrawal', 'betting-record', 'deposit-record', 'profit-loss', 'withdrawal-record', 'withdrawal-detail', 'account-record', 'banking-details', 'personal-info', 'security', 'change-password', 'transaction-info'].indexOf(pageName()) !== -1;
+    var isUserCenter = isUserCenterPage();
 
     var mobileTop = D.MOBILE_TOP_ITEMS.map(function (i) { return mobileMenuItemHtml(i, true); }).join('');
     var mobileBottom = D.MOBILE_BOTTOM_ITEMS.map(function (i) { return mobileMenuItemHtml(i, false); }).join('');
@@ -263,6 +268,125 @@
   }
 
   /* ================================================================
+   * 會員中心殼 — UserNavbar.vue(手機標題列)/ UserSidebar.vue
+   * ================================================================ */
+  var USER_CENTER_TITLES = {
+    account: 'userCenter.sidebar.accountOverview',
+    deposit: 'userCenter.deposit',
+    withdrawal: 'userCenter.withdrawal',
+    'deposit-record': 'userCenter.sidebar.depositRecord',
+    'withdrawal-record': 'userCenter.sidebar.withdrawalRecord',
+    'withdrawal-detail': 'userCenter.sidebar.withdrawalDetail',
+    'betting-record': 'userCenter.sidebar.bettingRecord',
+    'profit-loss': 'userCenter.sidebar.profitAndLoss',
+    'account-record': 'userCenter.sidebar.accountRecord',
+    'banking-details': 'userCenter.bankingDetails',
+    'personal-info': 'userCenter.sidebar.personalInfo',
+    security: 'userCenter.sidebar.securityCenter',
+  };
+
+  function userNavbarHtml() {
+    var titleKey = USER_CENTER_TITLES[pageName()] || '';
+    return (
+      '<header class="user-navbar">' +
+      '<div style="width:32px"></div>' +
+      '<h1 class="user-navbar-title" data-i18n="' + titleKey + '">' + t(titleKey) + '</h1>' +
+      '<button type="button" class="user-navbar-toggle" data-toggle-user-sidebar aria-label="Toggle menu">' +
+      '<svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
+      '<line x1="5" y1="6" x2="19" y2="6"></line><line x1="5" y1="12" x2="19" y2="12"></line><line x1="5" y1="18" x2="19" y2="18"></line>' +
+      '</g></svg></button>' +
+      '</header>'
+    );
+  }
+
+  function userSidebarNavItemHtml(item) {
+    return (
+      '<li class="user-sidebar-list-item">' +
+      '<button type="button" class="user-sidebar-nav-item" data-usc-item="' + item.id + '"' +
+      (item.url ? ' data-nav-href="' + item.url + '"' : ' data-open-cs') + '>' +
+      '<span class="user-sidebar-nav-icon" style="-webkit-mask-image:url(' + icon('usercenter/' + item.icon) + ');mask-image:url(' + icon('usercenter/' + item.icon) + ')"></span>' +
+      '<span class="user-sidebar-nav-label" data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span>' +
+      '</button></li>'
+    );
+  }
+
+  function userSidebarHtml() {
+    var itemsHtml = (D.USER_SIDEBAR_ITEMS || []).map(userSidebarNavItemHtml).join('');
+    var toggles =
+      '<div class="user-sidebar-toggles">' +
+      '<button type="button" class="user-sidebar-toggle-btn border-gradient-pill" data-nav-href="deposit.html"><span class="text-gradient" data-i18n="userCenter.deposit">' + t('userCenter.deposit') + '</span></button>' +
+      '<button type="button" class="user-sidebar-toggle-btn border-gradient-pill" data-nav-href="withdrawal.html"><span class="text-gradient" data-i18n="userCenter.withdrawal">' + t('userCenter.withdrawal') + '</span></button>' +
+      '</div>';
+    return (
+      '<nav class="user-sidebar">' +
+      '<div class="user-sidebar-overlay" data-usc-overlay></div>' +
+      '<ul class="user-sidebar-mobile-panel" data-usc-panel>' +
+      toggles + itemsHtml +
+      '</ul>' +
+      '</nav>'
+    );
+  }
+
+  function bindUserSidebar(root) {
+    var panel = qs('[data-usc-panel]', root);
+    var overlay = qs('[data-usc-overlay]', root);
+    var toggleBtn = qs('[data-toggle-user-sidebar]', root);
+    function close() { if (panel) panel.classList.remove('is-open'); if (overlay) overlay.classList.remove('is-open'); }
+    on(toggleBtn, 'click', function () {
+      if (panel) panel.classList.toggle('is-open');
+      if (overlay) overlay.classList.toggle('is-open');
+    });
+    on(overlay, 'click', close);
+    qsa('[data-open-cs]', root).forEach(function (el) {
+      on(el, 'click', function () { window.alert('此為靜態設計預覽,客服視窗尚未實作。'); close(); });
+    });
+    qsa('[data-usc-item]', root).forEach(function (el) {
+      on(el, 'click', close);
+    });
+    var current = pageName();
+    qsa('[data-usc-item]', root).forEach(function (el) {
+      el.classList.toggle('is-active', el.getAttribute('data-usc-item') === current || (current === 'account' && el.getAttribute('data-usc-item') === 'accountOverview'));
+    });
+  }
+
+  /* ================================================================
+   * 全站彈窗(components/AlertModal.vue)——success/error/confirmation 共用
+   * ================================================================ */
+  var alertRoot = null;
+  function ensureAlertRoot() {
+    if (alertRoot) return alertRoot;
+    alertRoot = document.createElement('div');
+    document.body.appendChild(alertRoot);
+    return alertRoot;
+  }
+  /**
+   * opts: { type: 'success'|'error'|'confirmation', message, title, redirectUrl, onConfirm }
+   */
+  function showAlert(opts) {
+    var root = ensureAlertRoot();
+    var type = opts.type || 'success';
+    var iconName = type === 'error' ? 'error.svg' : type === 'confirmation' ? 'confirmation.svg' : 'success.svg';
+    var title = opts.title || t(type === 'error' ? 'common.warning' : type === 'confirmation' ? 'common.confirmation' : 'common.success');
+    root.innerHTML =
+      '<div class="alert-backdrop"><div class="alert-box">' +
+      '<div class="alert-box-inner">' +
+      '<img src="' + icon(iconName) + '" alt="' + type + '" class="alert-icon">' +
+      '<h3 class="alert-title">' + title + '</h3>' +
+      '<p class="alert-message">' + (opts.message || '') + '</p>' +
+      '</div>' +
+      '<div class="alert-actions">' +
+      '<button type="button" class="alert-confirm-btn" data-alert-confirm>' + (type === 'confirmation' ? t('common.submit') : t('common.gotIt')) + '</button>' +
+      (opts.cancellable && type !== 'success' ? '<button type="button" class="alert-cancel-btn" data-alert-cancel>' + t('common.cancel') + '</button>' : '') +
+      '</div></div></div>';
+    on(qs('[data-alert-confirm]', root), 'click', function () {
+      root.innerHTML = '';
+      if (typeof opts.onConfirm === 'function') opts.onConfirm();
+      if (opts.redirectUrl) location.href = opts.redirectUrl;
+    });
+    on(qs('[data-alert-cancel]', root), 'click', function () { root.innerHTML = ''; });
+  }
+
+  /* ================================================================
    * Chrome 掛載
    * ================================================================ */
   function mountChrome() {
@@ -270,11 +394,16 @@
     var footerMount = qs('[data-mount="footer"]');
     var bottomNavMount = qs('[data-mount="bottom-nav"]');
     var quickSidebarMount = qs('[data-mount="quick-sidebar"]');
+    var userNavbarMount = qs('[data-mount="user-navbar"]');
+    var userSidebarMount = qs('[data-mount="user-sidebar"]');
 
     if (headerMount) { headerMount.outerHTML = headerHtml(); bindHeader(document); }
     if (footerMount) { footerMount.outerHTML = footerHtml(); bindNavLinks(document); }
     if (bottomNavMount) { bottomNavMount.outerHTML = bottomNavHtml(); bindNavLinks(document); }
     if (quickSidebarMount) { quickSidebarMount.outerHTML = quickSidebarHtml(); bindQuickSidebar(document); }
+    if (userNavbarMount) userNavbarMount.outerHTML = userNavbarHtml();
+    if (userSidebarMount) { userSidebarMount.outerHTML = userSidebarHtml(); bindNavLinks(document); }
+    if (userNavbarMount || userSidebarMount) bindUserSidebar(document);
   }
 
   window.WIN15 = {
@@ -288,6 +417,7 @@
     qs: qs,
     qsa: qsa,
     on: on,
+    showAlert: showAlert,
   };
 
   document.addEventListener('DOMContentLoaded', function () {
