@@ -8,7 +8,7 @@ CMS 生成系統的統一預覽 repo。整合 `cms_system_v2`、`cms_system_v3`�
 
 ```
 cms_system/
-├── index.html       # 統一首頁，各版型入口：v2/v3/v4/v1.5 前台 + 設計後台
+├── index.html       # 統一首頁，各版型入口
 ├── v2/
 │   ├── site/         # WIN100 前台（純 HTML+CSS+JS，可換膚）
 │   └── studio/        # 設計後台（純 HTML+CSS+JS，iframe 預覽 site/，localStorage 同步）
@@ -19,8 +19,8 @@ cms_system/
 │   ├── site/         # 紅金喜慶前台（純 HTML+CSS+JS）
 │   └── studio/        # 設計後台（同上）
 └── v1.5/
-    ├── site/         # WIN100% 前台（v2 架構為底、winpop 皮膚，純 HTML+CSS+JS）
-    └── studio/        # 設計後台（同上）
+    └── site/         # WIN10096 前台（依 cms-customer-frontend-theme-purple
+                       # 原始碼手刻回純 HTML+CSS+JS，僅前台，無設計後台）
 ```
 
 ## 開發規範
