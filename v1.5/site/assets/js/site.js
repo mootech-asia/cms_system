@@ -580,7 +580,16 @@
 
     if (headerMount) { headerMount.outerHTML = headerHtml(); bindHeader(document); }
     if (footerMount) { footerMount.outerHTML = footerHtml(); bindNavLinks(document); }
-    if (bottomNavMount) { bottomNavMount.outerHTML = bottomNavHtml(); bindNavLinks(document); }
+    /* 對照 BottomNavbar.vue syncActiveByRoute():showBottomNavbar = !path.startsWith('/usercenter/'),
+       只有帳戶總覽(/usercenter 本身)例外仍顯示,其餘會員中心子頁一律不掛載 */
+    if (bottomNavMount) {
+      if (isUserCenterPage() && pageName() !== 'account') {
+        bottomNavMount.remove();
+      } else {
+        bottomNavMount.outerHTML = bottomNavHtml();
+        bindNavLinks(document);
+      }
+    }
     if (quickSidebarMount) { quickSidebarMount.outerHTML = quickSidebarHtml(); bindQuickSidebar(document); }
     if (userNavbarMount) userNavbarMount.outerHTML = userNavbarHtml();
     if (userSidebarMount) { userSidebarMount.outerHTML = userSidebarHtml(); bindNavLinks(document); }

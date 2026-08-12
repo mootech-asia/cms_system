@@ -1973,7 +1973,6 @@ input {
 @media (min-width: 1280px) {
   .pay-section {
     padding: 16px 32px 40px;
-    margin-left: 260px;
   }
 }
 .pay-section-inner {
@@ -2041,6 +2040,19 @@ input {
   color: var(--c-danger);
   font-size: 12px;
   margin-top: 16px;
+}
+/* 手機版留白給頁尾固定的下一步/返回按鈕(對照原始碼 pb-40 xl:pb-0),
+   避免優惠券清單被蓋住 */
+.dp-promotion-wrap {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 160px;
+}
+@media (min-width: 1280px) {
+  .dp-promotion-wrap {
+    margin-top: 24px;
+    padding-bottom: 0;
+  }
 }
 .promo-card {
   border-radius: 10px;
@@ -2149,7 +2161,6 @@ input {
   border-radius: 10px;
   background: var(--c-navy-2);
   font-weight: 700;
-  margin-top: 40px;
 }
 .pay-next-btn:disabled {
   opacity: 0.5;
@@ -2164,6 +2175,21 @@ input {
   color: var(--c-navy);
   font-weight: 700;
   background: #fff;
+}
+/* 手機版下一步/返回貼底固定(對照原始碼 fixed left-0 right-0 bottom-0),
+   桌機版恢復正常排版並補上原本由按鈕自己扛的間距(對照 xl:mt-10) */
+.pay-btn-fixed-wrap {
+  margin-top: 40px;
+}
+@media (max-width: 1279px) {
+  .pay-btn-fixed-wrap {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    margin-top: 0;
+  }
 }
 /* 出金頁 Submit/Back 間距跟入金頁不同(對照原始碼 mt-[52px] / xl:mt-4) */
 [data-withdrawal-submit] {
@@ -2364,7 +2390,6 @@ input {
 @media (min-width: 1280px) {
   .txinfo-page-title {
     display: block;
-    margin-left: 260px;
     height: 62px;
     color: var(--c-navy);
     font-size: 32px;
@@ -2378,7 +2403,6 @@ input {
 }
 @media (min-width: 1280px) {
   .txinfo-section {
-    margin-left: 260px;
     padding: 32px 28px;
   }
 }
@@ -2651,8 +2675,16 @@ input {
 }
 @media (min-width: 1280px) {
   .pi-page {
-    margin-left: 260px;
     padding: 24px 32px 40px;
+  }
+}
+/* 對照原始碼 mt-[52px](個人資料頁下一步/返回間距跟入金頁不同) */
+.pi-submit-wrap {
+  margin-top: 52px;
+}
+@media (max-width: 1279px) {
+  .pi-submit-wrap {
+    margin-top: 0;
   }
 }
 .pi-inner {
@@ -2721,11 +2753,6 @@ input {
 .sec-page {
   background: #f2f2f2;
   padding: 16px 0 100px;
-}
-@media (min-width: 1280px) {
-  .sec-page {
-    margin-left: 260px;
-  }
 }
 .sec-inner {
   max-width: 945px;
@@ -2810,9 +2837,10 @@ input {
   color: var(--c-navy-2);
   font-size: 13px;
 }
-.cp-hint img {
+.cp-hint svg {
   width: 20px;
   height: 20px;
+  flex-shrink: 0;
 }
 .cp-field {
   position: relative;
