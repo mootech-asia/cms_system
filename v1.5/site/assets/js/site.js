@@ -121,9 +121,9 @@
     var langSwitcherDesktop =
       '<div class="header-lang-switcher" data-lang-switcher>' +
       '<button type="button" class="header-lang-trigger" data-lang-trigger>' +
-      '<img src="' + icon('lang-us.svg') + '" alt="lang" style="width:16px;height:16px">' +
+      '<img src="' + icon('lang-us.svg') + '" alt="lang" style="width:24px;height:24px;margin-right:4px">' +
       '<span data-locale-label>' + ((D.LANGUAGES || []).filter(function (l) { return l.code === currentLocale(); })[0] || {}).label + '</span>' +
-      '<img src="' + icon('arrowDown.svg') + '" alt="" style="width:12px;height:12px"></button>' +
+      '</button>' +
       '<div class="header-lang-panel">' +
       (D.LANGUAGES || []).map(function (l) {
         return '<button type="button" data-set-locale="' + l.code + '"><img src="' + icon(l.image) + '" alt="' + l.code + '"><span>' + l.label + '</span></button>';

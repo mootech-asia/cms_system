@@ -414,14 +414,23 @@ input {
   position: relative;
 }
 .header-lang-trigger {
-  display: flex;
+  box-sizing: border-box;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  height: 40px;
   gap: 4px;
   color: #fff;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  white-space: nowrap;
 }
 .header-lang-panel {
   position: absolute;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   margin-top: 6px;
   background: #000;
   border: 1px solid rgba(255, 255, 255, 0.1);
