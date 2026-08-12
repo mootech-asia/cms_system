@@ -352,6 +352,7 @@ input {
   white-space: nowrap;
   padding: 8px 12px;
   border-radius: 8px;
+  color: #fff;
 }
 .header-user-dropdown button:hover {
   background: #404040;
