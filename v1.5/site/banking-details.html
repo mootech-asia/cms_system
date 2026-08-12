@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CMS_前台_v1.5</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div data-mount="header"></div>
+      <main class="usercenter-main">
+        <div data-mount="user-navbar"></div>
+        <div class="usercenter-grid">
+          <div data-mount="user-sidebar"></div>
+          <div class="usercenter-content">
+            <div class="pay-page">
+              <h1 class="pay-page-title" data-i18n="userCenter.bankingDetails">결제 정보</h1>
+              <section class="pay-section" style="padding-top: 16px">
+                <div class="pay-section-inner">
+                  <!-- 清單模式 -->
+                  <div data-bd-list-mode>
+                    <div data-bd-accounts></div>
+                    <button type="button" class="bd-add-fab" data-bd-add><img src="assets/images/icon/usercenter/add.svg" alt="add" /></button>
+                  </div>
+
+                  <!-- 新增帳戶模式 -->
+                  <div data-bd-add-mode style="display: none">
+                    <div style="text-align: center">
+                      <span class="pay-pill-label" data-i18n="userCenter.bankingDetailsPage.bankInformation">은행 정보</span>
+                    </div>
+                    <div class="bd-select-panel">
+                      <button type="button" class="bd-select" data-bd-bank-trigger>
+                        <span data-bd-bank-label data-i18n="userCenter.bankingDetailsPage.chooseABank">은행 선택</span>
+                        <svg viewBox="0 0 24 24" style="width: 20px; height: 20px"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"></path></svg>
+                      </button>
+                      <div class="bd-select-dropdown" data-bd-bank-dropdown></div>
+                    </div>
+                    <div class="pi-field-static" style="margin-top: 16px">
+                      <span data-bd-realname>MEAOMCAO</span>
+                    </div>
+                    <input type="text" class="pay-input" placeholder="카드 번호를 입력해 주세요" data-bd-card-number style="margin-top: 16px" />
+
+                    <div style="text-align: center; margin-top: 24px">
+                      <span class="pay-pill-label" data-i18n="userCenter.bankingDetailsPage.transactionPassword">거래 비밀번호</span>
+                    </div>
+                    <input type="password" class="pay-input" placeholder="거래 비밀번호를 입력해 주세요" data-bd-fund-password />
+
+                    <button type="button" class="pay-next-btn" data-bd-submit style="margin-top: 40px">
+                      <span class="text-gradient" data-i18n="common.submit">제출</span>
+                    </button>
+                    <button type="button" class="pay-back-btn" data-bd-cancel data-i18n="common.back">뒤로</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div data-mount="footer"></div>
+      <div data-mount="bottom-nav"></div>
+      <div data-mount="quick-sidebar"></div>
+    </div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/site.js"></script>
+    <script>
+      window.WIN15_PAGE_INIT = function () {
+        var D = window.WIN15_DATA;
+        var W = window.WIN15;
+        var listMode = W.qs('[data-bd-list-mode]');
+        var addMode = W.qs('[data-bd-add-mode]');
+
+        function renderList() {
+          var wrap = W.qs('[data-bd-accounts]');
+          if (!D.BANK_CARDS.length) {
+            wrap.innerHTML =
+              '<div class="bd-empty"><img src="assets/images/userCenter/bankcard.png" alt="empty">' +
+              '<p data-i18n="userCenter.bankingDetailsPage.emptyBankAccount">' + W.t('userCenter.bankingDetailsPage.emptyBankAccount') + '</p>' +
+              '<button type="button" data-bd-add-inline>' + W.t('userCenter.bankingDetailsPage.addAccount') + '</button></div>';
+            var inlineBtn = wrap.querySelector('[data-bd-add-inline]');
+            if (inlineBtn) W.on(inlineBtn, 'click', showAddMode);
+            return;
+          }
+          wrap.innerHTML = D.BANK_CARDS.map(function (acc) {
+            return (
+              '<div class="bd-account-card"><div class="bd-account-check"><img src="assets/images/icon/usercenter/checkmark.svg" alt="check">' +
+              '<span>' + W.t('userCenter.bankingDetailsPage.activeBankAccount') + '</span></div>' +
+              '<p class="bd-account-name">' + acc.bankName + ' <span>' + W.t('userCenter.bankingDetailsPage.bank') + '</span></p>' +
+              '<p class="bd-account-number">' + acc.bankCardNumber + '</p></div>'
+            );
+          }).join('');
+        }
+
+        function showAddMode() {
+          listMode.style.display = 'none';
+          addMode.style.display = 'block';
+        }
+        function showListMode() {
+          addMode.style.display = 'none';
+          listMode.style.display = 'block';
+          renderList();
+        }
+
+        W.on(W.qs('[data-bd-add]'), 'click', showAddMode);
+        W.on(W.qs('[data-bd-cancel]'), 'click', showListMode);
+        W.qs('[data-bd-realname]').textContent = D.MOCK_PROFILE.username;
+
+        var bankDropdown = W.qs('[data-bd-bank-dropdown]');
+        bankDropdown.innerHTML = D.BANK_LIST.map(function (b) { return '<button type="button" data-bank="' + b + '">' + b + '</button>'; }).join('');
+        W.on(W.qs('[data-bd-bank-trigger]'), 'click', function () { bankDropdown.classList.toggle('is-open'); });
+        W.qsa('[data-bank]', bankDropdown).forEach(function (btn) {
+          W.on(btn, 'click', function () {
+            W.qs('[data-bd-bank-label]').textContent = btn.getAttribute('data-bank');
+            bankDropdown.classList.remove('is-open');
+          });
+        });
+
+        W.on(W.qs('[data-bd-card-number]'), 'input', function (e) {
+          var digits = (e.target.value || '').replace(/\D/g, '').slice(0, 19);
+          e.target.value = digits.replace(/(.{4})/g, '$1 ').trim();
+        });
+
+        W.on(W.qs('[data-bd-submit]'), 'click', function () {
+          W.showAlert({ type: 'success', message: W.t('common.bankCardAddedSuccess'), redirectUrl: 'banking-details.html' });
+        });
+
+        renderList();
+      };
+    </script>
+  </body>
+</html>

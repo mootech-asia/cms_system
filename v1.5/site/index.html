@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CMS_前台_v1.5</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div data-mount="header"></div>
+
+      <main class="home-main">
+        <section class="banner">
+          <div class="banner-slides" data-banner-slides>
+            <div class="banner-slide is-active"><img src="assets/images/banner/banner.jpg" alt="banner" /></div>
+          </div>
+        </section>
+
+        <section class="home-marquee">
+          <div class="home-marquee-viewport">
+            <div class="home-marquee-track" data-marquee-track></div>
+          </div>
+          <div class="home-marquee-clock" data-marquee-clock></div>
+        </section>
+
+        <section class="hot-game">
+          <div class="hot-game-head">
+            <div class="hot-game-title">
+              <img src="assets/images/index/game-icon.svg" alt="hot game" />
+              <span data-i18n="gameType.types.hotGames">인기 게임</span>
+            </div>
+            <div class="hot-game-actions">
+              <button type="button" data-nav-href="game-type.html?type=hotgames" data-i18n="hotGame.seeAll">전체 보기</button>
+              <button type="button" data-hot-game-prev><img class="hot-game-arrow" src="assets/images/icon/arrow-left2.svg" alt="prev" /></button>
+              <button type="button" data-hot-game-next><img class="hot-game-arrow" src="assets/images/icon/arrow-right2.svg" alt="next" /></button>
+            </div>
+          </div>
+          <div class="hot-game-strip">
+            <div class="hot-game-track" data-hot-game-track></div>
+          </div>
+        </section>
+
+        <section class="home-vendor-section">
+          <div class="home-vendor-head">
+            <div class="home-vendor-title">
+              <img src="assets/images/icon/liveCasino.svg" alt="live casino" />
+              <span data-i18n="navbar.top.liveCasino">라이브 카지노</span>
+            </div>
+            <div class="home-vendor-actions">
+              <span data-i18n="hotGame.seeAll">전체 보기</span>
+              <button type="button" data-nav-href="game-type.html?type=live"><img src="assets/images/icon/arrow-right2.svg" alt="see all" /></button>
+            </div>
+          </div>
+          <div class="vendor-card-grid is-live-casino" data-live-casino-grid></div>
+        </section>
+
+        <section class="home-vendor-section">
+          <div class="home-vendor-head">
+            <div class="home-vendor-title">
+              <img src="assets/images/icon/liveSports.svg" alt="live sports" />
+              <span data-i18n="navbar.top.sports">스포츠</span>
+            </div>
+            <div class="home-vendor-actions">
+              <span data-i18n="hotGame.seeAll">전체 보기</span>
+              <button type="button" data-nav-href="game-type.html?type=sports"><img src="assets/images/icon/arrow-right2.svg" alt="see all" /></button>
+            </div>
+          </div>
+          <div class="vendor-hero-card" data-live-sports-hero></div>
+          <div class="vendor-card-grid" data-live-sports-grid></div>
+        </section>
+
+        <section class="home-vendor-section">
+          <div class="home-vendor-head">
+            <div class="home-vendor-title">
+              <img src="assets/images/icon/slotGames.svg" alt="slot games" />
+              <span data-i18n="navbar.top.slots">슬롯</span>
+            </div>
+            <div class="home-vendor-actions">
+              <span data-i18n="hotGame.seeAll">전체 보기</span>
+              <button type="button" data-nav-href="game-type.html?type=slot"><img src="assets/images/icon/arrow-right2.svg" alt="see all" /></button>
+            </div>
+          </div>
+          <div class="slot-strip">
+            <div class="slot-strip-track" data-slot-strip-track></div>
+          </div>
+        </section>
+
+        <section class="home-vendor-section">
+          <div class="promo-home-strip">
+            <div class="promo-home-track" data-promo-home-track></div>
+          </div>
+          <div class="promo-home-dots" data-promo-home-dots></div>
+          <div class="promo-home-readmore-wrap">
+            <a class="promo-home-readmore" href="promotion-list.html" data-i18n="common.readMore">더보기</a>
+          </div>
+        </section>
+      </main>
+
+      <div data-mount="footer"></div>
+      <div data-mount="bottom-nav"></div>
+      <div data-mount="quick-sidebar"></div>
+    </div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/site.js"></script>
+    <script>
+      window.WIN15_PAGE_INIT = function () {
+        var D = window.WIN15_DATA;
+        var W = window.WIN15;
+
+        /* ---- Marquee ---- */
+        var track = W.qs('[data-marquee-track]');
+        if (track) {
+          var itemsHtml = D.MARQUEE_ITEMS.map(function (m) {
+            var highlighted = m.title.replace(/(UserXXX)/, '<b>$1</b>').replace(/(\$[\d,]+)/, '<b>$1</b>');
+            return '<span>✨ ' + highlighted + ' ✨</span>';
+          }).join('');
+          track.innerHTML = itemsHtml + itemsHtml;
+        }
+        var clock = W.qs('[data-marquee-clock]');
+        function updateClock() {
+          var d = new Date(Date.now() + 8 * 60 * 60 * 1000);
+          function pad(n) { return String(n).padStart(2, '0'); }
+          clock.textContent = 'GMT+8 ' + d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()) + ' ' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds());
+        }
+        if (clock) { updateClock(); setInterval(updateClock, 1000); }
+
+        /* ---- Hot Game(目前線上尚未上架真實遊戲,顯示 COMING SOON 占位卡片) ---- */
+        var hgTrack = W.qs('[data-hot-game-track]');
+        var hgIndex = 0;
+        var hgStep = 331;
+        function updateHgStep() {
+          hgStep = window.innerWidth >= 1280 ? 465 + 20 : 311 + 20;
+        }
+        function renderHotGames() {
+          hgTrack.innerHTML = D.HOT_GAMES.map(function (g) {
+            var thumb = g.image
+              ? '<div class="hot-game-card-thumb"><img src="assets/images/' + g.image + '" alt="' + g.name + '"></div>'
+              : '<div class="hot-game-card-thumb is-placeholder"><img src="assets/images/img-comingsoon-game.png" alt="coming soon"></div>';
+            return (
+              '<div class="hot-game-card">' + thumb +
+              '<div class="hot-game-card-body"><div><span class="hot-game-tag" data-i18n="hotGame.promo">' + W.t('hotGame.promo') + '</span>' +
+              '<h3 class="hot-game-name">' + g.name + '</h3>' +
+              '<p class="hot-game-subtitle">' + g.subtitle + '</p></div>' +
+              '<button type="button" class="hot-game-play-btn" data-i18n="hotGame.playNow">' + W.t('hotGame.playNow') + '</button></div>' +
+              '</div>'
+            );
+          }).join('');
+        }
+        function moveHg(delta) {
+          var max = Math.max(0, D.HOT_GAMES.length - 1);
+          hgIndex = Math.min(max, Math.max(0, hgIndex + delta));
+          hgTrack.style.transform = 'translateX(-' + (hgIndex * hgStep) + 'px)';
+        }
+        updateHgStep();
+        renderHotGames();
+        W.on(W.qs('[data-hot-game-prev]'), 'click', function () { moveHg(-1); });
+        W.on(W.qs('[data-hot-game-next]'), 'click', function () { moveHg(1); });
+        window.addEventListener('resize', function () { updateHgStep(); moveHg(0); });
+
+        /* ---- Live Casino(2 張大卡 + 4 張小卡) ---- */
+        var lcGrid = W.qs('[data-live-casino-grid]');
+        lcGrid.innerHTML = D.LIVE_CASINO_CARDS.map(function (v) {
+          return (
+            '<div class="vendor-card is-' + v.size + '" data-vendor-card>' +
+            '<img class="vendor-card-bg" src="assets/images/index/mainGame/img-livegame-bg.webp" alt="">' +
+            '<img class="vendor-card-photo" src="assets/images/' + v.photo + '" alt="' + v.vendor + '">' +
+            '<img class="vendor-card-logo" src="assets/images/' + v.logo + '" alt="' + v.vendor + '">' +
+            '<span class="vendor-card-play-btn" data-i18n="hotGame.playNow">' + W.t('hotGame.playNow') + '</span>' +
+            '</div>'
+          );
+        }).join('');
+
+        /* ---- Live Sports(SPORTS 100% 主圖 + BTI/SABA 2 張小卡) ---- */
+        var heroEl = W.qs('[data-live-sports-hero]');
+        heroEl.innerHTML =
+          '<img class="vendor-hero-photo" src="assets/images/' + D.LIVE_SPORTS_HERO.left + '" alt="athlete">' +
+          '<div class="vendor-hero-mid"><div class="vendor-hero-title">SPORTS<br>100%</div>' +
+          '<span class="vendor-card-play-btn" style="position:static" data-i18n="hotGame.playNow">' + W.t('hotGame.playNow') + '</span></div>' +
+          '<img class="vendor-hero-photo" src="assets/images/' + D.LIVE_SPORTS_HERO.right + '" alt="athlete">';
+        var lsGrid = W.qs('[data-live-sports-grid]');
+        lsGrid.innerHTML = D.LIVE_SPORTS_CARDS.map(function (v) {
+          return (
+            '<div class="vendor-card is-small" data-vendor-card>' +
+            '<img class="vendor-card-bg" src="assets/images/index/mainGame/img-livegame-bg.webp" alt="">' +
+            '<img class="vendor-card-photo" src="assets/images/' + v.photo + '" alt="' + v.vendor + '">' +
+            '<img class="vendor-card-logo" src="assets/images/' + v.logo + '" alt="' + v.vendor + '">' +
+            '<span class="vendor-card-play-btn" data-i18n="hotGame.playNow">' + W.t('hotGame.playNow') + '</span>' +
+            '</div>'
+          );
+        }).join('');
+        W.qsa('[data-vendor-card]').forEach(function (el) {
+          W.on(el, 'click', function () { W.showAlert({ type: 'success', message: W.t('common.openingGame') }); });
+        });
+
+        /* ---- Slot Games 橫向捲動 ---- */
+        var slotTrack = W.qs('[data-slot-strip-track]');
+        slotTrack.innerHTML = D.SLOT_STRIP_IMAGES.map(function (img) {
+          return (
+            '<div class="slot-strip-card">' +
+            '<div class="slot-strip-thumb"><img src="assets/images/' + img + '" alt="game"></div>' +
+            '<p class="slot-strip-name" data-i18n="hotGame.gameName">Game Name</p>' +
+            '<p class="slot-strip-brand" data-i18n="hotGame.creativeGaming">Creative Gaming</p>' +
+            '</div>'
+          );
+        }).join('');
+
+        /* ---- 首頁促銷卡片 ---- */
+        var promoTrack = W.qs('[data-promo-home-track]');
+        var promoDots = W.qs('[data-promo-home-dots]');
+        promoTrack.innerHTML = D.PROMO_HOME_CARDS.map(function () {
+          return (
+            '<a class="promo-home-card" href="promotion-list.html">' +
+            '<div class="promo-home-banner">' +
+            '<div class="promo-home-coin c1"></div><div class="promo-home-coin c2"></div><div class="promo-home-coin c3"></div>' +
+            '<p class="promo-home-offer" data-i18n="hotGame.specialOffer">SPECIAL OFFER</p>' +
+            '<p class="promo-home-title">PROMOTION</p>' +
+            '</div>' +
+            '<p class="promo-home-date-bar" data-i18n="hotGame.promoDateRange">Thursday-Tuesday, times vary</p>' +
+            '<p class="promo-home-footer" data-i18n="hotGame.promotion1">Promotion 1</p>' +
+            '</a>'
+          );
+        }).join('');
+        promoDots.innerHTML = D.PROMO_HOME_CARDS.map(function (_, i) {
+          return '<span class="promo-home-dot' + (i === 0 ? ' is-active' : '') + '"></span>';
+        }).join('');
+
+        W.applyLocale();
+      };
+    </script>
+  </body>
+</html>
