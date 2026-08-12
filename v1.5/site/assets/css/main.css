@@ -1376,11 +1376,6 @@ input {
 .usercenter-main {
   padding-top: 0;
 }
-@media (min-width: 1280px) {
-  .usercenter-main {
-    padding-top: 137px;
-  }
-}
 .usercenter-grid {
   display: grid;
   grid-template-columns: 1fr;
