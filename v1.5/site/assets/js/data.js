@@ -759,7 +759,6 @@
     sports: [
       { vendor: 'Saba Sports', logo: 'Saba Sports.svg' },
       { vendor: 'BTI Sports', logo: 'BTI.svg' },
-      { vendor: 'PINGAPI', logo: 'sport_PINGAPI_big.png' },
     ],
     slot: [
       { vendor: 'PP', logo: 'PP.png' },

@@ -114,6 +114,8 @@
           bodyEl.innerHTML = '<div class="game-provider-grid">' + vendors.map(function (v, idx) {
             var bg = type === 'live'
               ? 'assets/images/index/mainGame/live/live_' + (idx % 33) + '.webp'
+              : type === 'sports'
+              ? 'assets/images/index/mainGame/img-livegame-bg.webp'
               : 'assets/images/index/mainGame/other/slot ' + (idx % 26) + '.png';
             return (
               '<div class="game-provider-card" data-gf-vendor="' + idx + '">' +

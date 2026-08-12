@@ -329,10 +329,15 @@ input {
 .header-user-dropdown {
   position: absolute;
   left: -14px;
-  top: 100%;
+  /* top 是相對 .header-user-id 自己的 top(在 header 內偏上,約 14~15px)算,
+     若只抓 header 高度的一部分(如 -32px)算出來仍落在 header-nav-row 的
+     範圍內(0~132px),選單會蓋住/擋住導覽連結;直接用整個 header 高度當
+     偏移量,無論 .header-user-id 的 top 是多少,下緣一定會落在 header 外、
+     完全清開 header-nav-row */
+  top: var(--header-h-desktop);
   z-index: 70;
   display: none;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   min-width: max-content;
