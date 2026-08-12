@@ -67,8 +67,7 @@
               <button type="button" data-nav-href="game-type.html?type=sports"><img src="assets/images/icon/arrow-right2.svg" alt="see all" /></button>
             </div>
           </div>
-          <div class="vendor-hero-card" data-live-sports-hero></div>
-          <div class="vendor-card-grid" data-live-sports-grid></div>
+          <div class="vendor-card-grid is-live-sports" data-live-sports-grid></div>
         </section>
 
         <section class="home-vendor-section">
@@ -114,8 +113,8 @@
         var track = W.qs('[data-marquee-track]');
         if (track) {
           var itemsHtml = D.MARQUEE_ITEMS.map(function (m) {
-            var highlighted = m.title.replace(/(UserXXX)/, '<b>$1</b>').replace(/(\$[\d,]+)/, '<b>$1</b>');
-            return '<span>✨ ' + highlighted + ' ✨</span>';
+            var highlighted = m.title.replace(/^(\S+) won/, '<b>$1</b> won').replace(/([\d,]{4,})/, '<b>$1</b>');
+            return '<span>✦ ' + highlighted + ' ✦</span>';
           }).join('');
           track.innerHTML = itemsHtml + itemsHtml;
         }
@@ -160,37 +159,17 @@
         W.on(W.qs('[data-hot-game-next]'), 'click', function () { moveHg(1); });
         window.addEventListener('resize', function () { updateHgStep(); moveHg(0); });
 
-        /* ---- Live Casino(2 張大卡 + 4 張小卡) ---- */
-        var lcGrid = W.qs('[data-live-casino-grid]');
-        lcGrid.innerHTML = D.LIVE_CASINO_CARDS.map(function (v) {
+        /* ---- Live Casino / Live Sports(等大卡片,深底置中 logo + Play Now) ---- */
+        function vendorCardHtml(v) {
           return (
-            '<div class="vendor-card is-' + v.size + '" data-vendor-card>' +
-            '<img class="vendor-card-bg" src="assets/images/index/mainGame/img-livegame-bg.webp" alt="">' +
-            '<img class="vendor-card-photo" src="assets/images/' + v.photo + '" alt="' + v.vendor + '">' +
+            '<div class="vendor-card" data-vendor-card>' +
             '<img class="vendor-card-logo" src="assets/images/' + v.logo + '" alt="' + v.vendor + '">' +
             '<span class="vendor-card-play-btn" data-i18n="hotGame.playNow">' + W.t('hotGame.playNow') + '</span>' +
             '</div>'
           );
-        }).join('');
-
-        /* ---- Live Sports(SPORTS 100% 主圖 + BTI/SABA 2 張小卡) ---- */
-        var heroEl = W.qs('[data-live-sports-hero]');
-        heroEl.innerHTML =
-          '<img class="vendor-hero-photo" src="assets/images/' + D.LIVE_SPORTS_HERO.left + '" alt="athlete">' +
-          '<div class="vendor-hero-mid"><div class="vendor-hero-title">SPORTS<br>100%</div>' +
-          '<span class="vendor-card-play-btn" style="position:static" data-i18n="hotGame.playNow">' + W.t('hotGame.playNow') + '</span></div>' +
-          '<img class="vendor-hero-photo" src="assets/images/' + D.LIVE_SPORTS_HERO.right + '" alt="athlete">';
-        var lsGrid = W.qs('[data-live-sports-grid]');
-        lsGrid.innerHTML = D.LIVE_SPORTS_CARDS.map(function (v) {
-          return (
-            '<div class="vendor-card is-small" data-vendor-card>' +
-            '<img class="vendor-card-bg" src="assets/images/index/mainGame/img-livegame-bg.webp" alt="">' +
-            '<img class="vendor-card-photo" src="assets/images/' + v.photo + '" alt="' + v.vendor + '">' +
-            '<img class="vendor-card-logo" src="assets/images/' + v.logo + '" alt="' + v.vendor + '">' +
-            '<span class="vendor-card-play-btn" data-i18n="hotGame.playNow">' + W.t('hotGame.playNow') + '</span>' +
-            '</div>'
-          );
-        }).join('');
+        }
+        W.qs('[data-live-casino-grid]').innerHTML = D.LIVE_CASINO_CARDS.map(vendorCardHtml).join('');
+        W.qs('[data-live-sports-grid]').innerHTML = D.LIVE_SPORTS_CARDS.map(vendorCardHtml).join('');
         W.qsa('[data-vendor-card]').forEach(function (el) {
           W.on(el, 'click', function () { W.showAlert({ type: 'success', message: W.t('common.openingGame') }); });
         });

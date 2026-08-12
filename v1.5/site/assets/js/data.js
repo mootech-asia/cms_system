@@ -132,7 +132,6 @@
       'userCenter.withdrawalPage.bindDate': '등록일',
       'userCenter.withdrawalPage.remainingTurnoverAmount': '*남은 유효 베팅 금액: ₩ ',
       'userCenter.withdrawalPage.requiredTurnoverAmount': '필요 유효 베팅 금액',
-      'userCenter.withdrawalPage.rolloverNote': '*롤오버 달성    금액: ₩{achieved}    목표 금액: ₩{target}',
       'userCenter.withdrawalAmount': '출금 금액',
       'userCenter.depositAmount': '입금 금액',
       'userCenter.transactionDetails': '송금 상세',
@@ -227,7 +226,6 @@
       'userCenter.bankingDetailsPage.emptyBankAccount': '은행 계좌 없음',
       'userCenter.bankingDetailsPage.addAccount': '계좌 추가',
       'userCenter.bankingDetailsPage.activeBankAccount': '활성 은행 계좌',
-      'userCenter.bankingDetailsPage.bank': '은행',
       'userCenter.bankingDetailsPage.bankInformation': '은행 정보',
       'userCenter.bankingDetailsPage.searchABank': '은행 검색',
       'userCenter.bankingDetailsPage.enterCardNumber': '카드 번호를 입력해 주세요',
@@ -409,7 +407,6 @@
       'userCenter.withdrawalPage.bindDate': 'Bind Date',
       'userCenter.withdrawalPage.remainingTurnoverAmount': '*Remaining Turnover Amount: ₩ ',
       'userCenter.withdrawalPage.requiredTurnoverAmount': 'Required Turnover Amount',
-      'userCenter.withdrawalPage.rolloverNote': '*Rollover Achieved    amount: ₩{achieved}    Target amount: ₩{target}',
       'userCenter.withdrawalAmount': 'Withdrawal Amount',
       'userCenter.depositAmount': 'Deposit Amount',
       'userCenter.transactionDetails': 'Transfer Details',
@@ -504,7 +501,6 @@
       'userCenter.bankingDetailsPage.emptyBankAccount': 'Empty Bank Account',
       'userCenter.bankingDetailsPage.addAccount': 'Add Account',
       'userCenter.bankingDetailsPage.activeBankAccount': 'Active Bank Account',
-      'userCenter.bankingDetailsPage.bank': 'Bank',
       'userCenter.bankingDetailsPage.bankInformation': 'Bank Information',
       'userCenter.bankingDetailsPage.searchABank': 'Search a Bank',
       'userCenter.bankingDetailsPage.enterCardNumber': 'Enter your card number',
@@ -616,12 +612,12 @@
     { code: 'ko', label: '한국어', image: 'lang-kr.png' },
   ];
 
-  /* ---- 首頁跑馬燈中獎訊息(對照真實網站首頁截圖,目前線上就是重複同一則訊息) ---- */
+  /* ---- 首頁跑馬燈中獎訊息(對照真實網站首頁截圖) ---- */
   var MARQUEE_ITEMS = [
-    { title: 'Congratulations For UserXXX Winning $1000' },
-    { title: 'Congratulations For UserXXX Winning $1000' },
-    { title: 'Congratulations For UserXXX Winning $1000' },
-    { title: 'Congratulations For UserXXX Winning $1000' },
+    { title: 'Welcome to Royal Casino!' },
+    { title: 'Daily Bonus' },
+    { title: 'Lucky Draw' },
+    { title: 'Nimofish won the 1,000,000!' },
   ];
 
   /* ---- 首頁 Banner(對照真實網站首頁截圖,單張主視覺,無輪播) ---- */
@@ -639,22 +635,19 @@
     { id: 6, name: 'Game Name', subtitle: 'Win a shore of #100,000! $40,000 to the winner', image: null },
   ];
 
-  /* ---- Live Casino(首頁,對照真實網站首頁截圖:前 2 張大卡 + 後 4 張小卡,
-     背景/人像沿用 public/images/index/mainGame 素材,廠商 Logo 沿用 mainGame/live) ---- */
+  /* ---- Live Casino(首頁,對照真實網站首頁截圖:4 張等大卡片,深紫底+置中 logo) ---- */
   var LIVE_CASINO_CARDS = [
-    { vendor: 'Pragmatic Play', logo: 'index/mainGame/live/PP.png', photo: 'index/mainGame/img-livecasino-people-1.png', size: 'large' },
-    { vendor: 'Microgaming', logo: 'index/mainGame/live/MicrogamingSlot.png', photo: 'index/mainGame/img-livecasino-people-2.png', size: 'large' },
-    { vendor: 'Winfinity', logo: 'footer/Winfinity.png', photo: 'index/mainGame/img-livecasino-people-3.png', size: 'small' },
-    { vendor: 'Ezugi', logo: 'index/mainGame/live/EZUGI.png', photo: 'index/mainGame/img-livecasino-people-4.png', size: 'small' },
-    { vendor: 'YB Live', logo: 'index/mainGame/live/YB.png', photo: 'index/mainGame/img-livecasino-people-1.png', size: 'small' },
-    { vendor: 'Sexy', logo: 'index/mainGame/live/SexyCasino.png', photo: 'index/mainGame/img-livecasino-people-2.png', size: 'small' },
+    { vendor: 'Evolution', logo: 'index/mainGame/live/Evolution.png' },
+    { vendor: 'Pragmatic Play', logo: 'index/mainGame/live/PP.png' },
+    { vendor: 'Sexy', logo: 'index/mainGame/live/SexyCasino.png' },
+    { vendor: 'Microgaming', logo: 'index/mainGame/live/MicrogamingSlot.png' },
   ];
 
-  /* ---- Live Sports(首頁,對照真實網站首頁截圖:「SPORTS 100%」大圖 + BTI/SABA 2 張小卡) ---- */
-  var LIVE_SPORTS_HERO = { left: 'index/mainGame/live/live_sport_left.png', right: 'index/mainGame/live/live_sport_right.png' };
+  /* ---- Live Sports(首頁,對照真實網站首頁截圖:3 張等大卡片,SPORTS 100% 為站方自家品牌) ---- */
   var LIVE_SPORTS_CARDS = [
-    { vendor: 'BTI', logo: 'index/mainGame/live/sport_BTI_big.png', photo: 'index/mainGame/live/live_sport_left.png' },
-    { vendor: 'SABA Sports', logo: 'index/mainGame/live/sport_SABA_big.png', photo: 'index/mainGame/live/live_sport_right.png' },
+    { vendor: 'SPORTS 100%', logo: 'index/mainGame/live/PINGAPI.png' },
+    { vendor: 'BTi', logo: 'index/mainGame/live/BTI.svg' },
+    { vendor: 'SABA Sports', logo: 'index/mainGame/live/Saba Sports.svg' },
   ];
 
   /* ---- Slot Games(首頁橫向卡片,對照真實網站首頁截圖「Game Name / Creative Gaming」占位文案) ---- */
@@ -688,11 +681,6 @@
     balanceRaw: '1,000,000,000',
     point_balance: '₩1,000,000,000',
     remaining_turnover_amount: '0',
-    /* 出金頁「Main Wallet」為可提領錢包餘額,與頁首總資產(balance)是不同欄位;
-       對照真實網站截圖,此帳號尚未產生可提領餘額與롤오버紀錄,固定為 0.00 */
-    wallet_balance: '0.00',
-    rollover_achieved: '0.00',
-    rollover_target: '0.00',
     avatar: 'index/avatar.png',
   };
 
@@ -710,9 +698,13 @@
     { id: 'customerService', tKey: 'userCenter.sidebar.customerService', url: '', icon: 'customerService.svg' },
   ];
 
-  /* ---- 提款頁銀行卡列表(對照 api.getBankCardList 假資料;真實網站此帳號尚未設定銀行卡,
-     帳戶總覽/安全中心的「結帳資訊」都顯示未設定,故此處預設為空陣列) ---- */
-  var BANK_CARDS = [];
+  /* ---- 提款頁銀行卡列表(對照 api.getBankCardList 假資料;卡號/持卡人皆為
+     遮罩後格式,對照真實網站截圖只露出卡號末 4 碼與持卡人姓氏首字) ---- */
+  var BANK_CARDS = [
+    { id: 1, bankName: '산림조합중앙회', bankCardNumber: '********7987', cardholderName: 'S**', bindingTime: 1771977600 },
+    { id: 2, bankName: 'KB Bank', bankCardNumber: '********2456', cardholderName: 'M**', bindingTime: 1774339200 },
+    { id: 3, bankName: 'Shinhan Bank', bankCardNumber: '********8890', cardholderName: 'M**', bindingTime: 1776556800 },
+  ];
 
   /* ---- 儲值優惠(對照 api.getPromotionDeposit 假資料) ---- */
   var DEPOSIT_PROMOTIONS = [
@@ -1180,7 +1172,6 @@
     BANNER_SLIDES_MOBILE: BANNER_SLIDES_MOBILE,
     HOT_GAMES: HOT_GAMES,
     LIVE_CASINO_CARDS: LIVE_CASINO_CARDS,
-    LIVE_SPORTS_HERO: LIVE_SPORTS_HERO,
     LIVE_SPORTS_CARDS: LIVE_SPORTS_CARDS,
     SLOT_STRIP_IMAGES: SLOT_STRIP_IMAGES,
     PROMO_HOME_CARDS: PROMO_HOME_CARDS,

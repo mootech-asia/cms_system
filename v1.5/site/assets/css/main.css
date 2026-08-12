@@ -1069,91 +1069,35 @@ input {
   gap: 16px;
 }
 .vendor-card {
-  position: relative;
-  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  height: 180px;
   border-radius: 16px;
-  overflow: hidden;
   background: var(--c-navy-soft);
   cursor: pointer;
-}
-.vendor-card-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.vendor-card-photo {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  height: 100%;
-  object-fit: contain;
-  object-position: bottom right;
+  padding: 16px;
 }
 .vendor-card-logo {
-  position: absolute;
-  left: 16px;
-  top: 20px;
-  max-width: 60%;
-  max-height: 28px;
+  max-width: 70%;
+  max-height: 48px;
   object-fit: contain;
 }
 .vendor-card-play-btn {
-  position: absolute;
-  left: 16px;
-  bottom: 16px;
-  padding: 10px 20px;
+  padding: 8px 24px;
   border-radius: 10px;
   background: var(--g-primary);
   color: var(--c-navy);
   font-weight: 700;
 }
-.vendor-hero-card {
-  position: relative;
-  height: 200px;
-  border-radius: 16px;
-  overflow: hidden;
-  background: var(--c-navy-soft);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-}
-.vendor-hero-photo {
-  height: 100%;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-.vendor-hero-mid {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  padding: 0 8px;
-}
-.vendor-hero-title {
-  text-align: center;
-  font-size: 22px;
-  font-weight: 800;
-  line-height: 1.1;
-  background-image: var(--g-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 @media (min-width: 768px) {
   .vendor-card-grid.is-live-casino {
     grid-template-columns: repeat(4, 1fr);
   }
-  .vendor-card-grid.is-live-casino .vendor-card.is-large {
-    grid-column: span 2;
-    height: 320px;
-  }
-  .vendor-card-grid.is-live-casino .vendor-card.is-small {
-    height: 260px;
+  .vendor-card-grid.is-live-sports {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (min-width: 1280px) {
@@ -1163,11 +1107,8 @@ input {
   .home-vendor-title {
     font-size: 24px;
   }
-  .vendor-hero-card {
-    height: 260px;
-  }
-  .vendor-hero-title {
-    font-size: 32px;
+  .vendor-card {
+    height: 220px;
   }
 }
 
@@ -2210,7 +2151,7 @@ input {
   overflow: hidden;
   color: #fff;
   margin-top: 16px;
-  height: 175px;
+  height: 190px;
 }
 .wd-bank-card img.card-bg {
   position: absolute;
@@ -2228,27 +2169,40 @@ input {
   justify-content: space-between;
 }
 .wd-bank-name {
-  width: 114px;
+  display: inline-block;
+  width: fit-content;
+  max-width: 70%;
   height: 25px;
+  padding: 0 12px;
   background: rgba(6, 12, 52, 0.8);
   border-radius: 4px;
   text-align: center;
   line-height: 25px;
   font-weight: 700;
   font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .wd-bank-card-mid {
   text-align: center;
+}
+.wd-bank-card-mid p {
+  margin: 0;
 }
 .wd-bank-card-mid .num {
   font-size: 24px;
   font-weight: 700;
   letter-spacing: 0.05em;
+  margin-top: 4px;
 }
 .wd-bank-card-foot {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+}
+.wd-bank-card-foot p {
+  margin: 0;
 }
 .wd-bank-card-foot .holder {
   color: var(--c-gold);
