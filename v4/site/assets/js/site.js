@@ -739,21 +739,29 @@
     on(root.querySelector('[data-pay-done]'), 'click', depositSuccessModal);
   }
 
-  /* 提款帳戶管理:localStorage 模擬已綁定的收款帳戶清單,「提款」頁籤沒有
-     任何帳戶時停用送出按鈕,呼應真實產品「先綁定收款帳戶才能提款」的流程。 */
+  /* 提款帳戶管理:localStorage 模擬已綁定的收款帳戶清單。分成「銀行帳戶」
+     /「加密錢包」兩大分組(bank / trc20+erc20),提款頁籤依目前選的分組決定
+     卡片輪播內容與送出按鈕是否可按,呼應真實產品「先綁定收款帳戶才能
+     提款」的流程;帳戶管理頁籤則依分組各自算「已登記提款帳戶 (N/5)」
+     上限。 */
   var WD_ACCOUNTS_KEY = 'cms-v4-withdraw-accounts';
+  var WD_ACCOUNT_CAP = 5;
   var WD_TYPE_LABEL = { bank: '銀行卡', trc20: 'USDT-TRC20', erc20: 'USDT-ERC20' };
-  var WD_TYPE_ICON = {
-    bank: '<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>',
-    trc20: '<circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/>',
-    erc20: '<circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/>',
-  };
+  var wdMethodGroup = 'bank';
+  var wdManageGroup = 'bank';
+  var wdCarouselIndex = 0;
+
+  function wdGroupOf(type) { return type === 'bank' ? 'bank' : 'crypto'; }
   function loadWdAccounts() {
     var list;
     try { list = JSON.parse(localStorage.getItem(WD_ACCOUNTS_KEY)); } catch (e) { list = null; }
     if (!Array.isArray(list)) {
-      // 預設帶一筆既有銀行卡,對齊此頁原本寫死的示範資料,避免剛上線就是空清單。
-      list = [{ type: 'bank', bankName: '國民銀行', holder: '', account: '**** **** **** 1234' }];
+      // 預設帶 3 筆銀行卡示範資料,對齊此頁原本的示意設計,避免剛上線就是空清單。
+      list = [
+        { type: 'bank', bankName: 'KB Bank', holder: '', account: '********1234', boundAt: '2025-08-14' },
+        { type: 'bank', bankName: 'Shinhan Bank', holder: '', account: '********5678', boundAt: '2025-09-05' },
+        { type: 'bank', bankName: 'Woori Bank', holder: '', account: '********9012', boundAt: '2025-10-02' },
+      ];
       try { localStorage.setItem(WD_ACCOUNTS_KEY, JSON.stringify(list)); } catch (e2) {}
     }
     return list;
@@ -761,32 +769,81 @@
   function saveWdAccounts(list) {
     try { localStorage.setItem(WD_ACCOUNTS_KEY, JSON.stringify(list)); } catch (e) {}
   }
-  function wdAccountLabel(acc) {
-    if (acc.type === 'bank') return escapeHtml(acc.account || '') + '（' + escapeHtml(acc.bankName || '') + '）';
-    return WD_TYPE_LABEL[acc.type] + '：' + escapeHtml(acc.account || '');
+  function wdMaskAccount(v) {
+    v = (v || '').replace(/\s+/g, '');
+    if (v.length <= 4) return v;
+    return '********' + v.slice(-4);
   }
-  function wdAccountRowHtml(acc, idx, withRemove) {
-    return '<div class="bank-row"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (WD_TYPE_ICON[acc.type] || WD_TYPE_ICON.bank) + '</svg> <span>' + wdAccountLabel(acc) + '</span>' +
-      (withRemove ? '<button type="button" class="auth-modal-close" aria-label="刪除" style="margin-left:auto" data-wd-remove="' + idx + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button>' : '') +
-      '</div>';
+  function wdAccountBadgeText(acc) {
+    return acc.type === 'bank' ? (acc.bankName || '銀行卡') : WD_TYPE_LABEL[acc.type];
   }
-  function renderWdAccounts() {
-    var accounts = loadWdAccounts();
-    var listBox = document.querySelector('[data-wd-account-list]');
-    if (listBox) {
-      listBox.innerHTML = accounts.length
-        ? accounts.map(function (acc, idx) { return wdAccountRowHtml(acc, idx, true); }).join('')
-        : '<p class="pay-note">尚未綁定任何提款帳戶。</p>';
-    }
-    var current = document.querySelector('[data-wd-current-account]');
+  function wdAccountNameText(acc) {
+    return acc.type === 'bank' ? (acc.bankName || '銀行卡') : WD_TYPE_LABEL[acc.type];
+  }
+  function wdAccountNumberText(acc) {
+    return acc.type === 'bank' ? wdMaskAccount(acc.account) : (acc.account || '');
+  }
+  function wdAccountCardHtml(acc, idx, withRemove) {
+    return (
+      '<div class="wd-account-card">' +
+      '<div class="wd-account-badge">' + escapeHtml(wdAccountBadgeText(acc)) + '</div>' +
+      '<div class="wd-account-info">' +
+      '<span class="wd-account-name">' + escapeHtml(wdAccountNameText(acc)) + '</span>' +
+      '<span class="wd-account-number">' + escapeHtml(wdAccountNumberText(acc)) + '</span>' +
+      (acc.boundAt ? '<span class="wd-account-date">' + escapeHtml(acc.boundAt) + '</span>' : '') +
+      '</div>' +
+      (withRemove ? '<button type="button" class="auth-modal-close wd-account-remove" aria-label="刪除" data-wd-remove="' + idx + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button>' : '') +
+      '</div>'
+    );
+  }
+  function wdIndexedAccounts(group) {
+    // 帶著原始陣列 index 一起濾出同分組帳戶,刪除時才能對回原陣列位置。
+    return loadWdAccounts().map(function (acc, idx) { return { acc: acc, idx: idx }; })
+      .filter(function (pair) { return wdGroupOf(pair.acc.type) === group; });
+  }
+
+  /* 帳戶管理頁籤:卡片清單 + 數量上限 + 新增按鈕。 */
+  function renderWdAccountCards() {
+    var box = document.querySelector('[data-wd-account-cards]');
+    var countEl = document.querySelector('[data-wd-account-count]');
+    var addBtn = document.querySelector('[data-wd-show-add-form]');
+    var addBtnLabel = document.querySelector('[data-wd-add-btn-label]');
+    if (!box) return;
+    var pairs = wdIndexedAccounts(wdManageGroup);
+    var groupLabel = wdManageGroup === 'bank' ? '銀行帳戶' : '加密錢包地址';
+    if (countEl) countEl.innerHTML = '已登記提款帳戶 <b>(' + pairs.length + '/' + WD_ACCOUNT_CAP + ')</b>';
+    box.innerHTML = pairs.length
+      ? pairs.map(function (pair) { return wdAccountCardHtml(pair.acc, pair.idx, true); }).join('')
+      : '<p class="pay-note">尚未綁定任何' + groupLabel + '。</p>';
+    if (addBtnLabel) addBtnLabel.textContent = wdManageGroup === 'bank' ? '新增銀行帳戶' : '新增加密錢包地址';
+    if (addBtn) addBtn.disabled = pairs.length >= WD_ACCOUNT_CAP;
+  }
+
+  /* 提款頁籤:目前分組帳戶的單卡輪播,只有一筆時不顯示左右箭頭。 */
+  function renderWdCarousel() {
+    var wrap = document.querySelector('[data-wd-carousel-wrap]');
     var submitBtn = document.querySelector('.pay-submit');
-    if (currentPage() !== 'withdrawal.html') return;
-    if (current) {
-      current.innerHTML = accounts.length
-        ? wdAccountRowHtml(accounts[0], 0, false)
-        : '<p class="pay-note">尚未綁定提款帳戶,請先至「帳戶管理」新增。</p>';
+    if (!wrap || currentPage() !== 'withdrawal.html') return;
+    var pairs = wdIndexedAccounts(wdMethodGroup);
+    if (!pairs.length) {
+      wrap.innerHTML = '<p class="pay-note">尚未綁定' + (wdMethodGroup === 'bank' ? '銀行' : '加密錢包') + '提款帳戶,請先至<button type="button" class="wd-account-add-btn" data-wd-goto-accounts style="margin-top:6px">前往「帳戶管理」新增</button></p>';
+      if (submitBtn) submitBtn.disabled = true;
+      return;
     }
-    if (submitBtn) submitBtn.disabled = accounts.length === 0;
+    if (wdCarouselIndex >= pairs.length) wdCarouselIndex = 0;
+    var cur = pairs[wdCarouselIndex].acc;
+    var multi = pairs.length > 1;
+    wrap.innerHTML =
+      '<div class="wd-carousel-box"><div class="wd-carousel">' +
+      (multi ? '<button type="button" class="wd-carousel-arrow" data-wd-prev' + (wdCarouselIndex === 0 ? ' disabled' : '') + ' aria-label="上一筆"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>' : '') +
+      '<span class="wd-carousel-label">' + escapeHtml(wdAccountNameText(cur)) + ' ' + escapeHtml(wdAccountNumberText(cur)) + (multi ? ' <b>' + (wdCarouselIndex + 1) + '/' + pairs.length + '</b>' : '') + '</span>' +
+      (multi ? '<button type="button" class="wd-carousel-arrow" data-wd-next' + (wdCarouselIndex === pairs.length - 1 ? ' disabled' : '') + ' aria-label="下一筆"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>' : '') +
+      '</div></div>';
+    if (submitBtn) submitBtn.disabled = false;
+  }
+  function renderWithdrawalUI() {
+    renderWdAccountCards();
+    renderWdCarousel();
   }
 
   /* 提款頁頂層「提款／帳戶管理」頁籤,做法同 initAboutTabs:切換 active +
@@ -803,14 +860,73 @@
         });
       });
     });
-    // 提領帳戶卡面上的「+」→ 直接跳到「帳戶管理」頁籤,沿用同一顆分頁按鈕的點擊邏輯。
-    var gotoBtn = document.querySelector('[data-wd-goto-accounts]');
-    if (gotoBtn) on(gotoBtn, 'click', function () {
+    // 提款頁籤內「前往帳戶管理」→ 直接跳到「帳戶管理」頁籤,沿用同一顆分頁按鈕的點擊邏輯。
+    on(document, 'click', function (e) {
+      var btn = e.target.closest && e.target.closest('[data-wd-goto-accounts]');
+      if (!btn) return;
       var accountsTab = document.querySelector('[data-wd-tab="accounts"]');
       if (accountsTab) accountsTab.click();
     });
-    renderWdAccounts();
+    renderWithdrawalUI();
   }
+
+  /* 提款頁籤的「銀行卡／加密錢包」分組切換:換組後輪播重置回第一筆。 */
+  function initWithdrawalMethodToggle() {
+    var btns = Array.prototype.slice.call(document.querySelectorAll('[data-wd-method] [data-wd-method-btn]'));
+    if (!btns.length) return;
+    btns.forEach(function (btn) {
+      on(btn, 'click', function () {
+        btns.forEach(function (b) { b.classList.toggle('active', b === btn); });
+        wdMethodGroup = btn.getAttribute('data-wd-method-btn');
+        wdCarouselIndex = 0;
+        renderWdCarousel();
+      });
+    });
+    on(document, 'click', function (e) {
+      var prev = e.target.closest && e.target.closest('[data-wd-prev]');
+      var next = e.target.closest && e.target.closest('[data-wd-next]');
+      if (prev && !prev.disabled) { wdCarouselIndex--; renderWdCarousel(); }
+      if (next && !next.disabled) { wdCarouselIndex++; renderWdCarousel(); }
+    });
+  }
+
+  /* 帳戶管理頁籤的「銀行帳戶／加密錢包」分組切換:同步過濾新增表單裡的
+     幣別頁籤(銀行分組只留「銀行卡」、加密分組只留 TRC20/ERC20),並收合
+     表單、避免切分組時表單殘留另一組的欄位。 */
+  function wdSyncAddTypeVisibility() {
+    var typeBtns = Array.prototype.slice.call(document.querySelectorAll('[data-wd-add-type] [data-wd-type]'));
+    var firstVisible = null;
+    typeBtns.forEach(function (btn) {
+      var type = btn.getAttribute('data-wd-type');
+      var show = wdGroupOf(type) === wdManageGroup;
+      btn.hidden = !show;
+      if (show && !firstVisible) firstVisible = btn;
+    });
+    if (firstVisible) {
+      typeBtns.forEach(function (b) { b.classList.toggle('active', b === firstVisible); });
+      var bankFields = document.querySelector('[data-wd-fields="bank"]');
+      var cryptoFields = document.querySelector('[data-wd-fields="crypto"]');
+      var type = firstVisible.getAttribute('data-wd-type');
+      if (bankFields) bankFields.hidden = type !== 'bank';
+      if (cryptoFields) cryptoFields.hidden = type === 'bank';
+    }
+  }
+  function initWithdrawalManageToggle() {
+    var btns = Array.prototype.slice.call(document.querySelectorAll('[data-wd-manage] [data-wd-manage-btn]'));
+    if (!btns.length) return;
+    btns.forEach(function (btn) {
+      on(btn, 'click', function () {
+        btns.forEach(function (b) { b.classList.toggle('active', b === btn); });
+        wdManageGroup = btn.getAttribute('data-wd-manage-btn');
+        var form = document.querySelector('[data-wd-add-form]');
+        if (form) form.hidden = true;
+        wdSyncAddTypeVisibility();
+        renderWdAccountCards();
+      });
+    });
+    wdSyncAddTypeVisibility();
+  }
+
   function initWithdrawalAccountForm() {
     var typeBtns = Array.prototype.slice.call(document.querySelectorAll('[data-wd-add-type] .pay-tab'));
     if (!typeBtns.length) return;
@@ -819,17 +935,26 @@
     typeBtns.forEach(function (btn) {
       on(btn, 'click', function () {
         var type = btn.getAttribute('data-wd-type');
+        typeBtns.forEach(function (b) { b.classList.toggle('active', b === btn); });
         if (bankFields) bankFields.hidden = type !== 'bank';
         if (cryptoFields) cryptoFields.hidden = type === 'bank';
       });
     });
+    var showFormBtn = document.querySelector('[data-wd-show-add-form]');
+    var form = document.querySelector('[data-wd-add-form]');
+    if (showFormBtn && form) {
+      on(showFormBtn, 'click', function () {
+        if (showFormBtn.disabled) { simplePayModal('提示', '已達提款帳戶數量上限(' + WD_ACCOUNT_CAP + ' 筆),請先刪除不需要的帳戶。'); return; }
+        form.hidden = !form.hidden;
+      });
+    }
     var submitBtn = document.querySelector('[data-wd-add-submit]');
     if (!submitBtn) return;
     on(submitBtn, 'click', function () {
-      var type = (document.querySelector('[data-wd-add-type] .pay-tab.active') || {}).getAttribute
-        ? document.querySelector('[data-wd-add-type] .pay-tab.active').getAttribute('data-wd-type')
-        : 'bank';
-      var acc = { type: type };
+      if (wdIndexedAccounts(wdManageGroup).length >= WD_ACCOUNT_CAP) { simplePayModal('提示', '已達提款帳戶數量上限(' + WD_ACCOUNT_CAP + ' 筆),請先刪除不需要的帳戶。'); return; }
+      var activeBtn = document.querySelector('[data-wd-add-type] .pay-tab.active');
+      var type = activeBtn ? activeBtn.getAttribute('data-wd-type') : 'bank';
+      var acc = { type: type, boundAt: new Date().toISOString().slice(0, 10) };
       if (type === 'bank') {
         var bankName = (document.querySelector('[data-wd-field="bankName"]') || {}).value || '';
         var holder = (document.querySelector('[data-wd-field="holder"]') || {}).value || '';
@@ -845,7 +970,8 @@
       accounts.push(acc);
       saveWdAccounts(accounts);
       Array.prototype.slice.call(document.querySelectorAll('[data-wd-add-type] input, [data-wd-fields] input')).forEach(function (i) { i.value = ''; });
-      renderWdAccounts();
+      if (form) form.hidden = true;
+      renderWithdrawalUI();
       simplePayModal('新增成功', '提款帳戶已新增，可於「提款」頁籤選用。');
     });
     on(document, 'click', function (e) {
@@ -855,7 +981,19 @@
       var accounts = loadWdAccounts();
       accounts.splice(idx, 1);
       saveWdAccounts(accounts);
-      renderWdAccounts();
+      renderWithdrawalUI();
+    });
+  }
+
+  /* 儲值頁的「通道 A/B/C/D」:純前端示意用的付款通道分組,純前端展示不
+     接真實金流,不同通道底下都給同一套付款方式,只切換 active 樣式。 */
+  function initChannelTabs() {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-channel-tabs] [data-channel]'));
+    if (!tabs.length) return;
+    tabs.forEach(function (tab) {
+      on(tab, 'click', function () {
+        tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
+      });
     });
   }
 
@@ -893,9 +1031,12 @@
     safe(initCsTriggers);
     safe(initAboutTabs);
     safe(initFaqAccordion);
+    safe(initChannelTabs);
     safe(initPayTabs);
     safe(initPayAmount);
     safe(initWithdrawalTabs);
+    safe(initWithdrawalMethodToggle);
+    safe(initWithdrawalManageToggle);
     safe(initWithdrawalAccountForm);
     safe(initPaySubmitHandlers);
     safe(applyStudioSections);

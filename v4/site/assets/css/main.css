@@ -551,7 +551,44 @@ img { max-width: 100%; display: block; }
 .pay-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
 .pay-tab { padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg-panel); color: var(--text-mid); font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
 .pay-tab svg { width: 16px; height: 16px; }
-.pay-tab.active { background: var(--gold-grad); border-color: var(--gold-hi); color: #3a2604; }
+/* .pay-tab 自己有 display:flex,跟 [hidden] 屬性的預設 display:none 同
+   specificity、後者在 UA stylesheet 優先度更低會直接被蓋掉,要多這條
+   才能真的隱藏(帳戶管理依銀行/加密錢包分組動態收放新增表單的幣別頁籤) */
+.pay-tab[hidden] { display: none; }
+/* 選中的付款方式改用 --red/--red-deep(全站定義為「skin 識別色」),跟每個
+   skin 的金色 CTA 區分開,不會讓人以為這裡也是可送出的主按鈕 */
+.pay-tab.active { background: linear-gradient(180deg, var(--red) 0%, var(--red-deep) 100%); border-color: var(--red); color: #fff; }
+
+/* 底線頁籤(通道 A/B/C/D、提款/帳戶管理):跟 .about-tab 的膠囊頁籤是
+   不同視覺語言,獨立一組 class,不共用也不改動 .about-tab 本身,避免動到
+   about.html 既有頁面。 */
+.tabline { display: flex; gap: 28px; border-bottom: 1px solid var(--line); margin-bottom: 20px; flex-wrap: wrap; }
+.tabline-item { padding: 8px 2px 12px; background: none; border: 0; color: var(--text-mid); font-size: 14px; font-weight: 600; position: relative; cursor: pointer; }
+.tabline-item.active { color: var(--red); font-weight: 700; }
+.tabline-item.active::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--red); border-radius: 2px; }
+
+/* 提款帳戶卡片(帳戶管理頁籤) */
+.wd-account-count { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--text); font-size: 15px; margin-bottom: 16px; }
+.wd-account-count::before { content: ''; width: 4px; height: 18px; background: var(--red); border-radius: 2px; display: inline-block; }
+.wd-account-count b { color: var(--red); }
+.wd-account-card { display: flex; align-items: center; gap: 16px; padding: 16px; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 14px; background: var(--bg-panel); }
+.wd-account-badge { width: 80px; height: 52px; border-radius: 10px; background: #eef1fb; color: #1c2333; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 12px; font-weight: 800; padding: 4px; flex-shrink: 0; line-height: 1.15; }
+.wd-account-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.wd-account-name { font-weight: 800; color: var(--text); font-size: 15px; }
+.wd-account-number { font-family: 'Courier New', monospace; color: var(--text-dim); font-size: 13px; letter-spacing: 0.5px; word-break: break-all; }
+.wd-account-date { color: var(--text-dim); font-size: 12.5px; }
+.wd-account-remove { margin-left: auto; flex-shrink: 0; }
+.wd-account-add-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px; border: 1px solid var(--red); color: var(--red); background: transparent; font-weight: 700; font-size: 13.5px; margin-top: 8px; cursor: pointer; }
+.wd-account-add-btn:hover { opacity: 0.85; }
+.wd-account-add-btn[disabled] { opacity: 0.4; cursor: not-allowed; }
+
+/* 提款頁籤上顯示目前提領帳戶的單卡輪播(有多筆同類型帳戶時可翻頁) */
+.wd-carousel-box { border: 1px solid var(--line); border-radius: 12px; padding: 14px 20px; background: var(--bg-panel); }
+.wd-carousel { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.wd-carousel-arrow { width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); background: var(--bg-panel); color: var(--text-mid); cursor: pointer; flex-shrink: 0; }
+.wd-carousel-arrow[disabled] { opacity: 0.3; cursor: not-allowed; }
+.wd-carousel-label { font-size: 13.5px; font-weight: 700; color: var(--text-mid); white-space: nowrap; }
+.wd-carousel-label b { color: var(--text); }
 .pay-amount-grid { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
 .pay-amount-btn { padding: 10px 20px; border-radius: var(--radius-md); border: 1px solid var(--line); background: var(--bg); font-size: 13.5px; font-weight: 700; color: var(--text); }
 .pay-amount-btn.selected { background: var(--gold-grad); border-color: var(--gold-hi); color: #3a2604; }
