@@ -12,6 +12,7 @@
   var IMG = 'assets/images/';
   var LOCALE_KEY = 'v15-locale';
   var LOCALE_CODES = ['ko', 'en'];
+  var LOGIN_KEY = 'v15-logged-in';
 
   function qs(sel, root) { return (root || document).querySelector(sel); }
   function qsa(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
@@ -26,6 +27,17 @@
     'profit-loss', 'withdrawal-record', 'withdrawal-detail', 'account-record', 'banking-details',
     'personal-info', 'security', 'change-password', 'transaction-info'];
   function isUserCenterPage() { return USER_CENTER_PAGES.indexOf(pageName()) !== -1; }
+
+  /* 靜態預覽無真實後端,用 localStorage 模擬登入狀態(同源同步,對照真實網站
+     首頁未登入/會員頁已登入的行為);會員中心頁面本來就進不去除非已登入,
+     所以一律視為已登入 */
+  function isLoggedIn() {
+    if (isUserCenterPage()) return true;
+    try { return localStorage.getItem(LOGIN_KEY) === 'true'; } catch (e) { return false; }
+  }
+  function setLoggedIn(value) {
+    try { localStorage.setItem(LOGIN_KEY, value ? 'true' : 'false'); } catch (e) { /* ignore */ }
+  }
 
   function currentLocale() {
     try {
@@ -67,8 +79,9 @@
   function headerHtml() {
     var isUserCenter = isUserCenterPage();
     /* 首頁/行銷頁預設未登入(對照真實網站首頁截圖 Login/Register 狀態);
-       會員中心頁面既然能進得來,視為已登入以便展示帳戶資訊 */
-    var profile = isUserCenter ? D.MOCK_PROFILE : null;
+       透過登入彈窗完成登入後改用 localStorage 記住狀態,重新整理/切換頁面
+       都會維持已登入畫面,直到按登出為止 */
+    var profile = isLoggedIn() ? D.MOCK_PROFILE : null;
 
     var mobileTop = D.MOBILE_TOP_ITEMS.map(function (i) { return mobileMenuItemHtml(i, true); }).join('');
     var mobileBottom = D.MOBILE_BOTTOM_ITEMS.map(function (i) { return mobileMenuItemHtml(i, false); }).join('');
@@ -146,7 +159,7 @@
       on(el, 'click', function () { location.href = el.getAttribute('data-href'); });
     });
     qsa('[data-logout]', root).forEach(function (el) {
-      on(el, 'click', function () { location.href = 'index.html'; });
+      on(el, 'click', function () { setLoggedIn(false); location.href = 'index.html'; });
     });
     qsa('[data-stub-item]', root).forEach(function (el) {
       on(el, 'click', function () { window.alert('此為靜態設計預覽,此功能尚未實作。'); });
@@ -529,6 +542,15 @@
         return;
       }
       root.innerHTML = '';
+      if (mode === 'login' || mode === 'register') {
+        setLoggedIn(true);
+        window.WIN15.showAlert({
+          type: 'success',
+          message: t(mode === 'login' ? 'auth.loginSuccess' : 'auth.registerSuccess'),
+          onConfirm: function () { location.reload(); },
+        });
+        return;
+      }
       window.WIN15.showAlert({ type: 'success', message: t('common.profileUpdateSuccess') });
     });
   }
