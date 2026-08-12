@@ -596,6 +596,16 @@ img { max-width: 100%; display: block; }
 .pay-field { width: 100%; padding: 12px 14px; border-radius: var(--radius-md); border: 1px solid var(--line); background: var(--bg); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
 .pay-note { font-size: 12px; color: var(--text-dim); margin: 0 0 16px; }
 .pay-submit { display: block; width: 100%; margin-top: 8px; }
+/* 提款頁主錢包餘額／流水進度,無對應真實原始碼(v4 沒有這個資料模型),
+   純前端展示用固定值 */
+.wd-refresh-row { display: flex; align-items: center; gap: 6px; color: var(--text-dim); font-size: 13px; margin-top: 10px; cursor: pointer; width: fit-content; }
+.wd-refresh-row svg { width: 15px; height: 15px; }
+.wd-wallet-row { text-align: center; margin: 20px 0 6px; }
+.wd-wallet-row .wallet-label { color: var(--text-dim); font-size: 13px; }
+.wd-wallet-row .wallet-amount { color: var(--text); font-size: 22px; font-weight: 800; margin-top: 4px; }
+.wd-turnover-note { text-align: center; color: var(--red); display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.wd-turnover-note .detail-btn { color: #fff; background: var(--red); border-radius: 999px; padding: 2px 10px; font-size: 11px; font-weight: 700; }
+.wd-turnover-note .wd-target-amount { color: var(--text-dim); }
 
 /* 交易/投注紀錄表格 */
 .record-filters { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }

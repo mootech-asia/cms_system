@@ -900,6 +900,17 @@
     });
   }
 
+  function initWdRefreshRow() {
+    var btn = document.querySelector('[data-refresh-profile]');
+    if (!btn) return;
+    on(btn, 'click', function () {
+      var svg = btn.querySelector('svg');
+      svg.style.transition = 'transform 1s linear';
+      svg.style.transform = 'rotate(360deg)';
+      setTimeout(function () { svg.style.transform = 'rotate(0deg)'; }, 1000);
+    });
+  }
+
   /* 帳戶管理頁籤的「銀行帳戶／加密錢包」分組切換:同步過濾新增表單裡的
      幣別頁籤(銀行分組只留「銀行卡」、加密分組只留 TRC20/ERC20),並收合
      表單、避免切分組時表單殘留另一組的欄位。 */
@@ -1047,6 +1058,7 @@
     safe(initWithdrawalTabs);
     safe(initWithdrawalMethodToggle);
     safe(initWithdrawalManageToggle);
+    safe(initWdRefreshRow);
     safe(initWithdrawalAccountForm);
     safe(initPaySubmitHandlers);
     safe(applyStudioSections);
