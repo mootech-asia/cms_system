@@ -167,7 +167,7 @@
     on(document, 'click', function () { if (langSwitcher) langSwitcher.classList.remove('is-open'); });
 
     qsa('[data-open-auth]', root).forEach(function (el) {
-      on(el, 'click', function () { window.alert('此為靜態設計預覽,登入/註冊表單尚未實作。'); });
+      on(el, 'click', function () { showAuthModal(el.getAttribute('data-open-auth')); });
     });
   }
 
@@ -407,6 +407,133 @@
   }
 
   /* ================================================================
+   * 登入/註冊彈窗(components/Login.vue)——login/register/forgotPassword/
+   * resetPassword 四種模式共用同一個左圖右表單版型
+   * ================================================================ */
+  var authRoot = null;
+  function ensureAuthRoot() {
+    if (authRoot) return authRoot;
+    authRoot = document.createElement('div');
+    document.body.appendChild(authRoot);
+    return authRoot;
+  }
+  var AUTH_FIELD = {
+    username: '<label>' + t('auth.username') + '</label><input type="text" data-auth-field="username" placeholder="' + t('auth.usernamePlaceholder') + '">',
+    password: '<label>' + t('auth.password') + '</label><div class="auth-pw-field"><input type="password" data-auth-field="password" placeholder="' + t('auth.passwordPlaceholder') + '"><button type="button" class="auth-pw-toggle" data-auth-pw-toggle><img src="' + icon('eye.svg') + '" alt="toggle"></button></div>',
+    confirmPassword: '<label>' + t('auth.confirmPassword') + '</label><div class="auth-pw-field"><input type="password" data-auth-field="confirmPassword" placeholder="' + t('auth.passwordPlaceholder') + '"><button type="button" class="auth-pw-toggle" data-auth-pw-toggle><img src="' + icon('eye.svg') + '" alt="toggle"></button></div>',
+    newPassword: '<label>' + t('auth.newPassword') + '</label><div class="auth-pw-field"><input type="password" data-auth-field="newPassword" placeholder="' + t('auth.newPasswordPlaceholder') + '"><button type="button" class="auth-pw-toggle" data-auth-pw-toggle><img src="' + icon('eye.svg') + '" alt="toggle"></button></div>',
+    confirmNewPassword: '<label>' + t('auth.confirmPassword') + '</label><div class="auth-pw-field"><input type="password" data-auth-field="confirmNewPassword" placeholder="' + t('auth.newPasswordPlaceholder') + '"><button type="button" class="auth-pw-toggle" data-auth-pw-toggle><img src="' + icon('eye.svg') + '" alt="toggle"></button></div>',
+    email: '<label>' + t('auth.email') + '</label><input type="text" data-auth-field="email" placeholder="' + t('auth.emailPlaceholder') + '">',
+    realName: '<label>' + t('auth.realName') + '</label><input type="text" data-auth-field="realName" placeholder="' + t('auth.realNamePlaceholder') + '">',
+    mobile: '<label>' + t('auth.mobile') + '</label><input type="text" data-auth-field="mobile" placeholder="' + t('auth.mobilePlaceholder') + '">',
+    birthday: '<label>' + t('auth.birthday') + '</label><input type="text" data-auth-field="birthday" placeholder="' + t('auth.birthdayPlaceholder') + '">',
+    invitationCode: '<label>' + t('auth.invitationCode') + '</label><input type="text" data-auth-field="invitationCode" placeholder="' + t('auth.invitationCodePlaceholder') + '">',
+  };
+  function authCaptchaField() {
+    return (
+      '<label>' + t('auth.captcha') + '</label>' +
+      '<div class="auth-captcha-row"><input type="text" data-auth-field="captcha" placeholder="' + t('auth.captchaPlaceholder') + '">' +
+      '<span class="auth-captcha-code" data-auth-captcha-code></span></div>'
+    );
+  }
+  function randomCaptcha() {
+    var s = '';
+    for (var i = 0; i < 5; i++) s += Math.floor(Math.random() * 10);
+    return s;
+  }
+  function authModalBody(mode) {
+    if (mode === 'register') {
+      return (
+        '<h2 class="auth-modal-title text-gradient">' + t('auth.register') + '</h2>' +
+        '<div class="auth-field">' + AUTH_FIELD.username + '</div>' +
+        '<div class="auth-field">' + AUTH_FIELD.password + '</div>' +
+        '<div class="auth-field">' + AUTH_FIELD.confirmPassword + '</div>' +
+        '<div class="auth-field">' + AUTH_FIELD.email + '</div>' +
+        '<div class="auth-field">' + AUTH_FIELD.realName + '</div>' +
+        '<div class="auth-field">' + AUTH_FIELD.mobile + '</div>' +
+        '<div class="auth-field">' + AUTH_FIELD.birthday + '</div>' +
+        '<div class="auth-field">' + AUTH_FIELD.invitationCode + '</div>' +
+        '<div class="auth-field">' + authCaptchaField() + '</div>' +
+        '<label class="auth-checkbox-row"><input type="checkbox" data-auth-field="agree"><span>' + t('auth.agreeTerms') + '</span></label>' +
+        '<button type="button" class="auth-btn auth-btn-outline" data-auth-submit>' + t('common.submit') + '</button>' +
+        '<button type="button" class="auth-btn auth-btn-fill" data-auth-switch="login">' + t('auth.login') + '</button>'
+      );
+    }
+    if (mode === 'forgotPassword') {
+      return (
+        '<h2 class="auth-modal-title text-gradient">' + t('auth.forgotPassword') + '</h2>' +
+        '<div class="auth-field">' + AUTH_FIELD.username + '</div>' +
+        '<div class="auth-field">' + AUTH_FIELD.email + '</div>' +
+        '<button type="button" class="auth-btn auth-btn-outline" data-auth-submit>' + t('common.submit') + '</button>'
+      );
+    }
+    if (mode === 'resetPassword') {
+      return (
+        '<h2 class="auth-modal-title text-gradient">' + t('auth.resetPassword') + '</h2>' +
+        '<div class="auth-field">' + AUTH_FIELD.username + '</div>' +
+        '<div class="auth-field">' + AUTH_FIELD.newPassword + '</div>' +
+        '<div class="auth-field">' + AUTH_FIELD.confirmNewPassword + '</div>' +
+        '<button type="button" class="auth-btn auth-btn-outline" data-auth-submit>' + t('common.submit') + '</button>'
+      );
+    }
+    /* login(預設) */
+    return (
+      '<h2 class="auth-modal-title text-gradient">' + t('auth.login') + '</h2>' +
+      '<div class="auth-field">' + AUTH_FIELD.username + '</div>' +
+      '<div class="auth-field">' + AUTH_FIELD.password + '</div>' +
+      '<label class="auth-checkbox-row"><input type="checkbox" data-auth-field="remember"><span>' + t('auth.remember') + '</span></label>' +
+      '<button type="button" class="auth-btn auth-btn-outline" data-auth-submit>' + t('auth.login') + '</button>' +
+      '<button type="button" class="auth-btn auth-btn-fill" data-auth-switch="register">' + t('auth.register') + '</button>' +
+      '<button type="button" class="auth-btn auth-btn-fill" data-auth-promo-channel>' + t('auth.promotionChannel') + '</button>' +
+      '<a class="auth-forgot-link" data-auth-switch="forgotPassword">' + t('auth.forgotPassword') + '?</a>'
+    );
+  }
+  function showAuthModal(mode) {
+    var root = ensureAuthRoot();
+    root.innerHTML =
+      '<div class="auth-backdrop"><div class="auth-modal">' +
+      '<button type="button" class="auth-modal-close" data-auth-close><img src="' + icon('close.svg') + '" alt="close"></button>' +
+      '<div class="auth-modal-art"><img src="' + IMG + 'index/login.webp" alt="win10096"></div>' +
+      '<div class="auth-modal-form">' + authModalBody(mode) + '</div>' +
+      '</div></div>';
+    var captchaEl = qs('[data-auth-captcha-code]', root);
+    if (captchaEl) captchaEl.textContent = randomCaptcha();
+    on(qs('[data-auth-close]', root), 'click', function () { root.innerHTML = ''; });
+    on(qs('.auth-backdrop', root), 'click', function (e) { if (e.target === e.currentTarget) root.innerHTML = ''; });
+    qsa('[data-auth-switch]', root).forEach(function (el) {
+      on(el, 'click', function () { showAuthModal(el.getAttribute('data-auth-switch')); });
+    });
+    qsa('[data-auth-pw-toggle]', root).forEach(function (btn) {
+      on(btn, 'click', function () {
+        var input = btn.previousElementSibling;
+        var show = input.type === 'password';
+        input.type = show ? 'text' : 'password';
+        btn.querySelector('img').src = show ? icon('eye-show.svg') : icon('eye.svg');
+      });
+    });
+    on(qs('[data-auth-promo-channel]', root), 'click', function () {
+      window.open('https://t.me/win10096cs', '_blank', 'noopener,noreferrer');
+    });
+    on(qs('[data-auth-submit]', root), 'click', function () {
+      if (mode === 'forgotPassword') {
+        root.innerHTML =
+          '<div class="auth-backdrop"><div class="auth-modal">' +
+          '<button type="button" class="auth-modal-close" data-auth-close><img src="' + icon('close.svg') + '" alt="close"></button>' +
+          '<div class="auth-modal-art"><img src="' + IMG + 'index/login.webp" alt="win10096"></div>' +
+          '<div class="auth-modal-form">' +
+          '<h2 class="auth-modal-title text-gradient">' + t('auth.forgotPassword') + '</h2>' +
+          '<p class="auth-modal-desc">' + t('auth.forgotPasswordSent') + '</p>' +
+          '<button type="button" class="auth-btn auth-btn-outline" data-auth-close>' + t('common.done') + '</button>' +
+          '</div></div></div>';
+        on(qs('[data-auth-close]', root), 'click', function () { root.innerHTML = ''; });
+        return;
+      }
+      root.innerHTML = '';
+      window.WIN15.showAlert({ type: 'success', message: t('common.profileUpdateSuccess') });
+    });
+  }
+
+  /* ================================================================
    * Chrome 掛載
    * ================================================================ */
   function mountChrome() {
@@ -438,6 +565,7 @@
     qsa: qsa,
     on: on,
     showAlert: showAlert,
+    showAuthModal: showAuthModal,
   };
 
   document.addEventListener('DOMContentLoaded', function () {
