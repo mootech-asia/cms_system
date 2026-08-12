@@ -883,6 +883,18 @@
     renderWithdrawalUI();
   }
 
+  /* 提款分頁的銀行卡／加密錢包欄位差異:對照 v2 真實原始碼(initWithdrawalForms
+     的 cryptoSection),加密錢包提款是完全獨立的表單——沒有金額快選按鈕、
+     金額範圍是 100,000~20,000,000(銀行卡是 10,000~9,000,000),且要另外
+     填錢包類型／錢包地址,不是沿用銀行卡流水區塊。 */
+  function wdSyncMethodFields() {
+    var isBank = wdMethodGroup === 'bank';
+    Array.prototype.slice.call(document.querySelectorAll('[data-wd-panel="withdraw"] [data-wd-bank-fields]')).forEach(function (el) { el.hidden = !isBank; });
+    Array.prototype.slice.call(document.querySelectorAll('[data-wd-panel="withdraw"] [data-wd-crypto-fields]')).forEach(function (el) { el.hidden = isBank; });
+    var amountInput = document.querySelector('[data-wd-amount-input]');
+    if (amountInput) amountInput.value = isBank ? '₩ 10,000' : '';
+  }
+
   /* 提款頁籤的「銀行卡／加密錢包」分組切換:換組後輪播重置回第一筆。 */
   function initWithdrawalMethodToggle() {
     var btns = Array.prototype.slice.call(document.querySelectorAll('[data-wd-method] [data-wd-method-btn]'));
@@ -893,6 +905,7 @@
         wdMethodGroup = btn.getAttribute('data-wd-method-btn');
         wdCarouselIndex = 0;
         renderWdCarousel();
+        wdSyncMethodFields();
       });
     });
     on(document, 'click', function (e) {
@@ -901,6 +914,7 @@
       if (prev && !prev.disabled) { wdCarouselIndex--; renderWdCarousel(); }
       if (next && !next.disabled) { wdCarouselIndex++; renderWdCarousel(); }
     });
+    wdSyncMethodFields();
   }
 
   function initWdRefreshRow() {
@@ -1006,10 +1020,12 @@
         if (!address.trim()) { simplePayModal('提示', '請填寫收款錢包地址。'); return; }
         acc.account = address.trim();
       }
+      var fundPassword = (document.querySelector('[data-wd-field="fundPassword"]') || {}).value || '';
+      if (!fundPassword.trim()) { simplePayModal('提示', '請輸入交易密碼。'); return; }
       var accounts = loadWdAccounts();
       accounts.push(acc);
       saveWdAccounts(accounts);
-      Array.prototype.slice.call(document.querySelectorAll('[data-wd-add-type] input, [data-wd-fields] input')).forEach(function (i) { i.value = ''; });
+      Array.prototype.slice.call(document.querySelectorAll('[data-wd-add-type] input, [data-wd-fields] input, [data-wd-add-form] input[type="password"]')).forEach(function (i) { i.value = ''; });
       if (form) form.hidden = true;
       renderWithdrawalUI();
       simplePayModal('新增成功', '提款帳戶已新增，可於「提款」頁籤選用。');
@@ -1046,6 +1062,12 @@
     on(btn, 'click', function () {
       if (btn.disabled) return;
       if (page === 'withdrawal.html') {
+        if (wdMethodGroup === 'crypto') {
+          var walletType = document.querySelector('[data-wd-wallet-type-select]');
+          var walletAddr = document.querySelector('[data-wd-wallet-address-input]');
+          if (walletType && !walletType.value) { walletType.focus(); simplePayModal('提示', '請先選擇錢包類型。'); return; }
+          if (walletAddr && !walletAddr.value.trim()) { walletAddr.focus(); simplePayModal('提示', '請先填寫收款錢包地址。'); return; }
+        }
         var pwField = document.querySelector('[data-wd-panel="withdraw"] .pay-field[type="password"]');
         if (pwField && !pwField.value.trim()) { pwField.focus(); simplePayModal('提示', '請先輸入提款密碼。'); return; }
         simplePayModal('提款成功', '您的提款申請已送出，將於 1–24 小時內處理完成，請至「提款紀錄」查看進度。');
@@ -1078,6 +1100,7 @@
     safe(initWithdrawalMethodToggle);
     safe(initWithdrawalManageToggle);
     safe(initWdRefreshRow);
+    safe(initWdPasswordToggle);
     safe(initWithdrawalAccountForm);
     safe(initPaySubmitHandlers);
     safe(applyStudioSections);

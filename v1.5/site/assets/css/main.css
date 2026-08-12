@@ -2061,6 +2061,13 @@ input {
   background: var(--c-gold);
   color: var(--c-navy);
 }
+/* 儲值頁付款方式(銀行卡/LinePay/USDT)沿用同一套 tab 樣式,圖示對齊文字 */
+.pay-method-tab svg {
+  width: 16px;
+  height: 16px;
+  vertical-align: -3px;
+  margin-right: 6px;
+}
 /* 帳戶管理清單上方的「已登記/等록된 계좌 (N/5)」計數,無對應真實原始碼 */
 .wd-account-count {
   display: flex;
