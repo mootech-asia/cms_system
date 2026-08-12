@@ -111,6 +111,16 @@
       'userCenter.depositPage.promotions': '프로모션',
       'userCenter.depositPage.noPromotion': '프로모션에 참여하지 않습니다',
       'userCenter.depositPage.limitNote': '＊최소 금액: ₩ {min}、최대 금액: ₩ {max}＊',
+      'userCenter.depositPage.bonusBanner': '＋₩ {amount} 보너스',
+      'depositPromo.p1.name': '신규 가입 첫 입금 50%',
+      'depositPromo.p1.r1': '참고: 이 이벤트는 Evolution Gaming 및 Pragmatic Play 카지노 게임에는 적용되지 않습니다.',
+      'depositPromo.p1.r2': '롤오버 조건: 전체 자금의 롤오버는 (입금액 + 보너스)의 300%로 계산됩니다.',
+      'depositPromo.p1.r3': '배당률 1.7 미만인 베팅은 롤오버 조건에 포함되지 않습니다.',
+      'depositPromo.p2.name': 'Evolution Gaming, Pragmatic Play 카지노 전용 무제한 입금...',
+      'depositPromo.p2.r1': '전체 자금의 롤오버는 (입금액 + 보너스)에 다음 배수를 곱한 값입니다:',
+      'depositPromo.p2.r2': '최대 보너스 금액: ₩200,000',
+      'depositPromo.p2.r3': '출금 롤오버 조건: 10배 (1,000%)',
+      'depositPromo.p2.r4': '예시: ₩1,000,000 입금 시 ₩200,000 보너스 지급. (1,000,000 + 200,000) X 10 = 12,000,000',
       'userCenter.withdrawalPage.myBankAccounts': '나의 은행 계좌',
       'userCenter.withdrawalPage.emptyBankAccount': '등록된 계좌가 없습니다',
       'userCenter.withdrawalPage.addAccount': '계좌 추가',
@@ -122,12 +132,13 @@
       'userCenter.withdrawalPage.bindDate': '등록일',
       'userCenter.withdrawalPage.remainingTurnoverAmount': '*남은 유효 베팅 금액: ₩ ',
       'userCenter.withdrawalPage.requiredTurnoverAmount': '필요 유효 베팅 금액',
+      'userCenter.withdrawalPage.rolloverNote': '*롤오버 달성    금액: ₩{achieved}    목표 금액: ₩{target}',
       'userCenter.withdrawalAmount': '출금 금액',
       'userCenter.depositAmount': '입금 금액',
-      'userCenter.transactionDetails': '거래 상세',
+      'userCenter.transactionDetails': '송금 상세',
       'userCenter.withdrawalAccount': '출금 계좌',
       'userCenter.depositAccount': '입금 계좌',
-      'userCenter.transactionDescription': "송금이 완료되면 아래의 '완료' 버튼을 눌러 주세요. 궁금한 점이 있으시면 언제든지 고객센터로 문의해 주세요.",
+      'userCenter.transactionDescription': "송금이 완료되면 아래의 '{action}' 버튼을 눌러 주세요. 궁금한 점이 있으시면 언제든지 고객센터로 문의해 주세요.",
       'userCenter.customerService': '고객센터',
       'userCenter.withdrawalPromotions': '출금 프로모션',
       'userCenter.depositPromotions': '입금 프로모션',
@@ -142,6 +153,8 @@
       'common.cancel': '취소',
       'common.submit': '제출',
       'common.complete': '완료',
+      'common.completeDeposit': '입금 완료',
+      'common.completeWithdrawal': '출금 완료',
       'common.back': '뒤로',
       'common.detail': '상세 정보',
       'common.done': '완료',
@@ -374,7 +387,17 @@
       'userCenter.depositPage.choosePromotion': 'Choose promotion',
       'userCenter.depositPage.promotions': 'Promotions',
       'userCenter.depositPage.noPromotion': 'Do not participate in any promotions',
-      'userCenter.depositPage.limitNote': 'Minimum Amount : ₩ {min}, Maximum Amount: ₩ {max}',
+      'userCenter.depositPage.limitNote': '＊Minimum Amount : ₩ {min}，Maximum Amount: ₩ {max}＊',
+      'userCenter.depositPage.bonusBanner': '+₩ {amount} Bonus',
+      'depositPromo.p1.name': 'New Sign-up First Deposit 50%',
+      'depositPromo.p1.r1': 'Note: This event is not applicable to Evolution Gaming and Pragmatic Play casino games.',
+      'depositPromo.p1.r2': 'Rollover Requirement: The rollover for all funds is calculated as 300% of (Deposit Amount + Bonus).',
+      'depositPromo.p1.r3': 'Bets with odds less than 1.7 will not count towards the rollover requirement.',
+      'depositPromo.p2.name': 'Exclusive to Evolution Gaming, Pragmatic Play Casinos Unlimited Deposit...',
+      'depositPromo.p2.r1': 'The rollover for all funds is (Deposit Amount + Bonus) multiplied by',
+      'depositPromo.p2.r2': 'Maximum Bonus Amount: ₩200,000.',
+      'depositPromo.p2.r3': 'Withdrawal Rollover Condition: 10 times (1,000%).',
+      'depositPromo.p2.r4': 'Example: Deposit ₩1,000,000, receive a ₩200,000 bonus. (1,000,000 + 200,000) X 10 = 12,000,000',
       'userCenter.withdrawalPage.myBankAccounts': 'My Bank Accounts',
       'userCenter.withdrawalPage.emptyBankAccount': 'Empty Bank Account',
       'userCenter.withdrawalPage.addAccount': 'Add Account',
@@ -386,12 +409,13 @@
       'userCenter.withdrawalPage.bindDate': 'Bind Date',
       'userCenter.withdrawalPage.remainingTurnoverAmount': '*Remaining Turnover Amount: ₩ ',
       'userCenter.withdrawalPage.requiredTurnoverAmount': 'Required Turnover Amount',
+      'userCenter.withdrawalPage.rolloverNote': '*Rollover Achieved    amount: ₩{achieved}    Target amount: ₩{target}',
       'userCenter.withdrawalAmount': 'Withdrawal Amount',
       'userCenter.depositAmount': 'Deposit Amount',
-      'userCenter.transactionDetails': 'Transaction Details',
+      'userCenter.transactionDetails': 'Transfer Details',
       'userCenter.withdrawalAccount': 'Withdrawal Account',
       'userCenter.depositAccount': 'Deposit Account',
-      'userCenter.transactionDescription': "Once the transfer is complete, please click the 'Complete' button below. Should you have any questions, please feel free to contact our Customer Service team.",
+      'userCenter.transactionDescription': 'Once the transfer is complete, please click the "{action}" button below. Should you have any questions, please feel free to contact our Customer Service team.',
       'userCenter.customerService': 'Customer Service',
       'userCenter.withdrawalPromotions': 'Withdrawal Promotions',
       'userCenter.depositPromotions': 'Deposit Promotions',
@@ -406,6 +430,8 @@
       'common.cancel': 'Cancel',
       'common.submit': 'Submit',
       'common.complete': 'Complete',
+      'common.completeDeposit': 'Complete Deposit',
+      'common.completeWithdrawal': 'Complete Withdrawal',
       'common.back': 'Back',
       'common.detail': 'Detail',
       'common.done': 'Done',
@@ -541,14 +567,14 @@
 
   /* ---- Navbar 導覽資料(對照 components/Navbar.vue desktopNav/topItems/bottomItems) ---- */
   var DESKTOP_NAV = [
-    { key: 'home', tKey: 'navbar.desktop.home', url: 'index.html' },
-    { key: 'hotGames', tKey: 'navbar.desktop.hotGames', url: 'game-type.html?type=hotgames' },
-    { key: 'sports', tKey: 'navbar.desktop.sports', url: 'game-type.html?type=sports' },
-    { key: 'live', tKey: 'navbar.desktop.live', url: 'game-type.html?type=live' },
-    { key: 'slots', tKey: 'navbar.desktop.slots', url: 'game-type.html?type=slot' },
-    { key: 'fish', tKey: 'navbar.desktop.fish', url: 'game-type.html?type=fish' },
-    { key: 'miniGames', tKey: 'navbar.desktop.miniGames', url: 'game-type.html?type=mini_game' },
-    { key: 'promotion', tKey: 'navbar.desktop.promotion', url: 'promotion-list.html' },
+    { key: 'home', tKey: 'navbar.desktop.home', url: 'index.html', icon: 'nav-home.svg' },
+    { key: 'hotGames', tKey: 'navbar.desktop.hotGames', url: 'game-type.html?type=hotgames', icon: 'hotGame2.svg' },
+    { key: 'sports', tKey: 'navbar.desktop.sports', url: 'game-type.html?type=sports', icon: 'sports.svg' },
+    { key: 'live', tKey: 'navbar.desktop.live', url: 'game-type.html?type=live', icon: '../index/hotGame/icon-Live2.png' },
+    { key: 'slots', tKey: 'navbar.desktop.slots', url: 'game-type.html?type=slot', icon: 'slotGames.svg' },
+    { key: 'fish', tKey: 'navbar.desktop.fish', url: 'game-type.html?type=fish', icon: 'fish.svg' },
+    { key: 'miniGames', tKey: 'navbar.desktop.miniGames', url: 'game-type.html?type=mini_game', icon: 'miniGames.svg' },
+    { key: 'promotion', tKey: 'navbar.desktop.promotion', url: 'promotion-list.html', icon: 'nav-promotion-logo.svg' },
   ];
 
   var MOBILE_TOP_ITEMS = [
@@ -662,6 +688,11 @@
     balanceRaw: '1,000,000,000',
     point_balance: '₩1,000,000,000',
     remaining_turnover_amount: '0',
+    /* 出金頁「Main Wallet」為可提領錢包餘額,與頁首總資產(balance)是不同欄位;
+       對照真實網站截圖,此帳號尚未產生可提領餘額與롤오버紀錄,固定為 0.00 */
+    wallet_balance: '0.00',
+    rollover_achieved: '0.00',
+    rollover_target: '0.00',
     avatar: 'index/avatar.png',
   };
 
@@ -679,22 +710,29 @@
     { id: 'customerService', tKey: 'userCenter.sidebar.customerService', url: '', icon: 'customerService.svg' },
   ];
 
-  /* ---- 提款頁銀行卡列表(對照 api.getBankCardList 假資料) ---- */
-  var BANK_CARDS = [
-    { id: 1, bankName: 'KB Bank', bankCardNumber: '110-****-1234', cardholderName: 'MEAOMCAO', bindingTime: 1755100800 },
-    { id: 2, bankName: 'Shinhan Bank', bankCardNumber: '110-****-5678', cardholderName: 'MEAOMCAO', bindingTime: 1757548800 },
-  ];
+  /* ---- 提款頁銀行卡列表(對照 api.getBankCardList 假資料;真實網站此帳號尚未設定銀行卡,
+     帳戶總覽/安全中心的「結帳資訊」都顯示未設定,故此處預設為空陣列) ---- */
+  var BANK_CARDS = [];
 
   /* ---- 儲值優惠(對照 api.getPromotionDeposit 假資料) ---- */
   var DEPOSIT_PROMOTIONS = [
     {
       promotion_id: 'p1',
-      name: '신규 가입 첫 입금 50%',
-      remark: '이 이벤트는 Evolution Gaming 및 Pragmatic Play 카지노 게임에는 적용되지 않습니다.',
+      nameKey: 'depositPromo.p1.name',
+      remarkKeys: ['depositPromo.p1.r1', 'depositPromo.p1.r2', 'depositPromo.p1.r3'],
       prize: { bonus_reward_type: 'percentage', percentage: { min_deposit_amount: 10000, bonus_percentage: 50, min_bonus_amount: 0, max_bonus_amount: 200000 } },
       deposit_turnover_multiplier: 3,
       bonus_turnover_multiplier: 3,
       exceed_bonus_deposit_turnover_multiplier: 3,
+    },
+    {
+      promotion_id: 'p2',
+      nameKey: 'depositPromo.p2.name',
+      remarkKeys: ['depositPromo.p2.r1', 'depositPromo.p2.r2', 'depositPromo.p2.r3', 'depositPromo.p2.r4'],
+      prize: { bonus_reward_type: 'percentage', percentage: { min_deposit_amount: 10000, bonus_percentage: 20, min_bonus_amount: 0, max_bonus_amount: 200000 } },
+      deposit_turnover_multiplier: 10,
+      bonus_turnover_multiplier: 10,
+      exceed_bonus_deposit_turnover_multiplier: 10,
     },
   ];
 

@@ -482,6 +482,15 @@ input {
 .header-nav-link.is-active span {
   color: #fff;
 }
+.header-nav-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+}
+.header-nav-link:hover .header-nav-icon,
+.header-nav-link.is-active .header-nav-icon {
+  opacity: 1;
+}
 
 @media (min-width: 1280px) {
   .site-header-mobile {
@@ -1495,6 +1504,10 @@ input {
   border-radius: 10px;
   background: transparent;
 }
+.user-sidebar-toggle-btn.is-active {
+  background-image: var(--g-primary);
+  color: var(--c-navy);
+}
 .user-sidebar-list-item {
   padding: 0 24px;
   margin-bottom: 16px;
@@ -2126,6 +2139,26 @@ input {
 .promo-card-turnover {
   color: #6b7280;
   font-size: 12px;
+}
+.promo-card-remarks {
+  margin: 4px 0 0;
+  padding-left: 16px;
+  color: var(--c-navy);
+  font-size: 12px;
+  font-weight: 400;
+}
+@media (min-width: 1280px) {
+  .promo-card-remarks {
+    font-size: 14px;
+  }
+}
+.promo-bonus-banner {
+  margin-top: 16px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--g-primary);
+  color: #fff;
+  font-weight: 700;
 }
 .pay-next-btn {
   width: 100%;

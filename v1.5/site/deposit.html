@@ -38,6 +38,8 @@
                     <div data-promotion-list></div>
                   </div>
 
+                  <div class="promo-bonus-banner" data-bonus-banner style="display: none"></div>
+
                   <button type="button" class="pay-next-btn" data-deposit-next disabled>
                     <span class="text-gradient" data-i18n="common.next">다음</span>
                   </button>
@@ -60,9 +62,9 @@
         var D = window.WIN15_DATA;
         var W = window.WIN15;
         var MIN = 10000, MAX = 9000000;
-        var selectedAmount = null;
+        var DEFAULT_AMOUNT = '10,000';
         var selectedPromoIndex = 0;
-        var promotions = D.DEPOSIT_PROMOTIONS.concat([{ promotion_id: 'none', name: W.t('userCenter.depositPage.noPromotion'), remark: '' }]);
+        var promotions = D.DEPOSIT_PROMOTIONS;
 
         function fmt(n) { return Number(n).toLocaleString('en-US'); }
         W.qs('[data-limit-note]').textContent = W.t('userCenter.depositPage.limitNote').replace('{min}', fmt(MIN)).replace('{max}', fmt(MAX));
@@ -77,34 +79,46 @@
           var n = amountNumber();
           nextBtn.disabled = !(n >= MIN && n <= MAX);
         }
+        function syncAmountButtons() {
+          var raw = (input.value || '').replace(/\D/g, '');
+          W.qsa('[data-amount-grid] .pay-amount-btn').forEach(function (b) {
+            b.classList.toggle('is-selected', b.getAttribute('data-amount').replace(/\D/g, '') === raw);
+          });
+        }
         function setAmount(v) {
-          input.value = v ? fmt(Number(String(v).replace(/\D/g, ''))) : '';
+          input.value = v ? '₩ ' + fmt(Number(String(v).replace(/\D/g, ''))) : '';
+          syncAmountButtons();
           refreshNextState();
+          renderBonusBanner();
         }
         W.qsa('[data-amount-grid] .pay-amount-btn').forEach(function (btn) {
-          W.on(btn, 'click', function () {
-            W.qsa('[data-amount-grid] .pay-amount-btn').forEach(function (b) { b.classList.remove('is-selected'); });
-            btn.classList.add('is-selected');
-            setAmount(btn.getAttribute('data-amount'));
-          });
+          W.on(btn, 'click', function () { setAmount(btn.getAttribute('data-amount')); });
         });
         W.on(input, 'input', function () {
           var digits = (input.value || '').replace(/\D/g, '');
-          input.value = digits ? fmt(Math.min(Number(digits), MAX)) : '';
-          W.qsa('[data-amount-grid] .pay-amount-btn').forEach(function (b) { b.classList.toggle('is-selected', b.getAttribute('data-amount') === input.value); });
+          input.value = digits ? '₩ ' + fmt(Math.min(Number(digits), MAX)) : '';
+          syncAmountButtons();
           refreshNextState();
+          renderBonusBanner();
         });
+
+        function promoBonusAmount(p) {
+          var amt = amountNumber();
+          var cfg = p.prize && p.prize.percentage;
+          if (!amt || !cfg || amt < cfg.min_deposit_amount) return 0;
+          return Math.min(Math.max(amt * cfg.bonus_percentage / 100, cfg.min_bonus_amount || 0), cfg.max_bonus_amount || Infinity);
+        }
 
         function renderPromotions() {
           var wrap = W.qs('[data-promotion-list]');
           wrap.innerHTML = promotions.map(function (p, i) {
             var selected = i === selectedPromoIndex;
+            var bullets = (p.remarkKeys || []).map(function (k) { return '<li>' + W.t(k) + '</li>'; }).join('');
             return (
               '<div class="promo-card' + (selected ? ' is-selected' : '') + '" data-promo-index="' + i + '">' +
               '<div class="promo-card-row"><span class="promo-radio"><span class="promo-radio-dot"></span></span>' +
-              '<div class="promo-card-body"><strong>' + p.name + '</strong>' +
-              (p.remark ? '<div class="promo-card-remark">' + p.remark + '</div>' : '') +
-              (selected && p.promotion_id !== 'none' ? '<hr class="promo-card-hr"><div class="promo-card-turnover">' + turnoverText(p) + '</div>' : '') +
+              '<div class="promo-card-body"><strong>' + W.t(p.nameKey) + '</strong>' +
+              (bullets ? '<ul class="promo-card-remarks">' + bullets + '</ul>' : '') +
               '</div></div></div>'
             );
           }).join('');
@@ -112,26 +126,31 @@
             W.on(el, 'click', function () {
               selectedPromoIndex = Number(el.getAttribute('data-promo-index'));
               renderPromotions();
+              renderBonusBanner();
             });
           });
         }
 
-        function turnoverText(p) {
-          var amt = amountNumber();
-          if (!amt) return W.t('userCenter.withdrawalPage.requiredTurnoverAmount') + '：₩ 0';
-          var cfg = p.prize && p.prize.percentage;
-          if (!cfg || amt < cfg.min_deposit_amount) return W.t('userCenter.withdrawalPage.requiredTurnoverAmount') + '：₩ 0';
-          var bonus = Math.min(Math.max(amt * cfg.bonus_percentage / 100, cfg.min_bonus_amount || 0), cfg.max_bonus_amount || Infinity);
-          var turnover = (amt + bonus) * (p.deposit_turnover_multiplier || 1);
-          return W.t('userCenter.withdrawalPage.requiredTurnoverAmount') + '：₩ ' + fmt(Math.round(turnover));
+        function renderBonusBanner() {
+          var banner = W.qs('[data-bonus-banner]');
+          var p = promotions[selectedPromoIndex];
+          var bonus = p ? promoBonusAmount(p) : 0;
+          if (bonus > 0) {
+            banner.style.display = 'block';
+            banner.textContent = W.t('userCenter.depositPage.bonusBanner').replace('{amount}', fmt(Math.round(bonus)));
+          } else {
+            banner.style.display = 'none';
+          }
         }
 
         renderPromotions();
-        refreshNextState();
+        setAmount(DEFAULT_AMOUNT);
 
         W.on(nextBtn, 'click', function () {
           if (nextBtn.disabled) return;
-          location.href = 'transaction-info.html?type=deposit&amount=' + encodeURIComponent(input.value);
+          var p = promotions[selectedPromoIndex];
+          var bonus = p ? Math.round(promoBonusAmount(p)) : 0;
+          location.href = 'transaction-info.html?type=deposit&amount=' + encodeURIComponent(amountNumber()) + (bonus > 0 ? '&bonus=' + bonus : '');
         });
       };
     </script>

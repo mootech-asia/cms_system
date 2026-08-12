@@ -124,7 +124,9 @@
       '</div></div>';
 
     var desktopNav = D.DESKTOP_NAV.map(function (item) {
-      return '<div class="header-nav-link" data-nav-key="' + item.key + '" data-nav-href="' + item.url + '"><span data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span></div>';
+      return '<div class="header-nav-link" data-nav-key="' + item.key + '" data-nav-href="' + item.url + '">' +
+        '<img src="' + icon(item.icon) + '" alt="" class="header-nav-icon">' +
+        '<span data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span></div>';
     }).join('');
 
     return (
@@ -333,9 +335,10 @@
   }
 
   function userSidebarNavItemHtml(item) {
+    var isActive = !!item.url && pageName() === item.url.replace(/\.html$/, '');
     return (
       '<li class="user-sidebar-list-item">' +
-      '<button type="button" class="user-sidebar-nav-item" data-usc-item="' + item.id + '"' +
+      '<button type="button" class="user-sidebar-nav-item' + (isActive ? ' is-active' : '') + '" data-usc-item="' + item.id + '"' +
       (item.url ? ' data-nav-href="' + item.url + '"' : ' data-open-cs') + '>' +
       '<span class="user-sidebar-nav-icon" style="-webkit-mask-image:url(' + icon('usercenter/' + item.icon) + ');mask-image:url(' + icon('usercenter/' + item.icon) + ')"></span>' +
       '<span class="user-sidebar-nav-label" data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span>' +
@@ -343,12 +346,18 @@
     );
   }
 
+  function userSidebarToggleBtnHtml(url, tKey) {
+    var isActive = pageName() === url.replace(/\.html$/, '');
+    return '<button type="button" class="user-sidebar-toggle-btn' + (isActive ? ' is-active' : ' border-gradient-pill') + '" data-nav-href="' + url + '">' +
+      '<span class="' + (isActive ? '' : 'text-gradient') + '" data-i18n="' + tKey + '">' + t(tKey) + '</span></button>';
+  }
+
   function userSidebarHtml() {
     var itemsHtml = (D.USER_SIDEBAR_ITEMS || []).map(userSidebarNavItemHtml).join('');
     var toggles =
       '<div class="user-sidebar-toggles">' +
-      '<button type="button" class="user-sidebar-toggle-btn border-gradient-pill" data-nav-href="deposit.html"><span class="text-gradient" data-i18n="userCenter.deposit">' + t('userCenter.deposit') + '</span></button>' +
-      '<button type="button" class="user-sidebar-toggle-btn border-gradient-pill" data-nav-href="withdrawal.html"><span class="text-gradient" data-i18n="userCenter.withdrawal">' + t('userCenter.withdrawal') + '</span></button>' +
+      userSidebarToggleBtnHtml('deposit.html', 'userCenter.deposit') +
+      userSidebarToggleBtnHtml('withdrawal.html', 'userCenter.withdrawal') +
       '</div>';
     return (
       '<nav class="user-sidebar">' +
@@ -375,10 +384,6 @@
     });
     qsa('[data-usc-item]', root).forEach(function (el) {
       on(el, 'click', close);
-    });
-    var current = pageName();
-    qsa('[data-usc-item]', root).forEach(function (el) {
-      el.classList.toggle('is-active', el.getAttribute('data-usc-item') === current || (current === 'account' && el.getAttribute('data-usc-item') === 'accountOverview'));
     });
   }
 

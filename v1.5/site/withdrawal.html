@@ -20,31 +20,13 @@
               <section class="pay-section">
                 <div class="pay-section-inner">
                   <div class="wd-card-nav">
-                    <img src="assets/images/icon/arrow-left.svg" alt="prev" data-bank-prev />
                     <span data-i18n="userCenter.withdrawalPage.myBankAccounts">나의 은행 계좌</span>
-                    <span data-bank-count>1 / 2</span>
-                    <img src="assets/images/icon/arrow-right.svg" alt="next" data-bank-next />
                   </div>
 
-                  <div class="wd-bank-card" data-bank-card>
-                    <img class="card-bg" src="assets/images/userCenter/bankcard2.png" alt="card-bg" />
-                    <div class="wd-bank-card-inner">
-                      <div style="display: flex; justify-content: space-between; align-items: center">
-                        <span class="wd-bank-name" data-bank-name>KB Bank</span>
-                        <img src="assets/images/icon/usercenter/add.svg" alt="add" style="width: 24px; height: 24px" data-nav-href="banking-details.html" />
-                      </div>
-                      <div class="wd-bank-card-mid">
-                        <p data-i18n="userCenter.withdrawalPage.accountNumber">계좌 번호</p>
-                        <p class="num" data-bank-number>110-****-1234</p>
-                      </div>
-                      <div class="wd-bank-card-foot">
-                        <span class="holder" data-bank-holder>MEAOMCAO</span>
-                        <div style="text-align: right">
-                          <p data-i18n="userCenter.withdrawalPage.bindDate">등록일</p>
-                          <p style="font-weight: 700" data-bank-date>2025-08-14</p>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="wd-empty">
+                    <img src="assets/images/userCenter/bankcard.png" alt="empty" />
+                    <p data-i18n="userCenter.withdrawalPage.emptyBankAccount">등록된 계좌가 없습니다</p>
+                    <button type="button" data-nav-href="banking-details.html" data-i18n="userCenter.withdrawalPage.addAccount">계좌 추가</button>
                   </div>
 
                   <div class="wd-refresh-row">
@@ -57,7 +39,7 @@
                   <div class="wd-wallet-row">
                     <div>
                       <p class="wallet-label"><span data-i18n="userCenter.withdrawalPage.main">메인</span> <span data-i18n="userCenter.withdrawalPage.wallet">지갑</span></p>
-                      <p class="wallet-amount">₩ <span data-profile-balance>1,000,000,000</span></p>
+                      <p class="wallet-amount">₩ <span data-profile-wallet>0.00</span></p>
                     </div>
                   </div>
                   <p class="wd-turnover-note">
@@ -73,7 +55,7 @@
                     <input type="password" class="pay-input" data-password-input placeholder="Please Enter Transaction Password" />
                     <button type="button" class="pw-toggle" data-toggle-pwd><img src="assets/images/icon/eye.svg" alt="toggle" data-pwd-icon /></button>
                   </div>
-                  <p class="pay-note" data-limit-note></p>
+                  <p class="pay-note" data-rollover-note></p>
 
                   <button type="button" class="pay-next-btn" data-withdrawal-submit disabled>
                     <span class="text-gradient" data-i18n="common.submit">제출</span>
@@ -97,25 +79,14 @@
         var D = window.WIN15_DATA;
         var W = window.WIN15;
         var MIN = 10000, MAX = 9000000;
-        var cards = D.BANK_CARDS;
-        var idx = 0;
+        var p = D.MOCK_PROFILE;
 
         function fmt(n) { return Number(n).toLocaleString('en-US'); }
-        W.qs('[data-limit-note]').textContent = W.t('userCenter.depositPage.limitNote').replace('{min}', fmt(MIN)).replace('{max}', fmt(MAX));
-        W.qs('[data-profile-balance]').textContent = D.MOCK_PROFILE.balanceRaw;
-        W.qs('[data-profile-turnover]').textContent = D.MOCK_PROFILE.remaining_turnover_amount;
+        W.qs('[data-profile-wallet]').textContent = p.wallet_balance;
+        W.qs('[data-profile-turnover]').textContent = p.remaining_turnover_amount;
+        W.qs('[data-rollover-note]').textContent = W.t('userCenter.withdrawalPage.rolloverNote')
+          .replace('{achieved}', p.rollover_achieved).replace('{target}', p.rollover_target);
 
-        function renderCard() {
-          var c = cards[idx];
-          W.qs('[data-bank-name]').textContent = c.bankName;
-          W.qs('[data-bank-number]').textContent = c.bankCardNumber;
-          W.qs('[data-bank-holder]').textContent = c.cardholderName;
-          W.qs('[data-bank-date]').textContent = new Date(c.bindingTime * 1000).toISOString().slice(0, 10);
-          W.qs('[data-bank-count]').textContent = (idx + 1) + ' / ' + cards.length;
-        }
-        renderCard();
-        W.on(W.qs('[data-bank-prev]'), 'click', function () { if (idx > 0) { idx--; renderCard(); } });
-        W.on(W.qs('[data-bank-next]'), 'click', function () { if (idx < cards.length - 1) { idx++; renderCard(); } });
         W.on(W.qs('[data-refresh-profile]'), 'click', function () {
           var svg = W.qs('[data-refresh-profile] svg');
           svg.style.transition = 'transform 1s linear';

@@ -35,7 +35,7 @@
                   <span data-tx-username>meaomcao</span>
                 </div>
 
-                <p class="txinfo-desc" data-i18n="userCenter.transactionDescription">송금이 완료되면 아래의 '완료' 버튼을 눌러 주세요. 궁금한 점이 있으시면 언제든지 고객센터로 문의해 주세요.</p>
+                <p class="txinfo-desc" data-tx-desc></p>
                 <a class="txinfo-cs-link" href="#" data-i18n="userCenter.customerService">고객센터</a>
 
                 <div class="txinfo-actions">
@@ -63,13 +63,21 @@
         var params = new URLSearchParams(location.search);
         var type = params.get('type') || 'deposit';
         var amount = Number((params.get('amount') || '0').replace(/,/g, '')) || 0;
+        var bonus = Number((params.get('bonus') || '0').replace(/,/g, '')) || 0;
         var isWithdrawal = type === 'withdrawal';
 
-        document.querySelector('[data-tx-title]').textContent = isWithdrawal ? W.t('userCenter.withdrawalInfo') : W.t('userCenter.depositInfo');
+        document.querySelector('[data-tx-title]').textContent = isWithdrawal ? W.t('userCenter.withdrawal') : W.t('userCenter.deposit');
         W.qs('[data-tx-amount-label]').textContent = isWithdrawal ? W.t('userCenter.withdrawalAmount') : W.t('userCenter.depositAmount');
         W.qs('[data-tx-amount]').textContent = amount.toLocaleString('en-US');
         W.qs('[data-tx-account-label]').textContent = isWithdrawal ? W.t('userCenter.withdrawalAccount') : W.t('userCenter.depositAccount');
         W.qs('[data-tx-username]').textContent = D.MOCK_PROFILE.username;
+        W.qs('[data-tx-desc]').textContent = W.t('userCenter.transactionDescription').replace('{action}', isWithdrawal ? W.t('common.completeWithdrawal') : W.t('common.completeDeposit'));
+
+        if (!isWithdrawal && bonus > 0) {
+          W.qs('[data-tx-bonus-row]').style.display = 'flex';
+          W.qs('[data-tx-bonus-label]').textContent = W.t('userCenter.depositPromotions');
+          W.qs('[data-tx-bonus]').textContent = bonus.toLocaleString('en-US');
+        }
 
         W.on(W.qs('[data-tx-back]'), 'click', function () { history.back(); });
         W.on(W.qs('[data-tx-complete]'), 'click', function () {
