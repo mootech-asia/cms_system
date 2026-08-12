@@ -27,6 +27,13 @@
     'profit-loss', 'withdrawal-record', 'withdrawal-detail', 'account-record', 'banking-details',
     'personal-info', 'security', 'change-password', 'transaction-info'];
   function isUserCenterPage() { return USER_CENTER_PAGES.indexOf(pageName()) !== -1; }
+  /* 對照真實網站截圖:側欄清單沒有「儲值/提款」項目,在這兩頁(以及其明細頁)
+     時側欄一律反白「帳戶總覽」,不是完全不反白 */
+  var SIDEBAR_FALLBACK_TO_ACCOUNT = ['deposit', 'withdrawal', 'transaction-info'];
+  function sidebarActivePage() {
+    var p = pageName();
+    return SIDEBAR_FALLBACK_TO_ACCOUNT.indexOf(p) !== -1 ? 'account' : p;
+  }
 
   /* 靜態預覽無真實後端,用 localStorage 模擬登入狀態(同源同步,對照真實網站
      首頁未登入/會員頁已登入的行為);會員中心頁面本來就進不去除非已登入,
@@ -335,7 +342,7 @@
   }
 
   function userSidebarNavItemHtml(item) {
-    var isActive = !!item.url && pageName() === item.url.replace(/\.html$/, '');
+    var isActive = !!item.url && sidebarActivePage() === item.url.replace(/\.html$/, '');
     return (
       '<li class="user-sidebar-list-item">' +
       '<button type="button" class="user-sidebar-nav-item' + (isActive ? ' is-active' : '') + '" data-usc-item="' + item.id + '"' +

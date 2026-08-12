@@ -115,7 +115,6 @@
         if (cards.length) {
           W.qs('[data-bank-nav]').style.display = 'flex';
           W.qs('[data-bank-card]').style.display = 'block';
-          W.qsa('[data-bank-prev], [data-bank-next]').forEach(function (el) { el.style.display = cards.length > 1 ? '' : 'none'; });
         } else {
           W.qs('[data-bank-empty]').style.display = 'block';
         }
@@ -126,11 +125,15 @@
           W.qs('[data-bank-holder]').textContent = c.cardholderName;
           W.qs('[data-bank-date]').textContent = new Date(c.bindingTime * 1000).toISOString().slice(0, 10);
           W.qs('[data-bank-count]').textContent = (idx + 1) + ' / ' + cards.length;
+          /* 對照真實網站截圖:在第一張/最後一張卡時,只隱藏那一側的箭頭,
+             不是卡片數量 <=1 才整組隱藏 */
+          W.qs('[data-bank-prev]').style.display = idx > 0 ? '' : 'none';
+          W.qs('[data-bank-next]').style.display = idx < cards.length - 1 ? '' : 'none';
         }
         if (cards.length) {
           renderCard();
-          W.on(W.qs('[data-bank-prev]'), 'click', function () { idx = idx > 0 ? idx - 1 : cards.length - 1; renderCard(); });
-          W.on(W.qs('[data-bank-next]'), 'click', function () { idx = idx < cards.length - 1 ? idx + 1 : 0; renderCard(); });
+          W.on(W.qs('[data-bank-prev]'), 'click', function () { if (idx > 0) { idx--; renderCard(); } });
+          W.on(W.qs('[data-bank-next]'), 'click', function () { if (idx < cards.length - 1) { idx++; renderCard(); } });
         }
 
         W.on(W.qs('[data-refresh-profile]'), 'click', function () {
