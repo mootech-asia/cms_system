@@ -37,16 +37,16 @@
 
   <main>
     <div class="container about-wrap">
-      <h1 class="about-title">關於我們</h1>
+      <h1 class="about-title" data-i18n="about.title">關於我們</h1>
       <div class="about-tabs" role="tablist">
-        <button type="button" class="about-tab active" data-about-tab="support">客服</button>
-        <button type="button" class="about-tab" data-about-tab="notice">公告</button>
-        <button type="button" class="about-tab" data-about-tab="about">關於我們</button>
-        <button type="button" class="about-tab" data-about-tab="privacy">隱私權政策</button>
-        <button type="button" class="about-tab" data-about-tab="info">責任博彩</button>
-        <button type="button" class="about-tab" data-about-tab="addiction">成癮防治</button>
-        <button type="button" class="about-tab" data-about-tab="rules">規則條款</button>
-        <button type="button" class="about-tab" data-about-tab="faq">常見問題</button>
+        <button type="button" class="about-tab active" data-about-tab="support" data-i18n="about.tabSupport">客服</button>
+        <button type="button" class="about-tab" data-about-tab="notice" data-i18n="about.tabNotice">公告</button>
+        <button type="button" class="about-tab" data-about-tab="about" data-i18n="about.tabAbout">關於我們</button>
+        <button type="button" class="about-tab" data-about-tab="privacy" data-i18n="about.tabPrivacy">隱私權政策</button>
+        <button type="button" class="about-tab" data-about-tab="info" data-i18n="about.tabInfo">責任博彩</button>
+        <button type="button" class="about-tab" data-about-tab="addiction" data-i18n="about.tabAddiction">成癮防治</button>
+        <button type="button" class="about-tab" data-about-tab="rules" data-i18n="about.tabRules">規則條款</button>
+        <button type="button" class="about-tab" data-about-tab="faq" data-i18n="about.tabFaq">常見問題</button>
       </div>
       <div class="about-panel" data-about-panel="support">
           <div class="about-card"><p class="about-text">如有任何問題請透過線上客服／Telegram／Email 與我們聯繫，我們提供 24 小時即時支援服務，協助您處理帳戶、儲值、提款與遊戲相關問題。</p></div>
@@ -76,13 +76,13 @@
           <div class="about-card"><h3 class="about-card-title">儲值與提款</h3><p class="about-text">若您在未事先核實的情況下儲值至錯誤帳戶，Bet100 對因此產生的損失概不負責。除活動另有說明外，所有時間皆以 GMT+8 為準。儲值與提款申請僅能使用會員本人註冊之銀行資訊辦理，使用他人資訊之申請恕無法受理。銀行帳戶資訊不得登記於家人、親戚、朋友或任何他人名下，須與實際使用本站之會員相符。嚴禁使用第三方支付帳戶進行儲值或提款。若您使用非本人名義帳戶儲值，該筆儲值將無法受理，Bet100 可能要求提供相關文件以協助處理。為防範洗錢與金融詐欺，儲值金額須完成打碼流程後方可申請提款。恕不接受支票或匯票儲值。</p></div>
         </div>
         <div class="about-panel" data-about-panel="faq" hidden>
-          <h3 class="about-group-title">基本資訊</h3>
-          <div class="faq-card"><button type="button" class="faq-trigger">什麼是 Bet100？<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><p class="faq-answer">Bet100 是一個提供可信賴、經驗證遊戲的海外投注網站，涵蓋體育、老虎機、真人娛樂、電子遊戲、捕魚達人等多元遊戲類型。</p></div>
-          <div class="faq-card"><button type="button" class="faq-trigger">遊戲結果公平嗎？<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><p class="faq-answer">Bet100 是合法註冊的公司，所有遊戲結果皆採用公平驗證機制，確保每一局結果不受人為操縱。</p></div>
-          <div class="faq-card"><button type="button" class="faq-trigger">我的個人資訊安全嗎？<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><p class="faq-answer">我們高度重視您的個人資訊安全，Bet100 絕不會將您的資料提供予未經授權的第三方。</p></div>
-          <h3 class="about-group-title">帳戶管理</h3>
-          <div class="faq-card"><button type="button" class="faq-trigger">如何修改個人資料？<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><p class="faq-answer">登入後點選「個人資料」，即可修改暱稱等基本資訊。</p></div>
-          <div class="faq-card"><button type="button" class="faq-trigger">忘記密碼怎麼辦？<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><p class="faq-answer">若您忘記帳戶密碼，請點選登入頁面的「忘記密碼」並依指示完成驗證與重設。</p></div>
+          <h3 class="about-group-title" data-i18n="faq.groupBasic">基本資訊</h3>
+          <div class="faq-card"><button type="button" class="faq-trigger"><span data-i18n="faq.q1">什麼是 Bet100？</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><p class="faq-answer" data-i18n="faq.a1">Bet100 是一個提供可信賴、經驗證遊戲的海外投注網站，涵蓋體育、老虎機、真人娛樂、電子遊戲、捕魚達人等多元遊戲類型。</p></div>
+          <div class="faq-card"><button type="button" class="faq-trigger"><span data-i18n="faq.q2">遊戲結果公平嗎？</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><p class="faq-answer" data-i18n="faq.a2">Bet100 是合法註冊的公司，所有遊戲結果皆採用公平驗證機制，確保每一局結果不受人為操縱。</p></div>
+          <div class="faq-card"><button type="button" class="faq-trigger"><span data-i18n="faq.q3">我的個人資訊安全嗎？</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><p class="faq-answer" data-i18n="faq.a3">我們高度重視您的個人資訊安全，Bet100 絕不會將您的資料提供予未經授權的第三方。</p></div>
+          <h3 class="about-group-title" data-i18n="faq.groupAccount">帳戶管理</h3>
+          <div class="faq-card"><button type="button" class="faq-trigger"><span data-i18n="faq.q4">如何修改個人資料？</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><p class="faq-answer" data-i18n="faq.a4">登入後點選「個人資料」，即可修改暱稱等基本資訊。</p></div>
+          <div class="faq-card"><button type="button" class="faq-trigger"><span data-i18n="faq.q5">忘記密碼怎麼辦？</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><p class="faq-answer" data-i18n="faq.a5">若您忘記帳戶密碼，請點選登入頁面的「忘記密碼」並依指示完成驗證與重設。</p></div>
         </div>
     </div>
   </main>

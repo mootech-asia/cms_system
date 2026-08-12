@@ -42,8 +42,8 @@
           <div class="hero-bg" style="--hero-image: url(assets/mock/live-02.webp); --hero-position: center;"></div>
           <div class="hero-content">
             <span class="hero-eyebrow">LIVE CASINO</span>
-            <h1 class="hero-title">真人娛樂</h1>
-            <p class="hero-sub">高清直播真人賭桌，24 小時不間斷。</p>
+            <h1 class="hero-title" data-i18n="nav.live">真人娛樂</h1>
+            <p class="hero-sub" data-i18n="hero.liveSub">高清直播真人賭桌，24 小時不間斷。</p>
           </div>
         </div>
       </div>
@@ -51,167 +51,167 @@
 
     <div class="container listing-wrap">
       <div class="listing-head">
-        <h2 class="listing-title">真人娛樂</h2>
+        <h2 class="listing-title" data-i18n="nav.live">真人娛樂</h2>
         <div class="listing-search">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="text" placeholder="搜尋遊戲" />
-          <button type="button">搜尋</button>
+          <input type="text" placeholder="搜尋遊戲" data-i18n-placeholder="game.searchPlaceholder" />
+          <button type="button" data-i18n="game.search">搜尋</button>
         </div>
       </div>
       <div class="listing-tabs" role="tablist">
-        <button type="button" class="listing-tab active" data-listing-tab="all">廠商</button>
-        <button type="button" class="listing-tab" data-listing-tab="fav">收藏</button>
+        <button type="button" class="listing-tab active" data-listing-tab="all" data-i18n="game.vendor">廠商</button>
+        <button type="button" class="listing-tab" data-listing-tab="fav" data-i18n="game.favorite">收藏</button>
       </div>
       <div class="tile-grid compact" id="listingGrid">
             <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag">熱門</span><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|0" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagHot">熱門</span><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|0" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Lightning Roulette</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag">獨家</span><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|1" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagExclusive">獨家</span><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|1" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Crazy Time Live</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|2" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|2" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Speed Baccarat</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|3" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|3" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Immersive Roulette</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|4" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|4" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Blackjack Party</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|5" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|5" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Dragon Tiger Live</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|6" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|6" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Sic Bo Deluxe</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|7" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|7" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Baccarat Squeeze</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|8" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|8" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Mega Wheel</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag">熱門</span><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|9" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagHot">熱門</span><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|9" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Football Studio</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|10" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|10" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Casino Hold'em Live</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|11" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|11" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Andar Bahar</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|12" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|12" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Teen Patti Live</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|13" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|13" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Auto Roulette</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|14" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|14" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Speed Blackjack</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|15" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|15" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">VIP Baccarat</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|16" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|16" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Dream Catcher</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag">新遊戲</span><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|17" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagNew">新遊戲</span><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|17" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Monopoly Live</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|18" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|18" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Side Bet City</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|19" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|19" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Lightning Dice</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|20" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|20" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Infinite Blackjack</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|21" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|21" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Free Bet Blackjack</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|22" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|22" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Salon Privé Baccarat</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|23" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|23" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">No Commission Baccarat</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|24" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|24" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Power Blackjack</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|25" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|25" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Fan Tan</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|26" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|26" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Bac Bo</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|27" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|27" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Craps Live</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|28" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|28" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Mega Ball</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|29" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="live|29" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Gonzo's Treasure Hunt</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
       </div>
       <p class="listing-empty" id="listingEmpty" hidden>還沒有收藏任何遊戲。</p>

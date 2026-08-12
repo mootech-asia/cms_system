@@ -1,6 +1,7 @@
 // CMS_前台_v4 — 語系切換（vanilla，無框架、無 build）。
 // 涵蓋範圍:導覽/頁尾/共用彈窗與各頁面獨有內容(會員中心表單/表格/彈窗訊息等)。
 //   - 靜態 HTML 文字:加 data-i18n="key" 由 applyLocale() 掃描替換 textContent;
+//     含內嵌標籤(如 <em>)的文字用 data-i18n-html 替換 innerHTML;
 //     input placeholder 用 data-i18n-placeholder;aria-label 用 data-i18n-aria。
 //   - site.js 動態產生的區塊(header-auth／手機選單／登入註冊彈窗／客服彈窗／
 //     會員中心各頁清單與提示訊息):直接呼叫 window.CMS_I18N.t(key) 取字串,
@@ -311,6 +312,118 @@
     'acctRecord.sportsBet': { zh: '體育投注', en: 'Sports Bet', ko: '스포츠 베팅', th: 'เดิมพันกีฬา' },
     'acctRecord.sportsPayout': { zh: '體育派彩', en: 'Sports Payout', ko: '스포츠 지급', th: 'จ่ายเงินกีฬา' },
     'acctRecord.bankCardWithdrawal': { zh: '銀行卡提款', en: 'Bank Card Withdrawal', ko: '은행 카드 출금', th: 'ถอนเงินด้วยบัตรธนาคาร' },
+
+    'game.startPlaying': { zh: '開始遊戲', en: 'Play Now', ko: '게임 시작', th: 'เริ่มเล่น' },
+    'game.tagExclusive': { zh: '獨家', en: 'Exclusive', ko: '독점', th: 'เอ็กซ์คลูซีฟ' },
+    'game.tagHot': { zh: '熱門', en: 'Hot', ko: '인기', th: 'มาแรง' },
+    'game.tagNew': { zh: '新遊戲', en: 'New', ko: '신규', th: 'ใหม่' },
+    'game.favorite': { zh: '收藏', en: 'Favorite', ko: '즐겨찾기', th: 'รายการที่ชอบ' },
+    'game.searchPlaceholder': { zh: '搜尋遊戲', en: 'Search games', ko: '게임 검색', th: 'ค้นหาเกม' },
+    'game.search': { zh: '搜尋', en: 'Search', ko: '검색', th: 'ค้นหา' },
+    'game.vendor': { zh: '廠商', en: 'Providers', ko: '제공사', th: 'ผู้ให้บริการ' },
+    'game.viewMore': { zh: '查看更多 →', en: 'View More →', ko: '더 보기 →', th: 'ดูเพิ่มเติม →' },
+    'game.scrollLeft': { zh: '向左捲動', en: 'Scroll Left', ko: '왼쪽으로 스크롤', th: 'เลื่อนไปทางซ้าย' },
+    'game.scrollRight': { zh: '向右捲動', en: 'Scroll Right', ko: '오른쪽으로 스크롤', th: 'เลื่อนไปทางขวา' },
+    'game.chooseVendor': { zh: '選擇廠商', en: 'Choose Provider', ko: '제공사 선택', th: 'เลือกผู้ให้บริการ' },
+    'game.hotGames': { zh: '熱門遊戲', en: 'Hot Games', ko: '인기 게임', th: 'เกมมาแรง' },
+    'game.miniGames': { zh: '迷你遊戲', en: 'Mini Games', ko: '미니 게임', th: 'มินิเกม' },
+    'game.electronicGames': { zh: '電子遊戲', en: 'Electronic Games', ko: '전자 게임', th: 'เกมอิเล็กทรอนิกส์' },
+    'game.liveCasinoEyebrow': { zh: '真人娛樂', en: 'Live Casino', ko: '라이브 카지노', th: 'คาสิโนสด' },
+    'game.sportsZone': { zh: '體育專區', en: 'Sports Zone', ko: '스포츠 존', th: 'โซนกีฬา' },
+
+    'hero.trending': { zh: '現正流行', en: 'Trending Now', ko: '지금 인기', th: 'กำลังเป็นที่นิยม' },
+    'hero.slotSub': { zh: '上千款經典與最新老虎機，隨時開轉。', en: 'Thousands of classic and latest slots, spin anytime.', ko: '수천 개의 클래식과 최신 슬롯을 언제든지 즐기세요.', th: 'สล็อตคลาสสิกและใหม่ล่าสุดนับพันเกม หมุนได้ทุกเมื่อ' },
+    'hero.fishSub': { zh: '深海捕魚競技，火力全開搶奪寶藏。', en: 'Deep-sea fishing competition, unleash full firepower for treasure.', ko: '심해 낚시 경쟁, 화력을 총동원해 보물을 쟁취하세요.', th: 'การแข่งขันยิงปลาใต้ทะเลลึก ปลดปล่อยพลังยิงเต็มที่เพื่อล่าสมบัติ' },
+    'hero.hotGamesSub': { zh: '全站玩家最愛，精選高回饋原創與授權電子遊戲。', en: 'The most loved by players site-wide, curated high-payout original and licensed games.', ko: '전체 플레이어가 가장 사랑하는, 고배당 오리지널 및 라이선스 게임 모음.', th: 'เกมที่ผู้เล่นทั้งเว็บชื่นชอบที่สุด คัดสรรเกมต้นฉบับและเกมมีลิขสิทธิ์ที่ให้ผลตอบแทนสูง' },
+    'hero.liveSub': { zh: '高清直播真人賭桌，24 小時不間斷。', en: 'HD live-streamed casino tables, 24 hours non-stop.', ko: 'HD 생중계 카지노 테이블, 24시간 끊임없이.', th: 'โต๊ะคาสิโนไลฟ์สตรีมความคมชัดสูง เปิดตลอด 24 ชั่วโมง' },
+    'hero.miniGamesSub': { zh: '快節奏小遊戲，一局只要幾秒鐘。', en: 'Fast-paced mini games, each round takes only seconds.', ko: '빠른 속도의 미니 게임, 한 라운드가 몇 초면 끝.', th: 'มินิเกมจังหวะเร็ว แต่ละรอบใช้เวลาไม่กี่วินาที' },
+    'hero.sportSub': { zh: '全球賽事即時盤口，賽前賽中隨時投注。', en: 'Real-time odds for global matches, bet before or during the game.', ko: '전 세계 경기 실시간 배당, 경기 전후 언제든 베팅.', th: 'อัตราต่อรองแบบเรียลไทม์ทั่วโลก เดิมพันได้ทั้งก่อนและระหว่างเกม' },
+    'hero.promotionSub': { zh: '最新加碼、返水與回饋活動，天天都有新驚喜。', en: 'The latest bonuses, rebates, and reward promotions, new surprises every day.', ko: '최신 보너스, 캐시백, 리워드 프로모션, 매일 새로운 즐거움.', th: 'โบนัส เงินคืน และโปรโมชั่นตอบแทนล่าสุด ความประหลาดใจใหม่ทุกวัน' },
+
+    'promo.tabAll': { zh: '全部活動', en: 'All Promotions', ko: '전체 이벤트', th: 'โปรโมชั่นทั้งหมด' },
+    'promo.tabDeposit': { zh: '儲值優惠', en: 'Deposit Offers', ko: '충전 혜택', th: 'โปรโมชั่นเติมเงิน' },
+    'promo.tabRebate': { zh: '返水回饋', en: 'Rebate', ko: '캐시백', th: 'เงินคืน' },
+    'promo.tabVip': { zh: 'VIP 專屬', en: 'VIP Exclusive', ko: 'VIP 전용', th: 'สิทธิพิเศษ VIP' },
+    'promo.join': { zh: '立即參加', en: 'Join Now', ko: '지금 참여', th: 'เข้าร่วมทันที' },
+    'promo.terms': { zh: '活動細則 →', en: 'Terms & Conditions →', ko: '이벤트 상세 →', th: 'รายละเอียดกิจกรรม →' },
+
+    'promo.tagLimited': { zh: '限時', en: 'Limited Time', ko: '한정 시간', th: 'จำกัดเวลา' },
+    'promo.tagDaily': { zh: '每日', en: 'Daily', ko: '매일', th: 'รายวัน' },
+    'promo.tagLive': { zh: '真人', en: 'Live', ko: '라이브', th: 'ไลฟ์' },
+    'promo.tagSlot': { zh: '老虎機', en: 'Slots', ko: '슬롯', th: 'สล็อต' },
+    'promo.tagSport': { zh: '體育', en: 'Sports', ko: '스포츠', th: 'กีฬา' },
+    'promo.tagFish': { zh: '捕魚', en: 'Fishing', ko: '낚시', th: 'ยิงปลา' },
+    'promo.tagMini': { zh: '迷你', en: 'Mini', ko: '미니', th: 'มินิ' },
+    'promo.tagReferral': { zh: '推薦', en: 'Referral', ko: '추천', th: 'แนะนำ' },
+    'promo.tagVip': { zh: 'VIP', en: 'VIP', ko: 'VIP', th: 'VIP' },
+    'promo.tagCrypto': { zh: '加密貨幣', en: 'Crypto', ko: '암호화폐', th: 'คริปโต' },
+    'promo.tagWeekend': { zh: '週末', en: 'Weekend', ko: '주말', th: 'วันหยุดสุดสัปดาห์' },
+    'promo.tagLottery': { zh: '抽獎', en: 'Lucky Draw', ko: '럭키 드로우', th: 'ชิงโชค' },
+
+    'promo.title1': { zh: '新會員首存 100% 加碼', en: 'New Member First Deposit Bonus 100%', ko: '신규 회원 첫 충전 보너스 100%', th: 'โบนัสฝากครั้งแรกสมาชิกใหม่ 100%' },
+    'promo.desc1': { zh: '完成首次儲值即享 100% 加碼金，最高可領 10,000 元，新會員限領一次。', en: 'Complete your first deposit to receive a 100% bonus, up to ₩10,000, one-time only for new members.', ko: '첫 충전을 완료하면 100% 보너스를 받을 수 있으며, 최대 10,000원까지, 신규 회원 1회 한정입니다.', th: 'ฝากเงินครั้งแรกรับโบนัส 100% สูงสุด 10,000 บาท จำกัดสมาชิกใหม่ 1 ครั้งเท่านั้น' },
+    'promo.title2': { zh: '每日簽到領紅包', en: 'Daily Check-in Red Packet', ko: '매일 출석 체크 홍바오', th: 'เช็คอินรายวันรับซองแดง' },
+    'promo.desc2': { zh: '連續登入簽到，第 7 天最高可拆 888 元紅包，斷簽重新計算。', en: 'Check in daily for 7 consecutive days to unlock a red packet worth up to ₩888; missing a day resets the streak.', ko: '7일 연속 출석 체크하면 최대 888원 홍바오를 받을 수 있습니다. 하루라도 놓치면 처음부터 다시 계산됩니다.', th: 'เช็คอินต่อเนื่อง 7 วัน รับซองแดงสูงสุด 888 บาท หากขาดจะเริ่มนับใหม่' },
+    'promo.title3': { zh: '真人娛樂 1.5% 無上限返水', en: 'Live Casino 1.5% Unlimited Rebate', ko: '라이브 카지노 1.5% 무제한 캐시백', th: 'คาสิโนสดคืนเงิน 1.5% ไม่จำกัด' },
+    'promo.desc3': { zh: '真人館所有廠商投注額皆計入，每日結算，返水無上限。', en: 'All live casino provider bets count, settled daily, no cap on rebate.', ko: '라이브 카지노 모든 제공사의 베팅액이 포함되며, 매일 정산되고 캐시백에 한도가 없습니다.', th: 'เดิมพันจากผู้ให้บริการคาสิโนสดทั้งหมดนับรวม คำนวณทุกวัน ไม่จำกัดเงินคืน' },
+    'promo.title4': { zh: '老虎機週週回饋 8%', en: 'Slots Weekly Rebate 8%', ko: '슬롯 주간 캐시백 8%', th: 'สล็อตคืนเงินรายสัปดาห์ 8%' },
+    'promo.desc4': { zh: '每週一結算上週老虎機淨損，最高回饋 8%，自動派發至錢包。', en: "Settled every Monday based on last week's net slot loss, up to 8% rebate, auto-credited to your wallet.", ko: '매주 월요일 전주 슬롯 순손실을 기준으로 정산하며, 최대 8% 캐시백이 지갑으로 자동 지급됩니다.', th: 'คำนวณทุกวันจันทร์จากยอดขาดทุนสล็อตสัปดาห์ก่อน คืนสูงสุด 8% เข้ากระเป๋าเงินอัตโนมัติ' },
+    'promo.title5': { zh: '體育首注失利保險', en: 'Sports First Bet Insurance', ko: '스포츠 첫 베팅 보험', th: 'ประกันเดิมพันกีฬาครั้งแรก' },
+    'promo.desc5': { zh: '首張體育注單未中獎，退還本金最高 2,000 元，賽前投注適用。', en: 'If your first sports bet loses, get a refund of up to ₩2,000; applies to pre-match bets.', ko: '첫 스포츠 베팅이 적중하지 않으면 원금 최대 2,000원을 환불해 드립니다. 경기 전 베팅에 적용됩니다.', th: 'หากเดิมพันกีฬาครั้งแรกไม่ชนะ รับเงินคืนสูงสุด 2,000 บาท ใช้ได้กับการเดิมพันก่อนแข่ง' },
+    'promo.title6': { zh: '捕魚達人火力加成', en: 'Fishing Master Firepower Boost', ko: '낚시의 달인 화력 증가', th: 'เพิ่มพลังยิงเซียนยิงปลา' },
+    'promo.desc6': { zh: '活動期間捕魚遊戲砲台火力 +20%，擊殺 BOSS 額外掉落寶箱。', en: 'During the event, fishing game cannon firepower +20%, defeating bosses drops extra treasure chests.', ko: '이벤트 기간 동안 낚시 게임 대포 화력 +20%, 보스를 처치하면 추가 보물 상자가 드롭됩니다.', th: 'ช่วงกิจกรรม พลังยิงปืนในเกมยิงปลา +20% ฆ่าบอสได้กล่องสมบัติเพิ่ม' },
+    'promo.title7': { zh: '迷你遊戲連勝獎金', en: 'Mini Games Win Streak Bonus', ko: '미니 게임 연승 보너스', th: 'โบนัสเกมมินิเกมชนะติดต่อกัน' },
+    'promo.desc7': { zh: '迷你遊戲連續獲勝 5 局，額外贈送 300 元獎金，每日限領三次。', en: 'Win 5 consecutive rounds in mini games for an extra ₩300 bonus, up to 3 times per day.', ko: '미니 게임에서 5연승 시 추가로 300원 보너스를 드립니다. 하루 최대 3회까지 받을 수 있습니다.', th: 'ชนะมินิเกมต่อเนื่อง 5 รอบ รับโบนัสเพิ่ม 300 บาท จำกัดวันละ 3 ครั้ง' },
+    'promo.title8': { zh: '推薦好友雙方同享', en: 'Refer a Friend, Both Benefit', ko: '친구 추천, 양쪽 모두 혜택', th: 'แนะนำเพื่อน รับสิทธิ์ทั้งสองฝ่าย' },
+    'promo.desc8': { zh: '成功推薦好友註冊並完成首存，雙方各得 500 元推薦金。', en: 'When a referred friend registers and completes their first deposit, both of you receive ₩500.', ko: '추천한 친구가 가입 후 첫 충전을 완료하면 양쪽 모두 500원의 추천 보너스를 받습니다.', th: 'เมื่อเพื่อนที่แนะนำลงทะเบียนและฝากเงินครั้งแรกสำเร็จ ทั้งสองฝ่ายรับเงินแนะนำ 500 บาท' },
+    'promo.title9': { zh: 'VIP 專屬生日禮金', en: 'VIP Exclusive Birthday Gift', ko: 'VIP 전용 생일 선물', th: 'ของขวัญวันเกิดพิเศษสำหรับ VIP' },
+    'promo.desc9': { zh: 'VIP1 以上會員生日當月可領取專屬禮金，等級越高金額越高。', en: 'VIP1 and above members can claim an exclusive gift during their birthday month; higher levels get higher amounts.', ko: 'VIP1 이상 회원은 생일이 있는 달에 전용 선물을 받을 수 있으며, 등급이 높을수록 금액도 커집니다.', th: 'สมาชิกระดับ VIP1 ขึ้นไป รับของขวัญพิเศษในเดือนเกิด ระดับสูงขึ้นได้รับมากขึ้น' },
+    'promo.title10': { zh: '加密貨幣儲值免手續費', en: 'Fee-Free Crypto Deposits', ko: '암호화폐 충전 수수료 면제', th: 'เติมเงินคริปโตไม่มีค่าธรรมเนียม' },
+    'promo.desc10': { zh: '使用 USDT／BTC 儲值全程免收手續費，到帳最快 1 分鐘。', en: 'No fees at all when depositing with USDT/BTC; funds arrive in as little as 1 minute.', ko: 'USDT/BTC로 충전 시 전 과정 수수료가 면제되며, 최소 1분 내 입금됩니다.', th: 'เติมเงินด้วย USDT/BTC ไม่มีค่าธรรมเนียมใดๆ เงินเข้าเร็วที่สุดใน 1 นาที' },
+    'promo.title11': { zh: '週末狂歡連續轉不停', en: 'Weekend Spin Frenzy', ko: '주말 논스톱 스핀 파티', th: 'สปินสนุกไม่หยุดวันหยุดสุดสัปดาห์' },
+    'promo.desc11': { zh: '每週六日老虎機累積轉動達標，可領取免費旋轉次數。', en: 'Reach the accumulated slot spin target every Saturday and Sunday to claim free spins.', ko: '매주 토요일과 일요일 슬롯 누적 스핀 목표를 달성하면 무료 스핀을 받을 수 있습니다.', th: 'สปินสล็อตสะสมให้ถึงเป้าทุกวันเสาร์-อาทิตย์ รับฟรีสปิน' },
+    'promo.title12': { zh: '月月抽豪禮大獎', en: 'Monthly Grand Prize Draw', ko: '매달 명품 대상 추첨', th: 'ชิงโชคของรางวัลใหญ่ประจำเดือน' },
+    'promo.desc12': { zh: '每月投注達標自動獲得抽獎券，最高可抽最新款旗艦手機。', en: 'Reach the monthly betting target to automatically receive a raffle ticket, top prize is the latest flagship phone.', ko: '매월 베팅 목표를 달성하면 자동으로 응모권을 받으며, 최고 상품은 최신 플래그십 스마트폰입니다.', th: 'เดิมพันครบเป้าประจำเดือนรับใบชิงโชคอัตโนมัติ รางวัลใหญ่สุดคือสมาร์ทโฟนเรือธงรุ่นล่าสุด' },
+
+    'about.title': { zh: '關於我們', en: 'About Us', ko: '회사 소개', th: 'เกี่ยวกับเรา' },
+    'about.tabSupport': { zh: '客服', en: 'Support', ko: '고객센터', th: 'ฝ่ายบริการลูกค้า' },
+    'about.tabNotice': { zh: '公告', en: 'Notice', ko: '공지', th: 'ประกาศ' },
+    'about.tabAbout': { zh: '關於我們', en: 'About Us', ko: '회사 소개', th: 'เกี่ยวกับเรา' },
+    'about.tabPrivacy': { zh: '隱私權政策', en: 'Privacy Policy', ko: '개인정보 보호정책', th: 'นโยบายความเป็นส่วนตัว' },
+    'about.tabInfo': { zh: '責任博彩', en: 'Responsible Gambling', ko: '책임감 있는 게임', th: 'การเล่นพนันอย่างมีความรับผิดชอบ' },
+    'about.tabAddiction': { zh: '成癮防治', en: 'Addiction Prevention', ko: '중독 예방', th: 'การป้องกันการเสพติด' },
+    'about.tabRules': { zh: '規則條款', en: 'Rules & Terms', ko: '규칙 및 약관', th: 'กฎและข้อตกลง' },
+    'about.tabFaq': { zh: '常見問題', en: 'FAQ', ko: '자주 묻는 질문', th: 'คำถามที่พบบ่อย' },
+
+    'faq.groupBasic': { zh: '基本資訊', en: 'Basic Information', ko: '기본 정보', th: 'ข้อมูลพื้นฐาน' },
+    'faq.groupAccount': { zh: '帳戶管理', en: 'Account Management', ko: '계정 관리', th: 'การจัดการบัญชี' },
+    'faq.q1': { zh: '什麼是 Bet100？', en: 'What is Bet100?', ko: 'Bet100이란 무엇인가요?', th: 'Bet100 คืออะไร?' },
+    'faq.a1': { zh: 'Bet100 是一個提供可信賴、經驗證遊戲的海外投注網站，涵蓋體育、老虎機、真人娛樂、電子遊戲、捕魚達人等多元遊戲類型。', en: 'Bet100 is an offshore betting site offering trusted, verified games covering sports, slots, live casino, electronic games, fishing, and more.', ko: 'Bet100은 스포츠, 슬롯, 라이브 카지노, 전자 게임, 낚시 게임 등 다양한 게임을 제공하는 신뢰할 수 있는 해외 베팅 사이트입니다.', th: 'Bet100 เป็นเว็บพนันต่างประเทศที่นำเสนอเกมที่น่าเชื่อถือและได้รับการตรวจสอบ ครอบคลุมกีฬา สล็อต คาสิโนสด เกมอิเล็กทรอนิกส์ และยิงปลา' },
+    'faq.q2': { zh: '遊戲結果公平嗎？', en: 'Are the game results fair?', ko: '게임 결과는 공정한가요?', th: 'ผลเกมยุติธรรมหรือไม่?' },
+    'faq.a2': { zh: 'Bet100 是合法註冊的公司，所有遊戲結果皆採用公平驗證機制，確保每一局結果不受人為操縱。', en: 'Bet100 is a legally registered company; all game results use a fair verification mechanism to ensure no manipulation.', ko: 'Bet100은 합법적으로 등록된 회사이며, 모든 게임 결과는 공정성 검증 메커니즘을 통해 조작되지 않도록 보장됩니다.', th: 'Bet100 เป็นบริษัทที่จดทะเบียนอย่างถูกกฎหมาย ผลเกมทั้งหมดใช้กลไกตรวจสอบความยุติธรรมเพื่อป้องกันการควบคุมผลลัพธ์' },
+    'faq.q3': { zh: '我的個人資訊安全嗎？', en: 'Is my personal information safe?', ko: '개인 정보는 안전한가요?', th: 'ข้อมูลส่วนตัวของฉันปลอดภัยหรือไม่?' },
+    'faq.a3': { zh: '我們高度重視您的個人資訊安全，Bet100 絕不會將您的資料提供予未經授權的第三方。', en: 'We take your personal information security very seriously; Bet100 will never provide your data to unauthorized third parties.', ko: '고객님의 개인정보 보안을 매우 중요하게 생각하며, Bet100은 승인되지 않은 제3자에게 절대 정보를 제공하지 않습니다.', th: 'เราให้ความสำคัญกับความปลอดภัยของข้อมูลส่วนตัวของคุณอย่างสูงสุด Bet100 จะไม่ให้ข้อมูลของคุณแก่บุคคลที่สามที่ไม่ได้รับอนุญาตเด็ดขาด' },
+    'faq.q4': { zh: '如何修改個人資料？', en: 'How do I edit my personal information?', ko: '개인 정보는 어떻게 수정하나요?', th: 'จะแก้ไขข้อมูลส่วนตัวได้อย่างไร?' },
+    'faq.a4': { zh: '登入後點選「個人資料」，即可修改暱稱等基本資訊。', en: 'After logging in, click "Personal Info" to edit your nickname and other basic information.', ko: '로그인 후 "개인 정보"를 클릭하면 닉네임 등 기본 정보를 수정할 수 있습니다.', th: 'หลังเข้าสู่ระบบ คลิก "ข้อมูลส่วนตัว" เพื่อแก้ไขชื่อเล่นและข้อมูลพื้นฐานอื่นๆ' },
+    'faq.q5': { zh: '忘記密碼怎麼辦？', en: 'What if I forget my password?', ko: '비밀번호를 잊어버렸다면 어떻게 하나요?', th: 'ถ้าลืมรหัสผ่านต้องทำอย่างไร?' },
+    'faq.a5': { zh: '若您忘記帳戶密碼，請點選登入頁面的「忘記密碼」並依指示完成驗證與重設。', en: 'If you forget your password, click "Forgot Password" on the login page and follow the instructions to verify and reset it.', ko: '비밀번호를 잊으셨다면 로그인 페이지의 "비밀번호를 잊으셨나요?"를 클릭하고 안내에 따라 인증 및 재설정을 완료하세요.', th: 'หากลืมรหัสผ่าน คลิก "ลืมรหัสผ่าน" ที่หน้าเข้าสู่ระบบ และทำตามคำแนะนำเพื่อยืนยันและตั้งรหัสผ่านใหม่' },
+
+    'hero1.eyebrow': { zh: '新會員專屬', en: 'New Members Only', ko: '신규 회원 전용', th: 'สำหรับสมาชิกใหม่เท่านั้น' },
+    'hero1.titleHtml': { zh: '首存加碼 <em>100%</em><br />贏在起跑點', en: 'First Deposit Bonus <em>100%</em><br />Get a Head Start', ko: '첫 충전 보너스 <em>100%</em><br />시작부터 앞서가세요', th: 'โบนัสฝากครั้งแรก <em>100%</em><br />เริ่มต้นนำหน้า' },
+    'hero1.sub': { zh: '即日起完成首次儲值，即可領取加碼金，額度全站最高。', en: 'Complete your first deposit today to claim the highest bonus on the site.', ko: '오늘 첫 충전을 완료하면 사이트 최고 한도의 보너스를 받을 수 있습니다.', th: 'ฝากเงินครั้งแรกวันนี้เพื่อรับโบนัสสูงสุดในเว็บไซต์' },
+    'hero1.cta': { zh: '立即領取', en: 'Claim Now', ko: '지금 받기', th: 'รับทันที' },
+    'hero2.eyebrow': { zh: '熱門推薦', en: 'Popular Pick', ko: '인기 추천', th: 'แนะนำยอดนิยม' },
+    'hero2.titleHtml': { zh: 'Crash 100<br />倍率最高 <em>1,000,000×</em>', en: 'Crash 100<br />Up to <em>1,000,000×</em> Multiplier', ko: 'Crash 100<br />최대 배당률 <em>1,000,000×</em>', th: 'Crash 100<br />ทวีคูณสูงสุด <em>1,000,000×</em>' },
+    'hero2.sub': { zh: '旗艦原創遊戲，公平驗證機制，人人都能參與。', en: 'Our flagship original game with a fair verification system, open to everyone.', ko: '공정성 검증 시스템을 갖춘 대표 오리지널 게임, 누구나 참여 가능합니다.', th: 'เกมต้นฉบับเรือธง พร้อมระบบตรวจสอบความยุติธรรม ทุกคนร่วมเล่นได้' },
+    'hero2.cta': { zh: '馬上遊戲', en: 'Play Now', ko: '바로 플레이', th: 'เล่นเลย' },
+    'hero3.eyebrow': { zh: '真人娛樂', en: 'Live Casino', ko: '라이브 카지노', th: 'คาสิโนสด' },
+    'hero3.titleHtml': { zh: '頂級真人賭桌<br />每日 <em>24 小時</em> 開放', en: 'Top-Tier Live Tables<br />Open <em>24 Hours</em> a Day', ko: '최고급 라이브 테이블<br />매일 <em>24시간</em> 운영', th: 'โต๊ะคาสิโนสดระดับพรีเมียม<br />เปิดตลอด <em>24 ชั่วโมง</em> ทุกวัน' },
+    'hero3.sub': { zh: '多家指定廠商同步直播，畫質清晰、荷官親切。', en: 'Live streamed simultaneously by multiple providers, crystal-clear video, friendly dealers.', ko: '여러 제공사가 동시에 생중계하며, 화질이 선명하고 딜러가 친절합니다.', th: 'ไลฟ์สตรีมพร้อมกันจากผู้ให้บริการหลายราย ภาพคมชัด เจ้ามือเป็นกันเอง' },
+    'hero3.cta': { zh: '進入真人館', en: 'Enter Live Casino', ko: '라이브 카지노 입장', th: 'เข้าสู่คาสิโนสด' },
+
+    'sport.homeWin': { zh: '主勝', en: 'Home Win', ko: '홈 승', th: 'เจ้าบ้านชนะ' },
+    'sport.draw': { zh: '和局', en: 'Draw', ko: '무승부', th: 'เสมอ' },
+    'sport.awayWin': { zh: '客勝', en: 'Away Win', ko: '원정 승', th: 'ทีมเยือนชนะ' },
   };
 
   function getLocale() {
@@ -335,6 +448,9 @@
     document.documentElement.setAttribute('lang', locale === 'zh' ? 'zh-Hant' : locale);
     Array.prototype.slice.call(document.querySelectorAll('[data-i18n]')).forEach(function (el) {
       el.textContent = t(el.getAttribute('data-i18n'));
+    });
+    Array.prototype.slice.call(document.querySelectorAll('[data-i18n-html]')).forEach(function (el) {
+      el.innerHTML = t(el.getAttribute('data-i18n-html'));
     });
     Array.prototype.slice.call(document.querySelectorAll('[data-i18n-placeholder]')).forEach(function (el) {
       el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder')));

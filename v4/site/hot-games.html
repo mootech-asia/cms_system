@@ -41,9 +41,9 @@
         <div class="hero-slide active">
           <div class="hero-bg" style="--hero-image: url(assets/mock/game-01.webp); --hero-position: center;"></div>
           <div class="hero-content">
-            <span class="hero-eyebrow">現正流行</span>
-            <h1 class="hero-title">熱門遊戲</h1>
-            <p class="hero-sub">全站玩家最愛，精選高回饋原創與授權電子遊戲。</p>
+            <span class="hero-eyebrow" data-i18n="hero.trending">現正流行</span>
+            <h1 class="hero-title" data-i18n="game.hotGames">熱門遊戲</h1>
+            <p class="hero-sub" data-i18n="hero.hotGamesSub">全站玩家最愛，精選高回饋原創與授權電子遊戲。</p>
           </div>
         </div>
       </div>
@@ -51,167 +51,167 @@
 
     <div class="container listing-wrap">
       <div class="listing-head">
-        <h2 class="listing-title">熱門遊戲</h2>
+        <h2 class="listing-title" data-i18n="game.hotGames">熱門遊戲</h2>
         <div class="listing-search">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="text" placeholder="搜尋遊戲" />
-          <button type="button">搜尋</button>
+          <input type="text" placeholder="搜尋遊戲" data-i18n-placeholder="game.searchPlaceholder" />
+          <button type="button" data-i18n="game.search">搜尋</button>
         </div>
       </div>
       <div class="listing-tabs" role="tablist">
-        <button type="button" class="listing-tab active" data-listing-tab="all">廠商</button>
-        <button type="button" class="listing-tab" data-listing-tab="fav">收藏</button>
+        <button type="button" class="listing-tab active" data-listing-tab="all" data-i18n="game.vendor">廠商</button>
+        <button type="button" class="listing-tab" data-listing-tab="fav" data-i18n="game.favorite">收藏</button>
       </div>
       <div class="tile-grid compact" id="listingGrid">
             <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag">獨家</span><img src="assets/mock/game-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|0" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagExclusive">獨家</span><img src="assets/mock/game-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|0" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Sugar Rush 9000</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|1" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|1" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Golden Hex</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag">熱門</span><img src="assets/mock/game-03.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|2" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagHot">熱門</span><img src="assets/mock/game-03.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|2" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Crown of Aether</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|3" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|3" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Diamond Vortex</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|4" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|4" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Phoenix Reels</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|5" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|5" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Emperor's Fortune</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|6" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|6" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Frost Bandit</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|7" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|7" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Inferno Strike</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|8" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|8" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Arctic Drift</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag">熱門</span><img src="assets/mock/game-10.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|9" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagHot">熱門</span><img src="assets/mock/game-10.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|9" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Jade Serpent</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|10" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|10" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Solar Flare Deluxe</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|11" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|11" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Midnight Panther</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|12" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|12" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Celestial Gates</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|13" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|13" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Thunder Bison</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag">新遊戲</span><img src="assets/mock/game-03.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|14" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagNew">新遊戲</span><img src="assets/mock/game-03.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|14" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Royal Falcon</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|15" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|15" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Crimson Vault</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|16" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|16" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Mystic Lotus</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|17" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|17" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Star Voyager</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|18" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|18" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Dragon's Hoard</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|19" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|19" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Lucky Cascade</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag">熱門</span><img src="assets/mock/game-09.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|20" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagHot">熱門</span><img src="assets/mock/game-09.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|20" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Neon Samurai</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|21" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|21" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Shadow Wolf</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|22" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|22" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Golden Pharaoh</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|23" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|23" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Storm Rider</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|24" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|24" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Velvet Fortune</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag">獨家</span><img src="assets/mock/game-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|25" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagExclusive">獨家</span><img src="assets/mock/game-02.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|25" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Iron Titan</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|26" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|26" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Moonlight Reels</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|27" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|27" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Blaze Runner</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|28" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|28" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Silver Lynx</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|29" aria-pressed="false" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
+              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /><button type="button" class="game-tile-fav" data-fav-id="hot-games|29" aria-pressed="false" data-i18n-aria="game.favorite" aria-label="收藏"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"/></svg></button></div>
               <div class="game-tile-name">Eternal Jackpot</div>
-              <a href="#" class="game-tile-cta">開始遊戲</a>
+              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
       </div>
       <p class="listing-empty" id="listingEmpty" hidden>還沒有收藏任何遊戲。</p>
