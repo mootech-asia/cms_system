@@ -1434,9 +1434,11 @@ input {
 }
 .user-sidebar-toggle-btn {
   flex: 1;
+  min-width: 0;
   text-align: center;
   font-weight: 700;
-  padding: 8px 10px;
+  font-size: 14px;
+  padding: 8px 6px;
   border-radius: 10px;
   background: transparent;
 }
@@ -1513,11 +1515,20 @@ input {
     position: static;
     background: transparent;
   }
+  .user-sidebar-toggles {
+    gap: 12px;
+    padding: 0 32px;
+  }
+  .user-sidebar-list-item {
+    padding: 0 30px 0 32px;
+  }
   .user-sidebar-nav-item {
     color: #fff;
+    gap: 4px;
   }
   .user-sidebar-nav-label {
     background: transparent;
+    padding: 0;
   }
   .user-sidebar-nav-item:hover:not(.is-active) {
     background: var(--c-pink-hover);
@@ -2006,6 +2017,11 @@ input {
   color: var(--c-navy);
   margin-top: 16px;
 }
+@media (min-width: 1280px) {
+  .dp-amount-input {
+    height: 48px;
+  }
+}
 .pay-input::placeholder {
   color: #6d6d6d;
 }
@@ -2063,10 +2079,6 @@ input {
   color: var(--c-navy);
   font-size: 14px;
 }
-.promo-card-remark {
-  color: var(--c-navy);
-  margin-top: 4px;
-}
 .promo-card-hr {
   border: 0;
   border-top: 1px solid var(--c-navy);
@@ -2088,13 +2100,33 @@ input {
     font-size: 14px;
   }
 }
-.promo-bonus-banner {
-  margin-top: 16px;
-  padding: 10px 16px;
-  border-radius: 10px;
-  background: var(--g-primary);
-  color: #fff;
+.promo-card-columns {
+  display: flex;
+  align-items: flex-start;
+}
+.promo-card-name-col {
+  width: 55%;
+  border-right: 1px solid #1f1f1f;
+  padding-right: 8px;
+}
+.promo-card-bonus-col {
+  width: 45%;
+  padding-left: 8px;
   font-weight: 700;
+  white-space: nowrap;
+}
+@media (min-width: 1280px) {
+  .promo-card-name-col {
+    width: 560px;
+    max-width: 65%;
+    padding-right: 16px;
+  }
+  .promo-card-bonus-col {
+    width: auto;
+    flex: 1;
+    margin-left: 24px;
+    padding-left: 0;
+  }
 }
 .pay-next-btn {
   width: 100%;
@@ -2120,6 +2152,13 @@ input {
   color: var(--c-navy);
   font-weight: 700;
   background: #fff;
+}
+/* 出金頁 Submit/Back 間距跟入金頁不同(對照原始碼 mt-[52px] / xl:mt-4) */
+[data-withdrawal-submit] {
+  margin-top: 52px;
+}
+.wd-back-btn {
+  margin-top: 16px;
 }
 
 /* ============================================================
@@ -2163,12 +2202,21 @@ input {
   flex-direction: column;
   justify-content: space-between;
 }
+.wd-add-card-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+@media (min-width: 1280px) {
+  .wd-add-card-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
 .wd-bank-name {
   display: inline-block;
-  width: fit-content;
-  max-width: 70%;
+  width: 114px;
   height: 25px;
-  padding: 0 12px;
   background: rgba(6, 12, 52, 0.8);
   border-radius: 4px;
   text-align: center;
@@ -2205,7 +2253,7 @@ input {
 }
 .wd-refresh-row {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-top: 8px;
   color: var(--c-navy-2);
 }
@@ -2221,7 +2269,12 @@ input {
   justify-content: center;
   gap: 210px;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 50px;
+}
+@media (min-width: 1280px) {
+  .wd-wallet-row {
+    margin-top: 24px;
+  }
 }
 .wd-wallet-row .wallet-label {
   color: var(--c-navy);

@@ -30,7 +30,7 @@
                     </div>
                   </div>
 
-                  <input type="text" inputmode="numeric" class="pay-input" data-amount-input placeholder="₩ 10,000 - 9,000,000" />
+                  <input type="text" inputmode="numeric" class="pay-input dp-amount-input" data-amount-input placeholder="₩ 10,000 - 9,000,000" />
                   <p class="pay-note" data-limit-note></p>
                   <p class="pay-note" data-turnover-note></p>
 
@@ -38,8 +38,6 @@
                     <span class="pay-pill-label" data-i18n="userCenter.depositPage.choosePromotion">프로모션 선택</span>
                     <div data-promotion-list></div>
                   </div>
-
-                  <div class="promo-bonus-banner" data-bonus-banner style="display: none"></div>
 
                   <button type="button" class="pay-next-btn" data-deposit-next disabled>
                     <span class="text-gradient" data-i18n="common.next">다음</span>
@@ -65,7 +63,7 @@
         var MIN = 10000, MAX = 9000000;
         var DEFAULT_AMOUNT = '10,000';
         var selectedPromoIndex = 0;
-        var promotions = D.DEPOSIT_PROMOTIONS;
+        var promotions = D.DEPOSIT_PROMOTIONS.concat([{ promotion_id: 'none', nameKey: 'userCenter.depositPage.noPromotion' }]);
 
         function fmt(n) { return Number(n).toLocaleString('en-US'); }
         W.qs('[data-limit-note]').textContent = W.t('userCenter.depositPage.limitNote').replace('{min}', fmt(MIN)).replace('{max}', fmt(MAX));
@@ -91,7 +89,7 @@
           input.value = v ? '₩ ' + fmt(Number(String(v).replace(/\D/g, ''))) : '';
           syncAmountButtons();
           refreshNextState();
-          renderBonusBanner();
+          renderPromotions();
         }
         W.qsa('[data-amount-grid] .pay-amount-btn').forEach(function (btn) {
           W.on(btn, 'click', function () { setAmount(btn.getAttribute('data-amount')); });
@@ -101,7 +99,7 @@
           input.value = digits ? '₩ ' + fmt(Math.min(Number(digits), MAX)) : '';
           syncAmountButtons();
           refreshNextState();
-          renderBonusBanner();
+          renderPromotions();
         });
 
         function promoBonusAmount(p) {
@@ -111,16 +109,43 @@
           return Math.min(Math.max(amt * cfg.bonus_percentage / 100, cfg.min_bonus_amount || 0), cfg.max_bonus_amount || Infinity);
         }
 
+        /* 對照原始碼 turnoverText:未參加任何優惠時,流水就是入金金額本身 */
+        function promoTurnoverAmount(p) {
+          var amt = amountNumber();
+          if (!p || !amt) return 0;
+          if (p.promotion_id === 'none') return amt;
+          var cfg = p.prize && p.prize.percentage;
+          if (!cfg || amt < cfg.min_deposit_amount) return 0;
+          return (amt + promoBonusAmount(p)) * (p.deposit_turnover_multiplier || 1);
+        }
+
+        /* 對照真實網站截圖:選中的優惠會在同一張卡片內,左側名稱+條列說明、
+           右側直接顯示「+₩ 金額 보너스」,中間一條分隔線,不是另外拉一條
+           跨版面寬度的漸層橫幅 */
         function renderPromotions() {
           var wrap = W.qs('[data-promotion-list]');
           wrap.innerHTML = promotions.map(function (p, i) {
             var selected = i === selectedPromoIndex;
             var bullets = (p.remarkKeys || []).map(function (k) { return '<li>' + W.t(k) + '</li>'; }).join('');
+            var body;
+            if (selected) {
+              var bonusText = fmt(Math.round(promoBonusAmount(p)));
+              var turnoverLabel = W.t('userCenter.withdrawalPage.requiredTurnoverAmount') + '：₩ ' + fmt(Math.round(promoTurnoverAmount(p)));
+              body =
+                '<div class="promo-card-columns">' +
+                '<div class="promo-card-name-col"><strong>' + W.t(p.nameKey) + '</strong>' +
+                (bullets ? '<ul class="promo-card-remarks">' + bullets + '</ul>' : '') +
+                '</div>' +
+                '<div class="promo-card-bonus-col">＋₩ ' + bonusText + ' ' + W.t('userCenter.bonus') + '</div>' +
+                '</div>' +
+                '<hr class="promo-card-hr"><div class="promo-card-turnover">' + turnoverLabel + '</div>';
+            } else {
+              body = '<strong>' + W.t(p.nameKey) + '</strong>' + (bullets ? '<ul class="promo-card-remarks">' + bullets + '</ul>' : '');
+            }
             return (
               '<div class="promo-card' + (selected ? ' is-selected' : '') + '" data-promo-index="' + i + '">' +
               '<div class="promo-card-row"><span class="promo-radio"><span class="promo-radio-dot"></span></span>' +
-              '<div class="promo-card-body"><strong>' + W.t(p.nameKey) + '</strong>' +
-              (bullets ? '<ul class="promo-card-remarks">' + bullets + '</ul>' : '') +
+              '<div class="promo-card-body">' + body +
               '</div></div></div>'
             );
           }).join('');
@@ -128,21 +153,8 @@
             W.on(el, 'click', function () {
               selectedPromoIndex = Number(el.getAttribute('data-promo-index'));
               renderPromotions();
-              renderBonusBanner();
             });
           });
-        }
-
-        function renderBonusBanner() {
-          var banner = W.qs('[data-bonus-banner]');
-          var p = promotions[selectedPromoIndex];
-          var bonus = p ? promoBonusAmount(p) : 0;
-          if (bonus > 0) {
-            banner.style.display = 'block';
-            banner.textContent = W.t('userCenter.depositPage.bonusBanner').replace('{amount}', fmt(Math.round(bonus)));
-          } else {
-            banner.style.display = 'none';
-          }
         }
 
         renderPromotions();
