@@ -1793,6 +1793,26 @@ input {
   font-weight: 700;
   margin: 0;
 }
+.account-recent-more {
+  display: none;
+}
+@media (min-width: 1280px) {
+  .account-recent-head {
+    justify-content: space-between;
+    padding: 16px 24px;
+  }
+  .account-recent-head h4 {
+    font-size: 22px;
+  }
+  .account-recent-more {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--c-navy);
+    font-weight: 700;
+    font-size: 15px;
+  }
+}
 .account-recent-body {
   padding: 16px;
 }
@@ -2611,6 +2631,7 @@ input {
   color: #6d6d6d;
   font-size: 14px;
   gap: 8px;
+  margin-top: 16px;
 }
 .pi-field-static img {
   width: 16px;
@@ -3274,6 +3295,10 @@ input {
 }
 .game-card:hover .game-card-thumb img {
   transform: scale(1.15);
+}
+.game-card-thumb.is-placeholder img {
+  object-fit: contain;
+  padding: 16%;
 }
 .game-card-info {
   padding: 8px 4px 0;

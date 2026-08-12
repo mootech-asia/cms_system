@@ -139,7 +139,9 @@
           bodyEl.innerHTML = '<div class="game-list-grid">' + visible.map(function (g, idx) {
             return (
               '<div class="game-card" data-gf-game="' + idx + '">' +
-              '<div class="game-card-thumb"><img src="assets/images/' + g.desktop_icon_url + '" alt="' + g.display_name + '"></div>' +
+              (g.desktop_icon_url
+                ? '<div class="game-card-thumb"><img src="assets/images/' + g.desktop_icon_url + '" alt="' + g.display_name + '"></div>'
+                : '<div class="game-card-thumb is-placeholder"><img src="assets/images/img-comingsoon-game.png" alt="coming soon"></div>') +
               '<div class="game-card-info"><p class="game-card-name">' + g.display_name + '</p>' +
               '<div class="game-card-meta"><span class="game-card-provider">' + g.provider + '</span>' +
               '<button type="button" class="game-card-fav-btn" data-gf-fav="' + idx + '"><img src="assets/images/icon/' + (g.isFavorite ? 'like-fill.svg' : 'like.svg') + '" alt="fav"></button>' +
