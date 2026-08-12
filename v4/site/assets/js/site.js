@@ -747,6 +747,11 @@
   var WD_ACCOUNTS_KEY = 'cms-v4-withdraw-accounts';
   var WD_ACCOUNT_CAP = 5;
   var WD_TYPE_LABEL = { bank: '銀行卡', trc20: 'USDT-TRC20', erc20: 'USDT-ERC20' };
+  var WD_TYPE_ICON = {
+    bank: '<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>',
+    trc20: '<circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/>',
+    erc20: '<circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/>',
+  };
   var wdMethodGroup = 'bank';
   var wdManageGroup = 'bank';
   var wdCarouselIndex = 0;
@@ -819,12 +824,15 @@
     if (addBtn) addBtn.disabled = pairs.length >= WD_ACCOUNT_CAP;
   }
 
-  /* 提款頁籤:目前分組帳戶的單卡輪播,只有一筆時不顯示左右箭頭。 */
+  /* 提款頁籤:目前分組帳戶的單卡輪播。導覽列只顯示分組標籤+頁數(不夾帳戶
+     內容),底下另用 .bank-row 顯示目前這筆帳戶的名稱/帳號,兩者分開對照
+     畫面示例的排法(標籤列跟帳戶內容是各自獨立的兩塊)。 */
   function renderWdCarousel() {
     var wrap = document.querySelector('[data-wd-carousel-wrap]');
     var submitBtn = document.querySelector('.pay-submit');
     if (!wrap || currentPage() !== 'withdrawal.html') return;
     var pairs = wdIndexedAccounts(wdMethodGroup);
+    var groupLabel = wdMethodGroup === 'bank' ? '我的銀行帳戶' : '我的加密錢包';
     if (!pairs.length) {
       wrap.innerHTML = '<p class="pay-note">尚未綁定' + (wdMethodGroup === 'bank' ? '銀行' : '加密錢包') + '提款帳戶,請先至<button type="button" class="wd-account-add-btn" data-wd-goto-accounts style="margin-top:6px">前往「帳戶管理」新增</button></p>';
       if (submitBtn) submitBtn.disabled = true;
@@ -836,9 +844,11 @@
     wrap.innerHTML =
       '<div class="wd-carousel-box"><div class="wd-carousel">' +
       (multi ? '<button type="button" class="wd-carousel-arrow" data-wd-prev' + (wdCarouselIndex === 0 ? ' disabled' : '') + ' aria-label="上一筆"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>' : '') +
-      '<span class="wd-carousel-label">' + escapeHtml(wdAccountNameText(cur)) + ' ' + escapeHtml(wdAccountNumberText(cur)) + (multi ? ' <b>' + (wdCarouselIndex + 1) + '/' + pairs.length + '</b>' : '') + '</span>' +
+      '<span class="wd-carousel-label">' + escapeHtml(groupLabel) + (multi ? ' <b>' + (wdCarouselIndex + 1) + '/' + pairs.length + '</b>' : '') + '</span>' +
       (multi ? '<button type="button" class="wd-carousel-arrow" data-wd-next' + (wdCarouselIndex === pairs.length - 1 ? ' disabled' : '') + ' aria-label="下一筆"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>' : '') +
-      '</div></div>';
+      '</div>' +
+      '<div class="bank-row" style="border-bottom:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (WD_TYPE_ICON[cur.type] || WD_TYPE_ICON.bank) + '</svg> <span>' + escapeHtml(wdAccountNameText(cur)) + ' ' + escapeHtml(wdAccountNumberText(cur)) + '</span></div>' +
+      '</div>';
     if (submitBtn) submitBtn.disabled = false;
   }
   function renderWithdrawalUI() {

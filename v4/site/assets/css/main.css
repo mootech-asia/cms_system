@@ -584,6 +584,7 @@ img { max-width: 100%; display: block; }
 
 /* 提款頁籤上顯示目前提領帳戶的單卡輪播(有多筆同類型帳戶時可翻頁) */
 .wd-carousel-box { border: 1px solid var(--line); border-radius: 12px; padding: 14px 20px; background: var(--bg-panel); }
+.wd-carousel-box .bank-row { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
 .wd-carousel { display: flex; align-items: center; justify-content: center; gap: 14px; }
 .wd-carousel-arrow { width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); background: var(--bg-panel); color: var(--text-mid); cursor: pointer; flex-shrink: 0; }
 .wd-carousel-arrow[disabled] { opacity: 0.3; cursor: not-allowed; }
