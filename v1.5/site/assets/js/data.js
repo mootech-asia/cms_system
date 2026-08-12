@@ -110,6 +110,10 @@
       'userCenter.depositPage.choosePromotion': '프로모션 선택',
       'userCenter.depositPage.promotions': '프로모션',
       'userCenter.depositPage.noPromotion': '프로모션에 참여하지 않습니다',
+      'userCenter.depositPage.channelA': '채널 A',
+      'userCenter.depositPage.channelB': '채널 B',
+      'userCenter.depositPage.channelC': '채널 C',
+      'userCenter.depositPage.channelD': '채널 D',
       'userCenter.depositPage.limitNote': '＊최소 금액: ₩ {min}、최대 금액: ₩ {max}＊',
       'userCenter.depositPage.bonusBanner': '＋₩ {amount} 보너스',
       'depositPromo.p1.name': '신규 가입 첫 입금 50%',
@@ -132,6 +136,11 @@
       'userCenter.withdrawalPage.bindDate': '등록일',
       'userCenter.withdrawalPage.remainingTurnoverAmount': '*남은 유효 베팅 금액: ₩ ',
       'userCenter.withdrawalPage.requiredTurnoverAmount': '필요 유효 베팅 금액',
+      'userCenter.withdrawalPage.bankCard': '은행카드',
+      'userCenter.withdrawalPage.cryptoWallet': '가상지갑',
+      'userCenter.withdrawalPage.myCryptoWallets': '나의 가상지갑',
+      'userCenter.withdrawalPage.emptyCryptoWallet': '등록된 지갑이 없습니다',
+      'userCenter.withdrawalPage.addWallet': '지갑 추가',
       'userCenter.withdrawalAmount': '출금 금액',
       'userCenter.depositAmount': '입금 금액',
       'userCenter.transactionDetails': '송금 상세',
@@ -232,6 +241,8 @@
       'userCenter.bankingDetailsPage.transactionPassword': '거래 비밀번호',
       'userCenter.bankingDetailsPage.fillTransactionPassword': '거래 비밀번호를 입력해 주세요',
       'userCenter.bankingDetailsPage.chooseABank': '은행 선택',
+      'userCenter.bankingDetailsPage.registeredAccounts': '등록된 출금 계좌 ({count}/{max})',
+      'userCenter.bankingDetailsPage.accountLimitReached': '등록 가능한 계좌 수를 초과했습니다.',
       'userCenter.securityCenterPage.lastLogin': '마지막 로그인',
       'userCenter.securityCenterPage.time': '시간',
       'userCenter.securityCenterPage.ipAddress': 'IP 주소',
@@ -385,6 +396,10 @@
       'userCenter.depositPage.choosePromotion': 'Choose promotion',
       'userCenter.depositPage.promotions': 'Promotions',
       'userCenter.depositPage.noPromotion': 'Do not participate in any promotions',
+      'userCenter.depositPage.channelA': 'Channel A',
+      'userCenter.depositPage.channelB': 'Channel B',
+      'userCenter.depositPage.channelC': 'Channel C',
+      'userCenter.depositPage.channelD': 'Channel D',
       'userCenter.depositPage.limitNote': '＊Minimum Amount : ₩ {min}，Maximum Amount: ₩ {max}＊',
       'userCenter.depositPage.bonusBanner': '+₩ {amount} Bonus',
       'depositPromo.p1.name': 'New Sign-up First Deposit 50%',
@@ -407,6 +422,11 @@
       'userCenter.withdrawalPage.bindDate': 'Bind Date',
       'userCenter.withdrawalPage.remainingTurnoverAmount': '*Remaining Turnover Amount: ₩ ',
       'userCenter.withdrawalPage.requiredTurnoverAmount': 'Required Turnover Amount',
+      'userCenter.withdrawalPage.bankCard': 'Bank Card',
+      'userCenter.withdrawalPage.cryptoWallet': 'Crypto Wallet',
+      'userCenter.withdrawalPage.myCryptoWallets': 'My Crypto Wallets',
+      'userCenter.withdrawalPage.emptyCryptoWallet': 'No Crypto Wallet',
+      'userCenter.withdrawalPage.addWallet': 'Add Wallet',
       'userCenter.withdrawalAmount': 'Withdrawal Amount',
       'userCenter.depositAmount': 'Deposit Amount',
       'userCenter.transactionDetails': 'Transfer Details',
@@ -507,6 +527,8 @@
       'userCenter.bankingDetailsPage.transactionPassword': 'Transaction Password',
       'userCenter.bankingDetailsPage.fillTransactionPassword': 'Please fill in the transaction password',
       'userCenter.bankingDetailsPage.chooseABank': 'Choose a Bank',
+      'userCenter.bankingDetailsPage.registeredAccounts': 'Registered Withdrawal Accounts ({count}/{max})',
+      'userCenter.bankingDetailsPage.accountLimitReached': 'You have reached the maximum number of accounts.',
       'userCenter.securityCenterPage.lastLogin': 'Last login',
       'userCenter.securityCenterPage.time': 'Time',
       'userCenter.securityCenterPage.ipAddress': 'IP Address',
@@ -730,6 +752,11 @@
 
   /* ---- 銀行清單(對照 api.getBankList 假資料) ---- */
   var BANK_LIST = ['KB Bank', 'Shinhan Bank', 'Woori Bank', 'NH Bank', 'Hana Bank'];
+
+  /* ---- 提款頁虛擬錢包列表(無對應真實 API,純前端假資料) ---- */
+  var CRYPTO_WALLETS = [
+    { id: 1, type: 'trc20', address: 'TXk9YmR2pQ7sN3vB1cE6hK8jL0tUw', bindingTime: 1773878400 },
+  ];
 
   /* ---- 帳戶總覽近期交易(對照 api.getAccountRecord 的假資料) ---- */
   var MOCK_TRANSACTIONS = [
@@ -1184,6 +1211,7 @@
     USER_SIDEBAR_ITEMS: USER_SIDEBAR_ITEMS,
     MOCK_TRANSACTIONS: MOCK_TRANSACTIONS,
     BANK_CARDS: BANK_CARDS,
+    CRYPTO_WALLETS: CRYPTO_WALLETS,
     DEPOSIT_PROMOTIONS: DEPOSIT_PROMOTIONS,
     BETTING_RECORDS: BETTING_RECORDS,
     DEPOSIT_RECORDS: DEPOSIT_RECORDS,

@@ -19,6 +19,12 @@
               <h1 class="pay-page-title" data-i18n="userCenter.deposit">입금</h1>
               <section class="pay-section">
                 <div class="pay-section-inner">
+                  <div class="pay-channel-tabs" data-channel-tabs>
+                    <button type="button" class="pay-channel-tab is-active" data-channel="A" data-i18n="userCenter.depositPage.channelA">채널 A</button>
+                    <button type="button" class="pay-channel-tab" data-channel="B" data-i18n="userCenter.depositPage.channelB">채널 B</button>
+                    <button type="button" class="pay-channel-tab" data-channel="C" data-i18n="userCenter.depositPage.channelC">채널 C</button>
+                    <button type="button" class="pay-channel-tab" data-channel="D" data-i18n="userCenter.depositPage.channelD">채널 D</button>
+                  </div>
                   <div>
                     <span class="pay-pill-label" data-i18n="userCenter.depositPage.depositAmount">입금 금액</span>
                     <div class="pay-amount-grid" data-amount-grid>
@@ -66,6 +72,13 @@
         var DEFAULT_AMOUNT = '10,000';
         var selectedPromoIndex = 0;
         var promotions = D.DEPOSIT_PROMOTIONS.concat([{ promotion_id: 'none', nameKey: 'userCenter.depositPage.noPromotion' }]);
+
+        /* 付款通道分頁(채널 A/B/C/D):純前端分組展示,不影響下方付款內容 */
+        W.qsa('[data-channel-tabs] [data-channel]').forEach(function (tab) {
+          W.on(tab, 'click', function () {
+            W.qsa('[data-channel-tabs] [data-channel]').forEach(function (t) { t.classList.toggle('is-active', t === tab); });
+          });
+        });
 
         function fmt(n) { return Number(n).toLocaleString('en-US'); }
         W.qs('[data-limit-note]').textContent = W.t('userCenter.depositPage.limitNote').replace('{min}', fmt(MIN)).replace('{max}', fmt(MAX));

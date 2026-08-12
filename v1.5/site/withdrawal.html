@@ -19,6 +19,12 @@
               <h1 class="pay-page-title" data-i18n="userCenter.withdrawal">출금</h1>
               <section class="pay-section">
                 <div class="pay-section-inner">
+                  <div class="pay-method-tabs" data-wd-method>
+                    <button type="button" class="pay-method-tab is-selected" data-wd-method-btn="bank" data-i18n="userCenter.withdrawalPage.bankCard">은행카드</button>
+                    <button type="button" class="pay-method-tab" data-wd-method-btn="crypto" data-i18n="userCenter.withdrawalPage.cryptoWallet">가상지갑</button>
+                  </div>
+
+                  <div data-method-panel="bank">
                   <div class="wd-card-nav" data-bank-nav style="display: none">
                     <img src="assets/images/icon/arrow-left.svg" alt="prev" data-bank-prev />
                     <span data-i18n="userCenter.withdrawalPage.myBankAccounts">나의 은행 계좌</span>
@@ -51,6 +57,30 @@
                     <img src="assets/images/userCenter/bankcard.png" alt="empty" />
                     <p data-i18n="userCenter.withdrawalPage.emptyBankAccount">등록된 계좌가 없습니다</p>
                     <button type="button" data-nav-href="banking-details.html" data-i18n="userCenter.withdrawalPage.addAccount">계좌 추가</button>
+                  </div>
+                  </div>
+
+                  <div data-method-panel="crypto" hidden>
+                  <div class="wd-card-nav" data-wallet-nav style="display: none">
+                    <img src="assets/images/icon/arrow-left.svg" alt="prev" data-wallet-prev />
+                    <span data-i18n="userCenter.withdrawalPage.myCryptoWallets">나의 가상지갑</span>
+                    <span data-wallet-count>1 / 1</span>
+                    <img src="assets/images/icon/arrow-right.svg" alt="next" data-wallet-next />
+                  </div>
+
+                  <div class="bd-account-card" data-wallet-card style="display: none">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start">
+                      <p class="bd-account-name" data-wallet-type>USDT-TRC20</p>
+                      <img src="assets/images/icon/usercenter/add.svg" alt="add" class="wd-add-card-icon" data-nav-href="banking-details.html" />
+                    </div>
+                    <p class="bd-account-number" data-wallet-address>TXk9YmR2pQ7sN3vB1cE6hK8jL0tUw</p>
+                  </div>
+
+                  <div class="wd-empty" data-wallet-empty style="display: none">
+                    <img src="assets/images/userCenter/bankcard.png" alt="empty" />
+                    <p data-i18n="userCenter.withdrawalPage.emptyCryptoWallet">등록된 지갑이 없습니다</p>
+                    <button type="button" data-nav-href="banking-details.html" data-i18n="userCenter.withdrawalPage.addWallet">지갑 추가</button>
+                  </div>
                   </div>
 
                   <div class="wd-refresh-row">
@@ -105,7 +135,10 @@
         var MIN = 10000, MAX = 9000000;
         var p = D.MOCK_PROFILE;
         var cards = D.BANK_CARDS;
+        var wallets = D.CRYPTO_WALLETS;
         var idx = 0;
+        var walletIdx = 0;
+        var method = 'bank';
 
         function fmt(n) { return Number(n).toLocaleString('en-US'); }
         W.qs('[data-profile-wallet]').textContent = p.balanceRaw;
@@ -136,6 +169,41 @@
           W.on(W.qs('[data-bank-next]'), 'click', function () { if (idx < cards.length - 1) { idx++; renderCard(); } });
         }
 
+        /* 虛擬錢包單卡輪播,做法與上面銀行卡完全對稱 */
+        if (wallets.length) {
+          W.qs('[data-wallet-nav]').style.display = 'flex';
+          W.qs('[data-wallet-card]').style.display = 'block';
+        } else {
+          W.qs('[data-wallet-empty]').style.display = 'block';
+        }
+        function renderWallet() {
+          var c = wallets[walletIdx];
+          W.qs('[data-wallet-type]').textContent = 'USDT-' + c.type.toUpperCase();
+          W.qs('[data-wallet-address]').textContent = c.address;
+          W.qs('[data-wallet-count]').textContent = (walletIdx + 1) + ' / ' + wallets.length;
+          W.qs('[data-wallet-prev]').style.display = walletIdx > 0 ? '' : 'none';
+          W.qs('[data-wallet-next]').style.display = walletIdx < wallets.length - 1 ? '' : 'none';
+        }
+        if (wallets.length) {
+          renderWallet();
+          W.on(W.qs('[data-wallet-prev]'), 'click', function () { if (walletIdx > 0) { walletIdx--; renderWallet(); } });
+          W.on(W.qs('[data-wallet-next]'), 'click', function () { if (walletIdx < wallets.length - 1) { walletIdx++; renderWallet(); } });
+        }
+
+        /* 出金方式分組(銀行卡／虛擬錢包):切換分組只換下面顯示的帳戶區塊,
+           送出按鈕的可按狀態要跟著目前分組是否有帳戶重新判斷 */
+        var methodBtns = W.qsa('[data-wd-method] [data-wd-method-btn]');
+        methodBtns.forEach(function (btn) {
+          W.on(btn, 'click', function () {
+            methodBtns.forEach(function (b) { b.classList.toggle('is-selected', b === btn); });
+            method = btn.getAttribute('data-wd-method-btn');
+            W.qsa('[data-method-panel]').forEach(function (panel) {
+              panel.hidden = panel.getAttribute('data-method-panel') !== method;
+            });
+            refreshState();
+          });
+        });
+
         W.on(W.qs('[data-refresh-profile]'), 'click', function () {
           var svg = W.qs('[data-refresh-profile] svg');
           svg.style.transition = 'transform 1s linear';
@@ -147,7 +215,8 @@
         var pwd = W.qs('[data-password-input]');
         var submitBtn = W.qs('[data-withdrawal-submit]');
         function refreshState() {
-          submitBtn.disabled = !(input.value && pwd.value);
+          var hasAccount = method === 'bank' ? cards.length > 0 : wallets.length > 0;
+          submitBtn.disabled = !(input.value && pwd.value && hasAccount);
         }
         W.on(input, 'input', function () {
           var digits = (input.value || '').replace(/\D/g, '');
