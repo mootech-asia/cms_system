@@ -745,7 +745,9 @@
      提款」的流程;帳戶管理頁籤則依分組各自算「已登記提款帳戶 (N/5)」
      上限。 */
   var WD_ACCOUNTS_KEY = 'cms-v4-withdraw-accounts';
-  var WD_ACCOUNT_CAP = 5;
+  /* 銀行帳戶上限 5 筆,加密錢包只能綁 1 筆(對照 v2 WALLET_ACCOUNTS 的
+     (0/1) 上限,跟銀行帳戶的 (0/5) 不是同一個數字) */
+  var WD_ACCOUNT_CAP = { bank: 5, crypto: 1 };
   var WD_TYPE_LABEL = { bank: '銀行卡', trc20: 'USDT-TRC20', erc20: 'USDT-ERC20' };
   var WD_TYPE_ICON = {
     bank: '<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>',
@@ -815,13 +817,14 @@
     var addBtnLabel = document.querySelector('[data-wd-add-btn-label]');
     if (!box) return;
     var pairs = wdIndexedAccounts(wdManageGroup);
+    var cap = WD_ACCOUNT_CAP[wdManageGroup];
     var groupLabel = wdManageGroup === 'bank' ? '銀行帳戶' : '加密錢包地址';
-    if (countEl) countEl.innerHTML = '已登記提款帳戶 <b>(' + pairs.length + '/' + WD_ACCOUNT_CAP + ')</b>';
+    if (countEl) countEl.innerHTML = '已登記提款帳戶 <b>(' + pairs.length + '/' + cap + ')</b>';
     box.innerHTML = pairs.length
       ? pairs.map(function (pair) { return wdAccountCardHtml(pair.acc, pair.idx, true); }).join('')
       : '<p class="pay-note">尚未綁定任何' + groupLabel + '。</p>';
     if (addBtnLabel) addBtnLabel.textContent = wdManageGroup === 'bank' ? '新增銀行帳戶' : '新增加密錢包地址';
-    if (addBtn) addBtn.disabled = pairs.length >= WD_ACCOUNT_CAP;
+    if (addBtn) addBtn.disabled = pairs.length >= cap;
   }
 
   /* 提款頁籤:目前分組帳戶的單卡輪播。導覽列只顯示分組標籤+頁數(不夾帳戶
@@ -911,6 +914,22 @@
     });
   }
 
+  /* 提款密碼顯示/隱藏切換,對照登入密碼欄目前站上都沒有這個功能——
+     這裡先補這一處,其餘密碼欄不在這次異動範圍內。 */
+  var EYE_PATH = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/>';
+  var EYE_OFF_PATH = '<path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a18.4 18.4 0 0 1 5.06-5.94M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><path d="m1 1 22 22"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/>';
+  function initWdPasswordToggle() {
+    var toggleBtn = document.querySelector('[data-toggle-pwd]');
+    if (!toggleBtn) return;
+    var input = document.querySelector('[data-wd-password]');
+    var icon = document.querySelector('[data-pwd-icon]');
+    on(toggleBtn, 'click', function () {
+      var isPwd = input.type === 'password';
+      input.type = isPwd ? 'text' : 'password';
+      icon.innerHTML = isPwd ? EYE_OFF_PATH : EYE_PATH;
+    });
+  }
+
   /* 帳戶管理頁籤的「銀行帳戶／加密錢包」分組切換:同步過濾新增表單裡的
      幣別頁籤(銀行分組只留「銀行卡」、加密分組只留 TRC20/ERC20),並收合
      表單、避免切分組時表單殘留另一組的欄位。 */
@@ -965,14 +984,14 @@
     var form = document.querySelector('[data-wd-add-form]');
     if (showFormBtn && form) {
       on(showFormBtn, 'click', function () {
-        if (showFormBtn.disabled) { simplePayModal('提示', '已達提款帳戶數量上限(' + WD_ACCOUNT_CAP + ' 筆),請先刪除不需要的帳戶。'); return; }
+        if (showFormBtn.disabled) { simplePayModal('提示', '已達提款帳戶數量上限(' + WD_ACCOUNT_CAP[wdManageGroup] + ' 筆),請先刪除不需要的帳戶。'); return; }
         form.hidden = !form.hidden;
       });
     }
     var submitBtn = document.querySelector('[data-wd-add-submit]');
     if (!submitBtn) return;
     on(submitBtn, 'click', function () {
-      if (wdIndexedAccounts(wdManageGroup).length >= WD_ACCOUNT_CAP) { simplePayModal('提示', '已達提款帳戶數量上限(' + WD_ACCOUNT_CAP + ' 筆),請先刪除不需要的帳戶。'); return; }
+      if (wdIndexedAccounts(wdManageGroup).length >= WD_ACCOUNT_CAP[wdManageGroup]) { simplePayModal('提示', '已達提款帳戶數量上限(' + WD_ACCOUNT_CAP[wdManageGroup] + ' 筆),請先刪除不需要的帳戶。'); return; }
       var activeBtn = document.querySelector('[data-wd-add-type] .pay-tab.active');
       var type = activeBtn ? activeBtn.getAttribute('data-wd-type') : 'bank';
       var acc = { type: type, boundAt: new Date().toISOString().slice(0, 10) };

@@ -55,11 +55,11 @@
           <button type="button" class="tabline-item" data-wd-tab="accounts">帳戶管理</button>
         </div>
         <div data-wd-panel="withdraw">
+        <div class="pay-tabs" data-wd-method>
+          <button type="button" class="pay-tab active" data-wd-method-btn="bank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span>銀行卡</span></button>
+          <button type="button" class="pay-tab" data-wd-method-btn="crypto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg><span>加密錢包</span></button>
+        </div>
         <div class="member-panel">
-          <div class="pay-tabs" data-wd-method>
-            <button type="button" class="pay-tab active" data-wd-method-btn="bank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span>銀行卡</span></button>
-            <button type="button" class="pay-tab" data-wd-method-btn="crypto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg><span>加密錢包</span></button>
-          </div>
           <div data-wd-carousel-wrap></div>
           <div class="wd-refresh-row" data-refresh-profile><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"></path><path d="M21 3v6h-6"></path></svg><span>重新整理</span></div>
 
@@ -84,17 +84,20 @@
           <input class="pay-field" value="₩ 10,000" aria-label="提款金額" />
           <p class="pay-note">* 最低金額：₩ 10,000；最高金額：₩ 9,000,000 *</p>
           <h3 class="member-panel-title" style="margin-top:18px">提款密碼</h3>
-          <input class="pay-field" type="password" placeholder="請輸入提款密碼" />
+          <div class="pw-input-wrap">
+            <input class="pay-field" type="password" placeholder="請輸入提款密碼" data-wd-password />
+            <button type="button" class="pw-toggle" data-toggle-pwd aria-label="顯示/隱藏密碼"><svg data-pwd-icon width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
 
           <button type="button" class="btn-gold pay-submit" style="text-align:center">確認提款</button>
         </div>
         </div>
         <div data-wd-panel="accounts" hidden>
+        <div class="pay-tabs" data-wd-manage>
+          <button type="button" class="pay-tab active" data-wd-manage-btn="bank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span>銀行帳戶</span></button>
+          <button type="button" class="pay-tab" data-wd-manage-btn="crypto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg><span>加密錢包</span></button>
+        </div>
         <div class="member-panel">
-          <div class="pay-tabs" data-wd-manage>
-            <button type="button" class="pay-tab active" data-wd-manage-btn="bank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span>銀行帳戶</span></button>
-            <button type="button" class="pay-tab" data-wd-manage-btn="crypto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg><span>加密錢包</span></button>
-          </div>
           <p class="wd-account-count" data-wd-account-count></p>
           <div data-wd-account-cards></div>
           <button type="button" class="wd-account-add-btn" data-wd-show-add-form><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span data-wd-add-btn-label>新增銀行帳戶</span></button>

@@ -606,6 +606,9 @@ img { max-width: 100%; display: block; }
 .wd-turnover-note { text-align: center; color: var(--red); display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
 .wd-turnover-note .detail-btn { color: #fff; background: var(--red); border-radius: 999px; padding: 2px 10px; font-size: 11px; font-weight: 700; }
 .wd-turnover-note .wd-target-amount { color: var(--text-dim); }
+.pw-input-wrap { position: relative; margin-bottom: 8px; }
+.pw-input-wrap .pay-field { padding-right: 44px; margin-bottom: 0; }
+.pw-toggle { position: absolute; right: 8px; top: 0; bottom: 0; display: flex; align-items: center; background: none; border: 0; color: var(--text-dim); cursor: pointer; padding: 0 4px; }
 
 /* 交易/投注紀錄表格 */
 .record-filters { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }

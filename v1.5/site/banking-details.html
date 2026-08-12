@@ -100,7 +100,8 @@
       window.WIN15_PAGE_INIT = function () {
         var D = window.WIN15_DATA;
         var W = window.WIN15;
-        var CAP = 5;
+        /* 銀行帳戶上限 5 筆,虛擬錢包只能綁 1 筆 */
+        var CAP = { bank: 5, crypto: 1 };
         var bdMethod = 'bank';
 
         function accountsOf(group) { return group === 'bank' ? D.BANK_CARDS : D.CRYPTO_WALLETS; }
@@ -111,8 +112,9 @@
           var countEl = W.qs('[data-bd-count="' + group + '"]');
           var addBtn = W.qs('[data-bd-add="' + group + '"]');
           var accounts = accountsOf(group);
-          if (countEl) countEl.textContent = W.t('userCenter.bankingDetailsPage.registeredAccounts').replace('{count}', accounts.length).replace('{max}', CAP);
-          if (addBtn) addBtn.disabled = accounts.length >= CAP;
+          var cap = CAP[group];
+          if (countEl) countEl.textContent = W.t('userCenter.bankingDetailsPage.registeredAccounts').replace('{count}', accounts.length).replace('{max}', cap);
+          if (addBtn) addBtn.disabled = accounts.length >= cap;
           if (!accounts.length) {
             var emptyKey = group === 'bank' ? 'userCenter.bankingDetailsPage.emptyBankAccount' : 'userCenter.withdrawalPage.emptyCryptoWallet';
             var addKey = group === 'bank' ? 'userCenter.bankingDetailsPage.addAccount' : 'userCenter.withdrawalPage.addWallet';
