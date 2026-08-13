@@ -2198,6 +2198,7 @@
       '</div>';
     }
     var EYE_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg>';
+    var DELETE_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13M10 11v6M14 11v6"/></svg>';
     var EYE_OFF_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.73 5.08A11 11 0 0 1 12 5c5 0 9.27 3.11 11 7.5a11.8 11.8 0 0 1-2.17 3.35M6.6 6.6A11.6 11.6 0 0 0 1 12.5 11 11 0 0 0 12 20a10.9 10.9 0 0 0 5.4-1.4M14.12 14.12A3 3 0 1 1 9.88 9.88"/><path d="m2 2 20 20"/></svg>';
     /* 提款金額輸入尾碼遮罩：與帳戶總覽 / 管理清單同一份 cms-v3:accounts，取末四碼加全形星號（比照 v2 bound-card ＊＊＊＊1234） */
     function acctTail(num) {
@@ -2274,8 +2275,9 @@
         '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>' + label + '</button>';
     }
     function manageBankPanelHTML() {
-      var rows = bankAccounts.map(function (a) {
-        return '<div class="wd-account-card"><div class="wd-bank-logo">' + escapeHtml(bankInitials(a.bank)) + '</div><div class="wd-account-copy"><strong>' + escapeHtml(a.bank) + '</strong><span>' + escapeHtml(a.number) + '</span><span>' + escapeHtml(a.date) + '</span></div></div>';
+      var rows = bankAccounts.map(function (a, idx) {
+        return '<div class="wd-account-card"><div class="wd-bank-logo">' + escapeHtml(bankInitials(a.bank)) + '</div><div class="wd-account-copy"><strong>' + escapeHtml(a.bank) + '</strong><span>' + escapeHtml(a.number) + '</span><span>' + escapeHtml(a.date) + '</span></div>' +
+          '<button type="button" class="ap-bank-del" data-action="del-bank" data-idx="' + idx + '" aria-label="Delete account">' + DELETE_SVG + '</button></div>';
       }).join('');
       return '<h2 class="ap-section-h"><span class="ap-mark"></span>Registered Withdrawal Accounts <span class="wd-count">(' + bankAccounts.length + '/5)</span></h2>' + rows +
         addToggleHTML('bank') +
@@ -2290,8 +2292,9 @@
           : '');
     }
     function manageCryptoPanelHTML() {
-      var rows = cryptoWallets.length ? cryptoWallets.map(function (w) {
-        return '<div class="wd-account-card"><span class="wd-wallet-logo">' + escapeHtml(w.type.slice(0, 1)) + '</span><div class="wd-account-copy"><strong>' + escapeHtml(w.type) + '</strong><span>' + escapeHtml(w.address) + '</span><span>' + escapeHtml(w.date) + '</span></div></div>';
+      var rows = cryptoWallets.length ? cryptoWallets.map(function (w, idx) {
+        return '<div class="wd-account-card"><span class="wd-wallet-logo">' + escapeHtml(w.type.slice(0, 1)) + '</span><div class="wd-account-copy"><strong>' + escapeHtml(w.type) + '</strong><span>' + escapeHtml(w.address) + '</span><span>' + escapeHtml(w.date) + '</span></div>' +
+          '<button type="button" class="ap-bank-del" data-action="del-crypto" data-idx="' + idx + '" aria-label="Delete wallet">' + DELETE_SVG + '</button></div>';
       }).join('') : '<div class="wd-compact-empty"><span class="wd-empty-symbol">B</span><span>No registered crypto wallet</span></div>';
       return '<h2 class="ap-section-h"><span class="ap-mark"></span>Registered Crypto Wallets <span class="wd-count">(' + cryptoWallets.length + '/5)</span></h2>' + rows +
         addToggleHTML('crypto') +
@@ -2364,6 +2367,56 @@
       if (bankNextBtn) { if (bankAccounts.length) { state.bankIdx = (state.bankIdx + 1) % bankAccounts.length; renderPanel(); } return; }
       var bankRefreshBtn = e.target.closest('[data-action="bank-refresh"]');
       if (bankRefreshBtn) { bankRefreshBtn.classList.add('spinning'); setTimeout(function () { bankRefreshBtn.classList.remove('spinning'); }, 700); return; }
+      var delBankBtn = e.target.closest('[data-action="del-bank"]');
+      if (delBankBtn) {
+        var delBankIdx = Number(delBankBtn.getAttribute('data-idx'));
+        var bankToDelete = bankAccounts[delBankIdx];
+        if (!bankToDelete) return;
+        var bankDlg = showDialog(
+          '<div class="confirm-dialog" data-dialog-panel>' +
+            '<div class="confirm-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13"/></svg></div>' +
+            '<div class="confirm-title">Delete Account?</div>' +
+            '<div class="confirm-sub">Are you sure you want to remove <strong>' + escapeHtml(bankToDelete.bank) + '</strong>? This action cannot be undone.</div>' +
+            '<div class="confirm-actions">' +
+              '<button type="button" class="ap-btn-wide outline" data-dialog-close>Cancel</button>' +
+              '<button type="button" class="ap-btn-wide confirm-del-btn" data-action="confirm-del-bank-mgmt">Delete</button>' +
+            '</div>' +
+          '</div>'
+        );
+        var bankDlgBtn = bankDlg.querySelector('[data-action="confirm-del-bank-mgmt"]');
+        if (bankDlgBtn) bankDlgBtn.addEventListener('click', function () {
+          bankAccounts.splice(delBankIdx, 1);
+          saveAccountStore(acctStore);
+          renderPanel();
+          bankDlg.remove();
+        });
+        return;
+      }
+      var delCryptoBtn = e.target.closest('[data-action="del-crypto"]');
+      if (delCryptoBtn) {
+        var delCryptoIdx = Number(delCryptoBtn.getAttribute('data-idx'));
+        var walletToDelete = cryptoWallets[delCryptoIdx];
+        if (!walletToDelete) return;
+        var cryptoDlg = showDialog(
+          '<div class="confirm-dialog" data-dialog-panel>' +
+            '<div class="confirm-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13"/></svg></div>' +
+            '<div class="confirm-title">Delete Wallet?</div>' +
+            '<div class="confirm-sub">Are you sure you want to remove <strong>' + escapeHtml(walletToDelete.type) + '</strong>? This action cannot be undone.</div>' +
+            '<div class="confirm-actions">' +
+              '<button type="button" class="ap-btn-wide outline" data-dialog-close>Cancel</button>' +
+              '<button type="button" class="ap-btn-wide confirm-del-btn" data-action="confirm-del-crypto-mgmt">Delete</button>' +
+            '</div>' +
+          '</div>'
+        );
+        var cryptoDlgBtn = cryptoDlg.querySelector('[data-action="confirm-del-crypto-mgmt"]');
+        if (cryptoDlgBtn) cryptoDlgBtn.addEventListener('click', function () {
+          cryptoWallets.splice(delCryptoIdx, 1);
+          saveAccountStore(acctStore);
+          renderPanel();
+          cryptoDlg.remove();
+        });
+        return;
+      }
       var addBankBtn = e.target.closest('[data-action="goto-manage-bank"]');
       if (addBankBtn) { state.primary = 'management'; state.manageMethod = 'bank'; state.manageAdd.bank = true; setPrimaryTab(1); renderPanel(); return; }
       var methodBtn = e.target.closest('.wd-method-tabs button[data-method]');
