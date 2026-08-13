@@ -28,6 +28,8 @@
     'profit-loss', 'withdrawal-record', 'withdrawal-detail', 'account-record', 'banking-details',
     'personal-info', 'security', 'change-password', 'transaction-info'];
   function isUserCenterPage() { return USER_CENTER_PAGES.indexOf(pageName()) !== -1; }
+  /* 對照真實網站截圖:只有儲值/提款兩個交易頁面不顯示右下角浮動客服 */
+  var HIDE_QUICK_SIDEBAR_PAGES = ['deposit', 'withdrawal'];
   /* 對照真實網站截圖:側欄清單沒有「儲值/提款」項目,在這兩頁(以及其明細頁)
      時側欄一律反白「帳戶總覽」,不是完全不反白 */
   var SIDEBAR_FALLBACK_TO_ACCOUNT = ['deposit', 'withdrawal', 'transaction-info'];
@@ -263,15 +265,15 @@
     /* 對照 components/SideBar.vue items(液晶客服/Telegram 推播頻道/常見問題,分別導向
        客服彈窗(尚未實作)/官方 Telegram/about.html?tab=faq) */
     var rightItems = [
-      { icon: 'sidebar-service.svg', menu: [{ label: '문의(라이브채팅)', action: 'liveChat' }] },
-      { icon: 'sidebar-telegram.svg', menu: [{ label: '문의(텔레그램)', action: 'telegram' }] },
-      { icon: 'sidebar-helps.svg', menu: [{ label: '자주 묻는 질문', action: 'faq' }] },
+      { icon: 'sidebar-service.svg', menu: [{ tKey: 'sidebar.liveChat', action: 'liveChat' }] },
+      { icon: 'sidebar-telegram.svg', menu: [{ tKey: 'sidebar.promoChannel', action: 'telegram' }] },
+      { icon: 'sidebar-helps.svg', menu: [{ tKey: 'about.tabs.faq', action: 'faq' }] },
     ];
     var rightHtml = rightItems.map(function (item, i) {
       return (
         '<div class="quick-sidebar-item" data-quick-item="' + i + '">' +
         '<button type="button" class="quick-sidebar-btn"><img src="' + icon(item.icon) + '" alt=""></button>' +
-        '<div class="quick-sidebar-popover">' + item.menu.map(function (m) { return '<button type="button" data-quick-action="' + m.action + '">' + m.label + '</button>'; }).join('') + '</div>' +
+        '<div class="quick-sidebar-popover">' + item.menu.map(function (m) { return '<button type="button" data-quick-action="' + m.action + '" data-i18n="' + m.tKey + '">' + t(m.tKey) + '</button>'; }).join('') + '</div>' +
         '</div>'
       );
     }).join('');
@@ -607,10 +609,10 @@
         bindNavLinks(document);
       }
     }
-    /* 對照真實網站截圖:會員中心頁面(提款/儲值/帳戶總覽等)不顯示右下角
-       浮動客服快速選單,只有一般前台頁面才掛載 */
+    /* 對照真實網站截圖:只有儲值/提款這兩個交易頁面不顯示右下角浮動客服
+       快速選單,其餘會員中心頁面(帳戶總覽/個人資料等)仍會掛載 */
     if (quickSidebarMount) {
-      if (isUserCenterPage()) {
+      if (HIDE_QUICK_SIDEBAR_PAGES.indexOf(pageName()) !== -1) {
         quickSidebarMount.remove();
       } else {
         quickSidebarMount.outerHTML = quickSidebarHtml();

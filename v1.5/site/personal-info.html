@@ -16,41 +16,6 @@
           <div class="usercenter-content">
             <div class="pi-page">
               <h1 class="pay-page-title" data-i18n="userCenter.sidebar.personalInfo">개인 정보</h1>
-              <div class="account-hero">
-                <div class="account-hero-top">
-                  <img class="account-hero-avatar" src="assets/images/index/avatar.png" alt="avatar" />
-                  <div>
-                    <div class="account-hero-name-row">
-                      <span class="username" data-profile-username>meaomcao</span>
-                      <span class="account-hero-level" data-profile-level>VIP1</span>
-                    </div>
-                    <div class="account-hero-nickname"><span data-i18n="userCenter.nickname">닉네임</span> : <span data-profile-nickname>meaomcao</span><img src="assets/images/icon/edit.svg" alt="edit" style="width: 16px; height: 16px; cursor: pointer" /></div>
-                    <div class="account-hero-balance"><span>₩</span><span class="text-gradient" data-profile-balance>1,000,000,000</span><img src="assets/images/icon/refresh.svg" alt="refresh" style="cursor: pointer" /></div>
-                  </div>
-                  <div class="account-hero-desktop-actions">
-                    <div class="btn-row">
-                      <button type="button" class="account-action-btn" data-nav-href="deposit.html" data-i18n="userCenter.deposit">입금</button>
-                      <button type="button" class="account-action-btn" data-nav-href="withdrawal.html" data-i18n="userCenter.withdrawal">출금</button>
-                    </div>
-                    <button type="button" class="account-action-outline border-gradient-pill" data-nav-href="banking-details.html"><span class="text-gradient" data-i18n="userCenter.bankingDetails">결제 정보</span></button>
-                    <div class="account-hero-desktop-rollover">
-                      <p class="account-rollover-title text-gradient" data-i18n="userCenter.rollover.title">롤링</p>
-                      <p class="account-rollover-note" data-i18n="userCenter.rollover.remainingTurnoverAmount">남은 유효 베팅 금액:</p>
-                      <p class="account-rollover-value">₩ <span data-profile-turnover>0</span></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="account-hero-actions-mobile">
-                  <button type="button" class="account-action-btn" data-nav-href="deposit.html" data-i18n="userCenter.deposit">입금</button>
-                  <button type="button" class="account-action-btn" data-nav-href="withdrawal.html" data-i18n="userCenter.withdrawal">출금</button>
-                  <button type="button" class="account-action-outline border-gradient-pill" data-nav-href="banking-details.html"><span class="text-gradient" data-i18n="userCenter.bankingDetails">결제 정보</span></button>
-                </div>
-                <div class="account-hero-rollover-mobile">
-                  <p class="account-rollover-title text-gradient" data-i18n="userCenter.rollover.title">롤링</p>
-                  <p class="account-rollover-note" data-i18n="userCenter.rollover.remainingTurnoverAmount">남은 유효 베팅 금액:</p>
-                  <p class="account-rollover-value">₩ <span data-profile-turnover>0</span></p>
-                </div>
-              </div>
               <div class="pi-inner">
                 <p class="pi-username"><span data-i18n="userCenter.personalInfoPage.username">사용자명</span> : <span data-pi-username>meaomcao</span></p>
 
@@ -108,12 +73,7 @@
         var D = window.WIN15_DATA;
         var W = window.WIN15;
         var p = D.MOCK_PROFILE;
-        W.qs('[data-profile-username]').textContent = p.username;
         W.qs('[data-pi-username]').textContent = p.username;
-        W.qs('[data-profile-level]').textContent = p.player_level_name;
-        W.qs('[data-profile-nickname]').textContent = p.nickname;
-        W.qs('[data-profile-balance]').textContent = p.balanceRaw;
-        W.qs('[data-profile-turnover]').textContent = p.remaining_turnover_amount;
         W.qs('[data-nickname-input]').value = p.nickname;
         W.on(W.qs('[data-pi-submit]'), 'click', function () {
           W.showAlert({ type: 'success', message: W.t('common.profileUpdateSuccess') || '프로필이 성공적으로 업데이트되었습니다.' });
