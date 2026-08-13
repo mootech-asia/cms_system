@@ -130,21 +130,37 @@
             if (inlineBtn) W.on(inlineBtn, 'click', function () { showAddMode(group); });
             return;
           }
-          wrap.innerHTML = accounts.map(function (acc) {
+          wrap.innerHTML = accounts.map(function (acc, idx) {
+            var deleteBtn = '<button type="button" class="bd-account-delete" data-bd-remove="' + idx + '"><img src="assets/images/icon/usercenter/delete.svg" alt="delete"></button>';
             if (group === 'bank') {
               return (
-                '<div class="bd-account-card"><div class="bd-account-check"><img src="assets/images/icon/usercenter/checkmark.svg" alt="check">' +
+                '<div class="bd-account-card"><div class="bd-account-card-info"><div class="bd-account-check"><img src="assets/images/icon/usercenter/checkmark.svg" alt="check">' +
                 '<span>' + W.t('userCenter.bankingDetailsPage.activeBankAccount') + '</span></div>' +
                 '<p class="bd-account-name">' + acc.bankName + '</p>' +
-                '<p class="bd-account-number">' + acc.bankCardNumber + '</p></div>'
+                '<p class="bd-account-number">' + acc.bankCardNumber + '</p></div>' + deleteBtn + '</div>'
               );
             }
             return (
-              '<div class="bd-account-card">' +
+              '<div class="bd-account-card"><div class="bd-account-card-info">' +
               '<p class="bd-account-name">' + walletTypeLabel(acc) + '</p>' +
-              '<p class="bd-account-number">' + acc.address + '</p></div>'
+              '<p class="bd-account-number">' + acc.address + '</p></div>' + deleteBtn + '</div>'
             );
           }).join('');
+          W.qsa('[data-bd-remove]', wrap).forEach(function (btn) {
+            W.on(btn, 'click', function () {
+              var idx = Number(btn.getAttribute('data-bd-remove'));
+              W.showAlert({
+                type: 'confirmation',
+                message: W.t('common.confirmRemoveAccount'),
+                cancellable: true,
+                onConfirm: function () {
+                  accounts.splice(idx, 1);
+                  renderList(group);
+                  W.showAlert({ type: 'success', message: W.t('common.accountRemovedSuccess') });
+                },
+              });
+            });
+          });
         }
 
         /* 清單模式一律用 hidden 屬性控制(跟分組切換共用同一套機制),不要

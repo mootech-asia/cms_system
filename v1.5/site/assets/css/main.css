@@ -3136,11 +3136,34 @@ input {
   box-shadow: 0 4px 0 var(--c-navy-2);
 }
 .bd-account-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   border-radius: 10px;
   background: #fff;
   border: 1px solid var(--c-border);
   padding: 16px 24px;
   margin-bottom: 8px;
+}
+.bd-account-card-info {
+  min-width: 0;
+  flex: 1;
+}
+.bd-account-delete {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  color: #e11d48;
+}
+.bd-account-delete img {
+  width: 18px;
+  height: 18px;
 }
 .bd-account-check {
   display: flex;
