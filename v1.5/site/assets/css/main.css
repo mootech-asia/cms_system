@@ -1698,13 +1698,15 @@ input {
 .account-rollover-title {
   font-size: 16px;
   font-weight: 700;
-  margin-right: 4px;
+  margin: 0;
 }
 .account-rollover-note {
   font-weight: 700;
   color: #fff;
+  margin: 4px 0 0;
 }
 .account-rollover-value {
+  margin: 4px 0 0;
   font-weight: 400;
 }
 .account-hero-desktop-actions {
