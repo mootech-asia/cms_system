@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CMS_前台_v1.5</title>
-    <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="assets/css/main.css?v=8" />
+    <link rel="stylesheet" href="assets/css/main.css?v=9" />
   </head>
   <body>
     <div class="page-shell">
@@ -26,11 +25,11 @@
                   <button type="button" class="record-confirm-btn" data-i18n="common.confirm">확인</button>
                 </div>
                 <div class="record-status-panel" data-status-panel>
-                  <button type="button" class="is-active" data-status-value="">전체</button>
-                  <button type="button" data-status-value="Deposit">입금</button>
-                  <button type="button" data-status-value="Withdrawal">출금</button>
-                  <button type="button" data-status-value="Game">게임</button>
-                  <button type="button" data-status-value="Bonus">보너스</button>
+                  <button type="button" class="is-active" data-status-value="" data-i18n="userCenter.common.selectList.all">전체</button>
+                  <button type="button" data-status-value="Deposit" data-i18n="userCenter.deposit">입금</button>
+                  <button type="button" data-status-value="Withdrawal" data-i18n="userCenter.withdrawal">출금</button>
+                  <button type="button" data-status-value="Game" data-i18n="userCenter.common.headers.game">게임</button>
+                  <button type="button" data-status-value="Bonus" data-i18n="navbar.bottom.bonus">보너스</button>
                 </div>
 
                 <div class="record-table-wrap">
@@ -70,23 +69,26 @@
       <div data-mount="quick-sidebar"></div>
     </div>
 
-    <script src="assets/js/data.js?v=8"></script>
-    <script src="assets/js/site.js?v=8"></script>
+    <script src="assets/js/data.js?v=9"></script>
+    <script src="assets/js/site.js?v=9"></script>
     <script>
       window.WIN15_PAGE_INIT = function () {
         var D = window.WIN15_DATA;
         var W = window.WIN15;
         function fmt(n) { return Number(n).toLocaleString('en-US'); }
         function statusClass(s) { return s === 'Approved' ? 'status-text-approved' : s === 'Reject' ? 'status-text-reject' : 'status-text-pending'; }
+        var TYPE_KEYS = { Deposit: 'userCenter.deposit', Withdrawal: 'userCenter.withdrawal', Game: 'userCenter.common.headers.game', Bonus: 'navbar.bottom.bonus' };
+        function typeText(ty) { return W.t(TYPE_KEYS[ty] || ''); }
+        function statusText(s) { return W.t(s === 'Approved' ? 'userCenter.common.selectList.approved' : s === 'Reject' ? 'userCenter.common.selectList.rejected' : 'userCenter.common.selectList.pending'); }
         var currentType = '';
 
         function render() {
           var rows = D.ACCOUNT_RECORDS.filter(function (r) { return !currentType || r.type === currentType; });
           W.qs('[data-record-body-mobile]').innerHTML = rows.map(function (r) {
-            return '<tr><td>' + r.type + '</td><td>' + r.time + '</td><td>' + fmt(r.amount) + '</td><td class="' + statusClass(r.status) + '">' + r.status + '</td></tr>';
+            return '<tr><td>' + typeText(r.type) + '</td><td>' + r.time + '</td><td>' + fmt(r.amount) + '</td><td class="' + statusClass(r.status) + '">' + statusText(r.status) + '</td></tr>';
           }).join('');
           W.qs('[data-record-body-desktop]').innerHTML = rows.map(function (r) {
-            return '<tr><td>' + r.type + '</td><td>' + r.time + '</td><td>' + fmt(r.amount) + '</td><td>' + fmt(r.balance) + '</td><td>' + r.no + '</td><td class="' + statusClass(r.status) + '">' + r.status + '</td></tr>';
+            return '<tr><td>' + typeText(r.type) + '</td><td>' + r.time + '</td><td>' + fmt(r.amount) + '</td><td>' + fmt(r.balance) + '</td><td>' + r.no + '</td><td class="' + statusClass(r.status) + '">' + statusText(r.status) + '</td></tr>';
           }).join('');
         }
 
@@ -104,6 +106,8 @@
         });
 
         render();
+        W.initDateRangePicker(W.qs('.record-date-btn'));
+        W.on(document, 'win15:localechange', render);
       };
     </script>
   </body>

@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CMS_前台_v1.5</title>
-    <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="assets/css/main.css?v=8" />
+    <link rel="stylesheet" href="assets/css/main.css?v=9" />
   </head>
   <body>
     <div class="page-shell">
@@ -69,8 +68,8 @@
       <div data-mount="quick-sidebar"></div>
     </div>
 
-    <script src="assets/js/data.js?v=8"></script>
-    <script src="assets/js/site.js?v=8"></script>
+    <script src="assets/js/data.js?v=9"></script>
+    <script src="assets/js/site.js?v=9"></script>
     <script>
       window.WIN15_PAGE_INIT = function () {
         var D = window.WIN15_DATA;
@@ -90,6 +89,8 @@
 
         var totalPl = D.BETTING_RECORDS.reduce(function (s, r) { return s + r.pl; }, 0);
         W.qs('[data-total-pl]').textContent = fmt(totalPl);
+
+        W.initDateRangePicker(W.qs('.record-date-btn'));
       };
     </script>
   </body>

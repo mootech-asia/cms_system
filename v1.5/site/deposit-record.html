@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CMS_前台_v1.5</title>
-    <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="assets/css/main.css?v=8" />
+    <link rel="stylesheet" href="assets/css/main.css?v=9" />
   </head>
   <body>
     <div class="page-shell">
@@ -27,10 +26,10 @@
                   <div class="record-refresh"><span data-i18n="userCenter.common.autoRefresh.in">자동 갱신까지</span><strong>30</strong><span data-i18n="userCenter.common.autoRefresh.secondsShort">초</span><img src="assets/images/icon/refresh-blue.svg" alt="refresh" data-refresh-btn /></div>
                 </div>
                 <div class="record-status-panel" data-status-panel>
-                  <button type="button" class="is-active" data-status-value="">전체</button>
-                  <button type="button" data-status-value="Pending">대기</button>
-                  <button type="button" data-status-value="Approved">승인</button>
-                  <button type="button" data-status-value="Rejected">거부</button>
+                  <button type="button" class="is-active" data-status-value="" data-i18n="userCenter.common.selectList.all">전체</button>
+                  <button type="button" data-status-value="Pending" data-i18n="userCenter.common.selectList.pending">대기</button>
+                  <button type="button" data-status-value="Approved" data-i18n="userCenter.common.selectList.approved">승인</button>
+                  <button type="button" data-status-value="Rejected" data-i18n="userCenter.common.selectList.rejected">거부</button>
                 </div>
 
                 <div class="record-table-wrap">
@@ -78,23 +77,24 @@
       <div data-mount="quick-sidebar"></div>
     </div>
 
-    <script src="assets/js/data.js?v=8"></script>
-    <script src="assets/js/site.js?v=8"></script>
+    <script src="assets/js/data.js?v=9"></script>
+    <script src="assets/js/site.js?v=9"></script>
     <script>
       window.WIN15_PAGE_INIT = function () {
         var D = window.WIN15_DATA;
         var W = window.WIN15;
         function fmt(n) { return Number(n).toLocaleString('en-US'); }
         function statusClass(s) { return s === 'Approved' ? 'status-text-approved' : s === 'Rejected' ? 'status-text-reject' : 'status-text-pending'; }
+        function statusText(s) { return W.t('userCenter.common.selectList.' + s.toLowerCase()); }
         var currentStatus = '';
 
         function render() {
           var rows = D.DEPOSIT_RECORDS.filter(function (r) { return !currentStatus || r.status === currentStatus; });
           W.qs('[data-record-body-mobile]').innerHTML = rows.map(function (r) {
-            return '<tr><td>' + r.transaction_number + '</td><td>' + r.request_time + '</td><td>' + (r.deposit_amount ? fmt(r.deposit_amount) : '-') + '</td><td class="' + statusClass(r.status) + '">' + r.status + '</td></tr>';
+            return '<tr><td>' + r.transaction_number + '</td><td>' + r.request_time + '</td><td>' + (r.deposit_amount ? fmt(r.deposit_amount) : '-') + '</td><td class="' + statusClass(r.status) + '">' + statusText(r.status) + '</td></tr>';
           }).join('');
           W.qs('[data-record-body-desktop]').innerHTML = rows.map(function (r) {
-            return '<tr><td>' + r.transaction_number + '</td><td>' + r.request_time + '</td><td>' + (r.deposit_amount ? fmt(r.deposit_amount) : '-') + '</td><td class="' + statusClass(r.status) + '">' + r.status + '</td><td>' + fmt(r.request_amount) + '</td><td>' + r.method + '</td><td>' + r.deposited_time + '</td></tr>';
+            return '<tr><td>' + r.transaction_number + '</td><td>' + r.request_time + '</td><td>' + (r.deposit_amount ? fmt(r.deposit_amount) : '-') + '</td><td class="' + statusClass(r.status) + '">' + statusText(r.status) + '</td><td>' + fmt(r.request_amount) + '</td><td>' + r.method + '</td><td>' + r.deposited_time + '</td></tr>';
           }).join('');
           var total = rows.reduce(function (s, r) { return r.status === 'Approved' ? s + r.deposit_amount : s; }, 0);
           W.qs('[data-total-amount]').textContent = fmt(total);
@@ -112,7 +112,9 @@
             render();
           });
         });
-        W.on(W.qs('[data-refresh-btn]'), 'click', render);
+        W.initAutoRefresh(render);
+        W.initDateRangePicker(W.qs('.record-date-btn'));
+        W.on(document, 'win15:localechange', render);
 
         render();
       };

@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CMS_前台_v1.5</title>
-    <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="assets/css/main.css?v=8" />
+    <link rel="stylesheet" href="assets/css/main.css?v=9" />
   </head>
   <body>
     <div class="page-shell">
@@ -59,8 +58,8 @@
       <div data-mount="quick-sidebar"></div>
     </div>
 
-    <script src="assets/js/data.js?v=8"></script>
-    <script src="assets/js/site.js?v=8"></script>
+    <script src="assets/js/data.js?v=9"></script>
+    <script src="assets/js/site.js?v=9"></script>
     <script>
       window.WIN15_PAGE_INIT = function () {
         var D = window.WIN15_DATA;
@@ -68,13 +67,16 @@
         function fmt(n) { return Number(n).toLocaleString('en-US'); }
         var categoryMap = { 1: W.t('userCenter.withdrawalDetailPage.category.1'), 2: W.t('userCenter.withdrawalDetailPage.category.2'), 3: W.t('userCenter.withdrawalDetailPage.category.3'), 4: W.t('userCenter.withdrawalDetailPage.category.4') };
 
-        W.qs('[data-record-body-mobile]').innerHTML = D.WITHDRAWAL_TURNOVER_TASKS.map(function (r) {
-          return '<tr><td>' + r.createdAt + '</td><td>' + categoryMap[r.category] + '</td><td>' + r.itemName + '</td><td>' + r.achieved + ' / ' + r.target + '</td></tr>';
-        }).join('');
-        W.qs('[data-record-body-desktop]').innerHTML = D.WITHDRAWAL_TURNOVER_TASKS.map(function (r) {
-          return '<tr><td>' + r.createdAt + '</td><td>' + categoryMap[r.category] + '</td><td>' + r.itemName + '</td><td>' + fmt(r.depositFlowAmount) + '</td><td>' + fmt(r.bonusFlowAmount) + '</td><td>' + r.achieved + ' / ' + r.target + '</td></tr>';
-        }).join('');
-        W.on(W.qs('[data-refresh-btn]'), 'click', function () {});
+        function render() {
+          W.qs('[data-record-body-mobile]').innerHTML = D.WITHDRAWAL_TURNOVER_TASKS.map(function (r) {
+            return '<tr><td>' + r.createdAt + '</td><td>' + categoryMap[r.category] + '</td><td>' + r.itemName + '</td><td>' + r.achieved + ' / ' + r.target + '</td></tr>';
+          }).join('');
+          W.qs('[data-record-body-desktop]').innerHTML = D.WITHDRAWAL_TURNOVER_TASKS.map(function (r) {
+            return '<tr><td>' + r.createdAt + '</td><td>' + categoryMap[r.category] + '</td><td>' + r.itemName + '</td><td>' + fmt(r.depositFlowAmount) + '</td><td>' + fmt(r.bonusFlowAmount) + '</td><td>' + r.achieved + ' / ' + r.target + '</td></tr>';
+          }).join('');
+        }
+        W.initAutoRefresh(render);
+        render();
       };
     </script>
   </body>
