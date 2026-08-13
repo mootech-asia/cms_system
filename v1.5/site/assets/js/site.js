@@ -586,7 +586,17 @@
     var userSidebarMount = qs('[data-mount="user-sidebar"]');
 
     if (headerMount) { headerMount.outerHTML = headerHtml(); bindHeader(document); }
-    if (footerMount) { footerMount.outerHTML = footerHtml(); bindNavLinks(document); }
+    /* 對照真實網站截圖:會員中心頁面不顯示頁尾(合作夥伴/免責聲明/版權),
+       只有一般前台頁面才掛載;會員中心側欄比主內容區高時,頁尾殘留會跟
+       側欄下半段重疊 */
+    if (footerMount) {
+      if (isUserCenterPage()) {
+        footerMount.remove();
+      } else {
+        footerMount.outerHTML = footerHtml();
+        bindNavLinks(document);
+      }
+    }
     /* 對照 BottomNavbar.vue syncActiveByRoute():showBottomNavbar = !path.startsWith('/usercenter/'),
        只有帳戶總覽(/usercenter 本身)例外仍顯示,其餘會員中心子頁一律不掛載 */
     if (bottomNavMount) {

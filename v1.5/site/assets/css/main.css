@@ -3231,8 +3231,9 @@ input {
   width: 18px;
   height: 18px;
 }
-.bd-add-btn[disabled] {
+.bd-add-btn.is-disabled {
   opacity: 0.4;
+  cursor: not-allowed;
 }
 @media (min-width: 1280px) {
   .bd-add-fab {

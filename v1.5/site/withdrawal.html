@@ -426,7 +426,7 @@
           var cap = MGMT_CAP[group];
           var countKey = group === 'bank' ? 'userCenter.bankingDetailsPage.registeredBankAccounts' : 'userCenter.bankingDetailsPage.registeredCryptoWallets';
           if (countEl) countEl.textContent = W.t(countKey).replace('{count}', accounts.length).replace('{max}', cap);
-          if (addBtn) addBtn.disabled = accounts.length >= cap;
+          if (addBtn) addBtn.classList.toggle('is-disabled', accounts.length >= cap);
           if (!accounts.length) {
             var emptyKey = group === 'bank' ? 'userCenter.bankingDetailsPage.emptyBankAccount' : 'userCenter.withdrawalPage.emptyCryptoWallet';
             var addKey = group === 'bank' ? 'userCenter.bankingDetailsPage.addAccount' : 'userCenter.withdrawalPage.addWallet';
@@ -486,7 +486,7 @@
         ['bank', 'crypto'].forEach(function (group) {
           var addBtn = W.qs('[data-wd-mgmt-add="' + group + '"]');
           W.on(addBtn, 'click', function () {
-            if (addBtn.disabled) { W.showAlert({ type: 'error', message: W.t('userCenter.bankingDetailsPage.accountLimitReached') }); return; }
+            if (addBtn.classList.contains('is-disabled')) { W.showAlert({ type: 'error', message: W.t('userCenter.bankingDetailsPage.accountLimitReached') }); return; }
             mgmtShowAddMode(group);
           });
           W.on(W.qs('[data-wd-mgmt-cancel="' + group + '"]'), 'click', function () { mgmtShowListMode(group); });
