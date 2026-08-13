@@ -67,6 +67,7 @@
     document.documentElement.setAttribute('lang', HTML_LANG_BY_LOCALE[loc] || 'en');
     qsa('[data-i18n]').forEach(function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
     qsa('[data-i18n-html]').forEach(function (el) { el.innerHTML = t(el.getAttribute('data-i18n-html')); });
+    qsa('[data-i18n-placeholder]').forEach(function (el) { el.placeholder = t(el.getAttribute('data-i18n-placeholder')); });
     var entry = (D.LANGUAGES || []).filter(function (l) { return l.code === loc; })[0];
     qsa('[data-locale-label]').forEach(function (el) { el.textContent = entry ? entry.label : loc; });
     /* 切換語言不會整頁重新整理,頁面若有把翻譯後文字直接寫進動態產生的
