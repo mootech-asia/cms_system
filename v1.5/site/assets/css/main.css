@@ -1696,8 +1696,9 @@ input {
   text-align: right;
 }
 .account-rollover-title {
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 700;
+  margin-right: 4px;
 }
 .account-rollover-note {
   font-weight: 700;
