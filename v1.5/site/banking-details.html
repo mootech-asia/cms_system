@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CMS_前台_v1.5</title>
-    <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="assets/css/main.css?v=8" />
   </head>
   <body>
@@ -28,7 +27,7 @@
                   <div data-bd-list-mode="bank">
                     <p class="wd-account-count" data-bd-count="bank"></p>
                     <div data-bd-accounts="bank"></div>
-                    <button type="button" class="bd-add-fab" data-bd-add="bank"><img src="assets/images/icon/usercenter/add.svg" alt="add" /></button>
+                    <button type="button" class="bd-add-btn" data-bd-add="bank"><img src="assets/images/icon/usercenter/add.svg" alt="add" /><span data-i18n="userCenter.bankingDetailsPage.addAccount">계좌 추가</span></button>
                   </div>
 
                   <!-- 銀行帳戶:新增模式 -->
@@ -63,7 +62,7 @@
                   <div data-bd-list-mode="crypto" hidden>
                     <p class="wd-account-count" data-bd-count="crypto"></p>
                     <div data-bd-accounts="crypto"></div>
-                    <button type="button" class="bd-add-fab" data-bd-add="crypto"><img src="assets/images/icon/usercenter/add.svg" alt="add" /></button>
+                    <button type="button" class="bd-add-btn" data-bd-add="crypto"><img src="assets/images/icon/usercenter/add.svg" alt="add" /><span data-i18n="userCenter.withdrawalPage.addWallet">지갑 추가</span></button>
                   </div>
 
                   <!-- 虛擬錢包:新增模式 -->
@@ -117,7 +116,8 @@
           var addBtn = W.qs('[data-bd-add="' + group + '"]');
           var accounts = accountsOf(group);
           var cap = CAP[group];
-          if (countEl) countEl.textContent = W.t('userCenter.bankingDetailsPage.registeredAccounts').replace('{count}', accounts.length).replace('{max}', cap);
+          var countKey = group === 'bank' ? 'userCenter.bankingDetailsPage.registeredBankAccounts' : 'userCenter.bankingDetailsPage.registeredCryptoWallets';
+          if (countEl) countEl.textContent = W.t(countKey).replace('{count}', accounts.length).replace('{max}', cap);
           if (addBtn) addBtn.disabled = accounts.length >= cap;
           if (!accounts.length) {
             var emptyKey = group === 'bank' ? 'userCenter.bankingDetailsPage.emptyBankAccount' : 'userCenter.withdrawalPage.emptyCryptoWallet';
@@ -147,13 +147,15 @@
           }).join('');
         }
 
+        /* 清單模式一律用 hidden 屬性控制(跟分組切換共用同一套機制),不要
+           混用 style.display,避免兩套顯示邏輯互相蓋過 */
         function showAddMode(group) {
-          W.qs('[data-bd-list-mode="' + group + '"]').style.display = 'none';
+          W.qs('[data-bd-list-mode="' + group + '"]').hidden = true;
           W.qs('[data-bd-add-mode="' + group + '"]').style.display = 'block';
         }
         function showListMode(group) {
           W.qs('[data-bd-add-mode="' + group + '"]').style.display = 'none';
-          W.qs('[data-bd-list-mode="' + group + '"]').style.display = 'block';
+          W.qs('[data-bd-list-mode="' + group + '"]').hidden = false;
           renderList(group);
         }
 
@@ -170,7 +172,11 @@
         });
 
         /* 銀行帳戶／虛擬錢包分組切換:同步收合另一組的新增表單,避免切組後
-           表單殘留在畫面上 */
+           表單殘留在畫面上。
+           注意:只能用 hidden 屬性切換顯示,不能額外疊加 style.display——
+           曾經被設過 style.display="block" 的元素,之後即使改回 hidden=true
+           行內樣式的優先權還是會蓋過 CSS 的 [hidden]{display:none},導致
+           兩組清單同時顯示。 */
         var methodBtns = W.qsa('[data-bd-method] [data-bd-method-btn]');
         methodBtns.forEach(function (btn) {
           W.on(btn, 'click', function () {
@@ -180,7 +186,7 @@
               var show = group === bdMethod;
               W.qs('[data-bd-list-mode="' + group + '"]').hidden = !show;
               W.qs('[data-bd-add-mode="' + group + '"]').style.display = 'none';
-              if (show) { W.qs('[data-bd-list-mode="' + group + '"]').style.display = 'block'; renderList(group); }
+              if (show) renderList(group);
             });
           });
         });

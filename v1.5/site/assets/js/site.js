@@ -130,9 +130,10 @@
       }).join('') +
       '</div></div>';
 
+    /* 對照真實原始碼 Navbar.vue:桌機導覽的圖示 span 整段是註解(/-、//-),
+       實際沒有渲染,只留純文字,選中項目靠 .is-active 的漸層底線區分 */
     var desktopNav = D.DESKTOP_NAV.map(function (item) {
       return '<div class="header-nav-link" data-nav-key="' + item.key + '" data-nav-href="' + item.url + '">' +
-        '<img src="' + icon(item.icon) + '" alt="" class="header-nav-icon">' +
         '<span data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span></div>';
     }).join('');
 
