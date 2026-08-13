@@ -4,11 +4,304 @@
  * (文案逐字保留)與各 store/composable 原本會打 API 拿的內容,這裡改成
  * 寫死的假資料,讓純 HTML+CSS+JS 版可以離線展示完整畫面與互動。
  * 預設語系 = ko(對照 nuxt.config.ts defaultLocale: 'ko')。
+ * zh 為 v1.5 新增語系,原始碼無對應 locales/zh.json,詞彙對齊 v2/v3/v4
+ * 已有的繁中翻譯慣例(儲值/提款/流水/紅利…)以維持全版本用語一致。
  */
 (function (window) {
   'use strict';
 
   var I18N = {
+    zh: {
+      'navbar.top.hotGames': '熱門遊戲',
+      'navbar.top.miniGames': '迷你遊戲',
+      'navbar.top.sports': '體育',
+      'navbar.top.liveCasino': '真人娛樂場',
+      'navbar.top.slots': '老虎機',
+      'navbar.top.fish': '捕魚',
+      'navbar.bottom.withdrawal': '提款',
+      'navbar.bottom.account': '會員',
+      'navbar.bottom.bettingRecords': '投注紀錄',
+      'navbar.desktop.home': '首頁',
+      'navbar.desktop.hotGames': '熱門遊戲',
+      'navbar.desktop.sports': '體育',
+      'navbar.desktop.live': '真人',
+      'navbar.desktop.slots': '老虎機',
+      'navbar.desktop.fish': '捕魚',
+      'navbar.desktop.miniGames': '迷你遊戲',
+      'navbar.desktop.promotion': '優惠活動',
+      'navbar.balance': '餘額：',
+      'navbar.points': '點數：',
+      'userCenter.deposit': '儲值',
+      'userCenter.withdrawal': '提款',
+      'userCenter.myAccount': '我的帳戶',
+      'footer.desc': '博彩可能造成成癮，請理性遊玩。如需支援資訊，請前往責任博彩協助頁面。',
+      'footer.desc2': '當您存取、繼續使用或瀏覽本站，即表示您同意我們使用部分瀏覽器 Cookie，以改善您的使用體驗。',
+      'footer.copyright': 'win10096 © 版權所有，並受法律保護。',
+      'bottomNavbar.home': '首頁',
+      'bottomNavbar.deposit': '儲值',
+      'bottomNavbar.promotion': '優惠活動',
+      'bottomNavbar.member': '會員中心',
+      'auth.login': '登入',
+      'auth.register': '註冊',
+      'auth.username': '帳號',
+      'auth.usernamePlaceholder': '請輸入帳號',
+      'auth.password': '密碼',
+      'auth.passwordPlaceholder': '請輸入密碼',
+      'auth.confirmPassword': '確認密碼',
+      'auth.newPassword': '新密碼',
+      'auth.newPasswordPlaceholder': '請輸入新密碼',
+      'auth.email': '電子信箱',
+      'auth.emailPlaceholder': '請輸入電子信箱',
+      'auth.realName': '真實姓名',
+      'auth.realNamePlaceholder': '請輸入真實姓名',
+      'auth.mobile': '手機號碼',
+      'auth.mobilePlaceholder': '請輸入手機號碼',
+      'auth.birthday': '生日',
+      'auth.birthdayPlaceholder': '請輸入生日',
+      'auth.invitationCode': '邀請碼',
+      'auth.invitationCodePlaceholder': '請輸入邀請碼',
+      'auth.captcha': '驗證碼',
+      'auth.captchaPlaceholder': '請輸入驗證碼',
+      'auth.agreeTerms': '我已年滿18歲，並同意使用條款',
+      'auth.remember': '記住我',
+      'auth.forgotPassword': '忘記密碼',
+      'auth.forgotPasswordSent': '請至您的電子信箱確認密碼重設信件。',
+      'auth.loginSuccess': '登入成功',
+      'auth.registerSuccess': '註冊成功',
+      'auth.resetPassword': '變更密碼',
+      'auth.promotionChannel': '推廣管道',
+      'hotGame.seeAll': '查看全部',
+      'hotGame.playNow': '馬上遊戲',
+      'hotGame.promo': '優惠',
+      'gameType.types.hotGames': '熱門遊戲',
+      'gameType.types.miniGames': '迷你遊戲',
+      'gameType.types.slots': '老虎機遊戲',
+      'gameType.types.liveCasino': '真人娛樂場',
+      'gameType.types.sports': '體育',
+      'gameType.types.fish': '捕魚',
+      'common.next': '下一步',
+      'userCenter.sidebar.gameLobby': '遊戲大廳',
+      'userCenter.sidebar.accountOverview': '帳戶總覽',
+      'userCenter.sidebar.bettingRecord': '投注紀錄',
+      'userCenter.sidebar.depositRecord': '儲值紀錄',
+      'userCenter.sidebar.profitAndLoss': '損益報表',
+      'userCenter.sidebar.withdrawalRecord': '提款紀錄',
+      'userCenter.sidebar.withdrawalDetail': '提款明細',
+      'userCenter.sidebar.accountRecord': '帳戶紀錄',
+      'userCenter.sidebar.personalInfo': '個人資料',
+      'userCenter.sidebar.securityCenter': '安全中心',
+      'userCenter.sidebar.customerService': '客服中心',
+      'userCenter.accountOverview': '帳戶總覽',
+      'userCenter.nickname': '暱稱',
+      'userCenter.bankingDetails': '銀行帳戶資料',
+      'userCenter.personalInfo': '個人資料',
+      'userCenter.recentTransactions': '近期交易',
+      'userCenter.viewMoreRecords': '查看更多紀錄',
+      'userCenter.rollover.title': '流水',
+      'userCenter.rollover.remainingTurnoverAmount': '剩餘流水金額:',
+      'userCenter.securityCenterPage.completeProfile': '完善你的個人資料',
+      'userCenter.securityCenterPage.notSet': '未設定',
+      'userCenter.securityCenterPage.set': '設定',
+      'userCenter.securityCenterPage.recommendAlphaNum': '建議使用英文字母與數字組合',
+      'userCenter.securityCenterPage.setTxnPasswordTip': '設定密碼以提升資金操作安全',
+      'userCenter.securityCenterPage.logout': '登出',
+      'userCenter.securityCenterPage.logoutSafely': '安全登出',
+      'userCenter.changePassword.changeLogin': '變更登入密碼',
+      'userCenter.changePassword.changeTransaction': '變更交易密碼',
+      'userCenter.depositPage.depositAmount': '儲值金額',
+      'userCenter.depositPage.choosePromotion': '選擇優惠',
+      'userCenter.depositPage.promotions': '優惠活動',
+      'userCenter.depositPage.noPromotion': '不參加任何優惠活動',
+      'userCenter.depositPage.channelA': '通道 A',
+      'userCenter.depositPage.channelB': '通道 B',
+      'userCenter.depositPage.channelC': '通道 C',
+      'userCenter.depositPage.channelD': '通道 D',
+      'userCenter.depositPage.limitNote': '＊最低金額：₩ {min}，最高金額：₩ {max}＊',
+      'userCenter.depositPage.bonusBanner': '＋₩ {amount} 紅利',
+      'depositPromo.p1.name': '新註冊首儲 50%',
+      'depositPromo.p1.r1': '注意：本活動不適用於 Evolution Gaming 與 Pragmatic Play 娛樂城遊戲。',
+      'depositPromo.p1.r2': '流水要求：全部資金流水以（儲值金額＋紅利）的 300% 計算。',
+      'depositPromo.p1.r3': '賠率低於 1.7 的投注不計入流水要求。',
+      'depositPromo.p2.name': 'Evolution Gaming、Pragmatic Play 真人館專屬 無上限儲值…',
+      'depositPromo.p2.r1': '全部資金流水為（儲值金額＋紅利）乘以',
+      'depositPromo.p2.r2': '最高紅利金額：₩200,000。',
+      'depositPromo.p2.r3': '提款流水條件：10 倍（1,000%）。',
+      'depositPromo.p2.r4': '範例：儲值 ₩1,000,000，可獲得 ₩200,000 紅利。(1,000,000 + 200,000) X 10 = 12,000,000',
+      'userCenter.withdrawalPage.myBankAccounts': '我的銀行帳戶',
+      'userCenter.withdrawalPage.emptyBankAccount': '尚無銀行帳戶',
+      'userCenter.withdrawalPage.addAccount': '新增帳戶',
+      'userCenter.withdrawalPage.refresh': '重新整理',
+      'userCenter.withdrawalPage.main': '主要',
+      'userCenter.withdrawalPage.wallet': '錢包',
+      'userCenter.withdrawalPage.withdrawalAmountAndPassword': '提款金額與密碼',
+      'userCenter.withdrawalPage.accountNumber': '帳戶號碼',
+      'userCenter.withdrawalPage.bindDate': '綁定日期',
+      'userCenter.withdrawalPage.remainingTurnoverAmount': '＊剩餘流水金額：₩ ',
+      'userCenter.withdrawalPage.requiredTurnoverAmount': '所需流水金額',
+      'userCenter.withdrawalPage.bankCard': '銀行卡',
+      'userCenter.withdrawalPage.cryptoWallet': '加密錢包',
+      'userCenter.withdrawalPage.myCryptoWallets': '我的加密錢包',
+      'userCenter.withdrawalPage.emptyCryptoWallet': '尚無加密錢包',
+      'userCenter.withdrawalPage.addWallet': '新增錢包',
+      'userCenter.withdrawalPage.centralWallet': '中心錢包',
+      'userCenter.withdrawalPage.availableAmount': '可用金額',
+      'userCenter.withdrawalPage.walletInfo': '錢包資訊',
+      'userCenter.withdrawalPage.selectWalletType': '請選擇錢包類型',
+      'userCenter.withdrawalPage.accountManagement': '帳戶管理',
+      'userCenter.withdrawalAmount': '提款金額',
+      'userCenter.depositAmount': '儲值金額',
+      'userCenter.transactionDetails': '轉帳明細',
+      'userCenter.withdrawalAccount': '提款帳戶',
+      'userCenter.depositAccount': '儲值帳戶',
+      'userCenter.transactionDescription': '完成匯款後，請點選下方「{action}」按鈕。如有任何問題，歡迎隨時聯繫客服中心。',
+      'userCenter.customerService': '客服中心',
+      'userCenter.withdrawalPromotions': '提款優惠',
+      'userCenter.depositPromotions': '儲值優惠',
+      'userCenter.receivedAmount': '實收金額',
+      'userCenter.bonus': '紅利',
+      'userCenter.withdrawalInfo': '提款資訊',
+      'userCenter.depositInfo': '儲值資訊',
+      'common.gotIt': '知道了',
+      'common.success': '成功!',
+      'common.error': '糟糕！',
+      'common.warning': '警告',
+      'common.cancel': '取消',
+      'common.submit': '送出',
+      'common.complete': '完成',
+      'common.completeDeposit': '完成儲值',
+      'common.completeWithdrawal': '完成提款',
+      'common.back': '返回',
+      'common.detail': '查看詳情',
+      'common.done': '完成',
+      'common.depositSuccess': '儲值成功！',
+      'common.withdrawalSuccess': '您的提款申請已送出！',
+      'userCenter.accountRecord.title': '帳戶紀錄',
+      'userCenter.withdrawalRecord.title': '提款紀錄',
+      'userCenter.common.headers.date': '日期',
+      'userCenter.common.headers.time': '時間',
+      'userCenter.common.headers.status': '狀態',
+      'userCenter.common.headers.method': '方式',
+      'userCenter.common.headers.transactionNo': '交易編號',
+      'userCenter.common.headers.datetime': '日期時間',
+      'userCenter.common.headers.requestTime': '申請時間',
+      'userCenter.common.headers.depositAmountHeader': '儲值金額',
+      'userCenter.common.headers.requestAmountHeader': '申請金額',
+      'userCenter.common.headers.paidAmountHeader': '支付金額',
+      'userCenter.common.headers.bankName': '銀行名稱',
+      'userCenter.common.headers.paidDate': '支付日期',
+      'userCenter.common.headers.bankReference': '銀行參考號',
+      'userCenter.common.headers.depositedTime': '儲值時間',
+      'userCenter.common.headers.bankCharge': '銀行手續費',
+      'userCenter.common.headers.promotionHeader': '優惠活動',
+      'userCenter.common.headers.remarkHeader': '備註',
+      'userCenter.common.headers.orderNo': '訂單編號',
+      'userCenter.common.headers.game': '遊戲',
+      'userCenter.common.headers.betAmount': '投注金額',
+      'userCenter.common.headers.settlementTime': '結算時間',
+      'userCenter.common.headers.gameType': '遊戲類型',
+      'userCenter.common.headers.totalProfitAndLoss': '總損益',
+      'userCenter.common.headers.bonus': '紅利',
+      'userCenter.common.headers.betting': '投注',
+      'userCenter.common.headers.validBet': '有效投注',
+      'userCenter.common.headers.winAmount': '中獎金額',
+      'userCenter.common.headers.betPL': '投注損益',
+      'userCenter.common.headers.rebate': '返水',
+      'userCenter.common.headers.transactionType': '交易類型',
+      'userCenter.common.headers.transactionAmount': '交易金額',
+      'userCenter.common.headers.currentBalance': '目前餘額',
+      'userCenter.common.headers.content': '內容',
+      'userCenter.common.headers.result': '結果',
+      'userCenter.common.headers.proceed': '繼續',
+      'userCenter.common.selectList.all': '全部',
+      'userCenter.common.selectList.pending': '處理中',
+      'userCenter.common.selectList.approved': '已通過',
+      'userCenter.common.selectList.rejected': '已拒絕',
+      'userCenter.common.footer.totalDepositAmount': '總儲值金額',
+      'userCenter.common.footer.totalWithdrawalAmount': '總提款金額',
+      'userCenter.common.tags.status': '狀態',
+      'userCenter.common.tags.time': '時間',
+      'userCenter.common.autoRefresh.in': '自動更新倒數',
+      'userCenter.common.autoRefresh.secondsShort': '秒',
+      'userCenter.withdrawalDetailPage.title': '提款明細',
+      'userCenter.withdrawalDetailPage.activityName': '活動名稱',
+      'userCenter.withdrawalDetailPage.depositRollover': '儲值流水',
+      'userCenter.withdrawalDetailPage.bonusRollover': '獎金流水',
+      'userCenter.withdrawalDetailPage.progress': '進度',
+      'userCenter.withdrawalDetailPage.category.1': '儲值優惠',
+      'userCenter.withdrawalDetailPage.category.2': '一般儲值',
+      'userCenter.withdrawalDetailPage.category.3': '調整',
+      'userCenter.withdrawalDetailPage.category.4': '優惠活動',
+      'common.confirm': '確認',
+      'common.type': '類型',
+      'userCenter.personalInfoPage.username': '帳號',
+      'userCenter.personalInfoPage.nicknamePlaceholder': '請輸入暱稱',
+      'userCenter.personalInfoPage.privacyCta': '我們重視你的隱私',
+      'userCenter.personalInfoPage.privacyNoteLine1': '所有用戶資料皆經過加密，確保您的個人隱私受到保護。',
+      'userCenter.personalInfoPage.privacyNoteLine2': '如需更新個人資料，請聯繫客服中心。',
+      'userCenter.personalInfoPage.submit': '送出',
+      'userCenter.bankingDetailsPage.emptyBankAccount': '尚無銀行帳戶',
+      'userCenter.bankingDetailsPage.addAccount': '新增帳戶',
+      'userCenter.bankingDetailsPage.activeBankAccount': '使用中的銀行帳戶',
+      'userCenter.bankingDetailsPage.bankInformation': '銀行資訊',
+      'userCenter.bankingDetailsPage.searchABank': '搜尋銀行',
+      'userCenter.bankingDetailsPage.enterCardNumber': '請輸入卡號',
+      'userCenter.bankingDetailsPage.transactionPassword': '交易密碼',
+      'userCenter.bankingDetailsPage.fillTransactionPassword': '請填入交易密碼',
+      'userCenter.bankingDetailsPage.chooseABank': '選擇銀行',
+      'userCenter.bankingDetailsPage.registeredAccounts': '已登記提款帳戶（{count}/{max}）',
+      'userCenter.bankingDetailsPage.accountLimitReached': '已達可登記帳戶數量上限。',
+      'userCenter.securityCenterPage.lastLogin': '上次登入',
+      'userCenter.securityCenterPage.time': '時間',
+      'userCenter.securityCenterPage.ipAddress': 'IP 位址',
+      'userCenter.securityCenterPage.securitySetting': '安全設定',
+      'userCenter.securityCenterPage.bankAccountNumber': '銀行帳戶號碼',
+      'userCenter.changePassword.currentPlaceholder': '請輸入目前密碼',
+      'userCenter.changePassword.newPlaceholder': '請輸入新密碼',
+      'userCenter.changePassword.confirmPlaceholder': '請再次輸入新密碼',
+      'userCenter.changePassword.ruleHint': '請使用 6～16 位英文字母與數字。',
+      'userCenter.changePassword.ruleHintLogin': '請使用 6～16 位英文字母與數字。',
+      'userCenter.changePassword.lengthInvalid': '密碼長度須為 6～16 位。',
+      'userCenter.changePassword.confirmInvalid': '新密碼與確認密碼不一致。',
+      'userCenter.changePassword.patternInvalidLogin': '密碼僅能使用英文字母與數字。',
+      'userCenter.changePassword.success': '密碼變更成功。',
+      'common.profileUpdateSuccess': '個人資料已成功更新。',
+      'common.bankCardAddedSuccess': '銀行卡新增成功',
+      'common.search': '搜尋',
+      'common.gameName': '遊戲名稱',
+      'common.vendorName': '供應商名稱',
+      'common.readMore': '閱讀更多',
+      'common.noData': '尚無資料',
+      'common.openingGame': '正在以新分頁開啟遊戲…',
+      'gameType.options.vendor': '供應商',
+      'gameType.options.favorites': '收藏',
+      'gameList.options.all': '全部遊戲',
+      'gameList.options.favorite': '收藏',
+      'promotionList.categories.all': '全部',
+      'promotionList.categories.slot': '老虎機',
+      'promotionList.categories.live': '真人',
+      'promotionList.categories.sports': '體育',
+      'promotionList.categories.new': '最新',
+      'about.title': '關於我們',
+      'about.tabs.support': '幫助中心',
+      'about.tabs.notice': '公告',
+      'about.tabs.about': '關於',
+      'about.tabs.privacy': '隱私',
+      'about.tabs.info': '資訊',
+      'about.tabs.addiction': '防沉迷',
+      'about.tabs.rules': '規則',
+      'about.tabs.faq': '常見問題',
+      'navbar.top.poker': '撲克',
+      'navbar.top.esports': '電子競技',
+      'navbar.top.lottery': '彩票',
+      'navbar.bottom.pointmall': '點數商城',
+      'navbar.bottom.bonus': '紅利',
+      'navbar.bottom.share': '分享',
+      'hotGame.gameName': 'Game Name',
+      'hotGame.creativeGaming': 'Creative Gaming',
+      'hotGame.specialOffer': 'SPECIAL OFFER',
+      'hotGame.promoDateRange': 'Thursday-Tuesday, times vary',
+      'hotGame.promotion1': 'Promotion 1',
+    },
     ko: {
       'navbar.top.hotGames': '인기 게임',
       'navbar.top.miniGames': '미니 게임',
@@ -640,6 +933,7 @@
   ];
 
   var LANGUAGES = [
+    { code: 'zh', label: '中文', image: 'lang-tw.svg' },
     { code: 'en', label: 'English', image: 'lang-us2.svg' },
     { code: 'ko', label: '한국어', image: 'lang-kr.png' },
   ];
@@ -972,6 +1266,117 @@
   ];
 
   var ABOUT_CONTENT = {
+  "zh": {
+    "support": {
+      "items": [
+        {
+          "title": "請聯繫客服。"
+        }
+      ]
+    },
+    "notice": {
+      "items": [
+        {
+          "title": "緊急公告 - win10096 官方 Telegram 已更新。",
+          "detail": "近期出現多起冒充 win10096 的案例。\nwin10096 僅透過單一官方 Telegram 提供資訊,若現有 Telegram 發生問題,將僅透過本頻道或線上客服公告。\n\nwin10096 官方 Telegram 公告頻道:https://t.me/win10096cs\n\n若您無法透過原有 Telegram 聯繫到我們,請先透過線上客服確認後再進行,以避免遭到冒充帳號詐騙。"
+        },
+        {
+          "title": "如何查詢儲值帳戶",
+          "detail": "查詢儲值帳戶請先註冊,再透過線上客服或客服 Telegram 與我們聯繫。"
+        }
+      ]
+    },
+    "about": {
+      "items": [
+        {
+          "title": "關於 win10096",
+          "detail": "本政策說明 win10096(以下稱「本公司」)如何使用客戶提供之資訊與資料,以及該等資訊如何於 win10096 與客戶之間處理。\n\n本公司依據透過 win10096(或本網站)註冊表單或其他方式所提供之內容,或本公司已持有之個人資料,處理客戶之個人資料。客戶提交資訊並使用本網站,即視為同意依本隱私權政策使用該等資訊。若您不同意本政策,請勿使用本網站或提供個人資料。"
+        }
+      ]
+    },
+    "privacy": {
+      "items": [
+        {
+          "title": "隱私政策",
+          "detail": "本政策說明您的個人資料如何被 win10096 蒐集、使用及保護。我們僅透過官方管道提供指引;若現有管道發生問題,我們將僅透過本頁面或線上客服公告。"
+        },
+        {
+          "title": "資料收集與使用",
+          "detail": "本公司蒐集、使用及處置與您相關之資訊與資料,包括:\n1. 透過電子郵件或本網站提交之任何資訊;\n2. 透過電子郵件、電話或線上客服記錄通訊內容之其他任何方式;\n3. 對問卷調查或客戶意見調查之回覆;\n4. 與本網站相關之交易紀錄;\n5. 與網站瀏覽相關之資訊,如流量資料、位置資料、部落格及其他通訊資料。\n\n您的個人資料將用於以下目的:\n1. 支付交易處理,包含線上及線下付款;\n2. 投注交易處理;\n3. 管理客戶帳戶並建立會員檔案;\n4. 遵循本公司之法律與監管義務;\n5. 客戶研究、問卷調查與數據分析;\n6. 活動、產品與服務之提供;\n7. 防範詐騙、異常投注行為、洗錢、優惠濫用、共謀行為,並監控客戶間之不當交易。"
+        }
+      ]
+    },
+    "info": {
+      "items": [
+        {
+          "title": "補充資訊",
+          "detail": "win10096 對於站內或外部網站的內容或正確性概不負責。\n本公司提供之所有資訊均以事實為依據;惟本公司對資訊相關之錯誤或遺漏不承擔責任。本公司保留更正明顯錯誤之權利。\n我們保留隨時修訂、更新及修改本使用條款之專屬權利。\n經修訂、更新或修改之條款將公告於本網站,並於公告後立即生效。"
+        }
+      ]
+    },
+    "addiction": {
+      "items": [
+        {
+          "title": "負責任博彩",
+          "detail": "win10096 鼓勵會員在享受遊戲的同時避免過度遊玩。我們協助會員認識自身極限,並透過帳戶管理頁面設定屬於自己的負責任遊戲限額。\n遊戲是一種娛樂形式,不應成為情緒或財務上的負擔。挪用借款或將資金移作他用是不明智的行為,可能對您及您周遭的人造成嚴重問題。希望您在 win10096 能夠負責任地享受遊戲!\n若您對負責任遊戲有任何疑問,請聯繫客服。我們提供以下協助:\n1. 自我評估\n2. 投注管理\n3. 存款限額\n4. 家長保護\n5. 協助與建議"
+        },
+        {
+          "title": "自我評估",
+          "detail": "1. 您是否為了逃避無聊或不快樂的生活而遊玩?\n2. 輸錢後,您是否會有想盡快贏回損失的衝動?\n3. 遊玩時,您是否傾向持續下去直到資金全數用盡?\n4. 您是否曾說謊以隱瞞花在賭博上的金額或時間?\n5. 您是否因為賭博而對家人、朋友或興趣失去興趣?\n6. 遊玩時錢用完時,您是否感到絕望或失落,並想盡快再次遊玩?\n\n您是否因賭博而感到憂鬱或有輕生念頭?若您的答案大多為「是」,您可能正經歷賭博成癮。如需免費且獨立的建議,請聯繫如 Gambling Therapy(https://www.gamblingtherapy.org/)等機構,或與我們聯繫。"
+        },
+        {
+          "title": "投注管理",
+          "detail": "大多數人是以娛樂心態賭博,但對某些人而言,這可能會成為一個問題。\n您可以牢記以下幾點:\n1. 賭博應是一種樂趣,而非賺錢的手段。\n2. 僅在您財務能力範圍內賭博。\n3. 記錄您花在賭博上的時間與金錢。\n4. 考慮在您的手機或平板上安裝賭博網站封鎖軟體,例如 Betfilter(www.betfilter.com)或 Gamblock(www.gamblock.com)。\n5. 若您想與人談論賭博問題,請聯繫我們或上述機構之一。"
+        }
+      ]
+    },
+    "rules": {
+      "items": [
+        {
+          "title": "規則與條款",
+          "detail": "win10096 對於以套利投注、使用投注工具、檢舉與駭客攻擊、恐嚇、優惠濫用或組織性集體投注等異常方式使用本網站為目的而註冊之會員,將予以嚴格處分。若經認定會員違反上述規範,win10096 保留不經事先警告即沒收會員帳戶之權利。註冊並使用 win10096 即視為您已理解並同意所有條款、規則與規範。"
+        },
+        {
+          "title": "存提款",
+          "detail": "- 若未經事先核實即存入錯誤帳戶,win10096 對因此產生之任何損失概不負責。\n- 除活動/優惠另有說明外,所有時間均以 GMT+8 為準。\n- 存款與提款申請僅能使用帳戶持有人本人登記之銀行資料辦理;使用他人資料之申請將無法受理。\n- 銀行帳戶資訊不得以家人、親屬、熟人或其他任何人之名義登記,須與本網站實際使用者相符。\n- 嚴禁使用人頭帳戶。不允許使用人頭帳戶進行存款或提款。\n- 若您使用非本人名義之帳戶存款,該筆存款將無法受理,win10096 可能要求提供相關文件以處理該筆交易。\n- 為防範洗錢與金融詐欺,存入金額須完成全額打碼後方可提款。\n- 不接受以支票或票據方式存款。"
+        }
+      ]
+    },
+    "faq": {
+      "categories": [
+        {
+          "title": "一般資訊",
+          "items": [
+            {
+              "title": "關於 win10096",
+              "detail": "win10096 是提供可信且經驗證遊戲的海外投注網站。從體育、老虎機、真人娛樂場到迷你遊戲,我們致力於緊跟線上娛樂產品的潮流。您可以在享受精彩遊戲的同時,獲得各種優惠活動、紅利與客戶忠誠計畫等多重福利。"
+            },
+            {
+              "title": "網站提供的遊戲公平嗎?",
+              "detail": "win10096 為合法註冊之公司,所有遊戲結果絕對公平、公正,並以實際結果為準。"
+            },
+            {
+              "title": "我的個人資料安全嗎?",
+              "detail": "我們將您的個人資料保護視為第一優先。除非法規、適用法律或法院命令要求,win10096 絕不會與任何第三方分享您的資料。"
+            }
+          ]
+        },
+        {
+          "title": "帳戶管理",
+          "items": [
+            {
+              "title": "如何變更密碼?",
+              "detail": "登入網站後,點選「資訊中心 > 我的資料」,即可透過「登入密碼」選單變更密碼。"
+            },
+            {
+              "title": "我忘記密碼了,要怎麼補發?",
+              "detail": "若您忘記帳戶密碼,請點選「忘記密碼」按鈕,輸入您的帳號與註冊時填寫的電子信箱。資料正確的話,臨時密碼將寄送至您的信箱。"
+            }
+          ]
+        }
+      ]
+    }
+  },
   "ko": {
     "support": {
       "items": [

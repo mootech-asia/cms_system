@@ -11,7 +11,8 @@
   var D = window.WIN15_DATA || {};
   var IMG = 'assets/images/';
   var LOCALE_KEY = 'v15-locale';
-  var LOCALE_CODES = ['ko', 'en'];
+  var LOCALE_CODES = ['ko', 'en', 'zh'];
+  var HTML_LANG_BY_LOCALE = { ko: 'ko', en: 'en', zh: 'zh-Hant' };
   var LOGIN_KEY = 'v15-logged-in';
 
   function qs(sel, root) { return (root || document).querySelector(sel); }
@@ -63,7 +64,7 @@
   }
   function applyLocale() {
     var loc = currentLocale();
-    document.documentElement.setAttribute('lang', loc === 'ko' ? 'ko' : 'en');
+    document.documentElement.setAttribute('lang', HTML_LANG_BY_LOCALE[loc] || 'en');
     qsa('[data-i18n]').forEach(function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
     qsa('[data-i18n-html]').forEach(function (el) { el.innerHTML = t(el.getAttribute('data-i18n-html')); });
     var entry = (D.LANGUAGES || []).filter(function (l) { return l.code === loc; })[0];
