@@ -2638,25 +2638,32 @@ input {
 }
 .record-status-panel {
   display: none;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-direction: column;
   background: #fff;
-  border-radius: 10px;
-  padding: 8px;
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
   margin-top: 4px;
+  overflow: hidden;
 }
 .record-status-panel.is-open {
   display: flex;
 }
 .record-status-panel button {
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: #f2f2f2;
+  width: 100%;
+  text-align: left;
+  padding: 10px 16px;
   color: var(--c-navy);
-  font-size: 13px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--c-border);
+}
+.record-status-panel button:last-child {
+  border-bottom: 0;
+}
+.record-status-panel button:hover {
+  background: #f6f6f6;
 }
 .record-status-panel button.is-active {
-  background-image: var(--g-primary);
+  background: #fff3d6;
   font-weight: 700;
 }
 
@@ -2764,9 +2771,9 @@ input {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  padding-bottom: 12px;
-  margin-bottom: 12px;
-  border-bottom: 1px solid var(--c-border);
+  padding-top: 12px;
+  margin-top: 12px;
+  border-top: 1px solid var(--c-border);
 }
 .dr-quick button {
   padding: 6px 10px;
@@ -2774,27 +2781,6 @@ input {
   border: 1px solid var(--c-border);
   color: var(--c-navy);
   font-size: 12px;
-}
-.dr-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-.dr-nav button {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  color: var(--c-navy);
-  font-weight: 700;
-}
-.dr-nav button:hover {
-  background: #f2f2f2;
-}
-.dr-nav span {
-  color: var(--c-navy);
-  font-weight: 700;
-  font-size: 14px;
 }
 .dr-grids {
   display: flex;
@@ -2812,12 +2798,40 @@ input {
     display: block;
   }
 }
+/* 導覽箭頭附著在各自月曆頭部(對照真實雙月曆呈現:左月曆左上/右月曆
+   右上),.dr-next-mobile-only 只在單月曆(手機)版面顯示,桌機由右月曆
+   自己的箭頭負責換頁 */
+.dr-grid-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.dr-grid-nav {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  color: var(--c-navy);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.dr-grid-nav:hover {
+  background: #f2f2f2;
+}
+.dr-next-mobile-only {
+  visibility: visible;
+}
+@media (min-width: 768px) {
+  .dr-next-mobile-only {
+    visibility: hidden;
+  }
+}
 .dr-grid-title {
+  flex: 1;
   text-align: center;
   color: var(--c-navy);
   font-weight: 700;
   font-size: 13px;
-  margin-bottom: 6px;
 }
 .dr-weekdays,
 .dr-days {

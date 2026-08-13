@@ -69,6 +69,10 @@
     qsa('[data-i18n-html]').forEach(function (el) { el.innerHTML = t(el.getAttribute('data-i18n-html')); });
     var entry = (D.LANGUAGES || []).filter(function (l) { return l.code === loc; })[0];
     qsa('[data-locale-label]').forEach(function (el) { el.textContent = entry ? entry.label : loc; });
+    /* 切換語言不會整頁重新整理,頁面若有把翻譯後文字直接寫進動態產生的
+       表格內容(例如狀態欄位),data-i18n 掃描不到,需要自行監聽這個事件
+       重新 render 一次 */
+    document.dispatchEvent(new CustomEvent('win15:localechange'));
   }
 
   /* ================================================================
@@ -662,6 +666,7 @@
     panel.className = 'dr-panel';
     panel.hidden = true;
     panel.innerHTML =
+      '<div class="dr-grids"><div class="dr-grid" data-dr-grid="0"></div><div class="dr-grid dr-grid-2" data-dr-grid="1"></div></div>' +
       '<div class="dr-quick">' +
       '<button type="button" data-dr-quick="today">' + t('common.dateRange.today') + '</button>' +
       '<button type="button" data-dr-quick="yesterday">' + t('common.dateRange.yesterday') + '</button>' +
@@ -669,8 +674,6 @@
       '<button type="button" data-dr-quick="lastWeek">' + t('common.dateRange.lastWeek') + '</button>' +
       '<button type="button" data-dr-quick="lastMonth">' + t('common.dateRange.lastMonth') + '</button>' +
       '</div>' +
-      '<div class="dr-nav"><button type="button" data-dr-prev>‹</button><span data-dr-caption></span><button type="button" data-dr-next>›</button></div>' +
-      '<div class="dr-grids"><div class="dr-grid" data-dr-grid="0"></div><div class="dr-grid dr-grid-2" data-dr-grid="1"></div></div>' +
       '<div class="dr-actions"><button type="button" class="dr-clear-btn" data-dr-clear>' + t('common.reset') + '</button><button type="button" class="dr-apply-btn" data-dr-apply>' + t('common.confirm') + '</button></div>';
     document.body.appendChild(panel);
 
@@ -689,9 +692,15 @@
       return cells;
     }
 
-    function renderGrid(gridEl, y, m) {
+    /* 導覽箭頭對照真實雙月曆呈現方式,附著在各自月曆頭部(左月曆左上/右
+       月曆右上),而非合併成單一橫列;gridIndex 0 額外補一顆手機專用的
+       「下一月」箭頭(桌機隱藏),讓手機只顯示一個月曆時仍能雙向翻頁 */
+    function renderGrid(gridEl, y, m, gridIndex) {
       var cells = buildGrid(y, m);
-      var html = '<p class="dr-grid-title">' + monthCaption(y, m) + '</p>' +
+      var head = gridIndex === 0
+        ? '<button type="button" class="dr-grid-nav" data-dr-prev>‹</button><span class="dr-grid-title">' + monthCaption(y, m) + '</span><button type="button" class="dr-grid-nav dr-next-mobile-only" data-dr-next>›</button>'
+        : '<span class="dr-grid-title">' + monthCaption(y, m) + '</span><button type="button" class="dr-grid-nav" data-dr-next>›</button>';
+      var html = '<div class="dr-grid-head">' + head + '</div>' +
         '<div class="dr-weekdays">' + WEEKDAYS.map(function (w) { return '<span>' + w + '</span>'; }).join('') + '</div>' +
         '<div class="dr-days">' + cells.map(function (d) {
           var isCurrentMonth = d.getMonth() === m;
@@ -720,14 +729,27 @@
           renderPanel();
         });
       });
+      qsa('[data-dr-prev]', gridEl).forEach(function (btn) {
+        on(btn, 'click', function () {
+          viewMonth -= 1;
+          if (viewMonth < 0) { viewMonth = 11; viewYear -= 1; }
+          renderPanel();
+        });
+      });
+      qsa('[data-dr-next]', gridEl).forEach(function (btn) {
+        on(btn, 'click', function () {
+          viewMonth += 1;
+          if (viewMonth > 11) { viewMonth = 0; viewYear += 1; }
+          renderPanel();
+        });
+      });
     }
 
     function renderPanel() {
-      qs('[data-dr-caption]', panel).textContent = monthCaption(viewYear, viewMonth) + ' - ' + monthCaption(viewYear, viewMonth + 1 > 11 ? 0 : viewMonth + 1).replace(/^\d+\./, (viewMonth + 1 > 11 ? viewYear + 1 : viewYear) + '.');
-      renderGrid(qs('[data-dr-grid="0"]', panel), viewYear, viewMonth);
+      renderGrid(qs('[data-dr-grid="0"]', panel), viewYear, viewMonth, 0);
       var nextY = viewMonth + 1 > 11 ? viewYear + 1 : viewYear;
       var nextM = viewMonth + 1 > 11 ? 0 : viewMonth + 1;
-      renderGrid(qs('[data-dr-grid="1"]', panel), nextY, nextM);
+      renderGrid(qs('[data-dr-grid="1"]', panel), nextY, nextM, 1);
     }
 
     function setRange(start, end) {
@@ -737,17 +759,6 @@
       viewMonth = start.getMonth();
       renderPanel();
     }
-
-    on(qs('[data-dr-prev]', panel), 'click', function () {
-      viewMonth -= 1;
-      if (viewMonth < 0) { viewMonth = 11; viewYear -= 1; }
-      renderPanel();
-    });
-    on(qs('[data-dr-next]', panel), 'click', function () {
-      viewMonth += 1;
-      if (viewMonth > 11) { viewMonth = 0; viewYear += 1; }
-      renderPanel();
-    });
 
     on(qs('[data-dr-quick="today"]', panel), 'click', function () { setRange(new Date(today), new Date(today)); });
     on(qs('[data-dr-quick="yesterday"]', panel), 'click', function () {
