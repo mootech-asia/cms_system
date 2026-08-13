@@ -44,7 +44,7 @@
         <section class="home-vendor-section">
           <div class="home-vendor-head">
             <div class="home-vendor-title">
-              <img src="assets/images/icon/liveCasino.svg" alt="live casino" />
+              <img src="assets/images/icon/liveCasino2.svg" alt="live casino" />
               <span data-i18n="navbar.top.liveCasino">라이브 카지노</span>
             </div>
             <div class="home-vendor-actions">
@@ -72,7 +72,7 @@
         <section class="home-vendor-section">
           <div class="home-vendor-head">
             <div class="home-vendor-title">
-              <img src="assets/images/icon/slotGames.svg" alt="slot games" />
+              <img src="assets/images/icon/slotGames2.svg" alt="slot games" />
               <span data-i18n="navbar.top.slots">슬롯</span>
             </div>
             <div class="home-vendor-actions">
@@ -127,11 +127,7 @@
 
         /* ---- Hot Game(目前線上尚未上架真實遊戲,顯示 COMING SOON 占位卡片) ---- */
         var hgTrack = W.qs('[data-hot-game-track]');
-        var hgIndex = 0;
-        var hgStep = 331;
-        function updateHgStep() {
-          hgStep = window.innerWidth >= 1280 ? 465 + 20 : 311 + 20;
-        }
+        var hgStrip = W.qs('.hot-game-strip');
         function renderHotGames() {
           hgTrack.innerHTML = D.HOT_GAMES.map(function (g) {
             var thumb = g.image
@@ -148,15 +144,13 @@
           }).join('');
         }
         function moveHg(delta) {
-          var max = Math.max(0, D.HOT_GAMES.length - 1);
-          hgIndex = Math.min(max, Math.max(0, hgIndex + delta));
-          hgTrack.style.transform = 'translateX(-' + (hgIndex * hgStep) + 'px)';
+          var card = hgTrack.querySelector('.hot-game-card');
+          var cardWidth = (card && card.offsetWidth) || 311;
+          hgStrip.scrollBy({ left: delta * (cardWidth + 20), behavior: 'smooth' });
         }
-        updateHgStep();
         renderHotGames();
         W.on(W.qs('[data-hot-game-prev]'), 'click', function () { moveHg(-1); });
         W.on(W.qs('[data-hot-game-next]'), 'click', function () { moveHg(1); });
-        window.addEventListener('resize', function () { updateHgStep(); moveHg(0); });
 
         /* ---- Live Casino / Live Sports(等大卡片,深底置中 logo + Play Now) ---- */
         function vendorCardHtml(v) {
@@ -204,6 +198,54 @@
         promoDots.innerHTML = D.PROMO_HOME_CARDS.map(function (_, i) {
           return '<span class="promo-home-dot' + (i === 0 ? ' is-active' : '') + '"></span>';
         }).join('');
+
+        /* ---- 首頁進站廣告彈窗(對照 components/PromotionModal.vue,
+           demo 環境沒有真實公告 API,固定取用 D.PROMOTIONS 其中一筆促銷;
+           以 localStorage 記錄「今天不再提醒」,key 每天自動換新 ---- */
+        (function initPromoPopup() {
+          var promo = D.PROMOTIONS[1];
+          if (!promo) return;
+          function todayKey() {
+            var d = new Date();
+            function pad(n) { return String(n).padStart(2, '0'); }
+            return 'promotion_' + d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+          }
+          var dismissedIds = [];
+          try { dismissedIds = JSON.parse(localStorage.getItem(todayKey()) || '[]'); } catch (e) {}
+          if (dismissedIds.indexOf(String(promo.promotion_id)) !== -1) return;
+
+          var loc = W.currentLocale();
+          var backdrop = document.createElement('div');
+          backdrop.className = 'promo-popup-backdrop';
+          backdrop.innerHTML =
+            '<div class="promo-popup-card">' +
+            '<div class="promo-popup-head">' +
+            '<img src="' + W.IMG + 'index/img-logo.png" alt="logo">' +
+            '<button type="button" class="promo-popup-close" data-promo-popup-close><img src="' + W.icon('close.svg') + '" alt="close"></button>' +
+            '</div>' +
+            '<div class="promo-popup-content" data-promo-popup-content><img src="' + W.IMG + 'index/promotion/' + promo.image + '" alt="' + promo.title[loc] + '"></div>' +
+            '<div class="promo-popup-foot">' +
+            '<input type="checkbox" data-promo-popup-remember>' +
+            '<span data-i18n="promotion.dontRemindToday">' + W.t('promotion.dontRemindToday') + '</span>' +
+            '</div>' +
+            '</div>';
+          document.body.appendChild(backdrop);
+
+          function close() {
+            if (W.qs('[data-promo-popup-remember]', backdrop).checked) {
+              var key = todayKey();
+              var list = [];
+              try { list = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) {}
+              list.push(String(promo.promotion_id));
+              localStorage.setItem(key, JSON.stringify(list));
+            }
+            backdrop.remove();
+          }
+          W.on(W.qs('[data-promo-popup-close]', backdrop), 'click', function (e) { e.stopPropagation(); close(); });
+          W.on(W.qs('[data-promo-popup-content]', backdrop), 'click', function () {
+            location.href = 'promotion-detail.html?id=' + promo.promotion_id;
+          });
+        })();
 
         W.applyLocale();
       };

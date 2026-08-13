@@ -74,6 +74,8 @@
         W.qs('[data-record-body-desktop]').innerHTML = D.PROFIT_LOSS_RECORDS.map(function (r) {
           return '<tr><td>' + r.game_type + '</td><td class="' + plClass(r.pnl) + '">' + fmt(r.pnl) + '</td><td>' + fmt(r.betting) + '</td><td>' + fmt(r.valid_bet) + '</td><td>' + fmt(r.win) + '</td><td>' + fmt(r.rebate) + '</td></tr>';
         }).join('');
+
+        W.initDateRangePicker(W.qs('.record-date-btn'));
       };
     </script>
   </body>

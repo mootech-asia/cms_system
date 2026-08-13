@@ -89,6 +89,8 @@
 
         var totalPl = D.BETTING_RECORDS.reduce(function (s, r) { return s + r.pl; }, 0);
         W.qs('[data-total-pl]').textContent = fmt(totalPl);
+
+        W.initDateRangePicker(W.qs('.record-date-btn'));
       };
     </script>
   </body>

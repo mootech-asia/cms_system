@@ -597,6 +597,222 @@
     if (userNavbarMount || userSidebarMount) bindUserSidebar(document);
   }
 
+  /* 紀錄頁「自動刷新倒數」共用元件(withdrawalRecord/depositRecord/withdrawalDetail
+     皆為同一個 .record-refresh 標記):倒數歸零自動刷新並重置為 30 秒,點擊圖示
+     則立即刷新並重置倒數,避免每頁各自重寫一份計時器 */
+  function initAutoRefresh(onRefresh) {
+    var el = qs('.record-refresh');
+    if (!el) return;
+    var secondsEl = qs('strong', el);
+    var seconds = 30;
+    function reset() {
+      seconds = 30;
+      secondsEl.textContent = seconds;
+    }
+    setInterval(function () {
+      seconds -= 1;
+      if (seconds <= 0) {
+        seconds = 30;
+        onRefresh();
+      }
+      secondsEl.textContent = seconds;
+    }, 1000);
+    on(qs('[data-refresh-btn]', el), 'click', function () {
+      reset();
+      onRefresh();
+    });
+  }
+
+  /* 日期範圍選擇器(對照 components/DateRangePicker.vue:PrimeVue DatePicker
+     selectionMode="range" + showButtonBar 快速鍵,桌機雙月曆/手機單月曆,
+     不可選未來日期)。btn 為 .record-date-btn 元素,onApply(startDate,endDate)
+     於按下確認時呼叫。 */
+  function initDateRangePicker(btn, onApply) {
+    if (!btn) return;
+    var WEEKDAYS = ['월', '화', '수', '목', '금', '토', '일'];
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    function fmt(d) {
+      function pad(n) { return String(n).padStart(2, '0'); }
+      return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    }
+    function sameDay(a, b) { return a && b && fmt(a) === fmt(b); }
+    function parseBtnRange() {
+      var m = (btn.textContent || '').trim().match(/(\d{4}-\d{2}-\d{2})\s*~\s*(\d{4}-\d{2}-\d{2})/);
+      if (!m) return null;
+      return [new Date(m[1]), new Date(m[2])];
+    }
+    function isoWeekStart(d) {
+      var x = new Date(d);
+      x.setHours(0, 0, 0, 0);
+      var day = x.getDay() || 7;
+      x.setDate(x.getDate() - (day - 1));
+      return x;
+    }
+
+    var initial = parseBtnRange();
+    var pendingStart = initial ? initial[0] : null;
+    var pendingEnd = initial ? initial[1] : null;
+    var viewYear = (pendingStart || today).getFullYear();
+    var viewMonth = (pendingStart || today).getMonth();
+
+    var panel = document.createElement('div');
+    panel.className = 'dr-panel';
+    panel.hidden = true;
+    panel.innerHTML =
+      '<div class="dr-quick">' +
+      '<button type="button" data-dr-quick="today">' + t('common.dateRange.today') + '</button>' +
+      '<button type="button" data-dr-quick="yesterday">' + t('common.dateRange.yesterday') + '</button>' +
+      '<button type="button" data-dr-quick="thisWeek">' + t('common.dateRange.thisWeek') + '</button>' +
+      '<button type="button" data-dr-quick="lastWeek">' + t('common.dateRange.lastWeek') + '</button>' +
+      '<button type="button" data-dr-quick="lastMonth">' + t('common.dateRange.lastMonth') + '</button>' +
+      '</div>' +
+      '<div class="dr-nav"><button type="button" data-dr-prev>‹</button><span data-dr-caption></span><button type="button" data-dr-next>›</button></div>' +
+      '<div class="dr-grids"><div class="dr-grid" data-dr-grid="0"></div><div class="dr-grid dr-grid-2" data-dr-grid="1"></div></div>' +
+      '<div class="dr-actions"><button type="button" class="dr-clear-btn" data-dr-clear>' + t('common.reset') + '</button><button type="button" class="dr-apply-btn" data-dr-apply>' + t('common.confirm') + '</button></div>';
+    document.body.appendChild(panel);
+
+    function monthCaption(y, m) { return y + '.' + String(m + 1).padStart(2, '0'); }
+
+    function buildGrid(y, m) {
+      var first = new Date(y, m, 1);
+      var startOffset = (first.getDay() || 7) - 1; /* 週一為第一天 */
+      var gridStart = new Date(y, m, 1 - startOffset);
+      var cells = [];
+      for (var i = 0; i < 42; i++) {
+        var d = new Date(gridStart);
+        d.setDate(gridStart.getDate() + i);
+        cells.push(d);
+      }
+      return cells;
+    }
+
+    function renderGrid(gridEl, y, m) {
+      var cells = buildGrid(y, m);
+      var html = '<p class="dr-grid-title">' + monthCaption(y, m) + '</p>' +
+        '<div class="dr-weekdays">' + WEEKDAYS.map(function (w) { return '<span>' + w + '</span>'; }).join('') + '</div>' +
+        '<div class="dr-days">' + cells.map(function (d) {
+          var isCurrentMonth = d.getMonth() === m;
+          var isDisabled = d.getTime() > today.getTime();
+          var cls = [];
+          if (!isCurrentMonth) cls.push('is-muted');
+          if (isDisabled) cls.push('is-disabled');
+          if (pendingStart && sameDay(d, pendingStart)) cls.push('is-range-start');
+          if (pendingEnd && sameDay(d, pendingEnd)) cls.push('is-range-end');
+          if (pendingStart && pendingEnd && d.getTime() > pendingStart.getTime() && d.getTime() < pendingEnd.getTime()) cls.push('is-in-range');
+          return '<button type="button" class="' + cls.join(' ') + '" data-dr-day="' + fmt(d) + '"' + (isDisabled ? ' disabled' : '') + '>' + d.getDate() + '</button>';
+        }).join('') + '</div>';
+      gridEl.innerHTML = html;
+      qsa('[data-dr-day]:not([disabled])', gridEl).forEach(function (dayBtn) {
+        on(dayBtn, 'click', function () {
+          var d = new Date(dayBtn.getAttribute('data-dr-day'));
+          if (!pendingStart || (pendingStart && pendingEnd)) {
+            pendingStart = d;
+            pendingEnd = null;
+          } else if (d.getTime() < pendingStart.getTime()) {
+            pendingEnd = pendingStart;
+            pendingStart = d;
+          } else {
+            pendingEnd = d;
+          }
+          renderPanel();
+        });
+      });
+    }
+
+    function renderPanel() {
+      qs('[data-dr-caption]', panel).textContent = monthCaption(viewYear, viewMonth) + ' - ' + monthCaption(viewYear, viewMonth + 1 > 11 ? 0 : viewMonth + 1).replace(/^\d+\./, (viewMonth + 1 > 11 ? viewYear + 1 : viewYear) + '.');
+      renderGrid(qs('[data-dr-grid="0"]', panel), viewYear, viewMonth);
+      var nextY = viewMonth + 1 > 11 ? viewYear + 1 : viewYear;
+      var nextM = viewMonth + 1 > 11 ? 0 : viewMonth + 1;
+      renderGrid(qs('[data-dr-grid="1"]', panel), nextY, nextM);
+    }
+
+    function setRange(start, end) {
+      pendingStart = start;
+      pendingEnd = end;
+      viewYear = start.getFullYear();
+      viewMonth = start.getMonth();
+      renderPanel();
+    }
+
+    on(qs('[data-dr-prev]', panel), 'click', function () {
+      viewMonth -= 1;
+      if (viewMonth < 0) { viewMonth = 11; viewYear -= 1; }
+      renderPanel();
+    });
+    on(qs('[data-dr-next]', panel), 'click', function () {
+      viewMonth += 1;
+      if (viewMonth > 11) { viewMonth = 0; viewYear += 1; }
+      renderPanel();
+    });
+
+    on(qs('[data-dr-quick="today"]', panel), 'click', function () { setRange(new Date(today), new Date(today)); });
+    on(qs('[data-dr-quick="yesterday"]', panel), 'click', function () {
+      var d = new Date(today); d.setDate(d.getDate() - 1);
+      setRange(d, new Date(d));
+    });
+    on(qs('[data-dr-quick="thisWeek"]', panel), 'click', function () {
+      var start = isoWeekStart(today);
+      var end = new Date(start); end.setDate(end.getDate() + 6);
+      setRange(start, end.getTime() > today.getTime() ? new Date(today) : end);
+    });
+    on(qs('[data-dr-quick="lastWeek"]', panel), 'click', function () {
+      var thisStart = isoWeekStart(today);
+      var start = new Date(thisStart); start.setDate(start.getDate() - 7);
+      var end = new Date(start); end.setDate(end.getDate() + 6);
+      setRange(start, end);
+    });
+    on(qs('[data-dr-quick="lastMonth"]', panel), 'click', function () {
+      var firstThisMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+      var start = new Date(firstThisMonth.getFullYear(), firstThisMonth.getMonth() - 1, 1);
+      var end = new Date(firstThisMonth.getFullYear(), firstThisMonth.getMonth(), 0);
+      setRange(start, end);
+    });
+    on(qs('[data-dr-clear]', panel), 'click', function () {
+      pendingStart = null;
+      pendingEnd = null;
+      renderPanel();
+    });
+    on(qs('[data-dr-apply]', panel), 'click', function () {
+      if (pendingStart) {
+        var end = pendingEnd || pendingStart;
+        btn.textContent = fmt(pendingStart) + ' ~ ' + fmt(end);
+        if (typeof onApply === 'function') onApply(pendingStart, end);
+      }
+      closePanel();
+    });
+
+    function positionPanel() {
+      var r = btn.getBoundingClientRect();
+      var panelWidth = panel.offsetWidth || 320;
+      var left = Math.min(r.left, window.innerWidth - panelWidth - 12);
+      panel.style.top = (r.bottom + 6) + 'px';
+      panel.style.left = Math.max(12, left) + 'px';
+    }
+    function openPanel() {
+      renderPanel();
+      panel.hidden = false;
+      positionPanel();
+      document.addEventListener('click', onOutsideClick, true);
+    }
+    function closePanel() {
+      panel.hidden = true;
+      document.removeEventListener('click', onOutsideClick, true);
+    }
+    function onOutsideClick(e) {
+      if (panel.contains(e.target) || btn.contains(e.target)) return;
+      closePanel();
+    }
+    on(btn, 'click', function (e) {
+      e.stopPropagation();
+      if (panel.hidden) openPanel();
+      else closePanel();
+    });
+    window.addEventListener('resize', function () { if (!panel.hidden) positionPanel(); }, { passive: true });
+  }
+
   window.WIN15 = {
     t: t,
     currentLocale: currentLocale,
@@ -610,6 +826,8 @@
     on: on,
     showAlert: showAlert,
     showAuthModal: showAuthModal,
+    initAutoRefresh: initAutoRefresh,
+    initDateRangePicker: initDateRangePicker,
   };
 
   document.addEventListener('DOMContentLoaded', function () {

@@ -111,7 +111,8 @@
             render();
           });
         });
-        W.on(W.qs('[data-refresh-btn]'), 'click', render);
+        W.initAutoRefresh(render);
+        W.initDateRangePicker(W.qs('.record-date-btn'));
 
         render();
       };

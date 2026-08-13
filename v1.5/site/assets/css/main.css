@@ -879,6 +879,16 @@ input {
     font-size: 14px;
   }
 }
+/* 對照真實原始碼 gameType.vue 的 Marquee 只加了 class="hidden xl:block",
+   桌機才顯示,手機隱藏(首頁的 Marquee 沒有這個限制) */
+.gf-marquee-desktop {
+  display: none;
+}
+@media (min-width: 1280px) {
+  .gf-marquee-desktop {
+    display: block;
+  }
+}
 
 /* ---- HotGame(components/HotGame.vue) ---- */
 .hot-game {
@@ -924,12 +934,15 @@ input {
   height: 20px;
 }
 .hot-game-strip {
-  overflow: hidden;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.hot-game-strip::-webkit-scrollbar {
+  display: none;
 }
 .hot-game-track {
   display: flex;
   gap: 20px;
-  transition: transform 0.5s ease-out;
 }
 .hot-game-card {
   flex-shrink: 0;
@@ -2729,6 +2742,147 @@ input {
 }
 
 /* ============================================================
+   日期範圍選擇器(components/DateRangePicker.vue,PrimeVue DatePicker
+   選 range + showButtonBar 快速鍵的純 HTML+CSS+JS 重製)
+   ============================================================ */
+.dr-panel {
+  position: fixed;
+  z-index: 260;
+  width: min(320px, calc(100vw - 24px));
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  padding: 12px;
+}
+@media (min-width: 768px) {
+  .dr-panel {
+    width: 552px;
+  }
+}
+.dr-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--c-border);
+}
+.dr-quick button {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--c-border);
+  color: var(--c-navy);
+  font-size: 12px;
+}
+.dr-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.dr-nav button {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  color: var(--c-navy);
+  font-weight: 700;
+}
+.dr-nav button:hover {
+  background: #f2f2f2;
+}
+.dr-nav span {
+  color: var(--c-navy);
+  font-weight: 700;
+  font-size: 14px;
+}
+.dr-grids {
+  display: flex;
+  gap: 16px;
+}
+.dr-grid {
+  flex: 1;
+  min-width: 0;
+}
+.dr-grid-2 {
+  display: none;
+}
+@media (min-width: 768px) {
+  .dr-grid-2 {
+    display: block;
+  }
+}
+.dr-grid-title {
+  text-align: center;
+  color: var(--c-navy);
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.dr-weekdays,
+.dr-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.dr-weekdays span {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 11px;
+  padding: 4px 0;
+}
+.dr-days button {
+  aspect-ratio: 1;
+  width: 100%;
+  border-radius: 8px;
+  color: var(--c-navy);
+  font-size: 12px;
+}
+.dr-days button:hover {
+  background: #f2f2f2;
+}
+.dr-days button.is-muted {
+  color: #d1d5db;
+}
+.dr-days button.is-disabled {
+  color: #e5e7eb;
+  cursor: not-allowed;
+}
+.dr-days button.is-range-start,
+.dr-days button.is-range-end {
+  background: var(--c-navy);
+  color: #fff;
+  font-weight: 700;
+}
+.dr-days button.is-in-range {
+  background: #e7e7e7;
+  color: #334155;
+  border-radius: 0;
+}
+.dr-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--c-border);
+}
+.dr-actions button {
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13px;
+}
+.dr-clear-btn {
+  color: var(--c-navy);
+  border: 1px solid var(--c-border);
+}
+.dr-apply-btn {
+  background: var(--g-primary);
+  color: var(--c-navy);
+}
+
+/* ============================================================
    個人資料(personalInfo.vue)
    ============================================================ */
 .pi-page {
@@ -3857,7 +4011,12 @@ input {
 }
 @media (min-width: 768px) {
   .auth-modal {
+    /* 對照真實原始碼 Login.vue 的 xl:w-[760px] xl:h-[600px]:彈窗本身是固定尺寸,
+       不會因為登入/註冊/忘記密碼表單欄位數量不同而跟著變高,表單內容過長時
+       改由 .auth-modal-form 內部滾動,避免左側裝飾圖每次顯示的裁切範圍跑掉 */
     max-width: 700px;
+    width: 100%;
+    height: 600px;
     padding: 0;
     display: flex;
     border-radius: 24px;
@@ -3880,11 +4039,101 @@ input {
     flex: 1;
     padding: 40px 36px 32px;
     overflow-y: auto;
-    max-height: 90vh;
+    height: 100%;
   }
   .auth-modal-title {
     text-align: left;
     border-bottom: 0;
     padding-bottom: 0;
+  }
+}
+
+/* ============================================================
+   首頁進站廣告彈窗(components/PromotionModal.vue,對照真實網站首頁截圖)
+   ============================================================ */
+.promo-popup-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 280;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.promo-popup-card {
+  display: flex;
+  flex-direction: column;
+  width: min(280px, calc(100vw - 32px));
+  height: min(436px, calc(100dvh - 32px));
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.promo-popup-head {
+  flex-shrink: 0;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.promo-popup-head img {
+  width: 84px;
+}
+.promo-popup-close {
+  width: 20px;
+  height: 20px;
+}
+.promo-popup-close img {
+  width: 100%;
+  height: 100%;
+}
+.promo-popup-content {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+.promo-popup-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.promo-popup-foot {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.5);
+}
+.promo-popup-foot span {
+  color: var(--c-navy);
+  font-size: 13px;
+}
+.promo-popup-foot input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--c-navy);
+}
+@media (min-width: 1280px) {
+  .promo-popup-card {
+    width: 430px;
+    height: 626px;
+  }
+  .promo-popup-head {
+    height: 72px;
+    padding: 0 28px;
+  }
+  .promo-popup-head img {
+    width: 140px;
+  }
+  .promo-popup-foot span {
+    font-size: 14px;
+    font-weight: 700;
   }
 }

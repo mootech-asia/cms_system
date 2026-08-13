@@ -67,13 +67,16 @@
         function fmt(n) { return Number(n).toLocaleString('en-US'); }
         var categoryMap = { 1: W.t('userCenter.withdrawalDetailPage.category.1'), 2: W.t('userCenter.withdrawalDetailPage.category.2'), 3: W.t('userCenter.withdrawalDetailPage.category.3'), 4: W.t('userCenter.withdrawalDetailPage.category.4') };
 
-        W.qs('[data-record-body-mobile]').innerHTML = D.WITHDRAWAL_TURNOVER_TASKS.map(function (r) {
-          return '<tr><td>' + r.createdAt + '</td><td>' + categoryMap[r.category] + '</td><td>' + r.itemName + '</td><td>' + r.achieved + ' / ' + r.target + '</td></tr>';
-        }).join('');
-        W.qs('[data-record-body-desktop]').innerHTML = D.WITHDRAWAL_TURNOVER_TASKS.map(function (r) {
-          return '<tr><td>' + r.createdAt + '</td><td>' + categoryMap[r.category] + '</td><td>' + r.itemName + '</td><td>' + fmt(r.depositFlowAmount) + '</td><td>' + fmt(r.bonusFlowAmount) + '</td><td>' + r.achieved + ' / ' + r.target + '</td></tr>';
-        }).join('');
-        W.on(W.qs('[data-refresh-btn]'), 'click', function () {});
+        function render() {
+          W.qs('[data-record-body-mobile]').innerHTML = D.WITHDRAWAL_TURNOVER_TASKS.map(function (r) {
+            return '<tr><td>' + r.createdAt + '</td><td>' + categoryMap[r.category] + '</td><td>' + r.itemName + '</td><td>' + r.achieved + ' / ' + r.target + '</td></tr>';
+          }).join('');
+          W.qs('[data-record-body-desktop]').innerHTML = D.WITHDRAWAL_TURNOVER_TASKS.map(function (r) {
+            return '<tr><td>' + r.createdAt + '</td><td>' + categoryMap[r.category] + '</td><td>' + r.itemName + '</td><td>' + fmt(r.depositFlowAmount) + '</td><td>' + fmt(r.bonusFlowAmount) + '</td><td>' + r.achieved + ' / ' + r.target + '</td></tr>';
+          }).join('');
+        }
+        W.initAutoRefresh(render);
+        render();
       };
     </script>
   </body>

@@ -11,6 +11,19 @@
       <div data-mount="header"></div>
 
       <main class="game-type-page">
+        <section class="banner">
+          <div class="banner-slides">
+            <div class="banner-slide is-active"><img src="assets/images/banner/banner-gameType.jpg" alt="banner" /></div>
+          </div>
+        </section>
+
+        <section class="home-marquee gf-marquee-desktop">
+          <div class="home-marquee-viewport">
+            <div class="home-marquee-track" data-marquee-track></div>
+          </div>
+          <div class="home-marquee-clock" data-marquee-clock></div>
+        </section>
+
         <div class="game-filter-top">
           <span class="game-filter-title text-gradient" data-gf-title></span>
         </div>
@@ -40,6 +53,23 @@
         var D = window.WIN15_DATA;
         var W = window.WIN15;
         var PAGE_SIZE = 12;
+
+        /* ---- Marquee(對照 gameType.vue,與首頁共用同一份跑馬燈資料) ---- */
+        var track = W.qs('[data-marquee-track]');
+        if (track) {
+          var itemsHtml = D.MARQUEE_ITEMS.map(function (m) {
+            var highlighted = m.title.replace(/^(\S+) won/, '<b>$1</b> won').replace(/([\d,]{4,})/, '<b>$1</b>');
+            return '<span>✦ ' + highlighted + ' ✦</span>';
+          }).join('');
+          track.innerHTML = itemsHtml + itemsHtml;
+        }
+        var clock = W.qs('[data-marquee-clock]');
+        function updateClock() {
+          var d = new Date(Date.now() + 8 * 60 * 60 * 1000);
+          function pad(n) { return String(n).padStart(2, '0'); }
+          clock.textContent = 'GMT+8 ' + d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()) + ' ' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds());
+        }
+        if (clock) { updateClock(); setInterval(updateClock, 1000); }
 
         var TITLE_KEYS = {
           hotgames: 'gameType.types.hotGames',
