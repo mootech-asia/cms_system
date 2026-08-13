@@ -2134,11 +2134,28 @@
       var accounts = D.BANK_ACCOUNTS || [];
       if (count) count.textContent = '(' + accounts.length + '/5)';
       if (list) {
-        list.innerHTML = accounts.map(function (a) {
+        list.innerHTML = accounts.map(function (a, idx) {
           return '<div class="registered-card"><div class="bank-logo">' + escapeHtml(a.bank) + '</div>' +
             '<div><strong>' + escapeHtml(a.bank) + '</strong><span>' + acctMask(a.num) + '</span>' +
-            '<span>' + escapeHtml(a.bindDate || '') + '</span></div></div>';
+            '<span>' + escapeHtml(a.bindDate || '') + '</span></div>' +
+            '<button type="button" class="registered-card-del" data-mgmt-bank-del="' + idx + '" aria-label="Delete bank account">' + TRASH_SVG + '</button></div>';
         }).join('');
+        $all('[data-mgmt-bank-del]', list).forEach(function (btn) {
+          on(btn, 'click', function () {
+            var idx = Number(btn.getAttribute('data-mgmt-bank-del'));
+            var a = accounts[idx];
+            showMemberModal({
+              type: 'danger',
+              subject: a ? a.bank : 'this bank account',
+              onConfirm: function () {
+                accounts.splice(idx, 1);
+                renderMgmtList();
+                if (withdrawalCarouselApi) withdrawalCarouselApi.refresh();
+                showMemberModal({ type: 'success', message: 'Bank account deleted successfully.' });
+              },
+            });
+          });
+        });
       }
     }
     renderMgmtList();
@@ -2159,7 +2176,20 @@
           wrap.className = 'registered-card';
           wrap.innerHTML = '<div class="bank-logo">₿</div>' +
             '<div><strong>' + escapeHtml(w.type) + '</strong><span>' + escapeHtml(walletMask(w.address)) + '</span>' +
-            '<span>' + escapeHtml(w.bindDate || '') + '</span></div>';
+            '<span>' + escapeHtml(w.bindDate || '') + '</span></div>' +
+            '<button type="button" class="registered-card-del" data-mgmt-wallet-del aria-label="Delete wallet">' + TRASH_SVG + '</button>';
+          on(wrap.querySelector('[data-mgmt-wallet-del]'), 'click', function () {
+            showMemberModal({
+              type: 'danger',
+              subject: w.type,
+              onConfirm: function () {
+                wallets.splice(0, 1);
+                renderMgmtWalletList();
+                if (withdrawalWalletApi) withdrawalWalletApi.refresh();
+                showMemberModal({ type: 'success', message: 'Wallet deleted successfully.' });
+              },
+            });
+          });
         }
       }
     }
