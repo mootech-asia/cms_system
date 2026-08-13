@@ -18,6 +18,7 @@
               <h1 class="pay-page-title" data-i18n="userCenter.deposit">입금</h1>
               <section class="pay-section">
                 <div class="pay-section-inner">
+                  <div data-dp-step="amount">
                   <div class="pay-channel-tabs" data-channel-tabs>
                     <button type="button" class="pay-channel-tab is-active" data-channel="A" data-i18n="userCenter.depositPage.channelA">채널 A</button>
                     <button type="button" class="pay-channel-tab" data-channel="B" data-i18n="userCenter.depositPage.channelB">채널 B</button>
@@ -26,7 +27,9 @@
                   </div>
 
                   <!-- 對照 v2 真實原始碼(.payment-tabs):通道分頁下面還有一層
-                       付款方式分頁,兩者是各自獨立的分頁層級 -->
+                       付款方式分頁,兩者是各自獨立的分頁層級;跟金額/優惠一起
+                       包在 amount 步驟裡,進入 QR 步驟後要一併隱藏,不能讓使用
+                       者在已經選定付款方式之後還看到切換通道/付款方式的頁籤 -->
                   <div class="pay-method-tabs" data-dp-method>
                     <button type="button" class="pay-method-tab is-selected" data-dp-method-btn="bank" data-i18n="userCenter.withdrawalPage.bankCard">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18"></path><path d="M7 15h4"></path></svg>은행카드
@@ -42,7 +45,6 @@
                     </button>
                   </div>
 
-                  <div data-dp-step="amount">
                   <div>
                     <span class="pay-pill-label" data-i18n="userCenter.depositPage.depositAmount">입금 금액</span>
                     <div class="pay-amount-grid" data-amount-grid>
