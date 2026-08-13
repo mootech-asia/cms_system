@@ -126,6 +126,11 @@
                       <p class="wallet-amount">₩ 0.00</p>
                     </div>
                   </div>
+                  <p class="wd-turnover-note">
+                    <span data-i18n="common.rolloverAchieved">*롤링 달성</span> amount: ₩0.00
+                    <a class="detail-btn" href="withdrawal-detail.html" data-i18n="common.detail">상세 정보</a>
+                  </p>
+                  <p class="wd-turnover-note"><span data-i18n="common.targetAmount">목표 금액:</span> ₩0.00</p>
                   <div style="text-align: center">
                     <span class="pay-pill-label" style="margin-top: 24px" data-i18n="userCenter.withdrawalPage.walletInfo">지갑 정보</span>
                   </div>
@@ -144,6 +149,10 @@
                     <input type="password" class="pay-input" data-password-input placeholder="거래 비밀번호를 입력해 주세요" data-i18n-placeholder="userCenter.bankingDetailsPage.fillTransactionPassword" />
                     <button type="button" class="pw-toggle" data-toggle-pwd><img src="assets/images/icon/eye.svg" alt="toggle" data-pwd-icon /></button>
                   </div>
+                  <p class="wd-turnover-note" data-wd-crypto-rollover hidden>
+                    <span data-i18n="common.rolloverAchieved">*롤링 달성</span> amount: ₩0.00
+                    <span data-i18n="common.targetAmount">목표 금액:</span> ₩0.00
+                  </p>
                   <p class="pay-note" data-limit-note></p>
 
                   <button type="button" class="pay-next-btn" data-withdrawal-submit disabled>
@@ -323,6 +332,7 @@
           MIN = LIMITS[method].min; MAX = LIMITS[method].max;
           W.qs('[data-wd-bank-fields]').hidden = method !== 'bank';
           W.qs('[data-wd-crypto-fields]').hidden = method !== 'crypto';
+          W.qs('[data-wd-crypto-rollover]').hidden = method !== 'crypto';
           input.placeholder = '₩ ' + fmt(MIN) + ' ~ ₩ ' + fmt(MAX);
           input.value = '';
           refreshLimitNote();
