@@ -591,7 +591,16 @@
         bindNavLinks(document);
       }
     }
-    if (quickSidebarMount) { quickSidebarMount.outerHTML = quickSidebarHtml(); bindQuickSidebar(document); }
+    /* 對照真實網站截圖:會員中心頁面(提款/儲值/帳戶總覽等)不顯示右下角
+       浮動客服快速選單,只有一般前台頁面才掛載 */
+    if (quickSidebarMount) {
+      if (isUserCenterPage()) {
+        quickSidebarMount.remove();
+      } else {
+        quickSidebarMount.outerHTML = quickSidebarHtml();
+        bindQuickSidebar(document);
+      }
+    }
     if (userNavbarMount) userNavbarMount.outerHTML = userNavbarHtml();
     if (userSidebarMount) { userSidebarMount.outerHTML = userSidebarHtml(); bindNavLinks(document); }
     if (userNavbarMount || userSidebarMount) bindUserSidebar(document);
