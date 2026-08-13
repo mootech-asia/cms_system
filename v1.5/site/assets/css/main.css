@@ -912,6 +912,7 @@ input {
   gap: 8px;
   font-size: 18px;
   font-weight: 700;
+  color: var(--c-pink);
 }
 .hot-game-title img {
   width: 24px;
