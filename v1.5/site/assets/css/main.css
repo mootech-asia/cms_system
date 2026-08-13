@@ -1712,6 +1712,9 @@ input {
 .account-hero-desktop-actions {
   display: none;
 }
+.account-hero-desktop-rollover {
+  display: none;
+}
 @media (min-width: 1280px) {
   .account-hero-top {
     padding: 24px 16px;
@@ -1749,7 +1752,6 @@ input {
   }
   .account-hero-desktop-rollover {
     display: flex;
-    flex: 1;
     justify-content: flex-end;
     text-align: right;
     flex-direction: column;
