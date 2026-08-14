@@ -3233,6 +3233,11 @@ input {
   width: 18px;
   height: 18px;
 }
+/* 新增表單就地展開在「+ 新增」按鈕下方,補上間距避免表單緊貼按鈕 */
+[data-wd-mgmt-add-mode],
+[data-bd-add-mode] {
+  margin-top: 24px;
+}
 .bd-add-btn.is-disabled {
   opacity: 0.4;
   cursor: not-allowed;

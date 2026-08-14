@@ -102,12 +102,15 @@
 
         var panel = W.qs('[data-status-panel]');
         W.on(W.qs('[data-toggle-status]'), 'click', function () { panel.classList.toggle('is-open'); });
+        /* 對照設計稿:「상태」按鈕永遠要顯示目前選取的選項(含「전체」),
+           不是只有選了 Pending/Approved/Rejected 才補上文字 */
+        W.qs('[data-status-text]').textContent = '： ' + W.qs('[data-status-value].is-active').textContent;
         W.qsa('[data-status-value]').forEach(function (btn) {
           W.on(btn, 'click', function () {
             currentStatus = btn.getAttribute('data-status-value');
             W.qsa('[data-status-value]').forEach(function (b) { b.classList.remove('is-active'); });
             btn.classList.add('is-active');
-            W.qs('[data-status-text]').textContent = currentStatus ? '： ' + btn.textContent : '';
+            W.qs('[data-status-text]').textContent = '： ' + btn.textContent;
             panel.classList.remove('is-open');
             render();
           });
