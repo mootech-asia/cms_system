@@ -330,7 +330,8 @@
     on(qs('[data-cs-close]', root), 'click', close);
     on(qs('[data-cs-backdrop]', root), 'click', function (e) { if (e.target === e.currentTarget) close(); });
     on(qs('[data-cs-action="liveChat"]', root), 'click', function () {
-      window.alert('此為靜態設計預覽,客服視窗尚未實作。');
+      close();
+      showAlert({ type: 'confirmation', confirmText: t('common.gotIt'), message: t('common.previewNotImplemented') });
     });
     on(qs('[data-cs-action="telegram"]', root), 'click', function () {
       window.open('https://t.me/win10096cs', '_blank', 'noopener,noreferrer');
@@ -427,7 +428,7 @@
     });
     on(overlay, 'click', close);
     qsa('[data-open-cs]', root).forEach(function (el) {
-      on(el, 'click', function () { window.alert('此為靜態設計預覽,客服視窗尚未實作。'); close(); });
+      on(el, 'click', function () { close(); showCustomerServiceModal(); });
     });
     qsa('[data-usc-item]', root).forEach(function (el) {
       on(el, 'click', close);
@@ -445,13 +446,14 @@
     return alertRoot;
   }
   /**
-   * opts: { type: 'success'|'error'|'confirmation', message, title, redirectUrl, onConfirm }
+   * opts: { type: 'success'|'error'|'confirmation', message, title, confirmText, redirectUrl, onConfirm }
    */
   function showAlert(opts) {
     var root = ensureAlertRoot();
     var type = opts.type || 'success';
     var iconName = type === 'error' ? 'error.svg' : type === 'confirmation' ? 'confirmation.svg' : 'success.svg';
     var title = opts.title || t(type === 'error' ? 'common.warning' : type === 'confirmation' ? 'common.confirmation' : 'common.success');
+    var confirmText = opts.confirmText || (type === 'confirmation' ? t('common.submit') : t('common.gotIt'));
     root.innerHTML =
       '<div class="alert-backdrop"><div class="alert-box">' +
       '<div class="alert-box-inner">' +
@@ -460,7 +462,7 @@
       '<p class="alert-message">' + (opts.message || '') + '</p>' +
       '</div>' +
       '<div class="alert-actions">' +
-      '<button type="button" class="alert-confirm-btn" data-alert-confirm>' + (type === 'confirmation' ? t('common.submit') : t('common.gotIt')) + '</button>' +
+      '<button type="button" class="alert-confirm-btn" data-alert-confirm>' + confirmText + '</button>' +
       (opts.cancellable && type !== 'success' ? '<button type="button" class="alert-cancel-btn" data-alert-cancel>' + t('common.cancel') + '</button>' : '') +
       '</div></div></div>';
     on(qs('[data-alert-confirm]', root), 'click', function () {
