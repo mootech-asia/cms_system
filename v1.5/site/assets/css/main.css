@@ -1605,7 +1605,9 @@ input {
     line-height: 64px;
     border-bottom: 1px solid var(--c-border);
     padding: 0 32px;
-    margin-bottom: 16px;
+    /* <h1> 瀏覽器預設 margin-block-start(≈0.67em)沒有重置,會讓標題列
+       跟固定定位的側欄頂端對不齊,margin 一律歸零再用 margin-bottom 補間距 */
+    margin: 0 0 16px;
   }
 }
 .account-layout {
@@ -1989,6 +1991,7 @@ input {
 @media (min-width: 1280px) {
   .pay-page-title {
     display: block;
+    margin: 0;
     color: var(--c-navy);
     font-size: 32px;
     font-weight: 700;
@@ -2454,6 +2457,7 @@ input {
 @media (min-width: 1280px) {
   .txinfo-page-title {
     display: block;
+    margin: 0;
     height: 62px;
     color: var(--c-navy);
     font-size: 32px;
@@ -2564,23 +2568,38 @@ input {
      會多算一份 header 高度,導致內容整體變高、footer-total 被推出視窗底部
      需要捲動才看得到,所以扣掉 header 高度 */
   min-height: calc(100vh - var(--header-h-mobile));
-  padding: 12px 16px 96px;
+  padding: 0 16px 96px;
   display: flex;
   flex-direction: column;
 }
 @media (min-width: 1280px) {
   .record-page {
     min-height: calc(100vh - var(--header-h-desktop));
-    padding: 24px 32px 40px;
+    padding: 0 32px 40px;
   }
+}
+/* .account-page-title 跟 .record-inner 是手足元素,原本 padding-top 放在
+   .record-page 上,連標題列都被往下推,導致跟固定定位的側欄頂端對不齊;
+   改成只在 .record-inner 補這段留白,標題列貼齊頂端(對照 .pay-page/
+   .pay-section 的做法)。標題左右已經吃到 .record-page 的 padding,自己
+   的 .account-page-title 左右 padding 要歸零,避免疊加兩層留白 */
+.record-page > .account-page-title {
+  padding-left: 0;
+  padding-right: 0;
 }
 .record-inner {
   max-width: 1190px;
   width: 100%;
   margin: 0 auto;
+  padding-top: 12px;
   display: flex;
   flex-direction: column;
   flex: 1;
+}
+@media (min-width: 1280px) {
+  .record-inner {
+    padding-top: 24px;
+  }
 }
 .record-tags {
   display: flex;
