@@ -301,9 +301,40 @@
         } else if (action === 'faq') {
           location.href = 'about.html?tab=faq';
         } else {
-          window.alert('此為靜態設計預覽,客服視窗尚未實作。');
+          showCustomerServiceModal();
         }
       });
+    });
+  }
+
+  /* 點擊客服 icon 彈出的選單(液晶客服/Telegram 推播頻道二選一),取代原本
+     的 window.alert 佔位提示 */
+  var csModalRoot = null;
+  function ensureCsModalRoot() {
+    if (csModalRoot) return csModalRoot;
+    csModalRoot = document.createElement('div');
+    document.body.appendChild(csModalRoot);
+    return csModalRoot;
+  }
+  function showCustomerServiceModal() {
+    var root = ensureCsModalRoot();
+    root.innerHTML =
+      '<div class="cs-modal-backdrop" data-cs-backdrop>' +
+      '<div class="cs-modal">' +
+      '<button type="button" class="cs-modal-close" data-cs-close><img src="' + icon('sidebar-close.svg') + '" alt="close"></button>' +
+      '<h3 class="cs-modal-title">' + t('sidebar.selectCustomerService') + '</h3>' +
+      '<button type="button" class="cs-modal-option" data-cs-action="liveChat"><img src="' + icon('sidebar-service.svg') + '" alt="">' + t('sidebar.liveChatCenter') + '</button>' +
+      '<button type="button" class="cs-modal-option" data-cs-action="telegram"><img src="' + icon('sidebar-telegram.svg') + '" alt="">' + t('sidebar.promoAnnouncementRoom') + '</button>' +
+      '</div></div>';
+    function close() { root.innerHTML = ''; }
+    on(qs('[data-cs-close]', root), 'click', close);
+    on(qs('[data-cs-backdrop]', root), 'click', function (e) { if (e.target === e.currentTarget) close(); });
+    on(qs('[data-cs-action="liveChat"]', root), 'click', function () {
+      window.alert('此為靜態設計預覽,客服視窗尚未實作。');
+    });
+    on(qs('[data-cs-action="telegram"]', root), 'click', function () {
+      window.open('https://t.me/win10096cs', '_blank', 'noopener,noreferrer');
+      close();
     });
   }
 
