@@ -778,6 +778,12 @@ input {
     padding-bottom: 0;
   }
 }
+/* 會員中心頁面各自已有自己的高度規則(.account-page/.record-page/.pay-page 等),
+   不需要 .page-shell 再疊加一次 100vh;疊加的話,內容比視窗矮的頁面(如帳戶
+   總覽)底部會多出一大片跟內容背景色不一致的空白 */
+.page-shell:has(> .usercenter-main) {
+  min-height: 0;
+}
 
 /* ============================================================
    首頁 — Banner(components/Banner.vue)
