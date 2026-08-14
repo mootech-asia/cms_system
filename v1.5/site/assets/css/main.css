@@ -1157,16 +1157,34 @@ input {
   display: flex;
   gap: 16px;
 }
-/* 首頁 Live Casino/Live Sports 卡片直接套用 .game-provider-card(內頁
-   game-type.html 廠商卡片:背景圖鋪滿+置中 logo),.vendor-card 只負責疊加
-   橫向捲動需要的固定寬度(內頁是 grid 自動寬,首頁是可捲動的固定寬卡片) */
-.vendor-card-grid .vendor-card {
+.vendor-card {
   flex-shrink: 0;
   width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
   height: 180px;
+  border-radius: 16px;
+  background: var(--c-navy-soft);
+  cursor: pointer;
+  padding: 16px;
+}
+.vendor-card-logo {
+  max-width: 70%;
+  max-height: 48px;
+  object-fit: contain;
+}
+.vendor-card-play-btn {
+  padding: 8px 24px;
+  border-radius: 10px;
+  background: var(--g-primary);
+  color: var(--c-navy);
+  font-weight: 700;
 }
 @media (min-width: 768px) {
-  .vendor-card-grid .vendor-card {
+  .vendor-card {
     width: 260px;
   }
 }
@@ -1177,7 +1195,7 @@ input {
   .home-vendor-title {
     font-size: 24px;
   }
-  .vendor-card-grid .vendor-card {
+  .vendor-card {
     width: 311px;
     height: 220px;
   }
