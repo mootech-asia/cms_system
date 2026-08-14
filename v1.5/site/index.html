@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CMS_前台_v1.5</title>
-    <link rel="stylesheet" href="assets/css/main.css?v=14" />
+    <link rel="stylesheet" href="assets/css/main.css?v=15" />
   </head>
   <body>
     <div class="page-shell">
@@ -103,8 +103,8 @@
       <div data-mount="quick-sidebar"></div>
     </div>
 
-    <script src="assets/js/data.js?v=14"></script>
-    <script src="assets/js/site.js?v=14"></script>
+    <script src="assets/js/data.js?v=15"></script>
+    <script src="assets/js/site.js?v=15"></script>
     <script>
       window.WIN15_PAGE_INIT = function () {
         var D = window.WIN15_DATA;
@@ -154,17 +154,21 @@
         W.on(W.qs('[data-hot-game-prev]'), 'click', function () { moveHg(-1); });
         W.on(W.qs('[data-hot-game-next]'), 'click', function () { moveHg(1); });
 
-        /* ---- Live Casino / Live Sports(等大卡片,深底置中 logo + Play Now) ---- */
-        function vendorCardHtml(v) {
+        /* ---- Live Casino / Live Sports(排版同步 game-type.html 內頁的
+           .game-provider-card:背景圖鋪滿 + 置中 logo) ---- */
+        function vendorCardHtml(v, idx, kind) {
+          var bg = kind === 'sports'
+            ? 'assets/images/index/mainGame/img-livegame-bg.webp'
+            : D.LIVE_TABLE_IMAGES[idx % D.LIVE_TABLE_IMAGES.length];
           return (
-            '<div class="vendor-card" data-vendor-card>' +
-            '<img class="vendor-card-logo" src="assets/images/' + v.logo + '" alt="' + v.vendor + '">' +
-            '<span class="vendor-card-play-btn" data-i18n="hotGame.playNow">' + W.t('hotGame.playNow') + '</span>' +
+            '<div class="game-provider-card vendor-card" data-vendor-card>' +
+            '<img class="game-provider-card-bg" src="' + bg + '" alt="">' +
+            '<img class="game-provider-card-logo" src="assets/images/' + v.logo + '" alt="' + v.vendor + '">' +
             '</div>'
           );
         }
-        W.qs('[data-live-casino-grid]').innerHTML = D.LIVE_CASINO_CARDS.map(vendorCardHtml).join('');
-        W.qs('[data-live-sports-grid]').innerHTML = D.LIVE_SPORTS_CARDS.map(vendorCardHtml).join('');
+        W.qs('[data-live-casino-grid]').innerHTML = D.LIVE_CASINO_CARDS.map(function (v, idx) { return vendorCardHtml(v, idx, 'live'); }).join('');
+        W.qs('[data-live-sports-grid]').innerHTML = D.LIVE_SPORTS_CARDS.map(function (v, idx) { return vendorCardHtml(v, idx, 'sports'); }).join('');
         W.qsa('[data-vendor-card]').forEach(function (el) {
           W.on(el, 'click', function () { W.showAlert({ type: 'success', message: W.t('common.openingGame') }); });
         });

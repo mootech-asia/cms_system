@@ -1046,7 +1046,7 @@
   var LIVE_CASINO_CARDS = [
     { vendor: 'Evolution', logo: 'index/mainGame/live/Evolution.png' },
     { vendor: 'Pragmatic Play', logo: 'index/mainGame/live/PP.png' },
-    { vendor: 'Sexy', logo: 'index/mainGame/live/SexyCasino.png' },
+    { vendor: 'Ezugi', logo: 'index/mainGame/live/EZUGI.png' },
     { vendor: 'Microgaming', logo: 'index/mainGame/live/MicrogamingSlot.png' },
   ];
 
@@ -1067,6 +1067,16 @@
   var GAME_THUMB_POOL = [
     'index/hotGame/img1.png', 'index/hotGame/img3.png',
     'index/mainGame/img1.png', 'index/mainGame/img2.png', 'index/mainGame/img3.png', 'index/mainGame/img4.png',
+  ];
+
+  /* ---- Live Casino 廠商卡片背景圖(對照 v2 同款 pexels 賭場桌景照,通用場景、
+     不含真人肖像,取代原本 mainGame/live/live_*.webp 的模特兒半身照) ---- */
+  function pexelsPhoto(id) {
+    return 'https://images.pexels.com/photos/' + id + '/pexels-photo-' + id + '.jpeg?auto=compress&cs=tinysrgb&w=1920';
+  }
+  var LIVE_TABLE_IMAGES = [
+    pexelsPhoto(7594348), pexelsPhoto(6664128), pexelsPhoto(7594254),
+    pexelsPhoto(6664131), pexelsPhoto(7594310), pexelsPhoto(7594183),
   ];
 
   /* ---- 首頁促銷卡片(對照真實網站首頁截圖「SPECIAL OFFER / PROMOTION」樣式) ---- */
@@ -1196,7 +1206,7 @@
       { vendor: 'Evolution', logo: 'Evolution.png' },
       { vendor: 'SAGaming', logo: 'SAGaming.png' },
       { vendor: 'AllbetLive', logo: 'AllbetLive.png' },
-      { vendor: 'SexyCasino', logo: 'SexyCasino.png' },
+      { vendor: 'Ezugi', logo: 'EZUGI.png' },
       { vendor: 'DreamGame', logo: 'DreamGame.png' },
       { vendor: 'WMLIVE', logo: 'WMLIVE.png' },
       { vendor: 'PrettyGaming', logo: 'PrettyGaming.png' },
@@ -1704,6 +1714,7 @@
     LIVE_SPORTS_CARDS: LIVE_SPORTS_CARDS,
     SLOT_STRIP_IMAGES: SLOT_STRIP_IMAGES,
     GAME_THUMB_POOL: GAME_THUMB_POOL,
+    LIVE_TABLE_IMAGES: LIVE_TABLE_IMAGES,
     PROMO_HOME_CARDS: PROMO_HOME_CARDS,
     GAME_TYPES: GAME_TYPES,
     GAME_VENDORS: GAME_VENDORS,

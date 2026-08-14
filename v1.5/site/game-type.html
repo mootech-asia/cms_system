@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CMS_前台_v1.5</title>
-    <link rel="stylesheet" href="assets/css/main.css?v=14" />
+    <link rel="stylesheet" href="assets/css/main.css?v=15" />
   </head>
   <body>
     <div class="page-shell">
@@ -46,8 +46,8 @@
       <div data-mount="quick-sidebar"></div>
     </div>
 
-    <script src="assets/js/data.js?v=14"></script>
-    <script src="assets/js/site.js?v=14"></script>
+    <script src="assets/js/data.js?v=15"></script>
+    <script src="assets/js/site.js?v=15"></script>
     <script>
       window.WIN15_PAGE_INIT = function () {
         var D = window.WIN15_DATA;
@@ -142,7 +142,7 @@
           }
           bodyEl.innerHTML = '<div class="game-provider-grid">' + vendors.map(function (v, idx) {
             var bg = type === 'live'
-              ? 'assets/images/index/mainGame/live/live_' + (idx % 33) + '.webp'
+              ? D.LIVE_TABLE_IMAGES[idx % D.LIVE_TABLE_IMAGES.length]
               : type === 'sports'
               ? 'assets/images/index/mainGame/img-livegame-bg.webp'
               : 'assets/images/' + D.GAME_THUMB_POOL[idx % D.GAME_THUMB_POOL.length];
