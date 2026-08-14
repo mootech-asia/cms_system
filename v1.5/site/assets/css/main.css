@@ -778,13 +778,6 @@ input {
     padding-bottom: 0;
   }
 }
-/* 會員中心頁面各自已有自己的高度規則(.account-page/.record-page/.pay-page 等),
-   不需要 .page-shell 再疊加一次 100vh;疊加的話,內容比視窗矮的頁面(如帳戶
-   總覽)底部會多出一大片跟內容背景色不一致的空白 */
-.page-shell:has(> .usercenter-main) {
-  min-height: 0;
-}
-
 /* ============================================================
    首頁 — Banner(components/Banner.vue)
    ============================================================ */
@@ -1595,6 +1588,15 @@ input {
 .account-page {
   background: #f4f4f4;
   padding-bottom: 80px;
+  /* 灰底要延伸到視窗底部(跟固定側欄一樣高),不能只包住內容本身,否則
+     資料少的帳號(如剛註冊、無交易記錄)底下會露出 .usercenter-content
+     的白底,跟側欄深色背景脫節;算法對照 .record-page */
+  min-height: calc(100vh - var(--header-h-mobile));
+}
+@media (min-width: 1280px) {
+  .account-page {
+    min-height: calc(100vh - var(--header-h-desktop));
+  }
 }
 .account-page-title {
   display: none;
@@ -3004,6 +3006,13 @@ input {
 .sec-page {
   background: #f2f2f2;
   padding: 16px 0 100px;
+  /* 同 .account-page:灰底要延伸到視窗底部,不能只包住內容本身 */
+  min-height: calc(100vh - var(--header-h-mobile));
+}
+@media (min-width: 1280px) {
+  .sec-page {
+    min-height: calc(100vh - var(--header-h-desktop));
+  }
 }
 .sec-inner {
   max-width: 945px;
