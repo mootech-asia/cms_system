@@ -32,7 +32,7 @@
                   </div>
 
                   <div data-method-panel="bank">
-                  <div class="wd-card-nav" data-bank-nav style="display: none">
+                  <div class="wd-card-nav" data-bank-nav>
                     <img src="assets/images/icon/arrow-left.svg" alt="prev" data-bank-prev />
                     <span data-i18n="userCenter.withdrawalPage.myBankAccounts">나의 은행 계좌</span>
                     <span data-bank-count>1 / 1</span>
@@ -68,7 +68,7 @@
                   </div>
 
                   <div data-method-panel="crypto" hidden>
-                  <div class="wd-card-nav" data-wallet-nav style="display: none">
+                  <div class="wd-card-nav" data-wallet-nav>
                     <img src="assets/images/icon/arrow-left.svg" alt="prev" data-wallet-prev />
                     <span data-i18n="userCenter.withdrawalPage.myCryptoWallets">나의 가상지갑</span>
                     <span data-wallet-count>1 / 1</span>
@@ -106,7 +106,8 @@
                     </div>
                   </div>
                   <p class="wd-turnover-note">
-                    <span data-i18n="userCenter.withdrawalPage.remainingTurnoverAmount">*남은 유효 베팅 금액: ₩ </span><span data-profile-turnover>0</span>
+                    <span data-i18n="common.rolloverAchieved">*롤링 달성</span> amount: ₩<span data-profile-turnover>0</span>
+                    <span data-i18n="common.targetAmount">목표 금액:</span> ₩<span data-target-turnover>0.00</span>
                     <a class="detail-btn" href="withdrawal-detail.html" data-i18n="common.detail">상세 정보</a>
                   </p>
                   </div>
@@ -127,10 +128,10 @@
                     </div>
                   </div>
                   <p class="wd-turnover-note">
-                    <span data-i18n="common.rolloverAchieved">*롤링 달성</span> amount: ₩0.00
+                    <span data-i18n="common.rolloverAchieved">*롤링 달성</span> amount: ₩<span data-profile-turnover>0</span>
+                    <span data-i18n="common.targetAmount">목표 금액:</span> ₩<span data-target-turnover>0.00</span>
                     <a class="detail-btn" href="withdrawal-detail.html" data-i18n="common.detail">상세 정보</a>
                   </p>
-                  <p class="wd-turnover-note"><span data-i18n="common.targetAmount">목표 금액:</span> ₩0.00</p>
                   <div style="text-align: center">
                     <span class="pay-pill-label" style="margin-top: 24px" data-i18n="userCenter.withdrawalPage.walletInfo">지갑 정보</span>
                   </div>
@@ -149,9 +150,9 @@
                     <input type="password" class="pay-input" data-password-input placeholder="거래 비밀번호를 입력해 주세요" data-i18n-placeholder="userCenter.bankingDetailsPage.fillTransactionPassword" />
                     <button type="button" class="pw-toggle" data-toggle-pwd><img src="assets/images/icon/eye.svg" alt="toggle" data-pwd-icon /></button>
                   </div>
-                  <p class="wd-turnover-note" data-wd-crypto-rollover hidden>
-                    <span data-i18n="common.rolloverAchieved">*롤링 달성</span> amount: ₩0.00
-                    <span data-i18n="common.targetAmount">목표 금액:</span> ₩0.00
+                  <p class="wd-turnover-note">
+                    <span data-i18n="common.rolloverAchieved">*롤링 달성</span> amount: ₩<span data-profile-turnover>0</span>
+                    <span data-i18n="common.targetAmount">목표 금액:</span> ₩<span data-target-turnover>0.00</span>
                   </p>
                   <p class="pay-note" data-limit-note></p>
 
@@ -263,7 +264,10 @@
 
         function fmt(n) { return Number(n).toLocaleString('en-US'); }
         W.qs('[data-profile-wallet]').textContent = p.balanceRaw;
-        W.qs('[data-profile-turnover]').textContent = p.remaining_turnover_amount;
+        /* 流水說明文字在銀行卡/加密貨幣、餘額旁/送出按鈕上方共出現三次,
+           格式統一(對照設計稿),用 qsa 一次全部帶入同一組數值 */
+        W.qsa('[data-profile-turnover]').forEach(function (el) { el.textContent = p.remaining_turnover_amount; });
+        W.qsa('[data-target-turnover]').forEach(function (el) { el.textContent = '0.00'; });
         function refreshLimitNote() {
           W.qs('[data-limit-note]').textContent = W.t('userCenter.depositPage.limitNote').replace('{min}', fmt(MIN)).replace('{max}', fmt(MAX));
         }
@@ -281,16 +285,19 @@
           W.qs('[data-bank-prev]').style.display = idx > 0 ? '' : 'none';
           W.qs('[data-bank-next]').style.display = idx < cards.length - 1 ? '' : 'none';
         }
-        /* 帳戶管理分頁新增帳戶後要重新整理這裡的輪播,所以拆成獨立函式 */
+        /* 帳戶管理分頁新增帳戶後要重新整理這裡的輪播,所以拆成獨立函式。
+           對照設計稿:「나의 은행 계좌」標題無論有沒有卡片都要顯示,只有
+           筆數與左右箭頭在沒有卡片時才隱藏 */
         function refreshBankCarousel() {
           if (idx >= cards.length) idx = 0;
+          W.qs('[data-bank-count]').style.display = cards.length ? '' : 'none';
           if (cards.length) {
-            W.qs('[data-bank-nav]').style.display = 'flex';
             W.qs('[data-bank-card]').style.display = 'block';
             W.qs('[data-bank-empty]').style.display = 'none';
             renderCard();
           } else {
-            W.qs('[data-bank-nav]').style.display = 'none';
+            W.qs('[data-bank-prev]').style.display = 'none';
+            W.qs('[data-bank-next]').style.display = 'none';
             W.qs('[data-bank-card]').style.display = 'none';
             W.qs('[data-bank-empty]').style.display = 'block';
           }
@@ -310,13 +317,14 @@
         }
         function refreshWalletCarousel() {
           if (walletIdx >= wallets.length) walletIdx = 0;
+          W.qs('[data-wallet-count]').style.display = wallets.length ? '' : 'none';
           if (wallets.length) {
-            W.qs('[data-wallet-nav]').style.display = 'flex';
             W.qs('[data-wallet-card]').style.display = 'block';
             W.qs('[data-wallet-empty]').style.display = 'none';
             renderWallet();
           } else {
-            W.qs('[data-wallet-nav]').style.display = 'none';
+            W.qs('[data-wallet-prev]').style.display = 'none';
+            W.qs('[data-wallet-next]').style.display = 'none';
             W.qs('[data-wallet-card]').style.display = 'none';
             W.qs('[data-wallet-empty]').style.display = 'block';
           }
@@ -332,7 +340,6 @@
           MIN = LIMITS[method].min; MAX = LIMITS[method].max;
           W.qs('[data-wd-bank-fields]').hidden = method !== 'bank';
           W.qs('[data-wd-crypto-fields]').hidden = method !== 'crypto';
-          W.qs('[data-wd-crypto-rollover]').hidden = method !== 'crypto';
           input.placeholder = '₩ ' + fmt(MIN) + ' ~ ₩ ' + fmt(MAX);
           input.value = '';
           refreshLimitNote();

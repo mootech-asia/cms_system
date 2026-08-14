@@ -65,6 +65,8 @@
                     <div data-promotion-list></div>
                   </div>
 
+                  <p class="dp-bonus-bar" data-bonus-bar hidden></p>
+
                   <div class="pay-btn-fixed-wrap">
                     <button type="button" class="pay-next-btn" data-deposit-next disabled>
                       <span class="text-gradient" data-i18n="common.next">다음</span>
@@ -176,43 +178,18 @@
           return Math.min(Math.max(amt * cfg.bonus_percentage / 100, cfg.min_bonus_amount || 0), cfg.max_bonus_amount || Infinity);
         }
 
-        /* 對照原始碼 turnoverText:未參加任何優惠時,流水就是入金金額本身 */
-        function promoTurnoverAmount(p) {
-          var amt = amountNumber();
-          if (!p || !amt) return 0;
-          if (p.promotion_id === 'none') return amt;
-          var cfg = p.prize && p.prize.percentage;
-          if (!cfg || amt < cfg.min_deposit_amount) return 0;
-          return (amt + promoBonusAmount(p)) * (p.deposit_turnover_multiplier || 1);
-        }
-
-        /* 對照真實網站截圖:選中的優惠會在同一張卡片內,左側名稱+條列說明、
-           右側直接顯示「+₩ 金額 보너스」,中間一條分隔線,不是另外拉一條
-           跨版面寬度的漸層橫幅 */
+        /* 對照設計稿:選中的優惠是整張卡片變成金色底,卡片內容(標題+條列)
+           不隨選取變動;紅利金額改到卡片清單下方的漸層提示條顯示 */
         function renderPromotions() {
           var wrap = W.qs('[data-promotion-list]');
           wrap.innerHTML = promotions.map(function (p, i) {
             var selected = i === selectedPromoIndex;
             var bullets = (p.remarkKeys || []).map(function (k) { return '<li>' + W.t(k) + '</li>'; }).join('');
-            var body;
-            if (selected) {
-              var bonusText = fmt(Math.round(promoBonusAmount(p)));
-              var turnoverLabel = W.t('userCenter.withdrawalPage.requiredTurnoverAmount') + '：₩ ' + fmt(Math.round(promoTurnoverAmount(p)));
-              body =
-                '<div class="promo-card-columns">' +
-                '<div class="promo-card-name-col"><strong>' + W.t(p.nameKey) + '</strong>' +
-                (bullets ? '<ul class="promo-card-remarks">' + bullets + '</ul>' : '') +
-                '</div>' +
-                '<div class="promo-card-bonus-col">＋₩ ' + bonusText + ' ' + W.t('userCenter.bonus') + '</div>' +
-                '</div>' +
-                '<hr class="promo-card-hr"><div class="promo-card-turnover">' + turnoverLabel + '</div>';
-            } else {
-              body = '<strong>' + W.t(p.nameKey) + '</strong>' + (bullets ? '<ul class="promo-card-remarks">' + bullets + '</ul>' : '');
-            }
             return (
               '<div class="promo-card' + (selected ? ' is-selected' : '') + '" data-promo-index="' + i + '">' +
               '<div class="promo-card-row"><span class="promo-radio"><span class="promo-radio-dot"></span></span>' +
-              '<div class="promo-card-body">' + body +
+              '<div class="promo-card-body"><strong>' + W.t(p.nameKey) + '</strong>' +
+              (bullets ? '<ul class="promo-card-remarks">' + bullets + '</ul>' : '') +
               '</div></div></div>'
             );
           }).join('');
@@ -222,6 +199,16 @@
               renderPromotions();
             });
           });
+          renderBonusBar();
+        }
+
+        function renderBonusBar() {
+          var bar = W.qs('[data-bonus-bar]');
+          var p = promotions[selectedPromoIndex];
+          var bonus = p ? Math.round(promoBonusAmount(p)) : 0;
+          if (!p || p.promotion_id === 'none' || !bonus) { bar.hidden = true; return; }
+          bar.hidden = false;
+          bar.textContent = '＋₩ ' + fmt(bonus) + ' ' + W.t('userCenter.bonus');
         }
 
         renderPromotions();

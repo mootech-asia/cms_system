@@ -27,6 +27,10 @@
                     <span class="label" data-tx-bonus-label>입금 프로모션</span>
                     <span class="value">＋₩ <span data-tx-bonus>0</span> <span data-i18n="userCenter.bonus">보너스</span></span>
                   </div>
+                  <div class="txinfo-row" data-tx-received-row style="display: none">
+                    <span class="label" data-i18n="userCenter.receivedAmount">실수령 금액</span>
+                    <span class="value">₩ <span data-tx-received>0</span></span>
+                  </div>
                 </div>
 
                 <div class="txinfo-account-row">
@@ -76,6 +80,8 @@
           W.qs('[data-tx-bonus-row]').style.display = 'flex';
           W.qs('[data-tx-bonus-label]').textContent = W.t('userCenter.depositPromotions');
           W.qs('[data-tx-bonus]').textContent = bonus.toLocaleString('en-US');
+          W.qs('[data-tx-received-row]').style.display = 'flex';
+          W.qs('[data-tx-received]').textContent = (amount + bonus).toLocaleString('en-US');
         }
 
         W.on(W.qs('[data-tx-back]'), 'click', function () { history.back(); });
