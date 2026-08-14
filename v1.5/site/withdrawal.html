@@ -471,15 +471,13 @@
           });
         }
 
-        /* 清單模式一律用 hidden 屬性控制(跟分組切換共用同一套機制),不要
-           混用 style.display,避免兩套顯示邏輯互相蓋過 */
+        /* 新增表單直接在「계좌 추가」按鈕下方展開,清單(含帳戶卡片與按鈕本身)
+           維持顯示,不整組隱藏——list-mode 的 hidden 只交給分組切換那邊控制 */
         function mgmtShowAddMode(group) {
-          W.qs('[data-wd-mgmt-list-mode="' + group + '"]').hidden = true;
           W.qs('[data-wd-mgmt-add-mode="' + group + '"]').style.display = 'block';
         }
         function mgmtShowListMode(group) {
           W.qs('[data-wd-mgmt-add-mode="' + group + '"]').style.display = 'none';
-          W.qs('[data-wd-mgmt-list-mode="' + group + '"]').hidden = false;
           mgmtRenderList(group);
         }
 
