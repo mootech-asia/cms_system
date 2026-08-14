@@ -154,17 +154,19 @@
         W.on(W.qs('[data-hot-game-prev]'), 'click', function () { moveHg(-1); });
         W.on(W.qs('[data-hot-game-next]'), 'click', function () { moveHg(1); });
 
-        /* ---- Live Casino / Live Sports(等大卡片,深底置中 logo + Play Now) ---- */
+        /* ---- Live Casino / Live Sports(等大卡片,深底置中 logo + Play Now;
+           直接吃 GAME_VENDORS(跟 game-type.html 內頁同一份廠商清單),數量
+           跟內頁完全一致,不再另外維護一份會兜不齊的清單) ---- */
         function vendorCardHtml(v) {
           return (
             '<div class="vendor-card" data-vendor-card>' +
-            '<img class="vendor-card-logo" src="assets/images/' + v.logo + '" alt="' + v.vendor + '">' +
+            '<img class="vendor-card-logo" src="assets/images/index/mainGame/live/' + encodeURIComponent(v.logo) + '" alt="' + v.vendor + '">' +
             '<span class="vendor-card-play-btn" data-i18n="hotGame.playNow">' + W.t('hotGame.playNow') + '</span>' +
             '</div>'
           );
         }
-        W.qs('[data-live-casino-grid]').innerHTML = D.LIVE_CASINO_CARDS.map(vendorCardHtml).join('');
-        W.qs('[data-live-sports-grid]').innerHTML = D.LIVE_SPORTS_CARDS.map(vendorCardHtml).join('');
+        W.qs('[data-live-casino-grid]').innerHTML = D.GAME_VENDORS.live.map(vendorCardHtml).join('');
+        W.qs('[data-live-sports-grid]').innerHTML = D.GAME_VENDORS.sports.map(vendorCardHtml).join('');
         W.qsa('[data-vendor-card]').forEach(function (el) {
           W.on(el, 'click', function () { W.showAlert({ type: 'success', message: W.t('common.openingGame') }); });
         });

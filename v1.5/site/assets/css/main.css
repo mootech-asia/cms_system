@@ -1157,9 +1157,12 @@ input {
   display: flex;
   gap: 16px;
 }
+/* flex-grow 讓卡片數量不多時自動撐滿整行(不留右側空白);min-width 保底,
+   卡片數量一多、撐滿後還是超出容器寬度,就改為 .vendor-strip 橫向捲動,
+   不會被壓縮變形 */
 .vendor-card {
-  flex-shrink: 0;
-  width: 220px;
+  flex: 1 1 220px;
+  min-width: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1185,7 +1188,8 @@ input {
 }
 @media (min-width: 768px) {
   .vendor-card {
-    width: 260px;
+    flex-basis: 260px;
+    min-width: 260px;
   }
 }
 @media (min-width: 1280px) {
@@ -1196,7 +1200,8 @@ input {
     font-size: 24px;
   }
   .vendor-card {
-    width: 311px;
+    flex-basis: 311px;
+    min-width: 311px;
     height: 220px;
   }
 }

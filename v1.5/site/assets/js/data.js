@@ -1042,21 +1042,6 @@
     { id: 6, name: 'Game Name', subtitle: 'Win a shore of #100,000! $40,000 to the winner', image: null },
   ];
 
-  /* ---- Live Casino(首頁,對照真實網站首頁截圖:4 張等大卡片,深紫底+置中 logo) ---- */
-  var LIVE_CASINO_CARDS = [
-    { vendor: 'Evolution', logo: 'index/mainGame/live/Evolution.png' },
-    { vendor: 'Pragmatic Play', logo: 'index/mainGame/live/PP.png' },
-    { vendor: 'Sexy', logo: 'index/mainGame/live/SexyCasino.png' },
-    { vendor: 'Microgaming', logo: 'index/mainGame/live/MicrogamingSlot.png' },
-  ];
-
-  /* ---- Live Sports(首頁,對照真實網站首頁截圖:3 張等大卡片,SPORTS 100% 為站方自家品牌) ---- */
-  var LIVE_SPORTS_CARDS = [
-    { vendor: 'SPORTS 100%', logo: 'index/mainGame/live/PINGAPI.png' },
-    { vendor: 'BTi', logo: 'index/mainGame/live/BTI.svg' },
-    { vendor: 'SABA Sports', logo: 'index/mainGame/live/Saba Sports.svg' },
-  ];
-
   /* ---- Slot Games(首頁橫向卡片,對照真實網站首頁截圖「Game Name / Creative Gaming」占位文案) ---- */
   var SLOT_STRIP_IMAGES = [
     'index/hotGame/img1.png', 'index/hotGame/img2.png', 'index/hotGame/img3.png',
@@ -1205,8 +1190,9 @@
       { vendor: 'BigGaming', logo: 'BigGaming.png' },
     ],
     sports: [
-      { vendor: 'Saba Sports', logo: 'Saba Sports.svg' },
+      { vendor: 'SPORTS 100%', logo: 'PINGAPI.png' },
       { vendor: 'BTI Sports', logo: 'BTI.svg' },
+      { vendor: 'Saba Sports', logo: 'Saba Sports.svg' },
     ],
     slot: [
       { vendor: 'PP', logo: 'PP.png' },
@@ -1700,8 +1686,6 @@
     BANNER_SLIDES_DESKTOP: BANNER_SLIDES_DESKTOP,
     BANNER_SLIDES_MOBILE: BANNER_SLIDES_MOBILE,
     HOT_GAMES: HOT_GAMES,
-    LIVE_CASINO_CARDS: LIVE_CASINO_CARDS,
-    LIVE_SPORTS_CARDS: LIVE_SPORTS_CARDS,
     SLOT_STRIP_IMAGES: SLOT_STRIP_IMAGES,
     GAME_THUMB_POOL: GAME_THUMB_POOL,
     PROMO_HOME_CARDS: PROMO_HOME_CARDS,
