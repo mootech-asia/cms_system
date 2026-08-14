@@ -1051,6 +1051,12 @@
     'index/mainGame/img1.png', 'index/mainGame/img2.png', 'index/mainGame/img3.png', 'index/mainGame/img4.png',
   ];
 
+  /* ---- 遊戲卡片/廠商卡片共用占位縮圖(通用 slot key-art,非特定廠商素材) ---- */
+  var GAME_THUMB_POOL = [
+    'index/hotGame/img1.png', 'index/hotGame/img3.png',
+    'index/mainGame/img1.png', 'index/mainGame/img2.png', 'index/mainGame/img3.png', 'index/mainGame/img4.png',
+  ];
+
   /* ---- 首頁促銷卡片(對照真實網站首頁截圖「SPECIAL OFFER / PROMOTION」樣式) ---- */
   var PROMO_HOME_CARDS = [
     { label: 'Promotion 1' }, { label: 'Promotion 1' }, { label: 'Promotion 1' },
@@ -1219,7 +1225,7 @@
     ],
   };
 
-  /* ---- 遊戲卡片假資料產生(GameList.vue,圖片重複使用 index/mainGame/other 靜態圖) ---- */
+  /* ---- 遊戲卡片假資料產生(GameList.vue,圖片重複使用 GAME_THUMB_POOL 通用 key-art) ---- */
   var GAME_NAME_POOL = [
     'Gates of Olympus', 'Sweet Bonanza', 'Crazy Time', 'Lightning Roulette', 'Book of Dead',
     'Wild Bandito', 'Fortune Tiger', 'Mahjong Ways', 'Golden Empire', 'Big Bass Bonanza',
@@ -1235,7 +1241,7 @@
         display_name: GAME_NAME_POOL[(seed + i) % len],
         provider: vendor,
         gateway: vendor.toLowerCase().replace(/\s+/g, ''),
-        desktop_icon_url: 'index/mainGame/other/slot ' + ((seed + i) % 26) + '.png',
+        desktop_icon_url: GAME_THUMB_POOL[(seed + i) % GAME_THUMB_POOL.length],
         isFavorite: false,
       });
     }
@@ -1685,6 +1691,7 @@
     LIVE_CASINO_CARDS: LIVE_CASINO_CARDS,
     LIVE_SPORTS_CARDS: LIVE_SPORTS_CARDS,
     SLOT_STRIP_IMAGES: SLOT_STRIP_IMAGES,
+    GAME_THUMB_POOL: GAME_THUMB_POOL,
     PROMO_HOME_CARDS: PROMO_HOME_CARDS,
     GAME_TYPES: GAME_TYPES,
     GAME_VENDORS: GAME_VENDORS,

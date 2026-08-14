@@ -1075,12 +1075,24 @@ input {
   width: 20px;
   height: 20px;
 }
+/* Live Casino/Live Sports 額外疊加 .hot-game-actions,重用首頁熱門遊戲區
+   「全部查看 + 上一頁/下一頁」按鈕的 hover 樣式與 .hot-game-arrow 箭頭尺寸 */
+/* 卡片橫向捲動(跟 .hot-game-strip/.slot-strip 同一套手勢,.vendor-card-grid 本身當
+   flex track 用,不用另外包一層 -track class) */
+.vendor-strip {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.vendor-strip::-webkit-scrollbar {
+  display: none;
+}
 .vendor-card-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   gap: 16px;
 }
 .vendor-card {
+  flex-shrink: 0;
+  width: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1105,11 +1117,8 @@ input {
   font-weight: 700;
 }
 @media (min-width: 768px) {
-  .vendor-card-grid.is-live-casino {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .vendor-card-grid.is-live-sports {
-    grid-template-columns: repeat(3, 1fr);
+  .vendor-card {
+    width: 260px;
   }
 }
 @media (min-width: 1280px) {
@@ -1120,6 +1129,7 @@ input {
     font-size: 24px;
   }
   .vendor-card {
+    width: 311px;
     height: 220px;
   }
 }
@@ -1270,6 +1280,10 @@ input {
   color: var(--c-pink);
   font-weight: 700;
   font-size: 14px;
+}
+.promo-home-readmore:hover {
+  background: var(--c-pink);
+  color: #fff;
 }
 @media (min-width: 1280px) {
   .promo-home-card {

@@ -47,12 +47,13 @@
               <img src="assets/images/icon/liveCasino2.svg" alt="live casino" />
               <span data-i18n="navbar.top.liveCasino">라이브 카지노</span>
             </div>
-            <div class="home-vendor-actions">
-              <span data-i18n="hotGame.seeAll">전체 보기</span>
-              <button type="button" data-nav-href="game-type.html?type=live"><img src="assets/images/icon/arrow-right2.svg" alt="see all" /></button>
+            <div class="home-vendor-actions hot-game-actions">
+              <button type="button" data-nav-href="game-type.html?type=live" data-i18n="hotGame.seeAll">전체 보기</button>
+              <button type="button" data-live-casino-prev><img class="hot-game-arrow" src="assets/images/icon/arrow-left2.svg" alt="prev" /></button>
+              <button type="button" data-live-casino-next><img class="hot-game-arrow" src="assets/images/icon/arrow-right2.svg" alt="next" /></button>
             </div>
           </div>
-          <div class="vendor-card-grid is-live-casino" data-live-casino-grid></div>
+          <div class="vendor-strip"><div class="vendor-card-grid is-live-casino" data-live-casino-grid></div></div>
         </section>
 
         <section class="home-vendor-section">
@@ -61,12 +62,13 @@
               <img src="assets/images/icon/liveSports.svg" alt="live sports" />
               <span data-i18n="navbar.top.sports">스포츠</span>
             </div>
-            <div class="home-vendor-actions">
-              <span data-i18n="hotGame.seeAll">전체 보기</span>
-              <button type="button" data-nav-href="game-type.html?type=sports"><img src="assets/images/icon/arrow-right2.svg" alt="see all" /></button>
+            <div class="home-vendor-actions hot-game-actions">
+              <button type="button" data-nav-href="game-type.html?type=sports" data-i18n="hotGame.seeAll">전체 보기</button>
+              <button type="button" data-live-sports-prev><img class="hot-game-arrow" src="assets/images/icon/arrow-left2.svg" alt="prev" /></button>
+              <button type="button" data-live-sports-next><img class="hot-game-arrow" src="assets/images/icon/arrow-right2.svg" alt="next" /></button>
             </div>
           </div>
-          <div class="vendor-card-grid is-live-sports" data-live-sports-grid></div>
+          <div class="vendor-strip"><div class="vendor-card-grid is-live-sports" data-live-sports-grid></div></div>
         </section>
 
         <section class="home-vendor-section">
@@ -166,6 +168,17 @@
         W.qsa('[data-vendor-card]').forEach(function (el) {
           W.on(el, 'click', function () { W.showAlert({ type: 'success', message: W.t('common.openingGame') }); });
         });
+        function moveVendor(grid, delta) {
+          var card = grid.querySelector('.vendor-card');
+          var cardWidth = (card && card.offsetWidth) || 220;
+          grid.parentElement.scrollBy({ left: delta * (cardWidth + 16), behavior: 'smooth' });
+        }
+        var liveCasinoGrid = W.qs('[data-live-casino-grid]');
+        var liveSportsGrid = W.qs('[data-live-sports-grid]');
+        W.on(W.qs('[data-live-casino-prev]'), 'click', function () { moveVendor(liveCasinoGrid, -1); });
+        W.on(W.qs('[data-live-casino-next]'), 'click', function () { moveVendor(liveCasinoGrid, 1); });
+        W.on(W.qs('[data-live-sports-prev]'), 'click', function () { moveVendor(liveSportsGrid, -1); });
+        W.on(W.qs('[data-live-sports-next]'), 'click', function () { moveVendor(liveSportsGrid, 1); });
 
         /* ---- Slot Games 橫向捲動 ---- */
         var slotTrack = W.qs('[data-slot-strip-track]');

@@ -145,7 +145,7 @@
               ? 'assets/images/index/mainGame/live/live_' + (idx % 33) + '.webp'
               : type === 'sports'
               ? 'assets/images/index/mainGame/img-livegame-bg.webp'
-              : 'assets/images/index/mainGame/other/slot ' + (idx % 26) + '.png';
+              : 'assets/images/' + D.GAME_THUMB_POOL[idx % D.GAME_THUMB_POOL.length];
             return (
               '<div class="game-provider-card" data-gf-vendor="' + idx + '">' +
               '<img class="game-provider-card-bg" src="' + bg + '" alt="">' +
