@@ -83,9 +83,13 @@
    * ================================================================ */
   function mobileMenuItemHtml(item, isTop) {
     var hrefAttr = item.url ? ' data-nav-href="' + item.url + '"' : ' data-stub-item';
+    var iconUrl = icon(item.icon);
     return (
       '<button type="button" class="mobile-menu-item" data-nav-key="' + item.key + '"' + hrefAttr + '>' +
-      '<img src="' + icon(item.icon) + '" alt="' + item.key + '">' +
+      '<span class="mobile-menu-item-icon">' +
+      '<img src="' + iconUrl + '" alt="' + item.key + '">' +
+      '<span class="mobile-menu-item-icon-active" style="-webkit-mask-image:url(' + iconUrl + ');mask-image:url(' + iconUrl + ')"></span>' +
+      '</span>' +
       '<span data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span>' +
       '</button>'
     );
@@ -183,22 +187,31 @@
       on(el, 'click', function () { window.alert('此為靜態設計預覽,此功能尚未實作。'); });
     });
 
-    var langSwitcher = qs('[data-lang-switcher]', root);
-    var langTrigger = qs('[data-lang-trigger]', root);
-    on(langTrigger, 'click', function (e) {
-      e.stopPropagation();
-      langSwitcher.classList.toggle('is-open');
-    });
-    qsa('[data-set-locale]', root).forEach(function (el) {
-      on(el, 'click', function () {
-        setLocale(el.getAttribute('data-set-locale'));
-        langSwitcher.classList.remove('is-open');
-      });
-    });
-    on(document, 'click', function () { if (langSwitcher) langSwitcher.classList.remove('is-open'); });
-
     qsa('[data-open-auth]', root).forEach(function (el) {
       on(el, 'click', function () { showAuthModal(el.getAttribute('data-open-auth')); });
+    });
+  }
+
+  /* header(桌機)與 footer 各自有一份 .header-lang-switcher 標記(data-lang-switcher),
+     兩者是各自獨立的 DOM 節點,需逐一綁定;footer 比 header 晚掛載,所以統一在
+     mountChrome() 兩者都掛載完後才呼叫一次,而不是在 bindHeader() 裡面綁(那時
+     footer 的節點還不存在於文件中) */
+  function bindLangSwitchers(root) {
+    qsa('[data-lang-switcher]', root).forEach(function (switcher) {
+      if (switcher.__langBound) return;
+      switcher.__langBound = true;
+      var trigger = qs('[data-lang-trigger]', switcher);
+      on(trigger, 'click', function (e) {
+        e.stopPropagation();
+        switcher.classList.toggle('is-open');
+      });
+      qsa('[data-set-locale]', switcher).forEach(function (el) {
+        on(el, 'click', function () {
+          setLocale(el.getAttribute('data-set-locale'));
+          switcher.classList.remove('is-open');
+        });
+      });
+      on(document, 'click', function () { switcher.classList.remove('is-open'); });
     });
   }
 
@@ -655,6 +668,7 @@
     if (userNavbarMount) userNavbarMount.outerHTML = userNavbarHtml();
     if (userSidebarMount) { userSidebarMount.outerHTML = userSidebarHtml(); bindNavLinks(document); }
     if (userNavbarMount || userSidebarMount) bindUserSidebar(document);
+    bindLangSwitchers(document);
   }
 
   /* 紀錄頁「自動刷新倒數」共用元件(withdrawalRecord/depositRecord/withdrawalDetail

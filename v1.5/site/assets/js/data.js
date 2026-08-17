@@ -39,6 +39,7 @@
       'footer.copyright': 'win10096 © 版權所有，並受法律保護。',
       'bottomNavbar.home': '首頁',
       'bottomNavbar.deposit': '儲值',
+      'bottomNavbar.withdrawal': '提款',
       'bottomNavbar.promotion': '優惠活動',
       'bottomNavbar.member': '會員中心',
       'auth.login': '登入',
@@ -357,6 +358,7 @@
       'footer.copyright': '저작권 © win10096 모든 권리 보유.',
       'bottomNavbar.home': '홈',
       'bottomNavbar.deposit': '입금',
+      'bottomNavbar.withdrawal': '출금',
       'bottomNavbar.promotion': '프로모션',
       'bottomNavbar.member': '회원센터',
       'auth.login': '로그인',
@@ -675,6 +677,7 @@
       'footer.copyright': 'win10096 © All rights reserved and protected by law',
       'bottomNavbar.home': 'Home',
       'bottomNavbar.deposit': 'Deposit',
+      'bottomNavbar.withdrawal': 'Withdrawal',
       'bottomNavbar.promotion': 'Promotion',
       'bottomNavbar.member': 'Member',
       'auth.login': 'Login',
@@ -1003,6 +1006,7 @@
   var BOTTOM_NAV_ITEMS = [
     { key: 'home', tKey: 'bottomNavbar.home', url: 'index.html', icon: 'nav-home.svg' },
     { key: 'deposit', tKey: 'bottomNavbar.deposit', url: 'deposit.html', icon: 'nav-deposit.svg' },
+    { key: 'withdrawal', tKey: 'bottomNavbar.withdrawal', url: 'withdrawal.html', icon: 'withdrawal.svg' },
     { key: 'promotion', tKey: 'bottomNavbar.promotion', url: 'promotion-list.html', icon: 'nav-promotion.svg' },
     { key: 'member', tKey: 'bottomNavbar.member', url: 'account.html', icon: 'nav-member.svg' },
   ];
