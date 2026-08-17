@@ -1516,10 +1516,16 @@ input {
 /* 會員中心頁面(deposit/withdrawal/account-record...)手機版改以
    .user-navbar 當頂部列,不再重複顯示全站 .site-header;桌機不受影響,
    仍是 .site-header-desktop + .user-navbar 一起顯示(對照原始設計,
-   桌機 .user-navbar 本身已被上面規則隱藏) */
+   桌機 .user-navbar 本身已被上面規則隱藏)。.page-shell 的 padding-top
+   是為了讓出 .site-header(fixed)的高度,這裡連同歸零,否則版面頂端會
+   留下一段等同 header 高度的空白,.user-navbar(sticky)也會跟著往下
+   偏移,和 .user-sidebar-mobile-panel(fixed,以 32px 為基準)對不齊 */
 @media (max-width: 1279px) {
   body.is-usercenter .site-header-mobile {
     display: none;
+  }
+  body.is-usercenter .page-shell {
+    padding-top: 0;
   }
 }
 
