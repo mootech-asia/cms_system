@@ -652,7 +652,11 @@ body.usc-sidebar-open .mobile-bottom-nav {
   justify-content: center;
 }
 .mobile-bottom-nav-item {
-  width: 84px;
+  /* 原本寫死 84px,5 個項目(新增提款後)在較窄的手機寬度下總寬度會超過
+     視口造成兩側裁切;改成撐滿 grid cell 寬度,由 grid 的 1fr 自動依
+     可用空間平分,不管幾個項目都不會溢出 */
+  width: 100%;
+  max-width: 84px;
   height: 61px;
   display: flex;
   flex-direction: column;
