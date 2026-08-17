@@ -1088,6 +1088,7 @@
 
   /* ---- 會員中心側欄清單(對照 components/UserSidebar.vue items) ---- */
   var USER_SIDEBAR_ITEMS = [
+    { id: 'gameLobby', tKey: 'userCenter.sidebar.gameLobby', url: 'index.html', icon: 'gameLobby.svg' },
     { id: 'accountOverview', tKey: 'userCenter.sidebar.accountOverview', url: 'account.html', icon: 'dashboard.svg' },
     { id: 'bettingRecord', tKey: 'userCenter.sidebar.bettingRecord', url: 'betting-record.html', icon: 'bettingRecord.svg' },
     { id: 'depositRecord', tKey: 'userCenter.sidebar.depositRecord', url: 'deposit-record.html', icon: 'depositRecord.svg' },

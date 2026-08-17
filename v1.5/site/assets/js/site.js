@@ -410,24 +410,22 @@
     );
   }
 
-  function userSidebarToggleBtnHtml(url, tKey) {
-    var isActive = pageName() === url.replace(/\.html$/, '');
-    return '<button type="button" class="user-sidebar-toggle-btn' + (isActive ? ' is-active' : ' border-gradient-pill') + '" data-nav-href="' + url + '">' +
-      '<span class="' + (isActive ? '' : 'text-gradient') + '" data-i18n="' + tKey + '">' + t(tKey) + '</span></button>';
+  function userSidebarActionBtnHtml(url, tKey) {
+    return '<button type="button" data-nav-href="' + url + '" data-i18n="' + tKey + '">' + t(tKey) + '</button>';
   }
 
   function userSidebarHtml() {
     var itemsHtml = (D.USER_SIDEBAR_ITEMS || []).map(userSidebarNavItemHtml).join('');
-    var toggles =
-      '<div class="user-sidebar-toggles">' +
-      userSidebarToggleBtnHtml('deposit.html', 'userCenter.deposit') +
-      userSidebarToggleBtnHtml('withdrawal.html', 'userCenter.withdrawal') +
+    var actions =
+      '<div class="user-sidebar-mobile-actions">' +
+      userSidebarActionBtnHtml('deposit.html', 'userCenter.deposit') +
+      userSidebarActionBtnHtml('withdrawal.html', 'userCenter.withdrawal') +
       '</div>';
     return (
       '<nav class="user-sidebar">' +
       '<div class="user-sidebar-overlay" data-usc-overlay></div>' +
       '<ul class="user-sidebar-mobile-panel" data-usc-panel>' +
-      toggles + itemsHtml +
+      itemsHtml + actions +
       '</ul>' +
       '</nav>'
     );
