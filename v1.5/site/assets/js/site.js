@@ -415,12 +415,26 @@
     );
   }
 
+  /* 桌機版 sidebar 頂部的 Deposit/Withdrawal 分頁指示器(pill,依目前頁面
+     反白),手機版另有底部深色按鈕(.user-sidebar-mobile-actions)取代它,
+     兩者分屬不同斷點,不是互斥的替代品 */
+  function userSidebarToggleBtnHtml(url, tKey) {
+    var isActive = pageName() === url.replace(/\.html$/, '');
+    return '<button type="button" class="user-sidebar-toggle-btn' + (isActive ? ' is-active' : ' border-gradient-pill') + '" data-nav-href="' + url + '">' +
+      '<span class="' + (isActive ? '' : 'text-gradient') + '" data-i18n="' + tKey + '">' + t(tKey) + '</span></button>';
+  }
+
   function userSidebarActionBtnHtml(url, tKey) {
     return '<button type="button" data-nav-href="' + url + '" data-i18n="' + tKey + '">' + t(tKey) + '</button>';
   }
 
   function userSidebarHtml() {
     var itemsHtml = (D.USER_SIDEBAR_ITEMS || []).map(userSidebarNavItemHtml).join('');
+    var toggles =
+      '<div class="user-sidebar-toggles">' +
+      userSidebarToggleBtnHtml('deposit.html', 'userCenter.deposit') +
+      userSidebarToggleBtnHtml('withdrawal.html', 'userCenter.withdrawal') +
+      '</div>';
     var actions =
       '<div class="user-sidebar-mobile-actions">' +
       userSidebarActionBtnHtml('deposit.html', 'userCenter.deposit') +
@@ -430,7 +444,7 @@
       '<nav class="user-sidebar">' +
       '<div class="user-sidebar-overlay" data-usc-overlay></div>' +
       '<ul class="user-sidebar-mobile-panel" data-usc-panel>' +
-      itemsHtml + actions +
+      toggles + itemsHtml + actions +
       '</ul>' +
       '</nav>'
     );
@@ -440,10 +454,19 @@
     var panel = qs('[data-usc-panel]', root);
     var overlay = qs('[data-usc-overlay]', root);
     var toggleBtn = qs('[data-toggle-user-sidebar]', root);
-    function close() { if (panel) panel.classList.remove('is-open'); if (overlay) overlay.classList.remove('is-open'); }
+    /* account.html 是唯一同時保留 .mobile-bottom-nav 又有 .user-sidebar
+       的會員中心頁面(其餘子頁 bottom-nav 直接不掛載),兩者手機版都是
+       position:fixed 且 z-index 相同,side 展開時會疊在一起把底部導覽
+       壓爛,所以側欄展開時額外隱藏 bottom-nav,收合時再還原 */
+    function close() {
+      if (panel) panel.classList.remove('is-open');
+      if (overlay) overlay.classList.remove('is-open');
+      document.body.classList.remove('usc-sidebar-open');
+    }
     on(toggleBtn, 'click', function () {
       if (panel) panel.classList.toggle('is-open');
       if (overlay) overlay.classList.toggle('is-open');
+      document.body.classList.toggle('usc-sidebar-open', panel && panel.classList.contains('is-open'));
     });
     on(overlay, 'click', close);
     qsa('[data-open-cs]', root).forEach(function (el) {

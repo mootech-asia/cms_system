@@ -636,6 +636,12 @@ input {
   border-image: var(--g-primary);
   border-image-slice: 1;
 }
+/* account.html 同時有 .mobile-bottom-nav 與 .user-sidebar,兩者手機版
+   都是 fixed 且 z-index 相同,側欄展開時會疊在一起把底部導覽壓爛,
+   展開期間先隱藏(見 bindUserSidebar) */
+body.usc-sidebar-open .mobile-bottom-nav {
+  display: none;
+}
 .mobile-bottom-nav-list {
   max-width: 520px;
   margin: 0 auto;
@@ -1585,6 +1591,28 @@ input {
   z-index: 20;
   background: #fff;
 }
+/* 桌機版 sidebar 頂部的 Deposit/Withdrawal 分頁指示器,手機版改用清單
+   底部的 .user-sidebar-mobile-actions 深色按鈕,兩者不並存 */
+.user-sidebar-toggles {
+  display: none;
+  gap: 8px;
+  padding: 6px 24px;
+  margin-bottom: 16px;
+}
+.user-sidebar-toggle-btn {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 8px 6px;
+  border-radius: 10px;
+  background: transparent;
+}
+.user-sidebar-toggle-btn.is-active {
+  background-image: var(--g-primary);
+  color: var(--c-navy);
+}
 .user-sidebar-list-item {
   padding: 0 24px;
   margin-bottom: 16px;
@@ -1653,6 +1681,11 @@ input {
     display: block !important;
     position: static;
     background: transparent;
+  }
+  .user-sidebar-toggles {
+    display: flex;
+    gap: 12px;
+    padding: 0 32px;
   }
   .user-sidebar-list-item {
     padding: 0 30px 0 32px;
