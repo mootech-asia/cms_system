@@ -151,7 +151,11 @@ input {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  /* .mobile-menu-panel(z-index:200)是這裡的子元素,子層 z-index 只在本身
+     建立的 stacking context 內生效,對外仍以 site-header 自己的 z-index
+     參與比較;必須高於 .quick-sidebar-right/-left(z-index:100),選單展開
+     時才不會被浮動客服按鈕蓋住 */
+  z-index: 200;
   background: var(--c-navy);
 }
 .site-header-mobile {
@@ -208,9 +212,30 @@ input {
   gap: 4px;
   border-radius: 16px;
 }
-.mobile-menu-item img {
+.mobile-menu-item-icon {
+  position: relative;
   width: 24px;
   height: 24px;
+}
+.mobile-menu-item-icon img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+/* 選中狀態圖示改用漸層色呈現,與文字用同一組 --g-primary token;圖示本身
+   是外部 svg(白色填色),無法靠 filter 精準對應漸層,改用遮罩疊層:底下的
+   img 選中時隱藏,換成同尺寸、以該 svg 當 mask 的漸層色塊 */
+.mobile-menu-item-icon-active {
+  position: absolute;
+  inset: 0;
+  display: none;
+  background-image: var(--g-primary);
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
 }
 .mobile-menu-item span {
   font-size: 14px;
@@ -220,6 +245,12 @@ input {
 }
 .mobile-menu-item.is-active {
   background: var(--c-navy);
+}
+.mobile-menu-item.is-active .mobile-menu-item-icon img {
+  display: none;
+}
+.mobile-menu-item.is-active .mobile-menu-item-icon-active {
+  display: block;
 }
 .mobile-menu-item.is-active span {
   background-image: var(--g-primary);
@@ -610,7 +641,7 @@ input {
   margin: 0 auto;
   padding: 8px 16px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   justify-content: center;
 }
@@ -1465,8 +1496,29 @@ input {
   height: 24px;
   color: var(--c-navy);
 }
+.user-navbar-home {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-navbar-home svg {
+  width: 22px;
+  height: 22px;
+  color: var(--c-navy);
+}
 @media (min-width: 1280px) {
   .user-navbar {
+    display: none;
+  }
+}
+/* 會員中心頁面(deposit/withdrawal/account-record...)手機版改以
+   .user-navbar 當頂部列,不再重複顯示全站 .site-header;桌機不受影響,
+   仍是 .site-header-desktop + .user-navbar 一起顯示(對照原始設計,
+   桌機 .user-navbar 本身已被上面規則隱藏) */
+@media (max-width: 1279px) {
+  body.is-usercenter .site-header-mobile {
     display: none;
   }
 }
@@ -2681,6 +2733,9 @@ input {
   gap: 8px;
   align-items: center;
 }
+.record-status-wrap {
+  position: relative;
+}
 .record-status-btn {
   height: 40px;
   padding: 0 12px;
@@ -2734,11 +2789,17 @@ input {
 .record-status-panel {
   display: none;
   flex-direction: column;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  min-width: 180px;
   background: #fff;
   border: 1px solid var(--c-border);
   border-radius: 8px;
   margin-top: 4px;
   overflow: hidden;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  z-index: 50;
 }
 .record-status-panel.is-open {
   display: flex;

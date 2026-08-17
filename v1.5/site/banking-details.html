@@ -163,13 +163,17 @@
           });
         }
 
-        /* 新增表單直接在「계좌 추가」按鈕下方展開,清單(含帳戶卡片與按鈕本身)
-           維持顯示,不整組隱藏——list-mode 的 hidden 只交給分組切換那邊控制 */
+        /* list-mode(帳戶清單+新增帳戶按鈕本身)一律只用 hidden 屬性切換,
+           不要疊加 style.display——曾經被設過 style.display="block" 的
+           元素,之後即使改回 hidden=true,行內樣式的優先權還是會蓋過
+           CSS 的 [hidden]{display:none},導致清單與新增表單同時顯示 */
         function showAddMode(group) {
+          W.qs('[data-bd-list-mode="' + group + '"]').hidden = true;
           W.qs('[data-bd-add-mode="' + group + '"]').style.display = 'block';
         }
         function showListMode(group) {
           W.qs('[data-bd-add-mode="' + group + '"]').style.display = 'none';
+          W.qs('[data-bd-list-mode="' + group + '"]').hidden = false;
           renderList(group);
         }
 

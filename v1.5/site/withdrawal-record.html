@@ -18,18 +18,20 @@
               <h1 class="account-page-title" data-i18n="userCenter.sidebar.withdrawalRecord">출금 기록</h1>
               <div class="record-inner">
                 <div class="record-tags">
-                  <button type="button" class="record-status-btn" data-toggle-status>
-                    <span data-i18n="userCenter.common.tags.status">상태</span><span data-status-text></span>
-                  </button>
+                  <div class="record-status-wrap">
+                    <button type="button" class="record-status-btn" data-toggle-status>
+                      <span data-i18n="userCenter.common.tags.status">상태</span><span data-status-text></span>
+                    </button>
+                    <div class="record-status-panel" data-status-panel>
+                      <button type="button" class="is-active" data-status-value="" data-i18n="userCenter.common.selectList.all">전체</button>
+                      <button type="button" data-status-value="Pending" data-i18n="userCenter.common.selectList.pending">대기</button>
+                      <button type="button" data-status-value="Approved" data-i18n="userCenter.common.selectList.approved">승인</button>
+                      <button type="button" data-status-value="Rejected" data-i18n="userCenter.common.selectList.rejected">거부</button>
+                    </div>
+                  </div>
                   <button type="button" class="record-date-btn">2026-08-01 ~ 2026-08-12</button>
                   <button type="button" class="record-confirm-btn" data-i18n="common.confirm">확인</button>
                   <div class="record-refresh"><span data-i18n="userCenter.common.autoRefresh.in">자동 갱신까지</span><strong>30</strong><span data-i18n="userCenter.common.autoRefresh.secondsShort">초</span><img src="assets/images/icon/refresh-blue.svg" alt="refresh" data-refresh-btn /></div>
-                </div>
-                <div class="record-status-panel" data-status-panel>
-                  <button type="button" class="is-active" data-status-value="" data-i18n="userCenter.common.selectList.all">전체</button>
-                  <button type="button" data-status-value="Pending" data-i18n="userCenter.common.selectList.pending">대기</button>
-                  <button type="button" data-status-value="Approved" data-i18n="userCenter.common.selectList.approved">승인</button>
-                  <button type="button" data-status-value="Rejected" data-i18n="userCenter.common.selectList.rejected">거부</button>
                 </div>
 
                 <div class="record-table-wrap">

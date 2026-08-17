@@ -83,9 +83,13 @@
    * ================================================================ */
   function mobileMenuItemHtml(item, isTop) {
     var hrefAttr = item.url ? ' data-nav-href="' + item.url + '"' : ' data-stub-item';
+    var iconUrl = icon(item.icon);
     return (
       '<button type="button" class="mobile-menu-item" data-nav-key="' + item.key + '"' + hrefAttr + '>' +
-      '<img src="' + icon(item.icon) + '" alt="' + item.key + '">' +
+      '<span class="mobile-menu-item-icon">' +
+      '<img src="' + iconUrl + '" alt="' + item.key + '">' +
+      '<span class="mobile-menu-item-icon-active" style="-webkit-mask-image:url(' + iconUrl + ');mask-image:url(' + iconUrl + ')"></span>' +
+      '</span>' +
       '<span data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span>' +
       '</button>'
     );
@@ -183,22 +187,31 @@
       on(el, 'click', function () { window.alert('此為靜態設計預覽,此功能尚未實作。'); });
     });
 
-    var langSwitcher = qs('[data-lang-switcher]', root);
-    var langTrigger = qs('[data-lang-trigger]', root);
-    on(langTrigger, 'click', function (e) {
-      e.stopPropagation();
-      langSwitcher.classList.toggle('is-open');
-    });
-    qsa('[data-set-locale]', root).forEach(function (el) {
-      on(el, 'click', function () {
-        setLocale(el.getAttribute('data-set-locale'));
-        langSwitcher.classList.remove('is-open');
-      });
-    });
-    on(document, 'click', function () { if (langSwitcher) langSwitcher.classList.remove('is-open'); });
-
     qsa('[data-open-auth]', root).forEach(function (el) {
       on(el, 'click', function () { showAuthModal(el.getAttribute('data-open-auth')); });
+    });
+  }
+
+  /* header(桌機)與 footer 各自有一份 .header-lang-switcher 標記(data-lang-switcher),
+     兩者是各自獨立的 DOM 節點,需逐一綁定;footer 比 header 晚掛載,所以統一在
+     mountChrome() 兩者都掛載完後才呼叫一次,而不是在 bindHeader() 裡面綁(那時
+     footer 的節點還不存在於文件中) */
+  function bindLangSwitchers(root) {
+    qsa('[data-lang-switcher]', root).forEach(function (switcher) {
+      if (switcher.__langBound) return;
+      switcher.__langBound = true;
+      var trigger = qs('[data-lang-trigger]', switcher);
+      on(trigger, 'click', function (e) {
+        e.stopPropagation();
+        switcher.classList.toggle('is-open');
+      });
+      qsa('[data-set-locale]', switcher).forEach(function (el) {
+        on(el, 'click', function () {
+          setLocale(el.getAttribute('data-set-locale'));
+          switcher.classList.remove('is-open');
+        });
+      });
+      on(document, 'click', function () { switcher.classList.remove('is-open'); });
     });
   }
 
@@ -372,7 +385,10 @@
     var titleKey = USER_CENTER_TITLES[pageName()] || '';
     return (
       '<header class="user-navbar">' +
-      '<div style="width:32px"></div>' +
+      /* 會員中心頁面手機版不顯示全站 .site-header,這裡補一個回首頁的
+         入口,避免使用者在這幾頁的手機版無路可回大廳 */
+      '<a href="index.html" class="user-navbar-home" aria-label="Home">' +
+      '<svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 11 12 4l9 7v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8Z"></path></svg></a>' +
       '<h1 class="user-navbar-title" data-i18n="' + titleKey + '">' + t(titleKey) + '</h1>' +
       '<button type="button" class="user-navbar-toggle" data-toggle-user-sidebar aria-label="Toggle menu">' +
       '<svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
@@ -620,6 +636,10 @@
     var userNavbarMount = qs('[data-mount="user-navbar"]');
     var userSidebarMount = qs('[data-mount="user-sidebar"]');
 
+    /* 會員中心頁面手機版改用 .user-navbar 當頂部列,靠這個 class 讓
+       CSS 隱藏重複的 .site-header-mobile(見 main.css) */
+    if (isUserCenterPage()) document.body.classList.add('is-usercenter');
+
     if (headerMount) { headerMount.outerHTML = headerHtml(); bindHeader(document); }
     /* 對照真實網站截圖:會員中心頁面不顯示頁尾(合作夥伴/免責聲明/版權),
        只有一般前台頁面才掛載;會員中心側欄比主內容區高時,頁尾殘留會跟
@@ -655,6 +675,7 @@
     if (userNavbarMount) userNavbarMount.outerHTML = userNavbarHtml();
     if (userSidebarMount) { userSidebarMount.outerHTML = userSidebarHtml(); bindNavLinks(document); }
     if (userNavbarMount || userSidebarMount) bindUserSidebar(document);
+    bindLangSwitchers(document);
   }
 
   /* 紀錄頁「自動刷新倒數」共用元件(withdrawalRecord/depositRecord/withdrawalDetail

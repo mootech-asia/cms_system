@@ -18,18 +18,20 @@
               <h1 class="account-page-title" data-i18n="userCenter.sidebar.accountRecord">계정 기록</h1>
               <div class="record-inner">
                 <div class="record-tags">
-                  <button type="button" class="record-status-btn" data-toggle-status>
-                    <span data-i18n="userCenter.common.tags.status">상태</span><span data-status-text></span>
-                  </button>
+                  <div class="record-status-wrap">
+                    <button type="button" class="record-status-btn" data-toggle-status>
+                      <span data-i18n="userCenter.common.tags.status">상태</span><span data-status-text></span>
+                    </button>
+                    <div class="record-status-panel" data-status-panel>
+                      <button type="button" class="is-active" data-status-value="" data-i18n="userCenter.common.selectList.all">전체</button>
+                      <button type="button" data-status-value="Deposit" data-i18n="userCenter.deposit">입금</button>
+                      <button type="button" data-status-value="Withdrawal" data-i18n="userCenter.withdrawal">출금</button>
+                      <button type="button" data-status-value="Game" data-i18n="userCenter.common.headers.game">게임</button>
+                      <button type="button" data-status-value="Bonus" data-i18n="navbar.bottom.bonus">보너스</button>
+                    </div>
+                  </div>
                   <button type="button" class="record-date-btn">2026-08-01 ~ 2026-08-12</button>
                   <button type="button" class="record-confirm-btn" data-i18n="common.confirm">확인</button>
-                </div>
-                <div class="record-status-panel" data-status-panel>
-                  <button type="button" class="is-active" data-status-value="" data-i18n="userCenter.common.selectList.all">전체</button>
-                  <button type="button" data-status-value="Deposit" data-i18n="userCenter.deposit">입금</button>
-                  <button type="button" data-status-value="Withdrawal" data-i18n="userCenter.withdrawal">출금</button>
-                  <button type="button" data-status-value="Game" data-i18n="userCenter.common.headers.game">게임</button>
-                  <button type="button" data-status-value="Bonus" data-i18n="navbar.bottom.bonus">보너스</button>
                 </div>
 
                 <div class="record-table-wrap">
