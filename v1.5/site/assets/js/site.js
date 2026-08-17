@@ -219,7 +219,12 @@
     var current = pageName();
     var currentType = new URLSearchParams(location.search).get('type');
     qsa('[data-nav-key]', root).forEach(function (el) {
-      var href = el.getAttribute('data-nav-href') || '';
+      /* 沒有 data-nav-href 的是 stub 項目(點數商城/分享等尚未實作的功能,
+         見 data-stub-item),不對應任何頁面,不能參與 active 比對——否則
+         href 會被當成空字串,下面 || 'index' 的 fallback 讓它們在首頁
+         時被誤判成 active */
+      var href = el.getAttribute('data-nav-href');
+      if (!href) { el.classList.remove('is-active'); return; }
       var hrefPage = href.split('?')[0].replace(/\.html$/, '') || 'index';
       var hrefType = href.indexOf('type=') !== -1 ? href.split('type=')[1] : null;
       var isActive = hrefPage === current && (hrefType == null || hrefType === currentType);
