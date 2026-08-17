@@ -2480,6 +2480,24 @@ body.usc-sidebar-open .mobile-bottom-nav {
   flex-direction: column;
   justify-content: space-between;
 }
+/* 虛擬錢包卡片內容只有兩段(類型+地址),沿用 .wd-bank-card 的底圖/圓角
+   容器,但不套用銀行卡 inner 的 justify-content:space-between(內容會
+   被拉開到卡片頂部/底部),改成內容自然靠上、兩段間留固定間距;文字
+   沿用 .bd-account-name/.bd-account-number 的字重字級,只覆寫成白色
+   系配色以配合深色底圖 */
+.wd-wallet-card-inner {
+  position: relative;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.wd-wallet-card-inner .bd-account-name {
+  color: #fff;
+}
+.wd-wallet-card-inner .bd-account-number {
+  color: rgba(255, 255, 255, 0.7);
+}
 .wd-add-card-icon {
   width: 24px;
   height: 24px;
