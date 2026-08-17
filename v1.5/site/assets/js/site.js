@@ -385,7 +385,10 @@
     var titleKey = USER_CENTER_TITLES[pageName()] || '';
     return (
       '<header class="user-navbar">' +
-      '<div style="width:32px"></div>' +
+      /* 會員中心頁面手機版不顯示全站 .site-header,這裡補一個回首頁的
+         入口,避免使用者在這幾頁的手機版無路可回大廳 */
+      '<a href="index.html" class="user-navbar-home" aria-label="Home">' +
+      '<svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 11 12 4l9 7v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8Z"></path></svg></a>' +
       '<h1 class="user-navbar-title" data-i18n="' + titleKey + '">' + t(titleKey) + '</h1>' +
       '<button type="button" class="user-navbar-toggle" data-toggle-user-sidebar aria-label="Toggle menu">' +
       '<svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
@@ -632,6 +635,10 @@
     var quickSidebarMount = qs('[data-mount="quick-sidebar"]');
     var userNavbarMount = qs('[data-mount="user-navbar"]');
     var userSidebarMount = qs('[data-mount="user-sidebar"]');
+
+    /* 會員中心頁面手機版改用 .user-navbar 當頂部列,靠這個 class 讓
+       CSS 隱藏重複的 .site-header-mobile(見 main.css) */
+    if (isUserCenterPage()) document.body.classList.add('is-usercenter');
 
     if (headerMount) { headerMount.outerHTML = headerHtml(); bindHeader(document); }
     /* 對照真實網站截圖:會員中心頁面不顯示頁尾(合作夥伴/免責聲明/版權),

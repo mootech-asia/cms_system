@@ -1496,8 +1496,29 @@ input {
   height: 24px;
   color: var(--c-navy);
 }
+.user-navbar-home {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-navbar-home svg {
+  width: 22px;
+  height: 22px;
+  color: var(--c-navy);
+}
 @media (min-width: 1280px) {
   .user-navbar {
+    display: none;
+  }
+}
+/* 會員中心頁面(deposit/withdrawal/account-record...)手機版改以
+   .user-navbar 當頂部列,不再重複顯示全站 .site-header;桌機不受影響,
+   仍是 .site-header-desktop + .user-navbar 一起顯示(對照原始設計,
+   桌機 .user-navbar 本身已被上面規則隱藏) */
+@media (max-width: 1279px) {
+  body.is-usercenter .site-header-mobile {
     display: none;
   }
 }
