@@ -206,7 +206,8 @@
   }
   function updateSummaries() {
     $('st-summary-site').textContent = (draft.siteName || '未命名') + ' ・ ' + localeLabel(previewLocale);
-    $('st-summary-skin').textContent = themeLabel(draft.skin) + ' ・ ' + publicSkinSummary() + ' ・ ' + publicLocaleSummary() + ' ・ ' + skinButtonSummary();
+    $('st-summary-locales').textContent = publicLocaleSummary();
+    $('st-summary-skin').textContent = themeLabel(draft.skin) + ' ・ ' + publicSkinSummary() + ' ・ ' + skinButtonSummary();
     $('st-summary-chrome').textContent = 'header:' + draft.chrome.header + ' / footer:' + draft.chrome.footer;
     $('st-summary-sections').textContent = currentPage + ' ・ ' + sectionsOf(currentPage).length + ' 個區塊';
   }
