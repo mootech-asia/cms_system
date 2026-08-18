@@ -1322,8 +1322,7 @@ body.usc-sidebar-open .mobile-bottom-nav {
 }
 .promo-home-banner {
   position: relative;
-  height: 130px;
-  padding: 16px;
+  padding: 20px 16px;
   background: linear-gradient(135deg, #2a2560, #100c2e);
   overflow: hidden;
 }
