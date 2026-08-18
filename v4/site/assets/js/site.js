@@ -714,7 +714,7 @@
     var body;
     if (isBank) {
       body =
-        '<div class="bank-row"><span>' + escapeHtml(tr('dp.receivingBank', '收款銀行')) + '</span><strong style="margin-left:auto">國民銀行</strong></div>' +
+        '<div class="bank-row"><span>' + escapeHtml(tr('dp.receivingBank', '收款銀行')) + '</span><strong style="margin-left:auto" data-i18n="bank.kookmin">國民銀行</strong></div>' +
         '<div class="bank-row"><span>' + escapeHtml(tr('dp.receivingAccount', '收款帳號')) + '</span><strong class="mono" style="margin-left:auto">881-234-567890</strong></div>' +
         '<div class="bank-row"><span>' + escapeHtml(tr('dp.depositAmountLabel', '儲值金額')) + '</span><strong style="margin-left:auto">' + escapeHtml(amountVal) + '</strong></div>' +
         '<p class="pay-note">' + escapeHtml(tr('dp.transferNote', '完成轉帳後請點擊下方按鈕，系統將盡快為您確認入帳。')) + '</p>' +

@@ -179,16 +179,18 @@
     });
   }
 
-  /* 前台語言顯示開關:哪些語言會出現在玩家看到的語言選單裡,對照
-     renderPublicSkins 的做法(seg-btn 平鋪、點擊切換),至少保留 1 個
-     語言不能全部關掉。 */
+  /* 前台語言顯示開關:哪些語言會出現在玩家看到的語言選單裡。排版比照
+     renderSkins 的大卡片網格(st-skin-grid/st-skin-btn),不是獨立另外
+     設計一套小藥丸樣式,跟外觀 Skin 選擇器維持同一種視覺語言;圓點顏色
+     用來表示開/關,不代表語言本身。至少保留 1 個語言不能全部關掉。 */
   function renderLocales() {
     var wrap = document.getElementById('st-locales');
     wrap.innerHTML = LOCALES.map(function (l) {
       var on = draft.locales.indexOf(l.id) !== -1;
-      return '<button type="button" role="checkbox" aria-checked="' + on + '" class="seg-btn' +
+      return '<button type="button" role="checkbox" aria-checked="' + on + '" class="seg-btn st-skin-btn' +
         (on ? ' active' : '') + '" data-locale-option="' + l.id + '">' +
-        (on ? '✓ ' : '') + l.label + '</button>';
+        '<span class="st-skin-dot" style="background:' + (on ? 'var(--gold-grad)' : 'var(--line)') + '"></span>' +
+        l.label + '</button>';
     }).join('');
     document.getElementById('st-summary-locales').textContent = draft.locales.length + ' / ' + LOCALES.length + ' 種語言顯示中';
     Array.prototype.slice.call(wrap.querySelectorAll('[data-locale-option]')).forEach(function (btn) {
