@@ -355,11 +355,11 @@
   }
   function isLoggedIn() { return !!loadAuth(); }
 
+  /* 訪客態只留「立即註冊／登錄」兩顆按鈕（比照參考站 JOIN／LOGIN 的
+     極簡配置），不再像舊版把用戶名/密碼輸入框直接攤在 header 上——
+     點「登錄」一律開登入彈窗,帳密輸入收斂到彈窗內完成。 */
   function guestAuthHtml() {
     return '<button type="button" class="btn-accent quiet" data-auth-open="register">' + tr('auth.registerNow', '立即註冊') + '</button>' +
-      '<input class="header-input" type="text" placeholder="' + tr('auth.usernamePlaceholder', '用戶名') + '" data-auth-username />' +
-      '<input class="header-input" type="password" placeholder="' + tr('auth.passwordPlaceholder', '密碼') + '" data-auth-password />' +
-      '<span class="header-forgot">' + tr('auth.forgot', '忘記密碼') + '</span>' +
       '<button type="button" class="btn-accent" data-auth-open="login">' + tr('auth.login', '登錄') + '</button>';
   }
   function memberAuthHtml(user) {
@@ -369,20 +369,14 @@
       '<button type="button" class="btn-accent quiet" data-logout>' + tr('auth.logout', '登出') + '</button>';
   }
   /* 依登入狀態重繪 header-auth,取代原本每頁寫死的訪客/會員版面。
-     訪客態的「登錄」直接讀 header 上的用戶名輸入框,有填就直接登入,
-     沒填才開登入彈窗（與立即註冊一致，皆為彈窗）。 */
+     訪客態的「登錄／立即註冊」一律開對應的登入彈窗完成帳密輸入。 */
   function renderHeaderAuth() {
     var bar = document.querySelector('.header-auth');
     if (!bar) return;
     var user = loadAuth();
     bar.innerHTML = user ? memberAuthHtml(user) : guestAuthHtml();
     if (!user) {
-      var loginBtn = bar.querySelector('[data-auth-open="login"]');
-      var usernameInput = bar.querySelector('[data-auth-username]');
-      on(loginBtn, 'click', function () {
-        var name = (usernameInput && usernameInput.value || '').trim();
-        if (name) doLogin(name); else openAuthModal('login');
-      });
+      on(bar.querySelector('[data-auth-open="login"]'), 'click', function () { openAuthModal('login'); });
       on(bar.querySelector('[data-auth-open="register"]'), 'click', function () { openAuthModal('register'); });
     }
   }
@@ -494,20 +488,25 @@
     if (loginBtn) on(loginBtn, 'click', function () { closeMobileMenu(); openAuthModal('login'); });
     if (registerBtn) on(registerBtn, 'click', function () { closeMobileMenu(); openAuthModal('register'); });
   }
+  /* 漢堡選單的主分類改成 3 欄 icon 卡片網格(對齊參考站選單的圖示方塊
+     配置)，而不是像 .mobile-menu-link 那樣一行一個的直向清單。 */
   function openHeaderMenu() {
     var navLinks = Array.prototype.slice.call(document.querySelectorAll('.header-nav .header-nav-link'));
-    var navHtml = navLinks.map(function (a) {
-      return '<a href="' + a.getAttribute('href') + '" class="mobile-menu-link' + (a.classList.contains('active') ? ' active' : '') + '">' + a.innerHTML + '</a>';
-    }).join('');
+    var navHtml = '<div class="mobile-menu-grid">' + navLinks.map(function (a) {
+      return '<a href="' + a.getAttribute('href') + '" class="mobile-menu-grid-item' + (a.classList.contains('active') ? ' active' : '') + '">' + a.innerHTML + '</a>';
+    }).join('') + '</div>';
     openMobileOverlay(navHtml);
   }
+  /* 會員捷徑清單項目較多(10 項)，改成兩欄文字清單＋右側 chevron，
+     對齊參考站選單第二段「更多功能」清單的樣式，跟上方 icon 網格
+     區隔出不同的資訊密度層級。 */
   function openMemberMenu() {
     var page = currentPage();
     var navHtml = '<div class="mobile-menu-section">我的帳戶</div>' +
-      MEMBER_MENU_ITEMS.map(function (item) {
+      '<div class="mobile-menu-list">' + MEMBER_MENU_ITEMS.map(function (item) {
         var active = item.href.split('?')[0] === page;
-        return '<a href="' + item.href + '" class="mobile-menu-link' + (active ? ' active' : '') + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + item.icon + '</svg><span>' + item.label + '</span></a>';
-      }).join('');
+        return '<a href="' + item.href + '" class="mobile-menu-list-item' + (active ? ' active' : '') + '"><span>' + item.label + '</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>';
+      }).join('') + '</div>';
     openMobileOverlay(navHtml);
   }
   function initHeaderMobileMenu() {
