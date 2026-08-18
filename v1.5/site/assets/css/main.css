@@ -1314,26 +1314,11 @@ body.usc-sidebar-open .mobile-bottom-nav {
   gap: 16px;
 }
 .promo-home-card {
-  position: relative;
   flex-shrink: 0;
   width: 240px;
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-}
-.promo-home-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  border-radius: inherit;
-  padding: 1px;
-  background: var(--g-primary-270);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
 }
 .promo-home-banner {
   position: relative;
