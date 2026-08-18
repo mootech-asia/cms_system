@@ -77,9 +77,10 @@
               <img src="assets/images/icon/slotGames2.svg" alt="slot games" />
               <span data-i18n="navbar.top.slots">슬롯</span>
             </div>
-            <div class="home-vendor-actions">
-              <span data-i18n="hotGame.seeAll">전체 보기</span>
-              <button type="button" data-nav-href="game-type.html?type=slot"><img src="assets/images/icon/arrow-right2.svg" alt="see all" /></button>
+            <div class="home-vendor-actions hot-game-actions">
+              <button type="button" data-nav-href="game-type.html?type=slot" data-i18n="hotGame.seeAll">전체 보기</button>
+              <button type="button" data-slot-strip-prev><img class="hot-game-arrow" src="assets/images/icon/arrow-left2.svg" alt="prev" /></button>
+              <button type="button" data-slot-strip-next><img class="hot-game-arrow" src="assets/images/icon/arrow-right2.svg" alt="next" /></button>
             </div>
           </div>
           <div class="slot-strip">
@@ -184,6 +185,7 @@
 
         /* ---- Slot Games 橫向捲動 ---- */
         var slotTrack = W.qs('[data-slot-strip-track]');
+        var slotStrip = W.qs('.slot-strip');
         slotTrack.innerHTML = D.SLOT_STRIP_IMAGES.map(function (img) {
           return (
             '<div class="slot-strip-card">' +
@@ -193,6 +195,13 @@
             '</div>'
           );
         }).join('');
+        function moveSlot(delta) {
+          var card = slotTrack.querySelector('.slot-strip-card');
+          var cardWidth = (card && card.offsetWidth) || 140;
+          slotStrip.scrollBy({ left: delta * (cardWidth + 16), behavior: 'smooth' });
+        }
+        W.on(W.qs('[data-slot-strip-prev]'), 'click', function () { moveSlot(-1); });
+        W.on(W.qs('[data-slot-strip-next]'), 'click', function () { moveSlot(1); });
 
         /* ---- 首頁促銷卡片 ---- */
         var promoTrack = W.qs('[data-promo-home-track]');
@@ -211,8 +220,24 @@
           );
         }).join('');
         promoDots.innerHTML = D.PROMO_HOME_CARDS.map(function (_, i) {
-          return '<span class="promo-home-dot' + (i === 0 ? ' is-active' : '') + '"></span>';
+          return '<span class="promo-home-dot' + (i === 0 ? ' is-active' : '') + '" data-promo-dot="' + i + '"></span>';
         }).join('');
+        var promoStrip = W.qs('.promo-home-strip');
+        var promoDotEls = W.qsa('[data-promo-dot]', promoDots);
+        function promoCardStep() {
+          var card = promoTrack.querySelector('.promo-home-card');
+          var trackStyle = window.getComputedStyle(promoTrack);
+          return ((card && card.offsetWidth) || 240) + (parseFloat(trackStyle.gap) || 0);
+        }
+        promoDotEls.forEach(function (dot, i) {
+          W.on(dot, 'click', function () {
+            promoStrip.scrollTo({ left: i * promoCardStep(), behavior: 'smooth' });
+          });
+        });
+        W.on(promoStrip, 'scroll', function () {
+          var active = Math.round(promoStrip.scrollLeft / promoCardStep());
+          promoDotEls.forEach(function (dot, i) { dot.classList.toggle('is-active', i === active); });
+        });
 
         /* ---- 首頁進站廣告彈窗(對照 components/PromotionModal.vue,
            demo 環境沒有真實公告 API,固定取用 D.PROMOTIONS 其中一筆促銷;

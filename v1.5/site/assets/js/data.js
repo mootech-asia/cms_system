@@ -1060,10 +1060,10 @@
   ];
 
   /* ---- 首頁促銷卡片(對照真實網站首頁截圖「SPECIAL OFFER / PROMOTION」樣式) ---- */
-  var PROMO_HOME_CARDS = [
-    { label: 'Promotion 1' }, { label: 'Promotion 1' }, { label: 'Promotion 1' },
-    { label: 'Promotion 1' }, { label: 'Promotion 1' },
-  ];
+  var PROMO_HOME_CARDS = [];
+  for (var promoCardI = 0; promoCardI < 20; promoCardI++) {
+    PROMO_HOME_CARDS.push({ label: 'Promotion 1' });
+  }
 
   /* ---- 遊戲分類區(GameType.vue,對照 hotGame icon 資料) ---- */
   var GAME_TYPES = [
