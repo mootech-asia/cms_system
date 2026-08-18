@@ -1379,6 +1379,7 @@ body.usc-sidebar-open .mobile-bottom-nav {
 .promo-home-coin.c2 { width: 38px; height: 38px; right: 14px; top: 26px; }
 .promo-home-coin.c3 { width: 18px; height: 18px; right: 30px; top: 68px; }
 .promo-home-date-bar {
+  margin: 0;
   background: var(--g-primary);
   color: var(--c-navy);
   font-weight: 700;
@@ -1387,6 +1388,7 @@ body.usc-sidebar-open .mobile-bottom-nav {
   padding: 8px 0;
 }
 .promo-home-footer {
+  margin: 0;
   background: #d9dbe6;
   color: #111;
   font-size: 13px;
@@ -4029,6 +4031,7 @@ body.usc-sidebar-open .mobile-bottom-nav {
   transform: scale(1.1);
 }
 .promotion-card-badge {
+  margin: 0;
   text-align: center;
   font-weight: 700;
   font-size: 14px;
