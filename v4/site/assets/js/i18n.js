@@ -169,6 +169,7 @@
     },
     'wd.gotoAccounts': { zh: '前往「帳戶管理」新增', en: 'go to "Account Management" to add', ko: '"계정 관리"로 이동하여 추가', th: 'ไปที่ "จัดการบัญชี" เพื่อเพิ่ม' },
     'wd.myBankAccounts': { zh: '我的銀行帳戶', en: 'My Bank Accounts', ko: '내 은행 계좌', th: 'บัญชีธนาคารของฉัน' },
+    'bank.kookmin': { zh: '國民銀行', en: 'Kookmin Bank', ko: '국민은행', th: 'ธนาคารคุกมิน' },
     'wd.myCryptoWallets': { zh: '我的加密錢包', en: 'My Crypto Wallets', ko: '내 암호화폐 지갑', th: 'กระเป๋าเงินคริปโตของฉัน' },
     'wd.groupBank': { zh: '銀行', en: 'bank', ko: '은행', th: 'ธนาคาร' },
     'wd.groupCrypto': { zh: '加密錢包', en: 'crypto wallet', ko: '암호화폐 지갑', th: 'กระเป๋าเงินคริปโต' },
