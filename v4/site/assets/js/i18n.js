@@ -79,6 +79,16 @@
     'auth.passwordInputPlaceholder': { zh: '請輸入密碼', en: 'Enter your password', ko: '비밀번호를 입력하세요', th: 'กรุณากรอกรหัสผ่าน' },
     'auth.confirmPasswordLabel': { zh: '確認密碼', en: 'Confirm Password', ko: '비밀번호 확인', th: 'ยืนยันรหัสผ่าน' },
     'auth.confirmPasswordPlaceholder': { zh: '請再次輸入密碼', en: 'Re-enter your password', ko: '비밀번호를 다시 입력하세요', th: 'กรุณากรอกรหัสผ่านอีกครั้ง' },
+    'auth.forgotTitle': { zh: '忘記密碼', en: 'Forgot Password', ko: '비밀번호 찾기', th: 'ลืมรหัสผ่าน' },
+    'auth.forgotDesc': { zh: '請輸入用戶名與註冊時的電子信箱，我們會將重設密碼連結寄送至該信箱。', en: 'Enter your username and the email used to register — we will send a password reset link to that email.', ko: '사용자명과 가입 시 등록한 이메일을 입력하시면 비밀번호 재설정 링크를 보내드립니다.', th: 'กรอกชื่อผู้ใช้และอีเมลที่ใช้สมัคร เราจะส่งลิงก์รีเซ็ตรหัสผ่านไปยังอีเมลนั้น' },
+    'auth.emailLabel': { zh: '電子信箱', en: 'Email', ko: '이메일', th: 'อีเมล' },
+    'auth.emailInputPlaceholder': { zh: '請輸入註冊時的電子信箱', en: 'Enter your registered email', ko: '가입 시 등록한 이메일을 입력하세요', th: 'กรุณากรอกอีเมลที่ใช้สมัคร' },
+    'auth.sendResetLink': { zh: '傳送重設連結', en: 'Send Reset Link', ko: '재설정 링크 보내기', th: 'ส่งลิงก์รีเซ็ต' },
+    'auth.forgotPrompt': { zh: '忘記密碼？', en: 'Forgot your password?', ko: '비밀번호를 잊으셨나요?', th: 'ลืมรหัสผ่าน?' },
+    'auth.resetNow': { zh: '立即重設', en: 'Reset now', ko: '지금 재설정', th: 'รีเซ็ตตอนนี้' },
+    'auth.rememberPassword': { zh: '想起密碼了？', en: 'Remembered your password?', ko: '비밀번호가 기억나셨나요?', th: 'จำรหัสผ่านได้แล้ว?' },
+    'auth.backToLogin': { zh: '返回登入', en: 'Back to Login', ko: '로그인으로 돌아가기', th: 'กลับไปเข้าสู่ระบบ' },
+    'auth.resetSentDesc': { zh: '若帳號與信箱相符，重設密碼連結將寄送至您的信箱。', en: 'If the account and email match, a password reset link has been sent to your inbox.', ko: '계정과 이메일이 일치하면 비밀번호 재설정 링크가 이메일로 발송됩니다.', th: 'หากบัญชีและอีเมลตรงกัน ลิงก์รีเซ็ตรหัสผ่านจะถูกส่งไปยังอีเมลของคุณ' },
 
     'notice.message': {
       zh: '公告：系統將於今日凌晨進行例行維護，期間下注功能將暫停使用，造成不便敬請見諒。',
