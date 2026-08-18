@@ -346,6 +346,7 @@
     modules: normalizeModules(savedModules),
     skin: savedSkinId,
     visibleSkinIds: savedVisibleSkins.slice(),
+    visibleLocaleIds: savedVisibleLocales.slice(),
     layout: { order: savedLayout.order.slice(), hidden: savedLayout.hidden.slice() },
     accountHiddenSections: savedAccountHidden.slice(),
     banners: savedBanners.slice(),
@@ -383,6 +384,7 @@
     return JSON.stringify(draft.modules) !== JSON.stringify(applied.modules)
       || draft.skin !== applied.skin
       || !sameArray(normalizeVisibleSkins(draft.visibleSkinIds), normalizeVisibleSkins(applied.visibleSkinIds))
+      || !sameArray(normalizeVisibleLocales(draft.visibleLocaleIds), normalizeVisibleLocales(applied.visibleLocaleIds))
       || JSON.stringify({ order: draft.layoutOrder, hidden: draft.hiddenSections }) !== JSON.stringify(applied.layout)
       || !sameArray(normalizeAccountHidden(draft.accountHiddenSections), applied.accountHiddenSections)
       || JSON.stringify(draft.banners) !== JSON.stringify(applied.banners)
@@ -817,6 +819,7 @@
     applied.modules = normalizeModules(draft.modules);
     applied.skin = nextSkin;
     applied.visibleSkinIds = savedSkinIds.slice();
+    applied.visibleLocaleIds = normalizeVisibleLocales(draft.visibleLocaleIds).slice();
     applied.layout = { order: normalizeOrder(draft.layoutOrder), hidden: normalizeHidden(draft.hiddenSections) };
     applied.accountHiddenSections = normalizeAccountHidden(draft.accountHiddenSections);
     applied.banners = normalizeBanners(draft.banners).slice();
@@ -833,6 +836,7 @@
     draft.modules = normalizeModules(applied.modules);
     draft.skin = applied.skin;
     draft.visibleSkinIds = applied.visibleSkinIds.slice();
+    draft.visibleLocaleIds = applied.visibleLocaleIds.slice();
     draft.layoutOrder = applied.layout.order.slice();
     draft.hiddenSections = applied.layout.hidden.slice();
     draft.accountHiddenSections = applied.accountHiddenSections.slice();
