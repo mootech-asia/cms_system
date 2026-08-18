@@ -329,7 +329,20 @@
       "deposit.qr.copied": "已複製",
       "deposit.qr.note": "此為示意用 QR Code 與付款網址，僅供介面展示。",
       "deposit.qr.confirm": "下一步",
-      "deposit.qr.altText": "付款 QR Code"
+      "deposit.qr.altText": "付款 QR Code",
+      "banner.welcomeBadge": "首存禮遇",
+      "banner.welcomeTitle": "儲值狂熱",
+      "banner.welcomeSub": "迎新加碼 · 快速出款 · 限時開放",
+      "banner.worldCupBadge": "2026 世界足球",
+      "banner.worldCupTitle": "榮耀之路",
+      "banner.worldCupSub": "即時賠率 · 賽事中心 · 每球必爭",
+      "banner.worldCupCta": "查看賽事",
+      "banner.esportsBadge": "電競週",
+      "banner.esportsTitle": "戰力升級",
+      "banner.esportsSub": "每週遊戲返水 · 限時開放",
+      "banner.esportsCta": "進入競技場",
+      "banner.walletBadge": "智慧錢包",
+      "banner.walletSub": "快速入金 · 安全結算 · 24/7 存取"
     },
     "en": {
       "nav.home": "Home",
@@ -388,7 +401,20 @@
       "deposit.qr.copied": "Copied",
       "deposit.qr.note": "This QR code and payment link are for demonstration purposes only.",
       "deposit.qr.confirm": "Next",
-      "deposit.qr.altText": "Payment QR code"
+      "deposit.qr.altText": "Payment QR code",
+      "banner.welcomeBadge": "Welcome Offer",
+      "banner.welcomeTitle": "Deposit Fever",
+      "banner.welcomeSub": "New Member Bonus · Fast Withdrawals · Limited Time",
+      "banner.worldCupBadge": "2026 World Football",
+      "banner.worldCupTitle": "Road to Glory",
+      "banner.worldCupSub": "Live Odds · Match Center · Every Goal Counts",
+      "banner.worldCupCta": "View Matches",
+      "banner.esportsBadge": "Esports Week",
+      "banner.esportsTitle": "Power Up",
+      "banner.esportsSub": "Weekly Game Cashback · Limited Time",
+      "banner.esportsCta": "Enter Arena",
+      "banner.walletBadge": "Smart Wallet",
+      "banner.walletSub": "Fast Deposits · Secure Settlement · 24/7 Access"
     },
     "ko": {
       "nav.home": "홈",
@@ -447,7 +473,20 @@
       "deposit.qr.copied": "복사됨",
       "deposit.qr.note": "본 QR 코드 및 결제 링크는 시연 목적으로만 제공됩니다.",
       "deposit.qr.confirm": "다음",
-      "deposit.qr.altText": "결제 QR 코드"
+      "deposit.qr.altText": "결제 QR 코드",
+      "banner.welcomeBadge": "첫 입금 혜택",
+      "banner.welcomeTitle": "충전 열풍",
+      "banner.welcomeSub": "신규 회원 보너스 · 빠른 출금 · 한정 기간",
+      "banner.worldCupBadge": "2026 월드풋볼",
+      "banner.worldCupTitle": "영광의 길",
+      "banner.worldCupSub": "실시간 배당률 · 경기 센터 · 매 골이 중요합니다",
+      "banner.worldCupCta": "경기 보기",
+      "banner.esportsBadge": "e스포츠 위크",
+      "banner.esportsTitle": "전투력 업그레이드",
+      "banner.esportsSub": "주간 게임 캐시백 · 한정 기간",
+      "banner.esportsCta": "아레나 입장",
+      "banner.walletBadge": "스마트 지갑",
+      "banner.walletSub": "빠른 입금 · 안전한 정산 · 24/7 이용 가능"
     },
     "th": {
       "nav.home": "หน้าแรก",
@@ -506,7 +545,20 @@
       "deposit.qr.copied": "คัดลอกแล้ว",
       "deposit.qr.note": "QR โค้ดและลิงก์ชำระเงินนี้มีไว้เพื่อการสาธิตเท่านั้น",
       "deposit.qr.confirm": "ถัดไป",
-      "deposit.qr.altText": "QR โค้ดชำระเงิน"
+      "deposit.qr.altText": "QR โค้ดชำระเงิน",
+      "banner.welcomeBadge": "ข้อเสนอต้อนรับ",
+      "banner.welcomeTitle": "ฝากเงินสุดคุ้ม",
+      "banner.welcomeSub": "โบนัสสมาชิกใหม่ · ถอนเงินไว · จำกัดเวลา",
+      "banner.worldCupBadge": "ฟุตบอลโลก 2026",
+      "banner.worldCupTitle": "เส้นทางสู่ชัยชนะ",
+      "banner.worldCupSub": "อัตราต่อรองสด · ศูนย์การแข่งขัน · ทุกประตูมีความหมาย",
+      "banner.worldCupCta": "ดูการแข่งขัน",
+      "banner.esportsBadge": "สัปดาห์อีสปอร์ต",
+      "banner.esportsTitle": "อัปเกรดพลังการต่อสู้",
+      "banner.esportsSub": "แคชแบ็กเกมรายสัปดาห์ · จำกัดเวลา",
+      "banner.esportsCta": "เข้าสู่สนามประลอง",
+      "banner.walletBadge": "กระเป๋าเงินอัจฉริยะ",
+      "banner.walletSub": "ฝากเงินไว · ชำระเงินปลอดภัย · เข้าถึงได้ตลอด 24/7"
     }
   };
 
