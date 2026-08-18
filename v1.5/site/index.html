@@ -194,22 +194,23 @@
           );
         }).join('');
 
-        /* ---- 首頁促銷卡片(直接吃真實促銷資料 D.PROMOTIONS,banner 用促銷本身的美術圖,
-           不再另外維護一份會跟 promotion-list.html 兜不齊的假資料) ---- */
+        /* ---- 首頁促銷卡片 ---- */
         var promoTrack = W.qs('[data-promo-home-track]');
         var promoDots = W.qs('[data-promo-home-dots]');
-        var promoHomeList = D.PROMOTIONS.slice(0, 5);
-        var loc = W.currentLocale();
-        promoTrack.innerHTML = promoHomeList.map(function (p) {
+        promoTrack.innerHTML = D.PROMO_HOME_CARDS.map(function () {
           return (
-            '<a class="promo-home-card" href="promotion-detail.html?id=' + p.promotion_id + '">' +
-            '<div class="promo-home-banner"><img src="assets/images/index/promotion/' + p.image + '" alt="' + p.title[loc] + '"></div>' +
-            '<p class="promo-home-date-bar">' + W.promoDateBadge(p) + '</p>' +
-            '<p class="promo-home-footer">' + p.title[loc] + '</p>' +
+            '<a class="promo-home-card" href="promotion-list.html">' +
+            '<div class="promo-home-banner">' +
+            '<div class="promo-home-coin c1"></div><div class="promo-home-coin c2"></div><div class="promo-home-coin c3"></div>' +
+            '<p class="promo-home-offer" data-i18n="hotGame.specialOffer">SPECIAL OFFER</p>' +
+            '<p class="promo-home-title">PROMOTION</p>' +
+            '</div>' +
+            '<p class="promo-home-date-bar" data-i18n="hotGame.promoDateRange">Thursday-Tuesday, times vary</p>' +
+            '<p class="promo-home-footer" data-i18n="hotGame.promotion1">Promotion 1</p>' +
             '</a>'
           );
         }).join('');
-        promoDots.innerHTML = promoHomeList.map(function (_, i) {
+        promoDots.innerHTML = D.PROMO_HOME_CARDS.map(function (_, i) {
           return '<span class="promo-home-dot' + (i === 0 ? ' is-active' : '') + '"></span>';
         }).join('');
 

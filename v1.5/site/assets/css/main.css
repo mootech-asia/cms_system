@@ -1321,15 +1321,36 @@ body.usc-sidebar-open .mobile-bottom-nav {
   cursor: pointer;
 }
 .promo-home-banner {
+  position: relative;
   height: 130px;
+  padding: 16px;
+  background: linear-gradient(135deg, #2a2560, #100c2e);
   overflow: hidden;
 }
-.promo-home-banner img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.promo-home-offer {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 700;
 }
+.promo-home-title {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  margin-top: 8px;
+  background-image: linear-gradient(180deg, #ffd88a, #f3ac2f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.promo-home-coin {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, #ffe08a, #d98a1a);
+}
+.promo-home-coin.c1 { width: 26px; height: 26px; right: 34px; top: 20px; }
+.promo-home-coin.c2 { width: 38px; height: 38px; right: 14px; top: 30px; }
+.promo-home-coin.c3 { width: 18px; height: 18px; right: 40px; bottom: 20px; }
 .promo-home-date-bar {
   background: var(--g-primary);
   color: var(--c-navy);
