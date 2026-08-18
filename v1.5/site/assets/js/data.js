@@ -1023,6 +1023,7 @@
   var LANGUAGES = [
     { code: 'en', label: 'English', image: 'lang-us2.svg' },
     { code: 'ko', label: '한국어', image: 'lang-kr.png' },
+    { code: 'zh', label: '中文', image: 'lang-tw.svg' },
   ];
 
   /* ---- 首頁跑馬燈中獎訊息(對照真實網站首頁截圖) ---- */
