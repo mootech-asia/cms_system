@@ -184,16 +184,6 @@
                       <div style="text-align: center">
                         <span class="pay-pill-label" data-i18n="userCenter.bankingDetailsPage.bankInformation">은행 정보</span>
                       </div>
-                      <div class="bd-select-panel">
-                        <button type="button" class="bd-select" data-wd-mgmt-bank-trigger>
-                          <span data-wd-mgmt-bank-label data-i18n="userCenter.bankingDetailsPage.chooseABank">은행 선택</span>
-                          <svg viewBox="0 0 24 24" style="width: 20px; height: 20px"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"></path></svg>
-                        </button>
-                        <div class="bd-select-dropdown" data-wd-mgmt-bank-dropdown></div>
-                      </div>
-                      <div class="pi-field-static" style="margin-top: 16px">
-                        <span data-wd-mgmt-realname>MEAOMCAO</span>
-                      </div>
                       <input type="text" class="pay-input" placeholder="카드 번호를 입력해 주세요" data-i18n-placeholder="userCenter.bankingDetailsPage.enterCardNumber" data-wd-mgmt-card-number style="margin-top: 16px" />
 
                       <div style="text-align: center; margin-top: 24px">
@@ -219,10 +209,6 @@
                       <div style="text-align: center">
                         <span class="pay-pill-label" data-i18n="userCenter.withdrawalPage.cryptoWallet">가상지갑</span>
                       </div>
-                      <select class="pay-input" data-wd-mgmt-wallet-type style="margin-top: 16px">
-                        <option value="" data-i18n="userCenter.withdrawalPage.selectWalletType">지갑 유형을 선택해 주세요</option>
-                        <option value="trc20">USDT-TRC20</option>
-                      </select>
                       <input type="text" class="pay-input" placeholder="지갑 주소를 입력해 주세요" data-i18n-placeholder="userCenter.withdrawalPage.walletAddressPlaceholder" data-wd-mgmt-wallet-address style="margin-top: 16px" />
 
                       <div style="text-align: center; margin-top: 24px">
@@ -496,15 +482,13 @@
             var fundPwd = W.qs('[data-wd-mgmt-fund-password="' + group + '"]');
             if (!fundPwd.value.trim()) { W.showAlert({ type: 'error', message: W.t('userCenter.bankingDetailsPage.transactionPassword') }); return; }
             if (group === 'bank') {
-              var bankLabel = W.qs('[data-wd-mgmt-bank-label]').textContent;
               var cardNumber = W.qs('[data-wd-mgmt-card-number]').value.trim();
-              if (!cardNumber) { W.showAlert({ type: 'error', message: W.t('userCenter.bankingDetailsPage.chooseABank') }); return; }
-              cards.push({ bankName: bankLabel, bankCardNumber: cardNumber, cardholderName: D.MOCK_PROFILE.username, bindingTime: Math.floor(Date.now() / 1000) });
+              if (!cardNumber) { W.showAlert({ type: 'error', message: W.t('userCenter.bankingDetailsPage.enterCardNumber') }); return; }
+              cards.push({ bankName: D.BANK_LIST[0], bankCardNumber: cardNumber, cardholderName: D.MOCK_PROFILE.username, bindingTime: Math.floor(Date.now() / 1000) });
             } else {
-              var walletType = W.qs('[data-wd-mgmt-wallet-type]').value;
               var walletAddress = W.qs('[data-wd-mgmt-wallet-address]').value.trim();
-              if (!walletType || !walletAddress) { W.showAlert({ type: 'error', message: W.t('userCenter.withdrawalPage.selectWalletType') }); return; }
-              wallets.push({ id: wallets.length + 1, type: walletType, address: walletAddress, bindingTime: Math.floor(Date.now() / 1000) });
+              if (!walletAddress) { W.showAlert({ type: 'error', message: W.t('userCenter.withdrawalPage.walletAddressPlaceholder') }); return; }
+              wallets.push({ id: wallets.length + 1, type: 'trc20', address: walletAddress, bindingTime: Math.floor(Date.now() / 1000) });
             }
             fundPwd.value = '';
             refreshBankCarousel();
@@ -531,18 +515,6 @@
               W.qs('[data-wd-mgmt-add-mode="' + group + '"]').style.display = 'none';
               if (show) mgmtRenderList(group);
             });
-          });
-        });
-
-        W.qs('[data-wd-mgmt-realname]').textContent = D.MOCK_PROFILE.username;
-
-        var mgmtBankDropdown = W.qs('[data-wd-mgmt-bank-dropdown]');
-        mgmtBankDropdown.innerHTML = D.BANK_LIST.map(function (b) { return '<button type="button" data-bank="' + b + '">' + b + '</button>'; }).join('');
-        W.on(W.qs('[data-wd-mgmt-bank-trigger]'), 'click', function () { mgmtBankDropdown.classList.toggle('is-open'); });
-        W.qsa('[data-bank]', mgmtBankDropdown).forEach(function (btn) {
-          W.on(btn, 'click', function () {
-            W.qs('[data-wd-mgmt-bank-label]').textContent = btn.getAttribute('data-bank');
-            mgmtBankDropdown.classList.remove('is-open');
           });
         });
 
