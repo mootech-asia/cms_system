@@ -18,6 +18,27 @@
     { id: 'ko', label: '한국어' },
     { id: 'th', label: 'ไทย' },
   ];
+  /* 設計後台(studio)可關閉部分語言,不讓玩家在前台切換到;跟 studio.js
+     共用同一把 localStorage key,同源即可跨資料夾讀取。未設定或設定
+     內容無效時,視為全部語言皆可見(保留原本行為)。 */
+  var STUDIO_LOCALES_KEY = 'cms-v4-studio-locales';
+  function allLocaleIds() { return LOCALES.map(function (l) { return l.id; }); }
+  /* studio 在 iframe 即時預覽時(尚未按「套用到本站」)會直接呼叫
+     applyVisibleLocales(list) 帶入草稿值,這裡先暫存起來;沒有暫存值時
+     (一般訪客直接開頁面、或 studio 尚未互動過)才落回讀 localStorage。 */
+  var liveOverride = null;
+  function visibleLocaleIds() {
+    var known = allLocaleIds();
+    if (Array.isArray(liveOverride) && liveOverride.length) {
+      var overridden = liveOverride.filter(function (id) { return known.indexOf(id) !== -1; });
+      if (overridden.length) return overridden;
+    }
+    var raw;
+    try { raw = JSON.parse(localStorage.getItem(STUDIO_LOCALES_KEY)); } catch (e) { raw = null; }
+    if (!Array.isArray(raw) || !raw.length) return known;
+    var filtered = raw.filter(function (id) { return known.indexOf(id) !== -1; });
+    return filtered.length ? filtered : known;
+  }
 
   var STRINGS = {
     'nav.lobby': { zh: '大廳', en: 'Lobby', ko: '로비', th: 'ล็อบบี้' },
@@ -507,7 +528,11 @@
   function getLocale() {
     var saved;
     try { saved = localStorage.getItem(LOCALE_KEY); } catch (e) { saved = null; }
-    return LOCALES.some(function (l) { return l.id === saved; }) ? saved : DEFAULT_LOCALE;
+    var visible = visibleLocaleIds();
+    if (saved && LOCALES.some(function (l) { return l.id === saved; }) && visible.indexOf(saved) !== -1) return saved;
+    // 已選語言被設計後台關閉,或尚未選過語言:落回可見清單的第一個(維持
+    // DEFAULT_LOCALE 優先,除非它自己也被關閉了)。
+    return visible.indexOf(DEFAULT_LOCALE) !== -1 ? DEFAULT_LOCALE : visible[0];
   }
   function setLocale(id) {
     if (!LOCALES.some(function (l) { return l.id === id; })) return;
@@ -541,12 +566,23 @@
       var found = LOCALES.filter(function (l) { return l.id === locale; })[0];
       el.textContent = found ? found.label : locale;
     });
+    var visible = visibleLocaleIds();
     Array.prototype.slice.call(document.querySelectorAll('[data-lang-option]')).forEach(function (el) {
-      el.classList.toggle('active', el.getAttribute('data-lang-option') === locale);
+      var id = el.getAttribute('data-lang-option');
+      el.classList.toggle('active', id === locale);
+      el.hidden = visible.indexOf(id) === -1;
     });
     // 讓 site.js 重繪目前已掛載的動態區塊（header-auth 等）跟著換語系；
     // 尚未開啟的彈窗/選單本來就會在下次渲染時透過 t() 取得當前語系,不需另外處理。
     document.dispatchEvent(new CustomEvent('cms-v4:locale-changed', { detail: { locale: locale } }));
+  }
+  /* studio 即時預覽用:切換語言開關當下(還沒按「套用到本站」、
+     localStorage 也還沒寫入)就要更新選單顯示,若目前語言剛好被關閉也要
+     立刻換成可見語言,不必等下次互動。list 省略時退回讀 localStorage
+     (給套用後的一般載入路徑用)。 */
+  function applyVisibleLocales(list) {
+    liveOverride = Array.isArray(list) ? list : null;
+    applyLocale();
   }
 
   function closeLangMenu(root) {
@@ -581,7 +617,7 @@
     });
   }
 
-  window.CMS_I18N = { t: t, getLocale: getLocale, setLocale: setLocale, LOCALES: LOCALES, applyLocale: applyLocale };
+  window.CMS_I18N = { t: t, getLocale: getLocale, setLocale: setLocale, LOCALES: LOCALES, applyLocale: applyLocale, applyVisibleLocales: applyVisibleLocales };
 
   document.addEventListener('DOMContentLoaded', function () {
     applyLocale();
