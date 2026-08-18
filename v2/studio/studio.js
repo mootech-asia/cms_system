@@ -25,10 +25,10 @@
 
   /* 前台可切換語言(composables/useLocale.ts APP_LOCALES) */
   var APP_LOCALES = [
-    { code: 'zh', label: '中文' },
     { code: 'en', label: 'English' },
     { code: 'ko', label: '한국어' },
     { code: 'th', label: 'ภาษาไทย' },
+    { code: 'zh', label: '中文' },
   ];
 
   /* 區塊登錄表 label(config/blocks.ts)。每個區塊固定提供 v1–v10 變體。 */

@@ -16,10 +16,10 @@
 
   /* 前台可切換語言,對照 site 端 assets/js/i18n.js 的 LOCALES */
   var LOCALES = [
-    { id: 'zh', label: '中文' },
     { id: 'en', label: 'English' },
     { id: 'ko', label: '한국어' },
     { id: 'th', label: 'ไทย' },
+    { id: 'zh', label: '中文' },
   ];
   function normalizeLocales(ids) {
     var known = LOCALES.map(function (l) { return l.id; });

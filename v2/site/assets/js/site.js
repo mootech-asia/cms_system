@@ -267,7 +267,7 @@
    * ========================================================== */
   var LOCALE_KEY = 'win100-locale';
   var LOGIN_KEY = 'win100-logged-in';
-  var LOCALE_CODES = ['zh', 'en', 'ko', 'th'];
+  var LOCALE_CODES = ['en', 'ko', 'th', 'zh'];
   function currentLocale() {
     try {
       var saved = localStorage.getItem(LOCALE_KEY);

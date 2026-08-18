@@ -112,10 +112,10 @@
   // translated (see I18N/FAQ_ZH+KO+TH/SWEEP_PAIRS+KO+TH below); site.js's
   // locale switcher swaps the whole page into whichever one is picked ----
   var LOCALES = [
-    { code: 'zh', short: '中文', label: '中文' },
     { code: 'en', short: 'EN', label: 'English' },
     { code: 'ko', short: '한국어', label: '한국어' },
     { code: 'th', short: 'ไทย', label: 'ภาษาไทย' },
+    { code: 'zh', short: '中文', label: '中文' },
   ];
 
   // ---- pages/promotion.vue PROMOS[] (Detail button destination content) ------
