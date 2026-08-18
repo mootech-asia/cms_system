@@ -82,12 +82,6 @@
           });
         }
 
-        function formatDate(ts) {
-          var d = new Date(ts * 1000);
-          function pad(n) { return String(n).padStart(2, '0'); }
-          return d.getUTCFullYear() + '.' + pad(d.getUTCMonth() + 1) + '.' + pad(d.getUTCDate());
-        }
-
         function renderGrid() {
           var loc = W.currentLocale();
           var list = D.PROMOTIONS.filter(function (p) { return activeCategory === 'all' || p.category === activeCategory; });
@@ -97,7 +91,7 @@
           }
           var visible = list.slice(0, visibleCount);
           gridEl.innerHTML = '<div class="promotion-grid">' + visible.map(function (p, idx) {
-            var badge = p.endDate ? formatDate(p.startDate) + ' - ' + formatDate(p.endDate) : '∞';
+            var badge = W.promoDateBadge(p);
             return (
               '<div class="promotion-card" data-promo-card="' + idx + '">' +
               '<div class="promotion-card-thumb"><img src="assets/images/index/promotion/' + p.image + '" alt="promotion"></div>' +

@@ -23,6 +23,15 @@
     return seg.replace(/\.html?$/, '') || 'index';
   }
   function icon(name) { return IMG + 'icon/' + name; }
+  /* 促銷卡片日期徽章共用格式(promotion-list.html/首頁促銷卡片共用),startDate/endDate 皆為 0 代表長期有效 */
+  function formatPromoDate(ts) {
+    var d = new Date(ts * 1000);
+    function pad(n) { return String(n).padStart(2, '0'); }
+    return d.getUTCFullYear() + '.' + pad(d.getUTCMonth() + 1) + '.' + pad(d.getUTCDate());
+  }
+  function promoDateBadge(promo) {
+    return promo.endDate ? formatPromoDate(promo.startDate) + ' - ' + formatPromoDate(promo.endDate) : '∞';
+  }
   /* 對照 layouts/usercenter.vue 覆蓋的頁面清單 */
   var USER_CENTER_PAGES = ['account', 'deposit', 'withdrawal', 'betting-record', 'deposit-record',
     'profit-loss', 'withdrawal-record', 'withdrawal-detail', 'account-record', 'banking-details',
@@ -942,6 +951,8 @@
     showAuthModal: showAuthModal,
     initAutoRefresh: initAutoRefresh,
     initDateRangePicker: initDateRangePicker,
+    formatPromoDate: formatPromoDate,
+    promoDateBadge: promoDateBadge,
   };
 
   document.addEventListener('DOMContentLoaded', function () {

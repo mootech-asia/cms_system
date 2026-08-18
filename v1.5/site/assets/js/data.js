@@ -326,9 +326,6 @@
       'navbar.bottom.share': '分享',
       'hotGame.gameName': 'Game Name',
       'hotGame.creativeGaming': 'Creative Gaming',
-      'hotGame.specialOffer': 'SPECIAL OFFER',
-      'hotGame.promoDateRange': 'Thursday-Tuesday, times vary',
-      'hotGame.promotion1': 'Promotion 1',
     },
     ko: {
       'navbar.top.hotGames': '인기 게임',
@@ -645,9 +642,6 @@
       'navbar.bottom.share': '공유',
       'hotGame.gameName': 'Game Name',
       'hotGame.creativeGaming': 'Creative Gaming',
-      'hotGame.specialOffer': 'SPECIAL OFFER',
-      'hotGame.promoDateRange': 'Thursday-Tuesday, times vary',
-      'hotGame.promotion1': 'Promotion 1',
     },
     en: {
       'navbar.top.hotGames': 'Hot Games',
@@ -964,9 +958,6 @@
       'navbar.bottom.share': 'Share',
       'hotGame.gameName': 'Game Name',
       'hotGame.creativeGaming': 'Creative Gaming',
-      'hotGame.specialOffer': 'SPECIAL OFFER',
-      'hotGame.promoDateRange': 'Thursday-Tuesday, times vary',
-      'hotGame.promotion1': 'Promotion 1',
     },
   };
 
@@ -1056,12 +1047,6 @@
   var GAME_THUMB_POOL = [
     'index/hotGame/img1.png', 'index/hotGame/img3.png',
     'index/mainGame/img1.png', 'index/mainGame/img2.png', 'index/mainGame/img3.png', 'index/mainGame/img4.png',
-  ];
-
-  /* ---- 首頁促銷卡片(對照真實網站首頁截圖「SPECIAL OFFER / PROMOTION」樣式) ---- */
-  var PROMO_HOME_CARDS = [
-    { label: 'Promotion 1' }, { label: 'Promotion 1' }, { label: 'Promotion 1' },
-    { label: 'Promotion 1' }, { label: 'Promotion 1' },
   ];
 
   /* ---- 遊戲分類區(GameType.vue,對照 hotGame icon 資料) ---- */
@@ -1693,7 +1678,6 @@
     HOT_GAMES: HOT_GAMES,
     SLOT_STRIP_IMAGES: SLOT_STRIP_IMAGES,
     GAME_THUMB_POOL: GAME_THUMB_POOL,
-    PROMO_HOME_CARDS: PROMO_HOME_CARDS,
     GAME_TYPES: GAME_TYPES,
     GAME_VENDORS: GAME_VENDORS,
     FLAT_GAMES: FLAT_GAMES,
