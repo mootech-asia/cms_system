@@ -90,7 +90,8 @@
       HERO_COPY: (I18N.HERO_COPY || {})[loc],
       PROMO_RIBBON_COPY: (I18N.PROMO_RIBBON_COPY || {})[loc],
       PROMOTION_COPY: (I18N.PROMOTION_COPY || {})[loc],
-      TOURNAMENT_COPY: (I18N.TOURNAMENT_COPY || {})[loc]
+      TOURNAMENT_COPY: (I18N.TOURNAMENT_COPY || {})[loc],
+      SPOTLIGHT_COPY: (I18N.SPOTLIGHT_COPY || {})[loc]
     };
   }
   function resolvePath(root, path) {
