@@ -192,6 +192,59 @@ const TOURNAMENT_COPY = Object.freeze({
   ]),
 });
 
+/* 首頁 Spotlight 遊戲卡(rail-spotlight):title/sub 是遊戲名稱/廠商名,維持原樣不翻,
+   只有 tag、cta 這兩個 UI 文案需要跟著語系走 */
+const SPOTLIGHT_COPY = Object.freeze({
+  zh: Object.freeze([
+    Object.freeze({ tag: '獨家', cta: '馬上遊戲' }),
+    Object.freeze({ tag: '熱門', cta: '查看更多' }),
+    Object.freeze({ tag: '新遊戲', cta: '馬上遊戲' }),
+    Object.freeze({ tag: '限時活動', cta: '立即競賽' }),
+    Object.freeze({ tag: '獨家', cta: '馬上遊戲' }),
+    Object.freeze({ tag: 'VIP', cta: '馬上遊戲' }),
+    Object.freeze({ tag: '熱門', cta: '查看更多' }),
+    Object.freeze({ tag: '新遊戲', cta: '馬上遊戲' }),
+    Object.freeze({ tag: '限時活動', cta: '立即領取' }),
+    Object.freeze({ tag: '獨家', cta: '馬上遊戲' }),
+  ]),
+  en: Object.freeze([
+    Object.freeze({ tag: 'Exclusive', cta: 'Play Now' }),
+    Object.freeze({ tag: 'Hot', cta: 'View More' }),
+    Object.freeze({ tag: 'New', cta: 'Play Now' }),
+    Object.freeze({ tag: 'Limited Time', cta: 'Join Now' }),
+    Object.freeze({ tag: 'Exclusive', cta: 'Play Now' }),
+    Object.freeze({ tag: 'VIP', cta: 'Play Now' }),
+    Object.freeze({ tag: 'Hot', cta: 'View More' }),
+    Object.freeze({ tag: 'New', cta: 'Play Now' }),
+    Object.freeze({ tag: 'Limited Time', cta: 'Claim Now' }),
+    Object.freeze({ tag: 'Exclusive', cta: 'Play Now' }),
+  ]),
+  ko: Object.freeze([
+    Object.freeze({ tag: '독점', cta: '지금 플레이' }),
+    Object.freeze({ tag: '인기', cta: '더보기' }),
+    Object.freeze({ tag: '신규', cta: '지금 플레이' }),
+    Object.freeze({ tag: '한정 이벤트', cta: '지금 참가' }),
+    Object.freeze({ tag: '독점', cta: '지금 플레이' }),
+    Object.freeze({ tag: 'VIP', cta: '지금 플레이' }),
+    Object.freeze({ tag: '인기', cta: '더보기' }),
+    Object.freeze({ tag: '신규', cta: '지금 플레이' }),
+    Object.freeze({ tag: '한정 이벤트', cta: '지금 받기' }),
+    Object.freeze({ tag: '독점', cta: '지금 플레이' }),
+  ]),
+  th: Object.freeze([
+    Object.freeze({ tag: 'พิเศษ', cta: 'เล่นเลย' }),
+    Object.freeze({ tag: 'ยอดนิยม', cta: 'ดูเพิ่มเติม' }),
+    Object.freeze({ tag: 'เกมใหม่', cta: 'เล่นเลย' }),
+    Object.freeze({ tag: 'กิจกรรมจำกัดเวลา', cta: 'เข้าร่วมเลย' }),
+    Object.freeze({ tag: 'พิเศษ', cta: 'เล่นเลย' }),
+    Object.freeze({ tag: 'VIP', cta: 'เล่นเลย' }),
+    Object.freeze({ tag: 'ยอดนิยม', cta: 'ดูเพิ่มเติม' }),
+    Object.freeze({ tag: 'เกมใหม่', cta: 'เล่นเลย' }),
+    Object.freeze({ tag: 'กิจกรรมจำกัดเวลา', cta: 'รับเลย' }),
+    Object.freeze({ tag: 'พิเศษ', cta: 'เล่นเลย' }),
+  ]),
+});
+
 const TRANSLATIONS = Object.freeze({
   zh: Object.freeze({
     common: Object.freeze({
@@ -1258,5 +1311,5 @@ const TRANSLATIONS = Object.freeze({
   }),
 });
 
-  window.CMS_I18N = { LOCALE_STORAGE_KEY, LANGS, HERO_COPY, PROMO_RIBBON_COPY, PROMOTION_COPY, TOURNAMENT_COPY, TRANSLATIONS };
+  window.CMS_I18N = { LOCALE_STORAGE_KEY, LANGS, HERO_COPY, PROMO_RIBBON_COPY, PROMOTION_COPY, TOURNAMENT_COPY, SPOTLIGHT_COPY, TRANSLATIONS };
 })();
