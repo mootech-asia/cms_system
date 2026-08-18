@@ -432,18 +432,14 @@
           var addBtn = W.qs('[data-wd-mgmt-add="' + group + '"]');
           var accounts = mgmtAccountsOf(group);
           var cap = MGMT_CAP[group];
-          var countKey = group === 'bank' ? 'userCenter.bankingDetailsPage.registeredBankAccounts' : 'userCenter.bankingDetailsPage.registeredCryptoWallets';
-          if (countEl) countEl.textContent = W.t(countKey).replace('{count}', accounts.length).replace('{max}', cap);
+          var titleKey = group === 'bank' ? 'userCenter.withdrawalPage.myBankAccounts' : 'userCenter.withdrawalPage.myCryptoWallets';
+          if (countEl) countEl.textContent = W.t(titleKey);
           if (addBtn) addBtn.classList.toggle('is-disabled', accounts.length >= cap);
           if (!accounts.length) {
             var emptyKey = group === 'bank' ? 'userCenter.bankingDetailsPage.emptyBankAccount' : 'userCenter.withdrawalPage.emptyCryptoWallet';
-            var addKey = group === 'bank' ? 'userCenter.bankingDetailsPage.addAccount' : 'userCenter.withdrawalPage.addWallet';
             wrap.innerHTML =
               '<div class="bd-empty"><img src="assets/images/userCenter/bankcard.png" alt="empty">' +
-              '<p>' + W.t(emptyKey) + '</p>' +
-              '<button type="button" data-wd-mgmt-add-inline="' + group + '">' + W.t(addKey) + '</button></div>';
-            var inlineBtn = wrap.querySelector('[data-wd-mgmt-add-inline]');
-            if (inlineBtn) W.on(inlineBtn, 'click', function () { mgmtShowAddMode(group); });
+              '<p>' + W.t(emptyKey) + '</p></div>';
             return;
           }
           wrap.innerHTML = accounts.map(function (acc, idx) {
