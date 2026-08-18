@@ -3,9 +3,11 @@
    參考對象為深色 header/內容、橙色主 CTA、奶油色登入卡、紫色累積獎金
    widget 的賭場站型視覺語言；此區塊為預設 skin（ignite-classic），其餘
    skin 覆寫於 assets/css/skins/*.css，以 :root[data-skin="xxx"] 疊加。
-   橙色（--accent 系列）為全站固定品牌 CTA 色，所有 skin 皆保持不變；
-   只有 --badge（標籤/熱區次色）與 --jackpot-a/-b（累積獎金 widget 配色）
-   隨 skin 改變，維持每個 skin 有獨立識別色但共用同一套深色骨架。 */
+   --accent 系列（主按鈕/CTA 配色）與 --jackpot-a/-b（累積獎金 widget
+   配色）隨 skin 整套換色，讓切換 skin 時最顯眼的主按鈕本身就會變色；
+   --badge（標籤/熱區次色）為全 skin 固定的警示橙紅，不隨 skin 改變；
+   深色骨架（--bg／--bg-panel／--text 等）與奶油色登入卡同樣全 skin
+   共用不變。 */
 :root {
   --bg: #1b1b1c;
   --bg-soft: #242425;

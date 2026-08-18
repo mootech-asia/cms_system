@@ -14,12 +14,13 @@
   var LAYOUT_KEY = 'cms-v5-studio-layout';
 
   var SKINS = [
-    { id: 'ignite-classic', label: '烈焰經典（預設）', dot: 'linear-gradient(135deg,#f4791f,#e2431f)' },
-    { id: 'neon-emerald', label: '霓虹翡翠', dot: 'linear-gradient(135deg,#f4791f,#12b76a)' },
-    { id: 'royal-crimson', label: '帝王緋紅', dot: 'linear-gradient(135deg,#f4791f,#b91c1c)' },
-    { id: 'sapphire-noir', label: '尊爵藍鑽', dot: 'linear-gradient(135deg,#f4791f,#1d4ed8)' },
-    { id: 'violet-jackpot', label: '紫幻獎金', dot: 'linear-gradient(135deg,#f4791f,#7c3aed)' },
-    { id: 'gold-noir', label: '尊爵金鑲黑', dot: 'linear-gradient(135deg,#f4791f,#b45309)' }
+    { id: 'ignite-classic', label: '烈焰經典（預設）', dot: 'linear-gradient(135deg,#ff9a3d,#c85a12)' },
+    { id: 'neon-emerald', label: '霓虹翡翠', dot: 'linear-gradient(135deg,#34d399,#0a7a49)' },
+    { id: 'royal-crimson', label: '帝王緋紅', dot: 'linear-gradient(135deg,#f87171,#a31515)' },
+    { id: 'sapphire-noir', label: '尊爵藍鑽', dot: 'linear-gradient(135deg,#60a5fa,#1741a6)' },
+    { id: 'violet-jackpot', label: '紫幻獎金', dot: 'linear-gradient(135deg,#c4b5fd,#6d28d9)' },
+    { id: 'gold-noir', label: '尊爵金鑲黑', dot: 'linear-gradient(135deg,#f0c550,#9c780f)' },
+    { id: 'emerald-tide', label: '翡翠潮汐', dot: 'linear-gradient(135deg,#1fd9a4,#1a3fd6)' }
   ];
   var DEFAULT_SKIN = 'ignite-classic';
   function findSkin(id) { for (var i = 0; i < SKINS.length; i++) if (SKINS[i].id === id) return SKINS[i]; return null; }
