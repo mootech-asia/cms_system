@@ -1046,16 +1046,17 @@
     { id: 6, name: 'Game Name', subtitle: 'Win a shore of #100,000! $40,000 to the winner', image: null },
   ];
 
-  /* ---- Slot Games(首頁橫向卡片,對照真實網站首頁截圖「Game Name / Creative Gaming」占位文案) ---- */
+  /* ---- Slot Games(首頁橫向卡片,對照真實網站首頁截圖「Game Name / Creative Gaming」占位文案);
+     mainGame/img1~4 原始檔只有 80x80,放大顯示會糊,已移除;hotGame/img2 是他牌 IP 素材
+     (League of Legends 角色圖),不適合當 slot key-art,一併排除,只留清晰且合適的兩張循環 ---- */
   var SLOT_STRIP_IMAGES = [
-    'index/hotGame/img1.png', 'index/hotGame/img2.png', 'index/hotGame/img3.png',
-    'index/mainGame/img1.png', 'index/mainGame/img2.png', 'index/mainGame/img3.png', 'index/mainGame/img4.png',
+    'index/hotGame/img1.png', 'index/hotGame/img3.png', 'index/hotGame/img1.png',
+    'index/hotGame/img3.png', 'index/hotGame/img1.png', 'index/hotGame/img3.png', 'index/hotGame/img1.png',
   ];
 
-  /* ---- 遊戲卡片/廠商卡片共用占位縮圖(通用 slot key-art,非特定廠商素材) ---- */
+  /* ---- 遊戲卡片/廠商卡片共用占位縮圖(通用 slot key-art,非特定廠商素材);理由同上,只留清晰素材 ---- */
   var GAME_THUMB_POOL = [
     'index/hotGame/img1.png', 'index/hotGame/img3.png',
-    'index/mainGame/img1.png', 'index/mainGame/img2.png', 'index/mainGame/img3.png', 'index/mainGame/img4.png',
   ];
 
   /* ---- 首頁促銷卡片(對照真實網站首頁截圖「SPECIAL OFFER / PROMOTION」樣式) ---- */
