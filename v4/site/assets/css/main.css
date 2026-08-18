@@ -102,6 +102,8 @@ img { max-width: 100%; display: block; }
 }
 .header-input::placeholder { color: rgba(255, 246, 234, 0.6); }
 .header-forgot { font-size: 11.5px; color: rgba(255, 246, 234, 0.75); white-space: nowrap; }
+.header-forgot[data-auth-open] { cursor: pointer; }
+.header-forgot[data-auth-open]:hover { color: var(--gold-hi); }
 .btn-gold {
   padding: 9px 20px;
   border: 1px solid var(--gold-hi);

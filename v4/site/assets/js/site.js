@@ -360,7 +360,7 @@
     return '<button type="button" class="btn-gold quiet" data-auth-open="register">' + tr('auth.registerNow', '立即註冊') + '</button>' +
       '<input class="header-input" type="text" placeholder="' + tr('auth.usernamePlaceholder', '用戶名') + '" data-auth-username />' +
       '<input class="header-input" type="password" placeholder="' + tr('auth.passwordPlaceholder', '密碼') + '" data-auth-password />' +
-      '<span class="header-forgot">' + tr('auth.forgot', '忘記密碼') + '</span>' +
+      '<span class="header-forgot" data-auth-open="forgot">' + tr('auth.forgot', '忘記密碼') + '</span>' +
       '<button type="button" class="btn-gold" data-auth-open="login">' + tr('auth.login', '登錄') + '</button>';
   }
   function memberAuthHtml(user) {
@@ -385,6 +385,7 @@
         if (name) doLogin(name); else openAuthModal('login');
       });
       on(bar.querySelector('[data-auth-open="register"]'), 'click', function () { openAuthModal('register'); });
+      on(bar.querySelector('[data-auth-open="forgot"]'), 'click', function () { openAuthModal('forgot'); });
     }
   }
   // header-auth 是常駐可見的動態區塊,換語系時要立即重繪；其餘彈窗/選單
@@ -523,6 +524,15 @@
   var authModalRoot = null;
   function closeAuthModal() { if (authModalRoot) { authModalRoot.remove(); authModalRoot = null; unlockScroll(); } }
   function authModalBodyHtml(mode) {
+    if (mode === 'forgot') {
+      return (
+        '<p class="form-hint" style="margin-top:0">' + tr('auth.forgotDesc', '請輸入用戶名與註冊時的電子信箱，我們會將重設密碼連結寄送至該信箱。') + '</p>' +
+        '<div class="form-field"><label class="form-label">' + tr('auth.usernameLabel', '用戶名') + '</label><input type="text" class="form-input" placeholder="' + tr('auth.usernameInputPlaceholder', '請輸入用戶名') + '" data-auth-username></div>' +
+        '<div class="form-field"><label class="form-label">' + tr('auth.emailLabel', '電子信箱') + '</label><input type="email" class="form-input" placeholder="' + tr('auth.emailInputPlaceholder', '請輸入註冊時的電子信箱') + '"></div>' +
+        '<a href="#" class="btn-gold auth-modal-submit" data-auth-submit>' + tr('auth.sendResetLink', '傳送重設連結') + '</a>' +
+        '<p class="form-hint">' + tr('auth.rememberPassword', '想起密碼了？') + ' <a href="#" class="panel-more" data-auth-switch="login">' + tr('auth.backToLogin', '返回登入') + '</a></p>'
+      );
+    }
     var isRegister = mode === 'register';
     return (
       '<div class="auth-modal-tabs">' +
@@ -532,7 +542,14 @@
       '<div class="form-field"><label class="form-label">' + tr('auth.usernameLabel', '用戶名') + '</label><input type="text" class="form-input" placeholder="' + tr('auth.usernameInputPlaceholder', '請輸入用戶名') + '" data-auth-username></div>' +
       '<div class="form-field"><label class="form-label">' + tr('auth.passwordLabel', '密碼') + '</label><input type="password" class="form-input" placeholder="' + tr('auth.passwordInputPlaceholder', '請輸入密碼') + '"></div>' +
       (isRegister ? '<div class="form-field"><label class="form-label">' + tr('auth.confirmPasswordLabel', '確認密碼') + '</label><input type="password" class="form-input" placeholder="' + tr('auth.confirmPasswordPlaceholder', '請再次輸入密碼') + '"></div>' : '') +
-      '<a href="#" class="btn-gold auth-modal-submit" data-auth-submit>' + (isRegister ? tr('auth.register', '註冊') : tr('auth.login', '登錄')) + '</a>'
+      '<a href="#" class="btn-gold auth-modal-submit" data-auth-submit>' + (isRegister ? tr('auth.register', '註冊') : tr('auth.login', '登錄')) + '</a>' +
+      (isRegister ? '' : '<p class="form-hint">' + tr('auth.forgotPrompt', '忘記密碼？') + ' <a href="#" class="panel-more" data-auth-switch="forgot">' + tr('auth.resetNow', '立即重設') + '</a></p>')
+    );
+  }
+  function authResetSentHtml() {
+    return (
+      '<p class="form-hint" style="margin-top:0">' + tr('auth.resetSentDesc', '若帳號與信箱相符，重設密碼連結將寄送至您的信箱。') + '</p>' +
+      '<a href="#" class="btn-gold auth-modal-submit" data-auth-switch="login">' + tr('auth.backToLogin', '返回登入') + '</a>'
     );
   }
   function openAuthModal(mode) {
@@ -550,15 +567,23 @@
     lockScroll();
     on(authModalRoot, 'click', function (e) { if (e.target === authModalRoot) closeAuthModal(); });
     on(authModalRoot.querySelector('[data-auth-close]'), 'click', closeAuthModal);
+    function bindSwitches(body) {
+      Array.prototype.slice.call(body.querySelectorAll('[data-auth-switch]')).forEach(function (tab) {
+        on(tab, 'click', function (e) { e.preventDefault(); render(tab.getAttribute('data-auth-switch')); });
+      });
+    }
     function render(m) {
-      authModalRoot.querySelector('[data-auth-title]').textContent = m === 'register' ? tr('auth.register', '註冊') : tr('auth.login', '登錄');
+      authModalRoot.querySelector('[data-auth-title]').textContent = m === 'forgot' ? tr('auth.forgotTitle', '忘記密碼') : (m === 'register' ? tr('auth.register', '註冊') : tr('auth.login', '登錄'));
       var body = authModalRoot.querySelector('[data-auth-body]');
       body.innerHTML = authModalBodyHtml(m);
-      Array.prototype.slice.call(body.querySelectorAll('[data-auth-switch]')).forEach(function (tab) {
-        on(tab, 'click', function () { render(tab.getAttribute('data-auth-switch')); });
-      });
+      bindSwitches(body);
       on(body.querySelector('[data-auth-submit]'), 'click', function (e) {
         e.preventDefault();
+        if (m === 'forgot') {
+          body.innerHTML = authResetSentHtml();
+          bindSwitches(body);
+          return;
+        }
         var nameInput = body.querySelector('[data-auth-username]');
         doLogin(nameInput && nameInput.value);
         closeAuthModal();
