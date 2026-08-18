@@ -211,11 +211,16 @@
     var out = SKINS.map(function (s) { return s.id; }).filter(function (id) { return set[id]; });
     return out.length ? out : SKINS.map(function (s) { return s.id; });
   }
+  /* 陣列篩空/失效時落回的預設值:中文預設隱藏(defaultVisibleLocales),
+     與 site.js 的 visibleLocaleKeys() 未設定時的行為一致。 */
+  function defaultVisibleLocales() {
+    return Object.keys(LANGS).filter(function (id) { return id !== 'zh'; });
+  }
   function normalizeVisibleLocales(ids) {
     ids = Array.isArray(ids) ? ids : [];
     var set = {}; ids.forEach(function (i) { set[i] = 1; });
     var out = Object.keys(LANGS).filter(function (id) { return set[id]; });
-    return out.length ? out : Object.keys(LANGS);
+    return out.length ? out : defaultVisibleLocales();
   }
   function normalizeOrderAgainst(order, universe) {
     var input = Array.isArray(order) ? order : [];
@@ -316,7 +321,7 @@
   var savedSkinId = (function () { var id = null; try { id = localStorage.getItem(STORAGE.skin); } catch (e) {} return findSkin(id) ? id : DEFAULT_SKIN; })();
   var savedModules = (function () { var raw = readJSON(STORAGE.modules); return normalizeModules(raw && raw.modules); })();
   var savedVisibleSkins = (function () { var raw = readJSON(STORAGE.visibleSkins); return normalizeVisibleSkins(raw || SKINS.map(function (s) { return s.id; })); })();
-  var savedVisibleLocales = (function () { var raw = readJSON(STORAGE.visibleLocales); return normalizeVisibleLocales(raw || Object.keys(LANGS)); })();
+  var savedVisibleLocales = (function () { var raw = readJSON(STORAGE.visibleLocales); return normalizeVisibleLocales(raw || defaultVisibleLocales()); })();
   var savedLayout = (function () { var raw = readJSON(STORAGE.lobbyLayout); return { order: normalizeOrder(raw && raw.order), hidden: normalizeHidden(raw && raw.hidden) }; })();
   var savedAccountHidden = (function () { var raw = readJSON(STORAGE.accountSections); return normalizeAccountHidden(raw && raw.hidden); })();
   var savedBanners = (function () { var raw = readJSON(STORAGE.heroBanners); return normalizeBanners(raw); })();

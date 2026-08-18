@@ -245,9 +245,8 @@
      matches, not just the first. */
 
   function buildLocalePanelHtml() {
-    var locales = D.LOCALES || [];
-    var pub = (publicConfig() || {}).publicLocales || [];
-    if (pub.length) locales = locales.filter(function (l) { return pub.indexOf(l.code) !== -1; });
+    var pub = publicLocaleCodes();
+    var locales = (D.LOCALES || []).filter(function (l) { return pub.indexOf(l.code) !== -1; });
     var cur = currentLocale();
     return locales.map(function (l) {
       var active = l.code === cur;
@@ -267,11 +266,21 @@
    * ========================================================== */
   var LOCALE_KEY = 'win100-locale';
   var LOGIN_KEY = 'win100-logged-in';
+  /* LOCALE_CODES 是完整技術清單(swap-map 比對來源要用到全部語系,包含
+     中文,不能移除),實際「玩家能不能選到」由 publicLocaleCodes() 另外
+     決定 —— 中文預設隱藏,可在 studio「前台可見語言」重新開啟。 */
   var LOCALE_CODES = ['en', 'ko', 'th', 'zh'];
+  var DEFAULT_PUBLIC_LOCALES = ['en', 'ko', 'th'];
+  function publicLocaleCodes() {
+    var cfg = publicConfig();
+    return (cfg && Array.isArray(cfg.publicLocales) && cfg.publicLocales.length) ? cfg.publicLocales : DEFAULT_PUBLIC_LOCALES;
+  }
   function currentLocale() {
     try {
       var saved = localStorage.getItem(LOCALE_KEY);
-      return LOCALE_CODES.indexOf(saved) !== -1 ? saved : 'en';
+      var visible = publicLocaleCodes();
+      if (saved && LOCALE_CODES.indexOf(saved) !== -1 && visible.indexOf(saved) !== -1) return saved;
+      return visible.indexOf('en') !== -1 ? 'en' : visible[0];
     } catch (e) { return 'en'; }
   }
   function localeSwapMap(target) {

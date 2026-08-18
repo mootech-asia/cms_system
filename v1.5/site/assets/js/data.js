@@ -1017,6 +1017,9 @@
     'Winfinity.png', 'AdvantPlay.png', 'AlizeSlots.png', 'Askmeslot.png', '7mojo.png', 'YeeBet.png',
   ];
 
+  /* v1.5 沒有 studio,沒有「前台可見語言」開關機制,中文暫時隱藏
+     一律直接從清單移除(下方 I18N.zh 字典保留,未來要恢復只需要
+     把 zh 選項加回這裡)。 */
   var LANGUAGES = [
     { code: 'en', label: 'English', image: 'lang-us2.svg' },
     { code: 'ko', label: '한국어', image: 'lang-kr.png' },

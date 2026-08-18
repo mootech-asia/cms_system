@@ -20,9 +20,11 @@
   ];
   /* 設計後台(studio)可關閉部分語言,不讓玩家在前台切換到;跟 studio.js
      共用同一把 localStorage key,同源即可跨資料夾讀取。未設定或設定
-     內容無效時,視為全部語言皆可見(保留原本行為)。 */
+     內容無效時,落回 DEFAULT_VISIBLE_LOCALE_IDS(中文預設隱藏,可在
+     studio 重新開啟)。 */
   var STUDIO_LOCALES_KEY = 'cms-v4-studio-locales';
   function allLocaleIds() { return LOCALES.map(function (l) { return l.id; }); }
+  var DEFAULT_VISIBLE_LOCALE_IDS = allLocaleIds().filter(function (id) { return id !== 'zh'; });
   /* studio 在 iframe 即時預覽時(尚未按「套用到本站」)會直接呼叫
      applyVisibleLocales(list) 帶入草稿值,這裡先暫存起來;沒有暫存值時
      (一般訪客直接開頁面、或 studio 尚未互動過)才落回讀 localStorage。 */
@@ -35,9 +37,9 @@
     }
     var raw;
     try { raw = JSON.parse(localStorage.getItem(STUDIO_LOCALES_KEY)); } catch (e) { raw = null; }
-    if (!Array.isArray(raw) || !raw.length) return known;
+    if (!Array.isArray(raw) || !raw.length) return DEFAULT_VISIBLE_LOCALE_IDS;
     var filtered = raw.filter(function (id) { return known.indexOf(id) !== -1; });
-    return filtered.length ? filtered : known;
+    return filtered.length ? filtered : DEFAULT_VISIBLE_LOCALE_IDS;
   }
 
   var STRINGS = {

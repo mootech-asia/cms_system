@@ -82,7 +82,10 @@
       skin: 'win100',
       publicSkins: THEME_KEYS.slice(),
       knownSkins: THEME_KEYS.slice(),
-      publicLocales: APP_LOCALES.map(function (l) { return l.code; }),
+      /* 中文預設對玩家隱藏(對照 site.js 的 DEFAULT_PUBLIC_LOCALES),
+         尚未套用過設定的全新草稿要跟前台實際預設值一致,操作者仍可在
+         下方「前台可見語言」勾回中文。 */
+      publicLocales: APP_LOCALES.map(function (l) { return l.code; }).filter(function (c) { return c !== 'zh'; }),
       showSkinButton: true,
       chrome: { header: 'v1', footer: 'v1' },
       pages: {

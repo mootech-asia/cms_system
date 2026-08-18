@@ -1034,9 +1034,12 @@
     var out = SKINS.filter(function (s) { return set[s.id] || s.id === currentSkinId; });
     return out.length ? out : SKINS;
   }
+  /* 尚未在 studio 設定過可見語言時(no key),中文預設對玩家隱藏,
+     可在 studio「前台可見語言」重新開啟;一旦 studio 存過設定,
+     一律以該設定為準(含重新勾回中文)。 */
   function visibleLocaleKeys(keys) {
     var set = readVisibleSet('cms-v3:visible-locales');
-    if (!set) return keys;
+    if (!set) return keys.filter(function (k) { return k !== 'zh' || k === LOCALE; });
     var out = keys.filter(function (k) { return set[k] || k === LOCALE; });
     return out.length ? out : keys;
   }
