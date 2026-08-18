@@ -166,7 +166,7 @@
   var LANGS = I18N.LANGS || { zh: { label: '中文', htmlLang: 'zh-Hant' } };
   var TRANS = I18N.TRANSLATIONS || {};
   function readLocale() {
-    try { var s = localStorage.getItem(STORAGE.locale); return LANGS[s] ? s : 'zh'; } catch (e) { return 'zh'; }
+    try { var s = localStorage.getItem(STORAGE.locale); return LANGS[s] ? s : 'en'; } catch (e) { return 'en'; }
   }
   var LOCALE = readLocale();
   function resolvePath(root, path) {
@@ -1219,7 +1219,7 @@
   /* ============================================================
    * Boot
    * ========================================================== */
-  document.documentElement.lang = (LANGS[LOCALE] && LANGS[LOCALE].htmlLang) || 'zh-Hant';
+  document.documentElement.lang = (LANGS[LOCALE] && LANGS[LOCALE].htmlLang) || 'en';
   initShell();
   render();
   scheduleApply();

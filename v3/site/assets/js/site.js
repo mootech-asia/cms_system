@@ -77,7 +77,7 @@
    * ========================================================== */
   var I18N = window.CMS_I18N || { LANGS: { zh: { label: '中文', shortLabel: '中', htmlLang: 'zh-Hant' } }, TRANSLATIONS: { zh: {} } };
   var LOCALE_KEY = I18N.LOCALE_STORAGE_KEY || 'cms-v3:locale';
-  var FALLBACK_LOCALE = 'zh';
+  var FALLBACK_LOCALE = 'en';
   var LANG_FLAGS = { zh: '<svg width="18" height="12" viewBox="0 0 30 20"><rect width="30" height="20" fill="#de2910"></rect><polygon points="5.000,2.000 5.674,4.073 7.853,4.073 6.090,5.354 6.763,7.427 5.000,6.146 3.237,7.427 3.910,5.354 2.147,4.073 4.326,4.073" fill="#ffde00"></polygon><polygon points="9.143,2.514 9.620,1.966 9.246,1.343 9.914,1.628 10.391,1.080 10.328,1.803 10.996,2.088 10.288,2.251 10.224,2.975 9.851,2.352" fill="#ffde00"></polygon><polygon points="11.010,4.141 11.662,3.821 11.560,3.102 12.065,3.624 12.718,3.304 12.378,3.946 12.884,4.467 12.168,4.343 11.829,4.985 11.726,4.266" fill="#ffde00"></polygon><polygon points="11.038,6.725 11.765,6.699 11.964,6.001 12.213,6.683 12.939,6.657 12.367,7.105 12.616,7.787 12.014,7.382 11.442,7.830 11.641,7.131" fill="#ffde00"></polygon><polygon points="9.219,8.375 9.899,8.632 10.353,8.064 10.319,8.790 10.999,9.046 10.298,9.239 10.265,9.964 9.865,9.357 9.165,9.550 9.618,8.982" fill="#ffde00"></polygon></svg>', en: '<svg width="18" height="12" viewBox="0 0 30 20"><rect width="30" height="20" fill="#B22234"></rect><rect y="1.54" width="30" height="1.54" fill="#fff"></rect><rect y="4.62" width="30" height="1.54" fill="#fff"></rect><rect y="7.69" width="30" height="1.54" fill="#fff"></rect><rect y="10.77" width="30" height="1.54" fill="#fff"></rect><rect y="13.85" width="30" height="1.54" fill="#fff"></rect><rect y="16.92" width="30" height="1.54" fill="#fff"></rect><rect width="13" height="10.77" fill="#3C3B6E"></rect><g fill="#fff"><circle cx="2.6" cy="2.2" r="0.7"></circle><circle cx="6.5" cy="2.2" r="0.7"></circle><circle cx="10.4" cy="2.2" r="0.7"></circle><circle cx="4.5" cy="4.5" r="0.7"></circle><circle cx="8.4" cy="4.5" r="0.7"></circle><circle cx="2.6" cy="6.8" r="0.7"></circle><circle cx="6.5" cy="6.8" r="0.7"></circle><circle cx="10.4" cy="6.8" r="0.7"></circle><circle cx="4.5" cy="9" r="0.7"></circle><circle cx="8.4" cy="9" r="0.7"></circle></g></svg>', ko: '<svg width="18" height="12" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"></rect><circle cx="15" cy="10" r="6" fill="#CD2E3A"></circle><path d="M15,4 a6,6 0 0,0 0,12 a3,3 0 0,0 0,-6 a3,3 0 0,1 0,-6" fill="#0047A0"></path></svg>', th: '<svg width="18" height="12" viewBox="0 0 30 20"><rect width="30" height="20" fill="#A51931"></rect><rect y="3.33" width="30" height="13.34" fill="#F4F5F8"></rect><rect y="6.67" width="30" height="6.66" fill="#2D2A4A"></rect></svg>' };
   function readLocale() {
     try { var s = localStorage.getItem(LOCALE_KEY); return (I18N.LANGS && I18N.LANGS[s]) ? s : FALLBACK_LOCALE; }
@@ -200,7 +200,7 @@
   }
   function initI18n() {
     var info = (I18N.LANGS || {})[LOCALE];
-    document.documentElement.lang = (info && info.htmlLang) || 'zh-Hant';
+    document.documentElement.lang = (info && info.htmlLang) || 'en';
     applyI18n(document);
   }
 

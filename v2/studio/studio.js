@@ -134,7 +134,7 @@
   var previewLocale = (function () {
     var saved = null;
     try { saved = localStorage.getItem(LOCALE_KEY); } catch (e) {}
-    return APP_LOCALES.some(function (l) { return l.code === saved; }) ? saved : 'zh';
+    return APP_LOCALES.some(function (l) { return l.code === saved; }) ? saved : 'en';
   })();
 
   function persistDraft() {
