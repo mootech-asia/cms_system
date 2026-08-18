@@ -11,7 +11,7 @@
   'use strict';
 
   var LOCALE_KEY = 'cms-v4:locale';
-  var DEFAULT_LOCALE = 'zh';
+  var DEFAULT_LOCALE = 'en';
   var LOCALES = [
     { id: 'zh', label: '中文' },
     { id: 'en', label: 'English' },

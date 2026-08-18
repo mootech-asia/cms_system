@@ -3,7 +3,7 @@
  * 對照來源 cms-customer-frontend-theme-purple 的 locales/ko.json、en.json
  * (文案逐字保留)與各 store/composable 原本會打 API 拿的內容,這裡改成
  * 寫死的假資料,讓純 HTML+CSS+JS 版可以離線展示完整畫面與互動。
- * 預設語系 = ko(對照 nuxt.config.ts defaultLocale: 'ko')。
+ * 預設語系 = en(尚未存過語言偏好的裝置一律預設英文,與 v2/v3/v4 一致)。
  * zh 為 v1.5 新增語系,原始碼無對應 locales/zh.json,詞彙對齊 v2/v3/v4
  * 已有的繁中翻譯慣例(儲值/提款/流水/紅利…)以維持全版本用語一致。
  */

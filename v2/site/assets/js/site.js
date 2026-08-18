@@ -271,8 +271,8 @@
   function currentLocale() {
     try {
       var saved = localStorage.getItem(LOCALE_KEY);
-      return LOCALE_CODES.indexOf(saved) !== -1 ? saved : 'zh';
-    } catch (e) { return 'zh'; }
+      return LOCALE_CODES.indexOf(saved) !== -1 ? saved : 'en';
+    } catch (e) { return 'en'; }
   }
   function localeSwapMap(target) {
     var map = {};

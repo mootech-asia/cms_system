@@ -52,8 +52,8 @@
   function currentLocale() {
     try {
       var saved = localStorage.getItem(LOCALE_KEY);
-      return LOCALE_CODES.indexOf(saved) !== -1 ? saved : 'ko';
-    } catch (e) { return 'ko'; }
+      return LOCALE_CODES.indexOf(saved) !== -1 ? saved : 'en';
+    } catch (e) { return 'en'; }
   }
   function setLocale(code) {
     if (LOCALE_CODES.indexOf(code) === -1) return;
