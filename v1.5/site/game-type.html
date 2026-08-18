@@ -12,8 +12,9 @@
 
       <main class="game-type-page">
         <section class="banner">
+          <!-- TODO: 暫用首頁 banner 素材佔位,待各分類正式 banner 到位後替換 -->
           <div class="banner-slides">
-            <div class="banner-slide is-active"><img src="assets/images/banner/banner-gameType.jpg" alt="banner" /></div>
+            <div class="banner-slide is-active"><img src="assets/images/banner/banner.jpg" alt="banner" /></div>
           </div>
         </section>
 
@@ -24,21 +25,23 @@
           <div class="home-marquee-clock" data-marquee-clock></div>
         </section>
 
-        <div class="game-filter-top">
-          <span class="game-filter-title text-gradient" data-gf-title></span>
-        </div>
-        <div class="game-filter-row">
-          <div class="game-filter-tabs" data-gf-tabs></div>
-          <form class="game-filter-search" data-gf-search-form>
-            <input type="text" data-gf-search-input />
-            <button type="submit" class="game-filter-search-btn border-gradient-mask">
-              <img src="assets/images/icon/search-gradient.svg" alt="search" />
-              <span class="text-gradient" data-i18n="common.search">검색</span>
-            </button>
-          </form>
-        </div>
+        <div class="game-page-body">
+          <div class="game-filter-top">
+            <span class="game-filter-title text-gradient" data-gf-title></span>
+          </div>
+          <div class="game-filter-row">
+            <div class="game-filter-tabs" data-gf-tabs></div>
+            <form class="game-filter-search" data-gf-search-form>
+              <input type="text" data-gf-search-input />
+              <button type="submit" class="game-filter-search-btn border-gradient-mask">
+                <img src="assets/images/icon/search-gradient.svg" alt="search" />
+                <span class="text-gradient" data-i18n="common.search">검색</span>
+              </button>
+            </form>
+          </div>
 
-        <div data-gf-body></div>
+          <div data-gf-body></div>
+        </div>
       </main>
 
       <div data-mount="footer"></div>

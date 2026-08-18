@@ -987,6 +987,10 @@ body.usc-sidebar-open .mobile-bottom-nav {
     font-size: 14px;
   }
 }
+/* game-type.html 資訊條緊貼 banner,改用深色底(對照真實網站分類頁截圖,非首頁粉色) */
+.game-type-page .home-marquee {
+  background: var(--c-navy-2);
+}
 /* 對照真實原始碼 gameType.vue 的 Marquee 只加了 class="hidden xl:block",
    桌機才顯示,手機隱藏(首頁的 Marquee 沒有這個限制) */
 .gf-marquee-desktop {
@@ -1310,11 +1314,26 @@ body.usc-sidebar-open .mobile-bottom-nav {
   gap: 16px;
 }
 .promo-home-card {
+  position: relative;
   flex-shrink: 0;
   width: 240px;
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
+}
+.promo-home-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--g-primary-270);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 .promo-home-banner {
   position: relative;
@@ -3796,11 +3815,16 @@ body.usc-sidebar-open .mobile-bottom-nav {
 .game-list-page {
   background: var(--c-navy);
   min-height: 60vh;
+}
+/* game-type.html 有 banner/資訊條需貼齊版面邊緣,padding 改由 .game-page-body 承載;
+   game-list.html 無 banner,沿用原本頁面級 padding */
+.game-list-page,
+.game-page-body {
   padding: 24px 20px;
 }
 @media (min-width: 1280px) {
-  .game-type-page,
-  .game-list-page {
+  .game-list-page,
+  .game-page-body {
     padding: 64px 96px;
   }
 }
