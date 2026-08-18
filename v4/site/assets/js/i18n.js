@@ -13,10 +13,10 @@
   var LOCALE_KEY = 'cms-v4:locale';
   var DEFAULT_LOCALE = 'en';
   var LOCALES = [
-    { id: 'zh', label: '中文' },
     { id: 'en', label: 'English' },
     { id: 'ko', label: '한국어' },
     { id: 'th', label: 'ไทย' },
+    { id: 'zh', label: '中文' },
   ];
   /* 設計後台(studio)可關閉部分語言,不讓玩家在前台切換到;跟 studio.js
      共用同一把 localStorage key,同源即可跨資料夾讀取。未設定或設定

@@ -2,10 +2,10 @@
 const LOCALE_STORAGE_KEY = 'cms-v3:locale';
 
 const LANGS = Object.freeze({
-  zh: Object.freeze({ label: '中文', shortLabel: '中', htmlLang: 'zh-Hant' }),
   en: Object.freeze({ label: 'English', shortLabel: 'EN', htmlLang: 'en' }),
   ko: Object.freeze({ label: '한국어', shortLabel: 'KR', htmlLang: 'ko' }),
   th: Object.freeze({ label: 'ไทย', shortLabel: 'TH', htmlLang: 'th' }),
+  zh: Object.freeze({ label: '中文', shortLabel: '中', htmlLang: 'zh-Hant' }),
 });
 
 const HERO_COPY = Object.freeze({
