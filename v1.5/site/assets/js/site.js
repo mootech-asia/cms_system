@@ -11,7 +11,7 @@
   var D = window.WIN15_DATA || {};
   var IMG = 'assets/images/';
   var LOCALE_KEY = 'v15-locale';
-  var LOCALE_CODES = ['en', 'ko', 'zh'];
+  var LOCALE_CODES = ['en', 'ko'];
   var HTML_LANG_BY_LOCALE = { ko: 'ko', en: 'en', zh: 'zh-Hant' };
   var LOGIN_KEY = 'v15-logged-in';
 

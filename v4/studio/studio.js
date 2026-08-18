@@ -23,8 +23,13 @@
   ];
   function normalizeLocales(ids) {
     var known = LOCALES.map(function (l) { return l.id; });
+    /* 中文預設對玩家隱藏(與 site 端 assets/js/i18n.js 的
+       DEFAULT_VISIBLE_LOCALE_IDS 一致),尚未存過設定或設定失效時落回
+       這份預設;一旦操作者在此頁明確勾選過(含重新勾回中文),一律以
+       實際存的陣列為準。 */
+    var defaultVisible = known.filter(function (id) { return id !== 'zh'; });
     var filtered = Array.isArray(ids) ? ids.filter(function (id) { return known.indexOf(id) !== -1; }) : [];
-    return filtered.length ? filtered : known.slice();
+    return filtered.length ? filtered : defaultVisible.slice();
   }
 
   var SKINS = [
