@@ -1,0 +1,10 @@
+/* CMS v5 skin — 帝王緋紅（Royal Crimson）。
+   橙色 CTA（--accent 系列）為全 skin 共用品牌色,不覆寫;只換掉標籤/熱區
+   次色（--badge）與累積獎金 widget 配色（--jackpot-a/-b），深色骨架與
+   預設 ignite-classic 一致，不覆寫。 */
+:root[data-skin="royal-crimson"] {
+  --badge: #b91c1c;
+  --badge-deep: #7f1414;
+  --jackpot-a: #be185d;
+  --jackpot-b: #ec4899;
+}
