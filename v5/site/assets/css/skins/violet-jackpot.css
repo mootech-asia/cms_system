@@ -1,0 +1,10 @@
+/* CMS v5 skin — 紫幻獎金（Violet Jackpot）。
+   橙色 CTA（--accent 系列）為全 skin 共用品牌色,不覆寫;這個 skin 把標籤/
+   熱區次色（--badge）也改成紫色系,讓累積獎金 widget 配色（--jackpot-a/-b）
+   跟隨同一色系呼應,深色骨架與預設 ignite-classic 一致，不覆寫。 */
+:root[data-skin="violet-jackpot"] {
+  --badge: #7c3aed;
+  --badge-deep: #5b21b6;
+  --jackpot-a: #a21caf;
+  --jackpot-b: #e879f9;
+}
