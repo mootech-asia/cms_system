@@ -151,23 +151,17 @@ img { max-width: 100%; display: block; }
 .notice-links a { display: flex; align-items: center; gap: 6px; font-weight: 700; }
 .notice-links a:hover { color: var(--accent-hi); }
 
-/* ── HERO ───────────────────────────────── */
+/* ── HERO ─────────────────────────────────
+   雙欄版型：左側文案疊圖、右側奶油色快速註冊卡（對齊參考站 hero 內嵌
+   註冊表單的版面），單一版面不再輪播，故不需要 .hero-slide/-dots/-arrow。 */
 .hero-wrap { padding-top: 18px; }
 .hero {
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  height: 320px;
+  min-height: 320px;
   isolation: isolate;
 }
-.hero-slide {
-  position: absolute; inset: 0;
-  display: flex; align-items: center;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  pointer-events: none;
-}
-.hero-slide.active { opacity: 1; pointer-events: auto; }
 .hero-bg {
   position: absolute; inset: 0;
   background-image: linear-gradient(100deg, rgba(10, 8, 7, 0.94) 0%, color-mix(in oklch, var(--badge) 46%, rgba(10, 8, 7, 0.85)) 42%, color-mix(in oklch, var(--badge) 10%, transparent) 78%), var(--hero-image);
@@ -175,7 +169,8 @@ img { max-width: 100%; display: block; }
   background-position: var(--hero-position, center);
   z-index: -1;
 }
-.hero-content { position: relative; padding: 0 56px; max-width: 620px; color: var(--text-on-header); }
+.hero-duo { position: relative; display: flex; align-items: center; gap: 40px; min-height: 320px; padding: 32px 56px; }
+.hero-content { padding: 0; max-width: 560px; color: var(--text-on-header); }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 4px 12px;
@@ -191,22 +186,35 @@ img { max-width: 100%; display: block; }
 }
 .hero-title { font-size: 42px; font-weight: 900; line-height: 1.12; margin: 0 0 10px; text-transform: uppercase; letter-spacing: -0.01em; text-shadow: 0 3px 14px rgba(0, 0, 0, 0.5); }
 .hero-title em { font-style: normal; color: var(--accent-hi); }
-.hero-sub { font-size: 14.5px; color: rgba(245, 242, 236, 0.82); margin: 0 0 20px; text-transform: none; }
-.hero-dots { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); display: flex; gap: 6px; z-index: 4; }
-.hero-dot { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; background: rgba(255, 255, 255, 0.3); transition: background 0.15s, width 0.15s; }
-.hero-dot.active { background: var(--accent); width: 22px; border-radius: 4px; }
-.hero-arrow {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 34px; height: 34px;
-  display: grid; place-items: center;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(0, 0, 0, 0.35);
-  color: #fff;
-  z-index: 4;
+.hero-sub { font-size: 14.5px; color: rgba(245, 242, 236, 0.82); margin: 0; text-transform: none; }
+/* 快速註冊卡：跟 .auth-modal-box 同一招——只覆寫 --bg/--text 等 token
+   的「值」，子層沿用 var(--text)/var(--bg) 等既有寫法的 .form-field/
+   .form-label/.form-input/.btn-accent 會自動透過繼承換成奶油色卡片配色，
+   不必另外複寫一份輸入框樣式。 */
+.hero-signup {
+  --bg: #efece4;
+  --bg-panel: #ffffff;
+  --line: #ded6c4;
+  --line-hi: #e7c99a;
+  --text: #201d18;
+  --text-mid: #5b564c;
+  --text-dim: #8b8578;
+  flex: 0 0 320px;
+  background: var(--bg);
+  color: var(--text);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-card);
 }
-.hero-arrow.prev { left: 16px; }
-.hero-arrow.next { right: 16px; }
+.hero-signup-title { margin: 0 0 14px; font-size: 15px; font-weight: 900; text-align: center; text-transform: uppercase; letter-spacing: 0.02em; color: var(--accent-deep); }
+.hero-signup .acct-level-track { margin-bottom: 16px; }
+.hero-signup-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.hero-signup .form-field { margin-bottom: 12px; }
+.hero-signup .hero-signup-submit { display: block; width: 100%; text-align: center; margin-top: 4px; }
+@media (max-width: 900px) {
+  .hero-duo { flex-direction: column; align-items: stretch; padding: 24px; gap: 20px; }
+  .hero-signup { flex: none; }
+}
 
 /* ── TRUST STRIP（信任指標列，首頁 hero 正下方） ── */
 .trust-strip {
@@ -253,6 +261,12 @@ img { max-width: 100%; display: block; }
 .jackpot-pill-value { font-size: 19px; font-weight: 900; color: #fff; margin: 0 0 4px; font-variant-numeric: tabular-nums; }
 .jackpot-pill-note { font-size: 11px; color: rgba(255, 255, 255, 0.65); margin: 0; }
 @media (max-width: 720px) { .jackpot-grid { grid-template-columns: 1fr; } }
+/* 得獎名單橫幅（首頁專用）沿用 .jackpot-panel／.jackpot-pill 的漸層卡+
+   格狀 pill 版型，只加一個 6 欄 modifier（原本固定 3 欄）與底部按鈕列。 */
+.jackpot-grid.cols-6 { grid-template-columns: repeat(6, 1fr); }
+@media (max-width: 900px) { .jackpot-grid.cols-6 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .jackpot-grid.cols-6 { grid-template-columns: 1fr; } }
+.jackpot-panel-foot { display: flex; justify-content: flex-end; margin-top: 14px; }
 
 /* ── SECTION GRID：12 欄可編輯版位 ─────────── */
 /* 首頁遊戲分類區塊改成 12 欄 grid,每個模組用 data-span="3"~"12" 決定要
@@ -337,6 +351,9 @@ img { max-width: 100%; display: block; }
 }
 .tile-grid.rail::-webkit-scrollbar { display: none; }
 .tile-grid.rail.compact { grid-template-columns: none; grid-auto-columns: 130px; }
+/* 首頁三條全新 rail 卡片較大張（對齊參考設計「捲動列尾端露出下一張卡片
+   一角」的比例），6 張在常見桌機寬度下會超出容器,捲動箭頭才有作用可按。 */
+.tile-grid.rail.compact.wide { grid-auto-columns: 210px; }
 .tile-grid.rail .game-tile { scroll-snap-align: start; min-width: 0; }
 .tile-grid.rail.dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
 .tile-grid.compact { grid-template-columns: repeat(auto-fill, minmax(110px, 130px)); justify-content: start; gap: 10px; }
@@ -383,6 +400,13 @@ img { max-width: 100%; display: block; }
   font-weight: 800;
   text-transform: uppercase;
 }
+/* 首頁三條全新 rail（撲克遊戲/熱門賭場遊戲/探索更多）沿用 .game-tile
+   版式的兩種變體：
+   - .banner-tile：只留大標題疊字、無「開始遊戲」按鈕，標題可換行到 2 行
+     並下移補滿按鈕留出的空間（撲克遊戲、探索更多）。
+   - .art-only：純縮圖 + 選填角標，連底部漸層遮罩都不需要（熱門賭場遊戲）。 */
+.game-tile.banner-tile .game-tile-name { bottom: 14px; font-size: 14px; line-height: 1.3; -webkit-line-clamp: 2; }
+.game-tile.art-only .game-tile-art::after { display: none; }
 
 /* ── 體育賽事卡（首頁體育專區 + sport.html） ── */
 .tile-grid.rail.match-rail { grid-auto-columns: 260px; }
@@ -488,6 +512,12 @@ img { max-width: 100%; display: block; }
 .game-tile-fav.is-active { color: var(--accent-hi); border-color: var(--accent-hi); }
 .game-tile-fav.is-active svg { fill: currentColor; }
 
+/* 首頁 grid12 之後新增的「熱血開賭／得獎名單／品牌短文／玩家評價」區塊
+   統一用 flex 直向排列＋固定 gap 抓間距，取代逐一手動加 margin-top；
+   .jackpot-panel 自帶的 margin-top 在這裡改由 gap 頂替，故歸零避免疊加。 */
+.home-extra { display: flex; flex-direction: column; gap: 20px; padding-bottom: 20px; }
+.home-extra > .jackpot-panel { margin-top: 0; }
+
 /* ── 優惠活動卡 ── */
 .promo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
 .promo-card {
@@ -517,6 +547,34 @@ img { max-width: 100%; display: block; }
 .promo-card-actions { display: flex; align-items: center; gap: 14px; }
 .promo-card-more { font-size: 12.5px; font-weight: 700; color: var(--accent-hi); }
 .promo-card-more:hover { color: var(--accent); }
+/* rail 版推廣卡（首頁「GET FIRED UP TO PLAY」）：沿用 .promo-card 元件，
+   只加寬度 modifier 讓它塞進 .tile-grid.rail 橫向捲動，不改動 .promo-grid
+   既有的自動換行版面；卡片內按鈕沿用 .btn-accent，縮小尺寸以符合卡片寬度。 */
+.tile-grid.rail.promo-rail { grid-auto-columns: 260px; }
+.promo-card .promo-card-actions .btn-accent { padding: 8px 16px; font-size: 11.5px; }
+
+/* 玩家評價卡（首頁「HEAR FROM OUR PLAYERS」）：沿用 rail 橫向捲動機制，
+   卡片本身是新元件（引號 icon + 評語 + 署名）。 */
+.tile-grid.rail.testimonial-rail { grid-auto-columns: 240px; }
+.testimonial-card {
+  height: 100%;
+  display: flex; flex-direction: column;
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--bg-panel);
+  box-shadow: var(--shadow-card);
+}
+.testimonial-card-quote-icon { color: var(--accent-hi); margin-bottom: 10px; flex-shrink: 0; }
+.testimonial-card-text { font-size: 13px; line-height: 1.7; color: var(--text-mid); margin: 0 0 14px; flex: 1; }
+.testimonial-card-name { font-size: 12.5px; font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; color: var(--text); margin: 0; }
+
+/* 「Premier Online Gambling Destination」置中行銷短文（首頁專用） */
+.spotlight-block { max-width: 760px; margin: 0 auto; padding: 6px 0; text-align: center; }
+.spotlight-block-title { font-size: 16px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.02em; margin: 0 0 10px; color: var(--text); }
+.spotlight-block-text { font-size: 13.5px; line-height: 1.8; color: var(--text-mid); margin: 0; }
+.spotlight-block-text a { color: var(--accent-hi); font-weight: 700; }
+.spotlight-block-text a:hover { color: var(--accent); }
 
 /* ── 會員中心（帳戶總覽/儲值/提款/各類紀錄/個人資料/安全中心） ── */
 /* padding-top/bottom 用 longhand,避免 3-value shorthand 把 .container
@@ -1044,9 +1102,10 @@ img { max-width: 100%; display: block; }
     padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
     box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
   }
-  .hero { height: 220px; }
-  .hero-content { padding: 0 24px; }
   .hero-title { font-size: 27px; }
+  /* 右側預留跟浮動快捷列（quick-rail）等寬的空間,避免首頁一進站就疊到
+     快速註冊卡的姓氏欄位,做法比照 .listing-wrap 替 quick-rail 留白。 */
+  .hero-duo { padding-right: 64px; }
   .quick-rail { right: 10px; }
   .quick-rail-btn { width: 40px; height: 40px; }
   .quick-rail-btn:hover { transform: none; background: none; }
@@ -1055,8 +1114,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 520px) {
   .notice-bar-inner { gap: 10px; }
   .notice-links { gap: 10px; }
-  .hero { height: 180px; }
-  .hero-content { padding: 0 18px; max-width: 100%; }
+  .hero-content { max-width: 100%; }
   .hero-title { font-size: 21px; }
   .hero-sub { font-size: 12.5px; }
   .hero-eyebrow { font-size: 10.5px; padding: 3px 10px; margin-bottom: 10px; }

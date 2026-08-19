@@ -26,26 +26,20 @@
   function findSkin(id) { for (var i = 0; i < SKINS.length; i++) if (SKINS[i].id === id) return SKINS[i]; return null; }
 
   var SECTIONS = [
-    { key: 'hot-games', label: '熱門遊戲' },
-    { key: 'mini-games', label: '迷你遊戲' },
-    { key: 'live', label: '真人娛樂' },
-    { key: 'electronic', label: '電子遊戲' },
-    { key: 'fish', label: '捕魚達人' },
-    { key: 'sport', label: '體育專區' },
+    { key: 'poker-games', label: '撲克遊戲及錦標賽' },
+    { key: 'hottest-casino', label: '熱門賭場遊戲' },
+    { key: 'explore-more', label: '探索更多' },
   ];
   function sectionLabel(key) { for (var i = 0; i < SECTIONS.length; i++) if (SECTIONS[i].key === key) return SECTIONS[i].label; return key; }
   /* 12 欄版位系統:span 3~12 決定模組跨幾欄,陣列順序決定排列順序（跟
-     site.js 的 applyLayout 用 appendChild 依序搬移 DOM 節點一致）。這裡
-     的預設值還原首頁改版前「大欄(熱門+迷你/電子遊戲) + 固定小欄
-     (真人娛樂/捕魚達人) + 體育滿版跨欄」的版面比例。variant 對應
-     assets/css/section-variants.css 的 10 種區塊版式,v1 = 不覆寫現況。 */
+     site.js 的 applyLayout 用 appendChild 依序搬移 DOM 節點一致）。首頁
+     改版對齊參考設計後,三個 rail 皆滿版橫向捲動、依序疊放,預設值都是
+     span 12。variant 對應 assets/css/section-variants.css 的 10 種區塊
+     版式,v1 = 不覆寫現況。 */
   var DEFAULT_LAYOUT = [
-    { key: 'hot-games', span: 5, variant: 'v1' },
-    { key: 'mini-games', span: 4, variant: 'v1' },
-    { key: 'live', span: 3, variant: 'v1' },
-    { key: 'electronic', span: 9, variant: 'v1' },
-    { key: 'fish', span: 3, variant: 'v1' },
-    { key: 'sport', span: 12, variant: 'v1' },
+    { key: 'poker-games', span: 12, variant: 'v1' },
+    { key: 'hottest-casino', span: 12, variant: 'v1' },
+    { key: 'explore-more', span: 12, variant: 'v1' },
   ];
   function cloneLayout(layout) { return layout.map(function (item) { return { key: item.key, span: item.span, variant: item.variant || 'v1' }; }); }
 
