@@ -906,23 +906,26 @@ img { max-width: 100%; display: block; }
 .mobile-tabbar-btn svg { width: 20px; height: 20px; }
 .mobile-tabbar-btn.active { color: var(--accent); }
 
-/* ── 置底加入提示條（首頁專用，比照參考站底部常駐 CTA） ──
-   手機已有 .mobile-tabbar 常駐導覽,兩條固定底部條疊在一起會搶版面,
-   故只在桌機/平板寬度顯示;body 的 padding-bottom 也只在同一寬度加,
-   避免手機版多出一段用不到的留白。 */
-.join-bar {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 400;
-  display: flex; align-items: center; justify-content: center; gap: 16px;
-  padding: 12px 20px;
-  background: var(--accent-grad);
-  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.3);
-}
+/* ── 置底提示條堆疊（首頁專用，比照參考站底部常駐的 APP 推廣條+加入
+   提示條）── 兩條各自不設 position,由外層 .bottom-promo-stack 統一
+   fixed 貼底、直向堆疊,疊起來的實際高度交給 initBottomPromoStack()
+   量測後寫回 body 的 padding-bottom,不寫死高度(關閉 APP 推廣條後
+   高度會變,寫死容易兜不準)。手機已有 .mobile-tabbar 常駐導覽,兩者
+   疊在一起會搶版面,故只在桌機/平板寬度顯示。 */
+.bottom-promo-stack { position: fixed; left: 0; right: 0; bottom: 0; z-index: 400; display: flex; flex-direction: column; }
+.app-banner { display: flex; align-items: center; gap: 16px; padding: 12px 20px; background: var(--header-bg); border-top: 1px solid var(--line); }
+.app-banner-icon { width: 44px; height: 44px; border-radius: var(--radius-md); flex-shrink: 0; display: grid; place-items: center; background: var(--panel-tint); color: var(--accent); }
+.app-banner-body { flex: 1; min-width: 0; }
+.app-banner-title { margin: 0 0 2px; font-size: 15px; font-weight: 900; letter-spacing: 0.01em; text-transform: uppercase; color: var(--text-on-header); }
+.app-banner-desc { margin: 0; font-size: 12px; line-height: 1.5; color: var(--text-mid); }
+.app-banner-cta { flex-shrink: 0; padding: 8px 18px; font-size: 12px; }
+.app-banner-close { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line); color: var(--text-mid); }
+.app-banner-close:hover { color: var(--text-on-header); border-color: var(--line-hi); }
+.join-bar { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 12px 20px; background: var(--accent-grad); box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.3); }
 .join-bar-text { color: var(--accent-ink); font-size: 13px; font-weight: 700; }
-@media (min-width: 721px) {
-  body:has(.join-bar) { padding-bottom: 52px; }
-}
 @media (max-width: 720px) {
-  .join-bar { display: none; }
+  .bottom-promo-stack { display: none; }
+  .app-banner-desc { display: none; }
 }
 
 /* ── 合作廠商跑馬燈 ─────────────────────── */

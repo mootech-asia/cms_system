@@ -153,11 +153,27 @@
     });
   }
 
-  /* 首頁置底加入提示條:按鈕接續同一套註冊流程,不另外做假流程。 */
-  function initJoinBar() {
-    var btn = document.querySelector('[data-join-bar-open]');
-    if (!btn) return;
-    btn.addEventListener('click', function () { openAuthModal('register'); });
+  /* 首頁置底提示條堆疊(APP 推廣條 + 加入提示條):
+     - 「加入」按鈕接續同一套 openAuthModal('register') 流程,不另外做假流程。
+     - APP 推廣條可關閉,關閉後堆疊高度變矮,重新量測回寫 body 底部留白,
+       避免寫死高度跟實際內容對不上。
+     - 只在桌機/平板寬度(跟 CSS 的 720px 斷點一致)保留這段底部留白,
+       手機版此堆疊本來就整條隱藏,交給 .mobile-tabbar 的既有留白規則。 */
+  function initBottomPromoStack() {
+    var stack = document.querySelector('[data-bottom-promo-stack]');
+    if (!stack) return;
+    function syncPadding() {
+      var isDesktop = window.matchMedia('(min-width: 721px)').matches;
+      document.body.style.paddingBottom = isDesktop ? (stack.offsetHeight + 'px') : '';
+    }
+    syncPadding();
+    window.addEventListener('resize', syncPadding);
+    on(stack.querySelector('[data-join-bar-open]'), 'click', function () { openAuthModal('register'); });
+    on(stack.querySelector('[data-app-banner-close]'), 'click', function (e) {
+      var banner = e.target.closest('.app-banner');
+      if (banner) banner.remove();
+      syncPadding();
+    });
   }
 
   function initFeatureCarousel() {
@@ -1079,7 +1095,7 @@
     safe(renderHeaderAuth);
     safe(initPersonalInfoNickname);
     safe(initHeroSignup);
-    safe(initJoinBar);
+    safe(initBottomPromoStack);
     safe(initFeatureCarousel);
     safe(initVendorSelect);
     safe(initRails);
