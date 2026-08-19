@@ -351,6 +351,9 @@ img { max-width: 100%; display: block; }
 }
 .tile-grid.rail::-webkit-scrollbar { display: none; }
 .tile-grid.rail.compact { grid-template-columns: none; grid-auto-columns: 130px; }
+/* 首頁三條全新 rail 卡片較大張（對齊參考設計「捲動列尾端露出下一張卡片
+   一角」的比例），6 張在常見桌機寬度下會超出容器,捲動箭頭才有作用可按。 */
+.tile-grid.rail.compact.wide { grid-auto-columns: 210px; }
 .tile-grid.rail .game-tile { scroll-snap-align: start; min-width: 0; }
 .tile-grid.rail.dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
 .tile-grid.compact { grid-template-columns: repeat(auto-fill, minmax(110px, 130px)); justify-content: start; gap: 10px; }
@@ -397,6 +400,13 @@ img { max-width: 100%; display: block; }
   font-weight: 800;
   text-transform: uppercase;
 }
+/* 首頁三條全新 rail（撲克遊戲/熱門賭場遊戲/探索更多）沿用 .game-tile
+   版式的兩種變體：
+   - .banner-tile：只留大標題疊字、無「開始遊戲」按鈕，標題可換行到 2 行
+     並下移補滿按鈕留出的空間（撲克遊戲、探索更多）。
+   - .art-only：純縮圖 + 選填角標，連底部漸層遮罩都不需要（熱門賭場遊戲）。 */
+.game-tile.banner-tile .game-tile-name { bottom: 14px; font-size: 14px; line-height: 1.3; -webkit-line-clamp: 2; }
+.game-tile.art-only .game-tile-art::after { display: none; }
 
 /* ── 體育賽事卡（首頁體育專區 + sport.html） ── */
 .tile-grid.rail.match-rail { grid-auto-columns: 260px; }

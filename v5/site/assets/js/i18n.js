@@ -27,6 +27,14 @@
     'nav.fish': { zh: '捕魚達人', en: 'Fishing Master', ko: '낚시의 달인', th: 'เซียนยิงปลา' },
     'nav.sport': { zh: '體育', en: 'Sports', ko: '스포츠', th: 'กีฬา' },
     'nav.promotion': { zh: '優惠活動', en: 'Promotions', ko: '프로모션', th: 'โปรโมชั่น' },
+    /* 首頁專用導覽分類（對齊參考設計的 POKER/CASINO/LIVE DEALER/VIRTUAL
+       SPORTS/SCRATCH CARD），跟上面 nav.lobby 等其餘 21 頁共用的導覽 key
+       是各自獨立的一組，不共用、不覆寫，避免動到其他頁面的導覽文字。 */
+    'nav.poker': { zh: '撲克', en: 'Poker', ko: '포커', th: 'โป๊กเกอร์' },
+    'nav.casino': { zh: '賭場遊戲', en: 'Casino', ko: '카지노', th: 'คาสิโน' },
+    'nav.liveDealer': { zh: '真人荷官', en: 'Live Dealer', ko: '라이브 딜러', th: 'ดีลเลอร์สด' },
+    'nav.virtualSports': { zh: '虛擬體育', en: 'Virtual Sports', ko: '가상 스포츠', th: 'กีฬาเสมือนจริง' },
+    'nav.scratchCard': { zh: '刮刮卡', en: 'Scratch Card', ko: '스크래치 카드', th: 'บัตรขูด' },
     'nav.deposit': { zh: '儲值', en: 'Deposit', ko: '충전', th: 'เติมเงิน' },
     'nav.member': { zh: '會員', en: 'Account', ko: '계정', th: 'บัญชี' },
     'nav.menu': { zh: '選單', en: 'Menu', ko: '메뉴', th: 'เมนู' },
@@ -421,14 +429,6 @@
     'trust.payouts': { zh: '出入金快速便利', en: 'Quick & Easy Payouts', ko: '빠르고 간편한 출금', th: 'ถอนเงินง่ายและรวดเร็ว' },
     'trust.slots': { zh: '400+ 款老虎機任你玩', en: '400+ Slots to Try', ko: '400개 이상의 슬롯', th: 'สล็อตกว่า 400 เกมให้เลือกเล่น' },
     'trust.safe': { zh: '安全可信賴，自 2016 年起', en: 'Safe & Trusted Since 2016', ko: '2016년부터 안전하고 신뢰할 수 있는', th: 'ปลอดภัยและน่าเชื่อถือตั้งแต่ปี 2016' },
-
-    'jackpot.title': { zh: '烈焰累積獎金', en: 'Blaze Drop Jackpots', ko: '블레이즈 드롭 잭팟', th: 'แจ็กพอต Blaze Drop' },
-    'jackpot.hourlyLabel': { zh: '每小時獎金', en: 'Hourly Jackpot', ko: '시간별 잭팟', th: 'แจ็กพอตรายชั่วโมง' },
-    'jackpot.hourlyNote': { zh: '須於 00:32:47 內開出', en: 'Must drop in next 00:32:47', ko: '00:32:47 이내에 지급', th: 'ต้องออกภายใน 00:32:47' },
-    'jackpot.epicLabel': { zh: '史詩累積獎金', en: 'Epic Jackpot', ko: '에픽 잭팟', th: 'แจ็กพอตอีพิค' },
-    'jackpot.epicNote': { zh: '隨時可能開出', en: 'Must drop at any time', ko: '언제든 지급 가능', th: 'ออกได้ทุกเมื่อ' },
-    'jackpot.dailyLabel': { zh: '每日累積獎金', en: 'Daily Jackpot', ko: '데일리 잭팟', th: 'แจ็กพอตรายวัน' },
-    'jackpot.dailyNote': { zh: '須於 01:32:47 內開出', en: 'Must drop in next 01:32:47', ko: '01:32:47 이내에 지급', th: 'ต้องออกภายใน 01:32:47' },
 
     'sport.homeWin': { zh: '主勝', en: 'Home Win', ko: '홈 승', th: 'เจ้าบ้านชนะ' },
     'sport.draw': { zh: '和局', en: 'Draw', ko: '무승부', th: 'เสมอ' },
