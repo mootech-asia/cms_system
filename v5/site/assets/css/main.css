@@ -77,9 +77,9 @@ img { max-width: 100%; display: block; }
 /* ── HEADER ─────────────────────────────── */
 /* 參考站頭部是一片平的深炭黑,不是漸層——skin 之間也不切換這塊,識別色
    改由 --badge/--jackpot-* 在內容區塊呈現,header 維持統一的深色機身。 */
-.site-header { background: var(--header-bg); }
+.site-header { background: var(--header-bg); position: relative; }
 .header-top {
-  display: flex; align-items: center; gap: 12px;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
   padding-top: 14px; padding-bottom: 14px;
 }
 .brand-link { display: flex; align-items: center; flex-shrink: 0; }
@@ -102,6 +102,16 @@ img { max-width: 100%; display: block; }
 /* 桌機導覽列比照參考站只顯示文字,icon 保留給手機選單格狀選單使用。 */
 .header-top .header-nav .header-nav-icon { display: none; }
 .header-auth { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+/* 會員態內容(頭像/餘額/點數/登出)獨立佔滿第二行,避免跟導覽列擠在
+   同一排;訪客態的 JOIN/LOGIN 維持原本單排配置。 */
+.header-auth.is-member {
+  order: 4; flex-basis: 100%; justify-content: flex-end;
+  padding-top: 10px; margin-top: 2px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+/* 漢堡鈕跟訪客/會員態都無關,order 提前讓它留在第一行的右側,
+   不要被會員列的 flex-basis:100% 一起擠到第二行。 */
+.header-auth.is-member ~ .header-menu-trigger { order: 3; }
 .header-forgot { font-size: 11.5px; color: rgba(245, 242, 236, 0.6); white-space: nowrap; }
 .btn-accent {
   padding: 9px 20px;
@@ -198,12 +208,18 @@ img { max-width: 100%; display: block; }
 .hero-title { font-size: 42px; font-weight: 900; line-height: 1.12; margin: 0 0 10px; text-transform: uppercase; letter-spacing: -0.01em; text-shadow: 0 3px 14px rgba(0, 0, 0, 0.5); }
 .hero-title em { font-style: normal; color: var(--accent-hi); }
 .hero-sub { font-size: 14.5px; color: rgba(245, 242, 236, 0.82); margin: 0; text-transform: none; }
+/* 首頁 hero 比照參考站改純黑底,拿掉照片,数字獨立一行放大顯示。
+   只有首頁這組 hero-duo 用得到 hero-promo,其餘頁面的 .hero-bg
+   （分類頁各自的宣傳圖）不受影響。 */
+.hero-promo .hero-bg { background-image: none; background-color: var(--header-bg); }
+.hero-promo .hero-title em { display: block; font-size: 88px; line-height: 1; margin-bottom: 6px; }
+.hero-promo .hero-title { font-size: 32px; }
 /* 快速註冊卡：跟 .auth-modal-box 同一招——只覆寫 --bg/--text 等 token
    的「值」，子層沿用 var(--text)/var(--bg) 等既有寫法的 .form-field/
-   .form-label/.form-input/.btn-accent 會自動透過繼承換成奶油色卡片配色，
+   .form-label/.form-input/.btn-accent 會自動透過繼承換成白色卡片配色，
    不必另外複寫一份輸入框樣式。 */
 .hero-signup {
-  --bg: #efece4;
+  --bg: #ffffff;
   --bg-panel: #ffffff;
   --line: #ded6c4;
   --line-hi: #e7c99a;
@@ -218,10 +234,12 @@ img { max-width: 100%; display: block; }
   box-shadow: var(--shadow-card);
 }
 .hero-signup-title { margin: 0 0 14px; font-size: 15px; font-weight: 900; text-align: center; text-transform: uppercase; letter-spacing: 0.02em; color: var(--accent-deep); }
-.hero-signup .acct-level-track { margin-bottom: 16px; }
+.hero-signup .acct-level-track { height: 4px; margin-bottom: 20px; border: none; background: var(--line); }
 .hero-signup-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.hero-signup .form-field { margin-bottom: 12px; }
-.hero-signup .hero-signup-submit { display: block; width: 100%; text-align: center; margin-top: 4px; }
+.hero-signup .form-field { margin-bottom: 16px; }
+/* 輸入框改成參考站的底線極簡風,不用整圈邊框的方塊輸入框。 */
+.hero-signup .form-input { border: none; border-radius: 0; padding-left: 0; padding-right: 0; background: transparent; border-bottom: 1px solid var(--line); }
+.hero-signup .hero-signup-submit { display: table; width: auto; margin: 4px 0 0 auto; padding: 10px 28px; opacity: 0.62; }
 @media (max-width: 900px) {
   .hero-duo { flex-direction: column; align-items: stretch; padding: 24px; gap: 20px; }
   .hero-signup { flex: none; }
@@ -1042,6 +1060,7 @@ img { max-width: 100%; display: block; }
 /* ── 選單觸發按鈕(桌機/手機共用,開合類目+捷徑總覽選單) ─── */
 .header-menu-trigger {
   display: flex;
+  position: relative; z-index: 10003; /* 蓋過選單開啟時的 scrim,再點一次才點得到自己 */
   width: 38px; height: 38px;
   align-items: center; justify-content: center;
   border-radius: var(--radius-sm);
@@ -1051,27 +1070,26 @@ img { max-width: 100%; display: block; }
 }
 .header-menu-trigger:hover { background: rgba(255, 255, 255, 0.12); }
 
-/* ── 手機版全螢幕選單 ───────────────────── */
-.mobile-menu-overlay { position: fixed; inset: 0; z-index: 10001; background: rgba(0, 0, 0, 0.7); }
-.mobile-menu-panel {
-  position: absolute; inset: 0;
+/* ── 選單收合面板(漢堡鈕/tabbar 選單共用) ─────────────
+   比照參考站:面板貼齊 header 右下角,不蓋滿整個畫面,底下頁面內容
+   維持可見——scrim 只負責接「點外面關閉」,本身透明。 ── */
+.header-menu-scrim { position: fixed; inset: 0; z-index: 10001; background: transparent; }
+.header-menu-panel {
+  position: absolute; top: 100%; right: 0; z-index: 10002;
+  width: 100%; max-width: 560px;
+  max-height: calc(100vh - 72px);
   display: flex; flex-direction: column;
   background: var(--bg);
+  border: 1px solid var(--line);
+  border-top: none;
+  box-shadow: var(--shadow-card);
   overflow-y: auto;
 }
-.mobile-menu-head {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 20px;
-  background: var(--header-bg);
-  flex-shrink: 0;
-}
-.mobile-menu-logo { height: 28px; width: auto; }
-.mobile-menu-close { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; color: var(--text-on-header); background: rgba(255, 255, 255, 0.1); }
-.mobile-menu-nav { display: flex; flex-direction: column; flex: 1; }
-.mobile-menu-section { padding: 14px 12px 4px; font-size: 12px; font-weight: 700; color: var(--text-dim); }
+.header-menu-nav { display: flex; flex-direction: column; }
+.header-menu-section { padding: 14px 12px 4px; font-size: 12px; font-weight: 700; color: var(--text-dim); }
 /* 主分類：3 欄 icon 卡片網格，對齊參考站漢堡選單的圖示方塊配置。 */
-.mobile-menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 14px 12px; }
-.mobile-menu-grid-item {
+.header-menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 14px; }
+.header-menu-grid-item {
   display: flex; flex-direction: column; align-items: center; gap: 8px;
   padding: 16px 6px;
   border-radius: var(--radius-md);
@@ -1081,13 +1099,13 @@ img { max-width: 100%; display: block; }
   color: var(--text);
   text-align: center;
 }
-.mobile-menu-grid-item svg { width: 24px; height: 24px; color: var(--text-mid); flex-shrink: 0; }
-.mobile-menu-grid-item.active { background: var(--accent-grad); border-color: transparent; color: var(--accent-ink); }
-.mobile-menu-grid-item.active svg { color: var(--accent-ink); }
+.header-menu-grid-item svg { width: 24px; height: 24px; color: var(--text-mid); flex-shrink: 0; }
+.header-menu-grid-item.active { background: var(--accent-grad); border-color: transparent; color: var(--accent-ink); }
+.header-menu-grid-item.active svg { color: var(--accent-ink); }
 /* 會員捷徑：兩欄文字清單＋右側 chevron，項目較多(10項)時比 icon 網格
    更省版面，也對齊參考站選單第二段「更多功能」清單的樣式。 */
-.mobile-menu-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 4px 12px 14px; }
-.mobile-menu-list-item {
+.header-menu-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 4px 14px 14px; }
+.header-menu-list-item {
   display: flex; align-items: center; justify-content: space-between; gap: 6px;
   padding: 12px;
   border-radius: var(--radius-md);
@@ -1096,14 +1114,18 @@ img { max-width: 100%; display: block; }
   font-size: 12.5px; font-weight: 700;
   color: var(--text);
 }
-.mobile-menu-list-item .chevron { width: 14px; height: 14px; color: var(--text-dim); flex-shrink: 0; }
-.mobile-menu-list-item.active { color: var(--accent-hi); border-color: var(--accent-hi); }
-.mobile-menu-list-item.active .chevron { color: var(--accent-hi); }
-.mobile-menu-foot { padding: 14px 20px 22px; border-top: 1px solid var(--line); flex-shrink: 0; }
-.mobile-menu-foot .btn-accent { display: block; text-align: center; text-decoration: none; margin-bottom: 8px; }
-.mobile-menu-foot .btn-accent.quiet { background: var(--bg-panel); color: var(--accent-hi); border-color: var(--line-hi); box-shadow: none; }
-.mobile-menu-account { display: flex; align-items: center; gap: 10px; padding: 6px 0 14px; font-size: 13.5px; font-weight: 700; color: var(--text); }
-.mobile-menu-account svg { width: 22px; height: 22px; color: var(--accent-hi); }
+.header-menu-list-item .chevron { width: 14px; height: 14px; color: var(--text-dim); flex-shrink: 0; }
+.header-menu-list-item.active { color: var(--accent-hi); border-color: var(--accent-hi); }
+.header-menu-list-item.active .chevron { color: var(--accent-hi); }
+.header-menu-foot { padding: 14px 20px 20px; border-top: 1px solid var(--line); flex-shrink: 0; }
+.header-menu-foot .btn-accent { display: block; text-align: center; text-decoration: none; margin-bottom: 8px; }
+.header-menu-foot .btn-accent.quiet { background: var(--bg-panel); color: var(--accent-hi); border-color: var(--line-hi); box-shadow: none; }
+.header-menu-account { display: flex; align-items: center; gap: 10px; padding: 6px 0 14px; font-size: 13.5px; font-weight: 700; color: var(--text); }
+.header-menu-account svg { width: 22px; height: 22px; color: var(--accent-hi); }
+@media (max-width: 600px) {
+  /* 窄螢幕面板改滿版寬度,不留左右空隙。 */
+  .header-menu-panel { max-width: 100%; }
+}
 
 /* ── 登入／註冊彈窗 ─────────────────────── */
 /* 卡片改成奶油色淺底(呼應參考站的登入卡),做法是只在容器上局部覆寫
@@ -1175,6 +1197,7 @@ img { max-width: 100%; display: block; }
     box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
   }
   .hero-title { font-size: 27px; }
+  .hero-promo .hero-title em { font-size: 56px; }
   /* 右側預留跟浮動快捷列（quick-rail）等寬的空間,避免首頁一進站就疊到
      快速註冊卡的姓氏欄位,做法比照 .listing-wrap 替 quick-rail 留白。 */
   .hero-duo { padding-right: 64px; }
@@ -1188,6 +1211,7 @@ img { max-width: 100%; display: block; }
   .notice-links { gap: 10px; }
   .hero-content { max-width: 100%; }
   .hero-title { font-size: 21px; }
+  .hero-promo .hero-title em { font-size: 42px; }
   .hero-sub { font-size: 12.5px; }
   .hero-eyebrow { font-size: 10.5px; padding: 3px 10px; margin-bottom: 10px; }
 }
