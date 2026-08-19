@@ -82,7 +82,7 @@
     'sidebar.security': { zh: '安全中心', en: 'Security Center', ko: '보안 센터', th: 'ศูนย์ความปลอดภัย' },
     'page.changePassword': { zh: '修改登入密碼', en: 'Change Login Password', ko: '로그인 비밀번호 변경', th: 'เปลี่ยนรหัสผ่านเข้าสู่ระบบ' },
 
-    'auth.registerNow': { zh: '立即註冊', en: 'Register Now', ko: '지금 가입', th: 'ลงทะเบียนเลย' },
+    'auth.registerNow': { zh: '立即註冊', en: 'Join', ko: '지금 가입', th: 'ลงทะเบียนเลย' },
     'auth.usernamePlaceholder': { zh: '用戶名', en: 'Username', ko: '사용자명', th: 'ชื่อผู้ใช้' },
     'auth.passwordPlaceholder': { zh: '密碼', en: 'Password', ko: '비밀번호', th: 'รหัสผ่าน' },
     'auth.forgot': { zh: '忘記密碼', en: 'Forgot?', ko: '비밀번호를 잊으셨나요?', th: 'ลืมรหัสผ่าน' },

@@ -116,6 +116,13 @@ img { max-width: 100%; display: block; }
 .btn-accent:hover { filter: brightness(1.06); transform: translateY(-1px); }
 .btn-accent[disabled] { opacity: 0.5; cursor: default; pointer-events: none; box-shadow: none; }
 .btn-accent.quiet { background: rgba(255, 255, 255, 0.08); color: var(--text-on-header); box-shadow: none; border-color: rgba(255, 255, 255, 0.18); }
+/* .ghost：純文字連結,無底色/邊框(比照參考站 LOGIN 的極簡樣式,跟主要
+   CTA 的實心圓角鈕拉開視覺層級)。.outline：透明底+白邊框(比照參考站
+   VIEW MORE／JOIN INSTANTLY 這類疊在彩色底圖上的次要按鈕)。 */
+.btn-accent.ghost { background: none; border-color: transparent; box-shadow: none; padding: 9px 6px; color: var(--text-on-header); }
+.btn-accent.ghost:hover { filter: none; transform: none; color: var(--accent-hi); }
+.btn-accent.outline { background: none; border-color: rgba(255, 255, 255, 0.6); color: #fff; box-shadow: none; }
+.btn-accent.outline:hover { filter: none; background: rgba(255, 255, 255, 0.12); }
 
 /* ── NOTICE BAR ─────────────────────────── */
 .notice-bar {
@@ -898,6 +905,25 @@ img { max-width: 100%; display: block; }
 }
 .mobile-tabbar-btn svg { width: 20px; height: 20px; }
 .mobile-tabbar-btn.active { color: var(--accent); }
+
+/* ── 置底加入提示條（首頁專用，比照參考站底部常駐 CTA） ──
+   手機已有 .mobile-tabbar 常駐導覽,兩條固定底部條疊在一起會搶版面,
+   故只在桌機/平板寬度顯示;body 的 padding-bottom 也只在同一寬度加,
+   避免手機版多出一段用不到的留白。 */
+.join-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 400;
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  padding: 12px 20px;
+  background: var(--accent-grad);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.3);
+}
+.join-bar-text { color: var(--accent-ink); font-size: 13px; font-weight: 700; }
+@media (min-width: 721px) {
+  body:has(.join-bar) { padding-bottom: 52px; }
+}
+@media (max-width: 720px) {
+  .join-bar { display: none; }
+}
 
 /* ── 合作廠商跑馬燈 ─────────────────────── */
 /* .vendor-marquee-track 裡放兩份完全相同的 .vendor-marquee-row（第二份
