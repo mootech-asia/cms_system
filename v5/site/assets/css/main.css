@@ -223,15 +223,17 @@ img { max-width: 100%; display: block; }
   .hero-signup { flex: none; }
 }
 
-/* ── 首頁淺色底（對齊參考設計：hero 之後整段是米白底色，只有評價卡維持
-   深色卡片對比） ──
+/* ── 內容區淺色底（對齊參考設計：hero 之後整段是米白底色）──
    跟 .auth-modal-box／.hero-signup 同一招：只覆寫 --bg/--bg-panel/--text
-   等 token 的「值」，套在 <main class="home-light">（僅首頁,不影響其餘
-   21 個頁面共用的深色視覺），子層沿用 var(--text)/var(--bg-panel) 等既有
-   寫法的 .trust-strip／.panel／.promo-card／.spotlight-block 等元件會
-   自動換成淺色，不必另外複寫一份淺色樣式。hero 本身用 --text-on-header
-   與疊圖漸層,不吃這幾個 token,不受影響。 */
-.home-light {
+   等 token 的「值」，套在 <main class="content-light">，子層沿用
+   var(--text)/var(--bg-panel) 等既有寫法的 .listing-*／.panel／
+   .promo-card／.about-*／.match-card／.uikit-* 等元件會自動換成淺色，
+   不必另外複寫一份淺色樣式。套用範圍是首頁與會員區以外的所有頁面
+   （slot/live/hot-games/fish/sport/mini-games/promotion/about/ui-kit）；
+   會員區(帳戶總覽/儲值/提款/各類紀錄/個人資料/安全中心等)表單/表格
+   較多,維持既有深色不動。hero 本身用 --text-on-header 與疊圖漸層,
+   不吃這幾個 token,不受影響。 */
+.content-light {
   --bg: #f2efe6;
   --bg-soft: #ffffff;
   --bg-panel: #ffffff;
@@ -241,12 +243,20 @@ img { max-width: 100%; display: block; }
   --text-mid: #5b564c;
   --text-dim: #8b8578;
   background: var(--bg);
+  /* color 是一般屬性、繼承的是「已算好的值」而非 var() 運算式本身：
+     body 早就用 var(--text) 把自己的 color 定成深色主題那份值,子孫元素
+     沒有另外自己宣告 color 的話,繼承到的是 body 那個已經算完、不會再
+     跟著這裡改掉的 --text 重新求值的舊值。這裡明講一次 color,強迫在
+     .content-light 這層重新用（新的）--text 求值,才會整段淺色底下的
+     文字顏色一起換過來。 */
+  color: var(--text);
 }
 /* hero 外圍留白（.hero-wrap 的 padding-top）維持深色,跟 header 銜接不
    露出一截淺色,hero 本身的疊圖內容不受影響（蓋在上面）。 */
-.home-light .hero-wrap { background: var(--header-bg); }
-/* 玩家評價卡沿用參考設計的深色卡片對比,在淺色區塊裡局部覆寫回深色。 */
-.home-light .testimonial-card {
+.content-light .hero-wrap { background: var(--header-bg); }
+/* 玩家評價卡（首頁）沿用參考設計的深色卡片對比,在淺色區塊裡局部覆寫
+   回深色。 */
+.content-light .testimonial-card {
   --bg-panel: #1c1c1e;
   --line: #333335;
   --text: #f5f2ec;
