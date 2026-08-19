@@ -384,6 +384,9 @@
     if (!bar) return;
     var user = loadAuth();
     bar.innerHTML = user ? memberAuthHtml(user) : guestAuthHtml();
+    // 會員態內容較多(頭像名稱/餘額/點數/登出),跟訪客態的 JOIN/LOGIN 共用
+    // 單排 header 會擠爆,改用 is-member 讓 CSS 把這段獨立成第二行。
+    bar.classList.toggle('is-member', !!user);
     if (!user) {
       on(bar.querySelector('[data-auth-open="login"]'), 'click', function () { openAuthModal('login'); });
       on(bar.querySelector('[data-auth-open="register"]'), 'click', function () { openAuthModal('register'); });
@@ -469,29 +472,50 @@
     { href: 'about.html?tab=faq', label: '常見問題', icon: '<circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8"/><path d="M12 17h.01"/>' },
   ];
   var mobileMenuRoot = null;
-  function closeMobileMenu() { if (mobileMenuRoot) { mobileMenuRoot.remove(); mobileMenuRoot = null; unlockScroll(); } }
+  /* 漢堡鈕在選單開啟時要變成 X,關閉時要換回三線 icon;innerHTML 直接
+     整顆換掉,不額外疊 class 控制顯示/隱藏兩組 svg。 */
+  var HAMBURGER_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
+  var CLOSE_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>';
+  function closeMobileMenu() {
+    if (!mobileMenuRoot) return;
+    mobileMenuRoot.remove();
+    mobileMenuRoot = null;
+    unlockScroll();
+    var trigger = document.querySelector('.header-menu-trigger');
+    if (trigger) { trigger.innerHTML = HAMBURGER_ICON; trigger.setAttribute('aria-expanded', 'false'); }
+  }
+  /* 選單改成貼齊 header 右下角的收合面板(比照參考站的漢堡選單樣式),
+     不再是蓋滿整個畫面的全螢幕抽屜——面板掛在 .site-header 底下用
+     position:absolute 定位,scrim 只負責接住「點外面關閉」,本身透明
+     不遮蔽頁面內容。 */
   function openMobileOverlay(navHtml) {
     closeMobileMenu();
+    var header = document.querySelector('.site-header');
+    if (!header) return;
     var mobileUser = loadAuth();
     var footHtml = mobileUser
-      ? '<div class="mobile-menu-account">' + USER_ICON + '<span>' + escapeHtml(mobileUser.name) + '・' + tr('auth.balancePrefix', '餘額：') + escapeHtml(mobileUser.balance) + '</span></div>' +
+      ? '<div class="header-menu-account">' + USER_ICON + '<span>' + escapeHtml(mobileUser.name) + '・' + tr('auth.balancePrefix', '餘額：') + escapeHtml(mobileUser.balance) + '</span></div>' +
         '<button type="button" class="btn-accent quiet" style="width:100%" data-logout>' + tr('auth.logout', '登出') + '</button>'
       : '<button type="button" class="btn-accent quiet" style="width:100%;margin-bottom:8px" data-mobile-login>' + tr('auth.login', '登錄') + '</button>' +
         '<button type="button" class="btn-accent" style="width:100%" data-mobile-register>' + tr('auth.registerNow', '立即註冊') + '</button>';
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="mobile-menu-overlay" data-mobile-overlay>' +
-      '<div class="mobile-menu-panel">' +
-      '<div class="mobile-menu-head"><img src="logo.png" alt="IGNITE100" class="mobile-menu-logo">' +
-      '<button type="button" class="mobile-menu-close" aria-label="關閉選單" data-mobile-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
-      '<nav class="mobile-menu-nav">' + navHtml + '</nav>' +
-      '<div class="mobile-menu-foot">' + footHtml + '</div>' +
-      '</div></div>';
-    mobileMenuRoot = wrap.firstElementChild;
-    document.body.appendChild(mobileMenuRoot);
+      '<div class="header-menu-scrim" data-mobile-overlay></div>' +
+      '<div class="header-menu-panel">' +
+      '<nav class="header-menu-nav">' + navHtml + '</nav>' +
+      '<div class="header-menu-foot">' + footHtml + '</div>' +
+      '</div>';
+    mobileMenuRoot = document.createElement('div');
+    mobileMenuRoot.className = 'header-menu-root';
+    while (wrap.firstChild) mobileMenuRoot.appendChild(wrap.firstChild);
+    header.appendChild(mobileMenuRoot);
+    // 面板最大高度扣掉 header 實際高度(可能因會員態分兩行而變化),
+    // 避免固定寫死的高度在較高的 header 下算錯,底部被裁掉還出不了捲軸。
+    mobileMenuRoot.querySelector('.header-menu-panel').style.maxHeight = 'calc(100vh - ' + header.offsetHeight + 'px)';
     lockScroll();
-    on(mobileMenuRoot, 'click', function (e) { if (e.target === mobileMenuRoot) closeMobileMenu(); });
-    on(mobileMenuRoot.querySelector('[data-mobile-close]'), 'click', closeMobileMenu);
+    var trigger = document.querySelector('.header-menu-trigger');
+    if (trigger) { trigger.innerHTML = CLOSE_ICON; trigger.setAttribute('aria-expanded', 'true'); }
+    on(mobileMenuRoot.querySelector('[data-mobile-overlay]'), 'click', closeMobileMenu);
     var loginBtn = mobileMenuRoot.querySelector('[data-mobile-login]');
     var registerBtn = mobileMenuRoot.querySelector('[data-mobile-register]');
     if (loginBtn) on(loginBtn, 'click', function () { closeMobileMenu(); openAuthModal('login'); });
@@ -500,9 +524,10 @@
   /* 漢堡選單的主分類改成 3 欄 icon 卡片網格(對齊參考站選單的圖示方塊
      配置)，而不是像 .mobile-menu-link 那樣一行一個的直向清單。 */
   function openHeaderMenu() {
+    if (mobileMenuRoot) { closeMobileMenu(); return; }
     var navLinks = Array.prototype.slice.call(document.querySelectorAll('.header-nav .header-nav-link'));
-    var navHtml = '<div class="mobile-menu-grid">' + navLinks.map(function (a) {
-      return '<a href="' + a.getAttribute('href') + '" class="mobile-menu-grid-item' + (a.classList.contains('active') ? ' active' : '') + '">' + a.innerHTML + '</a>';
+    var navHtml = '<div class="header-menu-grid">' + navLinks.map(function (a) {
+      return '<a href="' + a.getAttribute('href') + '" class="header-menu-grid-item' + (a.classList.contains('active') ? ' active' : '') + '">' + a.innerHTML + '</a>';
     }).join('') + '</div>';
     openMobileOverlay(navHtml);
   }
@@ -510,11 +535,12 @@
      對齊參考站選單第二段「更多功能」清單的樣式，跟上方 icon 網格
      區隔出不同的資訊密度層級。 */
   function openMemberMenu() {
+    if (mobileMenuRoot) { closeMobileMenu(); return; }
     var page = currentPage();
-    var navHtml = '<div class="mobile-menu-section">我的帳戶</div>' +
-      '<div class="mobile-menu-list">' + MEMBER_MENU_ITEMS.map(function (item) {
+    var navHtml = '<div class="header-menu-section">我的帳戶</div>' +
+      '<div class="header-menu-list">' + MEMBER_MENU_ITEMS.map(function (item) {
         var active = item.href.split('?')[0] === page;
-        return '<a href="' + item.href + '" class="mobile-menu-list-item' + (active ? ' active' : '') + '"><span>' + item.label + '</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>';
+        return '<a href="' + item.href + '" class="header-menu-list-item' + (active ? ' active' : '') + '"><span>' + item.label + '</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>';
       }).join('') + '</div>';
     openMobileOverlay(navHtml);
   }
