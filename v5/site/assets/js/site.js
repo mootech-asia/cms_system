@@ -136,6 +136,7 @@
     if ('sitename' in draft) applySiteName(draft.sitename);
     if (draft.skin) applySkin(draft.skin);
     if (draft.layout) applyLayout(draft.layout);
+    if (draft.locales && window.CMS_I18N) window.CMS_I18N.setVisibleLocales(draft.locales);
     if (gridEditModeOn) safe(initGrid12DragEdit); // layout 套用後可能重新排過 DOM,把手要重新確保存在
   };
 

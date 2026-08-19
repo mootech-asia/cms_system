@@ -12,6 +12,22 @@
   var SITENAME_KEY = 'cms-v5-studio-sitename';
   var SKIN_KEY = 'cms-v5-studio-skin';
   var LAYOUT_KEY = 'cms-v5-studio-layout';
+  var LOCALES_KEY = 'cms-v5-studio-locales';
+
+  /* 跟 site 端 assets/js/i18n.js 的 LOCALES 是各自獨立的一份設定(studio
+     不載入 i18n.js),id 需保持一致。中文預設對玩家隱藏,可在此重新勾選。 */
+  var LOCALES = [
+    { id: 'zh', label: '中文' },
+    { id: 'en', label: 'English' },
+    { id: 'ko', label: '한국어' },
+    { id: 'th', label: 'ไทย' },
+  ];
+  var DEFAULT_VISIBLE_LOCALES = LOCALES.map(function (l) { return l.id; }).filter(function (id) { return id !== 'zh'; });
+  function normalizeLocales(ids) {
+    var known = LOCALES.map(function (l) { return l.id; });
+    var filtered = Array.isArray(ids) ? ids.filter(function (id) { return known.indexOf(id) !== -1; }) : [];
+    return filtered.length ? filtered : DEFAULT_VISIBLE_LOCALES.slice();
+  }
 
   var SKINS = [
     { id: 'ignite-classic', label: '烈焰經典（預設）', dot: 'linear-gradient(135deg,#ff9a3d,#c85a12)' },
@@ -86,7 +102,7 @@
   ];
 
   // ---- 草稿狀態：即時反映到 iframe 預覽；按「套用」才額外寫進 localStorage ----
-  var draft = { sections: {}, sitename: '', skin: DEFAULT_SKIN, layout: cloneLayout(DEFAULT_LAYOUT) };
+  var draft = { sections: {}, sitename: '', skin: DEFAULT_SKIN, layout: cloneLayout(DEFAULT_LAYOUT), locales: DEFAULT_VISIBLE_LOCALES.slice() };
 
   function loadApplied() {
     var sections = {};
@@ -100,11 +116,13 @@
       var raw = JSON.parse(localStorage.getItem(LAYOUT_KEY));
       if (Array.isArray(raw) && raw.length) layout = raw;
     } catch (e) {}
-    return { sections: sections, sitename: sitename, skin: skin, layout: layout };
+    var locales;
+    try { locales = normalizeLocales(JSON.parse(localStorage.getItem(LOCALES_KEY))); } catch (e) { locales = DEFAULT_VISIBLE_LOCALES.slice(); }
+    return { sections: sections, sitename: sitename, skin: skin, layout: layout, locales: locales };
   }
 
   function isApplied() {
-    try { return !!localStorage.getItem(SECTIONS_KEY) || !!localStorage.getItem(SITENAME_KEY) || !!localStorage.getItem(SKIN_KEY) || !!localStorage.getItem(LAYOUT_KEY); } catch (e) { return false; }
+    try { return !!localStorage.getItem(SECTIONS_KEY) || !!localStorage.getItem(SITENAME_KEY) || !!localStorage.getItem(SKIN_KEY) || !!localStorage.getItem(LAYOUT_KEY) || !!localStorage.getItem(LOCALES_KEY); } catch (e) { return false; }
   }
 
   /* 即時預覽：直接呼叫 iframe（同源）內 site.js 暴露的核心套用函式，
@@ -114,7 +132,7 @@
     var frame = document.getElementById('st-frame');
     var win = frame && frame.contentWindow;
     if (win && win.__cmsV5StudioApply) {
-      try { win.__cmsV5StudioApply({ sections: draft.sections, sitename: draft.sitename, skin: draft.skin, layout: draft.layout }); } catch (e) {}
+      try { win.__cmsV5StudioApply({ sections: draft.sections, sitename: draft.sitename, skin: draft.skin, layout: draft.layout, locales: draft.locales }); } catch (e) {}
       // 換頁後 iframe 是全新的 document,__cmsV5StudioApply 裡也會在 editMode 開著時
       // 重掛拖曳把手,但首頁區塊面板只在首頁才有意義,其他頁面呼叫也無害(找不到 .grid12 就跳過)。
       if (win.__cmsV5StudioSetEditMode) { try { win.__cmsV5StudioSetEditMode(true); } catch (e) {} }
@@ -153,6 +171,37 @@
         draft.skin = btn.getAttribute('data-skin-option');
         document.documentElement.setAttribute('data-skin', draft.skin); // studio 自己的 chrome 也跟著換膚
         renderSkins();
+        liveApply();
+      });
+    });
+  }
+
+  /* 前台可見語言：跟 skin 選取格同一套 seg-btn chip 陣列,點哪個切哪個
+     顯示/隱藏。至少保留一種語言,避免操作者一次關光導致前台語言選單
+     空白。 */
+  function renderLocales() {
+    var wrap = document.getElementById('st-locales');
+    wrap.innerHTML = '';
+    LOCALES.forEach(function (l) {
+      var on = draft.locales.indexOf(l.id) !== -1;
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'seg-btn st-skin-btn' + (on ? ' active' : '');
+      btn.setAttribute('data-locale-option', l.id);
+      btn.textContent = l.label;
+      wrap.appendChild(btn);
+    });
+    document.getElementById('st-summary-locales').textContent = draft.locales.length + ' / ' + LOCALES.length + ' 個語言';
+    Array.prototype.slice.call(wrap.querySelectorAll('[data-locale-option]')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var id = btn.getAttribute('data-locale-option');
+        var idx = draft.locales.indexOf(id);
+        if (idx === -1) draft.locales.push(id);
+        else {
+          if (draft.locales.length <= 1) return; // 至少保留一種語言
+          draft.locales.splice(idx, 1);
+        }
+        renderLocales();
         liveApply();
       });
     });
@@ -321,20 +370,22 @@
         else localStorage.removeItem(SITENAME_KEY);
         localStorage.setItem(SKIN_KEY, draft.skin);
         localStorage.setItem(LAYOUT_KEY, JSON.stringify(draft.layout));
+        localStorage.setItem(LOCALES_KEY, JSON.stringify(draft.locales));
       } catch (e) {}
       refreshAppliedTag();
       liveApply(); // 預覽本來就已即時反映草稿，這裡只是連同「已套用」狀態一起確認
     });
 
     document.getElementById('st-reset').addEventListener('click', function () {
-      try { localStorage.removeItem(SECTIONS_KEY); localStorage.removeItem(SITENAME_KEY); localStorage.removeItem(SKIN_KEY); localStorage.removeItem(LAYOUT_KEY); } catch (e) {}
+      try { localStorage.removeItem(SECTIONS_KEY); localStorage.removeItem(SITENAME_KEY); localStorage.removeItem(SKIN_KEY); localStorage.removeItem(LAYOUT_KEY); localStorage.removeItem(LOCALES_KEY); } catch (e) {}
       var loaded = loadApplied();
-      draft = { sections: loaded.sections, sitename: loaded.sitename, skin: loaded.skin, layout: loaded.layout };
+      draft = { sections: loaded.sections, sitename: loaded.sitename, skin: loaded.skin, layout: loaded.layout, locales: loaded.locales };
       document.documentElement.setAttribute('data-skin', draft.skin);
       document.getElementById('st-sitename').value = draft.sitename;
       document.getElementById('st-summary-site').textContent = draft.sitename || 'CMS_前台_v5';
       renderSections();
       renderSkins();
+      renderLocales();
       refreshAppliedTag();
       liveApply();
     });
@@ -352,10 +403,11 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     var loaded = loadApplied();
-    draft = { sections: loaded.sections, sitename: loaded.sitename, skin: loaded.skin, layout: loaded.layout };
+    draft = { sections: loaded.sections, sitename: loaded.sitename, skin: loaded.skin, layout: loaded.layout, locales: loaded.locales };
     document.documentElement.setAttribute('data-skin', draft.skin); // studio 自己的 chrome 也跟著換膚
     renderSections();
     renderSkins();
+    renderLocales();
     renderPageSelect();
     initCollapse();
     initPaneSwitch();
