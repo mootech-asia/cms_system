@@ -139,33 +139,17 @@
     if (gridEditModeOn) safe(initGrid12DragEdit); // layout 套用後可能重新排過 DOM,把手要重新確保存在
   };
 
-  function initHero() {
-    var hero = document.getElementById('hero');
-    if (!hero) return;
-    var slides = Array.prototype.slice.call(hero.querySelectorAll('.hero-slide'));
-    var dots = Array.prototype.slice.call(hero.querySelectorAll('.hero-dot'));
-    var len = slides.length;
-    if (!len) return;
-    var idx = 0;
-    var timer = null;
-
-    function apply() {
-      slides.forEach(function (s, i) { s.classList.toggle('active', i === idx); });
-      dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
-    }
-    function resetAuto() {
-      if (timer) clearInterval(timer);
-      timer = setInterval(function () { idx = (idx + 1) % len; apply(); }, 6000);
-    }
-    function goTo(i) { idx = i; apply(); resetAuto(); }
-
-    var prevBtn = hero.querySelector('.hero-arrow.prev');
-    var nextBtn = hero.querySelector('.hero-arrow.next');
-    if (prevBtn) prevBtn.addEventListener('click', function () { goTo((idx - 1 + len) % len); });
-    if (nextBtn) nextBtn.addEventListener('click', function () { goTo((idx + 1) % len); });
-    dots.forEach(function (d, i) { d.addEventListener('click', function () { goTo(i); }); });
-
-    resetAuto();
+  /* 首頁 hero 內嵌快速註冊卡：只收名字/姓氏/生日三欄（真正的帳密輸入
+     仍在既有的登入註冊彈窗完成），必填由原生 required 屬性把關,送出後
+     直接呼叫 openAuthModal('register') 接續同一套註冊流程,不另外做一套
+     假的獨立表單邏輯。 */
+  function initHeroSignup() {
+    var form = document.querySelector('[data-hero-signup]');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      openAuthModal('register');
+    });
   }
 
   function initFeatureCarousel() {
@@ -1085,7 +1069,7 @@
     safe(initAuthGuard);
     safe(renderHeaderAuth);
     safe(initPersonalInfoNickname);
-    safe(initHero);
+    safe(initHeroSignup);
     safe(initFeatureCarousel);
     safe(initVendorSelect);
     safe(initRails);
