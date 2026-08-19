@@ -153,6 +153,13 @@
     });
   }
 
+  /* 首頁置底加入提示條:按鈕接續同一套註冊流程,不另外做假流程。 */
+  function initJoinBar() {
+    var btn = document.querySelector('[data-join-bar-open]');
+    if (!btn) return;
+    btn.addEventListener('click', function () { openAuthModal('register'); });
+  }
+
   function initFeatureCarousel() {
     var carousel = document.getElementById('featureCarousel');
     if (!carousel) return;
@@ -342,10 +349,11 @@
 
   /* 訪客態只留「立即註冊／登錄」兩顆按鈕（比照參考站 JOIN／LOGIN 的
      極簡配置），不再像舊版把用戶名/密碼輸入框直接攤在 header 上——
-     點「登錄」一律開登入彈窗,帳密輸入收斂到彈窗內完成。 */
+     點「登錄」一律開登入彈窗,帳密輸入收斂到彈窗內完成。JOIN 是實心
+     主要按鈕、LOGIN 是純文字連結,視覺層級對齊參考站。 */
   function guestAuthHtml() {
-    return '<button type="button" class="btn-accent quiet" data-auth-open="register">' + tr('auth.registerNow', '立即註冊') + '</button>' +
-      '<button type="button" class="btn-accent" data-auth-open="login">' + tr('auth.login', '登錄') + '</button>';
+    return '<button type="button" class="btn-accent" data-auth-open="register">' + tr('auth.registerNow', '立即註冊') + '</button>' +
+      '<button type="button" class="btn-accent ghost" data-auth-open="login">' + tr('auth.login', '登錄') + '</button>';
   }
   function memberAuthHtml(user) {
     return '<a href="account.html" class="header-nav-link" style="gap:8px">' + USER_ICON + escapeHtml(user.name) + '</a>' +
@@ -1071,6 +1079,7 @@
     safe(renderHeaderAuth);
     safe(initPersonalInfoNickname);
     safe(initHeroSignup);
+    safe(initJoinBar);
     safe(initFeatureCarousel);
     safe(initVendorSelect);
     safe(initRails);
