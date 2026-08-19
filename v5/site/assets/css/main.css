@@ -84,10 +84,13 @@ img { max-width: 100%; display: block; }
 }
 .brand-link { display: flex; align-items: center; flex-shrink: 0; }
 .brand-logo { height: 36px; width: auto; }
+/* header-nav 底色跟 header-top 統一用 --header-bg,整個 header 維持
+   單一深色機身;active/hover 改用 --bg-soft 做出區塊,避免跟底色同色
+   看不出來。 */
 .header-nav {
   display: flex; align-items: stretch; gap: 0; flex-wrap: wrap;
   padding-top: 0; padding-bottom: 0;
-  background: var(--bg-soft);
+  background: var(--header-bg);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 .header-nav-link {
@@ -102,7 +105,7 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
   transition: background 0.15s, color 0.15s;
 }
-.header-nav-link:hover, .header-nav-link.active { background: var(--header-bg); color: #fff; }
+.header-nav-link:hover, .header-nav-link.active { background: var(--bg-soft); color: #fff; }
 .header-nav-icon { width: 16px; height: 16px; flex-shrink: 0; }
 .header-auth { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .header-forgot { font-size: 11.5px; color: rgba(245, 242, 236, 0.6); white-space: nowrap; }
