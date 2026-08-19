@@ -59,11 +59,17 @@ body {
   flex-direction: column;
 }
 main { flex: 1 0 auto; }
-a { color: inherit; text-decoration: none; }
+/* -webkit-tap-highlight-color 清零：手機瀏覽器點擊連結預設會蓋一層半透明
+   灰黑色「輕觸反白」,在深色 header 導覽列上看起來像一塊突兀的黑色方塊
+   (跟自訂的 hover/active 底色是兩回事,瀏覽器原生行為蓋不掉)。改用
+   :focus-visible 給一個統一、只在鍵盤導覽時出現的焦點框,滑鼠/觸控點擊
+   不會觸發,不會有原生輕觸反白那種視覺干擾。 */
+a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-hi); outline-offset: 2px; }
 /* border/background 清零：瀏覽器原生 button 邊框很醜；個別元件想要邊框/
    底色都已各自宣告一次，class 的 specificity 比這裡的 element selector 高，
    不會被蓋掉。 */
-button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+button { font-family: inherit; cursor: pointer; border: 0; background: none; -webkit-tap-highlight-color: transparent; }
 img { max-width: 100%; display: block; }
 
 .container { max-width: 1360px; margin: 0 auto; padding: 0 20px; }
