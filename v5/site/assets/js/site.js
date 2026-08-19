@@ -384,9 +384,6 @@
     if (!bar) return;
     var user = loadAuth();
     bar.innerHTML = user ? memberAuthHtml(user) : guestAuthHtml();
-    // 會員態內容較多(頭像名稱/餘額/點數/登出),跟訪客態的 JOIN/LOGIN 共用
-    // 單排 header 會擠爆,改用 is-member 讓 CSS 把這段獨立成第二行。
-    bar.classList.toggle('is-member', !!user);
     if (!user) {
       on(bar.querySelector('[data-auth-open="login"]'), 'click', function () { openAuthModal('login'); });
       on(bar.querySelector('[data-auth-open="register"]'), 'click', function () { openAuthModal('register'); });
