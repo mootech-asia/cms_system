@@ -58,14 +58,6 @@
     'nav.fish': { zh: '捕魚達人', en: 'Fishing Master', ko: '낚시의 달인', th: 'เซียนยิงปลา' },
     'nav.sport': { zh: '體育', en: 'Sports', ko: '스포츠', th: 'กีฬา' },
     'nav.promotion': { zh: '優惠活動', en: 'Promotions', ko: '프로모션', th: 'โปรโมชั่น' },
-    /* 首頁專用導覽分類（對齊參考設計的 POKER/CASINO/LIVE DEALER/VIRTUAL
-       SPORTS/SCRATCH CARD），跟上面 nav.lobby 等其餘 21 頁共用的導覽 key
-       是各自獨立的一組，不共用、不覆寫，避免動到其他頁面的導覽文字。 */
-    'nav.poker': { zh: '撲克', en: 'Poker', ko: '포커', th: 'โป๊กเกอร์' },
-    'nav.casino': { zh: '賭場遊戲', en: 'Casino', ko: '카지노', th: 'คาสิโน' },
-    'nav.liveDealer': { zh: '真人荷官', en: 'Live Dealer', ko: '라이브 딜러', th: 'ดีลเลอร์สด' },
-    'nav.virtualSports': { zh: '虛擬體育', en: 'Virtual Sports', ko: '가상 스포츠', th: 'กีฬาเสมือนจริง' },
-    'nav.scratchCard': { zh: '刮刮卡', en: 'Scratch Card', ko: '스크래치 카드', th: 'บัตรขูด' },
     'nav.deposit': { zh: '儲值', en: 'Deposit', ko: '충전', th: 'เติมเงิน' },
     'nav.member': { zh: '會員', en: 'Account', ko: '계정', th: 'บัญชี' },
     'nav.menu': { zh: '選單', en: 'Menu', ko: '메뉴', th: 'เมนู' },
@@ -243,8 +235,7 @@
     'acct.bankAccounts': { zh: '銀行帳戶', en: 'Bank Accounts', ko: '은행 계좌', th: 'บัญชีธนาคาร' },
     'acct.quickLinks': { zh: '快速捷徑', en: 'Quick Links', ko: '빠른 링크', th: 'ลิงก์ด่วน' },
 
-    'quickRail.message': { zh: '留言', en: 'Message', ko: '메시지', th: 'ข้อความ' },
-    'quickRail.scan': { zh: '掃碼', en: 'Scan', ko: '스캔', th: 'สแกน' },
+    'quickRail.promoChannel': { zh: '促銷頻道', en: 'Promo Channel', ko: '프로모 채널', th: 'ช่องโปรโมชั่น' },
     'nav.menuLabel': { zh: '選單', en: 'Menu', ko: '메뉴', th: 'เมนู' },
     'mobileTabbar.ariaLabel': { zh: '快捷選單', en: 'Quick Menu', ko: '빠른 메뉴', th: 'เมนูด่วน' },
 

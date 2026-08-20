@@ -5443,3 +5443,46 @@ select.twk-field {
 .tourn-hero .tourn-meta,
 .tourn-hero .tourn-meta span:first-child { color: #f3f1ff !important; }
 .tourn-hero .tourn-foot { border-top-color: rgba(243, 241, 255, .22); }
+
+/* ── FLOATING QUICK RAIL ─────────────────── 對齊其他版本統一的浮動客服/
+   活動快捷列(Promo Channel/Live Chat/FAQ),hover 彈出黑底標籤。標籤固定
+   黑底白字,不隨 skin 的 --bg/--text 換色(white skin 為淺底,套用 token
+   會變成淺色標籤)。 */
+.quick-rail {
+  position: fixed; right: 18px; top: 50%; transform: translateY(-50%);
+  z-index: 300;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.quick-rail-btn {
+  position: relative;
+  width: 48px; height: 48px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--line-hi);
+  background: var(--bg-elev);
+  color: var(--accent-2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  transition: transform .15s ease, color .15s ease;
+}
+.quick-rail-btn:hover { transform: scale(1.08); color: var(--accent); }
+.quick-rail-btn svg { width: 20px; height: 20px; }
+.quick-rail-label {
+  position: absolute; right: calc(100% + 12px); top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(15, 15, 15, 0.94);
+  color: #fff;
+  font-size: 12.5px; font-weight: 700; white-space: nowrap;
+  opacity: 0; pointer-events: none;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .4);
+  transition: opacity .18s ease, transform .18s ease;
+}
+.quick-rail-btn:hover .quick-rail-label,
+.quick-rail-btn:focus-visible .quick-rail-label { opacity: 1; transform: translateY(-50%) translateX(0); }
+@media (max-width: 720px) {
+  .quick-rail { right: 10px; }
+  .quick-rail-btn { width: 40px; height: 40px; }
+  .quick-rail-btn:hover { transform: none; }
+  .quick-rail-btn:hover .quick-rail-label { opacity: 0; transform: translateY(-50%) translateX(6px); }
+}

@@ -153,7 +153,7 @@ input {
   right: 0;
   /* .mobile-menu-panel(z-index:200)是這裡的子元素,子層 z-index 只在本身
      建立的 stacking context 內生效,對外仍以 site-header 自己的 z-index
-     參與比較;必須高於 .quick-sidebar-right/-left(z-index:100),選單展開
+     參與比較;必須高於 .quick-rail(z-index:100),選單展開
      時才不會被浮動客服按鈕蓋住 */
   z-index: 200;
   background: var(--c-navy);
@@ -691,26 +691,20 @@ body.usc-sidebar-open .mobile-bottom-nav {
 }
 
 /* ============================================================
-   浮動客服/活動 SideBar(SideBar.vue)
+   浮動客服/活動快捷列(SideBar.vue;對齊其他版本統一為固定圖示
+   +hover 彈出黑底標籤,不再使用點擊展開的 popover 選單與禮物收合面板)
    ============================================================ */
-.quick-sidebar-right {
+.quick-rail {
   position: fixed;
-  top: calc(50vh - 80px);
+  top: 50%;
   right: 8px;
+  transform: translateY(-50%);
   z-index: 100;
-}
-.quick-sidebar-right-inner {
-  border-radius: 999px;
-  border: 1px solid rgba(88, 84, 84, 0.25);
-  background: rgba(247, 247, 247, 0.5);
-  box-shadow: 0 18px 50px rgba(10, 17, 64, 0.18);
-  padding: 6px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 4px;
+  gap: 10px;
 }
-.quick-sidebar-btn {
+.quick-rail-btn {
   position: relative;
   width: 46px;
   height: 46px;
@@ -719,90 +713,38 @@ body.usc-sidebar-open .mobile-bottom-nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 18px 50px rgba(10, 17, 64, 0.18);
 }
-.quick-sidebar-btn img {
+.quick-rail-btn img {
   width: 100%;
   height: 100%;
 }
-.quick-sidebar-popover {
+.quick-rail-label {
   position: absolute;
-  right: 100%;
-  margin-right: 12px;
+  right: calc(100% + 12px);
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(6px);
+  padding: 7px 14px;
+  border-radius: 999px;
   background: rgba(0, 0, 0, 0.9);
   color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  display: none;
+  font-size: 13px;
+  font-weight: 700;
   white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.18s ease, transform 0.18s ease;
 }
-.quick-sidebar-item.is-open .quick-sidebar-popover {
-  display: block;
+.quick-rail-btn:hover .quick-rail-label,
+.quick-rail-btn:focus-visible .quick-rail-label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
 }
-.quick-sidebar-popover button {
-  display: block;
-  width: 100%;
-  text-align: left;
-  font-size: 16px;
-  padding: 8px 12px;
-  border-radius: 8px;
-}
-.quick-sidebar-popover button:hover {
-  background: #404040;
-}
-
-.quick-sidebar-left {
-  position: fixed;
-  width: 108px;
-  bottom: 96px;
-  left: 8px;
-  z-index: 100;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-.quick-sidebar-left.is-visible {
-  display: flex;
-}
-.quick-toggle-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-}
-.quick-toggle-btn img {
-  width: 20px;
-  height: 20px;
-}
-.quick-left-items img {
-  width: 64px;
-  height: 64px;
-  transition: width 0.3s, height 0.3s;
-}
-@media (min-width: 1280px) {
-  .quick-sidebar-left {
-    bottom: 16px;
-    gap: 24px;
-  }
-  .quick-toggle-btn {
-    width: 40px;
-    height: 40px;
-  }
-  .quick-toggle-btn img {
-    width: 24px;
-    height: 24px;
-  }
-  .quick-left-items img {
-    width: 96px;
-    height: 96px;
-  }
-  .quick-left-items img:hover {
-    width: 108px;
-    height: 108px;
-  }
+@media (max-width: 720px) {
+  .quick-rail { right: 6px; gap: 8px; }
+  .quick-rail-btn { width: 40px; height: 40px; }
+  .quick-rail-btn:hover .quick-rail-label { opacity: 0; transform: translateY(-50%) translateX(6px); }
 }
 
 /* ---- 客服選單彈窗(點擊 SideBar 客服 icon 彈出,取代原本直接 alert) ---- */

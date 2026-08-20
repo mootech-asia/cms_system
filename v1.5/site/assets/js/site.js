@@ -281,36 +281,24 @@
    * ================================================================ */
   function quickSidebarHtml() {
     /* 對照 components/SideBar.vue items(液晶客服/Telegram 推播頻道/常見問題,分別導向
-       客服彈窗(尚未實作)/官方 Telegram/about.html?tab=faq) */
-    var rightItems = [
-      { icon: 'sidebar-service.svg', menu: [{ tKey: 'sidebar.liveChat', action: 'liveChat' }] },
-      { icon: 'sidebar-telegram.svg', menu: [{ tKey: 'sidebar.promoChannel', action: 'telegram' }] },
-      { icon: 'sidebar-helps.svg', menu: [{ tKey: 'about.tabs.faq', action: 'faq' }] },
+       客服彈窗/官方 Telegram/about.html?tab=faq)。對齊其他版本統一為固定圖示
+       +hover 彈出黑底標籤,不再使用點擊展開的 popover 選單與禮物收合面板。 */
+    var items = [
+      { icon: 'sidebar-telegram.svg', tKey: 'sidebar.promoChannel', action: 'telegram' },
+      { icon: 'sidebar-service.svg', tKey: 'sidebar.liveChat', action: 'liveChat' },
+      { icon: 'sidebar-helps.svg', tKey: 'about.tabs.faq', action: 'faq' },
     ];
-    var rightHtml = rightItems.map(function (item, i) {
+    return '<div class="quick-rail">' + items.map(function (item) {
       return (
-        '<div class="quick-sidebar-item" data-quick-item="' + i + '">' +
-        '<button type="button" class="quick-sidebar-btn"><img src="' + icon(item.icon) + '" alt=""></button>' +
-        '<div class="quick-sidebar-popover">' + item.menu.map(function (m) { return '<button type="button" data-quick-action="' + m.action + '" data-i18n="' + m.tKey + '">' + t(m.tKey) + '</button>'; }).join('') + '</div>' +
-        '</div>'
+        '<button type="button" class="quick-rail-btn" data-quick-action="' + item.action + '" aria-label="' + t(item.tKey) + '">' +
+        '<img src="' + icon(item.icon) + '" alt="">' +
+        '<span class="quick-rail-label">' + t(item.tKey) + '</span>' +
+        '</button>'
       );
-    }).join('');
-
-    return (
-      '<div class="quick-sidebar-right"><div class="quick-sidebar-right-inner">' + rightHtml + '</div></div>' +
-      '<div class="quick-sidebar-left" data-quick-left>' +
-      '<button type="button" class="quick-toggle-btn" data-quick-toggle><img src="' + icon('sidebar-up.svg') + '" alt="toggle"></button>' +
-      '<div class="quick-left-items"><img src="' + IMG + 'icon/sidebar-gifts.png" alt="gift"></div>' +
-      '<button type="button" class="quick-toggle-btn" data-quick-close><img src="' + icon('sidebar-close.svg') + '" alt="close"></button>' +
-      '</div>'
-    );
+    }).join('') + '</div>';
   }
 
   function bindQuickSidebar(root) {
-    qsa('[data-quick-item]', root).forEach(function (item) {
-      on(item, 'mouseenter', function () { item.classList.add('is-open'); });
-      on(item, 'mouseleave', function () { item.classList.remove('is-open'); });
-    });
     qsa('[data-quick-action]', root).forEach(function (btn) {
       on(btn, 'click', function () {
         var action = btn.getAttribute('data-quick-action');
