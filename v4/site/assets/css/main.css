@@ -714,7 +714,10 @@ img { max-width: 100%; display: block; }
   transition: transform 0.15s, background 0.15s, color 0.15s, border-color 0.15s;
 }
 .quick-rail-btn:hover { transform: scale(1.08); background: color-mix(in oklch, var(--red) 8%, transparent); border-color: var(--red); color: var(--red-deep); }
-.quick-rail-btn img { width: 26px; height: 26px; object-fit: contain; }
+/* logo.png 是寬版橫式 lockup(約 3:1),塞進 26px 見方的框會被壓縮到只剩
+   一條細線、看不清楚;改用寬度撐滿按鈕內側可用寬度、高度自動,讓文字
+   維持可辨識的比例。 */
+.quick-rail-btn img { width: 38px; height: auto; object-fit: contain; }
 .quick-rail-label {
   position: absolute; right: calc(100% + 12px); top: 50%;
   transform: translateY(-50%) translateX(6px);
