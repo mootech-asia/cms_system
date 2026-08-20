@@ -902,6 +902,7 @@ img { max-width: 100%; display: block; }
   width: 48px; height: 48px;
   display: grid; place-items: center;
   border-radius: 50%;
+  overflow: hidden;
   border: 1px solid var(--line);
   background: var(--bg-panel);
   color: var(--accent);
@@ -909,10 +910,13 @@ img { max-width: 100%; display: block; }
   transition: transform 0.15s, background 0.15s, color 0.15s, border-color 0.15s;
 }
 .quick-rail-btn:hover { transform: scale(1.08); background: rgba(244, 121, 31, 0.12); border-color: var(--accent); color: var(--accent-hi); }
-/* logo.png 是寬版橫式 lockup(約 3.7:1),塞進 26px 見方的框會被壓縮到只剩
-   一條細線、看不清楚;改用寬度撐滿按鈕內側可用寬度、高度自動,讓文字
-   維持可辨識的比例。 */
-.quick-rail-btn img { width: 38px; height: auto; object-fit: contain; }
+/* logo.png 是寬版橫式 lockup、且為淺色字,在淺色的 .quick-rail-btn 上會
+   看不清楚(logo 本來就是設計給深色 header 底色配的)。這顆按鈕改用跟
+   header 一樣的深色底色;圖片改成固定高度、寬度用實際比例撐開,靠按鈕
+   本身 overflow:hidden 裁成圓形,顯示放大後清楚的中段文字,不再整張縮小
+   壓成一條細線。 */
+.quick-rail-btn[data-chat-open] { background: var(--header-bg); }
+.quick-rail-btn img { height: 24px; width: auto; }
 .quick-rail-label {
   position: absolute; right: calc(100% + 12px); top: 50%;
   transform: translateY(-50%) translateX(6px);
