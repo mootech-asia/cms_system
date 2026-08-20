@@ -105,6 +105,13 @@
     'cs.telegramTitle': { zh: 'Telegram 頻道', en: 'Telegram Channel', ko: 'Telegram 채널', th: 'ช่อง Telegram' },
     'cs.telegramDesc': { zh: '最新活動與公告', en: 'Latest promos & announcements', ko: '최신 이벤트 및 공지', th: 'โปรโมชันและประกาศล่าสุด' },
     'cs.emailTitle': { zh: 'Email 信箱', en: 'Email', ko: '이메일', th: 'อีเมล' },
+    'cs.chatOnline': { zh: '線上', en: 'Online', ko: '온라인', th: 'ออนไลน์' },
+    'cs.chatMinimize': { zh: '縮小', en: 'Minimize', ko: '최소화', th: 'ย่อ' },
+    'cs.chatClose': { zh: '關閉', en: 'Close', ko: '닫기', th: 'ปิด' },
+    'cs.chatPlaceholder': { zh: '輸入訊息…', en: 'Type a message…', ko: '메시지를 입력하세요…', th: 'พิมพ์ข้อความ…' },
+    'cs.chatSend': { zh: '傳送', en: 'Send', ko: '전송', th: 'ส่ง' },
+    'cs.chatGreeting': { zh: '您好，有什麼能為您服務的嗎？客服人員將盡快為您回覆。', en: 'Hi there! How can we help? A support agent will reply shortly.', ko: '안녕하세요! 무엇을 도와드릴까요? 상담원이 곧 답변드리겠습니다.', th: 'สวัสดีค่ะ มีอะไรให้เราช่วยไหม เจ้าหน้าที่จะตอบกลับโดยเร็ว' },
+    'cs.chatAutoReply': { zh: '感謝您的訊息，客服人員將盡快回覆，請稍候。', en: 'Thanks for your message — a support agent will reply shortly.', ko: '메시지 감사합니다. 상담원이 곧 답변드리겠습니다.', th: 'ขอบคุณสำหรับข้อความ เจ้าหน้าที่จะตอบกลับโดยเร็ว' },
 
     'footer.disclaimer1': {
       zh: '博彩可能造成成癮，請理性遊玩。如需支援資訊，請前往責任博彩協助頁面。',

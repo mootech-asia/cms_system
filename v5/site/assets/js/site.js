@@ -627,9 +627,67 @@
   }
   function initCsTriggers() {
     /* [data-cs-open]：任何元素只要掛這個屬性都能開客服彈窗（首頁公告列
-       「線上客服」連結即用此屬性),不綁定特定 class。 */
-    Array.prototype.slice.call(document.querySelectorAll('.quick-rail-btn[aria-label="線上客服"], [data-cs-open]')).forEach(function (btn) {
+       「線上客服」連結即用此屬性),不綁定特定 class。quick-rail 的「線上
+       客服」則改開右下角對話視窗(chat widget),兩者是不同入口。 */
+    Array.prototype.slice.call(document.querySelectorAll('[data-cs-open]')).forEach(function (btn) {
       on(btn, 'click', function (e) { e.preventDefault(); openCsModal(); });
+    });
+    Array.prototype.slice.call(document.querySelectorAll('[data-chat-open]')).forEach(function (btn) {
+      on(btn, 'click', function (e) { e.preventDefault(); openChatWidget(); });
+    });
+  }
+
+  /* 右下角客服對話視窗:純前端模擬,無真實客服後端。開一次後只切換顯示/
+     縮小,不重複建立節點。使用者送出訊息後,固定延遲顯示一則罐頭回覆,
+     模擬「客服已收到、稍後回覆」的效果。 */
+  var chatWidgetRoot = null;
+  function scrollChatToBottom() {
+    var body = chatWidgetRoot && chatWidgetRoot.querySelector('[data-chat-body]');
+    if (body) body.scrollTop = body.scrollHeight;
+  }
+  function appendChatMsg(kind, text) {
+    var body = chatWidgetRoot.querySelector('[data-chat-body]');
+    var row = document.createElement('div');
+    row.className = 'chat-msg chat-msg-' + kind;
+    row.innerHTML = (kind === 'bot' ? '<img src="logo.png" class="chat-msg-avatar" alt="">' : '') +
+      '<div class="chat-bubble"></div>';
+    row.querySelector('.chat-bubble').textContent = text;
+    body.appendChild(row);
+    scrollChatToBottom();
+  }
+  function openChatWidget() {
+    if (chatWidgetRoot) { chatWidgetRoot.classList.remove('is-minimized'); return; }
+    var wrap = document.createElement('div');
+    wrap.innerHTML =
+      '<div class="chat-widget" data-chat-widget>' +
+      '<div class="chat-widget-head">' +
+      '<img src="logo.png" class="chat-widget-avatar" alt="">' +
+      '<div class="chat-widget-head-text"><strong>' + tr('cs.liveChatTitle', '線上客服') + '</strong>' +
+      '<span class="chat-widget-status"><i></i>' + tr('cs.chatOnline', '線上') + '</span></div>' +
+      '<button type="button" class="chat-widget-min" data-chat-min aria-label="' + tr('cs.chatMinimize', '縮小') + '">–</button>' +
+      '<button type="button" class="chat-widget-close" data-chat-close aria-label="' + tr('cs.chatClose', '關閉') + '">' +
+      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>' +
+      '</div>' +
+      '<div class="chat-widget-body" data-chat-body></div>' +
+      '<form class="chat-widget-form" data-chat-form>' +
+      '<input type="text" data-chat-input placeholder="' + tr('cs.chatPlaceholder', '輸入訊息…') + '" autocomplete="off">' +
+      '<button type="submit" aria-label="' + tr('cs.chatSend', '傳送') + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 18 9-18 9 4-9Z"/></svg></button>' +
+      '</form></div>';
+    chatWidgetRoot = wrap.firstElementChild;
+    document.body.appendChild(chatWidgetRoot);
+    appendChatMsg('bot', tr('cs.chatGreeting', '您好，有什麼能為您服務的嗎？客服人員將盡快為您回覆。'));
+    on(chatWidgetRoot.querySelector('[data-chat-close]'), 'click', function () { chatWidgetRoot.remove(); chatWidgetRoot = null; });
+    on(chatWidgetRoot.querySelector('[data-chat-min]'), 'click', function () { chatWidgetRoot.classList.toggle('is-minimized'); });
+    on(chatWidgetRoot.querySelector('[data-chat-form]'), 'submit', function (e) {
+      e.preventDefault();
+      var input = chatWidgetRoot.querySelector('[data-chat-input]');
+      var text = input.value.trim();
+      if (!text) return;
+      appendChatMsg('user', text);
+      input.value = '';
+      setTimeout(function () {
+        if (chatWidgetRoot) appendChatMsg('bot', tr('cs.chatAutoReply', '感謝您的訊息，客服人員將盡快回覆，請稍候。'));
+      }, 700);
     });
   }
 

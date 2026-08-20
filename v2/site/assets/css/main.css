@@ -2073,6 +2073,56 @@ select.pay-field {
 .cs-opt-text small { font-size: 11.5px; color: rgb(var(--c-text-3)); font-weight: 400; }
 .cs-opt-arrow { color: rgb(var(--c-text-3)); font-size: 20px; flex-shrink: 0; }
 
+/* ── LIVE CHAT 對話視窗（點擊 qr-rail「Live Chat」開啟,右下角展開,
+   純前端模擬對話,無真實客服後端） ────────── */
+.chat-widget {
+  position: fixed; right: 18px; bottom: 18px; z-index: 1000;
+  width: 320px; max-width: calc(100vw - 36px);
+  border-radius: 1rem;
+  border: 1px solid rgb(var(--c-border-soft) / 1);
+  background-color: rgb(var(--c-surface) / 1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.chat-widget-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 14px 14px 16px;
+  background-image: var(--g-primary);
+  color: rgb(var(--c-on-primary) / 1);
+}
+.chat-widget-avatar { width: 32px; height: 32px; border-radius: 50%; background: #fff; object-fit: contain; padding: 3px; flex-shrink: 0; }
+.chat-widget-head-text { flex: 1 1 auto; min-width: 0; }
+.chat-widget-head-text strong { display: block; font-size: 14px; }
+.chat-widget-status { display: flex; align-items: center; gap: 5px; font-size: 11.5px; opacity: .85; }
+.chat-widget-status i { width: 6px; height: 6px; border-radius: 50%; background: #3ddc84; display: inline-block; }
+.chat-widget-min, .chat-widget-close {
+  width: 26px; height: 26px; flex-shrink: 0; display: grid; place-items: center;
+  border-radius: 50%; color: inherit;
+}
+.chat-widget-min:hover, .chat-widget-close:hover { background: rgba(255, 255, 255, .22); }
+.chat-widget-body { padding: 14px; max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.chat-msg { display: flex; align-items: flex-end; gap: 8px; max-width: 88%; }
+.chat-msg-avatar { width: 22px; height: 22px; border-radius: 50%; background: rgb(var(--c-surface-2) / 1); object-fit: contain; padding: 2px; flex-shrink: 0; }
+.chat-bubble { padding: 9px 12px; border-radius: 14px; font-size: 13px; line-height: 1.5; }
+.chat-msg-bot .chat-bubble { background: rgb(var(--c-surface-2) / 1); color: rgb(var(--c-text) / 1); border-bottom-left-radius: 4px; }
+.chat-msg-user { align-self: flex-end; flex-direction: row-reverse; }
+.chat-msg-user .chat-bubble { background-image: var(--g-primary); color: rgb(var(--c-on-primary) / 1); border-bottom-right-radius: 4px; }
+.chat-widget-form { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-top: 1px solid rgb(var(--c-border-soft) / 1); }
+.chat-widget-form input {
+  flex: 1 1 auto; min-width: 0; border: 1px solid rgb(var(--c-border-soft) / 1); border-radius: 999px;
+  padding: 8px 14px; font-size: 13px; background: rgb(var(--c-surface-2) / 1); color: rgb(var(--c-text) / 1);
+}
+.chat-widget-form button {
+  width: 34px; height: 34px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center;
+  background-image: var(--g-primary); color: rgb(var(--c-on-primary) / 1);
+}
+.chat-widget.is-minimized .chat-widget-body,
+.chat-widget.is-minimized .chat-widget-form { display: none; }
+@media (max-width: 768px) {
+  .chat-widget { right: 10px; bottom: 10px; width: calc(100vw - 20px); }
+}
+
 /* ── Lobby-page app header ───────────────────────────────────────────── */
 .app-container { width: 100%; margin-left: auto; margin-right: auto; }
 @media (min-width: 640px) { .app-container { max-width: 640px; } }

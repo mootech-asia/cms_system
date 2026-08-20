@@ -5444,6 +5444,57 @@ select.twk-field {
 .tourn-hero .tourn-meta span:first-child { color: #f3f1ff !important; }
 .tourn-hero .tourn-foot { border-top-color: rgba(243, 241, 255, .22); }
 
+/* ── LIVE CHAT 對話視窗（點擊 quick-rail「Live Chat」開啟,右下角展開,
+   純前端模擬對話,無真實客服後端） ────────── */
+.chat-widget {
+  position: fixed; right: 18px; bottom: 18px; z-index: 400;
+  width: 320px; max-width: calc(100vw - 36px);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line-hi);
+  background: var(--bg-elev);
+  color: var(--text);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .45);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.chat-widget-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 14px 14px 16px;
+  background: var(--accent);
+  color: #fff;
+}
+.chat-widget-avatar { width: 32px; height: 32px; border-radius: 50%; background: #fff; object-fit: contain; padding: 3px; flex-shrink: 0; }
+.chat-widget-head-text { flex: 1 1 auto; min-width: 0; }
+.chat-widget-head-text strong { display: block; font-size: 14px; }
+.chat-widget-status { display: flex; align-items: center; gap: 5px; font-size: 11.5px; opacity: .85; }
+.chat-widget-status i { width: 6px; height: 6px; border-radius: 50%; background: #3ddc84; display: inline-block; }
+.chat-widget-min, .chat-widget-close {
+  width: 26px; height: 26px; flex-shrink: 0; display: grid; place-items: center;
+  border-radius: 50%; color: inherit;
+}
+.chat-widget-min:hover, .chat-widget-close:hover { background: rgba(255, 255, 255, .22); }
+.chat-widget-body { padding: 14px; max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.chat-msg { display: flex; align-items: flex-end; gap: 8px; max-width: 88%; }
+.chat-msg-avatar { width: 22px; height: 22px; border-radius: 50%; background: var(--bg); object-fit: contain; padding: 2px; flex-shrink: 0; }
+.chat-bubble { padding: 9px 12px; border-radius: 14px; font-size: 13px; line-height: 1.5; }
+.chat-msg-bot .chat-bubble { background: var(--bg); color: var(--text); border-bottom-left-radius: 4px; }
+.chat-msg-user { align-self: flex-end; flex-direction: row-reverse; }
+.chat-msg-user .chat-bubble { background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+.chat-widget-form { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--line-hi); }
+.chat-widget-form input {
+  flex: 1 1 auto; min-width: 0; border: 1px solid var(--line-hi); border-radius: var(--radius-pill);
+  padding: 8px 14px; font-size: 13px; background: var(--bg); color: var(--text);
+}
+.chat-widget-form button {
+  width: 34px; height: 34px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center;
+  background: var(--accent); color: #fff;
+}
+.chat-widget.is-minimized .chat-widget-body,
+.chat-widget.is-minimized .chat-widget-form { display: none; }
+@media (max-width: 720px) {
+  .chat-widget { right: 10px; bottom: 10px; width: calc(100vw - 20px); }
+}
+
 /* ── FLOATING QUICK RAIL ─────────────────── 對齊其他版本統一的浮動客服/
    活動快捷列(Promo Channel/Live Chat/FAQ),hover 彈出黑底標籤。標籤固定
    黑底白字,不隨 skin 的 --bg/--text 換色(white skin 為淺底,套用 token
