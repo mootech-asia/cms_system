@@ -3700,9 +3700,10 @@ body.usc-sidebar-open .mobile-bottom-nav {
 }
 @media (min-width: 1280px) {
   .about-page {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 64px 0;
+    /* 原本 max-width:960px + margin:0 auto 會讓 .about-page 自己的深色
+       background 只蓋住中間 960px,兩側露出 body 的白底;改用 padding
+       內縮做出同樣的置中欄寬,讓 background 維持滿版鋪到底。 */
+    padding: 64px max(0px, calc(50% - 480px));
   }
   .about-title-row h1 {
     font-size: 28px;

@@ -284,8 +284,8 @@
        客服彈窗/官方 Telegram/about.html?tab=faq)。對齊其他版本統一為固定圖示
        +hover 彈出黑底標籤,不再使用點擊展開的 popover 選單與禮物收合面板。 */
     var items = [
-      { icon: 'sidebar-telegram.svg', tKey: 'sidebar.promoChannel', action: 'telegram' },
       { icon: 'sidebar-service.svg', tKey: 'sidebar.liveChat', action: 'liveChat' },
+      { icon: 'sidebar-telegram.svg', tKey: 'sidebar.promoChannel', action: 'telegram' },
       { icon: 'sidebar-helps.svg', tKey: 'about.tabs.faq', action: 'faq' },
     ];
     return '<div class="quick-rail">' + items.map(function (item) {
