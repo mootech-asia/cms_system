@@ -452,6 +452,7 @@
     'signup.firstName': { zh: '名字', en: 'First Name', ko: '이름', th: 'ชื่อจริง' },
     'signup.lastName': { zh: '姓氏', en: 'Last Name', ko: '성', th: 'นามสกุล' },
     'signup.dob': { zh: '出生日期', en: 'Date of Birth', ko: '생년월일', th: 'วันเกิด' },
+    'signup.dobPlaceholder': { zh: '年/月/日', en: 'YYYY/MM/DD', ko: '년/월/일', th: 'ปี/เดือน/วัน' },
     'signup.next': { zh: '下一步', en: 'Next', ko: '다음', th: 'ถัดไป' },
 
     'trust.rewards': { zh: '玩樂即得獎勵', en: 'Play & Earn Rewards', ko: '플레이하고 리워드 받기', th: 'เล่นแล้วรับรางวัล' },

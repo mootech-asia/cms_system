@@ -238,6 +238,11 @@ img { max-width: 100%; display: block; }
 .hero-signup .form-field { margin-bottom: 16px; }
 /* 輸入框改成參考站的底線極簡風,不用整圈邊框的方塊輸入框。 */
 .hero-signup .form-input { border: none; border-radius: 0; padding-left: 0; padding-right: 0; background: transparent; border-bottom: 1px solid var(--line); }
+/* 出生日期改用純文字輸入(見 form-field-dob-icon 註解),補一顆手繪日曆
+   icon 維持原本 <input type="date"> 右側行事曆圖示的視覺。 */
+.form-field-dob { position: relative; }
+.form-field-dob .form-input { padding-right: 22px; }
+.form-field-dob-icon { position: absolute; right: 0; bottom: 11px; color: var(--text-dim); pointer-events: none; }
 .hero-signup .hero-signup-submit { display: table; width: auto; margin: 4px 0 0 auto; padding: 10px 28px; opacity: 0.62; }
 @media (max-width: 900px) {
   .hero-duo { flex-direction: column; align-items: stretch; justify-content: flex-start; padding: 24px; gap: 20px; }
