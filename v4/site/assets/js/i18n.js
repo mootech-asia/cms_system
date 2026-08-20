@@ -236,8 +236,7 @@
     'acct.bankAccounts': { zh: '銀行帳戶', en: 'Bank Accounts', ko: '은행 계좌', th: 'บัญชีธนาคาร' },
     'acct.quickLinks': { zh: '快速捷徑', en: 'Quick Links', ko: '빠른 링크', th: 'ลิงก์ด่วน' },
 
-    'quickRail.message': { zh: '留言', en: 'Message', ko: '메시지', th: 'ข้อความ' },
-    'quickRail.scan': { zh: '掃碼', en: 'Scan', ko: '스캔', th: 'สแกน' },
+    'quickRail.promoChannel': { zh: '促銷頻道', en: 'Promo Channel', ko: '프로모 채널', th: 'ช่องโปรโมชั่น' },
     'nav.menuLabel': { zh: '選單', en: 'Menu', ko: '메뉴', th: 'เมนู' },
     'mobileTabbar.ariaLabel': { zh: '快捷選單', en: 'Quick Menu', ko: '빠른 메뉴', th: 'เมนูด่วน' },
 

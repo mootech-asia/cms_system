@@ -914,8 +914,10 @@ img { max-width: 100%; display: block; }
   transform: translateY(-50%) translateX(6px);
   padding: 7px 14px;
   border-radius: 999px;
-  background: var(--text);
-  color: var(--bg);
+  /* 固定黑底白字,不隨 skin 的 --text/--bg 換色（部分 skin 為淺底,套用 token
+     會變成淺色標籤,對齊參考站無論底色深淺、標籤都維持黑底的設計）。 */
+  background: rgba(15, 15, 15, 0.94);
+  color: #fff;
   font-size: 12.5px; font-weight: 700; white-space: nowrap;
   opacity: 0; pointer-events: none;
   box-shadow: var(--shadow-card);
