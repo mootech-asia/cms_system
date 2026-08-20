@@ -571,6 +571,18 @@ img { max-width: 100%; display: block; }
 .listing-tab.active { background: var(--accent-grad); color: var(--accent-ink); }
 .listing-wrap .tile-grid.compact { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
 .listing-empty { padding: 48px 0; text-align: center; color: var(--text-dim); font-size: 14px; }
+.listing-load-more-wrap { display: flex; justify-content: center; margin-top: 6px; }
+.listing-load-more {
+  padding: 10px 32px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg-panel);
+  color: var(--text-mid);
+  font-size: 13px; font-weight: 800;
+  text-transform: uppercase;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.listing-load-more:hover { background: var(--accent-grad); color: var(--accent-ink); border-color: transparent; }
 .game-tile-fav {
   position: absolute; top: 6px; right: 6px; z-index: 2;
   width: 26px; height: 26px;
