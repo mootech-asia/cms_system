@@ -274,27 +274,52 @@
       saveFavIds(list);
       btn.classList.toggle('is-active', idx === -1);
       btn.setAttribute('aria-pressed', String(idx === -1));
-      applyListingTab();
+      updateListingVisibility();
     });
   }
 
-  /* 分類頁「廠商 / 收藏」頁簽：收藏頁只顯示已收藏的卡片。 */
-  function applyListingTab() {
+  /* 分類頁「廠商 / 收藏」頁簽 + 搜尋 + 顯示更多,統一計算每張卡片的顯示狀態,
+     避免三種機制各自寫 hidden 互相覆蓋。搜尋有關鍵字時不受顯示更多的筆數
+     上限限制（符合條件全部列出）；沒有 #listingLoadMore 按鈕的頁面（如運動
+     賽事）視為沒有上限。 */
+  function updateListingVisibility() {
     var grid = document.getElementById('listingGrid');
     if (!grid) return;
     var active = document.querySelector('.listing-tab.active');
     var mode = active ? active.getAttribute('data-listing-tab') : 'all';
     var ids = favIds();
+    var searchWrap = document.querySelector('.listing-search');
+    var input = searchWrap ? searchWrap.querySelector('input') : null;
+    var q = input ? (input.value || '').trim().toLowerCase() : '';
+    var loadMoreBtn = document.getElementById('listingLoadMore');
+    var limit = loadMoreBtn ? (parseInt(grid.getAttribute('data-visible'), 10) || 20) : Infinity;
+    var matched = 0;
     var shown = 0;
-    Array.prototype.slice.call(grid.querySelectorAll('.game-tile')).forEach(function (tile) {
-      var btn = tile.querySelector('.game-tile-fav');
-      var id = btn ? btn.getAttribute('data-fav-id') : '';
-      var show = mode !== 'fav' || ids.indexOf(id) !== -1;
-      tile.hidden = !show;
+    /* .game-tile 用卡片名稱比對;.match-card（體育賽事）沒有單一名稱欄位,
+       改比對 data-search（聯賽+雙方隊伍）。 */
+    Array.prototype.slice.call(grid.querySelectorAll('.game-tile, .match-card')).forEach(function (card) {
+      var isGameTile = card.classList.contains('game-tile');
+      var name = isGameTile
+        ? ((card.querySelector('.game-tile-name') || {}).textContent || '')
+        : (card.getAttribute('data-search') || '');
+      var matchesSearch = !q || name.toLowerCase().indexOf(q) !== -1;
+      var matchesFav = true;
+      if (isGameTile && mode === 'fav') {
+        var favBtn = card.querySelector('.game-tile-fav');
+        var id = favBtn ? favBtn.getAttribute('data-fav-id') : '';
+        matchesFav = ids.indexOf(id) !== -1;
+      }
+      var show = false;
+      if (matchesSearch && matchesFav) {
+        matched++;
+        show = q ? true : matched <= limit;
+      }
+      card.hidden = !show;
       if (show) shown++;
     });
     var empty = document.getElementById('listingEmpty');
     if (empty) empty.hidden = shown !== 0;
+    if (loadMoreBtn) loadMoreBtn.hidden = !!q || matched <= limit;
   }
   function initListingTabs() {
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.listing-tab'));
@@ -302,10 +327,12 @@
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
         tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
-        applyListingTab();
+        var grid = document.getElementById('listingGrid');
+        if (grid) grid.setAttribute('data-visible', '20');
+        updateListingVisibility();
       });
     });
-    applyListingTab();
+    updateListingVisibility();
   }
 
   /* 分類頁搜尋：即時過濾卡片名稱（前台靜態站無後端,純前端比對）。 */
@@ -315,25 +342,22 @@
     if (!wrap || !grid) return;
     var input = wrap.querySelector('input');
     var btn = wrap.querySelector('button');
-    function run() {
-      var q = (input.value || '').trim().toLowerCase();
-      var shown = 0;
-      /* .game-tile 用卡片名稱比對;.match-card（體育賽事）沒有單一名稱欄位,
-         改比對 data-search（聯賽+雙方隊伍）。 */
-      Array.prototype.slice.call(grid.querySelectorAll('.game-tile, .match-card')).forEach(function (card) {
-        var name = card.classList.contains('match-card')
-          ? (card.getAttribute('data-search') || '')
-          : ((card.querySelector('.game-tile-name') || {}).textContent || '');
-        var show = !q || name.toLowerCase().indexOf(q) !== -1;
-        card.hidden = !show;
-        if (show) shown++;
-      });
-      var empty = document.getElementById('listingEmpty');
-      if (empty) empty.hidden = shown !== 0;
-    }
-    input.addEventListener('input', run);
-    if (btn) btn.addEventListener('click', run);
-    input.addEventListener('keydown', function (e) { if (e.key === 'Enter') run(); });
+    input.addEventListener('input', updateListingVisibility);
+    if (btn) btn.addEventListener('click', updateListingVisibility);
+    input.addEventListener('keydown', function (e) { if (e.key === 'Enter') updateListingVisibility(); });
+  }
+
+  /* 分類頁「顯示更多」：預設先顯示 20 筆,每次點擊再多顯示 20 筆,全部顯示後按鈕隱藏。 */
+  function initListingLoadMore() {
+    var btn = document.getElementById('listingLoadMore');
+    var grid = document.getElementById('listingGrid');
+    if (!btn || !grid) return;
+    btn.addEventListener('click', function () {
+      var limit = parseInt(grid.getAttribute('data-visible'), 10) || 20;
+      grid.setAttribute('data-visible', String(limit + 20));
+      updateListingVisibility();
+    });
+    updateListingVisibility();
   }
 
   /* ── 登入機制:前端模擬,無真實後端驗證 ──
@@ -1183,6 +1207,7 @@
     safe(initFavorites);
     safe(initListingTabs);
     safe(initListingSearch);
+    safe(initListingLoadMore);
     safe(initMemberLogout);
     safe(initHeaderMobileMenu);
     safe(initCsTriggers);

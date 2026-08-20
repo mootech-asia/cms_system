@@ -359,6 +359,7 @@
     'game.search': { zh: '搜尋', en: 'Search', ko: '검색', th: 'ค้นหา' },
     'game.vendor': { zh: '廠商', en: 'Providers', ko: '제공사', th: 'ผู้ให้บริการ' },
     'game.viewMore': { zh: '查看更多 →', en: 'View More →', ko: '더 보기 →', th: 'ดูเพิ่มเติม →' },
+    'game.showMore': { zh: '顯示更多', en: 'Show More', ko: '더 보기', th: 'แสดงเพิ่มเติม' },
     'game.scrollLeft': { zh: '向左捲動', en: 'Scroll Left', ko: '왼쪽으로 스크롤', th: 'เลื่อนไปทางซ้าย' },
     'game.scrollRight': { zh: '向右捲動', en: 'Scroll Right', ko: '오른쪽으로 스크롤', th: 'เลื่อนไปทางขวา' },
     'game.chooseVendor': { zh: '選擇廠商', en: 'Choose Provider', ko: '제공사 선택', th: 'เลือกผู้ให้บริการ' },
