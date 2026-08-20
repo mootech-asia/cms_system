@@ -133,7 +133,9 @@ img { max-width: 100%; display: block; }
   color: var(--notice-text);
 }
 .notice-msg { display: flex; align-items: center; gap: 8px; flex: 1 1 auto; min-width: 0; overflow: hidden; }
-.notice-msg svg { flex-shrink: 0; }
+/* 跑馬燈文字掃過整個 notice-msg 寬度時會經過 icon 所在位置；icon 疊在
+   跑馬燈之上（z-index）並補上底色，避免文字劃過時穿插在 icon 圖形裡。 */
+.notice-msg svg { flex-shrink: 0; position: relative; z-index: 1; background: var(--notice-bg); }
 /* 跑馬燈：padding-left:100% 讓文字從容器右側外開始,animation 把它推移
    自身寬度（含 padding，等於「容器寬 + 文字寬」）,結束時剛好完全移出
    容器左側,無縫接回起點,不需要複製文字節點。 */
