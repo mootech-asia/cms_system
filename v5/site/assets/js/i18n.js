@@ -74,6 +74,8 @@
     'sidebar.security': { zh: '安全中心', en: 'Security Center', ko: '보안 센터', th: 'ศูนย์ความปลอดภัย' },
     'page.changePassword': { zh: '修改登入密碼', en: 'Change Login Password', ko: '로그인 비밀번호 변경', th: 'เปลี่ยนรหัสผ่านเข้าสู่ระบบ' },
 
+    'headerMenu.myAccount': { zh: '我的帳戶', en: 'My Account', ko: '내 계정', th: 'บัญชีของฉัน' },
+
     'auth.registerNow': { zh: '立即註冊', en: 'Join', ko: '지금 가입', th: 'ลงทะเบียนเลย' },
     'auth.usernamePlaceholder': { zh: '用戶名', en: 'Username', ko: '사용자명', th: 'ชื่อผู้ใช้' },
     'auth.passwordPlaceholder': { zh: '密碼', en: 'Password', ko: '비밀번호', th: 'รหัสผ่าน' },
@@ -81,6 +83,7 @@
     'auth.login': { zh: '登錄', en: 'Login', ko: '로그인', th: 'เข้าสู่ระบบ' },
     'auth.register': { zh: '註冊', en: 'Register', ko: '가입하기', th: 'ลงทะเบียน' },
     'auth.logout': { zh: '登出', en: 'Logout', ko: '로그아웃', th: 'ออกจากระบบ' },
+    'auth.defaultMemberName': { zh: '會員', en: 'Member', ko: '회원', th: 'สมาชิก' },
     'auth.balancePrefix': { zh: '餘額：', en: 'Balance: ', ko: '잔액: ', th: 'ยอดเงิน: ' },
     'auth.pointsPrefix': { zh: '點數：', en: 'Points: ', ko: '포인트: ', th: 'พอยท์: ' },
     'auth.usernameLabel': { zh: '用戶名', en: 'Username', ko: '사용자명', th: 'ชื่อผู้ใช้' },
@@ -107,7 +110,6 @@
     'cs.emailTitle': { zh: 'Email 信箱', en: 'Email', ko: '이메일', th: 'อีเมล' },
     'cs.chatOnline': { zh: '線上', en: 'Online', ko: '온라인', th: 'ออนไลน์' },
     'cs.chatMinimize': { zh: '縮小', en: 'Minimize', ko: '최소화', th: 'ย่อ' },
-    'cs.chatClose': { zh: '關閉', en: 'Close', ko: '닫기', th: 'ปิด' },
     'cs.chatPlaceholder': { zh: '輸入訊息…', en: 'Type a message…', ko: '메시지를 입력하세요…', th: 'พิมพ์ข้อความ…' },
     'cs.chatSend': { zh: '傳送', en: 'Send', ko: '전송', th: 'ส่ง' },
     'cs.chatGreeting': { zh: '您好，有什麼能為您服務的嗎？客服人員將盡快為您回覆。', en: 'Hi there! How can we help? A support agent will reply shortly.', ko: '안녕하세요! 무엇을 도와드릴까요? 상담원이 곧 답변드리겠습니다.', th: 'สวัสดีค่ะ มีอะไรให้เราช่วยไหม เจ้าหน้าที่จะตอบกลับโดยเร็ว' },
@@ -133,6 +135,15 @@
     },
     'footer.backToHub': { zh: '回到 CMS 統一預覽', en: 'Back to CMS Overview', ko: 'CMS 통합 미리보기로 돌아가기', th: 'กลับไปที่ภาพรวม CMS' },
 
+    'appBanner.title': { zh: '取得我們的 App', en: 'Get Our App', ko: '앱 다운로드', th: 'รับแอปของเรา' },
+    'appBanner.desc': {
+      zh: '下載 IGNITE100 App，快速捷徑通往更多精彩內容，一鍵開啟你喜愛的老虎機與撲克遊戲。',
+      en: 'Download the IGNITE100 app for a shortcut to more action, and access your favorite slots and poker games in a couple of clicks.',
+      ko: 'IGNITE100 앱을 다운로드하면 더 많은 액션으로 가는 지름길이 열립니다. 몇 번의 클릭으로 좋아하는 슬롯과 포커 게임을 즐겨보세요.',
+      th: 'ดาวน์โหลดแอป IGNITE100 เพื่อเข้าถึงความมันส์ได้รวดเร็วยิ่งขึ้น เล่นสล็อตและเกมโป๊กเกอร์ที่คุณชื่นชอบได้ในไม่กี่คลิก',
+    },
+    'appBanner.cta': { zh: '立即下載', en: 'Download Now', ko: '지금 다운로드', th: 'ดาวน์โหลดตอนนี้' },
+
     'vendor.title': { zh: '合作廠商', en: 'Our Partners', ko: '제휴 파트너', th: 'พันธมิตรของเรา' },
 
     'lang.label': { zh: '語言', en: 'Language', ko: '언어', th: 'ภาษา' },
@@ -142,6 +153,8 @@
     'common.back': { zh: '返回', en: 'Back', ko: '뒤로', th: 'กลับ' },
     'common.submit': { zh: '提交', en: 'Submit', ko: '제출', th: 'ส่ง' },
     'common.confirm': { zh: '確定', en: 'Confirm', ko: '확인', th: 'ยืนยัน' },
+    'common.close': { zh: '關閉', en: 'Close', ko: '닫기', th: 'ปิด' },
+    'common.delete': { zh: '刪除', en: 'Delete', ko: '삭제', th: 'ลบ' },
     'common.prev': { zh: '上一筆', en: 'Previous', ko: '이전', th: 'ก่อนหน้า' },
     'common.next2': { zh: '下一筆', en: 'Next', ko: '다음', th: 'ถัดไป' },
     'common.notice': { zh: '提示', en: 'Notice', ko: '안내', th: 'แจ้งเตือน' },
@@ -170,6 +183,7 @@
     'wd.cryptoAmountNote': { zh: '* 最低金額：₩ 100,000；最高金額：₩ 20,000,000 *', en: '* Minimum: ₩ 100,000; Maximum: ₩ 20,000,000 *', ko: '* 최소 금액: ₩ 100,000; 최대 금액: ₩ 20,000,000 *', th: '* ขั้นต่ำ: ₩ 100,000; สูงสุด: ₩ 20,000,000 *' },
     'wd.withdrawPassword': { zh: '提款密碼', en: 'Withdrawal Password', ko: '출금 비밀번호', th: 'รหัสผ่านถอนเงิน' },
     'wd.withdrawPasswordPlaceholder': { zh: '請輸入提款密碼', en: 'Please enter withdrawal password', ko: '출금 비밀번호를 입력해 주세요', th: 'กรุณากรอกรหัสผ่านถอนเงิน' },
+    'wd.togglePasswordVisibility': { zh: '顯示/隱藏密碼', en: 'Show/Hide Password', ko: '비밀번호 표시/숨기기', th: 'แสดง/ซ่อนรหัสผ่าน' },
     'wd.confirmWithdraw': { zh: '確認提款', en: 'Confirm Withdrawal', ko: '출금 확인', th: 'ยืนยันการถอนเงิน' },
     'wd.manageBankAccount': { zh: '銀行帳戶', en: 'Bank Account', ko: '은행 계좌', th: 'บัญชีธนาคาร' },
     'wd.registeredAccounts': { zh: '已登記提款帳戶', en: 'Registered Withdrawal Accounts', ko: '등록된 출금 계좌', th: 'บัญชีถอนเงินที่ลงทะเบียน' },
@@ -224,6 +238,7 @@
     'dp.copy': { zh: '複製', en: 'Copy', ko: '복사', th: 'คัดลอก' },
     'dp.copied': { zh: '已複製', en: 'Copied', ko: '복사됨', th: 'คัดลอกแล้ว' },
     'dp.qrDemoNote': { zh: '此為示意用 QR Code 與{label}，僅供介面展示。', en: 'This QR code and {label} are for interface demonstration purposes only.', ko: '이 QR 코드와 {label}은 인터페이스 시연 용도로만 제공됩니다.', th: 'QR Code และ{label}นี้ใช้เพื่อสาธิตอินเทอร์เฟซเท่านั้น' },
+    'dp.paymentQrAria': { zh: '付款 QR Code', en: 'Payment QR Code', ko: '결제 QR 코드', th: 'QR Code การชำระเงิน' },
     'dp.paymentDoneBtn': { zh: '我已完成付款', en: 'I Have Completed the Payment', ko: '결제를 완료했습니다', th: 'ฉันชำระเงินเรียบร้อยแล้ว' },
     'dp.transferInfoTitle': { zh: '轉帳資訊', en: 'Transfer Information', ko: '송금 정보', th: 'ข้อมูลการโอนเงิน' },
     'dp.scanPayTitle': { zh: '掃碼付款', en: 'Scan to Pay', ko: 'QR 결제', th: 'สแกนเพื่อจ่าย' },
