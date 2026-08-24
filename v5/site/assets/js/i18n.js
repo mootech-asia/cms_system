@@ -144,6 +144,9 @@
     },
     'appBanner.cta': { zh: '立即下載', en: 'Download Now', ko: '지금 다운로드', th: 'ดาวน์โหลดตอนนี้' },
 
+    'joinBar.cta': { zh: '立即加入', en: 'Join Instantly', ko: '지금 바로 가입', th: 'เข้าร่วมทันที' },
+    'joinBar.text': { zh: '領取您的迎新獎金，立即開始贏獎！', en: 'Claim your welcome bonus and start winning!', ko: '웰컴 보너스를 받고 지금 바로 승리를 시작하세요!', th: 'รับโบนัสต้อนรับแล้วเริ่มลุ้นรางวัลได้เลย!' },
+
     'vendor.title': { zh: '合作廠商', en: 'Our Partners', ko: '제휴 파트너', th: 'พันธมิตรของเรา' },
 
     'lang.label': { zh: '語言', en: 'Language', ko: '언어', th: 'ภาษา' },
@@ -479,6 +482,75 @@
     'sport.homeWin': { zh: '主勝', en: 'Home Win', ko: '홈 승', th: 'เจ้าบ้านชนะ' },
     'sport.draw': { zh: '和局', en: 'Draw', ko: '무승부', th: 'เสมอ' },
     'sport.awayWin': { zh: '客勝', en: 'Away Win', ko: '원정 승', th: 'ทีมเยือนชนะ' },
+
+    /* 分類頁 hero 上方的小標籤(SLOTS/LIVE CASINO/FISHING/MINI GAMES),對照
+       首頁同一位置已用 i18n 的 hero.trending/hero.eyebrow,原本漏接。遊戲
+       小卡名稱(Sugar Rush 9000 之類)是各款遊戲的虛構品牌名稱,各語系維持
+       原文不譯,比照真實老虎機/廠商名稱的慣例。 */
+    'category.slotsEyebrow': { zh: '老虎機', en: 'SLOTS', ko: '슬롯', th: 'สล็อต' },
+    'category.liveEyebrow': { zh: '真人娛樂', en: 'LIVE CASINO', ko: '라이브 카지노', th: 'คาสิโนสด' },
+    'category.fishEyebrow': { zh: '捕魚達人', en: 'FISHING', ko: '낚시', th: 'ยิงปลา' },
+    'category.miniGamesEyebrow': { zh: '迷你遊戲', en: 'MINI GAMES', ko: '미니 게임', th: 'มินิเกม' },
+    'category.promotionsEyebrow': { zh: '優惠活動', en: 'PROMOTIONS', ko: '프로모션', th: 'โปรโมชั่น' },
+    'category.sportsbookEyebrow': { zh: '體育投注', en: 'SPORTSBOOK', ko: '스포츠북', th: 'สปอร์ตบุ๊ค' },
+
+    /* 首頁「撲克遊戲」「探索更多」兩個橫向清單的活動/桌型名稱,是行銷文案
+       而非廠商品牌名稱,予以翻譯;「熱門賭場遊戲」區塊的 TBK Jackpot／
+       Bonus Buy 是廠商機制術語,維持原文比照遊戲品牌名稱處理。 */
+    'home.pokerPanelTitle': {
+      zh: 'IGNITE100 頂級撲克遊戲與錦標賽',
+      en: 'Top IGNITE100 Poker Games and Tournaments',
+      ko: 'IGNITE100 최고의 포커 게임 및 토너먼트',
+      th: 'เกมโป๊กเกอร์และทัวร์นาเมนต์ยอดนิยมของ IGNITE100',
+    },
+    'home.casinoPanelTitle': { zh: '我們最熱門的賭場遊戲', en: 'Our Hottest Casino Games', ko: '가장 인기 있는 카지노 게임', th: 'เกมคาสิโนสุดฮอตของเรา' },
+    'home.exploreMorePanelTitle': { zh: '探索更多', en: 'Explore More', ko: '더 살펴보기', th: 'สำรวจเพิ่มเติม' },
+    'home.firedUpPanelTitle': { zh: '熱血開玩', en: 'Get Fired Up to Play', ko: '신나게 즐겨보세요', th: 'มาสนุกกันเลย' },
+    'home.testimonialsPanelTitle': { zh: '玩家真實心聲', en: 'Hear From Our Players', ko: '플레이어들의 생생한 후기', th: 'ฟังเสียงจากผู้เล่นของเรา' },
+
+    'home.pokerTile1': { zh: '撲克錦標賽', en: 'Poker Tournaments', ko: '포커 토너먼트', th: 'ทัวร์นาเมนต์โป๊กเกอร์' },
+    'home.pokerTile2': { zh: '每週加密貨幣儲值免費賽', en: 'Weekly Crypto Depositors Freeroll', ko: '주간 암호화폐 충전자 프리롤', th: 'ฟรีโรลรายสัปดาห์สำหรับผู้ฝากคริปโต' },
+    'home.pokerTile3': { zh: '$2,500 每週撲克免費賽', en: '$2,500 Weekly Poker Freerolls', ko: '$2,500 주간 포커 프리롤', th: 'ฟรีโรลโป๊กเกอร์รายสัปดาห์ $2,500' },
+    'home.pokerTile4': { zh: 'Sit & Go 錦標賽', en: 'Sit & Go Tournaments', ko: '싯앤고 토너먼트', th: 'ทัวร์นาเมนต์ Sit & Go' },
+    'home.pokerTile5': { zh: 'Bad Beat 獎金', en: 'Bad Beat Bonus', ko: '배드빗 보너스', th: 'โบนัส Bad Beat' },
+    'home.pokerTile6': { zh: '皇家同花順獎金', en: 'Royal Flush Bonus', ko: '로열 플러시 보너스', th: 'โบนัส Royal Flush' },
+
+    'home.exploreTile1': { zh: '每日刮刮樂', en: 'Daily Scratch & Win', ko: '매일 스크래치 앤 윈', th: 'ขูดลุ้นรางวัลรายวัน' },
+    'home.exploreTile2': { zh: '神秘 KO 撲克', en: 'Mystery KO Poker', ko: '미스터리 KO 포커', th: 'โป๊กเกอร์ KO ปริศนา' },
+    'home.exploreTile3': { zh: '限時爆金頭獎', en: 'Hot Drop Jackpots', ko: '핫드롭 잭팟', th: 'แจ็คพอตสุ่มแจกด่วน' },
+    'home.exploreTile4': { zh: '匿名牌桌', en: 'Anonymous Tables', ko: '익명 테이블', th: 'โต๊ะไม่ระบุตัวตน' },
+    'home.exploreTile5': { zh: 'KO 撲克', en: 'KO Poker', ko: 'KO 포커', th: 'โป๊กเกอร์ KO' },
+    'home.exploreTile6': { zh: 'Zone 撲克', en: 'Zone Poker', ko: '존 포커', th: 'โป๊กเกอร์ Zone' },
+
+    'home.promoTitle1': { zh: '即時刺激樂趣', en: 'Real-Time Thrills', ko: '실시간 스릴', th: 'ความตื่นเต้นแบบเรียลไทม์' },
+    'home.promoDesc1': { zh: '與真人荷官同樂真人桌遊', en: 'Play table games with Live Dealers', ko: '라이브 딜러와 함께 테이블 게임을 즐기세요', th: 'เล่นเกมบนโต๊ะกับดีลเลอร์สด' },
+    'home.promoTitle2': { zh: '賺取獎金', en: 'Earn Bonuses', ko: '보너스 받기', th: 'รับโบนัส' },
+    'home.promoDesc2': { zh: '使用 IGNITE100 Rewards 兌換獎勵', en: 'Redeem rewards using IGNITE100 Rewards', ko: 'IGNITE100 리워드로 보상 교환하기', th: 'แลกรางวัลด้วย IGNITE100 Rewards' },
+    'home.promoTitle3': { zh: '每次推薦 $425', en: '$425 Per Referral', ko: '추천당 $425', th: '$425 ต่อการแนะนำ' },
+    'home.promoDesc3': { zh: '邀請好友即可獲得獎勵', en: 'Invite friends and get rewarded', ko: '친구를 초대하고 보상을 받으세요', th: 'ชวนเพื่อนแล้วรับรางวัล' },
+    'home.promoTitle4': { zh: '享受每週加碼', en: 'Enjoy Weekly Boosts', ko: '매주 부스트 혜택', th: 'รับโบนัสรายสัปดาห์' },
+    'home.promoDesc4': { zh: '每週遊玩即可賺取獎金', en: 'Earn bonuses for playing each week', ko: '매주 플레이하고 보너스 받기', th: 'เล่นทุกสัปดาห์เพื่อรับโบนัส' },
+    'home.promoTitle5': { zh: '每週回饋金', en: 'Get Weekly Cashback', ko: '매주 캐시백 받기', th: 'รับเงินคืนรายสัปดาห์' },
+    'home.promoDesc5': { zh: '使用比特幣儲值即可每週獲得回饋金', en: 'Bitcoin depositors earn cashback every week', ko: '비트코인 충전 시 매주 캐시백 지급', th: 'ผู้ฝากเงินด้วยบิตคอยน์รับเงินคืนทุกสัปดาห์' },
+    'home.promoPlayNow': { zh: '立即遊玩', en: 'Play Now', ko: '지금 플레이', th: 'เล่นเลย' },
+    'home.promoLearnMore': { zh: '了解更多', en: 'Learn More', ko: '더 알아보기', th: 'เรียนรู้เพิ่มเติม' },
+
+    'home.jackpotTitle': { zh: '加入我們的近期贏家名單', en: 'Join Our List of Recent Winners', ko: '최근 당첨자 명단에 함께하세요', th: 'ร่วมเป็นส่วนหนึ่งของรายชื่อผู้ชนะล่าสุด' },
+    'home.viewMore': { zh: '查看更多', en: 'View More', ko: '더 보기', th: 'ดูเพิ่มเติม' },
+
+    'home.spotlightTitle': { zh: '首選線上博彩平台', en: 'Premier Online Gambling Destination', ko: '최고의 온라인 베팅 플랫폼', th: 'จุดหมายปลายทางการพนันออนไลน์อันดับหนึ่ง' },
+    'home.spotlightTextHtml': {
+      zh: '我們在頂級<a href="#">線上撲克</a>領域享有盛名，也歡迎您進一步探索我們多元的<a href="slot.html">賭場遊戲</a>、真人娛樂選項，甚至我們的<a href="deposit.html">比特幣賭場</a>。',
+      en: 'Our reputation for top-notch <a href="#">online poker</a> precedes us, and we encourage you to also explore our diverse range of <a href="slot.html">casino games</a>, live casino options, and even our <a href="deposit.html">Bitcoin casino</a>.',
+      ko: '최고 수준의 <a href="#">온라인 포커</a>로 쌓아온 명성은 물론, 다양한 <a href="slot.html">카지노 게임</a>과 라이브 카지노 옵션, 그리고 <a href="deposit.html">비트코인 카지노</a>까지 함께 즐겨보시길 권해드립니다.',
+      th: 'ชื่อเสียงด้าน<a href="#">โป๊กเกอร์ออนไลน์</a>ระดับแนวหน้าของเราเป็นที่ประจักษ์ และเราขอเชิญชวนให้คุณสำรวจ<a href="slot.html">เกมคาสิโน</a>อันหลากหลาย ตัวเลือกคาสิโนสด และแม้แต่<a href="deposit.html">คาสิโนบิตคอยน์</a>ของเราด้วยเช่นกัน',
+    },
+
+    'home.testimonial1': { zh: '想找有豐富獎金與回饋的賭場嗎？那 IGNITE100 就是你的最佳選擇。', en: 'Looking for a casino with big bonuses and rewards? If so, IGNITE100 is the choice for you.', ko: '큰 보너스와 리워드가 있는 카지노를 찾고 계신가요? 그렇다면 IGNITE100이 정답입니다.', th: 'กำลังมองหาคาสิโนที่มีโบนัสและรางวัลก้อนโตอยู่ใช่ไหม ถ้าใช่ IGNITE100 คือตัวเลือกที่ใช่สำหรับคุณ' },
+    'home.testimonial2': { zh: '我喜歡在午休時間玩遊戲，而 IGNITE100 目前擁有我用過最棒的賭場手機 App。', en: 'I like to play games on my lunch breaks and IGNITE100 has the best casino mobile app by far.', ko: '점심시간에 게임하는 걸 좋아하는데, IGNITE100의 카지노 모바일 앱이 단연 최고예요.', th: 'ฉันชอบเล่นเกมช่วงพักเที่ยง และแอปมือถือคาสิโนของ IGNITE100 ก็ดีที่สุดเท่าที่เคยใช้มา' },
+    'home.testimonial3': { zh: '老實說，我覺得 IGNITE100 玩起來真的很有趣，我已經贏過好幾次，絕對是玩真的！', en: "Honestly, I think IGNITE100 is a really fun place to play. I've won several times, definitely legit!", ko: '솔직히 IGNITE100은 정말 재미있게 즐길 수 있는 곳이에요. 몇 번이나 이겼으니 확실히 믿을 만해요!', th: 'บอกตรงๆ ว่า IGNITE100 เป็นที่เล่นที่สนุกมาก ฉันชนะมาหลายครั้งแล้ว ของจริงแน่นอน!' },
+    'home.testimonial4': { zh: '我最近因為豐厚的迎新獎金而加入，真人荷官牌桌玩起來也很有趣。', en: 'I recently joined because of the generous welcome bonus. The live dealer tables are fun.', ko: '넉넉한 웰컴 보너스 때문에 최근에 가입했는데, 라이브 딜러 테이블도 재미있어요.', th: 'ฉันเพิ่งสมัครเพราะโบนัสต้อนรับที่ให้เยอะมาก และโต๊ะดีลเลอร์สดก็สนุกดี' },
+    'home.testimonial5': { zh: '最棒的功能是加密貨幣儲值有獎金，而且提款從來沒遇過問題。', en: 'Best features are bonuses on crypto deposits and never having any issues making a withdrawal.', ko: '가장 좋은 점은 암호화폐 충전 보너스와 출금할 때 문제가 전혀 없다는 점이에요.', th: 'จุดเด่นที่สุดคือโบนัสจากการฝากด้วยคริปโต และไม่เคยมีปัญหาตอนถอนเงินเลย' },
   };
 
   function getLocale() {
