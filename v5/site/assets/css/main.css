@@ -173,7 +173,20 @@ img { max-width: 100%; display: block; }
 /* ── HERO ─────────────────────────────────
    雙欄版型：左側文案疊圖、右側奶油色快速註冊卡（對齊參考站 hero 內嵌
    註冊表單的版面），單一版面不再輪播，故不需要 .hero-slide/-dots/-arrow。 */
-.hero-wrap { padding-top: 18px; }
+/* .hero-wrap 在 HTML 上同時掛 .container：直接沿用 .container 的
+   max-width/margin 會讓這層的深色背景（見下方 .content-light .hero-wrap）
+   在寬螢幕被截在 1360px 處，.content-light 的米白底色就會在兩側露出一截，
+   跟滿版深色的 header 斷開、看起來像邊緣被切掉。改成滿版寬度，改用
+   padding 複現 .container 原本的 1320px 內容寬（1360 扣掉左右各 20
+   padding），背景才能一路貼到視窗邊界，內容寬度則維持不變。 */
+.hero-wrap {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-top: 18px;
+  padding-left: max(20px, calc((100% - 1320px) / 2));
+  padding-right: max(20px, calc((100% - 1320px) / 2));
+}
 .hero {
   position: relative;
   border-radius: var(--radius-lg);
