@@ -116,6 +116,10 @@ img { max-width: 100%; display: block; }
 .header-nav-link:hover, .header-nav-link.active { background: var(--bg-soft); color: #fff; }
 .header-nav-icon { width: 16px; height: 16px; flex-shrink: 0; }
 .header-auth { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+/* 註冊鈕右上角的紅點徽章，比照參考站常駐提醒「有新優惠」的視覺，
+   純裝飾用，不綁真正的未讀計數。 */
+.header-auth-badge-wrap { position: relative; }
+.header-auth-badge { position: absolute; top: -4px; right: -4px; width: 9px; height: 9px; border-radius: 50%; background: var(--badge); border: 2px solid var(--header-bg); }
 .header-forgot { font-size: 11.5px; color: rgba(245, 242, 236, 0.6); white-space: nowrap; }
 .btn-accent {
   padding: 9px 20px;
@@ -163,6 +167,26 @@ img { max-width: 100%; display: block; }
   scrollbar-width: thin;
 }
 .v6-sidebar-close { display: none; }
+/* Menu 標題列／登入註冊捷徑＋推廣卡：桌機常駐側欄不需要（header 本身
+   已有登入/註冊按鈕），只在側欄變成可收合選單（見 max-width:1080px）
+   時顯示，display:flex 由該斷點覆寫。 */
+.v6-sidebar-head { display: none; align-items: center; justify-content: space-between; padding: 2px 10px 14px; margin-bottom: 4px; border-bottom: 1px solid var(--line); }
+.v6-sidebar-head-title { font-size: 16px; font-weight: 900; color: var(--text); }
+.v6-sidebar-mobile-extra { display: none; flex-direction: column; gap: 8px; padding-bottom: 14px; margin-bottom: 6px; border-bottom: 1px solid var(--line); }
+.v6-sidebar-auth { display: flex; flex-direction: column; gap: 1px; }
+.v6-sidebar-banner {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-size: 13px; font-weight: 800;
+}
+.v6-sidebar-banner-cta { padding: 6px 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.18); font-size: 11px; white-space: nowrap; }
+.v6-sidebar-banner-shop { background: linear-gradient(120deg, var(--bg-panel) 0%, var(--panel-tint) 100%); border: 1px solid var(--line-hi); color: var(--text); }
+.v6-sidebar-banner-shop .v6-sidebar-banner-cta { background: var(--accent-grad); color: var(--accent-ink); }
+.v6-sidebar-banner-club { background: linear-gradient(120deg, var(--jackpot-a) 0%, var(--jackpot-b) 100%); }
+.v6-sidebar-banner-app { background: var(--accent-grad); color: var(--accent-ink); }
+.v6-sidebar-banner-app .v6-sidebar-banner-cta { background: rgba(0, 0, 0, 0.18); }
 .v6-sidebar-quick, .v6-sidebar-section-items { display: flex; flex-direction: column; gap: 1px; }
 .v6-sidebar-section { border-top: 1px solid var(--line); padding-top: 14px; }
 .v6-sidebar-heading { margin: 0 0 6px; padding: 0 10px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); }
@@ -204,11 +228,15 @@ img { max-width: 100%; display: block; }
     transition: transform 0.2s ease;
   }
   .v6-shell.is-sidebar-open .v6-sidebar { transform: translateX(0); box-shadow: 12px 0 32px rgba(0, 0, 0, 0.45); }
-  .v6-sidebar-close { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin-left: auto; color: var(--text-mid); }
+  .v6-sidebar-close { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; color: var(--text-mid); }
   .v6-sidebar-close svg { width: 16px; height: 16px; }
   .v6-shell.is-sidebar-open .v6-sidebar-backdrop {
     display: block; position: fixed; inset: 0; background: rgba(3, 8, 7, 0.6); z-index: 690;
   }
+  /* 登入/註冊快捷與 Bonus Shop／獎勵俱樂部／App 下載這幾張推廣卡只在
+     側欄變成可收合的選單時（中寬度以下）出現；桌機常駐側欄本身已經
+     跟 header 的登入/註冊按鈕重複，不需要再顯示一次。 */
+  .v6-sidebar-head, .v6-sidebar-mobile-extra { display: flex; }
 }
 
 /* ── HERO 輪播控制項（首頁專用；分類頁 hero 是單一版面，見
@@ -1165,10 +1193,27 @@ img { max-width: 100%; display: block; }
 .site-footer-copyright a { color: var(--text-dim); }
 .site-footer-copyright a:hover { color: var(--accent-hi); }
 
+/* ── 搜尋按鈕（比照參考站 topbar 放大鏡圖示；純視覺入口，未接真正
+   搜尋頁面，跟既有 .app-banner-cta 等 href="#" 裝飾性元件同等級） ── */
+.header-search-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px;
+  flex-shrink: 0;
+  margin-left: auto;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-on-header);
+}
+.header-search-btn:hover { background: rgba(255, 255, 255, 0.12); }
+.header-search-btn svg { width: 16px; height: 16px; }
+
 /* ── 語系切換 ───────────────────────────── */
-/* margin-left:auto 把「語言切換／漢堡／header-auth」這群右側項目推到最
-   右邊,logo 維持在最左,不需要另外包一層 wrapper div 或用 space-between。 */
-.header-lang { position: relative; margin-left: auto; }
+/* margin-left:auto 原本掛在 .header-lang 上，把「語言切換／漢堡／
+   header-auth」這群右側項目推到最右；改掛到更前面的 .header-search-btn，
+   讓搜尋鈕也一起被推進右側群組，logo 維持在最左，不需要另外包一層
+   wrapper div 或用 space-between。 */
+.header-lang { position: relative; }
 .header-lang-trigger {
   display: flex; align-items: center; gap: 6px;
   padding: 8px 12px;
@@ -1373,8 +1418,13 @@ img { max-width: 100%; display: block; }
 }
 .chat-widget.is-minimized .chat-widget-body,
 .chat-widget.is-minimized .chat-widget-form { display: none; }
+@media (max-width: 720px) {
+  /* 跟 .v6-chat-fab 一樣，貼底快捷列出現時客服視窗也要往上讓開，
+     不然展開後底部會被快捷列蓋住一截。 */
+  .chat-widget { bottom: calc(64px + env(safe-area-inset-bottom)); }
+}
 @media (max-width: 520px) {
-  .chat-widget { right: 10px; bottom: 10px; width: calc(100vw - 20px); }
+  .chat-widget { right: 10px; width: calc(100vw - 20px); }
 }
 
 /* ── RESPONSIVE ─────────────────────────── */
@@ -1385,9 +1435,26 @@ img { max-width: 100%; display: block; }
   .header-menu-trigger { display: flex; }
 }
 @media (max-width: 720px) {
-  /* 手機版帳號/登入操作已收進漢堡選單（見 mobile-menu-*），header 上的
-     inline 登入表單／使用者資訊在窄螢幕會擠成第二行,直接隱藏改用選單。 */
-  .header-auth { display: none; }
+  /* 比照參考站手機 topbar：搜尋／登錄／註冊常駐顯示,不收進選單,只是
+     縮小尺寸跟字級騰出空間；漢堡鍵改由底部快捷列的「選單」鍵取代
+     （見 .mobile-tabbar-menu），這裡藏起來避免重複入口。 */
+  .header-menu-trigger { display: none; }
+  .header-top { gap: 6px; }
+  .brand-mark-icon { width: 22px; height: 22px; }
+  .brand-mark-text { font-size: 16px; }
+  .header-search-btn { width: 30px; height: 30px; }
+  .header-auth { gap: 4px; }
+  .header-auth .btn-accent { padding: 7px 10px; font-size: 11px; }
+  /* 會員態的餘額／點數文字在窄螢幕會把整排擠爆，先藏起來，帳戶頁本身
+     已經有更完整的餘額資訊（見 .member-panel），登出鈕保留在 header
+     維持隨處可登出。 */
+  .header-forgot { display: none; }
+  /* .header-nav-link-user 借用 .header-nav-link 的樣式，但那份 padding
+     是給桌機頂部整排分類頁籤用的，塞進窄螢幕 header-auth 裡會被撐爆。 */
+  .header-auth .header-nav-link { padding: 6px 2px; font-size: 12px; }
+  .header-nav-link-user span { max-width: 46px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .header-lang-trigger [data-lang-current] { display: none; }
+  .header-lang-trigger { padding: 8px; gap: 0; }
   /* body 留出跟快捷列等高的底部空間,避免頁尾內容被固定定位的快捷列蓋住。 */
   body { padding-bottom: 56px; }
   .mobile-tabbar {
@@ -1398,8 +1465,23 @@ img { max-width: 100%; display: block; }
     padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
     box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
   }
+  /* 客服氣泡改貼在底部快捷列上方，避免蓋住最後一顆「選單」按鈕。 */
+  .v6-chat-fab { bottom: calc(64px + env(safe-area-inset-bottom)); }
   .hero-title { font-size: 27px; }
   .hero-promo .hero-title em { font-size: 56px; }
+  /* 選單改成手機常見的「下方彈出」bottom sheet，不再從左側滑入；
+     跟 .v6-sidebar 共用同一顆元素／同一套開關 class，只是這個斷點下
+     改用位移方向與圓角改成貼底樣式。 */
+  .v6-sidebar {
+    left: 0; right: 0; top: auto; bottom: 0;
+    width: auto;
+    height: 86vh; max-height: 720px;
+    transform: translateY(100%);
+    border-radius: 18px 18px 0 0;
+    border-right: none;
+    border-top: 1px solid var(--line);
+  }
+  .v6-shell.is-sidebar-open .v6-sidebar { transform: translateY(0); box-shadow: 0 -16px 32px rgba(0, 0, 0, 0.5); }
 }
 @media (max-width: 520px) {
   .notice-bar-inner { gap: 10px; }

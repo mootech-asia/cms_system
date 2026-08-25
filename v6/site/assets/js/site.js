@@ -392,11 +392,11 @@
      點「登錄」一律開登入彈窗,帳密輸入收斂到彈窗內完成。JOIN 是實心
      主要按鈕、LOGIN 是純文字連結,視覺層級對齊參考站。 */
   function guestAuthHtml() {
-    return '<button type="button" class="btn-accent" data-auth-open="register">' + tr('auth.registerNow', '立即註冊') + '</button>' +
+    return '<span class="header-auth-badge-wrap"><button type="button" class="btn-accent" data-auth-open="register">' + tr('auth.registerNow', '立即註冊') + '</button><span class="header-auth-badge" aria-hidden="true"></span></span>' +
       '<button type="button" class="btn-accent ghost" data-auth-open="login">' + tr('auth.login', '登錄') + '</button>';
   }
   function memberAuthHtml(user) {
-    return '<a href="account.html" class="header-nav-link" style="gap:8px">' + USER_ICON + escapeHtml(user.name) + '</a>' +
+    return '<a href="account.html" class="header-nav-link header-nav-link-user" style="gap:8px">' + USER_ICON + '<span>' + escapeHtml(user.name) + '</span></a>' +
       '<span class="header-forgot">' + tr('auth.balancePrefix', '餘額：') + escapeHtml(user.balance) + '</span>' +
       '<span class="header-forgot">' + tr('auth.pointsPrefix', '點數：') + escapeHtml(user.points || DEFAULT_POINTS) + '</span>' +
       '<button type="button" class="btn-accent quiet" data-logout>' + tr('auth.logout', '登出') + '</button>';
@@ -474,74 +474,10 @@
 
   var USER_ICON = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
 
-  /* ── 手機版全螢幕選單:header 漢堡鍵跟底部 tabbar「選單」鍵是兩個各自
-     獨立目的的選單,不是同一顆——漢堡鍵開的是主要遊戲分類導覽（複製桌面
-     .header-nav,避免另外維護一份重複資料）；tabbar「選單」開的是「我的
-     帳戶」會員專區捷徑清單,icon 沿用 .member-sidebar-link／FAQ 連結既有
-     的 svg path。兩者共用同一套 overlay/footer 渲染邏輯,只有 nav 清單
-     內容不同。 ── */
-  var MEMBER_MENU_ITEMS = [
-    { href: 'account.html', label: '帳戶總覽', icon: '<rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>' },
-    { href: 'betting-record.html', label: '投注紀錄', icon: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/>' },
-    { href: 'deposit-record.html', label: '儲值紀錄', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
-    { href: 'profit-loss.html', label: '損益報表', icon: '<path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/>' },
-    { href: 'withdrawal-record.html', label: '提款紀錄', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
-    { href: 'withdrawal-detail.html', label: '提款明細', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
-    { href: 'account-record.html', label: '帳戶紀錄', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
-    { href: 'personal-info.html', label: '個人資料', icon: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>' },
-    { href: 'security.html', label: '安全中心', icon: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>' },
-    { href: 'about.html?tab=faq', label: '常見問題', icon: '<circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8"/><path d="M12 17h.01"/>' },
-  ];
-  var mobileMenuRoot = null;
-  /* 漢堡鈕在選單開啟時要變成 X,關閉時要換回三線 icon;innerHTML 直接
-     整顆換掉,不額外疊 class 控制顯示/隱藏兩組 svg。 */
+  /* 漢堡鈕在側欄選單開啟時要變成 X,關閉時要換回三線 icon;innerHTML
+     直接整顆換掉,不額外疊 class 控制顯示/隱藏兩組 svg。 */
   var HAMBURGER_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
   var CLOSE_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>';
-  function closeMobileMenu() {
-    if (!mobileMenuRoot) return;
-    mobileMenuRoot.remove();
-    mobileMenuRoot = null;
-    unlockScroll();
-    var trigger = document.querySelector('.header-menu-trigger');
-    if (trigger) { trigger.innerHTML = HAMBURGER_ICON; trigger.setAttribute('aria-expanded', 'false'); }
-  }
-  /* 選單改成貼齊 header 右下角的收合面板(比照參考站的漢堡選單樣式),
-     不再是蓋滿整個畫面的全螢幕抽屜——面板掛在 .site-header 底下用
-     position:absolute 定位,scrim 只負責接住「點外面關閉」,本身透明
-     不遮蔽頁面內容。 */
-  function openMobileOverlay(navHtml) {
-    closeMobileMenu();
-    var header = document.querySelector('.site-header');
-    if (!header) return;
-    var mobileUser = loadAuth();
-    var footHtml = mobileUser
-      ? '<div class="header-menu-account">' + USER_ICON + '<span>' + escapeHtml(mobileUser.name) + '・' + tr('auth.balancePrefix', '餘額：') + escapeHtml(mobileUser.balance) + '</span></div>' +
-        '<button type="button" class="btn-accent quiet" style="width:100%" data-logout>' + tr('auth.logout', '登出') + '</button>'
-      : '<button type="button" class="btn-accent quiet" style="width:100%;margin-bottom:8px" data-mobile-login>' + tr('auth.login', '登錄') + '</button>' +
-        '<button type="button" class="btn-accent" style="width:100%" data-mobile-register>' + tr('auth.registerNow', '立即註冊') + '</button>';
-    var wrap = document.createElement('div');
-    wrap.innerHTML =
-      '<div class="header-menu-scrim" data-mobile-overlay></div>' +
-      '<div class="header-menu-panel">' +
-      '<nav class="header-menu-nav">' + navHtml + '</nav>' +
-      '<div class="header-menu-foot">' + footHtml + '</div>' +
-      '</div>';
-    mobileMenuRoot = document.createElement('div');
-    mobileMenuRoot.className = 'header-menu-root';
-    while (wrap.firstChild) mobileMenuRoot.appendChild(wrap.firstChild);
-    header.appendChild(mobileMenuRoot);
-    // 面板最大高度扣掉 header 實際高度(可能因會員態分兩行而變化),
-    // 避免固定寫死的高度在較高的 header 下算錯,底部被裁掉還出不了捲軸。
-    mobileMenuRoot.querySelector('.header-menu-panel').style.maxHeight = 'calc(100vh - ' + header.offsetHeight + 'px)';
-    lockScroll();
-    var trigger = document.querySelector('.header-menu-trigger');
-    if (trigger) { trigger.innerHTML = CLOSE_ICON; trigger.setAttribute('aria-expanded', 'true'); }
-    on(mobileMenuRoot.querySelector('[data-mobile-overlay]'), 'click', closeMobileMenu);
-    var loginBtn = mobileMenuRoot.querySelector('[data-mobile-login]');
-    var registerBtn = mobileMenuRoot.querySelector('[data-mobile-register]');
-    if (loginBtn) on(loginBtn, 'click', function () { closeMobileMenu(); openAuthModal('login'); });
-    if (registerBtn) on(registerBtn, 'click', function () { closeMobileMenu(); openAuthModal('register'); });
-  }
   /* 桌機/平板寬度下常駐的 .v6-sidebar 到中寬度以下（見 CSS 的
      max-width:1080px）改成離屏抽屜；header 漢堡鍵改為開關這顆抽屜，
      不再另外疊一份分類選單 overlay（分類清單已經在側欄裡）。 */
@@ -569,6 +505,18 @@
     Array.prototype.slice.call(shell.querySelectorAll('.v6-sidebar-link')).forEach(function (a) {
       on(a, 'click', function () { setSidebarOpen(false); });
     });
+    /* 側欄收合成選單時（見 CSS max-width:1080px）才會露出的登入/註冊
+     捷徑，點擊開啟跟 header 登入/註冊鈕同一個 .auth-modal，不是另外
+     做一套。 */
+    on(shell.querySelector('[data-mobile-login]'), 'click', function (e) { e.preventDefault(); openAuthModal('login'); });
+    on(shell.querySelector('[data-mobile-register]'), 'click', function (e) { e.preventDefault(); openAuthModal('register'); });
+    renderSidebarAuth();
+  }
+  /* 已登入時側欄選單裡的登入/註冊捷徑沒有意義（帳戶相關功能已經在
+     下方「My Account」區塊），直接藏起來，不重複顯示。 */
+  function renderSidebarAuth() {
+    var wrap = document.querySelector('[data-sidebar-auth]');
+    if (wrap) wrap.style.display = isLoggedIn() ? 'none' : '';
   }
   /* 首頁 hero 輪播：固定 interval 換頁 + 手動箭頭/圓點,沒有 slide 就
      直接跳過（分類頁 hero 只有單一版面，不需要輪播控制項）。 */
@@ -594,23 +542,13 @@
     dots.forEach(function (d, n) { on(d, 'click', function () { show(n); restart(); }); });
     restart();
   }
-  /* 會員捷徑清單項目較多(10 項)，改成兩欄文字清單＋右側 chevron，
-     對齊參考站選單第二段「更多功能」清單的樣式，跟上方 icon 網格
-     區隔出不同的資訊密度層級。 */
-  function openMemberMenu() {
-    if (mobileMenuRoot) { closeMobileMenu(); return; }
-    var page = currentPage();
-    var navHtml = '<div class="header-menu-section">我的帳戶</div>' +
-      '<div class="header-menu-list">' + MEMBER_MENU_ITEMS.map(function (item) {
-        var active = item.href.split('?')[0] === page;
-        return '<a href="' + item.href + '" class="header-menu-list-item' + (active ? ' active' : '') + '"><span>' + item.label + '</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>';
-      }).join('') + '</div>';
-    openMobileOverlay(navHtml);
-  }
+  /* header 漢堡鍵與底部 tabbar「選單」鍵現在開的是同一顆 .v6-sidebar
+     （側欄在中寬度以下收合成選單／手機寬度改成下方彈出，見 CSS），
+     不再各自維護一份選單內容。 */
   function initHeaderMobileMenu() {
     on(document.querySelector('.header-menu-trigger'), 'click', toggleSidebar);
     Array.prototype.slice.call(document.querySelectorAll('.mobile-tabbar-menu')).forEach(function (btn) {
-      on(btn, 'click', openMemberMenu);
+      on(btn, 'click', toggleSidebar);
     });
   }
 
