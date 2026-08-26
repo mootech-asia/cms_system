@@ -203,6 +203,9 @@ img { max-width: 100%; display: block; }
   font-size: 13px; font-weight: 800;
 }
 .v6-sidebar-banner-cta { padding: 6px 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.18); font-size: 11px; white-space: nowrap; }
+/* 促銷卡插圖:沿用站內既有手繪線條 SVG 風格(比照 .v6-sidebar-link
+   icon 的 stroke=currentColor 畫法),不用照片級插畫素材。 */
+.v6-sidebar-banner-icon { width: 30px; height: 30px; flex-shrink: 0; opacity: 0.85; }
 .v6-sidebar-banner-shop { background: linear-gradient(120deg, var(--bg-panel) 0%, var(--panel-tint) 100%); border: 1px solid var(--line-hi); color: var(--text); }
 .v6-sidebar-banner-shop .v6-sidebar-banner-cta { background: var(--accent-grad); color: var(--accent-ink); }
 .v6-sidebar-banner-club { background: linear-gradient(120deg, var(--jackpot-a) 0%, var(--jackpot-b) 100%); }
