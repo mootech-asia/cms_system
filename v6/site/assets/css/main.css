@@ -21,6 +21,10 @@
   --panel-tint: #163430;
   --panel-glass: rgba(10, 25, 23, 0.85);
   --footer-opacity: 0.85;
+  /* header 現在是 .v6-shell 外層、橫跨滿版寬度的常駐條，.v6-sidebar／
+     .v6-betslip 的 sticky top／height 要扣掉這個高度才不會疊到 header
+     底下或算錯捲動後貼齊視窗頂端的位置。 */
+  --header-h: 62px;
 
   --accent: #17b866;
   --accent-hi: #33d17e;
@@ -76,10 +80,10 @@ img { max-width: 100%; display: block; }
 /* ── HEADER ─────────────────────────────── */
 /* 參考站頭部是一片平的深炭黑,不是漸層——skin 之間也不切換這塊,識別色
    改由 --badge/--jackpot-* 在內容區塊呈現,header 維持統一的深色機身。 */
-.site-header { background: var(--header-bg); position: relative; }
+.site-header { background: var(--header-bg); position: relative; z-index: 800; }
 .header-top {
-  display: flex; align-items: center; gap: 12px;
-  padding-top: 14px; padding-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+  padding-top: 12px; padding-bottom: 12px;
 }
 .brand-link { display: flex; align-items: center; flex-shrink: 0; }
 /* v6 品牌改用內嵌 SVG + 文字組成的 .brand-mark，不再用點陣圖 logo：
@@ -92,21 +96,21 @@ img { max-width: 100%; display: block; }
 .site-footer-logo.brand-mark { opacity: var(--footer-opacity); margin-bottom: 18px; }
 .site-footer-logo.brand-mark .brand-mark-icon { width: 24px; height: 24px; }
 .site-footer-logo.brand-mark .brand-mark-text { font-size: 17px; }
-/* header-nav 底色跟 header-top 統一用 --header-bg,整個 header 維持
-   單一深色機身;active/hover 改用 --bg-soft 做出區塊,避免跟底色同色
-   看不出來。 */
+/* header-nav 併在 header-top 同一排（比照參考站漢堡＋logo＋導覽連結
+   都在一條 header 裡），用 overflow-x 橫向捲動應付放不下的寬度，不
+   換行、不擠爆這一排的高度。 */
 .header-nav {
-  display: flex; align-items: stretch; gap: 0; flex-wrap: wrap;
-  padding-top: 0; padding-bottom: 0;
-  background: var(--header-bg);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex; align-items: center; gap: 2px; flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
+.header-nav::-webkit-scrollbar { display: none; }
 .header-nav-link {
   display: flex; align-items: center; gap: 6px;
-  padding: 14px 22px;
-  border-radius: 0;
+  padding: 9px 10px;
+  border-radius: 999px;
   color: var(--text-mid);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -153,12 +157,12 @@ img { max-width: 100%; display: block; }
    betslip 都是 position:sticky 貼齊視窗高度，各自捲動。中寬度以下
    betslip 先收起（讓中欄有更多空間），窄寬度以下側欄改離屏抽屜，
    跟現有 .header-nav 在 max-width:1080px 收起的斷點一致。 */
-.v6-shell { display: flex; align-items: flex-start; min-height: 100vh; }
-.v6-col { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; min-height: 100vh; }
+.v6-shell { display: flex; align-items: flex-start; min-height: calc(100vh - var(--header-h)); }
+.v6-col { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; min-height: calc(100vh - var(--header-h)); }
 .v6-sidebar {
   flex: 0 0 224px; width: 224px;
-  position: sticky; top: 0; align-self: flex-start;
-  height: 100vh; overflow-y: auto;
+  position: sticky; top: var(--header-h); align-self: flex-start;
+  height: calc(100vh - var(--header-h)); overflow-y: auto;
   background: var(--header-bg);
   border-right: 1px solid var(--line);
   padding: 14px 10px 24px;
@@ -205,8 +209,8 @@ img { max-width: 100%; display: block; }
 
 .v6-betslip {
   flex: 0 0 272px; width: 272px;
-  position: sticky; top: 0; align-self: flex-start;
-  height: 100vh; overflow-y: auto;
+  position: sticky; top: var(--header-h); align-self: flex-start;
+  height: calc(100vh - var(--header-h)); overflow-y: auto;
   background: var(--header-bg);
   border-left: 1px solid var(--line);
   padding: 16px;
@@ -1355,11 +1359,13 @@ img { max-width: 100%; display: block; }
 }
 
 /* ── RESPONSIVE ─────────────────────────── */
-/* 桌機寬度：漢堡鍵展開／收起側欄最上面的登入/註冊捷徑＋促銷卡
-   （.v6-sidebar-mobile-extra，比照參考站點漢堡後側欄多露出這塊），
-   側欄本身寬度不變、不做離屏抽屜那套。 */
+/* 桌機寬度：漢堡鍵收合／展開常駐側欄本身（不是離屏抽屜那套，側欄本來
+   就在版面裡，只是把寬度／padding/border 收掉讓 .v6-col 補滿）。 */
 @media (min-width: 1081px) {
-  .v6-shell.is-sidebar-open .v6-sidebar-mobile-extra { display: flex; }
+  .v6-sidebar { transition: width 0.2s ease, padding 0.2s ease; }
+  .v6-shell.is-sidebar-collapsed .v6-sidebar {
+    width: 0; flex: 0 0 0; padding: 0; border-right: none; overflow: hidden;
+  }
 }
 @media (max-width: 1080px) {
   /* 中寬度以下每個版位模組都改滿版堆疊,不管 data-span 設多少。 */
