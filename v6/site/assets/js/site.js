@@ -140,42 +140,6 @@
     if (gridEditModeOn) safe(initGrid12DragEdit); // layout 套用後可能重新排過 DOM,把手要重新確保存在
   };
 
-  /* 首頁 hero 內嵌快速註冊卡：只收名字/姓氏/生日三欄（真正的帳密輸入
-     仍在既有的登入註冊彈窗完成），必填由原生 required 屬性把關,送出後
-     直接呼叫 openAuthModal('register') 接續同一套註冊流程,不另外做一套
-     假的獨立表單邏輯。 */
-  function initHeroSignup() {
-    var form = document.querySelector('[data-hero-signup]');
-    if (!form) return;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      openAuthModal('register');
-    });
-  }
-
-  /* 首頁置底提示條堆疊(APP 推廣條 + 加入提示條):
-     - 「加入」按鈕接續同一套 openAuthModal('register') 流程,不另外做假流程。
-     - APP 推廣條可關閉,關閉後堆疊高度變矮,重新量測回寫 body 底部留白,
-       避免寫死高度跟實際內容對不上。
-     - 只在桌機/平板寬度(跟 CSS 的 720px 斷點一致)保留這段底部留白,
-       手機版此堆疊本來就整條隱藏,交給 .mobile-tabbar 的既有留白規則。 */
-  function initBottomPromoStack() {
-    var stack = document.querySelector('[data-bottom-promo-stack]');
-    if (!stack) return;
-    function syncPadding() {
-      var isDesktop = window.matchMedia('(min-width: 721px)').matches;
-      document.body.style.paddingBottom = isDesktop ? (stack.offsetHeight + 'px') : '';
-    }
-    syncPadding();
-    window.addEventListener('resize', syncPadding);
-    on(stack.querySelector('[data-join-bar-open]'), 'click', function () { openAuthModal('register'); });
-    on(stack.querySelector('[data-app-banner-close]'), 'click', function (e) {
-      var banner = e.target.closest('.app-banner');
-      if (banner) banner.remove();
-      syncPadding();
-    });
-  }
-
   function initFeatureCarousel() {
     var carousel = document.getElementById('featureCarousel');
     if (!carousel) return;
@@ -478,32 +442,48 @@
      直接整顆換掉,不額外疊 class 控制顯示/隱藏兩組 svg。 */
   var HAMBURGER_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
   var CLOSE_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>';
-  /* 桌機/平板寬度下常駐的 .v6-sidebar 到中寬度以下（見 CSS 的
-     max-width:1080px）改成離屏抽屜；header 漢堡鍵改為開關這顆抽屜，
-     不再另外疊一份分類選單 overlay（分類清單已經在側欄裡）。 */
+  /* 桌機寬度常駐的 .v6-sidebar 到中寬度以下（見 CSS 的 max-width:1080px）
+     改成離屏抽屜；header 漢堡鍵（現在移到最前面，跟 logo 同排常駐顯示）
+     開關的目標依斷點而不同：
+     - 桌機寬度：收合／展開常駐側欄本身（.is-sidebar-collapsed），不是
+       疊加式選單，不需要 scrim 鎖定捲動。
+     - 中寬度以下：沿用原本「開關離屏抽屜」的邏輯（.is-sidebar-open），
+       分類清單已經在側欄裡，不再另外疊一份選單 overlay。 */
+  function isDesktopSidebar() {
+    return window.matchMedia('(min-width: 1081px)').matches;
+  }
   function setSidebarOpen(open) {
     var shell = document.querySelector('.v6-shell');
     var trigger = document.querySelector('.header-menu-trigger');
     if (!shell) return;
-    shell.classList.toggle('is-sidebar-open', open);
-    if (open) lockScroll(); else unlockScroll();
-    if (trigger) {
-      trigger.innerHTML = open ? CLOSE_ICON : HAMBURGER_ICON;
-      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (isDesktopSidebar()) {
+      shell.classList.toggle('is-sidebar-collapsed', !open);
+    } else {
+      shell.classList.toggle('is-sidebar-open', open);
+      if (open) lockScroll(); else unlockScroll();
+      if (trigger) trigger.innerHTML = open ? CLOSE_ICON : HAMBURGER_ICON;
     }
+    if (trigger) trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
   function toggleSidebar() {
     var shell = document.querySelector('.v6-shell');
-    setSidebarOpen(!(shell && shell.classList.contains('is-sidebar-open')));
+    if (!shell) return;
+    var currentlyOpen = isDesktopSidebar()
+      ? !shell.classList.contains('is-sidebar-collapsed')
+      : shell.classList.contains('is-sidebar-open');
+    setSidebarOpen(!currentlyOpen);
   }
   function initSidebar() {
     var shell = document.querySelector('.v6-shell');
+    var trigger = document.querySelector('.header-menu-trigger');
     if (!shell) return;
     Array.prototype.slice.call(shell.querySelectorAll('[data-sidebar-close]')).forEach(function (el) {
       on(el, 'click', function () { setSidebarOpen(false); });
     });
+    /* 點連結後關閉抽屜只在中寬度以下有意義（桌機側欄是常駐欄，點連結
+       純粹導頁，不該連帶把側欄收合掉）。 */
     Array.prototype.slice.call(shell.querySelectorAll('.v6-sidebar-link')).forEach(function (a) {
-      on(a, 'click', function () { setSidebarOpen(false); });
+      on(a, 'click', function () { if (!isDesktopSidebar()) setSidebarOpen(false); });
     });
     /* 側欄收合成選單時（見 CSS max-width:1080px）才會露出的登入/註冊
      捷徑，點擊開啟跟 header 登入/註冊鈕同一個 .auth-modal，不是另外
@@ -511,6 +491,7 @@
     on(shell.querySelector('[data-mobile-login]'), 'click', function (e) { e.preventDefault(); openAuthModal('login'); });
     on(shell.querySelector('[data-mobile-register]'), 'click', function (e) { e.preventDefault(); openAuthModal('register'); });
     renderSidebarAuth();
+    if (trigger) trigger.setAttribute('aria-expanded', isDesktopSidebar() ? 'true' : 'false');
   }
   /* 已登入時側欄選單裡的登入/註冊捷徑沒有意義（帳戶相關功能已經在
      下方「My Account」區塊），直接藏起來，不重複顯示。 */
@@ -1179,8 +1160,6 @@
     safe(initAuthGuard);
     safe(renderHeaderAuth);
     safe(initPersonalInfoNickname);
-    safe(initHeroSignup);
-    safe(initBottomPromoStack);
     safe(initFeatureCarousel);
     safe(initVendorSelect);
     safe(initRails);

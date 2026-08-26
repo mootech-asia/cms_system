@@ -456,17 +456,6 @@
     'hero.clubCta': { zh: '立即參加', en: 'Join Now', ko: '지금 참여하기', th: 'เข้าร่วมตอนนี้' },
     'ticker.withdrawals': { zh: '近期提款', en: 'Recent Withdrawals', ko: '최근 출금', th: 'การถอนเงินล่าสุด' },
     'ticker.withdrawalsTotal': { zh: '475,509,487 <span style="font-size:13px;color:var(--text-dim)">元</span>', en: '475,509,487 <span style="font-size:13px;color:var(--text-dim)">USD</span>', ko: '475,509,487 <span style="font-size:13px;color:var(--text-dim)">원</span>', th: '475,509,487 <span style="font-size:13px;color:var(--text-dim)">บาท</span>' },
-    'signup.title': { zh: '立即開始', en: "Let's Get Started", ko: '지금 시작하기', th: 'เริ่มต้นเลย' },
-    'signup.firstName': { zh: '名字', en: 'First Name', ko: '이름', th: 'ชื่อจริง' },
-    'signup.lastName': { zh: '姓氏', en: 'Last Name', ko: '성', th: 'นามสกุล' },
-    'signup.dob': { zh: '出生日期', en: 'Date of Birth', ko: '생년월일', th: 'วันเกิด' },
-    'signup.dobPlaceholder': { zh: '年/月/日', en: 'YYYY/MM/DD', ko: '년/월/일', th: 'ปี/เดือน/วัน' },
-    'signup.next': { zh: '下一步', en: 'Next', ko: '다음', th: 'ถัดไป' },
-
-    'trust.rewards': { zh: '玩樂即得獎勵', en: 'Play & Earn Rewards', ko: '플레이하고 리워드 받기', th: 'เล่นแล้วรับรางวัล' },
-    'trust.payouts': { zh: '出入金快速便利', en: 'Quick & Easy Payouts', ko: '빠르고 간편한 출금', th: 'ถอนเงินง่ายและรวดเร็ว' },
-    'trust.slots': { zh: '400+ 款老虎機任你玩', en: '400+ Slots to Try', ko: '400개 이상의 슬롯', th: 'สล็อตกว่า 400 เกมให้เลือกเล่น' },
-    'trust.safe': { zh: '安全可信賴，自 2016 年起', en: 'Safe & Trusted Since 2016', ko: '2016년부터 안전하고 신뢰할 수 있는', th: 'ปลอดภัยและน่าเชื่อถือตั้งแต่ปี 2016' },
 
     'sport.homeWin': { zh: '主勝', en: 'Home Win', ko: '홈 승', th: 'เจ้าบ้านชนะ' },
     'sport.draw': { zh: '和局', en: 'Draw', ko: '무승부', th: 'เสมอ' },
