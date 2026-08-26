@@ -212,6 +212,23 @@ img { max-width: 100%; display: block; }
    樣式(實心漸層／透明白框),不另外做一套配色。 */
 .v6-sidebar-money { display: flex; gap: 8px; padding: 0 10px 14px; }
 .v6-sidebar-money .btn-accent { flex: 1; text-align: center; padding: 9px 4px; font-size: 12px; }
+/* 未點漢堡前的預設精簡列：比照參考站「收起時只顯示幾個常用捷徑」的
+   做法,用現有 8 分類挑前 4 項當精簡列,點漢堡後這塊收起、換成
+   .v6-sidebar-full(完整 8 分類+My Account)展開,兩者跟
+   .v6-sidebar-mobile-extra 同一套 max-height+opacity 過渡手法,側欄
+   本身大小/位置仍完全不變。 */
+.v6-sidebar-default {
+  display: flex; flex-direction: column; gap: 1px; flex-shrink: 0;
+  max-height: 300px; opacity: 1; overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+}
+.v6-shell.is-sidebar-open .v6-sidebar-default { max-height: 0; opacity: 0; }
+.v6-sidebar-full {
+  display: flex; flex-direction: column; gap: 18px; flex-shrink: 0;
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.25s ease 0.05s;
+}
+.v6-shell.is-sidebar-open .v6-sidebar-full { max-height: 1000px; opacity: 1; }
 .v6-sidebar-quick, .v6-sidebar-section-items { display: flex; flex-direction: column; gap: 1px; }
 .v6-sidebar-section { border-top: 1px solid var(--line); padding-top: 14px; }
 .v6-sidebar-heading { margin: 0 0 6px; padding: 0 10px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); }
