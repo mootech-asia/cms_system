@@ -340,7 +340,11 @@ img { max-width: 100%; display: block; }
    Recent withdrawals／Winning bets 橫幅），跟 .notice-msg 同一招用
    padding-left:100% + keyframe 位移做無縫捲動，只是改成一整排卡片
    一起平移，不是單行文字。 */
-.ticker-panel { background: var(--bg-panel); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 14px 18px; margin-bottom: 18px; }
+/* 近期提款／中獎紀錄合併成同一張卡片,兩節之間用分隔線區分,
+   不再是各自獨立、彼此有間距的兩張卡片。 */
+.ticker-panel { background: var(--bg-panel); border: 1px solid var(--line); border-radius: var(--radius-lg); margin-bottom: 18px; }
+.ticker-section { padding: 14px 18px; }
+.ticker-section + .ticker-section { border-top: 1px solid var(--line); }
 .ticker-panel-title { margin: 0 0 4px; font-size: 12px; color: var(--text-dim); }
 .ticker-panel-value { margin: 0 0 10px; font-size: 20px; font-weight: 900; color: var(--text); letter-spacing: 0.02em; }
 .ticker-viewport { overflow: hidden; }
