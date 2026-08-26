@@ -443,11 +443,13 @@
   var HAMBURGER_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
   var CLOSE_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>';
   /* header 漢堡鍵（現在跟 logo 同排、橫跨滿版寬度的常駐 header 裡）開關
-     的目標依斷點而不同：
-     - 桌機寬度：收合／展開常駐的 .v6-sidebar 本身（.is-sidebar-collapsed），
-       側欄一直都在版面裡，不是疊加式選單，不需要鎖捲動。
-     - 中寬度以下（見 CSS 的 max-width:1080px）：沿用「開關離屏抽屜」的
-       邏輯（.is-sidebar-open），側欄滑入蓋住整個畫面（含 header）。 */
+     所有斷點共用同一個 .is-sidebar-open 狀態：
+     - 展開之前：.v6-sidebar 常駐顯示精簡分類清單，佔用版面寬度。
+     - 展開之後：側欄變成覆蓋在主內容上方的浮動面板（fixed,不影響
+       .v6-col 版面寬度），多露出登入/註冊捷徑＋促銷卡。中寬度以下
+       （見 CSS 的 max-width:1080px）覆蓋整個畫面（含 header）時才需要
+       鎖住背景捲動,桌機覆蓋層只蓋側欄那塊寬度,右側內容仍可正常
+       互動/捲動,不鎖。 */
   function isDesktopSidebar() {
     return window.matchMedia('(min-width: 1081px)').matches;
   }
@@ -455,22 +457,18 @@
     var shell = document.querySelector('.v6-shell');
     var trigger = document.querySelector('.header-menu-trigger');
     if (!shell) return;
-    if (isDesktopSidebar()) {
-      shell.classList.toggle('is-sidebar-collapsed', !open);
-    } else {
-      shell.classList.toggle('is-sidebar-open', open);
+    shell.classList.toggle('is-sidebar-open', open);
+    if (!isDesktopSidebar()) {
       if (open) lockScroll(); else unlockScroll();
-      if (trigger) trigger.innerHTML = open ? CLOSE_ICON : HAMBURGER_ICON;
     }
-    if (trigger) trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (trigger) {
+      trigger.innerHTML = open ? CLOSE_ICON : HAMBURGER_ICON;
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
   }
   function toggleSidebar() {
     var shell = document.querySelector('.v6-shell');
-    if (!shell) return;
-    var currentlyOpen = isDesktopSidebar()
-      ? !shell.classList.contains('is-sidebar-collapsed')
-      : shell.classList.contains('is-sidebar-open');
-    setSidebarOpen(!currentlyOpen);
+    setSidebarOpen(!(shell && shell.classList.contains('is-sidebar-open')));
   }
   function initSidebar() {
     var shell = document.querySelector('.v6-shell');
@@ -478,10 +476,8 @@
     Array.prototype.slice.call(shell.querySelectorAll('[data-sidebar-close]')).forEach(function (el) {
       on(el, 'click', function () { setSidebarOpen(false); });
     });
-    /* 點連結後關閉抽屜只在中寬度以下有意義（桌機側欄是常駐欄，點連結
-       純粹導頁，不該連帶把側欄收合掉）。 */
     Array.prototype.slice.call(shell.querySelectorAll('.v6-sidebar-link')).forEach(function (a) {
-      on(a, 'click', function () { if (!isDesktopSidebar()) setSidebarOpen(false); });
+      on(a, 'click', function () { setSidebarOpen(false); });
     });
     /* 側欄收合成選單時（見 CSS max-width:1080px）才會露出的登入/註冊
      捷徑，點擊開啟跟 header 登入/註冊鈕同一個 .auth-modal，不是另外
