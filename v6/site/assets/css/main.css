@@ -1,14 +1,14 @@
 /* CMS v6 — 巔峰盤口（Apex）風格 token 與元件樣式。
    免建置純 HTML+CSS+JS，token 皆為手寫 CSS variable，無框架殘留。
-   參考對象為深邃墨綠 header/內容、亮綠主 CTA、紫色累積獎金 widget 的
-   運彩＋娛樂城複合站型視覺語言；此區塊為預設 skin（apex-classic），其餘
+   參考對象為深邃墨綠 header/內容、亮綠主 CTA、累積獎金 widget 同色系
+   分層的運彩＋娛樂城複合站型視覺語言；此區塊為預設 skin（apex-classic），其餘
    skin 覆寫於 assets/css/skins/*.css，以 :root[data-skin="xxx"] 疊加。
    --accent 系列（主按鈕/CTA 配色）與 --jackpot-a/-b（累積獎金 widget
    配色）隨 skin 整套換色，讓切換 skin 時最顯眼的主按鈕本身就會變色；
    --badge（標籤/熱區次色）為全 skin 固定的警示紅，不隨 skin 改變；
    深色骨架（--bg／--bg-panel／--text 等）同樣全 skin 共用不變。 */
 :root {
-  --bg: #0a1917;
+  --bg: #0d211d;
   --bg-soft: #122622;
   --bg-panel: #102420;
   --header-bg: #071412;
@@ -34,8 +34,11 @@
 
   --badge: #e2413f;
   --badge-deep: #a52a2a;
-  --jackpot-a: #5b3fc0;
-  --jackpot-b: #8b5cf6;
+  /* 原本紫色識別累積獎金 widget,跟站內綠色主視覺、參考站的綠色系
+     配色差太多,改沿用既有 --accent-deep/-hi 做同色系漸層(方向跟
+     --accent-grad 相反,維持一點層次區隔,但不再是突兀的異色系)。 */
+  --jackpot-a: var(--accent-deep);
+  --jackpot-b: var(--accent-hi);
 
   --shadow-card: 0 2px 0 rgba(0, 0, 0, 0.4), 0 10px 24px rgba(0, 0, 0, 0.55);
   --shadow-accent: 0 6px 16px rgba(23, 184, 102, 0.35);
@@ -508,7 +511,8 @@ img { max-width: 100%; display: block; }
   .home-promo-strip { grid-template-columns: 1fr; }
 }
 
-/* ── JACKPOT PANEL（累積獎金 widget，首頁專用，紫色為識別色） ── */
+/* ── JACKPOT PANEL（累積獎金 widget，首頁專用，用 --jackpot-a/-b 跟主色調
+   同色系的漸層做輕微層次區隔） ── */
 .jackpot-panel {
   margin-top: 20px;
   padding: 18px 20px;
