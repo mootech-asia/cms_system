@@ -455,6 +455,7 @@
     'hero.clubSub': { zh: '升等即可解鎖生日禮金、專屬客服與更高返水比例。', en: 'Level up to unlock birthday gifts, priority support and higher cashback rates.', ko: '등급을 올려 생일 축하금, 전담 상담과 더 높은 캐시백 비율을 잠금 해제하세요.', th: 'อัปเลเวลเพื่อปลดล็อกของขวัญวันเกิด บริการพิเศษ และอัตราคืนเงินที่สูงขึ้น' },
     'hero.clubCta': { zh: '立即參加', en: 'Join Now', ko: '지금 참여하기', th: 'เข้าร่วมตอนนี้' },
     'ticker.withdrawals': { zh: '近期提款', en: 'Recent Withdrawals', ko: '최근 출금', th: 'การถอนเงินล่าสุด' },
+    'ticker.winningBets': { zh: '中獎紀錄', en: 'Winning Bets', ko: '당첨 내역', th: 'ยอดชนะล่าสุด' },
     'ticker.withdrawalsTotal': { zh: '475,509,487 <span style="font-size:13px;color:var(--text-dim)">元</span>', en: '475,509,487 <span style="font-size:13px;color:var(--text-dim)">USD</span>', ko: '475,509,487 <span style="font-size:13px;color:var(--text-dim)">원</span>', th: '475,509,487 <span style="font-size:13px;color:var(--text-dim)">บาท</span>' },
 
     'sport.homeWin': { zh: '主勝', en: 'Home Win', ko: '홈 승', th: 'เจ้าบ้านชนะ' },
