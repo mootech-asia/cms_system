@@ -85,12 +85,17 @@ img { max-width: 100%; display: block; }
    接續在它下方(見 --header-h)。z-index 蓋過側欄(700)/betslip(600)。 */
 .site-header { background: var(--header-bg); position: sticky; top: 0; z-index: 800; }
 /* header-top 不再套用 .container 的 max-width:1360px,直接撐滿整條
-   header 的寬度(比照參考站漢堡/logo貼最左、登入/註冊貼最右,不受
-   1360px 限制留出大片空白),只保留左右內距。 */
+   header 的寬度,只保留左右內距。三欄 grid(1fr auto 1fr)讓 .header-left
+   貼最左、.header-right 置中於整條 header,左右兩個 1fr 軌道即使沒有
+   內容也會平分剩餘空間,確保中間欄置中不受左欄寬度影響。 */
 .header-top {
-  display: flex; align-items: center; gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
   padding: 12px 24px;
 }
+.header-left { display: flex; align-items: center; gap: 10px; justify-self: start; }
+.header-right { display: flex; align-items: center; gap: 10px; grid-column: 2; justify-self: center; }
 .brand-link { display: flex; align-items: center; flex-shrink: 0; }
 /* v6 品牌改用內嵌 SVG + 文字組成的 .brand-mark，不再用點陣圖 logo：
    換 skin 時圖示直接吃 --accent／--bg 變數換色，不必像點陣圖那樣另外
@@ -102,15 +107,8 @@ img { max-width: 100%; display: block; }
 .site-footer-logo.brand-mark { opacity: var(--footer-opacity); margin-bottom: 18px; }
 .site-footer-logo.brand-mark .brand-mark-icon { width: 24px; height: 24px; }
 .site-footer-logo.brand-mark .brand-mark-text { font-size: 17px; }
-/* header-nav 併在 header-top 同一排（比照參考站漢堡＋logo＋導覽連結
-   都在一條 header 裡），用 overflow-x 橫向捲動應付放不下的寬度，不
-   換行、不擠爆這一排的高度。 */
-.header-nav {
-  display: flex; align-items: center; gap: 2px; flex-wrap: nowrap;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.header-nav::-webkit-scrollbar { display: none; }
+/* .header-nav-link 現在只用在 .header-auth 裡的會員帳號連結（頭像+
+   名稱），導覽用的 nav 連結已移除。 */
 .header-nav-link {
   display: flex; align-items: center; gap: 6px;
   padding: 9px 10px;
@@ -123,7 +121,7 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
   transition: background 0.15s, color 0.15s;
 }
-.header-nav-link:hover, .header-nav-link.active { background: var(--bg-soft); color: #fff; }
+.header-nav-link:hover { background: var(--bg-soft); color: #fff; }
 .header-nav-icon { width: 16px; height: 16px; flex-shrink: 0; }
 .header-auth { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 /* 註冊鈕右上角的紅點徽章，比照參考站常駐提醒「有新優惠」的視覺，
@@ -1101,7 +1099,6 @@ img { max-width: 100%; display: block; }
   display: flex; align-items: center; justify-content: center;
   width: 34px; height: 34px;
   flex-shrink: 0;
-  margin-left: auto;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: rgba(255, 255, 255, 0.06);
@@ -1111,10 +1108,6 @@ img { max-width: 100%; display: block; }
 .header-search-btn svg { width: 16px; height: 16px; }
 
 /* ── 語系切換 ───────────────────────────── */
-/* margin-left:auto 原本掛在 .header-lang 上，把「語言切換／漢堡／
-   header-auth」這群右側項目推到最右；改掛到更前面的 .header-search-btn，
-   讓搜尋鈕也一起被推進右側群組，logo 維持在最左，不需要另外包一層
-   wrapper div 或用 space-between。 */
 .header-lang { position: relative; }
 .header-lang-trigger {
   display: flex; align-items: center; gap: 6px;
@@ -1343,14 +1336,13 @@ img { max-width: 100%; display: block; }
 @media (max-width: 1080px) {
   /* 中寬度以下每個版位模組都改滿版堆疊,不管 data-span 設多少。 */
   .grid12 > [data-span] { grid-column: 1 / -1; }
-  .header-nav { display: none; }
 }
 @media (max-width: 720px) {
   /* 比照參考站手機 topbar：搜尋／登錄／註冊常駐顯示,不收進選單,只是
      縮小尺寸跟字級騰出空間；漢堡鍵改由底部快捷列的「選單」鍵取代
      （見 .mobile-tabbar-menu），這裡藏起來避免重複入口。 */
   .header-menu-trigger { display: none; }
-  .header-top { gap: 6px; }
+  .header-right { gap: 6px; }
   .brand-mark-icon { width: 22px; height: 22px; }
   .brand-mark-text { font-size: 16px; }
   .header-search-btn { width: 30px; height: 30px; }
