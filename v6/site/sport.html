@@ -59,103 +59,116 @@
           <button type="button" data-i18n="game.search">搜尋</button>
         </div>
       </div>
+      <div class="sport-chip-row" data-sport-chips>
+        <button type="button" class="sport-chip active" data-sport="all"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18 13 13 0 0 1 0-18Z"/></svg><span data-i18n="sport.all">全部</span></button>
+        <button type="button" class="sport-chip" data-sport="football"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5 15.5 10l-1.3 4h-4.4L8.5 10 12 7.5Z"/><path d="M12 3v4.5M5 8l3.5-.5M5 16l3.5.5M19 8l-3.5-.5M19 16l-3.5.5M12 21v-4.5"/></svg><span data-i18n="sport.football">足球</span></button>
+        <button type="button" class="sport-chip" data-sport="tennis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M4.5 7c2.8 2.3 2.8 7.7 0 10M19.5 7c-2.8 2.3-2.8 7.7 0 10"/></svg><span data-i18n="sport.tennis">網球</span></button>
+        <button type="button" class="sport-chip" data-sport="basketball"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.8 5.8c2.9 2.9 2.9 9.5 0 12.4M18.2 5.8c-2.9 2.9-2.9 9.5 0 12.4"/></svg><span data-i18n="sport.basketball">籃球</span></button>
+        <button type="button" class="sport-chip" data-sport="baseball"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 4c1.2 3.2 1.2 12.8 0 16M15.5 4c-1.2 3.2-1.2 12.8 0 16" stroke-dasharray="1.6 2"/></svg><span data-i18n="sport.baseball">棒球</span></button>
+        <button type="button" class="sport-chip" data-sport="american-football"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c0-3 4-7.5 8-7.5S20 9 20 12s-4 7.5-8 7.5S4 15 4 12Z"/><path d="M7 12h10M10 9.5v1M14 9.5v1M10 13.5v1M14 13.5v1"/></svg><span data-i18n="sport.americanFootball">美式足球</span></button>
+        <button type="button" class="sport-chip" data-sport="ice-hockey"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="6" rx="3"/><path d="m16 4-3.5 6M20 4l-3.5 6"/></svg><span data-i18n="sport.iceHockey">冰球</span></button>
+        <button type="button" class="sport-chip" data-sport="boxing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10.5V8a2.5 2.5 0 0 1 5 0"/><path d="M8 8.5h6a3 3 0 0 1 3 3v2.5a5 5 0 0 1-5 5h-2a4 4 0 0 1-4-4v-3a2.5 2.5 0 0 1 2-2.5Z"/></svg><span data-i18n="sport.boxing">拳擊</span></button>
+        <button type="button" class="sport-chip" data-sport="esports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="10" rx="4"/><path d="M8 11v4M6 13h4"/><circle cx="16" cy="12" r=".8" fill="currentColor" stroke="none"/><circle cx="18" cy="14" r=".8" fill="currentColor" stroke="none"/></svg><span data-i18n="sport.esports">電競</span></button>
+        <button type="button" class="sport-chip" data-sport="volleyball"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 6.5 15.2M6.3 6.3A9 9 0 0 0 9 20.6"/></svg><span data-i18n="sport.volleyball">排球</span></button>
+        <button type="button" class="sport-chip" data-sport="ufc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v2"/><path d="M9 9a2 2 0 0 1 4 0v1"/><path d="M4 13a4 4 0 0 0 4 4h3a4 4 0 0 0 4-4v-2.5a1.5 1.5 0 0 0-3 0"/></svg><span data-i18n="sport.ufc">UFC</span></button>
+      </div>
       <div class="tile-grid compact match-grid" id="listingGrid">
-            <article class="match-card" data-search="英超 曼聯 利物浦">
+            <article class="match-card" data-sport="football" data-search="英超 曼聯 利物浦">
               <div class="match-card-top"><span class="match-league">英超</span><span class="match-time is-live">67'</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">曼聯</span><span class="match-team-score">1</span></div><div class="match-team"><span class="match-team-name">利物浦</span><span class="match-team-score">2</span></div></div>
               <div class="match-odds cols-3"><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.homeWin">主勝</span><span class="match-odds-value">2.35</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.draw">和局</span><span class="match-odds-value">3.10</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.awayWin">客勝</span><span class="match-odds-value">2.80</span></button></div>
             </article>
-            <article class="match-card" data-search="英超 曼城 切爾西">
+            <article class="match-card" data-sport="football" data-search="英超 曼城 切爾西">
               <div class="match-card-top"><span class="match-league">英超</span><span class="match-time">08/06 20:00</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">曼城</span></div><div class="match-team"><span class="match-team-name">切爾西</span></div></div>
               <div class="match-odds cols-3"><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.homeWin">主勝</span><span class="match-odds-value">1.85</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.draw">和局</span><span class="match-odds-value">3.60</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.awayWin">客勝</span><span class="match-odds-value">4.20</span></button></div>
             </article>
-            <article class="match-card" data-search="西甲 皇家馬德里 巴塞隆納">
+            <article class="match-card" data-sport="football" data-search="西甲 皇家馬德里 巴塞隆納">
               <div class="match-card-top"><span class="match-league">西甲</span><span class="match-time">08/07 03:00</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">皇家馬德里</span></div><div class="match-team"><span class="match-team-name">巴塞隆納</span></div></div>
               <div class="match-odds cols-3"><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.homeWin">主勝</span><span class="match-odds-value">2.10</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.draw">和局</span><span class="match-odds-value">3.40</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.awayWin">客勝</span><span class="match-odds-value">3.30</span></button></div>
             </article>
-            <article class="match-card" data-search="德甲 拜仁慕尼黑 多特蒙德">
+            <article class="match-card" data-sport="football" data-search="德甲 拜仁慕尼黑 多特蒙德">
               <div class="match-card-top"><span class="match-league">德甲</span><span class="match-time">08/07 01:30</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">拜仁慕尼黑</span></div><div class="match-team"><span class="match-team-name">多特蒙德</span></div></div>
               <div class="match-odds cols-3"><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.homeWin">主勝</span><span class="match-odds-value">1.55</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.draw">和局</span><span class="match-odds-value">4.20</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.awayWin">客勝</span><span class="match-odds-value">5.50</span></button></div>
             </article>
-            <article class="match-card" data-search="意甲 AC米蘭 國際米蘭">
+            <article class="match-card" data-sport="football" data-search="意甲 AC米蘭 國際米蘭">
               <div class="match-card-top"><span class="match-league">意甲</span><span class="match-time is-live">23'</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">AC米蘭</span><span class="match-team-score">0</span></div><div class="match-team"><span class="match-team-name">國際米蘭</span><span class="match-team-score">0</span></div></div>
               <div class="match-odds cols-3"><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.homeWin">主勝</span><span class="match-odds-value">2.60</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.draw">和局</span><span class="match-odds-value">3.20</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.awayWin">客勝</span><span class="match-odds-value">2.55</span></button></div>
             </article>
-            <article class="match-card" data-search="法甲 巴黎聖日耳曼 里昂">
+            <article class="match-card" data-sport="football" data-search="法甲 巴黎聖日耳曼 里昂">
               <div class="match-card-top"><span class="match-league">法甲</span><span class="match-time">08/06 22:00</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">巴黎聖日耳曼</span></div><div class="match-team"><span class="match-team-name">里昂</span></div></div>
               <div class="match-odds cols-3"><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.homeWin">主勝</span><span class="match-odds-value">1.40</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.draw">和局</span><span class="match-odds-value">4.80</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.awayWin">客勝</span><span class="match-odds-value">6.50</span></button></div>
             </article>
-            <article class="match-card" data-search="歐冠 皇家馬德里 曼城">
+            <article class="match-card" data-sport="football" data-search="歐冠 皇家馬德里 曼城">
               <div class="match-card-top"><span class="match-league">歐冠</span><span class="match-time">08/08 03:00</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">皇家馬德里</span></div><div class="match-team"><span class="match-team-name">曼城</span></div></div>
               <div class="match-odds cols-3"><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.homeWin">主勝</span><span class="match-odds-value">2.90</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.draw">和局</span><span class="match-odds-value">3.50</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.awayWin">客勝</span><span class="match-odds-value">2.30</span></button></div>
             </article>
-            <article class="match-card" data-search="NBA 湖人 勇士">
+            <article class="match-card" data-sport="basketball" data-search="NBA 湖人 勇士">
               <div class="match-card-top"><span class="match-league">NBA</span><span class="match-time is-live">3Q 08:12</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">湖人</span><span class="match-team-score">88</span></div><div class="match-team"><span class="match-team-name">勇士</span><span class="match-team-score">82</span></div></div>
               <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label">湖人</span><span class="match-odds-value">1.75</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label">勇士</span><span class="match-odds-value">2.05</span></button></div>
             </article>
-            <article class="match-card" data-search="NBA 塞爾提克 熱火">
+            <article class="match-card" data-sport="basketball" data-search="NBA 塞爾提克 熱火">
               <div class="match-card-top"><span class="match-league">NBA</span><span class="match-time">08/06 19:30</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">塞爾提克</span></div><div class="match-team"><span class="match-team-name">熱火</span></div></div>
               <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label">塞爾提克</span><span class="match-odds-value">1.30</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label">熱火</span><span class="match-odds-value">3.40</span></button></div>
             </article>
-            <article class="match-card" data-search="NBA 公鹿 76人">
+            <article class="match-card" data-sport="basketball" data-search="NBA 公鹿 76人">
               <div class="match-card-top"><span class="match-league">NBA</span><span class="match-time">08/07 08:00</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">公鹿</span></div><div class="match-team"><span class="match-team-name">76人</span></div></div>
               <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label">公鹿</span><span class="match-odds-value">1.90</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label">76人</span><span class="match-odds-value">1.90</span></button></div>
             </article>
-            <article class="match-card" data-search="MLB 洋基 紅襪">
+            <article class="match-card" data-sport="baseball" data-search="MLB 洋基 紅襪">
               <div class="match-card-top"><span class="match-league">MLB</span><span class="match-time">08/06 07:05</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">洋基</span></div><div class="match-team"><span class="match-team-name">紅襪</span></div></div>
               <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label">洋基</span><span class="match-odds-value">1.65</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label">紅襪</span><span class="match-odds-value">2.25</span></button></div>
             </article>
-            <article class="match-card" data-search="中華職棒 中信兄弟 統一獅">
+            <article class="match-card" data-sport="baseball" data-search="中華職棒 中信兄弟 統一獅">
               <div class="match-card-top"><span class="match-league">中華職棒</span><span class="match-time">08/06 18:35</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">中信兄弟</span></div><div class="match-team"><span class="match-team-name">統一獅</span></div></div>
               <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label">中信兄弟</span><span class="match-odds-value">1.95</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label">統一獅</span><span class="match-odds-value">1.85</span></button></div>
             </article>
-            <article class="match-card" data-search="日職 讀賣巨人 阪神虎">
+            <article class="match-card" data-sport="baseball" data-search="日職 讀賣巨人 阪神虎">
               <div class="match-card-top"><span class="match-league">日職</span><span class="match-time">08/06 17:00</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">讀賣巨人</span></div><div class="match-team"><span class="match-team-name">阪神虎</span></div></div>
               <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label">讀賣巨人</span><span class="match-odds-value">1.75</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label">阪神虎</span><span class="match-odds-value">2.05</span></button></div>
             </article>
-            <article class="match-card" data-search="網球 ATP 費德勒 納達爾">
+            <article class="match-card" data-sport="tennis" data-search="網球 ATP 費德勒 納達爾">
               <div class="match-card-top"><span class="match-league">網球 ATP</span><span class="match-time">08/07 14:00</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">費德勒</span></div><div class="match-team"><span class="match-team-name">納達爾</span></div></div>
               <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label">費德勒</span><span class="match-odds-value">2.20</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label">納達爾</span><span class="match-odds-value">1.65</span></button></div>
             </article>
-            <article class="match-card" data-search="網球 WTA 大坂直美 莎拉波娃">
+            <article class="match-card" data-sport="tennis" data-search="網球 WTA 大坂直美 莎拉波娃">
               <div class="match-card-top"><span class="match-league">網球 WTA</span><span class="match-time">08/07 16:00</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">大坂直美</span></div><div class="match-team"><span class="match-team-name">莎拉波娃</span></div></div>
               <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label">大坂直美</span><span class="match-odds-value">1.50</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label">莎拉波娃</span><span class="match-odds-value">2.55</span></button></div>
             </article>
-            <article class="match-card" data-search="電競 LOL T1 GenG">
+            <article class="match-card" data-sport="esports" data-search="電競 LOL T1 GenG">
               <div class="match-card-top"><span class="match-league">電競 LOL</span><span class="match-time is-live">Game 2</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">T1</span><span class="match-team-score">1</span></div><div class="match-team"><span class="match-team-name">GenG</span><span class="match-team-score">0</span></div></div>
               <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label">T1</span><span class="match-odds-value">1.60</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label">GenG</span><span class="match-odds-value">2.30</span></button></div>
             </article>
-            <article class="match-card" data-search="電競 CS2 Vitality NAVI">
+            <article class="match-card" data-sport="esports" data-search="電競 CS2 Vitality NAVI">
               <div class="match-card-top"><span class="match-league">電競 CS2</span><span class="match-time">08/06 21:00</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">Vitality</span></div><div class="match-team"><span class="match-team-name">NAVI</span></div></div>
               <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label">Vitality</span><span class="match-odds-value">1.45</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label">NAVI</span><span class="match-odds-value">2.70</span></button></div>
             </article>
-            <article class="match-card" data-search="電競 Dota 2 Team Spirit OG">
+            <article class="match-card" data-sport="esports" data-search="電競 Dota 2 Team Spirit OG">
               <div class="match-card-top"><span class="match-league">電競 Dota 2</span><span class="match-time">08/07 20:00</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">Team Spirit</span></div><div class="match-team"><span class="match-team-name">OG</span></div></div>
               <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label">Team Spirit</span><span class="match-odds-value">1.70</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label">OG</span><span class="match-odds-value">2.10</span></button></div>
             </article>
-            <article class="match-card" data-search="NFL 老鷹 巨人">
+            <article class="match-card" data-sport="american-football" data-search="NFL 老鷹 巨人">
               <div class="match-card-top"><span class="match-league">NFL</span><span class="match-time">08/08 07:00</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">老鷹</span></div><div class="match-team"><span class="match-team-name">巨人</span></div></div>
               <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label">老鷹</span><span class="match-odds-value">1.35</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label">巨人</span><span class="match-odds-value">3.20</span></button></div>
             </article>
-            <article class="match-card" data-search="NHL 楓葉隊 黑鷹隊">
+            <article class="match-card" data-sport="ice-hockey" data-search="NHL 楓葉隊 黑鷹隊">
               <div class="match-card-top"><span class="match-league">NHL</span><span class="match-time">08/07 09:00</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name">楓葉隊</span></div><div class="match-team"><span class="match-team-name">黑鷹隊</span></div></div>
               <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label">楓葉隊</span><span class="match-odds-value">1.80</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label">黑鷹隊</span><span class="match-odds-value">2.00</span></button></div>

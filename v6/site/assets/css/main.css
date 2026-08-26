@@ -708,6 +708,29 @@ img { max-width: 100%; display: block; }
 }
 .listing-tab:hover { color: var(--text); }
 .listing-tab.active { background: var(--accent-grad); color: var(--accent-ink); }
+/* 體育頁球類篩選捷徑列:跟 .listing-tab 同一套「選中=accent漸層」語言,
+   但改成一排可橫向捲動的圖示膠囊,量感比對照片級插畫,沿用站內既有
+   手繪線條 SVG 圖示風格。 */
+.sport-chip-row {
+  display: flex; align-items: center; gap: 8px;
+  overflow-x: auto; scrollbar-width: none;
+  margin-bottom: 16px; padding-bottom: 2px;
+}
+.sport-chip-row::-webkit-scrollbar { display: none; }
+.sport-chip {
+  display: flex; align-items: center; gap: 6px; flex-shrink: 0;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--text-mid);
+  font-size: 12.5px; font-weight: 700;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.sport-chip svg { width: 16px; height: 16px; flex-shrink: 0; }
+.sport-chip:hover { color: var(--text); }
+.sport-chip.active { background: var(--accent-grad); color: var(--accent-ink); border-color: transparent; }
 .listing-wrap .tile-grid.compact { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
 .listing-empty { padding: 48px 0; text-align: center; color: var(--text-dim); font-size: 14px; }
 .listing-load-more-wrap { display: flex; justify-content: center; margin-top: 6px; }

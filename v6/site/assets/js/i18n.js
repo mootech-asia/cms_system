@@ -460,6 +460,18 @@
     'sport.homeWin': { zh: '主勝', en: 'Home Win', ko: '홈 승', th: 'เจ้าบ้านชนะ' },
     'sport.draw': { zh: '和局', en: 'Draw', ko: '무승부', th: 'เสมอ' },
     'sport.awayWin': { zh: '客勝', en: 'Away Win', ko: '원정 승', th: 'ทีมเยือนชนะ' },
+
+    'sport.all': { zh: '全部', en: 'All', ko: '전체', th: 'ทั้งหมด' },
+    'sport.football': { zh: '足球', en: 'Football', ko: '축구', th: 'ฟุตบอล' },
+    'sport.tennis': { zh: '網球', en: 'Tennis', ko: '테니스', th: 'เทนนิส' },
+    'sport.basketball': { zh: '籃球', en: 'Basketball', ko: '농구', th: 'บาสเกตบอล' },
+    'sport.baseball': { zh: '棒球', en: 'Baseball', ko: '야구', th: 'เบสบอล' },
+    'sport.americanFootball': { zh: '美式足球', en: 'American Football', ko: '미식축구', th: 'อเมริกันฟุตบอล' },
+    'sport.iceHockey': { zh: '冰球', en: 'Ice Hockey', ko: '아이스하키', th: 'ฮ็อกกี้น้ำแข็ง' },
+    'sport.boxing': { zh: '拳擊', en: 'Boxing', ko: '복싱', th: 'มวย' },
+    'sport.esports': { zh: '電競', en: 'Esports', ko: 'e스포츠', th: 'อีสปอร์ต' },
+    'sport.volleyball': { zh: '排球', en: 'Volleyball', ko: '배구', th: 'วอลเลย์บอล' },
+    'sport.ufc': { zh: 'UFC', en: 'UFC', ko: 'UFC', th: 'UFC' },
   };
 
   function getLocale() {

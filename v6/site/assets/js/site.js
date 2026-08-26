@@ -259,6 +259,8 @@
     var limit = loadMoreBtn ? (parseInt(grid.getAttribute('data-visible'), 10) || 20) : Infinity;
     var matched = 0;
     var shown = 0;
+    var sportChip = document.querySelector('.sport-chip.active');
+    var sport = sportChip ? sportChip.getAttribute('data-sport') : null;
     /* .game-tile 用卡片名稱比對;.match-card（體育賽事）沒有單一名稱欄位,
        改比對 data-search（聯賽+雙方隊伍）。 */
     Array.prototype.slice.call(grid.querySelectorAll('.game-tile, .match-card')).forEach(function (card) {
@@ -273,8 +275,9 @@
         var id = favBtn ? favBtn.getAttribute('data-fav-id') : '';
         matchesFav = ids.indexOf(id) !== -1;
       }
+      var matchesSport = !sport || sport === 'all' || card.getAttribute('data-sport') === sport;
       var show = false;
-      if (matchesSearch && matchesFav) {
+      if (matchesSearch && matchesFav && matchesSport) {
         matched++;
         show = q ? true : matched <= limit;
       }
@@ -284,6 +287,19 @@
     var empty = document.getElementById('listingEmpty');
     if (empty) empty.hidden = shown !== 0;
     if (loadMoreBtn) loadMoreBtn.hidden = !!q || matched <= limit;
+  }
+  /* 體育頁球類篩選捷徑列:目前只有 sport.html 的賽事卡帶 data-sport,
+     切到沒有對應賽事的球類（如拳擊/排球/UFC）比照參考站行為顯示
+     #listingEmpty 的「找不到符合的賽事」,不硬湊假資料。 */
+  function initSportChips() {
+    var chips = Array.prototype.slice.call(document.querySelectorAll('.sport-chip'));
+    if (!chips.length) return;
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) { c.classList.toggle('active', c === chip); });
+        updateListingVisibility();
+      });
+    });
   }
   function initListingTabs() {
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.listing-tab'));
@@ -1160,6 +1176,7 @@
     safe(initRails);
     safe(initFavorites);
     safe(initListingTabs);
+    safe(initSportChips);
     safe(initListingSearch);
     safe(initListingLoadMore);
     safe(initMemberLogout);
