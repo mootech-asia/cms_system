@@ -1113,6 +1113,11 @@ img { max-width: 100%; display: block; }
 }
 .v6-chat-fab:hover { transform: scale(1.06); }
 .v6-chat-fab svg { width: 24px; height: 24px; }
+/* 中寬度以下側欄變成鋪滿大半畫面的抽屜(見 max-width:1080px),
+   z-index 900 的客服氣泡固定貼在右下角會疊在抽屜內容上面(擋住
+   最後幾項連結點不到),選單開著時先讓開。.v6-chat-fab 是
+   .v6-shell 的手足元素(在它後面),不是子元素,要用 ~ 選取。 */
+.v6-shell.is-sidebar-open ~ .v6-chat-fab { display: none; }
 
 /* ── 手機底部快捷列（僅窄螢幕顯示，見 @media (max-width: 720px)；
    桌機用 .header-nav 已足夠導覽，不重複顯示） ── */
