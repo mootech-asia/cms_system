@@ -216,22 +216,25 @@ img { max-width: 100%; display: block; }
 .v6-sidebar-money { display: flex; gap: 8px; padding: 0 10px 14px; }
 .v6-sidebar-money .btn-accent { flex: 1; text-align: center; padding: 9px 4px; font-size: 12px; }
 /* 未點漢堡前的預設精簡列：比照參考站「收起時只顯示幾個常用捷徑」的
-   做法,用現有 8 分類挑前 4 項當精簡列,點漢堡後這塊收起、換成
-   .v6-sidebar-full(完整 8 分類+My Account)展開,兩者跟
-   .v6-sidebar-mobile-extra 同一套 max-height+opacity 過渡手法,側欄
-   本身大小/位置仍完全不變。 */
-.v6-sidebar-default {
-  display: flex; flex-direction: column; gap: 1px; flex-shrink: 0;
-  max-height: 300px; opacity: 1; overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.2s ease;
-}
-.v6-shell.is-sidebar-open .v6-sidebar-default { max-height: 0; opacity: 0; }
+   做法,用現有 8 分類挑前 4 項當精簡列;點漢堡後依參考影片的形式,
+   .v6-sidebar-full 是從左邊往右「覆蓋」上去展開(clip-path 從左邊
+   0 寬度展開到滿寬),不是垂直淡入淡出。.v6-sidebar-default 維持
+   正常排版決定 .v6-sidebar-swap 的高度;.v6-sidebar-full 蓋在它
+   上面用 position:absolute,不影響 swap 本身的高度計算,展開後靠
+   .v6-sidebar 既有的 overflow-y:auto 自然撐開可捲動範圍。側欄本身
+   大小/位置仍完全不變。 */
+.v6-sidebar-swap { position: relative; }
+.v6-sidebar-default { display: flex; flex-direction: column; gap: 1px; }
+.v6-shell.is-sidebar-open .v6-sidebar-default { visibility: hidden; }
 .v6-sidebar-full {
-  display: flex; flex-direction: column; gap: 18px; flex-shrink: 0;
-  max-height: 0; opacity: 0; overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.25s ease 0.05s;
+  position: absolute; top: 0; left: 0; right: 0;
+  display: flex; flex-direction: column; gap: 18px;
+  background: var(--header-bg);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.35s ease;
+  pointer-events: none;
 }
-.v6-shell.is-sidebar-open .v6-sidebar-full { max-height: 1000px; opacity: 1; }
+.v6-shell.is-sidebar-open .v6-sidebar-full { clip-path: inset(0 0 0 0); pointer-events: auto; }
 .v6-sidebar-quick, .v6-sidebar-section-items { display: flex; flex-direction: column; gap: 1px; }
 /* 展開後的內容比照參考站分成可收合的分類群組(遊戲分類／My Account),
    群組標題本身是按鈕,點擊只切換該群組的 max-height,跟側欄整體
