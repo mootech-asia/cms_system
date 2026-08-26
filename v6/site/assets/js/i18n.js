@@ -472,6 +472,15 @@
     'sport.esports': { zh: '電競', en: 'Esports', ko: 'e스포츠', th: 'อีสปอร์ต' },
     'sport.volleyball': { zh: '排球', en: 'Volleyball', ko: '배구', th: 'วอลเลย์บอล' },
     'sport.ufc': { zh: 'UFC', en: 'UFC', ko: 'UFC', th: 'UFC' },
+
+    'homePromo.offersTitle': { zh: '最新優惠', en: 'Latest Offers', ko: '최신 혜택', th: 'โปรโมชั่นล่าสุด' },
+    'homePromo.offersCta': { zh: '查看優惠', en: 'View Offers', ko: '혜택 보기', th: 'ดูโปรโมชั่น' },
+    'homePromo.depositTitle': { zh: '立即儲值', en: 'Deposit Now', ko: '지금 충전', th: 'ฝากเงินตอนนี้' },
+    'homePromo.depositCta': { zh: '前往儲值', en: 'Deposit', ko: '충전하기', th: 'ไปฝากเงิน' },
+    'homePromo.liveTitle': { zh: '真人娛樂等你來', en: 'Live Casino Awaits', ko: '라이브 카지노가 기다립니다', th: 'คาสิโนสดรอคุณอยู่' },
+    'homePromo.liveCta': { zh: '立即進入', en: 'Enter Now', ko: '지금 입장', th: 'เข้าเลย' },
+    'homePromo.missionTitle': { zh: '會員任務中心', en: 'Mission Center', ko: '미션 센터', th: 'ศูนย์กิจกรรม' },
+    'homePromo.missionCta': { zh: '查看任務', en: 'View Missions', ko: '미션 보기', th: 'ดูภารกิจ' },
   };
 
   function getLocale() {

@@ -448,6 +448,28 @@ img { max-width: 100%; display: block; }
   --text-mid: #b6b1a7;
 }
 
+/* ── 首頁促銷橫幅(插在遊戲列之間,比照參考站遊戲列間穿插的雙欄促銷
+   橫幅;色底沿用既有 --accent-grad／--jackpot-a/-b 漸層,不新增任意值
+   色碼,圖示沿用站內既有手繪線條 SVG 風格) ── */
+.home-promo-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0; }
+.home-promo-banner {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  min-height: 84px;
+  padding: 20px 26px;
+  border-radius: var(--radius-lg);
+  color: #fff;
+  font-size: 17px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 0.01em;
+}
+.home-promo-banner-icon { width: 46px; height: 46px; flex-shrink: 0; opacity: 0.85; }
+.home-promo-banner-cta { flex-shrink: 0; padding: 9px 18px; border-radius: 999px; background: rgba(255, 255, 255, 0.2); font-size: 12.5px; white-space: nowrap; }
+.home-promo-banner-accent { background: var(--accent-grad); color: var(--accent-ink); }
+.home-promo-banner-accent .home-promo-banner-cta { background: rgba(0, 0, 0, 0.18); }
+.home-promo-banner-jackpot { background: linear-gradient(120deg, var(--jackpot-a) 0%, var(--jackpot-b) 100%); }
+@media (max-width: 720px) {
+  .home-promo-strip { grid-template-columns: 1fr; }
+}
+
 /* ── JACKPOT PANEL（累積獎金 widget，首頁專用，紫色為識別色） ── */
 .jackpot-panel {
   margin-top: 20px;
