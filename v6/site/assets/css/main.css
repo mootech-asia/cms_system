@@ -176,12 +176,26 @@ img { max-width: 100%; display: block; }
   scrollbar-width: thin;
 }
 .v6-sidebar-close { display: none; }
-/* Menu 標題列／登入註冊捷徑＋推廣卡：桌機常駐側欄不需要（header 本身
-   已有登入/註冊按鈕），只在側欄變成可收合選單（見 max-width:1080px）
-   時顯示，display:flex 由該斷點覆寫。 */
+/* Menu 標題列：桌機常駐側欄不需要（header 本身已有登入/註冊按鈕），
+   只在側欄變成可收合選單（見 max-width:1080px）時顯示，display:flex
+   由該斷點覆寫。 */
 .v6-sidebar-head { display: none; align-items: center; justify-content: space-between; padding: 2px 10px 14px; margin-bottom: 4px; border-bottom: 1px solid var(--line); }
 .v6-sidebar-head-title { font-size: 16px; font-weight: 900; color: var(--text); }
-.v6-sidebar-mobile-extra { display: none; flex-direction: column; gap: 8px; padding-bottom: 14px; margin-bottom: 6px; border-bottom: 1px solid var(--line); }
+/* 登入註冊捷徑＋推廣卡：側欄本身（常駐 224px、position:sticky）點漢堡
+   前後完全不動、不覆蓋主內容,比照參考站「點漢堡＝side bar 內容本身
+   切換,不是疊一層蓋住畫面」的做法——一直是 display:flex,用
+   max-height+opacity 過渡做展開/收起動畫（display 不能 transition,
+   不能用 display:none/flex 硬切）。 */
+.v6-sidebar-mobile-extra {
+  display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;
+  max-height: 0; opacity: 0; overflow: hidden;
+  padding-bottom: 0; margin-bottom: 0; border-bottom: 0 solid var(--line);
+  transition: max-height 0.3s ease, opacity 0.25s ease, padding-bottom 0.3s ease, margin-bottom 0.3s ease;
+}
+.v6-shell.is-sidebar-open .v6-sidebar-mobile-extra {
+  max-height: 640px; opacity: 1;
+  padding-bottom: 14px; margin-bottom: 6px; border-bottom-width: 1px;
+}
 .v6-sidebar-auth { display: flex; flex-direction: column; gap: 1px; }
 .v6-sidebar-banner {
   display: flex; align-items: center; justify-content: space-between; gap: 10px;
@@ -246,10 +260,10 @@ img { max-width: 100%; display: block; }
   .v6-shell.is-sidebar-open .v6-sidebar-backdrop {
     display: block; position: fixed; inset: 0; background: rgba(3, 8, 7, 0.6); z-index: 690;
   }
-  /* 登入/註冊快捷與 Bonus Shop／獎勵俱樂部／App 下載這幾張推廣卡只在
-     側欄變成可收合的選單時（中寬度以下）出現；桌機常駐側欄本身已經
-     跟 header 的登入/註冊按鈕重複，不需要再顯示一次。 */
-  .v6-sidebar-head, .v6-sidebar-mobile-extra { display: flex; }
+  /* Menu 標題列只在側欄變成可收合選單時（中寬度以下）出現;登入/註冊
+     捷徑＋促銷卡（.v6-sidebar-mobile-extra）在所有寬度都一直是
+     display:flex,展開/收起靠 max-height 動畫,不需要這裡再覆寫。 */
+  .v6-sidebar-head { display: flex; }
 }
 
 /* ── HERO 輪播控制項（首頁專用；分類頁 hero 是單一版面，見
@@ -1322,34 +1336,10 @@ img { max-width: 100%; display: block; }
 }
 
 /* ── RESPONSIVE ─────────────────────────── */
-/* 桌機寬度：漢堡鍵開關常駐側欄。展開之前：.v6-sidebar 常駐顯示精簡
-   分類清單（現狀，佔用版面寬度）。點漢堡展開後：側欄「覆蓋」在主內容
-   上方（position:fixed,不再佔用 .v6-col 的版面寬度、不會讓主內容跟著
-   跳動),多露出登入/註冊捷徑＋促銷卡,但寬度維持跟常駐時一樣的 224px
-   不變,比照參考站「未展開=常駐清單／展開=覆蓋完整選單」的兩段式
-   行為。 */
-@media (min-width: 1081px) {
-  /* fixed 定位下 top/bottom 都給定、height 卻是 auto 時,CSS 規範會讓
-     height 改用內容自然高度(這裡是完整 12 項 My Account 清單撐出來的
-     高度,遠超過視窗),bottom:0 反而被忽略,側欄會往下溢出視窗、蓋住
-     捲動後才會看到的內容。改成明確算出高度,靠 overflow-y:auto(繼承
-     自基礎 .v6-sidebar 規則)在內部捲動,不整條溢出。 */
-  .v6-shell.is-sidebar-open .v6-sidebar {
-    position: fixed; left: 0; top: var(--header-h);
-    width: 224px; height: calc(100vh - var(--header-h));
-    box-shadow: 12px 0 32px rgba(0, 0, 0, 0.45);
-    z-index: 750;
-  }
-  .v6-shell.is-sidebar-open .v6-sidebar-mobile-extra { display: flex; }
-  /* 側欄改成覆蓋層後,主內容左側 224px 範圍會被蓋住一部分(文字被切
-     一半、視覺上很怪),補一層跟中寬度以下同款的半透明背景蓋住整個
-     主內容,讓使用者清楚知道現在互動的對象是疊在上層的側欄,不是
-     被切一半的背景內容。 */
-  .v6-shell.is-sidebar-open .v6-sidebar-backdrop {
-    display: block; position: fixed; left: 0; right: 0; top: var(--header-h); bottom: 0;
-    background: rgba(3, 8, 7, 0.6); z-index: 740;
-  }
-}
+/* 桌機寬度：.v6-sidebar 常駐 224px、position:sticky,點漢堡展開前後
+   完全不變（不覆蓋主內容、不跳動),比照參考站的做法——漢堡只是開關
+   .v6-sidebar-mobile-extra（登入/註冊捷徑＋促銷卡）這塊內容本身，見
+   該 class 的展開動畫規則。 */
 @media (max-width: 1080px) {
   /* 中寬度以下每個版位模組都改滿版堆疊,不管 data-span 設多少。 */
   .grid12 > [data-span] { grid-column: 1 / -1; }

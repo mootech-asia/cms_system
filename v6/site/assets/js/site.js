@@ -444,12 +444,11 @@
   var CLOSE_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>';
   /* header 漢堡鍵（現在跟 logo 同排、橫跨滿版寬度的常駐 header 裡）開關
      所有斷點共用同一個 .is-sidebar-open 狀態：
-     - 展開之前：.v6-sidebar 常駐顯示精簡分類清單，佔用版面寬度。
-     - 展開之後：側欄變成覆蓋在主內容上方的浮動面板（fixed,不影響
-       .v6-col 版面寬度），多露出登入/註冊捷徑＋促銷卡。中寬度以下
-       （見 CSS 的 max-width:1080px）覆蓋整個畫面（含 header）時才需要
-       鎖住背景捲動,桌機覆蓋層只蓋側欄那塊寬度,右側內容仍可正常
-       互動/捲動,不鎖。 */
+     - 桌機寬度：.v6-sidebar 本身（常駐 224px、position:sticky）完全
+       不動、不覆蓋主內容,只是側欄裡的登入/註冊捷徑＋促銷卡
+       （.v6-sidebar-mobile-extra）用動畫展開/收起,不需要鎖背景捲動。
+     - 中寬度以下（見 CSS 的 max-width:1080px）：側欄本身是離屏抽屜,
+       展開時滑入蓋住整個畫面（含 header）,才需要鎖住背景捲動。 */
   function isDesktopSidebar() {
     return window.matchMedia('(min-width: 1081px)').matches;
   }
