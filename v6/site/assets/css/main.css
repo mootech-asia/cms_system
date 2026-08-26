@@ -1169,12 +1169,12 @@ img { max-width: 100%; display: block; }
 .header-lang-option.active { color: var(--accent-hi); background: rgba(244, 121, 31, 0.12); font-weight: 800; }
 
 /* ── 選單觸發按鈕（漢堡鍵）─────────────────
-   常駐在 header 最前面（logo 左邊）：桌機寬度點擊收合／展開常駐的
-   .v6-sidebar（見 .v6-shell.is-sidebar-collapsed），中寬度以下沿用
-   原本「開關離屏抽屜」的邏輯（見 .v6-shell.is-sidebar-open），兩者
-   共用同一顆按鈕跟同一個 toggleSidebar()，只是 JS 依斷點決定切換
-   哪個 class。720px 以下改由 .mobile-tabbar-menu 取代，這裡藏起來
-   避免重複入口。 */
+   常駐在 header 最前面（logo 左邊），跟中寬度以下的 .v6-sidebar 離屏
+   抽屜共用同一個 .v6-shell.is-sidebar-open 狀態、同一個 toggleSidebar()：
+   桌機寬度側欄本身不動，只展開/收起最上面的登入/註冊捷徑＋促銷卡
+   （見 .v6-sidebar-mobile-extra 的 min-width:1081px 規則）；中寬度
+   以下才是整條側欄滑入/滑出。720px 以下改由 .mobile-tabbar-menu
+   取代，這裡藏起來避免重複入口。 */
 .header-menu-trigger {
   display: flex;
   position: relative; z-index: 10003; /* 蓋過選單開啟時的 scrim,再點一次才點得到自己 */
@@ -1355,15 +1355,11 @@ img { max-width: 100%; display: block; }
 }
 
 /* ── RESPONSIVE ─────────────────────────── */
-/* 桌機寬度：漢堡鍵收合／展開常駐側欄，不影響離屏抽屜那組樣式
-   （只在 max-width:1080px 內生效，見上方）。收合時寬度歸零、清空
-   padding/border,讓 .v6-col 自動撐滿讓出的空間;overflow:hidden
-   避免收合過程中內容溢出。 */
+/* 桌機寬度：漢堡鍵展開／收起側欄最上面的登入/註冊捷徑＋促銷卡
+   （.v6-sidebar-mobile-extra，比照參考站點漢堡後側欄多露出這塊），
+   側欄本身寬度不變、不做離屏抽屜那套。 */
 @media (min-width: 1081px) {
-  .v6-sidebar { transition: width 0.2s ease, padding 0.2s ease; }
-  .v6-shell.is-sidebar-collapsed .v6-sidebar {
-    width: 0; flex: 0 0 0; padding: 0; border-right: none; overflow: hidden;
-  }
+  .v6-shell.is-sidebar-open .v6-sidebar-mobile-extra { display: flex; }
 }
 @media (max-width: 1080px) {
   /* 中寬度以下每個版位模組都改滿版堆疊,不管 data-span 設多少。 */
