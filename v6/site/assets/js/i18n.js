@@ -356,6 +356,8 @@
     'game.tagHot': { zh: '熱門', en: 'Hot', ko: '인기', th: 'มาแรง' },
     'game.tagNew': { zh: '新遊戲', en: 'New', ko: '신규', th: 'ใหม่' },
     'game.favorite': { zh: '收藏', en: 'Favorite', ko: '즐겨찾기', th: 'รายการที่ชอบ' },
+    'game.viewAll': { zh: '查看全部', en: 'View All', ko: '전체 보기', th: 'ดูทั้งหมด' },
+    'home.liveEvents': { zh: '即時賽事', en: 'Live Events', ko: '실시간 경기', th: 'การแข่งขันสด' },
     'game.searchPlaceholder': { zh: '搜尋遊戲', en: 'Search games', ko: '게임 검색', th: 'ค้นหาเกม' },
     'game.search': { zh: '搜尋', en: 'Search', ko: '검색', th: 'ค้นหา' },
     'game.vendor': { zh: '廠商', en: 'Providers', ko: '제공사', th: 'ผู้ให้บริการ' },
