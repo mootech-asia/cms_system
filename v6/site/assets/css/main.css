@@ -196,6 +196,10 @@ img { max-width: 100%; display: block; }
 .v6-sidebar-banner-club { background: linear-gradient(120deg, var(--jackpot-a) 0%, var(--jackpot-b) 100%); }
 .v6-sidebar-banner-app { background: var(--accent-grad); color: var(--accent-ink); }
 .v6-sidebar-banner-app .v6-sidebar-banner-cta { background: rgba(0, 0, 0, 0.18); }
+/* 側欄頂部儲值/提款快捷鈕：直接複用既有 .btn-accent／.btn-accent.outline
+   樣式(實心漸層／透明白框),不另外做一套配色。 */
+.v6-sidebar-money { display: flex; gap: 8px; padding: 0 10px 14px; }
+.v6-sidebar-money .btn-accent { flex: 1; text-align: center; padding: 9px 4px; font-size: 12px; }
 .v6-sidebar-quick, .v6-sidebar-section-items { display: flex; flex-direction: column; gap: 1px; }
 .v6-sidebar-section { border-top: 1px solid var(--line); padding-top: 14px; }
 .v6-sidebar-heading { margin: 0 0 6px; padding: 0 10px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); }
@@ -303,43 +307,13 @@ img { max-width: 100%; display: block; }
   .ticker-track { animation: none; }
 }
 
-/* ── NOTICE BAR ─────────────────────────── */
-.notice-bar {
-  background: var(--bg-soft);
-  border-bottom: 1px solid var(--line);
-}
-.notice-bar-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 20px;
-  padding-top: 9px; padding-bottom: 9px;
-  font-size: 12.5px;
-  color: var(--text-mid);
-}
-.notice-msg { display: flex; align-items: center; gap: 8px; flex: 1 1 auto; min-width: 0; overflow: hidden; }
-/* 跑馬燈文字掃過整個 notice-msg 寬度時會經過 icon 所在位置；icon 疊在
-   跑馬燈之上（z-index）並補上底色，避免文字劃過時穿插在 icon 圖形裡。 */
-.notice-msg svg { flex-shrink: 0; position: relative; z-index: 1; background: var(--bg-soft); }
-/* 跑馬燈：padding-left:100% 讓文字從容器右側外開始,animation 把它推移
-   自身寬度（含 padding，等於「容器寬 + 文字寬」）,結束時剛好完全移出
-   容器左側,無縫接回起點,不需要複製文字節點。 */
-.notice-msg span {
-  display: inline-block;
-  white-space: nowrap;
-  padding-left: 100%;
-  animation: notice-marquee 16s linear infinite;
-}
-@keyframes notice-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .notice-msg span { animation: none; padding-left: 0; }
-}
+/* ── NOTICE LINKS（FAQ／客服／促銷頻道）───────
+   原本首頁 hero 上方還有一條 .notice-bar 公告跑馬燈,含這排連結；
+   跑馬燈已移除,.notice-links 本身留著給 footer 的 .site-footer-links
+   繼續複用（全站每頁都能連到 FAQ／客服／促銷頻道）。 */
 .notice-links { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
 .notice-links a { display: flex; align-items: center; gap: 6px; font-weight: 700; }
 .notice-links a:hover { color: var(--accent-hi); }
-/* 首頁以外的頁面沒有 .notice-bar（只有首頁公告列放得下 FAQ／客服／促銷
-   頻道這排連結），footer 補一份同樣式的連結列，確保全站每頁都能連到。 */
 .site-footer-links { justify-content: center; margin-bottom: 16px; color: var(--text-mid); font-size: 12.5px; }
 
 /* ── HERO ─────────────────────────────────
@@ -886,17 +860,18 @@ img { max-width: 100%; display: block; }
    specificity、後者在 UA stylesheet 優先度更低會直接被蓋掉,要多這條
    才能真的隱藏(帳戶管理依銀行/加密錢包分組動態收放新增表單的幣別頁籤) */
 .pay-tab[hidden] { display: none; }
-/* 選中的付款方式改用 --badge(全站定義為「skin 識別次色」),跟每個
-   skin 固定不變的橙色 CTA 區分開,不會讓人以為這裡也是可送出的主按鈕 */
-.pay-tab.active { background: linear-gradient(180deg, var(--badge) 0%, var(--badge-deep) 100%); border-color: var(--badge); color: #fff; }
+/* 選中的付款方式改用 --accent 主色漸層,跟 .btn-accent 系列一致;
+   --badge 是全站固定不變的警示紅,只留給真正的警示/熱區標籤用,不該
+   用在「目前選中的付款方式」這種中性狀態上。 */
+.pay-tab.active { background: var(--accent-grad); border-color: transparent; color: var(--accent-ink); }
 
 /* 底線頁籤(通道 A/B/C/D、提款/帳戶管理):跟 .about-tab 的膠囊頁籤是
    不同視覺語言,獨立一組 class,不共用也不改動 .about-tab 本身,避免動到
    about.html 既有頁面。 */
 .tabline { display: flex; gap: 28px; border-bottom: 1px solid var(--line); margin-bottom: 20px; flex-wrap: wrap; }
 .tabline-item { padding: 8px 2px 12px; background: none; border: 0; color: var(--text-mid); font-size: 14px; font-weight: 600; position: relative; cursor: pointer; }
-.tabline-item.active { color: var(--badge); font-weight: 700; }
-.tabline-item.active::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--badge); border-radius: 2px; }
+.tabline-item.active { color: var(--accent-hi); font-weight: 700; }
+.tabline-item.active::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--accent-hi); border-radius: 2px; }
 
 /* 提款帳戶卡片(帳戶管理頁籤) */
 .wd-account-count { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--text); font-size: 15px; margin-bottom: 16px; }
@@ -935,8 +910,8 @@ img { max-width: 100%; display: block; }
 .wd-wallet-row { text-align: center; margin: 20px 0 6px; }
 .wd-wallet-row .wallet-label { color: var(--text-dim); font-size: 13px; }
 .wd-wallet-row .wallet-amount { color: var(--text); font-size: 22px; font-weight: 800; margin-top: 4px; }
-.wd-turnover-note { text-align: center; color: var(--badge); display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
-.wd-turnover-note .detail-btn { color: #fff; background: var(--badge); border-radius: 999px; padding: 2px 10px; font-size: 11px; font-weight: 700; }
+.wd-turnover-note { text-align: center; color: var(--accent-hi); display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.wd-turnover-note .detail-btn { color: var(--accent-ink); background: var(--accent-grad); border-radius: 999px; padding: 2px 10px; font-size: 11px; font-weight: 700; }
 .wd-turnover-note .wd-target-amount { color: var(--text-dim); }
 .pw-input-wrap { position: relative; margin-bottom: 8px; }
 .pw-input-wrap .pay-field { padding-right: 44px; margin-bottom: 0; }
@@ -1347,21 +1322,33 @@ img { max-width: 100%; display: block; }
 }
 
 /* ── RESPONSIVE ─────────────────────────── */
-/* 桌機寬度：漢堡鍵收合／展開常駐側欄本身（不是離屏抽屜那套，側欄本來
-   就在版面裡，只是把寬度／padding/border 收掉讓 .v6-col 補滿）。 */
+/* 桌機寬度：漢堡鍵開關常駐側欄。展開之前：.v6-sidebar 常駐顯示精簡
+   分類清單（現狀，佔用版面寬度）。點漢堡展開後：側欄「覆蓋」在主內容
+   上方（position:fixed,不再佔用 .v6-col 的版面寬度、不會讓主內容跟著
+   跳動),多露出登入/註冊捷徑＋促銷卡,但寬度維持跟常駐時一樣的 224px
+   不變,比照參考站「未展開=常駐清單／展開=覆蓋完整選單」的兩段式
+   行為。 */
 @media (min-width: 1081px) {
-  /* 展開之前：.v6-sidebar 常駐顯示精簡分類清單（現狀，佔用版面寬度）。
-     點漢堡展開後：側欄覆蓋在主內容上方（fixed,不再佔用 .v6-col 的
-     版面寬度、不會讓主內容跟著跳動），變寬並多露出登入/註冊捷徑＋
-     促銷卡,比照參考站「未展開=常駐清單／展開=覆蓋完整選單」的兩段式
-     行為。 */
+  /* fixed 定位下 top/bottom 都給定、height 卻是 auto 時,CSS 規範會讓
+     height 改用內容自然高度(這裡是完整 12 項 My Account 清單撐出來的
+     高度,遠超過視窗),bottom:0 反而被忽略,側欄會往下溢出視窗、蓋住
+     捲動後才會看到的內容。改成明確算出高度,靠 overflow-y:auto(繼承
+     自基礎 .v6-sidebar 規則)在內部捲動,不整條溢出。 */
   .v6-shell.is-sidebar-open .v6-sidebar {
-    position: fixed; left: 0; top: var(--header-h); bottom: 0;
-    width: 300px; height: auto;
+    position: fixed; left: 0; top: var(--header-h);
+    width: 224px; height: calc(100vh - var(--header-h));
     box-shadow: 12px 0 32px rgba(0, 0, 0, 0.45);
     z-index: 750;
   }
   .v6-shell.is-sidebar-open .v6-sidebar-mobile-extra { display: flex; }
+  /* 側欄改成覆蓋層後,主內容左側 224px 範圍會被蓋住一部分(文字被切
+     一半、視覺上很怪),補一層跟中寬度以下同款的半透明背景蓋住整個
+     主內容,讓使用者清楚知道現在互動的對象是疊在上層的側欄,不是
+     被切一半的背景內容。 */
+  .v6-shell.is-sidebar-open .v6-sidebar-backdrop {
+    display: block; position: fixed; left: 0; right: 0; top: var(--header-h); bottom: 0;
+    background: rgba(3, 8, 7, 0.6); z-index: 740;
+  }
 }
 @media (max-width: 1080px) {
   /* 中寬度以下每個版位模組都改滿版堆疊,不管 data-span 設多少。 */
@@ -1418,7 +1405,6 @@ img { max-width: 100%; display: block; }
   .v6-shell.is-sidebar-open .v6-sidebar { transform: translateY(0); box-shadow: 0 -16px 32px rgba(0, 0, 0, 0.5); }
 }
 @media (max-width: 520px) {
-  .notice-bar-inner { gap: 10px; }
   .notice-links { gap: 10px; }
   .hero-content { max-width: 100%; }
   .hero-title { font-size: 21px; }
