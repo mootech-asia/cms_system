@@ -844,7 +844,11 @@ img { max-width: 100%; display: block; }
   .acct-stats-grid > div:first-child { grid-column: 1 / -1; }
   .acct-stat-value { font-size: 16px; word-break: break-word; }
   .acct-actions { width: 100%; }
-  .acct-actions .btn-accent { flex: 1; text-align: center; }
+  /* min-width:0 解開 flex 子項的 auto 最小寬度陷阱：.btn-accent 預設
+     white-space:nowrap,窄螢幕下兩顆按鈕(尤其英文 REQUEST WITHDRAWAL
+     較長)全寬總和會超出容器,超出的部分溢出到卡片右邊界外造成破版；
+     允許换行(white-space:normal)則讓擠不下的文字換成两行,不再溢出。 */
+  .acct-actions .btn-accent { flex: 1; min-width: 0; text-align: center; white-space: normal; line-height: 1.25; }
 }
 
 .member-panel { border-radius: var(--radius-lg); border: 1px solid var(--line); background: var(--bg-panel); box-shadow: var(--shadow-card); padding: 18px; }
