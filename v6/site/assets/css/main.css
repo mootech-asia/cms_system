@@ -233,8 +233,26 @@ img { max-width: 100%; display: block; }
 }
 .v6-shell.is-sidebar-open .v6-sidebar-full { max-height: 1000px; opacity: 1; }
 .v6-sidebar-quick, .v6-sidebar-section-items { display: flex; flex-direction: column; gap: 1px; }
-.v6-sidebar-section { border-top: 1px solid var(--line); padding-top: 14px; }
-.v6-sidebar-heading { margin: 0 0 6px; padding: 0 10px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); }
+/* 展開後的內容比照參考站分成可收合的分類群組(遊戲分類／My Account),
+   群組標題本身是按鈕,點擊只切換該群組的 max-height,跟側欄整體
+   sticky/224px 的固定架構互不影響。 */
+.v6-sidebar-group + .v6-sidebar-group { border-top: 1px solid var(--line); padding-top: 14px; margin-top: 4px; }
+.v6-sidebar-group-toggle {
+  display: flex; align-items: center; justify-content: space-between; width: 100%;
+  margin: 0 0 6px; padding: 0 10px;
+  background: none; border: 0;
+  font-size: 11px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+.v6-sidebar-group-toggle:hover { color: var(--text-mid); }
+.v6-sidebar-group-chevron { width: 14px; height: 14px; flex-shrink: 0; transition: transform 0.2s ease; }
+.v6-sidebar-group-body {
+  max-height: 640px; opacity: 1; overflow: hidden;
+  transition: max-height 0.25s ease, opacity 0.2s ease;
+}
+.v6-sidebar-group:not(.is-open) .v6-sidebar-group-toggle .v6-sidebar-group-chevron { transform: rotate(-90deg); }
+.v6-sidebar-group:not(.is-open) .v6-sidebar-group-body { max-height: 0; opacity: 0; }
 .v6-sidebar-link {
   display: flex; align-items: center; gap: 10px;
   padding: 9px 10px;

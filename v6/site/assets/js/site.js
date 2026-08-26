@@ -503,6 +503,17 @@
     on(shell.querySelector('[data-mobile-login]'), 'click', function (e) { e.preventDefault(); openAuthModal('login'); });
     on(shell.querySelector('[data-mobile-register]'), 'click', function (e) { e.preventDefault(); openAuthModal('register'); });
     renderSidebarAuth();
+    /* 展開後的「遊戲分類」／「My Account」分類群組,標題可點擊收合/展開
+       （比照參考站 Casino／Sport 群組的 accordion 做法),彼此獨立、
+       預設都展開。 */
+    Array.prototype.slice.call(shell.querySelectorAll('[data-sidebar-group-toggle]')).forEach(function (btn) {
+      on(btn, 'click', function () {
+        var group = btn.closest('[data-sidebar-group]');
+        if (!group) return;
+        var open = group.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
   }
   /* 已登入時側欄選單裡的登入/註冊捷徑沒有意義（帳戶相關功能已經在
      下方「My Account」區塊），直接藏起來，不重複顯示。 */
