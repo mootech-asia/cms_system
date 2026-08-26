@@ -408,9 +408,11 @@ img { max-width: 100%; display: block; }
   min-height: 320px;
   isolation: isolate;
 }
+/* hero 疊色原本混 --badge(警示紅),跟站內主色調、參考站的綠色
+   主視覺不一致,改用 --accent 呼應站內綠色識別。 */
 .hero-bg {
   position: absolute; inset: 0;
-  background-image: linear-gradient(100deg, rgba(10, 8, 7, 0.94) 0%, color-mix(in oklch, var(--badge) 46%, rgba(10, 8, 7, 0.85)) 42%, color-mix(in oklch, var(--badge) 10%, transparent) 78%), var(--hero-image);
+  background-image: linear-gradient(100deg, rgba(10, 8, 7, 0.94) 0%, color-mix(in oklch, var(--accent) 46%, rgba(10, 8, 7, 0.85)) 42%, color-mix(in oklch, var(--accent) 10%, transparent) 78%), var(--hero-image);
   background-size: cover;
   background-position: var(--hero-position, center);
   z-index: -1;
