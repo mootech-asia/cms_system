@@ -383,8 +383,11 @@
     renderHeaderAuth();
     if (currentPage() === 'withdrawal.html') renderWithdrawalUI();
   });
+  /* 未輸入帳號時的預設示範名稱,跟各頁登入態的靜態版面(如 account.html
+     的 .acct-name)沿用同一個 demo 帳號名 meqomcao,不用「會員」這種
+     通用字樣佔位。 */
   function doLogin(name) {
-    saveAuth({ name: name || '會員', balance: DEFAULT_BALANCE, points: DEFAULT_POINTS });
+    saveAuth({ name: name || 'meqomcao', balance: DEFAULT_BALANCE, points: DEFAULT_POINTS });
     renderHeaderAuth();
   }
   function doLogout() {
