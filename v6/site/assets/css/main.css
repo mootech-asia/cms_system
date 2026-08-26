@@ -80,10 +80,16 @@ img { max-width: 100%; display: block; }
 /* ── HEADER ─────────────────────────────── */
 /* 參考站頭部是一片平的深炭黑,不是漸層——skin 之間也不切換這塊,識別色
    改由 --badge/--jackpot-* 在內容區塊呈現,header 維持統一的深色機身。 */
-.site-header { background: var(--header-bg); position: relative; z-index: 800; }
+/* sticky 置頂:header 現在是 .v6-shell 外層橫跨滿版的常駐條,捲動時
+   固定貼齊視窗頂端,跟 .v6-sidebar／.v6-betslip 的 sticky top 剛好
+   接續在它下方(見 --header-h)。z-index 蓋過側欄(700)/betslip(600)。 */
+.site-header { background: var(--header-bg); position: sticky; top: 0; z-index: 800; }
+/* header-top 不再套用 .container 的 max-width:1360px,直接撐滿整條
+   header 的寬度(比照參考站漢堡/logo貼最左、登入/註冊貼最右,不受
+   1360px 限制留出大片空白),只保留左右內距。 */
 .header-top {
   display: flex; align-items: center; gap: 10px;
-  padding-top: 12px; padding-bottom: 12px;
+  padding: 12px 24px;
 }
 .brand-link { display: flex; align-items: center; flex-shrink: 0; }
 /* v6 品牌改用內嵌 SVG + 文字組成的 .brand-mark，不再用點陣圖 logo：
