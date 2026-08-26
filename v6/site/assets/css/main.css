@@ -346,11 +346,22 @@ img { max-width: 100%; display: block; }
 .ticker-section { padding: 14px 18px; }
 .ticker-section + .ticker-section { border-top: 1px solid var(--line); }
 .ticker-panel-title { margin: 0 0 4px; font-size: 12px; color: var(--text-dim); }
-.ticker-panel-value { margin: 0 0 10px; font-size: 20px; font-weight: 900; color: var(--text); letter-spacing: 0.02em; }
+.ticker-panel-value { margin: 0 0 10px; font-size: 20px; font-weight: 900; font-style: italic; color: var(--text); letter-spacing: 0.02em; }
 .ticker-viewport { overflow: hidden; }
 .ticker-track { display: flex; gap: 10px; width: max-content; animation: ticker-scroll 30s linear infinite; }
 .ticker-panel:hover .ticker-track { animation-play-state: paused; }
 @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* 提款跑馬燈的倍率徽章:鑽石(一般倍率,綠色)／星形(高倍率,警示
+   紅)取代純文字 ×N,比照參考站用圖形分級一眼看出倍率高低;箭頭
+   圖示＋「存款」副標則說明這筆提款對應的原始存款金額。 */
+.ticker-chip-badge { display: flex; align-items: center; gap: 4px; flex-shrink: 0; font-weight: 900; font-size: 12px; }
+.ticker-chip-badge svg { width: 17px; height: 17px; flex-shrink: 0; }
+.ticker-chip-badge.gem { color: var(--accent-hi); }
+.ticker-chip-badge.star { color: var(--badge); }
+.ticker-chip-body { display: flex; flex-direction: column; gap: 1px; }
+.ticker-chip-row { display: flex; align-items: center; gap: 6px; }
+.ticker-chip-arrow { width: 11px; height: 11px; color: var(--text-dim); }
+.ticker-chip-sub { font-size: 10.5px; color: var(--text-dim); }
 .ticker-chip { flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: var(--bg-soft); border: 1px solid var(--line); font-size: 12px; white-space: nowrap; }
 .ticker-chip-mult { font-weight: 900; color: var(--accent-hi); }
 .ticker-chip-id { color: var(--text-dim); }
