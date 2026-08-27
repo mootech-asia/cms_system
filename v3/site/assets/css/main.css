@@ -2034,13 +2034,10 @@ section.lobby-section { margin-top: 44px; }
 .match-card-score-wrap { text-align: center; flex-shrink: 0; }
 .match-card-score { color: var(--accent); font-size: 20px; font-weight: 700; line-height: 1; }
 .match-card-status { color: var(--text-dim); font-size: 10px; margin-top: 2px; }
-.match-card-cta {
-  width: 100%; padding: 8px 0; border-radius: var(--radius-control);
-  font-size: 12.5px; font-weight: 700;
-  color: var(--text-on-accent); background: var(--gradient-primary);
-  transition: opacity 0.15s;
-}
-.match-card-cta:hover { opacity: 0.9; }
+/* Place Bet 直接沿用全站既有的 .btn.primary CTA 樣式(含招牌發光
+   box-shadow),不要另外設計一套顏色/漸層；.match-card-cta 只負責
+   在卡片內佔滿寬度、縮小尺寸配合卡片大小。 */
+.match-card-cta.btn { width: 100%; text-align: center; padding: 8px 0; font-size: 12.5px; }
 
 /* ── PROVIDERS MARQUEE ──────────────────── */
 .providers-marquee {
