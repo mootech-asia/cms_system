@@ -1997,77 +1997,50 @@ section.lobby-section { margin-top: 44px; }
 .lb-num { font-family: var(--font-mono); font-size: 12.5px; }
 .lb-payout { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--accent-text); text-align: right; }
 
-/* ── TOURNAMENTS ────────────────────────── */
-.tourn-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-.tourn {
-  position: relative;
-  padding: 22px;
-  border-radius: var(--radius-lg);
+/* ── LIVE SPORT MATCH RAIL(比照 v2 首頁「體育直播」卡片樣式，取代
+   原本的錦標賽卡片版型)：橫向捲動的比賽卡，色彩沿用既有 token
+   （--live 既有的直播紅、--accent 主色、--bg-card 卡片底），不新增
+   任意色碼。 ── */
+.match-rail { display: flex; overflow-x: auto; gap: 12px; scroll-snap-type: x proximity; padding-bottom: 4px; }
+.match-card {
+  flex-shrink: 0; scroll-snap-align: start;
+  min-width: 220px;
+  border-radius: var(--radius-card);
   border: 1px solid var(--line);
-  background:
-    radial-gradient(ellipse at 100% 0%, color-mix(in oklch, var(--tourn-hue) 22%, transparent) 0%, transparent 60%),
-    var(--bg-card);
-  overflow: hidden;
-  isolation: isolate;
-  display: flex; flex-direction: column;
-  min-height: 200px;
+  background: var(--bg-card);
+  transition: border-color 0.15s;
 }
-.tourn::before {
-  content: '';
-  position: absolute;
-  right: -40px; top: -40px;
-  width: 180px; height: 180px;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in oklch, var(--tourn-hue) 35%, transparent) 0%, transparent 70%);
-  z-index: -1;
+.match-card:hover { border-color: var(--accent); }
+.match-card-body { padding: 16px; }
+.match-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.match-card-league { color: var(--text-dim); font-size: 10.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 120px; }
+.match-card-live-badge {
+  display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700;
+  background: color-mix(in oklch, var(--live) 16%, transparent); color: var(--live);
+  border: 1px solid color-mix(in oklch, var(--live) 30%, transparent);
+  padding: 2px 6px; border-radius: 4px;
 }
-.tourn-tag {
-  align-self: flex-start;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  padding: 3px 7px;
-  border-radius: 4px;
-  background: var(--bg-card-hi);
-  border: 1px solid var(--line);
-  color: var(--text-mid);
-  margin-bottom: 14px;
+.match-card-live-icon { width: 10px; height: 10px; animation: match-live-pulse 2s ease-in-out infinite; }
+@keyframes match-live-pulse { 50% { opacity: 0.5; } }
+.match-card-teams { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 16px; }
+.match-card-team { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1 1 auto; }
+.match-card-team-badge {
+  width: 36px; height: 36px; border-radius: 999px;
+  background: var(--bg); border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
 }
-.tourn-tag.hot { color: var(--accent-3); border-color: color-mix(in oklch, var(--accent-3) 40%, var(--line)); }
-.tourn-title {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin: 0 0 4px;
+.match-card-team-code { font-size: 10px; color: var(--text-mid); font-weight: 700; }
+.match-card-team-name { color: var(--text); font-size: 10.5px; text-align: center; line-height: 1.25; }
+.match-card-score-wrap { text-align: center; flex-shrink: 0; }
+.match-card-score { color: var(--accent); font-size: 20px; font-weight: 700; line-height: 1; }
+.match-card-status { color: var(--text-dim); font-size: 10px; margin-top: 2px; }
+.match-card-cta {
+  width: 100%; padding: 8px 0; border-radius: var(--radius-control);
+  font-size: 12.5px; font-weight: 700;
+  color: var(--text-on-accent); background: var(--gradient-primary);
+  transition: opacity 0.15s;
 }
-.tourn-prize {
-  font-family: var(--font-mono);
-  font-size: 28px;
-  font-weight: 700;
-  margin: 12px 0 6px;
-  letter-spacing: -0.01em;
-}
-.tourn-prize-label { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; }
-.tourn-foot {
-  margin-top: auto;
-  padding-top: 16px;
-  display: flex; align-items: center; justify-content: space-between;
-  border-top: 1px solid var(--line);
-  margin-top: 18px;
-}
-.tourn-meta {
-  display: flex; flex-direction: column; gap: 1px;
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  color: var(--text-mid);
-}
-.tourn-meta span:first-child { color: var(--text-dim); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; }
-.tourn .btn { padding: 7px 14px; font-size: 12px; }
+.match-card-cta:hover { opacity: 0.9; }
 
 /* ── PROVIDERS MARQUEE ──────────────────── */
 .providers-marquee {
