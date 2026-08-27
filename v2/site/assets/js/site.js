@@ -317,6 +317,7 @@
     return map;
   }
   var activeLocaleMap = null;
+  var SWAP_ATTRS = ['placeholder', 'aria-label', 'title', 'alt'];
   function swapInTree(root, map) {
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     var node;
@@ -326,10 +327,15 @@
         node.nodeValue = node.nodeValue.replace(trimmed, map[trimmed]);
       }
     }
-    var inputs = root.querySelectorAll ? root.querySelectorAll('input[placeholder], textarea[placeholder]') : [];
-    Array.prototype.forEach.call(inputs, function (i) {
-      var p = i.getAttribute('placeholder');
-      if (p && Object.prototype.hasOwnProperty.call(map, p)) i.setAttribute('placeholder', map[p]);
+    /* header-account-link 等按鈕的 aria-label/title、遊戲卡 img 的 alt 都是用
+       D.T(烘焙基準字典)在產生 HTML 當下就寫死的屬性值,不是文字節點,
+       TreeWalker 掃不到,要另外逐一比對這幾個屬性。 */
+    SWAP_ATTRS.forEach(function (attr) {
+      var els = root.querySelectorAll ? root.querySelectorAll('[' + attr + ']') : [];
+      Array.prototype.forEach.call(els, function (el) {
+        var v = el.getAttribute(attr);
+        if (v && Object.prototype.hasOwnProperty.call(map, v)) el.setAttribute(attr, map[v]);
+      });
     });
   }
   var LOCALE_LANG_ATTR = { zh: 'zh-Hant', en: 'en', ko: 'ko', th: 'th' };
