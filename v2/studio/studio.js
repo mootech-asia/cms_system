@@ -1,4 +1,4 @@
-/* CMS_設計後台_v2 — 靜態版行為層(vanilla,無框架、無 build)。
+/* CMS_Studio_v2 — 靜態版行為層(vanilla,無框架、無 build)。
  *
  * 1:1 復刻原 Nuxt 設計後台(frontend/app/pages/studio/index.vue):換膚、選變體、
  * 拖拉排序、顯示開關、站名、公開皮膚/語言、全站 chrome、即時預覽。
@@ -21,7 +21,7 @@
   var DRAFT_KEY = 'win100-studio-draft';
   var PUBLIC_KEY = 'win100-public-config';
   var LOCALE_KEY = 'win100-locale';
-  var DEFAULT_SITE = 'CMS_前台_v2';
+  var DEFAULT_SITE = 'CMS_Frontend_v2';
 
   /* 前台可切換語言(composables/useLocale.ts APP_LOCALES) */
   var APP_LOCALES = [

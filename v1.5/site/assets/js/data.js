@@ -1,5 +1,5 @@
 /**
- * CMS_前台_v1.5 — 靜態假資料層。
+ * CMS_Frontend_v1.5 — 靜態假資料層。
  * 對照來源 cms-customer-frontend-theme-purple 的 locales/ko.json、en.json
  * (文案逐字保留)與各 store/composable 原本會打 API 拿的內容,這裡改成
  * 寫死的假資料,讓純 HTML+CSS+JS 版可以離線展示完整畫面與互動。

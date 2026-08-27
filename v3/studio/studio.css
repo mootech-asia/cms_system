@@ -1,4 +1,4 @@
-/* CMS_設計後台_v3 — minimal shell reset only.
+/* CMS_Studio_v3 — minimal shell reset only.
    All studio styling is reused from ../site/assets/css/design-system/design-studio.css;
    this file only resets the page box and fills the viewport so .studio-shell
    (height:100vh) sits flush, plus a couple of small shell conveniences. */

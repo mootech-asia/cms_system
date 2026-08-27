@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CMS_設計後台_v2 / WIN100 前台 — 單一合併樣式檔
+   CMS_Studio_v2 / WIN100 前台 — 單一合併樣式檔
    合併自舊有 app.css + primevue.css + global.css 三檔,並移除掃描全站
    HTML/JS 後確認未被引用的死規則(詳見 docs/css-merge-report.md)。三節
    對應原本三個檔案、維持原本 <link> 載入順序(app -> primevue -> global,

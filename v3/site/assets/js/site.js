@@ -1,4 +1,4 @@
-// CMS_前台_v3 — 純靜態站 vanilla JS 行為層
+// CMS_Frontend_v3 — 純靜態站 vanilla JS 行為層
 // 涵蓋 Hero / Promos / Rail / CategoryView / Leaderboard / RewardsBanner /
 // 三個 modal / 收藏 / 版面微調 / account 系列頁等行為。
 // 全域式 <script>（非 module），不使用 fetch/import，file:// 可直開。

@@ -1,4 +1,4 @@
-// CMS_前台_v4 — 語系切換（vanilla，無框架、無 build）。
+// CMS_Frontend_v4 — 語系切換（vanilla，無框架、無 build）。
 // 涵蓋範圍:導覽/頁尾/共用彈窗與各頁面獨有內容(會員中心表單/表格/彈窗訊息等)。
 //   - 靜態 HTML 文字:加 data-i18n="key" 由 applyLocale() 掃描替換 textContent;
 //     含內嵌標籤(如 <em>)的文字用 data-i18n-html 替換 innerHTML;

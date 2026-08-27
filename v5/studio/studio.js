@@ -1,4 +1,4 @@
-// CMS_設計後台_v5 — 靜態版行為層（vanilla，無框架、無 build）。
+// CMS_Studio_v5 — 靜態版行為層（vanilla，無框架、無 build）。
 // 左側是「草稿」狀態；每次操作（切 skin／切區塊／改站名）都會透過
 // window.__cmsV5StudioApply 直接呼叫 iframe（同源）內 site.js 的核心套用函式，
 // 立即反映在右側預覽，不需等按下「套用到本站」。
@@ -382,7 +382,7 @@
       draft = { sections: loaded.sections, sitename: loaded.sitename, skin: loaded.skin, layout: loaded.layout, locales: loaded.locales };
       document.documentElement.setAttribute('data-skin', draft.skin);
       document.getElementById('st-sitename').value = draft.sitename;
-      document.getElementById('st-summary-site').textContent = draft.sitename || 'CMS_前台_v5';
+      document.getElementById('st-summary-site').textContent = draft.sitename || 'CMS_Frontend_v5';
       renderSections();
       renderSkins();
       renderLocales();
@@ -396,7 +396,7 @@
     input.value = draft.sitename;
     input.addEventListener('input', function () {
       draft.sitename = input.value;
-      document.getElementById('st-summary-site').textContent = draft.sitename || 'CMS_前台_v5';
+      document.getElementById('st-summary-site').textContent = draft.sitename || 'CMS_Frontend_v5';
       liveApply();
     });
   }

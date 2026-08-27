@@ -1,5 +1,5 @@
 /**
- * CMS_前台_v1.5 — 行為層(vanilla JS,無框架)。
+ * CMS_Frontend_v1.5 — 行為層(vanilla JS,無框架)。
  * 對照來源 Nuxt 專案的 layouts/default.vue、layouts/usercenter.vue:
  * Navbar/Footer/BottomNavbar/SideBar(浮動客服)這幾塊每頁共用的 chrome,
  * 集中在這裡用字串模板產生、掛到每頁 <body> 裡的掛載點,避免 25 個頁面

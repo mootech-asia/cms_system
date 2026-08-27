@@ -1,5 +1,5 @@
 /* ============================================================
-   CMS_前台_v1.5 — 手刻 HTML+CSS+JS,依 cms-customer-frontend-theme-purple
+   CMS_Frontend_v1.5 — 手刻 HTML+CSS+JS,依 cms-customer-frontend-theme-purple
    (Nuxt/Vue/Tailwind 原始碼)換算成純 CSS,不殘留任何 Tailwind/框架 class。
    色彩/字級/間距數值皆對照原始碼 assets/styles/tailwind.css 與各元件
    Pug 樣板裡的 arbitrary value(如 bg-[#060C34]、h-[132px])換算而來。

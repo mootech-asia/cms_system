@@ -1,5 +1,5 @@
 /*
- * CMS_設計後台_v3 — framework-free vanilla JS design studio. Heavy styling
+ * CMS_Studio_v3 — framework-free vanilla JS design studio. Heavy styling
  * is reused verbatim from ../site/assets/css/design-system/design-studio.css.
  *
  * Wiring contract to the flat front-end (../site/assets/js/site.js):
@@ -33,7 +33,7 @@
     { id: 'jade-jackpot', label: 'Jade Jackpot', theme: 'dark', swatch: '#39ff7c', surface: '#050e09' }
   ];
   var DEFAULT_SKIN = 'blue';
-  var DEFAULT_SITE_NAME = 'CMS_前台_v3';
+  var DEFAULT_SITE_NAME = 'CMS_Frontend_v3';
 
   var MODULES = [
     { id: 'game-card', label: 'Game Cards', category: 'Content', description: 'Artwork, metadata, status, and hover treatment.' },
