@@ -1077,17 +1077,17 @@
   var BALANCE = 1284.32;
 
   function loggedOutHTML() {
-    return '<button type="button" class="btn" data-action="open-signin">登入</button>' +
-      '<button type="button" class="btn primary" data-action="open-signin">註冊</button>';
+    return '<button type="button" class="btn" data-action="open-signin">' + tr('t.nav.Login', '登入') + '</button>' +
+      '<button type="button" class="btn primary" data-action="open-signin">' + tr('t.nav.Register', '註冊') + '</button>';
   }
   function loggedInHTML() {
     var initials = escapeHtml(USER.name.slice(0, 2).toUpperCase());
     return '<div class="tb-balance"><div class="tb-balance-rows">' +
-        '<div class="tb-balance-row"><span class="tb-balance-label">餘額：</span><span class="tb-balance-num">' + fmtNum(BALANCE) + '</span></div>' +
-        '<div class="tb-balance-row"><span class="tb-balance-label">點數：</span><span class="tb-balance-num">0.00</span></div>' +
+        '<div class="tb-balance-row"><span class="tb-balance-label">' + tr('t.topbar.balance', '餘額：') + '</span><span class="tb-balance-num">' + fmtNum(BALANCE) + '</span></div>' +
+        '<div class="tb-balance-row"><span class="tb-balance-label">' + tr('t.topbar.points', '點數：') + '</span><span class="tb-balance-num">0.00</span></div>' +
       '</div></div>' +
       '<div class="tb-user-wrap">' +
-        '<button type="button" class="tb-user-circle" aria-label="帳戶"><span class="tb-avatar circle">' + initials + '</span><span class="tb-tier-badge" aria-hidden="true">' + TIER_ICON + '</span></button>' +
+        '<button type="button" class="tb-user-circle" aria-label="' + tr('t.topbar.account', '帳戶') + '"><span class="tb-avatar circle">' + initials + '</span><span class="tb-tier-badge" aria-hidden="true">' + TIER_ICON + '</span></button>' +
       '</div>';
   }
   function setAuthSection(html) {
@@ -1103,9 +1103,9 @@
   function userMenuHTML() {
     var initials = escapeHtml(USER.name.slice(0, 2).toUpperCase());
     var items = [
-      { label: '個人資料', href: 'personal-info.html', icon: MENU_ICONS.person },
-      { label: '變更登入密碼', href: 'security-center.html', icon: MENU_ICONS.lock },
-      { label: '變更交易密碼', href: 'security-center.html', icon: MENU_ICONS.key }
+      { label: tr('t.nav.Personal Info', '個人資料'), href: 'personal-info.html', icon: MENU_ICONS.person },
+      { label: tr('t.nav.Change Login Password', '變更登入密碼'), href: 'security-center.html', icon: MENU_ICONS.lock },
+      { label: tr('t.nav.Change Transaction Password', '變更交易密碼'), href: 'security-center.html', icon: MENU_ICONS.key }
     ];
     var itemsHtml = items.map(function (it) {
       return '<a href="' + it.href + '" class="tb-menu-item tb-menu-item-2l"><span class="tb-menu-ico">' + it.icon + '</span>' +
@@ -1115,7 +1115,7 @@
         '<div class="tb-menu-head"><div class="tb-avatar lg">' + initials + '</div><div><div class="tb-menu-name">' + escapeHtml(USER.name) + '</div><div class="tb-menu-email">' + escapeHtml(USER.email) + '</div></div></div>' +
         itemsHtml +
         '<div class="tb-menu-sep"></div>' +
-        '<button type="button" class="tb-menu-item logout tb-menu-item-2l" data-action="logout"><span class="tb-menu-ico">' + MENU_ICONS.logout + '</span><span class="tb-menu-2l-text"><span class="tb-menu-2l-name">登出</span></span></button>' +
+        '<button type="button" class="tb-menu-item logout tb-menu-item-2l" data-action="logout"><span class="tb-menu-ico">' + MENU_ICONS.logout + '</span><span class="tb-menu-2l-text"><span class="tb-menu-2l-name">' + tr('t.nav.Logout', '登出') + '</span></span></button>' +
       '</div>';
   }
   function closeUserMenu() { var m = document.querySelector('.tb-menu'); if (m) m.remove(); }
