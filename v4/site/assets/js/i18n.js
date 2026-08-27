@@ -54,6 +54,7 @@
     'nav.member': { zh: '會員', en: 'Account', ko: '계정', th: 'บัญชี' },
     'nav.menu': { zh: '選單', en: 'Menu', ko: '메뉴', th: 'เมนู' },
 
+    'sidebar.myAccount': { zh: '我的帳戶', en: 'My Account', ko: '내 계정', th: 'บัญชีของฉัน' },
     'sidebar.overview': { zh: '帳戶總覽', en: 'Account Overview', ko: '계정 개요', th: 'ภาพรวมบัญชี' },
     'sidebar.withdrawal': { zh: '提款', en: 'Withdrawal', ko: '출금', th: 'ถอนเงิน' },
     'sidebar.bettingRecord': { zh: '投注紀錄', en: 'Betting Record', ko: '베팅 기록', th: 'บันทึกการเดิมพัน' },
@@ -148,6 +149,8 @@
     'common.success': { zh: '成功', en: 'Success', ko: '성공', th: 'สำเร็จ' },
 
     'pay.bankCard': { zh: '銀行卡', en: 'Bank Card', ko: '은행카드', th: 'บัตรธนาคาร' },
+    'common.delete': { zh: '刪除', en: 'Delete', ko: '삭제', th: 'ลบ' },
+    'pay.qrCodeLabel': { zh: '付款 QR Code', en: 'Payment QR Code', ko: '결제 QR 코드', th: 'QR โค้ดชำระเงิน' },
     'pay.cryptoWallet': { zh: '加密錢包', en: 'Crypto Wallet', ko: '암호화폐 지갑', th: 'กระเป๋าเงินคริปโต' },
     'pay.linePay': { zh: 'LinePay', en: 'LinePay', ko: 'LinePay', th: 'LinePay' },
 

@@ -151,6 +151,8 @@
     'common.success': { zh: '成功', en: 'Success', ko: '성공', th: 'สำเร็จ' },
 
     'pay.bankCard': { zh: '銀行卡', en: 'Bank Card', ko: '은행카드', th: 'บัตรธนาคาร' },
+    'common.delete': { zh: '刪除', en: 'Delete', ko: '삭제', th: 'ลบ' },
+    'pay.qrCodeLabel': { zh: '付款 QR Code', en: 'Payment QR Code', ko: '결제 QR 코드', th: 'QR โค้ดชำระเงิน' },
     'pay.cryptoWallet': { zh: '加密錢包', en: 'Crypto Wallet', ko: '암호화폐 지갑', th: 'กระเป๋าเงินคริปโต' },
     'pay.linePay': { zh: 'LinePay', en: 'LinePay', ko: 'LinePay', th: 'LinePay' },
 

@@ -579,7 +579,7 @@
       '<div class="auth-modal-overlay" data-auth-overlay>' +
       '<div class="auth-modal-box">' +
       '<div class="auth-modal-head"><h3 class="auth-modal-title" data-auth-title></h3>' +
-      '<button type="button" class="auth-modal-close" aria-label="關閉" data-auth-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
+      '<button type="button" class="auth-modal-close" aria-label="' + tr('cs.chatClose', '關閉') + '" data-auth-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
       '<div class="auth-modal-body" data-auth-body></div>' +
       '</div></div>';
     authModalRoot = wrap.firstElementChild;
@@ -619,7 +619,7 @@
       '<div class="cs-modal-overlay" data-cs-overlay>' +
       '<div class="cs-modal-box">' +
       '<div class="cs-modal-head"><h3 class="cs-modal-title">' + tr('cs.title', '聯絡客服') + '</h3>' +
-      '<button type="button" class="cs-modal-close" aria-label="關閉" data-cs-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
+      '<button type="button" class="cs-modal-close" aria-label="' + tr('cs.chatClose', '關閉') + '" data-cs-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
       '<div class="cs-modal-body">' +
       rows.map(function (r) {
         return '<a href="#" class="cs-opt"><span class="cs-opt-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">' + r.icon + '</svg></span>' +
@@ -759,7 +759,7 @@
       '<div class="auth-modal-overlay" data-pay-overlay>' +
       '<div class="auth-modal-box">' +
       '<div class="auth-modal-head"><h3 class="auth-modal-title">' + title + '</h3>' +
-      '<button type="button" class="auth-modal-close" aria-label="關閉" data-pay-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
+      '<button type="button" class="auth-modal-close" aria-label="' + tr('cs.chatClose', '關閉') + '" data-pay-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
       '<div class="auth-modal-body">' + bodyHtml + '</div>' +
       '</div></div>';
     payModalRoot = wrap.firstElementChild;
@@ -770,7 +770,7 @@
     return payModalRoot;
   }
   function simplePayModal(title, message) {
-    var root = openPayModal(title, '<p class="about-text">' + message + '</p><button type="button" class="btn-accent" style="width:100%">確定</button>');
+    var root = openPayModal(title, '<p class="about-text">' + message + '</p><button type="button" class="btn-accent" style="width:100%">' + tr('common.confirm', '確定') + '</button>');
     on(root.querySelector('.auth-modal-body .btn-accent'), 'click', closePayModal);
     return root;
   }
@@ -819,7 +819,7 @@
       var addrLabel = methodId === 'linepay' ? tr('dp.paymentUrl', '付款網址') : tr('dp.receivingAddress', '收款地址');
       body =
         '<p class="about-text">' + escapeHtml(tr('dp.scanPayDesc', '請使用手機掃描下方 QR Code，或複製{label}完成付款。').replace('{label}', addrLabel)) + '</p>' +
-        '<div style="text-align:center;margin-bottom:14px"><svg width="176" height="176" viewBox="0 0 29 29" shape-rendering="crispEdges" role="img" aria-label="付款 QR Code"><rect width="29" height="29" fill="#fff"></rect>' + fakeQrModules() + '</svg></div>' +
+        '<div style="text-align:center;margin-bottom:14px"><svg width="176" height="176" viewBox="0 0 29 29" shape-rendering="crispEdges" role="img" aria-label="' + tr('pay.qrCodeLabel', '付款 QR Code') + '"><rect width="29" height="29" fill="#fff"></rect>' + fakeQrModules() + '</svg></div>' +
         '<label class="member-panel-title" style="font-size:12.5px;margin-bottom:6px;display:block">' + escapeHtml(addrLabel) + '</label>' +
         '<div style="display:flex;gap:8px">' +
         '<input class="pay-field" style="width:auto;flex:1" value="' + escapeHtml(addr) + '" readonly />' +
@@ -847,7 +847,7 @@
   /* 銀行帳戶上限 5 筆,加密錢包只能綁 1 筆(對照 v2 WALLET_ACCOUNTS 的
      (0/1) 上限,跟銀行帳戶的 (0/5) 不是同一個數字) */
   var WD_ACCOUNT_CAP = { bank: 5, crypto: 1 };
-  var WD_TYPE_LABEL = { bank: '銀行卡', trc20: 'USDT-TRC20', erc20: 'USDT-ERC20' };
+  var WD_TYPE_LABEL = { bank: tr('pay.bankCard', '銀行卡'), trc20: 'USDT-TRC20', erc20: 'USDT-ERC20' };
   var WD_TYPE_ICON = {
     bank: '<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>',
     trc20: '<circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/>',
@@ -881,10 +881,10 @@
     return '********' + v.slice(-4);
   }
   function wdAccountBadgeText(acc) {
-    return acc.type === 'bank' ? (acc.bankName || '銀行卡') : WD_TYPE_LABEL[acc.type];
+    return acc.type === 'bank' ? (acc.bankName || tr('pay.bankCard', '銀行卡')) : WD_TYPE_LABEL[acc.type];
   }
   function wdAccountNameText(acc) {
-    return acc.type === 'bank' ? (acc.bankName || '銀行卡') : WD_TYPE_LABEL[acc.type];
+    return acc.type === 'bank' ? (acc.bankName || tr('pay.bankCard', '銀行卡')) : WD_TYPE_LABEL[acc.type];
   }
   function wdAccountNumberText(acc) {
     return acc.type === 'bank' ? wdMaskAccount(acc.account) : (acc.account || '');
@@ -898,7 +898,7 @@
       '<span class="wd-account-number">' + escapeHtml(wdAccountNumberText(acc)) + '</span>' +
       (acc.boundAt ? '<span class="wd-account-date">' + escapeHtml(acc.boundAt) + '</span>' : '') +
       '</div>' +
-      (withRemove ? '<button type="button" class="auth-modal-close wd-account-remove" aria-label="刪除" data-wd-remove="' + idx + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button>' : '') +
+      (withRemove ? '<button type="button" class="auth-modal-close wd-account-remove" aria-label="' + tr('common.delete', '刪除') + '" data-wd-remove="' + idx + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button>' : '') +
       '</div>'
     );
   }
