@@ -3371,6 +3371,41 @@ select.twk-field {
   50% { opacity: .35; transform: scale(.7); }
 }
 
+/* 即時體育區塊上方的直播影片區(挖一個區域放 live 直播,跟主 hero 用同一套
+   視覺語言,只是縮小尺寸放進區塊內,不是整頁大 hero) */
+.sport-video-hero {
+  position: relative; margin-bottom: 14px; border-radius: var(--radius-xl);
+  overflow: hidden; height: 248px; isolation: isolate; color: #f3f1ff;
+}
+.sport-video-hero-bg {
+  position: absolute; inset: 0;
+  background-position: center; background-size: cover; background-repeat: no-repeat;
+  z-index: -1;
+}
+.sport-video-hero-content { height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 0 160px 0 32px; }
+.sport-video-hero-eyebrow {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--accent-2); margin: 0 0 10px; display: flex; align-items: center; gap: 10px;
+}
+.sport-video-hero-title { font-family: var(--font-display); font-size: clamp(20px, 2.4vw, 28px); font-weight: 700; line-height: 1.15; margin: 0 0 6px; }
+.sport-video-hero-sub { font-size: 13px; color: rgba(243, 241, 255, .74); max-width: 420px; margin: 0; }
+.sport-video-hero-play {
+  position: absolute; top: 50%; right: 48px; transform: translateY(-50%); z-index: 2;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: color-mix(in oklch, #fff 20%, transparent);
+  border: 1px solid color-mix(in oklch, #fff 38%, transparent);
+  backdrop-filter: blur(4px);
+  display: grid; place-items: center; cursor: pointer;
+  transition: transform .15s, background .15s;
+}
+.sport-video-hero-play:hover { transform: translateY(-50%) scale(1.06); background: color-mix(in oklch, #fff 30%, transparent); }
+.sport-video-hero-play svg { margin-left: 3px; }
+@media (max-width: 720px) {
+  .sport-video-hero { height: 200px; }
+  .sport-video-hero-content { padding: 0 76px 0 20px; }
+  .sport-video-hero-play { right: 18px; width: 44px; height: 44px; }
+}
+
 
 /* clearer Deposit primary button on Account Overview */
 .ap-btn.primary:hover { filter: brightness(1.08) !important; }
