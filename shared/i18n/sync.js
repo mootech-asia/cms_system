@@ -4,13 +4,19 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const store = require('./flat-store');
+const flatStore = require('./flat-store');
+const v3NavStore = require('./v3-nav-store');
 
 const VERSION_FILE = {
+  v3: '../../v3/site/assets/js/i18n.js',
   v4: '../../v4/site/assets/js/i18n.js',
   v5: '../../v5/site/assets/js/i18n.js',
   v6: '../../v6/site/assets/js/i18n.js',
 };
+// v3 的資料結構跟 v4/v5/v6 不同(巢狀命名空間,而非扁平字串表),用專用的
+// v3-nav-store 處理;目前只支援 nav 命名空間(master.json 裡跟 v3 對應的
+// key 目前都落在這裡),且只能更新既有 key、不能新增。
+const FLAT_VERSIONS = new Set(['v4', 'v5', 'v6']);
 
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
@@ -50,8 +56,15 @@ for (const version of versionsToSync) {
 
   const filePath = path.join(__dirname, VERSION_FILE[version]);
   const original = fs.readFileSync(filePath, 'utf8');
-  const parsed = store.load(original);
-  const updated = store.apply(parsed, updates);
+  let updated;
+  if (FLAT_VERSIONS.has(version)) {
+    const parsed = flatStore.load(original);
+    updated = flatStore.apply(parsed, updates);
+  } else if (version === 'v3') {
+    updated = v3NavStore.applyNamespaceUpdates(original, 'nav', updates);
+  } else {
+    throw new Error('未知版本的同步策略: ' + version);
+  }
 
   if (updated === original) {
     console.log(version, '無變更 (', Object.keys(updates).length, '個 key 已同步)');

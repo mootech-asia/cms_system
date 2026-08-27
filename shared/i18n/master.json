@@ -3,7 +3,8 @@
   "brand": {
     "v4": "Bet100",
     "v5": "IGNITE100",
-    "v6": "APEX100"
+    "v6": "APEX100",
+    "v3": "win100%"
   },
   "entries": {
     "about.supportIntro": {
@@ -438,7 +439,8 @@
       "targets": {
         "v4": "auth.logout",
         "v5": "auth.logout",
-        "v6": "auth.logout"
+        "v6": "auth.logout",
+        "v3": "Logout"
       },
       "zh": "登出",
       "en": "Logout",
@@ -2548,7 +2550,8 @@
       "targets": {
         "v4": "nav.lobby",
         "v5": "nav.lobby",
-        "v6": "nav.lobby"
+        "v6": "nav.lobby",
+        "v3": "Lobby"
       },
       "zh": "大廳",
       "en": "Lobby",
@@ -2570,7 +2573,8 @@
       "targets": {
         "v4": "nav.menu",
         "v5": "nav.menu",
-        "v6": "nav.menu"
+        "v6": "nav.menu",
+        "v3": "Menu"
       },
       "zh": "選單",
       "en": "Menu",
@@ -2612,7 +2616,8 @@
       "targets": {
         "v4": "nav.slots",
         "v5": "nav.slots",
-        "v6": "nav.slots"
+        "v6": "nav.slots",
+        "v3": "Slots"
       },
       "zh": "老虎機",
       "en": "Slots",
@@ -2623,7 +2628,8 @@
       "targets": {
         "v4": "nav.sport",
         "v5": "nav.sport",
-        "v6": "nav.sport"
+        "v6": "nav.sport",
+        "v3": "Sports"
       },
       "zh": "體育",
       "en": "Sports",
@@ -3272,7 +3278,8 @@
       "targets": {
         "v4": "record.activityName",
         "v5": "record.activityName",
-        "v6": "record.activityName"
+        "v6": "record.activityName",
+        "v3": "Activity Name"
       },
       "zh": "活動名稱",
       "en": "Activity Name",
@@ -3371,7 +3378,8 @@
       "targets": {
         "v4": "record.date",
         "v5": "record.date",
-        "v6": "record.date"
+        "v6": "record.date",
+        "v3": "Date"
       },
       "zh": "日期",
       "en": "Date",
@@ -3426,7 +3434,8 @@
       "targets": {
         "v4": "record.gameName",
         "v5": "record.gameName",
-        "v6": "record.gameName"
+        "v6": "record.gameName",
+        "v3": "Game Name"
       },
       "zh": "遊戲名稱",
       "en": "Game Name",
@@ -3481,7 +3490,8 @@
       "targets": {
         "v4": "record.progress",
         "v5": "record.progress",
-        "v6": "record.progress"
+        "v6": "record.progress",
+        "v3": "Progress"
       },
       "zh": "進度",
       "en": "Progress",
@@ -3668,7 +3678,8 @@
       "targets": {
         "v4": "record.type",
         "v5": "record.type",
-        "v6": "record.type"
+        "v6": "record.type",
+        "v3": "Type"
       },
       "zh": "類型",
       "en": "Type",
@@ -3974,7 +3985,8 @@
       "targets": {
         "v4": "sidebar.myAccount",
         "v5": "sidebar.myAccount",
-        "v6": "sidebar.myAccount"
+        "v6": "sidebar.myAccount",
+        "v3": "My Account"
       },
       "zh": "我的帳戶",
       "en": "My Account",
@@ -3985,7 +3997,8 @@
       "targets": {
         "v4": "sidebar.overview",
         "v5": "sidebar.overview",
-        "v6": "sidebar.overview"
+        "v6": "sidebar.overview",
+        "v3": "Account Overview"
       },
       "zh": "帳戶總覽",
       "en": "Account Overview",
@@ -3996,7 +4009,8 @@
       "targets": {
         "v4": "sidebar.personalInfo",
         "v5": "sidebar.personalInfo",
-        "v6": "sidebar.personalInfo"
+        "v6": "sidebar.personalInfo",
+        "v3": "Personal Info"
       },
       "zh": "個人資料",
       "en": "Personal Info",
@@ -4018,7 +4032,8 @@
       "targets": {
         "v4": "sidebar.security",
         "v5": "sidebar.security",
-        "v6": "sidebar.security"
+        "v6": "sidebar.security",
+        "v3": "Security Center"
       },
       "zh": "安全中心",
       "en": "Security Center",
@@ -5101,7 +5116,8 @@
       "targets": {
         "v4": "wd.tabWithdraw",
         "v5": "wd.tabWithdraw",
-        "v6": "wd.tabWithdraw"
+        "v6": "wd.tabWithdraw",
+        "v3": "WithdrawalForm"
       },
       "zh": "提款",
       "en": "Withdraw",
