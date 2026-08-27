@@ -63,7 +63,7 @@
     'nav.menu': { zh: '選單', en: 'Menu', ko: '메뉴', th: 'เมนู' },
 
     'sidebar.gameCategories': { zh: '遊戲分類', en: 'Game Categories', ko: '게임 카테고리', th: 'หมวดหมู่เกม' },
-    'sidebar.myAccount': { zh: 'My Account', en: 'My Account', ko: 'My Account', th: 'My Account' },
+    'sidebar.myAccount': { zh: '我的帳戶', en: 'My Account', ko: '내 계정', th: 'บัญชีของฉัน' },
     'sidebar.overview': { zh: '帳戶總覽', en: 'Account Overview', ko: '계정 개요', th: 'ภาพรวมบัญชี' },
     'sidebar.withdrawal': { zh: '提款', en: 'Withdrawal', ko: '출금', th: 'ถอนเงิน' },
     'sidebar.bettingRecord': { zh: '投注紀錄', en: 'Betting Record', ko: '베팅 기록', th: 'บันทึกการเดิมพัน' },
