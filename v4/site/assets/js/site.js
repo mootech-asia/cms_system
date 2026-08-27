@@ -1,4 +1,4 @@
-// CMS_前台_v4 — 純靜態站 vanilla JS 行為層（無框架、無 build）。
+// CMS_Frontend_v4 — 純靜態站 vanilla JS 行為層（無框架、無 build）。
 (function () {
   'use strict';
 
@@ -24,7 +24,7 @@
     });
   }
   function applySiteName(name) {
-    document.title = name ? ORIGINAL_TITLE.replace(/^CMS_前台_v4/, name) : ORIGINAL_TITLE;
+    document.title = name ? ORIGINAL_TITLE.replace(/^CMS_Frontend_v4/, name) : ORIGINAL_TITLE;
   }
   function applySkin(skinId) {
     document.documentElement.setAttribute('data-skin', skinId || 'festive-red-gold');
