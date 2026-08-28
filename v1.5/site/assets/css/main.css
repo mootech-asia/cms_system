@@ -44,11 +44,11 @@ body {
 body {
   background: var(--c-bg);
   color: var(--c-text);
-  font-family: 'Nanum Gothic', Arial, Helvetica, sans-serif;
+  font-family: 'Pretendard', 'Nanum Gothic', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 html[lang='en'] body {
-  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-family: 'Pretendard', Arial, Helvetica, sans-serif;
 }
 img {
   max-width: 100%;
