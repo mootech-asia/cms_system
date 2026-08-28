@@ -79,7 +79,7 @@
     navigation: { assetKey: 'logo', label: 'Brand logo', width: 640, height: 160, ratio: '4:1', formats: 'Transparent WEBP / PNG', maxSize: '1 MB', note: 'Use transparent artwork with no built-in background or shadow.' }
   };
 
-  var DEFAULT_LOBBY_ORDER = ['featured-games', 'recently-played', 'slots', 'live-casino', 'live-sport', 'top-wins', 'promotions', 'providers'];
+  var DEFAULT_LOBBY_ORDER = ['live-sport', 'featured-games', 'recently-played', 'slots', 'live-casino', 'top-wins', 'promotions', 'providers'];
   var LOBBY_SECTION_LABELS = {
     'featured-games': 'Featured Games', 'recently-played': 'Recently played', slots: 'Slots', 'live-casino': 'Live Casino',
     'top-wins': 'Top wins', 'live-sport': 'Live sport', promotions: 'Promotions', providers: 'Providers'
