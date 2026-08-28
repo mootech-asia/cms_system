@@ -3371,12 +3371,16 @@ select.twk-field {
   50% { opacity: .35; transform: scale(.7); }
 }
 
-/* 即時體育區塊:左邊是播放器(黑底,16:9),右邊是賠率卡片兩排四欄的
-   格狀排列;.match-card 沿用既有樣式(隊徽/隊名/比分不動),只把原本的
+/* 即時體育區塊:左邊是播放器(黑底,16:9),右邊是賠率卡片橫向捲動的
+   單排列(比照 .match-rail 的橫向捲動寫法);.match-card 沿用既有樣式
+   (隊徽/隊名/比分不動,含 flex-shrink:0/min-width:220px),只把原本的
    Place Bet 按鈕換成 .match-odds 賠率格。 */
 .live-sport-row { display: flex; gap: 12px; align-items: flex-start; }
-.match-odds-grid { flex: 1 1 auto; min-width: 0; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; gap: 12px; }
-.match-odds-grid .match-card { min-width: 0; }
+.match-odds-grid {
+  flex: 1 1 auto; min-width: 0;
+  display: flex; align-items: flex-start; overflow-x: auto; gap: 12px;
+  scroll-snap-type: x proximity; padding-bottom: 4px;
+}
 .match-odds { display: grid; gap: 6px; margin-top: 12px; }
 .match-odds.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .match-odds.cols-2 { grid-template-columns: repeat(2, 1fr); }
