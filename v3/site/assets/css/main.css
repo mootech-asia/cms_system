@@ -3431,6 +3431,11 @@ select.twk-field {
 @media (max-width: 700px) {
   .live-sport-row { flex-direction: column; }
   .match-video-card { width: 100%; align-self: stretch; }
+  /* column 排列下 align-items:flex-start 讓子項目吃自己的 content 寬度,
+     .match-odds-grid 的 flex:1 1 auto 只在 row 排列時管用,這裡若不強制
+     width:100%,賠率卡片會攤平成全部展開的自然寬度(8張卡約2400px),把
+     整個頁面撐寬造成橫向捲動。 */
+  .match-odds-grid { width: 100%; }
   .match-video-card-play { width: 57px; height: 57px; }
 }
 
