@@ -3371,20 +3371,32 @@ select.twk-field {
   50% { opacity: .35; transform: scale(.7); }
 }
 
-/* 即時體育賽事卡片列的第一張卡直接是播放器介面(劇照 + 置中播放鍵 +
-   底部播放器控制列),跟 match-card 同一列、佔約 3 張卡片寬度,尺寸固定
-   4:3——這張卡比其他賽事卡高,align-self: flex-start 讓其餘卡片維持
-   原本高度,不會被撐高。 */
+/* 即時體育區塊:左邊是播放器(黑底,16:9),右邊是賠率卡片兩排四欄的
+   格狀排列;.match-card 沿用既有樣式(隊徽/隊名/比分不動),只把原本的
+   Place Bet 按鈕換成 .match-odds 賠率格。 */
+.live-sport-row { display: flex; gap: 12px; align-items: flex-start; }
+.match-odds-grid { flex: 1 1 auto; min-width: 0; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; gap: 12px; }
+.match-odds-grid .match-card { min-width: 0; }
+.match-odds { display: grid; gap: 6px; margin-top: 12px; }
+.match-odds.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.match-odds.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.match-odds-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+  padding: 6px 0; border-radius: var(--radius-sm); border: 1px solid var(--line);
+  background: var(--bg-card); font-family: inherit; cursor: pointer;
+}
+.match-odds-btn:hover { border-color: var(--accent); }
+.match-odds-label { font-size: 10px; color: var(--text-dim); font-weight: 700; }
+.match-odds-value { font-size: 12.5px; font-weight: 800; color: var(--text); }
+
+/* 播放器:黑底(不放照片),16:9,置中播放鍵 + 底部播放器控制列。 */
 .match-video-card {
   position: relative; flex-shrink: 0; align-self: flex-start;
-  width: 684px; aspect-ratio: 4 / 3; border-radius: var(--radius-card);
+  width: 280px; aspect-ratio: 16 / 9; border-radius: var(--radius-card);
   overflow: hidden; isolation: isolate; color: #f3f1ff;
+  background: #000;
 }
-.match-video-card-bg {
-  position: absolute; inset: 0;
-  background-position: center; background-size: cover; background-repeat: no-repeat;
-  z-index: -1;
-}
+.match-video-card-bg { display: none; }
 .match-video-card-play {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;
   width: 56px; height: 56px; border-radius: 50%;
