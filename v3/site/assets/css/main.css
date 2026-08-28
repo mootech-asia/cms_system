@@ -3371,12 +3371,14 @@ select.twk-field {
   50% { opacity: .35; transform: scale(.7); }
 }
 
-/* 即時體育區塊上方的直播影片區:整個區域是一個播放器介面(劇照 + 置中
-   播放鍵 + 底部播放器控制列),文案縮成左上角的小標題疊層,不是促銷橫幅。 */
+/* 即時體育區塊上方的直播影片區:整個區域直接就是播放器介面(劇照 + 置中
+   播放鍵 + 底部播放器控制列),不疊加文案——這個區塊是全新挖出來放
+   播放器用的,不像 v2 有既有文案要保留。 */
 .sport-video-hero {
   position: relative; margin-bottom: 14px; border-radius: var(--radius-xl);
   overflow: hidden; height: 248px; isolation: isolate; color: #f3f1ff;
 }
+.sport-video-hero-content { display: none; }
 .sport-video-hero-bg {
   position: absolute; inset: 0;
   background-position: center; background-size: cover; background-repeat: no-repeat;
