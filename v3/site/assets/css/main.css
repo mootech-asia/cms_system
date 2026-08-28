@@ -3425,8 +3425,9 @@ select.twk-field {
 .match-video-card-bar-progress { flex: 1 1 auto; height: 4px; border-radius: 9999px; background: rgba(255, 255, 255, .25); overflow: hidden; }
 .match-video-card-bar-fill { display: block; width: 100%; height: 100%; background: var(--live); }
 .match-video-card-bar-live { flex-shrink: 0; font-family: var(--font-mono); font-size: 13px; font-weight: 700; letter-spacing: .04em; color: var(--live); }
-@media (max-width: 720px) {
-  .match-video-card { width: 416px; }
+@media (max-width: 700px) {
+  .live-sport-row { flex-direction: column; }
+  .match-video-card { width: 100%; align-self: stretch; }
   .match-video-card-play { width: 57px; height: 57px; }
 }
 
