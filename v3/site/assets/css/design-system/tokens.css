@@ -1,10 +1,11 @@
 /* CMS v3 structural design tokens.
    Skin colors live in assets/skins/*.css. */
 :root {
-  /* Typography */
-  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
-  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* Typography — 全站統一用 Pretendard(assets/css/index.html 的
+     <link> 載入 https://cdn.jsdelivr.net/.../pretendard.css) */
+  --font-display: 'Pretendard', -apple-system, BlinkMacSystemFont, ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Pretendard', -apple-system, BlinkMacSystemFont, ui-monospace, monospace;
 
   --type-caption: 10.5px;
   --type-meta: 11.5px;
