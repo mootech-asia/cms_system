@@ -2458,16 +2458,21 @@ select.pay-field {
 /* is-video-player:區域拆成左邊獨立的播放器方塊(hero-player-box,劇照+
    置中播放鍵+底部播放器控制列)跟右邊的賽事文案面板(hero-text-panel,
    維持原本的字級/版面),不是播放器蓋掉整個促銷橫幅。 */
-.media-hero-art.is-video-player { display: flex; align-items: stretch; height: 248px; background-color: rgb(var(--c-surface-2) / 1); }
-.hero-player-box { position: relative; width: 320px; flex-shrink: 0; overflow: hidden; }
-.hero-text-panel { flex: 1 1 auto; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 0 28px; min-width: 0; }
+.media-hero-art.is-video-player { display: flex; align-items: flex-start; background-color: rgb(var(--c-surface-2) / 1); }
+.hero-player-box { position: relative; width: 320px; aspect-ratio: 4 / 3; flex-shrink: 0; overflow: hidden; }
+.hero-text-panel {
+  flex: 1 1 auto; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+  padding: 0 28px; min-width: 0; min-height: 240px; position: relative; overflow: hidden;
+  background-image: linear-gradient(to left, rgb(var(--c-scrim) / 0.35), rgb(var(--c-scrim) / 0.88) 55%), url("https://images.pexels.com/photos/30651230/pexels-photo-30651230.jpeg?auto=compress&cs=tinysrgb&w=1920");
+  background-position: 65% 50%; background-size: cover;
+}
 .hero-text-panel .live-sport-hero-badge { position: static; margin-bottom: 14px; }
 .media-hero-art.is-video-player .live-sport-hero-content { padding: 0; flex-direction: column; align-items: flex-start; justify-content: center; gap: 0; }
 .media-hero-art.is-video-player .live-sport-hero-copy { text-align: left; }
 .media-hero-art.is-video-player .live-sport-hero-decor { display: none; }
 @media (max-width: 900px) {
-  .media-hero-art.is-video-player { flex-direction: column; height: auto; }
-  .hero-player-box { width: 100%; height: 160px; }
+  .media-hero-art.is-video-player { flex-direction: column; }
+  .hero-player-box { width: 100%; }
   .hero-text-panel { padding: 14px 16px; }
 }
 .live-sport-hero-playerbar {
