@@ -4,7 +4,9 @@
     "v4": "Bet100",
     "v5": "IGNITE100",
     "v6": "APEX100",
-    "v3": "win100%"
+    "v3": "win100%",
+    "v1.5": "WIN10096",
+    "v2": "WIN100"
   },
   "entries": {
     "about.supportIntro": {
@@ -44,7 +46,8 @@
       "targets": {
         "v4": "about.tabFaq",
         "v5": "about.tabFaq",
-        "v6": "about.tabFaq"
+        "v6": "about.tabFaq",
+        "v1.5": "about.tabs.faq"
       },
       "zh": "常見問題",
       "en": "FAQ",
@@ -350,7 +353,8 @@
       "targets": {
         "v4": "auth.confirmPasswordLabel",
         "v5": "auth.confirmPasswordLabel",
-        "v6": "auth.confirmPasswordLabel"
+        "v6": "auth.confirmPasswordLabel",
+        "v1.5": "auth.confirmPassword"
       },
       "zh": "確認密碼",
       "en": "Confirm Password",
@@ -379,7 +383,8 @@
     },
     "auth.emailLabel": {
       "targets": {
-        "v4": "auth.emailLabel"
+        "v4": "auth.emailLabel",
+        "v1.5": "auth.email"
       },
       "zh": "電子信箱",
       "en": "Email",
@@ -440,7 +445,9 @@
         "v4": "auth.logout",
         "v5": "auth.logout",
         "v6": "auth.logout",
-        "v3": "Logout"
+        "v3": "Logout",
+        "v1.5": "userCenter.securityCenterPage.logout",
+        "v2": "auth.logout"
       },
       "zh": "登出",
       "en": "Logout",
@@ -605,7 +612,8 @@
       "targets": {
         "v4": "common.back",
         "v5": "common.back",
-        "v6": "common.back"
+        "v6": "common.back",
+        "v1.5": "common.back"
       },
       "zh": "返回",
       "en": "Back",
@@ -649,7 +657,8 @@
       "targets": {
         "v4": "common.notice",
         "v5": "common.notice",
-        "v6": "common.notice"
+        "v6": "common.notice",
+        "v1.5": "common.confirmation"
       },
       "zh": "提示",
       "en": "Notice",
@@ -671,7 +680,8 @@
       "targets": {
         "v4": "common.refresh",
         "v5": "common.refresh",
-        "v6": "common.refresh"
+        "v6": "common.refresh",
+        "v1.5": "userCenter.withdrawalPage.refresh"
       },
       "zh": "重新整理",
       "en": "Refresh",
@@ -759,7 +769,8 @@
       "targets": {
         "v4": "cp.currentPasswordPlaceholder",
         "v5": "cp.currentPasswordPlaceholder",
-        "v6": "cp.currentPasswordPlaceholder"
+        "v6": "cp.currentPasswordPlaceholder",
+        "v1.5": "userCenter.changePassword.currentPlaceholder"
       },
       "zh": "請輸入目前密碼",
       "en": "Please enter current password",
@@ -781,7 +792,8 @@
       "targets": {
         "v4": "cp.newPassword",
         "v5": "cp.newPassword",
-        "v6": "cp.newPassword"
+        "v6": "cp.newPassword",
+        "v1.5": "auth.newPassword"
       },
       "zh": "新密碼",
       "en": "New Password",
@@ -803,7 +815,8 @@
       "targets": {
         "v4": "cs.chatAutoReply",
         "v5": "cs.chatAutoReply",
-        "v6": "cs.chatAutoReply"
+        "v6": "cs.chatAutoReply",
+        "v1.5": "sidebar.chatAutoReply"
       },
       "zh": "感謝您的訊息，客服人員將盡快回覆，請稍候。",
       "en": "Thanks for your message — a support agent will reply shortly.",
@@ -814,7 +827,8 @@
       "targets": {
         "v4": "cs.chatClose",
         "v5": "cs.chatClose",
-        "v6": "cs.chatClose"
+        "v6": "cs.chatClose",
+        "v1.5": "sidebar.chatClose"
       },
       "zh": "關閉",
       "en": "Close",
@@ -825,7 +839,8 @@
       "targets": {
         "v4": "cs.chatGreeting",
         "v5": "cs.chatGreeting",
-        "v6": "cs.chatGreeting"
+        "v6": "cs.chatGreeting",
+        "v1.5": "sidebar.chatGreeting"
       },
       "zh": "您好，有什麼能為您服務的嗎？客服人員將盡快為您回覆。",
       "en": "Hi there! How can we help? A support agent will reply shortly.",
@@ -836,7 +851,8 @@
       "targets": {
         "v4": "cs.chatMinimize",
         "v5": "cs.chatMinimize",
-        "v6": "cs.chatMinimize"
+        "v6": "cs.chatMinimize",
+        "v1.5": "sidebar.chatMinimize"
       },
       "zh": "縮小",
       "en": "Minimize",
@@ -847,7 +863,8 @@
       "targets": {
         "v4": "cs.chatOnline",
         "v5": "cs.chatOnline",
-        "v6": "cs.chatOnline"
+        "v6": "cs.chatOnline",
+        "v1.5": "sidebar.chatOnline"
       },
       "zh": "線上",
       "en": "Online",
@@ -858,7 +875,8 @@
       "targets": {
         "v4": "cs.chatPlaceholder",
         "v5": "cs.chatPlaceholder",
-        "v6": "cs.chatPlaceholder"
+        "v6": "cs.chatPlaceholder",
+        "v1.5": "sidebar.chatPlaceholder"
       },
       "zh": "輸入訊息…",
       "en": "Type a message…",
@@ -869,7 +887,8 @@
       "targets": {
         "v4": "cs.chatSend",
         "v5": "cs.chatSend",
-        "v6": "cs.chatSend"
+        "v6": "cs.chatSend",
+        "v1.5": "sidebar.chatSend"
       },
       "zh": "傳送",
       "en": "Send",
@@ -968,7 +987,8 @@
       "targets": {
         "v4": "dp.channelA",
         "v5": "dp.channelA",
-        "v6": "dp.channelA"
+        "v6": "dp.channelA",
+        "v1.5": "userCenter.depositPage.channelA"
       },
       "zh": "通道 A",
       "en": "Channel A",
@@ -979,7 +999,8 @@
       "targets": {
         "v4": "dp.channelB",
         "v5": "dp.channelB",
-        "v6": "dp.channelB"
+        "v6": "dp.channelB",
+        "v1.5": "userCenter.depositPage.channelB"
       },
       "zh": "通道 B",
       "en": "Channel B",
@@ -990,7 +1011,8 @@
       "targets": {
         "v4": "dp.channelC",
         "v5": "dp.channelC",
-        "v6": "dp.channelC"
+        "v6": "dp.channelC",
+        "v1.5": "userCenter.depositPage.channelC"
       },
       "zh": "通道 C",
       "en": "Channel C",
@@ -1001,7 +1023,8 @@
       "targets": {
         "v4": "dp.channelD",
         "v5": "dp.channelD",
-        "v6": "dp.channelD"
+        "v6": "dp.channelD",
+        "v1.5": "userCenter.depositPage.channelD"
       },
       "zh": "通道 D",
       "en": "Channel D",
@@ -1034,7 +1057,9 @@
       "targets": {
         "v4": "dp.copied",
         "v5": "dp.copied",
-        "v6": "dp.copied"
+        "v6": "dp.copied",
+        "v1.5": "userCenter.depositPage.copied",
+        "v2": "deposit.qr.copied"
       },
       "zh": "已複製",
       "en": "Copied",
@@ -1045,7 +1070,9 @@
       "targets": {
         "v4": "dp.copy",
         "v5": "dp.copy",
-        "v6": "dp.copy"
+        "v6": "dp.copy",
+        "v1.5": "userCenter.depositPage.copy",
+        "v2": "deposit.qr.copy"
       },
       "zh": "複製",
       "en": "Copy",
@@ -1770,7 +1797,8 @@
       "targets": {
         "v4": "game.favorite",
         "v5": "game.favorite",
-        "v6": "game.favorite"
+        "v6": "game.favorite",
+        "v1.5": "gameList.options.favorite"
       },
       "zh": "收藏",
       "en": "Favorite",
@@ -1858,7 +1886,9 @@
       "targets": {
         "v4": "game.search",
         "v5": "game.search",
-        "v6": "game.search"
+        "v6": "game.search",
+        "v1.5": "common.search",
+        "v2": "action.search"
       },
       "zh": "搜尋",
       "en": "Search",
@@ -2562,7 +2592,8 @@
       "targets": {
         "v4": "nav.member",
         "v5": "nav.member",
-        "v6": "nav.member"
+        "v6": "nav.member",
+        "v1.5": "navbar.bottom.account"
       },
       "zh": "會員",
       "en": "Account",
@@ -2596,7 +2627,8 @@
       "targets": {
         "v4": "nav.promotion",
         "v5": "nav.promotion",
-        "v6": "nav.promotion"
+        "v6": "nav.promotion",
+        "v1.5": "userCenter.depositPage.promotions"
       },
       "zh": "優惠活動",
       "en": "Promotions",
@@ -2617,7 +2649,8 @@
         "v4": "nav.slots",
         "v5": "nav.slots",
         "v6": "nav.slots",
-        "v3": "Slots"
+        "v3": "Slots",
+        "v2": "nav.slots"
       },
       "zh": "老虎機",
       "en": "Slots",
@@ -2629,7 +2662,8 @@
         "v4": "nav.sport",
         "v5": "nav.sport",
         "v6": "nav.sport",
-        "v3": "Sports"
+        "v3": "Sports",
+        "v2": "nav.sports"
       },
       "zh": "體育",
       "en": "Sports",
@@ -2684,7 +2718,8 @@
       "targets": {
         "v4": "pay.bankCard",
         "v5": "pay.bankCard",
-        "v6": "pay.bankCard"
+        "v6": "pay.bankCard",
+        "v1.5": "userCenter.withdrawalPage.bankCard"
       },
       "zh": "銀行卡",
       "en": "Bank Card",
@@ -2761,7 +2796,8 @@
       "targets": {
         "v4": "pi.nickname",
         "v5": "pi.nickname",
-        "v6": "pi.nickname"
+        "v6": "pi.nickname",
+        "v1.5": "userCenter.nickname"
       },
       "zh": "暱稱",
       "en": "Nickname",
@@ -2783,7 +2819,8 @@
       "targets": {
         "v4": "pi.realName",
         "v5": "pi.realName",
-        "v6": "pi.realName"
+        "v6": "pi.realName",
+        "v1.5": "auth.realName"
       },
       "zh": "真實姓名",
       "en": "Real Name",
@@ -3279,7 +3316,8 @@
         "v4": "record.activityName",
         "v5": "record.activityName",
         "v6": "record.activityName",
-        "v3": "Activity Name"
+        "v3": "Activity Name",
+        "v1.5": "userCenter.withdrawalDetailPage.activityName"
       },
       "zh": "活動名稱",
       "en": "Activity Name",
@@ -3290,7 +3328,8 @@
       "targets": {
         "v4": "record.bankName",
         "v5": "record.bankName",
-        "v6": "record.bankName"
+        "v6": "record.bankName",
+        "v1.5": "userCenter.common.headers.bankName"
       },
       "zh": "銀行名稱",
       "en": "Bank Name",
@@ -3312,7 +3351,8 @@
       "targets": {
         "v4": "record.betAmount",
         "v5": "record.betAmount",
-        "v6": "record.betAmount"
+        "v6": "record.betAmount",
+        "v1.5": "userCenter.common.headers.betAmount"
       },
       "zh": "投注金額",
       "en": "Bet Amount",
@@ -3367,7 +3407,8 @@
       "targets": {
         "v4": "record.currentBalance",
         "v5": "record.currentBalance",
-        "v6": "record.currentBalance"
+        "v6": "record.currentBalance",
+        "v1.5": "userCenter.common.headers.currentBalance"
       },
       "zh": "目前餘額",
       "en": "Current Balance",
@@ -3379,7 +3420,8 @@
         "v4": "record.date",
         "v5": "record.date",
         "v6": "record.date",
-        "v3": "Date"
+        "v3": "Date",
+        "v1.5": "userCenter.common.headers.date"
       },
       "zh": "日期",
       "en": "Date",
@@ -3423,7 +3465,8 @@
       "targets": {
         "v4": "record.game",
         "v5": "record.game",
-        "v6": "record.game"
+        "v6": "record.game",
+        "v1.5": "userCenter.common.headers.game"
       },
       "zh": "遊戲",
       "en": "Game",
@@ -3435,7 +3478,8 @@
         "v4": "record.gameName",
         "v5": "record.gameName",
         "v6": "record.gameName",
-        "v3": "Game Name"
+        "v3": "Game Name",
+        "v1.5": "common.gameName"
       },
       "zh": "遊戲名稱",
       "en": "Game Name",
@@ -3457,7 +3501,8 @@
       "targets": {
         "v4": "record.method",
         "v5": "record.method",
-        "v6": "record.method"
+        "v6": "record.method",
+        "v1.5": "userCenter.common.headers.method"
       },
       "zh": "方式",
       "en": "Method",
@@ -3513,7 +3558,8 @@
       "targets": {
         "v4": "record.remark",
         "v5": "record.remark",
-        "v6": "record.remark"
+        "v6": "record.remark",
+        "v1.5": "userCenter.common.headers.remarkHeader"
       },
       "zh": "備註",
       "en": "Remark",
@@ -3546,7 +3592,8 @@
       "targets": {
         "v4": "record.settleTime",
         "v5": "record.settleTime",
-        "v6": "record.settleTime"
+        "v6": "record.settleTime",
+        "v1.5": "userCenter.common.headers.settlementTime"
       },
       "zh": "結算時間",
       "en": "Settlement Time",
@@ -3645,7 +3692,8 @@
       "targets": {
         "v4": "record.txAmount",
         "v5": "record.txAmount",
-        "v6": "record.txAmount"
+        "v6": "record.txAmount",
+        "v1.5": "userCenter.common.headers.transactionAmount"
       },
       "zh": "交易金額",
       "en": "Transaction Amount",
@@ -3656,7 +3704,8 @@
       "targets": {
         "v4": "record.txNo",
         "v5": "record.txNo",
-        "v6": "record.txNo"
+        "v6": "record.txNo",
+        "v1.5": "userCenter.common.headers.transactionNo"
       },
       "zh": "交易編號",
       "en": "Transaction No.",
@@ -3667,7 +3716,8 @@
       "targets": {
         "v4": "record.txType",
         "v5": "record.txType",
-        "v6": "record.txType"
+        "v6": "record.txType",
+        "v1.5": "userCenter.common.headers.transactionType"
       },
       "zh": "交易類型",
       "en": "Transaction Type",
@@ -3679,7 +3729,8 @@
         "v4": "record.type",
         "v5": "record.type",
         "v6": "record.type",
-        "v3": "Type"
+        "v3": "Type",
+        "v1.5": "common.type"
       },
       "zh": "類型",
       "en": "Type",
@@ -3690,7 +3741,8 @@
       "targets": {
         "v4": "record.validBet",
         "v5": "record.validBet",
-        "v6": "record.validBet"
+        "v6": "record.validBet",
+        "v1.5": "userCenter.common.headers.validBet"
       },
       "zh": "有效投注",
       "en": "Valid Bet",
@@ -3723,7 +3775,8 @@
       "targets": {
         "v4": "remark.birthdayGift",
         "v5": "remark.birthdayGift",
-        "v6": "remark.birthdayGift"
+        "v6": "remark.birthdayGift",
+        "v2": "promo.birthdayGift"
       },
       "zh": "生日禮金",
       "en": "Birthday Gift",
@@ -3756,7 +3809,8 @@
       "targets": {
         "v4": "remark.firstDepositBonus100",
         "v5": "remark.firstDepositBonus100",
-        "v6": "remark.firstDepositBonus100"
+        "v6": "remark.firstDepositBonus100",
+        "v2": "promo.firstDeposit100"
       },
       "zh": "首存加碼100%",
       "en": "First Deposit Bonus 100%",
@@ -3789,7 +3843,8 @@
       "targets": {
         "v4": "remark.sunDeposit",
         "v5": "remark.sunDeposit",
-        "v6": "remark.sunDeposit"
+        "v6": "remark.sunDeposit",
+        "v2": "promo.sunDeposit"
       },
       "zh": "週日充值贈",
       "en": "Sunday Deposit Bonus",
@@ -3811,7 +3866,8 @@
       "targets": {
         "v4": "remark.vipBonus",
         "v5": "remark.vipBonus",
-        "v6": "remark.vipBonus"
+        "v6": "remark.vipBonus",
+        "v2": "promo.vipExclusiveBonus"
       },
       "zh": "VIP專屬彩金",
       "en": "VIP Exclusive Bonus",
@@ -3822,7 +3878,8 @@
       "targets": {
         "v4": "remark.wedDeposit10",
         "v5": "remark.wedDeposit10",
-        "v6": "remark.wedDeposit10"
+        "v6": "remark.wedDeposit10",
+        "v2": "promo.wedDeposit10"
       },
       "zh": "週三存款贈10%",
       "en": "Wednesday Deposit Bonus 10%",
@@ -3932,7 +3989,8 @@
       "targets": {
         "v4": "sec.personalInfoTitle",
         "v5": "sec.personalInfoTitle",
-        "v6": "sec.personalInfoTitle"
+        "v6": "sec.personalInfoTitle",
+        "v1.5": "userCenter.personalInfo"
       },
       "zh": "個人資料",
       "en": "Personal Info",
@@ -3943,7 +4001,8 @@
       "targets": {
         "v4": "sidebar.accountRecord",
         "v5": "sidebar.accountRecord",
-        "v6": "sidebar.accountRecord"
+        "v6": "sidebar.accountRecord",
+        "v1.5": "userCenter.sidebar.accountRecord"
       },
       "zh": "帳戶紀錄",
       "en": "Account Record",
@@ -3954,7 +4013,8 @@
       "targets": {
         "v4": "sidebar.bettingRecord",
         "v5": "sidebar.bettingRecord",
-        "v6": "sidebar.bettingRecord"
+        "v6": "sidebar.bettingRecord",
+        "v1.5": "userCenter.sidebar.bettingRecord"
       },
       "zh": "投注紀錄",
       "en": "Betting Record",
@@ -4010,7 +4070,8 @@
         "v4": "sidebar.personalInfo",
         "v5": "sidebar.personalInfo",
         "v6": "sidebar.personalInfo",
-        "v3": "Personal Info"
+        "v3": "Personal Info",
+        "v1.5": "userCenter.sidebar.personalInfo"
       },
       "zh": "個人資料",
       "en": "Personal Info",
@@ -4033,7 +4094,8 @@
         "v4": "sidebar.security",
         "v5": "sidebar.security",
         "v6": "sidebar.security",
-        "v3": "Security Center"
+        "v3": "Security Center",
+        "v1.5": "userCenter.sidebar.securityCenter"
       },
       "zh": "安全中心",
       "en": "Security Center",
@@ -4044,7 +4106,8 @@
       "targets": {
         "v4": "sidebar.withdrawal",
         "v5": "sidebar.withdrawal",
-        "v6": "sidebar.withdrawal"
+        "v6": "sidebar.withdrawal",
+        "v1.5": "userCenter.withdrawal"
       },
       "zh": "提款",
       "en": "Withdrawal",
@@ -4066,7 +4129,8 @@
       "targets": {
         "v4": "sidebar.withdrawalRecord",
         "v5": "sidebar.withdrawalRecord",
-        "v6": "sidebar.withdrawalRecord"
+        "v6": "sidebar.withdrawalRecord",
+        "v1.5": "userCenter.sidebar.withdrawalRecord"
       },
       "zh": "提款紀錄",
       "en": "Withdrawal Record",
@@ -4111,7 +4175,8 @@
     },
     "signup.next": {
       "targets": {
-        "v5": "signup.next"
+        "v5": "signup.next",
+        "v1.5": "common.next"
       },
       "zh": "下一步",
       "en": "Next",
@@ -4775,7 +4840,8 @@
       "targets": {
         "v4": "wd.addAccount",
         "v5": "wd.addAccount",
-        "v6": "wd.addAccount"
+        "v6": "wd.addAccount",
+        "v1.5": "userCenter.withdrawalPage.addAccount"
       },
       "zh": "新增帳戶",
       "en": "Add Account",
@@ -4863,7 +4929,8 @@
       "targets": {
         "v4": "wd.availableAmount",
         "v5": "wd.availableAmount",
-        "v6": "wd.availableAmount"
+        "v6": "wd.availableAmount",
+        "v1.5": "userCenter.withdrawalPage.availableAmount"
       },
       "zh": "可用金額",
       "en": "Available Amount",
@@ -4907,7 +4974,8 @@
       "targets": {
         "v4": "wd.centralWallet",
         "v5": "wd.centralWallet",
-        "v6": "wd.centralWallet"
+        "v6": "wd.centralWallet",
+        "v1.5": "userCenter.withdrawalPage.centralWallet"
       },
       "zh": "中心錢包",
       "en": "Central Wallet",
@@ -5083,7 +5151,8 @@
       "targets": {
         "v4": "wd.selectWalletType",
         "v5": "wd.selectWalletType",
-        "v6": "wd.selectWalletType"
+        "v6": "wd.selectWalletType",
+        "v1.5": "userCenter.withdrawalPage.selectWalletType"
       },
       "zh": "請選擇錢包類型",
       "en": "Please select wallet type",
@@ -5172,7 +5241,8 @@
       "targets": {
         "v4": "wd.walletInfo",
         "v5": "wd.walletInfo",
-        "v6": "wd.walletInfo"
+        "v6": "wd.walletInfo",
+        "v1.5": "userCenter.withdrawalPage.walletInfo"
       },
       "zh": "錢包資訊",
       "en": "Wallet Information",
@@ -5183,7 +5253,8 @@
       "targets": {
         "v4": "wd.withdrawAmount",
         "v5": "wd.withdrawAmount",
-        "v6": "wd.withdrawAmount"
+        "v6": "wd.withdrawAmount",
+        "v1.5": "userCenter.withdrawalAmount"
       },
       "zh": "提款金額",
       "en": "Withdrawal Amount",

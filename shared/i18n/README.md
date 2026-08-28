@@ -12,7 +12,7 @@
    ```
    node shared/i18n/sync.js
    ```
-   會把 `master.json` 的內容套用回 `v3/v4/v5/v6` 各自的 `assets/js/i18n.js`
+   會把 `master.json` 的內容套用回 `v1.5/v2/v3/v4/v5/v6` 各自的翻譯檔案
    (只套用到該版本 `targets` 裡有列出的 key)。
 3. 想先看會改哪些檔案、不實際寫入,加 `--dry-run`:
    ```
@@ -67,23 +67,44 @@
   新增區塊裡沒有的 key。
 - `v3-nav-store.js` — 解析/寫回 v3 巢狀結構裡的 `nav` 命名空間(`TRANSLATIONS.<locale>.nav.<key>`)。
   只支援就地替換既有 key,不支援新增。
-- `sync.js` — 讀 `master.json`,依版本分別用 `flat-store.js`(v4/v5/v6)或 `v3-nav-store.js`(v3)
-  套用回各版本 `i18n.js`;不會更動其他程式邏輯、既有排版、註解或未被 master 涵蓋的 key。
+- `dict-store.js` — 解析/寫回 v1.5、v2(`assets/js/data.js`)共用的「locale -> {key: value}」兩層
+  字典結構(`var I18N = { zh: {...}, en: {...}, ... }`)。locale 名稱可為裸識別字(v1.5)或加引號
+  字串(v2),自動判斷;引號風格可指定 `single`/`double` 沿用各檔案原本慣例。只支援就地替換既有
+  key,不支援新增。
+- `sync.js` — 讀 `master.json`,依版本分別用 `flat-store.js`(v4/v5/v6)、`v3-nav-store.js`(v3)
+  或 `dict-store.js`(v1.5/v2)套用回各版本翻譯檔案;不會更動其他程式邏輯、既有排版、註解或未被
+  master 涵蓋的 key。
 - `build-master.js` — 一次性工具,當初用來從既有的 v4/v5/v6 `i18n.js` 反推出第一版
   `master.json`。之後不會再執行,保留是為了留下產生方式的紀錄。
-- `test-flat-store.js` / `test-v3-nav-store.js` — 對應兩個 store 模組的最小自我測試
-  (round-trip 一致性、新增/替換 key 正確性)。
+- `test-flat-store.js` / `test-v3-nav-store.js` / `test-dict-store.js` — 對應各 store 模組的
+  最小自我測試(round-trip 一致性、新增/替換 key 正確性)。
 
 ## 目前涵蓋範圍
 
 - ✅ v4 / v5 / v6:三版共用同一套扁平 key 命名慣例,`master.json` 目前已完整涵蓋(487 個 key,
   含只有單一版本使用的 key)。
 - 🟡 v3:資料結構不同(巢狀命名空間 `TRANSLATIONS.nav.Lobby`,而非扁平 `'nav.lobby'`),用
-  `v3-nav-store.js` 解析/寫回。目前只對應到 `nav` 命名空間裡跟 v4/v5/v6 內容**逐字完全相同
+  `v3-nav-store.js` 解析/寫回。目前只對應到 `nav` 命名空間裡跟其他版本內容**逐字完全相同
   (四種語言都一樣)**的 15 個 key(導覽/側邊欄/紀錄表格欄位等),其餘 v3 自己的內容
   (`common`/`footer`/`topbar`/`deposit`/`modal`/`studio` 命名空間,以及 `HERO_COPY`/
   `PROMOTION_COPY`/`PROMO_RIBBON_COPY`/`TOURNAMENT_COPY`/`SPOTLIGHT_COPY` 等 v3 專屬結構、
   其餘版本沒有對應內容)仍照舊直接編輯 v3 自己的 `i18n.js`。
   另外 `v3-nav-store.js` 目前只能**更新既有 key**,不支援新增——這 15 個 key 在 v3 原本就存在,
   之後若要讓 master.json 新增的 key 也同步進 v3,要先擴充這支工具的新增邏輯。
-- ⏳ v1.5 / v2:完全沒有 i18n 機制,尚未整合。
+- 🟡 v1.5:**有完整的 `data-i18n` 屬性機制**(跟 v3/v4/v5/v6 同款做法,只是翻譯資料放在
+  `assets/js/data.js` 的 `I18N` 物件,語系只有 zh/ko/en,沒有 th)。目前對應到跟其他版本內容
+  逐字相同的 58 個 key,同樣只支援更新既有 key、不支援新增。
+- 🟡 v2:**有完整翻譯資料,但换語系機制是「精確字串比對换字」而非 `data-i18n` 屬性**
+  (`applyLocale()` 用 zh/en/ko/th 四語系字典建 swap map,掃過整棵 DOM tree 比對文字節點/
+  `placeholder`/`aria-label`/`title`/`alt` 屬性做替換,見 `cms-scaffold` 技能裡對這個機制優缺點
+  的完整說明)。`master.json` 目前對應到 11 個逐字相同的 key,其餘沿用 v2 自己的 `I18N`/
+  `FAQ_ZH`/`SWEEP_PAIRS` 等資料結構,`dict-store.js` 目前只處理 `I18N` 這個子物件,`FAQ_ZH`/
+  `SWEEP_PAIRS`(en 字串當 key 的字典)尚未納入。
+
+## 已知限制:同值巧合 vs 真正共用內容
+
+比對過程中發現不少「現在文字剛好一樣、但其實是不同語意概念」的候選(例如「Slots」這個字同時
+出現在主導覽連結、行動版導覽、促銷標籤三個不同地方,現在剛好都翻一樣,但本來就是三個獨立的
+客製化點),這類候選**刻意不**加進 `targets`,避免以後只改其中一處卻意外連動改到語意不同的
+內容。新增 target 對應時請比照這個原則:先確認是「同一個 UI 元素/同一句話」,不是「現在剛好
+文字相同」,再決定要不要共用。

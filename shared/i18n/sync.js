@@ -6,17 +6,23 @@ const fs = require('fs');
 const path = require('path');
 const flatStore = require('./flat-store');
 const v3NavStore = require('./v3-nav-store');
+const dictStore = require('./dict-store');
 
 const VERSION_FILE = {
   v3: '../../v3/site/assets/js/i18n.js',
   v4: '../../v4/site/assets/js/i18n.js',
   v5: '../../v5/site/assets/js/i18n.js',
   v6: '../../v6/site/assets/js/i18n.js',
+  'v1.5': '../../v1.5/site/assets/js/data.js',
+  v2: '../../v2/site/assets/js/data.js',
 };
 // v3 的資料結構跟 v4/v5/v6 不同(巢狀命名空間,而非扁平字串表),用專用的
 // v3-nav-store 處理;目前只支援 nav 命名空間(master.json 裡跟 v3 對應的
 // key 目前都落在這裡),且只能更新既有 key、不能新增。
 const FLAT_VERSIONS = new Set(['v4', 'v5', 'v6']);
+// v1.5/v2 是 locale -> {key: value} 兩層字典(在各自的 data.js 裡),用
+// dict-store 處理;引號風格沿用各檔案原本慣例(v1.5 單引號、v2 雙引號)。
+const DICT_VERSIONS = { 'v1.5': 'single', v2: 'double' };
 
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
@@ -62,6 +68,9 @@ for (const version of versionsToSync) {
     updated = flatStore.apply(parsed, updates);
   } else if (version === 'v3') {
     updated = v3NavStore.applyNamespaceUpdates(original, 'nav', updates);
+  } else if (DICT_VERSIONS[version]) {
+    const loaded = dictStore.load(original, 'var I18N = {');
+    updated = dictStore.apply(original, loaded, updates, DICT_VERSIONS[version]);
   } else {
     throw new Error('未知版本的同步策略: ' + version);
   }
