@@ -73,8 +73,11 @@ img { display: block; }
 .sidebar-backdrop { display: none; }
 
 /* ── MOBILE BOTTOM NAV ──────────────────── */
+/* 斷點需跟 layout.css 的 .shell-mobile-nav(外層容器)一致(768px)。之前
+   這裡用900px,769~900px 這段外層容器還是display:none、內層卻已經是
+   display:grid,兩邊對不上導致這個寬度範圍的 nav bar 版面跑掉。 */
 .mobile-nav { display: none; }
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .mobile-nav {
     position: fixed;
     bottom: 0; left: 0; right: 0;
