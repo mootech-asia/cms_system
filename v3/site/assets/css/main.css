@@ -3396,7 +3396,7 @@ select.twk-field {
 /* 播放器:黑底(不放照片),16:9,置中播放鍵 + 底部播放器控制列。 */
 .match-video-card {
   position: relative; flex-shrink: 0; align-self: flex-start;
-  width: 364px; aspect-ratio: 16 / 9; border-radius: var(--radius-card);
+  width: 415px; aspect-ratio: 16 / 9; border-radius: var(--radius-card);
   overflow: hidden; isolation: isolate; color: #f3f1ff;
   background: #000;
 }
