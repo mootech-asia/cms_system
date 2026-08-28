@@ -2473,7 +2473,7 @@ select.pay-field {
 @media (max-width: 900px) {
   .media-hero-art.is-video-player { flex-direction: column; }
   .hero-player-box { width: 100%; }
-  .hero-text-panel { padding: 14px 16px; }
+  .hero-text-panel { display: none; }
 }
 .live-sport-hero-playerbar {
   position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
