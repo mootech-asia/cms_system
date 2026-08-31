@@ -3383,7 +3383,9 @@ select.twk-field {
   flex: 1 1 auto; min-width: 0;
   display: flex; align-items: flex-start; overflow-x: auto; gap: 16px;
   scroll-snap-type: x proximity; padding-bottom: 4px;
+  scrollbar-width: none;
 }
+.match-odds-grid::-webkit-scrollbar { display: none; }
 .match-odds { display: grid; gap: 8px; margin-top: 16px; }
 .match-odds.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .match-odds.cols-2 { grid-template-columns: repeat(2, 1fr); }
