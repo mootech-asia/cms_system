@@ -4184,6 +4184,72 @@ select.twk-field {
   .header-actions { gap: 6px; }
 }
 
+/* ── MOBILE LOBBY HEADER / SEARCH / HOT GAMES (≤768px) ──
+   Reference layout: avatar+name+balance (left) / notification bell (right)
+   sticky header, a search bar and a Hot Games rail sit between the hero
+   and the existing .cat-tabs bar. Desktop keeps .header-inner untouched. */
+.m-header,
+.m-search-wrap,
+.m-hotgames { display: none; }
+
+@media (max-width: 768px) {
+  /* 只有存在 .m-header 的頁面(目前僅大廳 index.html)才切換成行動版
+     頭部；沒有 .m-header 的頁面維持原本 .header-inner，避免頭部變空。 */
+  .header:has(.m-header) { height: auto; padding: 10px 0; }
+  .header:has(.m-header) .header-inner { display: none; }
+  .m-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+  }
+  .m-header-id {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    color: inherit;
+  }
+  .m-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .m-header-name {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: var(--type-body);
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .m-header-balance.tb-balance { padding: 3px 10px; }
+  .m-header-balance .tb-balance-row { font-size: 11.5px; }
+  .m-header-bell { position: relative; flex-shrink: 0; }
+  .m-header-badge {
+    position: absolute;
+    top: -2px; right: -2px;
+    min-width: 16px; height: 16px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: var(--live);
+    color: var(--text-on-danger);
+    font-size: 9.5px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+  }
+
+  .m-search-wrap { display: block; margin-top: 16px; }
+  .m-search { max-width: none; width: 100%; }
+
+  .m-hotgames { display: block; margin-top: 20px; }
+  .m-hotgames .rail-wrap { margin-top: 10px; }
+}
+
 
 /* topbar dropdown — two-line items (title + subtitle) */
 .tb-menu { width: 320px; }
