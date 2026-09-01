@@ -73,6 +73,23 @@
     text-overflow: ellipsis;
   }
 
+  /* 等級/獎勵卡整個壓扁：頭像從 58px 縮到 32px、字級與間距同步收緊，
+     維持原本三段式結構(頭像+暱稱／進度條／目前-下一等級)，只是高度
+     從約 160px 壓到 90px 上下，資訊沒有減少。 */
+  .rewards-banner { grid-template-columns: 1fr; gap: 8px; padding: 12px 14px; }
+  .rb-brand { gap: 10px; }
+  .rb-avatar-wrap { width: 32px; height: 32px; }
+  .rb-big-avatar { width: 32px !important; height: 32px !important; font-size: 10.5px !important; border-width: 1.5px !important; }
+  .rb-big-tier { width: 13px !important; height: 14px !important; bottom: -3px !important; }
+  .rb-big-tier svg { width: 8px; height: 9px; }
+  .rb-brand-text { gap: 1px; }
+  .rb-username { font-size: 14px; }
+  .rb-day { font-size: 10.5px; }
+  .rb-user { gap: 6px; }
+  .rb-progress-track { height: 6px; }
+  .rb-progress-meta { font-size: 10.5px; gap: 8px; }
+  .rb-tier-dot { width: 8px; height: 8px; }
+
   /* hero 高度比照 PC 版實際比例縮放，而不是手機斷點另外訂的固定高度
      (main.css 在 ≤700px 是 280px)。桌機在常見的 1440px 寬螢幕下量測
      實際 .hero 是 1148x380，高寬比 0.331，這裡用 aspect-ratio 換算成
