@@ -355,16 +355,6 @@
     renderCategoryView(section);
   }
 
-  /* Mobile lobby「熱門遊戲」預覽 rail（首頁 hero 與 .cat-tabs 之間），
-     資料沿用 CATEGORY_PARAMS['Hot Games']，維持與熱門遊戲頁一致的清單。
-     卡片仍是 .gcard，收藏/開啟 modal 等既有委派事件不用額外綁定。 */
-  function initMobileHotGames() {
-    var rail = document.querySelector('.m-hotgames .rail');
-    if (!rail) return;
-    var games = CATEGORY_PARAMS['Hot Games'].games.slice(0, 10);
-    rail.innerHTML = games.map(function (g) { return gameCardHTML(g, false); }).join('');
-  }
-
   /* ============================================================
    * Promos（cat-tabs）+ 動態重繪／導頁
    * ========================================================== */
@@ -2515,7 +2505,6 @@
     safe(applyStudioChromeNow);
     safe(applySavedBanners);
     safe(initHero);
-    safe(initMobileHotGames);
     safe(initRails);
     safe(initPromosAndCategoryViews);
     safe(initLeaderboard);
