@@ -72,4 +72,23 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  /* hero 高度比照 PC 版實際比例縮放，而不是手機斷點另外訂的固定高度
+     (main.css 在 ≤700px 是 280px)。桌機在常見的 1440px 寬螢幕下量測
+     實際 .hero 是 1148x380，高寬比 0.331，這裡用 aspect-ratio 換算成
+     3:1 沿用同一個比例，寬度依手機容器實際寬度自動撐開高度。 */
+  .hero { height: auto; aspect-ratio: 3 / 1; }
+  .hero-content { padding: 16px 18px; }
+  .hero-title { font-size: clamp(16px, 5.5vw, 22px); margin: 0 0 4px; line-height: 1.12; }
+  .hero-sub {
+    font-size: 11.5px;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+  .hero-eyebrow { margin-bottom: 6px; }
+  .hero-dots { bottom: 10px; }
+  .hero-controls { bottom: 8px; right: 12px; }
 }
