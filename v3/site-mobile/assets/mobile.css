@@ -58,4 +58,18 @@
 
   .m-hotgames { display: block; margin-top: 20px; }
   .m-hotgames .rail-wrap { margin-top: 10px; }
+
+  /* 卡片盡量縮小但維持可點擊／看得清圖示：寬度從共用的 140px(compact)
+     降到 104px，一屏可以看到 3 張整卡 + 露出第 4 張；.gcard-title 在
+     main.css 已有 ellipsis，這裡只補 .gcard-provider 的安全截斷，避免
+     "Pragmatic Play" 這類較長供應商名稱在窄卡片上換行撐高卡片。 */
+  .m-hotgames .rail { grid-auto-columns: minmax(104px, 1fr); gap: 8px; }
+  .m-hotgames .gcard-meta { padding: 7px 8px 8px; gap: 1px; }
+  .m-hotgames .gcard-title { font-size: 12px; }
+  .m-hotgames .gcard-provider {
+    font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
