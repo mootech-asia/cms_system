@@ -2,6 +2,17 @@
 <html lang="en" data-theme="dark" data-skin="blue">
 <head>
   <meta charset="utf-8" />
+  <!-- 手機裝置判斷：只認實機手機 UA(不含平板)，符合就在畫面畫出來之前
+       轉往獨立的手機版大廳 ../site-mobile/。桌機／平板與其餘頁面(目前
+       手機版只做大廳)不受影響，也不會動到這頁本身的 RWD／CSS。 -->
+  <script>
+    (function () {
+      var ua = navigator.userAgent || '';
+      if (/iPhone|iPod|Android.*Mobile|Windows Phone|BlackBerry|Opera Mini|IEMobile/i.test(ua)) {
+        location.replace('../site-mobile/index.html' + location.search + location.hash);
+      }
+    })();
+  </script>
   <title>CMS_Frontend_v3</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
