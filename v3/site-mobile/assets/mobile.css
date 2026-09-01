@@ -1,0 +1,61 @@
+/* v3 手機版大廳（獨立頁面 site-mobile/index.html，不影響 ../site/ 原本
+   的 RWD／main.css）。本頁沿用 ../site/ 的 tokens／main.css／skins 元件
+   庫，這裡只在既有的 ≤768px 斷點內，把桌機版頭部換成行動版頭部，並加上
+   搜尋列／熱門遊戲 rail 這兩個新區塊；其餘（側欄抽屜、底部導覽列、
+   cat-tabs 分類切換…）都是 main.css 既有的手機版行為，維持不變。 */
+@media (max-width: 768px) {
+  .header { height: auto; padding: 10px 0; }
+  .header-inner { display: none; }
+
+  .m-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+  }
+  .m-header-id {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    color: inherit;
+  }
+  .m-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .m-header-name {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: var(--type-body);
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .m-header-balance.tb-balance { padding: 3px 10px; }
+  .m-header-balance .tb-balance-row { font-size: 11.5px; }
+  .m-header-bell { position: relative; flex-shrink: 0; }
+  .m-header-badge {
+    position: absolute;
+    top: -2px; right: -2px;
+    min-width: 16px; height: 16px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: var(--live);
+    color: var(--text-on-danger);
+    font-size: 9.5px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+  }
+
+  .m-search-wrap { display: block; margin-top: 16px; }
+  .m-search { max-width: none; width: 100%; }
+
+  .m-hotgames { display: block; margin-top: 20px; }
+  .m-hotgames .rail-wrap { margin-top: 10px; }
+}

@@ -1,0 +1,9 @@
+<!doctype html>
+<!-- 這裡只做手機版大廳(index.html)；其餘頁面沿用桌機/RWD既有版本，
+     由本頁轉址過去，避免 site.js 內既有的 location.href='mini-games.html'
+     等相對路徑導頁在 site-mobile/ 底下解析錯資料夾。 -->
+<html><head><meta charset="utf-8">
+<title>Redirecting…</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>location.replace('../site/mini-games.html' + location.search + location.hash);</script>
+</head><body></body></html>

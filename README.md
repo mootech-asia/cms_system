@@ -19,7 +19,8 @@ cms_system/
 │   └── studio/        # 設計後台（純 HTML+CSS+JS，iframe 預覽 site/，localStorage 同步）
 ├── v3/
 │   ├── site/         # Gaming Lobby 前台（純 HTML+CSS+JS）
-│   └── studio/        # 設計後台（同上）
+│   ├── studio/        # 設計後台（同上）
+│   └── site-mobile/   # 手機版大廳（獨立頁面；沿用 site/ 的 assets，其餘頁面轉址回 site/）
 ├── v4/
 │   ├── site/         # 紅金喜慶前台（純 HTML+CSS+JS）
 │   └── studio/        # 設計後台（同上）
