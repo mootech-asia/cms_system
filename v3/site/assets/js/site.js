@@ -1542,19 +1542,49 @@
   }
 
   /* ============================================================
-   * Security Center：sc-item 導覽（'Change Login Password'/
-   * 'Change Transaction Password' 兩項未定義去向，維持無動作)
+   * Security Center：sc-item 導覽 + 密碼變更彈窗（沿用 signin modal 的
+   * .modal.sm/.field 結構與 showDialog/resultDialogHTML 結果對話框，
+   * 無實際存檔動作，僅本地驗證欄位後顯示成功訊息）
    * ========================================================== */
+  function changePasswordDialogHTML(title) {
+    return '<div class="modal sm"><div class="modal-head">' +
+        '<div style="font-family: var(--font-display); font-weight: 700; font-size: 17px;">' + escapeHtml(title) + '</div>' +
+        '<button class="modal-close"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg></button>' +
+      '</div><div class="modal-body"><form data-cp-form>' +
+        '<div class="field"><label>Current Password</label><input type="password" data-cp-field="current" placeholder="••••••••"></div>' +
+        '<div class="field"><label>New Password</label><input type="password" data-cp-field="new" placeholder="••••••••"></div>' +
+        '<div class="field"><label>Confirm New Password</label><input type="password" data-cp-field="confirm" placeholder="••••••••"></div>' +
+        '<button type="submit" class="btn primary" style="width: 100%; padding: 12px; margin-top: 6px;">Confirm</button>' +
+      '</form></div></div>';
+  }
+  function openChangePasswordDialog(kind, title) {
+    var bg = showDialog(changePasswordDialogHTML(title));
+    var form = bg.querySelector('[data-cp-form]');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var current = form.querySelector('[data-cp-field="current"]').value.trim();
+      var pw1 = form.querySelector('[data-cp-field="new"]').value.trim();
+      var pw2 = form.querySelector('[data-cp-field="confirm"]').value.trim();
+      if (!current || !pw1 || !pw2) { showDialog(resultDialogHTML('warning', 'Notice', 'Please complete all fields.')); return; }
+      if (pw1 !== pw2) { showDialog(resultDialogHTML('warning', 'Notice', 'New password and confirmation do not match.')); return; }
+      bg.remove();
+      var msg = kind === 'transaction' ? 'Transaction password updated successfully.' : 'Login password updated successfully.';
+      showDialog(resultDialogHTML('success', 'Success!', msg));
+    });
+  }
   function initSecurityCenterPage() {
     var items = document.querySelectorAll('.sc-item');
     if (!items.length) return;
     var GO_MAP = { 'Personal Info': 'personal-info.html', 'Banking Details': 'withdrawal.html' };
+    var PW_KIND = { 'Change Login Password': 'login', 'Change Transaction Password': 'transaction' };
     Array.prototype.forEach.call(items, function (btn) {
       var nameEl = btn.querySelector('.sc-item-name');
       var name = nameEl ? nameEl.textContent.trim() : '';
       if (name === 'Logout') { btn.addEventListener('click', doLogout); return; }
       var target = GO_MAP[name];
-      if (target) btn.addEventListener('click', function () { location.href = target; });
+      if (target) { btn.addEventListener('click', function () { location.href = target; }); return; }
+      var kind = PW_KIND[name];
+      if (kind) btn.addEventListener('click', function () { openChangePasswordDialog(kind, name); });
     });
   }
 
