@@ -1067,6 +1067,7 @@
     var existing = wrap.querySelector('.tb-skin-menu');
     if (existing) { closeSkinMenu(); return; }
     closeUserMenu();
+    closeNotifMenu();
     var menu = document.createElement('div');
     wrap.appendChild(menu);
     renderSkinMenu(menu);
@@ -1124,8 +1125,53 @@
     var existing = document.querySelector('.tb-menu');
     if (existing) { closeUserMenu(); return; }
     closeSkinMenu();
+    closeNotifMenu();
     var wrap = circleBtn.closest('.tb-user-wrap');
     if (wrap) wrap.insertAdjacentHTML('beforeend', userMenuHTML());
+  }
+
+  /* ============================================================
+   * 手機版通知鈴鐺(.m-header-bell)下拉預覽：站上沒有真的通知資料
+   * 來源，這裡固定放 4 筆假訊息示意畫面長相，圖示複用側欄既有的
+   * 優惠/儲值紀錄/等級徽章 svg 路徑、登入安全圖示複用 MENU_ICONS.lock，
+   * 面板本身沿用桌機頭像選單的 .tb-menu/.tb-menu-item-2l 樣式，
+   * 沒有新增任何圖示或卡片樣式。
+   * ========================================================== */
+  var NOTIF_ICONS = {
+    gift: '<svg width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M12 9v12M3 13h18M12 9H8.5a2.5 2.5 0 1 1 2.2-3.7L12 9Zm0 0h3.5a2.5 2.5 0 1 0-2.2-3.7L12 9Z"/></g></svg>',
+    deposit: '<svg width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M12 4v12m0 0-4-4m4 4 4-4"/><path d="M4 20h16"/></g></svg>',
+    tier: '<svg width="14" height="16" viewBox="0 0 12 14" fill="currentColor"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"/></svg>'
+  };
+  var NOTIF_DATA = [
+    { icon: NOTIF_ICONS.gift, title: 'Weekend Reload Bonus', body: 'Deposit today and get 20% extra, up to $500.', time: '10m ago' },
+    { icon: NOTIF_ICONS.deposit, title: 'Deposit Successful', body: 'Your deposit of $200.00 has been credited.', time: '1h ago' },
+    { icon: NOTIF_ICONS.tier, title: "You're 62% to Bronze", body: 'Keep playing to unlock Bronze tier rewards.', time: '3h ago' },
+    { icon: MENU_ICONS.lock, title: 'New Login Detected', body: 'New login from 125.227.44.193. Not you? Change your password.', time: '1d ago' }
+  ];
+  function notifMenuHTML() {
+    var itemsHtml = NOTIF_DATA.map(function (n) {
+      return '<div class="tb-menu-item tb-menu-item-2l"><span class="tb-menu-ico">' + n.icon + '</span>' +
+        '<span class="tb-menu-2l-text">' +
+          '<span class="tb-menu-2l-name">' + escapeHtml(n.title) + '</span>' +
+          '<span class="tb-menu-2l-sub">' + escapeHtml(n.body) + '</span>' +
+          '<span class="tb-menu-2l-sub" style="opacity:.7">' + escapeHtml(n.time) + '</span>' +
+        '</span></div>';
+    }).join('');
+    return '<div class="tb-menu m-notif-menu">' +
+        '<div class="tb-menu-head"><div style="font-weight:700;font-size:14px;color:var(--text);">Notifications</div></div>' +
+        itemsHtml +
+      '</div>';
+  }
+  function closeNotifMenu() { var m = document.querySelector('.m-notif-menu'); if (m) m.remove(); }
+  function toggleNotifMenu(trigger) {
+    var wrap = trigger.closest('.m-header-bell-wrap');
+    if (!wrap) return;
+    var existing = wrap.querySelector('.m-notif-menu');
+    if (existing) { closeNotifMenu(); return; }
+    closeUserMenu();
+    closeSkinMenu();
+    closeLangMenu();
+    wrap.insertAdjacentHTML('beforeend', notifMenuHTML());
   }
 
   function doLogout() {
@@ -1204,6 +1250,8 @@
     if (langTrigger) { toggleLangMenu(langTrigger); return; }
     var langItem = t.closest('.sb-lang-item');
     if (langItem) { var loc = langItem.getAttribute('data-locale'); closeLangMenu(); if (loc) setLocale(loc); return; }
+    var bellTrigger = t.closest('.m-header-bell');
+    if (bellTrigger) { toggleNotifMenu(bellTrigger); return; }
 
     var collapseSidebarBtn = t.closest('.sb-collapse-money');
     if (collapseSidebarBtn) { var shell1 = document.querySelector('.shell'); var sbC = document.querySelector('.sidebar'); if (shell1) shell1.classList.add('collapsed'); if (sbC) sbC.classList.add('collapsed'); return; }
@@ -1313,6 +1361,8 @@
     if (openSkin && !t.closest('.tb-skin-wrap')) closeSkinMenu();
     var openLang = document.querySelector('.sb-lang-menu');
     if (openLang && !t.closest('.sb-lang-wrap')) closeLangMenu();
+    var openNotif = document.querySelector('.m-notif-menu');
+    if (openNotif && !t.closest('.m-header-bell-wrap')) closeNotifMenu();
 
     // 其餘裝飾用 href="#"（尚未特化處理者）避免跳頁
     var hashLink = t.closest('a[href="#"]');
@@ -1341,6 +1391,7 @@
     closeUserMenu();
     closeSkinMenu();
     closeLangMenu();
+    closeNotifMenu();
   }
 
   /* ============================================================
@@ -1392,7 +1443,7 @@
     if (!wrap) return;
     var existing = wrap.querySelector('.sb-lang-menu');
     if (existing) { closeLangMenu(); return; }
-    closeUserMenu(); closeSkinMenu();
+    closeUserMenu(); closeSkinMenu(); closeNotifMenu();
     var menu = document.createElement('div');
     wrap.appendChild(menu);
     renderLangMenu(menu);
