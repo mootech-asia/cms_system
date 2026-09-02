@@ -59,14 +59,19 @@
   .m-hotgames { display: block; margin-top: 20px; }
   .m-hotgames .rail-wrap { margin-top: 10px; }
 
-  /* 卡片盡量縮小但維持可點擊／看得清圖示：寬度從共用的 140px(compact)
-     降到 104px，一屏可以看到 3 張整卡 + 露出第 4 張；.gcard-title 在
+  /* 遊戲卡片全站(這支手機版頁面內)統一比照 Hot Games 的尺寸：寬度從
+     共用的 140px(compact)/170px(預設) 降到 104px，涵蓋 Slots／Live
+     Casino／Recently played 這幾條 rail，以及切到 Hot Games／Mini
+     Games／Slots／Live／Fish 分類頁時 renderCategoryView() 產生的
+     .grid。.rail-spotlight(主打遊戲那排大卡，附 CTA 文案)刻意排除，
+     它是不同尺寸/版型的元件，縮到 104px 文案會擠爆。.gcard-title 在
      main.css 已有 ellipsis，這裡只補 .gcard-provider 的安全截斷，避免
      "Pragmatic Play" 這類較長供應商名稱在窄卡片上換行撐高卡片。 */
-  .m-hotgames .rail { grid-auto-columns: minmax(104px, 1fr); gap: 8px; }
-  .m-hotgames .gcard-meta { padding: 7px 8px 8px; gap: 1px; }
-  .m-hotgames .gcard-title { font-size: 12px; }
-  .m-hotgames .gcard-provider {
+  .rail:not(.rail-spotlight) { grid-auto-columns: minmax(104px, 1fr); gap: 8px; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 8px; }
+  .gcard-meta { padding: 7px 8px 8px; gap: 1px; }
+  .gcard-title { font-size: 12px; }
+  .gcard-provider {
     font-size: 10px;
     white-space: nowrap;
     overflow: hidden;
