@@ -1104,11 +1104,12 @@
     var initials = escapeHtml(USER.name.slice(0, 2).toUpperCase());
     var items = [
       { label: tr('t.nav.Personal Info', '個人資料'), href: 'personal-info.html', icon: MENU_ICONS.person },
-      { label: tr('t.nav.Change Login Password', '變更登入密碼'), href: 'security-center.html', icon: MENU_ICONS.lock },
-      { label: tr('t.nav.Change Transaction Password', '變更交易密碼'), href: 'security-center.html', icon: MENU_ICONS.key }
+      { label: tr('t.nav.Change Login Password', '變更登入密碼'), href: '#', kind: 'login', icon: MENU_ICONS.lock },
+      { label: tr('t.nav.Change Transaction Password', '變更交易密碼'), href: '#', kind: 'transaction', icon: MENU_ICONS.key }
     ];
     var itemsHtml = items.map(function (it) {
-      return '<a href="' + it.href + '" class="tb-menu-item tb-menu-item-2l"><span class="tb-menu-ico">' + it.icon + '</span>' +
+      var kindAttr = it.kind ? ' data-action="open-change-password" data-cp-kind="' + it.kind + '"' : '';
+      return '<a href="' + it.href + '" class="tb-menu-item tb-menu-item-2l"' + kindAttr + '><span class="tb-menu-ico">' + it.icon + '</span>' +
         '<span class="tb-menu-2l-text"><span class="tb-menu-2l-name">' + it.label + '</span></span></a>';
     }).join('');
     return '<div class="tb-menu">' +
@@ -1181,6 +1182,13 @@
 
     var openSignin = t.closest('[data-action="open-signin"]');
     if (openSignin) { openSignInModal('signin'); return; }
+    var openChangePassword = t.closest('[data-action="open-change-password"]');
+    if (openChangePassword) {
+      e.preventDefault();
+      var cpTitleEl = openChangePassword.querySelector('.tb-menu-2l-name');
+      openChangePasswordDialog(openChangePassword.getAttribute('data-cp-kind'), cpTitleEl ? cpTitleEl.textContent.trim() : 'Change Password');
+      return;
+    }
     var openCs = t.closest('[data-action="open-cs"]');
     if (openCs) { showModalEl(document.getElementById('cms-modal-customerservice')); return; }
     var logoutBtn = t.closest('[data-action="logout"]');
