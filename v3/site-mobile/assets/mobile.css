@@ -189,7 +189,12 @@
      mask 不能直接套在 .mobile-nav 本身——那樣連裡面的凸起按鈕也會被
      一起挖掉(mask 是整個元素連子層一起裁切)，所以背景/邊框/模糊都搬到
      ::before 這層獨立圖層負責挖缺口，.mobile-nav 本體只留版位，按鈕
-     維持完整不被裁切。 */
+     維持完整不被裁切。
+     光挖缺口還不夠──缺口露出來的是頁面底色，跟導覽列自己的
+     --bg-elev 深淺太接近，實機上幾乎看不出曲線，跟純平板一樣。這裡
+     疊一層沿缺口邊緣的高亮弧線(半徑略大於挖空半徑，落在「已經恢復
+     不透明」的範圍內、不會被 mask 吃掉)，讓曲線本身有清楚的描邊可以
+     辨識，不是只靠背景色差。 */
   .mobile-nav {
     position: relative;
     background: none;
@@ -201,11 +206,13 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: var(--bg-elev);
+    background:
+      radial-gradient(circle at 50% 0, transparent 36px, color-mix(in oklch, var(--accent) 55%, var(--line-hi)) 36px, color-mix(in oklch, var(--accent) 55%, var(--line-hi)) 38px, transparent 38px),
+      var(--bg-elev);
     border-top: 1px solid var(--line);
     backdrop-filter: blur(14px);
-    -webkit-mask-image: radial-gradient(circle 34px at 50% 0, transparent 98%, #000 100%);
-    mask-image: radial-gradient(circle 34px at 50% 0, transparent 98%, #000 100%);
+    -webkit-mask-image: radial-gradient(circle at 50% 0, transparent 32px, #000 34px);
+    mask-image: radial-gradient(circle at 50% 0, transparent 32px, #000 34px);
   }
   .mnav-btn-raised .mnav-icon {
     width: 46px; height: 46px;
