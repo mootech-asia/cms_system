@@ -62,6 +62,8 @@
   var tabBtns = document.querySelectorAll('.m-quicknav-item[data-tab]');
   if (!scroller || !tabBtns.length) return;
   var pages = Array.prototype.slice.call(scroller.querySelectorAll('.m-tabpage'));
+  var programmatic = false;
+  var programmaticTimer = null;
 
   function setActive(tabName) {
     Array.prototype.forEach.call(tabBtns, function (btn) {
@@ -77,6 +79,13 @@
         if (pages[i].getAttribute('data-tab') === tabName) { idx = i; break; }
       }
       if (idx === -1) return;
+      /* 點擊當下到 smooth-scroll 動畫結束這段期間，捲動事件都算程式
+         觸發，下面滑動同步那段邏輯要跳過，不然動畫還在跑的中途值會
+         回頭把這裡剛設好的 active 蓋掉(連續快速點兩個圖示時尤其明顯，
+         active 會停在上一個分頁)。 */
+      programmatic = true;
+      if (programmaticTimer) clearTimeout(programmaticTimer);
+      programmaticTimer = setTimeout(function () { programmatic = false; }, 500);
       scroller.scrollTo({ left: idx * scroller.clientWidth, behavior: 'smooth' });
       setActive(tabName);
     });
@@ -86,6 +95,7 @@
   scroller.addEventListener('scroll', function () {
     if (scrollTimer) clearTimeout(scrollTimer);
     scrollTimer = setTimeout(function () {
+      if (programmatic) return;
       var idx = Math.round(scroller.scrollLeft / scroller.clientWidth);
       var page = pages[idx];
       if (page) setActive(page.getAttribute('data-tab'));

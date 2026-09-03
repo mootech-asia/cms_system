@@ -147,6 +147,15 @@
     text-overflow: ellipsis;
   }
 
+  /* 體育分頁：假的投注盤口設計。.match-card/.match-odds 都是既有的
+     桌機版元件(原本用在已移除的即時體育播放區塊)，桌機版是橫向捲動
+     的固定寬度卡片(min-width:286px)，這裡改成直式清單，卡片跟分頁區
+     一樣寬、逐一往下疊；賽事/賠率內容逐字沿用原本那組資料，只是拿掉
+     旁邊的播放器(依需求移除播放介面)。 */
+  .m-sports-list { display: flex; flex-direction: column; gap: 10px; padding-bottom: 12px; }
+  .m-sports-list .match-card { width: 100%; min-width: 0; }
+  .m-sports-list .match-card-body { padding: 14px; }
+
   /* hero 高度比照 PC 版實際比例縮放，而不是手機斷點另外訂的固定高度
      (main.css 在 ≤700px 是 280px)。桌機在常見的 1440px 寬螢幕下量測
      實際 .hero 是 1148x380，高寬比 0.331，這裡用 aspect-ratio 換算成
@@ -166,11 +175,37 @@
   .hero-dots { bottom: 10px; }
   .hero-controls { bottom: 8px; right: 12px; }
 
-  /* 底部導覽中間(儲值)凸起成圓形主按鈕，比照參考圖置中大按鈕的做法；
+  /* 底部導覽中間(首頁)凸起成圓形主按鈕，比照參考圖置中大按鈕的做法；
      其餘 4 個項目、底部導覽整體 grid/固定定位都沿用 main.css 既有規則
-     不動，這裡只加中間那顆的視覺凸起。 */
+     不動，這裡只加中間那顆的視覺凸起，以及下面 .mobile-nav 本身的
+     半圓缺口(讓凸起按鈕像嵌進導覽列裡，不是純粹疊在上面)。 */
   .mnav-btn-raised {
     margin-top: -22px;
+  }
+  /* 用 mask-image 的 radial-gradient 在導覽列頂部中央挖一個半圓透明
+     缺口，比照參考圖那種「按鈕嵌在缺口裡」的曲線設計，不用另外疊一張
+     SVG 曲線圖；缺口半徑(34px)比按鈕本身(46px 直徑+3px 邊框≈26px
+     半徑)略大，留一圈可以看到底色的縫隙，凸起按鈕才有立體感。
+     mask 不能直接套在 .mobile-nav 本身——那樣連裡面的凸起按鈕也會被
+     一起挖掉(mask 是整個元素連子層一起裁切)，所以背景/邊框/模糊都搬到
+     ::before 這層獨立圖層負責挖缺口，.mobile-nav 本體只留版位，按鈕
+     維持完整不被裁切。 */
+  .mobile-nav {
+    position: relative;
+    background: none;
+    border-top: 0;
+    backdrop-filter: none;
+  }
+  .mobile-nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--bg-elev);
+    border-top: 1px solid var(--line);
+    backdrop-filter: blur(14px);
+    -webkit-mask-image: radial-gradient(circle 34px at 50% 0, transparent 98%, #000 100%);
+    mask-image: radial-gradient(circle 34px at 50% 0, transparent 98%, #000 100%);
   }
   .mnav-btn-raised .mnav-icon {
     width: 46px; height: 46px;
