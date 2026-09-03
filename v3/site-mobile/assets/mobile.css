@@ -10,6 +10,15 @@
    標記區分，只有首頁的 <html> 有這個 class，才套用下面單畫面/不捲動
    那組規則。 */
 @media (max-width: 768px) {
+  /* .cat-tabs(桌機版常駐分類切換列)手機版跟底部導覽+首頁快速導覽
+     功能重複，視覺上隱藏——但不能直接從 HTML 移除，site.js 的
+     initPromosAndCategoryViews() 是用 document.querySelector('.cat-
+     tabs') 找不找得到來判斷「這是不是分類頁」，找到才會執行
+     mountCategoryView() 幫 .lobby-section 掛上 _cvParams，廠商篩選
+     (.cv-tab)/載入更多(.cv-view-all)都靠這個屬性才能運作。整個拿掉
+     .cat-tabs 元素會連帶讓這兩個功能失效(踩過這個雷)，只能用
+     display:none 隱藏，讓 querySelector 還找得到它。 */
+  .cat-tabs { display: none; }
   /* 側欄抽屜頂列：拿掉搜尋框(遊戲搜尋在大廳首頁的 .m-search 已經有，
      側欄選單本身不需要重複一份)，語系選擇跟關閉鈕併成同一行——
      .sidebar-search 這個 class 名稱維持不動(main.css 的
