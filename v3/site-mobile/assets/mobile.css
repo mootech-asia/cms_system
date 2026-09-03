@@ -182,38 +182,37 @@
   .mnav-btn-raised {
     margin-top: -22px;
   }
-  /* 用 mask-image 的 radial-gradient 在導覽列頂部中央挖一個半圓透明
-     缺口，比照參考圖那種「按鈕嵌在缺口裡」的曲線設計，不用另外疊一張
-     SVG 曲線圖；缺口半徑(34px)比按鈕本身(46px 直徑+3px 邊框≈26px
-     半徑)略大，留一圈可以看到底色的縫隙，凸起按鈕才有立體感。
-     mask 不能直接套在 .mobile-nav 本身——那樣連裡面的凸起按鈕也會被
-     一起挖掉(mask 是整個元素連子層一起裁切)，所以背景/邊框/模糊都搬到
-     ::before 這層獨立圖層負責挖缺口，.mobile-nav 本體只留版位，按鈕
-     維持完整不被裁切。
-     光挖缺口還不夠──缺口露出來的是頁面底色，跟導覽列自己的
-     --bg-elev 深淺太接近，實機上幾乎看不出曲線，跟純平板一樣。這裡
-     疊一層沿缺口邊緣的高亮弧線(半徑略大於挖空半徑，落在「已經恢復
-     不透明」的範圍內、不會被 mask 吃掉)，讓曲線本身有清楚的描邊可以
-     辨識，不是只靠背景色差。 */
+  /* 導覽列頂部中央的曲線缺口改用 SVG 路徑畫(.mnav-shape，index.html
+     裡 .mobile-nav 的第一個子元素)，不用 mask-image 的 radial-gradient
+     圓形挖孔——圓形挖孔的邊界跟平面交會處會是硬轉角(切線垂直於底線)，
+     跟參考圖那種左右兩側平滑接回水平邊的波浪曲線不是同一回事，radial
+     -gradient 做不出那種 S 型過渡，SVG 路徑用兩段三次貝茲曲線可以。
+     缺口的水平中心/曲線兩端座標都直接對齊凸起按鈕實際置中位置(SVG
+     viewBox 寬度取跟 .mobile-nav 常見寬度一致的 390，佔滿 100% 寬度、
+     preserveAspectRatio="none"，缺口中心永遠落在正中央，跟按鈕的
+     justify-items:center 是同一個基準)。
+     .mobile-nav 本身不能動 position——它從 main.css 繼承的就是
+     position:fixed(bottom:0;left:0;right:0)，這已經足夠當作 svg 的
+     absolute 定位基準，之前多寫一行 position:relative 覆蓋掉 fixed，
+     結果讓 .mobile-nav 變成 .shell-mobile-nav(display:flex) 底下會被
+     排版影響的一般 flex 子項目，寬度縮成內容自然寬度(實測390px的
+     viewport 只剩372px)，導覽列反而撐不滿整個寬度——這裡拿掉那個
+     覆蓋，維持原本的 fixed 定位即可。 */
   .mobile-nav {
-    position: relative;
     background: none;
     border-top: 0;
-    backdrop-filter: none;
+    backdrop-filter: blur(14px);
   }
-  .mobile-nav::before {
-    content: '';
+  .mnav-shape {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background:
-      radial-gradient(circle at 50% 0, transparent 36px, color-mix(in oklch, var(--accent) 55%, var(--line-hi)) 36px, color-mix(in oklch, var(--accent) 55%, var(--line-hi)) 38px, transparent 38px),
-      var(--bg-elev);
-    border-top: 1px solid var(--line);
-    backdrop-filter: blur(14px);
-    -webkit-mask-image: radial-gradient(circle at 50% 0, transparent 32px, #000 34px);
-    mask-image: radial-gradient(circle at 50% 0, transparent 32px, #000 34px);
+    width: 100%;
+    height: 100%;
+    display: block;
   }
+  .mnav-shape-fill { fill: var(--bg-elev); }
+  .mnav-shape-line { fill: none; stroke: var(--line); stroke-width: 1; vector-effect: non-scaling-stroke; }
   .mnav-btn-raised .mnav-icon {
     width: 46px; height: 46px;
     border-radius: 50%;
