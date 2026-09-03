@@ -1203,16 +1203,23 @@
   function initMobileNav() {
     var browseBtn = document.querySelector('.mobile-nav .mnav-btn:not([href])');
     var shell = document.querySelector('.shell');
+    var closeToggle = document.querySelector('.sb-collapse-toggle');
+    function syncCloseToggleLabel() {
+      if (!closeToggle || !shell) return;
+      var label = shell.classList.contains('mobile-open') ? 'Close menu' : 'Collapse sidebar';
+      closeToggle.setAttribute('aria-label', label);
+      closeToggle.setAttribute('title', label);
+    }
     if (browseBtn && shell) {
-      browseBtn.addEventListener('click', function () { shell.classList.toggle('mobile-open'); });
+      browseBtn.addEventListener('click', function () { shell.classList.toggle('mobile-open'); syncCloseToggleLabel(); });
     }
     var topMenuBtn = document.querySelector('.m-topbar-menu');
     if (topMenuBtn && shell) {
-      topMenuBtn.addEventListener('click', function () { shell.classList.toggle('mobile-open'); });
+      topMenuBtn.addEventListener('click', function () { shell.classList.toggle('mobile-open'); syncCloseToggleLabel(); });
     }
     var backdrop = document.querySelector('.sidebar-backdrop');
     if (backdrop && shell) {
-      backdrop.addEventListener('click', function () { shell.classList.remove('mobile-open'); });
+      backdrop.addEventListener('click', function () { shell.classList.remove('mobile-open'); syncCloseToggleLabel(); });
     }
   }
 
@@ -1262,6 +1269,14 @@
     var toggleSidebarBtn = t.closest('.sb-collapse-toggle');
     if (toggleSidebarBtn) {
       var shell3 = document.querySelector('.shell');
+      if (shell3 && shell3.classList.contains('mobile-open')) {
+        /* 手機斷點這顆鈕只會在全螢幕抽屜打開時出現(main.css 換成 X 圖示)，
+           點擊改成關閉選單，不走桌機收合側欄那套邏輯。 */
+        shell3.classList.remove('mobile-open');
+        toggleSidebarBtn.setAttribute('aria-label', 'Collapse sidebar');
+        toggleSidebarBtn.setAttribute('title', 'Collapse sidebar');
+        return;
+      }
       var sb3 = document.querySelector('.sidebar');
       var collapsedNow = sb3 ? sb3.classList.toggle('collapsed') : false;
       if (shell3) shell3.classList.toggle('collapsed', collapsedNow);

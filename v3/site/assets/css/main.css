@@ -2393,7 +2393,23 @@ section.lobby-section { margin-top: 44px; }
   .sidebar .sb-tier { display: flex; }
   .sidebar .sidebar-tabs { display: grid; }
   .sidebar .sb-item { padding: 11px 16px; justify-content: flex-start; width: auto; height: auto; margin: 0 0 6px; border-radius: 999px; }
-  .sb-collapse { display: none; }
+  /* 手機斷點：.sb-collapse-toggle 只會在全螢幕抽屜(.mobile-open)打開時
+     隨 .sidebar 一起出現，桌機「收合側欄」的語意在這裡用不到，改當作
+     關閉選單鈕——沿用同一顆按鈕的定位/尺寸/樣式，只把裡面的收合圖示
+     換成 X(site.js 的點擊委派也對應改成關閉 .mobile-open)。 */
+  .sb-collapse-toggle svg { display: none; }
+  .sb-collapse-toggle::before,
+  .sb-collapse-toggle::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 14px; height: 2px;
+    margin: -1px 0 0 -7px;
+    border-radius: 1px;
+    background: currentColor;
+  }
+  .sb-collapse-toggle::before { transform: rotate(45deg); }
+  .sb-collapse-toggle::after { transform: rotate(-45deg); }
   .topbar-logo { height: 24px; }
   .hero { height: 320px; }
   .hero-content { padding: 32px 24px; }
