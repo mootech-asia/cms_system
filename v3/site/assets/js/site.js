@@ -1178,6 +1178,10 @@
     USER.loggedIn = false;
     renderAuthSection();
     closeUserMenu();
+    /* USER 只存在單頁記憶體，換頁就重置——手機版個人資料頁登入引導
+       (site-mobile/personal-info.html)要跨頁記住登出狀態，靠這個
+       localStorage 旗標同步，不是給 USER 本身用的。 */
+    try { localStorage.setItem('cms_v3_logged_out', '1'); } catch (e) {}
   }
   function doLogin(name, email) {
     USER.loggedIn = true;
@@ -1185,6 +1189,7 @@
     USER.email = email || 'player@100.gg';
     renderAuthSection();
     hideModalEl(document.getElementById('cms-modal-signin'));
+    try { localStorage.removeItem('cms_v3_logged_out'); } catch (e) {}
   }
 
   function initBalanceFloat() {
