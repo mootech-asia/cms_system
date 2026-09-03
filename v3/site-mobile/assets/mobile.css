@@ -1,8 +1,8 @@
 /* v3 手機版大廳（獨立頁面 site-mobile/index.html，不影響 ../site/ 原本
    的 RWD／main.css）。本頁沿用 ../site/ 的 tokens／main.css／skins 元件
    庫，這裡只在既有的 ≤768px 斷點內，把桌機版頭部換成行動版頭部，並加上
-   搜尋列／熱門遊戲 rail 這兩個新區塊；其餘（側欄抽屜、底部導覽列、
-   cat-tabs 分類切換…）都是 main.css 既有的手機版行為，維持不變。 */
+   搜尋列／圖示快速導覽／促銷卡／熱門遊戲 rail 這些新區塊；其餘（側欄
+   抽屜、底部導覽列）都是 main.css 既有的手機版行為，維持不變。 */
 @media (max-width: 768px) {
   .header { height: auto; padding: 10px 0; }
   .header-inner { display: none; }
@@ -14,28 +14,9 @@
     gap: 12px;
     width: 100%;
   }
-  .m-header-id {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 0;
-    color: inherit;
-  }
-  .m-header-text {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 0;
-  }
-  .m-header-name {
-    font-family: var(--font-display);
-    font-weight: var(--weight-bold);
-    font-size: var(--type-body);
-    color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  .m-topbar-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .m-topbar-menu { flex-shrink: 0; }
+  .m-topbar-brand { display: flex; align-items: center; min-width: 0; }
   .m-header-balance.tb-balance { padding: 3px 10px; }
   .m-header-balance .tb-balance-row { font-size: 11.5px; }
   .m-header-bell { position: relative; flex-shrink: 0; }
@@ -56,6 +37,39 @@
 
   .m-search-wrap { display: block; margin-top: 16px; }
   .m-search { max-width: none; width: 100%; }
+
+  /* 圖示快速導覽列：頭像+餘額合併卡拿掉後，體育/棋牌/電子…這些常用
+     分類改用一排圓形圖示做主要入口，圖示複用側欄既有的 svg 路徑。 */
+  .m-quicknav {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    margin-top: 18px;
+  }
+  .m-quicknav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-mid);
+    text-decoration: none;
+  }
+  .m-quicknav-ico {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    color: var(--accent);
+  }
+  .m-quicknav-label {
+    font-size: 10px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
 
   .m-hotgames { display: block; margin-top: 20px; }
   .m-hotgames .rail-wrap { margin-top: 10px; }
@@ -79,10 +93,17 @@
     text-overflow: ellipsis;
   }
 
+  /* 促銷大卡：桌機版 .promo-grid 預設 4 欄，手機改單欄堆疊，
+     .promo-card-art 拉高一點讓圖片比例更接近參考圖的大幅橫幅感，
+     其餘欄位(標籤/標題/說明/CTA)沿用桌機版樣式，內容逐字保留。 */
+  .promo-grid { grid-template-columns: 1fr; gap: 12px; }
+  .promo-card { min-height: 0; padding: 16px; }
+  .promo-card-art { aspect-ratio: 2.2 / 1; }
+
   /* 等級/獎勵卡整個壓扁：頭像從 58px 縮到 32px、字級與間距同步收緊，
      維持原本三段式結構(頭像+暱稱／進度條／目前-下一等級)，只是高度
      從約 160px 壓到 90px 上下，資訊沒有減少。 */
-  .rewards-banner { grid-template-columns: 1fr; gap: 8px; padding: 12px 14px; }
+  .rewards-banner { grid-template-columns: 1fr; gap: 8px; padding: 12px 14px; margin-top: 16px; }
   .rb-brand { gap: 10px; }
   .rb-avatar-wrap { width: 32px; height: 32px; }
   .rb-big-avatar { width: 32px !important; height: 32px !important; font-size: 10.5px !important; border-width: 1.5px !important; }
@@ -95,6 +116,25 @@
   .rb-progress-track { height: 6px; }
   .rb-progress-meta { font-size: 10.5px; gap: 8px; }
   .rb-tier-dot { width: 8px; height: 8px; }
+
+  /* 底部導覽中間(儲值)凸起成圓形主按鈕，比照參考圖置中大按鈕的做法；
+     其餘 4 個項目、底部導覽整體 grid/固定定位都沿用 main.css 既有規則
+     不動，這裡只加中間那顆的視覺凸起。 */
+  .mnav-btn-raised {
+    margin-top: -22px;
+  }
+  .mnav-btn-raised .mnav-icon {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: var(--text-on-media);
+    box-shadow: 0 6px 16px color-mix(in oklch, var(--accent) 45%, transparent);
+    border: 3px solid var(--bg-elev);
+  }
+  .mnav-btn-raised .mnav-label { color: var(--text-mid); }
+  .mnav-btn-raised.active .mnav-icon { color: var(--text-on-media); }
+  .mnav-btn-raised.active::after { display: none; }
 
   /* hero 高度比照 PC 版實際比例縮放，而不是手機斷點另外訂的固定高度
      (main.css 在 ≤700px 是 280px)。桌機在常見的 1440px 寬螢幕下量測

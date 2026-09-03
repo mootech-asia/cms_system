@@ -1206,6 +1206,10 @@
     if (browseBtn && shell) {
       browseBtn.addEventListener('click', function () { shell.classList.toggle('mobile-open'); });
     }
+    var topMenuBtn = document.querySelector('.m-topbar-menu');
+    if (topMenuBtn && shell) {
+      topMenuBtn.addEventListener('click', function () { shell.classList.toggle('mobile-open'); });
+    }
     var backdrop = document.querySelector('.sidebar-backdrop');
     if (backdrop && shell) {
       backdrop.addEventListener('click', function () { shell.classList.remove('mobile-open'); });
