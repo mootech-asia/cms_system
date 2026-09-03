@@ -1,10 +1,22 @@
 /* v3 手機版大廳（獨立頁面 site-mobile/index.html，不影響 ../site/ 原本
    的 RWD／main.css）。本頁沿用 ../site/ 的 tokens／main.css／skins 元件
-   庫，這裡只在既有的 ≤768px 斷點內，把桌機版頭部換成行動版頭部，並加上
-   搜尋列／圖示快速導覽／促銷卡／熱門遊戲 rail 這些新區塊；其餘（側欄
-   抽屜、底部導覽列）都是 main.css 既有的手機版行為，維持不變。 */
+   庫。整頁固定在一個畫面內、不捲動：頂部列/搜尋/hero/跑馬燈/圖示選單
+   都固定顯示，下面內容區改成用圖示選單當分頁籤操控，並支援左右滑動
+   切換（體育維持連到獨立頁面，因為賽事不是遊戲卡片grid、沒有精簡版
+   可放；其餘 5 類在本頁內顯示精簡版遊戲grid，各分頁自己可上下捲動看
+   完整清單，只有外層頁面不捲）；側欄抽屜、底部導覽列都是 main.css
+   既有的手機版行為，維持不變。 */
 @media (max-width: 768px) {
-  .header { height: auto; padding: 10px 0; }
+  html, body { height: 100%; overflow: hidden; }
+  .shell { height: 100dvh; height: 100vh; }
+  .shell-main { height: 100dvh; height: 100vh; overflow: hidden; }
+  .shell-content { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  /* .footer 是 <main> 在 .shell-main 底下的 flex 手足(不是 fixed 元素)，
+     實測會在 flex 版面裡吃掉近 350px 高度，把 .shell-content 擠到只剩
+     一截——這頁本來就要單畫面顯示，參考圖也沒有頁尾，直接藏起來。 */
+  .shell-main > .footer { display: none; }
+
+  .header { height: auto; padding: 10px 0; flex-shrink: 0; }
   .header-inner { display: none; }
 
   .m-header {
@@ -35,16 +47,31 @@
     text-align: center;
   }
 
-  .m-search-wrap { display: block; margin-top: 16px; }
+  /* .container 這個 class 桌機版跟這頁的頂部列/頁尾都在共用，這裡只
+     精準鎖定首頁承載 search/hero/跑馬燈/圖示選單/內容分頁區的那個
+     實例(.m-home-body)：改成 flex 直欄撐滿 header 之下的剩餘高度，
+     自己不捲動，只有最下面的 .m-tabpanel-wrap 是可捲動/可滑動區域。 */
+  .m-home-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+  .m-search-wrap { display: block; margin-top: 16px; flex-shrink: 0; }
   .m-search { max-width: none; width: 100%; }
+  .promo-ribbon { flex-shrink: 0; }
 
-  /* 圖示快速導覽列：頭像+餘額合併卡拿掉後，體育/棋牌/電子…這些常用
-     分類改用一排圓形圖示做主要入口，圖示複用側欄既有的 svg 路徑。 */
+  /* 圖示快速導覽列：熱門遊戲/小遊戲/老虎機/真人/捕魚 5 項改成分頁籤
+     (按鈕+data-tab，mobile.js 的 initHomeTabs() 負責切換與雙向同步)，
+     體育維持 <a> 連到獨立頁面。圖示複用側欄既有的 svg 路徑。 */
   .m-quicknav {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 6px;
     margin-top: 18px;
+    flex-shrink: 0;
   }
   .m-quicknav-item {
     display: flex;
@@ -53,6 +80,11 @@
     gap: 6px;
     color: var(--text-mid);
     text-decoration: none;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
   }
   .m-quicknav-ico {
     width: 44px; height: 44px;
@@ -62,6 +94,11 @@
     border: 1px solid var(--line);
     color: var(--accent);
   }
+  .m-quicknav-item.active .m-quicknav-ico {
+    background: color-mix(in oklch, var(--accent) 16%, var(--bg-card));
+    border-color: var(--accent);
+  }
+  .m-quicknav-item.active { color: var(--text); }
   .m-quicknav-label {
     font-size: 10px;
     text-align: center;
@@ -71,19 +108,36 @@
     max-width: 100%;
   }
 
-  .m-hotgames { display: block; margin-top: 20px; }
-  .m-hotgames .rail-wrap { margin-top: 10px; }
+  /* 內容分頁區：撐滿剩餘高度，本身(.m-tabpanel-wrap)不捲動；
+     .m-tabpanel-scroller 用 scroll-snap 做橫向分頁，原生觸控滑動就有
+     分頁吸附效果，不用自己刻拖曳手勢。每個 .m-tabpage 各自可上下捲動
+     看該分類完整清單，捲軸樣式隱藏但捲動功能保留。 */
+  .m-tabpanel-wrap { flex: 1; min-height: 0; overflow: hidden; margin-top: 16px; }
+  .m-tabpanel-scroller {
+    display: flex;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+  .m-tabpanel-scroller::-webkit-scrollbar { display: none; }
+  .m-tabpage {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    scroll-snap-align: start;
+    scrollbar-width: none;
+  }
+  .m-tabpage::-webkit-scrollbar { display: none; }
 
-  /* 遊戲卡片全站(這支手機版頁面內)統一比照 Hot Games 的尺寸：寬度從
-     共用的 140px(compact)/170px(預設) 降到 104px，涵蓋 Slots／Live
-     Casino／Recently played 這幾條 rail，以及切到 Hot Games／Mini
-     Games／Slots／Live／Fish 分類頁時 renderCategoryView() 產生的
-     .grid。.rail-spotlight(主打遊戲那排大卡，附 CTA 文案)刻意排除，
-     它是不同尺寸/版型的元件，縮到 104px 文案會擠爆。.gcard-title 在
-     main.css 已有 ellipsis，這裡只補 .gcard-provider 的安全截斷，避免
-     "Pragmatic Play" 這類較長供應商名稱在窄卡片上換行撐高卡片。 */
-  .rail:not(.rail-spotlight) { grid-auto-columns: minmax(104px, 1fr); gap: 8px; }
-  .grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 8px; }
+  /* 遊戲卡片尺寸：寬度從共用的 140px(compact)/170px(預設) 降到 104px，
+     .gcard-title 在 main.css 已有 ellipsis，這裡只補 .gcard-provider
+     的安全截斷，避免 "Pragmatic Play" 這類較長供應商名稱在窄卡片上
+     換行撐高卡片。 */
+  .grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 8px; padding-bottom: 12px; }
   .gcard-meta { padding: 7px 8px 8px; gap: 1px; }
   .gcard-title { font-size: 12px; }
   .gcard-provider {
@@ -93,29 +147,24 @@
     text-overflow: ellipsis;
   }
 
-  /* 促銷大卡：桌機版 .promo-grid 預設 4 欄，手機改單欄堆疊，
-     .promo-card-art 拉高一點讓圖片比例更接近參考圖的大幅橫幅感，
-     其餘欄位(標籤/標題/說明/CTA)沿用桌機版樣式，內容逐字保留。 */
-  .promo-grid { grid-template-columns: 1fr; gap: 12px; }
-  .promo-card { min-height: 0; padding: 16px; }
-  .promo-card-art { aspect-ratio: 2.2 / 1; }
-
-  /* 等級/獎勵卡整個壓扁：頭像從 58px 縮到 32px、字級與間距同步收緊，
-     維持原本三段式結構(頭像+暱稱／進度條／目前-下一等級)，只是高度
-     從約 160px 壓到 90px 上下，資訊沒有減少。 */
-  .rewards-banner { grid-template-columns: 1fr; gap: 8px; padding: 12px 14px; margin-top: 16px; }
-  .rb-brand { gap: 10px; }
-  .rb-avatar-wrap { width: 32px; height: 32px; }
-  .rb-big-avatar { width: 32px !important; height: 32px !important; font-size: 10.5px !important; border-width: 1.5px !important; }
-  .rb-big-tier { width: 13px !important; height: 14px !important; bottom: -3px !important; }
-  .rb-big-tier svg { width: 8px; height: 9px; }
-  .rb-brand-text { gap: 1px; }
-  .rb-username { font-size: 14px; }
-  .rb-day { font-size: 10.5px; }
-  .rb-user { gap: 6px; }
-  .rb-progress-track { height: 6px; }
-  .rb-progress-meta { font-size: 10.5px; gap: 8px; }
-  .rb-tier-dot { width: 8px; height: 8px; }
+  /* hero 高度比照 PC 版實際比例縮放，而不是手機斷點另外訂的固定高度
+     (main.css 在 ≤700px 是 280px)。桌機在常見的 1440px 寬螢幕下量測
+     實際 .hero 是 1148x380，高寬比 0.331，這裡用 aspect-ratio 換算成
+     3:1 沿用同一個比例，寬度依手機容器實際寬度自動撐開高度。 */
+  .hero { height: auto; aspect-ratio: 3 / 1; flex-shrink: 0; }
+  .hero-content { padding: 16px 18px; }
+  .hero-title { font-size: clamp(16px, 5.5vw, 22px); margin: 0 0 4px; line-height: 1.12; }
+  .hero-sub {
+    font-size: 11.5px;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+  .hero-eyebrow { margin-bottom: 6px; }
+  .hero-dots { bottom: 10px; }
+  .hero-controls { bottom: 8px; right: 12px; }
 
   /* 底部導覽中間(儲值)凸起成圓形主按鈕，比照參考圖置中大按鈕的做法；
      其餘 4 個項目、底部導覽整體 grid/固定定位都沿用 main.css 既有規則
@@ -135,23 +184,4 @@
   .mnav-btn-raised .mnav-label { color: var(--text-mid); }
   .mnav-btn-raised.active .mnav-icon { color: var(--text-on-media); }
   .mnav-btn-raised.active::after { display: none; }
-
-  /* hero 高度比照 PC 版實際比例縮放，而不是手機斷點另外訂的固定高度
-     (main.css 在 ≤700px 是 280px)。桌機在常見的 1440px 寬螢幕下量測
-     實際 .hero 是 1148x380，高寬比 0.331，這裡用 aspect-ratio 換算成
-     3:1 沿用同一個比例，寬度依手機容器實際寬度自動撐開高度。 */
-  .hero { height: auto; aspect-ratio: 3 / 1; }
-  .hero-content { padding: 16px 18px; }
-  .hero-title { font-size: clamp(16px, 5.5vw, 22px); margin: 0 0 4px; line-height: 1.12; }
-  .hero-sub {
-    font-size: 11.5px;
-    margin-bottom: 8px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    overflow: hidden;
-  }
-  .hero-eyebrow { margin-bottom: 6px; }
-  .hero-dots { bottom: 10px; }
-  .hero-controls { bottom: 8px; right: 12px; }
 }
