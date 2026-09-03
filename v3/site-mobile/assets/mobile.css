@@ -136,6 +136,37 @@
      .gcard-title 在 main.css 已有 ellipsis，這裡只補 .gcard-provider
      的安全截斷，避免 "Pragmatic Play" 這類較長供應商名稱在窄卡片上
      換行撐高卡片。 */
+  /* 廠商篩選頁籤(mobile.js 依各分頁遊戲清單動態產生)：桌機版沒有現成
+     的同類小型篩選膠囊(.wd-method-tabs 是提款方式用的大按鈕，
+     min-height:50px 太大)，這裡量身做一組小尺寸版本，配色/圓角沿用
+     既有 control token，不是另外配色。 */
+  .m-provider-filter {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 10px;
+    margin-top: 2px;
+  }
+  .m-provider-filter::-webkit-scrollbar { display: none; }
+  .m-provider-chip {
+    flex-shrink: 0;
+    padding: 5px 12px;
+    border: 1px solid var(--control-border);
+    border-radius: 999px;
+    background: var(--control-bg);
+    color: var(--control-text);
+    font: inherit;
+    font-size: 11.5px;
+    font-weight: var(--weight-semibold);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .m-provider-chip.active {
+    border-color: transparent;
+    background: var(--gradient-primary);
+    color: var(--text-on-accent);
+  }
   .grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 8px; padding-bottom: 12px; }
   .gcard-meta { padding: 7px 8px 8px; gap: 1px; }
   .gcard-title { font-size: 12px; }
@@ -172,7 +203,7 @@
   }
   .hero-eyebrow { margin-bottom: 6px; }
   .hero-dots { bottom: 10px; }
-  .hero-controls { bottom: 8px; right: 12px; }
+  .hero-controls { display: none; }
 
   /* 底部導覽中間(首頁)凸起成圓形主按鈕，比照參考圖置中大按鈕的做法；
      其餘 4 個項目、底部導覽整體 grid/固定定位都沿用 main.css 既有規則

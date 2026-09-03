@@ -27,13 +27,30 @@
     var playersHtml = g.category === 'live'
       ? '<div class="gcard-players"><span class="live-dot"></span>' + Number(g.players || 0).toLocaleString() + ' playing</div>'
       : '';
-    return '<article class="gcard" style="cursor:pointer">' +
+    return '<article class="gcard" data-provider="' + esc(g.provider) + '" style="cursor:pointer">' +
       '<div class="gcard-art">' +
         '<img class="gcard-art-image" src="' + esc(g.image) + '" alt="" loading="lazy" decoding="async">' +
         tagHtml + playersHtml +
       '</div>' +
       '<div class="gcard-meta"><div class="gcard-title">' + esc(g.title) + '</div><div class="gcard-provider">' + esc(g.provider) + '</div></div>' +
     '</article>';
+  }
+
+  /* 廠商篩選頁籤：每個分頁各自依實際出現的廠商動態產生(不是列出全部
+     PROVIDERS，只列這個分頁遊戲清單裡真的有出現的那幾家)，插在該分頁
+     .grid 前面。點擊只是篩選同一個 .grid 內已經渲染好的卡片顯示/隱藏
+     (data-provider 比對)，不用重新渲染或重打 API。 */
+  function providerFilterHTML(games) {
+    var seen = {};
+    var providers = [];
+    games.forEach(function (g) {
+      if (!seen[g.provider]) { seen[g.provider] = true; providers.push(g.provider); }
+    });
+    var chips = '<button type="button" class="m-provider-chip active" data-provider="all">All</button>' +
+      providers.map(function (p) {
+        return '<button type="button" class="m-provider-chip" data-provider="' + esc(p) + '">' + esc(p) + '</button>';
+      }).join('');
+    return '<div class="m-provider-filter" role="tablist">' + chips + '</div>';
   }
 
   var data = window.CMS_DATA;
@@ -49,7 +66,25 @@
   Array.prototype.forEach.call(pages, function (page) {
     var games = TAB_GAMES[page.getAttribute('data-tab')];
     var grid = page.querySelector('.grid');
-    if (games && grid) grid.innerHTML = games.map(cardHTML).join('');
+    if (!games || !grid) return;
+    grid.insertAdjacentHTML('beforebegin', providerFilterHTML(games));
+    grid.innerHTML = games.map(cardHTML).join('');
+  });
+
+  document.addEventListener('click', function (e) {
+    var chip = e.target.closest ? e.target.closest('.m-provider-chip') : null;
+    if (!chip) return;
+    var bar = chip.parentElement;
+    var grid = bar.nextElementSibling;
+    if (!grid || !grid.classList.contains('grid')) return;
+    Array.prototype.forEach.call(bar.querySelectorAll('.m-provider-chip'), function (b) {
+      b.classList.toggle('active', b === chip);
+    });
+    var provider = chip.getAttribute('data-provider');
+    Array.prototype.forEach.call(grid.querySelectorAll('.gcard'), function (card) {
+      var show = provider === 'all' || card.getAttribute('data-provider') === provider;
+      card.style.display = show ? '' : 'none';
+    });
   });
 })();
 
