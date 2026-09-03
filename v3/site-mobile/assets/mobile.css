@@ -1,22 +1,42 @@
-/* v3 手機版大廳（獨立頁面 site-mobile/index.html，不影響 ../site/ 原本
-   的 RWD／main.css）。本頁沿用 ../site/ 的 tokens／main.css／skins 元件
-   庫。整頁固定在一個畫面內、不捲動：頂部列/搜尋/hero/跑馬燈/圖示選單
-   都固定顯示，下面內容區改成用圖示選單當分頁籤操控，並支援左右滑動
-   切換（體育維持連到獨立頁面，因為賽事不是遊戲卡片grid、沒有精簡版
-   可放；其餘 5 類在本頁內顯示精簡版遊戲grid，各分頁自己可上下捲動看
-   完整清單，只有外層頁面不捲）；側欄抽屜、底部導覽列都是 main.css
-   既有的手機版行為，維持不變。 */
+/* v3 手機版所有獨立頁面共用（site-mobile/ 底下每一頁都載入這份，不影響
+   ../site/ 原本的 RWD／main.css）。本頁沿用 ../site/ 的 tokens／main.css／
+   skins 元件庫。共用的部分是新版 app shell 外觀：頂部列(漢堡+logo+餘額+
+   通知鈴，取代桌機版側欄常駐)、底部導覽(曲線缺口+首頁凸起)——側欄抽屜
+   本身、底部導覽列的 fixed 定位都是 main.css 既有的手機版行為，這裡只
+   疊視覺樣式，不重寫互動邏輯。
+   「整頁固定單畫面不捲動」只有大廳首頁(index.html)需要，其餘頁面(提款/
+   儲值/優惠/會員…)內容長度不一，就是一般可捲動頁面(頂部列 sticky、底部
+   導覽 fixed，中間內容正常捲動)——這裡用 <html class="m-lobby"> 這個
+   標記區分，只有首頁的 <html> 有這個 class，才套用下面單畫面/不捲動
+   那組規則。 */
 @media (max-width: 768px) {
-  html, body { height: 100%; overflow: hidden; }
-  .shell { height: 100dvh; height: 100vh; }
-  .shell-main { height: 100dvh; height: 100vh; overflow: hidden; }
-  .shell-content { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  /* 側欄抽屜頂列：拿掉搜尋框(遊戲搜尋在大廳首頁的 .m-search 已經有，
+     側欄選單本身不需要重複一份)，語系選擇跟關閉鈕併成同一行——
+     .sidebar-search 這個 class 名稱維持不動(main.css 的
+     .sidebar-search .sb-collapse-toggle{margin-left:-34px} 靠它定位)，
+     但那個 -34px 是配合原本搜尋框右側留白算的，現在改成語系鈕+關閉鈕
+     兩個獨立元件並排，改用 space-between 讓兩者自然分開。 */
+  .sidebar-search { justify-content: space-between; gap: 10px; }
+  .sidebar-search .sb-lang-wrap { flex: 1; min-width: 0; }
+  .sidebar-search .sb-collapse-toggle { margin-left: 0; flex-shrink: 0; }
+  /* .sb-lang-menu 預設往上開(bottom:calc(100% + 6px))，是配合原本
+     .sb-lang 在側欄最下面(.sidebar-extra)那個位置設計的；main.css 本來
+     就有 .sidebar-extra 專用的往下開覆寫，這裡語系鈕搬到側欄最上面，
+     照樣比照做一份往下開的版本，不然選單會整個彈到畫面外。 */
+  .sidebar-search .sb-lang-menu { top: calc(100% + 6px); bottom: auto; }
+
+  html.m-lobby, html.m-lobby body { height: 100%; overflow: hidden; }
+  html.m-lobby .shell { height: 100dvh; height: 100vh; }
+  html.m-lobby .shell-main { height: 100dvh; height: 100vh; overflow: hidden; }
+  html.m-lobby .shell-content { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
   /* .footer 是 <main> 在 .shell-main 底下的 flex 手足(不是 fixed 元素)，
      實測會在 flex 版面裡吃掉近 350px 高度，把 .shell-content 擠到只剩
-     一截——這頁本來就要單畫面顯示，參考圖也沒有頁尾，直接藏起來。 */
-  .shell-main > .footer { display: none; }
+     一截——大廳首頁要單畫面顯示，參考圖也沒有頁尾，直接藏起來；其餘
+     一般捲動頁面的頁尾維持正常顯示，不受影響。 */
+  html.m-lobby .shell-main > .footer { display: none; }
 
-  .header { height: auto; padding: 10px 0; flex-shrink: 0; }
+  .header { height: auto; padding: 10px 0; }
+  html.m-lobby .header { flex-shrink: 0; }
   .header-inner { display: none; }
 
   .m-header {
@@ -141,12 +161,16 @@
      min-height:50px 太大)，這裡量身做一組小尺寸版本，配色/圓角沿用
      既有 control token，不是另外配色。 */
   .m-provider-filter {
+    position: sticky;
+    top: 0;
+    z-index: 2;
     display: flex;
     gap: 6px;
     overflow-x: auto;
     scrollbar-width: none;
-    padding-bottom: 10px;
-    margin-top: 2px;
+    padding: 2px 0 10px;
+    margin-top: 0;
+    background: var(--bg);
   }
   .m-provider-filter::-webkit-scrollbar { display: none; }
   .m-provider-chip {
