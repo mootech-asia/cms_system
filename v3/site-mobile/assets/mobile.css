@@ -39,18 +39,55 @@
   html.m-lobby .header { flex-shrink: 0; }
   .header-inner { display: none; }
 
-  .m-header {
+  /* .container 在 .shell-main 底下有一份 22px 左右留白覆寫
+     (.shell-main .container，main.css:617，(0,2,0)比單一 class 選擇器
+     優先權高)，手機版標題列窄，兩側各留22px會擠壓中間內容(漢堡+logo+
+     餘額chip+鈴鐺全部塞進去本來就緊，補上帳號等級文字後更擠)，這裡
+     用同樣 (0,2,0) 的 .shell-main .m-header 才蓋得過去，縮小到8px，
+     其餘用到 .container 的地方(含這頁其他區塊)不受影響。 */
+  .shell-main .m-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 8px;
     width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
   }
-  .m-topbar-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .m-topbar-left { display: flex; align-items: center; gap: 6px; min-width: 0; flex-shrink: 0; }
   .m-topbar-menu { flex-shrink: 0; }
-  .m-topbar-brand { display: flex; align-items: center; min-width: 0; }
-  .m-header-balance.tb-balance { padding: 3px 10px; }
+  /* 漢堡跟 logo 是品牌識別，不該被壓縮；.m-topbar-left 整組也設
+     flex-shrink:0，不然它本身還是會被父層(.m-header)壓縮，即使裡面
+     的 logo 自己不縮，整組還是會被硬壓出視覺重疊(先前補上帳號等級
+     文字讓餘額 chip 變寬才踩到這個問題，logo 自然寬度被壓成不到一半，
+     跟旁邊等級圖示重疊)。壓縮空間留給右側 header-actions 的餘額 chip
+     文字，那裡本來就比較有彈性。 */
+  .m-topbar-brand { display: flex; align-items: center; flex-shrink: 0; }
+  .m-header-balance.tb-balance { padding: 3px 8px; }
   .m-header-balance .tb-balance-row { font-size: 11.5px; }
+  /* 360px 這種較窄的機型，漢堡+logo+鈴鐺都已經是不能再縮的固定尺寸，
+     壓縮空間只能從餘額 chip 的字級/間距擠出來，不然整排會橫向溢出。 */
+  @media (max-width: 380px) {
+    .shell-main .m-header { gap: 4px; padding-left: 6px; padding-right: 6px; }
+    .m-topbar-left { gap: 4px; }
+    .m-header-balance.tb-balance { padding: 3px 6px; }
+    .m-header-balance .tb-balance-row { font-size: 10.5px; }
+    .m-header-balance .tb-balance-rows { gap: 6px !important; }
+    .m-header-tier { font-size: 9px; gap: 3px; }
+  }
+  /* 帳號等級圖示+VIP等級文字：復用桌機版頭像上疊的 .tb-tier-badge
+     鑽石圖示(同一個 svg path)跟帳戶總覽頁的等級文字(Unranked)，不用
+     整顆桌機版頭像圓框(44px 太佔手機頂列空間)，只取「圖示+文字」這種
+     最簡形式放在餘額 chip 上方一行。 */
+  .m-header-tier {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: var(--weight-semibold);
+    margin-bottom: 2px;
+  }
   .m-header-bell { position: relative; flex-shrink: 0; }
   .m-header-bell-wrap { position: relative; flex-shrink: 0; }
   .m-header-badge {
