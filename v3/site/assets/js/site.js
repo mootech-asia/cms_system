@@ -1749,6 +1749,19 @@
       }, 1000);
       refreshBtn.addEventListener('click', function () { secs = 20; if (secEl) secEl.textContent = String(secs); });
     }
+
+    /* 體育串關展開列（目前只有 betting-record.html 有 .rec-row-parlay，
+       其餘 4 個 record 頁面 querySelectorAll 拿到空集合，安全跳過）。 */
+    Array.prototype.forEach.call(table.querySelectorAll('.rec-expand-btn'), function (btn) {
+      btn.addEventListener('click', function () {
+        var row = btn.closest('.rec-row-parlay');
+        var detail = row && row.nextElementSibling;
+        if (!detail || !detail.classList.contains('rec-parlay-detail')) return;
+        var open = row.classList.toggle('open');
+        detail.hidden = !open;
+        btn.setAttribute('aria-expanded', String(open));
+      });
+    });
   }
 
   /* ============================================================

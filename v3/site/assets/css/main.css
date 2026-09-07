@@ -3911,6 +3911,41 @@ select.twk-field {
 .rec-pl.neg { color: #ff6b6b; font-family: var(--font-mono); font-weight: 700; }
 .rec-empty { padding: 40px !important; color: var(--text-dim) !important; font-family: var(--font-mono); }
 
+/* 體育串關（Parlay）展開列：只有實際組成串關的訂單才在 Order No 前面
+   附這顆展開鈕，比照 .sup-faq 手風琴的 caret 旋轉 + 內容收合寫法。
+   展開內容是同一張訂單底下各關的獨立子表，不佔用主表欄位。 */
+.rec-expand-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; margin-right: 8px;
+  border: 0; border-radius: 5px; background: transparent; color: var(--text-mid);
+  vertical-align: middle; cursor: pointer;
+  transition: color .15s, background .15s;
+}
+.rec-expand-btn:hover { color: var(--accent-2); background: var(--bg-elev); }
+.rec-expand-btn svg { display: block; transition: transform .2s; }
+.rec-row-parlay.open .rec-expand-btn svg { transform: rotate(180deg); }
+.rec-row-parlay.open td { background: var(--bg-card-hi); }
+.rec-parlay-detail > td { padding: 0; background: var(--bg-elev); }
+.rec-parlay-panel { padding: 14px 22px 18px; }
+.rec-parlay-summary { margin-bottom: 10px; font-size: 12.5px; color: var(--text-mid); white-space: nowrap; }
+.rec-parlay-sep { margin: 0 8px; color: var(--text-dim); }
+.rec-parlay-summary strong { color: var(--accent-2); font-family: var(--font-mono); font-weight: 700; }
+/* .rec-parlay-table 是巢狀在 .rec-table 底下的子表，選擇器多帶一層
+   .rec-parlay-panel 拉高優先權，避免被外層 .rec-table thead th／
+   .rec-table tbody td（含 :first-child 那條）的置中/大留白/底色蓋過。
+   顏色不在這裡設，讓 Win/Loss 儲存格能維持沿用 .rec-pl.pos/.neg 的色碼。 */
+.rec-parlay-table { width: 100%; border-collapse: collapse; font-size: 12.5px; color: var(--text-mid); }
+.rec-parlay-panel .rec-parlay-table th {
+  text-align: left; padding: 6px 10px; background: transparent; color: var(--text-dim);
+  font-weight: var(--weight-bold); font-size: 11px;
+  border-bottom: 1px solid var(--line); white-space: nowrap;
+}
+.rec-parlay-panel .rec-parlay-table td {
+  padding: 9px 10px; text-align: left; background: transparent;
+  border-bottom: 1px solid var(--line); white-space: nowrap;
+}
+.rec-parlay-panel .rec-parlay-table tbody tr:last-child td { border-bottom: 0; }
+
 .rec-pill {
   display: inline-block;
   padding: 4px 12px;
