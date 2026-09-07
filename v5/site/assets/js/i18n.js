@@ -287,6 +287,15 @@
     'record.validBet': { zh: '有效投注', en: 'Valid Bet', ko: '유효 베팅', th: 'เดิมพันที่นับ' },
     'record.payoutAmount': { zh: '派彩金額', en: 'Payout Amount', ko: '지급 금액', th: 'จำนวนเงินที่จ่าย' },
     'record.winLoss': { zh: '輸贏', en: 'Win/Loss', ko: '승패', th: 'ผลแพ้ชนะ' },
+    // 投注紀錄：體育串關展開列（只有 202508120001 這筆示範資料用到）
+    'record.parlayLabel': { zh: '2串1 過關', en: '2-Leg Parlay', ko: '2폴더 콤비네이션', th: 'พาร์เลย์ 2 คู่' },
+    'record.combinedOdds': { zh: '綜合賠率', en: 'Combined Odds', ko: '통합 배당률', th: 'อัตราต่อรองรวม' },
+    'record.league': { zh: '聯賽', en: 'League', ko: '리그', th: 'ลีก' },
+    'record.event': { zh: '賽事', en: 'Event', ko: '경기', th: 'การแข่งขัน' },
+    'record.selection': { zh: '投注選項', en: 'Selection', ko: '베팅 옵션', th: 'ตัวเลือกการเดิมพัน' },
+    'record.odds': { zh: '賠率', en: 'Odds', ko: '배당률', th: 'อัตราต่อรอง' },
+    'record.result': { zh: '賽果', en: 'Result', ko: '경기 결과', th: 'ผลการแข่งขัน' },
+    'record.won': { zh: '贏', en: 'Won', ko: '승', th: 'ชนะ' },
 
     'record.txNo': { zh: '交易編號', en: 'Transaction No.', ko: '거래 번호', th: 'หมายเลขธุรกรรม' },
     'record.requestTime': { zh: '申請時間', en: 'Request Time', ko: '신청 시간', th: 'เวลาที่ขอ' },

@@ -738,6 +738,21 @@
     });
   }
 
+  /* 體育串關展開列（目前只有 betting-record.html 有 .rt-parlay-toggle，
+     其餘頁面 querySelectorAll 拿到空集合安全跳過）。展開/收合純粹是
+     .rt-parlay-row 切 open class，子表顯示交給 CSS 的相鄰兄弟選擇器
+     （.rt-parlay-row.open + .rt-parlay-detail），比照 .faq-card 寫法。 */
+  function initBetRecordParlayRows() {
+    Array.prototype.slice.call(document.querySelectorAll('.rt-parlay-toggle')).forEach(function (btn) {
+      on(btn, 'click', function () {
+        var row = btn.closest('.rt-parlay-row');
+        if (!row) return;
+        var open = row.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(open));
+      });
+    });
+  }
+
   /* 儲值／提款頁：付款方式頁籤 + 金額快選按鈕。兩頁共用同一套 class
      （pay-tabs/pay-amount-grid/pay-field），金額輸入框在標記中緊接於金額
      grid 之後，用 nextElementSibling 取得對應欄位。 */
@@ -1213,6 +1228,7 @@
     safe(initCsTriggers);
     safe(initAboutTabs);
     safe(initFaqAccordion);
+    safe(initBetRecordParlayRows);
     safe(initChannelTabs);
     safe(initPayTabs);
     safe(initPayAmount);
