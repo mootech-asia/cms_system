@@ -5095,10 +5095,9 @@ select.twk-field {
   .wd-bank-logo { flex-basis: 54px; width: 54px; height: 50px; }
   .wd-balance-row { grid-template-columns: 1fr auto; }
   .wd-empty-wallet { min-height: 220px; padding: 24px 18px; }
-  /* 橫向捲動列貼齊螢幕邊緣（比照 .cat-tabs 的 bleed 寫法，負 margin 抵銷
-     .shell-main .container 的 22px 邊距），並縮小按鈕最小寬度，讓窄螢幕
-     也能穩定露出第三個按鈕的左邊緣，提示可再往右拉。 */
-  .dp-method-tabs { margin: 0 -22px 20px; padding: 0 22px; }
+  /* 橫向捲動列的可視範圍維持跟頁面其他區塊（Back／標題／provider 分頁）
+     一樣的 .container 邊距，不額外貼邊；只縮小按鈕最小寬度，讓第三個
+     按鈕能在同樣的邊距內穩定露出左邊緣，提示可再往右拉。 */
   .dp-method-tabs button { min-width: 150px; }
   .dp-crypto-grid { grid-template-columns: 1fr; gap: 8px; }
   .dp-crypto-promo { flex-wrap: wrap; }
