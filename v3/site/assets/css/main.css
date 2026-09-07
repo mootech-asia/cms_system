@@ -2237,6 +2237,18 @@ section.lobby-section { margin-top: 44px; }
   display: grid; place-items: center;
 }
 .modal-close:hover { color: var(--text); border-color: var(--line-hi); }
+.modal-gm-fav {
+  width: 32px; height: 32px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text-mid);
+  display: grid; place-items: center;
+  cursor: pointer;
+  transition: color .15s, border-color .15s;
+}
+.modal-gm-fav:hover { color: var(--accent-2); border-color: var(--accent); }
+.modal-gm-fav.on { color: var(--accent); border-color: color-mix(in oklch, var(--accent) 55%, var(--line)); }
 .modal-body { padding: 24px; overflow-y: auto; }
 
 .game-modal-art {

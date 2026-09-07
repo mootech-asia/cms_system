@@ -291,7 +291,7 @@
    *   (b) Promos 分類 tab 點擊時的動態重繪
    * ========================================================== */
   var CATEGORY_PARAMS = {
-    'Hot Games': { title: tr('t.nav.Hot Games', '熱門遊戲'), icon: 'fire', games: GAMES.slots.concat(GAMES.live, GAMES.originals), showFilterTabs: false, showProviderTabs: false, showFavorites: false, enableLoadMore: false, pageSize: 10 },
+    'Hot Games': { title: tr('t.nav.Hot Games', '熱門遊戲'), icon: 'fire', games: GAMES.slots.concat(GAMES.live, GAMES.originals), showFilterTabs: false, showProviderTabs: false, showFavorites: true, enableLoadMore: false, pageSize: 10 },
     'Mini Games': { title: tr('t.nav.Mini Games', '小遊戲'), icon: 'star', games: GAMES.originals, showFilterTabs: true, showProviderTabs: true, showFavorites: true, enableLoadMore: true, pageSize: 10 },
     'Slots': { title: tr('t.nav.Slots', '老虎機'), icon: 'fire', games: GAMES.slots, showFilterTabs: true, showProviderTabs: true, showFavorites: true, enableLoadMore: true, pageSize: 10 },
     'Live': { title: tr('t.nav.Live', '真人'), icon: 'bolt', games: GAMES.live, showFilterTabs: true, showProviderTabs: true, showFavorites: true, enableLoadMore: true, pageSize: 10 },
@@ -582,12 +582,16 @@
     var categoryLabel = tr('t.modal.game.category.' + game.category, game.category);
     var desc = tr('t.modal.game.descTemplate', '{title} is a {category} game from {provider}. Spin volatile reels, stack multipliers, and bank wins instantly to your crypto balance. Provably fair on every round.')
       .replace('{title}', escapeHtml(game.title)).replace('{category}', escapeHtml(categoryLabel)).replace('{provider}', escapeHtml(game.provider));
+    var fav = favs.has(game.id);
     return '<div class="modal-head">' +
         '<div style="display:flex;align-items:center;gap:10px">' +
           '<div style="font-family:var(--font-display);font-weight:700;font-size:17px">' + escapeHtml(game.title) + '</div>' +
           '<span class="gcard-provider" style="font-size:12px">' + escapeHtml(game.provider) + '</span>' +
         '</div>' +
-        '<button type="button" class="modal-close" aria-label="' + escapeAttr(tr('t.modal.close', 'Close')) + '">' + CLOSE_ICON + '</button>' +
+        '<div style="display:flex;align-items:center;gap:6px">' +
+          '<button type="button" class="modal-gm-fav' + (fav ? ' on' : '') + '" data-gm-fav-id="' + escapeAttr(game.id) + '" aria-label="' + (fav ? 'Remove favorite' : 'Add favorite') + '">' + gcardHeartSvg(fav) + '</button>' +
+          '<button type="button" class="modal-close" aria-label="' + escapeAttr(tr('t.modal.close', 'Close')) + '">' + CLOSE_ICON + '</button>' +
+        '</div>' +
       '</div>' +
       '<div class="modal-body">' +
         '<div class="game-modal-art">[ ' + escapeHtml(String(game.title).toUpperCase()) + ' ' + escapeHtml(tr('t.modal.game.previewSuffix', 'GAMEPLAY PREVIEW')) + ' ]</div>' +
@@ -1241,6 +1245,16 @@
     if (dialogCloseBtn) { var dcbg = dialogCloseBtn.closest('.modal-bg'); if (dcbg) dcbg.remove(); return; }
     var gmFootBtn = t.closest('#cms-modal-game .modal-foot .btn');
     if (gmFootBtn) { hideModalEl(document.getElementById('cms-modal-game')); return; }
+    var gmFavBtn = t.closest('.modal-gm-fav');
+    if (gmFavBtn) {
+      var gmGameId = gmFavBtn.getAttribute('data-gm-fav-id');
+      toggleFav(gmGameId);
+      var gmNowFav = isFav(gmGameId);
+      gmFavBtn.classList.toggle('on', gmNowFav);
+      gmFavBtn.setAttribute('aria-label', gmNowFav ? 'Remove favorite' : 'Add favorite');
+      gmFavBtn.innerHTML = gcardHeartSvg(gmNowFav);
+      return;
+    }
 
     var openSignin = t.closest('[data-action="open-signin"]');
     if (openSignin) { openSignInModal('signin'); return; }

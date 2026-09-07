@@ -1,6 +1,7 @@
 /* 手機版首頁分頁區：熱門遊戲/小遊戲/老虎機/真人/捕魚 5 個分頁各自的
    精簡版遊戲 grid。刻意不去改 ../site/assets/js/site.js，所以這裡自己
-   組一份跟 gameCardHTML() 同樣結構的 .gcard 卡片（不含收藏愛心）：
+   組一份跟 gameCardHTML() 同樣結構的 .gcard 卡片（含收藏愛心，點擊交由
+   site.js 既有的 .gcard-fav 全域委派處理，見下方 gcardHeartSvg 註解）：
    - 圖片路徑不用在這裡另外補前綴——index.html 裡 data.js 載入後那段
      inline script 已經把 CMS_DATA 每一筆 g.image 統一補好 ../site/
      前綴，這裡直接用就是正確路徑（重複補會變成 ../site/../site/...）。
@@ -32,6 +33,18 @@
   var HEART_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path ' +
     'd="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.3 1-1a5.5 5.5 0 0 0 0-7.8Z" ' +
     'fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  /* 收藏愛心的 on/off 兩態，跟 site.js gcardHeartSvg() 同一份 path data。
+     這裡只負責初始渲染狀態；點擊後的切換交給 site.js 既有的全域委派
+     （.gcard-fav 這個 class 名稱一樣，site.js 的 onDocumentClick 認得
+     出來，不用在這裡另外綁 click/寫 toggleFav，兩邊共用同一把
+     lobby_favs_v1，resolveGameFromCard() 靠 title/provider/圖檔名比對
+     也能認出這是同一款遊戲）。 */
+  function gcardHeartSvg(isFav) {
+    return '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path ' +
+      'd="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.3 1-1a5.5 5.5 0 0 0 0-7.8Z" ' +
+      'fill="' + (isFav ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="1.8" ' +
+      'stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
 
   function cardHTML(g) {
     var tagHtml = g.tag
@@ -40,10 +53,12 @@
     var playersHtml = g.category === 'live'
       ? '<div class="gcard-players"><span class="live-dot"></span>' + Number(g.players || 0).toLocaleString() + ' playing</div>'
       : '';
+    var fav = favIds.has(g.id);
+    var favHtml = '<button type="button" class="gcard-fav' + (fav ? ' on' : '') + '" aria-label="' + (fav ? 'Remove favorite' : 'Add favorite') + '">' + gcardHeartSvg(fav) + '</button>';
     return '<article class="gcard" data-provider="' + esc(g.provider) + '" data-gid="' + esc(g.id) + '" style="cursor:pointer">' +
       '<div class="gcard-art">' +
         '<img class="gcard-art-image" src="' + esc(g.image) + '" alt="" loading="lazy" decoding="async">' +
-        tagHtml + playersHtml +
+        tagHtml + favHtml + playersHtml +
       '</div>' +
       '<div class="gcard-meta"><div class="gcard-title">' + esc(g.title) + '</div><div class="gcard-provider">' + esc(g.provider) + '</div></div>' +
     '</article>';
