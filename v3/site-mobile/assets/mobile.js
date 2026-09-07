@@ -20,6 +20,19 @@
     });
   }
 
+  /* 讀取跟桌機版(site.js useFavorites)同一把 lobby_favs_v1 key——這裡
+     只讀不寫，這個精簡卡片本身不含收藏愛心，"Favorite" 這個 tag 純粹
+     篩選出使用者在其他頁面(如 slots.html 的 .gcard-fav)已收藏、且剛好
+     也出現在本分頁清單裡的遊戲。 */
+  var FAV_KEY = 'lobby_favs_v1';
+  var favIds = (function () {
+    try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]')); }
+    catch (e) { return new Set(); }
+  })();
+  var HEART_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path ' +
+    'd="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.3 1-1a5.5 5.5 0 0 0 0-7.8Z" ' +
+    'fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
   function cardHTML(g) {
     var tagHtml = g.tag
       ? '<span class="gcard-tag' + (g.tag === 'Hot' ? ' hot' : '') + (g.tag === 'New' ? ' new' : '') + '">' + esc(g.tag) + '</span>'
@@ -27,7 +40,7 @@
     var playersHtml = g.category === 'live'
       ? '<div class="gcard-players"><span class="live-dot"></span>' + Number(g.players || 0).toLocaleString() + ' playing</div>'
       : '';
-    return '<article class="gcard" data-provider="' + esc(g.provider) + '" style="cursor:pointer">' +
+    return '<article class="gcard" data-provider="' + esc(g.provider) + '" data-gid="' + esc(g.id) + '" style="cursor:pointer">' +
       '<div class="gcard-art">' +
         '<img class="gcard-art-image" src="' + esc(g.image) + '" alt="" loading="lazy" decoding="async">' +
         tagHtml + playersHtml +
@@ -38,15 +51,21 @@
 
   /* 廠商篩選頁籤：每個分頁各自依實際出現的廠商動態產生(不是列出全部
      PROVIDERS，只列這個分頁遊戲清單裡真的有出現的那幾家)，插在該分頁
-     .grid 前面。點擊只是篩選同一個 .grid 內已經渲染好的卡片顯示/隱藏
-     (data-provider 比對)，不用重新渲染或重打 API。 */
+     .grid 前面。"All" 之後加一個 "Favorite" tag(比照桌機版 .cv-tab 的
+     Favorites 頁籤，heart icon + 數量)，點擊只是篩選同一個 .grid 內
+     已經渲染好的卡片顯示/隱藏(data-provider／data-gid 比對)，不用重新
+     渲染或重打 API。 */
   function providerFilterHTML(games) {
     var seen = {};
     var providers = [];
+    var favCount = 0;
     games.forEach(function (g) {
       if (!seen[g.provider]) { seen[g.provider] = true; providers.push(g.provider); }
+      if (favIds.has(g.id)) favCount++;
     });
-    var chips = '<button type="button" class="m-provider-chip active" data-provider="all">All</button>' +
+    var favChip = '<button type="button" class="m-provider-chip m-provider-chip-fav" data-provider="favorite">' +
+      HEART_SVG + 'Favorite' + (favCount > 0 ? '<span class="m-provider-chip-count">' + favCount + '</span>' : '') + '</button>';
+    var chips = '<button type="button" class="m-provider-chip active" data-provider="all">All</button>' + favChip +
       providers.map(function (p) {
         return '<button type="button" class="m-provider-chip" data-provider="' + esc(p) + '">' + esc(p) + '</button>';
       }).join('');
@@ -82,7 +101,9 @@
     });
     var provider = chip.getAttribute('data-provider');
     Array.prototype.forEach.call(grid.querySelectorAll('.gcard'), function (card) {
-      var show = provider === 'all' || card.getAttribute('data-provider') === provider;
+      var show = provider === 'all' ? true
+        : provider === 'favorite' ? favIds.has(card.getAttribute('data-gid'))
+        : card.getAttribute('data-provider') === provider;
       card.style.display = show ? '' : 'none';
     });
   });

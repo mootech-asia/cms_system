@@ -220,6 +220,9 @@
   }
   .m-provider-filter::-webkit-scrollbar { display: none; }
   .m-provider-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     flex-shrink: 0;
     padding: 5px 12px;
     border: 1px solid var(--control-border);
@@ -236,6 +239,16 @@
     border-color: transparent;
     background: var(--gradient-primary);
     color: var(--text-on-accent);
+  }
+  .m-provider-chip-fav svg { display: block; }
+  .m-provider-chip-count {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-radius: 999px;
+    padding: 0 5px;
+    font-weight: 700;
   }
   .grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 8px; padding-bottom: 12px; }
   .gcard-meta { padding: 7px 8px 8px; gap: 1px; }
