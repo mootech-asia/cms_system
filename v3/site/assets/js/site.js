@@ -356,6 +356,34 @@
   }
 
   /* ============================================================
+   * 我的收藏總覽頁（favorites.html，目前只有手機版有這個入口）：
+   * 橫跨全部分類(slots/live/originals/table)收集已收藏的遊戲，不像
+   * renderCategoryView 只服務單一分類。收藏異動(toggleFav 觸發的
+   * cms:favorites-changed)即時重繪，取消收藏的卡片會立刻從清單消失。
+   * ========================================================== */
+  function initFavoritesPage() {
+    var section = document.querySelector('[data-favorites-page]');
+    if (!section) return;
+    var grid = section.querySelector('.grid');
+    var empty = section.querySelector('.cv-empty');
+    var countEl = section.querySelector('.count');
+    function render() {
+      var all = GAMES.slots.concat(GAMES.live, GAMES.originals, GAMES.table);
+      var list = all.filter(function (g) { return favs.has(g.id); });
+      if (countEl) countEl.textContent = list.length;
+      if (!list.length) {
+        if (grid) grid.hidden = true;
+        if (empty) empty.hidden = false;
+        return;
+      }
+      if (empty) empty.hidden = true;
+      if (grid) { grid.hidden = false; grid.innerHTML = list.map(function (g) { return gameCardHTML(g, true); }).join(''); }
+    }
+    render();
+    document.addEventListener('cms:favorites-changed', render);
+  }
+
+  /* ============================================================
    * Promos（cat-tabs）+ 動態重繪／導頁
    * ========================================================== */
   var TAB_NAMES = ['Lobby', 'Hot Games', 'Mini Games', 'Slots', 'Sports', 'Live', 'Fish', 'Promotion'];
@@ -2657,6 +2685,7 @@
     safe(initSecurityCenterPage);
     safe(initPersonalInfoPage);
     safe(initRecordPage);
+    safe(initFavoritesPage);
     safe(initSupportPage);
     safe(initSportsPage);
     safe(initPromotionCards);
