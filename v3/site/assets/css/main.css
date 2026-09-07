@@ -2472,6 +2472,17 @@ section.lobby-section { margin-top: 44px; }
      的 _cvParams，整個拿掉會讓這兩個功能失效(手機版 site-mobile/
      mobile.css 已經踩過這個雷，這裡沿用同一個修法)。 */
   .cat-tabs { display: none; }
+  /* 底部固定列 .shell-mobile-nav(Browse/Home/Deposit/Promotion/Member)在
+     這個寬度跟 logo 旁的漢堡鈕(.m-topbar-menu)功能重複——兩者都是
+     initMobileNav() 綁定的同一顆 shell.classList.toggle('mobile-open')，
+     側欄裡也已含 Lobby/Deposit/Withdraw/Promotion/Member 對應項目。隱藏
+     外層 .shell-mobile-nav(而非只藏內層 .mobile-nav)是為了連同它
+     position:fixed 的 64px 高度一起拿掉，避免變成蓋在畫面最下方的透明
+     點擊死區；連帶把 layout.css 幫它預留的 .shell-main 下方留白也還原，
+     不留下多的空白。HTML 不移除，避免動到 initMobileNav() 內對
+     .mobile-nav .mnav-btn 的查詢。 */
+  .shell-mobile-nav { display: none; }
+  .shell-main { padding-bottom: 0; }
   .promo-strip { grid-template-columns: 1fr; }
   .promo-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
