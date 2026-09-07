@@ -36,7 +36,8 @@
   var ICON_PATHS = {
     fire: '<path d="M12 2c1 4 5 5 5 10a5 5 0 1 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9Z" fill="currentColor"/>',
     star: '<path d="m12 3 2.6 6 6.4.6-4.8 4.4 1.4 6.4L12 17l-5.6 3.4 1.4-6.4L3 9.6l6.4-.6L12 3Z" fill="currentColor"/>',
-    bolt: '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" fill="currentColor"/>'
+    bolt: '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" fill="currentColor"/>',
+    heart: '<path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.3 1-1a5.5 5.5 0 0 0 0-7.8Z" fill="currentColor"/>'
   };
   function iconSvg(name, size) {
     var p = ICON_PATHS[name];
@@ -295,14 +296,19 @@
     'Mini Games': { title: tr('t.nav.Mini Games', '小遊戲'), icon: 'star', games: GAMES.originals, showFilterTabs: true, showProviderTabs: true, showFavorites: true, enableLoadMore: true, pageSize: 10 },
     'Slots': { title: tr('t.nav.Slots', '老虎機'), icon: 'fire', games: GAMES.slots, showFilterTabs: true, showProviderTabs: true, showFavorites: true, enableLoadMore: true, pageSize: 10 },
     'Live': { title: tr('t.nav.Live', '真人'), icon: 'bolt', games: GAMES.live, showFilterTabs: true, showProviderTabs: true, showFavorites: true, enableLoadMore: true, pageSize: 10 },
-    'Fish': { title: tr('t.nav.Fish', '捕魚'), icon: null, games: GAMES.slots, showFilterTabs: true, showProviderTabs: true, showFavorites: true, enableLoadMore: true, pageSize: 10 }
+    'Fish': { title: tr('t.nav.Fish', '捕魚'), icon: null, games: GAMES.slots, showFilterTabs: true, showProviderTabs: true, showFavorites: true, enableLoadMore: true, pageSize: 10 },
+    /* 我的最愛（.cat-tabs 在 Lobby 右邊新增的入口，對照手機版
+       favorites.html 的做法）：橫跨全部分類(不像其他分類只服務單一
+       games 陣列)，favoritesOnly 讓 renderCategoryView 一律套用收藏
+       篩選，不受 state.filter 影響，也不顯示 All/Favorites/廠商頁籤。 */
+    'Favorites': { title: STR.favorites, icon: 'heart', games: GAMES.slots.concat(GAMES.live, GAMES.originals, GAMES.table), showFilterTabs: false, showProviderTabs: false, showFavorites: true, favoritesOnly: true, enableLoadMore: true, pageSize: 20 }
   };
 
   function renderCategoryView(section) {
     var params = section._cvParams, state = section._cvState;
     if (!params || !state) return;
     var filtered = params.games;
-    if (state.filter === 'Favorites') {
+    if (params.favoritesOnly || state.filter === 'Favorites') {
       filtered = params.games.filter(function (g) { return favs.has(g.id); });
     } else if (params.showProviderTabs && state.filter !== 'All') {
       filtered = params.games.filter(function (g) { return g.provider === state.filter; });
@@ -331,7 +337,7 @@
 
     var bodyHtml;
     if (shown.length === 0) {
-      var emptyText = state.filter === 'Favorites' ? STR.noFavorites
+      var emptyText = (params.favoritesOnly || state.filter === 'Favorites') ? STR.noFavorites
         : (params.showProviderTabs && state.filter !== 'All') ? STR.noProviderGames(state.filter)
         : STR.noGames;
       bodyHtml = '<div class="cv-empty">' + escapeHtml(emptyText) + '</div>';
@@ -386,10 +392,10 @@
   /* ============================================================
    * Promos（cat-tabs）+ 動態重繪／導頁
    * ========================================================== */
-  var TAB_NAMES = ['Lobby', 'Hot Games', 'Mini Games', 'Slots', 'Sports', 'Live', 'Fish', 'Promotion'];
-  var TAB_PAGE = { 'Lobby': 'index.html', 'Hot Games': 'hot-games.html', 'Mini Games': 'mini-games.html', 'Slots': 'slots.html', 'Sports': 'sports.html', 'Live': 'live.html', 'Fish': 'fish.html', 'Promotion': 'promotion.html' };
-  var PAGE_TO_TAB = { 'hot-games.html': 'Hot Games', 'mini-games.html': 'Mini Games', 'slots.html': 'Slots', 'live.html': 'Live', 'fish.html': 'Fish' };
-  var CMS_BACKED = { 'Hot Games': 1, 'Mini Games': 1, 'Slots': 1, 'Live': 1, 'Fish': 1 };
+  var TAB_NAMES = ['Lobby', 'Favorites', 'Hot Games', 'Mini Games', 'Slots', 'Sports', 'Live', 'Fish', 'Promotion'];
+  var TAB_PAGE = { 'Lobby': 'index.html', 'Favorites': 'favorites.html', 'Hot Games': 'hot-games.html', 'Mini Games': 'mini-games.html', 'Slots': 'slots.html', 'Sports': 'sports.html', 'Live': 'live.html', 'Fish': 'fish.html', 'Promotion': 'promotion.html' };
+  var PAGE_TO_TAB = { 'favorites.html': 'Favorites', 'hot-games.html': 'Hot Games', 'mini-games.html': 'Mini Games', 'slots.html': 'Slots', 'live.html': 'Live', 'fish.html': 'Fish' };
+  var CMS_BACKED = { 'Favorites': 1, 'Hot Games': 1, 'Mini Games': 1, 'Slots': 1, 'Live': 1, 'Fish': 1 };
 
   var catTabsEl = null, contentTarget = null, originalContentNode = null;
 

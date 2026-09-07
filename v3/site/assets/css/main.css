@@ -2465,6 +2465,13 @@ section.lobby-section { margin-top: 44px; }
   .container { padding: 0 16px; }
   .nav { display: none; }
   .tb-brand-group .m-topbar-menu { display: grid; }
+  /* .cat-tabs 常駐分類切換列窄螢幕跟側欄選單(MENU 區塊)+底部導覽功能
+     重複，隱藏但不從 HTML 移除——site.js 的 initPromosAndCategoryViews()
+     用 document.querySelector('.cat-tabs') 找不找得到來判斷「這是不是
+     分類頁」，找到才會 mountCategoryView() 掛上廠商篩選/載入更多需要
+     的 _cvParams，整個拿掉會讓這兩個功能失效(手機版 site-mobile/
+     mobile.css 已經踩過這個雷，這裡沿用同一個修法)。 */
+  .cat-tabs { display: none; }
   .promo-strip { grid-template-columns: 1fr; }
   .promo-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
