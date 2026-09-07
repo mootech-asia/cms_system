@@ -1557,6 +1557,21 @@
     });
   }
 
+  /* 體育串關展開列（目前只有 betting-record.html 有 .rt-parlay-row，
+     其餘 record 頁面靜態表格沒有這個 class，$all 拿到空陣列安全跳過）。 */
+  function initBetRecordParlayRows() {
+    $all('.rt-parlay-toggle').forEach(function (btn) {
+      on(btn, 'click', function () {
+        var row = btn.closest('.rt-parlay-row');
+        var detail = row && row.nextElementSibling;
+        if (!detail || !detail.classList.contains('rt-parlay-detail')) return;
+        var open = row.classList.toggle('is-open');
+        detail.hidden = !open;
+        btn.setAttribute('aria-expanded', String(open));
+      });
+    });
+  }
+
   /* ============================ promotion detail =========================== */
   /* pages/promotion.vue PROMOS[] + list/detail toggle via ?detail=<id>. The
      "Detail" / "查看詳情" buttons exist in two places: promotion.html's own
@@ -2938,6 +2953,7 @@
     initVendorBrowser();
     initAboutTabs();
     initUiKitTabsDemo();
+    initBetRecordParlayRows();
     initPromotionDetail();
     initSportProviderTabs();
     initSportLoadMore();
