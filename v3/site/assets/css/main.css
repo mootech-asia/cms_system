@@ -5086,7 +5086,11 @@ select.twk-field {
   .wd-bank-logo { flex-basis: 54px; width: 54px; height: 50px; }
   .wd-balance-row { grid-template-columns: 1fr auto; }
   .wd-empty-wallet { min-height: 220px; padding: 24px 18px; }
-  .dp-method-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* 橫向捲動列貼齊螢幕邊緣（比照 .cat-tabs 的 bleed 寫法，負 margin 抵銷
+     .shell-main .container 的 22px 邊距），並縮小按鈕最小寬度，讓窄螢幕
+     也能穩定露出第三個按鈕的左邊緣，提示可再往右拉。 */
+  .dp-method-tabs { margin: 0 -22px 20px; padding: 0 22px; }
+  .dp-method-tabs button { min-width: 150px; }
   .dp-crypto-grid { grid-template-columns: 1fr; gap: 8px; }
   .dp-crypto-promo { flex-wrap: wrap; }
   .dp-crypto-amt { width: 100%; margin-left: 34px; }
