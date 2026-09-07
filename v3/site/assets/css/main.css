@@ -3928,7 +3928,7 @@ select.twk-field {
    展開內容是同一張訂單底下各關的獨立子表，不佔用主表欄位。 */
 .rec-expand-btn {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 20px; height: 20px; margin-right: 8px;
+  width: 20px; height: 20px; margin-left: 8px;
   border: 0; border-radius: 5px; background: transparent; color: var(--text-mid);
   vertical-align: middle; cursor: pointer;
   transition: color .15s, background .15s;
