@@ -296,6 +296,7 @@
     'record.odds': { zh: '賠率', en: 'Odds', ko: '배당률', th: 'อัตราต่อรอง' },
     'record.result': { zh: '賽果', en: 'Result', ko: '경기 결과', th: 'ผลการแข่งขัน' },
     'record.won': { zh: '贏', en: 'Won', ko: '승', th: 'ชนะ' },
+    'record.totalPL': { zh: '總損益', en: 'Total P&L', ko: '총 손익', th: 'กำไรขาดทุนรวม' },
 
     'record.txNo': { zh: '交易編號', en: 'Transaction No.', ko: '거래 번호', th: 'หมายเลขธุรกรรม' },
     'record.requestTime': { zh: '申請時間', en: 'Request Time', ko: '신청 시간', th: 'เวลาที่ขอ' },
@@ -305,9 +306,11 @@
     'record.bankRef': { zh: '銀行參考碼', en: 'Bank Reference', ko: '은행 참조 번호', th: 'รหัสอ้างอิงธนาคาร' },
     'record.completeTime': { zh: '完成時間', en: 'Completion Time', ko: '완료 시간', th: 'เวลาที่เสร็จสิ้น' },
     'record.remark': { zh: '備註', en: 'Remark', ko: '비고', th: 'หมายเหตุ' },
+    'record.totalDeposit': { zh: '總儲值金額', en: 'Total Deposit Amount', ko: '총 입금 금액', th: 'จำนวนเติมเงินรวม' },
     'record.withdrawAmount': { zh: '提款金額', en: 'Withdrawal Amount', ko: '출금 금액', th: 'จำนวนถอนเงิน' },
     'record.bankName': { zh: '銀行名稱', en: 'Bank Name', ko: '은행명', th: 'ชื่อธนาคาร' },
     'record.completeDate': { zh: '完成日期', en: 'Completion Date', ko: '완료일', th: 'วันที่เสร็จสิ้น' },
+    'record.totalWithdrawal': { zh: '總提款金額', en: 'Total Withdrawal Amount', ko: '총 출금 금액', th: 'จำนวนถอนเงินรวม' },
 
     'record.txType': { zh: '交易類型', en: 'Transaction Type', ko: '거래 유형', th: 'ประเภทธุรกรรม' },
     'record.time': { zh: '時間', en: 'Time', ko: '시간', th: 'เวลา' },

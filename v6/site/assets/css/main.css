@@ -1053,6 +1053,9 @@ img { max-width: 100%; display: block; }
 .record-table .positive { color: #3fbf72; font-weight: 700; }
 .record-table .negative { color: var(--badge); font-weight: 700; }
 .record-empty-note { padding: 32px; text-align: center; color: var(--text-dim); font-size: 13px; }
+.record-total { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; padding: 14px 18px; border-radius: var(--radius-md); background: var(--accent-grad); color: var(--accent-ink); }
+.record-total-label { font-weight: 700; font-size: 13px; }
+.record-total-val { font-weight: 800; font-size: 15px; font-variant-numeric: tabular-nums; }
 
 /* 體育串關展開列：比照 .faq-card 手風琴的 open class 寫法，用相鄰兄弟
    選擇器切換下一列子表的顯示，JS 只需 toggle class。.rt-parlay-panel
