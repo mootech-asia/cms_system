@@ -754,6 +754,11 @@ img { display: block; }
   display: grid; place-items: center;
 }
 .icon-btn:hover { color: var(--text); border-color: var(--line-hi); }
+/* Logo 旁邊的漢堡選單鈕：跟手機版首頁的 .m-topbar-menu 共用同一個
+   class（site.js initMobileNav() 已經監聽這個 class 開關側欄），只有
+   在 .nav 隱藏的窄螢幕才顯示，桌機寬螢幕維持隱藏、走 .nav 橫向選單。 */
+.tb-brand-group { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.tb-brand-group .m-topbar-menu { display: none; flex-shrink: 0; }
 
 /* ── HERO ───────────────────────────────── */
 .hero {
@@ -2459,6 +2464,7 @@ section.lobby-section { margin-top: 44px; }
 @media (max-width: 700px) {
   .container { padding: 0 16px; }
   .nav { display: none; }
+  .tb-brand-group .m-topbar-menu { display: grid; }
   .promo-strip { grid-template-columns: 1fr; }
   .promo-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
@@ -4246,6 +4252,7 @@ select.twk-field {
   .tb-balance-rows { gap: 10px !important; }
   .tb-balance-row { font-size: 12px; }
   .topbar-brand { flex-shrink: 1; min-width: 0; }
+  .tb-brand-group { flex-shrink: 1; min-width: 0; }
   .tb-user-circle { flex-shrink: 0; margin-right: 2px; }
 }
 @media (max-width: 560px) {
