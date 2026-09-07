@@ -1054,6 +1054,36 @@ img { max-width: 100%; display: block; }
 .record-table .negative { color: var(--badge); font-weight: 700; }
 .record-empty-note { padding: 32px; text-align: center; color: var(--text-dim); font-size: 13px; }
 
+/* 體育串關展開列：比照 .faq-card 手風琴的 open class 寫法，用相鄰兄弟
+   選擇器切換下一列子表的顯示，JS 只需 toggle class。.rt-parlay-panel
+   多包一層拉高子表選擇器優先權，避免被 .record-table td 的留白/文字色
+   蓋過（.record-table td 是 descendant selector，天生會吃到巢狀子表）。 */
+.rt-parlay-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; margin-left: 8px;
+  border: 0; border-radius: 5px; background: transparent; color: var(--text-mid);
+  vertical-align: middle; cursor: pointer;
+}
+.rt-parlay-toggle:hover { color: var(--text); background: var(--bg-soft); }
+.rt-parlay-caret { display: block; transition: transform 0.15s; }
+.rt-parlay-row.open .rt-parlay-caret { transform: rotate(180deg); }
+.rt-parlay-detail { display: none; }
+.rt-parlay-row.open + .rt-parlay-detail { display: table-row; }
+.rt-parlay-detail > td { padding: 0; border-bottom: 1px solid var(--line); }
+.rt-parlay-panel { padding: 14px 16px 18px; background: var(--bg-soft); white-space: normal; }
+.rt-parlay-summary { margin-bottom: 10px; font-size: 12.5px; color: var(--text-mid); white-space: nowrap; }
+.rt-parlay-sep { margin: 0 8px; }
+.rt-parlay-summary strong { color: var(--accent); font-weight: 700; }
+.rt-parlay-panel .rt-parlay-table { width: 100%; border-collapse: collapse; font-size: 12.5px; white-space: nowrap; }
+.rt-parlay-panel .rt-parlay-table th {
+  text-align: left; padding: 6px 10px; background: transparent; color: var(--text-dim);
+  font-weight: 700; font-size: 11px; border-bottom: 1px solid var(--line);
+}
+.rt-parlay-panel .rt-parlay-table td { padding: 8px 10px; background: transparent; color: var(--text-mid); border-bottom: 1px solid var(--line); }
+.rt-parlay-panel .rt-parlay-table tr:last-child td { border-bottom: 0; }
+.rt-parlay-panel .rt-parlay-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.rt-parlay-panel .rt-parlay-table .positive { color: #3fbf72; font-weight: 700; }
+
 /* 個人資料 */
 .pi-field-list { display: flex; flex-direction: column; }
 .pi-field { display: flex; align-items: center; gap: 14px; padding: 14px 4px; border-bottom: 1px solid var(--line); }
