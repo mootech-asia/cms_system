@@ -2881,6 +2881,16 @@ select.twk-field {
   text-shadow: none !important;
 }
 
+/* 手機版每筆交易改用卡片呈現（比照 v2 account.html 的 .acct-tx-card 版型），
+   桌機維持上面的表格列；兩者共用同一份資料，只切換 display。 */
+.ap-tx-cards { display: none; flex-direction: column; gap: 12px; }
+.ap-tx-card { padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--bg-elev); }
+.ap-tx-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.ap-tx-card-head > div { display: flex; flex-direction: column; gap: 3px; }
+.ap-tx-card-name { color: var(--text); font-size: 14px; font-weight: var(--weight-semibold); }
+.ap-tx-card-date { color: var(--text-mid); font-size: 12.5px; }
+.ap-tx-card-amount { display: block; font-size: 16px; }
+
 /* Deposit / Withdrawal form */
 .ap-form-card {
   padding: 28px 32px;
@@ -3090,9 +3100,8 @@ select.twk-field {
   .ap-form-card { padding: 20px 18px; }
   .ap-amount-grid { grid-template-columns: repeat(2, 1fr); }
   .ap-hero { flex-direction: column; align-items: flex-start; padding: 20px; }
-  .ap-tx-row { grid-template-columns: 1.4fr 1fr; row-gap: 4px; }
-  .ap-tx-row > span:nth-child(3),
-  .ap-tx-row > span:nth-child(4) { display: none; }
+  .ap-tx-table { display: none; }
+  .ap-tx-cards { display: flex; }
 }
 
 
