@@ -78,15 +78,61 @@
         function fmt(n) { return Number(n).toLocaleString('en-US'); }
         function plClass(n) { return n > 0 ? 'status-text-approved' : n < 0 ? 'status-text-reject' : ''; }
 
+        /* 體育串關展開列：只有 r.details 有內容的注單才附展開鈕（對照
+           Nuxt bettingRecord.vue 的 toggleExpand/isExpanded），子表欄位
+           對照同一份 pug template 的 detailHeaders（betType/leagueName/
+           eventName/betChoice/odds/matchResult/winLoss）。league_name/
+           event_name/bet_selection 是隊名等專有名詞，跟 game 欄位一樣
+           不跟 t() 走；betType(Parlay/Single) 是 UI 詞彙，補上翻譯。 */
+        function parlayDetailRows(r, colspan) {
+          if (!r.details || !r.details.length) return '';
+          var head = '<tr class="record-parlay-head">' +
+            '<th data-i18n="userCenter.bettingRecordPage.detailHeaders.betType">' + W.t('userCenter.bettingRecordPage.detailHeaders.betType') + '</th>' +
+            '<th data-i18n="userCenter.bettingRecordPage.detailHeaders.leagueName">' + W.t('userCenter.bettingRecordPage.detailHeaders.leagueName') + '</th>' +
+            '<th data-i18n="userCenter.bettingRecordPage.detailHeaders.eventName">' + W.t('userCenter.bettingRecordPage.detailHeaders.eventName') + '</th>' +
+            '<th data-i18n="userCenter.bettingRecordPage.detailHeaders.betChoice">' + W.t('userCenter.bettingRecordPage.detailHeaders.betChoice') + '</th>' +
+            '<th data-i18n="userCenter.bettingRecordPage.detailHeaders.odds">' + W.t('userCenter.bettingRecordPage.detailHeaders.odds') + '</th>' +
+            '<th data-i18n="userCenter.bettingRecordPage.detailHeaders.matchResult">' + W.t('userCenter.bettingRecordPage.detailHeaders.matchResult') + '</th>' +
+            '<th data-i18n="userCenter.bettingRecordPage.detailHeaders.winLoss">' + W.t('userCenter.bettingRecordPage.detailHeaders.winLoss') + '</th></tr>';
+          var rows = r.details.map(function (d) {
+            var betTypeKey = 'userCenter.bettingRecordPage.detailValues.' + (d.parlay ? 'parlay' : 'single');
+            return '<tr class="record-parlay-row">' +
+              '<td data-i18n="' + betTypeKey + '">' + W.t(betTypeKey) + '</td>' +
+              '<td>' + (d.league_name || '-') + '</td>' +
+              '<td>' + (d.event_name || '-') + '</td>' +
+              '<td>' + (d.bet_selection || '-') + '</td>' +
+              '<td>' + (d.odds != null ? d.odds : '-') + '</td>' +
+              '<td>' + (d.match_result || '-') + '</td>' +
+              '<td class="' + (d.bet_result === 'WIN' ? 'status-text-approved' : 'status-text-reject') + '">' + (d.bet_result || '-') + '</td></tr>';
+          }).join('');
+          return '<tr class="record-parlay-detail" hidden><td colspan="' + colspan + '"><div class="record-parlay-panel"><table class="record-parlay-table"><thead>' + head + '</thead><tbody>' + rows + '</tbody></table></div></td></tr>';
+        }
+        function expandBtn(r) {
+          if (!r.details || !r.details.length) return r.order_no;
+          return '<button type="button" class="record-parlay-toggle" data-parlay-toggle aria-expanded="false" aria-label="Show parlay legs">' +
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button>' + r.order_no;
+        }
+
         var mobile = D.BETTING_RECORDS.map(function (r) {
-          return '<tr><td>' + r.order_no + '</td><td>' + r.game + '</td><td>' + r.time + '</td><td class="' + plClass(r.pl) + '">' + fmt(r.pl) + '</td></tr>';
+          return '<tr class="' + (r.details && r.details.length ? 'record-parlay-order' : '') + '"><td>' + expandBtn(r) + '</td><td>' + r.game + '</td><td>' + r.time + '</td><td class="' + plClass(r.pl) + '">' + fmt(r.pl) + '</td></tr>' + parlayDetailRows(r, 4);
         }).join('');
         W.qs('[data-record-body-mobile]').innerHTML = mobile;
 
         var desktop = D.BETTING_RECORDS.map(function (r) {
-          return '<tr><td>' + r.order_no + '</td><td>' + r.game + '</td><td>' + r.time + '</td><td>' + fmt(r.bet_amount) + '</td><td>' + fmt(r.valid_bet) + '</td><td>' + fmt(r.win_amount) + '</td><td class="' + (r.result === 'WIN' ? 'status-text-approved' : 'status-text-reject') + '">' + r.result + '</td><td class="' + plClass(r.pl) + '">' + fmt(r.pl) + '</td></tr>';
+          return '<tr class="' + (r.details && r.details.length ? 'record-parlay-order' : '') + '"><td>' + expandBtn(r) + '</td><td>' + r.game + '</td><td>' + r.time + '</td><td>' + fmt(r.bet_amount) + '</td><td>' + fmt(r.valid_bet) + '</td><td>' + fmt(r.win_amount) + '</td><td class="' + (r.result === 'WIN' ? 'status-text-approved' : 'status-text-reject') + '">' + r.result + '</td><td class="' + plClass(r.pl) + '">' + fmt(r.pl) + '</td></tr>' + parlayDetailRows(r, 8);
         }).join('');
         W.qs('[data-record-body-desktop]').innerHTML = desktop;
+
+        Array.prototype.slice.call(W.qsa('[data-parlay-toggle]')).forEach(function (btn) {
+          W.on(btn, 'click', function () {
+            var row = btn.closest('tr');
+            var detail = row && row.nextElementSibling;
+            if (!detail || !detail.classList.contains('record-parlay-detail')) return;
+            var open = row.classList.toggle('open');
+            detail.hidden = !open;
+            btn.setAttribute('aria-expanded', String(open));
+          });
+        });
 
         var totalPl = D.BETTING_RECORDS.reduce(function (s, r) { return s + r.pl; }, 0);
         W.qs('[data-total-pl]').textContent = fmt(totalPl);
