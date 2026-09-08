@@ -21,10 +21,10 @@
     });
   }
 
-  /* 讀取跟桌機版(site.js useFavorites)同一把 lobby_favs_v1 key——這裡
-     只讀不寫，這個精簡卡片本身不含收藏愛心，"Favorite" 這個 tag 純粹
-     篩選出使用者在其他頁面(如 slots.html 的 .gcard-fav)已收藏、且剛好
-     也出現在本分頁清單裡的遊戲。 */
+  /* 讀取跟桌機版(site.js useFavorites)同一把 lobby_favs_v1 key，這裡
+     的卡片自己也有收藏愛心(見下方 cardHTML 的 favHtml)，"Favorite" 這個
+     tag 篩選的是本分頁清單裡、當下已收藏的遊戲。favIds 在
+     cms:favorites-changed 事件觸發時會重新讀取並重繪，見檔案最下方。 */
   var FAV_KEY = 'lobby_favs_v1';
   var favIds = (function () {
     try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]')); }
@@ -120,6 +120,45 @@
         : provider === 'favorite' ? favIds.has(card.getAttribute('data-gid'))
         : card.getAttribute('data-provider') === provider;
       card.style.display = show ? '' : 'none';
+    });
+  });
+
+  /* 收藏在別處被切換(同一款遊戲可能同時出現在多個分頁，或桌機版
+     gcard-fav)時重新讀 favIds 並各自重繪：每個分頁只更新自己的
+     Favorite 數量徽章、卡片愛心 on/off 狀態，以及(若當下正篩在
+     Favorite)重新套用篩選——分頁之間各自獨立，不會互相污染。 */
+  document.addEventListener('cms:favorites-changed', function () {
+    try { favIds = new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]')); }
+    catch (e) { favIds = new Set(); }
+    Array.prototype.forEach.call(pages, function (page) {
+      var grid = page.querySelector('.grid');
+      var bar = page.querySelector('.m-provider-filter');
+      if (!grid || !bar) return;
+      var favCount = 0;
+      Array.prototype.forEach.call(grid.querySelectorAll('.gcard'), function (card) {
+        var on = favIds.has(card.getAttribute('data-gid'));
+        if (on) favCount++;
+        var favBtn = card.querySelector('.gcard-fav');
+        if (favBtn) {
+          favBtn.classList.toggle('on', on);
+          favBtn.innerHTML = gcardHeartSvg(on);
+          favBtn.setAttribute('aria-label', on ? 'Remove favorite' : 'Add favorite');
+        }
+      });
+      var favChip = bar.querySelector('.m-provider-chip-fav');
+      if (!favChip) return;
+      var countEl = favChip.querySelector('.m-provider-chip-count');
+      if (favCount > 0) {
+        if (countEl) countEl.textContent = favCount;
+        else favChip.insertAdjacentHTML('beforeend', '<span class="m-provider-chip-count">' + favCount + '</span>');
+      } else if (countEl) {
+        countEl.remove();
+      }
+      if (favChip.classList.contains('active')) {
+        Array.prototype.forEach.call(grid.querySelectorAll('.gcard'), function (card) {
+          card.style.display = favIds.has(card.getAttribute('data-gid')) ? '' : 'none';
+        });
+      }
     });
   });
 })();
