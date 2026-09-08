@@ -19,6 +19,16 @@
      .cat-tabs 元素會連帶讓這兩個功能失效(踩過這個雷)，只能用
      display:none 隱藏，讓 querySelector 還找得到它。 */
   .cat-tabs { display: none; }
+  /* main.css 的 @media (max-width:700px) 為了「桌機版 RWD 窄螢幕」把
+     .shell-mobile-nav(底部固定導覽列)連同 .shell-main 下方留白一起
+     隱藏/歸零——那是給 ../site/ 桌機版用的，因為它在同寬度已經有
+     logo 旁的漢堡鈕可以取代。但 main.css 是共用檔案，同一條規則在
+     這裡(真正的手機版)也會被套用，把手機版本來就該有、非重複的底部
+     導覽列一起藏掉。這裡載入順序在 main.css 之後，用同層級選擇器蓋
+     回來，只還原這兩個屬性，其餘手機版底部導覽的樣式仍是 main.css/
+     layout.css 原本那份。 */
+  .shell-mobile-nav { display: flex; }
+  .shell-main { padding-bottom: var(--mobile-nav-h); }
   /* 側欄抽屜頂列：拿掉搜尋框(遊戲搜尋在大廳首頁的 .m-search 已經有，
      側欄選單本身不需要重複一份)，語系選擇跟關閉鈕併成同一行——
      .sidebar-search 這個 class 名稱維持不動(main.css 的
