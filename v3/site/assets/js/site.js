@@ -1111,7 +1111,13 @@
     trigger.setAttribute('aria-expanded', 'true');
   }
 
-  var USER = { loggedIn: true, name: 'PlayerOne', email: 'player@100.gg' };
+  /* 開頁時要跟 doLogout() 寫入的 cms_v3_logged_out 對齊，不然登出後
+     換頁/整頁重整一律又變回登入狀態，看起來像登出完全沒作用。 */
+  var USER = (function () {
+    var loggedOut = false;
+    try { loggedOut = localStorage.getItem('cms_v3_logged_out') === '1'; } catch (e) {}
+    return { loggedIn: !loggedOut, name: 'PlayerOne', email: 'player@100.gg' };
+  })();
   var BALANCE = 1284.32;
 
   function loggedOutHTML() {
@@ -1129,14 +1135,43 @@
       '</div>';
   }
   function setAuthSection(html) {
-    var headerActions = document.querySelector('.header-actions');
-    if (!headerActions) return;
-    var skinWrap = headerActions.querySelector('.tb-skin-wrap');
-    var node = skinWrap ? skinWrap.nextSibling : headerActions.firstChild;
-    while (node) { var next = node.nextSibling; headerActions.removeChild(node); node = next; }
-    headerActions.insertAdjacentHTML('beforeend', html);
+    /* site-mobile 頁面的 topbar 其實有兩個 .header-actions：一個是桌機版
+       樣式(含 .tb-skin-wrap，這寬度下用 CSS 隱藏)，另一個才是手機版
+       實際顯示的(.tb-balance.m-header-balance + 通知鈴 .m-header-
+       bell-wrap)。原本只用 querySelector 抓第一個，手機版真正看得到的
+       那個從沒被换過，登出後畫面看起來一直沒反應。改成 querySelectorAll
+       逐一處理；且不能整段清空重插——手機版的通知鈴跟登入狀態無關，
+       要保留，只換掉 .tb-skin-wrap/.m-header-bell-wrap 以外的內容(也就
+       是原本的餘額/頭像，或登入/註冊按鈕)，新內容插在通知鈴前面(若
+       這個 header-actions 沒有通知鈴，插在最後)。 */
+    var all = document.querySelectorAll('.header-actions');
+    Array.prototype.forEach.call(all, function (headerActions) {
+      var bellWrap = headerActions.querySelector('.m-header-bell-wrap');
+      var node = headerActions.firstChild;
+      while (node) {
+        var next = node.nextSibling;
+        var keep = node.nodeType === 1 && (node.classList.contains('tb-skin-wrap') || node.classList.contains('m-header-bell-wrap'));
+        if (!keep) headerActions.removeChild(node);
+        node = next;
+      }
+      if (bellWrap) bellWrap.insertAdjacentHTML('beforebegin', html);
+      else headerActions.insertAdjacentHTML('beforeend', html);
+    });
   }
   function renderAuthSection() { setAuthSection(USER.loggedIn ? loggedInHTML() : loggedOutHTML()); }
+  /* bfcache 修復：doLogout() 用 location.href 換頁時，如果目標頁在這次
+     瀏覽階段已經造訪過(例如先進 index.html 才點進 security-center.html
+     再登出跳回 index.html)，瀏覽器可能直接從 bfcache 還原那個分頁當時
+     的記憶體狀態(含當時還是登入中的 USER)，而不是重新執行整段開機
+     腳本——這種情況下 USER.loggedIn 不會照 cms_v3_logged_out 旗標重新
+     判斷，畫面看起來像「登出後換頁又自動變回登入」。pageshow 的
+     event.persisted 專門用來偵測這種從 bfcache 還原的情況，還原時強制
+     重新讀旗標、重繪 topbar。 */
+  window.addEventListener('pageshow', function (e) {
+    if (!e.persisted) return;
+    try { USER.loggedIn = localStorage.getItem('cms_v3_logged_out') !== '1'; } catch (err) {}
+    renderAuthSection();
+  });
 
   function userMenuHTML() {
     var initials = escapeHtml(USER.name.slice(0, 2).toUpperCase());
@@ -1215,10 +1250,16 @@
     USER.loggedIn = false;
     renderAuthSection();
     closeUserMenu();
-    /* USER 只存在單頁記憶體，換頁就重置——手機版個人資料頁登入引導
-       (site-mobile/personal-info.html)要跨頁記住登出狀態，靠這個
-       localStorage 旗標同步，不是給 USER 本身用的。 */
+    /* USER 只存在單頁記憶體，換頁就重置——這裡寫 localStorage 旗標，
+       上面 USER 初始化時會讀它，換頁/整頁重整後才會維持登出狀態。
+       手機版個人資料頁登入引導(site-mobile/personal-info.html)也是
+       靠同一把旗標判斷。原本試過登出後直接 location.href 導回首頁，
+       但同一分頁在這次瀏覽階段如果已經造訪過目標網址，實測會被還原成
+       上一次造訪時的狀態、不會重新跑開機腳本，導致換頁後畫面又變回
+       登入中，比留在原頁不導頁更誤導人；改成留在原頁，topbar 立刻換成
+       登出樣式，同時跳一個看得到的成功訊息，不依賴任何換頁時機。 */
     try { localStorage.setItem('cms_v3_logged_out', '1'); } catch (e) {}
+    showDialog(resultDialogHTML('success', 'Logged Out', 'You have been logged out.'));
   }
   function doLogin(name, email) {
     USER.loggedIn = true;
@@ -2664,6 +2705,11 @@
    * ========================================================== */
   document.addEventListener('DOMContentLoaded', function () {
     safe(initI18n);
+    /* topbar 的登入/未登入 HTML 原本只在 doLogin()/doLogout() 觸發，
+       靜態 HTML 一律先假設已登入；沒有這行的話，就算 USER.loggedIn
+       依 cms_v3_logged_out 旗標正確初始化成 false，畫面還是照樣顯示
+       頭像，看起來像登出後換頁又自動變回登入。 */
+    safe(renderAuthSection);
     safe(restoreSkin);
     safe(applySkinButtonVisibility);
     safe(applySavedSiteName);
