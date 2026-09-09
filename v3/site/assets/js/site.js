@@ -635,8 +635,7 @@
           '<div class="game-modal-stat"><div class="game-modal-stat-label">' + escapeHtml(tr('t.modal.game.maxWin', 'Max win')) + '</div><div class="game-modal-stat-val">' + escapeHtml(game.maxWin) + '</div></div>' +
           '<div class="game-modal-stat"><div class="game-modal-stat-label">' + escapeHtml(tr('t.modal.game.volatility', 'Volatility')) + '</div><div class="game-modal-stat-val">' + escapeHtml(tr('t.modal.game.volatilityHigh', 'High')) + '</div></div>' +
         '</div>' +
-      '</div>' +
-      '<div class="modal-foot"><button type="button" class="btn">' + escapeHtml(tr('t.modal.game.demo', 'Demo')) + '</button><button type="button" class="btn primary">' + escapeHtml(tr('t.modal.game.playReal', 'Play for real →')) + '</button></div>';
+      '</div>';
   }
   function openGameModal(game) {
     var el = document.getElementById('cms-modal-game');
@@ -1277,8 +1276,6 @@
     if (t.classList && t.classList.contains('modal-bg')) { if (t.hasAttribute('data-transient')) t.remove(); else hideModalEl(t); return; }
     var dialogCloseBtn = t.closest('[data-dialog-close]');
     if (dialogCloseBtn) { var dcbg = dialogCloseBtn.closest('.modal-bg'); if (dcbg) dcbg.remove(); return; }
-    var gmFootBtn = t.closest('#cms-modal-game .modal-foot .btn');
-    if (gmFootBtn) { hideModalEl(document.getElementById('cms-modal-game')); return; }
     var gmFavBtn = t.closest('.modal-gm-fav');
     if (gmFavBtn) {
       var gmGameId = gmFavBtn.getAttribute('data-gm-fav-id');

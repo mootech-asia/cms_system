@@ -2304,14 +2304,6 @@ section.lobby-section { margin-top: 44px; }
   font-weight: 700;
   margin-top: 4px;
 }
-.modal-foot {
-  display: flex; gap: 10px;
-  padding: 16px 20px;
-  border-top: 1px solid var(--line);
-  background: var(--bg-card);
-}
-.modal-foot .btn { flex: 1; padding: 12px; font-size: 14px; }
-
 /* sign in form */
 .signin-tabs { display: flex; gap: 4px; padding: 4px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 999px; margin-bottom: 18px; }
 .signin-tab {
@@ -4351,8 +4343,7 @@ select.twk-field {
 /* 6. light-theme: primary buttons (Join / Sign in / signin-tab) readable */
 [data-theme="light"] .btn.primary,
 [data-theme="light"] .tourn .btn.primary,
-[data-theme="light"] .signin-tab.active,
-[data-theme="light"] .modal-foot .btn.primary {
+[data-theme="light"] .signin-tab.active {
   background: var(--gradient-primary-short) !important;
   color: var(--text-on-accent) !important;
   border: 0 !important;
@@ -4549,7 +4540,6 @@ select.twk-field {
 [data-theme="light"] .sb-deposit,
 [data-theme="light"] .cv-view-all,
 [data-theme="light"] .tourn .btn.primary,
-[data-theme="light"] .modal-foot .btn.primary,
 [data-theme="light"] .ap-btn.primary {
   box-shadow: var(--shadow-primary) !important;
 }
