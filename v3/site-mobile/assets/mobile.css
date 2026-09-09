@@ -38,8 +38,7 @@
      844px 螢幕下)以上，點擊才點得到而不是點到 nav 上的按鈕。只在手機
      覆寫，桌機版 main.css 的 .sc-item 原值不動。 */
   .sc-item { padding: 10px 14px; }
-  /* 側欄抽屜頂列：拿掉搜尋框(遊戲搜尋在大廳首頁的 .m-search 已經有，
-     側欄選單本身不需要重複一份)，語系選擇跟關閉鈕併成同一行——
+  /* 側欄抽屜頂列：拿掉搜尋框，語系選擇跟關閉鈕併成同一行——
      .sidebar-search 這個 class 名稱維持不動(main.css 的
      .sidebar-search .sb-collapse-toggle{margin-left:-34px} 靠它定位)，
      但那個 -34px 是配合原本搜尋框右側留白算的，現在改成語系鈕+關閉鈕
@@ -143,9 +142,10 @@
     min-height: 0;
     overflow: hidden;
   }
-  .m-search-wrap { display: block; margin-top: 16px; flex-shrink: 0; }
-  .m-search { max-width: none; width: 100%; }
   .promo-ribbon { flex-shrink: 0; }
+  /* 跑馬燈上下留白比照桌機版縮小，讓下面遊戲 grid 多露出一點內容；
+     水平 padding 沿用 main.css 在這個斷點已有的 14px，這裡只調垂直。 */
+  .promo-ribbon-viewport { padding-top: 6px; padding-bottom: 6px; }
 
   /* 圖示快速導覽列：熱門遊戲/小遊戲/老虎機/真人/捕魚 5 項改成分頁籤
      (按鈕+data-tab，mobile.js 的 initHomeTabs() 負責切換與雙向同步)，
