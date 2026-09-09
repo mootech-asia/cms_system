@@ -29,6 +29,15 @@
      layout.css 原本那份。 */
   .shell-mobile-nav { display: flex; }
   .shell-main { padding-bottom: var(--mobile-nav-h); }
+  /* Security Center 的 .sc-item 清單 4 列，其中幾列 sub 文字在手機窄寬
+     度下會換成 2 行，疊加起來讓 Logout(最後一列)剛好落在底部固定導覽列
+     (fixed, 佔螢幕最下方 --mobile-nav-h)的覆蓋範圍內——注意 padding-
+     bottom 只影響「捲到底能不能捲開它」，不會移動 Logout 本身的位置，
+     所以疊到問題只能靠縮小它前面內容的高度來解。縮小 .sc-item 直向
+     padding 讓四列整體變矮，Logout 底緣才能移到 nav 上緣(780px，
+     844px 螢幕下)以上，點擊才點得到而不是點到 nav 上的按鈕。只在手機
+     覆寫，桌機版 main.css 的 .sc-item 原值不動。 */
+  .sc-item { padding: 10px 14px; }
   /* 側欄抽屜頂列：拿掉搜尋框(遊戲搜尋在大廳首頁的 .m-search 已經有，
      側欄選單本身不需要重複一份)，語系選擇跟關閉鈕併成同一行——
      .sidebar-search 這個 class 名稱維持不動(main.css 的
