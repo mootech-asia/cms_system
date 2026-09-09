@@ -243,3 +243,49 @@
     }).observe(document.body, { childList: true, subtree: true });
   }
 })();
+
+/* 手機版遊戲詳情 modal 的登入前狀態：未登入時在 .modal-body 後面補一段
+   「請先登入才能開始遊玩」+ 登入/註冊按鈕，取代先前拿掉的
+   Demo/Play for real(那兩顆按鈕本來就沒有真正的遊玩流程可接，桌機版
+   維持拿掉後乾淨結束，不加這段——只有手機版需要)。判斷登入狀態沿用
+   site-mobile/personal-info.html 同一把 cms_v3_logged_out 旗標；圖示
+   /按鈕沿用既有的 .wd-compact-empty／.wd-empty-action(withdrawal 管理
+   頁「尚未設定」提示同款)，不新增等價樣式。openGameModal() 每次開新
+   遊戲都會整個換掉 .modal 的 innerHTML，所以用 MutationObserver 監看，
+   換掉後才有機會補這段；另外監看 signin modal 的 style 變化，登入/
+   註冊成功關掉那個 modal 時，背後開著的遊戲 modal 也會跟著重新判斷。 */
+(function () {
+  var gameModalEl = document.getElementById('cms-modal-game');
+  if (!gameModalEl) return;
+  var STORAGE_KEY = 'cms_v3_logged_out';
+  var GATE_CLASS = 'gm-mobile-gate';
+  var GATE_HTML = '<div class="wd-compact-empty"><span class="wd-empty-symbol" aria-hidden="true">' +
+      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><circle cx="12" cy="9" r="3.5"></circle><path d="M5 20a7 7 0 0 1 14 0"></path></svg>' +
+    '</span><span>請先登入才能開始遊玩</span></div>' +
+    '<button type="button" class="wd-empty-action" data-action="open-signin" style="margin:0 20px 20px">' +
+      '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"></path></svg> 登入 / 註冊' +
+    '</button>';
+  function isLoggedOut() {
+    try { return localStorage.getItem(STORAGE_KEY) === '1'; } catch (e) { return false; }
+  }
+  function syncGate() {
+    var body = gameModalEl.querySelector('.modal-body');
+    if (!body) return;
+    var existing = gameModalEl.querySelector('.' + GATE_CLASS);
+    if (isLoggedOut()) {
+      if (!existing) {
+        var wrap = document.createElement('div');
+        wrap.className = GATE_CLASS;
+        wrap.innerHTML = GATE_HTML;
+        body.insertAdjacentElement('afterend', wrap);
+      }
+    } else if (existing) {
+      existing.remove();
+    }
+  }
+  if (window.MutationObserver) {
+    new MutationObserver(syncGate).observe(gameModalEl, { childList: true, subtree: true });
+    var signinModal = document.getElementById('cms-modal-signin');
+    if (signinModal) new MutationObserver(syncGate).observe(signinModal, { attributes: true, attributeFilter: ['style'] });
+  }
+})();
