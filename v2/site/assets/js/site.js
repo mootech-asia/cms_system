@@ -21,6 +21,16 @@
   function $(sel, root) { return (root || document).querySelector(sel); }
   function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
   function on(el, ev, fn, opts) { if (el) el.addEventListener(ev, fn, opts); }
+  /* 遊戲卡圖片載入失敗（404／網路錯誤）時的墊底畫面：把壞掉的 <img>
+     藏起來，讓 .game-listing-card-media 掛上的 assets/game-fallback.svg
+     從背景鋪滿卡片。error 事件不會冒泡，只能在 capture 階段抓。 */
+  on(document, 'error', function (e) {
+    var img = e.target;
+    if (!img || img.nodeName !== 'IMG' || !img.classList.contains('game-listing-card-img') || img.hidden) return;
+    img.hidden = true;
+    var media = img.closest('.game-listing-card-media');
+    if (media) media.classList.add('is-broken');
+  }, true);
   /* 全螢幕/遮罩型 overlay 開啟時鎖住背景捲動,避免瀏覽器原生 scrollbar
      軌道穿插在 overlay 上層(position:fixed 蓋不到 viewport 的 scrollbar 溝槽)。
      用計數器而非布林值,允許巢狀開關(例如已開啟一個 overlay 時又開了另一個)

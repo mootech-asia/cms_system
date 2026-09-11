@@ -1614,6 +1614,10 @@ select.pay-field {
 .game-listing-card-media { position: relative; overflow: hidden; aspect-ratio: 4 / 3; }
 .game-listing-card-img { height: 100%; width: 100%; object-fit: cover; transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 0.5s; }
 .game-listing-card:hover .game-listing-card-img { transform: scale(1.05); }
+/* 圖片載入失敗時 site.js 會設 hidden 並掛 .is-broken；Tailwind preflight
+   的 `img{display:block}` 是較低 specificity 的 reset，這條才擋得住。 */
+.game-listing-card-img[hidden] { display: none; }
+.game-listing-card-media.is-broken { background-image: url(../game-fallback.svg); background-size: cover; background-position: center; }
 .game-listing-card-body { padding: 1rem; }
 .game-listing-card-name { margin-bottom: 0.25rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: rgb(var(--c-text) / 1); }
 .game-listing-card-provider { margin-bottom: 0.75rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs-caption); line-height: var(--lh-body); color: rgb(var(--c-text-3) / 1); }
