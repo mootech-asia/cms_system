@@ -1819,6 +1819,18 @@ section.lobby-section { margin-top: 44px; }
   height: 100%;
   object-fit: cover;
 }
+/* 圖片載入失敗時 site.js 會設 hidden；上面 `img { display:block }`
+   reset 屬於 author 層級，UA 內建的 [hidden] 規則蓋不過它，要靠這條
+   較高 specificity 的規則才擋得住，讓 .gcard-art-broken 墊底圖能顯示。 */
+.gcard-art-image[hidden] { display: none; }
+/* site.js 在 img 載入失敗時掛上這個 class：墊底圖路徑相對本檔案位置
+   解析（main.css 固定在 assets/css/ 下），site/ 與 site-mobile/ 兩邊
+   共用同一份 main.css，不受頁面所在資料夾影響。 */
+.gcard-art.gcard-art-broken {
+  background-image: url(../mock/game-fallback.svg);
+  background-size: cover;
+  background-position: center;
+}
 .gcard-art::before {
   content: '';
   position: absolute; inset: 0;
@@ -2711,7 +2723,11 @@ select.twk-field {
 
 
 /* ── ACCOUNT / DEPOSIT / WITHDRAWAL PAGES ─────────── */
-.ap-page { margin-top: 24px; }
+/* 這類頁面預設收窄成單欄閱讀寬度；account-overview.html 是雙欄
+   儀表板（.ap-top / .ap-grid 需要整欄寬度才排得下），額外掛
+   .ap-page-wide 退回滿版。 */
+.ap-page { margin-top: 24px; max-width: 896px; margin-inline: auto; }
+.ap-page.ap-page-wide { max-width: none; margin-inline: 0; }
 .ap-h1 {
   font-family: var(--font-display);
   font-size: 26px;
@@ -3119,8 +3135,7 @@ select.twk-field {
 .dp-qr-row .ap-input { flex: 1; }
 .dp-qr-copy { width: auto; flex: 0 0 auto; padding: 0 20px; }
 .dp-qr-note { color: var(--text-dim); font-size: 12px; margin: 0; }
-.dp-step-actions { display: flex; justify-content: space-between; gap: 14px; width: 100%; }
-.dp-step-actions .ap-btn-wide { flex: 1; }
+.dp-step-actions { display: flex; flex-direction: column; gap: 14px; width: 100%; }
 
 @media (max-width: 900px) {
   .ap-top { grid-template-columns: 1fr; }
@@ -3150,7 +3165,8 @@ select.twk-field {
 .ap-bank-arrow:hover { color: var(--control-hover-text); border-color: var(--accent); }
 .ap-bank-count { font-family: var(--font-mono); font-size: 12px; color: var(--text-mid); min-width: 30px; text-align: center; }
 .ap-bank-row { position: relative; }
-.ap-bank-del {
+.ap-bank-del,
+.ap-bank-copy {
   margin-left: auto;
   background: none; border: 0;
   color: var(--text-dim);
@@ -3161,6 +3177,7 @@ select.twk-field {
   transition: color .15s, background .15s;
 }
 .ap-bank-del:hover { color: #ef4444; background: color-mix(in oklch, #ef4444 12%, transparent); }
+.ap-bank-copy:hover { color: var(--accent-2); background: var(--control-bg); }
 .ap-bank-empty { color: var(--text-dim); font-size: 13.5px; padding: 12px 0; }
 
 
@@ -4537,7 +4554,8 @@ select.twk-field {
 /* primary / accent buttons — clean soft shadow */
 [data-theme="light"] .btn.primary,
 [data-theme="light"] .balance .deposit-btn,
-[data-theme="light"] .sb-deposit,
+[data-theme="light"] .sb-deposit.is-current,
+[data-theme="light"] .sb-withdraw.is-current,
 [data-theme="light"] .cv-view-all,
 [data-theme="light"] .tourn .btn.primary,
 [data-theme="light"] .ap-btn.primary {
@@ -4594,8 +4612,8 @@ select.twk-field {
 [data-theme="light"] .cv-tab,
 [data-theme="light"] .cat-tab,
 [data-theme="light"] .sb-tab,
-[data-theme="light"] .sb-deposit,
-[data-theme="light"] .sb-withdraw,
+[data-theme="light"] .sb-deposit:not(.is-current),
+[data-theme="light"] .sb-withdraw:not(.is-current),
 [data-theme="light"] .btn,
 [data-theme="light"] .rt,
 [data-theme="light"] .promo-card-cta,
@@ -4609,8 +4627,8 @@ select.twk-field {
 [data-theme="light"] .cv-tab:hover:not(.active),
 [data-theme="light"] .cat-tab:hover:not(.active),
 [data-theme="light"] .sb-tab:hover:not(.active),
-[data-theme="light"] .sb-deposit:hover,
-[data-theme="light"] .sb-withdraw:hover,
+[data-theme="light"] .sb-deposit:not(.is-current):hover,
+[data-theme="light"] .sb-withdraw:not(.is-current):hover,
 [data-theme="light"] .btn:hover,
 [data-theme="light"] .rt:hover:not(.active),
 [data-theme="light"] .promo-card-cta:hover,
@@ -4623,23 +4641,25 @@ select.twk-field {
 [data-theme="light"] .cv-tab.active,
 [data-theme="light"] .cat-tab.active,
 [data-theme="light"] .sb-tab.active,
-[data-theme="light"] .rt.active {
+[data-theme="light"] .rt.active,
+[data-theme="light"] .sb-deposit.is-current,
+[data-theme="light"] .sb-withdraw.is-current {
   background: var(--control-active-bg) !important;
   border: 1.5px solid var(--accent) !important;
 }
 
 
 /* Light skin changes contrast only; component geometry remains inherited. */
-[data-theme="light"] .sb-deposit,
-[data-theme="light"] .sb-withdraw,
+[data-theme="light"] .sb-deposit:not(.is-current),
+[data-theme="light"] .sb-withdraw:not(.is-current),
 [data-theme="light"] .btn,
 [data-theme="light"] .cv-tab,
 [data-theme="light"] .cat-tab,
 [data-theme="light"] .sb-tab,
 [data-theme="light"] .rt,
 [data-theme="light"] .promo-card-cta,
-[data-theme="light"] .sb-deposit:hover,
-[data-theme="light"] .sb-withdraw:hover,
+[data-theme="light"] .sb-deposit:not(.is-current):hover,
+[data-theme="light"] .sb-withdraw:not(.is-current):hover,
 [data-theme="light"] .btn:hover,
 [data-theme="light"] .cv-tab:hover,
 [data-theme="light"] .cat-tab:hover {

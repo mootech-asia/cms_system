@@ -285,6 +285,21 @@
   }
 
   /* ============================================================
+   * 遊戲卡圖片載入失敗（404／網路錯誤）時的墊底畫面：把壞掉的
+   * <img> 藏起來（src 保留不動，resolveGameFromCard() 靠它比對遊戲，
+   * 不能覆寫），讓 .gcard-art-broken 這個 class 掛上去的
+   * assets/mock/game-fallback.svg 墊底圖從背景整張顯示。error 事件
+   * 不會冒泡，只能在 capture 階段抓；已處理過（img.hidden）就不重複跑。
+   * ========================================================== */
+  document.addEventListener('error', function (e) {
+    var img = e.target;
+    if (!img || img.nodeName !== 'IMG' || !img.classList.contains('gcard-art-image') || img.hidden) return;
+    img.hidden = true;
+    var art = img.closest('.gcard-art');
+    if (art) art.classList.add('gcard-art-broken');
+  }, true);
+
+  /* ============================================================
    * CategoryView（All / Favorites / Provider tabs + load more）
    * 同一份 renderer 同時用於：
    *   (a) 5 個已預先烘焙的頁面（hot-games / mini-games / slots / live / fish）
@@ -995,6 +1010,17 @@
     if (raw && raw.trim()) document.title = raw.trim();
   }
 
+  /* 側邊欄 .sb-deposit／.sb-withdraw 原本各自寫死主色／外框（看
+     components.css 的 :is(...) 分組），跟目前在哪一頁無關；改成用
+     CURRENT_PAGE 判斷，讓當前頁面對應的那顆掛 .is-current 顯示主色，
+     另一顆退回外框樣式（其餘頁面兩顆都不特別標示）。 */
+  function applySbMoneyActiveState() {
+    var isDeposit = CURRENT_PAGE === 'deposit.html';
+    var isWithdraw = CURRENT_PAGE === 'withdrawal.html';
+    Array.prototype.forEach.call(document.querySelectorAll('.sb-deposit'), function (el) { el.classList.toggle('is-current', isDeposit); });
+    Array.prototype.forEach.call(document.querySelectorAll('.sb-withdraw'), function (el) { el.classList.toggle('is-current', isWithdraw); });
+  }
+
   /* ============================================================
    * Site-wide CHROME variants (/studio → 'cms-v3:chrome').
    * Toggle chrome-module + chrome-{part}--vN on the real header, footer and
@@ -1690,6 +1716,18 @@
       var okc = dlg.querySelector('[data-action="confirm-delete-crypto"]');
       if (okc) okc.addEventListener('click', function () { cryptos.splice(0, 1); saveAccountStore(store); renderCrypto(); dlg.remove(); });
     });
+    var cryptoCopy = cryptoPanel ? cryptoPanel.querySelector('.ap-bank-copy') : null;
+    if (cryptoCopy) cryptoCopy.addEventListener('click', function () {
+      var c = cryptos[0]; if (!c) return;
+      try { navigator.clipboard.writeText(c.address); } catch (e) {}
+      var original = cryptoCopy.innerHTML;
+      cryptoCopy.innerHTML = CHECK_ICON;
+      cryptoCopy.setAttribute('aria-label', 'Copied');
+      setTimeout(function () {
+        cryptoCopy.innerHTML = original;
+        cryptoCopy.setAttribute('aria-label', 'Copy address');
+      }, 1500);
+    });
 
     renderBanks();
     renderCrypto();
@@ -2356,7 +2394,7 @@
         '<label class="dp-qr-label">' + (isAddr ? 'Payment Address' : 'Payment Link') + '</label>' +
         '<div class="dp-qr-row"><input class="ap-input" value="' + escapeHtml(addr) + '" readonly><button type="button" class="ap-btn-wide outline dp-qr-copy" data-dp-copy>Copy</button></div>' +
         '<p class="dp-qr-note">This is an illustrative QR code and payment ' + (isAddr ? 'address' : 'link') + ', for interface display only.</p>' +
-        '<div class="dp-step-actions"><button type="button" class="ap-btn-wide outline" data-dp-back>Back</button><button type="button" class="ap-btn-wide ap-grad" data-dp-next>Next</button></div>';
+        '<div class="dp-step-actions"><button type="button" class="ap-btn-wide ap-grad" data-dp-next>Next</button><button type="button" class="ap-btn-wide outline" data-dp-back>Back</button></div>';
       depositCard.parentElement.insertBefore(sec, depositCard.nextSibling);
       safe(function () { applyI18n(sec); });
       var cp = sec.querySelector('[data-dp-copy]'); if (cp) cp.addEventListener('click', function () {
@@ -2713,6 +2751,7 @@
     safe(restoreSkin);
     safe(applySkinButtonVisibility);
     safe(applySavedSiteName);
+    safe(applySbMoneyActiveState);
     safe(applySavedDesign);
     safe(applySavedSectionVariants);
     safe(applyLobbyLayout);

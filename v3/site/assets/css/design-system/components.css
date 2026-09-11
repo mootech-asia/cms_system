@@ -243,21 +243,23 @@
   pointer-events: none;
 }
 
-:is(.btn:not(.primary), .ap-btn:not(.primary), .ap-btn-wide.outline, .promo-card-cta, .sb-withdraw) {
+:is(.btn:not(.primary), .ap-btn:not(.primary), .ap-btn-wide.outline, .promo-card-cta, .sb-deposit:not(.is-current), .sb-withdraw:not(.is-current)) {
   border: 1px solid var(--line-hi);
   background: color-mix(in oklch, var(--bg-card-hi) 72%, transparent);
   color: var(--text-mid);
   box-shadow: none;
 }
 
-:is(.btn:not(.primary), .ap-btn:not(.primary), .ap-btn-wide.outline, .promo-card-cta, .sb-withdraw):hover:not(:disabled) {
+:is(.btn:not(.primary), .ap-btn:not(.primary), .ap-btn-wide.outline, .promo-card-cta, .sb-deposit:not(.is-current), .sb-withdraw:not(.is-current)):hover:not(:disabled) {
   border-color: var(--control-hover-border);
   color: var(--control-hover-text);
   background: var(--control-bg);
   filter: none;
 }
 
-:is(.ui-button--primary, .btn.primary, .ap-btn.primary, .ap-btn-wide.ap-grad, .rec-confirm, .sb-deposit) {
+/* .sb-deposit / .sb-withdraw 原本各自寫死主色／外框，跟目前頁面無關；
+   改成看 .is-current（由 site.js 依目前頁面切換）決定誰是主色。 */
+:is(.ui-button--primary, .btn.primary, .ap-btn.primary, .ap-btn-wide.ap-grad, .rec-confirm, .sb-deposit.is-current, .sb-withdraw.is-current) {
   border-color: transparent;
   background: var(--gradient-primary);
   color: var(--text-on-accent);
@@ -265,7 +267,7 @@
   box-shadow: var(--shadow-primary);
 }
 
-:is(.ui-button--primary, .btn.primary, .ap-btn.primary, .ap-btn-wide.ap-grad, .rec-confirm, .sb-deposit):hover:not(:disabled) {
+:is(.ui-button--primary, .btn.primary, .ap-btn.primary, .ap-btn-wide.ap-grad, .rec-confirm, .sb-deposit.is-current, .sb-withdraw.is-current):hover:not(:disabled) {
   border-color: transparent;
   color: var(--text-on-accent);
   filter: brightness(1.06);
