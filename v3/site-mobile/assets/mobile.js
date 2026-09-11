@@ -240,25 +240,72 @@
   var EXPAND_NEAR_TOP = 4; /* 幾乎回到頂端才恢復顯示 */
   var lastTop = new WeakMap();
 
-  /* 收合/展開 hero 會讓 .m-tabpanel-wrap（flex:1）跟著長高/縮回，連帶
-     讓 .m-tabpage 的可捲動範圍變小/變大——瀏覽器會在動畫「過程中」
-     持續把超出當下範圍的 scrollTop 夾回去（不是只有動畫結束那一刻
-     夾一次），這些夾回去的動作本身又會各自觸發 scroll 事件，若不擋
-     住就會跟自己的收合動畫互相觸發、來回閃爍。曾經試過用固定時間鎖
-     住判斷，但動畫實際跑完（含 reflow/repaint）的時間會比 CSS
-     transition 秒數略長且不穩定，鎖太短的話最後一次夾回事件會滑出
-     鎖定窗口、被誤判成「使用者往上捲」而錯誤展開；改成鎖到 hero／
-     跑馬燈的 max-height transition 真的 transitionend 才解鎖，另外
-     保留一個較寬鬆的逾時當保底（例如瀏覽器停用動畫時 transitionend
-     不會觸發），避免卡死。 */
+  /* 收合/展開 hero 都會讓 .m-tabpanel-wrap（flex:1）跟著縮/長，連帶讓
+     .m-tabpage 的可捲動範圍跟著變大/變小——瀏覽器在動畫「過程中」會
+     持續把 scrollTop 夾回有效範圍內、或用 scroll anchoring 試著讓同一
+     塊內容留在畫面上，這兩種調整本身都會各自觸發 scroll 事件，若不
+     擋住就會跟自己的收合/展開動畫互相觸發、來回閃爍或看起來一直在跳。
+     解法：動畫開始前先把 .m-tabpanel-wrap 的高度釘住（蓋掉 flex:1，
+     讓它在整段動畫期間完全不跟著變動，.m-tabpage 的可捲動範圍自然
+     也不會被牽動），等 hero／跑馬燈的 max-height transition 真的跑完
+     （transitionend，另外保留較寬鬆的逾時當保底，例如動畫被瀏覽器
+     停用時 transitionend 不會觸發）才放開，讓可捲動範圍只在動畫結束
+     那一刻「一次到位」地變化，不會在過程中被反覆牽動。 */
   var locked = false;
   var lockTimer = null;
-  function unlock() {
+  var activePage = null; /* 最近一次收到 scroll 事件（或分頁切換）的那一頁 */
+
+  var tabpanelWrap = document.querySelector('.m-tabpanel-wrap');
+  function freezeTabpanelHeight() {
+    if (!tabpanelWrap) return;
+    /* 只蓋掉 flex-grow 沒用——flex:1 展開後 flex-basis 是 0%、
+       flex-shrink 是 1，flex 演算法還是會把它縮回 flex-basis，
+       explicit height 完全不起作用。要用 flex:none（一次歸零
+       grow/shrink、basis 改回 auto）才能讓 height 真正定住。 */
+    tabpanelWrap.style.height = tabpanelWrap.getBoundingClientRect().height + 'px';
+    tabpanelWrap.style.flex = 'none';
+  }
+  function releaseTabpanelHeight() {
+    if (!tabpanelWrap) return;
+    tabpanelWrap.style.height = '';
+    tabpanelWrap.style.flex = '';
+  }
+
+  /* releaseTabpanelHeight() 本身（放開釘住的高度、讓 flex:1 一次到位
+     地生效）會觸發最後那一次 scrollTop 調整——這跟凍結高度前想擋住的
+     副作用是同一種，只是延後到這裡才發生一次。與其用固定時間猜這次
+     調整多久後才觸發 scroll 事件（不同裝置/情境落差很大，猜太短會
+     漏接、猜太長則會讓使用者這時真的往上捲的操作跟著被多鎖住一段
+     時間、感覺卡頓不夠即時），改成直接等 syncForPage() 真的收到這
+     次事件、把它吃掉當下就立刻完成解鎖＋重新校正；萬一這次調整完全
+     沒有觸發 scroll 事件（例如剛好不需要調整），保底逾時還是會補上。 */
+  var awaitingRelease = false;
+  var releaseFallbackTimer = null;
+  function finishUnlock() {
+    if (releaseFallbackTimer) { clearTimeout(releaseFallbackTimer); releaseFallbackTimer = null; }
+    awaitingRelease = false;
     locked = false;
+    /* 用「現在真正的捲動位置」重新校正一次收合狀態，而不是被動等下一
+       次 scroll 事件——鎖著的這段期間，使用者仍然可能已經真的把分頁
+       往上捲回頂端了，若只靠事件觸發，這個意圖會因為鎖著而被吃掉、
+       之後也不會再收到新事件通知，導致卡在錯誤狀態回不去。 */
+    if (activePage) {
+      var y = activePage.scrollTop;
+      if (y <= EXPAND_NEAR_TOP) setScrolled(false);
+      else if (y > COLLAPSE_AT) setScrolled(true);
+      lastTop.set(activePage, y);
+    }
+  }
+  function unlock() {
     if (lockTimer) { clearTimeout(lockTimer); lockTimer = null; }
+    releaseTabpanelHeight();
+    awaitingRelease = true;
+    if (releaseFallbackTimer) clearTimeout(releaseFallbackTimer);
+    releaseFallbackTimer = setTimeout(finishUnlock, 200);
   }
   function setScrolled(next) {
     if (body.classList.contains('m-scrolled') === next) return;
+    freezeTabpanelHeight();
     body.classList.toggle('m-scrolled', next);
     locked = true;
     if (lockTimer) clearTimeout(lockTimer);
@@ -290,14 +337,23 @@
   }
 
   function syncForPage(page) {
+    activePage = page;
+    /* 正在等釘住高度放開後那一次調整：這筆就是它，吃掉並立刻完成
+       解鎖＋重新校正（見 finishUnlock()），不用等保底逾時。 */
+    if (awaitingRelease) { finishUnlock(); return; }
     var y = page.scrollTop;
     /* 第一次看到這個分頁時當作「本來就在頂端」（prev=0），而不是拿
        目前值當基準——否則第一筆事件永遠判斷不出「往下捲」。 */
     var prev = lastTop.has(page) ? lastTop.get(page) : 0;
+    /* 這裡「往上捲要立刻生效」也不能無條件跳過 locked：放開釘住高度
+       那一刻自己造成的 scrollTop 變小，跟使用者真的往上捲，兩者從
+       數值上完全分不出來，若讓往上捲的判斷繞過 locked，等於連自己
+       放開高度的雜訊也一起放行，又會誤判成「使用者往上捲」而錯誤
+       展開。使用者鎖著這段期間如果真的往上捲到底，靠的是 unlock()
+       解鎖當下的重新校正（見上面），不是靠這裡繞過鎖定。 */
     if (!locked) {
-      if (y <= EXPAND_NEAR_TOP) { cancelPendingCollapse(); setScrolled(false); }
+      if (y <= EXPAND_NEAR_TOP || y < prev) { cancelPendingCollapse(); setScrolled(false); }
       else if (y > prev && y > COLLAPSE_AT) schedulePendingCollapse(page);
-      else if (y < prev) { cancelPendingCollapse(); setScrolled(false); }
     }
     lastTop.set(page, y);
   }
@@ -307,9 +363,10 @@
      相等，syncForPage() 的方向比較永遠不會觸發，會誤把「切回一個
      本來就捲很深的分頁」判成不用收合。 */
   function resyncForPage(page) {
+    activePage = page;
     var y = page.scrollTop;
     cancelPendingCollapse();
-    if (!locked) setScrolled(y > COLLAPSE_AT);
+    setScrolled(y > COLLAPSE_AT);
     lastTop.set(page, y);
   }
 
