@@ -240,20 +240,53 @@
   var EXPAND_NEAR_TOP = 4; /* 幾乎回到頂端才恢復顯示 */
   var lastTop = new WeakMap();
 
-  /* 收合/展開 hero 會讓 .m-tabpanel-wrap（flex:1）跟著長高/縮回，
-     連帶讓 .m-tabpage 的可捲動範圍變小/變大——瀏覽器會自動把超出新
-     範圍的 scrollTop 夾回去，這個「夾回去」動作本身又會觸發一次
-     scroll 事件，若不擋住就會跟自己的收合動畫互相觸發、來回閃爍。
-     每次真的切換 class 後鎖住判斷一小段時間（比 transition 略長），
-     等動畫穩定下來再繼續看使用者是否真的有在捲動。 */
+  /* 收合/展開 hero 會讓 .m-tabpanel-wrap（flex:1）跟著長高/縮回，連帶
+     讓 .m-tabpage 的可捲動範圍變小/變大——瀏覽器會在動畫「過程中」
+     持續把超出當下範圍的 scrollTop 夾回去（不是只有動畫結束那一刻
+     夾一次），這些夾回去的動作本身又會各自觸發 scroll 事件，若不擋
+     住就會跟自己的收合動畫互相觸發、來回閃爍。曾經試過用固定時間鎖
+     住判斷，但動畫實際跑完（含 reflow/repaint）的時間會比 CSS
+     transition 秒數略長且不穩定，鎖太短的話最後一次夾回事件會滑出
+     鎖定窗口、被誤判成「使用者往上捲」而錯誤展開；改成鎖到 hero／
+     跑馬燈的 max-height transition 真的 transitionend 才解鎖，另外
+     保留一個較寬鬆的逾時當保底（例如瀏覽器停用動畫時 transitionend
+     不會觸發），避免卡死。 */
   var locked = false;
   var lockTimer = null;
+  function unlock() {
+    locked = false;
+    if (lockTimer) { clearTimeout(lockTimer); lockTimer = null; }
+  }
   function setScrolled(next) {
     if (body.classList.contains('m-scrolled') === next) return;
     body.classList.toggle('m-scrolled', next);
     locked = true;
     if (lockTimer) clearTimeout(lockTimer);
-    lockTimer = setTimeout(function () { locked = false; }, 380);
+    lockTimer = setTimeout(unlock, 700);
+  }
+  [hero, ribbon].forEach(function (el) {
+    if (!el) return;
+    el.addEventListener('transitionend', function (e) {
+      if (e.propertyName === 'max-height') unlock();
+    });
+  });
+
+  /* 在頂端往下拉（iOS/Android 常見的橡皮筋 overscroll）放開手指回彈時，
+     scrollTop 會在同一串動畫裡快速衝過 COLLAPSE_AT 再彈回 0——若立刻
+     收合，使用者會看到「拉開又馬上彈回收合」的閃爍。真正的往下捲會
+     持續停在門檻之上，回彈只是一瞬間，所以收合前先排一個小延遲，
+     時間到再確認當下是否還在門檻之上，不是的話就當作只是回彈雜訊，
+     取消這次收合。 */
+  var pendingCollapseTimer = null;
+  function cancelPendingCollapse() {
+    if (pendingCollapseTimer) { clearTimeout(pendingCollapseTimer); pendingCollapseTimer = null; }
+  }
+  function schedulePendingCollapse(page) {
+    if (pendingCollapseTimer) return;
+    pendingCollapseTimer = setTimeout(function () {
+      pendingCollapseTimer = null;
+      if (page.scrollTop > COLLAPSE_AT) setScrolled(true);
+    }, 120);
   }
 
   function syncForPage(page) {
@@ -262,9 +295,9 @@
        目前值當基準——否則第一筆事件永遠判斷不出「往下捲」。 */
     var prev = lastTop.has(page) ? lastTop.get(page) : 0;
     if (!locked) {
-      if (y <= EXPAND_NEAR_TOP) setScrolled(false);
-      else if (y > prev && y > COLLAPSE_AT) setScrolled(true);
-      else if (y < prev) setScrolled(false);
+      if (y <= EXPAND_NEAR_TOP) { cancelPendingCollapse(); setScrolled(false); }
+      else if (y > prev && y > COLLAPSE_AT) schedulePendingCollapse(page);
+      else if (y < prev) { cancelPendingCollapse(); setScrolled(false); }
     }
     lastTop.set(page, y);
   }
@@ -275,6 +308,7 @@
      本來就捲很深的分頁」判成不用收合。 */
   function resyncForPage(page) {
     var y = page.scrollTop;
+    cancelPendingCollapse();
     if (!locked) setScrolled(y > COLLAPSE_AT);
     lastTop.set(page, y);
   }
