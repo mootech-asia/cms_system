@@ -213,6 +213,100 @@
   }, { passive: true });
 })();
 
+/* 首頁 hero + 跑馬燈：在 .m-tabpage（各分頁自己的可捲動清單）往下捲
+   時收合隱藏，讓 .m-tabpanel-wrap（flex:1）自動撐大多露出遊戲；往上
+   捲或回到頂端附近時恢復顯示。實際收合/展開的 CSS 在 mobile.css
+   （.m-home-body.m-scrolled .hero / .promo-ribbon），這裡只負責量測
+   展開高度、判斷捲動方向、切換 .m-scrolled class。 */
+(function () {
+  var body = document.querySelector('.m-home-body');
+  var hero = body ? body.querySelector('.hero') : null;
+  var ribbon = body ? body.querySelector('.promo-ribbon') : null;
+  if (!body || (!hero && !ribbon)) return;
+
+  /* max-height 用實際量到的高度（而非固定猜測值）當展開值，才能在
+     不同機型寬度（hero 是 aspect-ratio，寬度變高度就變）或文案長度
+     下都精準收合到 0，不會裁切或留白；resize（例如轉橫向）只在目前
+     是展開狀態才重新量測，避免收合動畫中途被覆寫成錯誤高度。 */
+  /* 設 --collapse-h 這個變數餵給 mobile.css 的 max-height:var(...)，
+     不要直接寫 el.style.maxHeight——inline style 設的 max-height
+     specificity 會蓋過 .m-scrolled 那條收合規則，永遠收合不了。 */
+  function pin(el) { if (el) el.style.setProperty('--collapse-h', el.scrollHeight + 'px'); }
+  function pinIfExpanded() { if (!body.classList.contains('m-scrolled')) { pin(hero); pin(ribbon); } }
+  pin(hero); pin(ribbon);
+  window.addEventListener('resize', pinIfExpanded);
+
+  var COLLAPSE_AT = 40;   /* 捲動超過這個距離才收合，避免一碰就跳 */
+  var EXPAND_NEAR_TOP = 4; /* 幾乎回到頂端才恢復顯示 */
+  var lastTop = new WeakMap();
+
+  /* 收合/展開 hero 會讓 .m-tabpanel-wrap（flex:1）跟著長高/縮回，
+     連帶讓 .m-tabpage 的可捲動範圍變小/變大——瀏覽器會自動把超出新
+     範圍的 scrollTop 夾回去，這個「夾回去」動作本身又會觸發一次
+     scroll 事件，若不擋住就會跟自己的收合動畫互相觸發、來回閃爍。
+     每次真的切換 class 後鎖住判斷一小段時間（比 transition 略長），
+     等動畫穩定下來再繼續看使用者是否真的有在捲動。 */
+  var locked = false;
+  var lockTimer = null;
+  function setScrolled(next) {
+    if (body.classList.contains('m-scrolled') === next) return;
+    body.classList.toggle('m-scrolled', next);
+    locked = true;
+    if (lockTimer) clearTimeout(lockTimer);
+    lockTimer = setTimeout(function () { locked = false; }, 380);
+  }
+
+  function syncForPage(page) {
+    var y = page.scrollTop;
+    /* 第一次看到這個分頁時當作「本來就在頂端」（prev=0），而不是拿
+       目前值當基準——否則第一筆事件永遠判斷不出「往下捲」。 */
+    var prev = lastTop.has(page) ? lastTop.get(page) : 0;
+    if (!locked) {
+      if (y <= EXPAND_NEAR_TOP) setScrolled(false);
+      else if (y > prev && y > COLLAPSE_AT) setScrolled(true);
+      else if (y < prev) setScrolled(false);
+    }
+    lastTop.set(page, y);
+  }
+
+  /* 切換分頁籤時用「目前捲動位置」直接判定該不該收合，不看方向——
+     這顆分頁的 scrollTop 從離開時就沒再變過，跟 lastTop 快取值一定
+     相等，syncForPage() 的方向比較永遠不會觸發，會誤把「切回一個
+     本來就捲很深的分頁」判成不用收合。 */
+  function resyncForPage(page) {
+    var y = page.scrollTop;
+    if (!locked) setScrolled(y > COLLAPSE_AT);
+    lastTop.set(page, y);
+  }
+
+  /* .m-tabpage 的 scroll 事件不會冒泡，只能在 capture 階段抓；每個
+     分頁各自獨立捲動位置，用 WeakMap 各自追蹤，避免切換分頁時互相
+     誤判方向。 */
+  document.addEventListener('scroll', function (e) {
+    var page = e.target;
+    if (!page || !page.classList || !page.classList.contains('m-tabpage')) return;
+    syncForPage(page);
+  }, true);
+
+  /* 切換分頁籤（點圖示或左右滑動，見上面那段 IIFE）後，比照新分頁
+     「目前」的捲動位置重新同步收合狀態，不沿用切換前那個分頁殘留
+     的收合狀態。這裡是獨立的 IIFE，重新查一次 DOM，不共用上面那段
+     的區域變數。 */
+  var scroller = document.querySelector('.m-tabpanel-scroller');
+  if (scroller) {
+    var pages = scroller.querySelectorAll('.m-tabpage');
+    var syncTimer = null;
+    scroller.addEventListener('scroll', function () {
+      if (syncTimer) clearTimeout(syncTimer);
+      syncTimer = setTimeout(function () {
+        var idx = Math.round(scroller.scrollLeft / scroller.clientWidth);
+        var page = pages[idx];
+        if (page) resyncForPage(page);
+      }, 130);
+    }, { passive: true });
+  }
+})();
+
 /* 補救 site.js 內部（例如促銷卡 PROMO_ART 那組 4 張圖）直接把裸路徑
    assets/mock/... 組進 inline style="background-image:url(...)" 的
    地方——這些字串是 site.js 內部組出來的，不是走 CMS_DATA，前面那段
