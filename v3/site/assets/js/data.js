@@ -65,10 +65,10 @@ function makeGames(category, count, hueBase, imagePrefix = 'game') {
 }
 
 const GAMES = {
-  slots:     makeGames('slots',     24, 280),
-  live:      makeGames('live',      12,  10, 'live'),
-  originals: makeGames('originals', 12, 200),
-  table:     makeGames('table',     12, 130),
+  slots:     makeGames('slots',     30, 280),
+  live:      makeGames('live',      30,  10, 'live'),
+  originals: makeGames('originals', 30, 200),
+  table:     makeGames('table',     30, 130),
 };
 
 const HERO_SLIDES = [
