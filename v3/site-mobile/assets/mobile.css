@@ -147,6 +147,26 @@
      水平 padding 沿用 main.css 在這個斷點已有的 14px，這裡只調垂直。 */
   .promo-ribbon-viewport { padding-top: 6px; padding-bottom: 6px; }
 
+  /* Hero + 跑馬燈往下捲動遊戲清單時收合隱藏，讓 .m-tabpanel-wrap
+     （flex:1）自動撐大多露出遊戲；往上捲或回到頂端時恢復顯示。
+     展開高度由 mobile.js 量測寫進 --collapse-h 這個 CSS 變數（inline
+     style 只設變數、不是直接設 max-height，收合規則才擋得住——
+     max-height 若用 inline style 直接設值，specificity 會蓋過下面
+     這條 class 選取器，永遠收合不了），這裡只負責收合到 0 的過渡，
+     同時歸零 margin/border 避免收合後留下留白或邊框細線。 */
+  .hero, .promo-ribbon {
+    overflow: hidden;
+    max-height: var(--collapse-h, 500px);
+    transition: max-height .32s ease, opacity .22s ease, margin-top .32s ease, border-width .32s ease;
+  }
+  .m-home-body.m-scrolled .hero,
+  .m-home-body.m-scrolled .promo-ribbon {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    border-width: 0;
+  }
+
   /* 圖示快速導覽列：熱門遊戲/小遊戲/老虎機/真人/捕魚 5 項改成分頁籤
      (按鈕+data-tab，mobile.js 的 initHomeTabs() 負責切換與雙向同步)，
      體育維持 <a> 連到獨立頁面。圖示複用側欄既有的 svg 路徑。 */
