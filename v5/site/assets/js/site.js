@@ -4,6 +4,26 @@
 
   function safe(fn) { try { fn(); } catch (e) { /* 避免單一功能失敗拖垮整頁 */ } }
   function on(el, ev, fn) { if (el) el.addEventListener(ev, fn); }
+  /* 遊戲卡圖片載入失敗（404／網路錯誤）時的墊底畫面：把壞掉的 <img>
+     藏起來，在 .game-tile-art 補一個沿用 --text-dim 配色的圖示墊底，
+     不用另外準備圖檔。error 事件不會冒泡，只能在 capture 階段抓。 */
+  document.addEventListener('error', function (e) {
+    var img = e.target;
+    if (!img || img.nodeName !== 'IMG' || img.hidden) return;
+    var art = img.closest('.game-tile-art');
+    if (!art) return;
+    img.hidden = true;
+    if (art.querySelector('.game-tile-art-fallback')) return;
+    art.insertAdjacentHTML('beforeend',
+      '<span class="game-tile-art-fallback" aria-hidden="true">' +
+        '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">' +
+          '<rect x="3" y="5" width="18" height="14" rx="2"></rect>' +
+          '<circle cx="9" cy="10.5" r="1.6" fill="currentColor" stroke="none"></circle>' +
+          '<path d="M4 17.5 9 12l3 3 3-3.5 5 5.5"></path>' +
+          '<path d="M3 3l18 18"></path>' +
+        '</svg>' +
+      '</span>');
+  }, true);
 
   /* studio（設計後台）套用首頁區塊顯示/站點名稱/skin：與 studio.js 共用同一把
      localStorage key,同源即可跨資料夾（../site/、../studio/）讀取,不受路徑影響。
