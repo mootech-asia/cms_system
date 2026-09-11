@@ -37,11 +37,7 @@
     fire: '<path d="M12 2c1 4 5 5 5 10a5 5 0 1 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9Z" fill="currentColor"/>',
     star: '<path d="m12 3 2.6 6 6.4.6-4.8 4.4 1.4 6.4L12 17l-5.6 3.4 1.4-6.4L3 9.6l6.4-.6L12 3Z" fill="currentColor"/>',
     bolt: '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" fill="currentColor"/>',
-    heart: '<path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.3 1-1a5.5 5.5 0 0 0 0-7.8Z" fill="currentColor"/>',
-    imgOff: '<rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>' +
-      '<circle cx="9" cy="10.5" r="1.6" fill="currentColor"/>' +
-      '<path d="M4 17.5 9 12l3 3 3-3.5 5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<path d="M3 3l18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'
+    heart: '<path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.3 1-1a5.5 5.5 0 0 0 0-7.8Z" fill="currentColor"/>'
   };
   function iconSvg(name, size) {
     var p = ICON_PATHS[name];
@@ -290,20 +286,17 @@
 
   /* ============================================================
    * 遊戲卡圖片載入失敗（404／網路錯誤）時的墊底畫面：把壞掉的
-   * <img> 藏起來，改用沿用既有 .ph-label 樣式（置中、既有配色 token）
-   * 的圖示墊底，不需要另外準備圖檔。error 事件不會冒泡，只能在
-   * capture 階段抓；同一張卡若已處理過（img.hidden）就不重複插入。
+   * <img> 藏起來（src 保留不動，resolveGameFromCard() 靠它比對遊戲，
+   * 不能覆寫），讓 .gcard-art-broken 這個 class 掛上去的
+   * assets/mock/game-fallback.svg 墊底圖從背景整張顯示。error 事件
+   * 不會冒泡，只能在 capture 階段抓；已處理過（img.hidden）就不重複跑。
    * ========================================================== */
   document.addEventListener('error', function (e) {
     var img = e.target;
     if (!img || img.nodeName !== 'IMG' || !img.classList.contains('gcard-art-image') || img.hidden) return;
     img.hidden = true;
     var art = img.closest('.gcard-art');
-    if (!art) return;
-    var icon = iconSvg('imgOff', 20);
-    var label = art.querySelector('.ph-label');
-    if (label) label.insertAdjacentHTML('afterbegin', icon);
-    else art.insertAdjacentHTML('beforeend', '<span class="ph-label">' + icon + '</span>');
+    if (art) art.classList.add('gcard-art-broken');
   }, true);
 
   /* ============================================================

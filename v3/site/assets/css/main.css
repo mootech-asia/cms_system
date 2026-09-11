@@ -1821,8 +1821,16 @@ section.lobby-section { margin-top: 44px; }
 }
 /* 圖片載入失敗時 site.js 會設 hidden；上面 `img { display:block }`
    reset 屬於 author 層級，UA 內建的 [hidden] 規則蓋不過它，要靠這條
-   較高 specificity 的規則才擋得住，讓 .ph-label 墊底圖示能顯示出來。 */
+   較高 specificity 的規則才擋得住，讓 .gcard-art-broken 墊底圖能顯示。 */
 .gcard-art-image[hidden] { display: none; }
+/* site.js 在 img 載入失敗時掛上這個 class：墊底圖路徑相對本檔案位置
+   解析（main.css 固定在 assets/css/ 下），site/ 與 site-mobile/ 兩邊
+   共用同一份 main.css，不受頁面所在資料夾影響。 */
+.gcard-art.gcard-art-broken {
+  background-image: url(../mock/game-fallback.svg);
+  background-size: cover;
+  background-position: center;
+}
 .gcard-art::before {
   content: '';
   position: absolute; inset: 0;
