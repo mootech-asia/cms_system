@@ -2725,9 +2725,12 @@ select.twk-field {
 /* ── ACCOUNT / DEPOSIT / WITHDRAWAL PAGES ─────────── */
 /* 這類頁面預設收窄成單欄閱讀寬度；account-overview.html 是雙欄
    儀表板（.ap-top / .ap-grid 需要整欄寬度才排得下），額外掛
-   .ap-page-wide 退回滿版。 */
+   .ap-page-wide 退回滿版；.rec-page（Betting/Deposit/Withdrawal
+   Record、Profit And Loss、Withdrawal Detail 等表格列頁面）欄位多，
+   收窄反而擠壓表格，同樣退回滿版。 */
 .ap-page { margin-top: 24px; max-width: 896px; margin-inline: auto; }
-.ap-page.ap-page-wide { max-width: none; margin-inline: 0; }
+.ap-page.ap-page-wide,
+.ap-page.rec-page { max-width: none; margin-inline: 0; }
 .ap-h1 {
   font-family: var(--font-display);
   font-size: 26px;
@@ -3625,7 +3628,8 @@ select.twk-field {
 .ap-amt.neg { color: #ff6b6b; font-family: var(--font-mono); font-weight: 700; }
 
 /* ── PERSONAL INFO ──────────────────────── */
-.pi-card { max-width: 460px; margin: 0 auto; }
+/* 早期 .ap-page 還沒收窄成 896px 時，這裡另外裁窄成 460px 置中；現在
+   跟其他 account 頁一樣撐滿 .ap-page 寬度即可，不用再疊一層限制。 */
 .pi-username { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--text); text-align: center; margin-bottom: 18px; }
 .pi-field {
   display: flex; align-items: center; gap: 10px;
