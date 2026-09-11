@@ -1819,6 +1819,10 @@ section.lobby-section { margin-top: 44px; }
   height: 100%;
   object-fit: cover;
 }
+/* 圖片載入失敗時 site.js 會設 hidden；上面 `img { display:block }`
+   reset 屬於 author 層級，UA 內建的 [hidden] 規則蓋不過它，要靠這條
+   較高 specificity 的規則才擋得住，讓 .ph-label 墊底圖示能顯示出來。 */
+.gcard-art-image[hidden] { display: none; }
 .gcard-art::before {
   content: '';
   position: absolute; inset: 0;
