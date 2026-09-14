@@ -272,27 +272,24 @@
   }
 
   /* releaseTabpanelHeight() 本身（放開釘住的高度、讓 flex:1 一次到位
-     地生效）會觸發最後那一次 scrollTop 調整——這跟凍結高度前想擋住的
-     副作用是同一種，只是延後到這裡才發生一次。與其用固定時間猜這次
-     調整多久後才觸發 scroll 事件（不同裝置/情境落差很大，猜太短會
-     漏接、猜太長則會讓使用者這時真的往上捲的操作跟著被多鎖住一段
-     時間、感覺卡頓不夠即時），改成直接等 syncForPage() 真的收到這
-     次事件、把它吃掉當下就立刻完成解鎖；萬一這次調整完全沒有觸發
-     scroll 事件（例如剛好不需要調整），保底逾時還是會補上。 */
-  var awaitingRelease = false;
-  var releaseFallbackTimer = null;
-  function finishUnlock() {
-    if (releaseFallbackTimer) { clearTimeout(releaseFallbackTimer); releaseFallbackTimer = null; }
-    awaitingRelease = false;
-    locked = false;
-    /* 這筆 scrollTop 是放開高度那一刻自己造成的夾動結果，不是使用者
-       真正的位置（可捲動範圍剛變大/變小，同一個捲動位置換算出來的
-       數字會跟著跳），不能再拿來判斷要不要收合/展開——真正的判斷已
-       經在 unlock() 放開之前、用還沒被這次夾動污染的數值做過了，這
-       裡只需要吃掉這個事件、把 lastTop 校正到新範圍下的實際值即可，
-       否則下一次 syncForPage() 拿它當 prev 做方向比較會整個跑掉。 */
-    if (activePage) lastTop.set(activePage, activePage.scrollTop);
-  }
+     地生效）會觸發一次 scrollTop 調整——這跟凍結高度前想擋住的副作用
+     是同一種，只是延後到這裡才發生一次。這筆調整不是使用者做的，不
+     該拿來判斷收合/展開，也不該讓它把同一時間使用者自己真正做出的
+     捲動事件也一起吃掉。
+
+     早期做法是設一個 awaitingRelease 旗標，等「下一筆 scroll 事件」
+     來了就當成是這次放開造成的、直接吃掉；沒想到使用者若剛好在這
+     之後幾乎同時真的做出捲動（例如快速下拉又立刻反悔往上捲回頂
+     端），這筆真正的事件會被誤判成放開的雜訊而整個吃掉，導致使用
+     者明明已經捲回頂端、hero 卻沒有跟著展開（機率性重現，跟兩個
+     事件抵達的先後順序有關）。
+
+     改成不被動等事件：放開高度後用兩次 requestAnimationFrame 確保
+     瀏覽器真的把這次 layout 變動／夾動處理完、下一次繪製也已反映
+     出新的 scrollTop，這時候直接自己讀一次「現在真正的位置」來校正
+     lastTop，不需要靠事件通知、也就不用再猜哪一筆事件是雜訊。lock
+     只在這兩個影格內維持，之後任何 scroll 事件（不論是不是這次放開
+     造成的）都直接照 syncForPage() 正常邏輯處理，不會再被整筆吃掉。 */
   function unlock() {
     if (lockTimer) { clearTimeout(lockTimer); lockTimer = null; }
     /* 使用者在鎖定期間（收合動畫進行中）有可能真的把分頁捲回頂端、
@@ -311,12 +308,15 @@
     }
     /* 判斷結果跟現在的狀態不同，setScrolled() 已經重新凍結一次高度、
        排了新一輪鎖定/解鎖去跑「反悔」那個方向的轉場，這一輪的釘住
-       高度不用再放開（新一輪會接手），也不用再等這一輪的收尾事件。 */
+       高度不用再放開（新一輪會接手），也不用再等這一輪的收尾。 */
     if (reversed) return;
     releaseTabpanelHeight();
-    awaitingRelease = true;
-    if (releaseFallbackTimer) clearTimeout(releaseFallbackTimer);
-    releaseFallbackTimer = setTimeout(finishUnlock, 200);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        locked = false;
+        if (activePage) lastTop.set(activePage, activePage.scrollTop);
+      });
+    });
   }
   function setScrolled(next) {
     if (body.classList.contains('m-scrolled') === next) return false;
@@ -354,9 +354,6 @@
 
   function syncForPage(page) {
     activePage = page;
-    /* 正在等釘住高度放開後那一次調整：這筆就是它，吃掉並立刻完成
-       解鎖＋重新校正（見 finishUnlock()），不用等保底逾時。 */
-    if (awaitingRelease) { finishUnlock(); return; }
     var y = page.scrollTop;
     /* 第一次看到這個分頁時當作「本來就在頂端」（prev=0），而不是拿
        目前值當基準——否則第一筆事件永遠判斷不出「往下捲」。 */
@@ -366,9 +363,19 @@
        數值上完全分不出來，若讓往上捲的判斷繞過 locked，等於連自己
        放開高度的雜訊也一起放行，又會誤判成「使用者往上捲」而錯誤
        展開。使用者鎖著這段期間如果真的往上捲到底，靠的是 unlock()
-       解鎖當下的重新校正（見上面），不是靠這裡繞過鎖定。 */
+       解鎖當下的重新校正（見上面），不是靠這裡繞過鎖定。
+
+       「y < prev 就展開」原本是想讓使用者一開始往上捲就馬上有反應、
+       不用等真的捲回頂端，但條件本身完全沒管「現在人在哪裡」——真人
+       用手指捲動（慣性滑行減速、放開瞬間的手震）本來就不是嚴格單調
+       遞增，即使還深在清單中間（例如 scrollTop 540），只要中途出現
+       任何一次比上一筆讀數小一點點的取樣，就會被判成「使用者往上
+       捲」而在深處整個展開——這正是 hero 會在使用者根本沒捲回頂端
+       附近時、無預警自己彈開一次的成因。加上「還在收合門檻附近
+       （<= COLLAPSE_AT）」這個條件，只有使用者真的已經捲回接近頂端
+       時，往上的小動作才會立刻觸發展開；還深在清單裡的雜訊不受影響。 */
     if (!locked) {
-      if (y <= EXPAND_NEAR_TOP || y < prev) { cancelPendingCollapse(); setScrolled(false); }
+      if (y <= EXPAND_NEAR_TOP || (y < prev && y <= COLLAPSE_AT)) { cancelPendingCollapse(); setScrolled(false); }
       else if (y > prev && y > COLLAPSE_AT) schedulePendingCollapse(page);
     }
     lastTop.set(page, y);
