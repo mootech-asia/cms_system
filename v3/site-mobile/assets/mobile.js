@@ -374,15 +374,22 @@
     lastTop.set(page, y);
   }
 
-  /* 切換分頁籤時用「目前捲動位置」直接判定該不該收合，不看方向——
-     這顆分頁的 scrollTop 從離開時就沒再變過，跟 lastTop 快取值一定
-     相等，syncForPage() 的方向比較永遠不會觸發，會誤把「切回一個
-     本來就捲很深的分頁」判成不用收合。 */
+  /* 切到「本來就捲很深」的分頁要立刻收合——這顆分頁的 scrollTop 從
+     離開時就沒再變過，跟 lastTop 快取值一定相等，syncForPage() 的
+     方向比較永遠不會觸發，若不在切換當下主動判斷一次，會誤把它當
+     成不用收合，讓 hero 疊在已經捲到一半的內容上面。
+
+     但反過來——切到一顆「目前在頂端」的新分頁——不能因此強制展開：
+     使用者可能才剛把 hero 收合、正連續切好幾個分類籤瀏覽，每切一顆
+     全新分頁都自動彈開 hero 再收合一次，會變成一直閃爍跳動，跟使用
+     者「往下拉才要收合」的操作完全無關。展開與否只交給使用者在目前
+     分頁上真正做出的捲動手勢（見 syncForPage()），分頁切換本身維持
+     現狀就好。 */
   function resyncForPage(page) {
     activePage = page;
     var y = page.scrollTop;
     cancelPendingCollapse();
-    setScrolled(y > COLLAPSE_AT);
+    if (y > COLLAPSE_AT) setScrolled(true);
     lastTop.set(page, y);
   }
 
