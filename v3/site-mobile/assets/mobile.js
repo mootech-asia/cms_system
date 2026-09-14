@@ -277,39 +277,55 @@
      調整多久後才觸發 scroll 事件（不同裝置/情境落差很大，猜太短會
      漏接、猜太長則會讓使用者這時真的往上捲的操作跟著被多鎖住一段
      時間、感覺卡頓不夠即時），改成直接等 syncForPage() 真的收到這
-     次事件、把它吃掉當下就立刻完成解鎖＋重新校正；萬一這次調整完全
-     沒有觸發 scroll 事件（例如剛好不需要調整），保底逾時還是會補上。 */
+     次事件、把它吃掉當下就立刻完成解鎖；萬一這次調整完全沒有觸發
+     scroll 事件（例如剛好不需要調整），保底逾時還是會補上。 */
   var awaitingRelease = false;
   var releaseFallbackTimer = null;
   function finishUnlock() {
     if (releaseFallbackTimer) { clearTimeout(releaseFallbackTimer); releaseFallbackTimer = null; }
     awaitingRelease = false;
     locked = false;
-    /* 用「現在真正的捲動位置」重新校正一次收合狀態，而不是被動等下一
-       次 scroll 事件——鎖著的這段期間，使用者仍然可能已經真的把分頁
-       往上捲回頂端了，若只靠事件觸發，這個意圖會因為鎖著而被吃掉、
-       之後也不會再收到新事件通知，導致卡在錯誤狀態回不去。 */
-    if (activePage) {
-      var y = activePage.scrollTop;
-      if (y <= EXPAND_NEAR_TOP) setScrolled(false);
-      else if (y > COLLAPSE_AT) setScrolled(true);
-      lastTop.set(activePage, y);
-    }
+    /* 這筆 scrollTop 是放開高度那一刻自己造成的夾動結果，不是使用者
+       真正的位置（可捲動範圍剛變大/變小，同一個捲動位置換算出來的
+       數字會跟著跳），不能再拿來判斷要不要收合/展開——真正的判斷已
+       經在 unlock() 放開之前、用還沒被這次夾動污染的數值做過了，這
+       裡只需要吃掉這個事件、把 lastTop 校正到新範圍下的實際值即可，
+       否則下一次 syncForPage() 拿它當 prev 做方向比較會整個跑掉。 */
+    if (activePage) lastTop.set(activePage, activePage.scrollTop);
   }
   function unlock() {
     if (lockTimer) { clearTimeout(lockTimer); lockTimer = null; }
+    /* 使用者在鎖定期間（收合動畫進行中）有可能真的把分頁捲回頂端、
+       或繼續往下捲更深，這個意圖不能漏接，但一定要用「放開釘住高度
+       之前」讀到的 scrollTop 判斷——放開的當下本身就會讓可捲動範圍
+       跟著變化（凍結時鎖住的是收合前的舊高度，放開才變成收合後的
+       新高度），之後夾回來的數字已經是被這次變化污染過的結果，不能
+       代表使用者真正停在哪裡（這正是先前「收合完一放手又自己彈開」
+       的成因：污染後的數字剛好落到 <= EXPAND_NEAR_TOP，被誤判成使用
+       者回到頂端）。 */
+    var y = activePage ? activePage.scrollTop : null;
+    var reversed = false;
+    if (y != null) {
+      if (y <= EXPAND_NEAR_TOP) reversed = setScrolled(false);
+      else if (y > COLLAPSE_AT) reversed = setScrolled(true);
+    }
+    /* 判斷結果跟現在的狀態不同，setScrolled() 已經重新凍結一次高度、
+       排了新一輪鎖定/解鎖去跑「反悔」那個方向的轉場，這一輪的釘住
+       高度不用再放開（新一輪會接手），也不用再等這一輪的收尾事件。 */
+    if (reversed) return;
     releaseTabpanelHeight();
     awaitingRelease = true;
     if (releaseFallbackTimer) clearTimeout(releaseFallbackTimer);
     releaseFallbackTimer = setTimeout(finishUnlock, 200);
   }
   function setScrolled(next) {
-    if (body.classList.contains('m-scrolled') === next) return;
+    if (body.classList.contains('m-scrolled') === next) return false;
     freezeTabpanelHeight();
     body.classList.toggle('m-scrolled', next);
     locked = true;
     if (lockTimer) clearTimeout(lockTimer);
     lockTimer = setTimeout(unlock, 700);
+    return true;
   }
   [hero, ribbon].forEach(function (el) {
     if (!el) return;
