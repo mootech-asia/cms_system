@@ -1,3 +1,6 @@
+/* 客服懸浮鈕改用跟其他主要 CTA（Submit/Next/Apply 等 .ap-btn-wide.ap-grad）
+   同一套強調色漸層＋光暈，取代原本 .tb-icon-btn 那種跟頂列圖示同色、
+   容易被下方遊戲卡蓋過去的低對比外觀，讓它在任何背景上都夠顯眼。 */
 .cms-cs-fab {
   position: fixed;
   right: 20px;
@@ -6,7 +9,12 @@
   width: 46px;
   height: 46px;
   border-radius: 999px;
+  background: var(--gradient-primary);
+  border-color: transparent;
+  color: var(--text-on-accent);
+  box-shadow: 0 0 16px color-mix(in oklch, var(--primary) 40%, transparent);
 }
+.cms-cs-fab:hover { color: var(--text-on-accent); border-color: transparent; filter: brightness(1.08); }
 
 @media (max-width: 720px) {
   .cms-cs-fab { bottom: 76px; }
