@@ -1,9 +1,10 @@
-/* v3 手機版所有獨立頁面共用（site-mobile/ 底下每一頁都載入這份，不影響
-   ../site/ 原本的 RWD／main.css）。本頁沿用 ../site/ 的 tokens／main.css／
-   skins 元件庫。共用的部分是新版 app shell 外觀：頂部列(漢堡+logo+餘額+
-   通知鈴，取代桌機版側欄常駐)、底部導覽(曲線缺口+首頁凸起)——側欄抽屜
-   本身、底部導覽列的 fixed 定位都是 main.css 既有的手機版行為，這裡只
-   疊視覺樣式，不重寫互動邏輯。
+/* v3 手機版所有獨立頁面共用（site-mobile/ 底下每一頁都載入這份）。
+   tokens.css／layout.css／main.css／design-system 是 site-mobile/assets/
+   css/ 自己的拷貝，跟 ../site/ 的版本各自獨立部署，改一邊不會動到
+   另一邊；只有 ../site/assets/css/skins/*.css（配色）仍是兩邊共用。
+   本檔案疊在自己那份 main.css/layout.css 之上，只加視覺樣式，不重寫
+   互動邏輯：側欄抽屜本身、底部導覽列的 fixed 定位都是既有的手機版
+   行為，維持不動。
    「整頁固定單畫面不捲動」只有大廳首頁(index.html)需要，其餘頁面(提款/
    儲值/優惠/會員…)內容長度不一，就是一般可捲動頁面(頂部列 sticky、底部
    導覽 fixed，中間內容正常捲動)——這裡用 <html class="m-lobby"> 這個
@@ -21,12 +22,10 @@
   .cat-tabs { display: none; }
   /* main.css 的 @media (max-width:700px) 為了「桌機版 RWD 窄螢幕」把
      .shell-mobile-nav(底部固定導覽列)連同 .shell-main 下方留白一起
-     隱藏/歸零——那是給 ../site/ 桌機版用的，因為它在同寬度已經有
-     logo 旁的漢堡鈕可以取代。但 main.css 是共用檔案，同一條規則在
-     這裡(真正的手機版)也會被套用，把手機版本來就該有、非重複的底部
-     導覽列一起藏掉。這裡載入順序在 main.css 之後，用同層級選擇器蓋
-     回來，只還原這兩個屬性，其餘手機版底部導覽的樣式仍是 main.css/
-     layout.css 原本那份。 */
+     隱藏/歸零——那是給桌機版窄螢幕用的，因為它在同寬度已經有 logo 旁
+     的漢堡鈕可以取代。這條規則本檔案這份 main.css 拷貝裡也照樣有，
+     這裡載入順序在它之後，用同層級選擇器蓋回來，只還原這兩個屬性，
+     其餘手機版底部導覽的樣式仍是 main.css/layout.css 原本那份。 */
   .shell-mobile-nav { display: flex; }
   .shell-main { padding-bottom: var(--mobile-nav-h); }
   /* Security Center 的 .sc-item 清單 4 列，其中幾列 sub 文字在手機窄寬
