@@ -47,7 +47,11 @@ module.exports = {
     'bank-logo', 'bound-pill', 'bound-name', 'wd-stat-value',
     /* 帳號/暱稱、交易編號、錢包地址、日期輸入格式樣板：資料值非文案 */
     'acct-name', 'acct-panel-row', 'rt-mono', 'rb-daterange-input',
-    'dd-panel-link',
+    'dd-panel-link', 'rec-date-text',
+    /* v3：預先烘焙、預設 display:none 的遊戲彈窗，真正顯示前一定會被
+       openGameModal() 用 tr() 產生的內容整個覆蓋，靜態掃描抓到的只是
+       尚未被覆蓋的初始佔位內容。同一數字每秒遞減的倒數文字亦非文案。 */
+    'modal-bg', 'rec-refresh',
   ],
 
   /* 純數字/代碼/品牌名一類、本來就該跨語系不變的短字串，直接用完整
@@ -62,5 +66,6 @@ module.exports = {
   ignoreTextPatterns: [
     /[＊*]{2,}/, // 遮罩過的帳號/戶名，例如 M＊＊＊＊＊＊＊
     /^amount\s*:/i, // 動態金額模板
+    /^:\s*\S/, // 標籤/值拆成兩個文字節點後，冒號+值的那一段（值本身不翻譯）
   ],
 };
