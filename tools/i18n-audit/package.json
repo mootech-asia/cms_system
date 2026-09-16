@@ -1,0 +1,13 @@
+{
+  "name": "i18n-audit",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Renders each site's pages under every locale and flags translation gaps.",
+  "main": "audit.js",
+  "scripts": {
+    "audit": "node audit.js"
+  },
+  "dependencies": {
+    "playwright-core": "^1.47.0"
+  }
+}
