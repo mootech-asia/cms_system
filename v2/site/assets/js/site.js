@@ -328,13 +328,33 @@
   }
   var activeLocaleMap = null;
   var SWAP_ATTRS = ['placeholder', 'aria-label', 'title', 'alt'];
+  function normalizeWhitespace(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
   function swapInTree(root, map) {
+    /* 長段落在原始 HTML 裡為了可讀性會換行縮排,節點的 nodeValue 因此
+       帶著換行與縮排空白,逐字比對永遠對不上字典(字典是單行文字);
+       exact match 對不到時,再用「空白正規化後」比對一次當備援。 */
+    var normMap = null;
+    function getNormMap() {
+      if (!normMap) {
+        normMap = {};
+        Object.keys(map).forEach(function (k) { normMap[normalizeWhitespace(k)] = map[k]; });
+      }
+      return normMap;
+    }
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     var node;
     while ((node = walker.nextNode())) {
       var trimmed = (node.nodeValue || '').trim();
-      if (trimmed && Object.prototype.hasOwnProperty.call(map, trimmed)) {
+      if (!trimmed) continue;
+      if (Object.prototype.hasOwnProperty.call(map, trimmed)) {
         node.nodeValue = node.nodeValue.replace(trimmed, map[trimmed]);
+        continue;
+      }
+      var norm = normalizeWhitespace(trimmed);
+      var nmap = getNormMap();
+      if (norm !== trimmed && Object.prototype.hasOwnProperty.call(nmap, norm)) {
+        var mm = node.nodeValue.match(/^(\s*)[\s\S]*?(\s*)$/);
+        node.nodeValue = (mm ? mm[1] : '') + nmap[norm] + (mm ? mm[2] : '');
       }
     }
     /* header-account-link 等按鈕的 aria-label/title、遊戲卡 img 的 alt 都是用
