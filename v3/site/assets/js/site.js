@@ -176,18 +176,26 @@
         var parent = node.parentNode;
         if (parent && (parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE')) return;
         var raw = node.nodeValue; if (!raw) return;
-        var entry = MEMBER[raw.trim()];
+        var trimmed = raw.trim();
+        var entry = MEMBER[trimmed];
+        /* 長段落在原始 HTML 為了可讀性換行縮排時，trimmed 會帶著內部換行
+           與縮排空白，逐字比對對不上字典（字典是單行文字）；比對不到時
+           再用空白正規化後的版本比對一次當備援。 */
+        if (!entry) entry = MEMBER[trimmed.replace(/\s+/g, ' ')];
         var val = entry && entry[LOCALE];
         if (val != null) {
           var mm = raw.match(/^(\s*)[\s\S]*?(\s*)$/);
           node.nodeValue = (mm ? mm[1] : '') + val + (mm ? mm[2] : '');
         }
       });
-      /* 動態注入的表單 placeholder 走屬性、非文字節點，text-node walker 抓不到；
-         以同一字典按當前語系替換（僅在有對應鍵時覆寫，其餘保留原值）。 */
-      Array.prototype.forEach.call(root.querySelectorAll('[placeholder]'), function (el) {
-        var pe = MEMBER[(el.getAttribute('placeholder') || '').trim()];
-        if (pe && pe[LOCALE] != null) el.setAttribute('placeholder', pe[LOCALE]);
+      /* 屬性型文案（placeholder/aria-label/title/alt）走屬性、非文字節點，
+         text-node walker 抓不到；以同一字典按當前語系替換（僅在有對應
+         鍵時覆寫，其餘保留原值）。 */
+      ['placeholder', 'aria-label', 'title', 'alt'].forEach(function (attr) {
+        Array.prototype.forEach.call(root.querySelectorAll('[' + attr + ']'), function (el) {
+          var pe = MEMBER[(el.getAttribute(attr) || '').trim()];
+          if (pe && pe[LOCALE] != null) el.setAttribute(attr, pe[LOCALE]);
+        });
       });
     }
     /* 語言切換器觸發鈕的目前語系標籤（"中文"/"English"/… 非 TRANSLATIONS 值，直接取 LANGS） */
