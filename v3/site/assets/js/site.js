@@ -587,7 +587,8 @@
       if (s < 0) { s = 59; m -= 1; }
       if (m < 0) { m = 59; h -= 1; }
       if (h < 0) { h = 23; }
-      el.textContent = 'Next in ' + String(h).padStart(2, '0') + 'h : ' + String(m).padStart(2, '0') + 'm : ' + String(s).padStart(2, '0') + 's';
+      el.textContent = tr('t.lobby.rewardsCountdown', 'Next in {h}h : {m}m : {s}s')
+        .replace('{h}', String(h).padStart(2, '0')).replace('{m}', String(m).padStart(2, '0')).replace('{s}', String(s).padStart(2, '0'));
     }, 1000);
   }
   function initPromoRibbonClock() {

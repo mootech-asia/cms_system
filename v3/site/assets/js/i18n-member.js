@@ -161,6 +161,11 @@
     'Central Wallet:': { zh: '中央錢包：', ko: '중앙 지갑:', th: 'กระเป๋ากลาง:' },
     'Available Amount:': { zh: '可用金額：', ko: '사용 가능 금액:', th: 'จำนวนที่ใช้ได้:' },
     'Rewards': { zh: '獎勵', ko: '리워드', th: 'รางวัล' },
+    'Rewards · Day 27, 03:26 UTC': { zh: '獎勵 · 第 27 天，03:26 UTC', ko: '리워드 · 27일차, 03:26 UTC', th: 'รางวัล · วันที่ 27, 03:26 UTC' },
+    /* 倒數元件開機瞬間(setInterval 第一次 tick 前)顯示的烘焙初始值，
+       之後每秒由 initRewardsCountdown() 透過 t.lobby.rewardsCountdown
+       重新產生;這裡只補這一瞬間的靜態文字。 */
+    'Next in 20h : 33m : 06s': { zh: '20 時 : 33 分 : 06 秒後', ko: '20시간 : 33분 : 06초 후', th: 'อีก 20 ชม. : 33 นาที : 06 วินาที' },
     'Nickname：': { zh: '暱稱：', ko: '닉네임:', th: 'ชื่อเล่น:' },
     'Username': { zh: '使用者名稱', ko: '아이디', th: 'ชื่อผู้ใช้' },
     'Please enter your nickname': { zh: '請輸入暱稱', ko: '닉네임을 입력해 주세요', th: 'กรุณากรอกชื่อเล่นของคุณ' },
