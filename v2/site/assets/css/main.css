@@ -71,7 +71,7 @@ img, video { max-width: 100%; height: auto; }
   transition-duration: 0.15s;
 }
 .brand-link:hover { color: rgb(var(--c-text) / 1); }
-.brand-logo { height: 2.5rem; mix-blend-mode: lighten; }
+.brand-logo { height: 3.5rem; mix-blend-mode: lighten; }
 .header-mobile-controls { display: none; }
 @media (max-width: 767.98px) {
   .header-mobile-controls { display: flex; margin-left: auto; align-items: center; gap: 0.75rem; }
@@ -2644,7 +2644,7 @@ select.pay-field {
 @media (min-width: 768px) { .site-footer { padding-bottom: 4rem; } }
 .site-footer > .app-container { padding-left: 1rem; padding-right: 1rem; }
 .site-footer-inner { display: flex; flex-direction: column; align-items: center; }
-.site-footer-logo { height: 3rem; mix-blend-mode: lighten; margin-bottom: 1.5rem; }
+.site-footer-logo { height: 4.25rem; mix-blend-mode: lighten; margin-bottom: 1.5rem; }
 .site-footer-notice { text-align: center; max-width: 42rem; }
 .site-footer-notice p { color: rgb(var(--c-text-3) / 1); font-size: 0.75rem; line-height: 1.625; margin-bottom: 0.75rem; }
 .site-footer-notice p:last-child { margin-bottom: 0; }

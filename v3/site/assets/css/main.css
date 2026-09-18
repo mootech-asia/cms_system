@@ -138,7 +138,7 @@ img { display: block; }
   display: flex; align-items: center;
 }
 .topbar-logo {
-  height: 32px;
+  height: 45px;
   width: auto;
   display: block;
   filter: drop-shadow(0 0 12px color-mix(in oklch, var(--accent) 35%, transparent));
@@ -2145,7 +2145,7 @@ section.lobby-section { margin-top: 44px; }
   outline-offset: 6px;
 }
 .footer-min-logo img {
-  height: 28px;
+  height: 40px;
   width: auto;
   filter: drop-shadow(0 0 16px color-mix(in oklch, var(--accent) 35%, transparent));
 }
@@ -2431,7 +2431,7 @@ section.lobby-section { margin-top: 44px; }
   }
   .sb-collapse-toggle::before { transform: rotate(45deg); }
   .sb-collapse-toggle::after { transform: rotate(-45deg); }
-  .topbar-logo { height: 24px; }
+  .topbar-logo { height: 34px; }
   .hero { height: 320px; }
   .hero-content { padding: 32px 24px; }
   .hero-title { font-size: clamp(24px, 5vw, 36px); }
@@ -4290,7 +4290,7 @@ select.twk-field {
   .tb-balance-rows { flex-direction: column !important; gap: 0 !important; align-items: flex-start; }
   .tb-balance-row { font-size: 11px; gap: 6px; }
   .tb-balance { padding: 5px 9px; }
-  .topbar-logo { height: 22px; }
+  .topbar-logo { height: 31px; }
   .header-actions { gap: 6px; }
 }
 

@@ -101,9 +101,9 @@ img { max-width: 100%; display: block; }
 .header-right { display: flex; align-items: center; gap: 10px; grid-column: 2; justify-self: center; }
 .brand-link { display: flex; align-items: center; flex-shrink: 0; }
 .brand-mark { display: flex; align-items: center; gap: 8px; }
-.brand-mark-logo { height: 28px; width: auto; flex-shrink: 0; }
+.brand-mark-logo { height: 40px; width: auto; flex-shrink: 0; }
 .site-footer-logo.brand-mark { opacity: var(--footer-opacity); margin-bottom: 18px; }
-.site-footer-logo.brand-mark .brand-mark-logo { height: 24px; }
+.site-footer-logo.brand-mark .brand-mark-logo { height: 34px; }
 /* .header-nav-link 現在只用在 .header-auth 裡的會員帳號連結（頭像+
    名稱），導覽用的 nav 連結已移除。 */
 .header-nav-link {
@@ -1497,7 +1497,7 @@ img { max-width: 100%; display: block; }
      （見 .mobile-tabbar-menu），這裡藏起來避免重複入口。 */
   .header-menu-trigger { display: none; }
   .header-right { gap: 6px; }
-  .brand-mark-logo { height: 22px; }
+  .brand-mark-logo { height: 31px; }
   .header-search-btn { width: 30px; height: 30px; }
   .header-auth { gap: 4px; }
   .header-auth .btn-accent { padding: 7px 10px; font-size: 11px; }

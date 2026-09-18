@@ -83,7 +83,7 @@ img { max-width: 100%; display: block; }
   padding-top: 14px; padding-bottom: 14px;
 }
 .brand-link { display: flex; align-items: center; flex-shrink: 0; }
-.brand-logo { height: 36px; width: auto; }
+.brand-logo { height: 50px; width: auto; }
 /* header-nav 底色跟 header-top 統一用 --header-bg,整個 header 維持
    單一深色機身;active/hover 改用 --bg-soft 做出區塊,避免跟底色同色
    看不出來。 */
@@ -1093,7 +1093,7 @@ img { max-width: 100%; display: block; }
 /* ── FOOTER ─────────────────────────────── */
 .site-footer { background: var(--header-bg); border-top: 1px solid var(--line); padding: 40px 0 32px; margin-top: 20px; flex-shrink: 0; }
 .site-footer-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.site-footer-logo { height: 28px; width: auto; margin-bottom: 18px; opacity: var(--footer-opacity); }
+.site-footer-logo { height: 40px; width: auto; margin-bottom: 18px; opacity: var(--footer-opacity); }
 .site-footer-notice { max-width: 640px; }
 .site-footer-notice p { color: var(--text-mid); font-size: 12px; line-height: 1.7; margin: 0 0 8px; }
 .site-footer-notice p:last-child { margin-bottom: 0; }
