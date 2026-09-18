@@ -1948,7 +1948,7 @@ section.lobby-section { margin-top: 44px; }
 /* ── LEADERBOARD ────────────────────────── */
 .leaderboard-wrap {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 .leaderboard {
