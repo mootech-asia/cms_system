@@ -399,4 +399,9 @@
   .ui-tab--underline { font-size: var(--type-body-sm); padding: 8px 0 10px; min-height: var(--control-size-md); }
   .dp-method-tabs button { min-width: 128px; padding: 9px 12px; font-size: var(--type-body-sm); min-height: 44px; gap: 7px; }
   .dp-method-coin { width: 18px; height: 18px; font-size: 11px; }
+
+  /* Withdraw 頁付款方式分頁（Bank Card／Crypto Wallet）跟 deposit 頁
+     同一套元件、同樣沿用桌機尺寸，一併縮小。 */
+  .wd-method-tabs button { min-width: 128px; padding: 9px 12px; font-size: var(--type-body-sm); min-height: 44px; gap: 7px; }
+  .wd-coin-mark { width: 18px; height: 18px; font-size: 11px; }
 }
