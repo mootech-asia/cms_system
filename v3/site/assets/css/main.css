@@ -4522,6 +4522,11 @@ select.twk-field {
 [data-theme="light"] .footer-min-logo img,
 [data-theme="light"] .topbar-logo { filter: none !important; }
 
+/* logo 依 skin 明暗切換：assets/logo.png 為暗色版，亮色 skin 覆蓋成 logo-light.png
+   （main.css 在 assets/css/ 下，故用 ../logo-light.png 回到 assets/） */
+[data-theme="light"] .footer-min-logo img,
+[data-theme="light"] .topbar-logo { content: url('../logo-light.png'); }
+
 
 /* light theme: remove blue glow layer behind Rollover hero */
 

@@ -100,16 +100,10 @@ img { max-width: 100%; display: block; }
 .header-left { display: flex; align-items: center; gap: 10px; justify-self: start; }
 .header-right { display: flex; align-items: center; gap: 10px; grid-column: 2; justify-self: center; }
 .brand-link { display: flex; align-items: center; flex-shrink: 0; }
-/* v6 品牌改用內嵌 SVG + 文字組成的 .brand-mark，不再用點陣圖 logo：
-   換 skin 時圖示直接吃 --accent／--bg 變數換色，不必像點陣圖那樣另外
-   準備一份 filter 才能在深色/淺色 skin 上都可讀。 */
 .brand-mark { display: flex; align-items: center; gap: 8px; }
-.brand-mark-icon { width: 28px; height: 28px; flex-shrink: 0; }
-.brand-mark-text { font-size: 20px; font-weight: 900; letter-spacing: -0.01em; color: var(--text-on-header); line-height: 1; }
-.brand-mark-text em { font-style: normal; color: var(--accent); }
+.brand-mark-logo { height: 28px; width: auto; flex-shrink: 0; }
 .site-footer-logo.brand-mark { opacity: var(--footer-opacity); margin-bottom: 18px; }
-.site-footer-logo.brand-mark .brand-mark-icon { width: 24px; height: 24px; }
-.site-footer-logo.brand-mark .brand-mark-text { font-size: 17px; }
+.site-footer-logo.brand-mark .brand-mark-logo { height: 24px; }
 /* .header-nav-link 現在只用在 .header-auth 裡的會員帳號連結（頭像+
    名稱），導覽用的 nav 連結已移除。 */
 .header-nav-link {
@@ -1503,8 +1497,7 @@ img { max-width: 100%; display: block; }
      （見 .mobile-tabbar-menu），這裡藏起來避免重複入口。 */
   .header-menu-trigger { display: none; }
   .header-right { gap: 6px; }
-  .brand-mark-icon { width: 22px; height: 22px; }
-  .brand-mark-text { font-size: 16px; }
+  .brand-mark-logo { height: 22px; }
   .header-search-btn { width: 30px; height: 30px; }
   .header-auth { gap: 4px; }
   .header-auth .btn-accent { padding: 7px 10px; font-size: 11px; }
