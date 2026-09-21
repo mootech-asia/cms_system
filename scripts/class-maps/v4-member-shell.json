@@ -1,0 +1,35 @@
+{
+  "__full__": {
+    "member-sidebar member-panel": "sticky top-[20px] bg-bg-panel border border-line rounded-lg p-[18px] shadow-card max-[720px]:hidden",
+    "member-sidebar-link active": "flex items-center gap-[10px] p-[10px_12px] rounded-md text-[13.5px] font-bold bg-[image:var(--gold-grad)] text-[#3a2604]! [&>svg]:shrink-0",
+    "acct-level-dot current": "inline-block w-[8px] h-[8px] ml-[4px] rounded-full align-[1px] bg-text-dim",
+    "acct-level-dot next": "inline-block w-[8px] h-[8px] ml-[4px] rounded-full align-[1px] bg-gold-deep"
+  },
+
+  "member-main": "min-w-0 flex flex-col gap-[18px]",
+  "member-page-title": "text-[20px] font-extrabold m-0",
+  "member-panel": "bg-bg-panel border border-line rounded-lg p-[18px] shadow-card",
+  "member-panel-title": "text-[15px] font-extrabold m-[0_0_14px] text-text member-panel-title",
+  "member-panels-grid": "grid grid-cols-2 gap-[18px] max-[900px]:grid-cols-1",
+  "member-sidebar-link": "flex items-center gap-[10px] p-[10px_12px] rounded-md text-[13.5px] font-bold text-text-mid! transition-[background,color] duration-150 hover:bg-bg hover:text-text! [&>svg]:shrink-0",
+
+  "acct-hero": "rounded-lg p-[22px] bg-[image:linear-gradient(135deg,var(--panel-tint)_0%,var(--bg-panel)_60%)] border border-line shadow-card flex items-center gap-[20px] flex-wrap max-[720px]:flex-col max-[720px]:items-center max-[720px]:text-center max-[720px]:gap-[14px]",
+  "acct-avatar": "w-[64px] h-[64px] shrink-0 rounded-full grid place-items-center bg-[image:var(--gold-grad)] text-[#3a2604] [&>svg]:w-[30px] [&>svg]:h-[30px]",
+  "acct-info": "flex-1 min-w-[200px] max-[720px]:w-full",
+  "acct-name-row": "flex items-center gap-[10px] mb-[8px] max-[720px]:justify-center",
+  "acct-name": "text-[19px] font-extrabold m-0 text-text",
+  "acct-vip-badge": "p-[3px_10px] rounded-[999px] bg-[image:var(--gold-grad)] text-[#3a2604] text-[11.5px] font-extrabold",
+  "acct-stats-grid": "flex gap-[32px] flex-wrap max-[720px]:grid max-[720px]:grid-cols-2 max-[720px]:gap-[10px_14px] max-[720px]:text-center max-[720px]:[&>div:first-child]:col-span-2",
+  "acct-stat-label": "text-[12px] text-text-dim m-[0_0_2px]",
+  "acct-stat-value": "text-[17px] font-extrabold text-gold-deep m-0 max-[720px]:text-[16px] max-[720px]:break-words",
+  "acct-actions": "flex gap-[10px] shrink-0 max-[720px]:w-full max-[720px]:[&_.btn-gold]:flex-1 max-[720px]:[&_.btn-gold]:text-center",
+  "acct-level": "mt-[16px] pt-[14px] border-t border-line grid gap-[8px]",
+  "acct-level-label": "m-0 text-text-mid text-[12px] font-bold",
+  "acct-level-track": "h-[8px] overflow-hidden border border-line rounded-[999px] bg-bg",
+  "acct-level-fill": "h-full rounded-[inherit] bg-[image:var(--gold-grad)] [transition:width_0.3s_ease]",
+  "acct-level-meta": "grid grid-cols-[1fr_auto_1fr] items-center gap-[12px] text-text-mid text-[12px] max-[400px]:text-[11px] max-[400px]:gap-[8px]",
+  "acct-level-value": "text-text-dim text-center",
+  "acct-level-next": "text-right",
+
+  "pi-field-edit": "text-[12.5px] font-bold text-gold-deep! hover:text-red!"
+}

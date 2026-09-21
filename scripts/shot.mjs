@@ -2,9 +2,19 @@ import { chromium } from 'playwright';
 const url = process.argv[2];
 const outPath = process.argv[3];
 const width = Number(process.argv[4] || 1440);
+// 傳 "authed" 當第 5 個參數：會員頁（account.html 等）沒登入會被
+// site.js 導回 index.html，截圖前要先在 localStorage 塞假登入狀態
+// （key/shape 對照 site.js 的 AUTH_KEY='cms-v4-auth' 與 memberAuthHtml()
+// 用到的 user.name/user.balance）。
+const authed = process.argv[5] === 'authed';
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 const page = await browser.newPage({ viewport: { width, height: 1000 } });
 page.setDefaultTimeout(15000);
+if (authed) {
+  await page.addInitScript(() => {
+    localStorage.setItem('cms-v4-auth', JSON.stringify({ name: 'meqomcao', balance: '₩1,000,000,000', points: 0 }));
+  });
+}
 const errors = [];
 page.on('console', (msg) => { if (msg.type() === 'error') errors.push(msg.text()); });
 page.on('pageerror', (err) => errors.push(String(err)));
