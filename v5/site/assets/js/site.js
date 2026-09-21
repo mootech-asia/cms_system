@@ -15,7 +15,7 @@
     img.hidden = true;
     if (art.querySelector('.game-tile-art-fallback')) return;
     art.insertAdjacentHTML('beforeend',
-      '<span class="game-tile-art-fallback" aria-hidden="true">' +
+      '<span class="absolute inset-0 z-[1] grid place-items-center text-text-dim pointer-events-none game-tile-art-fallback" aria-hidden="true">' +
         '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">' +
           '<rect x="3" y="5" width="18" height="14" rx="2"></rect>' +
           '<circle cx="9" cy="10.5" r="1.6" fill="currentColor" stroke="none"></circle>' +
@@ -412,14 +412,14 @@
      點「登錄」一律開登入彈窗,帳密輸入收斂到彈窗內完成。JOIN 是實心
      主要按鈕、LOGIN 是純文字連結,視覺層級對齊參考站。 */
   function guestAuthHtml() {
-    return '<button type="button" class="btn-accent" data-auth-open="register">' + tr('auth.registerNow', '立即註冊') + '</button>' +
-      '<button type="button" class="btn-accent ghost" data-auth-open="login">' + tr('auth.login', '登錄') + '</button>';
+    return '<button type="button" class="py-2.25 px-5 border border-transparent rounded-full bg-[image:var(--accent-grad)] text-accent-ink font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-accent transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-accent" data-auth-open="register">' + tr('auth.registerNow', '立即註冊') + '</button>' +
+      '<button type="button" class="py-2.25 px-1.5 border border-transparent rounded-full bg-transparent text-text-on-header font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:text-accent-hi disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none btn-accent ghost" data-auth-open="login">' + tr('auth.login', '登錄') + '</button>';
   }
   function memberAuthHtml(user) {
-    return '<a href="account.html" class="header-nav-link" style="gap:8px">' + USER_ICON + escapeHtml(user.name) + '</a>' +
-      '<span class="header-forgot">' + tr('auth.balancePrefix', '餘額：') + escapeHtml(user.balance) + '</span>' +
-      '<span class="header-forgot">' + tr('auth.pointsPrefix', '點數：') + escapeHtml(user.points || DEFAULT_POINTS) + '</span>' +
-      '<button type="button" class="btn-accent quiet" data-logout>' + tr('auth.logout', '登出') + '</button>';
+    return '<a href="account.html" class="flex items-center gap-2 py-3.5 px-6 text-text-mid text-[13px] font-extrabold uppercase tracking-[0.02em] whitespace-nowrap transition-[background,color] duration-150 hover:bg-bg-soft hover:text-white header-nav-link">' + USER_ICON + escapeHtml(user.name) + '</a>' +
+      '<span class="text-[11.5px] text-white/60 whitespace-nowrap header-forgot">' + tr('auth.balancePrefix', '餘額：') + escapeHtml(user.balance) + '</span>' +
+      '<span class="text-[11.5px] text-white/60 whitespace-nowrap header-forgot">' + tr('auth.pointsPrefix', '點數：') + escapeHtml(user.points || DEFAULT_POINTS) + '</span>' +
+      '<button type="button" class="py-2.25 px-1.5 border border-transparent rounded-full bg-white/8 text-text-on-header font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px btn-accent quiet" data-logout>' + tr('auth.logout', '登出') + '</button>';
   }
   /* 依登入狀態重繪 header-auth,取代原本每頁寫死的訪客/會員版面。
      訪客態的「登錄／立即註冊」一律開對應的登入彈窗完成帳密輸入。 */
@@ -535,16 +535,16 @@
     if (!header) return;
     var mobileUser = loadAuth();
     var footHtml = mobileUser
-      ? '<div class="header-menu-account">' + USER_ICON + '<span>' + escapeHtml(mobileUser.name) + '・' + tr('auth.balancePrefix', '餘額：') + escapeHtml(mobileUser.balance) + '</span></div>' +
-        '<button type="button" class="btn-accent quiet" style="width:100%" data-logout>' + tr('auth.logout', '登出') + '</button>'
-      : '<button type="button" class="btn-accent quiet" style="width:100%;margin-bottom:8px" data-mobile-login>' + tr('auth.login', '登錄') + '</button>' +
-        '<button type="button" class="btn-accent" style="width:100%" data-mobile-register>' + tr('auth.registerNow', '立即註冊') + '</button>';
+      ? '<div class="flex items-center gap-2.5 pt-1.5 pb-3.5 text-[13.5px] font-bold text-text [&_svg]:w-5.5 [&_svg]:h-5.5 [&_svg]:text-accent-hi header-menu-account">' + USER_ICON + '<span>' + escapeHtml(mobileUser.name) + '・' + tr('auth.balancePrefix', '餘額：') + escapeHtml(mobileUser.balance) + '</span></div>' +
+        '<button type="button" class="block w-full text-center no-underline mb-2 py-2.25 px-1.5 border border-transparent rounded-full bg-bg-panel text-accent-hi font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px btn-accent quiet" data-logout>' + tr('auth.logout', '登出') + '</button>'
+      : '<button type="button" class="block w-full text-center no-underline mb-2 py-2.25 px-1.5 border border-transparent rounded-full bg-bg-panel text-accent-hi font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px btn-accent quiet" data-mobile-login>' + tr('auth.login', '登錄') + '</button>' +
+        '<button type="button" class="block w-full text-center no-underline mb-2 py-2.25 px-5 border border-transparent rounded-full bg-[image:var(--accent-grad)] text-accent-ink font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-accent transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px btn-accent" data-mobile-register>' + tr('auth.registerNow', '立即註冊') + '</button>';
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="header-menu-scrim" data-mobile-overlay></div>' +
-      '<div class="header-menu-panel">' +
-      '<nav class="header-menu-nav">' + navHtml + '</nav>' +
-      '<div class="header-menu-foot">' + footHtml + '</div>' +
+      '<div class="fixed inset-0 z-[10001] bg-transparent header-menu-scrim" data-mobile-overlay></div>' +
+      '<div class="absolute top-full right-0 z-[10002] w-full max-w-[560px] max-h-[calc(100vh-72px)] max-[600px]:max-w-full flex flex-col bg-bg border border-line border-t-0 shadow-card overflow-y-auto header-menu-panel">' +
+      '<nav class="flex flex-col header-menu-nav">' + navHtml + '</nav>' +
+      '<div class="pt-3.5 px-5 pb-5 border-t border-line shrink-0 header-menu-foot">' + footHtml + '</div>' +
       '</div>';
     mobileMenuRoot = document.createElement('div');
     mobileMenuRoot.className = 'header-menu-root';
@@ -567,8 +567,8 @@
   function openHeaderMenu() {
     if (mobileMenuRoot) { closeMobileMenu(); return; }
     var navLinks = Array.prototype.slice.call(document.querySelectorAll('.header-nav .header-nav-link'));
-    var navHtml = '<div class="header-menu-grid">' + navLinks.map(function (a) {
-      return '<a href="' + a.getAttribute('href') + '" class="header-menu-grid-item' + (a.classList.contains('active') ? ' active' : '') + '">' + a.innerHTML + '</a>';
+    var navHtml = '<div class="grid grid-cols-3 gap-2.5 p-3.5 header-menu-grid">' + navLinks.map(function (a) {
+      return '<a href="' + a.getAttribute('href') + '" class="flex flex-col items-center gap-2 py-4 px-1.5 rounded-md bg-bg-panel border border-line text-[12px] font-bold text-text text-center [&.active]:bg-[image:var(--accent-grad)] [&.active]:border-transparent [&.active]:text-accent-ink [&_svg]:w-6 [&_svg]:h-6 [&_svg]:text-text-mid [&_svg]:shrink-0 [&.active_svg]:text-accent-ink header-menu-grid-item' + (a.classList.contains('active') ? ' active' : '') + '">' + a.innerHTML + '</a>';
     }).join('') + '</div>';
     openMobileOverlay(navHtml);
   }
@@ -578,10 +578,10 @@
   function openMemberMenu() {
     if (mobileMenuRoot) { closeMobileMenu(); return; }
     var page = currentPage();
-    var navHtml = '<div class="header-menu-section">' + tr('sidebar.myAccount', '我的帳戶') + '</div>' +
-      '<div class="header-menu-list">' + MEMBER_MENU_ITEMS.map(function (item) {
+    var navHtml = '<div class="pt-3.5 px-3 pb-1 text-[12px] font-bold text-text-dim header-menu-section">' + tr('sidebar.myAccount', '我的帳戶') + '</div>' +
+      '<div class="grid grid-cols-2 gap-2 pt-1 px-3.5 pb-3.5 header-menu-list">' + MEMBER_MENU_ITEMS.map(function (item) {
         var active = item.href.split('?')[0] === page;
-        return '<a href="' + item.href + '" class="header-menu-list-item' + (active ? ' active' : '') + '"><span>' + item.label + '</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>';
+        return '<a href="' + item.href + '" class="flex items-center justify-between gap-1.5 p-3 rounded-md bg-bg-panel border border-line text-[12.5px] font-bold text-text [&.active]:text-accent-hi [&.active]:border-accent-hi [&.active_.chevron]:text-accent-hi header-menu-list-item' + (active ? ' active' : '') + '"><span>' + item.label + '</span><svg class="w-3.5 h-3.5 text-text-dim shrink-0 chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>';
       }).join('') + '</div>';
     openMobileOverlay(navHtml);
   }
@@ -599,25 +599,25 @@
   function authModalBodyHtml(mode) {
     var isRegister = mode === 'register';
     return (
-      '<div class="auth-modal-tabs">' +
-      '<button type="button" class="auth-modal-tab' + (isRegister ? '' : ' active') + '" data-auth-switch="login">' + tr('auth.login', '登錄') + '</button>' +
-      '<button type="button" class="auth-modal-tab' + (isRegister ? ' active' : '') + '" data-auth-switch="register">' + tr('auth.register', '註冊') + '</button>' +
+      '<div class="flex gap-2 mb-4 auth-modal-tabs">' +
+      '<button type="button" class="flex-1 py-2.25 text-center rounded-full border border-line text-[13px] font-bold text-text-mid [&.active]:bg-[image:var(--accent-grad)] [&.active]:border-transparent [&.active]:text-accent-ink auth-modal-tab' + (isRegister ? '' : ' active') + '" data-auth-switch="login">' + tr('auth.login', '登錄') + '</button>' +
+      '<button type="button" class="flex-1 py-2.25 text-center rounded-full border border-line text-[13px] font-bold text-text-mid [&.active]:bg-[image:var(--accent-grad)] [&.active]:border-transparent [&.active]:text-accent-ink auth-modal-tab' + (isRegister ? ' active' : '') + '" data-auth-switch="register">' + tr('auth.register', '註冊') + '</button>' +
       '</div>' +
-      '<div class="form-field"><label class="form-label">' + tr('auth.usernameLabel', '用戶名') + '</label><input type="text" class="form-input" placeholder="' + tr('auth.usernameInputPlaceholder', '請輸入用戶名') + '" data-auth-username></div>' +
-      '<div class="form-field"><label class="form-label">' + tr('auth.passwordLabel', '密碼') + '</label><input type="password" class="form-input" placeholder="' + tr('auth.passwordInputPlaceholder', '請輸入密碼') + '"></div>' +
-      (isRegister ? '<div class="form-field"><label class="form-label">' + tr('auth.confirmPasswordLabel', '確認密碼') + '</label><input type="password" class="form-input" placeholder="' + tr('auth.confirmPasswordPlaceholder', '請再次輸入密碼') + '"></div>' : '') +
-      '<a href="#" class="btn-accent auth-modal-submit" data-auth-submit>' + (isRegister ? tr('auth.register', '註冊') : tr('auth.login', '登錄')) + '</a>'
+      '<div class="mb-4 form-field"><label class="block text-[13px] font-bold text-text mb-1.5 form-label">' + tr('auth.usernameLabel', '用戶名') + '</label><input type="text" class="w-full py-3 px-3.5 rounded-md border border-line bg-bg text-[14px] text-text form-input" placeholder="' + tr('auth.usernameInputPlaceholder', '請輸入用戶名') + '" data-auth-username></div>' +
+      '<div class="mb-4 form-field"><label class="block text-[13px] font-bold text-text mb-1.5 form-label">' + tr('auth.passwordLabel', '密碼') + '</label><input type="password" class="w-full py-3 px-3.5 rounded-md border border-line bg-bg text-[14px] text-text form-input" placeholder="' + tr('auth.passwordInputPlaceholder', '請輸入密碼') + '"></div>' +
+      (isRegister ? '<div class="mb-4 form-field"><label class="block text-[13px] font-bold text-text mb-1.5 form-label">' + tr('auth.confirmPasswordLabel', '確認密碼') + '</label><input type="password" class="w-full py-3 px-3.5 rounded-md border border-line bg-bg text-[14px] text-text form-input" placeholder="' + tr('auth.confirmPasswordPlaceholder', '請再次輸入密碼') + '"></div>' : '') +
+      '<a href="#" class="py-2.25 px-5 border border-transparent rounded-full bg-[image:var(--accent-grad)] text-accent-ink font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-accent transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px block w-full text-center no-underline mt-1.5 btn-accent auth-modal-submit" data-auth-submit>' + (isRegister ? tr('auth.register', '註冊') : tr('auth.login', '登錄')) + '</a>'
     );
   }
   function openAuthModal(mode) {
     closeAuthModal();
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="auth-modal-overlay" data-auth-overlay>' +
-      '<div class="auth-modal-box">' +
-      '<div class="auth-modal-head"><h3 class="auth-modal-title" data-auth-title></h3>' +
-      '<button type="button" class="auth-modal-close" aria-label="' + tr('cs.chatClose', '關閉') + '" data-auth-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
-      '<div class="auth-modal-body" data-auth-body></div>' +
+      '<div class="fixed inset-0 z-[10002] flex items-center justify-center bg-black/72 p-5 auth-modal-overlay" data-auth-overlay>' +
+      '<div class="w-full max-w-[380px] rounded-lg bg-bg text-text shadow-card overflow-hidden auth-modal-box">' +
+      '<div class="flex items-center justify-between py-4 px-5 border-b border-line auth-modal-head"><h3 class="m-0 text-[16px] font-extrabold text-text auth-modal-title" data-auth-title></h3>' +
+      '<button type="button" class="w-7 h-7 grid place-items-center rounded-full text-text-mid hover:bg-bg-panel auth-modal-close" aria-label="' + tr('cs.chatClose', '關閉') + '" data-auth-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
+      '<div class="p-5 auth-modal-body" data-auth-body></div>' +
       '</div></div>';
     authModalRoot = wrap.firstElementChild;
     document.body.appendChild(authModalRoot);
@@ -653,14 +653,14 @@
     ];
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="cs-modal-overlay" data-cs-overlay>' +
-      '<div class="cs-modal-box">' +
-      '<div class="cs-modal-head"><h3 class="cs-modal-title">' + tr('cs.title', '聯絡客服') + '</h3>' +
-      '<button type="button" class="cs-modal-close" aria-label="' + tr('cs.chatClose', '關閉') + '" data-cs-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
-      '<div class="cs-modal-body">' +
+      '<div class="fixed inset-0 z-[10002] flex items-center justify-center bg-black/72 p-5 cs-modal-overlay" data-cs-overlay>' +
+      '<div class="w-full max-w-[340px] rounded-lg bg-bg text-text shadow-card overflow-hidden cs-modal-box">' +
+      '<div class="flex items-center justify-between py-4 px-5 border-b border-line cs-modal-head"><h3 class="m-0 text-[15.5px] font-extrabold text-text cs-modal-title">' + tr('cs.title', '聯絡客服') + '</h3>' +
+      '<button type="button" class="w-7 h-7 grid place-items-center rounded-full text-text-mid hover:bg-bg-panel cs-modal-close" aria-label="' + tr('cs.chatClose', '關閉') + '" data-cs-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
+      '<div class="p-2.5 cs-modal-body">' +
       rows.map(function (r) {
-        return '<a href="#" class="cs-opt"><span class="cs-opt-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">' + r.icon + '</svg></span>' +
-          '<span class="cs-opt-text"><strong>' + r.title + '</strong><small>' + r.desc + '</small></span></a>';
+        return '<a href="#" class="flex items-center gap-3 p-3 rounded-md no-underline hover:bg-bg-panel cs-opt"><span class="w-9 h-9 rounded-full grid place-items-center bg-[image:var(--accent-grad)] text-accent-ink shrink-0 cs-opt-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">' + r.icon + '</svg></span>' +
+          '<span class="cs-opt-text"><strong class="block text-[13.5px] text-text">' + r.title + '</strong><small class="text-[12px] text-text-dim">' + r.desc + '</small></span></a>';
       }).join('') +
       '</div></div></div>';
     csModalRoot = wrap.firstElementChild;
@@ -692,9 +692,10 @@
   function appendChatMsg(kind, text) {
     var body = chatWidgetRoot.querySelector('[data-chat-body]');
     var row = document.createElement('div');
-    row.className = 'chat-msg chat-msg-' + kind;
-    row.innerHTML = (kind === 'bot' ? '<img src="logo.png" class="chat-msg-avatar" alt="">' : '') +
-      '<div class="chat-bubble"></div>';
+    var isBot = kind === 'bot';
+    row.className = 'flex items-end gap-2 max-w-[88%]' + (isBot ? '' : ' self-end flex-row-reverse') + ' chat-msg chat-msg-' + kind;
+    row.innerHTML = (isBot ? '<img src="logo.png" class="w-5.5 h-5.5 rounded-full bg-bg-panel object-contain p-0.5 shrink-0 chat-msg-avatar" alt="">' : '') +
+      '<div class="py-2.25 px-3 rounded-[14px] text-[13px] leading-[1.5] ' + (isBot ? 'rounded-bl-[4px] bg-bg-panel text-text' : 'rounded-br-[4px] bg-[image:var(--accent-grad)] text-accent-ink') + ' chat-bubble"></div>';
     row.querySelector('.chat-bubble').textContent = text;
     body.appendChild(row);
     scrollChatToBottom();
@@ -703,19 +704,19 @@
     if (chatWidgetRoot) { chatWidgetRoot.classList.remove('is-minimized'); return; }
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="chat-widget" data-chat-widget>' +
-      '<div class="chat-widget-head">' +
-      '<img src="logo.png" class="chat-widget-avatar" alt="">' +
-      '<div class="chat-widget-head-text"><strong>' + tr('cs.liveChatTitle', '線上客服') + '</strong>' +
-      '<span class="chat-widget-status"><i></i>' + tr('cs.chatOnline', '線上') + '</span></div>' +
-      '<button type="button" class="chat-widget-min" data-chat-min aria-label="' + tr('cs.chatMinimize', '縮小') + '">–</button>' +
-      '<button type="button" class="chat-widget-close" data-chat-close aria-label="' + tr('cs.chatClose', '關閉') + '">' +
+      '<div class="fixed right-4.5 bottom-4.5 z-[10003] w-80 max-w-[calc(100vw-36px)] max-[520px]:right-2.5 max-[520px]:bottom-2.5 max-[520px]:w-[calc(100vw-20px)] rounded-lg bg-bg text-text shadow-card overflow-hidden flex flex-col group chat-widget" data-chat-widget>' +
+      '<div class="flex items-center gap-2.5 py-3.5 pr-3.5 pl-4 bg-[image:var(--accent-grad)] text-accent-ink chat-widget-head">' +
+      '<img src="logo.png" class="w-8 h-8 rounded-full bg-white object-contain p-0.75 shrink-0 chat-widget-avatar" alt="">' +
+      '<div class="flex-1 min-w-0 chat-widget-head-text"><strong class="block text-[14px]">' + tr('cs.liveChatTitle', '線上客服') + '</strong>' +
+      '<span class="flex items-center gap-1.25 text-[11.5px] opacity-85 chat-widget-status"><i class="w-1.5 h-1.5 rounded-full bg-[#3ddc84] inline-block"></i>' + tr('cs.chatOnline', '線上') + '</span></div>' +
+      '<button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full text-inherit hover:bg-white/22 chat-widget-min" data-chat-min aria-label="' + tr('cs.chatMinimize', '縮小') + '">–</button>' +
+      '<button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full text-inherit hover:bg-white/22 chat-widget-close" data-chat-close aria-label="' + tr('cs.chatClose', '關閉') + '">' +
       '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>' +
       '</div>' +
-      '<div class="chat-widget-body" data-chat-body></div>' +
-      '<form class="chat-widget-form" data-chat-form>' +
-      '<input type="text" data-chat-input placeholder="' + tr('cs.chatPlaceholder', '輸入訊息…') + '" autocomplete="off">' +
-      '<button type="submit" aria-label="' + tr('cs.chatSend', '傳送') + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 18 9-18 9 4-9Z"/></svg></button>' +
+      '<div class="p-3.5 max-h-80 overflow-y-auto flex flex-col gap-2.5 group-[.is-minimized]:hidden chat-widget-body" data-chat-body></div>' +
+      '<form class="flex items-center gap-2 py-2.5 px-3 border-t border-line group-[.is-minimized]:hidden chat-widget-form" data-chat-form>' +
+      '<input type="text" class="flex-1 min-w-0 border border-line rounded-full py-2 px-3.5 text-[13px] bg-bg-panel text-text" data-chat-input placeholder="' + tr('cs.chatPlaceholder', '輸入訊息…') + '" autocomplete="off">' +
+      '<button type="submit" class="w-8.5 h-8.5 shrink-0 rounded-full grid place-items-center bg-[image:var(--accent-grad)] text-accent-ink" aria-label="' + tr('cs.chatSend', '傳送') + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 18 9-18 9 4-9Z"/></svg></button>' +
       '</form></div>';
     chatWidgetRoot = wrap.firstElementChild;
     document.body.appendChild(chatWidgetRoot);
@@ -808,11 +809,11 @@
     closePayModal();
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="auth-modal-overlay" data-pay-overlay>' +
-      '<div class="auth-modal-box">' +
-      '<div class="auth-modal-head"><h3 class="auth-modal-title">' + title + '</h3>' +
-      '<button type="button" class="auth-modal-close" aria-label="' + tr('cs.chatClose', '關閉') + '" data-pay-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
-      '<div class="auth-modal-body">' + bodyHtml + '</div>' +
+      '<div class="fixed inset-0 z-[10002] flex items-center justify-center bg-black/72 p-5 auth-modal-overlay" data-pay-overlay>' +
+      '<div class="w-full max-w-[380px] rounded-lg bg-bg text-text shadow-card overflow-hidden auth-modal-box">' +
+      '<div class="flex items-center justify-between py-4 px-5 border-b border-line auth-modal-head"><h3 class="m-0 text-[16px] font-extrabold text-text auth-modal-title">' + title + '</h3>' +
+      '<button type="button" class="w-7 h-7 grid place-items-center rounded-full text-text-mid hover:bg-bg-panel auth-modal-close" aria-label="' + tr('cs.chatClose', '關閉') + '" data-pay-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
+      '<div class="p-5 auth-modal-body">' + bodyHtml + '</div>' +
       '</div></div>';
     payModalRoot = wrap.firstElementChild;
     document.body.appendChild(payModalRoot);
@@ -822,7 +823,7 @@
     return payModalRoot;
   }
   function simplePayModal(title, message) {
-    var root = openPayModal(title, '<p class="about-text">' + message + '</p><button type="button" class="btn-accent" style="width:100%">' + tr('common.confirm', '確定') + '</button>');
+    var root = openPayModal(title, '<p class="text-[13.5px] leading-[1.8] text-text-mid m-0 last:mb-0 about-text">' + message + '</p><button type="button" class="py-2.25 px-5 border border-transparent rounded-full bg-[image:var(--accent-grad)] text-accent-ink font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-accent transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px block w-full btn-accent">' + tr('common.confirm', '確定') + '</button>');
     on(root.querySelector('.auth-modal-body .btn-accent'), 'click', closePayModal);
     return root;
   }
@@ -861,24 +862,24 @@
     var body;
     if (isBank) {
       body =
-        '<div class="bank-row"><span>' + escapeHtml(tr('dp.receivingBank', '收款銀行')) + '</span><strong style="margin-left:auto">國民銀行</strong></div>' +
-        '<div class="bank-row"><span>' + escapeHtml(tr('dp.receivingAccount', '收款帳號')) + '</span><strong class="mono" style="margin-left:auto">881-234-567890</strong></div>' +
-        '<div class="bank-row"><span>' + escapeHtml(tr('dp.depositAmountLabel', '儲值金額')) + '</span><strong style="margin-left:auto">' + escapeHtml(amountVal) + '</strong></div>' +
-        '<p class="pay-note">' + escapeHtml(tr('dp.transferNote', '完成轉帳後請點擊下方按鈕，系統將盡快為您確認入帳。')) + '</p>' +
-        '<button type="button" class="btn-accent" style="width:100%" data-pay-done>' + escapeHtml(tr('dp.transferDoneBtn', '我已完成轉帳')) + '</button>';
+        '<div class="flex items-center gap-3 py-2.5 border-b border-line text-[13.5px] font-semibold text-text bank-row"><span>' + escapeHtml(tr('dp.receivingBank', '收款銀行')) + '</span><strong class="ml-auto">國民銀行</strong></div>' +
+        '<div class="flex items-center gap-3 py-2.5 border-b border-line text-[13.5px] font-semibold text-text bank-row"><span>' + escapeHtml(tr('dp.receivingAccount', '收款帳號')) + '</span><strong class="ml-auto font-mono mono">881-234-567890</strong></div>' +
+        '<div class="flex items-center gap-3 py-2.5 border-b-0 text-[13.5px] font-semibold text-text bank-row"><span>' + escapeHtml(tr('dp.depositAmountLabel', '儲值金額')) + '</span><strong class="ml-auto">' + escapeHtml(amountVal) + '</strong></div>' +
+        '<p class="text-[12px] text-text-dim m-0 mb-4 pay-note">' + escapeHtml(tr('dp.transferNote', '完成轉帳後請點擊下方按鈕，系統將盡快為您確認入帳。')) + '</p>' +
+        '<button type="button" class="py-2.25 px-5 border border-transparent rounded-full bg-[image:var(--accent-grad)] text-accent-ink font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-accent transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px block w-full btn-accent" data-pay-done>' + escapeHtml(tr('dp.transferDoneBtn', '我已完成轉帳')) + '</button>';
     } else {
       var addr = PAY_ADDR[methodId] || PAY_ADDR.linepay;
       var addrLabel = methodId === 'linepay' ? tr('dp.paymentUrl', '付款網址') : tr('dp.receivingAddress', '收款地址');
       body =
-        '<p class="about-text">' + escapeHtml(tr('dp.scanPayDesc', '請使用手機掃描下方 QR Code，或複製{label}完成付款。').replace('{label}', addrLabel)) + '</p>' +
-        '<div style="text-align:center;margin-bottom:14px"><svg width="176" height="176" viewBox="0 0 29 29" shape-rendering="crispEdges" role="img" aria-label="' + tr('pay.qrCodeLabel', '付款 QR Code') + '"><rect width="29" height="29" fill="#fff"></rect>' + fakeQrModules() + '</svg></div>' +
-        '<label class="member-panel-title" style="font-size:12.5px;margin-bottom:6px;display:block">' + escapeHtml(addrLabel) + '</label>' +
-        '<div style="display:flex;gap:8px">' +
-        '<input class="pay-field" style="width:auto;flex:1" value="' + escapeHtml(addr) + '" readonly />' +
-        '<button type="button" class="btn-accent" style="padding:0 16px" data-pay-copy>' + escapeHtml(tr('dp.copy', '複製')) + '</button>' +
+        '<p class="text-[13.5px] leading-[1.8] text-text-mid m-0 last:mb-0 about-text">' + escapeHtml(tr('dp.scanPayDesc', '請使用手機掃描下方 QR Code，或複製{label}完成付款。').replace('{label}', addrLabel)) + '</p>' +
+        '<div class="text-center mb-3.5"><svg width="176" height="176" viewBox="0 0 29 29" shape-rendering="crispEdges" role="img" aria-label="' + tr('pay.qrCodeLabel', '付款 QR Code') + '"><rect width="29" height="29" fill="#fff"></rect>' + fakeQrModules() + '</svg></div>' +
+        '<label class="block text-[12.5px] font-extrabold m-0 mb-1.5 text-text member-panel-title">' + escapeHtml(addrLabel) + '</label>' +
+        '<div class="flex gap-2">' +
+        '<input class="flex-1 py-3 px-3.5 rounded-md border border-line bg-bg text-[15px] font-bold text-text pay-field" value="' + escapeHtml(addr) + '" readonly />' +
+        '<button type="button" class="py-0 px-4 border border-transparent rounded-full bg-[image:var(--accent-grad)] text-accent-ink font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-accent transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px btn-accent" data-pay-copy>' + escapeHtml(tr('dp.copy', '複製')) + '</button>' +
         '</div>' +
-        '<p class="pay-note">' + escapeHtml(tr('dp.qrDemoNote', '此為示意用 QR Code 與{label}，僅供介面展示。').replace('{label}', addrLabel)) + '</p>' +
-        '<button type="button" class="btn-accent" style="width:100%" data-pay-done>' + escapeHtml(tr('dp.paymentDoneBtn', '我已完成付款')) + '</button>';
+        '<p class="text-[12px] text-text-dim m-0 mb-4 pay-note">' + escapeHtml(tr('dp.qrDemoNote', '此為示意用 QR Code 與{label}，僅供介面展示。').replace('{label}', addrLabel)) + '</p>' +
+        '<button type="button" class="py-2.25 px-5 border border-transparent rounded-full bg-[image:var(--accent-grad)] text-accent-ink font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-accent transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px block w-full btn-accent" data-pay-done>' + escapeHtml(tr('dp.paymentDoneBtn', '我已完成付款')) + '</button>';
     }
     var root = openPayModal(isBank ? tr('dp.transferInfoTitle', '轉帳資訊') : tr('dp.scanPayTitle', '掃碼付款'), body);
     var copyBtn = root.querySelector('[data-pay-copy]');
@@ -943,14 +944,14 @@
   }
   function wdAccountCardHtml(acc, idx, withRemove) {
     return (
-      '<div class="wd-account-card">' +
-      '<div class="wd-account-badge">' + escapeHtml(wdAccountBadgeText(acc)) + '</div>' +
-      '<div class="wd-account-info">' +
-      '<span class="wd-account-name">' + escapeHtml(wdAccountNameText(acc)) + '</span>' +
-      '<span class="wd-account-number">' + escapeHtml(wdAccountNumberText(acc)) + '</span>' +
-      (acc.boundAt ? '<span class="wd-account-date">' + escapeHtml(acc.boundAt) + '</span>' : '') +
+      '<div class="flex items-center gap-4 p-4 border border-line rounded-xl mb-3.5 bg-bg-panel wd-account-card">' +
+      '<div class="w-20 h-13 rounded-md bg-bg-soft text-text flex items-center justify-center text-center text-[12px] font-extrabold p-1 shrink-0 leading-[1.15] wd-account-badge">' + escapeHtml(wdAccountBadgeText(acc)) + '</div>' +
+      '<div class="flex flex-col gap-1 min-w-0 wd-account-info">' +
+      '<span class="font-extrabold text-text text-[15px] wd-account-name">' + escapeHtml(wdAccountNameText(acc)) + '</span>' +
+      '<span class="font-mono text-text-dim text-[13px] tracking-[0.5px] break-all wd-account-number">' + escapeHtml(wdAccountNumberText(acc)) + '</span>' +
+      (acc.boundAt ? '<span class="text-text-dim text-[12.5px] wd-account-date">' + escapeHtml(acc.boundAt) + '</span>' : '') +
       '</div>' +
-      (withRemove ? '<button type="button" class="auth-modal-close wd-account-remove" aria-label="' + tr('common.delete', '刪除') + '" data-wd-remove="' + idx + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button>' : '') +
+      (withRemove ? '<button type="button" class="w-7 h-7 grid place-items-center rounded-full text-text-mid hover:bg-bg-panel ml-auto shrink-0 auth-modal-close wd-account-remove" aria-label="' + tr('common.delete', '刪除') + '" data-wd-remove="' + idx + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button>' : '') +
       '</div>'
     );
   }
@@ -973,7 +974,7 @@
     if (countEl) countEl.innerHTML = tr('wd.registeredAccounts', '已登記提款帳戶') + ' <b>(' + pairs.length + '/' + cap + ')</b>';
     box.innerHTML = pairs.length
       ? pairs.map(function (pair) { return wdAccountCardHtml(pair.acc, pair.idx, true); }).join('')
-      : '<p class="pay-note">' + tr('wd.noAccountBoundOfGroup', '尚未綁定任何{group}。').replace('{group}', groupLabel) + '</p>';
+      : '<p class="text-[12px] text-text-dim m-0 mb-4 pay-note">' + tr('wd.noAccountBoundOfGroup', '尚未綁定任何{group}。').replace('{group}', groupLabel) + '</p>';
     if (addBtnLabel) addBtnLabel.textContent = wdManageGroup === 'bank' ? tr('wd.addBankAccount', '新增銀行帳戶') : tr('wd.addCryptoWallet', '新增加密錢包地址');
     if (addBtn) addBtn.disabled = pairs.length >= cap;
   }
@@ -989,8 +990,8 @@
     var groupLabel = wdMethodGroup === 'bank' ? tr('wd.myBankAccounts', '我的銀行帳戶') : tr('wd.myCryptoWallets', '我的加密錢包');
     if (!pairs.length) {
       var emptyGroupLabel = wdMethodGroup === 'bank' ? tr('wd.groupBank', '銀行') : tr('wd.groupCrypto', '加密錢包');
-      var linkHtml = '<button type="button" class="wd-account-add-btn" data-wd-goto-accounts style="margin-top:6px">' + escapeHtml(tr('wd.gotoAccounts', '前往「帳戶管理」新增')) + '</button>';
-      wrap.innerHTML = '<p class="pay-note">' + tr('wd.noWithdrawAccountOfGroup', '尚未綁定{group}提款帳戶,請先至{link}').replace('{group}', escapeHtml(emptyGroupLabel)).replace('{link}', linkHtml) + '</p>';
+      var linkHtml = '<button type="button" class="inline-flex items-center gap-2 py-2.5 px-4.5 rounded-md border border-badge text-badge bg-transparent font-bold text-[13.5px] mt-1.5 cursor-pointer hover:opacity-85 disabled:opacity-40 disabled:cursor-not-allowed wd-account-add-btn" data-wd-goto-accounts>' + escapeHtml(tr('wd.gotoAccounts', '前往「帳戶管理」新增')) + '</button>';
+      wrap.innerHTML = '<p class="text-[12px] text-text-dim m-0 mb-4 pay-note">' + tr('wd.noWithdrawAccountOfGroup', '尚未綁定{group}提款帳戶,請先至{link}').replace('{group}', escapeHtml(emptyGroupLabel)).replace('{link}', linkHtml) + '</p>';
       if (submitBtn) submitBtn.disabled = true;
       return;
     }
@@ -998,12 +999,12 @@
     var cur = pairs[wdCarouselIndex].acc;
     var multi = pairs.length > 1;
     wrap.innerHTML =
-      '<div class="wd-carousel-box"><div class="wd-carousel">' +
-      (multi ? '<button type="button" class="wd-carousel-arrow" data-wd-prev' + (wdCarouselIndex === 0 ? ' disabled' : '') + ' aria-label="' + escapeHtml(tr('common.prev', '上一筆')) + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>' : '') +
-      '<span class="wd-carousel-label">' + escapeHtml(groupLabel) + (multi ? ' <b>' + (wdCarouselIndex + 1) + '/' + pairs.length + '</b>' : '') + '</span>' +
-      (multi ? '<button type="button" class="wd-carousel-arrow" data-wd-next' + (wdCarouselIndex === pairs.length - 1 ? ' disabled' : '') + ' aria-label="' + escapeHtml(tr('common.next2', '下一筆')) + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>' : '') +
+      '<div class="border border-line rounded-xl py-3.5 px-5 bg-bg-panel wd-carousel-box"><div class="flex items-center justify-center gap-3.5 wd-carousel">' +
+      (multi ? '<button type="button" class="w-6.5 h-6.5 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer shrink-0 disabled:opacity-30 disabled:cursor-not-allowed wd-carousel-arrow" data-wd-prev' + (wdCarouselIndex === 0 ? ' disabled' : '') + ' aria-label="' + escapeHtml(tr('common.prev', '上一筆')) + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>' : '') +
+      '<span class="text-[13.5px] font-bold text-text-mid whitespace-nowrap [&_b]:text-text wd-carousel-label">' + escapeHtml(groupLabel) + (multi ? ' <b>' + (wdCarouselIndex + 1) + '/' + pairs.length + '</b>' : '') + '</span>' +
+      (multi ? '<button type="button" class="w-6.5 h-6.5 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer shrink-0 disabled:opacity-30 disabled:cursor-not-allowed wd-carousel-arrow" data-wd-next' + (wdCarouselIndex === pairs.length - 1 ? ' disabled' : '') + ' aria-label="' + escapeHtml(tr('common.next2', '下一筆')) + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>' : '') +
       '</div>' +
-      '<div class="bank-row" style="border-bottom:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (WD_TYPE_ICON[cur.type] || WD_TYPE_ICON.bank) + '</svg> <span>' + escapeHtml(wdAccountNameText(cur)) + ' ' + escapeHtml(wdAccountNumberText(cur)) + '</span></div>' +
+      '<div class="flex items-center gap-3 py-2.5 mt-2.5 pt-2.5 border-t border-line border-b-0 text-[13.5px] font-semibold text-text bank-row"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (WD_TYPE_ICON[cur.type] || WD_TYPE_ICON.bank) + '</svg> <span>' + escapeHtml(wdAccountNameText(cur)) + ' ' + escapeHtml(wdAccountNumberText(cur)) + '</span></div>' +
       '</div>';
     if (submitBtn) submitBtn.disabled = false;
   }

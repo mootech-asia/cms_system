@@ -238,6 +238,15 @@ img { max-width: 100%; display: block; }
   --text: #201d18;
   --text-mid: #5b564c;
   --text-dim: #8b8578;
+  /* Tailwind utility 吃的是 --color-* 轉介變數，跟 .content-light 同一個
+     繼承已算好值的問題，這裡也要一併重新宣告，子層才能正確換色。 */
+  --color-bg: var(--bg);
+  --color-bg-panel: var(--bg-panel);
+  --color-line: var(--line);
+  --color-line-hi: var(--line-hi);
+  --color-text: var(--text);
+  --color-text-mid: var(--text-mid);
+  --color-text-dim: var(--text-dim);
   flex: 0 0 320px;
   background: var(--bg);
   color: var(--text);
@@ -1238,6 +1247,15 @@ img { max-width: 100%; display: block; }
   --text: #201d18;
   --text-mid: #5b564c;
   --text-dim: #8b8578;
+  /* Tailwind utility 吃的是 --color-* 轉介變數，跟 .content-light 同一個
+     繼承已算好值的問題，這裡也要一併重新宣告，子層才能正確換色。 */
+  --color-bg: var(--bg);
+  --color-bg-panel: var(--bg-panel);
+  --color-line: var(--line);
+  --color-line-hi: var(--line-hi);
+  --color-text: var(--text);
+  --color-text-mid: var(--text-mid);
+  --color-text-dim: var(--text-dim);
   width: 100%; max-width: 380px; border-radius: var(--radius-lg); background: var(--bg); color: var(--text); box-shadow: var(--shadow-card); overflow: hidden;
 }
 .auth-modal-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--line); }
@@ -1259,6 +1277,14 @@ img { max-width: 100%; display: block; }
   --text: #201d18;
   --text-mid: #5b564c;
   --text-dim: #8b8578;
+  /* Tailwind utility 吃的是 --color-* 轉介變數，跟 .content-light 同一個
+     繼承已算好值的問題，這裡也要一併重新宣告，子層才能正確換色。 */
+  --color-bg: var(--bg);
+  --color-bg-panel: var(--bg-panel);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-text-mid: var(--text-mid);
+  --color-text-dim: var(--text-dim);
   width: 100%; max-width: 340px; border-radius: var(--radius-lg); background: var(--bg); color: var(--text); box-shadow: var(--shadow-card); overflow: hidden;
 }
 .cs-modal-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--line); }
@@ -1282,6 +1308,14 @@ img { max-width: 100%; display: block; }
   --text: #201d18;
   --text-mid: #5b564c;
   --text-dim: #8b8578;
+  /* Tailwind utility 吃的是 --color-* 轉介變數，跟 .content-light 同一個
+     繼承已算好值的問題，這裡也要一併重新宣告，子層才能正確換色。 */
+  --color-bg: var(--bg);
+  --color-bg-panel: var(--bg-panel);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-text-mid: var(--text-mid);
+  --color-text-dim: var(--text-dim);
   position: fixed; right: 18px; bottom: 18px; z-index: 10003;
   width: 320px; max-width: calc(100vw - 36px);
   border-radius: var(--radius-lg);
