@@ -1,12 +1,17 @@
 /* v4 — 紅金喜慶風格。真正的 Tailwind utility class 寫法（取代語意化
    class + 手寫 CSS），token 從 v4/site/assets/css/main.css 的 :root
    ＋ skins/*.css 逐字搬過來，只換成 @theme／:root[data-skin] 寫法。
-   html 根字級是瀏覽器預設 16px（v4 沒有像 v3 那樣改寫根字級），但
-   body{font-size:14px} 讓大部分文字仍以 14px 為基準，Tailwind 的
-   rem 制數字間距 utility（p-4/m-3 這類）算出來的 px 值是相對 16px
-   根字級，不是 body 的 14px——凡是要對齊 main.css 原本寫死的 px 間距，
-   一律用 `[px]` 任意值，不要用裸數字間距 utility（沿用
-   cms_system_tailwind MIGRATION.md 陷阱 N 的教訓）。 */
+   html 根字級是瀏覽器預設 16px（v4 沒有像 v3 那樣改寫根字級），
+   Tailwind 的 rem 制數字間距 utility（p-4/m-3 這類）算出來的 px 值
+   是相對這個 16px 根字級，跟 body{font-size:14px} 無關。
+
+   間距/尺寸類 utility（padding/margin/gap/小尺寸 width-height/inset/
+   translate）一律優先採用 Tailwind 預設刻度（p-4、gap-2 這類），只有
+   完全對不上 4px 刻度（如 18px、22px）時才會四捨五入取最接近的刻度值
+   ——工程師要求盡量用預設值、少寫死 px，即使因此跟原始設計稿有 1~3px
+   落差也可接受。版面級的大尺寸容器寬度（max-w/min-w 這類）與字級
+   （text-[Npx]）不在此列，仍用任意值對齊原始設計，避免版面/字級被
+   意外改動。 */
 /* main.css／section-variants.css／skins/*.css 逐頁轉換完成前還需要繼續
    服務尚未改完的語意 class（包含 site.js 動態產生、還沒一併轉換的彈窗/
    選單 HTML）；直接用 <link> 引入的話它們不帶 layer，沒有 layer 的 CSS

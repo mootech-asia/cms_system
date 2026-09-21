@@ -114,7 +114,7 @@
     Array.prototype.slice.call(grid.querySelectorAll('[data-section]')).forEach(function (el) {
       if (el.querySelector('.grid12-drag-handle')) return; // 重複呼叫時不要疊加把手
       var handle = document.createElement('span');
-      handle.className = 'hidden [html.cms-v4-grid-edit_&]:flex absolute top-[8px] left-[8px] z-[5] w-[26px] h-[26px] rounded-full items-center justify-center bg-[rgba(0,0,0,0.55)] text-white cursor-grab grid12-drag-handle';
+      handle.className = 'hidden [html.cms-v4-grid-edit_&]:flex absolute top-2 left-2 z-[5] w-6 h-6 rounded-full items-center justify-center bg-[rgba(0,0,0,0.55)] text-white cursor-grab grid12-drag-handle';
       handle.setAttribute('aria-hidden', 'true');
       handle.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="6" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="18" r="1"/></svg>';
       el.style.position = el.style.position || 'relative';
@@ -377,17 +377,17 @@
   function isLoggedIn() { return !!loadAuth(); }
 
   function guestAuthHtml() {
-    return '<button type="button" class="p-[9px_20px] border! border-[rgba(255,255,255,0.3)]! rounded-[999px] bg-[rgba(255,255,255,0.12)]! text-text-on-header font-bold text-[13px] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none btn-gold quiet" data-auth-open="register">' + tr('auth.registerNow', '立即註冊') + '</button>' +
-      '<input class="w-[128px] p-[8px_12px] rounded-[999px] border border-[rgba(255,255,255,0.3)] bg-[rgba(0,0,0,0.12)] text-text-on-header text-[12.5px] placeholder:text-[rgba(255,246,234,0.6)] header-input" type="text" placeholder="' + tr('auth.usernamePlaceholder', '用戶名') + '" data-auth-username />' +
-      '<input class="w-[128px] p-[8px_12px] rounded-[999px] border border-[rgba(255,255,255,0.3)] bg-[rgba(0,0,0,0.12)] text-text-on-header text-[12.5px] placeholder:text-[rgba(255,246,234,0.6)] header-input" type="password" placeholder="' + tr('auth.passwordPlaceholder', '密碼') + '" data-auth-password />' +
+    return '<button type="button" class="p-[9px_20px] border! border-[rgba(255,255,255,0.3)]! rounded-full bg-[rgba(255,255,255,0.12)]! text-text-on-header font-bold text-[13px] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none btn-gold quiet" data-auth-open="register">' + tr('auth.registerNow', '立即註冊') + '</button>' +
+      '<input class="w-[128px] p-[8px_12px] rounded-full border border-[rgba(255,255,255,0.3)] bg-[rgba(0,0,0,0.12)] text-text-on-header text-[12.5px] placeholder:text-[rgba(255,246,234,0.6)] header-input" type="text" placeholder="' + tr('auth.usernamePlaceholder', '用戶名') + '" data-auth-username />' +
+      '<input class="w-[128px] p-[8px_12px] rounded-full border border-[rgba(255,255,255,0.3)] bg-[rgba(0,0,0,0.12)] text-text-on-header text-[12.5px] placeholder:text-[rgba(255,246,234,0.6)] header-input" type="password" placeholder="' + tr('auth.passwordPlaceholder', '密碼') + '" data-auth-password />' +
       '<span class="text-[11.5px] text-[rgba(255,246,234,0.75)] whitespace-nowrap [&[data-auth-open]]:cursor-pointer [&[data-auth-open]]:hover:text-gold-hi header-forgot" data-auth-open="forgot">' + tr('auth.forgot', '忘記密碼') + '</span>' +
-      '<button type="button" class="p-[9px_20px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold" data-auth-open="login">' + tr('auth.login', '登錄') + '</button>';
+      '<button type="button" class="p-[9px_20px] border! border-gold-hi! rounded-full bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold" data-auth-open="login">' + tr('auth.login', '登錄') + '</button>';
   }
   function memberAuthHtml(user) {
-    return '<a href="account.html" class="flex items-center gap-[6px] p-[8px_14px] rounded-[999px] text-text-on-header! text-[13.5px] font-semibold whitespace-nowrap transition-[background] duration-150 hover:bg-[rgba(255,255,255,0.16)] header-nav-link" style="gap:8px">' + USER_ICON + escapeHtml(user.name) + '</a>' +
+    return '<a href="account.html" class="flex items-center gap-1.5 p-[8px_14px] rounded-full text-text-on-header! text-[13.5px] font-semibold whitespace-nowrap transition-[background] duration-150 hover:bg-[rgba(255,255,255,0.16)] header-nav-link" style="gap:8px">' + USER_ICON + escapeHtml(user.name) + '</a>' +
       '<span class="text-[11.5px] text-[rgba(255,246,234,0.75)] whitespace-nowrap [&[data-auth-open]]:cursor-pointer [&[data-auth-open]]:hover:text-gold-hi header-forgot">' + tr('auth.balancePrefix', '餘額：') + escapeHtml(user.balance) + '</span>' +
       '<span class="text-[11.5px] text-[rgba(255,246,234,0.75)] whitespace-nowrap [&[data-auth-open]]:cursor-pointer [&[data-auth-open]]:hover:text-gold-hi header-forgot">' + tr('auth.pointsPrefix', '點數：') + escapeHtml(user.points || DEFAULT_POINTS) + '</span>' +
-      '<button type="button" class="p-[9px_20px] border! border-[rgba(255,255,255,0.3)]! rounded-[999px] bg-[rgba(255,255,255,0.12)]! text-text-on-header font-bold text-[13px] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none btn-gold quiet" data-logout>' + tr('auth.logout', '登出') + '</button>';
+      '<button type="button" class="p-[9px_20px] border! border-[rgba(255,255,255,0.3)]! rounded-full bg-[rgba(255,255,255,0.12)]! text-text-on-header font-bold text-[13px] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none btn-gold quiet" data-logout>' + tr('auth.logout', '登出') + '</button>';
   }
   /* 依登入狀態重繪 header-auth,取代原本每頁寫死的訪客/會員版面。
      訪客態的「登錄」直接讀 header 上的用戶名輸入框,有填就直接登入,
@@ -493,17 +493,17 @@
     closeMobileMenu();
     var mobileUser = loadAuth();
     var footHtml = mobileUser
-      ? '<div class="flex items-center gap-[10px] p-[6px_0_14px] text-[13.5px] font-bold text-text [&>svg]:w-[22px] [&>svg]:h-[22px] [&>svg]:text-gold-deep mobile-menu-account">' + USER_ICON + '<span>' + escapeHtml(mobileUser.name) + '・' + tr('auth.balancePrefix', '餘額：') + escapeHtml(mobileUser.balance) + '</span></div>' +
-        '<button type="button" class="block w-full text-center mb-[8px] p-[9px_20px] border border-line-hi rounded-[999px] bg-bg-panel text-gold-deep font-bold text-[13px] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none btn-gold quiet" data-logout>' + tr('auth.logout', '登出') + '</button>'
-      : '<button type="button" class="block w-full text-center mb-[8px] p-[9px_20px] border border-line-hi rounded-[999px] bg-bg-panel text-gold-deep font-bold text-[13px] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none btn-gold quiet" data-mobile-login>' + tr('auth.login', '登錄') + '</button>' +
-        '<button type="button" class="block w-full text-center mb-[8px] p-[9px_20px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold" data-mobile-register>' + tr('auth.registerNow', '立即註冊') + '</button>';
+      ? '<div class="flex items-center gap-2.5 p-[6px_0_14px] text-[13.5px] font-bold text-text [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-gold-deep mobile-menu-account">' + USER_ICON + '<span>' + escapeHtml(mobileUser.name) + '・' + tr('auth.balancePrefix', '餘額：') + escapeHtml(mobileUser.balance) + '</span></div>' +
+        '<button type="button" class="block w-full text-center mb-2 p-[9px_20px] border border-line-hi rounded-full bg-bg-panel text-gold-deep font-bold text-[13px] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none btn-gold quiet" data-logout>' + tr('auth.logout', '登出') + '</button>'
+      : '<button type="button" class="block w-full text-center mb-2 p-[9px_20px] border border-line-hi rounded-full bg-bg-panel text-gold-deep font-bold text-[13px] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none btn-gold quiet" data-mobile-login>' + tr('auth.login', '登錄') + '</button>' +
+        '<button type="button" class="block w-full text-center mb-2 p-[9px_20px] border! border-gold-hi! rounded-full bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold" data-mobile-register>' + tr('auth.registerNow', '立即註冊') + '</button>';
     var wrap = document.createElement('div');
     wrap.innerHTML =
       '<div class="fixed inset-0 z-[10001] bg-[rgba(20,6,10,0.6)] mobile-menu-overlay" data-mobile-overlay>' +
       '<div class="absolute inset-0 flex flex-col bg-bg overflow-y-auto">' +
-      '<div class="flex items-center justify-between p-[16px_20px] bg-[image:var(--header-grad)] shrink-0"><img src="logo.png" alt="Bet100" class="h-[45px] w-auto [filter:brightness(0)_invert(1)]">' +
-      '<button type="button" class="w-[34px] h-[34px] grid place-items-center rounded-full text-text-on-header bg-[rgba(255,255,255,0.14)]" aria-label="' + tr('cs.chatClose', '關閉') + '" data-mobile-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
-      '<nav class="flex flex-col p-[10px] flex-1">' + navHtml + '</nav>' +
+      '<div class="flex items-center justify-between p-[16px_20px] bg-[image:var(--header-grad)] shrink-0"><img src="logo.png" alt="Bet100" class="h-11 w-auto [filter:brightness(0)_invert(1)]">' +
+      '<button type="button" class="w-8 h-8 grid place-items-center rounded-full text-text-on-header bg-[rgba(255,255,255,0.14)]" aria-label="' + tr('cs.chatClose', '關閉') + '" data-mobile-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
+      '<nav class="flex flex-col p-2.5 flex-1">' + navHtml + '</nav>' +
       '<div class="p-[14px_20px_22px] border-t border-line shrink-0">' + footHtml + '</div>' +
       '</div></div>';
     mobileMenuRoot = wrap.firstElementChild;
@@ -519,7 +519,7 @@
   function openHeaderMenu() {
     var navLinks = Array.prototype.slice.call(document.querySelectorAll('.header-nav .header-nav-link'));
     var navHtml = navLinks.map(function (a) {
-      return '<a href="' + a.getAttribute('href') + '" class="flex items-center gap-[12px] p-[13px_12px] rounded-md text-[14.5px] font-bold text-text hover:bg-bg-panel [&.active]:bg-bg-panel [&.active]:text-red [&>svg]:w-[20px] [&>svg]:h-[20px] [&>svg]:text-text-mid [&>svg]:shrink-0 [&.active>svg]:text-red mobile-menu-link' + (a.classList.contains('active') ? ' active' : '') + '">' + a.innerHTML + '</a>';
+      return '<a href="' + a.getAttribute('href') + '" class="flex items-center gap-3 p-[13px_12px] rounded-md text-[14.5px] font-bold text-text hover:bg-bg-panel [&.active]:bg-bg-panel [&.active]:text-red [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-text-mid [&>svg]:shrink-0 [&.active>svg]:text-red mobile-menu-link' + (a.classList.contains('active') ? ' active' : '') + '">' + a.innerHTML + '</a>';
     }).join('');
     openMobileOverlay(navHtml);
   }
@@ -528,7 +528,7 @@
     var navHtml = '<div class="p-[12px_12px_6px] text-[12px] font-bold text-text-dim mobile-menu-section">' + tr('sidebar.myAccount', '我的帳戶') + '</div>' +
       MEMBER_MENU_ITEMS.map(function (item) {
         var active = item.href.split('?')[0] === page;
-        return '<a href="' + item.href + '" class="flex items-center gap-[12px] p-[13px_12px] rounded-md text-[14.5px] font-bold text-text hover:bg-bg-panel [&.active]:bg-bg-panel [&.active]:text-red [&>svg]:w-[20px] [&>svg]:h-[20px] [&>svg]:text-text-mid [&>svg]:shrink-0 [&.active>svg]:text-red mobile-menu-link' + (active ? ' active' : '') + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + item.icon + '</svg><span>' + item.label + '</span></a>';
+        return '<a href="' + item.href + '" class="flex items-center gap-3 p-[13px_12px] rounded-md text-[14.5px] font-bold text-text hover:bg-bg-panel [&.active]:bg-bg-panel [&.active]:text-red [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-text-mid [&>svg]:shrink-0 [&.active>svg]:text-red mobile-menu-link' + (active ? ' active' : '') + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + item.icon + '</svg><span>' + item.label + '</span></a>';
       }).join('');
     openMobileOverlay(navHtml);
   }
@@ -544,11 +544,11 @@
   var authModalRoot = null;
   function closeAuthModal() { if (authModalRoot) { authModalRoot.remove(); authModalRoot = null; unlockScroll(); } }
   function authModalBodyHtml(mode) {
-    var FORM_FIELD = 'mb-[16px] form-field';
-    var FORM_LABEL = 'block text-[13px] font-bold text-text mb-[6px] form-label';
+    var FORM_FIELD = 'mb-4 form-field';
+    var FORM_LABEL = 'block text-[13px] font-bold text-text mb-1.5 form-label';
     var FORM_INPUT = 'w-full p-[11px_14px] rounded-md border border-line bg-bg text-[14px] text-text form-input';
-    var FORM_HINT = 'text-[12px] text-text-dim mt-[14px] form-hint';
-    var SUBMIT_BTN = 'block w-full text-center no-underline mt-[6px] p-[9px_20px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold auth-modal-submit';
+    var FORM_HINT = 'text-[12px] text-text-dim mt-3.5 form-hint';
+    var SUBMIT_BTN = 'block w-full text-center no-underline mt-1.5 p-[9px_20px] border! border-gold-hi! rounded-full bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold auth-modal-submit';
     var PANEL_MORE = 'text-[12px] text-gold-deep! font-semibold hover:text-red! panel-more';
     if (mode === 'forgot') {
       return (
@@ -561,9 +561,9 @@
     }
     var isRegister = mode === 'register';
     return (
-      '<div class="flex gap-[8px] mb-[16px] auth-modal-tabs">' +
-      '<button type="button" class="flex-1 p-[9px_0] text-center rounded-[999px] border! border-line! text-[13px] font-bold text-text-mid [&.active]:bg-[image:var(--gold-grad)]! [&.active]:border-gold-hi! [&.active]:text-[#3a2604]! auth-modal-tab' + (isRegister ? '' : ' active') + '" data-auth-switch="login">' + tr('auth.login', '登錄') + '</button>' +
-      '<button type="button" class="flex-1 p-[9px_0] text-center rounded-[999px] border! border-line! text-[13px] font-bold text-text-mid [&.active]:bg-[image:var(--gold-grad)]! [&.active]:border-gold-hi! [&.active]:text-[#3a2604]! auth-modal-tab' + (isRegister ? ' active' : '') + '" data-auth-switch="register">' + tr('auth.register', '註冊') + '</button>' +
+      '<div class="flex gap-2 mb-4 auth-modal-tabs">' +
+      '<button type="button" class="flex-1 p-[9px_0] text-center rounded-full border! border-line! text-[13px] font-bold text-text-mid [&.active]:bg-[image:var(--gold-grad)]! [&.active]:border-gold-hi! [&.active]:text-[#3a2604]! auth-modal-tab' + (isRegister ? '' : ' active') + '" data-auth-switch="login">' + tr('auth.login', '登錄') + '</button>' +
+      '<button type="button" class="flex-1 p-[9px_0] text-center rounded-full border! border-line! text-[13px] font-bold text-text-mid [&.active]:bg-[image:var(--gold-grad)]! [&.active]:border-gold-hi! [&.active]:text-[#3a2604]! auth-modal-tab' + (isRegister ? ' active' : '') + '" data-auth-switch="register">' + tr('auth.register', '註冊') + '</button>' +
       '</div>' +
       '<div class="' + FORM_FIELD + '"><label class="' + FORM_LABEL + '">' + tr('auth.usernameLabel', '用戶名') + '</label><input type="text" class="' + FORM_INPUT + '" placeholder="' + tr('auth.usernameInputPlaceholder', '請輸入用戶名') + '" data-auth-username></div>' +
       '<div class="' + FORM_FIELD + '"><label class="' + FORM_LABEL + '">' + tr('auth.passwordLabel', '密碼') + '</label><input type="password" class="' + FORM_INPUT + '" placeholder="' + tr('auth.passwordInputPlaceholder', '請輸入密碼') + '"></div>' +
@@ -574,19 +574,19 @@
   }
   function authResetSentHtml() {
     return (
-      '<p class="text-[12px] text-text-dim mt-[14px] form-hint" style="margin-top:0">' + tr('auth.resetSentDesc', '若帳號與信箱相符，重設密碼連結將寄送至您的信箱。') + '</p>' +
-      '<a href="#" class="block w-full text-center no-underline mt-[6px] p-[9px_20px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold auth-modal-submit" data-auth-switch="login">' + tr('auth.backToLogin', '返回登入') + '</a>'
+      '<p class="text-[12px] text-text-dim mt-3.5 form-hint" style="margin-top:0">' + tr('auth.resetSentDesc', '若帳號與信箱相符，重設密碼連結將寄送至您的信箱。') + '</p>' +
+      '<a href="#" class="block w-full text-center no-underline mt-1.5 p-[9px_20px] border! border-gold-hi! rounded-full bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold auth-modal-submit" data-auth-switch="login">' + tr('auth.backToLogin', '返回登入') + '</a>'
     );
   }
   function openAuthModal(mode) {
     closeAuthModal();
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="fixed inset-0 z-[10002] flex items-center justify-center bg-[rgba(20,6,10,0.6)] p-[20px]" data-auth-overlay>' +
+      '<div class="fixed inset-0 z-[10002] flex items-center justify-center bg-[rgba(20,6,10,0.6)] p-5" data-auth-overlay>' +
       '<div class="w-full max-w-[380px] rounded-lg bg-bg-panel shadow-card overflow-hidden">' +
       '<div class="flex items-center justify-between p-[16px_20px] border-b border-line"><h3 class="m-0 text-[16px] font-extrabold text-text" data-auth-title></h3>' +
-      '<button type="button" class="w-[28px] h-[28px] grid place-items-center rounded-full text-text-mid hover:bg-bg" aria-label="' + tr('cs.chatClose', '關閉') + '" data-auth-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
-      '<div class="p-[20px]" data-auth-body></div>' +
+      '<button type="button" class="w-7 h-7 grid place-items-center rounded-full text-text-mid hover:bg-bg" aria-label="' + tr('cs.chatClose', '關閉') + '" data-auth-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
+      '<div class="p-5" data-auth-body></div>' +
       '</div></div>';
     authModalRoot = wrap.firstElementChild;
     document.body.appendChild(authModalRoot);
@@ -630,13 +630,13 @@
     ];
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="fixed inset-0 z-[10002] flex items-center justify-center bg-[rgba(20,6,10,0.6)] p-[20px]" data-cs-overlay>' +
+      '<div class="fixed inset-0 z-[10002] flex items-center justify-center bg-[rgba(20,6,10,0.6)] p-5" data-cs-overlay>' +
       '<div class="w-full max-w-[340px] rounded-lg bg-bg-panel shadow-card overflow-hidden">' +
       '<div class="flex items-center justify-between p-[16px_20px] border-b border-line"><h3 class="m-0 text-[15.5px] font-extrabold text-text">' + tr('cs.title', '聯絡客服') + '</h3>' +
-      '<button type="button" class="w-[28px] h-[28px] grid place-items-center rounded-full text-text-mid hover:bg-bg" aria-label="' + tr('cs.chatClose', '關閉') + '" data-cs-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
-      '<div class="p-[10px]">' +
+      '<button type="button" class="w-7 h-7 grid place-items-center rounded-full text-text-mid hover:bg-bg" aria-label="' + tr('cs.chatClose', '關閉') + '" data-cs-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
+      '<div class="p-2.5">' +
       rows.map(function (r) {
-        return '<a href="#" class="flex items-center gap-[12px] p-[12px] rounded-md no-underline hover:bg-bg"><span class="w-[36px] h-[36px] rounded-full grid place-items-center bg-[image:var(--gold-grad)] text-[#3a2604] shrink-0 [&>svg]:w-[17px] [&>svg]:h-[17px]"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">' + r.icon + '</svg></span>' +
+        return '<a href="#" class="flex items-center gap-3 p-3 rounded-md no-underline hover:bg-bg"><span class="w-9 h-9 rounded-full grid place-items-center bg-[image:var(--gold-grad)] text-[#3a2604] shrink-0 [&>svg]:w-4 [&>svg]:h-4"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">' + r.icon + '</svg></span>' +
           '<span class="[&>strong]:block [&>strong]:text-[13.5px] [&>strong]:text-text [&>small]:text-[12px] [&>small]:text-text-dim"><strong>' + r.title + '</strong><small>' + r.desc + '</small></span></a>';
       }).join('') +
       '</div></div></div>';
@@ -670,10 +670,10 @@
     var body = chatWidgetRoot.querySelector('[data-chat-body]');
     var row = document.createElement('div');
     row.className = (kind === 'user'
-      ? 'flex items-end gap-[8px] max-w-[88%] self-end flex-row-reverse [&_.chat-bubble]:bg-[image:var(--gold-grad)] [&_.chat-bubble]:text-[#3a2604] [&_.chat-bubble]:rounded-br-[4px]'
-      : 'flex items-end gap-[8px] max-w-[88%] [&_.chat-bubble]:bg-bg [&_.chat-bubble]:text-text [&_.chat-bubble]:rounded-bl-[4px]'
+      ? 'flex items-end gap-2 max-w-[88%] self-end flex-row-reverse [&_.chat-bubble]:bg-[image:var(--gold-grad)] [&_.chat-bubble]:text-[#3a2604] [&_.chat-bubble]:rounded-br-[4px]'
+      : 'flex items-end gap-2 max-w-[88%] [&_.chat-bubble]:bg-bg [&_.chat-bubble]:text-text [&_.chat-bubble]:rounded-bl-[4px]'
     ) + ' chat-msg chat-msg-' + kind;
-    row.innerHTML = (kind === 'bot' ? '<img src="logo.png" class="w-[22px] h-[22px] rounded-full bg-bg object-contain p-[2px] shrink-0" alt="">' : '') +
+    row.innerHTML = (kind === 'bot' ? '<img src="logo.png" class="w-5 h-5 rounded-full bg-bg object-contain p-0.5 shrink-0" alt="">' : '') +
       '<div class="p-[9px_12px] rounded-[14px] text-[13px] leading-[1.5] chat-bubble"></div>';
     row.querySelector('.chat-bubble').textContent = text;
     body.appendChild(row);
@@ -683,19 +683,19 @@
     if (chatWidgetRoot) { chatWidgetRoot.classList.remove('is-minimized'); return; }
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="group fixed right-[18px] bottom-[18px] z-[10003] w-[320px] max-w-[calc(100vw-36px)] rounded-lg bg-bg-panel text-text shadow-card overflow-hidden flex flex-col" data-chat-widget>' +
-      '<div class="flex items-center gap-[10px] p-[14px_14px_14px_16px] bg-[image:var(--gold-grad)] text-[#3a2604]">' +
-      '<img src="logo.png" class="w-[32px] h-[32px] rounded-full bg-white object-contain p-[3px] shrink-0" alt="">' +
+      '<div class="group fixed right-4 bottom-4 z-[10003] w-[320px] max-w-[calc(100vw-36px)] rounded-lg bg-bg-panel text-text shadow-card overflow-hidden flex flex-col" data-chat-widget>' +
+      '<div class="flex items-center gap-2.5 p-[14px_14px_14px_16px] bg-[image:var(--gold-grad)] text-[#3a2604]">' +
+      '<img src="logo.png" class="w-8 h-8 rounded-full bg-white object-contain p-0.5 shrink-0" alt="">' +
       '<div class="flex-1 min-w-0 [&>strong]:block [&>strong]:text-[14px]"><strong>' + tr('cs.liveChatTitle', '線上客服') + '</strong>' +
-      '<span class="flex items-center gap-[5px] text-[11.5px] opacity-[0.85] [&>i]:w-[6px] [&>i]:h-[6px] [&>i]:rounded-full [&>i]:bg-[#1f8a4c] [&>i]:inline-block"><i></i>' + tr('cs.chatOnline', '線上') + '</span></div>' +
-      '<button type="button" class="w-[26px] h-[26px] shrink-0 grid place-items-center rounded-full text-inherit hover:bg-[rgba(58,38,4,0.12)]" data-chat-min aria-label="' + tr('cs.chatMinimize', '縮小') + '">–</button>' +
-      '<button type="button" class="w-[26px] h-[26px] shrink-0 grid place-items-center rounded-full text-inherit hover:bg-[rgba(58,38,4,0.12)]" data-chat-close aria-label="' + tr('cs.chatClose', '關閉') + '">' +
+      '<span class="flex items-center gap-1 text-[11.5px] opacity-[0.85] [&>i]:w-1.5 [&>i]:h-1.5 [&>i]:rounded-full [&>i]:bg-[#1f8a4c] [&>i]:inline-block"><i></i>' + tr('cs.chatOnline', '線上') + '</span></div>' +
+      '<button type="button" class="w-6 h-6 shrink-0 grid place-items-center rounded-full text-inherit hover:bg-[rgba(58,38,4,0.12)]" data-chat-min aria-label="' + tr('cs.chatMinimize', '縮小') + '">–</button>' +
+      '<button type="button" class="w-6 h-6 shrink-0 grid place-items-center rounded-full text-inherit hover:bg-[rgba(58,38,4,0.12)]" data-chat-close aria-label="' + tr('cs.chatClose', '關閉') + '">' +
       '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>' +
       '</div>' +
-      '<div class="p-[14px] max-h-[320px] overflow-y-auto flex flex-col gap-[10px] group-[.is-minimized]:hidden" data-chat-body></div>' +
-      '<form class="flex items-center gap-[8px] p-[10px_12px] border-t border-line group-[.is-minimized]:hidden" data-chat-form>' +
-      '<input type="text" class="flex-1 min-w-0 border border-line rounded-[999px] p-[8px_14px] text-[13px] bg-bg text-text" data-chat-input placeholder="' + tr('cs.chatPlaceholder', '輸入訊息…') + '" autocomplete="off">' +
-      '<button type="submit" class="w-[34px] h-[34px] shrink-0 rounded-full grid place-items-center bg-[image:var(--gold-grad)] text-[#3a2604]" aria-label="' + tr('cs.chatSend', '傳送') + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 18 9-18 9 4-9Z"/></svg></button>' +
+      '<div class="p-3.5 max-h-[320px] overflow-y-auto flex flex-col gap-2.5 group-[.is-minimized]:hidden" data-chat-body></div>' +
+      '<form class="flex items-center gap-2 p-[10px_12px] border-t border-line group-[.is-minimized]:hidden" data-chat-form>' +
+      '<input type="text" class="flex-1 min-w-0 border border-line rounded-full p-[8px_14px] text-[13px] bg-bg text-text" data-chat-input placeholder="' + tr('cs.chatPlaceholder', '輸入訊息…') + '" autocomplete="off">' +
+      '<button type="submit" class="w-8 h-8 shrink-0 rounded-full grid place-items-center bg-[image:var(--gold-grad)] text-[#3a2604]" aria-label="' + tr('cs.chatSend', '傳送') + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 18 9-18 9 4-9Z"/></svg></button>' +
       '</form></div>';
     chatWidgetRoot = wrap.firstElementChild;
     document.body.appendChild(chatWidgetRoot);
@@ -788,11 +788,11 @@
     closePayModal();
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="fixed inset-0 z-[10002] flex items-center justify-center bg-[rgba(20,6,10,0.6)] p-[20px]" data-pay-overlay>' +
+      '<div class="fixed inset-0 z-[10002] flex items-center justify-center bg-[rgba(20,6,10,0.6)] p-5" data-pay-overlay>' +
       '<div class="w-full max-w-[380px] rounded-lg bg-bg-panel shadow-card overflow-hidden">' +
       '<div class="flex items-center justify-between p-[16px_20px] border-b border-line"><h3 class="m-0 text-[16px] font-extrabold text-text">' + title + '</h3>' +
-      '<button type="button" class="w-[28px] h-[28px] grid place-items-center rounded-full text-text-mid hover:bg-bg" aria-label="' + tr('cs.chatClose', '關閉') + '" data-pay-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
-      '<div class="p-[20px] auth-modal-body">' + bodyHtml + '</div>' +
+      '<button type="button" class="w-7 h-7 grid place-items-center rounded-full text-text-mid hover:bg-bg" aria-label="' + tr('cs.chatClose', '關閉') + '" data-pay-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
+      '<div class="p-5 auth-modal-body">' + bodyHtml + '</div>' +
       '</div></div>';
     payModalRoot = wrap.firstElementChild;
     document.body.appendChild(payModalRoot);
@@ -802,7 +802,7 @@
     return payModalRoot;
   }
   function simplePayModal(title, message) {
-    var root = openPayModal(title, '<p class="text-[13.5px] leading-[1.8] text-text-mid m-[0_0_10px] last:mb-0 about-text">' + message + '</p><button type="button" class="p-[9px_20px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold" style="width:100%">' + tr('common.confirm', '確定') + '</button>');
+    var root = openPayModal(title, '<p class="text-[13.5px] leading-[1.8] text-text-mid m-[0_0_10px] last:mb-0 about-text">' + message + '</p><button type="button" class="p-[9px_20px] border! border-gold-hi! rounded-full bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold" style="width:100%">' + tr('common.confirm', '確定') + '</button>');
     on(root.querySelector('.auth-modal-body .btn-gold'), 'click', closePayModal);
     return root;
   }
@@ -838,9 +838,9 @@
   }
   function depositStepModal(methodId, amountVal) {
     var isBank = methodId === 'bank';
-    var BANK_ROW = 'flex items-center gap-[12px] p-[10px_0] border-b border-line text-[13.5px] font-semibold text-text last:border-b-0 [&>svg]:w-[22px] [&>svg]:h-[22px] [&>svg]:text-text-mid [&>svg]:shrink-0 bank-row';
+    var BANK_ROW = 'flex items-center gap-3 p-[10px_0] border-b border-line text-[13.5px] font-semibold text-text last:border-b-0 [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-text-mid [&>svg]:shrink-0 bank-row';
     var PAY_NOTE = 'text-[12px] text-text-dim m-[0_0_16px] pay-note';
-    var BTN_GOLD = 'p-[9px_20px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold';
+    var BTN_GOLD = 'p-[9px_20px] border! border-gold-hi! rounded-full bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold';
     var body;
     if (isBank) {
       body =
@@ -857,7 +857,7 @@
         '<div style="text-align:center;margin-bottom:14px"><svg width="176" height="176" viewBox="0 0 29 29" shape-rendering="crispEdges" role="img" aria-label="' + tr('pay.qrCodeLabel', '付款 QR Code') + '"><rect width="29" height="29" fill="#fff"></rect>' + fakeQrModules() + '</svg></div>' +
         '<label class="text-[15px] font-extrabold m-[0_0_14px] text-text member-panel-title" style="font-size:12.5px;margin-bottom:6px;display:block">' + escapeHtml(addrLabel) + '</label>' +
         '<div style="display:flex;gap:8px">' +
-        '<input class="w-full p-[12px_14px] rounded-md border border-line bg-bg text-[15px] font-bold text-text mb-[8px] pay-field" style="width:auto;flex:1" value="' + escapeHtml(addr) + '" readonly />' +
+        '<input class="w-full p-[12px_14px] rounded-md border border-line bg-bg text-[15px] font-bold text-text mb-2 pay-field" style="width:auto;flex:1" value="' + escapeHtml(addr) + '" readonly />' +
         '<button type="button" class="' + BTN_GOLD + '" style="padding:0 16px" data-pay-copy>' + escapeHtml(tr('dp.copy', '複製')) + '</button>' +
         '</div>' +
         '<p class="' + PAY_NOTE + '">' + escapeHtml(tr('dp.qrDemoNote', '此為示意用 QR Code 與{label}，僅供介面展示。').replace('{label}', addrLabel)) + '</p>' +
@@ -926,14 +926,14 @@
   }
   function wdAccountCardHtml(acc, idx, withRemove) {
     return (
-      '<div class="flex items-center gap-[16px] p-[16px] border border-line rounded-[12px] mb-[14px] bg-bg-panel">' +
-      '<div class="w-[80px] h-[52px] rounded-[10px] bg-[#eef1fb] text-[#1c2333] flex items-center justify-center text-center text-[12px] font-extrabold p-[4px] shrink-0 leading-[1.15]">' + escapeHtml(wdAccountBadgeText(acc)) + '</div>' +
-      '<div class="flex flex-col gap-[4px] min-w-0">' +
+      '<div class="flex items-center gap-4 p-4 border border-line rounded-[12px] mb-3.5 bg-bg-panel">' +
+      '<div class="w-[80px] h-12 rounded-[10px] bg-[#eef1fb] text-[#1c2333] flex items-center justify-center text-center text-[12px] font-extrabold p-1 shrink-0 leading-[1.15]">' + escapeHtml(wdAccountBadgeText(acc)) + '</div>' +
+      '<div class="flex flex-col gap-1 min-w-0">' +
       '<span class="font-extrabold text-text text-[15px]">' + escapeHtml(wdAccountNameText(acc)) + '</span>' +
       '<span class="[font-family:\'Courier_New\',monospace] text-text-dim text-[13px] tracking-[0.5px] break-all">' + escapeHtml(wdAccountNumberText(acc)) + '</span>' +
       (acc.boundAt ? '<span class="text-text-dim text-[12.5px]">' + escapeHtml(acc.boundAt) + '</span>' : '') +
       '</div>' +
-      (withRemove ? '<button type="button" class="w-[28px] h-[28px] grid place-items-center rounded-full text-text-mid hover:bg-bg ml-auto shrink-0" aria-label="' + tr('common.delete', '刪除') + '" data-wd-remove="' + idx + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button>' : '') +
+      (withRemove ? '<button type="button" class="w-7 h-7 grid place-items-center rounded-full text-text-mid hover:bg-bg ml-auto shrink-0" aria-label="' + tr('common.delete', '刪除') + '" data-wd-remove="' + idx + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button>' : '') +
       '</div>'
     );
   }
@@ -972,7 +972,7 @@
     var groupLabel = wdMethodGroup === 'bank' ? tr('wd.myBankAccounts', '我的銀行帳戶') : tr('wd.myCryptoWallets', '我的加密錢包');
     if (!pairs.length) {
       var emptyGroupLabel = wdMethodGroup === 'bank' ? tr('wd.groupBank', '銀行') : tr('wd.groupCrypto', '加密錢包');
-      var linkHtml = '<button type="button" class="inline-flex items-center gap-[8px] p-[10px_18px] rounded-[10px] border! border-red! text-red bg-transparent! font-bold text-[13.5px] mt-[8px] cursor-pointer hover:opacity-[0.85] disabled:opacity-[0.4] disabled:cursor-not-allowed wd-account-add-btn" data-wd-goto-accounts style="margin-top:6px">' + escapeHtml(tr('wd.gotoAccounts', '前往「帳戶管理」新增')) + '</button>';
+      var linkHtml = '<button type="button" class="inline-flex items-center gap-2 p-[10px_18px] rounded-[10px] border! border-red! text-red bg-transparent! font-bold text-[13.5px] mt-2 cursor-pointer hover:opacity-[0.85] disabled:opacity-[0.4] disabled:cursor-not-allowed wd-account-add-btn" data-wd-goto-accounts style="margin-top:6px">' + escapeHtml(tr('wd.gotoAccounts', '前往「帳戶管理」新增')) + '</button>';
       wrap.innerHTML = '<p class="text-[12px] text-text-dim m-[0_0_16px] pay-note">' + tr('wd.noWithdrawAccountOfGroup', '尚未綁定{group}提款帳戶,請先至{link}').replace('{group}', escapeHtml(emptyGroupLabel)).replace('{link}', linkHtml) + '</p>';
       if (submitBtn) submitBtn.disabled = true;
       return;
@@ -981,12 +981,12 @@
     var cur = pairs[wdCarouselIndex].acc;
     var multi = pairs.length > 1;
     wrap.innerHTML =
-      '<div class="border border-line rounded-[12px] p-[14px_20px] bg-bg-panel"><div class="flex items-center justify-center gap-[14px]">' +
-      (multi ? '<button type="button" class="w-[26px] h-[26px] grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer shrink-0 disabled:opacity-[0.3] disabled:cursor-not-allowed" data-wd-prev' + (wdCarouselIndex === 0 ? ' disabled' : '') + ' aria-label="' + escapeHtml(tr('common.prev', '上一筆')) + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>' : '') +
+      '<div class="border border-line rounded-[12px] p-[14px_20px] bg-bg-panel"><div class="flex items-center justify-center gap-3.5">' +
+      (multi ? '<button type="button" class="w-6 h-6 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer shrink-0 disabled:opacity-[0.3] disabled:cursor-not-allowed" data-wd-prev' + (wdCarouselIndex === 0 ? ' disabled' : '') + ' aria-label="' + escapeHtml(tr('common.prev', '上一筆')) + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>' : '') +
       '<span class="text-[13.5px] font-bold text-text-mid whitespace-nowrap [&>b]:text-text">' + escapeHtml(groupLabel) + (multi ? ' <b>' + (wdCarouselIndex + 1) + '/' + pairs.length + '</b>' : '') + '</span>' +
-      (multi ? '<button type="button" class="w-[26px] h-[26px] grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer shrink-0 disabled:opacity-[0.3] disabled:cursor-not-allowed" data-wd-next' + (wdCarouselIndex === pairs.length - 1 ? ' disabled' : '') + ' aria-label="' + escapeHtml(tr('common.next2', '下一筆')) + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>' : '') +
+      (multi ? '<button type="button" class="w-6 h-6 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer shrink-0 disabled:opacity-[0.3] disabled:cursor-not-allowed" data-wd-next' + (wdCarouselIndex === pairs.length - 1 ? ' disabled' : '') + ' aria-label="' + escapeHtml(tr('common.next2', '下一筆')) + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>' : '') +
       '</div>' +
-      '<div class="flex items-center gap-[12px] p-[10px_0] border-b border-line text-[13.5px] font-semibold text-text last:border-b-0 [&>svg]:w-[22px] [&>svg]:h-[22px] [&>svg]:text-text-mid [&>svg]:shrink-0 mt-[10px] pt-[10px] border-t bank-row" style="border-bottom:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (WD_TYPE_ICON[cur.type] || WD_TYPE_ICON.bank) + '</svg> <span>' + escapeHtml(wdAccountNameText(cur)) + ' ' + escapeHtml(wdAccountNumberText(cur)) + '</span></div>' +
+      '<div class="flex items-center gap-3 p-[10px_0] border-b border-line text-[13.5px] font-semibold text-text last:border-b-0 [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-text-mid [&>svg]:shrink-0 mt-2.5 pt-2.5 border-t bank-row" style="border-bottom:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (WD_TYPE_ICON[cur.type] || WD_TYPE_ICON.bank) + '</svg> <span>' + escapeHtml(wdAccountNameText(cur)) + ' ' + escapeHtml(wdAccountNumberText(cur)) + '</span></div>' +
       '</div>';
     if (submitBtn) submitBtn.disabled = false;
   }
