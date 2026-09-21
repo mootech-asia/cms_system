@@ -375,7 +375,7 @@ img { max-width: 100%; display: block; }
 /* ── 分類頁列表（熱門/老虎機/真人/捕魚/體育/迷你遊戲） ── */
 /* 右側留出浮動客服列的寬度,避免搜尋框/卡片被蓋住。 */
 .listing-wrap { padding-top: 20px; padding-bottom: 40px; padding-right: 92px; }
-@media (max-width: 720px) { .listing-wrap { padding-right: 20px; } }
+@media (max-width: 720px) { .listing-wrap { padding-right: 80px; } }
 .listing-head { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
 .listing-title { font-size: 22px; font-weight: 800; margin: 0; flex: 1; }
 .listing-search {
@@ -462,9 +462,12 @@ img { max-width: 100%; display: block; }
 /* ── 會員中心（帳戶總覽/儲值/提款/各類紀錄/個人資料/安全中心） ── */
 /* padding-top/bottom 用 longhand,避免 3-value shorthand 把 .container
    本身的左右 padding（0 20px）一起蓋成 0；padding-right 另外加大只是
-   為了替右側 quick-rail 浮動按鈕留空間,左側應維持 .container 的 20px。 */
+   為了替右側 quick-rail 浮動按鈕留空間,左側應維持 .container 的 20px。
+   quick-rail 在 max-width:720px 仍然顯示（只是 right/按鈕尺寸縮小,見
+   下方 .quick-rail 那組 @media），手機版 padding-right 不能跟著砍回
+   跟左側一樣的 20px，否則按鈕會蓋到內容文字。 */
 .member-shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 20px; padding-top: 20px; padding-bottom: 48px; padding-right: 92px; align-items: start; }
-@media (max-width: 720px) { .member-shell { padding-right: 20px; grid-template-columns: 1fr; } }
+@media (max-width: 720px) { .member-shell { padding-right: 80px; grid-template-columns: 1fr; } }
 /* 手機版底部已有 .mobile-tabbar「會員」與「選單」（我的帳戶清單）涵蓋
    同一組會員頁連結,這裡的側邊選單重複、多餘,窄屏直接隱藏。 */
 @media (max-width: 720px) {
@@ -1041,7 +1044,6 @@ img { max-width: 100%; display: block; }
     box-shadow: 0 -4px 16px rgba(43, 36, 32, 0.06);
   }
   .hero { height: 220px; }
-  .hero-content { padding: 0 24px; }
   .hero-title { font-size: 26px; }
   .tile-grid { grid-template-columns: repeat(2, 1fr); }
   .quick-rail { right: 10px; }
@@ -1053,7 +1055,10 @@ img { max-width: 100%; display: block; }
   .notice-bar-inner { gap: 10px; }
   .notice-links { gap: 10px; }
   .hero { height: 180px; }
-  .hero-content { padding: 0 18px; max-width: 100%; }
+  /* .hero-content 維持桌機的 padding: 0 56px（不像其他區塊縮小），因為
+     .hero-arrow 固定 34px 寬、inset 16px，縮到 24px/18px 會讓箭頭疊到
+     文字上；56px 兩側加起來還留得住 .hero-title 換行後的最長字串。 */
+  .hero-content { max-width: 100%; }
   .hero-title { font-size: 21px; }
   .hero-sub { font-size: 12.5px; }
   .hero-eyebrow { font-size: 10.5px; padding: 3px 10px; margin-bottom: 10px; }
@@ -1061,7 +1066,7 @@ img { max-width: 100%; display: block; }
 
 /* ── 關於我們 / 常見問題（about.html） ── */
 .about-wrap { padding-top: 24px; padding-bottom: 48px; max-width: 880px; margin: 0 auto; padding-right: 92px; }
-@media (max-width: 720px) { .about-wrap { padding-right: 20px; } }
+@media (max-width: 720px) { .about-wrap { padding-right: 80px; } }
 .about-title { font-size: 22px; font-weight: 800; margin: 0 0 16px; }
 .about-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
 .about-tab { padding: 8px 18px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg-panel); color: var(--text-mid); font-size: 13px; font-weight: 700; }
@@ -1081,7 +1086,7 @@ img { max-width: 100%; display: block; }
 
 /* ── UI Kit（元件展示頁，開發參考用） ── */
 .uikit-wrap { padding-top: 24px; padding-bottom: 48px; padding-right: 92px; }
-@media (max-width: 720px) { .uikit-wrap { padding-right: 20px; } }
+@media (max-width: 720px) { .uikit-wrap { padding-right: 80px; } }
 .uikit-section { margin-bottom: 32px; }
 .uikit-section-title { font-size: 16px; font-weight: 800; margin: 0 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--gold-hi); display: inline-block; }
 .uikit-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 16px; border-radius: var(--radius-md); background: var(--bg-panel); border: 1px solid var(--line); }
