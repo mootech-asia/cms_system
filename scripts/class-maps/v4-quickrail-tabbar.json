@@ -1,0 +1,11 @@
+{
+  "__full__": {
+    "mobile-tabbar-btn mobile-tabbar-menu": "flex-1 flex flex-col items-center gap-[3px] p-[6px_2px] text-[11px] font-semibold text-text-mid! mobile-tabbar-menu",
+    "mobile-tabbar-btn active": "flex-1 flex flex-col items-center gap-[3px] p-[6px_2px] text-[11px] font-semibold text-red!"
+  },
+  "quick-rail": "fixed right-[18px] top-1/2 -translate-y-1/2 z-[900] flex flex-col gap-[10px] p-[10px_6px] rounded-[999px] bg-[var(--panel-glass)] [backdrop-filter:blur(6px)] border border-line-hi shadow-card max-[720px]:right-[10px]",
+  "quick-rail-btn": "group relative w-[48px] h-[48px] grid place-items-center rounded-full overflow-hidden border border-line bg-bg-panel text-red! shadow-card transition-[transform,background,color,border-color] duration-150 hover:scale-[1.08] hover:bg-[color-mix(in_oklch,var(--red)_8%,transparent)] hover:border-red hover:text-red-deep! [&[data-chat-open]]:bg-[image:var(--header-grad)] [&[data-chat-open]]:border-gold-hi max-[720px]:w-[40px] max-[720px]:h-[40px] max-[720px]:hover:scale-100 max-[720px]:hover:bg-transparent",
+  "quick-rail-label": "absolute right-[calc(100%+12px)] top-1/2 -translate-y-1/2 translate-x-[6px] p-[7px_14px] rounded-[999px] bg-[rgba(15,15,15,0.94)] text-white! text-[12.5px] font-bold whitespace-nowrap opacity-0 pointer-events-none shadow-card transition-[opacity,transform] duration-[180ms] ease-in-out group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 group-focus-visible:translate-x-0 max-[720px]:group-hover:opacity-0 max-[720px]:group-hover:translate-x-[6px]",
+  "mobile-tabbar": "hidden max-[720px]:flex max-[720px]:fixed max-[720px]:left-0 max-[720px]:right-0 max-[720px]:bottom-0 max-[720px]:z-[500] max-[720px]:bg-bg-panel max-[720px]:border-t max-[720px]:border-line max-[720px]:p-[6px_4px_calc(6px+env(safe-area-inset-bottom))] max-[720px]:shadow-[0_-4px_16px_rgba(43,36,32,0.06)]",
+  "mobile-tabbar-btn": "flex-1 flex flex-col items-center gap-[3px] p-[6px_2px] text-[11px] font-semibold text-text-mid! [&.active]:text-red!"
+}
