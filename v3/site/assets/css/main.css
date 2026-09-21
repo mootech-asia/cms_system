@@ -391,7 +391,7 @@ img { display: block; }
 }
 .sidebar.collapsed .sb-item.active .sb-icon { color: var(--accent); filter: none; }
 
-/* sidebar extra: language + deposit (above socials) */
+/* sidebar extra: language + skin + deposit (above socials) */
 .sidebar-extra {
   padding: 12px 14px 4px;
   display: flex;
@@ -401,7 +401,8 @@ img { display: block; }
 }
 .sidebar.collapsed .sidebar-extra { display: none; }
 .sb-lang-wrap { position: relative; }
-.sb-lang {
+.sb-lang,
+.sb-skin {
   display: flex; align-items: center; gap: 10px;
   width: 100%;
   padding: 9px 14px;
@@ -414,7 +415,8 @@ img { display: block; }
   cursor: pointer;
   font-family: inherit;
 }
-.sb-lang:hover, .sb-lang.open { border-color: var(--line-hi); }
+.sb-lang:hover, .sb-lang.open,
+.sb-skin:hover, .sb-skin.open { border-color: var(--line-hi); }
 .sb-lang.open .sb-lang-caret { transform: rotate(180deg); }
 .sb-lang-globe { color: var(--text-mid); flex-shrink: 0; }
 .sb-flag {
@@ -425,7 +427,8 @@ img { display: block; }
   box-shadow: 0 0 0 1px rgba(255,255,255,.1);
   flex-shrink: 0;
 }
-.sb-lang-label { flex: 1; text-align: left; }
+.sb-lang-label,
+.sb-skin-label { flex: 1; text-align: left; }
 .sb-lang-caret { color: var(--text-mid); transition: transform .15s; }
 
 .sb-lang-menu {
@@ -5284,7 +5287,8 @@ select.twk-field {
   border-bottom: 1px solid var(--line);
 }
 .sidebar .sidebar-list { order: 2; }
-.sidebar .sidebar-extra .sb-lang-menu {
+.sidebar .sidebar-extra .sb-lang-menu,
+.sidebar .sidebar-extra .tb-skin-menu {
   top: calc(100% + 6px);
   bottom: auto;
 }
@@ -5317,7 +5321,7 @@ select.twk-field {
 }
 
 
-/* ── TOPBAR SKIN SELECTOR ───────────────── */
+/* ── SIDEBAR SKIN SELECTOR ───────────────── */
 .tb-skin-wrap { position: relative; }
 .tb-skin-trigger { position: relative; }
 .tb-skin-swatch {
@@ -5333,11 +5337,10 @@ select.twk-field {
 }
 .tb-skin-menu {
   position: absolute;
-  top: calc(100% + 8px);
+  bottom: calc(100% + 6px);
+  left: 0;
   right: 0;
   z-index: 70;
-  width: 236px;
-  max-width: calc(100vw - 24px);
   max-height: calc(100vh - var(--header-h) - 24px);
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -5394,10 +5397,6 @@ select.twk-field {
 .tb-skin-option > svg {
   flex: 0 0 auto;
   color: var(--accent);
-}
-
-@media (max-width: 700px) {
-  .tb-skin-menu { position: fixed; top: calc(var(--header-h) + 8px); right: 12px; }
 }
 
 

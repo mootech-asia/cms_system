@@ -94,8 +94,7 @@
   box-shadow: 0 4px 18px var(--accent-glow);
 }
 .chrome-header--v8 .tb-balance-num,
-.chrome-header--v8 .tb-balance-label,
-.chrome-header--v8 .tb-skin-trigger {
+.chrome-header--v8 .tb-balance-label {
   color: var(--text-on-accent);
 }
 .chrome-header--v8 .topbar-logo {

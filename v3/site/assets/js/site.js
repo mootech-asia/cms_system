@@ -1183,6 +1183,7 @@
     if (existing) { closeSkinMenu(); return; }
     closeUserMenu();
     closeNotifMenu();
+    closeLangMenu();
     var menu = document.createElement('div');
     wrap.appendChild(menu);
     renderSkinMenu(menu);
