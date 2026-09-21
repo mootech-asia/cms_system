@@ -47,32 +47,32 @@
       <div class="member-main">
         <h1 class="member-page-title" data-i18n="sidebar.depositRecord">儲值紀錄</h1>
         <div class="member-panel">
-          <div class="record-filters">
-            <input type="text" placeholder="開始日期" data-i18n-placeholder="record.startDate" />
-            <span style="color:var(--text-dim)" data-i18n="record.to">至</span>
-            <input type="text" placeholder="結束日期" data-i18n-placeholder="record.endDate" />
-            <button type="button" class="listing-search-btn btn-accent" style="padding:8px 20px" data-i18n="record.search">查詢</button>
+          <div class="flex items-center gap-2.5 flex-wrap mb-3.5 record-filters">
+            <input class="py-2 px-3 rounded-md border border-line bg-bg-panel text-[13px] text-text font-sans" type="text" placeholder="開始日期" data-i18n-placeholder="record.startDate" />
+            <span class="text-text-dim" data-i18n="record.to">至</span>
+            <input class="py-2 px-3 rounded-md border border-line bg-bg-panel text-[13px] text-text font-sans" type="text" placeholder="結束日期" data-i18n-placeholder="record.endDate" />
+            <button type="button" class="py-2 px-5 border border-transparent rounded-full bg-[image:var(--accent-grad)] text-accent-ink font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-accent transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px listing-search-btn btn-accent" data-i18n="record.search">查詢</button>
           </div>
-          <div class="record-table-wrap">
-            <table class="record-table">
+          <div class="overflow-x-auto rounded-md border border-line record-table-wrap">
+            <table class="w-full border-collapse text-[13px] whitespace-nowrap record-table">
               <thead><tr>
-          <th data-i18n="record.txNo">交易編號</th>
-          <th data-i18n="record.requestTime">申請時間</th>
-          <th class="num" data-i18n="record.depositAmount">儲值金額</th>
-          <th data-i18n="record.status">狀態</th>
-          <th data-i18n="record.method">方式</th>
-          <th data-i18n="record.bankRef">銀行參考碼</th>
-          <th data-i18n="record.completeTime">完成時間</th>
-          <th data-i18n="record.remark">備註</th>
+          <th class="text-left py-2.5 px-3.5 bg-bg-soft text-text-mid font-bold text-[12px] border-b border-line" data-i18n="record.txNo">交易編號</th>
+          <th class="text-left py-2.5 px-3.5 bg-bg-soft text-text-mid font-bold text-[12px] border-b border-line" data-i18n="record.requestTime">申請時間</th>
+          <th class="text-left py-2.5 px-3.5 bg-bg-soft text-text-mid font-bold text-[12px] border-b border-line text-right [font-variant-numeric:tabular-nums] num" data-i18n="record.depositAmount">儲值金額</th>
+          <th class="text-left py-2.5 px-3.5 bg-bg-soft text-text-mid font-bold text-[12px] border-b border-line" data-i18n="record.status">狀態</th>
+          <th class="text-left py-2.5 px-3.5 bg-bg-soft text-text-mid font-bold text-[12px] border-b border-line" data-i18n="record.method">方式</th>
+          <th class="text-left py-2.5 px-3.5 bg-bg-soft text-text-mid font-bold text-[12px] border-b border-line" data-i18n="record.bankRef">銀行參考碼</th>
+          <th class="text-left py-2.5 px-3.5 bg-bg-soft text-text-mid font-bold text-[12px] border-b border-line" data-i18n="record.completeTime">完成時間</th>
+          <th class="text-left py-2.5 px-3.5 bg-bg-soft text-text-mid font-bold text-[12px] border-b border-line" data-i18n="record.remark">備註</th>
               </tr></thead>
               <tbody>
-        <tr><td class="mono">DP20250812001</td><td>2025-08-12 09:12</td><td class="num">100,000</td><td data-i18n="record.statusCompleted">已完成</td><td data-i18n="pay.bankCard">銀行卡</td><td class="mono">REF881234</td><td>2025-08-12 09:15</td><td>—</td></tr>
-        <tr><td class="mono">DP20250811005</td><td>2025-08-11 22:40</td><td class="num">50,000</td><td data-i18n="record.statusCompleted">已完成</td><td>USDT-TRC20</td><td class="mono">REF881190</td><td>2025-08-11 22:41</td><td data-i18n="remark.firstDepositBonus50">首存加碼 50%</td></tr>
-        <tr><td class="mono">DP20250810002</td><td>2025-08-10 08:03</td><td class="num">10,000</td><td data-i18n="record.statusProcessing">處理中</td><td data-i18n="pay.linePay">LinePay</td><td class="mono">—</td><td>—</td><td>—</td></tr>
+        <tr><td class="py-2.5 px-3.5 border-b border-line text-text font-mono text-text-mid mono">DP20250812001</td><td class="py-2.5 px-3.5 border-b border-line text-text">2025-08-12 09:12</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] num">100,000</td><td class="py-2.5 px-3.5 border-b border-line text-text" data-i18n="record.statusCompleted">已完成</td><td class="py-2.5 px-3.5 border-b border-line text-text" data-i18n="pay.bankCard">銀行卡</td><td class="py-2.5 px-3.5 border-b border-line text-text font-mono text-text-mid mono">REF881234</td><td class="py-2.5 px-3.5 border-b border-line text-text">2025-08-12 09:15</td><td class="py-2.5 px-3.5 border-b border-line text-text">—</td></tr>
+        <tr><td class="py-2.5 px-3.5 border-b border-line text-text font-mono text-text-mid mono">DP20250811005</td><td class="py-2.5 px-3.5 border-b border-line text-text">2025-08-11 22:40</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] num">50,000</td><td class="py-2.5 px-3.5 border-b border-line text-text" data-i18n="record.statusCompleted">已完成</td><td class="py-2.5 px-3.5 border-b border-line text-text">USDT-TRC20</td><td class="py-2.5 px-3.5 border-b border-line text-text font-mono text-text-mid mono">REF881190</td><td class="py-2.5 px-3.5 border-b border-line text-text">2025-08-11 22:41</td><td class="py-2.5 px-3.5 border-b border-line text-text" data-i18n="remark.firstDepositBonus50">首存加碼 50%</td></tr>
+        <tr><td class="py-2.5 px-3.5 border-b-0 text-text font-mono text-text-mid mono">DP20250810002</td><td class="py-2.5 px-3.5 border-b-0 text-text">2025-08-10 08:03</td><td class="py-2.5 px-3.5 border-b-0 text-text text-right [font-variant-numeric:tabular-nums] num">10,000</td><td class="py-2.5 px-3.5 border-b-0 text-text" data-i18n="record.statusProcessing">處理中</td><td class="py-2.5 px-3.5 border-b-0 text-text" data-i18n="pay.linePay">LinePay</td><td class="py-2.5 px-3.5 border-b-0 text-text font-mono text-text-mid mono">—</td><td class="py-2.5 px-3.5 border-b-0 text-text">—</td><td class="py-2.5 px-3.5 border-b-0 text-text">—</td></tr>
               </tbody>
             </table>
           </div>
-          <div class="record-total"><span class="record-total-label" data-i18n="record.totalDeposit">總儲值金額</span><span class="record-total-val">160,000</span></div>
+          <div class="flex items-center justify-between mt-3.5 py-3.5 px-4.5 rounded-md bg-[image:var(--accent-grad)] text-accent-ink record-total"><span class="font-bold text-[13px] record-total-label" data-i18n="record.totalDeposit">總儲值金額</span><span class="font-extrabold text-[15px] [font-variant-numeric:tabular-nums] record-total-val">160,000</span></div>
         </div>
 
       </div>

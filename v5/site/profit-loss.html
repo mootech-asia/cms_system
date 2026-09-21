@@ -47,27 +47,27 @@
       <div class="member-main">
         <h1 class="member-page-title" data-i18n="sidebar.profitLoss">損益報表</h1>
         <div class="member-panel">
-          <div class="record-filters">
-            <input type="text" placeholder="開始日期" data-i18n-placeholder="record.startDate" />
-            <span style="color:var(--text-dim)" data-i18n="record.to">至</span>
-            <input type="text" placeholder="結束日期" data-i18n-placeholder="record.endDate" />
-            <button type="button" class="listing-search-btn btn-accent" style="padding:8px 20px" data-i18n="record.search">查詢</button>
+          <div class="flex items-center gap-2.5 flex-wrap mb-3.5 record-filters">
+            <input class="py-2 px-3 rounded-md border border-line bg-bg-panel text-[13px] text-text font-sans" type="text" placeholder="開始日期" data-i18n-placeholder="record.startDate" />
+            <span class="text-text-dim" data-i18n="record.to">至</span>
+            <input class="py-2 px-3 rounded-md border border-line bg-bg-panel text-[13px] text-text font-sans" type="text" placeholder="結束日期" data-i18n-placeholder="record.endDate" />
+            <button type="button" class="py-2 px-5 border border-transparent rounded-full bg-[image:var(--accent-grad)] text-accent-ink font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-accent transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px listing-search-btn btn-accent" data-i18n="record.search">查詢</button>
           </div>
-          <div class="record-table-wrap">
-            <table class="record-table">
+          <div class="overflow-x-auto rounded-md border border-line record-table-wrap">
+            <table class="w-full border-collapse text-[13px] whitespace-nowrap record-table">
               <thead><tr>
-          <th data-i18n="record.gameType">遊戲類型</th>
-          <th class="num" data-i18n="record.totalWinLoss">總輸贏</th>
-          <th class="num" data-i18n="record.betAmount">投注金額</th>
-          <th class="num" data-i18n="record.validBet">有效投注</th>
-          <th class="num" data-i18n="record.payoutAmount">派彩金額</th>
-          <th class="num" data-i18n="record.rebate">返水</th>
+          <th class="text-left py-2.5 px-3.5 bg-bg-soft text-text-mid font-bold text-[12px] border-b border-line" data-i18n="record.gameType">遊戲類型</th>
+          <th class="text-left py-2.5 px-3.5 bg-bg-soft text-text-mid font-bold text-[12px] border-b border-line text-right [font-variant-numeric:tabular-nums] num" data-i18n="record.totalWinLoss">總輸贏</th>
+          <th class="text-left py-2.5 px-3.5 bg-bg-soft text-text-mid font-bold text-[12px] border-b border-line text-right [font-variant-numeric:tabular-nums] num" data-i18n="record.betAmount">投注金額</th>
+          <th class="text-left py-2.5 px-3.5 bg-bg-soft text-text-mid font-bold text-[12px] border-b border-line text-right [font-variant-numeric:tabular-nums] num" data-i18n="record.validBet">有效投注</th>
+          <th class="text-left py-2.5 px-3.5 bg-bg-soft text-text-mid font-bold text-[12px] border-b border-line text-right [font-variant-numeric:tabular-nums] num" data-i18n="record.payoutAmount">派彩金額</th>
+          <th class="text-left py-2.5 px-3.5 bg-bg-soft text-text-mid font-bold text-[12px] border-b border-line text-right [font-variant-numeric:tabular-nums] num" data-i18n="record.rebate">返水</th>
               </tr></thead>
               <tbody>
-        <tr><td data-i18n="game.slot">老虎機</td><td class="num negative">-58,200</td><td class="num">1,240,000</td><td class="num">1,180,000</td><td class="num">1,181,800</td><td class="num">5,900</td></tr>
-        <tr><td data-i18n="game.live">真人娛樂</td><td class="num positive">+112,400</td><td class="num">860,000</td><td class="num">860,000</td><td class="num">972,400</td><td class="num">4,300</td></tr>
-        <tr><td data-i18n="game.sport">體育</td><td class="num positive">+41,000</td><td class="num">320,000</td><td class="num">310,000</td><td class="num">361,000</td><td class="num">1,550</td></tr>
-        <tr><td data-i18n="game.fish">捕魚達人</td><td class="num negative">-9,800</td><td class="num">150,000</td><td class="num">148,000</td><td class="num">140,200</td><td class="num">740</td></tr>
+        <tr><td class="py-2.5 px-3.5 border-b border-line text-text" data-i18n="game.slot">老虎機</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] text-badge font-bold num negative">-58,200</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] num">1,240,000</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] num">1,180,000</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] num">1,181,800</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] num">5,900</td></tr>
+        <tr><td class="py-2.5 px-3.5 border-b border-line text-text" data-i18n="game.live">真人娛樂</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] text-[#3fbf72] font-bold num positive">+112,400</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] num">860,000</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] num">860,000</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] num">972,400</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] num">4,300</td></tr>
+        <tr><td class="py-2.5 px-3.5 border-b border-line text-text" data-i18n="game.sport">體育</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] text-[#3fbf72] font-bold num positive">+41,000</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] num">320,000</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] num">310,000</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] num">361,000</td><td class="py-2.5 px-3.5 border-b border-line text-text text-right [font-variant-numeric:tabular-nums] num">1,550</td></tr>
+        <tr><td class="py-2.5 px-3.5 border-b-0 text-text" data-i18n="game.fish">捕魚達人</td><td class="py-2.5 px-3.5 border-b-0 text-text text-right [font-variant-numeric:tabular-nums] text-badge font-bold num negative">-9,800</td><td class="py-2.5 px-3.5 border-b-0 text-text text-right [font-variant-numeric:tabular-nums] num">150,000</td><td class="py-2.5 px-3.5 border-b-0 text-text text-right [font-variant-numeric:tabular-nums] num">148,000</td><td class="py-2.5 px-3.5 border-b-0 text-text text-right [font-variant-numeric:tabular-nums] num">140,200</td><td class="py-2.5 px-3.5 border-b-0 text-text text-right [font-variant-numeric:tabular-nums] num">740</td></tr>
               </tbody>
             </table>
           </div>
