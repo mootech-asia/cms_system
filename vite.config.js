@@ -22,6 +22,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         v4: resolve(__dirname, 'src/v4/theme.css'),
+        v5: resolve(__dirname, 'src/v5/theme.css'),
       },
     },
   },

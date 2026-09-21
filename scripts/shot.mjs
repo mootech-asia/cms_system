@@ -4,16 +4,18 @@ const outPath = process.argv[3];
 const width = Number(process.argv[4] || 1440);
 // 傳 "authed" 當第 5 個參數：會員頁（account.html 等）沒登入會被
 // site.js 導回 index.html，截圖前要先在 localStorage 塞假登入狀態
-// （key/shape 對照 site.js 的 AUTH_KEY='cms-v4-auth' 與 memberAuthHtml()
-// 用到的 user.name/user.balance）。
+// （key/shape 對照 site.js 的 AUTH_KEY 與 memberAuthHtml() 用到的
+// user.name/user.balance）。每個版本的 AUTH_KEY 不同（v4='cms-v4-auth'、
+// v5='cms-v5-auth'...），第 6 個參數可覆寫，預設沿用 v4 的 key。
 const authed = process.argv[5] === 'authed';
+const authKey = process.argv[6] || 'cms-v4-auth';
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 const page = await browser.newPage({ viewport: { width, height: 1000 } });
 page.setDefaultTimeout(15000);
 if (authed) {
-  await page.addInitScript(() => {
-    localStorage.setItem('cms-v4-auth', JSON.stringify({ name: 'meqomcao', balance: '₩1,000,000,000', points: 0 }));
-  });
+  await page.addInitScript((key) => {
+    localStorage.setItem(key, JSON.stringify({ name: 'meqomcao', balance: '₩1,000,000,000', points: 0 }));
+  }, authKey);
 }
 const errors = [];
 page.on('console', (msg) => { if (msg.type() === 'error') errors.push(msg.text()); });

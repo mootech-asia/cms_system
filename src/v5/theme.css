@@ -1,0 +1,174 @@
+/* v5 — 烈焰賭場（Ignite）風格。真正的 Tailwind utility class 寫法（取代
+   語意化 class + 手寫 CSS），token 從 v5/site/assets/css/main.css 的
+   :root ＋ skins/*.css 逐字搬過來，只換成 @theme／:root[data-skin] 寫法。
+
+   間距/尺寸類 utility（padding/margin/gap/小尺寸 width-height/inset/
+   translate）一律優先採用 Tailwind 預設刻度，只有完全對不上 4px 刻度
+   時才四捨五入取最接近的刻度值（見 v4 那次工程師 review 的結論，此後
+   v4~v6 一體適用）；版面級的大尺寸容器寬度（max-w/min-w）與字級
+   （text-[Npx]）不在此列，仍用任意值對齊原始設計。 */
+@layer theme, base, legacy, components, utilities;
+@import 'tailwindcss' source(none);
+@source '../../v5/site/*.html';
+@source '../../v5/site/assets/js/site.js';
+@import '../../v5/site/assets/css/main.css' layer(legacy);
+@import '../../v5/site/assets/css/section-variants.css' layer(legacy);
+@import '../../v5/site/assets/css/skins/emerald-tide.css' layer(legacy);
+@import '../../v5/site/assets/css/skins/gold-noir.css' layer(legacy);
+@import '../../v5/site/assets/css/skins/neon-emerald.css' layer(legacy);
+@import '../../v5/site/assets/css/skins/royal-crimson.css' layer(legacy);
+@import '../../v5/site/assets/css/skins/sapphire-noir.css' layer(legacy);
+@import '../../v5/site/assets/css/skins/violet-jackpot.css' layer(legacy);
+
+@theme static {
+  --font-display: 'Pretendard', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --radius-lg: 16px;
+  --radius-md: 10px;
+  --radius-sm: 6px;
+  --shadow-card: 0 2px 0 rgba(0, 0, 0, 0.4), 0 10px 24px rgba(0, 0, 0, 0.55);
+  --shadow-accent: 0 6px 16px rgba(244, 121, 31, 0.38);
+
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-bg-panel: var(--bg-panel);
+  --color-header-bg: var(--header-bg);
+  --color-line: var(--line);
+  --color-line-hi: var(--line-hi);
+  --color-text: var(--text);
+  --color-text-mid: var(--text-mid);
+  --color-text-dim: var(--text-dim);
+  --color-text-on-header: var(--text-on-header);
+  --color-panel-tint: var(--panel-tint);
+  --color-accent: var(--accent);
+  --color-accent-hi: var(--accent-hi);
+  --color-accent-deep: var(--accent-deep);
+  --color-accent-ink: var(--accent-ink);
+  --color-badge: var(--badge);
+  --color-badge-deep: var(--badge-deep);
+  --color-jackpot-a: var(--jackpot-a);
+  --color-jackpot-b: var(--jackpot-b);
+}
+
+:root {
+  --bg: #1b1b1c;
+  --bg-soft: #242425;
+  --bg-panel: #212123;
+  --header-bg: #141414;
+  --line: #333335;
+  --line-hi: #4a4440;
+  --text: #f5f2ec;
+  --text-mid: #b6b1a7;
+  --text-dim: #837e73;
+  --text-on-header: #f5f2ec;
+  --panel-tint: #262220;
+  --panel-glass: rgba(33, 33, 35, 0.82);
+  --footer-opacity: 0.85;
+
+  --accent: #f4791f;
+  --accent-hi: #ff9a3d;
+  --accent-deep: #c85a12;
+  --accent-grad: linear-gradient(180deg, #ff9a3d 0%, #f4791f 55%, #e0600a 100%);
+  --accent-ink: #fff8f0;
+
+  --badge: #e2431f;
+  --badge-deep: #a8300f;
+  --jackpot-a: #6d3fc9;
+  --jackpot-b: #a63fd6;
+}
+
+/* ── skins（原 assets/css/skins/*.css 逐字搬過來） ── */
+:root[data-skin='emerald-tide'] {
+  --accent: #1aa88f;
+  --accent-hi: #34e6b8;
+  --accent-deep: #16309e;
+  --accent-grad: linear-gradient(135deg, #1fd9a4 0%, #1aa8c4 50%, #1a3fd6 100%);
+  --accent-ink: #fff8f0;
+  --jackpot-a: #0d9488;
+  --jackpot-b: #1e3a8a;
+}
+:root[data-skin='gold-noir'] {
+  --accent: #d4a017;
+  --accent-hi: #f0c550;
+  --accent-deep: #9c780f;
+  --accent-grad: linear-gradient(180deg, #f0c550 0%, #d4a017 55%, #9c780f 100%);
+  --accent-ink: #2a1a04;
+  --jackpot-a: #92400e;
+  --jackpot-b: #d97706;
+}
+:root[data-skin='neon-emerald'] {
+  --accent: #12b76a;
+  --accent-hi: #34d399;
+  --accent-deep: #0a7a49;
+  --accent-grad: linear-gradient(180deg, #34d399 0%, #12b76a 55%, #0a7a49 100%);
+  --accent-ink: #fff8f0;
+  --jackpot-a: #0891b2;
+  --jackpot-b: #06b6d4;
+}
+:root[data-skin='royal-crimson'] {
+  --accent: #dc2626;
+  --accent-hi: #f87171;
+  --accent-deep: #a31515;
+  --accent-grad: linear-gradient(180deg, #f87171 0%, #dc2626 55%, #a31515 100%);
+  --accent-ink: #fff8f0;
+  --jackpot-a: #be185d;
+  --jackpot-b: #ec4899;
+}
+:root[data-skin='sapphire-noir'] {
+  --accent: #2563eb;
+  --accent-hi: #60a5fa;
+  --accent-deep: #1741a6;
+  --accent-grad: linear-gradient(180deg, #60a5fa 0%, #2563eb 55%, #1741a6 100%);
+  --accent-ink: #fff8f0;
+  --jackpot-a: #4338ca;
+  --jackpot-b: #7c3aed;
+}
+:root[data-skin='violet-jackpot'] {
+  --accent: #8b5cf6;
+  --accent-hi: #c4b5fd;
+  --accent-deep: #6d28d9;
+  --accent-grad: linear-gradient(180deg, #c4b5fd 0%, #8b5cf6 55%, #6d28d9 100%);
+  --accent-ink: #fff8f0;
+  --jackpot-a: #a21caf;
+  --jackpot-b: #e879f9;
+}
+
+/* ── 全站 base（main.css 逐字保留） ── */
+@layer base {
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  main { flex: 1 0 auto; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+  img { max-width: 100%; display: block; }
+
+  /* Preflight 回歸修正，沿用 v4 的教訓（見 cms_system_tailwind
+     MIGRATION.md 陷阱 A）：main.css 沒有這些 UA reset，靠瀏覽器預設值，
+     Tailwind Preflight 蓋掉預設值後在沒被 main.css 明確設定的屬性上會
+     跟原站有落差。 */
+  button, input, select, textarea { line-height: normal; }
+  svg { display: inline; }
+}
+
+@keyframes notice-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+@keyframes match-live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@keyframes vendor-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
