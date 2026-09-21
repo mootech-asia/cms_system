@@ -1197,7 +1197,7 @@
     try { loggedOut = localStorage.getItem('cms_v3_logged_out') === '1'; } catch (e) {}
     return { loggedIn: !loggedOut, name: 'PlayerOne', email: 'player@100.gg' };
   })();
-  var BALANCE = 1284.32;
+  var BALANCE = 123456789012.34;
 
   function loggedOutHTML() {
     return '<button type="button" class="btn" data-action="open-signin">' + tr('t.nav.Login', '登入') + '</button>' +
