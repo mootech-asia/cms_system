@@ -46,25 +46,25 @@
       </aside>
       <div class="min-w-0 flex flex-col gap-[18px]">
         <h1 class="text-[20px] font-extrabold m-0" data-i18n="sidebar.withdrawal">提款</h1>
-        <div class="tabline">
-          <button type="button" class="tabline-item active" data-wd-tab="withdraw" data-i18n="wd.tabWithdraw">提款</button>
-          <button type="button" class="tabline-item" data-wd-tab="accounts" data-i18n="wd.tabAccounts">帳戶管理</button>
+        <div class="flex gap-[28px] border-b border-line mb-[20px] flex-wrap">
+          <button type="button" class="p-[8px_2px_12px] bg-transparent! border-0 text-red! font-bold text-[14px] relative cursor-pointer after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-1px] after:h-[2px] after:bg-red after:rounded-[2px]" data-wd-tab="withdraw" data-i18n="wd.tabWithdraw">提款</button>
+          <button type="button" class="p-[8px_2px_12px] bg-transparent! border-0 text-text-mid text-[14px] font-semibold relative cursor-pointer [&.active]:text-red! [&.active]:font-bold [&.active]:after:content-[''] [&.active]:after:absolute [&.active]:after:left-0 [&.active]:after:right-0 [&.active]:after:bottom-[-1px] [&.active]:after:h-[2px] [&.active]:after:bg-red [&.active]:after:rounded-[2px]" data-wd-tab="accounts" data-i18n="wd.tabAccounts">帳戶管理</button>
         </div>
         <div data-wd-panel="withdraw">
-        <div class="pay-tabs" data-wd-method>
-          <button type="button" class="pay-tab active" data-wd-method-btn="bank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span data-i18n="pay.bankCard">銀行卡</span></button>
-          <button type="button" class="pay-tab" data-wd-method-btn="crypto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg><span data-i18n="pay.cryptoWallet">加密錢包</span></button>
+        <div class="flex gap-[8px] flex-wrap mb-[16px] pay-tabs" data-wd-method>
+          <button type="button" class="p-[8px_16px] rounded-[999px] border! border-red! bg-[linear-gradient(180deg,var(--red)_0%,var(--red-deep)_100%)]! text-white! text-[13px] font-bold flex items-center gap-[6px] [&[hidden]]:hidden pay-tab active" data-wd-method-btn="bank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span data-i18n="pay.bankCard">銀行卡</span></button>
+          <button type="button" class="p-[8px_16px] rounded-[999px] border! border-line! bg-bg-panel! text-text-mid text-[13px] font-bold flex items-center gap-[6px] [&[hidden]]:hidden [&.active]:bg-[linear-gradient(180deg,var(--red)_0%,var(--red-deep)_100%)]! [&.active]:border-red! [&.active]:text-white! pay-tab" data-wd-method-btn="crypto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg><span data-i18n="pay.cryptoWallet">加密錢包</span></button>
         </div>
         <div class="bg-bg-panel border border-line rounded-lg p-[18px] shadow-card">
           <div data-wd-carousel-wrap></div>
-          <div class="wd-refresh-row" data-refresh-profile><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"></path><path d="M21 3v6h-6"></path></svg><span data-i18n="common.refresh">重新整理</span></div>
+          <div class="flex items-center gap-[6px] text-text-dim text-[13px] mt-[10px] cursor-pointer w-fit [&>svg]:w-[15px] [&>svg]:h-[15px]" data-refresh-profile><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"></path><path d="M21 3v6h-6"></path></svg><span data-i18n="common.refresh">重新整理</span></div>
 
           <div data-wd-bank-fields>
-          <div class="wd-wallet-row">
+          <div class="text-center m-[20px_0_6px] [&_.wallet-label]:text-text-dim [&_.wallet-label]:text-[13px] [&_.wallet-amount]:text-text [&_.wallet-amount]:text-[22px] [&_.wallet-amount]:font-extrabold [&_.wallet-amount]:mt-[4px]">
             <p class="wallet-label" data-i18n="wd.mainWallet">主錢包</p>
             <p class="wallet-amount">₩ <span data-wd-wallet-balance>0.00</span></p>
           </div>
-          <p class="pay-note wd-turnover-note">
+          <p class="text-[12px] m-[0_0_16px] pay-note text-center text-red! flex items-center justify-center gap-[10px] flex-wrap [&_.detail-btn]:text-white! [&_.detail-btn]:bg-red! [&_.detail-btn]:rounded-[999px] [&_.detail-btn]:p-[2px_10px] [&_.detail-btn]:text-[11px] [&_.detail-btn]:font-bold [&_.wd-target-amount]:text-text-dim">
             <span><span data-i18n="wd.turnoverAchievedPrefix">*已達成流水：₩ </span><span data-wd-turnover-achieved>0.00</span></span>
             <a class="detail-btn" href="withdrawal-detail.html" data-i18n="common.viewDetail">查看詳情</a>
             <span class="wd-target-amount"><span data-i18n="wd.targetAmountPrefix">目標金額：₩ </span><span data-wd-turnover-target>0.00</span></span>
@@ -72,67 +72,67 @@
           </div>
 
           <div data-wd-crypto-fields hidden>
-          <div class="wd-wallet-row">
+          <div class="text-center m-[20px_0_6px] [&_.wallet-label]:text-text-dim [&_.wallet-label]:text-[13px] [&_.wallet-amount]:text-text [&_.wallet-amount]:text-[22px] [&_.wallet-amount]:font-extrabold [&_.wallet-amount]:mt-[4px]">
             <p class="wallet-label" data-i18n="wd.centralWallet">中心錢包</p>
             <p class="wallet-amount">₩ 0.00</p>
           </div>
-          <div class="wd-wallet-row">
+          <div class="text-center m-[20px_0_6px] [&_.wallet-label]:text-text-dim [&_.wallet-label]:text-[13px] [&_.wallet-amount]:text-text [&_.wallet-amount]:text-[22px] [&_.wallet-amount]:font-extrabold [&_.wallet-amount]:mt-[4px]">
             <p class="wallet-label" data-i18n="wd.availableAmount">可用金額</p>
             <p class="wallet-amount">₩ 0.00</p>
           </div>
           <h3 class="text-[15px] font-extrabold m-[0_0_14px] text-text member-panel-title" data-i18n="wd.walletInfo">錢包資訊</h3>
-          <select class="pay-field" data-wd-wallet-type-select>
+          <select class="w-full p-[12px_14px] rounded-md border border-line bg-bg text-[15px] font-bold text-text mb-[8px] pay-field" data-wd-wallet-type-select>
             <option value="" data-i18n="wd.selectWalletType">請選擇錢包類型</option>
             <option value="trc20">USDT-TRC20</option>
           </select>
-          <input class="pay-field" placeholder="請輸入收款錢包地址" data-i18n-placeholder="wd.walletAddressPlaceholder" data-wd-wallet-address-input />
+          <input class="w-full p-[12px_14px] rounded-md border border-line bg-bg text-[15px] font-bold text-text mb-[8px] pay-field" placeholder="請輸入收款錢包地址" data-i18n-placeholder="wd.walletAddressPlaceholder" data-wd-wallet-address-input />
           </div>
 
           <h3 class="text-[15px] font-extrabold m-[0_0_14px] text-text member-panel-title" data-i18n="wd.withdrawAmount">提款金額</h3>
-          <div class="pay-amount-grid" data-wd-bank-fields>
-            <button type="button" class="pay-amount-btn selected">10,000</button>
-            <button type="button" class="pay-amount-btn">50,000</button>
-            <button type="button" class="pay-amount-btn">100,000</button>
-            <button type="button" class="pay-amount-btn">500,000</button>
-            <button type="button" class="pay-amount-btn">1,000,000</button>
+          <div class="flex gap-[10px] flex-wrap m-[12px_0] [&[hidden]]:hidden pay-amount-grid" data-wd-bank-fields>
+            <button type="button" class="p-[10px_20px] rounded-md border! border-gold-hi! bg-[image:var(--gold-grad)]! text-[13.5px] font-bold text-[#3a2604] pay-amount-btn selected">10,000</button>
+            <button type="button" class="p-[10px_20px] rounded-md border! border-line! bg-bg! text-[13.5px] font-bold text-text [&.selected]:bg-[image:var(--gold-grad)]! [&.selected]:border-gold-hi! [&.selected]:text-[#3a2604] pay-amount-btn">50,000</button>
+            <button type="button" class="p-[10px_20px] rounded-md border! border-line! bg-bg! text-[13.5px] font-bold text-text [&.selected]:bg-[image:var(--gold-grad)]! [&.selected]:border-gold-hi! [&.selected]:text-[#3a2604] pay-amount-btn">100,000</button>
+            <button type="button" class="p-[10px_20px] rounded-md border! border-line! bg-bg! text-[13.5px] font-bold text-text [&.selected]:bg-[image:var(--gold-grad)]! [&.selected]:border-gold-hi! [&.selected]:text-[#3a2604] pay-amount-btn">500,000</button>
+            <button type="button" class="p-[10px_20px] rounded-md border! border-line! bg-bg! text-[13.5px] font-bold text-text [&.selected]:bg-[image:var(--gold-grad)]! [&.selected]:border-gold-hi! [&.selected]:text-[#3a2604] pay-amount-btn">1,000,000</button>
           </div>
-          <input class="pay-field" data-wd-amount-input value="₩ 10,000" data-i18n-aria="withdrawal.amountAria" aria-label="提款金額" />
-          <p class="pay-note" data-wd-bank-fields data-i18n="wd.bankAmountNote">* 最低金額：₩ 10,000；最高金額：₩ 9,000,000 *</p>
-          <p class="pay-note" data-wd-crypto-fields hidden data-i18n="wd.cryptoAmountNote">* 最低金額：₩ 100,000；最高金額：₩ 20,000,000 *</p>
+          <input class="w-full p-[12px_14px] rounded-md border border-line bg-bg text-[15px] font-bold text-text mb-[8px] pay-field" data-wd-amount-input value="₩ 10,000" data-i18n-aria="withdrawal.amountAria" aria-label="提款金額" />
+          <p class="text-[12px] text-text-dim m-[0_0_16px] pay-note" data-wd-bank-fields data-i18n="wd.bankAmountNote">* 最低金額：₩ 10,000；最高金額：₩ 9,000,000 *</p>
+          <p class="text-[12px] text-text-dim m-[0_0_16px] pay-note" data-wd-crypto-fields hidden data-i18n="wd.cryptoAmountNote">* 最低金額：₩ 100,000；最高金額：₩ 20,000,000 *</p>
           <h3 class="text-[15px] font-extrabold m-[0_0_14px] text-text member-panel-title" style="margin-top:18px" data-i18n="wd.withdrawPassword">提款密碼</h3>
-          <div class="pw-input-wrap">
-            <input class="pay-field" type="password" placeholder="請輸入提款密碼" data-i18n-placeholder="wd.withdrawPasswordPlaceholder" data-wd-password />
-            <button type="button" class="pw-toggle" data-toggle-pwd data-i18n-aria="pwd.toggleAria" aria-label="顯示/隱藏密碼"><svg data-pwd-icon width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          <div class="relative mb-[8px] [&_.pay-field]:pr-[44px] [&_.pay-field]:mb-0">
+            <input class="w-full p-[12px_14px] rounded-md border border-line bg-bg text-[15px] font-bold text-text mb-[8px] pay-field" type="password" placeholder="請輸入提款密碼" data-i18n-placeholder="wd.withdrawPasswordPlaceholder" data-wd-password />
+            <button type="button" class="absolute right-[8px] top-0 bottom-0 flex items-center bg-transparent! border-0 text-text-dim cursor-pointer p-[0_4px]" data-toggle-pwd data-i18n-aria="pwd.toggleAria" aria-label="顯示/隱藏密碼"><svg data-pwd-icon width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg></button>
           </div>
 
-          <button type="button" class="p-[9px_20px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold pay-submit" style="text-align:center" data-i18n="wd.confirmWithdraw">確認提款</button>
+          <button type="button" class="p-[9px_20px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold block w-full mt-[8px] pay-submit" style="text-align:center" data-i18n="wd.confirmWithdraw">確認提款</button>
         </div>
         </div>
         <div data-wd-panel="accounts" hidden>
-        <div class="pay-tabs" data-wd-manage>
-          <button type="button" class="pay-tab active" data-wd-manage-btn="bank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span data-i18n="wd.manageBankAccount">銀行帳戶</span></button>
-          <button type="button" class="pay-tab" data-wd-manage-btn="crypto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg><span data-i18n="pay.cryptoWallet">加密錢包</span></button>
+        <div class="flex gap-[8px] flex-wrap mb-[16px] pay-tabs" data-wd-manage>
+          <button type="button" class="p-[8px_16px] rounded-[999px] border! border-red! bg-[linear-gradient(180deg,var(--red)_0%,var(--red-deep)_100%)]! text-white! text-[13px] font-bold flex items-center gap-[6px] [&[hidden]]:hidden pay-tab active" data-wd-manage-btn="bank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span data-i18n="wd.manageBankAccount">銀行帳戶</span></button>
+          <button type="button" class="p-[8px_16px] rounded-[999px] border! border-line! bg-bg-panel! text-text-mid text-[13px] font-bold flex items-center gap-[6px] [&[hidden]]:hidden [&.active]:bg-[linear-gradient(180deg,var(--red)_0%,var(--red-deep)_100%)]! [&.active]:border-red! [&.active]:text-white! pay-tab" data-wd-manage-btn="crypto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg><span data-i18n="pay.cryptoWallet">加密錢包</span></button>
         </div>
         <div class="bg-bg-panel border border-line rounded-lg p-[18px] shadow-card">
-          <p class="wd-account-count" data-wd-account-count></p>
+          <p class="flex items-center gap-[10px] font-bold text-text text-[15px] mb-[16px] before:content-[''] before:w-[4px] before:h-[18px] before:bg-red before:rounded-[2px] before:inline-block [&_b]:text-red" data-wd-account-count></p>
           <div data-wd-account-cards></div>
-          <button type="button" class="wd-account-add-btn" data-wd-show-add-form><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span data-wd-add-btn-label data-i18n="wd.addBankAccount">新增銀行帳戶</span></button>
+          <button type="button" class="inline-flex items-center gap-[8px] p-[10px_18px] rounded-[10px] border! border-red! text-red bg-transparent! font-bold text-[13.5px] mt-[8px] cursor-pointer hover:opacity-[0.85] disabled:opacity-[0.4] disabled:cursor-not-allowed wd-account-add-btn" data-wd-show-add-form><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span data-wd-add-btn-label data-i18n="wd.addBankAccount">新增銀行帳戶</span></button>
 
           <div data-wd-add-form hidden style="margin-top:18px">
-            <div class="pay-tabs" data-wd-add-type>
-              <button type="button" class="pay-tab active" data-wd-type="bank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span data-i18n="pay.bankCard">銀行卡</span></button>
-              <button type="button" class="pay-tab" data-wd-type="trc20"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg><span>USDT-TRC20</span></button>
-              <button type="button" class="pay-tab" data-wd-type="erc20"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg><span>USDT-ERC20</span></button>
+            <div class="flex gap-[8px] flex-wrap mb-[16px] pay-tabs" data-wd-add-type>
+              <button type="button" class="p-[8px_16px] rounded-[999px] border! border-red! bg-[linear-gradient(180deg,var(--red)_0%,var(--red-deep)_100%)]! text-white! text-[13px] font-bold flex items-center gap-[6px] [&[hidden]]:hidden pay-tab active" data-wd-type="bank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span data-i18n="pay.bankCard">銀行卡</span></button>
+              <button type="button" class="p-[8px_16px] rounded-[999px] border! border-line! bg-bg-panel! text-text-mid text-[13px] font-bold flex items-center gap-[6px] [&[hidden]]:hidden [&.active]:bg-[linear-gradient(180deg,var(--red)_0%,var(--red-deep)_100%)]! [&.active]:border-red! [&.active]:text-white! pay-tab" data-wd-type="trc20"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg><span>USDT-TRC20</span></button>
+              <button type="button" class="p-[8px_16px] rounded-[999px] border! border-line! bg-bg-panel! text-text-mid text-[13px] font-bold flex items-center gap-[6px] [&[hidden]]:hidden [&.active]:bg-[linear-gradient(180deg,var(--red)_0%,var(--red-deep)_100%)]! [&.active]:border-red! [&.active]:text-white! pay-tab" data-wd-type="erc20"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg><span>USDT-ERC20</span></button>
             </div>
             <div data-wd-fields="bank">
-              <input class="pay-field" placeholder="銀行名稱" data-i18n-placeholder="wd.bankNamePlaceholder" data-wd-field="bankName" />
-              <input class="pay-field" placeholder="收款人姓名" data-i18n-placeholder="wd.holderPlaceholder" data-wd-field="holder" />
-              <input class="pay-field" placeholder="銀行卡號" data-i18n-placeholder="wd.accountPlaceholder" data-wd-field="account" />
+              <input class="w-full p-[12px_14px] rounded-md border border-line bg-bg text-[15px] font-bold text-text mb-[8px] pay-field" placeholder="銀行名稱" data-i18n-placeholder="wd.bankNamePlaceholder" data-wd-field="bankName" />
+              <input class="w-full p-[12px_14px] rounded-md border border-line bg-bg text-[15px] font-bold text-text mb-[8px] pay-field" placeholder="收款人姓名" data-i18n-placeholder="wd.holderPlaceholder" data-wd-field="holder" />
+              <input class="w-full p-[12px_14px] rounded-md border border-line bg-bg text-[15px] font-bold text-text mb-[8px] pay-field" placeholder="銀行卡號" data-i18n-placeholder="wd.accountPlaceholder" data-wd-field="account" />
             </div>
             <div data-wd-fields="crypto" hidden>
-              <input class="pay-field" placeholder="收款錢包地址" data-i18n-placeholder="wd.walletAddressPlaceholder" data-wd-field="address" />
+              <input class="w-full p-[12px_14px] rounded-md border border-line bg-bg text-[15px] font-bold text-text mb-[8px] pay-field" placeholder="收款錢包地址" data-i18n-placeholder="wd.walletAddressPlaceholder" data-wd-field="address" />
             </div>
-            <input class="pay-field" type="password" placeholder="請輸入交易密碼" data-i18n-placeholder="wd.fundPasswordPlaceholder" data-wd-field="fundPassword" />
+            <input class="w-full p-[12px_14px] rounded-md border border-line bg-bg text-[15px] font-bold text-text mb-[8px] pay-field" type="password" placeholder="請輸入交易密碼" data-i18n-placeholder="wd.fundPasswordPlaceholder" data-wd-field="fundPassword" />
             <button type="button" class="p-[9px_20px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold" data-wd-add-submit style="text-align:center;margin-top:8px" data-i18n="wd.addAccount">新增帳戶</button>
           </div>
         </div>

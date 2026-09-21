@@ -1,0 +1,29 @@
+{
+  "__full__": {
+    "tabline-item active": "p-[8px_2px_12px] bg-transparent! border-0 text-red! font-bold text-[14px] relative cursor-pointer after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-1px] after:h-[2px] after:bg-red after:rounded-[2px]",
+    "pay-tab active": "p-[8px_16px] rounded-[999px] border! border-red! bg-[linear-gradient(180deg,var(--red)_0%,var(--red-deep)_100%)]! text-white! text-[13px] font-bold flex items-center gap-[6px] [&[hidden]]:hidden pay-tab active",
+    "pay-amount-btn selected": "p-[10px_20px] rounded-md border! border-gold-hi! bg-[image:var(--gold-grad)]! text-[13.5px] font-bold text-[#3a2604] pay-amount-btn selected",
+    "pay-note wd-turnover-note": "text-[12px] m-[0_0_16px] pay-note text-center text-red! flex items-center justify-center gap-[10px] flex-wrap [&_.detail-btn]:text-white! [&_.detail-btn]:bg-red! [&_.detail-btn]:rounded-[999px] [&_.detail-btn]:p-[2px_10px] [&_.detail-btn]:text-[11px] [&_.detail-btn]:font-bold [&_.wd-target-amount]:text-text-dim"
+  },
+
+  "tabline": "flex gap-[28px] border-b border-line mb-[20px] flex-wrap",
+  "tabline-item": "p-[8px_2px_12px] bg-transparent! border-0 text-text-mid text-[14px] font-semibold relative cursor-pointer [&.active]:text-red! [&.active]:font-bold [&.active]:after:content-[''] [&.active]:after:absolute [&.active]:after:left-0 [&.active]:after:right-0 [&.active]:after:bottom-[-1px] [&.active]:after:h-[2px] [&.active]:after:bg-red [&.active]:after:rounded-[2px]",
+
+  "pay-tabs": "flex gap-[8px] flex-wrap mb-[16px] pay-tabs",
+  "pay-tab": "p-[8px_16px] rounded-[999px] border! border-line! bg-bg-panel! text-text-mid text-[13px] font-bold flex items-center gap-[6px] [&[hidden]]:hidden [&.active]:bg-[linear-gradient(180deg,var(--red)_0%,var(--red-deep)_100%)]! [&.active]:border-red! [&.active]:text-white! pay-tab",
+
+  "pay-amount-grid": "flex gap-[10px] flex-wrap m-[12px_0] [&[hidden]]:hidden pay-amount-grid",
+  "pay-amount-btn": "p-[10px_20px] rounded-md border! border-line! bg-bg! text-[13.5px] font-bold text-text [&.selected]:bg-[image:var(--gold-grad)]! [&.selected]:border-gold-hi! [&.selected]:text-[#3a2604] pay-amount-btn",
+  "pay-field": "w-full p-[12px_14px] rounded-md border border-line bg-bg text-[15px] font-bold text-text mb-[8px] pay-field",
+  "pay-note": "text-[12px] text-text-dim m-[0_0_16px] pay-note",
+  "pay-submit": "block w-full mt-[8px] pay-submit",
+
+  "bank-row": "flex items-center gap-[12px] p-[10px_0] border-b border-line text-[13.5px] font-semibold text-text last:border-b-0 [&>svg]:w-[22px] [&>svg]:h-[22px] [&>svg]:text-text-mid [&>svg]:shrink-0 bank-row",
+
+  "wd-refresh-row": "flex items-center gap-[6px] text-text-dim text-[13px] mt-[10px] cursor-pointer w-fit [&>svg]:w-[15px] [&>svg]:h-[15px]",
+  "wd-wallet-row": "text-center m-[20px_0_6px] [&_.wallet-label]:text-text-dim [&_.wallet-label]:text-[13px] [&_.wallet-amount]:text-text [&_.wallet-amount]:text-[22px] [&_.wallet-amount]:font-extrabold [&_.wallet-amount]:mt-[4px]",
+  "pw-input-wrap": "relative mb-[8px] [&_.pay-field]:pr-[44px] [&_.pay-field]:mb-0",
+  "pw-toggle": "absolute right-[8px] top-0 bottom-0 flex items-center bg-transparent! border-0 text-text-dim cursor-pointer p-[0_4px]",
+  "wd-account-count": "flex items-center gap-[10px] font-bold text-text text-[15px] mb-[16px] before:content-[''] before:w-[4px] before:h-[18px] before:bg-red before:rounded-[2px] before:inline-block [&_b]:text-red",
+  "wd-account-add-btn": "inline-flex items-center gap-[8px] p-[10px_18px] rounded-[10px] border! border-red! text-red bg-transparent! font-bold text-[13.5px] mt-[8px] cursor-pointer hover:opacity-[0.85] disabled:opacity-[0.4] disabled:cursor-not-allowed wd-account-add-btn"
+}
