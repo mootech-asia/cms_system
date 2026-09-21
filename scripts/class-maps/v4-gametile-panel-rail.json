@@ -1,0 +1,24 @@
+{
+  "__full__": {
+    "tile-grid compact": "grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] justify-start gap-[14px]",
+    "tile-grid compact match-grid": "grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] justify-start gap-[14px]",
+    "tile-grid rail compact": "grid grid-cols-none [grid-auto-flow:column] [grid-auto-columns:130px] gap-[10px] overflow-x-auto [scroll-snap-type:x_proximity] scroll-smooth [scrollbar-width:none] p-[6px_2px_6px] m-[-6px_-2px_-6px] cursor-grab select-none [&::-webkit-scrollbar]:hidden [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:scroll-auto tile-grid rail",
+    "tile-grid rail match-rail": "grid grid-cols-none [grid-auto-flow:column] [grid-auto-columns:260px] gap-[12px] overflow-x-auto [scroll-snap-type:x_proximity] scroll-smooth [scrollbar-width:none] p-[6px_2px_6px] m-[-6px_-2px_-6px] cursor-grab select-none [&::-webkit-scrollbar]:hidden [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:scroll-auto tile-grid rail",
+    "tile-grid rail vendor-rail": "grid grid-cols-none [grid-auto-flow:column] [grid-auto-columns:max-content] gap-[8px] overflow-x-auto [scroll-snap-type:x_proximity] scroll-smooth [scrollbar-width:none] p-[6px_2px_6px] m-[-6px_-2px_-6px] cursor-grab select-none [&::-webkit-scrollbar]:hidden [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:scroll-auto vendor-rail tile-grid rail"
+  },
+  "panel": "bg-bg-panel border border-line rounded-lg p-[18px] shadow-card min-w-0 panel",
+  "panel-head": "flex items-center gap-[8px] mb-[14px]",
+  "panel-head-icon": "w-[26px] h-[26px] shrink-0 grid place-items-center text-gold-deep",
+  "panel-title": "text-[15.5px] font-extrabold text-text m-0 flex-1",
+  "panel-more": "text-[12px] text-gold-deep! font-semibold hover:text-red! panel-more",
+  "panel-head-actions": "flex items-center gap-[10px]",
+  "rail-arrow": "w-[26px] h-[26px] shrink-0 grid place-items-center rounded-full border! border-line! bg-bg-panel! text-text-mid cursor-pointer transition-[background,color,border-color] duration-150 hover:bg-[image:var(--gold-grad)]! hover:text-[#3a2604] hover:border-gold-hi! disabled:opacity-[0.35] disabled:cursor-default disabled:pointer-events-none",
+  "rail-wrap": "relative",
+  "game-tile": "rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile",
+  "game-tile-art": "relative aspect-square bg-line overflow-hidden game-tile-art",
+  "game-tile-art-fallback": "absolute inset-0 z-[1] grid place-items-center text-text-dim pointer-events-none game-tile-art-fallback",
+  "game-tile-tag": "absolute top-[6px] left-[6px] p-[2px_7px] rounded-[999px] bg-red text-text-on-header text-[10px] font-bold",
+  "game-tile-name": "text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name",
+  "game-tile-cta": "block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold",
+  "game-tile-fav": "absolute top-[6px] right-[6px] w-[26px] h-[26px] grid place-items-center rounded-full border! border-[rgba(255,255,255,0.5)]! bg-[rgba(20,6,10,0.4)]! text-text-on-header transition-[color,border-color,background] duration-150 hover:text-gold-hi hover:border-gold-hi! [&.is-active]:text-gold-hi [&.is-active]:border-gold-hi! [&.is-active_svg]:fill-current game-tile-fav"
+}

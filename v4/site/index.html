@@ -5,14 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CMS_Frontend_v4</title>
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <link rel="stylesheet" href="assets/css/skins/imperial-purple.css" />
-  <link rel="stylesheet" href="assets/css/skins/emerald-jade.css" />
-  <link rel="stylesheet" href="assets/css/skins/sapphire-blue.css" />
-  <link rel="stylesheet" href="assets/css/skins/onyx-gold.css" />
-  <link rel="stylesheet" href="assets/css/skins/deep-ocean.css" />
   <link rel="stylesheet" href="assets/css/tailwind.css" />
-  <link rel="stylesheet" href="assets/css/section-variants.css" />
 </head>
 <body>
   <header class="bg-[image:var(--header-grad)] site-header">
@@ -92,345 +85,345 @@
     </div>
 
     <div class="max-w-[1360px] mx-auto px-[20px] grid12">
-          <section class="panel" data-section="hot-games" data-span="5">
-            <div class="panel-head">
-              <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span>
-              <h2 class="panel-title" data-i18n="game.hotGames">熱門遊戲</h2>
-              <div class="panel-head-actions">
-                <button type="button" class="rail-arrow rail-arrow-prev" data-i18n-aria="game.scrollLeft" aria-label="向左捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
-                <button type="button" class="rail-arrow rail-arrow-next" data-i18n-aria="game.scrollRight" aria-label="向右捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
-                <a href="hot-games.html" class="panel-more" data-i18n="game.viewMore">查看更多 →</a>
+          <section class="bg-bg-panel border border-line rounded-lg p-[18px] shadow-card min-w-0 panel" data-section="hot-games" data-span="5">
+            <div class="flex items-center gap-[8px] mb-[14px]">
+              <span class="w-[26px] h-[26px] shrink-0 grid place-items-center text-gold-deep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span>
+              <h2 class="text-[15.5px] font-extrabold text-text m-0 flex-1" data-i18n="game.hotGames">熱門遊戲</h2>
+              <div class="flex items-center gap-[10px]">
+                <button type="button" class="w-[26px] h-[26px] shrink-0 grid place-items-center rounded-full border! border-line! bg-bg-panel! text-text-mid cursor-pointer transition-[background,color,border-color] duration-150 hover:bg-[image:var(--gold-grad)]! hover:text-[#3a2604] hover:border-gold-hi! disabled:opacity-[0.35] disabled:cursor-default disabled:pointer-events-none rail-arrow-prev" data-i18n-aria="game.scrollLeft" aria-label="向左捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
+                <button type="button" class="w-[26px] h-[26px] shrink-0 grid place-items-center rounded-full border! border-line! bg-bg-panel! text-text-mid cursor-pointer transition-[background,color,border-color] duration-150 hover:bg-[image:var(--gold-grad)]! hover:text-[#3a2604] hover:border-gold-hi! disabled:opacity-[0.35] disabled:cursor-default disabled:pointer-events-none rail-arrow-next" data-i18n-aria="game.scrollRight" aria-label="向右捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
+                <a href="hot-games.html" class="text-[12px] text-gold-deep! font-semibold hover:text-red! panel-more" data-i18n="game.viewMore">查看更多 →</a>
               </div>
             </div>
-            <div class="rail-wrap">
-              <div class="tile-grid rail compact">
-            <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagExclusive">獨家</span><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Sugar Rush 9000</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <div class="relative">
+              <div class="grid grid-cols-none [grid-auto-flow:column] [grid-auto-columns:130px] gap-[10px] overflow-x-auto [scroll-snap-type:x_proximity] scroll-smooth [scrollbar-width:none] p-[6px_2px_6px] m-[-6px_-2px_-6px] cursor-grab select-none [&::-webkit-scrollbar]:hidden [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:scroll-auto tile-grid rail">
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><span class="absolute top-[6px] left-[6px] p-[2px_7px] rounded-[999px] bg-red text-text-on-header text-[10px] font-bold" data-i18n="game.tagExclusive">獨家</span><img src="assets/mock/game-01.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Sugar Rush 9000</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Golden Hex</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Golden Hex</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagHot">熱門</span><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Crown of Aether</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><span class="absolute top-[6px] left-[6px] p-[2px_7px] rounded-[999px] bg-red text-text-on-header text-[10px] font-bold" data-i18n="game.tagHot">熱門</span><img src="assets/mock/game-03.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Crown of Aether</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Diamond Vortex</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Diamond Vortex</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Phoenix Reels</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Phoenix Reels</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Emperor's Fortune</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Emperor's Fortune</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Frost Bandit</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Frost Bandit</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Inferno Strike</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Inferno Strike</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Arctic Drift</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Arctic Drift</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Jade Serpent</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Jade Serpent</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Solar Flare Deluxe</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Solar Flare Deluxe</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Midnight Panther</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Midnight Panther</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Celestial Gates</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Celestial Gates</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Thunder Bison</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Thunder Bison</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Royal Falcon</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Royal Falcon</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Crimson Vault</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Crimson Vault</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Mystic Lotus</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Mystic Lotus</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Star Voyager</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Star Voyager</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Dragon's Hoard</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Dragon's Hoard</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Lucky Cascade</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Lucky Cascade</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Neon Samurai</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Neon Samurai</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Shadow Wolf</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Shadow Wolf</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Golden Pharaoh</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Golden Pharaoh</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Storm Rider</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Storm Rider</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Velvet Fortune</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Velvet Fortune</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Iron Titan</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Iron Titan</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Moonlight Reels</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Moonlight Reels</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Blaze Runner</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Blaze Runner</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Silver Lynx</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Silver Lynx</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Eternal Jackpot</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Eternal Jackpot</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
               </div>
             </div>
           </section>
-          <section class="panel" data-section="mini-games" data-span="4">
-            <div class="panel-head">
-              <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></span>
-              <h2 class="panel-title" data-i18n="game.miniGames">迷你遊戲</h2>
-              <div class="panel-head-actions">
-                <button type="button" class="rail-arrow rail-arrow-prev" data-i18n-aria="game.scrollLeft" aria-label="向左捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
-                <button type="button" class="rail-arrow rail-arrow-next" data-i18n-aria="game.scrollRight" aria-label="向右捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
-                <a href="mini-games.html" class="panel-more" data-i18n="game.viewMore">查看更多 →</a>
+          <section class="bg-bg-panel border border-line rounded-lg p-[18px] shadow-card min-w-0 panel" data-section="mini-games" data-span="4">
+            <div class="flex items-center gap-[8px] mb-[14px]">
+              <span class="w-[26px] h-[26px] shrink-0 grid place-items-center text-gold-deep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></span>
+              <h2 class="text-[15.5px] font-extrabold text-text m-0 flex-1" data-i18n="game.miniGames">迷你遊戲</h2>
+              <div class="flex items-center gap-[10px]">
+                <button type="button" class="w-[26px] h-[26px] shrink-0 grid place-items-center rounded-full border! border-line! bg-bg-panel! text-text-mid cursor-pointer transition-[background,color,border-color] duration-150 hover:bg-[image:var(--gold-grad)]! hover:text-[#3a2604] hover:border-gold-hi! disabled:opacity-[0.35] disabled:cursor-default disabled:pointer-events-none rail-arrow-prev" data-i18n-aria="game.scrollLeft" aria-label="向左捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
+                <button type="button" class="w-[26px] h-[26px] shrink-0 grid place-items-center rounded-full border! border-line! bg-bg-panel! text-text-mid cursor-pointer transition-[background,color,border-color] duration-150 hover:bg-[image:var(--gold-grad)]! hover:text-[#3a2604] hover:border-gold-hi! disabled:opacity-[0.35] disabled:cursor-default disabled:pointer-events-none rail-arrow-next" data-i18n-aria="game.scrollRight" aria-label="向右捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
+                <a href="mini-games.html" class="text-[12px] text-gold-deep! font-semibold hover:text-red! panel-more" data-i18n="game.viewMore">查看更多 →</a>
               </div>
             </div>
-            <div class="rail-wrap">
-              <div class="tile-grid rail compact">
-            <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagHot">熱門</span><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Crash 100</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <div class="relative">
+              <div class="grid grid-cols-none [grid-auto-flow:column] [grid-auto-columns:130px] gap-[10px] overflow-x-auto [scroll-snap-type:x_proximity] scroll-smooth [scrollbar-width:none] p-[6px_2px_6px] m-[-6px_-2px_-6px] cursor-grab select-none [&::-webkit-scrollbar]:hidden [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:scroll-auto tile-grid rail">
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><span class="absolute top-[6px] left-[6px] p-[2px_7px] rounded-[999px] bg-red text-text-on-header text-[10px] font-bold" data-i18n="game.tagHot">熱門</span><img src="assets/mock/game-05.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Crash 100</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Mines</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Mines</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Plinko</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Plinko</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Dice Duel</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Dice Duel</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Tower Climb</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Tower Climb</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Hi-Lo Rush</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Hi-Lo Rush</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Wheel of Fate</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Wheel of Fate</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Coin Flip Royale</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Coin Flip Royale</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Balloon Pop</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Balloon Pop</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Rocket Dash</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Rocket Dash</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Lucky Ladder</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Lucky Ladder</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Keno Blitz</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Keno Blitz</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Aviator Sprint</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Aviator Sprint</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Chicken Cross</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Chicken Cross</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Limbo Drop</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Limbo Drop</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Golden Cups</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Golden Cups</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Speed Wheel</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Speed Wheel</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Mystery Box</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Mystery Box</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Fruit Slice</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Fruit Slice</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Dragon Tower</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Dragon Tower</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Cash Cascade</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Cash Cascade</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Spin & Win</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Spin & Win</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Number Rush</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Number Rush</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Treasure Dig</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Treasure Dig</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Bomb Squad</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Bomb Squad</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Fast Track</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Fast Track</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Card Flip Frenzy</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Card Flip Frenzy</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Sky Jump</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Sky Jump</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Loot Crate</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Loot Crate</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Turbo Dice</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Turbo Dice</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
               </div>
             </div>
           </section>
 
-        <section class="panel" data-section="live" data-span="3" style="padding: 0; overflow: hidden;">
+        <section class="bg-bg-panel border border-line rounded-lg p-[18px] shadow-card min-w-0 panel" data-section="live" data-span="3" style="padding: 0; overflow: hidden;">
           <div class="feature-carousel" id="featureCarousel">
             <div class="feature-card active">
               <div class="feature-card-bg" style="background-image: url(assets/mock/live-02.webp);"></div>
               <div class="feature-card-body">
                 <div class="feature-card-eyebrow" data-i18n="game.liveCasinoEyebrow">真人娛樂</div>
                 <h2 class="feature-card-title">Lightning Roulette</h2>
-                <div class="tile-grid rail vendor-rail" role="tablist" data-i18n-aria="game.chooseVendor" aria-label="選擇廠商">
+                <div class="grid grid-cols-none [grid-auto-flow:column] [grid-auto-columns:max-content] gap-[8px] overflow-x-auto [scroll-snap-type:x_proximity] scroll-smooth [scrollbar-width:none] p-[6px_2px_6px] m-[-6px_-2px_-6px] cursor-grab select-none [&::-webkit-scrollbar]:hidden [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:scroll-auto vendor-rail tile-grid rail" role="tablist" data-i18n-aria="game.chooseVendor" aria-label="選擇廠商">
                   <button type="button" class="feature-vendor-chip active" title="Evolution Gaming" data-bg="assets/mock/live-02.webp">EVO</button>
                   <button type="button" class="feature-vendor-chip" title="WE Casino" data-bg="assets/mock/live-01.webp">WE</button>
                   <button type="button" class="feature-vendor-chip" title="BG Big Gaming" data-bg="assets/mock/live-04.webp">BG</button>
@@ -459,7 +452,7 @@
               <div class="feature-card-body">
                 <div class="feature-card-eyebrow" data-i18n="game.liveCasinoEyebrow">真人娛樂</div>
                 <h2 class="feature-card-title">Crazy Time Live</h2>
-                <div class="tile-grid rail vendor-rail" role="tablist" data-i18n-aria="game.chooseVendor" aria-label="選擇廠商">
+                <div class="grid grid-cols-none [grid-auto-flow:column] [grid-auto-columns:max-content] gap-[8px] overflow-x-auto [scroll-snap-type:x_proximity] scroll-smooth [scrollbar-width:none] p-[6px_2px_6px] m-[-6px_-2px_-6px] cursor-grab select-none [&::-webkit-scrollbar]:hidden [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:scroll-auto vendor-rail tile-grid rail" role="tablist" data-i18n-aria="game.chooseVendor" aria-label="選擇廠商">
                   <button type="button" class="feature-vendor-chip active" title="Evolution Gaming" data-bg="assets/mock/live-04.webp">EVO</button>
                   <button type="button" class="feature-vendor-chip" title="WE Casino" data-bg="assets/mock/live-01.webp">WE</button>
                   <button type="button" class="feature-vendor-chip" title="BG Big Gaming" data-bg="assets/mock/live-02.webp">BG</button>
@@ -488,7 +481,7 @@
               <div class="feature-card-body">
                 <div class="feature-card-eyebrow" data-i18n="game.liveCasinoEyebrow">真人娛樂</div>
                 <h2 class="feature-card-title">Speed Baccarat</h2>
-                <div class="tile-grid rail vendor-rail" role="tablist" data-i18n-aria="game.chooseVendor" aria-label="選擇廠商">
+                <div class="grid grid-cols-none [grid-auto-flow:column] [grid-auto-columns:max-content] gap-[8px] overflow-x-auto [scroll-snap-type:x_proximity] scroll-smooth [scrollbar-width:none] p-[6px_2px_6px] m-[-6px_-2px_-6px] cursor-grab select-none [&::-webkit-scrollbar]:hidden [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:scroll-auto vendor-rail tile-grid rail" role="tablist" data-i18n-aria="game.chooseVendor" aria-label="選擇廠商">
                   <button type="button" class="feature-vendor-chip active" title="Evolution Gaming" data-bg="assets/mock/live-05.webp">EVO</button>
                   <button type="button" class="feature-vendor-chip" title="WE Casino" data-bg="assets/mock/live-01.webp">WE</button>
                   <button type="button" class="feature-vendor-chip" title="BG Big Gaming" data-bg="assets/mock/live-02.webp">BG</button>
@@ -515,350 +508,350 @@
           </div>
         </section>
 
-        <section class="panel" data-section="electronic" data-span="9">
-          <div class="panel-head">
-            <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></span>
-            <h2 class="panel-title" data-i18n="nav.electronic">電子遊戲</h2>
-            <div class="panel-head-actions">
-              <button type="button" class="rail-arrow rail-arrow-prev" data-i18n-aria="game.scrollLeft" aria-label="向左捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
-              <button type="button" class="rail-arrow rail-arrow-next" data-i18n-aria="game.scrollRight" aria-label="向右捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
-              <a href="hot-games.html" class="panel-more" data-i18n="game.viewMore">查看更多 →</a>
+        <section class="bg-bg-panel border border-line rounded-lg p-[18px] shadow-card min-w-0 panel" data-section="electronic" data-span="9">
+          <div class="flex items-center gap-[8px] mb-[14px]">
+            <span class="w-[26px] h-[26px] shrink-0 grid place-items-center text-gold-deep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <h2 class="text-[15.5px] font-extrabold text-text m-0 flex-1" data-i18n="nav.electronic">電子遊戲</h2>
+            <div class="flex items-center gap-[10px]">
+              <button type="button" class="w-[26px] h-[26px] shrink-0 grid place-items-center rounded-full border! border-line! bg-bg-panel! text-text-mid cursor-pointer transition-[background,color,border-color] duration-150 hover:bg-[image:var(--gold-grad)]! hover:text-[#3a2604] hover:border-gold-hi! disabled:opacity-[0.35] disabled:cursor-default disabled:pointer-events-none rail-arrow-prev" data-i18n-aria="game.scrollLeft" aria-label="向左捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
+              <button type="button" class="w-[26px] h-[26px] shrink-0 grid place-items-center rounded-full border! border-line! bg-bg-panel! text-text-mid cursor-pointer transition-[background,color,border-color] duration-150 hover:bg-[image:var(--gold-grad)]! hover:text-[#3a2604] hover:border-gold-hi! disabled:opacity-[0.35] disabled:cursor-default disabled:pointer-events-none rail-arrow-next" data-i18n-aria="game.scrollRight" aria-label="向右捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
+              <a href="hot-games.html" class="text-[12px] text-gold-deep! font-semibold hover:text-red! panel-more" data-i18n="game.viewMore">查看更多 →</a>
             </div>
           </div>
-          <div class="rail-wrap">
-            <div class="tile-grid rail compact">
-            <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagExclusive">獨家</span><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">European Roulette</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+          <div class="relative">
+            <div class="grid grid-cols-none [grid-auto-flow:column] [grid-auto-columns:130px] gap-[10px] overflow-x-auto [scroll-snap-type:x_proximity] scroll-smooth [scrollbar-width:none] p-[6px_2px_6px] m-[-6px_-2px_-6px] cursor-grab select-none [&::-webkit-scrollbar]:hidden [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:scroll-auto tile-grid rail">
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><span class="absolute top-[6px] left-[6px] p-[2px_7px] rounded-[999px] bg-red text-text-on-header text-[10px] font-bold" data-i18n="game.tagExclusive">獨家</span><img src="assets/mock/game-09.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">European Roulette</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Single Deck Blackjack</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Single Deck Blackjack</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagHot">熱門</span><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Pai Gow</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><span class="absolute top-[6px] left-[6px] p-[2px_7px] rounded-[999px] bg-red text-text-on-header text-[10px] font-bold" data-i18n="game.tagHot">熱門</span><img src="assets/mock/game-11.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Pai Gow</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Texas Hold'em</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Texas Hold'em</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Caribbean Stud</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Caribbean Stud</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Three Card Poker</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Three Card Poker</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">American Roulette</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">American Roulette</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Baccarat Deluxe</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Baccarat Deluxe</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Sic Bo</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Sic Bo</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Blackjack Switch</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Blackjack Switch</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Casino Hold'em</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Casino Hold'em</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Ultimate Texas Hold'em</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Ultimate Texas Hold'em</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">French Roulette</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">French Roulette</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Spanish 21</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Spanish 21</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Let It Ride</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Let It Ride</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Dragon Tiger</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Dragon Tiger</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Speed Blackjack</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Speed Blackjack</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Multi-Hand Blackjack</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Multi-Hand Blackjack</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Punto Banco</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Punto Banco</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Oasis Poker</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Oasis Poker</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Red Dog</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Red Dog</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Big Six Wheel</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Big Six Wheel</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Mini Baccarat</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Mini Baccarat</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Perfect Pairs Blackjack</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Perfect Pairs Blackjack</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">High Card Flush</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">High Card Flush</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Three Card Baccarat</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Three Card Baccarat</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Craps</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Craps</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Video Poker Jacks or Better</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Video Poker Jacks or Better</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Super Fun 21</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Super Fun 21</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Face Up Pai Gow</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel" data-section="fish" data-span="3">
-          <div class="panel-head">
-            <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12c3-4 8-5 12-4l4-2v12l-4-2c-4 1-9 0-12-4Z"/></svg></span>
-            <h2 class="panel-title" data-i18n="nav.fish">捕魚達人</h2>
-            <div class="panel-head-actions">
-              <button type="button" class="rail-arrow rail-arrow-prev" data-i18n-aria="game.scrollLeft" aria-label="向左捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
-              <button type="button" class="rail-arrow rail-arrow-next" data-i18n-aria="game.scrollRight" aria-label="向右捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
-              <a href="fish.html" class="panel-more" data-i18n="game.viewMore">查看更多 →</a>
-            </div>
-          </div>
-          <div class="rail-wrap">
-            <div class="tile-grid rail compact">
-            <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagExclusive">獨家</span><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.deepSeaHunter">深海獵手</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.goldenReef">黃金礁岩</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><span class="game-tile-tag" data-i18n="game.tagHot">熱門</span><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.stormTide">風暴潮汐</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.beastOnslaught">巨獸來襲</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.coralTreasure">珊瑚秘寶</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.abyssOverlord">深淵霸主</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.poseidonsWrath">海神之怒</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.frozenFishingGround">冰封漁場</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.lavaEruption">熔岩噴發</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.polarWhaleHunt">極地獵鯨</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.dragonPalaceTreasure">龍宮尋寶</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.midnightHarbor">暗夜漁港</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.electricShoal">電光魚群</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.goldenSharkBay">黃金鯊灣</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.deepSeaTyrant">深海霸王</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.tidalStrike">潮汐爆擊</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.rainbowCoral">幻彩珊瑚</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.giantWaveAssault">巨浪來襲</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.deepSeaMystery">深海秘境</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.volcanoFishingGround">火山漁場</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.glacierBeast">冰河巨獸</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.mythicSeaMonster">神話海怪</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.turboFishing">極速捕魚</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.goldenWaters">黃金海域</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.deepSeaTreasure">深海寶藏</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.stormFisherman">暴風漁夫</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.cosmicFishingGround">星際漁場</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.tornadoStorm">龍捲風暴</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.deepBlueHuntingGround">深藍獵場</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
-            </article>
-            <article class="game-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name" data-i18n="fish.ultimateFishingKing">終極漁王</div>
-              <a href="#" class="game-tile-cta" data-i18n="game.startPlaying">開始遊戲</a>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">Face Up Pai Gow</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
             </div>
           </div>
         </section>
 
-        <section class="panel" data-section="sport" data-span="12">
-          <div class="panel-head">
-            <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m12 3 2.5 6M21 12l-6 2.5M12 21l-2.5-6M3 12l6-2.5"/></svg></span>
-            <h2 class="panel-title" data-i18n="game.sportsZone">體育專區</h2>
-            <div class="panel-head-actions">
-              <button type="button" class="rail-arrow rail-arrow-prev" data-i18n-aria="game.scrollLeft" aria-label="向左捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
-              <button type="button" class="rail-arrow rail-arrow-next" data-i18n-aria="game.scrollRight" aria-label="向右捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
-              <a href="sport.html" class="panel-more" data-i18n="game.viewMore">查看更多 →</a>
+        <section class="bg-bg-panel border border-line rounded-lg p-[18px] shadow-card min-w-0 panel" data-section="fish" data-span="3">
+          <div class="flex items-center gap-[8px] mb-[14px]">
+            <span class="w-[26px] h-[26px] shrink-0 grid place-items-center text-gold-deep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12c3-4 8-5 12-4l4-2v12l-4-2c-4 1-9 0-12-4Z"/></svg></span>
+            <h2 class="text-[15.5px] font-extrabold text-text m-0 flex-1" data-i18n="nav.fish">捕魚達人</h2>
+            <div class="flex items-center gap-[10px]">
+              <button type="button" class="w-[26px] h-[26px] shrink-0 grid place-items-center rounded-full border! border-line! bg-bg-panel! text-text-mid cursor-pointer transition-[background,color,border-color] duration-150 hover:bg-[image:var(--gold-grad)]! hover:text-[#3a2604] hover:border-gold-hi! disabled:opacity-[0.35] disabled:cursor-default disabled:pointer-events-none rail-arrow-prev" data-i18n-aria="game.scrollLeft" aria-label="向左捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
+              <button type="button" class="w-[26px] h-[26px] shrink-0 grid place-items-center rounded-full border! border-line! bg-bg-panel! text-text-mid cursor-pointer transition-[background,color,border-color] duration-150 hover:bg-[image:var(--gold-grad)]! hover:text-[#3a2604] hover:border-gold-hi! disabled:opacity-[0.35] disabled:cursor-default disabled:pointer-events-none rail-arrow-next" data-i18n-aria="game.scrollRight" aria-label="向右捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
+              <a href="fish.html" class="text-[12px] text-gold-deep! font-semibold hover:text-red! panel-more" data-i18n="game.viewMore">查看更多 →</a>
             </div>
           </div>
-          <div class="rail-wrap">
-            <div class="tile-grid rail match-rail">
+          <div class="relative">
+            <div class="grid grid-cols-none [grid-auto-flow:column] [grid-auto-columns:130px] gap-[10px] overflow-x-auto [scroll-snap-type:x_proximity] scroll-smooth [scrollbar-width:none] p-[6px_2px_6px] m-[-6px_-2px_-6px] cursor-grab select-none [&::-webkit-scrollbar]:hidden [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:scroll-auto tile-grid rail">
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><span class="absolute top-[6px] left-[6px] p-[2px_7px] rounded-[999px] bg-red text-text-on-header text-[10px] font-bold" data-i18n="game.tagExclusive">獨家</span><img src="assets/mock/game-03.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.deepSeaHunter">深海獵手</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.goldenReef">黃金礁岩</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><span class="absolute top-[6px] left-[6px] p-[2px_7px] rounded-[999px] bg-red text-text-on-header text-[10px] font-bold" data-i18n="game.tagHot">熱門</span><img src="assets/mock/game-05.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.stormTide">風暴潮汐</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.beastOnslaught">巨獸來襲</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.coralTreasure">珊瑚秘寶</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.abyssOverlord">深淵霸主</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.poseidonsWrath">海神之怒</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.frozenFishingGround">冰封漁場</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.lavaEruption">熔岩噴發</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.polarWhaleHunt">極地獵鯨</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.dragonPalaceTreasure">龍宮尋寶</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.midnightHarbor">暗夜漁港</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.electricShoal">電光魚群</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.goldenSharkBay">黃金鯊灣</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.deepSeaTyrant">深海霸王</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.tidalStrike">潮汐爆擊</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.rainbowCoral">幻彩珊瑚</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.giantWaveAssault">巨浪來襲</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.deepSeaMystery">深海秘境</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-10.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.volcanoFishingGround">火山漁場</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.glacierBeast">冰河巨獸</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.mythicSeaMonster">神話海怪</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.turboFishing">極速捕魚</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.goldenWaters">黃金海域</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.deepSeaTreasure">深海寶藏</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.stormFisherman">暴風漁夫</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.cosmicFishingGround">星際漁場</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.tornadoStorm">龍捲風暴</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.deepBlueHuntingGround">深藍獵場</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
+              <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><img src="assets/mock/game-08.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
+              <div class="text-[11px] p-[6px_6px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name" data-i18n="fish.ultimateFishingKing">終極漁王</div>
+              <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
+            </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="bg-bg-panel border border-line rounded-lg p-[18px] shadow-card min-w-0 panel" data-section="sport" data-span="12">
+          <div class="flex items-center gap-[8px] mb-[14px]">
+            <span class="w-[26px] h-[26px] shrink-0 grid place-items-center text-gold-deep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m12 3 2.5 6M21 12l-6 2.5M12 21l-2.5-6M3 12l6-2.5"/></svg></span>
+            <h2 class="text-[15.5px] font-extrabold text-text m-0 flex-1" data-i18n="game.sportsZone">體育專區</h2>
+            <div class="flex items-center gap-[10px]">
+              <button type="button" class="w-[26px] h-[26px] shrink-0 grid place-items-center rounded-full border! border-line! bg-bg-panel! text-text-mid cursor-pointer transition-[background,color,border-color] duration-150 hover:bg-[image:var(--gold-grad)]! hover:text-[#3a2604] hover:border-gold-hi! disabled:opacity-[0.35] disabled:cursor-default disabled:pointer-events-none rail-arrow-prev" data-i18n-aria="game.scrollLeft" aria-label="向左捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
+              <button type="button" class="w-[26px] h-[26px] shrink-0 grid place-items-center rounded-full border! border-line! bg-bg-panel! text-text-mid cursor-pointer transition-[background,color,border-color] duration-150 hover:bg-[image:var(--gold-grad)]! hover:text-[#3a2604] hover:border-gold-hi! disabled:opacity-[0.35] disabled:cursor-default disabled:pointer-events-none rail-arrow-next" data-i18n-aria="game.scrollRight" aria-label="向右捲動"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
+              <a href="sport.html" class="text-[12px] text-gold-deep! font-semibold hover:text-red! panel-more" data-i18n="game.viewMore">查看更多 →</a>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="grid grid-cols-none [grid-auto-flow:column] [grid-auto-columns:260px] gap-[12px] overflow-x-auto [scroll-snap-type:x_proximity] scroll-smooth [scrollbar-width:none] p-[6px_2px_6px] m-[-6px_-2px_-6px] cursor-grab select-none [&::-webkit-scrollbar]:hidden [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:scroll-auto tile-grid rail">
             <article class="match-card" data-search="英超 曼聯 利物浦">
               <div class="match-card-top"><span class="match-league" data-i18n="league.premierLeague">英超</span><span class="match-time is-live">67'</span></div>
               <div class="match-teams"><div class="match-team"><span class="match-team-name" data-i18n="team.manchesterUnited">曼聯</span><span class="match-team-score">1</span></div><div class="match-team"><span class="match-team-name" data-i18n="team.liverpool">利物浦</span><span class="match-team-score">2</span></div></div>

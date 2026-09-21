@@ -7,8 +7,34 @@
    根字級，不是 body 的 14px——凡是要對齊 main.css 原本寫死的 px 間距，
    一律用 `[px]` 任意值，不要用裸數字間距 utility（沿用
    cms_system_tailwind MIGRATION.md 陷阱 N 的教訓）。 */
+/* main.css／section-variants.css／skins/*.css 逐頁轉換完成前還需要繼續
+   服務尚未改完的語意 class（包含 site.js 動態產生、還沒一併轉換的彈窗/
+   選單 HTML）；直接用 <link> 引入的話它們不帶 layer，沒有 layer 的 CSS
+   一律贏過任何 @layer 內的 CSS（不管宣告順序、不管 specificity）——這
+   代表就算頁面上保留了某個 class 名稱純粹當 JS/section-variants.css 的
+   hook 用，main.css 對「同一個 class 名稱」原本的規則還是會蓋掉旁邊
+   新寫的 utility class。改成用 @import layer(legacy) 把它們放進一個
+   獨立 layer 解決，但 legacy 這個 layer 的位置很重要：
+   - 必須排在 utilities 之前，新寫的 utility class 才會贏過還沒轉換掉
+     的舊規則。
+   - 但也必須排在 base（Tailwind Preflight）之後，main.css 原本的
+     button/a 等元件樣式才能繼續蓋過 Preflight 的瀏覽器預設值重置——
+     否則還沒轉換的頁面內容/site.js 動態產生的舊 class HTML 會直接被
+     Preflight 重置成無樣式（曾經實測發生過：header-auth 的登入/註冊
+     按鈕整組沒了圓角外框金色底）。
+   先用一行 `@layer` 把五層的相對順序一次固定好（theme, base, legacy,
+   components, utilities），之後 `@import 'tailwindcss'` 內部各層的
+   實際內容各自歸位到同名 layer，不會改變這裡定好的順序。 */
+@layer theme, base, legacy, components, utilities;
 @import 'tailwindcss' source(none);
 @source '../../v4/site/*.html';
+@import '../../v4/site/assets/css/main.css' layer(legacy);
+@import '../../v4/site/assets/css/section-variants.css' layer(legacy);
+@import '../../v4/site/assets/css/skins/imperial-purple.css' layer(legacy);
+@import '../../v4/site/assets/css/skins/emerald-jade.css' layer(legacy);
+@import '../../v4/site/assets/css/skins/sapphire-blue.css' layer(legacy);
+@import '../../v4/site/assets/css/skins/onyx-gold.css' layer(legacy);
+@import '../../v4/site/assets/css/skins/deep-ocean.css' layer(legacy);
 
 @theme static {
   --font-display: 'Pretendard', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
