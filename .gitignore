@@ -1,1 +1,4 @@
 tools/i18n-audit/node_modules/
+node_modules/
+dist/
+

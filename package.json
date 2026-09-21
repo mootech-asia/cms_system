@@ -1,0 +1,18 @@
+{
+  "name": "cms-system-tailwind-build",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "cms_system v4~v6 改用真正 Tailwind utility class 的編譯期工具（v1.5/v2/v3 維持免建置純手寫 CSS，不受影響）",
+  "scripts": {
+    "build": "vite build && node scripts/publish.mjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "pixelmatch": "^7.2.0",
+    "playwright": "^1.56.1",
+    "pngjs": "^7.0.0",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.0"
+  }
+}
