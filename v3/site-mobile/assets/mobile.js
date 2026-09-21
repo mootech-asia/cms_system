@@ -545,24 +545,24 @@
     if (tip) tip.remove();
   }
 
-  /* 驚嘆號固定插在該行 .tb-balance-label（"Balance:"/"Points:"）前面，
-     插進 .tb-balance-row 是 .tb-balance-num 的手足節點、不是它的子節點，
-     不會像 tip 那樣被上面的 textContent 讀寫污染，可以放心讓
+  /* 驚嘆號插在數字本身（.tb-balance-num）前面，是它的手足節點、不是
+     子節點，不會像 tip 那樣被上面的 textContent 讀寫污染，可以放心讓
      MutationObserver 重跑也不出事。 */
   var ALERT_ICON = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
     'stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
     '<path d="M12 7v6M12 17h.01"/></svg>';
-  function setAlertIcon(row, show) {
-    if (!row) return;
-    var icon = row.querySelector('.m-balance-alert');
+  function setAlertIcon(numEl, show) {
+    if (!numEl || !numEl.parentNode) return;
+    var icon = numEl.previousElementSibling;
+    var hasIcon = icon && icon.classList.contains('m-balance-alert');
     if (show) {
-      if (!icon) {
+      if (!hasIcon) {
         icon = document.createElement('span');
         icon.className = 'm-balance-alert';
         icon.innerHTML = ALERT_ICON;
-        row.insertBefore(icon, row.firstChild);
+        numEl.parentNode.insertBefore(icon, numEl);
       }
-    } else if (icon) {
+    } else if (hasIcon) {
       icon.remove();
     }
   }
@@ -582,7 +582,7 @@
       var text = isAbbrev ? abbreviate(raw) : fmtFull(raw);
       if (el.textContent !== text) el.textContent = text;
       el.classList.toggle('m-balance-abbrev', isAbbrev);
-      setAlertIcon(el.closest('.tb-balance-row'), isAbbrev);
+      setAlertIcon(el, isAbbrev);
     });
   }
 
