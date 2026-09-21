@@ -1,0 +1,18 @@
+{
+  "__full__": {
+    "about-tab active": "p-[8px_18px] rounded-[999px] border! border-gold-hi! bg-[image:var(--gold-grad)]! text-[#3a2604] text-[13px] font-bold about-tab active"
+  },
+
+  "about-title": "text-[22px] font-extrabold m-[0_0_16px]",
+  "about-tabs": "flex gap-[8px] flex-wrap mb-[18px]",
+  "about-tab": "p-[8px_18px] rounded-[999px] border! border-line! bg-bg-panel! text-text-mid text-[13px] font-bold [&.active]:bg-[image:var(--gold-grad)]! [&.active]:border-gold-hi! [&.active]:text-[#3a2604]! about-tab",
+  "about-card": "rounded-lg border border-line bg-bg-panel shadow-card p-[20px] mb-[14px]",
+  "about-card-title": "text-[15px] font-extrabold m-[0_0_10px] text-text",
+  "about-text": "text-[13.5px] leading-[1.8] text-text-mid m-[0_0_10px] last:mb-0",
+  "about-group-title": "text-[13px] font-extrabold text-gold-deep m-[20px_0_10px] first:mt-0",
+
+  "faq-card": "group rounded-md border border-line bg-bg-panel mb-[8px] overflow-hidden faq-card",
+  "faq-trigger": "flex items-center justify-between w-full p-[14px_16px] text-[13.5px] font-bold text-text text-left faq-trigger",
+  "faq-chevron": "w-[16px] h-[16px] text-text-mid transition-transform duration-150 shrink-0 group-[.open]:rotate-180",
+  "faq-answer": "hidden group-[.open]:block p-[0_16px_16px] text-[13px] leading-[1.8] text-text-mid m-0"
+}
