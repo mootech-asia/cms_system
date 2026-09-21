@@ -391,7 +391,7 @@ img { display: block; }
 }
 .sidebar.collapsed .sb-item.active .sb-icon { color: var(--accent); filter: none; }
 
-/* sidebar extra: language + skin + deposit (above socials) */
+/* sidebar extra: language + deposit (above socials) */
 .sidebar-extra {
   padding: 12px 14px 4px;
   display: flex;
@@ -5287,8 +5287,7 @@ select.twk-field {
   border-bottom: 1px solid var(--line);
 }
 .sidebar .sidebar-list { order: 2; }
-.sidebar .sidebar-extra .sb-lang-menu,
-.sidebar .sidebar-extra .tb-skin-menu {
+.sidebar .sidebar-extra .sb-lang-menu {
   top: calc(100% + 6px);
   bottom: auto;
 }
@@ -5321,7 +5320,7 @@ select.twk-field {
 }
 
 
-/* ── SIDEBAR SKIN SELECTOR ───────────────── */
+/* ── TOPBAR SKIN SELECTOR ───────────────── */
 .tb-skin-wrap { position: relative; }
 .tb-skin-trigger { position: relative; }
 .tb-skin-swatch {
@@ -5337,10 +5336,11 @@ select.twk-field {
 }
 .tb-skin-menu {
   position: absolute;
-  bottom: calc(100% + 6px);
-  left: 0;
+  top: calc(100% + 8px);
   right: 0;
   z-index: 70;
+  width: 236px;
+  max-width: calc(100vw - 24px);
   max-height: calc(100vh - var(--header-h) - 24px);
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -5397,6 +5397,13 @@ select.twk-field {
 .tb-skin-option > svg {
   flex: 0 0 auto;
   color: var(--accent);
+}
+
+@media (max-width: 700px) {
+  /* 只鎖定 header 內的外觀鈕（觸發位置會隨登入狀態左右浮動，改用 fixed
+     固定在視口右上角）；側邊選單裡的外觀鈕位置固定，維持預設 absolute
+     跟著觸發按鈕本身即可，不套用這條。 */
+  .header-actions .tb-skin-menu { position: fixed; top: calc(var(--header-h) + 8px); right: 12px; }
 }
 
 
