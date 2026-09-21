@@ -32,26 +32,26 @@
   </header>
 
   <main>
-    <div class="max-w-[1360px] mx-auto pt-[24px] pb-[48px] pl-[20px] pr-[92px] max-[720px]:pr-[20px] uikit-wrap">
+    <div class="max-w-[1360px] mx-auto pt-[24px] pb-[48px] pl-[20px] pr-[92px] max-[720px]:pr-[20px]">
       <h1 class="text-[22px] font-extrabold m-[0_0_16px]">UI Kit（元件展示 / 開發參考）</h1>
 
-      <div class="uikit-section">
-        <h2 class="uikit-section-title">色彩 Token</h2>
-        <div class="uikit-row">
-          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--red)"></div>--red</div>
-          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--red-deep)"></div>--red-deep</div>
-          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--gold)"></div>--gold</div>
-          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--gold-hi)"></div>--gold-hi</div>
-          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--gold-deep)"></div>--gold-deep</div>
-          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--bg)"></div>--bg</div>
-          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--bg-panel)"></div>--bg-panel</div>
-          <div class="uikit-swatch"><div class="uikit-swatch-color" style="background:var(--text)"></div>--text</div>
+      <div class="mb-[32px]">
+        <h2 class="text-[16px] font-extrabold m-[0_0_14px] pb-[8px] border-b-2 border-gold-hi inline-block">色彩 Token</h2>
+        <div class="flex items-center gap-[12px] flex-wrap p-[16px] rounded-md bg-bg-panel border border-line">
+          <div class="flex flex-col items-center gap-[6px] text-[11px] text-text-dim"><div class="w-[56px] h-[56px] rounded-md border border-line" style="background:var(--red)"></div>--red</div>
+          <div class="flex flex-col items-center gap-[6px] text-[11px] text-text-dim"><div class="w-[56px] h-[56px] rounded-md border border-line" style="background:var(--red-deep)"></div>--red-deep</div>
+          <div class="flex flex-col items-center gap-[6px] text-[11px] text-text-dim"><div class="w-[56px] h-[56px] rounded-md border border-line" style="background:var(--gold)"></div>--gold</div>
+          <div class="flex flex-col items-center gap-[6px] text-[11px] text-text-dim"><div class="w-[56px] h-[56px] rounded-md border border-line" style="background:var(--gold-hi)"></div>--gold-hi</div>
+          <div class="flex flex-col items-center gap-[6px] text-[11px] text-text-dim"><div class="w-[56px] h-[56px] rounded-md border border-line" style="background:var(--gold-deep)"></div>--gold-deep</div>
+          <div class="flex flex-col items-center gap-[6px] text-[11px] text-text-dim"><div class="w-[56px] h-[56px] rounded-md border border-line" style="background:var(--bg)"></div>--bg</div>
+          <div class="flex flex-col items-center gap-[6px] text-[11px] text-text-dim"><div class="w-[56px] h-[56px] rounded-md border border-line" style="background:var(--bg-panel)"></div>--bg-panel</div>
+          <div class="flex flex-col items-center gap-[6px] text-[11px] text-text-dim"><div class="w-[56px] h-[56px] rounded-md border border-line" style="background:var(--text)"></div>--text</div>
         </div>
       </div>
 
-      <div class="uikit-section">
-        <h2 class="uikit-section-title">按鈕 Buttons</h2>
-        <div class="uikit-row">
+      <div class="mb-[32px]">
+        <h2 class="text-[16px] font-extrabold m-[0_0_14px] pb-[8px] border-b-2 border-gold-hi inline-block">按鈕 Buttons</h2>
+        <div class="flex items-center gap-[12px] flex-wrap p-[16px] rounded-md bg-bg-panel border border-line">
           <button type="button" class="p-[9px_20px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold">btn-gold</button>
           <span style="background:var(--header-grad);padding:8px 10px;border-radius:999px;display:inline-flex"><button type="button" class="p-[9px_20px] border! border-[rgba(255,255,255,0.3)]! rounded-[999px] bg-[rgba(255,255,255,0.12)]! text-text-on-header font-bold text-[13px] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none btn-gold quiet">btn-gold quiet（僅用於深色底）</button></span>
           <button type="button" class="p-[7px_18px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] text-[13px] font-bold transition-[background,color,border-color] duration-150 listing-tab active">listing-tab active</button>
@@ -61,9 +61,9 @@
         </div>
       </div>
 
-      <div class="uikit-section">
-        <h2 class="uikit-section-title">卡片 Cards</h2>
-        <div class="uikit-grid">
+      <div class="mb-[32px]">
+        <h2 class="text-[16px] font-extrabold m-[0_0_14px] pb-[8px] border-b-2 border-gold-hi inline-block">卡片 Cards</h2>
+        <div class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-[14px]">
           <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
             <div class="relative aspect-square bg-line overflow-hidden game-tile-art"><span class="absolute top-[6px] left-[6px] p-[2px_7px] rounded-[999px] bg-red text-text-on-header text-[10px] font-bold" data-i18n="game.tagExclusive">獨家</span><img src="assets/mock/game-01.webp" alt="" loading="lazy" class="w-full h-full object-cover" /></div>
             <div class="text-[12px] p-[8px_8px_0] font-bold text-text whitespace-nowrap overflow-hidden text-ellipsis game-tile-name">game-tile 範例</div>
@@ -72,26 +72,26 @@
         </div>
       </div>
 
-      <div class="uikit-section">
-        <h2 class="uikit-section-title">表單 Forms</h2>
-        <div class="uikit-row" style="flex-direction:column;align-items:stretch;max-width:320px">
+      <div class="mb-[32px]">
+        <h2 class="text-[16px] font-extrabold m-[0_0_14px] pb-[8px] border-b-2 border-gold-hi inline-block">表單 Forms</h2>
+        <div class="flex items-center gap-[12px] flex-wrap p-[16px] rounded-md bg-bg-panel border border-line" style="flex-direction:column;align-items:stretch;max-width:320px">
           <input class="w-full p-[11px_14px] rounded-md border border-line bg-bg text-[14px] text-text form-input" placeholder="form-input" />
           <input class="w-full p-[12px_14px] rounded-md border border-line bg-bg text-[15px] font-bold text-text mb-[8px] pay-field" placeholder="pay-field" />
           <div class="flex items-center gap-[8px] p-[6px_6px_6px_14px] rounded-[999px] border border-line bg-bg-panel text-text-dim listing-search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="text" placeholder="listing-search" /><button type="button" data-i18n="game.search">搜尋</button></div>
         </div>
       </div>
 
-      <div class="uikit-section">
-        <h2 class="uikit-section-title">標籤 Tags</h2>
-        <div class="uikit-row">
+      <div class="mb-[32px]">
+        <h2 class="text-[16px] font-extrabold m-[0_0_14px] pb-[8px] border-b-2 border-gold-hi inline-block">標籤 Tags</h2>
+        <div class="flex items-center gap-[12px] flex-wrap p-[16px] rounded-md bg-bg-panel border border-line">
           <span class="absolute top-[6px] left-[6px] p-[2px_7px] rounded-[999px] bg-red text-text-on-header text-[10px] font-bold" style="position:static">獨家</span>
-          <span class="acct-vip-badge">VIP1</span>
+          <span class="p-[3px_10px] rounded-[999px] bg-[image:var(--gold-grad)] text-[#3a2604] text-[11.5px] font-extrabold">VIP1</span>
           <span class="absolute top-[10px] left-[10px] p-[3px_10px] rounded-[999px] bg-red text-text-on-header text-[11px] font-bold" style="position:static;display:inline-block">限時</span>
         </div>
       </div>
 
-      <div class="uikit-section">
-        <h2 class="uikit-section-title">表格 Table</h2>
+      <div class="mb-[32px]">
+        <h2 class="text-[16px] font-extrabold m-[0_0_14px] pb-[8px] border-b-2 border-gold-hi inline-block">表格 Table</h2>
         <div class="overflow-x-auto rounded-md border border-line">
           <table class="w-full border-collapse text-[13px] whitespace-nowrap record-table">
             <thead><tr><th>欄位一</th><th class="num">欄位二</th></tr></thead>

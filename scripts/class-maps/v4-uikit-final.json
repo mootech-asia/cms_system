@@ -1,0 +1,10 @@
+{
+  "uikit-wrap": "",
+  "uikit-section": "mb-[32px]",
+  "uikit-section-title": "text-[16px] font-extrabold m-[0_0_14px] pb-[8px] border-b-2 border-gold-hi inline-block",
+  "uikit-row": "flex items-center gap-[12px] flex-wrap p-[16px] rounded-md bg-bg-panel border border-line",
+  "uikit-swatch": "flex flex-col items-center gap-[6px] text-[11px] text-text-dim",
+  "uikit-swatch-color": "w-[56px] h-[56px] rounded-md border border-line",
+  "uikit-grid": "grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-[14px]",
+  "acct-vip-badge": "p-[3px_10px] rounded-[999px] bg-[image:var(--gold-grad)] text-[#3a2604] text-[11.5px] font-extrabold"
+}
