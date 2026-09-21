@@ -1,0 +1,18 @@
+{
+  "record-filters": "flex items-center gap-[10px] flex-wrap mb-[14px] [&_select]:p-[8px_12px] [&_select]:rounded-md [&_select]:border [&_select]:border-line [&_select]:bg-bg-panel [&_select]:text-[13px] [&_select]:text-text [&_input]:p-[8px_12px] [&_input]:rounded-md [&_input]:border [&_input]:border-line [&_input]:bg-bg-panel [&_input]:text-[13px] [&_input]:text-text",
+  "record-table-wrap": "overflow-x-auto rounded-md border border-line",
+  "record-table": "w-full border-collapse text-[13px] whitespace-nowrap record-table",
+  "record-empty-note": "p-[32px] text-center text-text-dim text-[13px]",
+  "record-total": "flex items-center justify-between mt-[14px] p-[14px_18px] rounded-md bg-[image:var(--header-grad)] text-text-on-header",
+  "record-total-label": "font-bold text-[13px]",
+  "record-total-val": "font-extrabold text-[15px] text-gold-hi [font-variant-numeric:tabular-nums]",
+
+  "rt-parlay-row": "peer group rt-parlay-row",
+  "rt-parlay-toggle": "inline-flex items-center justify-center w-[20px] h-[20px] ml-[8px] border-0 rounded-[5px] bg-transparent! text-text-mid align-middle cursor-pointer hover:text-text hover:bg-bg rt-parlay-toggle",
+  "rt-parlay-caret": "block transition-transform duration-150 group-[.open]:rotate-180",
+  "rt-parlay-detail": "hidden peer-[.open]:table-row rt-parlay-detail",
+  "rt-parlay-panel": "p-[14px_16px_18px] bg-bg whitespace-normal",
+  "rt-parlay-summary": "mb-[10px] text-[12.5px] text-text-mid whitespace-nowrap [&_strong]:text-gold [&_strong]:font-bold",
+  "rt-parlay-sep": "mx-[8px]",
+  "rt-parlay-table": "w-full border-collapse text-[12.5px] whitespace-nowrap rt-parlay-table"
+}

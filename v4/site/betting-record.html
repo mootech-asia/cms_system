@@ -47,14 +47,14 @@
       <div class="min-w-0 flex flex-col gap-[18px]">
         <h1 class="text-[20px] font-extrabold m-0" data-i18n="sidebar.bettingRecord">投注紀錄</h1>
         <div class="bg-bg-panel border border-line rounded-lg p-[18px] shadow-card">
-          <div class="record-filters">
+          <div class="flex items-center gap-[10px] flex-wrap mb-[14px] [&_select]:p-[8px_12px] [&_select]:rounded-md [&_select]:border [&_select]:border-line [&_select]:bg-bg-panel [&_select]:text-[13px] [&_select]:text-text [&_input]:p-[8px_12px] [&_input]:rounded-md [&_input]:border [&_input]:border-line [&_input]:bg-bg-panel [&_input]:text-[13px] [&_input]:text-text">
             <input type="text" placeholder="開始日期" data-i18n-placeholder="record.startDate" />
             <span style="color:var(--text-dim)" data-i18n="record.to">至</span>
             <input type="text" placeholder="結束日期" data-i18n-placeholder="record.endDate" />
             <button type="button" class="listing-search-btn p-[9px_20px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold" style="padding:8px 20px" data-i18n="record.search">查詢</button>
           </div>
-          <div class="record-table-wrap">
-            <table class="record-table">
+          <div class="overflow-x-auto rounded-md border border-line">
+            <table class="w-full border-collapse text-[13px] whitespace-nowrap record-table">
               <thead><tr>
           <th data-i18n="record.orderNo">訂單編號</th>
           <th data-i18n="record.game">遊戲</th>
@@ -65,15 +65,15 @@
           <th class="num" data-i18n="record.winLoss">輸贏</th>
               </tr></thead>
               <tbody>
-        <tr class="rt-parlay-row"><td class="mono">202508120001<button type="button" class="rt-parlay-toggle" aria-expanded="false" aria-label="展開串關詳情"><svg class="rt-parlay-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></td><td data-i18n="game.sport">體育</td><td>2025-08-12 15:48</td><td class="num">50,000</td><td class="num">50,000</td><td class="num">92,500</td><td class="num positive">+42,500</td></tr>
-        <tr class="rt-parlay-detail"><td colspan="7"><div class="rt-parlay-panel"><div class="rt-parlay-summary"><span data-i18n="record.parlayLabel">2串1 過關</span><span class="rt-parlay-sep">·</span><span data-i18n="record.combinedOdds">綜合賠率</span> <strong>1.85</strong></div><table class="rt-parlay-table"><thead><tr><th data-i18n="record.league">聯賽</th><th data-i18n="record.event">賽事</th><th data-i18n="record.selection">投注選項</th><th class="num" data-i18n="record.odds">賠率</th><th class="num" data-i18n="record.result">賽果</th><th class="num" data-i18n="record.winLoss">輸贏</th></tr></thead><tbody><tr><td data-i18n="league.premierLeague">英超</td><td><span data-i18n="team.manchesterCity">曼城</span> vs <span data-i18n="team.chelsea">切爾西</span></td><td data-i18n="team.manchesterCity">曼城</td><td class="num">1.55</td><td class="num">2-1</td><td class="num positive" data-i18n="record.won">贏</td></tr><tr><td data-i18n="league.laLiga">西甲</td><td><span data-i18n="team.realMadrid">皇家馬德里</span> vs <span data-i18n="team.barcelona">巴塞隆納</span></td><td data-i18n="team.realMadrid">皇家馬德里</td><td class="num">1.20</td><td class="num">3-1</td><td class="num positive" data-i18n="record.won">贏</td></tr></tbody></table></div></td></tr>
+        <tr class="peer group rt-parlay-row"><td class="mono">202508120001<button type="button" class="inline-flex items-center justify-center w-[20px] h-[20px] ml-[8px] border-0 rounded-[5px] bg-transparent! text-text-mid align-middle cursor-pointer hover:text-text hover:bg-bg rt-parlay-toggle" aria-expanded="false" aria-label="展開串關詳情"><svg class="block transition-transform duration-150 group-[.open]:rotate-180" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button></td><td data-i18n="game.sport">體育</td><td>2025-08-12 15:48</td><td class="num">50,000</td><td class="num">50,000</td><td class="num">92,500</td><td class="num positive">+42,500</td></tr>
+        <tr class="hidden peer-[.open]:table-row rt-parlay-detail"><td class="p-0 border-b border-line" colspan="7"><div class="p-[14px_16px_18px] bg-bg whitespace-normal"><div class="mb-[10px] text-[12.5px] text-text-mid whitespace-nowrap [&_strong]:text-gold [&_strong]:font-bold"><span data-i18n="record.parlayLabel">2串1 過關</span><span class="mx-[8px]">·</span><span data-i18n="record.combinedOdds">綜合賠率</span> <strong>1.85</strong></div><table class="w-full border-collapse text-[12.5px] whitespace-nowrap rt-parlay-table"><thead><tr><th data-i18n="record.league">聯賽</th><th data-i18n="record.event">賽事</th><th data-i18n="record.selection">投注選項</th><th class="num" data-i18n="record.odds">賠率</th><th class="num" data-i18n="record.result">賽果</th><th class="num" data-i18n="record.winLoss">輸贏</th></tr></thead><tbody><tr><td data-i18n="league.premierLeague">英超</td><td><span data-i18n="team.manchesterCity">曼城</span> vs <span data-i18n="team.chelsea">切爾西</span></td><td data-i18n="team.manchesterCity">曼城</td><td class="num">1.55</td><td class="num">2-1</td><td class="num positive" data-i18n="record.won">贏</td></tr><tr><td data-i18n="league.laLiga">西甲</td><td><span data-i18n="team.realMadrid">皇家馬德里</span> vs <span data-i18n="team.barcelona">巴塞隆納</span></td><td data-i18n="team.realMadrid">皇家馬德里</td><td class="num">1.20</td><td class="num">3-1</td><td class="num positive" data-i18n="record.won">贏</td></tr></tbody></table></div></td></tr>
         <tr><td class="mono">202508120002</td><td data-i18n="game.slot">老虎機</td><td>2025-08-12 14:30</td><td class="num">20,000</td><td class="num">20,000</td><td class="num">0</td><td class="num negative">-20,000</td></tr>
         <tr><td class="mono">202508110007</td><td data-i18n="game.live">真人娛樂</td><td>2025-08-11 18:20</td><td class="num">35,000</td><td class="num">35,000</td><td class="num">78,000</td><td class="num positive">+43,000</td></tr>
         <tr><td class="mono">202508110003</td><td data-i18n="game.sport">體育</td><td>2025-08-11 12:15</td><td class="num">10,000</td><td class="num">10,000</td><td class="num">8,500</td><td class="num negative">-1,500</td></tr>
               </tbody>
             </table>
           </div>
-          <div class="record-total"><span class="record-total-label" data-i18n="record.totalPL">總損益</span><span class="record-total-val">64,000</span></div>
+          <div class="flex items-center justify-between mt-[14px] p-[14px_18px] rounded-md bg-[image:var(--header-grad)] text-text-on-header"><span class="font-bold text-[13px]" data-i18n="record.totalPL">總損益</span><span class="font-extrabold text-[15px] text-gold-hi [font-variant-numeric:tabular-nums]">64,000</span></div>
         </div>
 
       </div>

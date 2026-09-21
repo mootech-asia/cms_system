@@ -47,14 +47,14 @@
       <div class="min-w-0 flex flex-col gap-[18px]">
         <h1 class="text-[20px] font-extrabold m-0" data-i18n="sidebar.depositRecord">儲值紀錄</h1>
         <div class="bg-bg-panel border border-line rounded-lg p-[18px] shadow-card">
-          <div class="record-filters">
+          <div class="flex items-center gap-[10px] flex-wrap mb-[14px] [&_select]:p-[8px_12px] [&_select]:rounded-md [&_select]:border [&_select]:border-line [&_select]:bg-bg-panel [&_select]:text-[13px] [&_select]:text-text [&_input]:p-[8px_12px] [&_input]:rounded-md [&_input]:border [&_input]:border-line [&_input]:bg-bg-panel [&_input]:text-[13px] [&_input]:text-text">
             <input type="text" placeholder="開始日期" data-i18n-placeholder="record.startDate" />
             <span style="color:var(--text-dim)" data-i18n="record.to">至</span>
             <input type="text" placeholder="結束日期" data-i18n-placeholder="record.endDate" />
             <button type="button" class="listing-search-btn p-[9px_20px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold" style="padding:8px 20px" data-i18n="record.search">查詢</button>
           </div>
-          <div class="record-table-wrap">
-            <table class="record-table">
+          <div class="overflow-x-auto rounded-md border border-line">
+            <table class="w-full border-collapse text-[13px] whitespace-nowrap record-table">
               <thead><tr>
           <th data-i18n="record.txNo">交易編號</th>
           <th data-i18n="record.requestTime">申請時間</th>
@@ -72,7 +72,7 @@
               </tbody>
             </table>
           </div>
-          <div class="record-total"><span class="record-total-label" data-i18n="record.totalDeposit">總儲值金額</span><span class="record-total-val">160,000</span></div>
+          <div class="flex items-center justify-between mt-[14px] p-[14px_18px] rounded-md bg-[image:var(--header-grad)] text-text-on-header"><span class="font-bold text-[13px]" data-i18n="record.totalDeposit">總儲值金額</span><span class="font-extrabold text-[15px] text-gold-hi [font-variant-numeric:tabular-nums]">160,000</span></div>
         </div>
 
       </div>
