@@ -28,6 +28,7 @@
 @layer theme, base, legacy, components, utilities;
 @import 'tailwindcss' source(none);
 @source '../../v4/site/*.html';
+@source '../../v4/site/assets/js/site.js';
 @import '../../v4/site/assets/css/main.css' layer(legacy);
 @import '../../v4/site/assets/css/section-variants.css' layer(legacy);
 @import '../../v4/site/assets/css/skins/imperial-purple.css' layer(legacy);
