@@ -1,0 +1,18 @@
+{
+  "vendor-marquee": "w-full max-w-[1360px] mt-[20px] mx-auto p-[22px_20px] bg-bg-panel border border-line rounded-lg shrink-0 box-border",
+  "vendor-marquee-title": "m-0 mb-[12px] text-[12px] font-bold text-text-dim text-center tracking-[0.06em]",
+  "vendor-marquee-viewport": "overflow-hidden",
+  "vendor-marquee-track": "flex w-max animate-[vendor-marquee-scroll_48s_linear_infinite] hover:[animation-play-state:paused] motion-reduce:animate-none",
+  "vendor-marquee-row": "flex items-center gap-[12px] shrink-0 pr-[12px]",
+  "vendor-badge": "inline-flex items-center justify-center h-[34px] p-[0_16px] rounded-md border border-line bg-bg text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap",
+  "site-footer": "bg-bg-panel border-t border-line pt-[40px] pb-[32px] mt-[20px] shrink-0",
+  "site-footer-inner": "flex flex-col items-center text-center",
+  "site-footer-logo": "h-[45px] w-auto mb-[18px] [filter:var(--footer-logo-filter)] opacity-[0.82]",
+  "site-footer-notice": "max-w-[640px]",
+  "site-footer-divider": "w-full max-w-[640px] h-[1px] bg-line my-[20px]",
+  "site-footer-copyright": "text-[12px] text-text-dim flex items-center gap-[8px] flex-wrap justify-center",
+  "notice-bar": "bg-notice-bg border-b border-line-hi",
+  "notice-bar-inner": "flex items-center justify-between gap-[20px] pt-[9px] pb-[9px] text-[12.5px] text-notice-text",
+  "notice-msg": "flex items-center gap-[8px] flex-1 min-w-0 overflow-hidden",
+  "notice-links": "flex items-center gap-[18px] shrink-0"
+}
