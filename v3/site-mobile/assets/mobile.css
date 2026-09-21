@@ -404,4 +404,24 @@
      同一套元件、同樣沿用桌機尺寸，一併縮小。 */
   .wd-method-tabs button { min-width: 128px; padding: 9px 12px; font-size: var(--type-body-sm); min-height: 44px; gap: 7px; }
   .wd-coin-mark { width: 18px; height: 18px; font-size: 11px; }
+
+  /* 頂欄餘額/點數縮寫後（見 assets/mobile.js）的可點提示：縮寫數字本身
+     加底線提示可點，點擊彈出的小 tip 顯示完整數字，沿用既有 fadeIn。 */
+  .m-balance-abbrev { position: relative; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 2px; }
+  .m-balance-tip {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    white-space: nowrap;
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: 1px solid var(--line-hi);
+    background: var(--bg-elev);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: var(--shadow-card);
+    z-index: 80;
+    animation: fadeIn .12s;
+  }
 }

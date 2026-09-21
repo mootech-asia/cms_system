@@ -504,3 +504,77 @@
     if (signinModal) new MutationObserver(syncGate).observe(signinModal, { attributes: true, attributeFilter: ['style'] });
   }
 })();
+
+/* 頂欄餘額/點數位數安全網：正常金額完整顯示到小數點兩位，一旦整數位數
+   到 12 位才縮寫成 k/M/B/T，縮寫後的數字可點一下彈出小 tip 看完整數字。
+   site.js 的 setAuthSection() 登入狀態改變時會整段換掉 .header-actions
+   （PC/手機共用同一份 template），所以跟上面遊戲 modal 那段一樣用
+   MutationObserver 監看重新套用；只處理 .m-header 範圍內的餘額，不碰
+   桌機版 header 的餘額顯示。 */
+(function () {
+  var container = document.querySelector('.container.m-header');
+  if (!container) return;
+
+  var UNITS = [
+    { value: 1e12, suffix: 'T' },
+    { value: 1e9, suffix: 'B' },
+    { value: 1e6, suffix: 'M' },
+    { value: 1e3, suffix: 'k' }
+  ];
+
+  function parseFull(text) {
+    var n = parseFloat(String(text).replace(/,/g, ''));
+    return isNaN(n) ? 0 : n;
+  }
+  function fmtFull(n) {
+    return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function abbreviate(n) {
+    var abs = Math.abs(n);
+    for (var i = 0; i < UNITS.length; i++) {
+      if (abs >= UNITS[i].value) return (n / UNITS[i].value).toFixed(2) + UNITS[i].suffix;
+    }
+    return fmtFull(n);
+  }
+  function integerDigits(n) {
+    return Math.max(1, Math.floor(Math.abs(n))).toString().length;
+  }
+
+  function closeTip() {
+    var tip = document.querySelector('.m-balance-tip');
+    if (tip) tip.remove();
+  }
+
+  function syncBalanceNums() {
+    var nums = container.querySelectorAll('.tb-balance-num');
+    Array.prototype.forEach.call(nums, function (el) {
+      /* tip 是塞在 .tb-balance-num 底下的子節點（見下方點擊委派），這裡
+         的 MutationObserver 監看整個 container 的 subtree，塞入 tip 也會
+         觸發這個函式重跑；若不跳過，接下來 el.textContent 讀到的會是
+         「縮寫數字+tip 文字」黏在一起的髒字串，寫回去又把剛塞的 tip 沖掉。
+         tip 還在的這段期間，數字本身沒變，略過即可。 */
+      if (el.querySelector('.m-balance-tip')) return;
+      var raw = el.hasAttribute('data-raw') ? parseFloat(el.getAttribute('data-raw')) : parseFull(el.textContent);
+      el.setAttribute('data-raw', String(raw));
+      var text = integerDigits(raw) >= 12 ? abbreviate(raw) : fmtFull(raw);
+      if (el.textContent !== text) el.textContent = text;
+      el.classList.toggle('m-balance-abbrev', integerDigits(raw) >= 12);
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    var num = e.target.closest && e.target.closest('.m-balance-abbrev');
+    if (!num) { closeTip(); return; }
+    if (num.querySelector('.m-balance-tip')) { closeTip(); return; }
+    closeTip();
+    var tip = document.createElement('span');
+    tip.className = 'm-balance-tip';
+    tip.textContent = fmtFull(parseFloat(num.getAttribute('data-raw') || '0'));
+    num.appendChild(tip);
+  });
+
+  syncBalanceNums();
+  if (window.MutationObserver) {
+    new MutationObserver(syncBalanceNums).observe(container, { childList: true, subtree: true, characterData: true });
+  }
+})();
