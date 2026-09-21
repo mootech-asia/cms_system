@@ -1361,7 +1361,10 @@ img { max-width: 100%; display: block; }
 .about-title { font-size: 22px; font-weight: 900; margin: 0 0 16px; text-transform: uppercase; }
 .about-tabs {
   display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px;
-  padding: 8px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px;
+  /* border-radius 999px 在單行時是膠囊外框,但 8 個頁籤在窄螢幕換行
+     成多行時,999px 會把整塊多行區域畫成一個巨大橢圓形,而非貼合每行——
+     改用固定圓角,維持「膠囊按鈕群組」的視覺但不受行數影響。 */
+  padding: 8px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--radius-lg);
 }
 .about-tab { padding: 8px 18px; border: 0; border-radius: 999px; background: transparent; color: var(--text-mid); font-size: 13px; font-weight: 800; text-transform: uppercase; }
 .about-tab.active { background: var(--accent-grad); color: var(--accent-ink); }
