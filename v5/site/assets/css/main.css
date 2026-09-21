@@ -281,6 +281,21 @@ img { max-width: 100%; display: block; }
   --text: #201d18;
   --text-mid: #5b564c;
   --text-dim: #8b8578;
+  /* Tailwind utility（bg-bg-panel／text-text-dim 等）吃的是 --color-*
+     這層轉介 var(--color-bg-panel: var(--bg-panel)) 定義在 :root，
+     且只在 :root 算過一次值：跟下面 color 屬性同樣的「已算好的值」繼承
+     問題，但 --color-* 是 custom property，沒有明講就不會在這層重新求
+     值,子孫元素的 .bg-bg-panel 等 utility 會吃到 :root 那份算完的深色
+     舊值,而非這裡覆寫的淺色。逐一在這層重新宣告一次 --color-*,才能讓
+     子層的 Tailwind utility 也跟著換成淺色。 */
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-bg-panel: var(--bg-panel);
+  --color-line: var(--line);
+  --color-line-hi: var(--line-hi);
+  --color-text: var(--text);
+  --color-text-mid: var(--text-mid);
+  --color-text-dim: var(--text-dim);
   background: var(--bg);
   /* color 是一般屬性、繼承的是「已算好的值」而非 var() 運算式本身：
      body 早就用 var(--text) 把自己的 color 定成深色主題那份值,子孫元素
