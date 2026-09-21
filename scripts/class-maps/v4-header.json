@@ -1,0 +1,22 @@
+{
+  "__full__": {
+    "btn-gold quiet": "p-[9px_20px] border! border-[rgba(255,255,255,0.3)]! rounded-[999px] bg-[rgba(255,255,255,0.12)]! text-text-on-header font-bold text-[13px] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none btn-gold quiet",
+    "header-nav-link active": "flex items-center gap-[6px] p-[8px_14px] rounded-[999px] text-text-on-header! text-[13.5px] font-semibold whitespace-nowrap transition-[background] duration-150 bg-[rgba(255,255,255,0.16)] header-nav-link active",
+    "header-nav-link": "flex items-center gap-[6px] p-[8px_14px] rounded-[999px] text-text-on-header! text-[13.5px] font-semibold whitespace-nowrap transition-[background] duration-150 hover:bg-[rgba(255,255,255,0.16)] header-nav-link"
+  },
+  "site-header": "bg-[image:var(--header-grad)] site-header",
+  "header-top": "flex items-center gap-[12px] pt-[14px] pb-[14px]",
+  "brand-link": "flex items-center shrink-0",
+  "brand-logo": "h-[56px] w-auto [filter:brightness(0)_invert(1)]",
+  "header-nav": "flex items-center gap-[4px] flex-wrap pt-[10px] pb-[12px] border-t border-[rgba(255,255,255,0.14)] max-[1080px]:hidden header-nav",
+  "header-nav-icon": "w-[16px] h-[16px] shrink-0",
+  "header-auth": "flex items-center gap-[8px] shrink-0 max-[720px]:hidden header-auth",
+  "header-input": "w-[128px] p-[8px_12px] rounded-[999px] border border-[rgba(255,255,255,0.3)] bg-[rgba(0,0,0,0.12)] text-text-on-header text-[12.5px] placeholder:text-[rgba(255,246,234,0.6)] header-input",
+  "header-forgot": "text-[11.5px] text-[rgba(255,246,234,0.75)] whitespace-nowrap [&[data-auth-open]]:cursor-pointer [&[data-auth-open]]:hover:text-gold-hi header-forgot",
+  "btn-gold": "p-[9px_20px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold",
+  "header-lang": "relative ml-auto",
+  "header-lang-trigger": "flex items-center gap-[6px] p-[8px_12px] rounded-[999px] border! border-[rgba(255,255,255,0.22)]! bg-[rgba(255,255,255,0.14)]! text-text-on-header text-[12.5px] font-bold hover:bg-[rgba(255,255,255,0.22)]!",
+  "header-lang-menu": "absolute top-[calc(100%+8px)] right-0 min-w-[128px] bg-bg-panel border border-line rounded-md shadow-card p-[6px] z-[90]",
+  "header-lang-option": "block w-full text-left p-[8px_10px] rounded-sm text-text text-[13px] font-semibold bg-transparent! hover:bg-bg! [&.active]:text-gold-deep [&.active]:bg-[rgba(207,154,62,0.12)]! [&.active]:font-extrabold",
+  "header-menu-trigger": "hidden max-[1080px]:flex w-[38px] h-[38px] rounded-full items-center justify-center bg-[rgba(255,255,255,0.14)]! text-text-on-header shrink-0 hover:bg-[rgba(255,255,255,0.22)]! header-menu-trigger"
+}

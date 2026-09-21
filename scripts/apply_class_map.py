@@ -19,9 +19,13 @@ def main():
         mapping = json.load(f)
 
     class_re = re.compile(r'class="([^"]*)"')
+    full_map = mapping.get('__full__', {})
 
     def repl(m):
-        tokens = m.group(1).split()
+        original = m.group(1)
+        if original in full_map:
+            return 'class="' + full_map[original] + '"'
+        tokens = original.split()
         out = []
         for t in tokens:
             if t in mapping:
