@@ -545,6 +545,28 @@
     if (tip) tip.remove();
   }
 
+  /* 驚嘆號固定插在該行 .tb-balance-label（"Balance:"/"Points:"）前面，
+     插進 .tb-balance-row 是 .tb-balance-num 的手足節點、不是它的子節點，
+     不會像 tip 那樣被上面的 textContent 讀寫污染，可以放心讓
+     MutationObserver 重跑也不出事。 */
+  var ALERT_ICON = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+    'stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M12 7v6M12 17h.01"/></svg>';
+  function setAlertIcon(row, show) {
+    if (!row) return;
+    var icon = row.querySelector('.m-balance-alert');
+    if (show) {
+      if (!icon) {
+        icon = document.createElement('span');
+        icon.className = 'm-balance-alert';
+        icon.innerHTML = ALERT_ICON;
+        row.insertBefore(icon, row.firstChild);
+      }
+    } else if (icon) {
+      icon.remove();
+    }
+  }
+
   function syncBalanceNums() {
     var nums = container.querySelectorAll('.tb-balance-num');
     Array.prototype.forEach.call(nums, function (el) {
@@ -556,9 +578,11 @@
       if (el.querySelector('.m-balance-tip')) return;
       var raw = el.hasAttribute('data-raw') ? parseFloat(el.getAttribute('data-raw')) : parseFull(el.textContent);
       el.setAttribute('data-raw', String(raw));
-      var text = integerDigits(raw) >= 12 ? abbreviate(raw) : fmtFull(raw);
+      var isAbbrev = integerDigits(raw) >= 12;
+      var text = isAbbrev ? abbreviate(raw) : fmtFull(raw);
       if (el.textContent !== text) el.textContent = text;
-      el.classList.toggle('m-balance-abbrev', integerDigits(raw) >= 12);
+      el.classList.toggle('m-balance-abbrev', isAbbrev);
+      setAlertIcon(el.closest('.tb-balance-row'), isAbbrev);
     });
   }
 

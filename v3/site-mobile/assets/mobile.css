@@ -424,4 +424,15 @@
     z-index: 80;
     animation: fadeIn .12s;
   }
+  .m-balance-alert {
+    display: inline-flex;
+    margin-right: 4px;
+    color: var(--warning);
+    animation: m-balance-blink 1s ease-in-out infinite;
+  }
+}
+
+@keyframes m-balance-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .2; }
 }
