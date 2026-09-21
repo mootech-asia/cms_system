@@ -46,17 +46,17 @@
     </div>
 
     <div class="max-w-[1360px] mx-auto pt-[20px] pb-[40px] pl-[20px] pr-[92px] max-[720px]:pr-[20px] listing-wrap">
-      <div class="listing-head">
-        <h2 class="listing-title" data-i18n="game.hotGames">熱門遊戲</h2>
-        <div class="listing-search">
+      <div class="flex items-center gap-[16px] flex-wrap mb-[14px]">
+        <h2 class="text-[22px] font-extrabold m-0 flex-1" data-i18n="game.hotGames">熱門遊戲</h2>
+        <div class="flex items-center gap-[8px] p-[6px_6px_6px_14px] rounded-[999px] border border-line bg-bg-panel text-text-dim listing-search">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
           <input type="text" placeholder="搜尋遊戲" data-i18n-placeholder="game.searchPlaceholder" />
           <button type="button" data-i18n="game.search">搜尋</button>
         </div>
       </div>
-      <div class="listing-tabs" role="tablist">
-        <button type="button" class="listing-tab active" data-listing-tab="all" data-i18n="game.vendor">廠商</button>
-        <button type="button" class="listing-tab" data-listing-tab="fav" data-i18n="game.favorite">收藏</button>
+      <div class="flex items-center gap-[8px] flex-wrap mb-[16px]" role="tablist">
+        <button type="button" class="p-[7px_18px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] text-[13px] font-bold transition-[background,color,border-color] duration-150 listing-tab active" data-listing-tab="all" data-i18n="game.vendor">廠商</button>
+        <button type="button" class="p-[7px_18px] border! border-line! rounded-[999px] bg-bg-panel! text-text-mid text-[13px] font-bold transition-[background,color,border-color] duration-150 hover:border-gold-hi! hover:text-gold-deep [&.active]:bg-[image:var(--gold-grad)]! [&.active]:border-gold-hi! [&.active]:text-[#3a2604]! listing-tab" data-listing-tab="fav" data-i18n="game.favorite">收藏</button>
       </div>
       <div class="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] justify-start gap-[14px]" id="listingGrid">
             <article class="rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile">
@@ -210,7 +210,7 @@
               <a href="#" class="block m-[6px] p-[5px_0] text-center rounded-[999px] bg-[image:linear-gradient(180deg,var(--gold-hi)_0%,var(--gold)_100%)] text-[#3a2604]! text-[10.5px] font-bold" data-i18n="game.startPlaying">開始遊戲</a>
             </article>
       </div>
-      <p class="listing-empty" id="listingEmpty" hidden>還沒有收藏任何遊戲。</p>
+      <p class="p-[48px_0] text-center text-text-dim text-[14px]" id="listingEmpty" hidden>還沒有收藏任何遊戲。</p>
     </div>
   </main>
 

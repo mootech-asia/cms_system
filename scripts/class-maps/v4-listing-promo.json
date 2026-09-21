@@ -1,0 +1,22 @@
+{
+  "__full__": {
+    "listing-tab active": "p-[7px_18px] border! border-gold-hi! rounded-[999px] bg-[image:var(--gold-grad)]! text-[#3a2604] text-[13px] font-bold transition-[background,color,border-color] duration-150 listing-tab active",
+    "listing-tab": "p-[7px_18px] border! border-line! rounded-[999px] bg-bg-panel! text-text-mid text-[13px] font-bold transition-[background,color,border-color] duration-150 hover:border-gold-hi! hover:text-gold-deep [&.active]:bg-[image:var(--gold-grad)]! [&.active]:border-gold-hi! [&.active]:text-[#3a2604]! listing-tab"
+  },
+
+  "listing-head": "flex items-center gap-[16px] flex-wrap mb-[14px]",
+  "listing-title": "text-[22px] font-extrabold m-0 flex-1",
+  "listing-search": "flex items-center gap-[8px] p-[6px_6px_6px_14px] rounded-[999px] border border-line bg-bg-panel text-text-dim listing-search",
+  "listing-tabs": "flex items-center gap-[8px] flex-wrap mb-[16px]",
+  "listing-empty": "p-[48px_0] text-center text-text-dim text-[14px]",
+
+  "promo-grid": "grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-[18px]",
+  "promo-card": "flex flex-col rounded-lg overflow-hidden border border-line bg-bg-panel shadow-card transition-[transform,border-color] duration-150 hover:-translate-y-[3px] hover:border-line-hi",
+  "promo-card-art": "relative aspect-[16/9] overflow-hidden bg-line",
+  "promo-card-tag": "absolute top-[10px] left-[10px] p-[3px_10px] rounded-[999px] bg-red text-text-on-header text-[11px] font-bold",
+  "promo-card-body": "p-[16px] flex flex-col gap-[8px] flex-1",
+  "promo-card-title": "text-[15.5px] font-extrabold m-0 text-text",
+  "promo-card-desc": "text-[13px] leading-[1.6] text-text-mid m-0 flex-1",
+  "promo-card-actions": "flex items-center gap-[14px]",
+  "promo-card-more": "text-[12.5px] font-bold text-gold-deep! hover:text-red!"
+}
