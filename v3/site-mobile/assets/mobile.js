@@ -545,22 +545,19 @@
     if (tip) tip.remove();
   }
 
-  /* 驚嘆號插在數字本身（.tb-balance-num）前面，是它的手足節點、不是
-     子節點，不會像 tip 那樣被上面的 textContent 讀寫污染，可以放心讓
-     MutationObserver 重跑也不出事。 */
-  var ALERT_ICON = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
-    'stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-    '<path d="M12 7v6M12 17h.01"/></svg>';
+  /* 驚嘆號（半形 "!"）插在數字本身（.tb-balance-num）後面，是它的手足
+     節點、不是子節點，不會像 tip 那樣被上面的 textContent 讀寫污染，
+     可以放心讓 MutationObserver 重跑也不出事。 */
   function setAlertIcon(numEl, show) {
     if (!numEl || !numEl.parentNode) return;
-    var icon = numEl.previousElementSibling;
+    var icon = numEl.nextElementSibling;
     var hasIcon = icon && icon.classList.contains('m-balance-alert');
     if (show) {
       if (!hasIcon) {
         icon = document.createElement('span');
         icon.className = 'm-balance-alert';
-        icon.innerHTML = ALERT_ICON;
-        numEl.parentNode.insertBefore(icon, numEl);
+        icon.textContent = '!';
+        numEl.parentNode.insertBefore(icon, numEl.nextSibling);
       }
     } else if (hasIcon) {
       icon.remove();
