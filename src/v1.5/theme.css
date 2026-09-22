@@ -1,0 +1,71 @@
+/* v1.5 — 真正的 Tailwind utility class 寫法（取代語意化 class + 手寫 CSS）。
+   v1.5 沒有換膚機制（單一主題），--c-*／--g-* 等 raw token 沿用
+   v1.5/tailwind/site/assets/css/main.css 的 :root 定義，透過
+   @import layer(legacy) 帶進來，@theme static 的 --color-*: var(--c-*)
+   對應鏈可以直接吃到，不在此檔重複宣告色值。
+
+   間距/尺寸類 utility 一律優先採用 Tailwind 預設刻度，只有完全對不上
+   4px 刻度時才四捨五入取最接近的刻度值（v4 那次工程師 review 的結論，
+   全版本一體適用）；版面級的大尺寸容器寬度（max-w/min-w）與字級
+   （text-[Npx]）不在此列，仍用任意值對齊原始設計。--header-h-* 這類
+   版面尺寸變數不進 @theme，維持一般 CSS variable，用
+   [top:var(--header-h-desktop)] 這類任意值語法取值即可，main.css
+   （legacy layer）已經宣告過。--radius-card 因為跟 main.css 既有的
+   CSS variable 同名，若直接 var(--radius-card) 映射會變成自我參照
+   （同名變數互指、無限迴圈，瀏覽器視為無效值），改成字面值 10px。 */
+@layer theme, base, legacy, components, utilities;
+@import 'tailwindcss' source(none);
+@source '../../v1.5/tailwind/site/*.html';
+@source '../../v1.5/tailwind/site/assets/js/site.js';
+@source '../../v1.5/tailwind/site/assets/js/data.js';
+@import '../../v1.5/tailwind/site/assets/css/main.css' layer(legacy);
+
+@theme static {
+  --font-display: 'Pretendard', 'Nanum Gothic', Arial, Helvetica, sans-serif;
+  --radius-card: 10px;
+
+  --color-bg: var(--c-bg);
+  --color-text: var(--c-text);
+  --color-navy: var(--c-navy);
+  --color-navy-2: var(--c-navy-2);
+  --color-navy-soft: var(--c-navy-soft);
+  --color-navy-active: var(--c-navy-active);
+  --color-pink: var(--c-pink);
+  --color-orange: var(--c-orange);
+  --color-pink-hover: var(--c-pink-hover);
+  --color-link-hover: var(--c-link-hover);
+  --color-subtitle: var(--c-subtitle);
+  --color-danger: var(--c-danger);
+  --color-gold: var(--c-gold);
+  --color-yellow: var(--c-yellow);
+  --color-border: var(--c-border);
+  --color-border-soft: var(--c-border-soft);
+}
+
+/* ── Preflight 回歸修正（沿用 v4~v6 的教訓）── main.css 本身沒有這些
+   UA reset，靠瀏覽器預設值；Tailwind Preflight 用 universal selector
+   把 margin/padding 全部歸零、h1~h6 font-size/font-weight 改吃 inherit，
+   一旦連結 tailwind.css 就會跟原站在裸 <p>/<h1>~<h6>、checkbox/radio、
+   svg 預設 inline 顯示這些沒被 main.css 明確覆寫的地方出現落差。這裡
+   補回瀏覽器原本的 UA 預設值，不影響任何 main.css 已明確宣告的規則
+   （legacy layer 優先權高於 base layer）。
+
+   html { line-height: normal } 是這裡最關鍵的一條：main.css 全站沒有
+   任何一處設定 line-height，完全依賴瀏覽器預設值往下繼承；Preflight
+   在 html 設 line-height:1.5，這個值會一路繼承到所有沒有自己設
+   line-height 的文字節點（例如 .hot-game-name/.hot-game-tag），把
+   它們撐高（實測 h3.hot-game-name 23px→30px）。改回 normal 才會跟
+   原站一致，main.css 裡少數幾處自己寫死 line-height 的規則因為在
+   legacy layer，不受影響。 */
+@layer base {
+  html { line-height: normal; }
+  p { margin: 1em 0; }
+  h1 { margin: 0.67em 0; font-weight: bold; }
+  h2 { margin: 0.83em 0; font-weight: bold; }
+  h3 { margin: 1em 0; font-weight: bold; }
+  h4 { margin: 1.33em 0; font-weight: bold; }
+  h5 { margin: 1.67em 0; font-weight: bold; }
+  h6 { margin: 2.33em 0; font-weight: bold; }
+  input[type='checkbox'], input[type='radio'] { margin: 3px 3px 0 5px; }
+  svg { display: inline; }
+}
