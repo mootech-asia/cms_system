@@ -1172,9 +1172,17 @@
       '</button>';
     }).join('');
   }
+  /* topbar 跟側欄各有一顆 .tb-skin-trigger/.tb-skin-wrap（RWD 斷點切換
+     顯示哪一顆），關閉時要從實際開著選單的那個 wrap 裡找觸發鈕，不能
+     直接抓文件裡第一顆 trigger——側欄那顆在 DOM 順序上排在 topbar 前面，
+     盲抓會把沒開選單的那顆狀態重置，開著的那顆 aria-expanded 卡在 true。 */
   function closeSkinMenu() {
-    var m = document.querySelector('.tb-skin-menu'); if (m) m.remove();
-    var trig = document.querySelector('.tb-skin-trigger'); if (trig) trig.setAttribute('aria-expanded', 'false');
+    var m = document.querySelector('.tb-skin-menu');
+    if (!m) return;
+    var wrap = m.closest('.tb-skin-wrap');
+    var trig = wrap && wrap.querySelector('.tb-skin-trigger');
+    if (trig) trig.setAttribute('aria-expanded', 'false');
+    m.remove();
   }
   function toggleSkinMenu(trigger) {
     var wrap = trigger.closest('.tb-skin-wrap');

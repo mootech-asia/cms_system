@@ -263,6 +263,7 @@ const TRANSLATIONS = Object.freeze({
     }),
     nav: Object.freeze({
       Menu: '選單',
+      Skin: '外觀',
       'My Account': '我的帳戶',
       Lobby: '大廳',
       'Hot Games': '熱門遊戲',
@@ -537,6 +538,7 @@ const TRANSLATIONS = Object.freeze({
     }),
     nav: Object.freeze({
       Menu: 'Menu',
+      Skin: 'Skin',
       'My Account': 'My Account',
       Lobby: 'Lobby',
       'Hot Games': 'Hot Games',
@@ -805,6 +807,7 @@ const TRANSLATIONS = Object.freeze({
     }),
     nav: Object.freeze({
       Menu: '메뉴',
+      Skin: '스킨',
       'My Account': '내 계정',
       Lobby: '홈',
       'Hot Games': '인기 게임',
@@ -1069,6 +1072,7 @@ const TRANSLATIONS = Object.freeze({
     }),
     nav: Object.freeze({
       Menu: 'เมนู',
+      Skin: 'ธีม',
       'My Account': 'บัญชีของฉัน',
       Lobby: 'ล็อบบี้',
       'Hot Games': 'เกมยอดนิยม',
