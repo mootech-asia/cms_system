@@ -400,6 +400,9 @@ img { display: block; }
   border-top: 1px solid var(--line);
 }
 .sidebar.collapsed .sidebar-extra { display: none; }
+/* 側欄外觀鈕預設隱藏：桌機寬螢幕外觀切換走 topbar 的 .tb-skin-wrap，
+   這顆只在 RWD 窄螢幕(topbar 藏起來時)頂上，見下方 900px 斷點。 */
+.sb-skin-wrap { display: none; }
 .sb-lang-wrap { position: relative; }
 .sb-lang,
 .sb-skin {
@@ -759,9 +762,23 @@ img { display: block; }
 .icon-btn:hover { color: var(--text); border-color: var(--line-hi); }
 /* Logo 旁邊的漢堡選單鈕：跟手機版首頁的 .m-topbar-menu 共用同一個
    class（site.js initMobileNav() 已經監聽這個 class 開關側欄），只有
-   在 .nav 隱藏的窄螢幕才顯示，桌機寬螢幕維持隱藏、走 .nav 橫向選單。 */
+   側欄變成 off-canvas 抽屜的窄螢幕才顯示，桌機寬螢幕側欄常駐、不需要
+   這顆鈕。實際讓側欄(.sidebar)變成 off-canvas 抽屜、.shell-main margin
+   歸零的斷點是本檔案下面 900px 那個 @media區塊；layout.css 裡
+   .shell-sidebar 的 768px 規則只影響外層定位用的空殼(沒有背景/沒有
+   內容，看不出視覺差異)，真正決定側欄看不看得到的是這裡的 900px。
+   之前這顆鈕的顯示斷點用 700px，跟真正的 900px 對不上，701~900px
+   這段側欄已經收起、鈕卻還沒出現，導致選單在這個寬度範圍完全打不開。 */
 .tb-brand-group { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .tb-brand-group .m-topbar-menu { display: none; flex-shrink: 0; }
+@media (max-width: 900px) {
+  .tb-brand-group .m-topbar-menu { display: grid; }
+  /* RWD 窄螢幕外觀鈕比照手機版收進側欄選單：topbar 這顆觸發鈕藏起來，
+     改用 .sidebar-extra 裡的 .sb-skin-wrap（見上方，同一套
+     tb-skin-wrap/tb-skin-trigger/tb-skin-menu JS 邏輯）。 */
+  .header-actions .tb-skin-wrap { display: none; }
+  .sb-skin-wrap { display: block; }
+}
 
 /* ── HERO ───────────────────────────────── */
 .hero {
@@ -2471,7 +2488,6 @@ section.lobby-section { margin-top: 44px; }
 @media (max-width: 700px) {
   .container { padding: 0 16px; }
   .nav { display: none; }
-  .tb-brand-group .m-topbar-menu { display: grid; }
   /* .cat-tabs 常駐分類切換列窄螢幕跟側欄選單(MENU 區塊)+底部導覽功能
      重複，隱藏但不從 HTML 移除——site.js 的 initPromosAndCategoryViews()
      用 document.querySelector('.cat-tabs') 找不找得到來判斷「這是不是
@@ -5397,13 +5413,6 @@ select.twk-field {
 .tb-skin-option > svg {
   flex: 0 0 auto;
   color: var(--accent);
-}
-
-@media (max-width: 700px) {
-  /* 只鎖定 header 內的外觀鈕（觸發位置會隨登入狀態左右浮動，改用 fixed
-     固定在視口右上角）；側邊選單裡的外觀鈕位置固定，維持預設 absolute
-     跟著觸發按鈕本身即可，不套用這條。 */
-  .header-actions .tb-skin-menu { position: fixed; top: calc(var(--header-h) + 8px); right: 12px; }
 }
 
 
