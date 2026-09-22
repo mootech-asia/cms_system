@@ -40,6 +40,40 @@
     el.innerHTML = html;
   }
 
+  /* Hero 輪播：4 張 slide 都已經在靜態 HTML 裡(見 hero.mjs 產生的結構)，
+     這裡只負責切換 opacity 顯示哪一張、同步 dots 樣式，不用另外組字串。
+     左右箭頭跟 dot 都走同一個 goTo()，不各自維護一份切換邏輯。 */
+  function initHeroCarousel() {
+    var root = document.getElementById('hero-carousel');
+    if (!root) return;
+    var slides = root.querySelectorAll('.hero-slide');
+    var dots = root.querySelectorAll('.hero-dot');
+    if (!slides.length) return;
+    var current = 0;
+
+    function goTo(i) {
+      current = (i + slides.length) % slides.length;
+      slides.forEach(function (el, idx) {
+        var active = idx === current;
+        el.classList.toggle('opacity-0', !active);
+        el.classList.toggle('pointer-events-none', !active);
+      });
+      dots.forEach(function (el, idx) {
+        var active = idx === current;
+        el.classList.toggle('w-4', active);
+        el.classList.toggle('bg-white', active);
+        el.classList.toggle('w-1.5', !active);
+        el.classList.toggle('bg-white/40', !active);
+      });
+    }
+
+    var prevBtn = root.querySelector('.hero-prev');
+    var nextBtn = root.querySelector('.hero-next');
+    if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
+    dots.forEach(function (el, idx) { el.addEventListener('click', function () { goTo(idx); }); });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     fillRail('best-games-rail', 8, true);
     fillRail('casino-grid', 12, false);
@@ -47,5 +81,6 @@
     if (bestCount) bestCount.textContent = '(13)';
     var casinoCount = document.getElementById('casino-count');
     if (casinoCount) casinoCount.textContent = '(' + (vendors.length * 128) + ')';
+    initHeroCarousel();
   });
 })();

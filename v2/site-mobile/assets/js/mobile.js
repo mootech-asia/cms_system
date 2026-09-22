@@ -120,6 +120,11 @@
     wrap.innerHTML = tpl.innerHTML;
     menuDrawerRoot = wrap.firstElementChild;
     document.body.appendChild(menuDrawerRoot);
+    /* <template> 內容在被搬進 document 之前是 inert 的，DOMContentLoaded
+       當時 i18n.js 的 applyLocale() 掃過一輪時它根本不在 DOM 上，裡面的
+       data-i18n 屬性當然套不到——每次挪進來都要重新跑一次翻譯，跟
+       home.js/category.js/live.js 動態塞卡片同一個坑。 */
+    if (window.__v2mApplyLocale) window.__v2mApplyLocale(menuDrawerRoot);
     document.documentElement.classList.add('overflow-hidden');
     on(menuDrawerRoot, 'click', function (e) {
       if (e.target === menuDrawerRoot || e.target.closest('[data-drawer-close]')) closeMenuDrawer();

@@ -61,6 +61,7 @@
     'page.changePassword': { zh: '變更登入密碼', en: 'Change Login Password', ko: '로그인 비밀번호 변경', th: 'เปลี่ยนรหัสผ่านเข้าสู่ระบบ' },
     'page.about': { zh: '關於我們', en: 'About', ko: '회사 소개', th: 'เกี่ยวกับเรา' },
     'page.customerService': { zh: '客服中心', en: 'Customer Service', ko: '고객 지원', th: 'ฝ่ายบริการลูกค้า' },
+    'drawer.memberCenter': { zh: '會員中心', en: 'Member Center', ko: '회원 센터', th: 'ศูนย์สมาชิก' },
 
     'account.bound': { zh: '綁定', en: 'Bound', ko: '등록', th: 'ผูกบัญชี' },
     'account.memberNo': { zh: '會員編號', en: 'Member ID', ko: '회원 번호', th: 'หมายเลขสมาชิก' },
@@ -124,6 +125,19 @@
     'withdrawalDetail.requestTime': { zh: '申請時間', en: 'Requested At', ko: '신청 시간', th: 'เวลาที่ขอ' },
     'withdrawalDetail.method': { zh: '提款方式', en: 'Withdrawal Method', ko: '출금 방법', th: 'วิธีการถอนเงิน' },
     'withdrawalDetail.status': { zh: '狀態', en: 'Status', ko: '상태', th: 'สถานะ' },
+
+    /* Hero 輪播 4 張 slide 的文案，內容直接對齊 v2/site/assets/js/data.js
+       的 BANNERS + I18N banner.* 那組既有翻譯，不是自己另外編。 */
+    'banner.welcomeTitle': { zh: '儲值狂熱', en: 'Deposit Fever', ko: '충전 열풍', th: 'ฝากเงินสุดคุ้ม' },
+    'banner.welcomeSub': { zh: '迎新加碼 · 快速出款 · 限時開放', en: 'New Member Bonus · Fast Withdrawals · Limited Time', ko: '신규 회원 보너스 · 빠른 출금 · 한정 기간', th: 'โบนัสสมาชิกใหม่ · ถอนเงินไว · จำกัดเวลา' },
+    'banner.worldCupTitle': { zh: '榮耀之路', en: 'Road to Glory', ko: '영광의 길', th: 'เส้นทางสู่ชัยชนะ' },
+    'banner.worldCupSub': { zh: '即時賠率 · 賽事中心 · 每球必爭', en: 'Live Odds · Match Center · Every Goal Counts', ko: '실시간 배당률 · 경기 센터 · 매 골이 중요합니다', th: 'อัตราต่อรองสด · ศูนย์การแข่งขัน · ทุกประตูมีความหมาย' },
+    'banner.esportsTitle': { zh: '戰力升級', en: 'Power Up', ko: '전투력 업그레이드', th: 'อัปเกรดพลังการต่อสู้' },
+    'banner.esportsSub': { zh: '每週遊戲返水 · 限時開放', en: 'Weekly Game Cashback · Limited Time', ko: '주간 게임 캐시백 · 한정 기간', th: 'แคชแบ็กเกมรายสัปดาห์ · จำกัดเวลา' },
+    'banner.walletTitle': { zh: 'USDT 智慧錢包', en: 'USDT Smart Wallet', ko: 'USDT 스마트 지갑', th: 'กระเป๋าเงินอัจฉริยะ USDT' },
+    'banner.walletSub': { zh: '快速入金 · 安全結算 · 24/7 存取', en: 'Fast Deposits · Secure Settlement · 24/7 Access', ko: '빠른 입금 · 안전한 정산 · 24/7 이용 가능', th: 'ฝากเงินไว · ชำระเงินปลอดภัย · เข้าถึงได้ตลอด 24/7' },
+    'hero.prev': { zh: '上一則', en: 'Previous', ko: '이전', th: 'ก่อนหน้า' },
+    'hero.next': { zh: '下一則', en: 'Next', ko: '다음', th: 'ถัดไป' },
   };
 
   function currentLocale() {
