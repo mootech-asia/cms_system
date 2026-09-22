@@ -1,0 +1,60 @@
+/* v2/tailwind/studio — 跟 v2/tailwind/site 用同一組 --c-* token（透過
+   ../site/themes/win100.css 帶入，studio 本來就用相對路徑跨資料夾讀取
+   site 的 skin 檔案），但另開一份 @theme 而非共用 src/v2/theme.css，
+   因為 @source 掃描目標（studio 自己的 index.html/studio.js）跟 site
+   不同，混在同一份容易日後改 site 的 @source 清單時誤動到 studio。 */
+@layer theme, base, legacy, components, utilities;
+@import 'tailwindcss' source(none);
+@source '../../v2/tailwind/studio/index.html';
+@source '../../v2/tailwind/studio/studio.js';
+@import '../../v2/tailwind/studio/studio.css' layer(legacy);
+@import '../../v2/tailwind/site/themes/win100.css' layer(legacy);
+
+@theme static {
+  --color-primary: rgb(var(--c-primary));
+  --color-primary-soft: rgb(var(--c-primary-soft));
+  --color-primary-faint: rgb(var(--c-primary-faint));
+  --color-on-primary: rgb(var(--c-on-primary));
+  --color-accent: rgb(var(--c-accent));
+  --color-bg: rgb(var(--c-bg));
+  --color-surface: rgb(var(--c-surface));
+  --color-surface-2: rgb(var(--c-surface-2));
+  --color-border: rgb(var(--c-border));
+  --color-border-soft: rgb(var(--c-border-soft));
+  --color-disabled: rgb(var(--c-disabled));
+  --color-text: rgb(var(--c-text));
+  --color-text-2: rgb(var(--c-text-2));
+  --color-text-3: rgb(var(--c-text-3));
+  --color-text-4: rgb(var(--c-text-4));
+  --color-danger: rgb(var(--c-danger));
+  --color-scrim: rgb(var(--c-scrim));
+  --color-success: rgb(var(--c-success));
+  --color-gold: rgb(var(--c-gold));
+  --color-card-face-1: rgb(var(--c-card-face-1));
+  --color-card-face-2: rgb(var(--c-card-face-2));
+  --color-card-face-3: rgb(var(--c-card-face-3));
+  --color-card-border: rgb(var(--c-card-border));
+  --color-primary-50: rgb(var(--c-primary-50));
+  --color-primary-100: rgb(var(--c-primary-100));
+  --color-primary-200: rgb(var(--c-primary-200));
+  --color-primary-300: rgb(var(--c-primary-300));
+  --color-primary-400: rgb(var(--c-primary-400));
+  --color-primary-500: rgb(var(--c-primary-500));
+  --color-primary-600: rgb(var(--c-primary-600));
+  --color-primary-700: rgb(var(--c-primary-700));
+  --color-primary-800: rgb(var(--c-primary-800));
+  --color-primary-900: rgb(var(--c-primary-900));
+  --color-primary-950: rgb(var(--c-primary-950));
+  --color-surface-0: rgb(var(--c-surface-0));
+  --color-surface-50: rgb(var(--c-surface-50));
+  --color-surface-100: rgb(var(--c-surface-100));
+  --color-surface-200: rgb(var(--c-surface-200));
+  --color-surface-300: rgb(var(--c-surface-300));
+  --color-surface-400: rgb(var(--c-surface-400));
+  --color-surface-500: rgb(var(--c-surface-500));
+  --color-surface-600: rgb(var(--c-surface-600));
+  --color-surface-700: rgb(var(--c-surface-700));
+  --color-surface-800: rgb(var(--c-surface-800));
+  --color-surface-900: rgb(var(--c-surface-900));
+  --color-surface-950: rgb(var(--c-surface-950));
+}

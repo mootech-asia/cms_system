@@ -20,6 +20,8 @@ const DEST_BY_ENTRY = {
   v6: 'v6/site/assets/css',
   'v2-mobile': 'v2/site-mobile/assets/css',
   'v15-tailwind-site': 'v1.5/tailwind/site/assets/css',
+  'v2-tailwind-site': 'v2/tailwind/site/assets/css',
+  'v2-tailwind-studio': 'v2/tailwind/studio',
 };
 
 for (const file of entries) {
