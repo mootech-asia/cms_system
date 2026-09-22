@@ -113,432 +113,432 @@
     </div>
 
     <div class="max-w-[1360px] mx-auto pt-5 px-5 pb-10 grid grid-cols-12 gap-5 items-stretch grid12">
-      <section class="panel" data-section="live-events" data-span="12">
-        <div class="panel-head">
-          <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m12 3 2.5 6M21 12l-6 2.5M12 21l-2.5-6M3 12l6-2.5"/></svg></span>
-          <h2 class="panel-title" data-i18n="home.liveEvents">Live Events</h2>
-          <div class="panel-head-actions">
-            <a href="sport.html" class="panel-more" data-i18n="game.viewAll">查看全部</a>
-            <button type="button" class="rail-arrow rail-arrow-prev" aria-label="Scroll left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
-            <button type="button" class="rail-arrow rail-arrow-next" aria-label="Scroll right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
+      <section class="bg-bg-panel border border-line rounded-lg p-4.5 shadow-card min-w-0 panel" data-section="live-events" data-span="12">
+        <div class="flex items-center gap-2 mb-3.5 panel-head">
+          <span class="w-6.5 h-6.5 shrink-0 grid place-items-center text-accent panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m12 3 2.5 6M21 12l-6 2.5M12 21l-2.5-6M3 12l6-2.5"/></svg></span>
+          <h2 class="text-[15.5px] font-black text-text m-0 flex-1 uppercase tracking-[0.01em] panel-title" data-i18n="home.liveEvents">Live Events</h2>
+          <div class="flex items-center gap-2.5 panel-head-actions">
+            <a href="sport.html" class="text-[12px] text-accent-hi font-bold hover:text-accent panel-more" data-i18n="game.viewAll">查看全部</a>
+            <button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer transition-[background-color,color,border-color] duration-150 hover:bg-accent hover:text-white hover:border-accent disabled:opacity-35 disabled:cursor-default disabled:pointer-events-none rail-arrow rail-arrow-prev" aria-label="Scroll left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
+            <button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer transition-[background-color,color,border-color] duration-150 hover:bg-accent hover:text-white hover:border-accent disabled:opacity-35 disabled:cursor-default disabled:pointer-events-none rail-arrow rail-arrow-next" aria-label="Scroll right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
           </div>
         </div>
-        <div class="rail-wrap">
-          <div class="tile-grid rail match-rail">
-            <article class="match-card" data-sport="football">
-              <div class="match-card-top"><span class="match-league" data-i18n="league.premierLeague">英超</span><span class="match-time is-live">67'</span></div>
-              <div class="match-teams"><div class="match-team"><span class="match-team-name" data-i18n="team.manchesterUnited">曼聯</span><span class="match-team-score">1</span></div><div class="match-team"><span class="match-team-name" data-i18n="team.liverpool">利物浦</span><span class="match-team-score">2</span></div></div>
-              <div class="match-odds cols-3"><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.homeWin">主勝</span><span class="match-odds-value">2.35</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.draw">和局</span><span class="match-odds-value">3.10</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.awayWin">客勝</span><span class="match-odds-value">2.80</span></button></div>
+        <div class="relative rail-wrap">
+          <div class="grid grid-flow-col auto-cols-[260px] gap-3 overflow-x-auto [scroll-snap-type:x_proximity] [scroll-behavior:smooth] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-1.5 px-0.5 -my-1.5 -mx-0.5 cursor-grab select-none [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:[scroll-behavior:auto] tile-grid rail match-rail">
+            <article class="rounded-md border border-line bg-bg-panel p-3 transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi match-card" data-sport="football">
+              <div class="flex items-center justify-between mb-2.5 match-card-top"><span class="text-[11px] font-bold text-accent-hi bg-[rgba(244,121,31,0.14)] py-1 px-2.25 rounded-full match-league" data-i18n="league.premierLeague">英超</span><span class="text-[11px] font-bold text-badge flex items-center gap-1 [&::before]:content-[''] [&::before]:w-1.5 [&::before]:h-1.5 [&::before]:rounded-full [&::before]:bg-badge [&::before]:[animation:match-live-pulse_1.4s_ease-in-out_infinite] match-time is-live">67'</span></div>
+              <div class="mb-3 match-teams"><div class="flex items-center justify-between py-1 text-[13.5px] font-bold text-text match-team"><span class="match-team-name" data-i18n="team.manchesterUnited">曼聯</span><span class="font-black text-accent-hi min-w-4.5 text-right match-team-score">1</span></div><div class="flex items-center justify-between py-1 text-[13.5px] font-bold text-text match-team"><span class="match-team-name" data-i18n="team.liverpool">利物浦</span><span class="font-black text-accent-hi min-w-4.5 text-right match-team-score">2</span></div></div>
+              <div class="grid gap-1.5 grid-cols-3 match-odds cols-3"><button type="button" class="flex flex-col items-center gap-px py-1.5 rounded-sm border border-line bg-bg font-[inherit] hover:border-accent hover:bg-[rgba(244,121,31,0.1)] match-odds-btn"><span class="text-[10px] text-text-dim match-odds-label" data-i18n="sport.homeWin">主勝</span><span class="text-[12.5px] font-extrabold text-text match-odds-value">2.35</span></button><button type="button" class="flex flex-col items-center gap-px py-1.5 rounded-sm border border-line bg-bg font-[inherit] hover:border-accent hover:bg-[rgba(244,121,31,0.1)] match-odds-btn"><span class="text-[10px] text-text-dim match-odds-label" data-i18n="sport.draw">和局</span><span class="text-[12.5px] font-extrabold text-text match-odds-value">3.10</span></button><button type="button" class="flex flex-col items-center gap-px py-1.5 rounded-sm border border-line bg-bg font-[inherit] hover:border-accent hover:bg-[rgba(244,121,31,0.1)] match-odds-btn"><span class="text-[10px] text-text-dim match-odds-label" data-i18n="sport.awayWin">客勝</span><span class="text-[12.5px] font-extrabold text-text match-odds-value">2.80</span></button></div>
             </article>
-            <article class="match-card" data-sport="basketball">
-              <div class="match-card-top"><span class="match-league">NBA</span><span class="match-time is-live">3Q 08:12</span></div>
-              <div class="match-teams"><div class="match-team"><span class="match-team-name" data-i18n="team.lakers">湖人</span><span class="match-team-score">88</span></div><div class="match-team"><span class="match-team-name" data-i18n="team.warriors">勇士</span><span class="match-team-score">82</span></div></div>
-              <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="team.lakers">湖人</span><span class="match-odds-value">1.75</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="team.warriors">勇士</span><span class="match-odds-value">2.05</span></button></div>
+            <article class="rounded-md border border-line bg-bg-panel p-3 transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi match-card" data-sport="basketball">
+              <div class="flex items-center justify-between mb-2.5 match-card-top"><span class="text-[11px] font-bold text-accent-hi bg-[rgba(244,121,31,0.14)] py-1 px-2.25 rounded-full match-league">NBA</span><span class="text-[11px] font-bold text-badge flex items-center gap-1 [&::before]:content-[''] [&::before]:w-1.5 [&::before]:h-1.5 [&::before]:rounded-full [&::before]:bg-badge [&::before]:[animation:match-live-pulse_1.4s_ease-in-out_infinite] match-time is-live">3Q 08:12</span></div>
+              <div class="mb-3 match-teams"><div class="flex items-center justify-between py-1 text-[13.5px] font-bold text-text match-team"><span class="match-team-name" data-i18n="team.lakers">湖人</span><span class="font-black text-accent-hi min-w-4.5 text-right match-team-score">88</span></div><div class="flex items-center justify-between py-1 text-[13.5px] font-bold text-text match-team"><span class="match-team-name" data-i18n="team.warriors">勇士</span><span class="font-black text-accent-hi min-w-4.5 text-right match-team-score">82</span></div></div>
+              <div class="grid gap-1.5 grid-cols-2 match-odds cols-2"><button type="button" class="flex flex-col items-center gap-px py-1.5 rounded-sm border border-line bg-bg font-[inherit] hover:border-accent hover:bg-[rgba(244,121,31,0.1)] match-odds-btn"><span class="text-[10px] text-text-dim match-odds-label" data-i18n="team.lakers">湖人</span><span class="text-[12.5px] font-extrabold text-text match-odds-value">1.75</span></button><button type="button" class="flex flex-col items-center gap-px py-1.5 rounded-sm border border-line bg-bg font-[inherit] hover:border-accent hover:bg-[rgba(244,121,31,0.1)] match-odds-btn"><span class="text-[10px] text-text-dim match-odds-label" data-i18n="team.warriors">勇士</span><span class="text-[12.5px] font-extrabold text-text match-odds-value">2.05</span></button></div>
             </article>
-            <article class="match-card" data-sport="esports">
-              <div class="match-card-top"><span class="match-league" data-i18n="league.lol">電競 LOL</span><span class="match-time is-live">Game 2</span></div>
-              <div class="match-teams"><div class="match-team"><span class="match-team-name">T1</span><span class="match-team-score">1</span></div><div class="match-team"><span class="match-team-name">GenG</span><span class="match-team-score">0</span></div></div>
-              <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label">T1</span><span class="match-odds-value">1.60</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label">GenG</span><span class="match-odds-value">2.30</span></button></div>
+            <article class="rounded-md border border-line bg-bg-panel p-3 transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi match-card" data-sport="esports">
+              <div class="flex items-center justify-between mb-2.5 match-card-top"><span class="text-[11px] font-bold text-accent-hi bg-[rgba(244,121,31,0.14)] py-1 px-2.25 rounded-full match-league" data-i18n="league.lol">電競 LOL</span><span class="text-[11px] font-bold text-badge flex items-center gap-1 [&::before]:content-[''] [&::before]:w-1.5 [&::before]:h-1.5 [&::before]:rounded-full [&::before]:bg-badge [&::before]:[animation:match-live-pulse_1.4s_ease-in-out_infinite] match-time is-live">Game 2</span></div>
+              <div class="mb-3 match-teams"><div class="flex items-center justify-between py-1 text-[13.5px] font-bold text-text match-team"><span class="match-team-name">T1</span><span class="font-black text-accent-hi min-w-4.5 text-right match-team-score">1</span></div><div class="flex items-center justify-between py-1 text-[13.5px] font-bold text-text match-team"><span class="match-team-name">GenG</span><span class="font-black text-accent-hi min-w-4.5 text-right match-team-score">0</span></div></div>
+              <div class="grid gap-1.5 grid-cols-2 match-odds cols-2"><button type="button" class="flex flex-col items-center gap-px py-1.5 rounded-sm border border-line bg-bg font-[inherit] hover:border-accent hover:bg-[rgba(244,121,31,0.1)] match-odds-btn"><span class="text-[10px] text-text-dim match-odds-label">T1</span><span class="text-[12.5px] font-extrabold text-text match-odds-value">1.60</span></button><button type="button" class="flex flex-col items-center gap-px py-1.5 rounded-sm border border-line bg-bg font-[inherit] hover:border-accent hover:bg-[rgba(244,121,31,0.1)] match-odds-btn"><span class="text-[10px] text-text-dim match-odds-label">GenG</span><span class="text-[12.5px] font-extrabold text-text match-odds-value">2.30</span></button></div>
             </article>
-            <article class="match-card" data-sport="tennis">
-              <div class="match-card-top"><span class="match-league" data-i18n="league.atp">網球 ATP</span><span class="match-time">08/07 14:00</span></div>
-              <div class="match-teams"><div class="match-team"><span class="match-team-name" data-i18n="team.rogerFederer">費德勒</span></div><div class="match-team"><span class="match-team-name" data-i18n="team.rafaelNadal">納達爾</span></div></div>
-              <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="team.rogerFederer">費德勒</span><span class="match-odds-value">2.20</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="team.rafaelNadal">納達爾</span><span class="match-odds-value">1.65</span></button></div>
+            <article class="rounded-md border border-line bg-bg-panel p-3 transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi match-card" data-sport="tennis">
+              <div class="flex items-center justify-between mb-2.5 match-card-top"><span class="text-[11px] font-bold text-accent-hi bg-[rgba(244,121,31,0.14)] py-1 px-2.25 rounded-full match-league" data-i18n="league.atp">網球 ATP</span><span class="text-[11px] font-bold text-text-dim match-time">08/07 14:00</span></div>
+              <div class="mb-3 match-teams"><div class="flex items-center justify-between py-1 text-[13.5px] font-bold text-text match-team"><span class="match-team-name" data-i18n="team.rogerFederer">費德勒</span></div><div class="flex items-center justify-between py-1 text-[13.5px] font-bold text-text match-team"><span class="match-team-name" data-i18n="team.rafaelNadal">納達爾</span></div></div>
+              <div class="grid gap-1.5 grid-cols-2 match-odds cols-2"><button type="button" class="flex flex-col items-center gap-px py-1.5 rounded-sm border border-line bg-bg font-[inherit] hover:border-accent hover:bg-[rgba(244,121,31,0.1)] match-odds-btn"><span class="text-[10px] text-text-dim match-odds-label" data-i18n="team.rogerFederer">費德勒</span><span class="text-[12.5px] font-extrabold text-text match-odds-value">2.20</span></button><button type="button" class="flex flex-col items-center gap-px py-1.5 rounded-sm border border-line bg-bg font-[inherit] hover:border-accent hover:bg-[rgba(244,121,31,0.1)] match-odds-btn"><span class="text-[10px] text-text-dim match-odds-label" data-i18n="team.rafaelNadal">納達爾</span><span class="text-[12.5px] font-extrabold text-text match-odds-value">1.65</span></button></div>
             </article>
-            <article class="match-card" data-sport="football">
-              <div class="match-card-top"><span class="match-league" data-i18n="league.championsLeague">歐冠</span><span class="match-time">08/08 03:00</span></div>
-              <div class="match-teams"><div class="match-team"><span class="match-team-name" data-i18n="team.realMadrid">皇家馬德里</span></div><div class="match-team"><span class="match-team-name" data-i18n="team.manchesterCity">曼城</span></div></div>
-              <div class="match-odds cols-3"><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.homeWin">主勝</span><span class="match-odds-value">2.90</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.draw">和局</span><span class="match-odds-value">3.50</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="sport.awayWin">客勝</span><span class="match-odds-value">2.30</span></button></div>
+            <article class="rounded-md border border-line bg-bg-panel p-3 transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi match-card" data-sport="football">
+              <div class="flex items-center justify-between mb-2.5 match-card-top"><span class="text-[11px] font-bold text-accent-hi bg-[rgba(244,121,31,0.14)] py-1 px-2.25 rounded-full match-league" data-i18n="league.championsLeague">歐冠</span><span class="text-[11px] font-bold text-text-dim match-time">08/08 03:00</span></div>
+              <div class="mb-3 match-teams"><div class="flex items-center justify-between py-1 text-[13.5px] font-bold text-text match-team"><span class="match-team-name" data-i18n="team.realMadrid">皇家馬德里</span></div><div class="flex items-center justify-between py-1 text-[13.5px] font-bold text-text match-team"><span class="match-team-name" data-i18n="team.manchesterCity">曼城</span></div></div>
+              <div class="grid gap-1.5 grid-cols-3 match-odds cols-3"><button type="button" class="flex flex-col items-center gap-px py-1.5 rounded-sm border border-line bg-bg font-[inherit] hover:border-accent hover:bg-[rgba(244,121,31,0.1)] match-odds-btn"><span class="text-[10px] text-text-dim match-odds-label" data-i18n="sport.homeWin">主勝</span><span class="text-[12.5px] font-extrabold text-text match-odds-value">2.90</span></button><button type="button" class="flex flex-col items-center gap-px py-1.5 rounded-sm border border-line bg-bg font-[inherit] hover:border-accent hover:bg-[rgba(244,121,31,0.1)] match-odds-btn"><span class="text-[10px] text-text-dim match-odds-label" data-i18n="sport.draw">和局</span><span class="text-[12.5px] font-extrabold text-text match-odds-value">3.50</span></button><button type="button" class="flex flex-col items-center gap-px py-1.5 rounded-sm border border-line bg-bg font-[inherit] hover:border-accent hover:bg-[rgba(244,121,31,0.1)] match-odds-btn"><span class="text-[10px] text-text-dim match-odds-label" data-i18n="sport.awayWin">客勝</span><span class="text-[12.5px] font-extrabold text-text match-odds-value">2.30</span></button></div>
             </article>
-            <article class="match-card" data-sport="baseball">
-              <div class="match-card-top"><span class="match-league">MLB</span><span class="match-time">08/06 07:05</span></div>
-              <div class="match-teams"><div class="match-team"><span class="match-team-name" data-i18n="team.yankees">洋基</span></div><div class="match-team"><span class="match-team-name" data-i18n="team.redSox">紅襪</span></div></div>
-              <div class="match-odds cols-2"><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="team.yankees">洋基</span><span class="match-odds-value">1.65</span></button><button type="button" class="match-odds-btn"><span class="match-odds-label" data-i18n="team.redSox">紅襪</span><span class="match-odds-value">2.25</span></button></div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="panel" data-section="poker-games" data-span="12">
-        <div class="panel-head">
-          <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 6 4 9.5 4 13a4 4 0 0 0 7 2.6c-.3 2-1 3.4-3 4.4h8c-2-1-2.7-2.4-3-4.4A4 4 0 0 0 20 13c0-3.5-4-7-8-11Z"/></svg></span>
-          <h2 class="panel-title">Top APEX100 Poker Games and Tournaments</h2>
-          <div class="panel-head-actions">
-            <button type="button" class="rail-arrow rail-arrow-prev" aria-label="Scroll left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
-            <button type="button" class="rail-arrow rail-arrow-next" aria-label="Scroll right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
-          </div>
-        </div>
-        <div class="rail-wrap">
-          <div class="tile-grid rail compact">
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Poker Tournaments</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Weekly Crypto Depositors Freeroll</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">$2,500 Weekly Poker Freerolls</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Sit &amp; Go Tournaments</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Bad Beat Bonus</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Royal Flush Bonus</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Poker Tournaments</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Weekly Crypto Depositors Freeroll</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">$2,500 Weekly Poker Freerolls</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Sit &amp; Go Tournaments</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Bad Beat Bonus</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Royal Flush Bonus</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Poker Tournaments</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Weekly Crypto Depositors Freeroll</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">$2,500 Weekly Poker Freerolls</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Sit &amp; Go Tournaments</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Bad Beat Bonus</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Royal Flush Bonus</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Poker Tournaments</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Weekly Crypto Depositors Freeroll</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">$2,500 Weekly Poker Freerolls</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Sit &amp; Go Tournaments</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Bad Beat Bonus</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Royal Flush Bonus</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Poker Tournaments</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Weekly Crypto Depositors Freeroll</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">$2,500 Weekly Poker Freerolls</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Sit &amp; Go Tournaments</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Bad Beat Bonus</div>
-            </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Royal Flush Bonus</div>
+            <article class="rounded-md border border-line bg-bg-panel p-3 transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi match-card" data-sport="baseball">
+              <div class="flex items-center justify-between mb-2.5 match-card-top"><span class="text-[11px] font-bold text-accent-hi bg-[rgba(244,121,31,0.14)] py-1 px-2.25 rounded-full match-league">MLB</span><span class="text-[11px] font-bold text-text-dim match-time">08/06 07:05</span></div>
+              <div class="mb-3 match-teams"><div class="flex items-center justify-between py-1 text-[13.5px] font-bold text-text match-team"><span class="match-team-name" data-i18n="team.yankees">洋基</span></div><div class="flex items-center justify-between py-1 text-[13.5px] font-bold text-text match-team"><span class="match-team-name" data-i18n="team.redSox">紅襪</span></div></div>
+              <div class="grid gap-1.5 grid-cols-2 match-odds cols-2"><button type="button" class="flex flex-col items-center gap-px py-1.5 rounded-sm border border-line bg-bg font-[inherit] hover:border-accent hover:bg-[rgba(244,121,31,0.1)] match-odds-btn"><span class="text-[10px] text-text-dim match-odds-label" data-i18n="team.yankees">洋基</span><span class="text-[12.5px] font-extrabold text-text match-odds-value">1.65</span></button><button type="button" class="flex flex-col items-center gap-px py-1.5 rounded-sm border border-line bg-bg font-[inherit] hover:border-accent hover:bg-[rgba(244,121,31,0.1)] match-odds-btn"><span class="text-[10px] text-text-dim match-odds-label" data-i18n="team.redSox">紅襪</span><span class="text-[12.5px] font-extrabold text-text match-odds-value">2.25</span></button></div>
             </article>
           </div>
         </div>
       </section>
 
-      <div class="max-w-[1360px] my-6 px-5 grid grid-cols-2 gap-4 home-promo-strip" data-span="12">
-        <a href="promotion.html" class="home-promo-banner home-promo-banner-accent"><span class="home-promo-banner-title" data-i18n="homePromo.offersTitle">最新優惠</span><svg class="home-promo-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M3 12h18"/><path d="M12 8v13"/><path d="M8 8c-1.6 0-2.8-.9-2.8-2.1C5.2 4.6 6.3 4 7.3 4c1.9 0 3.6 1.7 4.7 4"/><path d="M16 8c1.6 0 2.8-.9 2.8-2.1 0-1.3-1.1-1.9-2.1-1.9-1.9 0-3.6 1.7-4.7 4"/></svg><span class="home-promo-banner-cta" data-i18n="homePromo.offersCta">查看優惠</span></a>
-        <a href="deposit.html" class="home-promo-banner home-promo-banner-jackpot"><span class="home-promo-banner-title" data-i18n="homePromo.depositTitle">立即儲值</span><svg class="home-promo-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="16" height="11" rx="1.5"/><circle cx="10" cy="12.5" r="2.5"/><path d="M6 15h10a2 2 0 0 0 2-2V9"/></svg><span class="home-promo-banner-cta" data-i18n="homePromo.depositCta">前往儲值</span></a>
+      <section class="bg-bg-panel border border-line rounded-lg p-4.5 shadow-card min-w-0 panel" data-section="poker-games" data-span="12">
+        <div class="flex items-center gap-2 mb-3.5 panel-head">
+          <span class="w-6.5 h-6.5 shrink-0 grid place-items-center text-accent panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 6 4 9.5 4 13a4 4 0 0 0 7 2.6c-.3 2-1 3.4-3 4.4h8c-2-1-2.7-2.4-3-4.4A4 4 0 0 0 20 13c0-3.5-4-7-8-11Z"/></svg></span>
+          <h2 class="text-[15.5px] font-black text-text m-0 flex-1 uppercase tracking-[0.01em] panel-title">Top APEX100 Poker Games and Tournaments</h2>
+          <div class="flex items-center gap-2.5 panel-head-actions">
+            <button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer transition-[background-color,color,border-color] duration-150 hover:bg-accent hover:text-white hover:border-accent disabled:opacity-35 disabled:cursor-default disabled:pointer-events-none rail-arrow rail-arrow-prev" aria-label="Scroll left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
+            <button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer transition-[background-color,color,border-color] duration-150 hover:bg-accent hover:text-white hover:border-accent disabled:opacity-35 disabled:cursor-default disabled:pointer-events-none rail-arrow rail-arrow-next" aria-label="Scroll right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <div class="relative rail-wrap">
+          <div class="grid grid-flow-col auto-cols-[130px] gap-3 overflow-x-auto [scroll-snap-type:x_proximity] [scroll-behavior:smooth] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-1.5 px-0.5 -my-1.5 -mx-0.5 cursor-grab select-none [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:[scroll-behavior:auto] tile-grid rail compact">
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Poker Tournaments</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Weekly Crypto Depositors Freeroll</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">$2,500 Weekly Poker Freerolls</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Sit &amp; Go Tournaments</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Bad Beat Bonus</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Royal Flush Bonus</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Poker Tournaments</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Weekly Crypto Depositors Freeroll</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">$2,500 Weekly Poker Freerolls</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Sit &amp; Go Tournaments</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Bad Beat Bonus</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Royal Flush Bonus</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Poker Tournaments</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Weekly Crypto Depositors Freeroll</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">$2,500 Weekly Poker Freerolls</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Sit &amp; Go Tournaments</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Bad Beat Bonus</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Royal Flush Bonus</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Poker Tournaments</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Weekly Crypto Depositors Freeroll</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">$2,500 Weekly Poker Freerolls</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Sit &amp; Go Tournaments</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Bad Beat Bonus</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Royal Flush Bonus</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Poker Tournaments</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-02.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Weekly Crypto Depositors Freeroll</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">$2,500 Weekly Poker Freerolls</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-04.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Sit &amp; Go Tournaments</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-05.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Bad Beat Bonus</div>
+            </article>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Royal Flush Bonus</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="max-w-[1360px] my-6 px-5 grid grid-cols-2 gap-4 max-[720px]:grid-cols-1 home-promo-strip" data-span="12">
+        <a href="promotion.html" class="flex items-center justify-between gap-4 min-h-[84px] py-5 px-6.5 rounded-lg text-white text-[17px] font-black uppercase tracking-[0.01em] bg-[image:var(--accent-grad)] text-accent-ink home-promo-banner home-promo-banner-accent"><span class="home-promo-banner-title" data-i18n="homePromo.offersTitle">最新優惠</span><svg class="w-11.5 h-11.5 shrink-0 opacity-85 home-promo-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M3 12h18"/><path d="M12 8v13"/><path d="M8 8c-1.6 0-2.8-.9-2.8-2.1C5.2 4.6 6.3 4 7.3 4c1.9 0 3.6 1.7 4.7 4"/><path d="M16 8c1.6 0 2.8-.9 2.8-2.1 0-1.3-1.1-1.9-2.1-1.9-1.9 0-3.6 1.7-4.7 4"/></svg><span class="shrink-0 py-2.25 px-4.5 rounded-full text-[12.5px] whitespace-nowrap bg-black/18 home-promo-banner-cta" data-i18n="homePromo.offersCta">查看優惠</span></a>
+        <a href="deposit.html" class="flex items-center justify-between gap-4 min-h-[84px] py-5 px-6.5 rounded-lg text-white text-[17px] font-black uppercase tracking-[0.01em] bg-[linear-gradient(120deg,var(--jackpot-a)_0%,var(--jackpot-b)_100%)] home-promo-banner home-promo-banner-jackpot"><span class="home-promo-banner-title" data-i18n="homePromo.depositTitle">立即儲值</span><svg class="w-11.5 h-11.5 shrink-0 opacity-85 home-promo-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="16" height="11" rx="1.5"/><circle cx="10" cy="12.5" r="2.5"/><path d="M6 15h10a2 2 0 0 0 2-2V9"/></svg><span class="shrink-0 py-2.25 px-4.5 rounded-full text-[12.5px] whitespace-nowrap bg-white/20 home-promo-banner-cta" data-i18n="homePromo.depositCta">前往儲值</span></a>
       </div>
 
-      <section class="panel" data-section="hottest-casino" data-span="12">
-        <div class="panel-head">
-          <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h3v6H7zM14 9h3v6h-3z"/></svg></span>
-          <h2 class="panel-title">Our Hottest Casino Games</h2>
-          <div class="panel-head-actions">
-            <button type="button" class="rail-arrow rail-arrow-prev" aria-label="Scroll left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
-            <button type="button" class="rail-arrow rail-arrow-next" aria-label="Scroll right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
+      <section class="bg-bg-panel border border-line rounded-lg p-4.5 shadow-card min-w-0 panel" data-section="hottest-casino" data-span="12">
+        <div class="flex items-center gap-2 mb-3.5 panel-head">
+          <span class="w-6.5 h-6.5 shrink-0 grid place-items-center text-accent panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h3v6H7zM14 9h3v6h-3z"/></svg></span>
+          <h2 class="text-[15.5px] font-black text-text m-0 flex-1 uppercase tracking-[0.01em] panel-title">Our Hottest Casino Games</h2>
+          <div class="flex items-center gap-2.5 panel-head-actions">
+            <button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer transition-[background-color,color,border-color] duration-150 hover:bg-accent hover:text-white hover:border-accent disabled:opacity-35 disabled:cursor-default disabled:pointer-events-none rail-arrow rail-arrow-prev" aria-label="Scroll left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
+            <button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer transition-[background-color,color,border-color] duration-150 hover:bg-accent hover:text-white hover:border-accent disabled:opacity-35 disabled:cursor-default disabled:pointer-events-none rail-arrow rail-arrow-next" aria-label="Scroll right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
           </div>
         </div>
-        <div class="rail-wrap">
-          <div class="tile-grid rail compact">
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
+        <div class="relative rail-wrap">
+          <div class="grid grid-flow-col auto-cols-[130px] gap-3 overflow-x-auto [scroll-snap-type:x_proximity] [scroll-behavior:smooth] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-1.5 px-0.5 -my-1.5 -mx-0.5 cursor-grab select-none [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:[scroll-behavior:auto] tile-grid rail compact">
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">TBK Jackpot</span><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">TBK Jackpot</span><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">Bonus Buy</span><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">Bonus Buy</span><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">Bonus Buy</span><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">Bonus Buy</span><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">TBK Jackpot</span><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">TBK Jackpot</span><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">Bonus Buy</span><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">Bonus Buy</span><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">Bonus Buy</span><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">Bonus Buy</span><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">TBK Jackpot</span><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">TBK Jackpot</span><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">Bonus Buy</span><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">Bonus Buy</span><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">Bonus Buy</span><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">Bonus Buy</span><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">TBK Jackpot</span><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">TBK Jackpot</span><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">Bonus Buy</span><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">Bonus Buy</span><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">Bonus Buy</span><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">Bonus Buy</span><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-07.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">TBK Jackpot</span><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">TBK Jackpot</span><img src="assets/mock/game-08.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">Bonus Buy</span><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">Bonus Buy</span><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><span class="game-tile-tag">Bonus Buy</span><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><span class="absolute top-1.5 left-1.5 z-[2] py-0.5 px-1.75 rounded-full bg-badge text-white text-[10px] font-extrabold uppercase game-tile-tag">Bonus Buy</span><img src="assets/mock/game-10.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
             </article>
-            <article class="game-tile art-only">
-              <div class="game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile art-only">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art"><img src="assets/mock/game-12.webp" alt="" loading="lazy" /></div>
             </article>
           </div>
         </div>
       </section>
 
-      <div class="max-w-[1360px] my-6 px-5 grid grid-cols-2 gap-4 home-promo-strip" data-span="12">
-        <a href="live.html" class="home-promo-banner home-promo-banner-jackpot"><span class="home-promo-banner-title" data-i18n="homePromo.liveTitle">真人娛樂等你來</span><svg class="home-promo-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span class="home-promo-banner-cta" data-i18n="homePromo.liveCta">立即進入</span></a>
-        <a href="promotion.html" class="home-promo-banner home-promo-banner-accent"><span class="home-promo-banner-title" data-i18n="homePromo.missionTitle">會員任務中心</span><svg class="home-promo-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v18"/><path d="M6 4h11l-3 4 3 4H6"/></svg><span class="home-promo-banner-cta" data-i18n="homePromo.missionCta">查看任務</span></a>
+      <div class="max-w-[1360px] my-6 px-5 grid grid-cols-2 gap-4 max-[720px]:grid-cols-1 home-promo-strip" data-span="12">
+        <a href="live.html" class="flex items-center justify-between gap-4 min-h-[84px] py-5 px-6.5 rounded-lg text-white text-[17px] font-black uppercase tracking-[0.01em] bg-[linear-gradient(120deg,var(--jackpot-a)_0%,var(--jackpot-b)_100%)] home-promo-banner home-promo-banner-jackpot"><span class="home-promo-banner-title" data-i18n="homePromo.liveTitle">真人娛樂等你來</span><svg class="w-11.5 h-11.5 shrink-0 opacity-85 home-promo-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span class="shrink-0 py-2.25 px-4.5 rounded-full text-[12.5px] whitespace-nowrap bg-white/20 home-promo-banner-cta" data-i18n="homePromo.liveCta">立即進入</span></a>
+        <a href="promotion.html" class="flex items-center justify-between gap-4 min-h-[84px] py-5 px-6.5 rounded-lg text-white text-[17px] font-black uppercase tracking-[0.01em] bg-[image:var(--accent-grad)] text-accent-ink home-promo-banner home-promo-banner-accent"><span class="home-promo-banner-title" data-i18n="homePromo.missionTitle">會員任務中心</span><svg class="w-11.5 h-11.5 shrink-0 opacity-85 home-promo-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v18"/><path d="M6 4h11l-3 4 3 4H6"/></svg><span class="shrink-0 py-2.25 px-4.5 rounded-full text-[12.5px] whitespace-nowrap bg-black/18 home-promo-banner-cta" data-i18n="homePromo.missionCta">查看任務</span></a>
       </div>
 
-      <section class="panel" data-section="explore-more" data-span="12">
-        <div class="panel-head">
-          <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></span>
-          <h2 class="panel-title">Explore More</h2>
-          <div class="panel-head-actions">
-            <button type="button" class="rail-arrow rail-arrow-prev" aria-label="Scroll left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
-            <button type="button" class="rail-arrow rail-arrow-next" aria-label="Scroll right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
+      <section class="bg-bg-panel border border-line rounded-lg p-4.5 shadow-card min-w-0 panel" data-section="explore-more" data-span="12">
+        <div class="flex items-center gap-2 mb-3.5 panel-head">
+          <span class="w-6.5 h-6.5 shrink-0 grid place-items-center text-accent panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <h2 class="text-[15.5px] font-black text-text m-0 flex-1 uppercase tracking-[0.01em] panel-title">Explore More</h2>
+          <div class="flex items-center gap-2.5 panel-head-actions">
+            <button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer transition-[background-color,color,border-color] duration-150 hover:bg-accent hover:text-white hover:border-accent disabled:opacity-35 disabled:cursor-default disabled:pointer-events-none rail-arrow rail-arrow-prev" aria-label="Scroll left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
+            <button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer transition-[background-color,color,border-color] duration-150 hover:bg-accent hover:text-white hover:border-accent disabled:opacity-35 disabled:cursor-default disabled:pointer-events-none rail-arrow rail-arrow-next" aria-label="Scroll right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
           </div>
         </div>
-        <div class="rail-wrap">
-          <div class="tile-grid rail compact">
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Daily Scratch &amp; Win</div>
+        <div class="relative rail-wrap">
+          <div class="grid grid-flow-col auto-cols-[130px] gap-3 overflow-x-auto [scroll-snap-type:x_proximity] [scroll-behavior:smooth] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-1.5 px-0.5 -my-1.5 -mx-0.5 cursor-grab select-none [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:[scroll-behavior:auto] tile-grid rail compact">
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Daily Scratch &amp; Win</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Mystery KO Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Mystery KO Poker</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Hot Drop Jackpots</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Hot Drop Jackpots</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Anonymous Tables</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Anonymous Tables</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/hero-1.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">KO Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/hero-1.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">KO Poker</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Zone Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Zone Poker</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Daily Scratch &amp; Win</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Daily Scratch &amp; Win</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Mystery KO Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Mystery KO Poker</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Hot Drop Jackpots</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Hot Drop Jackpots</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Anonymous Tables</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Anonymous Tables</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/hero-1.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">KO Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/hero-1.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">KO Poker</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Zone Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Zone Poker</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Daily Scratch &amp; Win</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Daily Scratch &amp; Win</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Mystery KO Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Mystery KO Poker</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Hot Drop Jackpots</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Hot Drop Jackpots</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Anonymous Tables</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Anonymous Tables</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/hero-1.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">KO Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/hero-1.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">KO Poker</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Zone Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Zone Poker</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Daily Scratch &amp; Win</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Daily Scratch &amp; Win</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Mystery KO Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Mystery KO Poker</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Hot Drop Jackpots</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Hot Drop Jackpots</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Anonymous Tables</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Anonymous Tables</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/hero-1.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">KO Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/hero-1.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">KO Poker</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Zone Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Zone Poker</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Daily Scratch &amp; Win</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Daily Scratch &amp; Win</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Mystery KO Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Mystery KO Poker</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Hot Drop Jackpots</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-04.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Hot Drop Jackpots</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Anonymous Tables</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/live-05.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Anonymous Tables</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/hero-1.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">KO Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/hero-1.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">KO Poker</div>
             </article>
-            <article class="game-tile banner-tile">
-              <div class="game-tile-art"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
-              <div class="game-tile-name">Zone Poker</div>
+            <article class="relative aspect-square rounded-md overflow-hidden border border-line bg-bg-panel transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-[3px] hover:shadow-card hover:border-line-hi snap-start min-w-0 game-tile banner-tile">
+              <div class="absolute inset-0 bg-line overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover game-tile-art [&::after]:content-[''] [&::after]:absolute [&::after]:inset-0 [&::after]:[background:linear-gradient(0deg,rgba(0,0,0,.86)_0%,rgba(0,0,0,.32)_48%,transparent_72%)]"><img src="assets/mock/game-01.webp" alt="" loading="lazy" /></div>
+              <div class="absolute left-2 right-2 bottom-3.5 z-[2] text-[14px] font-extrabold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] leading-[1.3] line-clamp-2 game-tile-name">Zone Poker</div>
             </article>
           </div>
         </div>
@@ -547,116 +547,116 @@
 
     <div class="max-w-[1360px] mx-auto px-5 pb-5 flex flex-col gap-5 home-extra">
       <section class="panel">
-        <div class="panel-head">
-          <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span>
-          <h2 class="panel-title">Get Fired Up to Play</h2>
-          <div class="panel-head-actions">
-            <button type="button" class="rail-arrow rail-arrow-prev" aria-label="Scroll left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
-            <button type="button" class="rail-arrow rail-arrow-next" aria-label="Scroll right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
+        <div class="flex items-center gap-2 mb-3.5 panel-head">
+          <span class="w-6.5 h-6.5 shrink-0 grid place-items-center text-accent panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span>
+          <h2 class="text-[15.5px] font-black text-text m-0 flex-1 uppercase tracking-[0.01em] panel-title">Get Fired Up to Play</h2>
+          <div class="flex items-center gap-2.5 panel-head-actions">
+            <button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer transition-[background-color,color,border-color] duration-150 hover:bg-accent hover:text-white hover:border-accent disabled:opacity-35 disabled:cursor-default disabled:pointer-events-none rail-arrow rail-arrow-prev" aria-label="Scroll left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
+            <button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer transition-[background-color,color,border-color] duration-150 hover:bg-accent hover:text-white hover:border-accent disabled:opacity-35 disabled:cursor-default disabled:pointer-events-none rail-arrow rail-arrow-next" aria-label="Scroll right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
           </div>
         </div>
-        <div class="rail-wrap">
-          <div class="tile-grid rail promo-rail">
-            <article class="promo-card">
-              <div class="promo-card-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /></div>
-              <div class="promo-card-body">
-                <h3 class="promo-card-title">Real-Time Thrills</h3>
-                <p class="promo-card-desc">Play table games with Live Dealers</p>
-                <div class="promo-card-actions"><a href="live.html" class="btn-accent">Play Now</a></div>
+        <div class="relative rail-wrap">
+          <div class="grid grid-flow-col auto-cols-[260px] gap-3 overflow-x-auto [scroll-snap-type:x_proximity] [scroll-behavior:smooth] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-1.5 px-0.5 -my-1.5 -mx-0.5 cursor-grab select-none [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:[scroll-behavior:auto] tile-grid rail promo-rail">
+            <article class="flex flex-col rounded-lg overflow-hidden border border-line bg-bg-panel shadow-card transition-[transform,border-color] duration-150 hover:-translate-y-[3px] hover:border-line-hi snap-start min-w-0 promo-card">
+              <div class="relative aspect-video overflow-hidden bg-line [&_img]:w-full [&_img]:h-full [&_img]:object-cover promo-card-art"><img src="assets/mock/live-02.webp" alt="" loading="lazy" /></div>
+              <div class="p-4 flex flex-col gap-2 flex-1 promo-card-body">
+                <h3 class="text-[15.5px] font-extrabold m-0 text-text promo-card-title">Real-Time Thrills</h3>
+                <p class="text-[13px] leading-[1.6] text-text-mid m-0 flex-1 promo-card-desc">Play table games with Live Dealers</p>
+                <div class="flex items-center gap-3.5 [&_.btn-accent]:py-2 [&_.btn-accent]:px-4 [&_.btn-accent]:text-[11.5px] promo-card-actions"><a href="live.html" class="btn-accent">Play Now</a></div>
               </div>
             </article>
-            <article class="promo-card">
-              <div class="promo-card-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
-              <div class="promo-card-body">
-                <h3 class="promo-card-title">Earn Bonuses</h3>
-                <p class="promo-card-desc">Redeem rewards using APEX100 Rewards</p>
-                <div class="promo-card-actions"><a href="promotion.html" class="btn-accent">Learn More</a></div>
+            <article class="flex flex-col rounded-lg overflow-hidden border border-line bg-bg-panel shadow-card transition-[transform,border-color] duration-150 hover:-translate-y-[3px] hover:border-line-hi snap-start min-w-0 promo-card">
+              <div class="relative aspect-video overflow-hidden bg-line [&_img]:w-full [&_img]:h-full [&_img]:object-cover promo-card-art"><img src="assets/mock/game-06.webp" alt="" loading="lazy" /></div>
+              <div class="p-4 flex flex-col gap-2 flex-1 promo-card-body">
+                <h3 class="text-[15.5px] font-extrabold m-0 text-text promo-card-title">Earn Bonuses</h3>
+                <p class="text-[13px] leading-[1.6] text-text-mid m-0 flex-1 promo-card-desc">Redeem rewards using APEX100 Rewards</p>
+                <div class="flex items-center gap-3.5 [&_.btn-accent]:py-2 [&_.btn-accent]:px-4 [&_.btn-accent]:text-[11.5px] promo-card-actions"><a href="promotion.html" class="btn-accent">Learn More</a></div>
               </div>
             </article>
-            <article class="promo-card">
-              <div class="promo-card-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
-              <div class="promo-card-body">
-                <h3 class="promo-card-title">$425 Per Referral</h3>
-                <p class="promo-card-desc">Invite friends and get rewarded</p>
-                <div class="promo-card-actions"><a href="promotion.html" class="btn-accent">Learn More</a></div>
+            <article class="flex flex-col rounded-lg overflow-hidden border border-line bg-bg-panel shadow-card transition-[transform,border-color] duration-150 hover:-translate-y-[3px] hover:border-line-hi snap-start min-w-0 promo-card">
+              <div class="relative aspect-video overflow-hidden bg-line [&_img]:w-full [&_img]:h-full [&_img]:object-cover promo-card-art"><img src="assets/mock/game-09.webp" alt="" loading="lazy" /></div>
+              <div class="p-4 flex flex-col gap-2 flex-1 promo-card-body">
+                <h3 class="text-[15.5px] font-extrabold m-0 text-text promo-card-title">$425 Per Referral</h3>
+                <p class="text-[13px] leading-[1.6] text-text-mid m-0 flex-1 promo-card-desc">Invite friends and get rewarded</p>
+                <div class="flex items-center gap-3.5 [&_.btn-accent]:py-2 [&_.btn-accent]:px-4 [&_.btn-accent]:text-[11.5px] promo-card-actions"><a href="promotion.html" class="btn-accent">Learn More</a></div>
               </div>
             </article>
-            <article class="promo-card">
-              <div class="promo-card-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
-              <div class="promo-card-body">
-                <h3 class="promo-card-title">Enjoy Weekly Boosts</h3>
-                <p class="promo-card-desc">Earn bonuses for playing each week</p>
-                <div class="promo-card-actions"><a href="promotion.html" class="btn-accent">Learn More</a></div>
+            <article class="flex flex-col rounded-lg overflow-hidden border border-line bg-bg-panel shadow-card transition-[transform,border-color] duration-150 hover:-translate-y-[3px] hover:border-line-hi snap-start min-w-0 promo-card">
+              <div class="relative aspect-video overflow-hidden bg-line [&_img]:w-full [&_img]:h-full [&_img]:object-cover promo-card-art"><img src="assets/mock/game-11.webp" alt="" loading="lazy" /></div>
+              <div class="p-4 flex flex-col gap-2 flex-1 promo-card-body">
+                <h3 class="text-[15.5px] font-extrabold m-0 text-text promo-card-title">Enjoy Weekly Boosts</h3>
+                <p class="text-[13px] leading-[1.6] text-text-mid m-0 flex-1 promo-card-desc">Earn bonuses for playing each week</p>
+                <div class="flex items-center gap-3.5 [&_.btn-accent]:py-2 [&_.btn-accent]:px-4 [&_.btn-accent]:text-[11.5px] promo-card-actions"><a href="promotion.html" class="btn-accent">Learn More</a></div>
               </div>
             </article>
-            <article class="promo-card">
-              <div class="promo-card-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
-              <div class="promo-card-body">
-                <h3 class="promo-card-title">Get Weekly Cashback</h3>
-                <p class="promo-card-desc">Bitcoin depositors earn cashback every week</p>
-                <div class="promo-card-actions"><a href="promotion.html" class="btn-accent">Learn More</a></div>
+            <article class="flex flex-col rounded-lg overflow-hidden border border-line bg-bg-panel shadow-card transition-[transform,border-color] duration-150 hover:-translate-y-[3px] hover:border-line-hi snap-start min-w-0 promo-card">
+              <div class="relative aspect-video overflow-hidden bg-line [&_img]:w-full [&_img]:h-full [&_img]:object-cover promo-card-art"><img src="assets/mock/game-03.webp" alt="" loading="lazy" /></div>
+              <div class="p-4 flex flex-col gap-2 flex-1 promo-card-body">
+                <h3 class="text-[15.5px] font-extrabold m-0 text-text promo-card-title">Get Weekly Cashback</h3>
+                <p class="text-[13px] leading-[1.6] text-text-mid m-0 flex-1 promo-card-desc">Bitcoin depositors earn cashback every week</p>
+                <div class="flex items-center gap-3.5 [&_.btn-accent]:py-2 [&_.btn-accent]:px-4 [&_.btn-accent]:text-[11.5px] promo-card-actions"><a href="promotion.html" class="btn-accent">Learn More</a></div>
               </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="jackpot-panel winner-panel">
-        <h2 class="jackpot-title">
+      <section class="mt-0 py-4.5 px-5 rounded-lg bg-[linear-gradient(120deg,var(--jackpot-a)_0%,var(--jackpot-b)_100%)] shadow-card jackpot-panel winner-panel">
+        <h2 class="flex items-center gap-2 mb-3.5 text-[15px] font-black uppercase tracking-[0.04em] text-white [&_svg]:shrink-0 [&_svg]:text-accent-hi jackpot-title">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 5 3 5-7 5 7 5-3-2 12H4Z"/></svg>
           Join Our List of Recent Winners
         </h2>
-        <div class="jackpot-grid cols-6">
-          <div class="jackpot-pill"><p class="jackpot-pill-label">Bryan F. Won</p><p class="jackpot-pill-value">$293,909</p><p class="jackpot-pill-note">In Casino from Live Blackjack - 777 Jackpot</p></div>
-          <div class="jackpot-pill"><p class="jackpot-pill-label">Michael W. Won</p><p class="jackpot-pill-value">$31,964</p><p class="jackpot-pill-note">In Poker from Super Saturday Series</p></div>
-          <div class="jackpot-pill"><p class="jackpot-pill-label">Kris L. Won</p><p class="jackpot-pill-value">$373,018</p><p class="jackpot-pill-note">In Casino from A Night with Cleo</p></div>
-          <div class="jackpot-pill"><p class="jackpot-pill-label">Sarah G. Won</p><p class="jackpot-pill-value">$28,627</p><p class="jackpot-pill-note">In Poker from Black Diamond Poker Open</p></div>
-          <div class="jackpot-pill"><p class="jackpot-pill-label">Shawn S. Won</p><p class="jackpot-pill-value">$146,521</p><p class="jackpot-pill-note">In Casino from Mystic Elements</p></div>
-          <div class="jackpot-pill"><p class="jackpot-pill-label">Andre D. Won</p><p class="jackpot-pill-value">$27,181</p><p class="jackpot-pill-note">In Poker from Mad Monday Tournament</p></div>
+        <div class="grid grid-cols-6 gap-3 max-[900px]:grid-cols-2 max-[520px]:grid-cols-1 jackpot-grid cols-6">
+          <div class="py-3 px-3.5 rounded-md bg-black/22 border border-white/16 jackpot-pill"><p class="text-[11px] font-extrabold uppercase tracking-[0.04em] text-white/78 mb-1 jackpot-pill-label">Bryan F. Won</p><p class="text-[19px] font-black text-white mb-1 [font-variant-numeric:tabular-nums] jackpot-pill-value">$293,909</p><p class="text-[11px] text-white/65 m-0 jackpot-pill-note">In Casino from Live Blackjack - 777 Jackpot</p></div>
+          <div class="py-3 px-3.5 rounded-md bg-black/22 border border-white/16 jackpot-pill"><p class="text-[11px] font-extrabold uppercase tracking-[0.04em] text-white/78 mb-1 jackpot-pill-label">Michael W. Won</p><p class="text-[19px] font-black text-white mb-1 [font-variant-numeric:tabular-nums] jackpot-pill-value">$31,964</p><p class="text-[11px] text-white/65 m-0 jackpot-pill-note">In Poker from Super Saturday Series</p></div>
+          <div class="py-3 px-3.5 rounded-md bg-black/22 border border-white/16 jackpot-pill"><p class="text-[11px] font-extrabold uppercase tracking-[0.04em] text-white/78 mb-1 jackpot-pill-label">Kris L. Won</p><p class="text-[19px] font-black text-white mb-1 [font-variant-numeric:tabular-nums] jackpot-pill-value">$373,018</p><p class="text-[11px] text-white/65 m-0 jackpot-pill-note">In Casino from A Night with Cleo</p></div>
+          <div class="py-3 px-3.5 rounded-md bg-black/22 border border-white/16 jackpot-pill"><p class="text-[11px] font-extrabold uppercase tracking-[0.04em] text-white/78 mb-1 jackpot-pill-label">Sarah G. Won</p><p class="text-[19px] font-black text-white mb-1 [font-variant-numeric:tabular-nums] jackpot-pill-value">$28,627</p><p class="text-[11px] text-white/65 m-0 jackpot-pill-note">In Poker from Black Diamond Poker Open</p></div>
+          <div class="py-3 px-3.5 rounded-md bg-black/22 border border-white/16 jackpot-pill"><p class="text-[11px] font-extrabold uppercase tracking-[0.04em] text-white/78 mb-1 jackpot-pill-label">Shawn S. Won</p><p class="text-[19px] font-black text-white mb-1 [font-variant-numeric:tabular-nums] jackpot-pill-value">$146,521</p><p class="text-[11px] text-white/65 m-0 jackpot-pill-note">In Casino from Mystic Elements</p></div>
+          <div class="py-3 px-3.5 rounded-md bg-black/22 border border-white/16 jackpot-pill"><p class="text-[11px] font-extrabold uppercase tracking-[0.04em] text-white/78 mb-1 jackpot-pill-label">Andre D. Won</p><p class="text-[19px] font-black text-white mb-1 [font-variant-numeric:tabular-nums] jackpot-pill-value">$27,181</p><p class="text-[11px] text-white/65 m-0 jackpot-pill-note">In Poker from Mad Monday Tournament</p></div>
         </div>
-        <div class="jackpot-panel-foot"><a href="promotion.html" class="btn-accent outline">View More</a></div>
+        <div class="flex justify-end mt-3.5 jackpot-panel-foot"><a href="promotion.html" class="btn-accent outline">View More</a></div>
       </section>
 
-      <div class="spotlight-block">
-        <h2 class="spotlight-block-title">Premier Online Gambling Destination</h2>
-        <p class="spotlight-block-text">Our reputation for top-notch <a href="#">online poker</a> precedes us, and we encourage you to also explore our diverse range of <a href="slot.html">casino games</a>, live casino options, and even our <a href="deposit.html">Bitcoin casino</a>.</p>
+      <div class="max-w-[760px] mx-auto py-1.5 text-center spotlight-block">
+        <h2 class="text-[16px] font-black uppercase tracking-[0.02em] mb-2.5 text-text spotlight-block-title">Premier Online Gambling Destination</h2>
+        <p class="text-[13.5px] leading-[1.8] text-text-mid m-0 [&_a]:text-accent-hi [&_a]:font-bold [&_a:hover]:text-accent spotlight-block-text">Our reputation for top-notch <a href="#">online poker</a> precedes us, and we encourage you to also explore our diverse range of <a href="slot.html">casino games</a>, live casino options, and even our <a href="deposit.html">Bitcoin casino</a>.</p>
       </div>
 
       <section class="panel">
-        <div class="panel-head">
-          <span class="panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
-          <h2 class="panel-title">Hear From Our Players</h2>
-          <div class="panel-head-actions">
-            <button type="button" class="rail-arrow rail-arrow-prev" aria-label="Scroll left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
-            <button type="button" class="rail-arrow rail-arrow-next" aria-label="Scroll right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
+        <div class="flex items-center gap-2 mb-3.5 panel-head">
+          <span class="w-6.5 h-6.5 shrink-0 grid place-items-center text-accent panel-head-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+          <h2 class="text-[15.5px] font-black text-text m-0 flex-1 uppercase tracking-[0.01em] panel-title">Hear From Our Players</h2>
+          <div class="flex items-center gap-2.5 panel-head-actions">
+            <button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer transition-[background-color,color,border-color] duration-150 hover:bg-accent hover:text-white hover:border-accent disabled:opacity-35 disabled:cursor-default disabled:pointer-events-none rail-arrow rail-arrow-prev" aria-label="Scroll left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button>
+            <button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer transition-[background-color,color,border-color] duration-150 hover:bg-accent hover:text-white hover:border-accent disabled:opacity-35 disabled:cursor-default disabled:pointer-events-none rail-arrow rail-arrow-next" aria-label="Scroll right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button>
           </div>
         </div>
-        <div class="rail-wrap">
-          <div class="tile-grid rail testimonial-rail">
-            <article class="testimonial-card">
-              <svg class="testimonial-card-quote-icon" width="28" height="22" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V13.5Q0 6 4 3T13 0l1 5Q9 6 7 8.5T5 13h6v11H0Zm18 0V13.5Q18 6 22 3T31 0l1 5Q27 6 25 8.5T23 13h6v11H18Z"/></svg>
-              <p class="testimonial-card-text">Looking for a casino with big bonuses and rewards? If so, APEX100 is the choice for you.</p>
-              <p class="testimonial-card-name">Sherry J.</p>
+        <div class="relative rail-wrap">
+          <div class="grid grid-flow-col auto-cols-[240px] gap-3 overflow-x-auto [scroll-snap-type:x_proximity] [scroll-behavior:smooth] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-1.5 px-0.5 -my-1.5 -mx-0.5 cursor-grab select-none [&.dragging]:cursor-grabbing [&.dragging]:[scroll-snap-type:none] [&.dragging]:[scroll-behavior:auto] tile-grid rail testimonial-rail">
+            <article class="h-full flex flex-col p-5 rounded-lg border border-line bg-bg-panel shadow-card snap-start min-w-0 testimonial-card">
+              <svg class="text-accent-hi mb-2.5 shrink-0 testimonial-card-quote-icon" width="28" height="22" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V13.5Q0 6 4 3T13 0l1 5Q9 6 7 8.5T5 13h6v11H0Zm18 0V13.5Q18 6 22 3T31 0l1 5Q27 6 25 8.5T23 13h6v11H18Z"/></svg>
+              <p class="text-[13px] leading-[1.7] text-text-mid m-0 mb-3.5 flex-1 testimonial-card-text">Looking for a casino with big bonuses and rewards? If so, APEX100 is the choice for you.</p>
+              <p class="text-[12.5px] font-extrabold tracking-[0.03em] uppercase text-text m-0 testimonial-card-name">Sherry J.</p>
             </article>
-            <article class="testimonial-card">
-              <svg class="testimonial-card-quote-icon" width="28" height="22" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V13.5Q0 6 4 3T13 0l1 5Q9 6 7 8.5T5 13h6v11H0Zm18 0V13.5Q18 6 22 3T31 0l1 5Q27 6 25 8.5T23 13h6v11H18Z"/></svg>
-              <p class="testimonial-card-text">I like to play games on my lunch breaks and APEX100 has the best casino mobile app by far.</p>
-              <p class="testimonial-card-name">Bashir B.</p>
+            <article class="h-full flex flex-col p-5 rounded-lg border border-line bg-bg-panel shadow-card snap-start min-w-0 testimonial-card">
+              <svg class="text-accent-hi mb-2.5 shrink-0 testimonial-card-quote-icon" width="28" height="22" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V13.5Q0 6 4 3T13 0l1 5Q9 6 7 8.5T5 13h6v11H0Zm18 0V13.5Q18 6 22 3T31 0l1 5Q27 6 25 8.5T23 13h6v11H18Z"/></svg>
+              <p class="text-[13px] leading-[1.7] text-text-mid m-0 mb-3.5 flex-1 testimonial-card-text">I like to play games on my lunch breaks and APEX100 has the best casino mobile app by far.</p>
+              <p class="text-[12.5px] font-extrabold tracking-[0.03em] uppercase text-text m-0 testimonial-card-name">Bashir B.</p>
             </article>
-            <article class="testimonial-card">
-              <svg class="testimonial-card-quote-icon" width="28" height="22" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V13.5Q0 6 4 3T13 0l1 5Q9 6 7 8.5T5 13h6v11H0Zm18 0V13.5Q18 6 22 3T31 0l1 5Q27 6 25 8.5T23 13h6v11H18Z"/></svg>
-              <p class="testimonial-card-text">Honestly, I think APEX100 is a really fun place to play. I've won several times, definitely legit!</p>
-              <p class="testimonial-card-name">Kai S.</p>
+            <article class="h-full flex flex-col p-5 rounded-lg border border-line bg-bg-panel shadow-card snap-start min-w-0 testimonial-card">
+              <svg class="text-accent-hi mb-2.5 shrink-0 testimonial-card-quote-icon" width="28" height="22" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V13.5Q0 6 4 3T13 0l1 5Q9 6 7 8.5T5 13h6v11H0Zm18 0V13.5Q18 6 22 3T31 0l1 5Q27 6 25 8.5T23 13h6v11H18Z"/></svg>
+              <p class="text-[13px] leading-[1.7] text-text-mid m-0 mb-3.5 flex-1 testimonial-card-text">Honestly, I think APEX100 is a really fun place to play. I've won several times, definitely legit!</p>
+              <p class="text-[12.5px] font-extrabold tracking-[0.03em] uppercase text-text m-0 testimonial-card-name">Kai S.</p>
             </article>
-            <article class="testimonial-card">
-              <svg class="testimonial-card-quote-icon" width="28" height="22" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V13.5Q0 6 4 3T13 0l1 5Q9 6 7 8.5T5 13h6v11H0Zm18 0V13.5Q18 6 22 3T31 0l1 5Q27 6 25 8.5T23 13h6v11H18Z"/></svg>
-              <p class="testimonial-card-text">I recently joined because of the generous welcome bonus. The live dealer tables are fun.</p>
-              <p class="testimonial-card-name">Carlita C.</p>
+            <article class="h-full flex flex-col p-5 rounded-lg border border-line bg-bg-panel shadow-card snap-start min-w-0 testimonial-card">
+              <svg class="text-accent-hi mb-2.5 shrink-0 testimonial-card-quote-icon" width="28" height="22" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V13.5Q0 6 4 3T13 0l1 5Q9 6 7 8.5T5 13h6v11H0Zm18 0V13.5Q18 6 22 3T31 0l1 5Q27 6 25 8.5T23 13h6v11H18Z"/></svg>
+              <p class="text-[13px] leading-[1.7] text-text-mid m-0 mb-3.5 flex-1 testimonial-card-text">I recently joined because of the generous welcome bonus. The live dealer tables are fun.</p>
+              <p class="text-[12.5px] font-extrabold tracking-[0.03em] uppercase text-text m-0 testimonial-card-name">Carlita C.</p>
             </article>
-            <article class="testimonial-card">
-              <svg class="testimonial-card-quote-icon" width="28" height="22" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V13.5Q0 6 4 3T13 0l1 5Q9 6 7 8.5T5 13h6v11H0Zm18 0V13.5Q18 6 22 3T31 0l1 5Q27 6 25 8.5T23 13h6v11H18Z"/></svg>
-              <p class="testimonial-card-text">Best features are bonuses on crypto deposits and never having any issues making a withdrawal.</p>
-              <p class="testimonial-card-name">Tim B.</p>
+            <article class="h-full flex flex-col p-5 rounded-lg border border-line bg-bg-panel shadow-card snap-start min-w-0 testimonial-card">
+              <svg class="text-accent-hi mb-2.5 shrink-0 testimonial-card-quote-icon" width="28" height="22" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V13.5Q0 6 4 3T13 0l1 5Q9 6 7 8.5T5 13h6v11H0Zm18 0V13.5Q18 6 22 3T31 0l1 5Q27 6 25 8.5T23 13h6v11H18Z"/></svg>
+              <p class="text-[13px] leading-[1.7] text-text-mid m-0 mb-3.5 flex-1 testimonial-card-text">Best features are bonuses on crypto deposits and never having any issues making a withdrawal.</p>
+              <p class="text-[12.5px] font-extrabold tracking-[0.03em] uppercase text-text m-0 testimonial-card-name">Tim B.</p>
             </article>
           </div>
         </div>
@@ -664,38 +664,38 @@
     </div>
   </main>
 
-  <nav class="mobile-tabbar" data-i18n-aria="mobileTabbar.ariaLabel" aria-label="快捷選單">
-    <a href="index.html" class="mobile-tabbar-btn active"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1v-8Z"/></svg><span data-i18n="nav.lobby">大廳</span></a>
-    <a href="sport.html" class="mobile-tabbar-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m12 3 2.5 6M21 12l-6 2.5M12 21l-2.5-6M3 12l6-2.5"/></svg><span data-i18n="nav.sport">體育</span></a>
-    <a href="slot.html" class="mobile-tabbar-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h3v6H7zM14 9h3v6h-3z"/></svg><span data-i18n="nav.slots">老虎機</span></a>
-    <a href="promotion.html" class="mobile-tabbar-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M12 9v12M3 13h18"/></svg><span data-i18n="nav.promotion">優惠活動</span></a>
-    <a href="account.html" class="mobile-tabbar-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-i18n="nav.member">會員</span></a>
-    <button type="button" class="mobile-tabbar-btn mobile-tabbar-menu" data-i18n-aria="nav.menuLabel" aria-label="選單"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span data-i18n="nav.menu">選單</span></button>
+  <nav class="hidden max-[720px]:flex max-[720px]:fixed max-[720px]:left-0 max-[720px]:right-0 max-[720px]:bottom-0 max-[720px]:z-[500] max-[720px]:bg-bg-panel max-[720px]:border-t max-[720px]:border-line max-[720px]:pt-1.5 max-[720px]:px-1 max-[720px]:pb-[calc(6px_+_env(safe-area-inset-bottom))] max-[720px]:shadow-[0_-4px_16px_rgba(0,0,0,0.4)] mobile-tabbar" data-i18n-aria="mobileTabbar.ariaLabel" aria-label="快捷選單">
+    <a href="index.html" class="flex-1 flex flex-col items-center gap-1 py-1.5 px-0.5 text-[11px] font-semibold text-text-mid [&_svg]:w-5 [&_svg]:h-5 [&.active]:text-accent mobile-tabbar-btn active"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1v-8Z"/></svg><span data-i18n="nav.lobby">大廳</span></a>
+    <a href="sport.html" class="flex-1 flex flex-col items-center gap-1 py-1.5 px-0.5 text-[11px] font-semibold text-text-mid [&_svg]:w-5 [&_svg]:h-5 [&.active]:text-accent mobile-tabbar-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m12 3 2.5 6M21 12l-6 2.5M12 21l-2.5-6M3 12l6-2.5"/></svg><span data-i18n="nav.sport">體育</span></a>
+    <a href="slot.html" class="flex-1 flex flex-col items-center gap-1 py-1.5 px-0.5 text-[11px] font-semibold text-text-mid [&_svg]:w-5 [&_svg]:h-5 [&.active]:text-accent mobile-tabbar-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h3v6H7zM14 9h3v6h-3z"/></svg><span data-i18n="nav.slots">老虎機</span></a>
+    <a href="promotion.html" class="flex-1 flex flex-col items-center gap-1 py-1.5 px-0.5 text-[11px] font-semibold text-text-mid [&_svg]:w-5 [&_svg]:h-5 [&.active]:text-accent mobile-tabbar-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M12 9v12M3 13h18"/></svg><span data-i18n="nav.promotion">優惠活動</span></a>
+    <a href="account.html" class="flex-1 flex flex-col items-center gap-1 py-1.5 px-0.5 text-[11px] font-semibold text-text-mid [&_svg]:w-5 [&_svg]:h-5 [&.active]:text-accent mobile-tabbar-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-i18n="nav.member">會員</span></a>
+    <button type="button" class="flex-1 flex flex-col items-center gap-1 py-1.5 px-0.5 text-[11px] font-semibold text-text-mid [&_svg]:w-5 [&_svg]:h-5 [&.active]:text-accent mobile-tabbar-btn mobile-tabbar-menu" data-i18n-aria="nav.menuLabel" aria-label="選單"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span data-i18n="nav.menu">選單</span></button>
   </nav>
 
 
-  <section class="vendor-marquee">
+  <section class="w-full max-w-[1360px] mt-5 mx-auto py-5.5 px-5 bg-bg-panel border border-line rounded-lg shrink-0 box-border vendor-marquee">
     <div class="max-w-[1360px] mx-auto">
-      <p class="vendor-marquee-title" data-i18n="vendor.title">合作廠商</p>
-      <div class="vendor-marquee-viewport">
-        <div class="vendor-marquee-track">
-      <div class="vendor-marquee-row"><span class="vendor-badge" title="Evolution Gaming">EVO</span><span class="vendor-badge" title="WE Casino">WE</span><span class="vendor-badge" title="BG Big Gaming">BG</span><span class="vendor-badge" title="Pragmatic Play">PP</span><span class="vendor-badge" title="BBIN">BBIN</span><span class="vendor-badge" title="Allbet">AB</span><span class="vendor-badge" title="Yeebet Live">YB</span><span class="vendor-badge" title="SA Gaming">SA</span><span class="vendor-badge" title="WM Casino">WM</span><span class="vendor-badge" title="Playtech">PT</span><span class="vendor-badge" title="Dream Gaming">DG</span><span class="vendor-badge" title="Asia Gaming">AG</span><span class="vendor-badge" title="Sexy Gaming">SG</span><span class="vendor-badge" title="Ezugi">EZ</span><span class="vendor-badge" title="Venus Casino">VR</span><span class="vendor-badge" title="Gold Deluxe">GD</span><span class="vendor-badge" title="JDB Gaming">JDB</span><span class="vendor-badge" title="Kingmaker">KM</span><span class="vendor-badge" title="Oriental Game">OG</span><span class="vendor-badge" title="MG Live">MG</span><span class="vendor-badge" title="PG Soft">PGS</span><span class="vendor-badge" title="JILI Games">JILI</span><span class="vendor-badge" title="CQ9 Gaming">CQ9</span><span class="vendor-badge" title="Habanero">HB</span><span class="vendor-badge" title="Red Tiger">RT</span><span class="vendor-badge" title="NetEnt">NE</span><span class="vendor-badge" title="Play'n GO">PNG</span><span class="vendor-badge" title="Booongo">BNG</span><span class="vendor-badge" title="Spadegaming">SPG</span><span class="vendor-badge" title="Fa Chai">FC</span><span class="vendor-badge" title="Yggdrasil">YGG</span><span class="vendor-badge" title="Funky Games">FKG</span></div>
-      <div class="vendor-marquee-row" aria-hidden="true"><span class="vendor-badge" title="Evolution Gaming">EVO</span><span class="vendor-badge" title="WE Casino">WE</span><span class="vendor-badge" title="BG Big Gaming">BG</span><span class="vendor-badge" title="Pragmatic Play">PP</span><span class="vendor-badge" title="BBIN">BBIN</span><span class="vendor-badge" title="Allbet">AB</span><span class="vendor-badge" title="Yeebet Live">YB</span><span class="vendor-badge" title="SA Gaming">SA</span><span class="vendor-badge" title="WM Casino">WM</span><span class="vendor-badge" title="Playtech">PT</span><span class="vendor-badge" title="Dream Gaming">DG</span><span class="vendor-badge" title="Asia Gaming">AG</span><span class="vendor-badge" title="Sexy Gaming">SG</span><span class="vendor-badge" title="Ezugi">EZ</span><span class="vendor-badge" title="Venus Casino">VR</span><span class="vendor-badge" title="Gold Deluxe">GD</span><span class="vendor-badge" title="JDB Gaming">JDB</span><span class="vendor-badge" title="Kingmaker">KM</span><span class="vendor-badge" title="Oriental Game">OG</span><span class="vendor-badge" title="MG Live">MG</span><span class="vendor-badge" title="PG Soft">PGS</span><span class="vendor-badge" title="JILI Games">JILI</span><span class="vendor-badge" title="CQ9 Gaming">CQ9</span><span class="vendor-badge" title="Habanero">HB</span><span class="vendor-badge" title="Red Tiger">RT</span><span class="vendor-badge" title="NetEnt">NE</span><span class="vendor-badge" title="Play'n GO">PNG</span><span class="vendor-badge" title="Booongo">BNG</span><span class="vendor-badge" title="Spadegaming">SPG</span><span class="vendor-badge" title="Fa Chai">FC</span><span class="vendor-badge" title="Yggdrasil">YGG</span><span class="vendor-badge" title="Funky Games">FKG</span></div>
+      <p class="m-0 mb-3 text-[12px] font-bold text-text-dim text-center tracking-[0.06em] uppercase vendor-marquee-title" data-i18n="vendor.title">合作廠商</p>
+      <div class="overflow-hidden vendor-marquee-viewport">
+        <div class="flex w-max [animation:vendor-marquee-scroll_48s_linear_infinite] hover:[animation-play-state:paused] motion-reduce:[animation:none] vendor-marquee-track">
+      <div class="flex items-center gap-3 shrink-0 pr-3 vendor-marquee-row"><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Evolution Gaming">EVO</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="WE Casino">WE</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="BG Big Gaming">BG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Pragmatic Play">PP</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="BBIN">BBIN</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Allbet">AB</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Yeebet Live">YB</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="SA Gaming">SA</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="WM Casino">WM</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Playtech">PT</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Dream Gaming">DG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Asia Gaming">AG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Sexy Gaming">SG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Ezugi">EZ</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Venus Casino">VR</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Gold Deluxe">GD</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="JDB Gaming">JDB</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Kingmaker">KM</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Oriental Game">OG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="MG Live">MG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="PG Soft">PGS</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="JILI Games">JILI</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="CQ9 Gaming">CQ9</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Habanero">HB</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Red Tiger">RT</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="NetEnt">NE</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Play'n GO">PNG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Booongo">BNG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Spadegaming">SPG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Fa Chai">FC</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Yggdrasil">YGG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Funky Games">FKG</span></div>
+      <div class="flex items-center gap-3 shrink-0 pr-3 vendor-marquee-row" aria-hidden="true"><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Evolution Gaming">EVO</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="WE Casino">WE</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="BG Big Gaming">BG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Pragmatic Play">PP</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="BBIN">BBIN</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Allbet">AB</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Yeebet Live">YB</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="SA Gaming">SA</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="WM Casino">WM</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Playtech">PT</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Dream Gaming">DG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Asia Gaming">AG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Sexy Gaming">SG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Ezugi">EZ</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Venus Casino">VR</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Gold Deluxe">GD</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="JDB Gaming">JDB</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Kingmaker">KM</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Oriental Game">OG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="MG Live">MG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="PG Soft">PGS</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="JILI Games">JILI</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="CQ9 Gaming">CQ9</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Habanero">HB</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Red Tiger">RT</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="NetEnt">NE</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Play'n GO">PNG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Booongo">BNG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Spadegaming">SPG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Fa Chai">FC</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Yggdrasil">YGG</span><span class="inline-flex items-center justify-center h-8.5 py-0 px-4 rounded-md border border-line bg-bg-soft text-text-mid text-[12px] font-extrabold tracking-[0.02em] whitespace-nowrap vendor-badge" title="Funky Games">FKG</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <footer class="site-footer">
+  <footer class="bg-header-bg border-t border-line pt-10 pb-8 mt-5 shrink-0 site-footer">
     <div class="max-w-[1360px] mx-auto px-5 flex flex-col items-center text-center site-footer-inner">
-      <span class="site-footer-logo brand-mark"><img src="logo.png" alt="WIN100%" class="brand-mark-logo"></span>
-      <div class="notice-links site-footer-links"><a href="about.html?tab=faq"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8"/><path d="M12 17h.01"/></svg><span data-i18n="notice.faq">常見問題</span></a><a href="#" data-cs-open><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span data-i18n="notice.liveChat">線上客服</span></a><a href="https://t.me/win10096cs" target="_blank" rel="noopener noreferrer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/></svg><span data-i18n="quickRail.promoChannel">促銷頻道</span></a></div>
-      <div class="site-footer-notice">
+      <span class="flex items-center gap-2 h-7 w-auto mb-4.5 [opacity:var(--footer-opacity)] site-footer-logo brand-mark"><img src="logo.png" alt="WIN100%" class="h-8.5 w-auto shrink-0 brand-mark-logo"></span>
+      <div class="flex items-center gap-4.5 shrink-0 justify-center mb-4 text-text-mid text-[12.5px] [&_a]:flex [&_a]:items-center [&_a]:gap-1.5 [&_a]:font-bold [&_a:hover]:text-accent-hi notice-links site-footer-links"><a href="about.html?tab=faq"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8"/><path d="M12 17h.01"/></svg><span data-i18n="notice.faq">常見問題</span></a><a href="#" data-cs-open><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span data-i18n="notice.liveChat">線上客服</span></a><a href="https://t.me/win10096cs" target="_blank" rel="noopener noreferrer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/></svg><span data-i18n="quickRail.promoChannel">促銷頻道</span></a></div>
+      <div class="max-w-[640px] [&_p]:text-text-mid [&_p]:text-[12px] [&_p]:leading-[1.7] [&_p]:m-0 [&_p]:mb-2 [&_p:last-child]:mb-0 site-footer-notice">
         <p data-i18n="footer.disclaimer1">博彩可能造成成癮，請理性遊玩。如需支援資訊，請前往責任博彩協助頁面。</p>
         <p data-i18n="footer.disclaimer2">當您存取、繼續使用或瀏覽本站，即表示您同意我們使用部分瀏覽器 Cookie，以改善您的使用體驗。</p>
       </div>
-      <div class="site-footer-divider"></div>
-      <div class="site-footer-copyright">
+      <div class="w-full max-w-[640px] h-px bg-line my-5 site-footer-divider"></div>
+      <div class="text-[12px] text-text-dim flex items-center gap-2 flex-wrap justify-center [&_a]:text-text-dim [&_a:hover]:text-accent-hi site-footer-copyright">
         <span data-i18n="footer.copyright">© 2026 APEX100 版權所有，受法律保護。本站僅供介面展示，不涉及任何實際投注行為。</span>
         <a href="../../index.html" data-i18n="footer.backToHub">回到 CMS 統一預覽</a>
       </div>
