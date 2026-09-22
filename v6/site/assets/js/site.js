@@ -392,14 +392,14 @@
      點「登錄」一律開登入彈窗,帳密輸入收斂到彈窗內完成。JOIN 是實心
      主要按鈕、LOGIN 是純文字連結,視覺層級對齊參考站。 */
   function guestAuthHtml() {
-    return '<span class="header-auth-badge-wrap"><button type="button" class="btn-accent" data-auth-open="register">' + tr('auth.registerNow', '立即註冊') + '</button><span class="header-auth-badge" aria-hidden="true"></span></span>' +
-      '<button type="button" class="btn-accent ghost" data-auth-open="login">' + tr('auth.login', '登錄') + '</button>';
+    return '<span class="relative header-auth-badge-wrap"><button type="button" class="py-2.25 px-5 border border-transparent rounded-full bg-[image:var(--accent-grad)] text-accent-ink font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-accent transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none max-[720px]:py-2 max-[720px]:px-2.5 max-[720px]:text-[11px] btn-accent" data-auth-open="register">' + tr('auth.registerNow', '立即註冊') + '</button><span class="absolute -top-1 -right-1 w-2.25 h-2.25 rounded-full bg-badge border-2 border-header-bg header-auth-badge" aria-hidden="true"></span></span>' +
+      '<button type="button" class="py-2.25 px-5 border border-white/18 rounded-full bg-white/8 text-text-on-header font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none max-[720px]:py-2 max-[720px]:px-2.5 max-[720px]:text-[11px] btn-accent quiet" data-auth-open="login">' + tr('auth.login', '登錄') + '</button>';
   }
   function memberAuthHtml(user) {
-    return '<a href="account.html" class="header-nav-link header-nav-link-user" style="gap:8px">' + USER_ICON + '<span>' + escapeHtml(user.name) + '</span></a>' +
-      '<span class="header-forgot">' + tr('auth.balancePrefix', '餘額：') + escapeHtml(user.balance) + '</span>' +
-      '<span class="header-forgot">' + tr('auth.pointsPrefix', '點數：') + escapeHtml(user.points || DEFAULT_POINTS) + '</span>' +
-      '<button type="button" class="btn-accent quiet" data-logout>' + tr('auth.logout', '登出') + '</button>';
+    return '<a href="account.html" class="flex items-center gap-1.5 py-2.25 px-2.5 rounded-full text-text-mid text-[12px] font-extrabold uppercase tracking-[0.02em] whitespace-nowrap transition-[background-color,color] duration-150 hover:bg-bg-soft hover:text-white max-[720px]:py-1.5 max-[720px]:px-0.5 header-nav-link header-nav-link-user" style="gap:8px">' + USER_ICON + '<span class="max-[720px]:max-w-[46px] max-[720px]:overflow-hidden max-[720px]:text-ellipsis max-[720px]:whitespace-nowrap">' + escapeHtml(user.name) + '</span></a>' +
+      '<span class="text-[11.5px] text-[rgba(245,242,236,0.6)] whitespace-nowrap max-[720px]:hidden header-forgot">' + tr('auth.balancePrefix', '餘額：') + escapeHtml(user.balance) + '</span>' +
+      '<span class="text-[11.5px] text-[rgba(245,242,236,0.6)] whitespace-nowrap max-[720px]:hidden header-forgot">' + tr('auth.pointsPrefix', '點數：') + escapeHtml(user.points || DEFAULT_POINTS) + '</span>' +
+      '<button type="button" class="py-2.25 px-5 border border-white/18 rounded-full bg-white/8 text-text-on-header font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap shadow-none transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none max-[720px]:py-2 max-[720px]:px-2.5 max-[720px]:text-[11px] btn-accent quiet" data-logout>' + tr('auth.logout', '登出') + '</button>';
   }
   /* 依登入狀態重繪 header-auth,取代原本每頁寫死的訪客/會員版面。
      訪客態的「登錄／立即註冊」一律開對應的登入彈窗完成帳密輸入。 */

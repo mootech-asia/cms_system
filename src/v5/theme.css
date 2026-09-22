@@ -1,6 +1,8 @@
 /* v5 — 烈焰賭場（Ignite）風格。真正的 Tailwind utility class 寫法（取代
-   語意化 class + 手寫 CSS），token 從 v5/site/assets/css/main.css 的
-   :root ＋ skins/*.css 逐字搬過來，只換成 @theme／:root[data-skin] 寫法。
+   語意化 class + 手寫 CSS）。--bg／--accent 等 raw token 與換膚
+   :root[data-skin=...] 覆寫沿用 v5/site/assets/css/main.css／skins/*.css
+   透過 @import layer(legacy) 帶進來的定義，不在此檔重複宣告，@theme
+   static 的 --color-*: var(--x) 對應鏈可以直接吃到。
 
    間距/尺寸類 utility（padding/margin/gap/小尺寸 width-height/inset/
    translate）一律優先採用 Tailwind 預設刻度，只有完全對不上 4px 刻度
@@ -49,88 +51,10 @@
   --color-jackpot-b: var(--jackpot-b);
 }
 
-:root {
-  --bg: #1b1b1c;
-  --bg-soft: #242425;
-  --bg-panel: #212123;
-  --header-bg: #141414;
-  --line: #333335;
-  --line-hi: #4a4440;
-  --text: #f5f2ec;
-  --text-mid: #b6b1a7;
-  --text-dim: #837e73;
-  --text-on-header: #f5f2ec;
-  --panel-tint: #262220;
-  --panel-glass: rgba(33, 33, 35, 0.82);
-  --footer-opacity: 0.85;
-
-  --accent: #f4791f;
-  --accent-hi: #ff9a3d;
-  --accent-deep: #c85a12;
-  --accent-grad: linear-gradient(180deg, #ff9a3d 0%, #f4791f 55%, #e0600a 100%);
-  --accent-ink: #fff8f0;
-
-  --badge: #e2431f;
-  --badge-deep: #a8300f;
-  --jackpot-a: #6d3fc9;
-  --jackpot-b: #a63fd6;
-}
-
-/* ── skins（原 assets/css/skins/*.css 逐字搬過來） ── */
-:root[data-skin='emerald-tide'] {
-  --accent: #1aa88f;
-  --accent-hi: #34e6b8;
-  --accent-deep: #16309e;
-  --accent-grad: linear-gradient(135deg, #1fd9a4 0%, #1aa8c4 50%, #1a3fd6 100%);
-  --accent-ink: #fff8f0;
-  --jackpot-a: #0d9488;
-  --jackpot-b: #1e3a8a;
-}
-:root[data-skin='gold-noir'] {
-  --accent: #d4a017;
-  --accent-hi: #f0c550;
-  --accent-deep: #9c780f;
-  --accent-grad: linear-gradient(180deg, #f0c550 0%, #d4a017 55%, #9c780f 100%);
-  --accent-ink: #2a1a04;
-  --jackpot-a: #92400e;
-  --jackpot-b: #d97706;
-}
-:root[data-skin='neon-emerald'] {
-  --accent: #12b76a;
-  --accent-hi: #34d399;
-  --accent-deep: #0a7a49;
-  --accent-grad: linear-gradient(180deg, #34d399 0%, #12b76a 55%, #0a7a49 100%);
-  --accent-ink: #fff8f0;
-  --jackpot-a: #0891b2;
-  --jackpot-b: #06b6d4;
-}
-:root[data-skin='royal-crimson'] {
-  --accent: #dc2626;
-  --accent-hi: #f87171;
-  --accent-deep: #a31515;
-  --accent-grad: linear-gradient(180deg, #f87171 0%, #dc2626 55%, #a31515 100%);
-  --accent-ink: #fff8f0;
-  --jackpot-a: #be185d;
-  --jackpot-b: #ec4899;
-}
-:root[data-skin='sapphire-noir'] {
-  --accent: #2563eb;
-  --accent-hi: #60a5fa;
-  --accent-deep: #1741a6;
-  --accent-grad: linear-gradient(180deg, #60a5fa 0%, #2563eb 55%, #1741a6 100%);
-  --accent-ink: #fff8f0;
-  --jackpot-a: #4338ca;
-  --jackpot-b: #7c3aed;
-}
-:root[data-skin='violet-jackpot'] {
-  --accent: #8b5cf6;
-  --accent-hi: #c4b5fd;
-  --accent-deep: #6d28d9;
-  --accent-grad: linear-gradient(180deg, #c4b5fd 0%, #8b5cf6 55%, #6d28d9 100%);
-  --accent-ink: #fff8f0;
-  --jackpot-a: #a21caf;
-  --jackpot-b: #e879f9;
-}
+/* --bg／--accent 等 raw token 與 6 組 :root[data-skin=...] 換膚覆寫不在
+   這裡重複宣告：main.css 已用 @import layer(legacy) 帶進 :root 定義，
+   @theme static 的 --color-*: var(--x) 對應鏈可以直接吃到，不受 layer
+   影響。實際色值見 v5/site/assets/css/main.css 的 :root 與 skins/*.css。 */
 
 /* ── 全站 base（main.css 逐字保留） ── */
 @layer base {
