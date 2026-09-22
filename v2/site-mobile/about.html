@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh" data-skin="lucky-star">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About</title>
+<link rel="stylesheet" href="assets/css/tailwind.css">
+<script>
+  (function () {
+    try {
+      var s = localStorage.getItem('win100-mobile-skin');
+      if (s) document.documentElement.setAttribute('data-skin', s);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body class="min-h-screen bg-bg text-text font-body pb-20">
+
+<header class="sticky top-0 z-40 flex items-center gap-3 bg-bg/95 backdrop-blur-sm border-b border-line px-4 py-3.5">
+  <a href="index.html" class="h-8 w-8 grid place-items-center rounded-lg text-text-mid flex-none" aria-label="Back">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+  </a>
+  <h1 class="text-[15.5px] font-bold text-text truncate" data-i18n="page.about">關於我們</h1>
+</header>
+
+<main>
+  <section class="px-4 pt-4 pb-6">
+    <div class="flex gap-2 rounded-2xl border border-line bg-bg-card p-1.5 mb-4"><button type="button" class="flex-1 h-10 rounded-xl text-[12.5px] font-semibold bg-accent text-text-on-accent" data-about-tab="0"><span data-i18n="about.tabAboutUs">關於我們</span></button><button type="button" class="flex-1 h-10 rounded-xl text-[12.5px] font-semibold text-text-mid" data-about-tab="1"><span data-i18n="about.tabAnnouncements">公告</span></button><button type="button" class="flex-1 h-10 rounded-xl text-[12.5px] font-semibold text-text-mid" data-about-tab="2"><span data-i18n="about.tabFaq">常見問題</span></button></div>
+    <p class="text-[13px] leading-relaxed text-text-mid" data-i18n="about.body">Lucky Star 是一個提供娛樂城、真人視訊、體育、老虎機與小遊戲的一站式平台，致力於提供安全、公平、即時的遊戲體驗與客服支援。</p>
+  </section>
+
+</main>
+
+<nav class="m-tabbar fixed bottom-0 inset-x-0 z-40 grid grid-cols-5 bg-bg-elev border-t border-line" style="padding-bottom:env(safe-area-inset-bottom, 0px)">
+  <a href="index.html" class="flex flex-col items-center gap-1 py-2.5 text-accent" aria-current="page">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1v-8Z"></path></svg>
+    <span class="text-[10.5px] font-semibold" data-i18n="tabbar.home">首頁</span>
+  </a>
+  <a href="promotion.html" class="flex flex-col items-center gap-1 py-2.5 text-text-mid">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="1.5"></rect><path d="M12 9v12M3 13h18M12 9H8.5a2.5 2.5 0 1 1 2.2-3.7L12 9Zm0 0h3.5a2.5 2.5 0 1 0-2.2-3.7L12 9Z"></path></svg>
+    <span class="text-[10.5px] font-semibold" data-i18n="tabbar.freeMoney">免費金</span>
+  </a>
+  <a href="hot-games.html" class="flex flex-col items-center gap-1 py-2.5 text-text-mid">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M7 9h3v6H7zM14 9h3v6h-3z"></path></svg>
+    <span class="text-[10.5px] font-semibold" data-i18n="tabbar.casino">娛樂城</span>
+  </a>
+  <a href="live.html" class="flex flex-col items-center gap-1 py-2.5 text-text-mid">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+    <span class="text-[10.5px] font-semibold" data-i18n="tabbar.live">真人視訊</span>
+  </a>
+  <button type="button" class="flex flex-col items-center gap-1 py-2.5 text-text-mid" data-tabbar-menu>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    <span class="text-[10.5px] font-semibold" data-i18n="tabbar.menu">選單</span>
+  </button>
+</nav>
+
+<template id="m-menu-drawer-tpl">
+  <div class="fixed inset-0 z-50 bg-black/60" data-drawer-close>
+    <div class="absolute inset-y-0 right-0 w-72 max-w-[85vw] bg-bg-elev p-4 overflow-y-auto">
+      <div class="flex items-center justify-between mb-4">
+        <span class="text-[15px] font-bold text-text" data-i18n="tabbar.menu">選單</span>
+        <button type="button" class="h-8 w-8 grid place-items-center rounded-lg text-text-mid" data-drawer-close aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-1">
+        <a href="hot-games.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid" data-i18n="section.bestGames">精選遊戲</a>
+        <a href="live.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.live">真人視訊</a>
+        <a href="sport.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">體育</a>
+        <a href="promotion.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid" data-i18n="promo.bonusTitle">優惠活動</a>
+        <a href="account.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">會員中心</a>
+        <a href="deposit.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">儲值</a>
+        <a href="withdrawal.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">提款</a>
+      </nav>
+    </div>
+  </div>
+</template>
+
+<script src="../site/assets/js/data.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/mobile.js"></script>
+
+</body>
+</html>
