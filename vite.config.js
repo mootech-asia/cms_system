@@ -33,6 +33,8 @@ export default defineConfig({
         'v15-tailwind-site': resolve(__dirname, 'src/v1.5/theme.css'),
         'v2-tailwind-site': resolve(__dirname, 'src/v2/theme.css'),
         'v2-tailwind-studio': resolve(__dirname, 'src/v2/theme-studio.css'),
+        'v3-tailwind-site': resolve(__dirname, 'src/v3/theme.css'),
+        'v3-tailwind-studio': resolve(__dirname, 'src/v3/theme-studio.css'),
       },
     },
   },

@@ -1,0 +1,130 @@
+/* v3 — 真正的 Tailwind utility class 寫法（取代語意化 class + 手寫 CSS）。
+   色彩/結構 token 分兩層：design-system/tokens.css 是不隨換膚變動的
+   結構尺寸(spacing/radius/type)，skins/*.css 才是色彩(6 組同時載入，
+   用 :root[data-skin=x] 屬性切換，比照 v4~v6 的做法)。@theme 只映射
+   純色彩 token（bg/text/accent/primary/...），漸層/陰影/filter 類
+   組合值（gradient-primary/shadow-card/calendar-indicator-filter 等）
+   不映射進來，比照 v6 的做法留給 legacy CSS 或之後轉換時用任意值
+   語法（bg-[image:var(--x)]）處理。
+
+   驗證過的關鍵事實：main.css/layout.css 等原始檔案仍以未包 @layer 的
+   一般 <link> 留在頁面上（沒有被移除，只是額外新增 tailwind.css），
+   而 CSS Cascade Layers 規範規定「沒有包在任何 @layer 裡的樣式」永遠
+   贏過「任何具名 layer 裡的樣式」，跟宣告順序/specificity 無關。所以
+   .container/.grid 這類原本就有定義的 class，即使 Tailwind 掃描到
+   同名字串生成了同名 utility（例如 container 內建的斷點 max-width），
+   實測（1920px 寬度下 .container 的 max-width 仍是原本的 100%，不是
+   Tailwind 內建的 1536px 斷點值）確認原本的 unlayered 規則毫無懸念
+   地繼續生效，這批同名 utility 不需要特別處理。真正需要處理的只有
+   main.css 完全沒定義過、目前零效果的死語法殘留（例如 `class="...
+   outline"`、`<td class="text-right">`），這批因為沒有 unlayered 規則
+   競爭，Tailwind 生成的 utility 會直接套用，變成非預期的新行為，已經
+   從 v3/tailwind/site 的 class 清單裡移除（不動 v3/site 原始檔）。 */
+@layer theme, base, legacy, components, utilities;
+@import 'tailwindcss' source(none);
+@source '../../v3/tailwind/site/*.html';
+@source '../../v3/tailwind/site/assets/js/site.js';
+@source '../../v3/tailwind/site/assets/js/data.js';
+@source '../../v3/tailwind/site/assets/js/i18n.js';
+@source '../../v3/tailwind/site/assets/js/i18n-member.js';
+@import '../../v3/tailwind/site/assets/css/design-system/tokens.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/layout.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/main.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/skins/white.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/skins/blue.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/skins/night-esports-green.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/skins/cosmic-spectrum-purple.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/skins/curated-collection.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/skins/jade-jackpot.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/design-system/components.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/load-more.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/design-system/variants.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/design-system/chrome-variants.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/design-system/design-studio.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/static-addon.css' layer(legacy);
+
+@theme static {
+  --color-bg: var(--bg);
+  --color-bg-elev: var(--bg-elev);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hi: var(--bg-card-hi);
+  --color-line: var(--line);
+  --color-line-hi: var(--line-hi);
+  --color-text: var(--text);
+  --color-text-mid: var(--text-mid);
+  --color-text-dim: var(--text-dim);
+  --color-text-on-accent: var(--text-on-accent);
+  --color-text-on-accent-soft: var(--text-on-accent-soft);
+  --color-icon-muted: var(--icon-muted);
+  --color-cal-icon: var(--cal-icon);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-shade: var(--accent-shade);
+  --color-primary: var(--primary);
+  --color-primary-start: var(--primary-start);
+  --color-primary-end: var(--primary-end);
+  --color-live: var(--live);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-pos: var(--pos);
+  --color-neg: var(--neg);
+  --color-tier-next: var(--tier-next);
+  --color-control-border: var(--control-border);
+  --color-control-text: var(--control-text);
+  --color-control-hover-border: var(--control-hover-border);
+  --color-control-hover-text: var(--control-hover-text);
+  --color-control-active-border: var(--control-active-border);
+  --color-control-active-text: var(--control-active-text);
+  --color-table-row-bg: var(--table-row-bg);
+  --color-table-row-border: var(--table-row-border);
+  --color-table-header-text: var(--table-header-text);
+  --color-record-total-border: var(--record-total-border);
+  --color-rewards-banner-border: var(--rewards-banner-border);
+  --color-account-hero-border: var(--account-hero-border);
+  --color-secondary-button-bg: var(--secondary-button-bg);
+  --color-secondary-button-border: var(--secondary-button-border);
+  --color-secondary-button-text: var(--secondary-button-text);
+  --color-secondary-button-hover-border: var(--secondary-button-hover-border);
+  --color-secondary-button-hover-text: var(--secondary-button-hover-text);
+  --color-status-success-bg: var(--status-success-bg);
+  --color-status-success-text: var(--status-success-text);
+  --color-status-success-border: var(--status-success-border);
+  --color-badge-highlight-bg: var(--badge-highlight-bg);
+  --color-badge-highlight-text: var(--badge-highlight-text);
+  --color-badge-highlight-border: var(--badge-highlight-border);
+}
+
+/* ── Preflight 回歸修正 ── main.css 的 button 規則只設了 font-family
+   跟 cursor，input/select/textarea 完全沒有通用重置，這些元素目前都
+   吃瀏覽器 UA 預設的 font-size(medium ≈13.33px)／line-height(normal)。
+   Preflight 對表單元素套用 font-size:100%(=inherit，變成 body 的
+   14px)／line-height:inherit(=body 的 1.5，變成 21px)，會把每一個
+   沒有自己設 font-size/line-height 的按鈕、輸入框撐高（實測
+   .hero-dot 以外的一般按鈕從 13.33px/normal 變成 14px/21px，連帶
+   撐高外層 sidebar 區塊／表單列高度）。這裡補回 UA 預設值，不影響
+   任何 main.css 已經自己設定 font-size/line-height 的 class（legacy
+   layer 優先權高於 base layer）。
+
+   padding 另外處理：全站有 80 處左右裸 <input>（沒有自己的 class，
+   靠外層 wrapper div 提供版面），完全依賴瀏覽器 UA 預設 padding(Chrome
+   是 1px 2px)，Preflight 的 universal selector 把 padding 全部歸零，
+   實測 personal-info.html 的暱稱輸入框從 23px→21px。border 不用額外
+   處理，這批裸 input 目前的 border:0/none 是由其他既有規則決定，
+   Preflight 的 border 歸零剛好跟現況一致。
+
+   font-size 不能用 CSS 關鍵字 medium：medium 依規範等於 16px（根字級），
+   跟瀏覽器實際給表單元素的 UA 預設字級是兩回事——Chrome 對
+   button/input/select/textarea 的 UA stylesheet 另外寫死約 13.3333px
+   (10pt)，不是套用 medium 關鍵字，兩者常見的混淆但數值不同（實測抓到
+   withdrawal.html 的 .ap-eye 密碼顯示按鈕從 13.3333px 變成 16px），
+   這裡直接照實測值寫死 px，不要假設關鍵字可以還原瀏覽器行為。 */
+@layer base {
+  button, input, select, textarea { font-size: 13.3333px; line-height: normal; }
+  input, select, textarea { padding: 1px 2px; }
+  button { padding: 1px 6px; }
+}
