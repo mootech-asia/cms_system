@@ -1,0 +1,28 @@
+/* v2 手機版 skin：琥珀金系。跟 lucky-star.css 同一組變數，只換色值。 */
+:root[data-skin="amber-royale"] {
+  color-scheme: dark;
+
+  --bg: #120d08;
+  --bg-elev: #18120a;
+  --bg-card: #211809;
+  --bg-card-hi: #2b1f0f;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-hi: rgba(255, 255, 255, 0.16);
+
+  --text: #f8f4ec;
+  --text-mid: rgba(248, 244, 236, 0.7);
+  --text-dim: rgba(248, 244, 236, 0.45);
+  --text-on-accent: #1a1206;
+
+  --accent: #f2b134;
+  --accent-soft: rgba(242, 177, 52, 0.18);
+  --login-btn: #2f7bf6;
+  --register-btn: #f2b134;
+  --promo-money-a: #f7b733;
+  --promo-money-b: #f2994a;
+  --promo-bonus-a: #e0715a;
+  --promo-bonus-b: #a8412f;
+  --live-dot: #ff4d4f;
+
+  --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.45);
+}

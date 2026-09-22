@@ -1,0 +1,28 @@
+/* v2 手機版 skin：紫色系。跟 lucky-star.css 同一組變數，只換色值。 */
+:root[data-skin="violet-rush"] {
+  color-scheme: dark;
+
+  --bg: #0b0a14;
+  --bg-elev: #100e1c;
+  --bg-card: #171325;
+  --bg-card-hi: #1f1a32;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-hi: rgba(255, 255, 255, 0.16);
+
+  --text: #f5f3fb;
+  --text-mid: rgba(245, 243, 251, 0.7);
+  --text-dim: rgba(245, 243, 251, 0.45);
+  --text-on-accent: #100c1e;
+
+  --accent: #a855f7;
+  --accent-soft: rgba(168, 85, 247, 0.18);
+  --login-btn: #6366f1;
+  --register-btn: #a855f7;
+  --promo-money-a: #f7b733;
+  --promo-money-b: #f2994a;
+  --promo-bonus-a: #ec4899;
+  --promo-bonus-b: #a855f7;
+  --live-dot: #ff4d4f;
+
+  --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.45);
+}

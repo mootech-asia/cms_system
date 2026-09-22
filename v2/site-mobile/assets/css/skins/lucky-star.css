@@ -1,0 +1,31 @@
+/* v2 手機版預設 skin：比照截圖參考（深底＋草綠品牌色）。
+   跟桌機版 6 套 skin（v2/site/themes/*.css）完全獨立，不共用 token 也
+   不共用切換狀態——這裡只定義顏色/漸層變數，版面尺寸交給 Tailwind。 */
+:root:not([data-skin]),
+:root[data-skin="lucky-star"] {
+  color-scheme: dark;
+
+  --bg: #090d13;
+  --bg-elev: #0d1420;
+  --bg-card: #131b28;
+  --bg-card-hi: #1a2434;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-hi: rgba(255, 255, 255, 0.16);
+
+  --text: #f4f6f8;
+  --text-mid: rgba(244, 246, 248, 0.7);
+  --text-dim: rgba(244, 246, 248, 0.45);
+  --text-on-accent: #08120c;
+
+  --accent: #34d179;
+  --accent-soft: rgba(52, 209, 121, 0.16);
+  --login-btn: #2f7bf6;
+  --register-btn: #34c95e;
+  --promo-money-a: #f7b733;
+  --promo-money-b: #f2994a;
+  --promo-bonus-a: #8b5cf6;
+  --promo-bonus-b: #6d28d9;
+  --live-dot: #ff4d4f;
+
+  --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.45);
+}

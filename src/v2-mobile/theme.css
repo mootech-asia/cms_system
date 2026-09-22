@@ -1,0 +1,59 @@
+/* v2 獨立手機版 — 全新畫面，直接寫真正的 Tailwind utility class（沒有
+   v2/site 那份手寫 main.css/app.css 的歷史包袱要相容，所以不像
+   v4/v5/v6 那樣把既有 CSS 用 layer(legacy) 掛進來）。
+
+   色票獨立於 v2/site 既有 6 套桌機 skin，見 ../../v2/site-mobile/assets/
+   css/skins/*.css，每個檔案只定義 :root[data-skin="x"] 底下的 CSS
+   variable，不切換整份 stylesheet（比 v2/site 原本「換 <link href>」
+   的做法少一次網路請求、也不會有短暫無樣式的閃爍）。
+
+   間距/尺寸類 utility 一律優先採用 Tailwind 預設刻度，只有完全對不上
+   4px 刻度時才用任意值（比照 v4~v6 review 過的共識）。 */
+@layer theme, base, skins, utilities;
+@import 'tailwindcss' source(none);
+@source '../../v2/site-mobile/*.html';
+@source '../../v2/site-mobile/assets/js/*.js';
+@import '../../v2/site-mobile/assets/css/skins/lucky-star.css' layer(skins);
+@import '../../v2/site-mobile/assets/css/skins/violet-rush.css' layer(skins);
+@import '../../v2/site-mobile/assets/css/skins/amber-royale.css' layer(skins);
+
+@theme static {
+  --font-display: 'Pretendard', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-body: 'Pretendard', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+
+  --color-bg: var(--bg);
+  --color-bg-elev: var(--bg-elev);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hi: var(--bg-card-hi);
+  --color-line: var(--line);
+  --color-line-hi: var(--line-hi);
+
+  --color-text: var(--text);
+  --color-text-mid: var(--text-mid);
+  --color-text-dim: var(--text-dim);
+  --color-text-on-accent: var(--text-on-accent);
+
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-login-btn: var(--login-btn);
+  --color-register-btn: var(--register-btn);
+  --color-promo-money-a: var(--promo-money-a);
+  --color-promo-money-b: var(--promo-money-b);
+  --color-promo-bonus-a: var(--promo-bonus-a);
+  --color-promo-bonus-b: var(--promo-bonus-b);
+  --color-live-dot: var(--live-dot);
+
+  --shadow-card: var(--shadow-card);
+}
+
+@layer base {
+  html, body { background: var(--color-bg); color: var(--color-text); }
+  body { -webkit-font-smoothing: antialiased; overscroll-behavior-y: none; }
+  img { display: block; max-width: 100%; }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar { display: none; }
+}
