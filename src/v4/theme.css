@@ -1,6 +1,8 @@
 /* v4 — 紅金喜慶風格。真正的 Tailwind utility class 寫法（取代語意化
-   class + 手寫 CSS），token 從 v4/site/assets/css/main.css 的 :root
-   ＋ skins/*.css 逐字搬過來，只換成 @theme／:root[data-skin] 寫法。
+   class + 手寫 CSS）。--bg／--gold 等 raw token 與換膚 :root[data-skin=...]
+   覆寫沿用 v4/site/assets/css/main.css／skins/*.css 透過 @import
+   layer(legacy) 帶進來的定義，不在此檔重複宣告，@theme static 的
+   --color-*: var(--x) 對應鏈可以直接吃到。
    html 根字級是瀏覽器預設 16px（v4 沒有像 v3 那樣改寫根字級），
    Tailwind 的 rem 制數字間距 utility（p-4/m-3 這類）算出來的 px 值
    是相對這個 16px 根字級，跟 body{font-size:14px} 無關。
@@ -68,96 +70,10 @@
   --color-red-deep: var(--red-deep);
 }
 
-:root {
-  --bg: #f3efe7;
-  --bg-panel: #ffffff;
-  --header-grad: linear-gradient(180deg, #d21f3c 0%, #ad1130 100%);
-  --header-grad-hi: #e63552;
-  --notice-bg: #fbeceb;
-  --notice-text: #8a2432;
-  --line: #ece3d4;
-  --line-hi: #e2c98a;
-  --text: #2b2420;
-  --text-mid: #6b5f54;
-  --text-dim: #a49a8c;
-  --text-on-header: #fff6ea;
-  --panel-tint: #fff9ec;
-  --panel-glass: rgba(255, 255, 255, 0.85);
-  --logo-filter: brightness(0) invert(1);
-  --footer-logo-filter: brightness(0);
-  --gold: #f2a924;
-  --gold-hi: #ffd452;
-  --gold-deep: #b87a0a;
-  --gold-grad: linear-gradient(180deg, #ffe58f 0%, #ffc23c 45%, #f0a020 100%);
-  --red: #c8102e;
-  --red-deep: #9c0f28;
-}
-
-/* ── skins（原 assets/css/skins/*.css 逐字搬過來） ── */
-:root[data-skin='imperial-purple'] {
-  --header-grad: linear-gradient(180deg, #6b3fa0 0%, #4a2570 100%);
-  --header-grad-hi: #9c6fc2;
-  --notice-bg: #f3ecf9;
-  --notice-text: #5b2a86;
-  --red: #6b3fa0;
-  --red-deep: #4a2570;
-}
-:root[data-skin='emerald-jade'] {
-  --header-grad: linear-gradient(180deg, #12704a 0%, #0d5138 100%);
-  --header-grad-hi: #2bbf7a;
-  --notice-bg: #eaf7ef;
-  --notice-text: #12704a;
-  --red: #12704a;
-  --red-deep: #0d5138;
-}
-:root[data-skin='sapphire-blue'] {
-  --header-grad: linear-gradient(180deg, #1b3f91 0%, #142f6e 100%);
-  --header-grad-hi: #3b6fe0;
-  --notice-bg: #eaf0fb;
-  --notice-text: #1b3f91;
-  --red: #1b3f91;
-  --red-deep: #142f6e;
-}
-:root[data-skin='onyx-gold'] {
-  --bg: #0d0b08;
-  --bg-panel: #18140f;
-  --header-grad: linear-gradient(180deg, #211b12 0%, #080705 100%);
-  --header-grad-hi: #d4af37;
-  --notice-bg: #1c170f;
-  --notice-text: #d4af37;
-  --line: #2b241a;
-  --line-hi: #8a6d2e;
-  --text: #f0e6cf;
-  --text-mid: #b5a684;
-  --text-dim: #7a6f57;
-  --text-on-header: #f7efe0;
-  --panel-tint: #241d13;
-  --shadow-card: 0 2px 0 rgba(0, 0, 0, 0.4), 0 10px 24px rgba(0, 0, 0, 0.6);
-  --panel-glass: rgba(24, 20, 15, 0.85);
-  --footer-logo-filter: brightness(0) invert(1);
-  --red: #8a5c0a;
-  --red-deep: #5c3d06;
-}
-:root[data-skin='deep-ocean'] {
-  --bg: #071a1c;
-  --bg-panel: #0e2528;
-  --header-grad: linear-gradient(180deg, #103c3f 0%, #051415 100%);
-  --header-grad-hi: #35d6c4;
-  --notice-bg: #0f2a2c;
-  --notice-text: #4fe0cd;
-  --line: #1c3a3d;
-  --line-hi: #2f8f85;
-  --text: #e3f5f2;
-  --text-mid: #8fb8b4;
-  --text-dim: #5c7c79;
-  --text-on-header: #eefaf8;
-  --panel-tint: #113034;
-  --shadow-card: 0 2px 0 rgba(0, 0, 0, 0.4), 0 10px 24px rgba(0, 0, 0, 0.6);
-  --panel-glass: rgba(14, 37, 40, 0.85);
-  --footer-logo-filter: brightness(0) invert(1);
-  --red: #1fae9f;
-  --red-deep: #116b62;
-}
+/* --bg／--red 等 raw token 與 6 組 :root[data-skin=...] 換膚覆寫不在這裡
+   重複宣告：main.css 已用 @import layer(legacy) 帶進 :root 定義，
+   @theme static 的 --color-*: var(--x) 對應鏈可以直接吃到，不受 layer
+   影響。實際色值見 v4/site/assets/css/main.css 的 :root 與 skins/*.css。 */
 
 /* ── 全站 base（main.css 第 38-60 行逐字保留） ── */
 @layer base {
