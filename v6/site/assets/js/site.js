@@ -926,14 +926,14 @@
   }
   function wdAccountCardHtml(acc, idx, withRemove) {
     return (
-      '<div class="wd-account-card">' +
-      '<div class="wd-account-badge">' + escapeHtml(wdAccountBadgeText(acc)) + '</div>' +
-      '<div class="wd-account-info">' +
-      '<span class="wd-account-name">' + escapeHtml(wdAccountNameText(acc)) + '</span>' +
-      '<span class="wd-account-number">' + escapeHtml(wdAccountNumberText(acc)) + '</span>' +
-      (acc.boundAt ? '<span class="wd-account-date">' + escapeHtml(acc.boundAt) + '</span>' : '') +
+      '<div class="flex items-center gap-4 p-4 border border-line rounded-[12px] mb-3.5 bg-bg-panel wd-account-card">' +
+      '<div class="w-20 h-13 rounded-md bg-bg-soft text-text flex items-center justify-center text-center text-[12px] font-extrabold p-1 shrink-0 leading-[1.15] wd-account-badge">' + escapeHtml(wdAccountBadgeText(acc)) + '</div>' +
+      '<div class="flex flex-col gap-1 min-w-0 wd-account-info">' +
+      '<span class="font-extrabold text-text text-[15px] wd-account-name">' + escapeHtml(wdAccountNameText(acc)) + '</span>' +
+      '<span class="font-[\'Courier_New\',monospace] text-text-dim text-[13px] tracking-[0.5px] break-all wd-account-number">' + escapeHtml(wdAccountNumberText(acc)) + '</span>' +
+      (acc.boundAt ? '<span class="text-text-dim text-[12.5px] wd-account-date">' + escapeHtml(acc.boundAt) + '</span>' : '') +
       '</div>' +
-      (withRemove ? '<button type="button" class="auth-modal-close wd-account-remove" aria-label="' + tr('common.delete', '刪除') + '" data-wd-remove="' + idx + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button>' : '') +
+      (withRemove ? '<button type="button" class="w-7 h-7 grid place-items-center rounded-full text-text-mid hover:bg-bg-panel ml-auto shrink-0 auth-modal-close wd-account-remove" aria-label="' + tr('common.delete', '刪除') + '" data-wd-remove="' + idx + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button>' : '') +
       '</div>'
     );
   }
@@ -956,7 +956,7 @@
     if (countEl) countEl.innerHTML = tr('wd.registeredAccounts', '已登記提款帳戶') + ' <b>(' + pairs.length + '/' + cap + ')</b>';
     box.innerHTML = pairs.length
       ? pairs.map(function (pair) { return wdAccountCardHtml(pair.acc, pair.idx, true); }).join('')
-      : '<p class="pay-note">' + tr('wd.noAccountBoundOfGroup', '尚未綁定任何{group}。').replace('{group}', groupLabel) + '</p>';
+      : '<p class="text-[12px] text-text-dim mt-0 mr-0 mb-4 ml-0 pay-note">' + tr('wd.noAccountBoundOfGroup', '尚未綁定任何{group}。').replace('{group}', groupLabel) + '</p>';
     if (addBtnLabel) addBtnLabel.textContent = wdManageGroup === 'bank' ? tr('wd.addBankAccount', '新增銀行帳戶') : tr('wd.addCryptoWallet', '新增加密錢包地址');
     if (addBtn) addBtn.disabled = pairs.length >= cap;
   }
@@ -972,8 +972,8 @@
     var groupLabel = wdMethodGroup === 'bank' ? tr('wd.myBankAccounts', '我的銀行帳戶') : tr('wd.myCryptoWallets', '我的加密錢包');
     if (!pairs.length) {
       var emptyGroupLabel = wdMethodGroup === 'bank' ? tr('wd.groupBank', '銀行') : tr('wd.groupCrypto', '加密錢包');
-      var linkHtml = '<button type="button" class="wd-account-add-btn" data-wd-goto-accounts style="margin-top:6px">' + escapeHtml(tr('wd.gotoAccounts', '前往「帳戶管理」新增')) + '</button>';
-      wrap.innerHTML = '<p class="pay-note">' + tr('wd.noWithdrawAccountOfGroup', '尚未綁定{group}提款帳戶,請先至{link}').replace('{group}', escapeHtml(emptyGroupLabel)).replace('{link}', linkHtml) + '</p>';
+      var linkHtml = '<button type="button" class="inline-flex items-center gap-2 py-2.5 px-4.5 rounded-md border border-badge text-badge bg-transparent font-bold text-[13.5px] mt-1.5 cursor-pointer hover:opacity-85 disabled:opacity-40 disabled:cursor-not-allowed wd-account-add-btn" data-wd-goto-accounts>' + escapeHtml(tr('wd.gotoAccounts', '前往「帳戶管理」新增')) + '</button>';
+      wrap.innerHTML = '<p class="text-[12px] text-text-dim mt-0 mr-0 mb-4 ml-0 pay-note">' + tr('wd.noWithdrawAccountOfGroup', '尚未綁定{group}提款帳戶,請先至{link}').replace('{group}', escapeHtml(emptyGroupLabel)).replace('{link}', linkHtml) + '</p>';
       if (submitBtn) submitBtn.disabled = true;
       return;
     }
@@ -981,12 +981,12 @@
     var cur = pairs[wdCarouselIndex].acc;
     var multi = pairs.length > 1;
     wrap.innerHTML =
-      '<div class="wd-carousel-box"><div class="wd-carousel">' +
-      (multi ? '<button type="button" class="wd-carousel-arrow" data-wd-prev' + (wdCarouselIndex === 0 ? ' disabled' : '') + ' aria-label="' + escapeHtml(tr('common.prev', '上一筆')) + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>' : '') +
-      '<span class="wd-carousel-label">' + escapeHtml(groupLabel) + (multi ? ' <b>' + (wdCarouselIndex + 1) + '/' + pairs.length + '</b>' : '') + '</span>' +
-      (multi ? '<button type="button" class="wd-carousel-arrow" data-wd-next' + (wdCarouselIndex === pairs.length - 1 ? ' disabled' : '') + ' aria-label="' + escapeHtml(tr('common.next2', '下一筆')) + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>' : '') +
+      '<div class="border border-line rounded-[12px] py-3.5 px-5 bg-bg-panel wd-carousel-box"><div class="flex items-center justify-center gap-3.5 wd-carousel">' +
+      (multi ? '<button type="button" class="w-6.5 h-6.5 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer shrink-0 disabled:opacity-30 disabled:cursor-not-allowed wd-carousel-arrow" data-wd-prev' + (wdCarouselIndex === 0 ? ' disabled' : '') + ' aria-label="' + escapeHtml(tr('common.prev', '上一筆')) + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>' : '') +
+      '<span class="text-[13.5px] font-bold text-text-mid whitespace-nowrap [&_b]:text-text wd-carousel-label">' + escapeHtml(groupLabel) + (multi ? ' <b>' + (wdCarouselIndex + 1) + '/' + pairs.length + '</b>' : '') + '</span>' +
+      (multi ? '<button type="button" class="w-6.5 h-6.5 grid place-items-center rounded-full border border-line bg-bg-panel text-text-mid cursor-pointer shrink-0 disabled:opacity-30 disabled:cursor-not-allowed wd-carousel-arrow" data-wd-next' + (wdCarouselIndex === pairs.length - 1 ? ' disabled' : '') + ' aria-label="' + escapeHtml(tr('common.next2', '下一筆')) + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>' : '') +
       '</div>' +
-      '<div class="bank-row" style="border-bottom:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (WD_TYPE_ICON[cur.type] || WD_TYPE_ICON.bank) + '</svg> <span>' + escapeHtml(wdAccountNameText(cur)) + ' ' + escapeHtml(wdAccountNumberText(cur)) + '</span></div>' +
+      '<div class="flex items-center gap-3 py-2.5 mt-2.5 border-t border-line text-[13.5px] font-semibold text-text bank-row"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (WD_TYPE_ICON[cur.type] || WD_TYPE_ICON.bank) + '</svg> <span>' + escapeHtml(wdAccountNameText(cur)) + ' ' + escapeHtml(wdAccountNumberText(cur)) + '</span></div>' +
       '</div>';
     if (submitBtn) submitBtn.disabled = false;
   }
