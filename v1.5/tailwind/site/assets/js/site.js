@@ -839,18 +839,21 @@
     var viewMonth = (pendingStart || today).getMonth();
 
     var panel = document.createElement('div');
-    panel.className = 'dr-panel';
+    panel.className = 'fixed z-[260] w-[min(320px,calc(100vw-24px))] bg-white rounded-xl shadow-[0_12px_32px_rgba(0,0,0,0.25)] p-3 md:w-[552px]';
     panel.hidden = true;
     panel.innerHTML =
-      '<div class="dr-grids"><div class="dr-grid" data-dr-grid="0"></div><div class="dr-grid dr-grid-2" data-dr-grid="1"></div></div>' +
-      '<div class="dr-quick">' +
-      '<button type="button" data-dr-quick="today">' + t('common.dateRange.today') + '</button>' +
-      '<button type="button" data-dr-quick="yesterday">' + t('common.dateRange.yesterday') + '</button>' +
-      '<button type="button" data-dr-quick="thisWeek">' + t('common.dateRange.thisWeek') + '</button>' +
-      '<button type="button" data-dr-quick="lastWeek">' + t('common.dateRange.lastWeek') + '</button>' +
-      '<button type="button" data-dr-quick="lastMonth">' + t('common.dateRange.lastMonth') + '</button>' +
+      '<div class="flex gap-4"><div class="flex-1 min-w-0" data-dr-grid="0"></div><div class="flex-1 min-w-0 hidden md:block" data-dr-grid="1"></div></div>' +
+      '<div class="flex flex-wrap gap-2 pt-3 mt-3 border-t border-border">' +
+      '<button type="button" class="!py-1.5 !px-2.5 rounded-lg !border !border-border !text-navy !text-[12px]" data-dr-quick="today">' + t('common.dateRange.today') + '</button>' +
+      '<button type="button" class="!py-1.5 !px-2.5 rounded-lg !border !border-border !text-navy !text-[12px]" data-dr-quick="yesterday">' + t('common.dateRange.yesterday') + '</button>' +
+      '<button type="button" class="!py-1.5 !px-2.5 rounded-lg !border !border-border !text-navy !text-[12px]" data-dr-quick="thisWeek">' + t('common.dateRange.thisWeek') + '</button>' +
+      '<button type="button" class="!py-1.5 !px-2.5 rounded-lg !border !border-border !text-navy !text-[12px]" data-dr-quick="lastWeek">' + t('common.dateRange.lastWeek') + '</button>' +
+      '<button type="button" class="!py-1.5 !px-2.5 rounded-lg !border !border-border !text-navy !text-[12px]" data-dr-quick="lastMonth">' + t('common.dateRange.lastMonth') + '</button>' +
       '</div>' +
-      '<div class="dr-actions"><button type="button" class="dr-clear-btn" data-dr-clear>' + t('common.reset') + '</button><button type="button" class="dr-apply-btn" data-dr-apply>' + t('common.confirm') + '</button></div>';
+      '<div class="flex justify-end gap-2 mt-3 pt-3 border-t border-border">' +
+      '<button type="button" class="h-8.5 rounded-lg !px-4 !font-bold !text-[13px] !text-navy !border !border-border" data-dr-clear>' + t('common.reset') + '</button>' +
+      '<button type="button" class="h-8.5 rounded-lg !px-4 !font-bold !text-[13px] !bg-[image:var(--g-primary)] !text-navy" data-dr-apply>' + t('common.confirm') + '</button>' +
+      '</div>';
     document.body.appendChild(panel);
 
     function monthCaption(y, m) { return y + '.' + String(m + 1).padStart(2, '0'); }
@@ -873,21 +876,32 @@
        「下一月」箭頭(桌機隱藏),讓手機只顯示一個月曆時仍能雙向翻頁 */
     function renderGrid(gridEl, y, m, gridIndex) {
       var cells = buildGrid(y, m);
+      var navCls = 'w-7 h-7 rounded-lg !text-navy !font-bold shrink-0 hover:!bg-[#f2f2f2]';
+      var titleCls = 'flex-1 text-center text-navy font-bold text-[13px]';
       var head = gridIndex === 0
-        ? '<button type="button" class="dr-grid-nav" data-dr-prev>‹</button><span class="dr-grid-title">' + monthCaption(y, m) + '</span><button type="button" class="dr-grid-nav dr-next-mobile-only" data-dr-next>›</button>'
-        : '<span class="dr-grid-title">' + monthCaption(y, m) + '</span><button type="button" class="dr-grid-nav" data-dr-next>›</button>';
-      var html = '<div class="dr-grid-head">' + head + '</div>' +
-        '<div class="dr-weekdays">' + WEEKDAYS.map(function (w) { return '<span>' + w + '</span>'; }).join('') + '</div>' +
-        '<div class="dr-days">' + cells.map(function (d) {
+        ? '<button type="button" class="' + navCls + '" data-dr-prev>‹</button><span class="' + titleCls + '">' + monthCaption(y, m) + '</span><button type="button" class="' + navCls + ' visible md:invisible" data-dr-next>›</button>'
+        : '<span class="' + titleCls + '">' + monthCaption(y, m) + '</span><button type="button" class="' + navCls + '" data-dr-next>›</button>';
+      var html = '<div class="flex items-center justify-between mb-1.5">' + head + '</div>' +
+        '<div class="grid grid-cols-7 gap-0.5">' + WEEKDAYS.map(function (w) { return '<span class="text-center text-[#9ca3af] text-[11px] py-1">' + w + '</span>'; }).join('') + '</div>' +
+        '<div class="grid grid-cols-7 gap-0.5">' + cells.map(function (d) {
           var isCurrentMonth = d.getMonth() === m;
           var isDisabled = d.getTime() > today.getTime();
-          var cls = [];
-          if (!isCurrentMonth) cls.push('is-muted');
-          if (isDisabled) cls.push('is-disabled');
-          if (pendingStart && sameDay(d, pendingStart)) cls.push('is-range-start');
-          if (pendingEnd && sameDay(d, pendingEnd)) cls.push('is-range-end');
-          if (pendingStart && pendingEnd && d.getTime() > pendingStart.getTime() && d.getTime() < pendingEnd.getTime()) cls.push('is-in-range');
-          return '<button type="button" class="' + cls.join(' ') + '" data-dr-day="' + fmt(d) + '"' + (isDisabled ? ' disabled' : '') + '>' + d.getDate() + '</button>';
+          var isRangeEdge = (pendingStart && sameDay(d, pendingStart)) || (pendingEnd && sameDay(d, pendingEnd));
+          var isInRange = pendingStart && pendingEnd && d.getTime() > pendingStart.getTime() && d.getTime() < pendingEnd.getTime();
+          var stateCls;
+          if (isRangeEdge) {
+            stateCls = '!bg-navy !text-white !font-bold';
+          } else if (isInRange) {
+            stateCls = '!bg-[#e7e7e7] !text-[#334155] !rounded-none';
+          } else if (isDisabled) {
+            stateCls = '!text-[#e5e7eb] !cursor-not-allowed';
+          } else if (!isCurrentMonth) {
+            stateCls = '!text-[#d1d5db] hover:!bg-[#f2f2f2]';
+          } else {
+            stateCls = '!text-navy hover:!bg-[#f2f2f2]';
+          }
+          var cls = 'aspect-square w-full rounded-lg !text-[12px] ' + stateCls;
+          return '<button type="button" class="' + cls + '" data-dr-day="' + fmt(d) + '"' + (isDisabled ? ' disabled' : '') + '>' + d.getDate() + '</button>';
         }).join('') + '</div>';
       gridEl.innerHTML = html;
       qsa('[data-dr-day]:not([disabled])', gridEl).forEach(function (dayBtn) {
