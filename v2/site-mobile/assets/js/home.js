@@ -74,6 +74,79 @@
     dots.forEach(function (el, idx) { el.addEventListener('click', function () { goTo(idx); }); });
   }
 
+  /* 進站公告彈窗（比照 v1.5 components/PromotionModal.vue）：手機版永遠是
+     窄版面，不需要桌機版那種同時多張並排，一次顯示一張、關閉後換下一張
+     即可。內容/圖片跟 v2/site 桌機版共用同一份 D.PROMO_POPUP，「今天不再
+     提醒」的 localStorage key 也刻意跟桌機版共用（同源），使用者在任一
+     裝置勾選過，另一裝置當天就不會再彈出。 */
+  function initPromoPopup() {
+    var ALL = D.PROMO_POPUP || [];
+    if (!ALL.length) return;
+    function todayKey() {
+      var d = new Date();
+      function pad(n) { return String(n).padStart(2, '0'); }
+      return 'win100-promo-popup-dismissed_' + d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    }
+    var dismissedIds = [];
+    try { dismissedIds = JSON.parse(localStorage.getItem(todayKey()) || '[]'); } catch (e) {}
+    var cards = ALL.filter(function (p) { return dismissedIds.indexOf(String(p.promotion_id)) === -1; });
+    if (!cards.length) return;
+
+    var loc = window.__v2mT ? (localStorage.getItem('win100-locale') || 'zh') : 'zh';
+    var backdrop = document.createElement('div');
+    backdrop.className = 'fixed inset-0 z-[70] bg-black/70 flex items-center justify-center p-4';
+    document.body.appendChild(backdrop);
+
+    function cardHTML(promo) {
+      return (
+        '<div class="flex flex-col w-full max-w-[300px] max-h-[80vh] rounded-2xl border border-line-hi bg-bg-card overflow-hidden">' +
+        '<div class="flex-none flex items-center justify-between px-3.5 py-2.5 border-b border-line">' +
+        '<img src="../site/logo.png" alt="logo" class="h-5 w-auto object-contain">' +
+        '<button type="button" class="h-6 w-6 grid place-items-center rounded-full text-text-mid" data-promo-popup-close aria-label="Close">' +
+        '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>' +
+        '</button></div>' +
+        '<div class="flex-none cursor-pointer" data-promo-popup-content>' +
+        '<img src="assets/images/promo-popup/' + promo.image + '" alt="' + promo.title[loc] + '" class="w-full h-[150px] object-cover">' +
+        '</div>' +
+        '<div class="flex-1 min-h-0 overflow-y-auto px-3.5 py-3">' +
+        '<p class="text-[13.5px] font-bold text-text mb-1.5">' + promo.title[loc] + '</p>' +
+        '<div class="text-[12px] leading-relaxed text-text-mid [&_p]:mb-2 [&_p:last-child]:mb-0">' + promo.content[loc] + '</div>' +
+        '</div>' +
+        '<div class="flex-none flex items-center justify-center gap-1.5 px-3.5 py-2.5 border-t border-line">' +
+        '<input type="checkbox" data-promo-popup-remember class="h-4 w-4 accent-accent">' +
+        '<span class="text-[11.5px] text-text-mid">' + t('promotion.dontRemindToday') + '</span>' +
+        '</div>' +
+        '</div>'
+      );
+    }
+
+    function persistDismiss(id) {
+      var key = todayKey();
+      var list = [];
+      try { list = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) {}
+      list.push(String(id));
+      localStorage.setItem(key, JSON.stringify(list));
+    }
+
+    var current = 0;
+    function render() {
+      if (current >= cards.length) { backdrop.remove(); return; }
+      var promo = cards[current];
+      backdrop.innerHTML = cardHTML(promo);
+      var cardEl = backdrop.firstElementChild;
+      cardEl.querySelector('[data-promo-popup-close]').addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (cardEl.querySelector('[data-promo-popup-remember]').checked) persistDismiss(promo.promotion_id);
+        current += 1;
+        render();
+      });
+      cardEl.querySelector('[data-promo-popup-content]').addEventListener('click', function () {
+        location.href = 'promotion.html';
+      });
+    }
+    render();
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     fillRail('best-games-rail', 8, true);
     fillRail('casino-grid', 12, false);
@@ -82,5 +155,6 @@
     var casinoCount = document.getElementById('casino-count');
     if (casinoCount) casinoCount.textContent = '(' + (vendors.length * 128) + ')';
     initHeroCarousel();
+    initPromoPopup();
   });
 })();

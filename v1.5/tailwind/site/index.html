@@ -242,11 +242,14 @@
         });
 
         /* ---- 首頁進站廣告彈窗(對照 components/PromotionModal.vue,
-           demo 環境沒有真實公告 API,固定取用 D.PROMOTIONS 其中一筆促銷;
-           以 localStorage 記錄「今天不再提醒」,key 每天自動換新 ---- */
+           demo 環境沒有真實公告 API,固定取 D.PROMOTIONS 前 4 筆促銷;
+           手機一次顯示一張、關閉後換下一張,桌機(>=1280px)同時顯示最多
+           3 張,比照 Nuxt 版 desktopCards 的上限。「今天不再提醒」勾選
+           才寫入 localStorage,key 每天自動換新，跟原本單張版邏輯一致，
+           只是能擴充成多張。 ---- */
         (function initPromoPopup() {
-          var promo = D.PROMOTIONS[1];
-          if (!promo) return;
+          var ALL = (D.PROMOTIONS || []).slice(0, 4);
+          if (!ALL.length) return;
           function todayKey() {
             var d = new Date();
             function pad(n) { return String(n).padStart(2, '0'); }
@@ -254,39 +257,81 @@
           }
           var dismissedIds = [];
           try { dismissedIds = JSON.parse(localStorage.getItem(todayKey()) || '[]'); } catch (e) {}
-          if (dismissedIds.indexOf(String(promo.promotion_id)) !== -1) return;
+          var cards = ALL.filter(function (p) { return dismissedIds.indexOf(String(p.promotion_id)) === -1; });
+          if (!cards.length) return;
 
+          var isDesktop = window.matchMedia('(min-width: 1280px)').matches;
           var loc = W.currentLocale();
           var backdrop = document.createElement('div');
           backdrop.className = 'promo-popup-backdrop';
-          backdrop.innerHTML =
-            '<div class="promo-popup-card">' +
-            '<div class="promo-popup-head">' +
-            '<img src="' + W.IMG + 'index/img-logo.png" alt="logo">' +
-            '<button type="button" class="promo-popup-close" data-promo-popup-close><img src="' + W.icon('close.svg') + '" alt="close"></button>' +
-            '</div>' +
-            '<div class="promo-popup-content" data-promo-popup-content><img src="' + W.IMG + 'index/promotion/' + promo.image + '" alt="' + promo.title[loc] + '"></div>' +
-            '<div class="promo-popup-foot">' +
-            '<input type="checkbox" data-promo-popup-remember>' +
-            '<span data-i18n="promotion.dontRemindToday">' + W.t('promotion.dontRemindToday') + '</span>' +
-            '</div>' +
-            '</div>';
           document.body.appendChild(backdrop);
 
-          function close() {
-            if (W.qs('[data-promo-popup-remember]', backdrop).checked) {
-              var key = todayKey();
-              var list = [];
-              try { list = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) {}
-              list.push(String(promo.promotion_id));
-              localStorage.setItem(key, JSON.stringify(list));
-            }
-            backdrop.remove();
+          function cardHTML(promo) {
+            return (
+              '<div class="promo-popup-card" data-promo-card="' + promo.promotion_id + '">' +
+              '<div class="promo-popup-head">' +
+              '<img src="' + W.IMG + 'index/img-logo.png" alt="logo">' +
+              '<button type="button" class="promo-popup-close" data-promo-popup-close><img src="' + W.icon('close.svg') + '" alt="close"></button>' +
+              '</div>' +
+              '<div class="promo-popup-content" data-promo-popup-content><img src="' + W.IMG + 'index/promotion/' + promo.image + '" alt="' + promo.title[loc] + '"></div>' +
+              '<div class="promo-popup-foot">' +
+              '<input type="checkbox" data-promo-popup-remember>' +
+              '<span data-i18n="promotion.dontRemindToday">' + W.t('promotion.dontRemindToday') + '</span>' +
+              '</div>' +
+              '</div>'
+            );
           }
-          W.on(W.qs('[data-promo-popup-close]', backdrop), 'click', function (e) { e.stopPropagation(); close(); });
-          W.on(W.qs('[data-promo-popup-content]', backdrop), 'click', function () {
-            location.href = 'promotion-detail.html?id=' + promo.promotion_id;
-          });
+
+          function persistDismiss(id) {
+            var key = todayKey();
+            var list = [];
+            try { list = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) {}
+            list.push(String(id));
+            localStorage.setItem(key, JSON.stringify(list));
+          }
+
+          function bindCard(cardEl, promo) {
+            W.on(W.qs('[data-promo-popup-close]', cardEl), 'click', function (e) {
+              e.stopPropagation();
+              if (W.qs('[data-promo-popup-remember]', cardEl).checked) persistDismiss(promo.promotion_id);
+              closeCard(promo.promotion_id);
+            });
+            W.on(W.qs('[data-promo-popup-content]', cardEl), 'click', function () {
+              location.href = 'promotion-detail.html?id=' + promo.promotion_id;
+            });
+          }
+
+          var current = 0; // 手機模式:目前顯示 cards 的第幾筆
+          function renderMobile() {
+            if (current >= cards.length) { backdrop.remove(); return; }
+            var promo = cards[current];
+            backdrop.innerHTML = cardHTML(promo);
+            bindCard(backdrop.firstElementChild, promo);
+          }
+
+          function closeCard(id) {
+            if (isDesktop) {
+              var el = W.qs('[data-promo-card="' + id + '"]', backdrop);
+              if (el) el.remove();
+              if (!W.qs('[data-promo-card]', backdrop)) backdrop.remove();
+            } else {
+              current += 1;
+              renderMobile();
+            }
+          }
+
+          if (isDesktop) {
+            var stage = document.createElement('div');
+            stage.className = 'promo-popup-stage';
+            var shown = cards.slice(0, 3);
+            stage.innerHTML = shown.map(cardHTML).join('');
+            backdrop.appendChild(stage);
+            shown.forEach(function (promo) {
+              bindCard(W.qs('[data-promo-card="' + promo.promotion_id + '"]', stage), promo);
+            });
+          } else {
+            renderMobile();
+          }
         })();
 
         W.applyLocale();

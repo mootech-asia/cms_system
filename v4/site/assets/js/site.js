@@ -189,6 +189,142 @@
     resetAuto();
   }
 
+  /* =========================== 進站公告彈窗 ================================ */
+  /* 比照 v1.5 Nuxt 版 components/PromotionModal.vue：首頁進站時，手機一次顯示
+     一張、關閉後換下一張；桌機(md: 768px)同時顯示最多 3 張。圖片沿用 v1.5
+     既有 3 張（assets/images/promo-popup/，循環使用），文案跟其他版本共用
+     同一組。「今天不再提醒」勾選才寫進 localStorage(key 每天自動換新)。 */
+  var PROMO_POPUP = [
+    {
+      promotion_id: 1, image: 'index.png',
+      title: { zh: '新會員首存200%獎金', en: 'New Member First Deposit 200% Bonus', ko: '신규 가입 첫 입금 200% 보너스', th: 'โบนัสฝากครั้งแรก 200% สำหรับสมาชิกใหม่' },
+      content: {
+        zh: '<p>首次加入 win100% 的會員專屬優惠,首存立即贈送200%獎金。</p><p>· 最低儲值金額:₩30,000<br>· 最高贈送金額:₩500,000<br>· 有效投注需求:儲值加獎金總額的1倍</p><p>詳情請洽詢客服中心。</p>',
+        en: '<p>A special offer for members joining win100% for the first time. Receive an instant 200% bonus on your first deposit.</p><p>· Minimum deposit: ₩ 30,000<br>· Maximum bonus: ₩ 500,000<br>· Turnover requirement: 1x of deposit + bonus amount</p><p>Please contact customer service for more details.</p>',
+        ko: '<p>win100%에 처음 가입하신 회원님을 위한 특별 혜택입니다. 첫 입금 시 200% 보너스를 즉시 지급해 드립니다.</p><p>· 최소 입금 금액: ₩ 30,000<br>· 최대 보너스 금액: ₩ 500,000<br>· 유효 베팅 조건: 입금 및 보너스 합산 금액의 1배</p><p>자세한 내용은 고객센터로 문의해 주세요.</p>',
+        th: '<p>สิทธิพิเศษสำหรับสมาชิกที่สมัคร win100% เป็นครั้งแรก รับโบนัสทันที 200% เมื่อฝากเงินครั้งแรก</p><p>· ยอดฝากขั้นต่ำ: ₩30,000<br>· โบนัสสูงสุด: ₩500,000<br>· เงื่อนไขเทิร์นโอเวอร์: 1 เท่าของยอดฝากรวมโบนัส</p><p>สอบถามรายละเอียดเพิ่มเติมได้ที่ฝ่ายบริการลูกค้า</p>',
+      },
+    },
+    {
+      promotion_id: 2, image: 'promotion2.png',
+      title: { zh: '每日簽到贈點', en: 'Daily Check-in Points', ko: '매일 출석 체크 포인트 지급', th: 'รับแต้มเช็คอินรายวัน' },
+      content: {
+        zh: '<p>每天登入後完成簽到,即可自動獲得點數。</p><p>· 重置時間:每日 00:00<br>· 連續簽到可獲得額外點數</p>',
+        en: '<p>Simply check in after logging in every day to automatically earn points.</p><p>· Reset time: 00:00 daily<br>· Extra points for consecutive check-ins</p>',
+        ko: '<p>매일 로그인 후 출석 체크만 하면 포인트가 자동으로 적립됩니다.</p><p>· 지급 시간: 매일 00:00 초기화<br>· 연속 출석 시 추가 포인트 지급</p>',
+        th: '<p>เพียงเช็คอินหลังเข้าสู่ระบบทุกวัน รับแต้มสะสมอัตโนมัติ</p><p>· รีเซ็ตเวลา: 00:00 ทุกวัน<br>· เช็คอินต่อเนื่องรับแต้มพิเศษเพิ่ม</p>',
+      },
+    },
+    {
+      promotion_id: 3, image: 'promotionDetail.png',
+      title: { zh: '老虎機流水返水1.5%', en: 'Slot Rolling Cashback 1.5%', ko: '슬롯 롤링 캐시백 1.5%', th: 'คืนเงินสล็อต 1.5%' },
+      content: {
+        zh: '<p>所有老虎機遊戲有效投注金額,每週可獲得1.5%返水。</p><p>· 結算週期:每週一<br>· 最高返水金額:₩1,000,000</p>',
+        en: '<p>Receive a weekly 1.5% cashback on the total valid bets placed across all slot games.</p><p>· Settlement: every Monday<br>· Maximum cashback: ₩ 1,000,000</p>',
+        ko: '<p>모든 슬롯 게임 유효 베팅 금액에 대해 매주 1.5% 캐시백을 지급합니다.</p><p>· 정산 주기: 매주 월요일<br>· 최대 캐시백 금액: ₩ 1,000,000</p>',
+        th: '<p>รับคืนเงิน 1.5% ทุกสัปดาห์จากยอดเดิมพันที่ถูกต้องในเกมสล็อตทั้งหมด</p><p>· รอบชำระ: ทุกวันจันทร์<br>· คืนเงินสูงสุด: ₩1,000,000</p>',
+      },
+    },
+    {
+      promotion_id: 4, image: 'index.png',
+      title: { zh: '老虎機免費旋轉活動', en: 'Slot Free Spin Event', ko: '슬롯 무료 스핀 이벤트', th: 'กิจกรรมฟรีสปินสล็อต' },
+      content: {
+        zh: '<p>指定老虎機遊戲每週提供50次免費旋轉。</p><p>· 參加方式:向客服中心申請<br>· 指定遊戲每週更換</p>',
+        en: '<p>Get 50 free spins every week on selected slot games.</p><p>· How to join: apply via customer service<br>· Featured games rotate weekly</p>',
+        ko: '<p>지정된 슬롯 게임에서 무료 스핀 50회를 매주 제공합니다.</p><p>· 참여 방법: 고객센터로 신청<br>· 지급 게임: 매주 변경</p>',
+        th: '<p>รับฟรีสปิน 50 ครั้งทุกสัปดาห์ในเกมสล็อตที่กำหนด</p><p>· วิธีร่วมกิจกรรม: แจ้งฝ่ายบริการลูกค้า<br>· เกมที่ร่วมรายการเปลี่ยนทุกสัปดาห์</p>',
+      },
+    },
+  ];
+  function initPromoPopup() {
+    if (currentPage() !== 'index.html') return;
+    var dismissedIds = [];
+    function todayKey() {
+      var d = new Date();
+      function pad(n) { return String(n).padStart(2, '0'); }
+      return 'cms-v4-promo-popup-dismissed_' + d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    }
+    try { dismissedIds = JSON.parse(localStorage.getItem(todayKey()) || '[]'); } catch (e) {}
+    var cards = PROMO_POPUP.filter(function (p) { return dismissedIds.indexOf(String(p.promotion_id)) === -1; });
+    if (!cards.length) return;
+
+    var isDesktop = window.matchMedia('(min-width: 768px)').matches;
+    var loc = (window.CMS_I18N && window.CMS_I18N.getLocale) ? window.CMS_I18N.getLocale() : 'zh';
+    var backdrop = document.createElement('div');
+    backdrop.className = 'fixed inset-0 z-[1200] bg-black/75 flex items-center justify-center p-4 flex-wrap gap-5';
+
+    function cardHTML(promo) {
+      return (
+        '<div class="flex flex-col w-[min(300px,calc(100vw-32px))] max-h-[min(480px,calc(100dvh-32px))] md:w-[320px] md:max-h-[560px] rounded-2xl border border-line-hi bg-bg-panel overflow-hidden" data-promo-card="' + promo.promotion_id + '">' +
+        '<div class="flex-none flex items-center justify-between px-3.5 py-2.5 border-b border-line">' +
+        '<span class="text-[13px] font-bold text-gold">WIN100%</span>' +
+        '<button type="button" class="h-6 w-6 grid place-items-center rounded-full text-text-dim" data-promo-popup-close aria-label="Close">' +
+        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"></path></svg>' +
+        '</button></div>' +
+        '<div class="flex-none cursor-pointer" data-promo-popup-content>' +
+        '<img src="assets/images/promo-popup/' + promo.image + '" alt="' + (promo.title[loc] || promo.title.en) + '" class="w-full h-[160px] md:h-[200px] object-cover">' +
+        '</div>' +
+        '<div class="flex-1 min-h-0 overflow-y-auto px-3.5 py-3">' +
+        '<p class="text-[14px] font-bold text-text mb-1.5">' + (promo.title[loc] || promo.title.en) + '</p>' +
+        '<div class="text-[12px] leading-relaxed text-text-mid [&_p]:mb-2 [&_p:last-child]:mb-0">' + (promo.content[loc] || promo.content.en) + '</div>' +
+        '</div>' +
+        '<div class="flex-none flex items-center justify-center gap-1.5 px-3.5 py-2.5 border-t border-line">' +
+        '<input type="checkbox" data-promo-popup-remember class="h-[18px] w-[18px] accent-gold">' +
+        '<span class="text-[12px] text-text-mid">' + tr('promotion.dontRemindToday', "Don't remind me again today") + '</span>' +
+        '</div>' +
+        '</div>'
+      );
+    }
+
+    function persistDismiss(id) {
+      var key = todayKey();
+      var list = [];
+      try { list = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) {}
+      list.push(String(id));
+      localStorage.setItem(key, JSON.stringify(list));
+    }
+
+    function bindCard(cardEl, promo) {
+      on(cardEl.querySelector('[data-promo-popup-close]'), 'click', function (e) {
+        e.stopPropagation();
+        if (cardEl.querySelector('[data-promo-popup-remember]').checked) persistDismiss(promo.promotion_id);
+        closeCard(promo.promotion_id);
+      });
+      on(cardEl.querySelector('[data-promo-popup-content]'), 'click', function () {
+        location.href = 'promotion.html';
+      });
+    }
+
+    var current = 0;
+    function renderMobile() {
+      if (current >= cards.length) { backdrop.remove(); return; }
+      var promo = cards[current];
+      backdrop.innerHTML = cardHTML(promo);
+      bindCard(backdrop.firstElementChild, promo);
+    }
+    function closeCard(id) {
+      if (isDesktop) {
+        var el = backdrop.querySelector('[data-promo-card="' + id + '"]');
+        if (el) el.remove();
+        if (!backdrop.querySelector('[data-promo-card]')) backdrop.remove();
+      } else {
+        current += 1;
+        renderMobile();
+      }
+    }
+
+    document.body.appendChild(backdrop);
+    if (isDesktop) {
+      var shown = cards.slice(0, 3);
+      backdrop.innerHTML = shown.map(cardHTML).join('');
+      shown.forEach(function (promo) {
+        bindCard(backdrop.querySelector('[data-promo-card="' + promo.promotion_id + '"]'), promo);
+      });
+    } else {
+      renderMobile();
+    }
+  }
+
   function initFeatureCarousel() {
     var carousel = document.getElementById('featureCarousel');
     if (!carousel) return;
@@ -1218,6 +1354,7 @@
     safe(renderHeaderAuth);
     safe(initPersonalInfoNickname);
     safe(initHero);
+    safe(initPromoPopup);
     safe(initFeatureCarousel);
     safe(initVendorSelect);
     safe(initRails);

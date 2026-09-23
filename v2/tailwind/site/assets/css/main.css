@@ -2787,3 +2787,50 @@ select.pay-field {
   transition-property: opacity; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 0.15s;
 }
 .promotion-page-card-cta:hover { opacity: 0.9; }
+
+/* ============================================================
+   進站公告彈窗（比照 v1.5 components/PromotionModal.vue 概念：手機一次
+   一張、依序關閉，桌機同時最多 3 張；「今天不再提醒」勾選才寫入
+   localStorage）
+   ============================================================ */
+.promo-popup-backdrop {
+  position: fixed; inset: 0; z-index: 1200;
+  background: rgb(var(--c-scrim) / .75);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+}
+.promo-popup-stage { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.promo-popup-card {
+  display: flex; flex-direction: column;
+  width: min(300px, calc(100vw - 32px));
+  max-height: min(480px, calc(100dvh - 32px));
+  background: rgb(var(--c-surface) / 1);
+  border: 1px solid rgb(var(--c-border) / 1);
+  border-radius: var(--radius-ui);
+  overflow: hidden;
+}
+.promo-popup-head {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-bottom: 1px solid rgb(var(--c-border-soft) / 1);
+}
+.promo-popup-head img { height: 22px; }
+.promo-popup-close {
+  width: 24px; height: 24px; display: grid; place-items: center; border-radius: 999px;
+  color: rgb(var(--c-text-3) / 1); flex-shrink: 0;
+}
+.promo-popup-close svg { width: 16px; height: 16px; }
+.promo-popup-content { flex-shrink: 0; cursor: pointer; }
+.promo-popup-content img { width: 100%; height: 160px; object-fit: cover; display: block; }
+.promo-popup-body { flex: 1; min-height: 0; overflow-y: auto; padding: 12px 16px; }
+.promo-popup-title { margin: 0 0 6px; font-size: var(--fs-body); font-weight: 700; color: rgb(var(--c-text) / 1); }
+.promo-popup-body p { margin: 0 0 8px; font-size: var(--fs-caption); line-height: var(--lh-body); color: rgb(var(--c-text-2) / 1); }
+.promo-popup-foot {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 16px; border-top: 1px solid rgb(var(--c-border-soft) / 1);
+}
+.promo-popup-foot span { font-size: var(--fs-caption); color: rgb(var(--c-text-2) / 1); }
+.promo-popup-foot input { width: 18px; height: 18px; accent-color: rgb(var(--c-primary) / 1); }
+@media (min-width: 768px) {
+  .promo-popup-card { width: 320px; max-height: 560px; }
+  .promo-popup-content img { height: 200px; }
+}

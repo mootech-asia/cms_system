@@ -2806,6 +2806,108 @@
   /* ============================================================
    * Bootstrap
    * ========================================================== */
+  /* =========================== 進站公告彈窗 ================================ */
+  /* 比照 v1.5 Nuxt 版 components/PromotionModal.vue：首頁進站時，手機一次顯示
+     一張、關閉後換下一張；桌機(>=900px，跟 sidebar/hamburger 收合斷點一致)
+     同時顯示最多 3 張。「今天不再提醒」勾選才寫進 localStorage(key 每天
+     自動換新)，沒勾選只是這次瀏覽暫時關閉，下次進站還會再出現。 */
+  function initPromoPopup() {
+    if (CURRENT_PAGE !== 'index.html') return;
+    var ALL = DATA.PROMO_POPUP || [];
+    if (!ALL.length) return;
+    /* site-mobile/ 直接引入這份共用 site.js（見檔案開頭 DOMContentLoaded
+       comment 之外的架構），本身沒有 assets/logo.png，走的是 ../site/
+       assets/logo.png；promo-popup 的宣傳圖片則兩邊都各自複製了一份，
+       不需要加前綴。 */
+    var logoSrc = (location.pathname.indexOf('/site-mobile/') !== -1 ? '../site/' : '') + 'assets/logo.png';
+    function todayKey() {
+      var d = new Date();
+      function pad(n) { return String(n).padStart(2, '0'); }
+      return 'cms-v3-promo-popup-dismissed_' + d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    }
+    var dismissedIds = [];
+    try { dismissedIds = JSON.parse(localStorage.getItem(todayKey()) || '[]'); } catch (e) {}
+    var cards = ALL.filter(function (p) { return dismissedIds.indexOf(String(p.promotion_id)) === -1; });
+    if (!cards.length) return;
+
+    var isDesktop = window.matchMedia('(min-width: 900px)').matches;
+    var backdrop = document.createElement('div');
+    backdrop.className = 'promo-popup-backdrop';
+    document.body.appendChild(backdrop);
+
+    function cardHTML(promo) {
+      return (
+        '<div class="promo-popup-card" data-promo-card="' + promo.promotion_id + '">' +
+        '<div class="promo-popup-head">' +
+        '<img src="' + logoSrc + '" alt="logo">' +
+        '<button type="button" class="promo-popup-close" data-promo-popup-close aria-label="Close">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"></path></svg>' +
+        '</button></div>' +
+        '<div class="promo-popup-content" data-promo-popup-content><img src="assets/images/promo-popup/' + promo.image + '" alt="' + escapeAttr(promo.title[LOCALE] || promo.title.en) + '"></div>' +
+        '<div class="promo-popup-body">' +
+        '<p class="promo-popup-title">' + escapeHtml(promo.title[LOCALE] || promo.title.en) + '</p>' +
+        (promo.content[LOCALE] || promo.content.en) +
+        '</div>' +
+        '<div class="promo-popup-foot">' +
+        '<input type="checkbox" data-promo-popup-remember>' +
+        '<span>' + escapeHtml(tr('t.promotion.dontRemindToday', "Don't remind me again today")) + '</span>' +
+        '</div>' +
+        '</div>'
+      );
+    }
+
+    function persistDismiss(id) {
+      var key = todayKey();
+      var list = [];
+      try { list = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) {}
+      list.push(String(id));
+      localStorage.setItem(key, JSON.stringify(list));
+    }
+
+    function bindCard(cardEl, promo) {
+      cardEl.querySelector('[data-promo-popup-close]').addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (cardEl.querySelector('[data-promo-popup-remember]').checked) persistDismiss(promo.promotion_id);
+        closeCard(promo.promotion_id);
+      });
+      cardEl.querySelector('[data-promo-popup-content]').addEventListener('click', function () {
+        location.href = 'promotion.html';
+      });
+    }
+
+    var current = 0;
+    function renderMobile() {
+      if (current >= cards.length) { backdrop.remove(); return; }
+      var promo = cards[current];
+      backdrop.innerHTML = cardHTML(promo);
+      bindCard(backdrop.firstElementChild, promo);
+    }
+
+    function closeCard(id) {
+      if (isDesktop) {
+        var el = backdrop.querySelector('[data-promo-card="' + id + '"]');
+        if (el) el.remove();
+        if (!backdrop.querySelector('[data-promo-card]')) backdrop.remove();
+      } else {
+        current += 1;
+        renderMobile();
+      }
+    }
+
+    if (isDesktop) {
+      var stage = document.createElement('div');
+      stage.className = 'promo-popup-stage';
+      var shown = cards.slice(0, 3);
+      stage.innerHTML = shown.map(cardHTML).join('');
+      backdrop.appendChild(stage);
+      shown.forEach(function (promo) {
+        bindCard(stage.querySelector('[data-promo-card="' + promo.promotion_id + '"]'), promo);
+      });
+    } else {
+      renderMobile();
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     safe(initI18n);
     /* topbar 的登入/未登入 HTML 原本只在 doLogin()/doLogout() 觸發，
@@ -2826,6 +2928,7 @@
     safe(applyStudioChromeNow);
     safe(applySavedBanners);
     safe(initHero);
+    safe(initPromoPopup);
     safe(initRails);
     safe(initPromosAndCategoryViews);
     safe(initLeaderboard);

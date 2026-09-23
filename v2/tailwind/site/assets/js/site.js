@@ -1041,6 +1041,104 @@
     restart();
   }
 
+  /* =========================== 進站公告彈窗 ================================ */
+  /* 比照 v1.5 Nuxt 版 components/PromotionModal.vue：首頁進站時，手機一次顯示
+     一張、關閉後換下一張；桌機(>=768px，跟 .mobile-bottom-nav 收合斷點一致)
+     同時顯示最多 3 張。「今天不再提醒」勾選才寫進 localStorage(key 每天
+     自動換新)，沒勾選只是這次瀏覽暫時關閉，下次進站還會再出現。 */
+  function initPromoPopup() {
+    if (pageName() !== 'index') return;
+    var ALL = D.PROMO_POPUP || [];
+    if (!ALL.length) return;
+    function todayKey() {
+      var d = new Date();
+      function pad(n) { return String(n).padStart(2, '0'); }
+      return 'win100-promo-popup-dismissed_' + d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    }
+    var dismissedIds = [];
+    try { dismissedIds = JSON.parse(localStorage.getItem(todayKey()) || '[]'); } catch (e) {}
+    var cards = ALL.filter(function (p) { return dismissedIds.indexOf(String(p.promotion_id)) === -1; });
+    if (!cards.length) return;
+
+    var isDesktop = window.matchMedia('(min-width: 768px)').matches;
+    var loc = currentLocale();
+    var backdrop = document.createElement('div');
+    backdrop.className = 'promo-popup-backdrop';
+    document.body.appendChild(backdrop);
+
+    function cardHTML(promo) {
+      return (
+        '<div class="promo-popup-card" data-promo-card="' + promo.promotion_id + '">' +
+        '<div class="promo-popup-head">' +
+        '<img src="logo.png" alt="logo">' +
+        '<button type="button" class="promo-popup-close" data-promo-popup-close aria-label="Close">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"></path></svg>' +
+        '</button></div>' +
+        '<div class="promo-popup-content" data-promo-popup-content><img src="assets/images/promo-popup/' + promo.image + '" alt="' + promo.title[loc] + '"></div>' +
+        '<div class="promo-popup-body">' +
+        '<p class="promo-popup-title">' + promo.title[loc] + '</p>' +
+        promo.content[loc] +
+        '</div>' +
+        '<div class="promo-popup-foot">' +
+        '<input type="checkbox" data-promo-popup-remember>' +
+        '<span>' + (((D.I18N || {})[loc] || (D.I18N || {}).zh || {})['promotion.dontRemindToday'] || '') + '</span>' +
+        '</div>' +
+        '</div>'
+      );
+    }
+
+    function persistDismiss(id) {
+      var key = todayKey();
+      var list = [];
+      try { list = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) {}
+      list.push(String(id));
+      localStorage.setItem(key, JSON.stringify(list));
+    }
+
+    function bindCard(cardEl, promo) {
+      on($('[data-promo-popup-close]', cardEl), 'click', function (e) {
+        e.stopPropagation();
+        if ($('[data-promo-popup-remember]', cardEl).checked) persistDismiss(promo.promotion_id);
+        closeCard(promo.promotion_id);
+      });
+      on($('[data-promo-popup-content]', cardEl), 'click', function () {
+        location.href = 'promotion.html';
+      });
+    }
+
+    var current = 0;
+    function renderMobile() {
+      if (current >= cards.length) { backdrop.remove(); return; }
+      var promo = cards[current];
+      backdrop.innerHTML = cardHTML(promo);
+      bindCard(backdrop.firstElementChild, promo);
+    }
+
+    function closeCard(id) {
+      if (isDesktop) {
+        var el = $('[data-promo-card="' + id + '"]', backdrop);
+        if (el) el.remove();
+        if (!$('[data-promo-card]', backdrop)) backdrop.remove();
+      } else {
+        current += 1;
+        renderMobile();
+      }
+    }
+
+    if (isDesktop) {
+      var stage = document.createElement('div');
+      stage.className = 'promo-popup-stage';
+      var shown = cards.slice(0, 3);
+      stage.innerHTML = shown.map(cardHTML).join('');
+      backdrop.appendChild(stage);
+      shown.forEach(function (promo) {
+        bindCard($('[data-promo-card="' + promo.promotion_id + '"]', stage), promo);
+      });
+    } else {
+      renderMobile();
+    }
+  }
+
   /* ============================ mini games grid =========================== */
   /* home/MiniGamesGrid.vue — index.html only. Tabs auto-advance every 8s via
      useCountdownTabs (250ms tick); rail prev/next move by visible-card-count
@@ -1970,7 +2068,7 @@
           if (idx >= accounts.length) idx = Math.max(0, accounts.length - 1);
           if (!accounts.length && bankRow) {
             var listBlock = bankRow.closest('.space-y-3');
-            if (listBlock) listBlock.innerHTML = '<div class="bound-wallet"><div class="coin-empty coin-md">' + iconSvg('card', '') + '</div><div>No bank account</div></div><a class="text-primary reg-add" href="withdrawal.html?tab=management">+ Add New Bank Account</a>';
+            if (listBlock) listBlock.innerHTML = '<div class="bound-wallet"><div class="coin-empty coin-md">' + iconSvg('card', 'w-8 h-8') + '</div><div>No bank account</div></div><a class="text-primary hover:text-primary-soft text-sm transition-colors reg-add" href="withdrawal.html?tab=management">+ Add New Bank Account</a>';
           } else {
             render();
           }
@@ -2018,7 +2116,7 @@
         e.stopPropagation();
         var btn = e.currentTarget;
         try { navigator.clipboard.writeText(w.address); } catch (err) { /* clipboard 不可用,占位流程靜默略過 */ }
-        btn.innerHTML = iconSvg('check', '');
+        btn.innerHTML = iconSvg('check', 'w-4 h-4');
         btn.setAttribute('aria-label', copiedLabel);
         setTimeout(function () {
           btn.innerHTML = COPY_SVG;
@@ -2130,8 +2228,8 @@
       '<div class="wallet-empty" data-wallet-panel><div class="coin-empty coin-lg">₿</div><div>Empty wallet list</div>' +
       '<button class="add-wallet" data-add-wallet><span style="font-size:20px;line-height:1">+</span>Add wallet</button></div>' +
       '<div class="balance-grid"><span>Central Wallet:</span><strong>0.00</strong><span>Available Amount:</span><strong>0.00</strong></div>' +
-      '<h2 class="pay-section-title">Withdrawal Amount &amp; Password</h2>' +
-      '<div class="pay-form-grid">' +
+      '<h2 class="pay-section-title mt-6">Withdrawal Amount &amp; Password</h2>' +
+      '<div class="pay-form-grid mt-6">' +
       '<label>Wallet type:</label><select class="pay-field"><option value="">Please select wallet type</option><option>USDT TRC20</option></select>' +
       '<label>Wallet address:</label><input class="pay-field" placeholder="Please fill in wallet address">' +
       '<label>Withdrawal Amount:</label><input class="pay-field" placeholder="100,000 ~ 20,000,000">' +
@@ -2976,6 +3074,7 @@
     initMobileBottomNav();
     initAuthTriggers();
     initBanner();
+    initPromoPopup();
     initMiniGamesGrid();
     initHomeRails();
     initModeTabsGeneric();

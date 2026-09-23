@@ -586,6 +586,9 @@
     'homePromo.liveCta': { zh: '立即進入', en: 'Enter Now', ko: '지금 입장', th: 'เข้าเลย' },
     'homePromo.missionTitle': { zh: '會員任務中心', en: 'Mission Center', ko: '미션 센터', th: 'ศูนย์กิจกรรม' },
     'homePromo.missionCta': { zh: '查看任務', en: 'View Missions', ko: '미션 보기', th: 'ดูภารกิจ' },
+
+    /* 進站公告彈窗（比照 v1.5 components/PromotionModal.vue）*/
+    'promotion.dontRemindToday': { zh: '今天不再提醒', en: "Don't remind me again today", ko: '오늘 다시 알리지 않기', th: 'ไม่ต้องแจ้งเตือนอีกวันนี้' },
   };
 
   function getLocale() {

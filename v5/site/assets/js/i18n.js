@@ -564,6 +564,9 @@
     'team.rafaelNadal': { zh: '納達爾', en: 'Rafael Nadal', ko: '라파엘 나달', th: 'ราฟาเอล นาดาล' },
     'team.mariaSharapova': { zh: '莎拉波娃', en: 'Maria Sharapova', ko: '마리아 샤라포바', th: 'มาเรีย ชาราโปวา' },
     'team.rogerFederer': { zh: '費德勒', en: 'Roger Federer', ko: '로저 페더러', th: 'โรเจอร์ เฟเดอเรอร์' },
+
+    /* 進站公告彈窗（比照 v1.5 components/PromotionModal.vue）*/
+    'promotion.dontRemindToday': { zh: '今天不再提醒', en: "Don't remind me again today", ko: '오늘 다시 알리지 않기', th: 'ไม่ต้องแจ้งเตือนอีกวันนี้' },
   };
 
   function getLocale() {
