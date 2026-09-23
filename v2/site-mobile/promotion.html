@@ -25,62 +25,94 @@
 
 <main>
   <section class="px-4 pt-4 pb-6 flex flex-col gap-3">
-    <div class="relative overflow-hidden rounded-2xl p-4" style="background:linear-gradient(135deg,var(--promo-money-a),var(--promo-money-b))">
-      <svg class="absolute -right-3 -bottom-5 h-32 w-32 text-white/15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-        <circle cx="9" cy="15" r="6.5"></circle><circle cx="15.5" cy="9" r="6.5"></circle>
+    <div class="relative rounded-2xl p-4 shadow-[0_10px_24px_-8px_rgba(0,0,0,.55)] ring-1 ring-white/15" style="background:radial-gradient(130% 160% at 90% -20%, rgba(255,255,255,.4), transparent 55%), linear-gradient(135deg,var(--promo-money-a),var(--promo-money-b))">
+      <svg class="absolute -right-4 -bottom-6 h-36 w-36 drop-shadow-[0_8px_10px_rgba(0,0,0,.35)]" viewBox="0 0 36 36" aria-hidden="true">
+        <defs>
+          <radialGradient id="pcCoin0" cx="32%" cy="28%" r="78%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity=".5"></stop>
+            <stop offset="45%" stop-color="#ffffff" stop-opacity=".14"></stop>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
+          </radialGradient>
+        </defs>
+        <circle cx="14" cy="21" r="9.5" fill="url(#pcCoin0)" stroke="#ffffff" stroke-opacity=".35" stroke-width="1"></circle>
+        <circle cx="22.5" cy="12.5" r="9.5" fill="url(#pcCoin0)" stroke="#ffffff" stroke-opacity=".35" stroke-width="1"></circle>
       </svg>
-      <span class="relative inline-block rounded-full bg-white/20 px-2.5 py-1 text-[10.5px] font-bold text-white">RioBet Casino</span>
-      <p class="relative mt-2 max-w-[75%] text-[17px] font-extrabold leading-tight text-white">Unlimited Daily Bonus</p>
+      <span class="relative inline-block rounded-full bg-white/25 px-2.5 py-1 text-[10.5px] font-bold text-white shadow-sm">RioBet Casino</span>
+      <p class="relative mt-2 max-w-[75%] text-[17px] font-extrabold leading-tight text-white drop-shadow-[0_1px_2px_rgba(0,0,0,.3)]">Unlimited Daily Bonus</p>
       <div class="relative mt-2 flex flex-col gap-0.5 text-[12px] font-semibold text-white/90">
         <span>Sports / Slots +5%</span>
         <span>Casino / Mini Games +3%</span>
       </div>
-      <div class="relative mt-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3.5 py-1.5 text-[12px] font-bold" style="color:var(--promo-money-a)">
+      <div class="relative mt-3 inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-[12px] font-bold shadow-[0_4px_10px_rgba(0,0,0,.25)]" style="color:var(--promo-money-a)">
         <span data-i18n="promo.viewDetails">查看詳情</span>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
       </div>
     </div>
-    <div class="relative overflow-hidden rounded-2xl p-4" style="background:linear-gradient(135deg,var(--promo-bonus-a),var(--promo-bonus-b))">
-      <svg class="absolute -right-3 -bottom-5 h-32 w-32 text-white/15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-        <circle cx="9" cy="15" r="6.5"></circle><circle cx="15.5" cy="9" r="6.5"></circle>
+    <div class="relative rounded-2xl p-4 shadow-[0_10px_24px_-8px_rgba(0,0,0,.55)] ring-1 ring-white/15" style="background:radial-gradient(130% 160% at 90% -20%, rgba(255,255,255,.4), transparent 55%), linear-gradient(135deg,var(--promo-bonus-a),var(--promo-bonus-b))">
+      <svg class="absolute -right-4 -bottom-6 h-36 w-36 drop-shadow-[0_8px_10px_rgba(0,0,0,.35)]" viewBox="0 0 36 36" aria-hidden="true">
+        <defs>
+          <radialGradient id="pcCoin1" cx="32%" cy="28%" r="78%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity=".5"></stop>
+            <stop offset="45%" stop-color="#ffffff" stop-opacity=".14"></stop>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
+          </radialGradient>
+        </defs>
+        <circle cx="14" cy="21" r="9.5" fill="url(#pcCoin1)" stroke="#ffffff" stroke-opacity=".35" stroke-width="1"></circle>
+        <circle cx="22.5" cy="12.5" r="9.5" fill="url(#pcCoin1)" stroke="#ffffff" stroke-opacity=".35" stroke-width="1"></circle>
       </svg>
-      <span class="relative inline-block rounded-full bg-white/20 px-2.5 py-1 text-[10.5px] font-bold text-white">BitStarz Casino</span>
-      <p class="relative mt-2 max-w-[75%] text-[17px] font-extrabold leading-tight text-white">Weekly Reload Bonus</p>
+      <span class="relative inline-block rounded-full bg-white/25 px-2.5 py-1 text-[10.5px] font-bold text-white shadow-sm">BitStarz Casino</span>
+      <p class="relative mt-2 max-w-[75%] text-[17px] font-extrabold leading-tight text-white drop-shadow-[0_1px_2px_rgba(0,0,0,.3)]">Weekly Reload Bonus</p>
       <div class="relative mt-2 flex flex-col gap-0.5 text-[12px] font-semibold text-white/90">
         <span>Slots +50%</span>
         <span>Live Casino +10%</span>
       </div>
-      <div class="relative mt-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3.5 py-1.5 text-[12px] font-bold" style="color:var(--promo-bonus-a)">
+      <div class="relative mt-3 inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-[12px] font-bold shadow-[0_4px_10px_rgba(0,0,0,.25)]" style="color:var(--promo-bonus-a)">
         <span data-i18n="promo.viewDetails">查看詳情</span>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
       </div>
     </div>
-    <div class="relative overflow-hidden rounded-2xl p-4" style="background:linear-gradient(135deg,var(--promo-money-a),var(--promo-money-b))">
-      <svg class="absolute -right-3 -bottom-5 h-32 w-32 text-white/15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-        <circle cx="9" cy="15" r="6.5"></circle><circle cx="15.5" cy="9" r="6.5"></circle>
+    <div class="relative rounded-2xl p-4 shadow-[0_10px_24px_-8px_rgba(0,0,0,.55)] ring-1 ring-white/15" style="background:radial-gradient(130% 160% at 90% -20%, rgba(255,255,255,.4), transparent 55%), linear-gradient(135deg,var(--promo-money-a),var(--promo-money-b))">
+      <svg class="absolute -right-4 -bottom-6 h-36 w-36 drop-shadow-[0_8px_10px_rgba(0,0,0,.35)]" viewBox="0 0 36 36" aria-hidden="true">
+        <defs>
+          <radialGradient id="pcCoin2" cx="32%" cy="28%" r="78%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity=".5"></stop>
+            <stop offset="45%" stop-color="#ffffff" stop-opacity=".14"></stop>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
+          </radialGradient>
+        </defs>
+        <circle cx="14" cy="21" r="9.5" fill="url(#pcCoin2)" stroke="#ffffff" stroke-opacity=".35" stroke-width="1"></circle>
+        <circle cx="22.5" cy="12.5" r="9.5" fill="url(#pcCoin2)" stroke="#ffffff" stroke-opacity=".35" stroke-width="1"></circle>
       </svg>
-      <span class="relative inline-block rounded-full bg-white/20 px-2.5 py-1 text-[10.5px] font-bold text-white">IceCasino</span>
-      <p class="relative mt-2 max-w-[75%] text-[17px] font-extrabold leading-tight text-white">Member Exclusive Bonus</p>
+      <span class="relative inline-block rounded-full bg-white/25 px-2.5 py-1 text-[10.5px] font-bold text-white shadow-sm">IceCasino</span>
+      <p class="relative mt-2 max-w-[75%] text-[17px] font-extrabold leading-tight text-white drop-shadow-[0_1px_2px_rgba(0,0,0,.3)]">Member Exclusive Bonus</p>
       <div class="relative mt-2 flex flex-col gap-0.5 text-[12px] font-semibold text-white/90">
         <span>Hot Games +30%</span>
         <span>Mini Games +8%</span>
       </div>
-      <div class="relative mt-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3.5 py-1.5 text-[12px] font-bold" style="color:var(--promo-money-a)">
+      <div class="relative mt-3 inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-[12px] font-bold shadow-[0_4px_10px_rgba(0,0,0,.25)]" style="color:var(--promo-money-a)">
         <span data-i18n="promo.viewDetails">查看詳情</span>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
       </div>
     </div>
-    <div class="relative overflow-hidden rounded-2xl p-4" style="background:linear-gradient(135deg,var(--promo-bonus-a),var(--promo-bonus-b))">
-      <svg class="absolute -right-3 -bottom-5 h-32 w-32 text-white/15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-        <circle cx="9" cy="15" r="6.5"></circle><circle cx="15.5" cy="9" r="6.5"></circle>
+    <div class="relative rounded-2xl p-4 shadow-[0_10px_24px_-8px_rgba(0,0,0,.55)] ring-1 ring-white/15" style="background:radial-gradient(130% 160% at 90% -20%, rgba(255,255,255,.4), transparent 55%), linear-gradient(135deg,var(--promo-bonus-a),var(--promo-bonus-b))">
+      <svg class="absolute -right-4 -bottom-6 h-36 w-36 drop-shadow-[0_8px_10px_rgba(0,0,0,.35)]" viewBox="0 0 36 36" aria-hidden="true">
+        <defs>
+          <radialGradient id="pcCoin3" cx="32%" cy="28%" r="78%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity=".5"></stop>
+            <stop offset="45%" stop-color="#ffffff" stop-opacity=".14"></stop>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
+          </radialGradient>
+        </defs>
+        <circle cx="14" cy="21" r="9.5" fill="url(#pcCoin3)" stroke="#ffffff" stroke-opacity=".35" stroke-width="1"></circle>
+        <circle cx="22.5" cy="12.5" r="9.5" fill="url(#pcCoin3)" stroke="#ffffff" stroke-opacity=".35" stroke-width="1"></circle>
       </svg>
-      <span class="relative inline-block rounded-full bg-white/20 px-2.5 py-1 text-[10.5px] font-bold text-white">Gamdom Casino</span>
-      <p class="relative mt-2 max-w-[75%] text-[17px] font-extrabold leading-tight text-white">Daily Cashback Boost</p>
+      <span class="relative inline-block rounded-full bg-white/25 px-2.5 py-1 text-[10.5px] font-bold text-white shadow-sm">Gamdom Casino</span>
+      <p class="relative mt-2 max-w-[75%] text-[17px] font-extrabold leading-tight text-white drop-shadow-[0_1px_2px_rgba(0,0,0,.3)]">Daily Cashback Boost</p>
       <div class="relative mt-2 flex flex-col gap-0.5 text-[12px] font-semibold text-white/90">
         <span>Sports +15%</span>
         <span>Fish Games +6%</span>
       </div>
-      <div class="relative mt-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3.5 py-1.5 text-[12px] font-bold" style="color:var(--promo-bonus-a)">
+      <div class="relative mt-3 inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-[12px] font-bold shadow-[0_4px_10px_rgba(0,0,0,.25)]" style="color:var(--promo-bonus-a)">
         <span data-i18n="promo.viewDetails">查看詳情</span>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
       </div>

@@ -24,37 +24,39 @@
 </header>
 
 <main>
-  <section class="px-4 pt-4 pb-6">
-    <p class="text-[12.5px] text-text-dim mb-3"><span data-i18n="deposit.selectChannel">選擇儲值通道</span></p>
-    <div class="flex flex-col gap-3">
-    <button type="button" class="w-full flex items-center justify-between rounded-2xl border border-line bg-bg-card p-4 text-left">
+  <section class="px-4 pt-4 pb-6" id="dp-flow">
+    <div data-dp-step="channel">
+      <p class="text-[12.5px] text-text-dim mb-3" data-i18n="deposit.selectChannel">選擇儲值通道</p>
+      <div class="flex flex-col gap-3">
+    <button type="button" class="w-full flex items-center justify-between rounded-2xl border border-line bg-bg-card p-4 text-left" data-dp-gateway="a" data-dp-methods="4">
       <div>
         <p class="text-[13.5px] font-bold text-text">Provider A</p>
         <p class="text-[11.5px] text-text-dim">4 <span data-i18n="deposit.methodCount">種付款方式</span></p>
       </div>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-text-dim" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
     </button>
-    <button type="button" class="w-full flex items-center justify-between rounded-2xl border border-line bg-bg-card p-4 text-left">
+    <button type="button" class="w-full flex items-center justify-between rounded-2xl border border-line bg-bg-card p-4 text-left" data-dp-gateway="b" data-dp-methods="3">
       <div>
         <p class="text-[13.5px] font-bold text-text">Provider B</p>
         <p class="text-[11.5px] text-text-dim">3 <span data-i18n="deposit.methodCount">種付款方式</span></p>
       </div>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-text-dim" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
     </button>
-    <button type="button" class="w-full flex items-center justify-between rounded-2xl border border-line bg-bg-card p-4 text-left">
+    <button type="button" class="w-full flex items-center justify-between rounded-2xl border border-line bg-bg-card p-4 text-left" data-dp-gateway="c" data-dp-methods="2">
       <div>
         <p class="text-[13.5px] font-bold text-text">Provider C</p>
         <p class="text-[11.5px] text-text-dim">2 <span data-i18n="deposit.methodCount">種付款方式</span></p>
       </div>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-text-dim" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
     </button>
-    <button type="button" class="w-full flex items-center justify-between rounded-2xl border border-line bg-bg-card p-4 text-left">
+    <button type="button" class="w-full flex items-center justify-between rounded-2xl border border-line bg-bg-card p-4 text-left" data-dp-gateway="d" data-dp-methods="1">
       <div>
         <p class="text-[13.5px] font-bold text-text">Provider D</p>
         <p class="text-[11.5px] text-text-dim">1 <span data-i18n="deposit.methodCount">種付款方式</span></p>
       </div>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-text-dim" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
     </button></div>
+    </div>
   </section>
 
 </main>
@@ -231,6 +233,6 @@
 <script src="../site/assets/js/data.js"></script>
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/mobile.js"></script>
-
+<script src="assets/js/payment.js"></script>
 </body>
 </html>

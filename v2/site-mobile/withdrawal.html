@@ -24,42 +24,47 @@
 </header>
 
 <main>
-  <section class="px-4 pt-4 pb-6">
-    <h2 class="text-[13px] font-bold text-text mb-3"><span data-i18n="withdrawal.bankAccounts">銀行帳戶</span></h2>
-    <div class="flex flex-col gap-2.5 mb-5">
+  <section class="px-4 pt-4 pb-6" id="wd-flow">
+    <div data-wd-step="form">
+      <h2 class="text-[13px] font-bold text-text mb-3" data-i18n="withdrawal.bankAccounts">銀行帳戶</h2>
+      <div class="flex flex-col gap-2.5 mb-5">
     <label class="flex items-center justify-between rounded-2xl border border-line bg-bg-card p-4">
       <div>
         <p class="text-[13px] font-bold text-text">KB Bank · 1234</p>
         <p class="text-[11px] text-text-dim">M＊＊＊＊＊＊＊</p>
       </div>
-      <input type="radio" name="wd-account" class="h-4 w-4 accent-[var(--accent)]">
+      <input type="radio" name="wd-account" class="h-4 w-4 accent-[var(--accent)]" data-wd-account="bank-0">
     </label>
     <label class="flex items-center justify-between rounded-2xl border border-line bg-bg-card p-4">
       <div>
         <p class="text-[13px] font-bold text-text">Shinhan Bank · 5678</p>
         <p class="text-[11px] text-text-dim">M＊＊＊＊＊＊＊</p>
       </div>
-      <input type="radio" name="wd-account" class="h-4 w-4 accent-[var(--accent)]">
+      <input type="radio" name="wd-account" class="h-4 w-4 accent-[var(--accent)]" data-wd-account="bank-1">
     </label>
     <label class="flex items-center justify-between rounded-2xl border border-line bg-bg-card p-4">
       <div>
         <p class="text-[13px] font-bold text-text">Woori Bank · 9012</p>
         <p class="text-[11px] text-text-dim">M＊＊＊＊＊＊＊</p>
       </div>
-      <input type="radio" name="wd-account" class="h-4 w-4 accent-[var(--accent)]">
+      <input type="radio" name="wd-account" class="h-4 w-4 accent-[var(--accent)]" data-wd-account="bank-2">
     </label></div>
-    <h2 class="text-[13px] font-bold text-text mb-3"><span data-i18n="withdrawal.cryptoWallets">加密貨幣錢包</span></h2>
-    <div class="flex flex-col gap-2.5 mb-5">
+      <h2 class="text-[13px] font-bold text-text mb-3" data-i18n="withdrawal.cryptoWallets">加密貨幣錢包</h2>
+      <div class="flex flex-col gap-2.5 mb-5">
     <label class="flex items-center justify-between rounded-2xl border border-line bg-bg-card p-4">
       <div>
         <p class="text-[13px] font-bold text-text">USDT TRC20</p>
         <p class="text-[11px] text-text-dim truncate max-w-[220px]">TXk9Ym3pQ8rL2vN5sB7cH4fG6dZ1aE0tUw</p>
       </div>
-      <input type="radio" name="wd-account" class="h-4 w-4 accent-[var(--accent)]">
+      <input type="radio" name="wd-account" class="h-4 w-4 accent-[var(--accent)]" data-wd-account="wallet-0">
     </label></div>
-    <label class="block text-[12px] text-text-dim mb-1.5"><span data-i18n="withdrawal.amount">提款金額</span></label>
-    <input type="number" placeholder="0.00" class="w-full h-12 rounded-xl border border-line bg-bg-card px-4 text-[14px] text-text mb-4">
-    <button type="button" class="w-full h-12 rounded-xl bg-accent text-text-on-accent text-[14px] font-bold"><span data-i18n="withdrawal.submit">送出提款申請</span></button>
+      <label class="block text-[12px] text-text-dim mb-1.5" data-i18n="withdrawal.amount">提款金額</label>
+      <input type="number" placeholder="0.00" class="w-full h-12 rounded-xl border border-line bg-bg-card px-4 text-[14px] text-text mb-4" id="wd-amount" data-i18n-placeholder="withdrawal.amountPh">
+      <label class="block text-[12px] text-text-dim mb-1.5" data-i18n="withdrawal.password">交易密碼</label>
+      <input type="password" placeholder="請輸入交易密碼" class="w-full h-12 rounded-xl border border-line bg-bg-card px-4 text-[14px] text-text mb-4" id="wd-password" data-i18n-placeholder="withdrawal.passwordPh">
+      <p class="text-[11.5px] text-[#ef4444] mb-3 hidden" id="wd-error" data-i18n="withdrawal.selectAccount">請先選擇提款帳戶</p>
+      <button type="button" class="w-full h-12 rounded-xl bg-accent text-text-on-accent text-[14px] font-bold" id="wd-submit" data-i18n="withdrawal.submit">送出提款申請</button>
+    </div>
   </section>
 
 </main>
@@ -236,6 +241,6 @@
 <script src="../site/assets/js/data.js"></script>
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/mobile.js"></script>
-
+<script src="assets/js/payment.js"></script>
 </body>
 </html>

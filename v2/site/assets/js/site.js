@@ -2146,7 +2146,10 @@
       on(body.querySelector('[data-wallet-copy]'), 'click', function (e) {
         e.stopPropagation();
         var btn = e.currentTarget;
-        try { navigator.clipboard.writeText(w.address); } catch (err) { /* clipboard 不可用,占位流程靜默略過 */ }
+        try {
+          var copyP = navigator.clipboard.writeText(w.address);
+          if (copyP && copyP.catch) copyP.catch(function () { /* clipboard 權限被拒,占位流程靜默略過 */ });
+        } catch (err) { /* clipboard 不可用,占位流程靜默略過 */ }
         btn.innerHTML = iconSvg('check', 'w-4 h-4');
         btn.setAttribute('aria-label', copiedLabel);
         setTimeout(function () {
@@ -2801,7 +2804,10 @@
     formCard.parentElement.insertBefore(section, formCard.nextSibling);
     on(section.querySelector('[data-qr-copy]'), 'click', function (e) {
       var b = e.currentTarget;
-      try { navigator.clipboard.writeText(addr); } catch (err) { /* clipboard 不可用,占位流程靜默略過 */ }
+      try {
+        var copyP2 = navigator.clipboard.writeText(addr);
+        if (copyP2 && copyP2.catch) copyP2.catch(function () { /* clipboard 權限被拒,占位流程靜默略過 */ });
+      } catch (err) { /* clipboard 不可用,占位流程靜默略過 */ }
       b.textContent = t8.copied || 'Copied';
       setTimeout(function () { b.textContent = t8.copy || 'Copy'; }, 1500);
     });

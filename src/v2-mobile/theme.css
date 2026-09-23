@@ -57,3 +57,28 @@
   -ms-overflow-style: none;
   &::-webkit-scrollbar { display: none; }
 }
+
+/* 導覽選中態進場動畫（頂部 nav pill / 底部 tabbar 圖示圈）＋ menu 抽屜
+   滑入/滑出動畫。純 CSS @keyframes，用 Tailwind 的 animate-[name_...]
+   任意值語法套用，不需要額外的 JS 動畫函式庫。*/
+@keyframes v2m-pop {
+  0% { transform: scale(.7); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes v2m-drawer-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes v2m-drawer-out {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+@keyframes v2m-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes v2m-backdrop-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
