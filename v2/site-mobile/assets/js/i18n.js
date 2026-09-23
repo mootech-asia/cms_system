@@ -55,6 +55,7 @@
     'promo.freeMoneySub': { zh: '免費彩金！', en: 'Free cash!', ko: '무료 보너스!', th: 'โบนัสฟรี!' },
     'promo.bonusTitle': { zh: '優惠活動', en: 'Promotions', ko: '프로모션', th: 'โปรโมชัน' },
     'promo.bonusSub': { zh: '與獎金', en: 'and bonuses', ko: '및 보너스', th: 'และโบนัส' },
+    'promo.viewDetails': { zh: '查看詳情', en: 'View Details', ko: '자세히 보기', th: 'ดูรายละเอียด' },
 
     'section.bestGames': { zh: '精選遊戲', en: 'Best games', ko: '베스트 게임', th: 'เกมยอดนิยม' },
     'section.casino': { zh: '娛樂城', en: 'Casino', ko: '카지노', th: 'คาสิโน' },
