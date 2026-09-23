@@ -34,20 +34,35 @@
   </div>
 
   <div class="px-4 pb-3 hidden" data-auth-account>
-    <div class="flex items-center gap-3 rounded-2xl border border-line-hi bg-bg-card px-3 py-2.5">
-      <div class="relative flex-none">
-        <span class="h-10 w-10 rounded-full bg-accent-soft grid place-items-center text-accent font-bold text-[13px]">PL</span>
-        <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 h-4 w-4 grid place-items-center rounded-full border border-line-hi bg-bg-elev text-accent" aria-hidden="true"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span>
+    <div class="rounded-2xl border border-line-hi bg-bg-card px-3 py-2.5">
+      <div class="flex items-center gap-3">
+        <div class="relative flex-none">
+          <span class="h-10 w-10 rounded-full bg-accent-soft grid place-items-center text-accent font-bold text-[13px]">PL</span>
+          <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 h-4 w-4 grid place-items-center rounded-full border border-line-hi bg-bg-elev text-accent" aria-hidden="true"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-[13.5px] font-bold text-text truncate">PlayerOne</p>
+          <p class="flex items-center gap-1 text-[11px] font-semibold text-text-dim">
+            <span class="text-accent"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span><span data-i18n="account.tierUnranked">未排名</span>
+          </p>
+        </div>
+        <button type="button" class="h-8 w-8 flex-none grid place-items-center rounded-lg text-text-mid" data-action="logout" data-i18n-aria="auth.logout" aria-label="登出">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="m16 17 5-5-5-5"></path><path d="M21 12H9"></path></svg>
+        </button>
       </div>
-      <div class="flex-1 min-w-0">
-        <p class="text-[13.5px] font-bold text-text truncate">PlayerOne</p>
-        <p class="flex items-center gap-1 text-[11px] font-semibold text-text-dim">
-          <span class="text-accent"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span><span data-i18n="account.tierUnranked">未排名</span>
-        </p>
+      <!-- 經驗值/等級進度條：數值（62%、Unranked→Bronze）比照 v2/site 桌機版
+           account.html 的 .rewards-bar（--rk-pct: 62%），跟手機版 account.html
+           既有那份完整版共用同一個真實數值，不是這裡另外編的假資料。 -->
+      <div class="mt-2.5">
+        <div class="h-1.5 overflow-hidden rounded-full border border-line bg-bg-elev" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="Level progress: 62%">
+          <div class="h-full rounded-full bg-accent" style="width:62%"></div>
+        </div>
+        <div class="mt-1 flex items-center justify-between text-[10px] font-semibold text-text-dim">
+          <span data-i18n="account.tierUnranked">未排名</span>
+          <span>62%</span>
+          <span class="text-accent" data-i18n="account.tierBronze">銅級</span>
+        </div>
       </div>
-      <button type="button" class="h-8 w-8 flex-none grid place-items-center rounded-lg text-text-mid" data-action="logout" data-i18n-aria="auth.logout" aria-label="登出">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="m16 17 5-5-5-5"></path><path d="M21 12H9"></path></svg>
-      </button>
     </div>
   </div>
 
