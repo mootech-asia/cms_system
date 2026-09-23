@@ -546,15 +546,15 @@
     var title = opts.title || t(type === 'error' ? 'common.warning' : type === 'confirmation' ? 'common.confirmation' : 'common.success');
     var confirmText = opts.confirmText || (type === 'confirmation' ? t('common.submit') : t('common.gotIt'));
     root.innerHTML =
-      '<div class="alert-backdrop"><div class="alert-box">' +
-      '<div class="alert-box-inner">' +
-      '<img src="' + icon(iconName) + '" alt="' + type + '" class="alert-icon">' +
-      '<h3 class="alert-title">' + title + '</h3>' +
-      '<p class="alert-message">' + (opts.message || '') + '</p>' +
+      '<div class="fixed inset-0 z-[1000] flex items-center justify-center bg-[rgba(40,38,46,0.8)] p-4"><div class="relative w-full max-w-[360px] rounded-[28px] bg-[#3a3a3a] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] border-[3px] border-transparent [background-image:linear-gradient(#3a3a3a,#3a3a3a),var(--g-primary)] [background-origin:border-box] [background-clip:padding-box,border-box]">' +
+      '<div class="flex flex-col items-center gap-3 pt-6 px-6 pb-4">' +
+      '<img src="' + icon(iconName) + '" alt="' + type + '" class="w-20 h-20">' +
+      '<h3 class="text-white text-[20px] font-bold text-center m-0">' + title + '</h3>' +
+      '<p class="text-white/50 text-[16px] text-center m-0">' + (opts.message || '') + '</p>' +
       '</div>' +
-      '<div class="alert-actions">' +
-      '<button type="button" class="alert-confirm-btn" data-alert-confirm>' + confirmText + '</button>' +
-      (opts.cancellable && type !== 'success' ? '<button type="button" class="alert-cancel-btn" data-alert-cancel>' + t('common.cancel') + '</button>' : '') +
+      '<div class="pt-0 px-6 pb-5">' +
+      '<button type="button" class="w-full h-10 rounded-full !bg-[image:var(--g-primary)] !text-[rgba(6,12,52,0.8)] !text-[18px] !font-bold" data-alert-confirm>' + confirmText + '</button>' +
+      (opts.cancellable && type !== 'success' ? '<button type="button" class="mt-2 w-full h-10 rounded-lg !text-white/60 !font-semibold" data-alert-cancel>' + t('common.cancel') + '</button>' : '') +
       '</div></div></div>';
     on(qs('[data-alert-confirm]', root), 'click', function () {
       root.innerHTML = '';
@@ -575,23 +575,34 @@
     document.body.appendChild(authRoot);
     return authRoot;
   }
+  /* main.css 的 input{font:inherit} 是全站通用重置，unlayered stylesheet
+     優先權高於 utilities layer，只有 font 相關屬性（含 font-size/line-height）
+     受影響，需要 ! 蓋過去；background/border/padding/color 不受這條
+     影響，不用加 !（跟 <button> 的通用重置範圍不一樣，見 header 那次
+     commit 記錄的 button 版本）。 */
+  var AUTH_LABEL_CLS = 'block text-white font-bold text-[14px] mb-1.5';
+  var AUTH_INPUT_CLS = 'w-full h-10.5 rounded-lg border border-white/15 bg-[#1e2450] text-white px-3.5 !text-[14px] placeholder:text-white/40';
+  var AUTH_PW_INPUT_CLS = 'w-full h-10.5 rounded-lg border border-white/15 bg-[#1e2450] text-white pl-3.5 pr-10.5 !text-[14px] placeholder:text-white/40';
+  function authPwToggleHtml() {
+    return '<button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5" data-auth-pw-toggle><img src="' + icon('eye.svg') + '" alt="toggle" class="w-full h-full opacity-70"></button>';
+  }
   var AUTH_FIELD = {
-    username: '<label>' + t('auth.username') + '</label><input type="text" data-auth-field="username" placeholder="' + t('auth.usernamePlaceholder') + '">',
-    password: '<label>' + t('auth.password') + '</label><div class="auth-pw-field"><input type="password" data-auth-field="password" placeholder="' + t('auth.passwordPlaceholder') + '"><button type="button" class="auth-pw-toggle" data-auth-pw-toggle><img src="' + icon('eye.svg') + '" alt="toggle"></button></div>',
-    confirmPassword: '<label>' + t('auth.confirmPassword') + '</label><div class="auth-pw-field"><input type="password" data-auth-field="confirmPassword" placeholder="' + t('auth.passwordPlaceholder') + '"><button type="button" class="auth-pw-toggle" data-auth-pw-toggle><img src="' + icon('eye.svg') + '" alt="toggle"></button></div>',
-    newPassword: '<label>' + t('auth.newPassword') + '</label><div class="auth-pw-field"><input type="password" data-auth-field="newPassword" placeholder="' + t('auth.newPasswordPlaceholder') + '"><button type="button" class="auth-pw-toggle" data-auth-pw-toggle><img src="' + icon('eye.svg') + '" alt="toggle"></button></div>',
-    confirmNewPassword: '<label>' + t('auth.confirmPassword') + '</label><div class="auth-pw-field"><input type="password" data-auth-field="confirmNewPassword" placeholder="' + t('auth.newPasswordPlaceholder') + '"><button type="button" class="auth-pw-toggle" data-auth-pw-toggle><img src="' + icon('eye.svg') + '" alt="toggle"></button></div>',
-    email: '<label>' + t('auth.email') + '</label><input type="text" data-auth-field="email" placeholder="' + t('auth.emailPlaceholder') + '">',
-    realName: '<label>' + t('auth.realName') + '</label><input type="text" data-auth-field="realName" placeholder="' + t('auth.realNamePlaceholder') + '">',
-    mobile: '<label>' + t('auth.mobile') + '</label><input type="text" data-auth-field="mobile" placeholder="' + t('auth.mobilePlaceholder') + '">',
-    birthday: '<label>' + t('auth.birthday') + '</label><input type="text" data-auth-field="birthday" placeholder="' + t('auth.birthdayPlaceholder') + '">',
-    invitationCode: '<label>' + t('auth.invitationCode') + '</label><input type="text" data-auth-field="invitationCode" placeholder="' + t('auth.invitationCodePlaceholder') + '">',
+    username: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.username') + '</label><input type="text" class="' + AUTH_INPUT_CLS + '" data-auth-field="username" placeholder="' + t('auth.usernamePlaceholder') + '">',
+    password: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.password') + '</label><div class="relative"><input type="password" class="' + AUTH_PW_INPUT_CLS + '" data-auth-field="password" placeholder="' + t('auth.passwordPlaceholder') + '">' + authPwToggleHtml() + '</div>',
+    confirmPassword: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.confirmPassword') + '</label><div class="relative"><input type="password" class="' + AUTH_PW_INPUT_CLS + '" data-auth-field="confirmPassword" placeholder="' + t('auth.passwordPlaceholder') + '">' + authPwToggleHtml() + '</div>',
+    newPassword: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.newPassword') + '</label><div class="relative"><input type="password" class="' + AUTH_PW_INPUT_CLS + '" data-auth-field="newPassword" placeholder="' + t('auth.newPasswordPlaceholder') + '">' + authPwToggleHtml() + '</div>',
+    confirmNewPassword: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.confirmPassword') + '</label><div class="relative"><input type="password" class="' + AUTH_PW_INPUT_CLS + '" data-auth-field="confirmNewPassword" placeholder="' + t('auth.newPasswordPlaceholder') + '">' + authPwToggleHtml() + '</div>',
+    email: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.email') + '</label><input type="text" class="' + AUTH_INPUT_CLS + '" data-auth-field="email" placeholder="' + t('auth.emailPlaceholder') + '">',
+    realName: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.realName') + '</label><input type="text" class="' + AUTH_INPUT_CLS + '" data-auth-field="realName" placeholder="' + t('auth.realNamePlaceholder') + '">',
+    mobile: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.mobile') + '</label><input type="text" class="' + AUTH_INPUT_CLS + '" data-auth-field="mobile" placeholder="' + t('auth.mobilePlaceholder') + '">',
+    birthday: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.birthday') + '</label><input type="text" class="' + AUTH_INPUT_CLS + '" data-auth-field="birthday" placeholder="' + t('auth.birthdayPlaceholder') + '">',
+    invitationCode: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.invitationCode') + '</label><input type="text" class="' + AUTH_INPUT_CLS + '" data-auth-field="invitationCode" placeholder="' + t('auth.invitationCodePlaceholder') + '">',
   };
   function authCaptchaField() {
     return (
-      '<label>' + t('auth.captcha') + '</label>' +
-      '<div class="auth-captcha-row"><input type="text" data-auth-field="captcha" placeholder="' + t('auth.captchaPlaceholder') + '">' +
-      '<span class="auth-captcha-code" data-auth-captcha-code></span></div>'
+      '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.captcha') + '</label>' +
+      '<div class="flex items-center gap-2.5"><input type="text" class="' + AUTH_INPUT_CLS + ' flex-1" data-auth-field="captcha" placeholder="' + t('auth.captchaPlaceholder') + '">' +
+      '<span class="shrink-0 w-21 h-10.5 rounded-lg bg-white text-navy font-bold italic tracking-[2px] flex items-center justify-center" data-auth-captcha-code></span></div>'
     );
   }
   function randomCaptcha() {
@@ -599,65 +610,78 @@
     for (var i = 0; i < 5; i++) s += Math.floor(Math.random() * 10);
     return s;
   }
+  var AUTH_TITLE_CLS = 'text-gradient text-center text-[22px] font-extrabold m-0 mb-1 pb-4 border-b-2 border-transparent [border-image:var(--g-primary)] [border-image-slice:1] md:text-left md:border-0 md:pb-0';
+  /* .auth-btn 原本靠 line-height:44px 讓文字垂直置中(沒有另外設 padding),
+     <button> 的 unlayered 重置是 font:inherit 完整簡寫,line-height 也包含
+     在內,要用 ! 蓋過去,跟 font-size/font-weight 同一組。 */
+  var AUTH_BTN_CLS = 'block w-full h-11 rounded-lg mt-4 text-center !leading-11 !font-bold !text-[15px]';
+  var AUTH_BTN_OUTLINE_CLS = AUTH_BTN_CLS + ' !bg-transparent !border !border-pink !text-pink';
+  var AUTH_BTN_FILL_CLS = AUTH_BTN_CLS + ' !bg-[image:var(--g-primary)] !text-navy';
+  var AUTH_CHECKBOX_ROW_CLS = 'flex items-center gap-2 mt-4 text-white text-[13px] font-semibold';
+  /* main.css 的 a{color:inherit;text-decoration:none} 也是 unlayered 全站
+     重置,套用在真的有文字顏色/底線的 <a> 上時一樣要用 ! 蓋過去。 */
+  var AUTH_FORGOT_LINK_CLS = 'block text-right mt-4 !text-white text-[13px] !underline cursor-pointer';
   function authModalBody(mode) {
     if (mode === 'register') {
       return (
-        '<h2 class="auth-modal-title text-gradient">' + t('auth.register') + '</h2>' +
-        '<div class="auth-field">' + AUTH_FIELD.username + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.password + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.confirmPassword + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.email + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.realName + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.mobile + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.birthday + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.invitationCode + '</div>' +
-        '<div class="auth-field">' + authCaptchaField() + '</div>' +
-        '<label class="auth-checkbox-row"><input type="checkbox" data-auth-field="agree"><span>' + t('auth.agreeTerms') + '</span></label>' +
-        '<button type="button" class="auth-btn auth-btn-outline" data-auth-submit>' + t('common.submit') + '</button>' +
-        '<button type="button" class="auth-btn auth-btn-fill" data-auth-switch="login">' + t('auth.login') + '</button>'
+        '<h2 class="' + AUTH_TITLE_CLS + '">' + t('auth.register') + '</h2>' +
+        '<div class="mt-4">' + AUTH_FIELD.username + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.password + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.confirmPassword + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.email + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.realName + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.mobile + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.birthday + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.invitationCode + '</div>' +
+        '<div class="mt-4">' + authCaptchaField() + '</div>' +
+        '<label class="' + AUTH_CHECKBOX_ROW_CLS + '"><input type="checkbox" class="w-4.5 h-4.5 accent-pink" data-auth-field="agree"><span>' + t('auth.agreeTerms') + '</span></label>' +
+        '<button type="button" class="' + AUTH_BTN_OUTLINE_CLS + '" data-auth-submit>' + t('common.submit') + '</button>' +
+        '<button type="button" class="' + AUTH_BTN_FILL_CLS + '" data-auth-switch="login">' + t('auth.login') + '</button>'
       );
     }
     if (mode === 'forgotPassword') {
       return (
-        '<h2 class="auth-modal-title text-gradient">' + t('auth.forgotPassword') + '</h2>' +
-        '<div class="auth-field">' + AUTH_FIELD.username + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.email + '</div>' +
-        '<button type="button" class="auth-btn auth-btn-outline" data-auth-submit>' + t('common.submit') + '</button>'
+        '<h2 class="' + AUTH_TITLE_CLS + '">' + t('auth.forgotPassword') + '</h2>' +
+        '<div class="mt-4">' + AUTH_FIELD.username + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.email + '</div>' +
+        '<button type="button" class="' + AUTH_BTN_OUTLINE_CLS + '" data-auth-submit>' + t('common.submit') + '</button>'
       );
     }
     if (mode === 'resetPassword') {
       return (
-        '<h2 class="auth-modal-title text-gradient">' + t('auth.resetPassword') + '</h2>' +
-        '<div class="auth-field">' + AUTH_FIELD.username + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.newPassword + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.confirmNewPassword + '</div>' +
-        '<button type="button" class="auth-btn auth-btn-outline" data-auth-submit>' + t('common.submit') + '</button>'
+        '<h2 class="' + AUTH_TITLE_CLS + '">' + t('auth.resetPassword') + '</h2>' +
+        '<div class="mt-4">' + AUTH_FIELD.username + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.newPassword + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.confirmNewPassword + '</div>' +
+        '<button type="button" class="' + AUTH_BTN_OUTLINE_CLS + '" data-auth-submit>' + t('common.submit') + '</button>'
       );
     }
     /* login(預設) */
     return (
-      '<h2 class="auth-modal-title text-gradient">' + t('auth.login') + '</h2>' +
-      '<div class="auth-field">' + AUTH_FIELD.username + '</div>' +
-      '<div class="auth-field">' + AUTH_FIELD.password + '</div>' +
-      '<label class="auth-checkbox-row"><input type="checkbox" data-auth-field="remember"><span>' + t('auth.remember') + '</span></label>' +
-      '<button type="button" class="auth-btn auth-btn-outline" data-auth-submit>' + t('auth.login') + '</button>' +
-      '<button type="button" class="auth-btn auth-btn-fill" data-auth-switch="register">' + t('auth.register') + '</button>' +
-      '<button type="button" class="auth-btn auth-btn-fill" data-auth-promo-channel>' + t('auth.promotionChannel') + '</button>' +
-      '<a class="auth-forgot-link" data-auth-switch="forgotPassword">' + t('auth.forgotPassword') + '?</a>'
+      '<h2 class="' + AUTH_TITLE_CLS + '">' + t('auth.login') + '</h2>' +
+      '<div class="mt-4">' + AUTH_FIELD.username + '</div>' +
+      '<div class="mt-4">' + AUTH_FIELD.password + '</div>' +
+      '<label class="' + AUTH_CHECKBOX_ROW_CLS + '"><input type="checkbox" class="w-4.5 h-4.5 accent-pink" data-auth-field="remember"><span>' + t('auth.remember') + '</span></label>' +
+      '<button type="button" class="' + AUTH_BTN_OUTLINE_CLS + '" data-auth-submit>' + t('auth.login') + '</button>' +
+      '<button type="button" class="' + AUTH_BTN_FILL_CLS + '" data-auth-switch="register">' + t('auth.register') + '</button>' +
+      '<button type="button" class="' + AUTH_BTN_FILL_CLS + '" data-auth-promo-channel>' + t('auth.promotionChannel') + '</button>' +
+      '<a class="' + AUTH_FORGOT_LINK_CLS + '" data-auth-switch="forgotPassword">' + t('auth.forgotPassword') + '?</a>'
     );
   }
+  var AUTH_BACKDROP_CLS = 'fixed inset-0 z-[300] bg-black/70 flex items-center justify-center p-5 overflow-y-auto';
+  var AUTH_MODAL_CLS = 'relative w-full max-w-[360px] max-h-[calc(100vh-40px)] overflow-y-auto bg-navy rounded-[20px] pt-8 px-5 pb-6 md:max-w-[700px] md:h-[600px] md:p-0 md:flex md:rounded-3xl md:overflow-hidden';
   function showAuthModal(mode) {
     var root = ensureAuthRoot();
     root.innerHTML =
-      '<div class="auth-backdrop"><div class="auth-modal">' +
-      '<button type="button" class="auth-modal-close" data-auth-close><img src="' + icon('close.svg') + '" alt="close"></button>' +
-      '<div class="auth-modal-art"><img src="' + IMG + 'index/login.webp" alt="win10096"></div>' +
-      '<div class="auth-modal-form">' + authModalBody(mode) + '</div>' +
+      '<div class="' + AUTH_BACKDROP_CLS + '" data-auth-backdrop><div class="' + AUTH_MODAL_CLS + '">' +
+      '<button type="button" class="absolute right-4 top-4 z-[2] w-5 h-5" data-auth-close><img src="' + icon('close.svg') + '" alt="close" class="w-full h-full brightness-0 invert md:filter-none"></button>' +
+      '<div class="hidden md:block md:shrink-0 md:w-[46%]"><img src="' + IMG + 'index/login.webp" alt="win10096" class="w-full h-full object-cover"></div>' +
+      '<div class="flex flex-col md:flex-1 md:pt-10 md:px-9 md:pb-8 md:overflow-y-auto md:h-full">' + authModalBody(mode) + '</div>' +
       '</div></div>';
     var captchaEl = qs('[data-auth-captcha-code]', root);
     if (captchaEl) captchaEl.textContent = randomCaptcha();
     on(qs('[data-auth-close]', root), 'click', function () { root.innerHTML = ''; });
-    on(qs('.auth-backdrop', root), 'click', function (e) { if (e.target === e.currentTarget) root.innerHTML = ''; });
+    on(qs('[data-auth-backdrop]', root), 'click', function (e) { if (e.target === e.currentTarget) root.innerHTML = ''; });
     qsa('[data-auth-switch]', root).forEach(function (el) {
       on(el, 'click', function () { showAuthModal(el.getAttribute('data-auth-switch')); });
     });
@@ -675,13 +699,13 @@
     on(qs('[data-auth-submit]', root), 'click', function () {
       if (mode === 'forgotPassword') {
         root.innerHTML =
-          '<div class="auth-backdrop"><div class="auth-modal">' +
-          '<button type="button" class="auth-modal-close" data-auth-close><img src="' + icon('close.svg') + '" alt="close"></button>' +
-          '<div class="auth-modal-art"><img src="' + IMG + 'index/login.webp" alt="win10096"></div>' +
-          '<div class="auth-modal-form">' +
-          '<h2 class="auth-modal-title text-gradient">' + t('auth.forgotPassword') + '</h2>' +
-          '<p class="auth-modal-desc">' + t('auth.forgotPasswordSent') + '</p>' +
-          '<button type="button" class="auth-btn auth-btn-outline" data-auth-close>' + t('common.done') + '</button>' +
+          '<div class="' + AUTH_BACKDROP_CLS + '" data-auth-backdrop><div class="' + AUTH_MODAL_CLS + '">' +
+          '<button type="button" class="absolute right-4 top-4 z-[2] w-5 h-5" data-auth-close><img src="' + icon('close.svg') + '" alt="close" class="w-full h-full brightness-0 invert md:filter-none"></button>' +
+          '<div class="hidden md:block md:shrink-0 md:w-[46%]"><img src="' + IMG + 'index/login.webp" alt="win10096" class="w-full h-full object-cover"></div>' +
+          '<div class="flex flex-col md:flex-1 md:pt-10 md:px-9 md:pb-8 md:overflow-y-auto md:h-full">' +
+          '<h2 class="' + AUTH_TITLE_CLS + '">' + t('auth.forgotPassword') + '</h2>' +
+          '<p class="text-white text-[14px] text-center my-5">' + t('auth.forgotPasswordSent') + '</p>' +
+          '<button type="button" class="' + AUTH_BTN_OUTLINE_CLS + '" data-auth-close>' + t('common.done') + '</button>' +
           '</div></div></div>';
         on(qs('[data-auth-close]', root), 'click', function () { root.innerHTML = ''; });
         return;
