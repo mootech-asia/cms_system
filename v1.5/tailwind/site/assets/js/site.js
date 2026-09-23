@@ -240,26 +240,26 @@
    * ================================================================ */
   function footerHtml() {
     var imgs = (D.FOOTER_PARTNERS || []).map(function (name) {
-      return '<img src="' + IMG + 'footer/' + name + '" alt="footer">';
+      return '<img src="' + IMG + 'footer/' + name + '" alt="footer" class="h-15 mr-10">';
     }).join('');
     return (
-      '<footer class="site-footer">' +
-      '<div class="footer-marquee"><div class="footer-marquee-track">' + imgs + imgs + '</div></div>' +
-      '<div class="footer-lang">' +
-      '<div class="header-lang-switcher" data-lang-switcher>' +
-      '<button type="button" class="footer-lang-trigger" data-lang-trigger>' +
-      '<img src="' + icon('lang-us.svg') + '" alt="lang" style="width:20px;height:20px">' +
+      '<footer class="w-full bg-navy py-4 px-6 pb-20 xl:py-8 xl:px-21">' +
+      '<div class="w-full h-15 overflow-hidden flex items-center"><div class="flex shrink-0 w-max whitespace-nowrap animate-[footer-marquee_30s_linear_infinite]">' + imgs + imgs + '</div></div>' +
+      '<div class="flex justify-end mt-12 xl:hidden">' +
+      '<div class="relative group/lang" data-lang-switcher>' +
+      '<button type="button" class="flex items-center gap-1 w-32.5 h-8 !border !border-white/60 rounded-lg !py-0 !px-2 !text-white !text-[14px]" data-lang-trigger>' +
+      '<img src="' + icon('lang-us.svg') + '" alt="lang" class="w-5 h-5">' +
       '<span data-locale-label>' + ((D.LANGUAGES || []).filter(function (l) { return l.code === currentLocale(); })[0] || {}).label + '</span></button>' +
-      '<div class="header-lang-panel">' +
+      '<div class="absolute left-1/2 -translate-x-1/2 mt-1.5 bg-black border border-white/10 rounded-lg p-2 min-w-[130px] hidden group-[.is-open]/lang:block z-[80]">' +
       (D.LANGUAGES || []).map(function (l) {
-        return '<button type="button" data-set-locale="' + l.code + '"><img src="' + icon(l.image) + '" alt="' + l.code + '"><span>' + l.label + '</span></button>';
+        return '<button type="button" class="flex items-center gap-1.5 w-full h-6 rounded-xl !px-1.5 !text-white !text-[14px] hover:!bg-white/10" data-set-locale="' + l.code + '"><img src="' + icon(l.image) + '" alt="' + l.code + '" class="w-6 h-3.5"><span>' + l.label + '</span></button>';
       }).join('') +
       '</div></div></div>' +
-      '<div class="footer-logo-row"><img src="' + IMG + 'index/img-logo.png" alt="logo"></div>' +
-      '<div class="footer-copy">' +
-      '<p data-i18n="footer.desc">' + t('footer.desc') + '</p>' +
-      '<p data-i18n="footer.desc2">' + t('footer.desc2') + '</p>' +
-      '<p class="copyright" data-i18n="footer.copyright">' + t('footer.copyright') + '</p>' +
+      '<div class="flex justify-start xl:justify-center"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="w-31 xl:w-70"></div>' +
+      '<div class="my-8 xl:text-center xl:mt-14">' +
+      '<p class="text-subtitle text-[14px] m-0" data-i18n="footer.desc">' + t('footer.desc') + '</p>' +
+      '<p class="text-subtitle text-[14px] m-0" data-i18n="footer.desc2">' + t('footer.desc2') + '</p>' +
+      '<p class="text-[#888] text-[14px] mt-2" data-i18n="footer.copyright">' + t('footer.copyright') + '</p>' +
       '</div>' +
       '</footer>'
     );
@@ -271,12 +271,12 @@
   function bottomNavHtml() {
     var items = (D.BOTTOM_NAV_ITEMS || []).map(function (item) {
       return (
-        '<li><button type="button" class="mobile-bottom-nav-item" data-nav-key="' + item.key + '" data-nav-href="' + item.url + '">' +
-        '<img src="' + icon(item.icon) + '" alt="' + item.key + '">' +
-        '<span data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span></button></li>'
+        '<li><button type="button" class="group/bn w-full max-w-[84px] h-15 flex flex-col items-center justify-center gap-1.5 rounded-2xl mx-auto [&.is-active]:!bg-white" data-nav-key="' + item.key + '" data-nav-href="' + item.url + '">' +
+        '<img src="' + icon(item.icon) + '" alt="' + item.key + '" class="w-7 h-7 group-[.is-active]/bn:invert">' +
+        '<span class="text-[14px] font-bold text-white group-[.is-active]/bn:text-[#0a1140]" data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span></button></li>'
       );
     }).join('');
-    return '<nav class="mobile-bottom-nav"><ul class="mobile-bottom-nav-list">' + items + '</ul></nav>';
+    return '<nav class="fixed left-0 right-0 -bottom-px z-20 bg-navy border-t-2 border-transparent [border-image:var(--g-primary)] [border-image-slice:1] [body.usc-sidebar-open_&]:hidden xl:hidden"><ul class="max-w-[520px] mx-auto py-2 px-4 grid grid-cols-5 gap-2.5 justify-center">' + items + '</ul></nav>';
   }
 
   /* ================================================================
@@ -291,11 +291,11 @@
       { icon: 'sidebar-telegram.svg', tKey: 'sidebar.promoChannel', action: 'telegram' },
       { icon: 'sidebar-helps.svg', tKey: 'about.tabs.faq', action: 'faq' },
     ];
-    return '<div class="quick-rail">' + items.map(function (item) {
+    return '<div class="fixed top-1/2 right-2 -translate-y-1/2 z-[100] flex flex-col gap-2.5 py-2.5 px-1.5 rounded-full bg-white/[0.14] [backdrop-filter:blur(6px)] [-webkit-backdrop-filter:blur(6px)] border border-white/25 shadow-[0_18px_50px_rgba(10,17,64,0.18)] max-[720px]:right-1.5 max-[720px]:gap-2">' + items.map(function (item) {
       return (
-        '<button type="button" class="quick-rail-btn" data-quick-action="' + item.action + '" aria-label="' + t(item.tKey) + '">' +
-        '<img src="' + icon(item.icon) + '" alt="">' +
-        '<span class="quick-rail-label">' + t(item.tKey) + '</span>' +
+        '<button type="button" class="group/qr relative w-11.5 h-11.5 rounded-full !bg-navy flex items-center justify-center shadow-[0_18px_50px_rgba(10,17,64,0.18)] max-[720px]:!w-10 max-[720px]:!h-10" data-quick-action="' + item.action + '" aria-label="' + t(item.tKey) + '">' +
+        '<img src="' + icon(item.icon) + '" alt="" class="w-full h-full">' +
+        '<span class="absolute right-[calc(100%+12px)] top-1/2 -translate-y-1/2 translate-x-1.5 py-2 px-3.5 rounded-full bg-black/90 text-white text-[13px] font-bold whitespace-nowrap opacity-0 pointer-events-none shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-[opacity,transform] duration-[180ms] ease group-hover/qr:opacity-100 group-hover/qr:translate-x-0 group-focus-visible/qr:opacity-100 group-focus-visible/qr:translate-x-0 max-[720px]:!opacity-0 max-[720px]:!translate-x-1.5">' + t(item.tKey) + '</span>' +
         '</button>'
       );
     }).join('') + '</div>';
