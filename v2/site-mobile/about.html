@@ -33,7 +33,7 @@
 
 <nav class="m-tabbar fixed inset-x-3 z-40 grid grid-cols-5 rounded-[26px] border border-line-hi bg-bg-elev/95 backdrop-blur-md shadow-[0_10px_28px_rgba(0,0,0,0.45)]" style="bottom:max(12px, env(safe-area-inset-bottom, 0px))">
   <a href="index.html" class="flex flex-col items-center gap-1.5 py-2 text-accent" aria-current="page">
-    <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors bg-accent-soft">
+    <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors bg-accent-soft animate-[v2m-pop_.35s_cubic-bezier(.34,1.56,.64,1)]">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1v-8Z"></path></svg>
     </span>
     <span class="text-[10px] font-semibold leading-none" data-i18n="tabbar.home">首頁</span>
@@ -65,8 +65,8 @@
 </nav>
 
 <template id="m-menu-drawer-tpl">
-  <div class="fixed inset-0 z-50 bg-black/60" data-drawer-close>
-    <div class="absolute inset-y-0 right-0 w-80 max-w-[88vw] bg-bg-elev p-4 overflow-y-auto">
+  <div class="fixed inset-0 z-50 bg-black/60" data-drawer-close data-drawer-backdrop>
+    <div class="absolute inset-y-0 right-0 w-80 max-w-[88vw] bg-bg-elev p-4 overflow-y-auto" data-drawer-panel>
       <div class="flex items-center justify-between mb-4">
         <span class="text-[17px] font-bold text-text" data-i18n="tabbar.menu">選單</span>
         <button type="button" class="h-8 w-8 grid place-items-center rounded-lg text-text-mid" data-drawer-close aria-label="Close">

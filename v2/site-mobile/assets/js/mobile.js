@@ -235,19 +235,36 @@
   }
 
   var menuDrawerRoot = null;
+  var menuDrawerCloseTimer = null;
+  var MENU_DRAWER_CLOSE_MS = 230;
+  function removeMenuDrawerRoot() {
+    if (menuDrawerCloseTimer) { clearTimeout(menuDrawerCloseTimer); menuDrawerCloseTimer = null; }
+    if (menuDrawerRoot) { menuDrawerRoot.remove(); menuDrawerRoot = null; }
+    document.documentElement.classList.remove('overflow-hidden');
+  }
   function closeMenuDrawer() {
     if (!menuDrawerRoot) return;
-    menuDrawerRoot.remove();
-    menuDrawerRoot = null;
+    var root = menuDrawerRoot;
+    var panel = root.querySelector('[data-drawer-panel]');
+    root.classList.add('animate-[v2m-backdrop-out_.2s_ease-in]');
+    if (panel) panel.classList.add('animate-[v2m-drawer-out_.22s_ease-in]');
     document.documentElement.classList.remove('overflow-hidden');
+    menuDrawerRoot = null;
+    if (menuDrawerCloseTimer) clearTimeout(menuDrawerCloseTimer);
+    /* 抽屜滑出動畫跑完才真的移除節點，不然直接 remove() 動畫還沒播完
+       就消失，等於白寫了 v2m-drawer-out。 */
+    menuDrawerCloseTimer = setTimeout(function () { root.remove(); menuDrawerCloseTimer = null; }, MENU_DRAWER_CLOSE_MS);
   }
   function openMenuDrawer() {
     var tpl = document.getElementById('m-menu-drawer-tpl');
     if (!tpl) return;
-    closeMenuDrawer();
+    removeMenuDrawerRoot();
     var wrap = document.createElement('div');
     wrap.innerHTML = tpl.innerHTML;
     menuDrawerRoot = wrap.firstElementChild;
+    menuDrawerRoot.classList.add('animate-[v2m-backdrop-in_.22s_ease-out]');
+    var panel = menuDrawerRoot.querySelector('[data-drawer-panel]');
+    if (panel) panel.classList.add('animate-[v2m-drawer-in_.26s_cubic-bezier(.16,1,.3,1)]');
     document.body.appendChild(menuDrawerRoot);
     /* <template> 內容在被搬進 document 之前是 inert 的，DOMContentLoaded
        當時 i18n.js 的 applyLocale() 掃過一輪時它根本不在 DOM 上，裡面的
