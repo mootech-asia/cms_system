@@ -58,6 +58,17 @@
   &::-webkit-scrollbar { display: none; }
 }
 
+/* 需要保留捲軸當作「這裡可以左右滑」提示的橫向捲動區（例如 account.html
+   已綁定銀行卡），用主題色系畫一條細軌道，不用瀏覽器/OS 預設那條在深色
+   底下很突兀的灰色捲軸。 */
+@utility thin-scrollbar-x {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-hi) transparent;
+  &::-webkit-scrollbar { height: 4px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb { background: var(--line-hi); border-radius: 999px; }
+}
+
 /* 導覽選中態進場動畫（頂部 nav pill / 底部 tabbar 圖示圈）＋ menu 抽屜
    滑入/滑出動畫。純 CSS @keyframes，用 Tailwind 的 animate-[name_...]
    任意值語法套用，不需要額外的 JS 動畫函式庫。*/
