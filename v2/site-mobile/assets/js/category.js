@@ -26,9 +26,12 @@
   function cardHTML(i) {
     var m = media[i % media.length] || {};
     var provider = vendors[i % vendors.length];
+    var fav = window.__v2mFav;
+    var favId = fav ? fav.favIdFor(provider, i, category) : '';
     return '<a href="#" class="rounded-2xl overflow-hidden bg-bg-card border border-line">' +
-      '<div class="aspect-square overflow-hidden bg-bg-elev">' +
+      '<div class="relative aspect-square overflow-hidden bg-bg-elev">' +
         '<img src="' + esc(m.image || '') + '" alt="" class="h-full w-full object-cover" style="object-position:' + esc(m.focalPoint || '50% 50%') + '" loading="lazy">' +
+        (fav ? fav.favToggleHtml(favId, 'right-2 bottom-2') : '') +
       '</div>' +
       '<div class="p-2.5">' +
         '<p class="text-[12.5px] font-bold text-text truncate">' + esc(t('game.placeholder')) + '</p>' +

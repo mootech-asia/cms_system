@@ -61,6 +61,9 @@
     'section.casino': { zh: '娛樂城', en: 'Casino', ko: '카지노', th: 'คาสิโน' },
     'section.all': { zh: '全部', en: 'All', ko: '전체보기', th: 'ทั้งหมด' },
 
+    'nav.favorites': { zh: '收藏', en: 'Favorites', ko: '즐겨찾기', th: 'รายการโปรด' },
+    'favorites.empty': { zh: '尚無收藏的遊戲', en: 'No favorites yet', ko: '즐겨찾기한 게임이 없습니다', th: 'ยังไม่มีเกมที่ถูกใจ' },
+
     'page.hotGames': { zh: '熱門遊戲', en: 'Hot Games', ko: '인기 게임', th: 'เกมยอดนิยม' },
     'page.slots': { zh: '老虎機', en: 'Slots', ko: '슬롯', th: 'สล็อต' },
     'page.fish': { zh: '捕魚機', en: 'Fish', ko: '낚시 게임', th: 'เกมยิงปลา' },

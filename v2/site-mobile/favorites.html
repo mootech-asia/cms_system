@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Betting Record</title>
+<title>Favorites</title>
 <link rel="stylesheet" href="assets/css/tailwind.css">
 <script>
   (function () {
@@ -16,107 +16,67 @@
 </head>
 <body class="min-h-screen bg-bg text-text font-body pb-20">
 
-<header class="sticky top-0 z-40 flex items-center gap-3 bg-bg/95 backdrop-blur-sm border-b border-line px-4 py-3.5">
-  <a href="index.html" class="h-8 w-8 grid place-items-center rounded-lg text-text-mid flex-none" aria-label="Back">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
-  </a>
-  <h1 class="text-[15.5px] font-bold text-text truncate" data-i18n="page.bettingRecord">投注紀錄</h1>
+<header class="sticky top-0 z-40 bg-bg/95 backdrop-blur-sm border-b border-line">
+  <div class="flex items-center justify-between px-4 pt-3 pb-2.5">
+    <a href="index.html" class="flex items-center">
+      <img src="../site/logo.png" alt="Logo" class="h-8 w-auto object-contain">
+    </a>
+    <div class="m-skin-wrap relative">
+      <button type="button" class="m-skin-trigger h-9 w-9 grid place-items-center rounded-xl border border-line-hi text-text-mid" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="skin.label" aria-label="外觀">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 5-8 5-8-5 8-5Z"></path><path d="m5.5 12 6.5 4 6.5-4"></path><path d="m7.5 17 4.5 2.8 4.5-2.8"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="px-4 pb-3 grid grid-cols-2 gap-2.5" data-auth-guest>
+    <button type="button" class="h-11 rounded-xl bg-login-btn text-white text-[14.5px] font-bold" data-action="open-signin" data-auth-mode="login" data-i18n="auth.login">登入</button>
+    <button type="button" class="h-11 rounded-xl bg-register-btn text-white text-[14.5px] font-bold" data-action="open-signin" data-auth-mode="register" data-i18n="auth.register">註冊</button>
+  </div>
+
+  <div class="px-4 pb-3 hidden" data-auth-account>
+    <div class="flex items-center gap-3 rounded-2xl border border-line-hi bg-bg-card px-3 py-2.5">
+      <div class="relative flex-none">
+        <span class="h-10 w-10 rounded-full bg-accent-soft grid place-items-center text-accent font-bold text-[13px]">PL</span>
+        <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 h-4 w-4 grid place-items-center rounded-full border border-line-hi bg-bg-elev text-accent" aria-hidden="true"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span>
+      </div>
+      <div class="flex-1 min-w-0">
+        <p class="text-[13.5px] font-bold text-text truncate">PlayerOne</p>
+        <p class="flex items-center gap-1 text-[11px] font-semibold text-text-dim">
+          <span class="text-accent"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span><span data-i18n="account.tierUnranked">未排名</span>
+        </p>
+      </div>
+      <button type="button" class="h-8 w-8 flex-none grid place-items-center rounded-lg text-text-mid" data-action="logout" data-i18n-aria="auth.logout" aria-label="登出">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="m16 17 5-5-5-5"></path><path d="M21 12H9"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <nav class="flex items-center gap-2 px-4 pb-3 overflow-x-auto no-scrollbar" data-i18n-aria="nav.mainNav" aria-label="主導覽">
+    <a href="hot-games.html" class="flex-none rounded-full px-4 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="page.hotGames">熱門遊戲</a>
+    <a href="hot-games.html" class="flex-none rounded-full bg-accent px-4 py-2 text-[13.5px] font-bold text-text-on-accent animate-[v2m-pop_.35s_cubic-bezier(.34,1.56,.64,1)]" data-i18n="nav.casino">娛樂城</a>
+    <a href="live.html" class="flex-none rounded-full px-4 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.live">真人視訊</a>
+  </nav>
 </header>
 
 <main>
-  <section class="px-4 pt-2 pb-6">
-    <div class="flex flex-col gap-3">
-      <div class="rounded-2xl border border-line bg-bg-card overflow-hidden" data-record-card>
-    <button type="button" class="w-full flex items-center justify-between gap-3 p-3.5 text-left" data-record-toggle aria-expanded="false">
-      <div class="min-w-0">
-        <p class="text-[12.5px] font-semibold text-text">Sports</p>
-        <p class="font-mono text-[11px] text-text-dim truncate mt-0.5">202508120001</p>
-      </div>
-      <div class="text-right flex-none">
-        <p class="text-[14.5px] font-bold text-accent">+42,500</p>
-        <p class="text-[11px] text-text-dim mt-0.5">2025-08-12 15:48</p>
-      </div>
-      <svg class="record-chevron h-4 w-4 flex-none text-text-dim transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-    </button>
-    <div class="record-detail hidden border-t border-line px-3.5 py-3 flex flex-col gap-2" data-record-detail>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bet Amount</span><span class="font-medium text-right text-text">50,000</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Valid Bet</span><span class="font-medium text-right text-text">50,000</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Winnings</span><span class="font-medium text-right text-text">92,500</span></div>
-      <div class="mt-1 pt-2 border-t border-line">
-        <p class="text-[11px] font-semibold text-accent mb-1.5">2-Leg Parlay · Combined Odds 1.85</p>
-        <div class="rounded-lg bg-bg-elev px-2.5 py-2 mb-1.5 text-[11px]">
-            <div class="flex items-center justify-between"><span class="text-text-dim">Premier League</span><span class="font-semibold text-accent">Won</span></div>
-            <p class="text-text mt-0.5">Arsenal vs Chelsea · <span class="text-text-dim">Arsenal</span> @ 1.55 (2-1)</p>
-          </div><div class="rounded-lg bg-bg-elev px-2.5 py-2 mb-1.5 text-[11px]">
-            <div class="flex items-center justify-between"><span class="text-text-dim">La Liga</span><span class="font-semibold text-accent">Won</span></div>
-            <p class="text-text mt-0.5">Real Madrid vs Barcelona · <span class="text-text-dim">Real Madrid</span> @ 1.20 (3-1)</p>
-          </div>
+  <section class="px-4 pt-4">
+    <h1 class="flex items-center gap-2 text-[17px] font-bold text-text mb-4" data-i18n="nav.favorites">收藏</h1>
+    <div class="grid grid-cols-3 gap-3" id="favorites-grid"></div>
+    <div id="favorites-empty" class="hidden">
+      <div class="flex flex-col items-center gap-3 py-16 text-center">
+        <span class="h-12 w-12 grid place-items-center rounded-full bg-bg-card border border-line text-text-dim">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"></path></svg>
+        </span>
+        <p class="text-[13px] text-text-dim" data-i18n="favorites.empty">尚無收藏的遊戲</p>
       </div>
     </div>
-  </div>
-    <div class="rounded-2xl border border-line bg-bg-card overflow-hidden" data-record-card>
-    <button type="button" class="w-full flex items-center justify-between gap-3 p-3.5 text-left" data-record-toggle aria-expanded="false">
-      <div class="min-w-0">
-        <p class="text-[12.5px] font-semibold text-text">Slots</p>
-        <p class="font-mono text-[11px] text-text-dim truncate mt-0.5">202508120002</p>
-      </div>
-      <div class="text-right flex-none">
-        <p class="text-[14.5px] font-bold text-[#ef4444]">-20,000</p>
-        <p class="text-[11px] text-text-dim mt-0.5">2025-08-12 14:30</p>
-      </div>
-      <svg class="record-chevron h-4 w-4 flex-none text-text-dim transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-    </button>
-    <div class="record-detail hidden border-t border-line px-3.5 py-3 flex flex-col gap-2" data-record-detail>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bet Amount</span><span class="font-medium text-right text-text">20,000</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Valid Bet</span><span class="font-medium text-right text-text">20,000</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Winnings</span><span class="font-medium text-right text-text">0</span></div>
-    </div>
-  </div>
-    <div class="rounded-2xl border border-line bg-bg-card overflow-hidden" data-record-card>
-    <button type="button" class="w-full flex items-center justify-between gap-3 p-3.5 text-left" data-record-toggle aria-expanded="false">
-      <div class="min-w-0">
-        <p class="text-[12.5px] font-semibold text-text">Live Casino</p>
-        <p class="font-mono text-[11px] text-text-dim truncate mt-0.5">202508110007</p>
-      </div>
-      <div class="text-right flex-none">
-        <p class="text-[14.5px] font-bold text-accent">+43,000</p>
-        <p class="text-[11px] text-text-dim mt-0.5">2025-08-11 18:20</p>
-      </div>
-      <svg class="record-chevron h-4 w-4 flex-none text-text-dim transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-    </button>
-    <div class="record-detail hidden border-t border-line px-3.5 py-3 flex flex-col gap-2" data-record-detail>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bet Amount</span><span class="font-medium text-right text-text">35,000</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Valid Bet</span><span class="font-medium text-right text-text">35,000</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Winnings</span><span class="font-medium text-right text-text">78,000</span></div>
-    </div>
-  </div>
-    <div class="rounded-2xl border border-line bg-bg-card overflow-hidden" data-record-card>
-    <button type="button" class="w-full flex items-center justify-between gap-3 p-3.5 text-left" data-record-toggle aria-expanded="false">
-      <div class="min-w-0">
-        <p class="text-[12.5px] font-semibold text-text">Sports</p>
-        <p class="font-mono text-[11px] text-text-dim truncate mt-0.5">202508110003</p>
-      </div>
-      <div class="text-right flex-none">
-        <p class="text-[14.5px] font-bold text-[#ef4444]">-1,500</p>
-        <p class="text-[11px] text-text-dim mt-0.5">2025-08-11 12:15</p>
-      </div>
-      <svg class="record-chevron h-4 w-4 flex-none text-text-dim transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-    </button>
-    <div class="record-detail hidden border-t border-line px-3.5 py-3 flex flex-col gap-2" data-record-detail>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bet Amount</span><span class="font-medium text-right text-text">10,000</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Valid Bet</span><span class="font-medium text-right text-text">10,000</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Winnings</span><span class="font-medium text-right text-text">8,500</span></div>
-    </div>
-  </div>
-    </div>
-    <div class="mt-4 rounded-2xl bg-bg-card border border-line-hi px-4 py-3 text-[13px] font-bold text-text text-center">Total P&L 64,000</div>
   </section>
 
 </main>
 
 <nav class="m-tabbar fixed inset-x-3 z-40 grid grid-cols-5 rounded-[26px] border border-line-hi bg-bg-elev/95 backdrop-blur-md shadow-[0_10px_28px_rgba(0,0,0,0.45)]" style="bottom:max(12px, env(safe-area-inset-bottom, 0px))">
-  <a href="index.html" class="flex flex-col items-center gap-1.5 py-2 text-accent" aria-current="page">
-    <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors bg-accent-soft animate-[v2m-pop_.35s_cubic-bezier(.34,1.56,.64,1)]">
+  <a href="index.html" class="flex flex-col items-center gap-1.5 py-2 text-text-dim">
+    <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1v-8Z"></path></svg>
     </span>
     <span class="text-[10px] font-semibold leading-none" data-i18n="tabbar.home">首頁</span>
@@ -127,8 +87,8 @@
     </span>
     <span class="text-[10px] font-semibold leading-none" data-i18n="promo.bonusTitle">優惠活動</span>
   </a>
-  <a href="hot-games.html" class="flex flex-col items-center gap-1.5 py-2 text-text-dim">
-    <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors">
+  <a href="hot-games.html" class="flex flex-col items-center gap-1.5 py-2 text-accent" aria-current="page">
+    <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors bg-accent-soft animate-[v2m-pop_.35s_cubic-bezier(.34,1.56,.64,1)]">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M7 9h3v6H7zM14 9h3v6h-3z"></path></svg>
     </span>
     <span class="text-[10px] font-semibold leading-none" data-i18n="tabbar.casino">娛樂城</span>
@@ -287,6 +247,7 @@
 <script src="../site/assets/js/data.js"></script>
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/mobile.js"></script>
-
+<script src="assets/js/favorites.js"></script>
+<script src="assets/js/favorites-page.js"></script>
 </body>
 </html>
