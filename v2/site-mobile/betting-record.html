@@ -217,6 +217,72 @@
   </div>
 </template>
 
+<template id="m-auth-modal-tpl">
+  <div class="fixed inset-0 z-[60] bg-black/60">
+    <div class="absolute inset-x-0 bottom-0 max-h-[88vh] overflow-y-auto rounded-t-3xl bg-bg-elev p-5" data-auth-sheet>
+      <div class="mb-4 flex items-center justify-between">
+        <div class="flex gap-1 rounded-full bg-bg-card p-1">
+          <button type="button" class="auth-tab-btn rounded-full px-4 py-1.5 text-[13px] font-bold" data-auth-tab="login" data-i18n="auth.signInTab">登入</button>
+          <button type="button" class="auth-tab-btn rounded-full px-4 py-1.5 text-[13px] font-bold" data-auth-tab="register" data-i18n="auth.registerTab">註冊</button>
+        </div>
+        <button type="button" class="h-8 w-8 grid place-items-center rounded-lg text-text-mid" data-auth-close aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+        </button>
+      </div>
+
+      <div class="space-y-3" data-auth-panel="login">
+      <div>
+        <label class="text-[12px] font-semibold text-text-mid" data-i18n="field.account">帳號</label>
+        <input type="text" data-auth-field="username" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.usernamePh" placeholder="請輸入帳號">
+        <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="username"></p>
+      </div>
+      <div>
+        <label class="text-[12px] font-semibold text-text-mid" data-i18n="auth.password">密碼</label>
+        <input type="password" data-auth-field="password" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.passwordPh" placeholder="請輸入密碼">
+        <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="password"></p>
+      </div>
+        <button type="button" class="mt-2 h-11 w-full rounded-xl bg-login-btn text-[14.5px] font-bold text-white" data-auth-submit="login" data-i18n="auth.signInTab">登入</button>
+        <p class="text-center text-[12.5px] text-text-dim"><span data-i18n="auth.noAccount">還沒有帳號？</span> <button type="button" class="font-bold text-accent" data-auth-tab="register" data-i18n="auth.registerTab">註冊</button></p>
+      </div>
+
+      <div class="hidden space-y-3" data-auth-panel="register">
+      <div>
+        <label class="text-[12px] font-semibold text-text-mid" data-i18n="field.account">帳號</label>
+        <input type="text" data-auth-field="username" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.usernamePh" placeholder="請輸入帳號">
+        <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="username"></p>
+      </div>
+      <div>
+        <label class="text-[12px] font-semibold text-text-mid" data-i18n="auth.password">密碼</label>
+        <input type="password" data-auth-field="password" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.passwordPh" placeholder="請輸入密碼">
+        <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="password"></p>
+      </div>
+      <div>
+        <label class="text-[12px] font-semibold text-text-mid" data-i18n="auth.confirmPassword">確認密碼</label>
+        <input type="password" data-auth-field="confirm" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.confirmPasswordPh" placeholder="請再輸入一次密碼">
+        <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="confirm"></p>
+      </div>
+      <div>
+        <label class="text-[12px] font-semibold text-text-mid" data-i18n="auth.email">電子郵件</label>
+        <input type="email" data-auth-field="email" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.emailPh" placeholder="請輸入電子郵件">
+        <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="email"></p>
+      </div>
+      <div>
+        <label class="text-[12px] font-semibold text-text-mid" data-i18n="field.name">姓名</label>
+        <input type="text" data-auth-field="realname" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.realNamePh" placeholder="請輸入真實姓名">
+        <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="realname"></p>
+      </div>
+      <div>
+        <label class="text-[12px] font-semibold text-text-mid" data-i18n="field.phone">手機號碼</label>
+        <input type="tel" data-auth-field="mobile" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.mobilePh" placeholder="請輸入手機號碼">
+        <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="mobile"></p>
+      </div>
+        <button type="button" class="mt-2 h-11 w-full rounded-xl bg-register-btn text-[14.5px] font-bold text-white" data-auth-submit="register" data-i18n="auth.registerTab">註冊</button>
+        <p class="text-center text-[12.5px] text-text-dim"><span data-i18n="auth.haveAccount">已經有帳號？</span> <button type="button" class="font-bold text-accent" data-auth-tab="login" data-i18n="auth.signInTab">登入</button></p>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script src="../site/assets/js/data.js"></script>
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/mobile.js"></script>
