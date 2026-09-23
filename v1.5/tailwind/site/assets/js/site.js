@@ -85,12 +85,12 @@
     var hrefAttr = item.url ? ' data-nav-href="' + item.url + '"' : ' data-stub-item';
     var iconUrl = icon(item.icon);
     return (
-      '<button type="button" class="mobile-menu-item" data-nav-key="' + item.key + '"' + hrefAttr + '>' +
-      '<span class="mobile-menu-item-icon">' +
-      '<img src="' + iconUrl + '" alt="' + item.key + '">' +
-      '<span class="mobile-menu-item-icon-active" style="-webkit-mask-image:url(' + iconUrl + ');mask-image:url(' + iconUrl + ')"></span>' +
+      '<button type="button" class="group/mi h-14 flex flex-col items-center justify-center gap-1 rounded-2xl [&.is-active]:!bg-navy" data-nav-key="' + item.key + '"' + hrefAttr + '>' +
+      '<span class="relative w-6 h-6">' +
+      '<img src="' + iconUrl + '" alt="' + item.key + '" class="w-6 h-6 block group-[.is-active]/mi:hidden">' +
+      '<span class="absolute inset-0 hidden group-[.is-active]/mi:block bg-[image:var(--g-primary)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]" style="-webkit-mask-image:url(' + iconUrl + ');mask-image:url(' + iconUrl + ')"></span>' +
       '</span>' +
-      '<span data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span>' +
+      '<span class="text-[14px] font-semibold text-white leading-none group-[.is-active]/mi:bg-[image:var(--g-primary)] group-[.is-active]/mi:bg-clip-text group-[.is-active]/mi:text-transparent" data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span>' +
       '</button>'
     );
   }
@@ -106,66 +106,69 @@
     var mobileBottom = D.MOBILE_BOTTOM_ITEMS.map(function (i) { return mobileMenuItemHtml(i, false); }).join('');
 
     var mobileAccount = profile
-      ? '<div class="mobile-menu-account"><div><div style="display:flex;align-items:center;gap:8px"><span class="lv-badge">' + profile.player_level_id + '</span><span class="username">' + profile.username + '</span></div><p class="balance">' + profile.balance + '</p></div>' +
-        '<button type="button" data-logout><img src="' + icon('exit.svg') + '" alt="exit" style="width:24px;height:24px"></button></div>'
-      : '<div class="mobile-menu-auth">' +
-        '<button type="button" class="pill-outline-btn border-gradient-pill" data-open-auth="login"><span class="text-gradient" data-i18n="auth.login">' + t('auth.login') + '</span></button>' +
-        '<button type="button" class="pill-outline-btn border-gradient-pill" data-open-auth="register"><span class="text-gradient" data-i18n="auth.register">' + t('auth.register') + '</span></button>' +
+      ? '<div class="flex items-center justify-between py-4 px-7"><div><div class="flex items-center gap-2"><span class="py-0.5 px-2 rounded-full bg-white text-navy text-[14px] font-bold">' + profile.player_level_id + '</span><span class="text-white text-[18px] font-semibold ml-2">' + profile.username + '</span></div><p class="text-yellow text-[14px] font-semibold mt-1">' + profile.balance + '</p></div>' +
+        '<button type="button" data-logout><img src="' + icon('exit.svg') + '" alt="exit" class="w-6 h-6"></button></div>'
+      : '<div class="flex justify-center items-center gap-3 py-4 px-7">' +
+        /* main.css 的 button{padding:0;font:inherit;...} 是通用重置，
+           unlayered stylesheet 優先權高於 tailwind.css 的 utilities layer，
+           這裡 padding/font-weight 一律要加 ! 才蓋得過去 */
+        '<button type="button" class="border-gradient-pill rounded-lg !py-2 !px-4 !font-semibold" data-open-auth="login"><span class="text-gradient block" data-i18n="auth.login">' + t('auth.login') + '</span></button>' +
+        '<button type="button" class="border-gradient-pill rounded-lg !py-2 !px-4 !font-semibold" data-open-auth="register"><span class="text-gradient block" data-i18n="auth.register">' + t('auth.register') + '</span></button>' +
         '</div>';
 
     var desktopAccount = profile
-      ? '<div class="header-user-block">' +
-        '<div class="header-user-id"><img src="' + icon('user.svg') + '" alt="user"><span>ID: ' + profile.username + '</span>' +
-        '<div class="header-user-dropdown"><button type="button" data-href="deposit.html" data-i18n="userCenter.deposit">' + t('userCenter.deposit') + '</button><button type="button" data-href="withdrawal.html" data-i18n="userCenter.withdrawal">' + t('userCenter.withdrawal') + '</button><button type="button" data-href="account.html" data-i18n="userCenter.myAccount">' + t('userCenter.myAccount') + '</button></div>' +
+      ? '<div class="flex items-center">' +
+        '<div class="group/uid relative cursor-pointer flex items-center"><img src="' + icon('user.svg') + '" alt="user" class="w-5 h-5 mr-5"><span class="text-white group-hover/uid:text-link-hover">ID: ' + profile.username + '</span>' +
+        '<div class="absolute left-[-14px] top-full z-[70] hidden group-hover/uid:block bg-black/90 border border-white/10 rounded-lg min-w-max"><button type="button" class="block w-full text-left whitespace-nowrap !py-2 !px-3 rounded-lg !text-white hover:!bg-[#404040]" data-href="deposit.html" data-i18n="userCenter.deposit">' + t('userCenter.deposit') + '</button><button type="button" class="block w-full text-left whitespace-nowrap !py-2 !px-3 rounded-lg !text-white hover:!bg-[#404040]" data-href="withdrawal.html" data-i18n="userCenter.withdrawal">' + t('userCenter.withdrawal') + '</button><button type="button" class="block w-full text-left whitespace-nowrap !py-2 !px-3 rounded-lg !text-white hover:!bg-[#404040]" data-href="account.html" data-i18n="userCenter.myAccount">' + t('userCenter.myAccount') + '</button></div>' +
         '</div>' +
-        '<span class="header-level-badge">' + profile.player_level_name + '</span>' +
-        '<div class="header-balance-block">' +
-        '<div class="header-balance-row"><span class="label" data-i18n="navbar.balance">' + t('navbar.balance') + '</span><span class="value">' + profile.balance + '</span></div>' +
-        '<div class="header-balance-row"><span class="label" data-i18n="navbar.points">' + t('navbar.points') + '</span><span class="value">' + profile.point_balance + '</span></div>' +
+        '<span class="py-0.5 px-2 rounded-full bg-white text-[#1c378e] font-bold mr-4 ml-2">' + profile.player_level_name + '</span>' +
+        '<div class="flex flex-col leading-tight">' +
+        '<div class="flex text-[14px]"><span class="w-15 text-white/70 mr-2" data-i18n="navbar.balance">' + t('navbar.balance') + '</span><span class="text-yellow">' + profile.balance + '</span></div>' +
+        '<div class="flex text-[14px]"><span class="w-15 text-white/70 mr-2" data-i18n="navbar.points">' + t('navbar.points') + '</span><span class="text-yellow">' + profile.point_balance + '</span></div>' +
         '</div>' +
-        '<button type="button" class="header-logout-btn" data-logout><img src="' + icon('exit.svg') + '" alt="exit"></button>' +
+        '<button type="button" class="w-8 h-8 flex items-center justify-center ml-4" data-logout><img src="' + icon('exit.svg') + '" alt="exit" class="w-5 h-5"></button>' +
         '</div>'
-      : '<div class="header-auth-buttons">' +
-        '<button type="button" class="header-auth-btn" data-open-auth="login" data-i18n="auth.login">' + t('auth.login') + '</button>' +
-        '<button type="button" class="header-auth-btn" data-open-auth="register" data-i18n="auth.register">' + t('auth.register') + '</button>' +
+      : '<div class="flex items-center gap-4">' +
+        '<button type="button" class="h-10 inline-flex items-center justify-center rounded-md !border !border-white !text-white !text-[16px] !py-2 !px-3 whitespace-nowrap" data-open-auth="login" data-i18n="auth.login">' + t('auth.login') + '</button>' +
+        '<button type="button" class="h-10 inline-flex items-center justify-center rounded-md !border !border-white !text-white !text-[16px] !py-2 !px-3 whitespace-nowrap" data-open-auth="register" data-i18n="auth.register">' + t('auth.register') + '</button>' +
         '</div>';
 
     var langSwitcherDesktop =
-      '<div class="header-lang-switcher" data-lang-switcher>' +
-      '<button type="button" class="header-lang-trigger" data-lang-trigger>' +
-      '<img src="' + icon('lang-us.svg') + '" alt="lang" style="width:24px;height:24px;margin-right:4px">' +
+      '<div class="relative group/lang" data-lang-switcher>' +
+      '<button type="button" class="box-border inline-flex items-center justify-center h-10 gap-1 !text-white !border !border-white rounded-md !py-2 !px-3 !text-[14px] whitespace-nowrap" data-lang-trigger>' +
+      '<img src="' + icon('lang-us.svg') + '" alt="lang" class="w-6 h-6 mr-1">' +
       '<span data-locale-label>' + ((D.LANGUAGES || []).filter(function (l) { return l.code === currentLocale(); })[0] || {}).label + '</span>' +
       '</button>' +
-      '<div class="header-lang-panel">' +
+      '<div class="absolute left-1/2 -translate-x-1/2 mt-1.5 bg-black border border-white/10 rounded-lg p-2 min-w-[130px] hidden group-[.is-open]/lang:block z-[80]">' +
       (D.LANGUAGES || []).map(function (l) {
-        return '<button type="button" data-set-locale="' + l.code + '"><img src="' + icon(l.image) + '" alt="' + l.code + '"><span>' + l.label + '</span></button>';
+        return '<button type="button" class="flex items-center gap-1.5 w-full h-6 rounded-xl !px-1.5 !text-white !text-[14px] hover:!bg-white/10" data-set-locale="' + l.code + '"><img src="' + icon(l.image) + '" alt="' + l.code + '" class="w-6 h-3.5"><span>' + l.label + '</span></button>';
       }).join('') +
       '</div></div>';
 
     /* 對照真實原始碼 Navbar.vue:桌機導覽的圖示 span 整段是註解(/-、//-),
        實際沒有渲染,只留純文字,選中項目靠 .is-active 的漸層底線區分 */
     var desktopNav = D.DESKTOP_NAV.map(function (item) {
-      return '<div class="header-nav-link" data-nav-key="' + item.key + '" data-nav-href="' + item.url + '">' +
-        '<span data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span></div>';
+      return '<div class="group font-normal flex items-center gap-2 pb-2 border-b-[1.3px] border-transparent [&.is-active]:[border-image:var(--g-primary-270)] [&.is-active]:[border-image-slice:1]" data-nav-key="' + item.key + '" data-nav-href="' + item.url + '">' +
+        '<span class="text-[14px] text-white/50 group-hover:text-white group-[.is-active]:text-white" data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span></div>';
     }).join('');
 
     return (
-      '<header class="site-header">' +
-      '<div class="site-header-mobile">' +
-      '<a href="index.html" class="brand-link"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="brand-logo"></a>' +
-      '<button type="button" class="header-menu-btn" data-toggle-mobile-menu><img src="' + icon('menu.svg') + '" alt="menu"></button>' +
+      '<header class="fixed top-0 left-0 right-0 z-[200] bg-navy">' +
+      '<div class="flex items-center justify-between h-16 px-5 [body.is-usercenter_&]:hidden xl:hidden">' +
+      '<a href="index.html"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="h-12.5 w-auto"></a>' +
+      '<button type="button" class="w-9 h-9" data-toggle-mobile-menu><img src="' + icon('menu.svg') + '" alt="menu" class="w-9 h-9"></button>' +
       '</div>' +
-      '<div class="mobile-menu-panel" data-mobile-menu>' +
-      '<div class="mobile-menu-top">' + mobileTop + '</div>' +
-      '<div class="mobile-menu-bottom-grid">' + mobileBottom + '</div>' +
+      '<div class="fixed left-0 right-0 top-[63px] z-[200] bg-[rgba(6,12,52,0.8)] text-white hidden [&.is-open]:block xl:!hidden" data-mobile-menu>' +
+      '<div class="grid grid-cols-3 py-2 px-5 border-b border-white/30">' + mobileTop + '</div>' +
+      '<div class="grid grid-cols-3 gap-y-6 py-2 px-5">' + mobileBottom + '</div>' +
       mobileAccount +
       '</div>' +
-      '<div class="site-header-desktop">' +
-      '<div class="site-header-desktop-inner' + (isUserCenter ? ' is-usercenter' : '') + '">' +
-      '<div class="header-logo-col"><a href="index.html"><img src="' + IMG + 'index/img-logo.png" alt="logo"></a></div>' +
-      '<div class="header-main-col">' +
-      '<div class="header-account-row">' + desktopAccount + langSwitcherDesktop + '</div>' +
-      '<nav class="header-nav-row">' + desktopNav + '</nav>' +
+      '<div class="hidden xl:block">' +
+      '<div class="h-33 flex justify-between ' + (isUserCenter ? 'px-10' : 'px-24') + '">' +
+      '<div class="flex items-center"><a href="index.html"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="w-60 min-w-60 cursor-pointer"></a></div>' +
+      '<div class="w-full h-full flex flex-col justify-between">' +
+      '<div class="flex justify-end items-center gap-4 mt-2">' + desktopAccount + langSwitcherDesktop + '</div>' +
+      '<nav class="flex justify-end gap-6 pb-4 whitespace-nowrap">' + desktopNav + '</nav>' +
       '</div></div></div>' +
       '</header>'
     );
@@ -237,26 +240,26 @@
    * ================================================================ */
   function footerHtml() {
     var imgs = (D.FOOTER_PARTNERS || []).map(function (name) {
-      return '<img src="' + IMG + 'footer/' + name + '" alt="footer">';
+      return '<img src="' + IMG + 'footer/' + name + '" alt="footer" class="h-15 mr-10">';
     }).join('');
     return (
-      '<footer class="site-footer">' +
-      '<div class="footer-marquee"><div class="footer-marquee-track">' + imgs + imgs + '</div></div>' +
-      '<div class="footer-lang">' +
-      '<div class="header-lang-switcher" data-lang-switcher>' +
-      '<button type="button" class="footer-lang-trigger" data-lang-trigger>' +
-      '<img src="' + icon('lang-us.svg') + '" alt="lang" style="width:20px;height:20px">' +
+      '<footer class="w-full bg-navy py-4 px-6 pb-20 xl:py-8 xl:px-21">' +
+      '<div class="w-full h-15 overflow-hidden flex items-center"><div class="flex shrink-0 w-max whitespace-nowrap animate-[footer-marquee_30s_linear_infinite]">' + imgs + imgs + '</div></div>' +
+      '<div class="flex justify-end mt-12 xl:hidden">' +
+      '<div class="relative group/lang" data-lang-switcher>' +
+      '<button type="button" class="flex items-center gap-1 w-32.5 h-8 !border !border-white/60 rounded-lg !py-0 !px-2 !text-white !text-[14px]" data-lang-trigger>' +
+      '<img src="' + icon('lang-us.svg') + '" alt="lang" class="w-5 h-5">' +
       '<span data-locale-label>' + ((D.LANGUAGES || []).filter(function (l) { return l.code === currentLocale(); })[0] || {}).label + '</span></button>' +
-      '<div class="header-lang-panel">' +
+      '<div class="absolute left-1/2 -translate-x-1/2 mt-1.5 bg-black border border-white/10 rounded-lg p-2 min-w-[130px] hidden group-[.is-open]/lang:block z-[80]">' +
       (D.LANGUAGES || []).map(function (l) {
-        return '<button type="button" data-set-locale="' + l.code + '"><img src="' + icon(l.image) + '" alt="' + l.code + '"><span>' + l.label + '</span></button>';
+        return '<button type="button" class="flex items-center gap-1.5 w-full h-6 rounded-xl !px-1.5 !text-white !text-[14px] hover:!bg-white/10" data-set-locale="' + l.code + '"><img src="' + icon(l.image) + '" alt="' + l.code + '" class="w-6 h-3.5"><span>' + l.label + '</span></button>';
       }).join('') +
       '</div></div></div>' +
-      '<div class="footer-logo-row"><img src="' + IMG + 'index/img-logo.png" alt="logo"></div>' +
-      '<div class="footer-copy">' +
-      '<p data-i18n="footer.desc">' + t('footer.desc') + '</p>' +
-      '<p data-i18n="footer.desc2">' + t('footer.desc2') + '</p>' +
-      '<p class="copyright" data-i18n="footer.copyright">' + t('footer.copyright') + '</p>' +
+      '<div class="flex justify-start xl:justify-center"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="w-31 xl:w-70"></div>' +
+      '<div class="my-8 xl:text-center xl:mt-14">' +
+      '<p class="text-subtitle text-[14px] m-0" data-i18n="footer.desc">' + t('footer.desc') + '</p>' +
+      '<p class="text-subtitle text-[14px] m-0" data-i18n="footer.desc2">' + t('footer.desc2') + '</p>' +
+      '<p class="text-[#888] text-[14px] mt-2" data-i18n="footer.copyright">' + t('footer.copyright') + '</p>' +
       '</div>' +
       '</footer>'
     );
@@ -268,12 +271,12 @@
   function bottomNavHtml() {
     var items = (D.BOTTOM_NAV_ITEMS || []).map(function (item) {
       return (
-        '<li><button type="button" class="mobile-bottom-nav-item" data-nav-key="' + item.key + '" data-nav-href="' + item.url + '">' +
-        '<img src="' + icon(item.icon) + '" alt="' + item.key + '">' +
-        '<span data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span></button></li>'
+        '<li><button type="button" class="group/bn w-full max-w-[84px] h-15 flex flex-col items-center justify-center gap-1.5 rounded-2xl mx-auto [&.is-active]:!bg-white" data-nav-key="' + item.key + '" data-nav-href="' + item.url + '">' +
+        '<img src="' + icon(item.icon) + '" alt="' + item.key + '" class="w-7 h-7 group-[.is-active]/bn:invert">' +
+        '<span class="text-[14px] font-bold text-white group-[.is-active]/bn:text-[#0a1140]" data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span></button></li>'
       );
     }).join('');
-    return '<nav class="mobile-bottom-nav"><ul class="mobile-bottom-nav-list">' + items + '</ul></nav>';
+    return '<nav class="fixed left-0 right-0 -bottom-px z-20 bg-navy border-t-2 border-transparent [border-image:var(--g-primary)] [border-image-slice:1] [body.usc-sidebar-open_&]:hidden xl:hidden"><ul class="max-w-[520px] mx-auto py-2 px-4 grid grid-cols-5 gap-2.5 justify-center">' + items + '</ul></nav>';
   }
 
   /* ================================================================
@@ -288,11 +291,11 @@
       { icon: 'sidebar-telegram.svg', tKey: 'sidebar.promoChannel', action: 'telegram' },
       { icon: 'sidebar-helps.svg', tKey: 'about.tabs.faq', action: 'faq' },
     ];
-    return '<div class="quick-rail">' + items.map(function (item) {
+    return '<div class="fixed top-1/2 right-2 -translate-y-1/2 z-[100] flex flex-col gap-2.5 py-2.5 px-1.5 rounded-full bg-white/[0.14] [backdrop-filter:blur(6px)] [-webkit-backdrop-filter:blur(6px)] border border-white/25 shadow-[0_18px_50px_rgba(10,17,64,0.18)] max-[720px]:right-1.5 max-[720px]:gap-2">' + items.map(function (item) {
       return (
-        '<button type="button" class="quick-rail-btn" data-quick-action="' + item.action + '" aria-label="' + t(item.tKey) + '">' +
-        '<img src="' + icon(item.icon) + '" alt="">' +
-        '<span class="quick-rail-label">' + t(item.tKey) + '</span>' +
+        '<button type="button" class="group/qr relative w-11.5 h-11.5 rounded-full !bg-navy flex items-center justify-center shadow-[0_18px_50px_rgba(10,17,64,0.18)] max-[720px]:!w-10 max-[720px]:!h-10" data-quick-action="' + item.action + '" aria-label="' + t(item.tKey) + '">' +
+        '<img src="' + icon(item.icon) + '" alt="" class="w-full h-full">' +
+        '<span class="absolute right-[calc(100%+12px)] top-1/2 -translate-y-1/2 translate-x-1.5 py-2 px-3.5 rounded-full bg-black/90 text-white text-[13px] font-bold whitespace-nowrap opacity-0 pointer-events-none shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-[opacity,transform] duration-[180ms] ease group-hover/qr:opacity-100 group-hover/qr:translate-x-0 group-focus-visible/qr:opacity-100 group-focus-visible/qr:translate-x-0 max-[720px]:!opacity-0 max-[720px]:!translate-x-1.5">' + t(item.tKey) + '</span>' +
         '</button>'
       );
     }).join('') + '</div>';
@@ -324,10 +327,11 @@
   function appendChatMsg(kind, text) {
     var body = chatWidgetRoot.querySelector('[data-chat-body]');
     var row = document.createElement('div');
-    row.className = 'chat-msg chat-msg-' + kind;
-    row.innerHTML = (kind === 'bot' ? '<img src="' + IMG + 'index/img-logo.png" class="chat-msg-avatar" alt="">' : '') +
-      '<div class="chat-bubble"></div>';
-    row.querySelector('.chat-bubble').textContent = text;
+    var isBot = kind === 'bot';
+    row.className = 'flex items-end gap-2 max-w-[88%]' + (isBot ? '' : ' self-end flex-row-reverse');
+    row.innerHTML = (isBot ? '<img src="' + IMG + 'index/img-logo.png" class="w-5.5 h-5.5 rounded-full bg-[#f5f5f7] object-contain p-0.5 shrink-0" alt="">' : '') +
+      '<div class="px-3 py-2.25 rounded-[14px] text-[13px] leading-[1.5] ' + (isBot ? 'bg-[#f5f5f7] text-navy rounded-bl-[4px]' : 'bg-[image:var(--g-primary)] text-white rounded-br-[4px]') + '" data-chat-bubble></div>';
+    row.querySelector('[data-chat-bubble]').textContent = text;
     body.appendChild(row);
     scrollChatToBottom();
   }
@@ -335,19 +339,19 @@
     if (chatWidgetRoot) { chatWidgetRoot.classList.remove('is-minimized'); return; }
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="chat-widget" data-chat-widget>' +
-      '<div class="chat-widget-head">' +
-      '<img src="' + IMG + 'index/img-logo.png" class="chat-widget-avatar" alt="">' +
-      '<div class="chat-widget-head-text"><strong>' + t('sidebar.liveChat') + '</strong>' +
-      '<span class="chat-widget-status"><i></i>' + t('sidebar.chatOnline') + '</span></div>' +
-      '<button type="button" class="chat-widget-min" data-chat-min aria-label="' + t('sidebar.chatMinimize') + '">–</button>' +
-      '<button type="button" class="chat-widget-close" data-chat-close aria-label="' + t('sidebar.chatClose') + '">' +
+      '<div class="fixed right-4.5 bottom-4.5 z-[1001] w-[320px] max-w-[calc(100vw-36px)] rounded-2xl bg-white text-navy shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] overflow-hidden flex flex-col max-[520px]:right-2.5 max-[520px]:bottom-2.5 max-[520px]:w-[calc(100vw-20px)]" data-chat-widget>' +
+      '<div class="flex items-center gap-2.5 p-3.5 pl-4 bg-[image:var(--g-primary)] text-white">' +
+      '<img src="' + IMG + 'index/img-logo.png" class="w-8 h-8 rounded-full bg-white object-contain p-0.75 shrink-0" alt="">' +
+      '<div class="flex-1 min-w-0"><strong class="block text-[14px]">' + t('sidebar.liveChat') + '</strong>' +
+      '<span class="flex items-center gap-1.25 text-[11.5px] opacity-90"><i class="w-1.5 h-1.5 rounded-full bg-[#3ddc84] inline-block"></i>' + t('sidebar.chatOnline') + '</span></div>' +
+      '<button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full hover:!bg-white/22" data-chat-min aria-label="' + t('sidebar.chatMinimize') + '">–</button>' +
+      '<button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full hover:!bg-white/22" data-chat-close aria-label="' + t('sidebar.chatClose') + '">' +
       '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>' +
       '</div>' +
-      '<div class="chat-widget-body" data-chat-body></div>' +
-      '<form class="chat-widget-form" data-chat-form>' +
-      '<input type="text" data-chat-input placeholder="' + t('sidebar.chatPlaceholder') + '" autocomplete="off">' +
-      '<button type="submit" aria-label="' + t('sidebar.chatSend') + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 18 9-18 9 4-9Z"/></svg></button>' +
+      '<div class="p-3.5 max-h-[320px] overflow-y-auto flex flex-col gap-2.5 [.is-minimized_&]:hidden" data-chat-body></div>' +
+      '<form class="flex items-center gap-2 py-2.5 px-3 border-t border-border [.is-minimized_&]:hidden" data-chat-form>' +
+      '<input type="text" class="flex-1 min-w-0 border border-border rounded-full px-3.5 py-2 !text-[13px] bg-[#f5f5f7] text-navy" data-chat-input placeholder="' + t('sidebar.chatPlaceholder') + '" autocomplete="off">' +
+      '<button type="submit" class="w-8.5 h-8.5 shrink-0 rounded-full grid place-items-center !bg-[image:var(--g-primary)] !text-white" aria-label="' + t('sidebar.chatSend') + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 18 9-18 9 4-9Z"/></svg></button>' +
       '</form></div>';
     chatWidgetRoot = wrap.firstElementChild;
     document.body.appendChild(chatWidgetRoot);
@@ -379,12 +383,12 @@
   function showCustomerServiceModal() {
     var root = ensureCsModalRoot();
     root.innerHTML =
-      '<div class="cs-modal-backdrop" data-cs-backdrop>' +
-      '<div class="cs-modal">' +
-      '<button type="button" class="cs-modal-close" data-cs-close><img src="' + icon('sidebar-close.svg') + '" alt="close"></button>' +
-      '<h3 class="cs-modal-title">' + t('sidebar.selectCustomerService') + '</h3>' +
-      '<button type="button" class="cs-modal-option" data-cs-action="liveChat"><img src="' + icon('sidebar-service.svg') + '" alt="">' + t('sidebar.liveChatCenter') + '</button>' +
-      '<button type="button" class="cs-modal-option" data-cs-action="telegram"><img src="' + icon('sidebar-telegram.svg') + '" alt="">' + t('sidebar.promoAnnouncementRoom') + '</button>' +
+      '<div class="fixed inset-0 z-[1000] flex items-center justify-center bg-[rgba(40,38,46,0.8)] p-4" data-cs-backdrop>' +
+      '<div class="relative w-full max-w-[360px] rounded-2xl bg-white shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] p-4 flex flex-col gap-3">' +
+      '<button type="button" class="absolute -top-4 -right-4 w-8 h-8 rounded-full !bg-white !border !border-pink flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.15)]" data-cs-close><img src="' + icon('sidebar-close.svg') + '" alt="close" class="w-3.5 h-3.5"></button>' +
+      '<h3 class="m-0 pb-3 border-b border-border text-navy text-[18px] font-bold text-center">' + t('sidebar.selectCustomerService') + '</h3>' +
+      '<button type="button" class="flex items-center gap-2.5 h-12 rounded-full !px-4 !bg-[image:var(--g-action)] !text-navy !text-[15px] !font-bold text-left" data-cs-action="liveChat"><img src="' + icon('sidebar-service.svg') + '" alt="" class="w-5 h-5">' + t('sidebar.liveChatCenter') + '</button>' +
+      '<button type="button" class="flex items-center gap-2.5 h-12 rounded-full !px-4 !bg-[image:var(--g-action)] !text-navy !text-[15px] !font-bold text-left" data-cs-action="telegram"><img src="' + icon('sidebar-telegram.svg') + '" alt="" class="w-5 h-5">' + t('sidebar.promoAnnouncementRoom') + '</button>' +
       '</div></div>';
     function close() { root.innerHTML = ''; }
     on(qs('[data-cs-close]', root), 'click', close);
@@ -431,14 +435,14 @@
   function userNavbarHtml() {
     var titleKey = USER_CENTER_TITLES[pageName()] || '';
     return (
-      '<header class="user-navbar">' +
+      '<header class="sticky top-0 w-full h-8 z-50 bg-white flex items-center justify-between px-4 xl:hidden">' +
       /* 會員中心頁面手機版不顯示全站 .site-header,這裡補一個回首頁的
          入口,避免使用者在這幾頁的手機版無路可回大廳 */
-      '<a href="index.html" class="user-navbar-home" aria-label="Home">' +
-      '<svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 11 12 4l9 7v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8Z"></path></svg></a>' +
-      '<h1 class="user-navbar-title" data-i18n="' + titleKey + '">' + t(titleKey) + '</h1>' +
-      '<button type="button" class="user-navbar-toggle" data-toggle-user-sidebar aria-label="Toggle menu">' +
-      '<svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
+      '<a href="index.html" class="w-8 h-8 flex items-center justify-center" aria-label="Home">' +
+      '<svg viewBox="0 0 24 24" class="w-5.5 h-5.5 text-navy"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 11 12 4l9 7v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8Z"></path></svg></a>' +
+      '<h1 class="text-navy text-[20px] text-center flex-1" data-i18n="' + titleKey + '">' + t(titleKey) + '</h1>' +
+      '<button type="button" class="w-8 h-8 flex items-center justify-center" data-toggle-user-sidebar aria-label="Toggle menu">' +
+      '<svg viewBox="0 0 24 24" class="w-6 h-6 text-navy"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
       '<line x1="5" y1="6" x2="19" y2="6"></line><line x1="5" y1="12" x2="19" y2="12"></line><line x1="5" y1="18" x2="19" y2="18"></line>' +
       '</g></svg></button>' +
       '</header>'
@@ -448,11 +452,11 @@
   function userSidebarNavItemHtml(item) {
     var isActive = !!item.url && sidebarActivePage() === item.url.replace(/\.html$/, '');
     return (
-      '<li class="user-sidebar-list-item">' +
-      '<button type="button" class="user-sidebar-nav-item' + (isActive ? ' is-active' : '') + '" data-usc-item="' + item.id + '"' +
+      '<li class="px-6 mb-4 xl:px-8 xl:pl-8 xl:pr-7.5">' +
+      '<button type="button" class="group/usn w-full h-9 flex items-center gap-2 !py-0 !px-2 rounded-card border-b border-white/15 !text-navy xl:gap-1 xl:!text-white [&:hover:not(.is-active)]:xl:!bg-pink-hover [&:hover:not(.is-active)]:xl:!border-transparent [&.is-active]:xl:!bg-[image:var(--g-primary)] [&.is-active]:xl:!border-transparent' + (isActive ? ' is-active' : '') + '" data-usc-item="' + item.id + '"' +
       (item.url ? ' data-nav-href="' + item.url + '"' : ' data-open-cs') + '>' +
-      '<span class="user-sidebar-nav-icon" style="-webkit-mask-image:url(' + icon('usercenter/' + item.icon) + ');mask-image:url(' + icon('usercenter/' + item.icon) + ')"></span>' +
-      '<span class="user-sidebar-nav-label" data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span>' +
+      '<span class="w-6 h-6 shrink-0 bg-[image:var(--g-primary)] [mask-repeat:no-repeat] [mask-position:center] [mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center] [-webkit-mask-size:contain] xl:group-[:hover:not(.is-active)]/usn:!bg-none xl:group-[:hover:not(.is-active)]/usn:!bg-white xl:group-[.is-active]/usn:!bg-none xl:group-[.is-active]/usn:!bg-navy" style="-webkit-mask-image:url(' + icon('usercenter/' + item.icon) + ');mask-image:url(' + icon('usercenter/' + item.icon) + ')"></span>' +
+      '<span class="flex-1 bg-[#f4f4f4] rounded-card py-2 px-2 text-left font-semibold xl:bg-transparent xl:p-0 xl:group-[:hover:not(.is-active)]/usn:!text-white xl:group-[:hover:not(.is-active)]/usn:!bg-transparent xl:group-[.is-active]/usn:!bg-transparent xl:group-[.is-active]/usn:!text-navy" data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span>' +
       '</button></li>'
     );
   }
@@ -462,30 +466,34 @@
      兩者分屬不同斷點,不是互斥的替代品 */
   function userSidebarToggleBtnHtml(url, tKey) {
     var isActive = pageName() === url.replace(/\.html$/, '');
-    return '<button type="button" class="user-sidebar-toggle-btn' + (isActive ? ' is-active' : ' border-gradient-pill') + '" data-nav-href="' + url + '">' +
-      '<span class="' + (isActive ? '' : 'text-gradient') + '" data-i18n="' + tKey + '">' + t(tKey) + '</span></button>';
+    var base = 'flex-1 min-w-0 text-center !font-bold !text-[14px] !py-2 !px-1.5 rounded-card';
+    return isActive
+      ? '<button type="button" class="' + base + ' !bg-[image:var(--g-primary)] !text-navy" data-nav-href="' + url + '">' +
+        '<span data-i18n="' + tKey + '">' + t(tKey) + '</span></button>'
+      : '<button type="button" class="' + base + ' border-gradient-pill" data-nav-href="' + url + '">' +
+        '<span class="text-gradient" data-i18n="' + tKey + '">' + t(tKey) + '</span></button>';
   }
 
   function userSidebarActionBtnHtml(url, tKey) {
-    return '<button type="button" data-nav-href="' + url + '" data-i18n="' + tKey + '">' + t(tKey) + '</button>';
+    return '<button type="button" class="flex-1 !bg-navy !text-white text-center !font-bold !py-2 !px-2 rounded-card" data-nav-href="' + url + '" data-i18n="' + tKey + '">' + t(tKey) + '</button>';
   }
 
   function userSidebarHtml() {
     var itemsHtml = (D.USER_SIDEBAR_ITEMS || []).map(userSidebarNavItemHtml).join('');
     var toggles =
-      '<div class="user-sidebar-toggles">' +
+      '<div class="hidden gap-2 py-1.5 px-6 mb-4 xl:flex xl:gap-3 xl:py-0 xl:px-8">' +
       userSidebarToggleBtnHtml('deposit.html', 'userCenter.deposit') +
       userSidebarToggleBtnHtml('withdrawal.html', 'userCenter.withdrawal') +
       '</div>';
     var actions =
-      '<div class="user-sidebar-mobile-actions">' +
+      '<div class="flex gap-2 px-6 pb-6 xl:!hidden">' +
       userSidebarActionBtnHtml('deposit.html', 'userCenter.deposit') +
       userSidebarActionBtnHtml('withdrawal.html', 'userCenter.withdrawal') +
       '</div>';
     return (
-      '<nav class="user-sidebar">' +
-      '<div class="user-sidebar-overlay" data-usc-overlay></div>' +
-      '<ul class="user-sidebar-mobile-panel" data-usc-panel>' +
+      '<nav class="relative w-full bg-white xl:fixed xl:top-31 xl:bottom-0 xl:left-0 xl:w-65 xl:bg-navy xl:py-4.5 xl:overflow-y-auto">' +
+      '<div class="hidden fixed inset-0 top-8 z-10 bg-transparent [&.is-open]:block xl:!hidden" data-usc-overlay></div>' +
+      '<ul class="hidden list-none m-0 p-0 [&.is-open]:block [&.is-open]:fixed [&.is-open]:top-8 [&.is-open]:bottom-0 [&.is-open]:right-0 [&.is-open]:w-full [&.is-open]:overflow-y-auto [&.is-open]:z-20 [&.is-open]:bg-white xl:!block xl:static xl:bg-transparent" data-usc-panel>' +
       toggles + itemsHtml + actions +
       '</ul>' +
       '</nav>'
@@ -539,15 +547,15 @@
     var title = opts.title || t(type === 'error' ? 'common.warning' : type === 'confirmation' ? 'common.confirmation' : 'common.success');
     var confirmText = opts.confirmText || (type === 'confirmation' ? t('common.submit') : t('common.gotIt'));
     root.innerHTML =
-      '<div class="alert-backdrop"><div class="alert-box">' +
-      '<div class="alert-box-inner">' +
-      '<img src="' + icon(iconName) + '" alt="' + type + '" class="alert-icon">' +
-      '<h3 class="alert-title">' + title + '</h3>' +
-      '<p class="alert-message">' + (opts.message || '') + '</p>' +
+      '<div class="fixed inset-0 z-[1000] flex items-center justify-center bg-[rgba(40,38,46,0.8)] p-4"><div class="relative w-full max-w-[360px] rounded-[28px] bg-[#3a3a3a] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] border-[3px] border-transparent [background-image:linear-gradient(#3a3a3a,#3a3a3a),var(--g-primary)] [background-origin:border-box] [background-clip:padding-box,border-box]">' +
+      '<div class="flex flex-col items-center gap-3 pt-6 px-6 pb-4">' +
+      '<img src="' + icon(iconName) + '" alt="' + type + '" class="w-20 h-20">' +
+      '<h3 class="text-white text-[20px] font-bold text-center m-0">' + title + '</h3>' +
+      '<p class="text-white/50 text-[16px] text-center m-0">' + (opts.message || '') + '</p>' +
       '</div>' +
-      '<div class="alert-actions">' +
-      '<button type="button" class="alert-confirm-btn" data-alert-confirm>' + confirmText + '</button>' +
-      (opts.cancellable && type !== 'success' ? '<button type="button" class="alert-cancel-btn" data-alert-cancel>' + t('common.cancel') + '</button>' : '') +
+      '<div class="pt-0 px-6 pb-5">' +
+      '<button type="button" class="w-full h-10 rounded-full !bg-[image:var(--g-primary)] !text-[rgba(6,12,52,0.8)] !text-[18px] !font-bold" data-alert-confirm>' + confirmText + '</button>' +
+      (opts.cancellable && type !== 'success' ? '<button type="button" class="mt-2 w-full h-10 rounded-lg !text-white/60 !font-semibold" data-alert-cancel>' + t('common.cancel') + '</button>' : '') +
       '</div></div></div>';
     on(qs('[data-alert-confirm]', root), 'click', function () {
       root.innerHTML = '';
@@ -568,23 +576,34 @@
     document.body.appendChild(authRoot);
     return authRoot;
   }
+  /* main.css 的 input{font:inherit} 是全站通用重置，unlayered stylesheet
+     優先權高於 utilities layer，只有 font 相關屬性（含 font-size/line-height）
+     受影響，需要 ! 蓋過去；background/border/padding/color 不受這條
+     影響，不用加 !（跟 <button> 的通用重置範圍不一樣，見 header 那次
+     commit 記錄的 button 版本）。 */
+  var AUTH_LABEL_CLS = 'block text-white font-bold text-[14px] mb-1.5';
+  var AUTH_INPUT_CLS = 'w-full h-10.5 rounded-lg border border-white/15 bg-[#1e2450] text-white px-3.5 !text-[14px] placeholder:text-white/40';
+  var AUTH_PW_INPUT_CLS = 'w-full h-10.5 rounded-lg border border-white/15 bg-[#1e2450] text-white pl-3.5 pr-10.5 !text-[14px] placeholder:text-white/40';
+  function authPwToggleHtml() {
+    return '<button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5" data-auth-pw-toggle><img src="' + icon('eye.svg') + '" alt="toggle" class="w-full h-full opacity-70"></button>';
+  }
   var AUTH_FIELD = {
-    username: '<label>' + t('auth.username') + '</label><input type="text" data-auth-field="username" placeholder="' + t('auth.usernamePlaceholder') + '">',
-    password: '<label>' + t('auth.password') + '</label><div class="auth-pw-field"><input type="password" data-auth-field="password" placeholder="' + t('auth.passwordPlaceholder') + '"><button type="button" class="auth-pw-toggle" data-auth-pw-toggle><img src="' + icon('eye.svg') + '" alt="toggle"></button></div>',
-    confirmPassword: '<label>' + t('auth.confirmPassword') + '</label><div class="auth-pw-field"><input type="password" data-auth-field="confirmPassword" placeholder="' + t('auth.passwordPlaceholder') + '"><button type="button" class="auth-pw-toggle" data-auth-pw-toggle><img src="' + icon('eye.svg') + '" alt="toggle"></button></div>',
-    newPassword: '<label>' + t('auth.newPassword') + '</label><div class="auth-pw-field"><input type="password" data-auth-field="newPassword" placeholder="' + t('auth.newPasswordPlaceholder') + '"><button type="button" class="auth-pw-toggle" data-auth-pw-toggle><img src="' + icon('eye.svg') + '" alt="toggle"></button></div>',
-    confirmNewPassword: '<label>' + t('auth.confirmPassword') + '</label><div class="auth-pw-field"><input type="password" data-auth-field="confirmNewPassword" placeholder="' + t('auth.newPasswordPlaceholder') + '"><button type="button" class="auth-pw-toggle" data-auth-pw-toggle><img src="' + icon('eye.svg') + '" alt="toggle"></button></div>',
-    email: '<label>' + t('auth.email') + '</label><input type="text" data-auth-field="email" placeholder="' + t('auth.emailPlaceholder') + '">',
-    realName: '<label>' + t('auth.realName') + '</label><input type="text" data-auth-field="realName" placeholder="' + t('auth.realNamePlaceholder') + '">',
-    mobile: '<label>' + t('auth.mobile') + '</label><input type="text" data-auth-field="mobile" placeholder="' + t('auth.mobilePlaceholder') + '">',
-    birthday: '<label>' + t('auth.birthday') + '</label><input type="text" data-auth-field="birthday" placeholder="' + t('auth.birthdayPlaceholder') + '">',
-    invitationCode: '<label>' + t('auth.invitationCode') + '</label><input type="text" data-auth-field="invitationCode" placeholder="' + t('auth.invitationCodePlaceholder') + '">',
+    username: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.username') + '</label><input type="text" class="' + AUTH_INPUT_CLS + '" data-auth-field="username" placeholder="' + t('auth.usernamePlaceholder') + '">',
+    password: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.password') + '</label><div class="relative"><input type="password" class="' + AUTH_PW_INPUT_CLS + '" data-auth-field="password" placeholder="' + t('auth.passwordPlaceholder') + '">' + authPwToggleHtml() + '</div>',
+    confirmPassword: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.confirmPassword') + '</label><div class="relative"><input type="password" class="' + AUTH_PW_INPUT_CLS + '" data-auth-field="confirmPassword" placeholder="' + t('auth.passwordPlaceholder') + '">' + authPwToggleHtml() + '</div>',
+    newPassword: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.newPassword') + '</label><div class="relative"><input type="password" class="' + AUTH_PW_INPUT_CLS + '" data-auth-field="newPassword" placeholder="' + t('auth.newPasswordPlaceholder') + '">' + authPwToggleHtml() + '</div>',
+    confirmNewPassword: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.confirmPassword') + '</label><div class="relative"><input type="password" class="' + AUTH_PW_INPUT_CLS + '" data-auth-field="confirmNewPassword" placeholder="' + t('auth.newPasswordPlaceholder') + '">' + authPwToggleHtml() + '</div>',
+    email: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.email') + '</label><input type="text" class="' + AUTH_INPUT_CLS + '" data-auth-field="email" placeholder="' + t('auth.emailPlaceholder') + '">',
+    realName: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.realName') + '</label><input type="text" class="' + AUTH_INPUT_CLS + '" data-auth-field="realName" placeholder="' + t('auth.realNamePlaceholder') + '">',
+    mobile: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.mobile') + '</label><input type="text" class="' + AUTH_INPUT_CLS + '" data-auth-field="mobile" placeholder="' + t('auth.mobilePlaceholder') + '">',
+    birthday: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.birthday') + '</label><input type="text" class="' + AUTH_INPUT_CLS + '" data-auth-field="birthday" placeholder="' + t('auth.birthdayPlaceholder') + '">',
+    invitationCode: '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.invitationCode') + '</label><input type="text" class="' + AUTH_INPUT_CLS + '" data-auth-field="invitationCode" placeholder="' + t('auth.invitationCodePlaceholder') + '">',
   };
   function authCaptchaField() {
     return (
-      '<label>' + t('auth.captcha') + '</label>' +
-      '<div class="auth-captcha-row"><input type="text" data-auth-field="captcha" placeholder="' + t('auth.captchaPlaceholder') + '">' +
-      '<span class="auth-captcha-code" data-auth-captcha-code></span></div>'
+      '<label class="' + AUTH_LABEL_CLS + '">' + t('auth.captcha') + '</label>' +
+      '<div class="flex items-center gap-2.5"><input type="text" class="' + AUTH_INPUT_CLS + ' flex-1" data-auth-field="captcha" placeholder="' + t('auth.captchaPlaceholder') + '">' +
+      '<span class="shrink-0 w-21 h-10.5 rounded-lg bg-white text-navy font-bold italic tracking-[2px] flex items-center justify-center" data-auth-captcha-code></span></div>'
     );
   }
   function randomCaptcha() {
@@ -592,65 +611,78 @@
     for (var i = 0; i < 5; i++) s += Math.floor(Math.random() * 10);
     return s;
   }
+  var AUTH_TITLE_CLS = 'text-gradient text-center text-[22px] font-extrabold m-0 mb-1 pb-4 border-b-2 border-transparent [border-image:var(--g-primary)] [border-image-slice:1] md:text-left md:border-0 md:pb-0';
+  /* .auth-btn 原本靠 line-height:44px 讓文字垂直置中(沒有另外設 padding),
+     <button> 的 unlayered 重置是 font:inherit 完整簡寫,line-height 也包含
+     在內,要用 ! 蓋過去,跟 font-size/font-weight 同一組。 */
+  var AUTH_BTN_CLS = 'block w-full h-11 rounded-lg mt-4 text-center !leading-11 !font-bold !text-[15px]';
+  var AUTH_BTN_OUTLINE_CLS = AUTH_BTN_CLS + ' !bg-transparent !border !border-pink !text-pink';
+  var AUTH_BTN_FILL_CLS = AUTH_BTN_CLS + ' !bg-[image:var(--g-primary)] !text-navy';
+  var AUTH_CHECKBOX_ROW_CLS = 'flex items-center gap-2 mt-4 text-white text-[13px] font-semibold';
+  /* main.css 的 a{color:inherit;text-decoration:none} 也是 unlayered 全站
+     重置,套用在真的有文字顏色/底線的 <a> 上時一樣要用 ! 蓋過去。 */
+  var AUTH_FORGOT_LINK_CLS = 'block text-right mt-4 !text-white text-[13px] !underline cursor-pointer';
   function authModalBody(mode) {
     if (mode === 'register') {
       return (
-        '<h2 class="auth-modal-title text-gradient">' + t('auth.register') + '</h2>' +
-        '<div class="auth-field">' + AUTH_FIELD.username + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.password + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.confirmPassword + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.email + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.realName + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.mobile + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.birthday + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.invitationCode + '</div>' +
-        '<div class="auth-field">' + authCaptchaField() + '</div>' +
-        '<label class="auth-checkbox-row"><input type="checkbox" data-auth-field="agree"><span>' + t('auth.agreeTerms') + '</span></label>' +
-        '<button type="button" class="auth-btn auth-btn-outline" data-auth-submit>' + t('common.submit') + '</button>' +
-        '<button type="button" class="auth-btn auth-btn-fill" data-auth-switch="login">' + t('auth.login') + '</button>'
+        '<h2 class="' + AUTH_TITLE_CLS + '">' + t('auth.register') + '</h2>' +
+        '<div class="mt-4">' + AUTH_FIELD.username + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.password + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.confirmPassword + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.email + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.realName + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.mobile + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.birthday + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.invitationCode + '</div>' +
+        '<div class="mt-4">' + authCaptchaField() + '</div>' +
+        '<label class="' + AUTH_CHECKBOX_ROW_CLS + '"><input type="checkbox" class="w-4.5 h-4.5 accent-pink" data-auth-field="agree"><span>' + t('auth.agreeTerms') + '</span></label>' +
+        '<button type="button" class="' + AUTH_BTN_OUTLINE_CLS + '" data-auth-submit>' + t('common.submit') + '</button>' +
+        '<button type="button" class="' + AUTH_BTN_FILL_CLS + '" data-auth-switch="login">' + t('auth.login') + '</button>'
       );
     }
     if (mode === 'forgotPassword') {
       return (
-        '<h2 class="auth-modal-title text-gradient">' + t('auth.forgotPassword') + '</h2>' +
-        '<div class="auth-field">' + AUTH_FIELD.username + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.email + '</div>' +
-        '<button type="button" class="auth-btn auth-btn-outline" data-auth-submit>' + t('common.submit') + '</button>'
+        '<h2 class="' + AUTH_TITLE_CLS + '">' + t('auth.forgotPassword') + '</h2>' +
+        '<div class="mt-4">' + AUTH_FIELD.username + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.email + '</div>' +
+        '<button type="button" class="' + AUTH_BTN_OUTLINE_CLS + '" data-auth-submit>' + t('common.submit') + '</button>'
       );
     }
     if (mode === 'resetPassword') {
       return (
-        '<h2 class="auth-modal-title text-gradient">' + t('auth.resetPassword') + '</h2>' +
-        '<div class="auth-field">' + AUTH_FIELD.username + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.newPassword + '</div>' +
-        '<div class="auth-field">' + AUTH_FIELD.confirmNewPassword + '</div>' +
-        '<button type="button" class="auth-btn auth-btn-outline" data-auth-submit>' + t('common.submit') + '</button>'
+        '<h2 class="' + AUTH_TITLE_CLS + '">' + t('auth.resetPassword') + '</h2>' +
+        '<div class="mt-4">' + AUTH_FIELD.username + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.newPassword + '</div>' +
+        '<div class="mt-4">' + AUTH_FIELD.confirmNewPassword + '</div>' +
+        '<button type="button" class="' + AUTH_BTN_OUTLINE_CLS + '" data-auth-submit>' + t('common.submit') + '</button>'
       );
     }
     /* login(預設) */
     return (
-      '<h2 class="auth-modal-title text-gradient">' + t('auth.login') + '</h2>' +
-      '<div class="auth-field">' + AUTH_FIELD.username + '</div>' +
-      '<div class="auth-field">' + AUTH_FIELD.password + '</div>' +
-      '<label class="auth-checkbox-row"><input type="checkbox" data-auth-field="remember"><span>' + t('auth.remember') + '</span></label>' +
-      '<button type="button" class="auth-btn auth-btn-outline" data-auth-submit>' + t('auth.login') + '</button>' +
-      '<button type="button" class="auth-btn auth-btn-fill" data-auth-switch="register">' + t('auth.register') + '</button>' +
-      '<button type="button" class="auth-btn auth-btn-fill" data-auth-promo-channel>' + t('auth.promotionChannel') + '</button>' +
-      '<a class="auth-forgot-link" data-auth-switch="forgotPassword">' + t('auth.forgotPassword') + '?</a>'
+      '<h2 class="' + AUTH_TITLE_CLS + '">' + t('auth.login') + '</h2>' +
+      '<div class="mt-4">' + AUTH_FIELD.username + '</div>' +
+      '<div class="mt-4">' + AUTH_FIELD.password + '</div>' +
+      '<label class="' + AUTH_CHECKBOX_ROW_CLS + '"><input type="checkbox" class="w-4.5 h-4.5 accent-pink" data-auth-field="remember"><span>' + t('auth.remember') + '</span></label>' +
+      '<button type="button" class="' + AUTH_BTN_OUTLINE_CLS + '" data-auth-submit>' + t('auth.login') + '</button>' +
+      '<button type="button" class="' + AUTH_BTN_FILL_CLS + '" data-auth-switch="register">' + t('auth.register') + '</button>' +
+      '<button type="button" class="' + AUTH_BTN_FILL_CLS + '" data-auth-promo-channel>' + t('auth.promotionChannel') + '</button>' +
+      '<a class="' + AUTH_FORGOT_LINK_CLS + '" data-auth-switch="forgotPassword">' + t('auth.forgotPassword') + '?</a>'
     );
   }
+  var AUTH_BACKDROP_CLS = 'fixed inset-0 z-[300] bg-black/70 flex items-center justify-center p-5 overflow-y-auto';
+  var AUTH_MODAL_CLS = 'relative w-full max-w-[360px] max-h-[calc(100vh-40px)] overflow-y-auto bg-navy rounded-[20px] pt-8 px-5 pb-6 md:max-w-[700px] md:h-[600px] md:p-0 md:flex md:rounded-3xl md:overflow-hidden';
   function showAuthModal(mode) {
     var root = ensureAuthRoot();
     root.innerHTML =
-      '<div class="auth-backdrop"><div class="auth-modal">' +
-      '<button type="button" class="auth-modal-close" data-auth-close><img src="' + icon('close.svg') + '" alt="close"></button>' +
-      '<div class="auth-modal-art"><img src="' + IMG + 'index/login.webp" alt="win10096"></div>' +
-      '<div class="auth-modal-form">' + authModalBody(mode) + '</div>' +
+      '<div class="' + AUTH_BACKDROP_CLS + '" data-auth-backdrop><div class="' + AUTH_MODAL_CLS + '">' +
+      '<button type="button" class="absolute right-4 top-4 z-[2] w-5 h-5" data-auth-close><img src="' + icon('close.svg') + '" alt="close" class="w-full h-full brightness-0 invert md:filter-none"></button>' +
+      '<div class="hidden md:block md:shrink-0 md:w-[46%]"><img src="' + IMG + 'index/login.webp" alt="win10096" class="w-full h-full object-cover"></div>' +
+      '<div class="flex flex-col md:flex-1 md:pt-10 md:px-9 md:pb-8 md:overflow-y-auto md:h-full">' + authModalBody(mode) + '</div>' +
       '</div></div>';
     var captchaEl = qs('[data-auth-captcha-code]', root);
     if (captchaEl) captchaEl.textContent = randomCaptcha();
     on(qs('[data-auth-close]', root), 'click', function () { root.innerHTML = ''; });
-    on(qs('.auth-backdrop', root), 'click', function (e) { if (e.target === e.currentTarget) root.innerHTML = ''; });
+    on(qs('[data-auth-backdrop]', root), 'click', function (e) { if (e.target === e.currentTarget) root.innerHTML = ''; });
     qsa('[data-auth-switch]', root).forEach(function (el) {
       on(el, 'click', function () { showAuthModal(el.getAttribute('data-auth-switch')); });
     });
@@ -668,13 +700,13 @@
     on(qs('[data-auth-submit]', root), 'click', function () {
       if (mode === 'forgotPassword') {
         root.innerHTML =
-          '<div class="auth-backdrop"><div class="auth-modal">' +
-          '<button type="button" class="auth-modal-close" data-auth-close><img src="' + icon('close.svg') + '" alt="close"></button>' +
-          '<div class="auth-modal-art"><img src="' + IMG + 'index/login.webp" alt="win10096"></div>' +
-          '<div class="auth-modal-form">' +
-          '<h2 class="auth-modal-title text-gradient">' + t('auth.forgotPassword') + '</h2>' +
-          '<p class="auth-modal-desc">' + t('auth.forgotPasswordSent') + '</p>' +
-          '<button type="button" class="auth-btn auth-btn-outline" data-auth-close>' + t('common.done') + '</button>' +
+          '<div class="' + AUTH_BACKDROP_CLS + '" data-auth-backdrop><div class="' + AUTH_MODAL_CLS + '">' +
+          '<button type="button" class="absolute right-4 top-4 z-[2] w-5 h-5" data-auth-close><img src="' + icon('close.svg') + '" alt="close" class="w-full h-full brightness-0 invert md:filter-none"></button>' +
+          '<div class="hidden md:block md:shrink-0 md:w-[46%]"><img src="' + IMG + 'index/login.webp" alt="win10096" class="w-full h-full object-cover"></div>' +
+          '<div class="flex flex-col md:flex-1 md:pt-10 md:px-9 md:pb-8 md:overflow-y-auto md:h-full">' +
+          '<h2 class="' + AUTH_TITLE_CLS + '">' + t('auth.forgotPassword') + '</h2>' +
+          '<p class="text-white text-[14px] text-center my-5">' + t('auth.forgotPasswordSent') + '</p>' +
+          '<button type="button" class="' + AUTH_BTN_OUTLINE_CLS + '" data-auth-close>' + t('common.done') + '</button>' +
           '</div></div></div>';
         on(qs('[data-auth-close]', root), 'click', function () { root.innerHTML = ''; });
         return;
