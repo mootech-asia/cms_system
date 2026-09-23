@@ -154,7 +154,7 @@
 
     return (
       '<header class="fixed top-0 left-0 right-0 z-[200] bg-navy">' +
-      '<div class="flex items-center justify-between h-16 px-5 xl:hidden">' +
+      '<div class="flex items-center justify-between h-16 px-5 [body.is-usercenter_&]:hidden xl:hidden">' +
       '<a href="index.html"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="h-12.5 w-auto"></a>' +
       '<button type="button" class="w-9 h-9" data-toggle-mobile-menu><img src="' + icon('menu.svg') + '" alt="menu" class="w-9 h-9"></button>' +
       '</div>' +
@@ -434,14 +434,14 @@
   function userNavbarHtml() {
     var titleKey = USER_CENTER_TITLES[pageName()] || '';
     return (
-      '<header class="user-navbar">' +
+      '<header class="sticky top-0 w-full h-8 z-50 bg-white flex items-center justify-between px-4 xl:hidden">' +
       /* 會員中心頁面手機版不顯示全站 .site-header,這裡補一個回首頁的
          入口,避免使用者在這幾頁的手機版無路可回大廳 */
-      '<a href="index.html" class="user-navbar-home" aria-label="Home">' +
-      '<svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 11 12 4l9 7v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8Z"></path></svg></a>' +
-      '<h1 class="user-navbar-title" data-i18n="' + titleKey + '">' + t(titleKey) + '</h1>' +
-      '<button type="button" class="user-navbar-toggle" data-toggle-user-sidebar aria-label="Toggle menu">' +
-      '<svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
+      '<a href="index.html" class="w-8 h-8 flex items-center justify-center" aria-label="Home">' +
+      '<svg viewBox="0 0 24 24" class="w-5.5 h-5.5 text-navy"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 11 12 4l9 7v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8Z"></path></svg></a>' +
+      '<h1 class="text-navy text-[20px] text-center flex-1" data-i18n="' + titleKey + '">' + t(titleKey) + '</h1>' +
+      '<button type="button" class="w-8 h-8 flex items-center justify-center" data-toggle-user-sidebar aria-label="Toggle menu">' +
+      '<svg viewBox="0 0 24 24" class="w-6 h-6 text-navy"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
       '<line x1="5" y1="6" x2="19" y2="6"></line><line x1="5" y1="12" x2="19" y2="12"></line><line x1="5" y1="18" x2="19" y2="18"></line>' +
       '</g></svg></button>' +
       '</header>'
@@ -451,11 +451,11 @@
   function userSidebarNavItemHtml(item) {
     var isActive = !!item.url && sidebarActivePage() === item.url.replace(/\.html$/, '');
     return (
-      '<li class="user-sidebar-list-item">' +
-      '<button type="button" class="user-sidebar-nav-item' + (isActive ? ' is-active' : '') + '" data-usc-item="' + item.id + '"' +
+      '<li class="px-6 mb-4 xl:px-8 xl:pl-8 xl:pr-7.5">' +
+      '<button type="button" class="group/usn w-full h-9 flex items-center gap-2 !py-0 !px-2 rounded-card border-b border-white/15 !text-navy xl:gap-1 xl:!text-white [&:hover:not(.is-active)]:xl:!bg-pink-hover [&:hover:not(.is-active)]:xl:!border-transparent [&.is-active]:xl:!bg-[image:var(--g-primary)] [&.is-active]:xl:!border-transparent' + (isActive ? ' is-active' : '') + '" data-usc-item="' + item.id + '"' +
       (item.url ? ' data-nav-href="' + item.url + '"' : ' data-open-cs') + '>' +
-      '<span class="user-sidebar-nav-icon" style="-webkit-mask-image:url(' + icon('usercenter/' + item.icon) + ');mask-image:url(' + icon('usercenter/' + item.icon) + ')"></span>' +
-      '<span class="user-sidebar-nav-label" data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span>' +
+      '<span class="w-6 h-6 shrink-0 bg-[image:var(--g-primary)] [mask-repeat:no-repeat] [mask-position:center] [mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center] [-webkit-mask-size:contain] xl:group-[:hover:not(.is-active)]/usn:!bg-none xl:group-[:hover:not(.is-active)]/usn:!bg-white xl:group-[.is-active]/usn:!bg-none xl:group-[.is-active]/usn:!bg-navy" style="-webkit-mask-image:url(' + icon('usercenter/' + item.icon) + ');mask-image:url(' + icon('usercenter/' + item.icon) + ')"></span>' +
+      '<span class="flex-1 bg-[#f4f4f4] rounded-card py-2 px-2 text-left font-semibold xl:bg-transparent xl:p-0 xl:group-[:hover:not(.is-active)]/usn:!text-white xl:group-[:hover:not(.is-active)]/usn:!bg-transparent xl:group-[.is-active]/usn:!bg-transparent xl:group-[.is-active]/usn:!text-navy" data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span>' +
       '</button></li>'
     );
   }
@@ -465,30 +465,34 @@
      兩者分屬不同斷點,不是互斥的替代品 */
   function userSidebarToggleBtnHtml(url, tKey) {
     var isActive = pageName() === url.replace(/\.html$/, '');
-    return '<button type="button" class="user-sidebar-toggle-btn' + (isActive ? ' is-active' : ' border-gradient-pill') + '" data-nav-href="' + url + '">' +
-      '<span class="' + (isActive ? '' : 'text-gradient') + '" data-i18n="' + tKey + '">' + t(tKey) + '</span></button>';
+    var base = 'flex-1 min-w-0 text-center !font-bold !text-[14px] !py-2 !px-1.5 rounded-card';
+    return isActive
+      ? '<button type="button" class="' + base + ' !bg-[image:var(--g-primary)] !text-navy" data-nav-href="' + url + '">' +
+        '<span data-i18n="' + tKey + '">' + t(tKey) + '</span></button>'
+      : '<button type="button" class="' + base + ' border-gradient-pill" data-nav-href="' + url + '">' +
+        '<span class="text-gradient" data-i18n="' + tKey + '">' + t(tKey) + '</span></button>';
   }
 
   function userSidebarActionBtnHtml(url, tKey) {
-    return '<button type="button" data-nav-href="' + url + '" data-i18n="' + tKey + '">' + t(tKey) + '</button>';
+    return '<button type="button" class="flex-1 !bg-navy !text-white text-center !font-bold !py-2 !px-2 rounded-card" data-nav-href="' + url + '" data-i18n="' + tKey + '">' + t(tKey) + '</button>';
   }
 
   function userSidebarHtml() {
     var itemsHtml = (D.USER_SIDEBAR_ITEMS || []).map(userSidebarNavItemHtml).join('');
     var toggles =
-      '<div class="user-sidebar-toggles">' +
+      '<div class="hidden gap-2 py-1.5 px-6 mb-4 xl:flex xl:gap-3 xl:py-0 xl:px-8">' +
       userSidebarToggleBtnHtml('deposit.html', 'userCenter.deposit') +
       userSidebarToggleBtnHtml('withdrawal.html', 'userCenter.withdrawal') +
       '</div>';
     var actions =
-      '<div class="user-sidebar-mobile-actions">' +
+      '<div class="flex gap-2 px-6 pb-6 xl:!hidden">' +
       userSidebarActionBtnHtml('deposit.html', 'userCenter.deposit') +
       userSidebarActionBtnHtml('withdrawal.html', 'userCenter.withdrawal') +
       '</div>';
     return (
-      '<nav class="user-sidebar">' +
-      '<div class="user-sidebar-overlay" data-usc-overlay></div>' +
-      '<ul class="user-sidebar-mobile-panel" data-usc-panel>' +
+      '<nav class="relative w-full bg-white xl:fixed xl:top-31 xl:bottom-0 xl:left-0 xl:w-65 xl:bg-navy xl:py-4.5 xl:overflow-y-auto">' +
+      '<div class="hidden fixed inset-0 top-8 z-10 bg-transparent [&.is-open]:block xl:!hidden" data-usc-overlay></div>' +
+      '<ul class="hidden list-none m-0 p-0 [&.is-open]:block [&.is-open]:fixed [&.is-open]:top-8 [&.is-open]:bottom-0 [&.is-open]:right-0 [&.is-open]:w-full [&.is-open]:overflow-y-auto [&.is-open]:z-20 [&.is-open]:bg-white xl:!block xl:static xl:bg-transparent" data-usc-panel>' +
       toggles + itemsHtml + actions +
       '</ul>' +
       '</nav>'
