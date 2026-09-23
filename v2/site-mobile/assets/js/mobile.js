@@ -79,6 +79,135 @@
     });
   }
 
+  /* ============================== 登入 / 註冊 / 會員等級 ============== */
+  /* win100-logged-in 跟桌機版 v2/site 共用同一把 localStorage key（見檔頭
+     說明），這裡只是幫手機版補一個真正能操作的登入/註冊彈窗——桌機版
+     site.js 原本就有一套（AUTH_FIELDS/authFieldError），驗證規則直接
+     對齊搬過來，避免兩邊「同一個帳號欄位、不同的合法值」。彈窗本身跟
+     選單抽屜一樣是 <template> 搬運模式，見 openMenuDrawer() 的註解。 */
+  var AUTH_KEY = 'win100-logged-in';
+  var AUTH_FIELDS = {
+    login: ['username', 'password'],
+    register: ['username', 'password', 'confirm', 'email', 'realname', 'mobile'],
+  };
+
+  function t(key) { return window.__v2mT ? window.__v2mT(key) : key; }
+
+  function readLogin() {
+    try { return localStorage.getItem(AUTH_KEY) === '1'; } catch (e) { return false; }
+  }
+  function persistLogin(loggedIn) {
+    try {
+      if (loggedIn) localStorage.setItem(AUTH_KEY, '1');
+      else localStorage.removeItem(AUTH_KEY);
+    } catch (e) { /* storage unavailable */ }
+  }
+  function applyAuthUI() {
+    var loggedIn = readLogin();
+    document.querySelectorAll('[data-auth-guest]').forEach(function (el) { el.classList.toggle('hidden', loggedIn); });
+    document.querySelectorAll('[data-auth-account]').forEach(function (el) { el.classList.toggle('hidden', !loggedIn); });
+  }
+
+  function authFieldError(name, values) {
+    var raw = values[name] || '';
+    var v = raw.trim();
+    switch (name) {
+      case 'username':
+        if (v.length < 3 || v.length > 16) return t('auth.err.username');
+        return '';
+      case 'password':
+        if (raw.length < 5 || raw.length > 16) return t('auth.err.password');
+        return '';
+      case 'confirm':
+        if (raw !== values.password) return t('auth.err.confirm');
+        return '';
+      case 'email':
+        if (!/^\S+@\S+\.\S+$/.test(v)) return t('auth.err.email');
+        return '';
+      case 'realname':
+        if (!v) return t('auth.err.realname');
+        return '';
+      case 'mobile':
+        if (!/^\+?[0-9][0-9 -]{6,14}$/.test(v)) return t('auth.err.mobile');
+        return '';
+    }
+    return '';
+  }
+
+  function bindAuthPanel(panel, mode) {
+    if (!panel) return;
+    var submitBtn = panel.querySelector('[data-auth-submit]');
+    on(submitBtn, 'click', function () {
+      var fields = AUTH_FIELDS[mode];
+      var values = {};
+      fields.forEach(function (name) {
+        var input = panel.querySelector('[data-auth-field="' + name + '"]');
+        values[name] = input ? input.value : '';
+      });
+      var ok = true;
+      fields.forEach(function (name) {
+        var msg = authFieldError(name, values);
+        var errEl = panel.querySelector('[data-auth-error="' + name + '"]');
+        var inputEl = panel.querySelector('[data-auth-field="' + name + '"]');
+        if (msg) ok = false;
+        if (errEl) { errEl.textContent = msg; errEl.classList.toggle('hidden', !msg); }
+        if (inputEl) inputEl.classList.toggle('border-[#ef4444]', !!msg);
+      });
+      if (!ok) return;
+      persistLogin(true);
+      closeAuthModal();
+      applyAuthUI();
+    });
+  }
+
+  function switchAuthTab(root, mode) {
+    root.querySelectorAll('[data-auth-tab]').forEach(function (b) {
+      var active = b.getAttribute('data-auth-tab') === mode;
+      b.classList.toggle('bg-accent', active);
+      b.classList.toggle('text-text-on-accent', active);
+      b.classList.toggle('text-text-mid', !active);
+    });
+    root.querySelectorAll('[data-auth-panel]').forEach(function (p) {
+      p.classList.toggle('hidden', p.getAttribute('data-auth-panel') !== mode);
+    });
+  }
+
+  var authModalRoot = null;
+  function closeAuthModal() {
+    if (!authModalRoot) return;
+    authModalRoot.remove();
+    authModalRoot = null;
+    document.documentElement.classList.remove('overflow-hidden');
+  }
+  function openAuthModal(mode) {
+    var tpl = document.getElementById('m-auth-modal-tpl');
+    if (!tpl) return;
+    closeAuthModal();
+    var wrap = document.createElement('div');
+    wrap.innerHTML = tpl.innerHTML;
+    authModalRoot = wrap.firstElementChild;
+    document.body.appendChild(authModalRoot);
+    if (window.__v2mApplyLocale) window.__v2mApplyLocale(authModalRoot);
+    document.documentElement.classList.add('overflow-hidden');
+    switchAuthTab(authModalRoot, mode || 'login');
+    bindAuthPanel(authModalRoot.querySelector('[data-auth-panel="login"]'), 'login');
+    bindAuthPanel(authModalRoot.querySelector('[data-auth-panel="register"]'), 'register');
+    on(authModalRoot, 'click', function (e) {
+      if (e.target === authModalRoot || e.target.closest('[data-auth-close]')) { closeAuthModal(); return; }
+      var tabBtn = e.target.closest('[data-auth-tab]');
+      if (tabBtn) switchAuthTab(authModalRoot, tabBtn.getAttribute('data-auth-tab'));
+    });
+  }
+
+  function initAuthTriggers() {
+    document.addEventListener('click', function (e) {
+      var trigger = e.target.closest('[data-action="open-signin"]');
+      if (trigger) { openAuthModal(trigger.getAttribute('data-auth-mode') || 'login'); return; }
+      var logoutBtn = e.target.closest('[data-action="logout"]');
+      if (logoutBtn) { persistLogin(false); applyAuthUI(); }
+    });
+  }
+
   /* ============================== 底部導覽 / Menu 抽屜 ================ */
   function initBottomNav() {
     var bar = document.querySelector('.m-tabbar');
@@ -134,11 +263,32 @@
 
   function on(el, evt, fn) { if (el) el.addEventListener(evt, fn); }
 
+  /* 報表/紀錄頁的展開式卡片：預設只收合顯示關鍵欄位，點卡頭展開看其餘
+     欄位。事件委派掛在 document 上，卡片本身是靜態 HTML（產生期就已經
+     把 v2/site 對應頁面的完整欄位資料寫進去，不是這裡動態組的），純粹
+     只負責顯示/隱藏跟箭頭旋轉。 */
+  function initRecordCards() {
+    document.addEventListener('click', function (e) {
+      var toggle = e.target.closest('[data-record-toggle]');
+      if (!toggle) return;
+      var card = toggle.closest('[data-record-card]');
+      if (!card) return;
+      var detail = card.querySelector('[data-record-detail]');
+      var chevron = toggle.querySelector('.record-chevron');
+      var open = detail.classList.toggle('hidden') === false;
+      if (chevron) chevron.classList.toggle('rotate-180', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     restoreSkin();
     initSkinSwitcher();
+    applyAuthUI();
+    initAuthTriggers();
     initBottomNav();
     initAboutTabs();
+    initRecordCards();
   });
 
   window.__v2mOpenMenuDrawer = openMenuDrawer;

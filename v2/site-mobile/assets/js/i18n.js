@@ -17,12 +17,31 @@
     'nav.home': { zh: '首頁', en: 'Home', ko: '홈', th: 'หน้าแรก' },
     'nav.casino': { zh: '娛樂城', en: 'Casino', ko: '카지노', th: 'คาสิโน' },
     'nav.live': { zh: '真人視訊', en: 'Live games', ko: '라이브 카지노', th: 'คาสิโนสด' },
-    'nav.search': { zh: '搜尋', en: 'Search', ko: '검색', th: 'ค้นหา' },
     'nav.mainNav': { zh: '主導覽', en: 'Main navigation', ko: '메인 내비게이션', th: 'เมนูหลัก' },
     'game.placeholder': { zh: '遊戲名稱', en: 'Game Name', ko: '게임명', th: 'ชื่อเกม' },
 
     'auth.login': { zh: '登入', en: 'Login', ko: '로그인', th: 'เข้าสู่ระบบ' },
     'auth.register': { zh: '註冊', en: 'Registration', ko: '회원가입', th: 'สมัครสมาชิก' },
+    'auth.signInTab': { zh: '登入', en: 'Sign in', ko: '로그인', th: 'เข้าสู่ระบบ' },
+    'auth.registerTab': { zh: '註冊', en: 'Register', ko: '회원가입', th: 'สมัครสมาชิก' },
+    'auth.usernamePh': { zh: '請輸入帳號', en: 'Enter your username', ko: '아이디를 입력하세요', th: 'กรอกชื่อผู้ใช้ของคุณ' },
+    'auth.password': { zh: '密碼', en: 'Password', ko: '비밀번호', th: 'รหัสผ่าน' },
+    'auth.passwordPh': { zh: '請輸入密碼', en: 'Enter your password', ko: '비밀번호를 입력하세요', th: 'กรอกรหัสผ่านของคุณ' },
+    'auth.confirmPassword': { zh: '確認密碼', en: 'Confirm Password', ko: '비밀번호 확인', th: 'ยืนยันรหัสผ่าน' },
+    'auth.confirmPasswordPh': { zh: '請再輸入一次密碼', en: 'Confirm your password', ko: '비밀번호를 다시 입력하세요', th: 'กรอกรหัสผ่านอีกครั้ง' },
+    'auth.email': { zh: '電子郵件', en: 'Email', ko: '이메일', th: 'อีเมล' },
+    'auth.emailPh': { zh: '請輸入電子郵件', en: 'Enter your email', ko: '이메일을 입력하세요', th: 'กรอกอีเมลของคุณ' },
+    'auth.realNamePh': { zh: '請輸入真實姓名', en: 'Enter your real name', ko: '실명을 입력하세요', th: 'กรอกชื่อจริงของคุณ' },
+    'auth.mobilePh': { zh: '請輸入手機號碼', en: 'Enter your mobile number', ko: '휴대폰 번호를 입력하세요', th: 'กรอกหมายเลขโทรศัพท์ของคุณ' },
+    'auth.noAccount': { zh: '還沒有帳號？', en: "Don't have an account?", ko: '계정이 없으신가요?', th: 'ยังไม่มีบัญชี?' },
+    'auth.haveAccount': { zh: '已經有帳號？', en: 'Already have an account?', ko: '이미 계정이 있으신가요?', th: 'มีบัญชีอยู่แล้ว?' },
+    'auth.logout': { zh: '登出', en: 'Logout', ko: '로그아웃', th: 'ออกจากระบบ' },
+    'auth.err.username': { zh: '帳號需為 3-16 個字元', en: 'Username must be 3-16 characters.', ko: '아이디는 3~16자로 입력하세요.', th: 'ชื่อผู้ใช้ต้องมี 3-16 ตัวอักษร' },
+    'auth.err.password': { zh: '密碼需為 5-16 個字元', en: 'Length must be 5-16 characters.', ko: '비밀번호는 5~16자여야 합니다.', th: 'รหัสผ่านต้องมี 5-16 ตัวอักษร' },
+    'auth.err.confirm': { zh: '兩次密碼輸入不一致', en: 'The two passwords do not match.', ko: '비밀번호가 일치하지 않습니다.', th: 'รหัสผ่านทั้งสองไม่ตรงกัน' },
+    'auth.err.email': { zh: '請輸入有效的電子郵件', en: 'Please enter a valid email address.', ko: '유효한 이메일을 입력하세요.', th: 'กรุณากรอกอีเมลที่ถูกต้อง' },
+    'auth.err.realname': { zh: '請輸入真實姓名', en: 'Please enter your real name.', ko: '실명을 입력하세요.', th: 'กรุณากรอกชื่อจริง' },
+    'auth.err.mobile': { zh: '請輸入有效的手機號碼', en: 'Please enter a valid mobile number.', ko: '유효한 휴대폰 번호를 입력하세요.', th: 'กรุณากรอกหมายเลขโทรศัพท์ที่ถูกต้อง' },
 
     'skin.label': { zh: '外觀', en: 'Skin', ko: '스킨', th: 'ธีม' },
 
@@ -69,6 +88,11 @@
     'account.bonusPoints': { zh: '紅利點數', en: 'Bonus Points', ko: '보너스 포인트', th: 'แต้มโบนัส' },
     'account.boundBanks': { zh: '已綁定銀行卡', en: 'Bound Bank Cards', ko: '등록된 은행 카드', th: 'บัตรธนาคารที่ผูกไว้' },
     'account.memberServices': { zh: '會員服務', en: 'Member Services', ko: '회원 서비스', th: 'บริการสมาชิก' },
+    'account.current': { zh: '目前', en: 'Current', ko: '현재', th: 'ปัจจุบัน' },
+    'account.next': { zh: '下一階', en: 'Next', ko: '다음', th: 'ถัดไป' },
+    'account.tierUnranked': { zh: '未排名', en: 'Unranked', ko: '순위 없음', th: 'ไม่มีอันดับ' },
+    'account.tierBronze': { zh: '銅級', en: 'Bronze', ko: '브론즈', th: 'บรอนซ์' },
+    'account.rewardsProgress': { zh: '等級進度', en: 'Rewards Progress', ko: '등급 진행률', th: 'ความคืบหน้าระดับ' },
 
     'deposit.selectChannel': { zh: '選擇儲值通道', en: 'Select a deposit channel', ko: '입금 채널 선택', th: 'เลือกช่องทางฝากเงิน' },
     'deposit.methodCount': { zh: '種付款方式', en: 'payment methods', ko: '개의 결제 수단', th: 'วิธีชำระเงิน' },
@@ -118,8 +142,20 @@
     'record.totalWithdrawal': { zh: '總提款', en: 'Total Withdrawal', ko: '총 출금액', th: 'ยอดถอนรวม' },
     'record.totalBet': { zh: '總投注', en: 'Total Bet', ko: '총 베팅액', th: 'ยอดเดิมพันรวม' },
     'record.netProfit': { zh: '淨損益', en: 'Net Profit', ko: '순손익', th: 'กำไรขาดทุนสุทธิ' },
-    'record.recentNotePrefix': { zh: '僅顯示最近', en: 'Showing the most recent', ko: '최근', th: 'แสดงเฉพาะ' },
-    'record.recentNoteSuffix': { zh: '筆紀錄', en: 'records', ko: '건만 표시됩니다', th: 'รายการล่าสุด' },
+
+    /* withdrawal-detail（流水進度）Type/Activity Name 兩欄，v2/site 原始
+       資料本身就是中文（這張表沒有跑桌機版的語系置換系統），手機版是
+       全新畫面，順手用既有 i18n 機制翻掉，不把桌機版這個缺口原封不動
+       搬過來，見 records.mjs 的 rolloverType()/rolloverActivity()。 */
+    'rollover.0': { zh: '首存加碼100%', en: 'First Deposit +100%', ko: '첫 입금 +100%', th: 'ฝากครั้งแรก +100%' },
+    'rollover.1': { zh: '週三存款贈10%', en: 'Wednesday Deposit +10%', ko: '수요일 입금 +10%', th: 'ฝากวันพุธ +10%' },
+    'rollover.2': { zh: '週末返水5%', en: 'Weekend Cashback 5%', ko: '주말 캐시백 5%', th: 'แคชแบ็กวันหยุด 5%' },
+    'rollover.3': { zh: '儲值滿額禮', en: 'Deposit Threshold Gift', ko: '입금 금액 달성 선물', th: 'ของขวัญยอดฝากครบกำหนด' },
+    'rollover.4': { zh: 'VIP專屬彩金', en: 'VIP Exclusive Bonus', ko: 'VIP 전용 보너스', th: 'โบนัสพิเศษ VIP' },
+    'rollover.5': { zh: '生日禮金', en: 'Birthday Gift', ko: '생일 선물', th: 'ของขวัญวันเกิด' },
+    'rollover.6': { zh: '每日簽到禮', en: 'Daily Check-in Gift', ko: '매일 출석 선물', th: 'ของขวัญเช็คอินรายวัน' },
+    'rollover.7': { zh: '邀請好友獎金', en: 'Refer-a-Friend Bonus', ko: '친구 초대 보너스', th: 'โบนัสแนะนำเพื่อน' },
+    'rollover.8': { zh: '週日充值贈', en: 'Sunday Deposit Bonus', ko: '일요일 충전 보너스', th: 'โบนัสฝากวันอาทิตย์' },
 
     'withdrawalDetail.txnId': { zh: '交易編號', en: 'Transaction ID', ko: '거래 번호', th: 'หมายเลขธุรกรรม' },
     'withdrawalDetail.requestTime': { zh: '申請時間', en: 'Requested At', ko: '신청 시간', th: 'เวลาที่ขอ' },
