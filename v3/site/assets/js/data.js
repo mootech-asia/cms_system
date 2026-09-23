@@ -123,6 +123,53 @@ const PROMOS = [
   { title: 'VIP Cashback',       sub: 'Up to 20% weekly',    icon: '◯', hue:  60 }
 ];
 
+// 進站公告彈窗（對照 v1.5/Nuxt components/PromotionModal.vue）：圖片沿用
+// v1.5 既有 3 張（assets/images/promo-popup/，循環使用），文案跟 v2/v3
+// 共用同一組（v1.5 assets/js/data.js PROMOTIONS 前 4 筆的 en/ko 逐字保留，
+// 補上 zh/th 譯文），不同版本各自另編一份。
+const PROMO_POPUP = [
+  {
+    promotion_id: 1, image: 'index.png',
+    title: { zh: '新會員首存200%獎金', en: 'New Member First Deposit 200% Bonus', ko: '신규 가입 첫 입금 200% 보너스', th: 'โบนัสฝากครั้งแรก 200% สำหรับสมาชิกใหม่' },
+    content: {
+      zh: '<p>首次加入 win100% 的會員專屬優惠,首存立即贈送200%獎金。</p><p>· 最低儲值金額:₩30,000<br>· 最高贈送金額:₩500,000<br>· 有效投注需求:儲值加獎金總額的1倍</p><p>詳情請洽詢客服中心。</p>',
+      en: '<p>A special offer for members joining win100% for the first time. Receive an instant 200% bonus on your first deposit.</p><p>· Minimum deposit: ₩ 30,000<br>· Maximum bonus: ₩ 500,000<br>· Turnover requirement: 1x of deposit + bonus amount</p><p>Please contact customer service for more details.</p>',
+      ko: '<p>win100%에 처음 가입하신 회원님을 위한 특별 혜택입니다. 첫 입금 시 200% 보너스를 즉시 지급해 드립니다.</p><p>· 최소 입금 금액: ₩ 30,000<br>· 최대 보너스 금액: ₩ 500,000<br>· 유효 베팅 조건: 입금 및 보너스 합산 금액의 1배</p><p>자세한 내용은 고객센터로 문의해 주세요.</p>',
+      th: '<p>สิทธิพิเศษสำหรับสมาชิกที่สมัคร win100% เป็นครั้งแรก รับโบนัสทันที 200% เมื่อฝากเงินครั้งแรก</p><p>· ยอดฝากขั้นต่ำ: ₩30,000<br>· โบนัสสูงสุด: ₩500,000<br>· เงื่อนไขเทิร์นโอเวอร์: 1 เท่าของยอดฝากรวมโบนัส</p><p>สอบถามรายละเอียดเพิ่มเติมได้ที่ฝ่ายบริการลูกค้า</p>',
+    },
+  },
+  {
+    promotion_id: 2, image: 'promotion2.png',
+    title: { zh: '每日簽到贈點', en: 'Daily Check-in Points', ko: '매일 출석 체크 포인트 지급', th: 'รับแต้มเช็คอินรายวัน' },
+    content: {
+      zh: '<p>每天登入後完成簽到,即可自動獲得點數。</p><p>· 重置時間:每日 00:00<br>· 連續簽到可獲得額外點數</p>',
+      en: '<p>Simply check in after logging in every day to automatically earn points.</p><p>· Reset time: 00:00 daily<br>· Extra points for consecutive check-ins</p>',
+      ko: '<p>매일 로그인 후 출석 체크만 하면 포인트가 자동으로 적립됩니다.</p><p>· 지급 시간: 매일 00:00 초기화<br>· 연속 출석 시 추가 포인트 지급</p>',
+      th: '<p>เพียงเช็คอินหลังเข้าสู่ระบบทุกวัน รับแต้มสะสมอัตโนมัติ</p><p>· รีเซ็ตเวลา: 00:00 ทุกวัน<br>· เช็คอินต่อเนื่องรับแต้มพิเศษเพิ่ม</p>',
+    },
+  },
+  {
+    promotion_id: 3, image: 'promotionDetail.png',
+    title: { zh: '老虎機流水返水1.5%', en: 'Slot Rolling Cashback 1.5%', ko: '슬롯 롤링 캐시백 1.5%', th: 'คืนเงินสล็อต 1.5%' },
+    content: {
+      zh: '<p>所有老虎機遊戲有效投注金額,每週可獲得1.5%返水。</p><p>· 結算週期:每週一<br>· 最高返水金額:₩1,000,000</p>',
+      en: '<p>Receive a weekly 1.5% cashback on the total valid bets placed across all slot games.</p><p>· Settlement: every Monday<br>· Maximum cashback: ₩ 1,000,000</p>',
+      ko: '<p>모든 슬롯 게임 유효 베팅 금액에 대해 매주 1.5% 캐시백을 지급합니다.</p><p>· 정산 주기: 매주 월요일<br>· 최대 캐시백 금액: ₩ 1,000,000</p>',
+      th: '<p>รับคืนเงิน 1.5% ทุกสัปดาห์จากยอดเดิมพันที่ถูกต้องในเกมสล็อตทั้งหมด</p><p>· รอบชำระ: ทุกวันจันทร์<br>· คืนเงินสูงสุด: ₩1,000,000</p>',
+    },
+  },
+  {
+    promotion_id: 4, image: 'index.png',
+    title: { zh: '老虎機免費旋轉活動', en: 'Slot Free Spin Event', ko: '슬롯 무료 스핀 이벤트', th: 'กิจกรรมฟรีสปินสล็อต' },
+    content: {
+      zh: '<p>指定老虎機遊戲每週提供50次免費旋轉。</p><p>· 參加方式:向客服中心申請<br>· 指定遊戲每週更換</p>',
+      en: '<p>Get 50 free spins every week on selected slot games.</p><p>· How to join: apply via customer service<br>· Featured games rotate weekly</p>',
+      ko: '<p>지정된 슬롯 게임에서 무료 스핀 50회를 매주 제공합니다.</p><p>· 참여 방법: 고객센터로 신청<br>· 지급 게임: 매주 변경</p>',
+      th: '<p>รับฟรีสปิน 50 ครั้งทุกสัปดาห์ในเกมสล็อตที่กำหนด</p><p>· วิธีร่วมกิจกรรม: แจ้งฝ่ายบริการลูกค้า<br>· เกมที่ร่วมรายการเปลี่ยนทุกสัปดาห์</p>',
+    },
+  },
+];
+
 const WINNERS = Array.from({ length: 18 }, (_, i) => ({
   id: i,
   user: ['CryptoKing','Nova','Blackbird','Mira','V0idR4t','Hydra','Lupin','Aki','Echo','Kade',
@@ -153,5 +200,5 @@ const RECENTLY_PLAYED = [
   GAMES.slots[7], GAMES.table[0]
 ];
 
-window.CMS_DATA = { PROVIDERS, GAMES, HERO_SLIDES, SPOTLIGHT_GAMES, PROMOS, WINNERS, TOURNAMENTS, TOURNAMENT_HERO_IMAGE, RECENTLY_PLAYED };
+window.CMS_DATA = { PROVIDERS, GAMES, HERO_SLIDES, SPOTLIGHT_GAMES, PROMOS, PROMO_POPUP, WINNERS, TOURNAMENTS, TOURNAMENT_HERO_IMAGE, RECENTLY_PLAYED };
 })();

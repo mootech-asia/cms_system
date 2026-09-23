@@ -4436,6 +4436,12 @@ body.usc-sidebar-open .mobile-bottom-nav {
   accent-color: var(--c-navy);
 }
 @media (min-width: 1280px) {
+  .promo-popup-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
   .promo-popup-card {
     width: 430px;
     height: 626px;

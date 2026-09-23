@@ -174,6 +174,10 @@
     'banner.walletSub': { zh: '快速入金 · 安全結算 · 24/7 存取', en: 'Fast Deposits · Secure Settlement · 24/7 Access', ko: '빠른 입금 · 안전한 정산 · 24/7 이용 가능', th: 'ฝากเงินไว · ชำระเงินปลอดภัย · เข้าถึงได้ตลอด 24/7' },
     'hero.prev': { zh: '上一則', en: 'Previous', ko: '이전', th: 'ก่อนหน้า' },
     'hero.next': { zh: '下一則', en: 'Next', ko: '다음', th: 'ถัดไป' },
+
+    /* 進站公告彈窗（比照 v1.5 PromotionModal.vue，內容跟 v2/site 桌機版
+       共用同一份 D.PROMO_POPUP，這裡只需要「今天不再提醒」這句 UI 文案）。 */
+    'promotion.dontRemindToday': { zh: '今天不再提醒', en: "Don't remind me again today", ko: '오늘 다시 알리지 않기', th: 'ไม่ต้องแจ้งเตือนอีกวันนี้' },
   };
 
   function currentLocale() {
