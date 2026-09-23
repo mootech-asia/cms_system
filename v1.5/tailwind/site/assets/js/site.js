@@ -327,10 +327,11 @@
   function appendChatMsg(kind, text) {
     var body = chatWidgetRoot.querySelector('[data-chat-body]');
     var row = document.createElement('div');
-    row.className = 'chat-msg chat-msg-' + kind;
-    row.innerHTML = (kind === 'bot' ? '<img src="' + IMG + 'index/img-logo.png" class="chat-msg-avatar" alt="">' : '') +
-      '<div class="chat-bubble"></div>';
-    row.querySelector('.chat-bubble').textContent = text;
+    var isBot = kind === 'bot';
+    row.className = 'flex items-end gap-2 max-w-[88%]' + (isBot ? '' : ' self-end flex-row-reverse');
+    row.innerHTML = (isBot ? '<img src="' + IMG + 'index/img-logo.png" class="w-5.5 h-5.5 rounded-full bg-[#f5f5f7] object-contain p-0.5 shrink-0" alt="">' : '') +
+      '<div class="px-3 py-2.25 rounded-[14px] text-[13px] leading-[1.5] ' + (isBot ? 'bg-[#f5f5f7] text-navy rounded-bl-[4px]' : 'bg-[image:var(--g-primary)] text-white rounded-br-[4px]') + '" data-chat-bubble></div>';
+    row.querySelector('[data-chat-bubble]').textContent = text;
     body.appendChild(row);
     scrollChatToBottom();
   }
@@ -338,19 +339,19 @@
     if (chatWidgetRoot) { chatWidgetRoot.classList.remove('is-minimized'); return; }
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="chat-widget" data-chat-widget>' +
-      '<div class="chat-widget-head">' +
-      '<img src="' + IMG + 'index/img-logo.png" class="chat-widget-avatar" alt="">' +
-      '<div class="chat-widget-head-text"><strong>' + t('sidebar.liveChat') + '</strong>' +
-      '<span class="chat-widget-status"><i></i>' + t('sidebar.chatOnline') + '</span></div>' +
-      '<button type="button" class="chat-widget-min" data-chat-min aria-label="' + t('sidebar.chatMinimize') + '">–</button>' +
-      '<button type="button" class="chat-widget-close" data-chat-close aria-label="' + t('sidebar.chatClose') + '">' +
+      '<div class="fixed right-4.5 bottom-4.5 z-[1001] w-[320px] max-w-[calc(100vw-36px)] rounded-2xl bg-white text-navy shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] overflow-hidden flex flex-col max-[520px]:right-2.5 max-[520px]:bottom-2.5 max-[520px]:w-[calc(100vw-20px)]" data-chat-widget>' +
+      '<div class="flex items-center gap-2.5 p-3.5 pl-4 bg-[image:var(--g-primary)] text-white">' +
+      '<img src="' + IMG + 'index/img-logo.png" class="w-8 h-8 rounded-full bg-white object-contain p-0.75 shrink-0" alt="">' +
+      '<div class="flex-1 min-w-0"><strong class="block text-[14px]">' + t('sidebar.liveChat') + '</strong>' +
+      '<span class="flex items-center gap-1.25 text-[11.5px] opacity-90"><i class="w-1.5 h-1.5 rounded-full bg-[#3ddc84] inline-block"></i>' + t('sidebar.chatOnline') + '</span></div>' +
+      '<button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full hover:!bg-white/22" data-chat-min aria-label="' + t('sidebar.chatMinimize') + '">–</button>' +
+      '<button type="button" class="w-6.5 h-6.5 shrink-0 grid place-items-center rounded-full hover:!bg-white/22" data-chat-close aria-label="' + t('sidebar.chatClose') + '">' +
       '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>' +
       '</div>' +
-      '<div class="chat-widget-body" data-chat-body></div>' +
-      '<form class="chat-widget-form" data-chat-form>' +
-      '<input type="text" data-chat-input placeholder="' + t('sidebar.chatPlaceholder') + '" autocomplete="off">' +
-      '<button type="submit" aria-label="' + t('sidebar.chatSend') + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 18 9-18 9 4-9Z"/></svg></button>' +
+      '<div class="p-3.5 max-h-[320px] overflow-y-auto flex flex-col gap-2.5 [.is-minimized_&]:hidden" data-chat-body></div>' +
+      '<form class="flex items-center gap-2 py-2.5 px-3 border-t border-border [.is-minimized_&]:hidden" data-chat-form>' +
+      '<input type="text" class="flex-1 min-w-0 border border-border rounded-full px-3.5 py-2 !text-[13px] bg-[#f5f5f7] text-navy" data-chat-input placeholder="' + t('sidebar.chatPlaceholder') + '" autocomplete="off">' +
+      '<button type="submit" class="w-8.5 h-8.5 shrink-0 rounded-full grid place-items-center !bg-[image:var(--g-primary)] !text-white" aria-label="' + t('sidebar.chatSend') + '"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 18 9-18 9 4-9Z"/></svg></button>' +
       '</form></div>';
     chatWidgetRoot = wrap.firstElementChild;
     document.body.appendChild(chatWidgetRoot);
@@ -382,12 +383,12 @@
   function showCustomerServiceModal() {
     var root = ensureCsModalRoot();
     root.innerHTML =
-      '<div class="cs-modal-backdrop" data-cs-backdrop>' +
-      '<div class="cs-modal">' +
-      '<button type="button" class="cs-modal-close" data-cs-close><img src="' + icon('sidebar-close.svg') + '" alt="close"></button>' +
-      '<h3 class="cs-modal-title">' + t('sidebar.selectCustomerService') + '</h3>' +
-      '<button type="button" class="cs-modal-option" data-cs-action="liveChat"><img src="' + icon('sidebar-service.svg') + '" alt="">' + t('sidebar.liveChatCenter') + '</button>' +
-      '<button type="button" class="cs-modal-option" data-cs-action="telegram"><img src="' + icon('sidebar-telegram.svg') + '" alt="">' + t('sidebar.promoAnnouncementRoom') + '</button>' +
+      '<div class="fixed inset-0 z-[1000] flex items-center justify-center bg-[rgba(40,38,46,0.8)] p-4" data-cs-backdrop>' +
+      '<div class="relative w-full max-w-[360px] rounded-2xl bg-white shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] p-4 flex flex-col gap-3">' +
+      '<button type="button" class="absolute -top-4 -right-4 w-8 h-8 rounded-full !bg-white !border !border-pink flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.15)]" data-cs-close><img src="' + icon('sidebar-close.svg') + '" alt="close" class="w-3.5 h-3.5"></button>' +
+      '<h3 class="m-0 pb-3 border-b border-border text-navy text-[18px] font-bold text-center">' + t('sidebar.selectCustomerService') + '</h3>' +
+      '<button type="button" class="flex items-center gap-2.5 h-12 rounded-full !px-4 !bg-[image:var(--g-action)] !text-navy !text-[15px] !font-bold text-left" data-cs-action="liveChat"><img src="' + icon('sidebar-service.svg') + '" alt="" class="w-5 h-5">' + t('sidebar.liveChatCenter') + '</button>' +
+      '<button type="button" class="flex items-center gap-2.5 h-12 rounded-full !px-4 !bg-[image:var(--g-action)] !text-navy !text-[15px] !font-bold text-left" data-cs-action="telegram"><img src="' + icon('sidebar-telegram.svg') + '" alt="" class="w-5 h-5">' + t('sidebar.promoAnnouncementRoom') + '</button>' +
       '</div></div>';
     function close() { root.innerHTML = ''; }
     on(qs('[data-cs-close]', root), 'click', close);
