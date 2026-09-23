@@ -134,11 +134,30 @@
 
   function on(el, evt, fn) { if (el) el.addEventListener(evt, fn); }
 
+  /* 報表/紀錄頁的展開式卡片：預設只收合顯示關鍵欄位，點卡頭展開看其餘
+     欄位。事件委派掛在 document 上，卡片本身是靜態 HTML（產生期就已經
+     把 v2/site 對應頁面的完整欄位資料寫進去，不是這裡動態組的），純粹
+     只負責顯示/隱藏跟箭頭旋轉。 */
+  function initRecordCards() {
+    document.addEventListener('click', function (e) {
+      var toggle = e.target.closest('[data-record-toggle]');
+      if (!toggle) return;
+      var card = toggle.closest('[data-record-card]');
+      if (!card) return;
+      var detail = card.querySelector('[data-record-detail]');
+      var chevron = toggle.querySelector('.record-chevron');
+      var open = detail.classList.toggle('hidden') === false;
+      if (chevron) chevron.classList.toggle('rotate-180', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     restoreSkin();
     initSkinSwitcher();
     initBottomNav();
     initAboutTabs();
+    initRecordCards();
   });
 
   window.__v2mOpenMenuDrawer = openMenuDrawer;

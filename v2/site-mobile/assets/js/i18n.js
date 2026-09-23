@@ -118,8 +118,20 @@
     'record.totalWithdrawal': { zh: '總提款', en: 'Total Withdrawal', ko: '총 출금액', th: 'ยอดถอนรวม' },
     'record.totalBet': { zh: '總投注', en: 'Total Bet', ko: '총 베팅액', th: 'ยอดเดิมพันรวม' },
     'record.netProfit': { zh: '淨損益', en: 'Net Profit', ko: '순손익', th: 'กำไรขาดทุนสุทธิ' },
-    'record.recentNotePrefix': { zh: '僅顯示最近', en: 'Showing the most recent', ko: '최근', th: 'แสดงเฉพาะ' },
-    'record.recentNoteSuffix': { zh: '筆紀錄', en: 'records', ko: '건만 표시됩니다', th: 'รายการล่าสุด' },
+
+    /* withdrawal-detail（流水進度）Type/Activity Name 兩欄，v2/site 原始
+       資料本身就是中文（這張表沒有跑桌機版的語系置換系統），手機版是
+       全新畫面，順手用既有 i18n 機制翻掉，不把桌機版這個缺口原封不動
+       搬過來，見 records.mjs 的 rolloverType()/rolloverActivity()。 */
+    'rollover.0': { zh: '首存加碼100%', en: 'First Deposit +100%', ko: '첫 입금 +100%', th: 'ฝากครั้งแรก +100%' },
+    'rollover.1': { zh: '週三存款贈10%', en: 'Wednesday Deposit +10%', ko: '수요일 입금 +10%', th: 'ฝากวันพุธ +10%' },
+    'rollover.2': { zh: '週末返水5%', en: 'Weekend Cashback 5%', ko: '주말 캐시백 5%', th: 'แคชแบ็กวันหยุด 5%' },
+    'rollover.3': { zh: '儲值滿額禮', en: 'Deposit Threshold Gift', ko: '입금 금액 달성 선물', th: 'ของขวัญยอดฝากครบกำหนด' },
+    'rollover.4': { zh: 'VIP專屬彩金', en: 'VIP Exclusive Bonus', ko: 'VIP 전용 보너스', th: 'โบนัสพิเศษ VIP' },
+    'rollover.5': { zh: '生日禮金', en: 'Birthday Gift', ko: '생일 선물', th: 'ของขวัญวันเกิด' },
+    'rollover.6': { zh: '每日簽到禮', en: 'Daily Check-in Gift', ko: '매일 출석 선물', th: 'ของขวัญเช็คอินรายวัน' },
+    'rollover.7': { zh: '邀請好友獎金', en: 'Refer-a-Friend Bonus', ko: '친구 초대 보너스', th: 'โบนัสแนะนำเพื่อน' },
+    'rollover.8': { zh: '週日充值贈', en: 'Sunday Deposit Bonus', ko: '일요일 충전 보너스', th: 'โบนัสฝากวันอาทิตย์' },
 
     'withdrawalDetail.txnId': { zh: '交易編號', en: 'Transaction ID', ko: '거래 번호', th: 'หมายเลขธุรกรรม' },
     'withdrawalDetail.requestTime': { zh: '申請時間', en: 'Requested At', ko: '신청 시간', th: 'เวลาที่ขอ' },

@@ -25,23 +25,76 @@
 
 <main>
   <section class="px-4 pt-2 pb-6">
-    <div class="rounded-2xl border border-line bg-bg-card px-4"><div class="flex items-center justify-between py-3 border-b border-line text-[12.5px]">
-    <div><p class="font-semibold text-text"><span data-i18n="record.deposit">儲值</span></p><p class="text-text-dim mt-0.5">2026-09-20 14:32</p></div>
-    <div class="text-right"><p class="font-bold text-accent">+$50.00</p></div>
-  </div><div class="flex items-center justify-between py-3 border-b border-line text-[12.5px]">
-    <div><p class="font-semibold text-text"><span data-i18n="record.withdrawal">提款</span></p><p class="text-text-dim mt-0.5">2026-09-19 09:15</p></div>
-    <div class="text-right"><p class="font-bold text-text">-$100.00</p></div>
-  </div><div class="flex items-center justify-between py-3 border-b border-line text-[12.5px]">
-    <div><p class="font-semibold text-text"><span data-i18n="record.bet">投注</span></p><p class="text-text-dim mt-0.5">2026-09-17 21:04</p></div>
-    <div class="text-right"><p class="font-bold text-accent">+$150.00</p></div>
-  </div><div class="flex items-center justify-between py-3 border-b border-line text-[12.5px]">
-    <div><p class="font-semibold text-text"><span data-i18n="record.payout">派彩</span></p><p class="text-text-dim mt-0.5">2026-09-15 11:47</p></div>
-    <div class="text-right"><p class="font-bold text-text">-$200.00</p></div>
-  </div><div class="flex items-center justify-between py-3 border-b border-line text-[12.5px]">
-    <div><p class="font-semibold text-text"><span data-i18n="record.bonus">紅利</span></p><p class="text-text-dim mt-0.5">2026-09-12 16:20</p></div>
-    <div class="text-right"><p class="font-bold text-accent">+$250.00</p></div>
-  </div></div>
-    <p class="text-[11.5px] text-text-dim text-center mt-4"><span data-i18n="record.recentNotePrefix">僅顯示最近</span> 5 <span data-i18n="record.recentNoteSuffix">筆紀錄</span></p>
+    <div class="flex flex-col gap-3">
+      <div class="rounded-2xl border border-line bg-bg-card overflow-hidden" data-record-card>
+    <button type="button" class="w-full flex items-center justify-between gap-3 p-3.5 text-left" data-record-toggle aria-expanded="false">
+      <div class="min-w-0">
+        <p class="text-[12.5px] font-semibold text-text">Deposit</p>
+        <p class="text-[11px] text-text-dim mt-0.5">2025-08-12 09:18</p>
+      </div>
+      <div class="text-right flex-none">
+        <p class="text-[14.5px] font-bold text-accent">+100,000</p>
+      </div>
+      <svg class="record-chevron h-4 w-4 flex-none text-text-dim transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+    </button>
+    <div class="record-detail hidden border-t border-line px-3.5 py-3 flex flex-col gap-2" data-record-detail>
+      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Current Balance</span><span class="font-medium text-right text-text">1,284,320</span></div>
+      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Transaction No.</span><span class="font-medium text-right text-text">DP25081201</span></div>
+      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Content</span><span class="font-medium text-right text-text">Bank deposit approved</span></div>
+    </div>
+  </div>
+    <div class="rounded-2xl border border-line bg-bg-card overflow-hidden" data-record-card>
+    <button type="button" class="w-full flex items-center justify-between gap-3 p-3.5 text-left" data-record-toggle aria-expanded="false">
+      <div class="min-w-0">
+        <p class="text-[12.5px] font-semibold text-text">Bet</p>
+        <p class="text-[11px] text-text-dim mt-0.5">2025-08-12 15:48</p>
+      </div>
+      <div class="text-right flex-none">
+        <p class="text-[14.5px] font-bold text-[#ef4444]">-50,000</p>
+      </div>
+      <svg class="record-chevron h-4 w-4 flex-none text-text-dim transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+    </button>
+    <div class="record-detail hidden border-t border-line px-3.5 py-3 flex flex-col gap-2" data-record-detail>
+      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Current Balance</span><span class="font-medium text-right text-text">1,234,320</span></div>
+      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Transaction No.</span><span class="font-medium text-right text-text">BT25081201</span></div>
+      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Content</span><span class="font-medium text-right text-text">Sports — Champions League</span></div>
+    </div>
+  </div>
+    <div class="rounded-2xl border border-line bg-bg-card overflow-hidden" data-record-card>
+    <button type="button" class="w-full flex items-center justify-between gap-3 p-3.5 text-left" data-record-toggle aria-expanded="false">
+      <div class="min-w-0">
+        <p class="text-[12.5px] font-semibold text-text">Win</p>
+        <p class="text-[11px] text-text-dim mt-0.5">2025-08-12 15:52</p>
+      </div>
+      <div class="text-right flex-none">
+        <p class="text-[14.5px] font-bold text-accent">+92,500</p>
+      </div>
+      <svg class="record-chevron h-4 w-4 flex-none text-text-dim transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+    </button>
+    <div class="record-detail hidden border-t border-line px-3.5 py-3 flex flex-col gap-2" data-record-detail>
+      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Current Balance</span><span class="font-medium text-right text-text">1,326,820</span></div>
+      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Transaction No.</span><span class="font-medium text-right text-text">WN25081201</span></div>
+      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Content</span><span class="font-medium text-right text-text">Sports settlement</span></div>
+    </div>
+  </div>
+    <div class="rounded-2xl border border-line bg-bg-card overflow-hidden" data-record-card>
+    <button type="button" class="w-full flex items-center justify-between gap-3 p-3.5 text-left" data-record-toggle aria-expanded="false">
+      <div class="min-w-0">
+        <p class="text-[12.5px] font-semibold text-text">Withdrawal</p>
+        <p class="text-[11px] text-text-dim mt-0.5">2025-08-12 10:45</p>
+      </div>
+      <div class="text-right flex-none">
+        <p class="text-[14.5px] font-bold text-[#ef4444]">-80,000</p>
+      </div>
+      <svg class="record-chevron h-4 w-4 flex-none text-text-dim transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+    </button>
+    <div class="record-detail hidden border-t border-line px-3.5 py-3 flex flex-col gap-2" data-record-detail>
+      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Current Balance</span><span class="font-medium text-right text-text">1,246,820</span></div>
+      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Transaction No.</span><span class="font-medium text-right text-text">WD25081201</span></div>
+      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Content</span><span class="font-medium text-right text-text">Bank withdrawal paid</span></div>
+    </div>
+  </div>
+    </div>
   </section>
 
 </main>
@@ -57,7 +110,7 @@
     <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="1.5"></rect><path d="M12 9v12M3 13h18M12 9H8.5a2.5 2.5 0 1 1 2.2-3.7L12 9Zm0 0h3.5a2.5 2.5 0 1 0-2.2-3.7L12 9Z"></path></svg>
     </span>
-    <span class="text-[10px] font-semibold leading-none" data-i18n="tabbar.freeMoney">免費金</span>
+    <span class="text-[10px] font-semibold leading-none" data-i18n="promo.bonusTitle">優惠活動</span>
   </a>
   <a href="hot-games.html" class="flex flex-col items-center gap-1.5 py-2 text-text-dim">
     <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors">
