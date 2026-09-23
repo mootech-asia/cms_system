@@ -85,12 +85,12 @@
     var hrefAttr = item.url ? ' data-nav-href="' + item.url + '"' : ' data-stub-item';
     var iconUrl = icon(item.icon);
     return (
-      '<button type="button" class="mobile-menu-item" data-nav-key="' + item.key + '"' + hrefAttr + '>' +
-      '<span class="mobile-menu-item-icon">' +
-      '<img src="' + iconUrl + '" alt="' + item.key + '">' +
-      '<span class="mobile-menu-item-icon-active" style="-webkit-mask-image:url(' + iconUrl + ');mask-image:url(' + iconUrl + ')"></span>' +
+      '<button type="button" class="group/mi h-14 flex flex-col items-center justify-center gap-1 rounded-2xl [&.is-active]:!bg-navy" data-nav-key="' + item.key + '"' + hrefAttr + '>' +
+      '<span class="relative w-6 h-6">' +
+      '<img src="' + iconUrl + '" alt="' + item.key + '" class="w-6 h-6 block group-[.is-active]/mi:hidden">' +
+      '<span class="absolute inset-0 hidden group-[.is-active]/mi:block bg-[image:var(--g-primary)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]" style="-webkit-mask-image:url(' + iconUrl + ');mask-image:url(' + iconUrl + ')"></span>' +
       '</span>' +
-      '<span data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span>' +
+      '<span class="text-[14px] font-semibold text-white leading-none group-[.is-active]/mi:bg-[image:var(--g-primary)] group-[.is-active]/mi:bg-clip-text group-[.is-active]/mi:text-transparent" data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span>' +
       '</button>'
     );
   }
@@ -106,66 +106,69 @@
     var mobileBottom = D.MOBILE_BOTTOM_ITEMS.map(function (i) { return mobileMenuItemHtml(i, false); }).join('');
 
     var mobileAccount = profile
-      ? '<div class="mobile-menu-account"><div><div style="display:flex;align-items:center;gap:8px"><span class="lv-badge">' + profile.player_level_id + '</span><span class="username">' + profile.username + '</span></div><p class="balance">' + profile.balance + '</p></div>' +
-        '<button type="button" data-logout><img src="' + icon('exit.svg') + '" alt="exit" style="width:24px;height:24px"></button></div>'
-      : '<div class="mobile-menu-auth">' +
-        '<button type="button" class="pill-outline-btn border-gradient-pill" data-open-auth="login"><span class="text-gradient" data-i18n="auth.login">' + t('auth.login') + '</span></button>' +
-        '<button type="button" class="pill-outline-btn border-gradient-pill" data-open-auth="register"><span class="text-gradient" data-i18n="auth.register">' + t('auth.register') + '</span></button>' +
+      ? '<div class="flex items-center justify-between py-4 px-7"><div><div class="flex items-center gap-2"><span class="py-0.5 px-2 rounded-full bg-white text-navy text-[14px] font-bold">' + profile.player_level_id + '</span><span class="text-white text-[18px] font-semibold ml-2">' + profile.username + '</span></div><p class="text-yellow text-[14px] font-semibold mt-1">' + profile.balance + '</p></div>' +
+        '<button type="button" data-logout><img src="' + icon('exit.svg') + '" alt="exit" class="w-6 h-6"></button></div>'
+      : '<div class="flex justify-center items-center gap-3 py-4 px-7">' +
+        /* main.css 的 button{padding:0;font:inherit;...} 是通用重置，
+           unlayered stylesheet 優先權高於 tailwind.css 的 utilities layer，
+           這裡 padding/font-weight 一律要加 ! 才蓋得過去 */
+        '<button type="button" class="border-gradient-pill rounded-lg !py-2 !px-4 !font-semibold" data-open-auth="login"><span class="text-gradient block" data-i18n="auth.login">' + t('auth.login') + '</span></button>' +
+        '<button type="button" class="border-gradient-pill rounded-lg !py-2 !px-4 !font-semibold" data-open-auth="register"><span class="text-gradient block" data-i18n="auth.register">' + t('auth.register') + '</span></button>' +
         '</div>';
 
     var desktopAccount = profile
-      ? '<div class="header-user-block">' +
-        '<div class="header-user-id"><img src="' + icon('user.svg') + '" alt="user"><span>ID: ' + profile.username + '</span>' +
-        '<div class="header-user-dropdown"><button type="button" data-href="deposit.html" data-i18n="userCenter.deposit">' + t('userCenter.deposit') + '</button><button type="button" data-href="withdrawal.html" data-i18n="userCenter.withdrawal">' + t('userCenter.withdrawal') + '</button><button type="button" data-href="account.html" data-i18n="userCenter.myAccount">' + t('userCenter.myAccount') + '</button></div>' +
+      ? '<div class="flex items-center">' +
+        '<div class="group/uid relative cursor-pointer flex items-center"><img src="' + icon('user.svg') + '" alt="user" class="w-5 h-5 mr-5"><span class="text-white group-hover/uid:text-link-hover">ID: ' + profile.username + '</span>' +
+        '<div class="absolute left-[-14px] top-full z-[70] hidden group-hover/uid:block bg-black/90 border border-white/10 rounded-lg min-w-max"><button type="button" class="block w-full text-left whitespace-nowrap !py-2 !px-3 rounded-lg !text-white hover:!bg-[#404040]" data-href="deposit.html" data-i18n="userCenter.deposit">' + t('userCenter.deposit') + '</button><button type="button" class="block w-full text-left whitespace-nowrap !py-2 !px-3 rounded-lg !text-white hover:!bg-[#404040]" data-href="withdrawal.html" data-i18n="userCenter.withdrawal">' + t('userCenter.withdrawal') + '</button><button type="button" class="block w-full text-left whitespace-nowrap !py-2 !px-3 rounded-lg !text-white hover:!bg-[#404040]" data-href="account.html" data-i18n="userCenter.myAccount">' + t('userCenter.myAccount') + '</button></div>' +
         '</div>' +
-        '<span class="header-level-badge">' + profile.player_level_name + '</span>' +
-        '<div class="header-balance-block">' +
-        '<div class="header-balance-row"><span class="label" data-i18n="navbar.balance">' + t('navbar.balance') + '</span><span class="value">' + profile.balance + '</span></div>' +
-        '<div class="header-balance-row"><span class="label" data-i18n="navbar.points">' + t('navbar.points') + '</span><span class="value">' + profile.point_balance + '</span></div>' +
+        '<span class="py-0.5 px-2 rounded-full bg-white text-[#1c378e] font-bold mr-4 ml-2">' + profile.player_level_name + '</span>' +
+        '<div class="flex flex-col leading-tight">' +
+        '<div class="flex text-[14px]"><span class="w-15 text-white/70 mr-2" data-i18n="navbar.balance">' + t('navbar.balance') + '</span><span class="text-yellow">' + profile.balance + '</span></div>' +
+        '<div class="flex text-[14px]"><span class="w-15 text-white/70 mr-2" data-i18n="navbar.points">' + t('navbar.points') + '</span><span class="text-yellow">' + profile.point_balance + '</span></div>' +
         '</div>' +
-        '<button type="button" class="header-logout-btn" data-logout><img src="' + icon('exit.svg') + '" alt="exit"></button>' +
+        '<button type="button" class="w-8 h-8 flex items-center justify-center ml-4" data-logout><img src="' + icon('exit.svg') + '" alt="exit" class="w-5 h-5"></button>' +
         '</div>'
-      : '<div class="header-auth-buttons">' +
-        '<button type="button" class="header-auth-btn" data-open-auth="login" data-i18n="auth.login">' + t('auth.login') + '</button>' +
-        '<button type="button" class="header-auth-btn" data-open-auth="register" data-i18n="auth.register">' + t('auth.register') + '</button>' +
+      : '<div class="flex items-center gap-4">' +
+        '<button type="button" class="h-10 inline-flex items-center justify-center rounded-md !border !border-white !text-white !text-[16px] !py-2 !px-3 whitespace-nowrap" data-open-auth="login" data-i18n="auth.login">' + t('auth.login') + '</button>' +
+        '<button type="button" class="h-10 inline-flex items-center justify-center rounded-md !border !border-white !text-white !text-[16px] !py-2 !px-3 whitespace-nowrap" data-open-auth="register" data-i18n="auth.register">' + t('auth.register') + '</button>' +
         '</div>';
 
     var langSwitcherDesktop =
-      '<div class="header-lang-switcher" data-lang-switcher>' +
-      '<button type="button" class="header-lang-trigger" data-lang-trigger>' +
-      '<img src="' + icon('lang-us.svg') + '" alt="lang" style="width:24px;height:24px;margin-right:4px">' +
+      '<div class="relative group/lang" data-lang-switcher>' +
+      '<button type="button" class="box-border inline-flex items-center justify-center h-10 gap-1 !text-white !border !border-white rounded-md !py-2 !px-3 !text-[14px] whitespace-nowrap" data-lang-trigger>' +
+      '<img src="' + icon('lang-us.svg') + '" alt="lang" class="w-6 h-6 mr-1">' +
       '<span data-locale-label>' + ((D.LANGUAGES || []).filter(function (l) { return l.code === currentLocale(); })[0] || {}).label + '</span>' +
       '</button>' +
-      '<div class="header-lang-panel">' +
+      '<div class="absolute left-1/2 -translate-x-1/2 mt-1.5 bg-black border border-white/10 rounded-lg p-2 min-w-[130px] hidden group-[.is-open]/lang:block z-[80]">' +
       (D.LANGUAGES || []).map(function (l) {
-        return '<button type="button" data-set-locale="' + l.code + '"><img src="' + icon(l.image) + '" alt="' + l.code + '"><span>' + l.label + '</span></button>';
+        return '<button type="button" class="flex items-center gap-1.5 w-full h-6 rounded-xl !px-1.5 !text-white !text-[14px] hover:!bg-white/10" data-set-locale="' + l.code + '"><img src="' + icon(l.image) + '" alt="' + l.code + '" class="w-6 h-3.5"><span>' + l.label + '</span></button>';
       }).join('') +
       '</div></div>';
 
     /* 對照真實原始碼 Navbar.vue:桌機導覽的圖示 span 整段是註解(/-、//-),
        實際沒有渲染,只留純文字,選中項目靠 .is-active 的漸層底線區分 */
     var desktopNav = D.DESKTOP_NAV.map(function (item) {
-      return '<div class="header-nav-link" data-nav-key="' + item.key + '" data-nav-href="' + item.url + '">' +
-        '<span data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span></div>';
+      return '<div class="group font-normal flex items-center gap-2 pb-2 border-b-[1.3px] border-transparent [&.is-active]:[border-image:var(--g-primary-270)] [&.is-active]:[border-image-slice:1]" data-nav-key="' + item.key + '" data-nav-href="' + item.url + '">' +
+        '<span class="text-[14px] text-white/50 group-hover:text-white group-[.is-active]:text-white" data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span></div>';
     }).join('');
 
     return (
-      '<header class="site-header">' +
-      '<div class="site-header-mobile">' +
-      '<a href="index.html" class="brand-link"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="brand-logo"></a>' +
-      '<button type="button" class="header-menu-btn" data-toggle-mobile-menu><img src="' + icon('menu.svg') + '" alt="menu"></button>' +
+      '<header class="fixed top-0 left-0 right-0 z-[200] bg-navy">' +
+      '<div class="flex items-center justify-between h-16 px-5 xl:hidden">' +
+      '<a href="index.html"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="h-12.5 w-auto"></a>' +
+      '<button type="button" class="w-9 h-9" data-toggle-mobile-menu><img src="' + icon('menu.svg') + '" alt="menu" class="w-9 h-9"></button>' +
       '</div>' +
-      '<div class="mobile-menu-panel" data-mobile-menu>' +
-      '<div class="mobile-menu-top">' + mobileTop + '</div>' +
-      '<div class="mobile-menu-bottom-grid">' + mobileBottom + '</div>' +
+      '<div class="fixed left-0 right-0 top-[63px] z-[200] bg-[rgba(6,12,52,0.8)] text-white hidden [&.is-open]:block xl:!hidden" data-mobile-menu>' +
+      '<div class="grid grid-cols-3 py-2 px-5 border-b border-white/30">' + mobileTop + '</div>' +
+      '<div class="grid grid-cols-3 gap-y-6 py-2 px-5">' + mobileBottom + '</div>' +
       mobileAccount +
       '</div>' +
-      '<div class="site-header-desktop">' +
-      '<div class="site-header-desktop-inner' + (isUserCenter ? ' is-usercenter' : '') + '">' +
-      '<div class="header-logo-col"><a href="index.html"><img src="' + IMG + 'index/img-logo.png" alt="logo"></a></div>' +
-      '<div class="header-main-col">' +
-      '<div class="header-account-row">' + desktopAccount + langSwitcherDesktop + '</div>' +
-      '<nav class="header-nav-row">' + desktopNav + '</nav>' +
+      '<div class="hidden xl:block">' +
+      '<div class="h-33 flex justify-between ' + (isUserCenter ? 'px-10' : 'px-24') + '">' +
+      '<div class="flex items-center"><a href="index.html"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="w-60 min-w-60 cursor-pointer"></a></div>' +
+      '<div class="w-full h-full flex flex-col justify-between">' +
+      '<div class="flex justify-end items-center gap-4 mt-2">' + desktopAccount + langSwitcherDesktop + '</div>' +
+      '<nav class="flex justify-end gap-6 pb-4 whitespace-nowrap">' + desktopNav + '</nav>' +
       '</div></div></div>' +
       '</header>'
     );
