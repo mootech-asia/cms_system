@@ -1,0 +1,107 @@
+/* v3/tailwind/studio — 另開一份 @theme（跟 src/v3/theme.css 分開），
+   因為 @source 掃描目標是 studio 自己的 index.html/studio.js，不是
+   site 的頁面，混在同一份容易日後改 site 的 @source 清單時誤動到
+   studio。色彩 token 映射跟 src/v3/theme.css 完全一致（同一組
+   skins/*.css）。 */
+@layer theme, base, legacy, components, utilities;
+@import 'tailwindcss' source(none);
+@source '../../v3/tailwind/studio/index.html';
+@source '../../v3/tailwind/studio/studio.js';
+@import '../../v3/tailwind/site/assets/css/design-system/tokens.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/skins/white.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/skins/blue.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/skins/night-esports-green.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/skins/cosmic-spectrum-purple.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/skins/jade-jackpot.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/skins/curated-collection.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/design-system/components.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/design-system/variants.css' layer(legacy);
+@import '../../v3/tailwind/site/assets/css/design-system/design-studio.css' layer(legacy);
+@import '../../v3/tailwind/studio/studio.css' layer(legacy);
+
+@theme static {
+  --color-bg: var(--bg);
+  --color-bg-elev: var(--bg-elev);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hi: var(--bg-card-hi);
+  --color-line: var(--line);
+  --color-line-hi: var(--line-hi);
+  --color-text: var(--text);
+  --color-text-mid: var(--text-mid);
+  --color-text-dim: var(--text-dim);
+  --color-text-on-accent: var(--text-on-accent);
+  --color-text-on-accent-soft: var(--text-on-accent-soft);
+  --color-icon-muted: var(--icon-muted);
+  --color-cal-icon: var(--cal-icon);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-shade: var(--accent-shade);
+  --color-primary: var(--primary);
+  --color-primary-start: var(--primary-start);
+  --color-primary-end: var(--primary-end);
+  --color-live: var(--live);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-pos: var(--pos);
+  --color-neg: var(--neg);
+  --color-tier-next: var(--tier-next);
+  --color-control-border: var(--control-border);
+  --color-control-text: var(--control-text);
+  --color-control-hover-border: var(--control-hover-border);
+  --color-control-hover-text: var(--control-hover-text);
+  --color-control-active-border: var(--control-active-border);
+  --color-control-active-text: var(--control-active-text);
+  --color-table-row-bg: var(--table-row-bg);
+  --color-table-row-border: var(--table-row-border);
+  --color-table-header-text: var(--table-header-text);
+  --color-record-total-border: var(--record-total-border);
+  --color-rewards-banner-border: var(--rewards-banner-border);
+  --color-account-hero-border: var(--account-hero-border);
+  --color-secondary-button-bg: var(--secondary-button-bg);
+  --color-secondary-button-border: var(--secondary-button-border);
+  --color-secondary-button-text: var(--secondary-button-text);
+  --color-secondary-button-hover-border: var(--secondary-button-hover-border);
+  --color-secondary-button-hover-text: var(--secondary-button-hover-text);
+  --color-status-success-bg: var(--status-success-bg);
+  --color-status-success-text: var(--status-success-text);
+  --color-status-success-border: var(--status-success-border);
+  --color-badge-highlight-bg: var(--badge-highlight-bg);
+  --color-badge-highlight-text: var(--badge-highlight-text);
+  --color-badge-highlight-border: var(--badge-highlight-border);
+}
+
+/* design-studio.css（studio 專用控制台樣式，site 頁面不會載入）標題/
+   段落大多沒有自己設 font-weight/margin，依賴瀏覽器 UA 預設值（h1~h6
+   預設 bold、p 預設有上下 margin）。Preflight 的
+   h1~h6{font-size:inherit;font-weight:inherit}／
+   blockquote,dd,dl,figure,p,pre{margin:0} 會把這些通吃，實測
+   .studio-title(h1) 從 font-weight:700 變成 400，連帶讓整個控制面板
+   一堆區塊標題變細、垂直位置全部往上位移（168 處高度差）。這裡補回
+   UA 預設值，不影響任何 design-studio.css 已經自己設定的 class
+   （legacy layer 優先權高於 base layer）。 */
+@layer base {
+  /* studio 的 CSS 堆疊（tokens/skins/design-system/studio.css）不像
+     site 的 main.css 會在 html/body 明確設一個全站 line-height 基準
+     （main.css 是 1.5，跟 Preflight 預設剛好一樣，不會被悄悄改變）；
+     studio 完全沒設過，所有沒有自己指定 line-height 的元素原本都是
+     繼承瀏覽器預設值 normal。Preflight 在 html 設 line-height:1.5 會
+     一路繼承下去，實測 .studio-back 這種只設 font-size 沒設
+     line-height 的小字連結從 normal 變成 15.75px（1.5 倍），這裡改回
+     normal 才跟原站一致（比照 v1.5 同樣成因的做法）。 */
+  html { line-height: normal; }
+  button, input, select, textarea { font-size: 13.3333px; line-height: normal; }
+  input, select, textarea { padding: 1px 2px; }
+  button { padding: 1px 6px; }
+  p { margin: 1em 0; }
+  h1 { margin: 0.67em 0; font-weight: bold; }
+  h2 { margin: 0.83em 0; font-weight: bold; }
+  h3 { margin: 1em 0; font-weight: bold; }
+  h4 { margin: 1.33em 0; font-weight: bold; }
+  h5 { margin: 1.67em 0; font-weight: bold; }
+  h6 { margin: 2.33em 0; font-weight: bold; }
+}
