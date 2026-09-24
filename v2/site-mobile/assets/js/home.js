@@ -81,14 +81,8 @@
      窄版面，不需要桌機版那種同時多張並排，一次顯示一張、關閉後換下一張
      即可。內容/圖片跟 v2/site 桌機版共用同一份 D.PROMO_POPUP，「今天不再
      提醒」的 localStorage key 也刻意跟桌機版共用（同源），使用者在任一
-     裝置勾選過，另一裝置當天就不會再彈出。
-     關閉鈕疊一圈倒數環：8 秒轉完自動換下一張，不用等使用者手動點 X；
-     圈圈用 inline style 直接觸發 CSS transition（stroke-dashoffset 從 0
-     轉到全長），不依賴額外的 @keyframes 規則，純 Tailwind 頁面也能用。
-     手動點 X 一樣立即生效，並清掉尚未跑完的倒數計時器，避免兩邊都觸發。 */
-  var PROMO_POPUP_AUTO_MS = 8000;
-  var PROMO_POPUP_RING_C = 75.4; // 2 * PI * r(12)
-
+     裝置勾選過，另一裝置當天就不會再彈出。換下一張純手動點 X 觸發，
+     不自動倒數切換。 */
   function initPromoPopup() {
     var ALL = D.PROMO_POPUP || [];
     if (!ALL.length) return;
@@ -112,12 +106,8 @@
         '<div class="flex flex-col w-full max-w-[300px] h-[420px] rounded-2xl border border-line-hi bg-bg-card overflow-hidden">' +
         '<div class="flex-none flex items-center justify-between px-3.5 py-2.5 border-b border-line">' +
         '<img src="../site/logo.png" alt="logo" class="h-5 w-auto object-contain">' +
-        '<button type="button" class="relative h-7 w-7 grid place-items-center rounded-full text-text-mid" data-promo-popup-close aria-label="Close">' +
-        '<svg class="absolute inset-0 -rotate-90" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">' +
-        '<circle cx="14" cy="14" r="12" fill="none" stroke="currentColor" stroke-width="2" opacity=".2"></circle>' +
-        '<circle data-promo-popup-ring cx="14" cy="14" r="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="' + PROMO_POPUP_RING_C + '" stroke-dashoffset="0"></circle>' +
-        '</svg>' +
-        '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="relative" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>' +
+        '<button type="button" class="h-7 w-7 grid place-items-center rounded-full text-text-mid" data-promo-popup-close aria-label="Close">' +
+        '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>' +
         '</button></div>' +
         '<div class="flex-none cursor-pointer" data-promo-popup-content>' +
         '<img src="assets/images/promo-popup/' + promo.image + '" alt="' + promo.title[loc] + '" class="w-full h-[150px] object-cover">' +
@@ -142,20 +132,6 @@
       localStorage.setItem(key, JSON.stringify(list));
     }
 
-    function startRing(cardEl, onDone) {
-      var timer = setTimeout(onDone, PROMO_POPUP_AUTO_MS);
-      var ring = cardEl.querySelector('[data-promo-popup-ring]');
-      if (ring) {
-        ring.style.transition = 'none';
-        ring.style.strokeDashoffset = '0';
-        requestAnimationFrame(function () {
-          ring.style.transition = 'stroke-dashoffset ' + (PROMO_POPUP_AUTO_MS / 1000) + 's linear';
-          requestAnimationFrame(function () { ring.style.strokeDashoffset = String(PROMO_POPUP_RING_C); });
-        });
-      }
-      return timer;
-    }
-
     var current = 0;
     function render() {
       if (current >= cards.length) { backdrop.remove(); return; }
@@ -163,7 +139,6 @@
       backdrop.innerHTML = cardHTML(promo);
       var cardEl = backdrop.firstElementChild;
       function advance() {
-        clearTimeout(timer);
         current += 1;
         render();
       }
@@ -175,7 +150,6 @@
       cardEl.querySelector('[data-promo-popup-content]').addEventListener('click', function () {
         location.href = 'promotion.html';
       });
-      var timer = startRing(cardEl, advance);
     }
     render();
   }

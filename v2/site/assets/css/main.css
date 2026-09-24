@@ -2799,7 +2799,6 @@ select.pay-field {
   display: flex; align-items: center; justify-content: center;
   padding: 16px;
 }
-.promo-popup-stage { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
 .promo-popup-card {
   display: flex; flex-direction: column;
   width: min(300px, calc(100vw - 32px));

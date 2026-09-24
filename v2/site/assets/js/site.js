@@ -1042,18 +1042,11 @@
   }
 
   /* =========================== 進站公告彈窗 ================================ */
-  /* 比照 v1.5 Nuxt 版 components/PromotionModal.vue：首頁進站時，手機一次顯示
-     一張、關閉後換下一張；桌機(>=768px，跟 .mobile-bottom-nav 收合斷點一致)
-     同時顯示最多 3 張，各卡各自獨立倒數。「今天不再提醒」勾選才寫進
-     localStorage(key 每天自動換新)，沒勾選只是這次瀏覽暫時關閉，下次
-     進站還會再出現。
-     關閉鈕疊一圈倒數環：8 秒轉完自動換下一張（桌機版則是自動關閉該張），
-     不用等使用者手動點 X；圈圈用 inline style 直接觸發 CSS transition
-     （stroke-dashoffset 從 0 轉到全長），不用額外修 main.css 的
-     @keyframes。手動點 X 一樣立即生效，並清掉尚未跑完的倒數計時器。 */
-  var PROMO_POPUP_AUTO_MS = 8000;
-  var PROMO_POPUP_RING_C = 75.4; // 2 * PI * r(12)
-
+  /* 比照 v1.5 Nuxt 版 components/PromotionModal.vue：首頁進站時一次只顯示
+     一張，點右上角 X 關閉後才換下一張，桌機/手機都是同一套邏輯（不再
+     依斷點分桌機同時顯示多張）。「今天不再提醒」勾選才寫進 localStorage
+     （key 每天自動換新)，沒勾選只是這次瀏覽暫時關閉，下次進站還會再
+     出現。 */
   function initPromoPopup() {
     if (pageName() !== 'index') return;
     var ALL = D.PROMO_POPUP || [];
@@ -1068,7 +1061,6 @@
     var cards = ALL.filter(function (p) { return dismissedIds.indexOf(String(p.promotion_id)) === -1; });
     if (!cards.length) return;
 
-    var isDesktop = window.matchMedia('(min-width: 768px)').matches;
     var loc = currentLocale();
     var backdrop = document.createElement('div');
     backdrop.className = 'promo-popup-backdrop';
@@ -1079,12 +1071,8 @@
         '<div class="promo-popup-card" data-promo-card="' + promo.promotion_id + '">' +
         '<div class="promo-popup-head">' +
         '<img src="logo.png" alt="logo">' +
-        '<button type="button" class="promo-popup-close" data-promo-popup-close aria-label="Close" style="position:relative;">' +
-        '<svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" style="position:absolute;inset:0;transform:rotate(-90deg);">' +
-        '<circle cx="14" cy="14" r="12" fill="none" stroke="currentColor" stroke-width="2" opacity=".2"></circle>' +
-        '<circle data-promo-popup-ring cx="14" cy="14" r="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="' + PROMO_POPUP_RING_C + '" stroke-dashoffset="0"></circle>' +
-        '</svg>' +
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:relative;"><path d="m6 6 12 12M18 6 6 18"></path></svg>' +
+        '<button type="button" class="promo-popup-close" data-promo-popup-close aria-label="Close">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"></path></svg>' +
         '</button></div>' +
         '<div class="promo-popup-content" data-promo-popup-content><img src="assets/images/promo-popup/' + promo.image + '" alt="' + promo.title[loc] + '"></div>' +
         '<div class="promo-popup-body">' +
@@ -1107,67 +1095,23 @@
       localStorage.setItem(key, JSON.stringify(list));
     }
 
-    function startRing(cardEl, onDone) {
-      var timer = setTimeout(onDone, PROMO_POPUP_AUTO_MS);
-      var ring = $('[data-promo-popup-ring]', cardEl);
-      if (ring) {
-        ring.style.transition = 'none';
-        ring.style.strokeDashoffset = '0';
-        requestAnimationFrame(function () {
-          ring.style.transition = 'stroke-dashoffset ' + (PROMO_POPUP_AUTO_MS / 1000) + 's linear';
-          requestAnimationFrame(function () { ring.style.strokeDashoffset = String(PROMO_POPUP_RING_C); });
-        });
-      }
-      return timer;
-    }
-
-    function bindCard(cardEl, promo) {
-      function advance() {
-        clearTimeout(timer);
-        closeCard(promo.promotion_id);
-      }
+    var current = 0;
+    function render() {
+      if (current >= cards.length) { backdrop.remove(); return; }
+      var promo = cards[current];
+      backdrop.innerHTML = cardHTML(promo);
+      var cardEl = backdrop.firstElementChild;
       on($('[data-promo-popup-close]', cardEl), 'click', function (e) {
         e.stopPropagation();
         if ($('[data-promo-popup-remember]', cardEl).checked) persistDismiss(promo.promotion_id);
-        advance();
+        current += 1;
+        render();
       });
       on($('[data-promo-popup-content]', cardEl), 'click', function () {
         location.href = 'promotion.html';
       });
-      var timer = startRing(cardEl, advance);
     }
-
-    var current = 0;
-    function renderMobile() {
-      if (current >= cards.length) { backdrop.remove(); return; }
-      var promo = cards[current];
-      backdrop.innerHTML = cardHTML(promo);
-      bindCard(backdrop.firstElementChild, promo);
-    }
-
-    function closeCard(id) {
-      if (isDesktop) {
-        var el = $('[data-promo-card="' + id + '"]', backdrop);
-        if (el) el.remove();
-        if (!$('[data-promo-card]', backdrop)) backdrop.remove();
-      } else {
-        current += 1;
-        renderMobile();
-      }
-    }
-
-    if (isDesktop) {
-      var stage = document.createElement('div');
-      stage.className = 'promo-popup-stage';
-      var shown = cards.slice(0, 3);
-      stage.innerHTML = shown.map(cardHTML).join('');
-      backdrop.appendChild(stage);
-      shown.forEach(function (promo) {
-        bindCard($('[data-promo-card="' + promo.promotion_id + '"]', stage), promo);
-      });
-    } else {
-      renderMobile();
-    }
+    render();
   }
 
   /* ============================ mini games grid =========================== */
