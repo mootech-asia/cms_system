@@ -77,12 +77,10 @@
     dots.forEach(function (el, idx) { el.addEventListener('click', function () { goTo(idx); }); });
   }
 
-  /* 進站公告彈窗（比照 v1.5 components/PromotionModal.vue）：手機版永遠是
-     窄版面，不需要桌機版那種同時多張並排，一次顯示一張、關閉後換下一張
-     即可。內容/圖片跟 v2/site 桌機版共用同一份 D.PROMO_POPUP，「今天不再
+  /* 進站公告彈窗（比照 v1.5 components/PromotionModal.vue）：全部公告一次
+     列出，窄版面上下排、可捲動，各自點 X 關閉。內容/圖片跟 v2/site 桌機版共用同一份 D.PROMO_POPUP，「今天不再
      提醒」的 localStorage key 也刻意跟桌機版共用（同源），使用者在任一
-     裝置勾選過，另一裝置當天就不會再彈出。換下一張純手動點 X 觸發，
-     不自動倒數切換。 */
+     裝置勾選過，另一裝置當天就不會再彈出。 */
   function initPromoPopup() {
     var ALL = D.PROMO_POPUP || [];
     if (!ALL.length) return;
@@ -98,12 +96,12 @@
 
     var loc = window.__v2mT ? (localStorage.getItem('win100-locale') || 'zh') : 'zh';
     var backdrop = document.createElement('div');
-    backdrop.className = 'fixed inset-0 z-[70] bg-black/70 flex items-center justify-center p-4';
+    backdrop.className = 'fixed inset-0 z-[70] bg-black/70 flex p-4 overflow-y-auto';
     document.body.appendChild(backdrop);
 
     function cardHTML(promo) {
       return (
-        '<div class="flex flex-col w-full max-w-[300px] h-[420px] rounded-2xl border border-line-hi bg-bg-card overflow-hidden">' +
+        '<div class="flex flex-col shrink-0 w-full max-w-[300px] h-[420px] rounded-2xl border border-line-hi bg-bg-card overflow-hidden">' +
         '<div class="flex-none flex items-center justify-between px-3.5 py-2.5 border-b border-line">' +
         '<img src="../site/logo.png" alt="logo" class="h-5 w-auto object-contain">' +
         '<button type="button" class="h-7 w-7 grid place-items-center rounded-full text-text-mid" data-promo-popup-close aria-label="Close">' +
@@ -132,26 +130,22 @@
       localStorage.setItem(key, JSON.stringify(list));
     }
 
-    var current = 0;
-    function render() {
-      if (current >= cards.length) { backdrop.remove(); return; }
-      var promo = cards[current];
-      backdrop.innerHTML = cardHTML(promo);
-      var cardEl = backdrop.firstElementChild;
-      function advance() {
-        current += 1;
-        render();
-      }
+    var stage = document.createElement('div');
+    stage.className = 'm-auto flex flex-col items-center gap-4 w-full';
+    stage.innerHTML = cards.map(cardHTML).join('');
+    backdrop.appendChild(stage);
+    Array.prototype.forEach.call(stage.children, function (cardEl, i) {
+      var promo = cards[i];
       cardEl.querySelector('[data-promo-popup-close]').addEventListener('click', function (e) {
         e.stopPropagation();
         if (cardEl.querySelector('[data-promo-popup-remember]').checked) persistDismiss(promo.promotion_id);
-        advance();
+        cardEl.remove();
+        if (!stage.children.length) backdrop.remove();
       });
       cardEl.querySelector('[data-promo-popup-content]').addEventListener('click', function () {
         location.href = 'promotion.html';
       });
-    }
-    render();
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function () {
