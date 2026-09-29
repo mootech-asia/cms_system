@@ -9,70 +9,70 @@
     <link rel="stylesheet" href="assets/css/tailwind.css" />
   </head>
   <body>
-    <div class="page-shell">
+    <div class="min-h-screen pt-[var(--header-h-mobile)] pb-24 max-xl:[body.is-usercenter_&]:pt-0 xl:pt-[var(--header-h-desktop)] xl:pb-0">
       <div data-mount="header"></div>
-      <main class="usercenter-main">
+      <main class="pt-0">
         <div data-mount="user-navbar"></div>
-        <div class="usercenter-grid">
+        <div class="grid grid-cols-1">
           <div data-mount="user-sidebar"></div>
-          <div class="usercenter-content">
-            <div class="pay-page">
-              <h1 class="pay-page-title" data-i18n="userCenter.bankingDetails">결제 정보</h1>
-              <section class="pay-section" style="padding-top: 16px">
-                <div class="pay-section-inner">
-                  <div class="pay-method-tabs" data-bd-method>
-                    <button type="button" class="pay-method-tab is-selected" data-bd-method-btn="bank" data-i18n="userCenter.withdrawalPage.bankCard">은행카드</button>
-                    <button type="button" class="pay-method-tab" data-bd-method-btn="crypto" data-i18n="userCenter.withdrawalPage.cryptoWallet">가상지갑</button>
+          <div class="w-full bg-white overflow-x-hidden xl:ml-[260px] xl:w-[calc(100%-260px)]">
+            <div class="bg-white">
+              <h1 class="hidden xl:block xl:m-0 xl:text-navy xl:text-[32px] xl:font-bold xl:pt-4 xl:px-8 xl:pb-2 xl:border-b xl:border-border-soft" data-i18n="userCenter.bankingDetails">결제 정보</h1>
+              <section class="px-4 pt-4 pb-20 xl:px-8 xl:pb-10">
+                <div class="max-w-[945px] mx-auto">
+                  <div class="flex gap-2 mb-4" data-bd-method>
+                    <button type="button" class="flex-1 h-11 rounded-[10px] !border-2 !border-border !bg-white !text-[#6d6d6d] !text-[14px] !font-semibold [&.is-selected]:!border-gold [&.is-selected]:!bg-gold [&.is-selected]:!text-navy is-selected" data-bd-method-btn="bank" data-i18n="userCenter.withdrawalPage.bankCard">은행카드</button>
+                    <button type="button" class="flex-1 h-11 rounded-[10px] !border-2 !border-border !bg-white !text-[#6d6d6d] !text-[14px] !font-semibold [&.is-selected]:!border-gold [&.is-selected]:!bg-gold [&.is-selected]:!text-navy" data-bd-method-btn="crypto" data-i18n="userCenter.withdrawalPage.cryptoWallet">가상지갑</button>
                   </div>
 
                   <!-- 銀行帳戶:清單模式 -->
                   <div data-bd-list-mode="bank">
-                    <p class="wd-account-count" data-bd-count="bank"></p>
+                    <p class="flex items-center gap-2 font-bold text-navy text-[14px] mb-3 before:content-[''] before:w-1 before:h-4 before:bg-gold before:rounded-sm before:inline-block" data-bd-count="bank"></p>
                     <div data-bd-accounts="bank"></div>
-                    <button type="button" class="bd-add-btn" data-bd-add="bank"><img src="assets/images/icon/usercenter/add.svg" alt="add" /><span data-i18n="userCenter.bankingDetailsPage.addAccount">계좌 추가</span></button>
+                    <button type="button" class="w-full h-12 mt-4 rounded-lg !border !border-dashed !border-gold !bg-[#fff9ec] !text-navy !font-bold flex items-center justify-center gap-2 [&.is-disabled]:opacity-40 [&.is-disabled]:cursor-not-allowed" data-bd-add="bank"><img class="w-4.5 h-4.5" src="assets/images/icon/usercenter/add.svg" alt="add" /><span data-i18n="userCenter.bankingDetailsPage.addAccount">계좌 추가</span></button>
                   </div>
 
                   <!-- 銀行帳戶:新增模式 -->
-                  <div data-bd-add-mode="bank" style="display: none">
-                    <div style="text-align: center">
-                      <span class="pay-pill-label" data-i18n="userCenter.bankingDetailsPage.bankInformation">은행 정보</span>
+                  <div class="mt-6" data-bd-add-mode="bank" style="display: none">
+                    <div class="text-center">
+                      <span class="block w-fit mx-auto mb-4 py-1 px-6 rounded-full bg-navy-2 text-white text-[14px]" data-i18n="userCenter.bankingDetailsPage.bankInformation">은행 정보</span>
                     </div>
-                    <input type="text" class="pay-input" placeholder="카드 번호를 입력해 주세요" data-i18n-placeholder="userCenter.bankingDetailsPage.enterCardNumber" data-bd-card-number style="margin-top: 16px" />
+                    <input type="text" class="w-full h-10 rounded-[10px] border border-subtitle px-4 text-navy mt-4 placeholder:text-[#6d6d6d]" placeholder="카드 번호를 입력해 주세요" data-i18n-placeholder="userCenter.bankingDetailsPage.enterCardNumber" data-bd-card-number />
 
-                    <div style="text-align: center; margin-top: 24px">
-                      <span class="pay-pill-label" data-i18n="userCenter.bankingDetailsPage.transactionPassword">거래 비밀번호</span>
+                    <div class="text-center mt-6">
+                      <span class="block w-fit mx-auto mb-4 py-1 px-6 rounded-full bg-navy-2 text-white text-[14px]" data-i18n="userCenter.bankingDetailsPage.transactionPassword">거래 비밀번호</span>
                     </div>
-                    <input type="password" class="pay-input" placeholder="거래 비밀번호를 입력해 주세요" data-i18n-placeholder="userCenter.bankingDetailsPage.fillTransactionPassword" data-bd-fund-password="bank" />
+                    <input type="password" class="w-full h-10 rounded-[10px] border border-subtitle px-4 text-navy mt-4 placeholder:text-[#6d6d6d]" placeholder="거래 비밀번호를 입력해 주세요" data-i18n-placeholder="userCenter.bankingDetailsPage.fillTransactionPassword" data-bd-fund-password="bank" />
 
-                    <button type="button" class="pay-next-btn" data-bd-submit="bank" style="margin-top: 40px">
+                    <button type="button" class="w-full h-[51px] flex items-center justify-center rounded-[10px] !bg-navy-2 !font-bold mt-10" data-bd-submit="bank">
                       <span class="text-gradient" data-i18n="common.submit">제출</span>
                     </button>
-                    <button type="button" class="pay-back-btn" data-bd-cancel="bank" data-i18n="common.back">뒤로</button>
+                    <button type="button" class="w-full h-12 mt-2 rounded-lg !border !border-navy !text-navy !font-bold !bg-white" data-bd-cancel="bank" data-i18n="common.back">뒤로</button>
                   </div>
 
                   <!-- 虛擬錢包:清單模式 -->
                   <div data-bd-list-mode="crypto" hidden>
-                    <p class="wd-account-count" data-bd-count="crypto"></p>
+                    <p class="flex items-center gap-2 font-bold text-navy text-[14px] mb-3 before:content-[''] before:w-1 before:h-4 before:bg-gold before:rounded-sm before:inline-block" data-bd-count="crypto"></p>
                     <div data-bd-accounts="crypto"></div>
-                    <button type="button" class="bd-add-btn" data-bd-add="crypto"><img src="assets/images/icon/usercenter/add.svg" alt="add" /><span data-i18n="userCenter.withdrawalPage.addWallet">지갑 추가</span></button>
+                    <button type="button" class="w-full h-12 mt-4 rounded-lg !border !border-dashed !border-gold !bg-[#fff9ec] !text-navy !font-bold flex items-center justify-center gap-2 [&.is-disabled]:opacity-40 [&.is-disabled]:cursor-not-allowed" data-bd-add="crypto"><img class="w-4.5 h-4.5" src="assets/images/icon/usercenter/add.svg" alt="add" /><span data-i18n="userCenter.withdrawalPage.addWallet">지갑 추가</span></button>
                   </div>
 
                   <!-- 虛擬錢包:新增模式 -->
-                  <div data-bd-add-mode="crypto" style="display: none">
-                    <div style="text-align: center">
-                      <span class="pay-pill-label" data-i18n="userCenter.withdrawalPage.cryptoWallet">가상지갑</span>
+                  <div class="mt-6" data-bd-add-mode="crypto" style="display: none">
+                    <div class="text-center">
+                      <span class="block w-fit mx-auto mb-4 py-1 px-6 rounded-full bg-navy-2 text-white text-[14px]" data-i18n="userCenter.withdrawalPage.cryptoWallet">가상지갑</span>
                     </div>
-                    <input type="text" class="pay-input" placeholder="지갑 주소를 입력해 주세요" data-i18n-placeholder="userCenter.withdrawalPage.walletAddressPlaceholder" data-bd-wallet-address style="margin-top: 16px" />
+                    <input type="text" class="w-full h-10 rounded-[10px] border border-subtitle px-4 text-navy mt-4 placeholder:text-[#6d6d6d]" placeholder="지갑 주소를 입력해 주세요" data-i18n-placeholder="userCenter.withdrawalPage.walletAddressPlaceholder" data-bd-wallet-address />
 
-                    <div style="text-align: center; margin-top: 24px">
-                      <span class="pay-pill-label" data-i18n="userCenter.bankingDetailsPage.transactionPassword">거래 비밀번호</span>
+                    <div class="text-center mt-6">
+                      <span class="block w-fit mx-auto mb-4 py-1 px-6 rounded-full bg-navy-2 text-white text-[14px]" data-i18n="userCenter.bankingDetailsPage.transactionPassword">거래 비밀번호</span>
                     </div>
-                    <input type="password" class="pay-input" placeholder="거래 비밀번호를 입력해 주세요" data-i18n-placeholder="userCenter.bankingDetailsPage.fillTransactionPassword" data-bd-fund-password="crypto" />
+                    <input type="password" class="w-full h-10 rounded-[10px] border border-subtitle px-4 text-navy mt-4 placeholder:text-[#6d6d6d]" placeholder="거래 비밀번호를 입력해 주세요" data-i18n-placeholder="userCenter.bankingDetailsPage.fillTransactionPassword" data-bd-fund-password="crypto" />
 
-                    <button type="button" class="pay-next-btn" data-bd-submit="crypto" style="margin-top: 40px">
+                    <button type="button" class="w-full h-[51px] flex items-center justify-center rounded-[10px] !bg-navy-2 !font-bold mt-10" data-bd-submit="crypto">
                       <span class="text-gradient" data-i18n="common.submit">제출</span>
                     </button>
-                    <button type="button" class="pay-back-btn" data-bd-cancel="crypto" data-i18n="common.back">뒤로</button>
+                    <button type="button" class="w-full h-12 mt-2 rounded-lg !border !border-navy !text-navy !font-bold !bg-white" data-bd-cancel="crypto" data-i18n="common.back">뒤로</button>
                   </div>
                 </div>
               </section>

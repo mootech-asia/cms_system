@@ -9,45 +9,45 @@
     <link rel="stylesheet" href="assets/css/tailwind.css" />
   </head>
   <body>
-    <div class="page-shell">
+    <div class="min-h-screen pt-[var(--header-h-mobile)] pb-24 max-xl:[body.is-usercenter_&]:pt-0 xl:pt-[var(--header-h-desktop)] xl:pb-0">
       <div data-mount="header"></div>
-      <main class="usercenter-main">
+      <main class="pt-0">
         <div data-mount="user-navbar"></div>
-        <div class="usercenter-grid">
+        <div class="grid grid-cols-1">
           <div data-mount="user-sidebar"></div>
-          <div class="usercenter-content">
-            <h1 class="txinfo-page-title" data-tx-title>거래 상세</h1>
-            <section class="txinfo-section">
-              <div class="txinfo-inner">
-                <span class="txinfo-pill" data-i18n="userCenter.transactionDetails">거래 상세</span>
-                <div class="txinfo-card">
-                  <div class="txinfo-row">
-                    <span class="label" data-tx-amount-label>입금 금액</span>
-                    <span class="value">₩ <span data-tx-amount>0</span></span>
+          <div class="w-full bg-white overflow-x-hidden xl:ml-[260px] xl:w-[calc(100%-260px)]">
+            <h1 class="hidden xl:block xl:m-0 xl:h-[62px] xl:text-navy xl:text-[32px] xl:font-bold xl:py-2 xl:px-8 xl:border-b xl:border-border-soft" data-tx-title>거래 상세</h1>
+            <section class="pt-6 px-7 pb-25 xl:py-8">
+              <div class="max-w-[945px] mx-auto">
+                <span class="block w-fit mx-auto mb-10 py-1 px-6 rounded-full bg-navy-2 text-white" data-i18n="userCenter.transactionDetails">거래 상세</span>
+                <div class="border border-border rounded-xl pt-3 px-6 pb-0">
+                  <div class="flex items-center justify-between pb-4">
+                    <span class="text-[14px] font-bold text-navy" data-tx-amount-label>입금 금액</span>
+                    <span class="text-[24px] font-bold text-navy">₩ <span data-tx-amount>0</span></span>
                   </div>
-                  <div class="txinfo-row is-bonus" data-tx-bonus-row style="display: none">
-                    <span class="label" data-tx-bonus-label>입금 프로모션</span>
-                    <span class="value">＋₩ <span data-tx-bonus>0</span> <span data-i18n="userCenter.bonus">보너스</span></span>
+                  <div class="flex items-center justify-between pb-4 border-b border-border-soft" data-tx-bonus-row style="display: none">
+                    <span class="text-[14px] font-bold text-navy" data-tx-bonus-label>입금 프로모션</span>
+                    <span class="text-[16px] font-bold text-[#0e8d6c]">＋₩ <span data-tx-bonus>0</span> <span data-i18n="userCenter.bonus">보너스</span></span>
                   </div>
-                  <div class="txinfo-row" data-tx-received-row style="display: none">
-                    <span class="label" data-i18n="userCenter.receivedAmount">실수령 금액</span>
-                    <span class="value">₩ <span data-tx-received>0</span></span>
+                  <div class="flex items-center justify-between pb-4" data-tx-received-row style="display: none">
+                    <span class="text-[14px] font-bold text-navy" data-i18n="userCenter.receivedAmount">실수령 금액</span>
+                    <span class="text-[24px] font-bold text-navy">₩ <span data-tx-received>0</span></span>
                   </div>
                 </div>
 
-                <div class="txinfo-account-row">
-                  <span data-tx-account-label>입금 계좌</span>
-                  <span data-tx-username>meaomcao</span>
+                <div class="flex items-center justify-between py-6 px-4">
+                  <span class="text-navy font-bold" data-tx-account-label>입금 계좌</span>
+                  <span class="text-navy font-bold" data-tx-username>meaomcao</span>
                 </div>
 
-                <p class="txinfo-desc" data-tx-desc></p>
-                <a class="txinfo-cs-link" href="#" data-i18n="userCenter.customerService">고객센터</a>
+                <p class="text-[#4f4f4f] px-4 mt-4" data-tx-desc></p>
+                <a class="inline-block mt-6 px-4 !text-[#1d4ed8] !underline" href="#" data-i18n="userCenter.customerService">고객센터</a>
 
-                <div class="txinfo-actions">
-                  <button type="button" class="txinfo-complete-btn" data-tx-complete>
+                <div class="mt-16">
+                  <button type="button" class="w-full h-12 rounded-lg !bg-navy !font-bold" data-tx-complete>
                     <span class="text-gradient" data-i18n="common.complete">완료</span>
                   </button>
-                  <button type="button" class="txinfo-back-btn" data-tx-back data-i18n="common.back">뒤로</button>
+                  <button type="button" class="w-full h-12 mt-4 rounded-lg !border !border-navy !text-navy !font-bold !bg-white" data-tx-back data-i18n="common.back">뒤로</button>
                 </div>
               </div>
             </section>

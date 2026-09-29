@@ -9,42 +9,42 @@
     <link rel="stylesheet" href="assets/css/tailwind.css" />
   </head>
   <body>
-    <div class="page-shell">
+    <div class="min-h-screen pt-[var(--header-h-mobile)] pb-24 max-xl:[body.is-usercenter_&]:pt-0 xl:pt-[var(--header-h-desktop)] xl:pb-0">
       <div data-mount="header"></div>
-      <main class="usercenter-main">
+      <main class="pt-0">
         <div data-mount="user-navbar"></div>
-        <div class="usercenter-grid">
+        <div class="grid grid-cols-1">
           <div data-mount="user-sidebar"></div>
-          <div class="usercenter-content">
-            <div class="record-page">
-              <h1 class="account-page-title" data-i18n="userCenter.sidebar.withdrawalDetail">출금 상세 정보</h1>
-              <div class="record-inner">
-                <div class="record-tags">
-                  <div class="record-refresh" style="margin-left: 0"><span data-i18n="userCenter.common.autoRefresh.in">자동 갱신까지</span><strong>30</strong><span data-i18n="userCenter.common.autoRefresh.secondsShort">초</span><img src="assets/images/icon/refresh-blue.svg" alt="refresh" data-refresh-btn /></div>
+          <div class="w-full bg-white overflow-x-hidden xl:ml-[260px] xl:w-[calc(100%-260px)]">
+            <div class="bg-[#f2f2f2] min-h-[calc(100vh-var(--header-h-mobile))] flex flex-col xl:min-h-[calc(100vh-var(--header-h-desktop))]">
+              <h1 class="hidden xl:block xl:h-[62px] xl:bg-white xl:text-navy xl:text-[32px] xl:font-bold xl:leading-[64px] xl:border-b xl:border-border xl:px-8 xl:mt-0 xl:mx-0 xl:mb-4" data-i18n="userCenter.sidebar.withdrawalDetail">출금 상세 정보</h1>
+              <div class="max-w-[1190px] w-full mx-auto px-4 pt-3 pb-24 flex flex-col flex-1 xl:px-8 xl:pt-6 xl:pb-10">
+                <div class="flex flex-wrap gap-2 items-center">
+                  <div class="flex items-center gap-2 h-10 px-3 rounded-lg bg-white border border-border text-[#6d6d6d] text-[14px]" data-record-refresh><span data-i18n="userCenter.common.autoRefresh.in">자동 갱신까지</span><strong class="text-navy">30</strong><span data-i18n="userCenter.common.autoRefresh.secondsShort">초</span><img class="w-5 h-5 cursor-pointer" src="assets/images/icon/refresh-blue.svg" alt="refresh" data-refresh-btn /></div>
                 </div>
 
-                <div class="record-table-wrap">
-                  <table class="record-table record-mobile-only record-mobile-table">
+                <div class="mt-4 overflow-x-auto xl:mb-4">
+                  <table class="w-full min-w-0 border-collapse bg-white rounded-[10px] overflow-hidden text-[12px] text-center xl:hidden">
                     <thead>
-                      <tr>
-                        <th data-i18n="userCenter.common.headers.date">날짜</th>
-                        <th data-i18n="common.type">유형</th>
-                        <th data-i18n="userCenter.withdrawalDetailPage.activityName">이벤트 이름</th>
-                        <th data-i18n="userCenter.withdrawalDetailPage.progress">진행 상황</th>
+                      <tr class="bg-[#f6e27b] text-navy font-bold">
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.common.headers.date">날짜</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="common.type">유형</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.withdrawalDetailPage.activityName">이벤트 이름</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.withdrawalDetailPage.progress">진행 상황</th>
                       </tr>
                     </thead>
                     <tbody data-record-body-mobile></tbody>
                   </table>
 
-                  <table class="record-table record-desktop-only">
+                  <table class="hidden w-full min-w-[700px] border-collapse bg-white rounded-[10px] overflow-hidden text-[13px] text-center xl:table">
                     <thead>
-                      <tr>
-                        <th data-i18n="userCenter.common.headers.date">날짜</th>
-                        <th data-i18n="common.type">유형</th>
-                        <th data-i18n="userCenter.withdrawalDetailPage.activityName">이벤트 이름</th>
-                        <th data-i18n="userCenter.withdrawalDetailPage.depositRollover">입금 롤오버</th>
-                        <th data-i18n="userCenter.withdrawalDetailPage.bonusRollover">보너스 롤오버</th>
-                        <th data-i18n="userCenter.withdrawalDetailPage.progress">진행 상황</th>
+                      <tr class="bg-[#f6e27b] text-navy font-bold">
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.common.headers.date">날짜</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="common.type">유형</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.withdrawalDetailPage.activityName">이벤트 이름</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.withdrawalDetailPage.depositRollover">입금 롤오버</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.withdrawalDetailPage.bonusRollover">보너스 롤오버</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.withdrawalDetailPage.progress">진행 상황</th>
                       </tr>
                     </thead>
                     <tbody data-record-body-desktop></tbody>
@@ -69,12 +69,15 @@
         function fmt(n) { return Number(n).toLocaleString('en-US'); }
         var categoryMap = { 1: W.t('userCenter.withdrawalDetailPage.category.1'), 2: W.t('userCenter.withdrawalDetailPage.category.2'), 3: W.t('userCenter.withdrawalDetailPage.category.3'), 4: W.t('userCenter.withdrawalDetailPage.category.4') };
 
+        var TD_CLS = 'py-3 px-2 whitespace-nowrap';
+        var TR_CLS = 'border-b border-border text-navy last:border-b-0';
+
         function render() {
           W.qs('[data-record-body-mobile]').innerHTML = D.WITHDRAWAL_TURNOVER_TASKS.map(function (r) {
-            return '<tr><td>' + r.createdAt + '</td><td>' + categoryMap[r.category] + '</td><td>' + r.itemName + '</td><td>' + r.achieved + ' / ' + r.target + '</td></tr>';
+            return '<tr class="' + TR_CLS + '"><td class="' + TD_CLS + '">' + r.createdAt + '</td><td class="' + TD_CLS + '">' + categoryMap[r.category] + '</td><td class="' + TD_CLS + '">' + r.itemName + '</td><td class="' + TD_CLS + '">' + r.achieved + ' / ' + r.target + '</td></tr>';
           }).join('');
           W.qs('[data-record-body-desktop]').innerHTML = D.WITHDRAWAL_TURNOVER_TASKS.map(function (r) {
-            return '<tr><td>' + r.createdAt + '</td><td>' + categoryMap[r.category] + '</td><td>' + r.itemName + '</td><td>' + fmt(r.depositFlowAmount) + '</td><td>' + fmt(r.bonusFlowAmount) + '</td><td>' + r.achieved + ' / ' + r.target + '</td></tr>';
+            return '<tr class="' + TR_CLS + '"><td class="' + TD_CLS + '">' + r.createdAt + '</td><td class="' + TD_CLS + '">' + categoryMap[r.category] + '</td><td class="' + TD_CLS + '">' + r.itemName + '</td><td class="' + TD_CLS + '">' + fmt(r.depositFlowAmount) + '</td><td class="' + TD_CLS + '">' + fmt(r.bonusFlowAmount) + '</td><td class="' + TD_CLS + '">' + r.achieved + ' / ' + r.target + '</td></tr>';
           }).join('');
         }
         W.initAutoRefresh(render);
