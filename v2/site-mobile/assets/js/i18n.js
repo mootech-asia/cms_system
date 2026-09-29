@@ -89,6 +89,8 @@
     'account.bound': { zh: '綁定', en: 'Bound', ko: '등록', th: 'ผูกบัญชี' },
     'account.memberNo': { zh: '會員編號', en: 'Member ID', ko: '회원 번호', th: 'หมายเลขสมาชิก' },
     'account.balance2': { zh: '帳戶餘額', en: 'Account Balance', ko: '계정 잔액', th: 'ยอดคงเหลือในบัญชี' },
+    'header.balance': { zh: '餘額', en: 'Balance', ko: '잔액', th: 'ยอดเงิน' },
+    'header.points': { zh: '點數', en: 'Points', ko: '포인트', th: 'แต้ม' },
     'account.bonusPoints': { zh: '紅利點數', en: 'Bonus Points', ko: '보너스 포인트', th: 'แต้มโบนัส' },
     'account.boundBanks': { zh: '已綁定銀行卡', en: 'Bound Bank Cards', ko: '등록된 은행 카드', th: 'บัตรธนาคารที่ผูกไว้' },
     'account.memberServices': { zh: '會員服務', en: 'Member Services', ko: '회원 서비스', th: 'บริการสมาชิก' },

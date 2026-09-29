@@ -21,10 +21,16 @@
     <a href="index.html" class="flex items-center">
       <img src="../site/logo.png" alt="Logo" class="h-8 w-auto object-contain">
     </a>
-    <div class="m-skin-wrap relative">
-      <button type="button" class="m-skin-trigger h-9 w-9 grid place-items-center rounded-xl border border-line-hi text-text-mid" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="skin.label" aria-label="外觀">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 5-8 5-8-5 8-5Z"></path><path d="m5.5 12 6.5 4 6.5-4"></path><path d="m7.5 17 4.5 2.8 4.5-2.8"></path></svg>
-      </button>
+    <div class="flex items-center gap-2">
+      <div class="hidden rounded-xl border border-line-hi bg-bg-card px-2.5 py-1 font-mono text-[11px] leading-[1.45] text-text-mid shadow-[inset_0_1px_0_rgba(255,255,255,.08)]" data-auth-account>
+        <p class="whitespace-nowrap"><span data-i18n="header.balance">餘額</span>: <b class="font-bold text-accent">$0.00</b></p>
+        <p class="whitespace-nowrap"><span data-i18n="header.points">點數</span>: <b class="font-bold text-accent">0</b></p>
+      </div>
+      <div class="m-skin-wrap relative">
+        <button type="button" class="m-skin-trigger h-9 w-9 grid place-items-center rounded-xl border border-line-hi text-text-mid" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="skin.label" aria-label="外觀">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 5-8 5-8-5 8-5Z"></path><path d="m5.5 12 6.5 4 6.5-4"></path><path d="m7.5 17 4.5 2.8 4.5-2.8"></path></svg>
+        </button>
+      </div>
     </div>
   </div>
 
