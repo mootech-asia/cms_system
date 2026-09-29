@@ -1,6 +1,8 @@
 /* 由桌機版 v2/site/themes/aurora.css（Aurora）的色票換算成手機版 token。
    login/register 按鈕在手機版固定白字，所以底色取主色加深（×0.55）
-   確保白字可讀，不直接用桌機的淺色主色。 */
+   確保白字可讀，不直接用桌機的淺色主色。promo-bonus 取桌機 --g-hero 的
+   前兩個色標（白字卡片需要飽和深色）；promo-money 取 promo-bonus-a
+   亮一階（×白 22%）→ 暗一階（×黑 12%），與右側卡片同色系。 */
 :root[data-skin="aurora"] {
   color-scheme: dark;
 
@@ -20,10 +22,10 @@
   --accent-soft: rgba(201, 166, 255, 0.16);
   --login-btn: #2c2347;
   --register-btn: #6f5b8c;
-  --promo-money-a: #ffc65c;
-  --promo-money-b: #bf9445;
-  --promo-bonus-a: #8d74b2;
-  --promo-bonus-b: #3a2b52;
+  --promo-money-a: #bb7af9;
+  --promo-money-b: #944bd9;
+  --promo-bonus-a: #a855f7;
+  --promo-bonus-b: #6d28d9;
   --live-dot: #ff8585;
 
   --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.45);

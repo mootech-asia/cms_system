@@ -1,5 +1,6 @@
-/* sport.html 專用：讀 WIN100_DATA.SPORT_MATCHES 渲染賽事卡（跟桌機版
-   v2/site/sport.html 同一份資料來源，只換卡片版面成手機單欄）。 */
+/* 讀 WIN100_DATA.SPORT_MATCHES 渲染賽事卡（跟桌機版 v2/site/sport.html 同一份
+   資料來源）：sport.html 單欄列表（#sport-match-list），首頁體育區塊橫向捲動
+   列（#home-sport-rail）共用同一張卡片樣板。 */
 (function () {
   'use strict';
   var D = window.WIN100_DATA || {};
@@ -20,7 +21,7 @@
           '<span class="text-[11px] font-semibold text-text-mid text-center truncate w-full">' + esc(m.home.name) + '</span>' +
         '</div>' +
         '<div class="flex flex-col items-center">' +
-          '<span class="text-[20px] font-extrabold text-text">' + esc(m.score) + '</span>' +
+          '<span class="whitespace-nowrap text-[20px] font-extrabold text-text">' + esc(m.score) + '</span>' +
           '<span class="text-[10.5px] text-text-dim">' + esc(m.time) + '</span>' +
         '</div>' +
         '<div class="flex flex-col items-center gap-1.5 w-20">' +
@@ -34,7 +35,8 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     var list = document.getElementById('sport-match-list');
-    if (!list) return;
-    list.innerHTML = matches.map(cardHTML).join('');
+    if (list) list.innerHTML = matches.map(cardHTML).join('');
+    var rail = document.getElementById('home-sport-rail');
+    if (rail) rail.innerHTML = matches.map(function (m) { return '<div class="flex-none w-[260px]">' + cardHTML(m) + '</div>'; }).join('');
   });
 })();

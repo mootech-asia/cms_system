@@ -15,6 +15,7 @@
 
   var STRINGS = {
     'nav.home': { zh: '首頁', en: 'Home', ko: '홈', th: 'หน้าแรก' },
+    'nav.sport': { zh: '體育', en: 'Sports', ko: '스포츠', th: 'กีฬา' },
     'nav.casino': { zh: '娛樂城', en: 'Casino', ko: '카지노', th: 'คาสิโน' },
     'nav.live': { zh: '真人視訊', en: 'Live games', ko: '라이브 카지노', th: 'คาสิโนสด' },
     'nav.mainNav': { zh: '主導覽', en: 'Main navigation', ko: '메인 내비게이션', th: 'เมนูหลัก' },
@@ -51,6 +52,9 @@
     'tabbar.live': { zh: '真人視訊', en: 'Live games', ko: '라이브 카지노', th: 'คาสิโนสด' },
     'tabbar.menu': { zh: '選單', en: 'Menu', ko: '메뉴', th: 'เมนู' },
 
+    'action.loadMore': { zh: '載入更多', en: 'Load More', ko: '더보기', th: 'โหลดเพิ่มเติม' },
+    'home.depositSub': { zh: '快速儲值', en: 'Quick deposit', ko: '빠른 입금', th: 'ฝากเงินรวดเร็ว' },
+    'home.withdrawSub': { zh: '快速出款', en: 'Fast withdrawals', ko: '빠른 출금', th: 'ถอนเงินรวดเร็ว' },
     'promo.freeMoneyTitle': { zh: '免費現金', en: 'Free money', ko: '무료 캐시', th: 'เงินสดฟรี' },
     'promo.freeMoneySub': { zh: '免費彩金！', en: 'Free cash!', ko: '무료 보너스!', th: 'โบนัสฟรี!' },
     'promo.bonusTitle': { zh: '優惠活動', en: 'Promotions', ko: '프로모션', th: 'โปรโมชัน' },
@@ -89,6 +93,8 @@
     'account.bound': { zh: '綁定', en: 'Bound', ko: '등록', th: 'ผูกบัญชี' },
     'account.memberNo': { zh: '會員編號', en: 'Member ID', ko: '회원 번호', th: 'หมายเลขสมาชิก' },
     'account.balance2': { zh: '帳戶餘額', en: 'Account Balance', ko: '계정 잔액', th: 'ยอดคงเหลือในบัญชี' },
+    'header.balance': { zh: '餘額', en: 'Balance', ko: '잔액', th: 'ยอดเงิน' },
+    'header.points': { zh: '點數', en: 'Points', ko: '포인트', th: 'แต้ม' },
     'account.bonusPoints': { zh: '紅利點數', en: 'Bonus Points', ko: '보너스 포인트', th: 'แต้มโบนัส' },
     'account.boundBanks': { zh: '已綁定銀行卡', en: 'Bound Bank Cards', ko: '등록된 은행 카드', th: 'บัตรธนาคารที่ผูกไว้' },
     'account.memberServices': { zh: '會員服務', en: 'Member Services', ko: '회원 서비스', th: 'บริการสมาชิก' },

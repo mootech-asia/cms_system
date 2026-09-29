@@ -1,6 +1,8 @@
 /* 由桌機版 v2/site/themes/fashion-blue.css（Fashion Blue）的色票換算成手機版 token。
    login/register 按鈕在手機版固定白字，所以底色取主色加深（×0.55）
-   確保白字可讀，不直接用桌機的淺色主色。 */
+   確保白字可讀，不直接用桌機的淺色主色。promo-bonus 取桌機 --g-hero 的
+   前兩個色標（白字卡片需要飽和深色）；promo-money 取 promo-bonus-a
+   亮一階（×白 22%）→ 暗一階（×黑 12%），與右側卡片同色系。 */
 :root[data-skin="fashion-blue"] {
   color-scheme: dark;
 
@@ -20,10 +22,10 @@
   --accent-soft: rgba(93, 169, 255, 0.16);
   --login-btn: #1d2a3a;
   --register-btn: #335d8c;
-  --promo-money-a: #eacb81;
-  --promo-money-b: #b09861;
-  --promo-bonus-a: #4176b2;
-  --promo-bonus-b: #1d3552;
+  --promo-money-a: #4881cc;
+  --promo-money-b: #1253a6;
+  --promo-bonus-a: #145ebd;
+  --promo-bonus-b: #081220;
   --live-dot: #ff7a8a;
 
   --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.45);

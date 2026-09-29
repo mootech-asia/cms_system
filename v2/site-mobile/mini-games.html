@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="zh" data-skin="lucky-star">
+<html lang="zh" data-skin="win100">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mini Games</title>
+<title>CMS_Frontend_v2</title>
 <link rel="stylesheet" href="assets/css/tailwind.css">
 <script>
   (function () {
@@ -21,10 +21,16 @@
     <a href="index.html" class="flex items-center">
       <img src="../site/logo.png" alt="Logo" class="h-8 w-auto object-contain">
     </a>
-    <div class="m-skin-wrap relative">
-      <button type="button" class="m-skin-trigger h-9 w-9 grid place-items-center rounded-xl border border-line-hi text-text-mid" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="skin.label" aria-label="外觀">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 5-8 5-8-5 8-5Z"></path><path d="m5.5 12 6.5 4 6.5-4"></path><path d="m7.5 17 4.5 2.8 4.5-2.8"></path></svg>
-      </button>
+    <div class="flex items-center gap-2">
+      <div class="hidden rounded-xl border border-line-hi bg-bg-card px-2.5 py-1 font-mono text-[11px] leading-[1.45] text-text-mid shadow-[inset_0_1px_0_rgba(255,255,255,.08)]" data-auth-account>
+        <p class="relative whitespace-nowrap"><span data-i18n="header.balance">餘額</span>: <b class="font-bold text-accent" data-m-balance data-raw="123456789012.34">123,456,789,012.34</b></p>
+        <p class="whitespace-nowrap"><span data-i18n="header.points">點數</span>: <b class="font-bold text-accent">0.00</b></p>
+      </div>
+      <div class="m-skin-wrap relative">
+        <button type="button" class="m-skin-trigger h-9 w-9 grid place-items-center rounded-xl border border-line-hi text-text-mid" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="skin.label" aria-label="外觀">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 5-8 5-8-5 8-5Z"></path><path d="m5.5 12 6.5 4 6.5-4"></path><path d="m7.5 17 4.5 2.8 4.5-2.8"></path></svg>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -35,9 +41,8 @@
 
   <div class="px-4 pb-3 hidden" data-auth-account>
     <div class="relative">
-      <div class="absolute inset-x-3 -bottom-1.5 top-2 rounded-2xl border border-accent/30 bg-accent/20" aria-hidden="true"></div>
       <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-bg-card px-3.5 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,.12),0_14px_28px_-12px_rgba(0,0,0,.75)]">
-      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_0%_0%,color-mix(in_srgb,var(--accent)_22%,transparent),transparent_60%)]" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(110%_95%_at_50%_0%,color-mix(in_srgb,var(--accent)_26%,transparent),transparent_70%)] shadow-[inset_0_0_28px_rgba(0,0,0,.25)]" aria-hidden="true"></div>
       <div class="relative flex items-center gap-3">
         <div class="relative flex-none">
           <span class="h-11 w-11 rounded-full bg-accent-soft ring-2 ring-accent/45 shadow-[0_0_18px_color-mix(in_srgb,var(--accent)_45%,transparent)] grid place-items-center text-accent font-bold text-[13px]">PL</span>
@@ -49,7 +54,7 @@
             <span class="text-accent"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span><span data-i18n="account.tierUnranked">未排名</span>
           </p>
         </div>
-        <button type="button" class="h-9 w-9 flex-none grid place-items-center rounded-full border border-white/10 bg-white/5 text-text-mid shadow-[inset_0_1px_0_rgba(255,255,255,.14),0_4px_10px_-4px_rgba(0,0,0,.6)] active:translate-y-px" data-action="logout" data-i18n-aria="auth.logout" aria-label="登出">
+        <button type="button" class="h-8 w-8 flex-none grid place-items-center rounded-lg text-text-mid" data-action="logout" data-i18n-aria="auth.logout" aria-label="登出">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="m16 17 5-5-5-5"></path><path d="M21 12H9"></path></svg>
         </button>
       </div>
@@ -57,8 +62,8 @@
            account.html 的 .rewards-bar（--rk-pct: 62%），跟手機版 account.html
            既有那份完整版共用同一個真實數值，不是這裡另外編的假資料。 -->
       <div class="relative mt-3">
-        <div class="h-3 overflow-hidden rounded-full bg-black/35 p-0.5 shadow-[inset_0_1px_2px_rgba(0,0,0,.6)]" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="Level progress: 62%">
-          <div class="h-full rounded-full bg-[linear-gradient(90deg,color-mix(in_srgb,var(--accent)_45%,white),var(--accent))] shadow-[0_0_12px_color-mix(in_srgb,var(--accent)_70%,transparent)]" style="width:62%"></div>
+        <div class="h-4 rounded-full bg-white/12 p-0.5 shadow-[inset_0_1px_2px_rgba(0,0,0,.45)]" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="Level progress: 62%">
+          <div class="h-full rounded-full bg-[linear-gradient(90deg,color-mix(in_oklch,var(--accent)_65%,var(--promo-money-a)),color-mix(in_oklch,var(--accent)_75%,white))] shadow-[0_0_16px_color-mix(in_srgb,var(--accent)_65%,transparent),inset_0_1px_1px_rgba(255,255,255,.5)]" style="width:62%"></div>
         </div>
         <div class="mt-1.5 flex items-center justify-between text-[10px] font-semibold text-text-dim">
           <span data-i18n="account.tierUnranked">未排名</span>
@@ -70,11 +75,12 @@
     </div>
   </div>
 
-  <nav class="flex items-center gap-2 px-4 pb-3 overflow-x-auto no-scrollbar" data-i18n-aria="nav.mainNav" aria-label="主導覽">
-    <a href="hot-games.html" class="flex-none rounded-full px-4 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="page.hotGames">熱門遊戲</a>
-    <a href="hot-games.html" class="flex-none rounded-full bg-accent px-4 py-2 text-[13.5px] font-bold text-text-on-accent animate-[v2m-pop_.35s_cubic-bezier(.34,1.56,.64,1)]" data-i18n="nav.casino">娛樂城</a>
-    <a href="live.html" class="flex-none rounded-full px-4 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.live">真人視訊</a>
-    <a href="favorites.html" class="flex-none rounded-full px-4 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.favorites">收藏</a>
+  <nav class="flex items-center gap-1 px-2 pb-2 overflow-x-auto no-scrollbar" data-i18n-aria="nav.mainNav" aria-label="主導覽">
+    <a href="hot-games.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="page.hotGames">熱門遊戲</a>
+    <a href="casino.html" class="flex-none px-2.5 py-2 text-[13.5px] font-bold text-accent shadow-[inset_0_-2px_0_var(--accent)]" aria-current="page" data-i18n="nav.casino">娛樂城</a>
+    <a href="live.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.live">真人視訊</a>
+    <a href="sport.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.sport">體育</a>
+    <a href="favorites.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.favorites">收藏</a>
   </nav>
 </header>
 
@@ -99,7 +105,7 @@
     </span>
     <span class="text-[10px] font-semibold leading-none" data-i18n="promo.bonusTitle">優惠活動</span>
   </a>
-  <a href="hot-games.html" class="flex flex-col items-center gap-1.5 py-2 text-accent" aria-current="page">
+  <a href="casino.html" class="flex flex-col items-center gap-1.5 py-2 text-accent" aria-current="page">
     <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors bg-accent-soft animate-[v2m-pop_.35s_cubic-bezier(.34,1.56,.64,1)]">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M7 9h3v6H7zM14 9h3v6h-3z"></path></svg>
     </span>

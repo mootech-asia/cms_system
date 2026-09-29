@@ -2,8 +2,8 @@
    v2/site 那份手寫 main.css/app.css 的歷史包袱要相容，所以不像
    v4/v5/v6 那樣把既有 CSS 用 layer(legacy) 掛進來）。
 
-   色票見 ../../v2/site-mobile/assets/css/skins/*.css：手機版自有 3 套，
-   外加由 v2/site 桌機 6 套 skin 色票換算的 6 套（檔名同桌機 theme key）。
+   色票見 ../../v2/site-mobile/assets/css/skins/*.css：由 v2/site 桌機 6 套
+   skin 色票換算（檔名同桌機 theme key），預設 win100（Emerald）。
    每個檔案只定義 :root[data-skin="x"] 底下的 CSS
    variable，不切換整份 stylesheet（比 v2/site 原本「換 <link href>」
    的做法少一次網路請求、也不會有短暫無樣式的閃爍）。
@@ -14,9 +14,6 @@
 @import 'tailwindcss' source(none);
 @source '../../v2/site-mobile/*.html';
 @source '../../v2/site-mobile/assets/js/*.js';
-@import '../../v2/site-mobile/assets/css/skins/lucky-star.css' layer(skins);
-@import '../../v2/site-mobile/assets/css/skins/violet-rush.css' layer(skins);
-@import '../../v2/site-mobile/assets/css/skins/amber-royale.css' layer(skins);
 @import '../../v2/site-mobile/assets/css/skins/win100.css' layer(skins);
 @import '../../v2/site-mobile/assets/css/skins/aurora.css' layer(skins);
 @import '../../v2/site-mobile/assets/css/skins/noir.css' layer(skins);

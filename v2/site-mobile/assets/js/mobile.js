@@ -9,9 +9,6 @@
   /* ============================== 外觀 skin（獨立於桌機版）=========== */
   var SKIN_KEY = 'win100-mobile-skin';
   var SKINS = [
-    { id: 'lucky-star', label: 'Lucky Star', swatch: '#34d179' },
-    { id: 'violet-rush', label: 'Violet Rush', swatch: '#a855f7' },
-    { id: 'amber-royale', label: 'Amber Royale', swatch: '#f2b134' },
     { id: 'win100', label: 'Emerald', swatch: '#98e7d2' },
     { id: 'aurora', label: 'Aurora', swatch: '#c9a6ff' },
     { id: 'noir', label: 'Noir Gold', swatch: '#e8c67a' },
@@ -19,7 +16,7 @@
     { id: 'rose-graphite', label: 'Rose Graphite', swatch: '#f29ab8' },
     { id: 'cosmic-pink', label: 'Cosmic Pink', swatch: '#ff8ad6' },
   ];
-  var currentSkinId = 'lucky-star';
+  var currentSkinId = 'win100';
 
   function findSkin(id) {
     for (var i = 0; i < SKINS.length; i++) if (SKINS[i].id === id) return SKINS[i];
@@ -304,6 +301,57 @@
     });
   }
 
+  /* 頂列餘額：數值與行為比照 v3 —— site.js initBalanceFloat（登入時每 5.5 秒
+     小幅浮動）與 v3/site-mobile/assets/mobile.js 的縮寫（整數 ≥12 位縮成
+     123.46B 並加閃爍「!」，點擊數字彈出完整金額）。 */
+  var BALANCE_UNITS = [{ value: 1e12, suffix: 'T' }, { value: 1e9, suffix: 'B' }, { value: 1e6, suffix: 'M' }, { value: 1e3, suffix: 'k' }];
+  function fmtFull(n) { return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+  function abbreviate(n) {
+    for (var i = 0; i < BALANCE_UNITS.length; i++) {
+      if (Math.abs(n) >= BALANCE_UNITS[i].value) return (n / BALANCE_UNITS[i].value).toFixed(2) + BALANCE_UNITS[i].suffix;
+    }
+    return fmtFull(n);
+  }
+  function initHeaderBalance() {
+    var el = document.querySelector('[data-m-balance]');
+    if (!el) return;
+    var raw = parseFloat(el.getAttribute('data-raw')) || 0;
+    var alert = document.createElement('span');
+    alert.className = 'ml-0.5 font-bold text-accent animate-pulse';
+    alert.textContent = '!';
+    function closeTip() {
+      var tip = document.querySelector('[data-m-balance-tip]');
+      if (tip) tip.remove();
+    }
+    function render() {
+      var isAbbrev = Math.max(1, Math.floor(Math.abs(raw))).toString().length >= 12;
+      el.textContent = isAbbrev ? abbreviate(raw) : fmtFull(raw);
+      el.setAttribute('data-raw', String(raw));
+      ['cursor-pointer', 'underline', 'decoration-dotted', 'underline-offset-2'].forEach(function (c) { el.classList.toggle(c, isAbbrev); });
+      if (isAbbrev) el.parentNode.insertBefore(alert, el.nextSibling);
+      else if (alert.parentNode) alert.remove();
+    }
+    el.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (!el.classList.contains('cursor-pointer')) return;
+      if (document.querySelector('[data-m-balance-tip]')) { closeTip(); return; }
+      var tip = document.createElement('span');
+      tip.setAttribute('data-m-balance-tip', '');
+      tip.className = 'absolute right-0 top-[calc(100%+6px)] z-50 whitespace-nowrap rounded-lg border border-line-hi bg-bg-elev px-2 py-1 text-[11px] font-bold text-text shadow-card';
+      tip.textContent = fmtFull(raw);
+      el.parentNode.appendChild(tip);
+    });
+    document.addEventListener('click', closeTip);
+    render();
+    setInterval(function () {
+      if (!readLogin()) return;
+      raw = +(raw + (Math.random() * 4 - 1.7)).toFixed(2);
+      render();
+      var tip = document.querySelector('[data-m-balance-tip]');
+      if (tip) tip.textContent = fmtFull(raw);
+    }, 5500);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     restoreSkin();
     initSkinSwitcher();
@@ -312,6 +360,7 @@
     initBottomNav();
     initAboutTabs();
     initRecordCards();
+    initHeaderBalance();
   });
 
   window.__v2mOpenMenuDrawer = openMenuDrawer;

@@ -70,3 +70,75 @@
   font-size: 12px;
   line-height: 1.6;
 }
+
+/* ════ 按鈕 3D 質感（全站統一，最後載入覆寫各元件）════
+   參考「Send」按鈕：左上大片柔光 + 由上往下漸暗的曲面，上緣亮邊、下緣暗部、
+   底部反光；一律不加主色外暈光，只留中性深色落影。
+   - 主色實心鈕：光影疊在 --gradient-primary 上
+   - 一般按鈕：只用內陰影做立體，不動各自原本的底色/漸層
+   - 正圓按鈕：上下位移的內陰影在圓上會變成兩道弦（看起來被削平），改用
+     對稱暗角
+   components.css 的 :is(.btn:not(.primary), …) 整組特異度為 0,2,0，這裡用
+   重複 class（.x.x）拉到同級並靠載入順序勝出。 */
+:root {
+  --btn3d-hl: radial-gradient(70% 85% at 32% 18%, rgb(255 255 255 / .42), transparent 62%), linear-gradient(180deg, rgb(255 255 255 / .1), transparent 42%, rgb(0 0 0 / .3));
+  --btn3d-shadow: inset 0 2px 3px rgb(255 255 255 / .45), inset 0 -5px 9px rgb(0 0 0 / .35), inset 0 -1px 1px rgb(255 255 255 / .28), 0 4px 10px -4px rgb(0 0 0 / .45);
+  --btn3d-shadow-soft: inset 5px 7px 12px -8px rgb(255 255 255 / .2), inset 0 1px 1px rgb(255 255 255 / .12), inset 0 -6px 10px -5px rgb(0 0 0 / .42), 0 3px 8px -4px rgb(0 0 0 / .5);
+  --btn3d-round-hl: radial-gradient(55% 55% at 36% 30%, rgb(255 255 255 / .42), transparent 70%), radial-gradient(circle, transparent 58%, rgb(0 0 0 / .28));
+  --btn3d-round-shadow: inset 0 0 0 1px rgb(255 255 255 / .2), 0 4px 10px -4px rgb(0 0 0 / .45);
+}
+[data-theme="light"] {
+  --btn3d-shadow-soft: inset 5px 7px 12px -8px rgb(255 255 255 / .9), inset 0 1px 1px rgb(255 255 255 / .8), inset 0 -6px 10px -5px rgb(0 0 0 / .1), 0 3px 8px -4px rgb(0 0 0 / .18);
+  --btn3d-round-shadow: inset 0 0 0 1px rgb(255 255 255 / .5), 0 3px 8px -4px rgb(0 0 0 / .2);
+}
+
+/* 主色實心鈕（含 hover，避免 components.css 的 hover 光圈再冒出來） */
+.ap-btn-wide.ap-grad:not(:disabled),
+.ap-btn-wide.ap-grad:not(:disabled):hover,
+.ap-btn.ap-btn.primary, .ap-btn.primary:hover:not(:disabled),
+.btn.btn.primary, .btn.primary:hover:not(:disabled),
+.ui-button--primary.ui-button--primary, .ui-button--primary:hover:not(:disabled),
+.rec-confirm.rec-confirm, .rec-confirm:hover:not(:disabled),
+.sb-deposit.is-current, .sb-deposit.is-current:hover:not(:disabled),
+.sb-withdraw.is-current, .sb-withdraw.is-current:hover:not(:disabled),
+.ap-amount-btn.ap-amount-btn.active,
+.dp-method-tabs button.active.active, .wd-method-tabs button.active.active {
+  background: var(--btn3d-hl), var(--gradient-primary);
+  box-shadow: var(--btn3d-shadow);
+}
+
+/* 一般按鈕：只加內陰影立體感 */
+.tb-icon-btn.tb-icon-btn:not(.cms-cs-fab),
+.sb-skin.sb-skin, .sb-collapse.sb-collapse, .sb-lang.sb-lang,
+.cv-view-all.cv-view-all, .sport-odd.sport-odd, .match-odds-btn.match-odds-btn,
+.promo-card-cta.promo-card-cta, .cat-tab.cat-tab, .cv-tab.cv-tab, .ui-tab.ui-tab,
+.section-actions .arrow.arrow, .section-collapse.section-collapse,
+.ap-amount-btn.ap-amount-btn, .ap-back.ap-back, .ap-bank-arrow.ap-bank-arrow, .ap-wd-arrow.ap-wd-arrow,
+.rec-status-btn.rec-status-btn,
+.dp-method-tabs button:not(.active), .wd-method-tabs button:not(.active),
+.ap-btn-wide.ap-btn-wide:not(.ap-grad):not(.ghost),
+.ui-button.ui-button:not(.ui-button--primary),
+.btn.btn:not(.primary), .ap-btn.ap-btn:not(.primary),
+.sb-deposit.sb-deposit:not(.is-current), .sb-withdraw.sb-withdraw:not(.is-current) {
+  box-shadow: var(--btn3d-shadow-soft);
+}
+/* 選中的分頁：同樣立體感，以細主色框取代原本的外光暈作為選中辨識 */
+.cat-tab.cat-tab.active, .cv-tab.cv-tab.active, .ui-tab.ui-tab[aria-selected="true"] {
+  box-shadow: var(--btn3d-shadow-soft), 0 0 0 1px color-mix(in oklch, var(--accent) 45%, transparent);
+}
+
+/* 正圓按鈕（遊戲卡收藏鈕 .gcard-fav 維持原樣式，不套 3D） */
+.cms-cs-fab {
+  background: var(--btn3d-round-hl), var(--gradient-primary);
+  box-shadow: var(--btn3d-round-shadow);
+}
+.ap-wd-card-add.ap-wd-card-add {
+  background: var(--btn3d-round-hl), var(--accent-grad);
+  box-shadow: var(--btn3d-round-shadow);
+}
+
+.ap-btn-wide.ap-grad:not(:disabled):active, .ap-btn.primary:active, .btn.primary:active,
+.ui-button--primary:active, .rec-confirm:active, .cms-cs-fab:active,
+.ap-amount-btn:active, .cat-tab:active, .cv-tab:active, .sport-odd:active, .match-odds-btn:active,
+.ap-btn-wide:not(.ghost):active, .ui-button:active, .btn:active, .ap-btn:active,
+.dp-method-tabs button:active, .wd-method-tabs button:active { transform: translateY(1px); }

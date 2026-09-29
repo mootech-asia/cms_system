@@ -1,6 +1,8 @@
 /* 由桌機版 v2/site/themes/noir.css（Noir Gold）的色票換算成手機版 token。
    login/register 按鈕在手機版固定白字，所以底色取主色加深（×0.55）
-   確保白字可讀，不直接用桌機的淺色主色。 */
+   確保白字可讀，不直接用桌機的淺色主色。promo-bonus 取桌機 --g-hero 的
+   前兩個色標（白字卡片需要飽和深色）；promo-money 取 promo-bonus-a
+   亮一階（×白 22%）→ 暗一階（×黑 12%），與右側卡片同色系。 */
 :root[data-skin="noir"] {
   color-scheme: dark;
 
@@ -20,10 +22,10 @@
   --accent-soft: rgba(232, 198, 122, 0.16);
   --login-btn: #232329;
   --register-btn: #806d43;
-  --promo-money-a: #f0b24a;
-  --promo-money-b: #b48638;
-  --promo-bonus-a: #a28b55;
-  --promo-bonus-b: #403724;
+  --promo-money-a: #bb9a50;
+  --promo-money-b: #946e1b;
+  --promo-bonus-a: #a87d1f;
+  --promo-bonus-b: #2b2108;
   --live-dot: #f87171;
 
   --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.45);

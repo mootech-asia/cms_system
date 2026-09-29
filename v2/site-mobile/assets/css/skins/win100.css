@@ -1,6 +1,9 @@
 /* 由桌機版 v2/site/themes/win100.css（Emerald）的色票換算成手機版 token。
    login/register 按鈕在手機版固定白字，所以底色取主色加深（×0.55）
-   確保白字可讀，不直接用桌機的淺色主色。 */
+   確保白字可讀，不直接用桌機的淺色主色。promo-bonus 取桌機 --g-hero 的
+   前兩個色標（白字卡片需要飽和深色）；promo-money 取 promo-bonus-a
+   亮一階（×白 22%）→ 暗一階（×黑 12%），與右側卡片同色系。 */
+:root:not([data-skin]),
 :root[data-skin="win100"] {
   color-scheme: dark;
 
@@ -20,10 +23,10 @@
   --accent-soft: rgba(152, 231, 210, 0.16);
   --login-btn: #2a3138;
   --register-btn: #547f74;
-  --promo-money-a: #f0b24a;
-  --promo-money-b: #b48638;
-  --promo-bonus-a: #6aa293;
-  --promo-bonus-b: #313e40;
+  --promo-money-a: #45c89d;
+  --promo-money-b: #0ea372;
+  --promo-bonus-a: #10b981;
+  --promo-bonus-b: #0f766e;
   --live-dot: #f87171;
 
   --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.45);
