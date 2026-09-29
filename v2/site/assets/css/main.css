@@ -1068,10 +1068,10 @@ select.pay-field {
   display: inline-flex; align-items: center; justify-content: center; white-space: nowrap;
   border-radius: var(--radius-ui); background-image: var(--g-primary); font-weight: 600;
   color: rgb(var(--c-on-primary) / 1);
-  transition-property: opacity, transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 0.15s;
+  transition-property: opacity; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 0.15s;
 }
 .btn-primary:focus-visible, .btn-primary:hover { opacity: 0.9; outline: 2px solid transparent; outline-offset: 2px; }
-.btn-primary:disabled { cursor: not-allowed; background-color: rgb(var(--c-text-4) / 1); background-image: none; box-shadow: none; transform: none; color: rgb(var(--c-text-2) / 1); }
+.btn-primary:disabled { cursor: not-allowed; background-color: rgb(var(--c-text-4) / 1); background-image: none; color: rgb(var(--c-text-2) / 1); }
 .btn-sm { height: 2.25rem; padding-left: 1rem; padding-right: 1rem; }
 .w-full { width: 100%; }
 .btn-md, .btn-sm { font-size: var(--fs-body); line-height: var(--lh-body); }
@@ -1859,11 +1859,10 @@ select.pay-field {
 }
 .rewards-bar .rk-rw-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
 .rewards-bar .rk-rw-label { color: rgb(var(--c-text-3) / 1); font-size: 12.5px; }
-.rewards-bar .rk-track { height: 16px; padding: 2px; border-radius: 99px; background: rgb(255 255 255 / .12); box-shadow: inset 0 1px 2px rgb(0 0 0 / .45); }
+.rewards-bar .rk-track { height: 8px; border-radius: 99px; background: rgba(255, 255, 255, 0.12); overflow: hidden; }
 .rewards-bar .rk-fill {
   height: 100%; width: var(--rk-pct); border-radius: 99px;
-  background: linear-gradient(90deg, rgb(var(--c-primary)), rgb(var(--c-accent)));
-  box-shadow: 0 0 16px rgb(var(--c-accent) / .6), inset 0 1px 1px rgb(255 255 255 / .5);
+  background: var(--g-primary); box-shadow: 0 0 10px rgb(var(--c-primary) / 0.4);
   animation: rk-grow 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 @keyframes rk-grow { 0% { width: 0; } to { width: var(--rk-pct); } }
@@ -2666,9 +2665,7 @@ select.pay-field {
 .qr-btn {
   background-color: rgb(var(--c-surface-2) / 1); color: rgb(var(--c-primary) / 1); position: relative;
   width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  background-image: radial-gradient(120% 100% at 30% 0%, rgb(255 255 255 / .22), transparent 55%), linear-gradient(180deg, transparent 50%, rgb(0 0 0 / .25));
-  box-shadow: inset 0 1px 1px rgb(255 255 255 / .35), inset 0 -2px 4px rgb(0 0 0 / .35), 0 8px 18px -6px rgb(var(--c-primary) / .45);
-  transition: transform 0.15s ease, background 0.15s ease; text-decoration: none;
+  box-shadow: 0 6px 18px #00000059; transition: transform 0.15s ease, background 0.15s ease; text-decoration: none;
 }
 .qr-btn:hover { transform: scale(1.06); background: rgb(var(--c-border)); }
 .qr-btn img { width: 40px; height: 40px; object-fit: contain; }
@@ -2840,56 +2837,6 @@ select.pay-field {
   .promo-popup-card { flex-shrink: 1; width: 320px; height: 520px; }
   .promo-popup-content img { height: 200px; }
 }
-
-
-/* ── 仿 3D 主色按鈕：左上高光 + 下緣暗部疊在 --g-primary 上，內陰影做出
-   厚度、外發光同主色。集中一處覆寫各按鈕的 background-image/box-shadow，
-   形狀與尺寸沿用各自原本的規則。 ── */
-.btn-primary,
-.mf-submit.ready,
-.pi-submit,
-.payment-tabs button.active,
-.seg-btn.active,
-.pay-action.ready,
-.transfer .complete,
-.bound-card-add,
-.promotion-detail-claim-btn,
-.a-btn,
-.mf-modal-btn,
-.vnd-search .s-btn,
-.acct-action-btn--primary,
-.mobile-account-view-btn,
-.chat-widget-form button,
-.app-header-register-btn,
-.app-nav-link.is-active,
-.game-card-play-btn,
-.match-card-cta,
-.promo-tile-cta,
-.promotion-page-card-cta {
-  background-image: radial-gradient(120% 100% at 30% 0%, rgb(255 255 255 / .38), transparent 55%), linear-gradient(180deg, transparent 50%, rgb(0 0 0 / .2)), var(--g-primary);
-  box-shadow: inset 0 1px 1px rgb(255 255 255 / .55), inset 0 -2px 4px rgb(0 0 0 / .28), 0 10px 22px -10px rgb(var(--c-primary) / .85);
-}
-.btn-primary:active,
-.mf-submit.ready:active,
-.pi-submit:active,
-.payment-tabs button.active:active,
-.seg-btn.active:active,
-.pay-action.ready:active,
-.transfer .complete:active,
-.bound-card-add:active,
-.promotion-detail-claim-btn:active,
-.a-btn:active,
-.mf-modal-btn:active,
-.vnd-search .s-btn:active,
-.acct-action-btn--primary:active,
-.mobile-account-view-btn:active,
-.chat-widget-form button:active,
-.app-header-register-btn:active,
-.app-nav-link.is-active:active,
-.game-card-play-btn:active,
-.match-card-cta:active,
-.promo-tile-cta:active,
-.promotion-page-card-cta:active { transform: translateY(1px); }
 
 /* 靜態 HTML 的文字是預設語系（中文），翻譯要等 JS 在 DOMContentLoaded 才套上；
    套完前整頁 opacity: 0，避免先閃出中文再切換。html.i18n-ready 由 JS 在所有
