@@ -9,34 +9,34 @@
     <link rel="stylesheet" href="assets/css/tailwind.css" />
   </head>
   <body>
-    <div class="page-shell">
+    <div class="min-h-screen pt-[var(--header-h-mobile)] pb-24 xl:pt-[var(--header-h-desktop)] xl:pb-0">
       <div data-mount="header"></div>
 
-      <main class="game-type-page">
-        <section class="banner">
+      <main class="bg-navy min-h-[60vh]">
+        <section class="relative bg-navy overflow-hidden">
           <!-- TODO: 暫用首頁 banner 素材佔位,待各分類正式 banner 到位後替換 -->
-          <div class="banner-slides">
-            <div class="banner-slide is-active"><img src="assets/images/banner/banner.jpg" alt="banner" /></div>
+          <div class="relative w-full">
+            <div class="w-full block"><img src="assets/images/banner/banner.jpg" alt="banner" class="w-full block" /></div>
           </div>
         </section>
 
-        <section class="home-marquee gf-marquee-desktop">
-          <div class="home-marquee-viewport">
-            <div class="home-marquee-track" data-marquee-track></div>
+        <section class="w-full bg-navy-2 h-[30px] relative text-[13px] overflow-hidden hidden xl:block xl:text-[14px]">
+          <div class="overflow-hidden mr-[190px] h-full flex items-center">
+            <div class="flex w-max whitespace-nowrap [will-change:transform] [animation:home-marquee_24s_linear_infinite]" data-marquee-track></div>
           </div>
-          <div class="home-marquee-clock" data-marquee-clock></div>
+          <div class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-[12px] whitespace-nowrap" data-marquee-clock></div>
         </section>
 
-        <div class="game-page-body">
-          <div class="game-filter-top">
-            <span class="game-filter-title text-gradient" data-gf-title></span>
+        <div class="px-5 py-6 xl:px-24 xl:py-16">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-gradient text-[20px] font-bold xl:text-[28px]" data-gf-title></span>
           </div>
-          <div class="game-filter-row">
-            <div class="game-filter-tabs" data-gf-tabs></div>
-            <form class="game-filter-search" data-gf-search-form>
-              <input type="text" data-gf-search-input />
-              <button type="submit" class="game-filter-search-btn border-gradient-mask">
-                <img src="assets/images/icon/search-gradient.svg" alt="search" />
+          <div class="flex flex-col gap-4 justify-between mt-4 md:flex-row md:items-end">
+            <div class="flex md:flex-none" data-gf-tabs></div>
+            <form class="flex items-center gap-2 md:ml-auto" data-gf-search-form>
+              <input type="text" class="flex-1 h-10 rounded-lg bg-[#1e1e1e] border border-white/10 text-white px-4 !text-[14px] placeholder:text-[#e7e7e7] md:w-72" data-gf-search-input />
+              <button type="submit" class="border-gradient-mask shrink-0 flex items-center !py-2 !px-3 !font-bold">
+                <img src="assets/images/icon/search-gradient.svg" alt="search" class="w-[18px] h-[18px] mr-1" />
                 <span class="text-gradient" data-i18n="common.search">검색</span>
               </button>
             </form>
@@ -58,13 +58,18 @@
         var D = window.WIN15_DATA;
         var W = window.WIN15;
         var PAGE_SIZE = 12;
+        /* main.css 的 button{border:0;padding:0;...} 只重置 border-width/
+           style/color,不影響 border-image/border-image-slice,所以
+           is-active 的漸層底線不用加 !,但 base 的 border-b 本身要加 */
+        var GF_TAB_CLS = 'flex-1 text-center !py-2 !px-4 !font-bold !text-white !border-b !border-[#4f4f4f] whitespace-nowrap md:flex-none [&.is-active]:[border-image:var(--g-primary)] [&.is-active]:[border-image-slice:1]';
 
         /* ---- Marquee(對照 gameType.vue,與首頁共用同一份跑馬燈資料) ---- */
         var track = W.qs('[data-marquee-track]');
         if (track) {
           var itemsHtml = D.MARQUEE_ITEMS.map(function (m) {
-            var highlighted = m.title.replace(/^(\S+) won/, '<b>$1</b> won').replace(/([\d,]{4,})/, '<b>$1</b>');
-            return '<span>✦ ' + highlighted + ' ✦</span>';
+            var b = '<b class="text-gold font-bold">$1</b>';
+            var highlighted = m.title.replace(/^(\S+) won/, b + ' won').replace(/([\d,]{4,})/, b);
+            return '<span class="inline-block font-bold text-white mr-6">✦ ' + highlighted + ' ✦</span>';
           }).join('');
           track.innerHTML = itemsHtml + itemsHtml;
         }
@@ -113,7 +118,7 @@
           opts.push({ id: 'vendor', label: W.t('gameType.options.vendor') });
           opts.push({ id: 'favorites', label: W.t('gameType.options.favorites') });
           tabsEl.innerHTML = opts.map(function (o) {
-            return '<button type="button" class="game-filter-tab' + (o.id === activeOption ? ' is-active' : '') +
+            return '<button type="button" class="' + GF_TAB_CLS + (o.id === activeOption ? ' is-active' : '') +
               '" data-gf-option="' + o.id + '"><span class="' + (o.id === activeOption ? 'text-gradient' : '') + '">' + o.label + '</span></button>';
           }).join('');
           W.qsa('[data-gf-option]', tabsEl).forEach(function (btn) {
@@ -142,19 +147,19 @@
             return !query || v.vendor.toLowerCase().indexOf(query) !== -1;
           });
           if (!vendors.length) {
-            bodyEl.innerHTML = '<div class="list-empty-state" data-i18n="common.noData">' + W.t('common.noData') + '</div>';
+            bodyEl.innerHTML = '<div class="py-16 text-center text-white/60 text-[14px]" data-i18n="common.noData">' + W.t('common.noData') + '</div>';
             return;
           }
-          bodyEl.innerHTML = '<div class="game-provider-grid">' + vendors.map(function (v, idx) {
+          bodyEl.innerHTML = '<div class="grid grid-cols-3 gap-4 mt-7 md:grid-cols-4 xl:gap-7">' + vendors.map(function (v, idx) {
             var bg = type === 'live'
               ? 'assets/images/index/mainGame/live/live_' + (idx % 33) + '.webp'
               : type === 'sports'
               ? 'assets/images/index/mainGame/img-livegame-bg.webp'
               : 'assets/images/' + D.GAME_THUMB_POOL[idx % D.GAME_THUMB_POOL.length];
             return (
-              '<div class="game-provider-card" data-gf-vendor="' + idx + '">' +
-              '<img class="game-provider-card-bg" src="' + bg + '" alt="">' +
-              '<img class="game-provider-card-logo" src="assets/images/index/mainGame/live/' + encodeURIComponent(v.logo) + '" alt="' + v.vendor + '">' +
+              '<div class="relative h-40 rounded-3xl overflow-hidden bg-[#0b1733] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)] cursor-pointer" data-gf-vendor="' + idx + '">' +
+              '<img class="absolute inset-0 w-full h-full object-cover" src="' + bg + '" alt="">' +
+              '<img class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 !max-w-[55%] max-h-[55%] object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)]" src="assets/images/index/mainGame/live/' + encodeURIComponent(v.logo) + '" alt="' + v.vendor + '">' +
               '</div>'
             );
           }).join('') + '</div>';
@@ -168,23 +173,24 @@
             return !query || g.display_name.toLowerCase().indexOf(query) !== -1;
           });
           if (!filtered.length) {
-            bodyEl.innerHTML = '<div class="list-empty-state" data-i18n="common.noData">' + W.t('common.noData') + '</div>';
+            bodyEl.innerHTML = '<div class="py-16 text-center text-white/60 text-[14px]" data-i18n="common.noData">' + W.t('common.noData') + '</div>';
             return;
           }
           var visible = filtered.slice(0, visibleCount);
-          bodyEl.innerHTML = '<div class="game-list-grid">' + visible.map(function (g, idx) {
+          bodyEl.innerHTML = '<div class="grid grid-cols-3 gap-4 mt-7 md:grid-cols-6 2xl:grid-cols-7">' + visible.map(function (g, idx) {
+            var thumbCls = 'relative rounded-2xl overflow-hidden shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)] bg-[#0b1733]';
             return (
-              '<div class="game-card" data-gf-game="' + idx + '">' +
+              '<div class="group cursor-pointer" data-gf-game="' + idx + '">' +
               (g.desktop_icon_url
-                ? '<div class="game-card-thumb"><img src="assets/images/' + g.desktop_icon_url + '" alt="' + g.display_name + '"></div>'
-                : '<div class="game-card-thumb is-placeholder"><img src="assets/images/img-comingsoon-game.png" alt="coming soon"></div>') +
-              '<div class="game-card-info"><p class="game-card-name">' + g.display_name + '</p>' +
-              '<div class="game-card-meta"><span class="game-card-provider">' + g.provider + '</span>' +
-              '<button type="button" class="game-card-fav-btn" data-gf-fav="' + idx + '"><img src="assets/images/icon/' + (g.isFavorite ? 'like-fill.svg' : 'like.svg') + '" alt="fav"></button>' +
+                ? '<div class="' + thumbCls + '"><img src="assets/images/' + g.desktop_icon_url + '" alt="' + g.display_name + '" class="w-full aspect-square object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.15]"></div>'
+                : '<div class="' + thumbCls + '"><img src="assets/images/img-comingsoon-game.png" alt="coming soon" class="w-full aspect-square object-contain p-[16%] transition-transform duration-1000 ease-out group-hover:scale-[1.15]"></div>') +
+              '<div class="pt-2 px-1 pb-0"><p class="text-white font-bold text-[13px] whitespace-nowrap overflow-hidden text-ellipsis xl:text-[18px]">' + g.display_name + '</p>' +
+              '<div class="flex items-center justify-between mt-0.5"><span class="text-white/60 text-[12px] whitespace-nowrap overflow-hidden text-ellipsis">' + g.provider + '</span>' +
+              '<button type="button" class="shrink-0 w-4 h-4" data-gf-fav="' + idx + '"><img src="assets/images/icon/' + (g.isFavorite ? 'like-fill.svg' : 'like.svg') + '" alt="fav" class="w-full h-full"></button>' +
               '</div></div></div>'
             );
           }).join('') + '</div>' +
-          (visible.length < filtered.length ? '<div class="load-more-wrap"><button type="button" class="load-more-btn border-gradient-mask" data-gf-more><span class="text-gradient" data-i18n="common.readMore">' + W.t('common.readMore') + '</span></button></div>' : '');
+          (visible.length < filtered.length ? '<div class="flex justify-center mt-7"><button type="button" class="border-gradient-mask !py-2.5 !px-8 !font-bold !bg-transparent" data-gf-more><span class="text-gradient" data-i18n="common.readMore">' + W.t('common.readMore') + '</span></button></div>' : '');
           W.qsa('[data-gf-fav]', bodyEl).forEach(function (btn) {
             W.on(btn, 'click', function (e) {
               e.stopPropagation();
@@ -209,7 +215,7 @@
             renderVendorGrid();
           } else if (activeOption === 'favorites') {
             if (type === 'live' || type === 'sports') {
-              bodyEl.innerHTML = '<div class="list-empty-state" data-i18n="common.noData">' + W.t('common.noData') + '</div>';
+              bodyEl.innerHTML = '<div class="py-16 text-center text-white/60 text-[14px]" data-i18n="common.noData">' + W.t('common.noData') + '</div>';
             } else {
               renderGameGrid(flatPool().filter(function (g) { return g.isFavorite; }));
             }
