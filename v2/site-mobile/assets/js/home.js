@@ -43,25 +43,24 @@
     el.innerHTML = html;
   }
 
-  /* 首頁娛樂城網格「載入更多」：比照 v2/site 桌機版分類頁（MAX_LOADS = 3），
-     每次接續多載 12 款，載滿 3 次後移除按鈕。下拉捲到按鈕附近（提前 200px）
+  /* 首頁娛樂城網格「載入更多」：每次接續多載 12 款，不限次數，直到載滿
+     標題「全部 (N)」的總數（total）才移除按鈕。下拉捲到按鈕附近（提前 200px）
      由 IntersectionObserver 自動觸發；按鈕保留給不支援或想手動點的情況。
      observer 只在「進出可視範圍」時回呼，載入後按鈕被新卡片推出畫面，
-     要再往下捲才會觸發下一批，不會一次連載到上限。 */
-  function initCasinoLoadMore(pageSize) {
+     要再往下捲才會觸發下一批，不會一次連載一大串。 */
+  function initCasinoLoadMore(pageSize, total) {
     var grid = document.getElementById('casino-grid');
     var btn = document.getElementById('casino-load-more');
     if (!grid || !btn) return;
-    var loads = 0;
     var observer = null;
     function loadMore() {
-      if (loads >= 3) return;
       var start = grid.children.length;
+      if (start >= total) return;
+      var end = Math.min(start + pageSize, total);
       var html = '';
-      for (var i = start; i < start + pageSize; i++) html += cardHTML(i, false);
+      for (var i = start; i < end; i++) html += cardHTML(i, false);
       grid.insertAdjacentHTML('beforeend', html);
-      loads += 1;
-      if (loads >= 3) {
+      if (end >= total) {
         if (observer) observer.disconnect();
         btn.remove();
       }
@@ -189,7 +188,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     fillRail('best-games-rail', 8, true);
     fillRail('casino-grid', 12, false);
-    initCasinoLoadMore(12);
+    initCasinoLoadMore(12, vendors.length * 128);
     var bestCount = document.getElementById('best-games-count');
     if (bestCount) bestCount.textContent = '(13)';
     var casinoCount = document.getElementById('casino-count');
