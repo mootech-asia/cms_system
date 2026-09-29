@@ -199,7 +199,8 @@
   document.addEventListener('DOMContentLoaded', function () {
     fillRail('best-games-rail', 8, true);
     fillRail('casino-grid', 30, false);
-    initCasinoLoadMore(30, 100, vendors.length * 128);
+    // 網格 3 欄，數量都取 3 的倍數（30 / 99 / 3840）避免最後一排落單
+    initCasinoLoadMore(30, 99, vendors.length * 128);
     var bestCount = document.getElementById('best-games-count');
     if (bestCount) bestCount.textContent = '(13)';
     var casinoCount = document.getElementById('casino-count');
