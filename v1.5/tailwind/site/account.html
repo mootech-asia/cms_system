@@ -9,88 +9,88 @@
     <link rel="stylesheet" href="assets/css/tailwind.css" />
   </head>
   <body>
-    <div class="page-shell">
+    <div class="min-h-screen pt-[var(--header-h-mobile)] pb-24 max-xl:[body.is-usercenter_&]:pt-0 xl:pt-[var(--header-h-desktop)] xl:pb-0">
       <div data-mount="header"></div>
-      <main class="usercenter-main">
+      <main class="pt-0">
         <div data-mount="user-navbar"></div>
-        <div class="usercenter-grid">
+        <div class="grid grid-cols-1">
           <div data-mount="user-sidebar"></div>
-          <div class="usercenter-content">
-            <div class="account-page">
-              <h1 class="account-page-title" data-i18n="userCenter.accountOverview">나의 계정</h1>
-              <div class="account-layout">
+          <div class="w-full bg-white overflow-x-hidden xl:ml-[260px] xl:w-[calc(100%-260px)]">
+            <div class="bg-[#f4f4f4] pb-20 min-h-[calc(100vh-var(--header-h-mobile))] xl:min-h-[calc(100vh-var(--header-h-desktop))]">
+              <h1 class="hidden xl:block xl:h-[62px] xl:bg-white xl:text-navy xl:text-[32px] xl:font-bold xl:leading-[64px] xl:border-b xl:border-border xl:px-8 xl:mt-0 xl:mx-0 xl:mb-4" data-i18n="userCenter.accountOverview">나의 계정</h1>
+              <div class="grid grid-cols-1 xl:grid-cols-[1fr_320px] xl:px-10 xl:pb-6">
                 <div>
-                  <div class="account-hero">
-                    <div class="account-hero-top">
-                      <img class="account-hero-avatar" src="assets/images/index/avatar.png" alt="avatar" />
+                  <div class="bg-navy-2 text-white overflow-hidden xl:rounded-[10px]">
+                    <div class="flex items-start gap-4 pt-6 px-4 pb-4 xl:py-6 xl:px-4">
+                      <img class="w-[88px] h-[88px] rounded-full object-cover shadow-[0_0_0_2px_#fff] xl:w-[94px] xl:h-[94px]" src="assets/images/index/avatar.png" alt="avatar" />
                       <div>
-                        <div class="account-hero-name-row">
-                          <span class="username" data-profile-username>meaomcao</span>
-                          <span class="account-hero-level" data-profile-level>VIP1</span>
+                        <div class="flex flex-col-reverse gap-1 xl:flex-row xl:items-center">
+                          <span class="text-[18px] font-bold xl:text-[24px]" data-profile-username>meaomcao</span>
+                          <span class="inline-flex w-fit py-0.5 px-2 rounded-full bg-[image:var(--g-primary)] text-navy font-bold text-[12px]" data-profile-level>VIP1</span>
                         </div>
-                        <div class="account-hero-nickname"><span data-i18n="userCenter.nickname">닉네임</span> : <span data-profile-nickname>meaomcao</span><img src="assets/images/icon/edit.svg" alt="edit" style="width: 16px; height: 16px; cursor: pointer" /></div>
-                        <div class="account-hero-balance"><span>₩</span><span class="text-gradient" data-profile-balance>1,000,000,000</span><img src="assets/images/icon/refresh.svg" alt="refresh" style="cursor: pointer" /></div>
+                        <div class="flex items-center gap-1 text-[12px] mt-1"><span data-i18n="userCenter.nickname">닉네임</span> : <span data-profile-nickname>meaomcao</span><img src="assets/images/icon/edit.svg" alt="edit" class="w-4 h-4 cursor-pointer" /></div>
+                        <div class="flex items-center gap-1 text-[24px] font-bold mt-1"><span>₩</span><span class="text-gradient" data-profile-balance>1,000,000,000</span><img src="assets/images/icon/refresh.svg" alt="refresh" class="w-5 h-5 cursor-pointer" /></div>
                       </div>
-                      <div class="account-hero-desktop-actions">
-                        <div class="btn-row">
-                          <button type="button" class="account-action-btn" data-nav-href="deposit.html" data-i18n="userCenter.deposit">입금</button>
-                          <button type="button" class="account-action-btn" data-nav-href="withdrawal.html" data-i18n="userCenter.withdrawal">출금</button>
+                      <div class="hidden xl:flex xl:flex-col xl:gap-4 xl:ml-auto">
+                        <div class="flex gap-2 justify-end">
+                          <button type="button" class="h-8 !px-4 rounded-xl !bg-[image:var(--g-action)] !text-navy !font-bold !text-[16px]" data-nav-href="deposit.html" data-i18n="userCenter.deposit">입금</button>
+                          <button type="button" class="h-8 !px-4 rounded-xl !bg-[image:var(--g-action)] !text-navy !font-bold !text-[16px]" data-nav-href="withdrawal.html" data-i18n="userCenter.withdrawal">출금</button>
                         </div>
-                        <button type="button" class="account-action-outline border-gradient-pill" data-nav-href="banking-details.html"><span class="text-gradient" data-i18n="userCenter.bankingDetails">결제 정보</span></button>
+                        <button type="button" class="border-gradient-pill h-8 !px-2 rounded-lg !font-bold !text-[14px]" data-nav-href="banking-details.html"><span class="text-gradient" data-i18n="userCenter.bankingDetails">결제 정보</span></button>
                       </div>
-                      <div class="account-hero-desktop-rollover">
-                        <p class="account-rollover-title text-gradient" data-i18n="userCenter.rollover.title">롤링</p>
-                        <p class="account-rollover-note" data-i18n="userCenter.rollover.remainingTurnoverAmount">남은 유효 베팅 금액:</p>
-                        <p class="account-rollover-value">₩ <span data-profile-turnover>0</span></p>
+                      <div class="hidden xl:flex xl:justify-end xl:text-right xl:flex-col">
+                        <p class="text-gradient text-[22px] font-bold m-0" data-i18n="userCenter.rollover.title">롤링</p>
+                        <p class="font-bold text-white mt-1 mx-0 mb-0 text-[14px]" data-i18n="userCenter.rollover.remainingTurnoverAmount">남은 유효 베팅 금액:</p>
+                        <p class="mt-1 mx-0 mb-0 font-normal text-[14px]">₩ <span data-profile-turnover>0</span></p>
                       </div>
                     </div>
-                    <div class="account-hero-actions-mobile">
-                      <button type="button" class="account-action-btn" data-nav-href="deposit.html" data-i18n="userCenter.deposit">입금</button>
-                      <button type="button" class="account-action-btn" data-nav-href="withdrawal.html" data-i18n="userCenter.withdrawal">출금</button>
-                      <button type="button" class="account-action-outline border-gradient-pill" data-nav-href="banking-details.html"><span class="text-gradient" data-i18n="userCenter.bankingDetails">결제 정보</span></button>
+                    <div class="flex gap-2 px-4 pb-4 flex-wrap xl:hidden">
+                      <button type="button" class="h-8 !px-4 rounded-xl !bg-[image:var(--g-action)] !text-navy !font-bold !text-[16px]" data-nav-href="deposit.html" data-i18n="userCenter.deposit">입금</button>
+                      <button type="button" class="h-8 !px-4 rounded-xl !bg-[image:var(--g-action)] !text-navy !font-bold !text-[16px]" data-nav-href="withdrawal.html" data-i18n="userCenter.withdrawal">출금</button>
+                      <button type="button" class="border-gradient-pill h-8 !px-2 rounded-lg !font-bold !text-[14px]" data-nav-href="banking-details.html"><span class="text-gradient" data-i18n="userCenter.bankingDetails">결제 정보</span></button>
                     </div>
-                    <div class="account-hero-rollover-mobile">
-                      <p class="account-rollover-title text-gradient" data-i18n="userCenter.rollover.title">롤링</p>
-                      <p class="account-rollover-note" data-i18n="userCenter.rollover.remainingTurnoverAmount">남은 유효 베팅 금액:</p>
-                      <p class="account-rollover-value">₩ <span data-profile-turnover>0</span></p>
+                    <div class="p-4 text-right xl:hidden">
+                      <p class="text-gradient text-[16px] font-bold m-0" data-i18n="userCenter.rollover.title">롤링</p>
+                      <p class="font-bold text-white mt-1 mx-0 mb-0" data-i18n="userCenter.rollover.remainingTurnoverAmount">남은 유효 베팅 금액:</p>
+                      <p class="mt-1 mx-0 mb-0 font-normal">₩ <span data-profile-turnover>0</span></p>
                     </div>
                   </div>
 
-                  <div class="account-recent">
-                    <div class="account-recent-head">
-                      <h4 data-i18n="userCenter.recentTransactions">최근 거래</h4>
-                      <a class="account-recent-more" data-nav-href="account-record.html">
+                  <div class="m-4 rounded-xl bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.1)] xl:mx-0 xl:my-6">
+                    <div class="flex items-center justify-center border-b border-border py-2 xl:justify-between xl:py-4 xl:px-6">
+                      <h4 class="text-navy-2 font-bold m-0 xl:text-[22px]" data-i18n="userCenter.recentTransactions">최근 거래</h4>
+                      <a class="hidden xl:flex xl:items-center xl:gap-1 xl:!text-navy xl:font-bold xl:text-[15px]" data-nav-href="account-record.html">
                         <span data-i18n="userCenter.viewMoreRecords">더 많은 기록 보기</span>
-                        <svg viewBox="0 0 24 24" style="width: 16px; height: 16px"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"></path></svg>
+                        <svg viewBox="0 0 24 24" class="w-4 h-4"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"></path></svg>
                       </a>
                     </div>
-                    <div class="account-recent-body" data-transactions-list></div>
+                    <div class="p-4" data-transactions-list></div>
                   </div>
                 </div>
 
-                <div class="account-quick-links">
-                  <div class="account-quick-list">
-                    <button type="button" data-nav-href="personal-info.html">
-                      <img src="assets/images/icon/usercenter/personal.svg" alt="personal" />
-                      <div><p class="qtitle" data-i18n="userCenter.sidebar.personalInfo">개인 정보</p><p class="qdesc" data-i18n="userCenter.securityCenterPage.completeProfile">개인 정보를 완료하세요</p></div>
+                <div class="p-4 xl:p-0 xl:pl-8">
+                  <div class="rounded-card bg-white overflow-hidden">
+                    <button type="button" class="w-full grid grid-cols-[auto_1fr_auto] items-center gap-2 !py-4 !px-4 text-left !border-b !border-[var(--c-border-soft)] last:!border-b-0" data-nav-href="personal-info.html">
+                      <img src="assets/images/icon/usercenter/personal.svg" alt="personal" class="w-5 h-5" />
+                      <div><p class="text-[14px] text-navy font-bold" data-i18n="userCenter.sidebar.personalInfo">개인 정보</p><p class="text-[12px] text-[#6d6d6d]" data-i18n="userCenter.securityCenterPage.completeProfile">개인 정보를 완료하세요</p></div>
                     </button>
-                    <button type="button" data-nav-href="change-password.html?type=lgps">
-                      <img src="assets/images/icon/usercenter/lock.svg" alt="lock" />
-                      <div><p class="qtitle" data-i18n="userCenter.changePassword.changeLogin">로그인 비밀번호 변경</p><p class="qdesc" data-i18n="userCenter.securityCenterPage.recommendAlphaNum">영문과 숫자 조합을 권장합니다</p></div>
+                    <button type="button" class="w-full grid grid-cols-[auto_1fr_auto] items-center gap-2 !py-4 !px-4 text-left !border-b !border-[var(--c-border-soft)] last:!border-b-0" data-nav-href="change-password.html?type=lgps">
+                      <img src="assets/images/icon/usercenter/lock.svg" alt="lock" class="w-5 h-5" />
+                      <div><p class="text-[14px] text-navy font-bold" data-i18n="userCenter.changePassword.changeLogin">로그인 비밀번호 변경</p><p class="text-[12px] text-[#6d6d6d]" data-i18n="userCenter.securityCenterPage.recommendAlphaNum">영문과 숫자 조합을 권장합니다</p></div>
                     </button>
-                    <button type="button" data-nav-href="change-password.html?type=tsps">
-                      <img src="assets/images/icon/usercenter/password.svg" alt="pin" />
-                      <div><p class="qtitle" data-i18n="userCenter.changePassword.changeTransaction">거래 비밀번호 변경</p><p class="qdesc" data-i18n="userCenter.securityCenterPage.setTxnPasswordTip">자금 보안을 위해 거래 비밀번호를 설정하세요</p></div>
-                      <span class="account-quick-status status-approved" data-i18n="userCenter.securityCenterPage.set">설정</span>
+                    <button type="button" class="w-full grid grid-cols-[auto_1fr_auto] items-center gap-2 !py-4 !px-4 text-left !border-b !border-[var(--c-border-soft)] last:!border-b-0" data-nav-href="change-password.html?type=tsps">
+                      <img src="assets/images/icon/usercenter/password.svg" alt="pin" class="w-5 h-5" />
+                      <div><p class="text-[14px] text-navy font-bold" data-i18n="userCenter.changePassword.changeTransaction">거래 비밀번호 변경</p><p class="text-[12px] text-[#6d6d6d]" data-i18n="userCenter.securityCenterPage.setTxnPasswordTip">자금 보안을 위해 거래 비밀번호를 설정하세요</p></div>
+                      <span class="text-[12px] flex items-center gap-1 text-[#1dbf73]" data-i18n="userCenter.securityCenterPage.set">설정</span>
                     </button>
-                    <button type="button" data-nav-href="banking-details.html">
-                      <img src="assets/images/icon/usercenter/creditCard.svg" alt="bank" />
-                      <div><p class="qtitle" data-i18n="userCenter.bankingDetails">결제 정보</p><p class="qdesc" data-i18n="userCenter.securityCenterPage.recommendAlphaNum">영문과 숫자 조합을 권장합니다</p></div>
-                      <span class="account-quick-status status-approved" data-i18n="userCenter.securityCenterPage.set">설정</span>
+                    <button type="button" class="w-full grid grid-cols-[auto_1fr_auto] items-center gap-2 !py-4 !px-4 text-left !border-b !border-[var(--c-border-soft)] last:!border-b-0" data-nav-href="banking-details.html">
+                      <img src="assets/images/icon/usercenter/creditCard.svg" alt="bank" class="w-5 h-5" />
+                      <div><p class="text-[14px] text-navy font-bold" data-i18n="userCenter.bankingDetails">결제 정보</p><p class="text-[12px] text-[#6d6d6d]" data-i18n="userCenter.securityCenterPage.recommendAlphaNum">영문과 숫자 조합을 권장합니다</p></div>
+                      <span class="text-[12px] flex items-center gap-1 text-[#1dbf73]" data-i18n="userCenter.securityCenterPage.set">설정</span>
                     </button>
-                    <button type="button" data-logout>
-                      <img src="assets/images/icon/usercenter/logout.svg" alt="logout" />
-                      <div><p class="qtitle" data-i18n="userCenter.securityCenterPage.logout">로그아웃</p><p class="qdesc" data-i18n="userCenter.securityCenterPage.logoutSafely">안전하게 로그아웃</p></div>
+                    <button type="button" class="w-full grid grid-cols-[auto_1fr_auto] items-center gap-2 !py-4 !px-4 text-left !border-b !border-[var(--c-border-soft)] last:!border-b-0" data-logout>
+                      <img src="assets/images/icon/usercenter/logout.svg" alt="logout" class="w-5 h-5" />
+                      <div><p class="text-[14px] text-navy font-bold" data-i18n="userCenter.securityCenterPage.logout">로그아웃</p><p class="text-[12px] text-[#6d6d6d]" data-i18n="userCenter.securityCenterPage.logoutSafely">안전하게 로그아웃</p></div>
                     </button>
                   </div>
                 </div>
@@ -117,12 +117,12 @@
         W.qs('[data-profile-balance]').textContent = p.balanceRaw;
         W.qs('[data-profile-turnover]').textContent = p.remaining_turnover_amount;
 
-        var statusClass = { Approved: 'status-approved', Reject: 'status-reject', Pending: 'status-pending' };
+        var statusColor = { Approved: '#1dbf73', Reject: '#e11d48', Pending: '#f0bc00' };
         var list = W.qs('[data-transactions-list]');
         list.innerHTML = D.MOCK_TRANSACTIONS.map(function (tx) {
           return (
-            '<div class="account-recent-row"><div><div class="type">' + tx.type + '</div><div class="time">' + tx.time + '</div></div>' +
-            '<div><div class="amount">₩ ' + tx.amount + '</div><div class="status ' + statusClass[tx.status] + '">' + tx.status + '</div></div></div>'
+            '<div class="flex items-start justify-between pb-2 mb-2 border-b border-border last:border-b-0 last:mb-0"><div><div class="text-navy font-bold text-[14px]">' + tx.type + '</div><div class="text-navy text-[12px] mt-0.5">' + tx.time + '</div></div>' +
+            '<div><div class="text-navy text-[14px] text-right">₩ ' + tx.amount + '</div><div class="text-[12px] text-right mt-0.5" style="color:' + statusColor[tx.status] + '">' + tx.status + '</div></div></div>'
           );
         }).join('');
       };
