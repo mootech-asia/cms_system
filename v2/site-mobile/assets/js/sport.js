@@ -37,6 +37,7 @@
     var list = document.getElementById('sport-match-list');
     if (list) list.innerHTML = matches.map(cardHTML).join('');
     var rail = document.getElementById('home-sport-rail');
-    if (rail) rail.innerHTML = matches.map(function (m) { return '<div class="flex-none w-[260px]">' + cardHTML(m) + '</div>'; }).join('');
+    // 每張卡寬度 = rail 內容寬（扣掉 px-4），左右與其他區塊的 16px 邊距對齊，捲動時逐張吸附
+    if (rail) rail.innerHTML = matches.map(function (m) { return '<div class="flex-none w-full snap-start">' + cardHTML(m) + '</div>'; }).join('');
   });
 })();
