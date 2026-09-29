@@ -1042,8 +1042,9 @@
   }
 
   /* =========================== 進站公告彈窗 ================================ */
-  /* 比照 v1.5 Nuxt 版 components/PromotionModal.vue：首頁進站時，全部公告一次列出（桌機排同一列，
-     手機上下排可捲動）。「今天不再提醒」勾選才寫進 localStorage(key 每天
+  /* 比照 v1.5 Nuxt 版 components/PromotionModal.vue：首頁進站時，手機一次顯示
+     一張、關閉後換下一張；桌機(>=768px，跟 .mobile-bottom-nav 收合斷點一致)
+     同時列出全部（排同一列，寬度不夠時等比縮窄）。「今天不再提醒」勾選才寫進 localStorage(key 每天
      自動換新)，沒勾選只是這次瀏覽暫時關閉，下次進站還會再出現。 */
   function initPromoPopup() {
     if (pageName() !== 'index') return;
@@ -1059,6 +1060,7 @@
     var cards = ALL.filter(function (p) { return dismissedIds.indexOf(String(p.promotion_id)) === -1; });
     if (!cards.length) return;
 
+    var isDesktop = window.matchMedia('(min-width: 768px)').matches;
     var loc = currentLocale();
     var backdrop = document.createElement('div');
     backdrop.className = 'promo-popup-backdrop';
@@ -1104,19 +1106,37 @@
       });
     }
 
-    function closeCard(id) {
-      var el = $('[data-promo-card="' + id + '"]', backdrop);
-      if (el) el.remove();
-      if (!$('[data-promo-card]', backdrop)) backdrop.remove();
+    var current = 0;
+    function renderMobile() {
+      if (current >= cards.length) { backdrop.remove(); return; }
+      var promo = cards[current];
+      backdrop.innerHTML = cardHTML(promo);
+      bindCard(backdrop.firstElementChild, promo);
     }
 
-    var stage = document.createElement('div');
-    stage.className = 'promo-popup-stage';
-    stage.innerHTML = cards.map(cardHTML).join('');
-    backdrop.appendChild(stage);
-    cards.forEach(function (promo) {
-      bindCard($('[data-promo-card="' + promo.promotion_id + '"]', stage), promo);
-    });
+    function closeCard(id) {
+      if (isDesktop) {
+        var el = $('[data-promo-card="' + id + '"]', backdrop);
+        if (el) el.remove();
+        if (!$('[data-promo-card]', backdrop)) backdrop.remove();
+      } else {
+        current += 1;
+        renderMobile();
+      }
+    }
+
+    if (isDesktop) {
+      var stage = document.createElement('div');
+      stage.className = 'promo-popup-stage';
+      var shown = cards;
+      stage.innerHTML = shown.map(cardHTML).join('');
+      backdrop.appendChild(stage);
+      shown.forEach(function (promo) {
+        bindCard($('[data-promo-card="' + promo.promotion_id + '"]', stage), promo);
+      });
+    } else {
+      renderMobile();
+    }
   }
 
   /* ============================ mini games grid =========================== */

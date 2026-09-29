@@ -161,8 +161,8 @@
   };
 
   /* =========================== 進站公告彈窗 ================================ */
-  /* 比照 v1.5 Nuxt 版 components/PromotionModal.vue：首頁進站時，全部公告一次列出（桌機排同一列，
-     手機上下排可捲動）。圖片沿用 v1.5
+  /* 比照 v1.5 Nuxt 版 components/PromotionModal.vue：首頁進站時，手機一次顯示
+     一張、關閉後換下一張；桌機(md: 768px)同時列出全部（排同一列，寬度不夠時等比縮窄）。圖片沿用 v1.5
      既有 3 張（assets/images/promo-popup/，循環使用），文案跟其他版本共用
      同一組。「今天不再提醒」勾選才寫進 localStorage(key 每天自動換新)。 */
   var PROMO_POPUP = [
@@ -219,13 +219,14 @@
     var cards = PROMO_POPUP.filter(function (p) { return dismissedIds.indexOf(String(p.promotion_id)) === -1; });
     if (!cards.length) return;
 
+    var isDesktop = window.matchMedia('(min-width: 768px)').matches;
     var loc = (window.CMS_I18N && window.CMS_I18N.getLocale) ? window.CMS_I18N.getLocale() : 'zh';
     var backdrop = document.createElement('div');
-    backdrop.className = 'fixed inset-0 z-[1200] bg-black/75 flex p-4 overflow-y-auto';
+    backdrop.className = 'fixed inset-0 z-[1200] bg-black/75 flex items-center justify-center p-4';
 
     function cardHTML(promo) {
       return (
-        '<div class="flex flex-col shrink-0 md:shrink w-[min(300px,calc(100vw-32px))] h-[min(480px,calc(100dvh-32px))] md:w-[320px] md:h-[560px] rounded-2xl border border-line-hi bg-bg-panel overflow-hidden" data-promo-card="' + promo.promotion_id + '">' +
+        '<div class="flex flex-col w-[min(300px,calc(100vw-32px))] h-[min(480px,calc(100dvh-32px))] md:w-[320px] md:h-[560px] rounded-2xl border border-line-hi bg-bg-panel overflow-hidden" data-promo-card="' + promo.promotion_id + '">' +
         '<div class="flex-none flex items-center justify-between px-3.5 py-2.5 border-b border-line">' +
         '<span class="text-[13px] font-bold text-accent">WIN100%</span>' +
         '<button type="button" class="h-6 w-6 grid place-items-center rounded-full text-text-dim" data-promo-popup-close aria-label="Close">' +
@@ -265,17 +266,34 @@
       });
     }
 
+    var current = 0;
+    function renderMobile() {
+      if (current >= cards.length) { backdrop.remove(); return; }
+      var promo = cards[current];
+      backdrop.innerHTML = cardHTML(promo);
+      bindCard(backdrop.firstElementChild, promo);
+    }
     function closeCard(id) {
-      var el = backdrop.querySelector('[data-promo-card="' + id + '"]');
-      if (el) el.remove();
-      if (!backdrop.querySelector('[data-promo-card]')) backdrop.remove();
+      if (isDesktop) {
+        var el = backdrop.querySelector('[data-promo-card="' + id + '"]');
+        if (el) el.remove();
+        if (!backdrop.querySelector('[data-promo-card]')) backdrop.remove();
+      } else {
+        current += 1;
+        renderMobile();
+      }
     }
 
     document.body.appendChild(backdrop);
-    backdrop.innerHTML = '<div class="m-auto min-w-0 flex flex-col items-center gap-5 md:flex-row">' + cards.map(cardHTML).join('') + '</div>';
-    cards.forEach(function (promo) {
-      bindCard(backdrop.querySelector('[data-promo-card="' + promo.promotion_id + '"]'), promo);
-    });
+    if (isDesktop) {
+      var shown = cards;
+      backdrop.innerHTML = '<div class="min-w-0 flex items-center gap-5">' + shown.map(cardHTML).join('') + '</div>';
+      shown.forEach(function (promo) {
+        bindCard(backdrop.querySelector('[data-promo-card="' + promo.promotion_id + '"]'), promo);
+      });
+    } else {
+      renderMobile();
+    }
   }
 
   function initFeatureCarousel() {

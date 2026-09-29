@@ -2789,8 +2789,8 @@ select.pay-field {
 .promotion-page-card-cta:hover { opacity: 0.9; }
 
 /* ============================================================
-   進站公告彈窗（比照 v1.5 components/PromotionModal.vue 概念：全部公告一次列出，
-   桌機排同一列、手機上下排可捲動；「今天不再提醒」勾選才寫入
+   進站公告彈窗（比照 v1.5 components/PromotionModal.vue 概念：手機一次
+   一張、依序關閉，桌機全部排同一列；「今天不再提醒」勾選才寫入
    localStorage）
    ============================================================ */
 .promo-popup-backdrop {
