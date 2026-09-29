@@ -44,20 +44,35 @@
   }
 
   /* 首頁娛樂城網格「載入更多」：比照 v2/site 桌機版分類頁（MAX_LOADS = 3），
-     每次接續多載 12 款，載滿 3 次後移除按鈕。 */
+     每次接續多載 12 款，載滿 3 次後移除按鈕。下拉捲到按鈕附近（提前 200px）
+     由 IntersectionObserver 自動觸發；按鈕保留給不支援或想手動點的情況。
+     observer 只在「進出可視範圍」時回呼，載入後按鈕被新卡片推出畫面，
+     要再往下捲才會觸發下一批，不會一次連載到上限。 */
   function initCasinoLoadMore(pageSize) {
     var grid = document.getElementById('casino-grid');
     var btn = document.getElementById('casino-load-more');
     if (!grid || !btn) return;
     var loads = 0;
-    btn.addEventListener('click', function () {
+    var observer = null;
+    function loadMore() {
+      if (loads >= 3) return;
       var start = grid.children.length;
       var html = '';
       for (var i = start; i < start + pageSize; i++) html += cardHTML(i, false);
       grid.insertAdjacentHTML('beforeend', html);
       loads += 1;
-      if (loads >= 3) btn.remove();
-    });
+      if (loads >= 3) {
+        if (observer) observer.disconnect();
+        btn.remove();
+      }
+    }
+    btn.addEventListener('click', loadMore);
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) loadMore();
+      }, { rootMargin: '0px 0px 200px 0px' });
+      observer.observe(btn);
+    }
   }
 
   /* Hero 輪播：4 張 slide 都已經在靜態 HTML 裡(見 hero.mjs 產生的結構)，
