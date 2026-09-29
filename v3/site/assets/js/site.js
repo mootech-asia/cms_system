@@ -1866,6 +1866,20 @@
   function initPersonalInfoPage() {
     var card = document.querySelector('.pi-card');
     if (!card) return;
+    /* 原生 date 欄位空白時的「年/月/日」提示跟著瀏覽器介面語言，不受
+       站內語言切換控制；空白時改當 text 欄顯示固定格式提示（同紀錄頁的
+       YYYY/MM/DD），點擊才切回 date 並喚出選擇器。 */
+    Array.prototype.forEach.call(card.querySelectorAll('.pi-date'), function (inp) {
+      inp.placeholder = 'YYYY/MM/DD';
+      if (!inp.value) inp.type = 'text';
+      function openPicker() {
+        if (inp.type !== 'date') inp.type = 'date';
+        try { inp.showPicker(); } catch (e) { /* 非使用者手勢觸發時瀏覽器會拒絕 */ }
+      }
+      inp.addEventListener('click', openPicker);
+      inp.addEventListener('focus', function () { if (inp.type !== 'date') inp.type = 'date'; });
+      inp.addEventListener('blur', function () { if (!inp.value) inp.type = 'text'; });
+    });
     var submitBtn = card.querySelector('.ap-btn-wide.ap-grad');
     if (!submitBtn) return;
     submitBtn.addEventListener('click', function () {

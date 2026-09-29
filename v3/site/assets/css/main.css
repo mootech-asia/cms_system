@@ -4213,6 +4213,7 @@ select.twk-field {
 }
 .rec-date-input,
 .pi-date { color-scheme: dark; }
+.pi-date::placeholder { color: var(--text-dim); }
 
 .rec-date > svg,
 .pi-field .pi-ico svg {
