@@ -25,9 +25,9 @@
 
 <main>
   <section class="px-4 pt-4">
-    <div class="rounded-2xl border border-line bg-bg-card p-4 flex items-center gap-3">
+    <div class="rounded-2xl border border-white/10 bg-bg-card bg-[radial-gradient(120%_100%_at_0%_0%,color-mix(in_srgb,var(--accent)_16%,transparent),transparent_60%)] shadow-[inset_0_1px_0_rgba(255,255,255,.1),0_14px_28px_-14px_rgba(0,0,0,.75)] p-4 flex items-center gap-3">
       <div class="relative flex-none">
-        <span class="h-12 w-12 rounded-full bg-accent-soft grid place-items-center text-accent font-bold">PL</span>
+        <span class="h-12 w-12 rounded-full bg-accent-soft ring-2 ring-accent/45 shadow-[0_0_18px_color-mix(in_srgb,var(--accent)_45%,transparent)] grid place-items-center text-accent font-bold">PL</span>
         <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 h-4 w-4 grid place-items-center rounded-full border border-line-hi bg-bg-card text-accent" aria-hidden="true"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span>
       </div>
       <div>
@@ -36,15 +36,15 @@
       </div>
     </div>
     <div class="mt-3 grid grid-cols-2 gap-3">
-      <div class="rounded-2xl border border-line bg-bg-card p-4">
-        <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent mb-2">
+      <div class="rounded-2xl border border-white/10 bg-bg-card bg-[radial-gradient(130%_110%_at_0%_0%,color-mix(in_srgb,var(--accent)_30%,transparent),transparent_65%)] shadow-[inset_0_1px_0_rgba(255,255,255,.12),0_14px_28px_-14px_rgba(0,0,0,.75)] p-4">
+        <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/30 shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_6px_14px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)] mb-2">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18"></path><path d="M7 15h4"></path></svg>
         </span>
         <p class="text-[11.5px] text-text-dim"><span data-i18n="account.balance2">帳戶餘額</span></p>
-        <p class="mt-1 text-[19px] font-extrabold text-accent">$0.00</p>
+        <p class="mt-1 text-[22px] font-extrabold text-accent drop-shadow-[0_0_10px_color-mix(in_srgb,var(--accent)_45%,transparent)]">$0.00</p>
       </div>
-      <div class="rounded-2xl border border-line bg-bg-card p-4">
-        <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent mb-2">
+      <div class="rounded-2xl border border-white/10 bg-bg-card bg-[radial-gradient(120%_100%_at_0%_0%,color-mix(in_srgb,var(--accent)_16%,transparent),transparent_60%)] shadow-[inset_0_1px_0_rgba(255,255,255,.1),0_14px_28px_-14px_rgba(0,0,0,.75)] p-4">
+        <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/30 shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_6px_14px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)] mb-2">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
         </span>
         <p class="text-[11.5px] text-text-dim"><span data-i18n="account.bonusPoints">紅利點數</span></p>
@@ -54,19 +54,19 @@
     <!-- 會員等級進度：內容比照 v2/site 桌機版 account.html 的
          .rewards-bar（Current: Unranked / 62% / Next: Bronze），
          沿用桌機版既有數值，不是這裡另外編的假資料。 -->
-    <div class="mt-3 rounded-2xl border border-line bg-bg-card p-4">
+    <div class="mt-3 rounded-2xl border border-white/10 bg-bg-card bg-[radial-gradient(120%_100%_at_0%_0%,color-mix(in_srgb,var(--accent)_16%,transparent),transparent_60%)] shadow-[inset_0_1px_0_rgba(255,255,255,.1),0_14px_28px_-14px_rgba(0,0,0,.75)] p-4">
       <div class="flex items-center gap-2.5 mb-3">
-        <span class="h-9 w-9 flex-none grid place-items-center rounded-xl bg-accent-soft text-accent">
+        <span class="h-9 w-9 flex-none grid place-items-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/30 shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_6px_14px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)]">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
         </span>
         <p class="text-[11px] font-semibold text-text-dim"><span data-i18n="account.rewardsProgress">等級進度</span></p>
       </div>
-      <div class="h-2 overflow-hidden rounded-full border border-line bg-bg-elev" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="Level progress: 62%">
-        <div class="h-full rounded-full bg-accent" style="width:62%"></div>
+      <div class="h-3.5 overflow-hidden rounded-full bg-black/35 p-0.5 shadow-[inset_0_1px_2px_rgba(0,0,0,.6)]" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="Level progress: 62%">
+        <div class="h-full rounded-full bg-[linear-gradient(90deg,color-mix(in_srgb,var(--accent)_45%,white),var(--accent))] shadow-[0_0_12px_color-mix(in_srgb,var(--accent)_70%,transparent)]" style="width:62%"></div>
       </div>
       <div class="mt-2 flex items-center justify-between text-[11px] font-semibold text-text-dim">
         <span><span data-i18n="account.current">目前</span>: <b class="text-text"><span data-i18n="account.tierUnranked">未排名</span></b></span>
-        <span>62%</span>
+        <span class="text-[15px] font-extrabold text-text">62%</span>
         <span><span data-i18n="account.next">下一階</span>: <b class="text-accent"><span data-i18n="account.tierBronze">銅級</span></b></span>
       </div>
     </div>
@@ -76,41 +76,53 @@
     <h2 class="px-4 mb-3 text-[14px] font-bold text-text"><span data-i18n="account.boundBanks">已綁定銀行卡</span></h2>
     <div class="px-4">
       <div class="flex gap-3 overflow-x-auto thin-scrollbar-x pb-2">
-    <div class="flex-none w-64 rounded-2xl p-4 bg-gradient-to-br from-bg-card-hi to-bg-card border border-line-hi">
-      <div class="flex items-center justify-between">
-        <p class="text-[12px] text-text-dim">KB Bank</p>
-        <span class="h-7 w-7 flex-none grid place-items-center rounded-lg bg-accent-soft text-accent">
+    <div class="relative flex-none w-64 mb-1.5">
+    <span class="absolute inset-x-2 -bottom-1.5 top-2 rounded-2xl bg-accent/35" aria-hidden="true"></span>
+    <div class="relative overflow-hidden rounded-2xl p-4 bg-bg-elev border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,.1),0_14px_24px_-12px_rgba(0,0,0,.8)]">
+      <span class="pointer-events-none absolute inset-x-0 top-0 h-[52px] rounded-br-[40px] bg-[linear-gradient(120deg,color-mix(in_srgb,var(--accent)_55%,white),var(--accent)_55%,color-mix(in_srgb,var(--accent)_70%,black))] shadow-[inset_0_1px_0_rgba(255,255,255,.5)]" aria-hidden="true"></span>
+      <div class="relative flex items-center justify-between">
+        <p class="text-[12px] font-bold text-text-on-accent">KB Bank</p>
+        <span class="h-7 w-7 flex-none grid place-items-center rounded-lg bg-black/15 text-text-on-accent ring-1 ring-white/30">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="16" height="11" rx="2"></rect><path d="M2 11h16"></path><circle cx="8" cy="14.5" r="1.4"></circle><path d="M18 9.5l3.6 1.5a1 1 0 0 1 .4 1.4l-2 3.4"></path></svg>
         </span>
       </div>
-      <p class="mt-3 text-[15px] font-bold tracking-widest text-text">**** **** **** 1234</p>
-      <div class="mt-3 flex items-center justify-between text-[11px] text-text-dim">
+      <p class="relative mt-4 text-[15px] font-bold tracking-widest text-text">**** **** **** 1234</p>
+      <div class="relative mt-3 flex items-center justify-between text-[11px] text-text-dim">
         <span>M＊＊＊＊＊＊＊</span><span><span data-i18n="account.bound">綁定</span> 2025-08-14</span>
       </div>
     </div>
-    <div class="flex-none w-64 rounded-2xl p-4 bg-gradient-to-br from-bg-card-hi to-bg-card border border-line-hi">
-      <div class="flex items-center justify-between">
-        <p class="text-[12px] text-text-dim">Shinhan Bank</p>
-        <span class="h-7 w-7 flex-none grid place-items-center rounded-lg bg-accent-soft text-accent">
+    </div>
+    <div class="relative flex-none w-64 mb-1.5">
+    <span class="absolute inset-x-2 -bottom-1.5 top-2 rounded-2xl bg-accent/35" aria-hidden="true"></span>
+    <div class="relative overflow-hidden rounded-2xl p-4 bg-bg-elev border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,.1),0_14px_24px_-12px_rgba(0,0,0,.8)]">
+      <span class="pointer-events-none absolute inset-x-0 top-0 h-[52px] rounded-br-[40px] bg-[linear-gradient(120deg,color-mix(in_srgb,var(--accent)_55%,white),var(--accent)_55%,color-mix(in_srgb,var(--accent)_70%,black))] shadow-[inset_0_1px_0_rgba(255,255,255,.5)]" aria-hidden="true"></span>
+      <div class="relative flex items-center justify-between">
+        <p class="text-[12px] font-bold text-text-on-accent">Shinhan Bank</p>
+        <span class="h-7 w-7 flex-none grid place-items-center rounded-lg bg-black/15 text-text-on-accent ring-1 ring-white/30">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="16" height="11" rx="2"></rect><path d="M2 11h16"></path><circle cx="8" cy="14.5" r="1.4"></circle><path d="M18 9.5l3.6 1.5a1 1 0 0 1 .4 1.4l-2 3.4"></path></svg>
         </span>
       </div>
-      <p class="mt-3 text-[15px] font-bold tracking-widest text-text">**** **** **** 5678</p>
-      <div class="mt-3 flex items-center justify-between text-[11px] text-text-dim">
+      <p class="relative mt-4 text-[15px] font-bold tracking-widest text-text">**** **** **** 5678</p>
+      <div class="relative mt-3 flex items-center justify-between text-[11px] text-text-dim">
         <span>M＊＊＊＊＊＊＊</span><span><span data-i18n="account.bound">綁定</span> 2025-09-05</span>
       </div>
     </div>
-    <div class="flex-none w-64 rounded-2xl p-4 bg-gradient-to-br from-bg-card-hi to-bg-card border border-line-hi">
-      <div class="flex items-center justify-between">
-        <p class="text-[12px] text-text-dim">Woori Bank</p>
-        <span class="h-7 w-7 flex-none grid place-items-center rounded-lg bg-accent-soft text-accent">
+    </div>
+    <div class="relative flex-none w-64 mb-1.5">
+    <span class="absolute inset-x-2 -bottom-1.5 top-2 rounded-2xl bg-accent/35" aria-hidden="true"></span>
+    <div class="relative overflow-hidden rounded-2xl p-4 bg-bg-elev border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,.1),0_14px_24px_-12px_rgba(0,0,0,.8)]">
+      <span class="pointer-events-none absolute inset-x-0 top-0 h-[52px] rounded-br-[40px] bg-[linear-gradient(120deg,color-mix(in_srgb,var(--accent)_55%,white),var(--accent)_55%,color-mix(in_srgb,var(--accent)_70%,black))] shadow-[inset_0_1px_0_rgba(255,255,255,.5)]" aria-hidden="true"></span>
+      <div class="relative flex items-center justify-between">
+        <p class="text-[12px] font-bold text-text-on-accent">Woori Bank</p>
+        <span class="h-7 w-7 flex-none grid place-items-center rounded-lg bg-black/15 text-text-on-accent ring-1 ring-white/30">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="16" height="11" rx="2"></rect><path d="M2 11h16"></path><circle cx="8" cy="14.5" r="1.4"></circle><path d="M18 9.5l3.6 1.5a1 1 0 0 1 .4 1.4l-2 3.4"></path></svg>
         </span>
       </div>
-      <p class="mt-3 text-[15px] font-bold tracking-widest text-text">**** **** **** 9012</p>
-      <div class="mt-3 flex items-center justify-between text-[11px] text-text-dim">
+      <p class="relative mt-4 text-[15px] font-bold tracking-widest text-text">**** **** **** 9012</p>
+      <div class="relative mt-3 flex items-center justify-between text-[11px] text-text-dim">
         <span>M＊＊＊＊＊＊＊</span><span><span data-i18n="account.bound">綁定</span> 2025-10-02</span>
       </div>
+    </div>
     </div></div>
     </div>
   </section>
@@ -118,68 +130,68 @@
   <section class="mt-6 px-4 mb-6">
     <h2 class="mb-3 text-[14px] font-bold text-text"><span data-i18n="account.memberServices">會員服務</span></h2>
     <div class="grid grid-cols-3 gap-3">
-    <a href="deposit.html" class="flex flex-col items-center gap-2 rounded-2xl border border-line bg-bg-card py-4">
-      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent">
+    <a href="deposit.html" class="flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-bg-card bg-linear-to-b from-white/[.06] to-transparent py-4 shadow-[inset_0_1px_0_rgba(255,255,255,.12),inset_0_-3px_0_rgba(0,0,0,.25),0_10px_20px_-12px_rgba(0,0,0,.8)] active:translate-y-px">
+      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/30 shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_6px_14px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)]">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12m0 0-4-4m4 4 4-4"></path><path d="M4 20h16"></path></svg>
       </span>
       <span class="text-[11px] font-semibold text-text-mid text-center leading-tight" data-i18n="page.deposit">Deposit</span>
     </a>
-    <a href="withdrawal.html" class="flex flex-col items-center gap-2 rounded-2xl border border-line bg-bg-card py-4">
-      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent">
+    <a href="withdrawal.html" class="flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-bg-card bg-linear-to-b from-white/[.06] to-transparent py-4 shadow-[inset_0_1px_0_rgba(255,255,255,.12),inset_0_-3px_0_rgba(0,0,0,.25),0_10px_20px_-12px_rgba(0,0,0,.8)] active:translate-y-px">
+      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/30 shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_6px_14px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)]">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V8m0 0-4 4m4-4 4 4"></path><path d="M4 20h16"></path></svg>
       </span>
       <span class="text-[11px] font-semibold text-text-mid text-center leading-tight" data-i18n="page.withdrawal">Withdrawal</span>
     </a>
-    <a href="betting-record.html" class="flex flex-col items-center gap-2 rounded-2xl border border-line bg-bg-card py-4">
-      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent">
+    <a href="betting-record.html" class="flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-bg-card bg-linear-to-b from-white/[.06] to-transparent py-4 shadow-[inset_0_1px_0_rgba(255,255,255,.12),inset_0_-3px_0_rgba(0,0,0,.25),0_10px_20px_-12px_rgba(0,0,0,.8)] active:translate-y-px">
+      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/30 shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_6px_14px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)]">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5L7.2 18l.9-5.4-3.9-3.8 5.4-.8L12 3Z"></path></svg>
       </span>
       <span class="text-[11px] font-semibold text-text-mid text-center leading-tight" data-i18n="page.bettingRecord">Betting Record</span>
     </a>
-    <a href="deposit-record.html" class="flex flex-col items-center gap-2 rounded-2xl border border-line bg-bg-card py-4">
-      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent">
+    <a href="deposit-record.html" class="flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-bg-card bg-linear-to-b from-white/[.06] to-transparent py-4 shadow-[inset_0_1px_0_rgba(255,255,255,.12),inset_0_-3px_0_rgba(0,0,0,.25),0_10px_20px_-12px_rgba(0,0,0,.8)] active:translate-y-px">
+      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/30 shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_6px_14px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)]">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
       </span>
       <span class="text-[11px] font-semibold text-text-mid text-center leading-tight" data-i18n="page.depositRecord">Deposit Record</span>
     </a>
-    <a href="profit-loss.html" class="flex flex-col items-center gap-2 rounded-2xl border border-line bg-bg-card py-4">
-      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent">
+    <a href="profit-loss.html" class="flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-bg-card bg-linear-to-b from-white/[.06] to-transparent py-4 shadow-[inset_0_1px_0_rgba(255,255,255,.12),inset_0_-3px_0_rgba(0,0,0,.25),0_10px_20px_-12px_rgba(0,0,0,.8)] active:translate-y-px">
+      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/30 shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_6px_14px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)]">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 16 5-5 4 4 7-9"></path><path d="M14 6h6v6"></path></svg>
       </span>
       <span class="text-[11px] font-semibold text-text-mid text-center leading-tight" data-i18n="page.profitLoss">Profit And Loss</span>
     </a>
-    <a href="withdrawal-record.html" class="flex flex-col items-center gap-2 rounded-2xl border border-line bg-bg-card py-4">
-      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent">
+    <a href="withdrawal-record.html" class="flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-bg-card bg-linear-to-b from-white/[.06] to-transparent py-4 shadow-[inset_0_1px_0_rgba(255,255,255,.12),inset_0_-3px_0_rgba(0,0,0,.25),0_10px_20px_-12px_rgba(0,0,0,.8)] active:translate-y-px">
+      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/30 shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_6px_14px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)]">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
       </span>
       <span class="text-[11px] font-semibold text-text-mid text-center leading-tight" data-i18n="page.withdrawalRecord">Withdrawal Record</span>
     </a>
-    <a href="withdrawal-detail.html" class="flex flex-col items-center gap-2 rounded-2xl border border-line bg-bg-card py-4">
-      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent">
+    <a href="withdrawal-detail.html" class="flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-bg-card bg-linear-to-b from-white/[.06] to-transparent py-4 shadow-[inset_0_1px_0_rgba(255,255,255,.12),inset_0_-3px_0_rgba(0,0,0,.25),0_10px_20px_-12px_rgba(0,0,0,.8)] active:translate-y-px">
+      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/30 shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_6px_14px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)]">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
       </span>
       <span class="text-[11px] font-semibold text-text-mid text-center leading-tight" data-i18n="page.withdrawalDetail">Withdrawal Detail</span>
     </a>
-    <a href="account-record.html" class="flex flex-col items-center gap-2 rounded-2xl border border-line bg-bg-card py-4">
-      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent">
+    <a href="account-record.html" class="flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-bg-card bg-linear-to-b from-white/[.06] to-transparent py-4 shadow-[inset_0_1px_0_rgba(255,255,255,.12),inset_0_-3px_0_rgba(0,0,0,.25),0_10px_20px_-12px_rgba(0,0,0,.8)] active:translate-y-px">
+      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/30 shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_6px_14px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)]">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
       </span>
       <span class="text-[11px] font-semibold text-text-mid text-center leading-tight" data-i18n="page.accountRecord">Account Record</span>
     </a>
-    <a href="personal-info.html" class="flex flex-col items-center gap-2 rounded-2xl border border-line bg-bg-card py-4">
-      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent">
+    <a href="personal-info.html" class="flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-bg-card bg-linear-to-b from-white/[.06] to-transparent py-4 shadow-[inset_0_1px_0_rgba(255,255,255,.12),inset_0_-3px_0_rgba(0,0,0,.25),0_10px_20px_-12px_rgba(0,0,0,.8)] active:translate-y-px">
+      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/30 shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_6px_14px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)]">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="10" r="3"></circle><path d="M6 19a6 6 0 0 1 12 0"></path></svg>
       </span>
       <span class="text-[11px] font-semibold text-text-mid text-center leading-tight" data-i18n="page.personalInfo">Personal Info</span>
     </a>
-    <a href="security.html" class="flex flex-col items-center gap-2 rounded-2xl border border-line bg-bg-card py-4">
-      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent">
+    <a href="security.html" class="flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-bg-card bg-linear-to-b from-white/[.06] to-transparent py-4 shadow-[inset_0_1px_0_rgba(255,255,255,.12),inset_0_-3px_0_rgba(0,0,0,.25),0_10px_20px_-12px_rgba(0,0,0,.8)] active:translate-y-px">
+      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/30 shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_6px_14px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)]">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.3 8 8 9 4.7-1 8-4.5 8-9V6l-8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg>
       </span>
       <span class="text-[11px] font-semibold text-text-mid text-center leading-tight" data-i18n="page.security">Security Center</span>
     </a>
-    <a href="#" class="flex flex-col items-center gap-2 rounded-2xl border border-line bg-bg-card py-4">
-      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent">
+    <a href="#" class="flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-bg-card bg-linear-to-b from-white/[.06] to-transparent py-4 shadow-[inset_0_1px_0_rgba(255,255,255,.12),inset_0_-3px_0_rgba(0,0,0,.25),0_10px_20px_-12px_rgba(0,0,0,.8)] active:translate-y-px">
+      <span class="h-9 w-9 grid place-items-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/30 shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_6px_14px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)]">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 16 0v4a3 3 0 0 1-3 3h-2v-7h5M4 12v4a3 3 0 0 0 3 3h2v-7H4"></path></svg>
       </span>
       <span class="text-[11px] font-semibold text-text-mid text-center leading-tight" data-i18n="page.customerService">Customer Service</span>
