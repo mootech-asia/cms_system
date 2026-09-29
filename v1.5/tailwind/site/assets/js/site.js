@@ -155,7 +155,7 @@
     return (
       '<header class="fixed top-0 left-0 right-0 z-[200] bg-navy">' +
       '<div class="flex items-center justify-between h-16 px-5 [body.is-usercenter_&]:hidden xl:hidden">' +
-      '<a href="index.html"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="h-12.5 w-auto"></a>' +
+      '<a href="index.html"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="h-9 w-auto"></a>' +
       '<button type="button" class="w-9 h-9" data-toggle-mobile-menu><img src="' + icon('menu.svg') + '" alt="menu" class="w-9 h-9"></button>' +
       '</div>' +
       '<div class="fixed left-0 right-0 top-[63px] z-[200] bg-[rgba(6,12,52,0.8)] text-white hidden [&.is-open]:block xl:!hidden" data-mobile-menu>' +
@@ -165,7 +165,7 @@
       '</div>' +
       '<div class="hidden xl:block">' +
       '<div class="h-33 flex justify-between ' + (isUserCenter ? 'px-10' : 'px-24') + '">' +
-      '<div class="flex items-center"><a href="index.html"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="w-60 min-w-60 cursor-pointer"></a></div>' +
+      '<div class="flex items-center"><a href="index.html"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="w-50 min-w-50 cursor-pointer"></a></div>' +
       '<div class="w-full h-full flex flex-col justify-between">' +
       '<div class="flex justify-end items-center gap-4 mt-2">' + desktopAccount + langSwitcherDesktop + '</div>' +
       '<nav class="flex justify-end gap-6 pb-4 whitespace-nowrap">' + desktopNav + '</nav>' +
@@ -255,7 +255,7 @@
         return '<button type="button" class="flex items-center gap-1.5 w-full h-6 rounded-xl !px-1.5 !text-white !text-[14px] hover:!bg-white/10" data-set-locale="' + l.code + '"><img src="' + icon(l.image) + '" alt="' + l.code + '" class="w-6 h-3.5"><span>' + l.label + '</span></button>';
       }).join('') +
       '</div></div></div>' +
-      '<div class="flex justify-start xl:justify-center"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="w-31 xl:w-70"></div>' +
+      '<div class="flex justify-start xl:justify-center"><img src="' + IMG + 'index/img-logo.png" alt="logo" class="w-22 xl:w-50"></div>' +
       '<div class="my-8 xl:text-center xl:mt-14">' +
       '<p class="text-subtitle text-[14px] m-0" data-i18n="footer.desc">' + t('footer.desc') + '</p>' +
       '<p class="text-subtitle text-[14px] m-0" data-i18n="footer.desc2">' + t('footer.desc2') + '</p>' +

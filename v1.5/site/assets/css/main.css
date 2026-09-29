@@ -166,7 +166,7 @@ input {
   padding: 0 20px;
 }
 .site-header-mobile .brand-logo {
-  height: 50px;
+  height: 36px;
   width: auto;
 }
 .header-menu-btn {
@@ -318,8 +318,8 @@ input {
   align-items: center;
 }
 .header-logo-col img {
-  width: 240px;
-  min-width: 240px;
+  width: 200px;
+  min-width: 200px;
   cursor: pointer;
 }
 .header-main-col {
@@ -589,7 +589,7 @@ input {
   justify-content: flex-start;
 }
 .footer-logo-row img {
-  width: 124px;
+  width: 88px;
 }
 .footer-copy {
   margin: 32px 0;
@@ -614,7 +614,7 @@ input {
     justify-content: center;
   }
   .footer-logo-row img {
-    width: 280px;
+    width: 200px;
   }
   .footer-copy {
     text-align: center;

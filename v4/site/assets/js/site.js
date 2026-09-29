@@ -637,7 +637,7 @@
     wrap.innerHTML =
       '<div class="fixed inset-0 z-[10001] bg-[rgba(20,6,10,0.6)] mobile-menu-overlay" data-mobile-overlay>' +
       '<div class="absolute inset-0 flex flex-col bg-bg overflow-y-auto">' +
-      '<div class="flex items-center justify-between p-[16px_20px] bg-[image:var(--header-grad)] shrink-0"><img src="logo.png" alt="Bet100" class="h-11 w-auto [filter:brightness(0)_invert(1)]">' +
+      '<div class="flex items-center justify-between p-[16px_20px] bg-[image:var(--header-grad)] shrink-0"><img src="logo.png" alt="Bet100" class="h-8 w-auto [filter:brightness(0)_invert(1)]">' +
       '<button type="button" class="w-8 h-8 grid place-items-center rounded-full text-text-on-header bg-[rgba(255,255,255,0.14)]" aria-label="' + tr('cs.chatClose', '關閉') + '" data-mobile-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
       '<nav class="flex flex-col p-2.5 flex-1">' + navHtml + '</nav>' +
       '<div class="p-[14px_20px_22px] border-t border-line shrink-0">' + footHtml + '</div>' +
