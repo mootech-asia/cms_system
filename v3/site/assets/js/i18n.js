@@ -1337,3 +1337,9 @@ const TRANSLATIONS = Object.freeze({
 
   window.CMS_I18N = { LOCALE_STORAGE_KEY, LANGS, HERO_COPY, PROMO_RIBBON_COPY, PROMOTION_COPY, TOURNAMENT_COPY, SPOTLIGHT_COPY, TRANSLATIONS };
 })();
+
+/* 對應 CSS 的 html:not(.i18n-ready) 隱藏：setTimeout 排在所有 DOMContentLoaded
+   handler（含翻譯與 JS 渲染的 header/footer）之後才顯示頁面。 */
+document.addEventListener('DOMContentLoaded', function () {
+  setTimeout(function () { document.documentElement.classList.add('i18n-ready'); }, 0);
+});

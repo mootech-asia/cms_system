@@ -2837,3 +2837,9 @@ select.pay-field {
   .promo-popup-card { flex-shrink: 1; width: 320px; height: 560px; }
   .promo-popup-content img { height: 200px; }
 }
+
+/* 靜態 HTML 的文字是預設語系（中文），翻譯要等 JS 在 DOMContentLoaded 才套上；
+   套完前整頁 opacity: 0，避免先閃出中文再切換。html.i18n-ready 由 JS 在所有
+   DOMContentLoaded handler 跑完後加上；JS 失效時 5s 後由動畫強制顯示，不會永遠空白。 */
+html:not(.i18n-ready) body { opacity: 0; animation: i18n-reveal 0s 5s forwards; }
+@keyframes i18n-reveal { to { opacity: 1; } }
