@@ -685,3 +685,9 @@
     initLangSwitcher();
   });
 })();
+
+/* 對應 CSS 的 html:not(.i18n-ready) 隱藏：setTimeout 排在所有 DOMContentLoaded
+   handler（含翻譯與 JS 渲染的 header/footer）之後才顯示頁面。 */
+document.addEventListener('DOMContentLoaded', function () {
+  setTimeout(function () { document.documentElement.classList.add('i18n-ready'); }, 0);
+});
