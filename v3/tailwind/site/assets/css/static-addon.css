@@ -71,16 +71,17 @@
   line-height: 1.6;
 }
 
-/* 仿 3D 主色按鈕（Deposit/Submit 等主要 CTA 與客服懸浮鈕）：左上高光 +
-   下緣暗部疊在 --gradient-primary 上，內陰影做出厚度、外發光同主色。
+/* 仿 3D 主色按鈕（Deposit/Submit 等主要 CTA 與客服懸浮鈕）：左上大片柔光 +
+   由上往下漸暗做出鼓起的曲面，內陰影：上緣亮邊、下緣暗部與底部反光；
+   不加主色外暈光，只留中性深色落影。
    本檔最後載入，同優先權即可覆寫各元件原本的 background/box-shadow。 */
 .ap-btn-wide.ap-grad:not(:disabled),
 .ap-btn.primary,
 .ui-button--primary,
 .rec-confirm,
 .cms-cs-fab {
-  background: radial-gradient(120% 100% at 30% 0%, rgb(255 255 255 / .38), transparent 55%), linear-gradient(180deg, transparent 50%, rgb(0 0 0 / .2)), var(--gradient-primary);
-  box-shadow: inset 0 1px 1px rgb(255 255 255 / .55), inset 0 -2px 4px rgb(0 0 0 / .28), 0 10px 22px -10px color-mix(in oklch, var(--primary) 85%, transparent);
+  background: radial-gradient(70% 85% at 32% 18%, rgb(255 255 255 / .42), transparent 62%), linear-gradient(180deg, rgb(255 255 255 / .1), transparent 42%, rgb(0 0 0 / .3)), var(--gradient-primary);
+  box-shadow: inset 0 2px 3px rgb(255 255 255 / .45), inset 0 -5px 9px rgb(0 0 0 / .35), inset 0 -1px 1px rgb(255 255 255 / .28), 0 4px 10px -4px rgb(0 0 0 / .45);
 }
 .ap-btn-wide.ap-grad:not(:disabled):active,
 .ap-btn.primary:active,
