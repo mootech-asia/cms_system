@@ -53,7 +53,7 @@
       '</span>' +
       '<p class="text-[16px] font-bold text-text mb-1.5">' + t('payment.successTitle') + '</p>' +
       '<p class="text-[13px] text-text-mid mb-6">' + t(successMsgKey) + '</p>' +
-      '<a href="' + recordHref + '" class="w-full h-11 rounded-full bg-accent btn-3d text-text-on-accent text-[14px] font-bold grid place-items-center mb-2.5">' + t(recordLabelKey) + '</a>' +
+      '<a href="' + recordHref + '" class="w-full h-11 rounded-xl bg-accent text-text-on-accent text-[14px] font-bold grid place-items-center mb-2.5">' + t(recordLabelKey) + '</a>' +
       '<a href="index.html" class="w-full h-11 rounded-xl border border-line-hi text-text text-[14px] font-bold grid place-items-center">' + t('payment.backHome') + '</a>' +
       '</div>'
     );
@@ -83,7 +83,7 @@
       var methods = DP_METHODS.slice(0, methodCount || DP_METHODS.length);
       var tabs = methods.map(function (m, i) {
         return '<button type="button" class="flex-none rounded-full px-4 py-2 text-[13px] font-semibold' +
-          (i === 0 ? ' bg-accent btn-3d text-text-on-accent' : ' bg-bg-card text-text-mid border border-line') +
+          (i === 0 ? ' bg-accent text-text-on-accent' : ' bg-bg-card text-text-mid border border-line') +
           '" data-dp-method="' + m.id + '">' + t(m.key) + '</button>';
       }).join('');
       return (
@@ -92,7 +92,7 @@
         '<div class="flex items-center gap-2 overflow-x-auto no-scrollbar mb-4" data-dp-method-tabs>' + tabs + '</div>' +
         '<label class="block text-[12px] text-text-dim mb-1.5">' + t('deposit.amount') + '</label>' +
         '<input type="number" placeholder="' + t('deposit.amountPh') + '" class="w-full h-12 rounded-xl border border-line bg-bg-card px-4 text-[14px] text-text mb-4" id="dp-amount">' +
-        '<button type="button" class="w-full h-12 rounded-full bg-accent btn-3d text-text-on-accent text-[14px] font-bold" data-dp-next>' + t('deposit.next') + '</button>'
+        '<button type="button" class="w-full h-12 rounded-xl bg-accent text-text-on-accent text-[14px] font-bold" data-dp-next>' + t('deposit.next') + '</button>'
       );
     }
 
@@ -104,7 +104,7 @@
         '<div class="flex items-center justify-between py-2 border-b border-line text-[13px]"><span class="text-text-dim">' + t('deposit.transferAccountLabel') + '</span><span class="font-bold text-text">wururu1234</span></div>' +
         '<p class="text-[11.5px] text-text-dim leading-relaxed mt-3">' + t('deposit.transferNote') + '</p>' +
         '</div>' +
-        '<button type="button" class="w-full h-12 rounded-full bg-accent btn-3d text-text-on-accent text-[14px] font-bold mt-4" data-dp-complete>' + t('deposit.complete') + '</button>'
+        '<button type="button" class="w-full h-12 rounded-xl bg-accent text-text-on-accent text-[14px] font-bold mt-4" data-dp-complete>' + t('deposit.complete') + '</button>'
       );
     }
 
@@ -126,7 +126,7 @@
         '</div>' +
         '<div class="flex items-center gap-2.5 mt-4">' +
         '<button type="button" class="flex-1 h-12 rounded-xl border border-line-hi text-text text-[14px] font-bold" data-dp-back>' + esc(loc.back || t('deposit.back')) + '</button>' +
-        '<button type="button" class="flex-1 h-12 rounded-full bg-accent btn-3d text-text-on-accent text-[14px] font-bold" data-dp-qr-next>' + esc(loc.confirm || t('deposit.next')) + '</button>' +
+        '<button type="button" class="flex-1 h-12 rounded-xl bg-accent text-text-on-accent text-[14px] font-bold" data-dp-qr-next>' + esc(loc.confirm || t('deposit.next')) + '</button>' +
         '</div>'
       );
     }
@@ -151,7 +151,6 @@
           step.querySelectorAll('[data-dp-method]').forEach(function (b) {
             var active = b === btn;
             b.classList.toggle('bg-accent', active);
-            b.classList.toggle('btn-3d', active);
             b.classList.toggle('text-text-on-accent', active);
             b.classList.toggle('bg-bg-card', !active);
             b.classList.toggle('text-text-mid', !active);

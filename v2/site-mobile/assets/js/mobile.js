@@ -167,7 +167,6 @@
     root.querySelectorAll('[data-auth-tab]').forEach(function (b) {
       var active = b.getAttribute('data-auth-tab') === mode;
       b.classList.toggle('bg-accent', active);
-      b.classList.toggle('btn-3d', active);
       b.classList.toggle('text-text-on-accent', active);
       b.classList.toggle('text-text-mid', !active);
     });
@@ -231,7 +230,6 @@
         tabs.forEach(function (b) {
           var active = b === btn;
           b.classList.toggle('bg-accent', active);
-          b.classList.toggle('btn-3d', active);
           b.classList.toggle('text-text-on-accent', active);
           b.classList.toggle('text-text-mid', !active);
         });

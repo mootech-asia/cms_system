@@ -8,7 +8,7 @@
   function t(key) { return window.__v2mT ? window.__v2mT(key) : key; }
 
   var BASE = 'flex-none inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-[12.5px] font-semibold';
-  var ON = ' border-transparent bg-accent btn-3d text-text-on-accent';
+  var ON = ' border-transparent bg-accent text-text-on-accent';
   var OFF = ' border-line bg-bg-card text-text-mid';
 
   window.__v2mVendorTags = function (grid, vendors) {
