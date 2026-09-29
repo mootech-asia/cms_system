@@ -17,7 +17,7 @@
     var players = 40 + ((i * 37) % 260);
     var fav = window.__v2mFav;
     var favId = fav ? fav.favIdFor(provider, i, 'live') : '';
-    return '<a href="#" class="rounded-2xl overflow-hidden bg-bg-card border border-line">' +
+    return '<a href="#" class="rounded-2xl overflow-hidden bg-bg-card border border-line" data-vendor="' + esc(provider) + '">' +
       '<div class="relative aspect-square overflow-hidden bg-bg-elev">' +
         '<img src="' + esc(m.image || '') + '" alt="" class="h-full w-full object-cover" style="object-position:' + esc(m.focalPoint || '50% 50%') + '" loading="lazy">' +
         '<span class="absolute left-2 top-2 inline-flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-bold text-white">' +
@@ -35,9 +35,11 @@
   document.addEventListener('DOMContentLoaded', function () {
     var grid = document.getElementById('category-grid');
     if (!grid) return;
-    var count = Math.max(names.length, 18);
+    // 廠商標籤單選時每家至少 3 桌
+    var count = Math.max(names.length, vendors.length * 3, 18);
     var html = '';
     for (var i = 0; i < count; i++) html += cardHTML(i);
     grid.innerHTML = html;
+    if (window.__v2mVendorTags) window.__v2mVendorTags(grid, vendors);
   });
 })();

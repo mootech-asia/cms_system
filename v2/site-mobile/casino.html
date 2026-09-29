@@ -14,119 +14,80 @@
   })();
 </script>
 </head>
-<body class="min-h-screen bg-bg text-text font-body pb-20">
+<body class="min-h-screen bg-bg text-text font-body pb-20" data-category="casino">
 
-<header class="sticky top-0 z-40 flex items-center gap-3 bg-bg/95 backdrop-blur-sm border-b border-line px-4 py-3.5">
-  <a href="index.html" class="h-8 w-8 grid place-items-center rounded-lg text-text-mid flex-none" aria-label="Back">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
-  </a>
-  <h1 class="text-[15.5px] font-bold text-text truncate" data-i18n="page.depositRecord">儲值紀錄</h1>
+<header class="sticky top-0 z-40 bg-bg/95 backdrop-blur-sm border-b border-line">
+  <div class="flex items-center justify-between px-4 pt-3 pb-2.5">
+    <a href="index.html" class="flex items-center">
+      <img src="../site/logo.png" alt="Logo" class="h-8 w-auto object-contain">
+    </a>
+    <div class="m-skin-wrap relative">
+      <button type="button" class="m-skin-trigger h-9 w-9 grid place-items-center rounded-xl border border-line-hi text-text-mid" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="skin.label" aria-label="外觀">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 5-8 5-8-5 8-5Z"></path><path d="m5.5 12 6.5 4 6.5-4"></path><path d="m7.5 17 4.5 2.8 4.5-2.8"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="px-4 pb-3 grid grid-cols-2 gap-2.5" data-auth-guest>
+    <button type="button" class="h-11 rounded-full bg-login-btn btn-3d [--btn-glow:var(--login-btn)] text-white text-[14.5px] font-bold" data-action="open-signin" data-auth-mode="login" data-i18n="auth.login">登入</button>
+    <button type="button" class="h-11 rounded-full bg-register-btn btn-3d [--btn-glow:var(--register-btn)] text-white text-[14.5px] font-bold" data-action="open-signin" data-auth-mode="register" data-i18n="auth.register">註冊</button>
+  </div>
+
+  <div class="px-4 pb-3 hidden" data-auth-account>
+    <div class="relative">
+      <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-bg-card px-3.5 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,.12),0_14px_28px_-12px_rgba(0,0,0,.75)]">
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(110%_95%_at_50%_0%,color-mix(in_srgb,var(--accent)_26%,transparent),transparent_70%)] shadow-[inset_0_0_28px_rgba(0,0,0,.25)]" aria-hidden="true"></div>
+      <div class="relative flex items-center gap-3">
+        <div class="relative flex-none">
+          <span class="h-11 w-11 rounded-full bg-accent-soft ring-2 ring-accent/45 shadow-[0_0_18px_color-mix(in_srgb,var(--accent)_45%,transparent)] grid place-items-center text-accent font-bold text-[13px]">PL</span>
+          <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 h-4 w-4 grid place-items-center rounded-full border border-line-hi bg-bg-elev text-accent" aria-hidden="true"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-[13.5px] font-bold text-text truncate">PlayerOne</p>
+          <p class="flex items-center gap-1 text-[11px] font-semibold text-text-dim">
+            <span class="text-accent"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span><span data-i18n="account.tierUnranked">未排名</span>
+          </p>
+        </div>
+        <button type="button" class="h-9 w-9 flex-none grid place-items-center rounded-full border border-white/10 bg-white/5 text-text-mid shadow-[inset_0_1px_0_rgba(255,255,255,.14),0_4px_10px_-4px_rgba(0,0,0,.6)] active:translate-y-px" data-action="logout" data-i18n-aria="auth.logout" aria-label="登出">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="m16 17 5-5-5-5"></path><path d="M21 12H9"></path></svg>
+        </button>
+      </div>
+      <!-- 經驗值/等級進度條：數值（62%、Unranked→Bronze）比照 v2/site 桌機版
+           account.html 的 .rewards-bar（--rk-pct: 62%），跟手機版 account.html
+           既有那份完整版共用同一個真實數值，不是這裡另外編的假資料。 -->
+      <div class="relative mt-3">
+        <div class="h-4 rounded-full bg-white/12 p-0.5 shadow-[inset_0_1px_2px_rgba(0,0,0,.45)]" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="Level progress: 62%">
+          <div class="h-full rounded-full bg-[linear-gradient(90deg,color-mix(in_oklch,var(--accent)_65%,var(--promo-money-a)),color-mix(in_oklch,var(--accent)_75%,white))] shadow-[0_0_16px_color-mix(in_srgb,var(--accent)_65%,transparent),inset_0_1px_1px_rgba(255,255,255,.5)]" style="width:62%"></div>
+        </div>
+        <div class="mt-1.5 flex items-center justify-between text-[10px] font-semibold text-text-dim">
+          <span data-i18n="account.tierUnranked">未排名</span>
+          <span class="text-[13px] font-extrabold text-text">62%</span>
+          <span class="rounded-full border border-accent/35 bg-accent-soft px-2 py-0.5 text-accent" data-i18n="account.tierBronze">銅級</span>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="flex items-center gap-2 px-4 pb-3 overflow-x-auto no-scrollbar" data-i18n-aria="nav.mainNav" aria-label="主導覽">
+    <a href="hot-games.html" class="flex-none rounded-full px-4 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="page.hotGames">熱門遊戲</a>
+    <a href="casino.html" class="flex-none rounded-full bg-accent btn-3d px-4 py-2 text-[13.5px] font-bold text-text-on-accent animate-[v2m-pop_.35s_cubic-bezier(.34,1.56,.64,1)]" data-i18n="nav.casino">娛樂城</a>
+    <a href="live.html" class="flex-none rounded-full px-4 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.live">真人視訊</a>
+    <a href="favorites.html" class="flex-none rounded-full px-4 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.favorites">收藏</a>
+  </nav>
 </header>
 
 <main>
-  <section class="px-4 pt-2 pb-6">
-    <div class="flex flex-col gap-3">
-      <div class="rounded-2xl border border-line bg-bg-card overflow-hidden" data-record-card>
-    <button type="button" class="w-full flex items-center justify-between gap-3 p-3.5 text-left" data-record-toggle aria-expanded="false">
-      <div class="min-w-0">
-        <p class="font-mono text-[11px] text-text-dim truncate">DP25081201</p>
-        <p class="text-[12.5px] font-semibold text-text mt-0.5">2025-08-12 09:14</p>
-      </div>
-      <div class="text-right flex-none">
-        <p class="text-[14.5px] font-bold text-accent">100,000</p>
-        <p class="text-[11.5px] font-semibold text-accent mt-0.5">Approved</p>
-      </div>
-      <svg class="record-chevron h-4 w-4 flex-none text-text-dim transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-    </button>
-    <div class="record-detail hidden border-t border-line px-3.5 py-3 flex flex-col gap-2" data-record-detail>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Request Amount</span><span class="font-medium text-right text-text">100,000</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bonus</span><span class="font-medium text-right text-text">10,000</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Method</span><span class="font-medium text-right text-text">Bank</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bank Reference</span><span class="font-medium text-right text-text">KB-8841</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Deposit Time</span><span class="font-medium text-right text-text">2025-08-12 09:18</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bank Charge</span><span class="font-medium text-right text-text">0</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Promotion</span><span class="font-medium text-right text-text">100% Bonus</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Remark</span><span class="font-medium text-right text-text">-</span></div>
-    </div>
-  </div>
-    <div class="rounded-2xl border border-line bg-bg-card overflow-hidden" data-record-card>
-    <button type="button" class="w-full flex items-center justify-between gap-3 p-3.5 text-left" data-record-toggle aria-expanded="false">
-      <div class="min-w-0">
-        <p class="font-mono text-[11px] text-text-dim truncate">DP25081105</p>
-        <p class="text-[12.5px] font-semibold text-text mt-0.5">2025-08-11 21:02</p>
-      </div>
-      <div class="text-right flex-none">
-        <p class="text-[14.5px] font-bold text-accent">50,000</p>
-        <p class="text-[11.5px] font-semibold text-accent mt-0.5">Approved</p>
-      </div>
-      <svg class="record-chevron h-4 w-4 flex-none text-text-dim transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-    </button>
-    <div class="record-detail hidden border-t border-line px-3.5 py-3 flex flex-col gap-2" data-record-detail>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Request Amount</span><span class="font-medium text-right text-text">50,000</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bonus</span><span class="font-medium text-right text-text">0</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Method</span><span class="font-medium text-right text-text">Bank</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bank Reference</span><span class="font-medium text-right text-text">SH-2210</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Deposit Time</span><span class="font-medium text-right text-text">2025-08-11 21:05</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bank Charge</span><span class="font-medium text-right text-text">0</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Promotion</span><span class="font-medium text-right text-text">-</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Remark</span><span class="font-medium text-right text-text">-</span></div>
-    </div>
-  </div>
-    <div class="rounded-2xl border border-line bg-bg-card overflow-hidden" data-record-card>
-    <button type="button" class="w-full flex items-center justify-between gap-3 p-3.5 text-left" data-record-toggle aria-expanded="false">
-      <div class="min-w-0">
-        <p class="font-mono text-[11px] text-text-dim truncate">DP25081008</p>
-        <p class="text-[12.5px] font-semibold text-text mt-0.5">2025-08-10 13:48</p>
-      </div>
-      <div class="text-right flex-none">
-        <p class="text-[14.5px] font-bold text-accent">200,000</p>
-        <p class="text-[11.5px] font-semibold text-[#f2b134] mt-0.5">Pending</p>
-      </div>
-      <svg class="record-chevron h-4 w-4 flex-none text-text-dim transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-    </button>
-    <div class="record-detail hidden border-t border-line px-3.5 py-3 flex flex-col gap-2" data-record-detail>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Request Amount</span><span class="font-medium text-right text-text">200,000</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bonus</span><span class="font-medium text-right text-text">20,000</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Method</span><span class="font-medium text-right text-text">Crypto</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bank Reference</span><span class="font-medium text-right text-text">USDT-4f1</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Deposit Time</span><span class="font-medium text-right text-text">-</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bank Charge</span><span class="font-medium text-right text-text">0</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Promotion</span><span class="font-medium text-right text-text">VIP Reload</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Remark</span><span class="font-medium text-right text-text">-</span></div>
-    </div>
-  </div>
-    <div class="rounded-2xl border border-line bg-bg-card overflow-hidden" data-record-card>
-    <button type="button" class="w-full flex items-center justify-between gap-3 p-3.5 text-left" data-record-toggle aria-expanded="false">
-      <div class="min-w-0">
-        <p class="font-mono text-[11px] text-text-dim truncate">DP25080902</p>
-        <p class="text-[12.5px] font-semibold text-text mt-0.5">2025-08-09 18:33</p>
-      </div>
-      <div class="text-right flex-none">
-        <p class="text-[14.5px] font-bold text-accent">30,000</p>
-        <p class="text-[11.5px] font-semibold text-[#ef4444] mt-0.5">Rejected</p>
-      </div>
-      <svg class="record-chevron h-4 w-4 flex-none text-text-dim transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-    </button>
-    <div class="record-detail hidden border-t border-line px-3.5 py-3 flex flex-col gap-2" data-record-detail>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Request Amount</span><span class="font-medium text-right text-text">30,000</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bonus</span><span class="font-medium text-right text-text">0</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Method</span><span class="font-medium text-right text-text">Bank</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bank Reference</span><span class="font-medium text-right text-text">WR-0093</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Deposit Time</span><span class="font-medium text-right text-text">-</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Bank Charge</span><span class="font-medium text-right text-text">0</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Promotion</span><span class="font-medium text-right text-text">-</span></div>
-      <div class="flex items-center justify-between text-[12px]"><span class="text-text-dim">Remark</span><span class="font-medium text-right text-text">Name mis</span></div>
-    </div>
-  </div>
-    </div>
-    <div class="mt-4 rounded-2xl bg-bg-card border border-line-hi px-4 py-3 text-[13px] font-bold text-text text-center">Total Deposit Amount 350,000</div>
+  <section class="px-4 pt-4">
+    <h1 class="flex items-center gap-2 text-[17px] font-bold text-text mb-4" data-i18n="nav.casino">娛樂城</h1>
+    <div class="grid grid-cols-3 gap-3" id="category-grid"></div>
   </section>
 
 </main>
 
 <nav class="m-tabbar fixed inset-x-3 z-40 grid grid-cols-5 rounded-[26px] border border-line-hi bg-bg-elev/95 backdrop-blur-md shadow-[0_10px_28px_rgba(0,0,0,0.45)]" style="bottom:max(12px, env(safe-area-inset-bottom, 0px))">
-  <a href="index.html" class="flex flex-col items-center gap-1.5 py-2 text-accent" aria-current="page">
-    <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors bg-accent-soft animate-[v2m-pop_.35s_cubic-bezier(.34,1.56,.64,1)]">
+  <a href="index.html" class="flex flex-col items-center gap-1.5 py-2 text-text-dim">
+    <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1v-8Z"></path></svg>
     </span>
     <span class="text-[10px] font-semibold leading-none" data-i18n="tabbar.home">首頁</span>
@@ -137,8 +98,8 @@
     </span>
     <span class="text-[10px] font-semibold leading-none" data-i18n="promo.bonusTitle">優惠活動</span>
   </a>
-  <a href="casino.html" class="flex flex-col items-center gap-1.5 py-2 text-text-dim">
-    <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors">
+  <a href="casino.html" class="flex flex-col items-center gap-1.5 py-2 text-accent" aria-current="page">
+    <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors bg-accent-soft animate-[v2m-pop_.35s_cubic-bezier(.34,1.56,.64,1)]">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M7 9h3v6H7zM14 9h3v6h-3z"></path></svg>
     </span>
     <span class="text-[10px] font-semibold leading-none" data-i18n="tabbar.casino">娛樂城</span>
@@ -297,6 +258,8 @@
 <script src="../site/assets/js/data.js"></script>
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/mobile.js"></script>
-
+<script src="assets/js/favorites.js"></script>
+<script src="assets/js/vendor-tags.js"></script>
+<script src="assets/js/category.js"></script>
 </body>
 </html>

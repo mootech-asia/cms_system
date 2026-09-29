@@ -9,8 +9,8 @@
   var LIVE_VENDORS = D.LIVE_VENDORS || ['Evolution Gaming'];
   var LIVE_GAME_NAMES = D.LIVE_GAME_NAMES || ['Live Table'];
   var MEDIA = D.VENDOR_MEDIA || {};
-  var MEDIA_KEY_BY_KIND = { 'hot-games': 'slot', slot: 'slot', fish: 'fish', 'mini-games': 'mini-games', live: 'live' };
-  var HREF_BY_KIND = { 'hot-games': 'hot-games.html', slot: 'slot.html', fish: 'fish.html', 'mini-games': 'mini-games.html', live: 'live.html' };
+  var MEDIA_KEY_BY_KIND = { 'hot-games': 'slot', casino: 'slot', slot: 'slot', fish: 'fish', 'mini-games': 'mini-games', live: 'live' };
+  var HREF_BY_KIND = { 'hot-games': 'hot-games.html', casino: 'casino.html', slot: 'slot.html', fish: 'fish.html', 'mini-games': 'mini-games.html', live: 'live.html' };
 
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function t(key) { return window.__v2mT ? window.__v2mT(key) : key; }
