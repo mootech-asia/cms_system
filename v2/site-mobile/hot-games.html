@@ -34,10 +34,13 @@
   </div>
 
   <div class="px-4 pb-3 hidden" data-auth-account>
-    <div class="rounded-2xl border border-line-hi bg-bg-card px-3 py-2.5">
-      <div class="flex items-center gap-3">
+    <div class="relative">
+      <div class="absolute inset-x-3 -bottom-1.5 top-2 rounded-2xl border border-accent/30 bg-accent/20" aria-hidden="true"></div>
+      <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-bg-card px-3.5 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,.12),0_14px_28px_-12px_rgba(0,0,0,.75)]">
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_0%_0%,color-mix(in_srgb,var(--accent)_22%,transparent),transparent_60%)]" aria-hidden="true"></div>
+      <div class="relative flex items-center gap-3">
         <div class="relative flex-none">
-          <span class="h-10 w-10 rounded-full bg-accent-soft grid place-items-center text-accent font-bold text-[13px]">PL</span>
+          <span class="h-11 w-11 rounded-full bg-accent-soft ring-2 ring-accent/45 shadow-[0_0_18px_color-mix(in_srgb,var(--accent)_45%,transparent)] grid place-items-center text-accent font-bold text-[13px]">PL</span>
           <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 h-4 w-4 grid place-items-center rounded-full border border-line-hi bg-bg-elev text-accent" aria-hidden="true"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span>
         </div>
         <div class="flex-1 min-w-0">
@@ -46,22 +49,23 @@
             <span class="text-accent"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span><span data-i18n="account.tierUnranked">未排名</span>
           </p>
         </div>
-        <button type="button" class="h-8 w-8 flex-none grid place-items-center rounded-lg text-text-mid" data-action="logout" data-i18n-aria="auth.logout" aria-label="登出">
+        <button type="button" class="h-9 w-9 flex-none grid place-items-center rounded-full border border-white/10 bg-white/5 text-text-mid shadow-[inset_0_1px_0_rgba(255,255,255,.14),0_4px_10px_-4px_rgba(0,0,0,.6)] active:translate-y-px" data-action="logout" data-i18n-aria="auth.logout" aria-label="登出">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="m16 17 5-5-5-5"></path><path d="M21 12H9"></path></svg>
         </button>
       </div>
       <!-- 經驗值/等級進度條：數值（62%、Unranked→Bronze）比照 v2/site 桌機版
            account.html 的 .rewards-bar（--rk-pct: 62%），跟手機版 account.html
            既有那份完整版共用同一個真實數值，不是這裡另外編的假資料。 -->
-      <div class="mt-2.5">
-        <div class="h-1.5 overflow-hidden rounded-full border border-line bg-bg-elev" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="Level progress: 62%">
-          <div class="h-full rounded-full bg-accent" style="width:62%"></div>
+      <div class="relative mt-3">
+        <div class="h-3 overflow-hidden rounded-full bg-black/35 p-0.5 shadow-[inset_0_1px_2px_rgba(0,0,0,.6)]" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="Level progress: 62%">
+          <div class="h-full rounded-full bg-[linear-gradient(90deg,color-mix(in_srgb,var(--accent)_45%,white),var(--accent))] shadow-[0_0_12px_color-mix(in_srgb,var(--accent)_70%,transparent)]" style="width:62%"></div>
         </div>
-        <div class="mt-1 flex items-center justify-between text-[10px] font-semibold text-text-dim">
+        <div class="mt-1.5 flex items-center justify-between text-[10px] font-semibold text-text-dim">
           <span data-i18n="account.tierUnranked">未排名</span>
-          <span>62%</span>
-          <span class="text-accent" data-i18n="account.tierBronze">銅級</span>
+          <span class="text-[13px] font-extrabold text-text">62%</span>
+          <span class="rounded-full border border-accent/35 bg-accent-soft px-2 py-0.5 text-accent" data-i18n="account.tierBronze">銅級</span>
         </div>
+      </div>
       </div>
     </div>
   </div>
