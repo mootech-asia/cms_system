@@ -9,9 +9,6 @@
   /* ============================== 外觀 skin（獨立於桌機版）=========== */
   var SKIN_KEY = 'win100-mobile-skin';
   var SKINS = [
-    { id: 'lucky-star', label: 'Lucky Star', swatch: '#34d179' },
-    { id: 'violet-rush', label: 'Violet Rush', swatch: '#a855f7' },
-    { id: 'amber-royale', label: 'Amber Royale', swatch: '#f2b134' },
     { id: 'win100', label: 'Emerald', swatch: '#98e7d2' },
     { id: 'aurora', label: 'Aurora', swatch: '#c9a6ff' },
     { id: 'noir', label: 'Noir Gold', swatch: '#e8c67a' },
@@ -19,7 +16,7 @@
     { id: 'rose-graphite', label: 'Rose Graphite', swatch: '#f29ab8' },
     { id: 'cosmic-pink', label: 'Cosmic Pink', swatch: '#ff8ad6' },
   ];
-  var currentSkinId = 'lucky-star';
+  var currentSkinId = 'win100';
 
   function findSkin(id) {
     for (var i = 0; i < SKINS.length; i++) if (SKINS[i].id === id) return SKINS[i];
@@ -170,6 +167,7 @@
     root.querySelectorAll('[data-auth-tab]').forEach(function (b) {
       var active = b.getAttribute('data-auth-tab') === mode;
       b.classList.toggle('bg-accent', active);
+      b.classList.toggle('btn-3d', active);
       b.classList.toggle('text-text-on-accent', active);
       b.classList.toggle('text-text-mid', !active);
     });
@@ -233,6 +231,7 @@
         tabs.forEach(function (b) {
           var active = b === btn;
           b.classList.toggle('bg-accent', active);
+          b.classList.toggle('btn-3d', active);
           b.classList.toggle('text-text-on-accent', active);
           b.classList.toggle('text-text-mid', !active);
         });

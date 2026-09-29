@@ -28,7 +28,7 @@
           '<span class="text-[11px] font-semibold text-text-mid text-center truncate w-full">' + esc(m.away.name) + '</span>' +
         '</div>' +
       '</div>' +
-      '<button type="button" class="mt-3 w-full h-10 rounded-xl bg-accent text-text-on-accent text-[13px] font-bold">Place Bet</button>' +
+      '<button type="button" class="mt-3 w-full h-10 rounded-full bg-accent btn-3d text-text-on-accent text-[13px] font-bold">Place Bet</button>' +
     '</div>';
   }
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh" data-skin="lucky-star">
+<html lang="zh" data-skin="win100">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -29,8 +29,8 @@
   </div>
 
   <div class="px-4 pb-3 grid grid-cols-2 gap-2.5" data-auth-guest>
-    <button type="button" class="h-11 rounded-xl bg-login-btn text-white text-[14.5px] font-bold" data-action="open-signin" data-auth-mode="login" data-i18n="auth.login">登入</button>
-    <button type="button" class="h-11 rounded-xl bg-register-btn text-white text-[14.5px] font-bold" data-action="open-signin" data-auth-mode="register" data-i18n="auth.register">註冊</button>
+    <button type="button" class="h-11 rounded-full bg-login-btn btn-3d [--btn-glow:var(--login-btn)] text-white text-[14.5px] font-bold" data-action="open-signin" data-auth-mode="login" data-i18n="auth.login">登入</button>
+    <button type="button" class="h-11 rounded-full bg-register-btn btn-3d [--btn-glow:var(--register-btn)] text-white text-[14.5px] font-bold" data-action="open-signin" data-auth-mode="register" data-i18n="auth.register">註冊</button>
   </div>
 
   <div class="px-4 pb-3 hidden" data-auth-account>
@@ -57,8 +57,8 @@
            account.html 的 .rewards-bar（--rk-pct: 62%），跟手機版 account.html
            既有那份完整版共用同一個真實數值，不是這裡另外編的假資料。 -->
       <div class="relative mt-3">
-        <div class="h-3 overflow-hidden rounded-full bg-black/35 p-0.5 shadow-[inset_0_1px_2px_rgba(0,0,0,.6)]" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="Level progress: 62%">
-          <div class="h-full rounded-full bg-[linear-gradient(90deg,color-mix(in_srgb,var(--accent)_45%,white),var(--accent))] shadow-[0_0_12px_color-mix(in_srgb,var(--accent)_70%,transparent)]" style="width:62%"></div>
+        <div class="h-4 rounded-full bg-white/12 p-0.5 shadow-[inset_0_1px_2px_rgba(0,0,0,.45)]" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="Level progress: 62%">
+          <div class="h-full rounded-full bg-[linear-gradient(90deg,color-mix(in_oklch,var(--accent)_65%,var(--promo-money-a)),color-mix(in_oklch,var(--accent)_75%,white))] shadow-[0_0_16px_color-mix(in_srgb,var(--accent)_65%,transparent),inset_0_1px_1px_rgba(255,255,255,.5)]" style="width:62%"></div>
         </div>
         <div class="mt-1.5 flex items-center justify-between text-[10px] font-semibold text-text-dim">
           <span data-i18n="account.tierUnranked">未排名</span>
@@ -72,7 +72,7 @@
 
   <nav class="flex items-center gap-2 px-4 pb-3 overflow-x-auto no-scrollbar" data-i18n-aria="nav.mainNav" aria-label="主導覽">
     <a href="hot-games.html" class="flex-none rounded-full px-4 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="page.hotGames">熱門遊戲</a>
-    <a href="hot-games.html" class="flex-none rounded-full bg-accent px-4 py-2 text-[13.5px] font-bold text-text-on-accent animate-[v2m-pop_.35s_cubic-bezier(.34,1.56,.64,1)]" data-i18n="nav.casino">娛樂城</a>
+    <a href="hot-games.html" class="flex-none rounded-full bg-accent btn-3d px-4 py-2 text-[13.5px] font-bold text-text-on-accent animate-[v2m-pop_.35s_cubic-bezier(.34,1.56,.64,1)]" data-i18n="nav.casino">娛樂城</a>
     <a href="live.html" class="flex-none rounded-full px-4 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.live">真人視訊</a>
     <a href="favorites.html" class="flex-none rounded-full px-4 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.favorites">收藏</a>
   </nav>
@@ -214,7 +214,7 @@
         <input type="password" data-auth-field="password" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.passwordPh" placeholder="請輸入密碼">
         <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="password"></p>
       </div>
-        <button type="button" class="mt-2 h-11 w-full rounded-xl bg-login-btn text-[14.5px] font-bold text-white" data-auth-submit="login" data-i18n="auth.signInTab">登入</button>
+        <button type="button" class="mt-2 h-11 w-full rounded-full bg-login-btn btn-3d [--btn-glow:var(--login-btn)] text-[14.5px] font-bold text-white" data-auth-submit="login" data-i18n="auth.signInTab">登入</button>
         <p class="text-center text-[12.5px] text-text-dim"><span data-i18n="auth.noAccount">還沒有帳號？</span> <button type="button" class="font-bold text-accent" data-auth-tab="register" data-i18n="auth.registerTab">註冊</button></p>
       </div>
 
@@ -249,7 +249,7 @@
         <input type="tel" data-auth-field="mobile" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.mobilePh" placeholder="請輸入手機號碼">
         <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="mobile"></p>
       </div>
-        <button type="button" class="mt-2 h-11 w-full rounded-xl bg-register-btn text-[14.5px] font-bold text-white" data-auth-submit="register" data-i18n="auth.registerTab">註冊</button>
+        <button type="button" class="mt-2 h-11 w-full rounded-full bg-register-btn btn-3d [--btn-glow:var(--register-btn)] text-[14.5px] font-bold text-white" data-auth-submit="register" data-i18n="auth.registerTab">註冊</button>
         <p class="text-center text-[12.5px] text-text-dim"><span data-i18n="auth.haveAccount">已經有帳號？</span> <button type="button" class="font-bold text-accent" data-auth-tab="login" data-i18n="auth.signInTab">登入</button></p>
       </div>
     </div>

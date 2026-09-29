@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh" data-skin="lucky-star">
+<html lang="zh" data-skin="win100">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -63,7 +63,7 @@
       <label class="block text-[12px] text-text-dim mb-1.5" data-i18n="withdrawal.password">交易密碼</label>
       <input type="password" placeholder="請輸入交易密碼" class="w-full h-12 rounded-xl border border-line bg-bg-card px-4 text-[14px] text-text mb-4" id="wd-password" data-i18n-placeholder="withdrawal.passwordPh">
       <p class="text-[11.5px] text-[#ef4444] mb-3 hidden" id="wd-error" data-i18n="withdrawal.selectAccount">請先選擇提款帳戶</p>
-      <button type="button" class="w-full h-12 rounded-xl bg-accent text-text-on-accent text-[14px] font-bold" id="wd-submit" data-i18n="withdrawal.submit">送出提款申請</button>
+      <button type="button" class="w-full h-12 rounded-full bg-accent btn-3d text-text-on-accent text-[14px] font-bold" id="wd-submit" data-i18n="withdrawal.submit">送出提款申請</button>
     </div>
   </section>
 
@@ -197,7 +197,7 @@
         <input type="password" data-auth-field="password" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.passwordPh" placeholder="請輸入密碼">
         <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="password"></p>
       </div>
-        <button type="button" class="mt-2 h-11 w-full rounded-xl bg-login-btn text-[14.5px] font-bold text-white" data-auth-submit="login" data-i18n="auth.signInTab">登入</button>
+        <button type="button" class="mt-2 h-11 w-full rounded-full bg-login-btn btn-3d [--btn-glow:var(--login-btn)] text-[14.5px] font-bold text-white" data-auth-submit="login" data-i18n="auth.signInTab">登入</button>
         <p class="text-center text-[12.5px] text-text-dim"><span data-i18n="auth.noAccount">還沒有帳號？</span> <button type="button" class="font-bold text-accent" data-auth-tab="register" data-i18n="auth.registerTab">註冊</button></p>
       </div>
 
@@ -232,7 +232,7 @@
         <input type="tel" data-auth-field="mobile" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.mobilePh" placeholder="請輸入手機號碼">
         <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="mobile"></p>
       </div>
-        <button type="button" class="mt-2 h-11 w-full rounded-xl bg-register-btn text-[14.5px] font-bold text-white" data-auth-submit="register" data-i18n="auth.registerTab">註冊</button>
+        <button type="button" class="mt-2 h-11 w-full rounded-full bg-register-btn btn-3d [--btn-glow:var(--register-btn)] text-[14.5px] font-bold text-white" data-auth-submit="register" data-i18n="auth.registerTab">註冊</button>
         <p class="text-center text-[12.5px] text-text-dim"><span data-i18n="auth.haveAccount">已經有帳號？</span> <button type="button" class="font-bold text-accent" data-auth-tab="login" data-i18n="auth.signInTab">登入</button></p>
       </div>
     </div>
