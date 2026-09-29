@@ -9,64 +9,64 @@
     <link rel="stylesheet" href="assets/css/tailwind.css" />
   </head>
   <body>
-    <div class="page-shell">
+    <div class="min-h-screen pt-[var(--header-h-mobile)] pb-24 max-xl:[body.is-usercenter_&]:pt-0 xl:pt-[var(--header-h-desktop)] xl:pb-0">
       <div data-mount="header"></div>
-      <main class="usercenter-main">
+      <main class="pt-0">
         <div data-mount="user-navbar"></div>
-        <div class="usercenter-grid">
+        <div class="grid grid-cols-1">
           <div data-mount="user-sidebar"></div>
-          <div class="usercenter-content">
-            <div class="record-page">
-              <h1 class="account-page-title" data-i18n="userCenter.sidebar.depositRecord">입금 기록</h1>
-              <div class="record-inner">
-                <div class="record-tags">
-                  <div class="record-status-wrap">
-                    <button type="button" class="record-status-btn" data-toggle-status>
+          <div class="w-full bg-white overflow-x-hidden xl:ml-[260px] xl:w-[calc(100%-260px)]">
+            <div class="bg-[#f2f2f2] min-h-[calc(100vh-var(--header-h-mobile))] flex flex-col xl:min-h-[calc(100vh-var(--header-h-desktop))]">
+              <h1 class="hidden xl:block xl:h-[62px] xl:bg-white xl:text-navy xl:text-[32px] xl:font-bold xl:leading-[64px] xl:border-b xl:border-border xl:px-8 xl:mt-0 xl:mx-0 xl:mb-4" data-i18n="userCenter.sidebar.depositRecord">입금 기록</h1>
+              <div class="max-w-[1190px] w-full mx-auto px-4 pt-3 pb-24 flex flex-col flex-1 xl:px-8 xl:pt-6 xl:pb-10">
+                <div class="flex flex-wrap gap-2 items-center">
+                  <div class="relative">
+                    <button type="button" class="h-10 !px-3 rounded-lg !bg-white !border !border-border !text-navy !text-[14px] whitespace-nowrap" data-toggle-status>
                       <span data-i18n="userCenter.common.tags.status">상태</span><span data-status-text></span>
                     </button>
-                    <div class="record-status-panel" data-status-panel>
-                      <button type="button" class="is-active" data-status-value="" data-i18n="userCenter.common.selectList.all">전체</button>
-                      <button type="button" data-status-value="Pending" data-i18n="userCenter.common.selectList.pending">대기</button>
-                      <button type="button" data-status-value="Approved" data-i18n="userCenter.common.selectList.approved">승인</button>
-                      <button type="button" data-status-value="Rejected" data-i18n="userCenter.common.selectList.rejected">거부</button>
+                    <div class="hidden flex-col absolute left-0 top-full min-w-[180px] bg-white border border-border rounded-lg mt-1 overflow-hidden shadow-[0_12px_24px_rgba(0,0,0,0.12)] z-50 [&.is-open]:flex" data-status-panel>
+                      <button type="button" class="w-full text-left !py-2.5 !px-4 !text-navy !text-[14px] !border-b !border-border last:!border-b-0 hover:!bg-[#f6f6f6] [&.is-active]:!bg-[#fff3d6] [&.is-active]:!font-bold is-active" data-status-value="" data-i18n="userCenter.common.selectList.all">전체</button>
+                      <button type="button" class="w-full text-left !py-2.5 !px-4 !text-navy !text-[14px] !border-b !border-border last:!border-b-0 hover:!bg-[#f6f6f6] [&.is-active]:!bg-[#fff3d6] [&.is-active]:!font-bold" data-status-value="Pending" data-i18n="userCenter.common.selectList.pending">대기</button>
+                      <button type="button" class="w-full text-left !py-2.5 !px-4 !text-navy !text-[14px] !border-b !border-border last:!border-b-0 hover:!bg-[#f6f6f6] [&.is-active]:!bg-[#fff3d6] [&.is-active]:!font-bold" data-status-value="Approved" data-i18n="userCenter.common.selectList.approved">승인</button>
+                      <button type="button" class="w-full text-left !py-2.5 !px-4 !text-navy !text-[14px] !border-b !border-border last:!border-b-0 hover:!bg-[#f6f6f6] [&.is-active]:!bg-[#fff3d6] [&.is-active]:!font-bold" data-status-value="Rejected" data-i18n="userCenter.common.selectList.rejected">거부</button>
                     </div>
                   </div>
-                  <button type="button" class="record-date-btn">2026-08-01 ~ 2026-08-12</button>
-                  <button type="button" class="record-confirm-btn" data-i18n="common.confirm">확인</button>
-                  <div class="record-refresh"><span data-i18n="userCenter.common.autoRefresh.in">자동 갱신까지</span><strong>30</strong><span data-i18n="userCenter.common.autoRefresh.secondsShort">초</span><img src="assets/images/icon/refresh-blue.svg" alt="refresh" data-refresh-btn /></div>
+                  <button type="button" class="h-10 !px-3 rounded-lg !bg-white !border !border-border !text-navy !text-[14px] whitespace-nowrap" data-record-date-btn>2026-08-01 ~ 2026-08-12</button>
+                  <button type="button" class="h-10 !px-4 rounded-lg !bg-navy !text-white !font-bold whitespace-nowrap" data-i18n="common.confirm">확인</button>
+                  <div class="flex items-center gap-2 h-10 px-3 rounded-lg bg-white border border-border text-[#6d6d6d] text-[14px] ml-auto" data-record-refresh><span data-i18n="userCenter.common.autoRefresh.in">자동 갱신까지</span><strong class="text-navy">30</strong><span data-i18n="userCenter.common.autoRefresh.secondsShort">초</span><img class="w-5 h-5 cursor-pointer" src="assets/images/icon/refresh-blue.svg" alt="refresh" data-refresh-btn /></div>
                 </div>
 
-                <div class="record-table-wrap">
-                  <table class="record-table record-mobile-only record-mobile-table">
+                <div class="mt-4 overflow-x-auto xl:mb-4">
+                  <table class="w-full min-w-0 border-collapse bg-white rounded-[10px] overflow-hidden text-[12px] text-center xl:hidden">
                     <thead>
-                      <tr>
-                        <th data-i18n="userCenter.common.headers.transactionNo">거래 번호</th>
-                        <th data-i18n="userCenter.common.headers.datetime">일시</th>
-                        <th data-i18n="userCenter.common.headers.depositAmountHeader">입금 금액</th>
-                        <th data-i18n="userCenter.common.headers.status">상태</th>
+                      <tr class="bg-[#f6e27b] text-navy font-bold">
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.common.headers.transactionNo">거래 번호</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.common.headers.datetime">일시</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.common.headers.depositAmountHeader">입금 금액</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.common.headers.status">상태</th>
                       </tr>
                     </thead>
                     <tbody data-record-body-mobile></tbody>
                   </table>
 
-                  <table class="record-table record-desktop-only">
+                  <table class="hidden w-full min-w-[700px] border-collapse bg-white rounded-[10px] overflow-hidden text-[13px] text-center xl:table">
                     <thead>
-                      <tr>
-                        <th data-i18n="userCenter.common.headers.transactionNo">거래 번호</th>
-                        <th data-i18n="userCenter.common.headers.datetime">일시</th>
-                        <th data-i18n="userCenter.common.headers.depositAmountHeader">입금 금액</th>
-                        <th data-i18n="userCenter.common.headers.status">상태</th>
-                        <th data-i18n="userCenter.common.headers.requestAmountHeader">요청 금액</th>
-                        <th data-i18n="userCenter.common.headers.method">방법</th>
-                        <th data-i18n="userCenter.common.headers.depositedTime">입금 완료 시간</th>
+                      <tr class="bg-[#f6e27b] text-navy font-bold">
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.common.headers.transactionNo">거래 번호</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.common.headers.datetime">일시</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.common.headers.depositAmountHeader">입금 금액</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.common.headers.status">상태</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.common.headers.requestAmountHeader">요청 금액</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.common.headers.method">방법</th>
+                        <th class="py-3 px-2 whitespace-nowrap" data-i18n="userCenter.common.headers.depositedTime">입금 완료 시간</th>
                       </tr>
                     </thead>
                     <tbody data-record-body-desktop></tbody>
                   </table>
                 </div>
 
-                <div class="record-footer-total">
-                  <div class="record-footer-total-inner">
+                <div class="fixed inset-x-0 bottom-0 z-40 bg-navy-2 text-[#f6e27b] xl:static xl:mt-auto xl:rounded-lg">
+                  <div class="max-w-[1190px] mx-auto h-12 px-4 flex items-center justify-between">
                     <span data-i18n="userCenter.common.footer.totalDepositAmount">총 입금 금액</span>
                     <span data-total-amount>0</span>
                   </div>
@@ -88,17 +88,20 @@
         var D = window.WIN15_DATA;
         var W = window.WIN15;
         function fmt(n) { return Number(n).toLocaleString('en-US'); }
-        function statusClass(s) { return s === 'Approved' ? 'status-text-approved' : s === 'Rejected' ? 'status-text-reject' : 'status-text-pending'; }
+        var STATUS_COLOR = { Approved: '#1dbf73', Rejected: '#e11d48', Pending: '#d19200' };
+        function statusStyle(s) { return 'color:' + (STATUS_COLOR[s] || STATUS_COLOR.Pending); }
         function statusText(s) { return W.t('userCenter.common.selectList.' + s.toLowerCase()); }
         var currentStatus = '';
+        var TD_CLS = 'py-3 px-2 whitespace-nowrap';
+        var TR_CLS = 'border-b border-border text-navy last:border-b-0';
 
         function render() {
           var rows = D.DEPOSIT_RECORDS.filter(function (r) { return !currentStatus || r.status === currentStatus; });
           W.qs('[data-record-body-mobile]').innerHTML = rows.map(function (r) {
-            return '<tr><td>' + r.transaction_number + '</td><td>' + r.request_time + '</td><td>' + (r.deposit_amount ? fmt(r.deposit_amount) : '-') + '</td><td class="' + statusClass(r.status) + '">' + statusText(r.status) + '</td></tr>';
+            return '<tr class="' + TR_CLS + '"><td class="' + TD_CLS + '">' + r.transaction_number + '</td><td class="' + TD_CLS + '">' + r.request_time + '</td><td class="' + TD_CLS + '">' + (r.deposit_amount ? fmt(r.deposit_amount) : '-') + '</td><td class="' + TD_CLS + ' font-bold" style="' + statusStyle(r.status) + '">' + statusText(r.status) + '</td></tr>';
           }).join('');
           W.qs('[data-record-body-desktop]').innerHTML = rows.map(function (r) {
-            return '<tr><td>' + r.transaction_number + '</td><td>' + r.request_time + '</td><td>' + (r.deposit_amount ? fmt(r.deposit_amount) : '-') + '</td><td class="' + statusClass(r.status) + '">' + statusText(r.status) + '</td><td>' + fmt(r.request_amount) + '</td><td>' + r.method + '</td><td>' + r.deposited_time + '</td></tr>';
+            return '<tr class="' + TR_CLS + '"><td class="' + TD_CLS + '">' + r.transaction_number + '</td><td class="' + TD_CLS + '">' + r.request_time + '</td><td class="' + TD_CLS + '">' + (r.deposit_amount ? fmt(r.deposit_amount) : '-') + '</td><td class="' + TD_CLS + ' font-bold" style="' + statusStyle(r.status) + '">' + statusText(r.status) + '</td><td class="' + TD_CLS + '">' + fmt(r.request_amount) + '</td><td class="' + TD_CLS + '">' + r.method + '</td><td class="' + TD_CLS + '">' + r.deposited_time + '</td></tr>';
           }).join('');
           var total = rows.reduce(function (s, r) { return r.status === 'Approved' ? s + r.deposit_amount : s; }, 0);
           W.qs('[data-total-amount]').textContent = fmt(total);
@@ -120,7 +123,7 @@
           });
         });
         W.initAutoRefresh(render);
-        W.initDateRangePicker(W.qs('.record-date-btn'));
+        W.initDateRangePicker(W.qs('[data-record-date-btn]'));
         W.on(document, 'win15:localechange', render);
 
         render();

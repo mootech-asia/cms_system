@@ -782,7 +782,7 @@
      皆為同一個 .record-refresh 標記):倒數歸零自動刷新並重置為 30 秒,點擊圖示
      則立即刷新並重置倒數,避免每頁各自重寫一份計時器 */
   function initAutoRefresh(onRefresh) {
-    var el = qs('.record-refresh');
+    var el = qs('[data-record-refresh]') || qs('.record-refresh');
     if (!el) return;
     var secondsEl = qs('strong', el);
     var seconds = 30;
