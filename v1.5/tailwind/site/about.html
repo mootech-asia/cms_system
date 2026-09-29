@@ -9,15 +9,15 @@
     <link rel="stylesheet" href="assets/css/tailwind.css" />
   </head>
   <body>
-    <div class="page-shell">
+    <div class="min-h-screen pt-[var(--header-h-mobile)] pb-24 xl:pt-[var(--header-h-desktop)] xl:pb-0">
       <div data-mount="header"></div>
 
-      <main class="about-page">
-        <div class="about-title-row"><h1 class="text-gradient" data-i18n="about.title">회사 소개</h1></div>
+      <main class="bg-navy min-h-[60vh] pt-4 px-5 pb-12 xl:py-16 xl:px-[max(0px,calc(50%-480px))]">
+        <div class="inline-block border-b-2 border-transparent [border-image:var(--g-primary)] [border-image-slice:1] pb-2 mb-2"><h1 class="text-gradient m-0 text-[20px] font-bold xl:text-[28px]" data-i18n="about.title">회사 소개</h1></div>
 
-        <nav class="about-tabs no-scrollbar" data-about-tabs></nav>
+        <nav class="flex items-center overflow-x-auto border-b border-[#4f4f4f] [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none]" data-about-tabs></nav>
 
-        <div class="about-content" data-about-content></div>
+        <div class="mt-4" data-about-content></div>
       </main>
 
       <div data-mount="footer"></div>
@@ -39,9 +39,10 @@
         var tabsEl = W.qs('[data-about-tabs]');
         var contentEl = W.qs('[data-about-content]');
 
+        var ABOUT_TAB_CLS = 'shrink-0 whitespace-nowrap !py-2 !px-4 !text-white !font-semibold !border-b-2 !border-transparent xl:!text-[16px] [&.is-active]:[border-image:var(--g-primary)] [&.is-active]:[border-image-slice:1]';
         function renderTabs() {
           tabsEl.innerHTML = TABS.map(function (key) {
-            return '<button type="button" class="about-tab' + (key === active ? ' is-active' : '') +
+            return '<button type="button" class="' + ABOUT_TAB_CLS + (key === active ? ' is-active' : '') +
               '" data-about-tab="' + key + '"><span class="' + (key === active ? 'text-gradient' : '') +
               '" data-i18n="about.tabs.' + key + '">' + W.t('about.tabs.' + key) + '</span></button>';
           }).join('');
@@ -62,15 +63,15 @@
               var items = (cat.items || []).map(function (item, ii) {
                 var key = ci + '-' + ii;
                 return (
-                  '<div class="about-faq-item" data-faq-item="' + key + '">' +
-                  '<div class="about-faq-question" data-faq-toggle="' + key + '"><p>' + item.title + '</p>' +
-                  '<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.117l3.71-2.886a.75.75 0 1 1 .92 1.19l-4.2 3.27a.75.75 0 0 1-.92 0l-4.2-3.27a.75.75 0 0 1-.09-1.11Z"></path></svg>' +
+                  '<div class="bg-[#1d2647] border border-[#4f4f4f] rounded-lg mb-3" data-faq-item="' + key + '">' +
+                  '<div class="flex items-center justify-between py-2.5 px-4 font-bold cursor-pointer" data-faq-toggle="' + key + '"><p>' + item.title + '</p>' +
+                  '<svg class="w-4 h-4 text-white/80 shrink-0 ml-3 transition-transform duration-300 [.is-open_&]:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.117l3.71-2.886a.75.75 0 1 1 .92 1.19l-4.2 3.27a.75.75 0 0 1-.92 0l-4.2-3.27a.75.75 0 0 1-.09-1.11Z"></path></svg>' +
                   '</div>' +
-                  '<div class="about-faq-answer">' + (item.detail || '') + '</div>' +
+                  '<div class="max-h-0 overflow-hidden px-4 text-[#e7e7e7] text-[14px] whitespace-pre-line leading-[1.6] transition-[max-height] duration-300 [.is-open_&]:max-h-[1000px] [.is-open_&]:pb-3">' + (item.detail || '') + '</div>' +
                   '</div>'
                 );
               }).join('');
-              return '<p class="about-faq-category-title text-gradient">' + cat.title + '</p>' + items;
+              return '<p class="text-gradient font-bold my-4">' + cat.title + '</p>' + items;
             }).join('');
             W.qsa('[data-faq-toggle]', contentEl).forEach(function (el) {
               W.on(el, 'click', function () {
@@ -82,9 +83,9 @@
             var items = (data[active] && data[active].items) || [];
             contentEl.innerHTML = items.map(function (item) {
               return (
-                '<div class="about-card">' +
-                '<div class="about-card-title' + (item.detail ? ' has-detail' : '') + '"><span class="text-gradient">' + item.title + '</span></div>' +
-                (item.detail ? '<div class="about-card-detail">' + item.detail + '</div>' : '') +
+                '<div class="bg-[#1d2647] border border-[#4f4f4f] rounded-lg mb-5">' +
+                '<div class="py-2 px-4 font-bold xl:text-[18px]' + (item.detail ? ' border-b border-[#4f4f4f]' : '') + '"><span class="text-gradient">' + item.title + '</span></div>' +
+                (item.detail ? '<div class="py-2 px-4 text-[#e7e7e7] text-[14px] whitespace-pre-line leading-[1.6]">' + item.detail + '</div>' : '') +
                 '</div>'
               );
             }).join('');
