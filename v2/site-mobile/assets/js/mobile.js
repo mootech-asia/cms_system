@@ -12,6 +12,12 @@
     { id: 'lucky-star', label: 'Lucky Star', swatch: '#34d179' },
     { id: 'violet-rush', label: 'Violet Rush', swatch: '#a855f7' },
     { id: 'amber-royale', label: 'Amber Royale', swatch: '#f2b134' },
+    { id: 'win100', label: 'Emerald', swatch: '#98e7d2' },
+    { id: 'aurora', label: 'Aurora', swatch: '#c9a6ff' },
+    { id: 'noir', label: 'Noir Gold', swatch: '#e8c67a' },
+    { id: 'fashion-blue', label: 'Fashion Blue', swatch: '#5da9ff' },
+    { id: 'rose-graphite', label: 'Rose Graphite', swatch: '#f29ab8' },
+    { id: 'cosmic-pink', label: 'Cosmic Pink', swatch: '#ff8ad6' },
   ];
   var currentSkinId = 'lucky-star';
 

@@ -1,0 +1,30 @@
+/* 由桌機版 v2/site/themes/cosmic-pink.css（Cosmic Pink）的色票換算成手機版 token。
+   login/register 按鈕在手機版固定白字，所以底色取主色加深（×0.55）
+   確保白字可讀，不直接用桌機的淺色主色。 */
+:root[data-skin="cosmic-pink"] {
+  color-scheme: dark;
+
+  --bg: #0c0a16;
+  --bg-elev: #120e1e;
+  --bg-card: #181226;
+  --bg-card-hi: #261c3a;
+  --line: #221832;
+  --line-hi: #4a3460;
+
+  --text: #ffffff;
+  --text-mid: #e0d6ec;
+  --text-dim: #b0a0c6;
+  --text-on-accent: #210a1c;
+
+  --accent: #ff8ad6;
+  --accent-soft: rgba(255, 138, 214, 0.16);
+  --login-btn: #261c3a;
+  --register-btn: #8c4c76;
+  --promo-money-a: #ffbd5c;
+  --promo-money-b: #bf8e45;
+  --promo-bonus-a: #b26196;
+  --promo-bonus-b: #4a163a;
+  --live-dot: #ff6b81;
+
+  --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.45);
+}

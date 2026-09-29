@@ -2807,9 +2807,8 @@
    * Bootstrap
    * ========================================================== */
   /* =========================== 進站公告彈窗 ================================ */
-  /* 比照 v1.5 Nuxt 版 components/PromotionModal.vue：首頁進站時，手機一次顯示
-     一張、關閉後換下一張；桌機(>=768px)
-     同時顯示最多 3 張。「今天不再提醒」勾選才寫進 localStorage(key 每天
+  /* 比照 v1.5 Nuxt 版 components/PromotionModal.vue：首頁進站時，全部公告一次列出（桌機排同一列，
+     手機上下排可捲動）。「今天不再提醒」勾選才寫進 localStorage(key 每天
      自動換新)，沒勾選只是這次瀏覽暫時關閉，下次進站還會再出現。 */
   function initPromoPopup() {
     if (CURRENT_PAGE !== 'index.html') return;
@@ -2830,7 +2829,6 @@
     var cards = ALL.filter(function (p) { return dismissedIds.indexOf(String(p.promotion_id)) === -1; });
     if (!cards.length) return;
 
-    var isDesktop = window.matchMedia('(min-width: 768px)').matches;
     var backdrop = document.createElement('div');
     backdrop.className = 'promo-popup-backdrop';
     document.body.appendChild(backdrop);
@@ -2875,37 +2873,19 @@
       });
     }
 
-    var current = 0;
-    function renderMobile() {
-      if (current >= cards.length) { backdrop.remove(); return; }
-      var promo = cards[current];
-      backdrop.innerHTML = cardHTML(promo);
-      bindCard(backdrop.firstElementChild, promo);
-    }
-
     function closeCard(id) {
-      if (isDesktop) {
-        var el = backdrop.querySelector('[data-promo-card="' + id + '"]');
-        if (el) el.remove();
-        if (!backdrop.querySelector('[data-promo-card]')) backdrop.remove();
-      } else {
-        current += 1;
-        renderMobile();
-      }
+      var el = backdrop.querySelector('[data-promo-card="' + id + '"]');
+      if (el) el.remove();
+      if (!backdrop.querySelector('[data-promo-card]')) backdrop.remove();
     }
 
-    if (isDesktop) {
-      var stage = document.createElement('div');
-      stage.className = 'promo-popup-stage';
-      var shown = cards.slice(0, 3);
-      stage.innerHTML = shown.map(cardHTML).join('');
-      backdrop.appendChild(stage);
-      shown.forEach(function (promo) {
-        bindCard(stage.querySelector('[data-promo-card="' + promo.promotion_id + '"]'), promo);
-      });
-    } else {
-      renderMobile();
-    }
+    var stage = document.createElement('div');
+    stage.className = 'promo-popup-stage';
+    stage.innerHTML = cards.map(cardHTML).join('');
+    backdrop.appendChild(stage);
+    cards.forEach(function (promo) {
+      bindCard(stage.querySelector('[data-promo-card="' + promo.promotion_id + '"]'), promo);
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function () {

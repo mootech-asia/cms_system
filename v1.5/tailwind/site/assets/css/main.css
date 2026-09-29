@@ -4375,10 +4375,22 @@ body.usc-sidebar-open .mobile-bottom-nav {
   align-items: center;
   justify-content: center;
   padding: 16px;
+  overflow-y: auto;
+}
+/* margin: auto 置中；多張卡片超出視窗時 auto margin 歸零，從頂端排起可捲動 */
+.promo-popup-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: auto;
+  min-width: 0;
 }
 .promo-popup-card {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
+  min-width: 0;
   width: min(280px, calc(100vw - 32px));
   height: min(436px, calc(100dvh - 32px));
   background: rgba(255, 255, 255, 0.5);
@@ -4437,12 +4449,11 @@ body.usc-sidebar-open .mobile-bottom-nav {
 }
 @media (min-width: 1280px) {
   .promo-popup-stage {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
     gap: 24px;
   }
   .promo-popup-card {
+    flex-shrink: 1;
     width: 430px;
     height: 626px;
   }
