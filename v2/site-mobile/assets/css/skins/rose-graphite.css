@@ -1,0 +1,30 @@
+/* 由桌機版 v2/site/themes/rose-graphite.css（Rose Graphite）的色票換算成手機版 token。
+   login/register 按鈕在手機版固定白字，所以底色取主色加深（×0.55）
+   確保白字可讀，不直接用桌機的淺色主色。 */
+:root[data-skin="rose-graphite"] {
+  color-scheme: dark;
+
+  --bg: #0c0e12;
+  --bg-elev: #12141a;
+  --bg-card: #181b21;
+  --bg-card-hi: #262a32;
+  --line: #272b34;
+  --line-hi: #464b58;
+
+  --text: #ffffff;
+  --text-mid: #e4e2e8;
+  --text-dim: #aeabb6;
+  --text-on-accent: #24111a;
+
+  --accent: #f29ab8;
+  --accent-soft: rgba(242, 154, 184, 0.16);
+  --login-btn: #262a32;
+  --register-btn: #855565;
+  --promo-money-a: #ebc77e;
+  --promo-money-b: #b0955e;
+  --promo-bonus-a: #a96c81;
+  --promo-bonus-b: #533142;
+  --live-dot: #ff6b79;
+
+  --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
