@@ -5568,16 +5568,18 @@ select.twk-field {
 
 /* ============================================================
    進站公告彈窗（比照 v1.5 components/PromotionModal.vue 概念：手機一次
-   一張、依序關閉，桌機(>=900px，跟 sidebar/hamburger 切換斷點一致)同時
+   一張、依序關閉，桌機(>=768px)同時
    最多 3 張；「今天不再提醒」勾選才寫入 localStorage）
    ============================================================ */
 .promo-popup-backdrop {
   position: fixed; inset: 0; z-index: 1200;
   background: rgba(0, 0, 0, .75);
   display: flex; align-items: center; justify-content: center;
-  padding: 16px;
+  padding: 16px; overflow-y: auto;
 }
-.promo-popup-stage { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+/* margin: auto 取代 backdrop 的 align-items 置中：卡片換行後高度超出視窗時
+   auto margin 歸零、從頂端開始排並可捲動，不會像 center 那樣把上緣切掉 */
+.promo-popup-stage { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: auto; }
 .promo-popup-card {
   display: flex; flex-direction: column;
   width: min(300px, calc(100vw - 32px));
@@ -5594,6 +5596,7 @@ select.twk-field {
 .promo-popup-head img { height: 22px; }
 .promo-popup-close {
   width: 24px; height: 24px; display: grid; place-items: center; border-radius: 999px;
+  padding: 0; border: 0; background: transparent;
   color: var(--text-dim); flex-shrink: 0;
 }
 .promo-popup-close svg { width: 16px; height: 16px; }
@@ -5608,7 +5611,7 @@ select.twk-field {
 }
 .promo-popup-foot span { font-size: 12px; color: var(--text-mid); }
 .promo-popup-foot input { width: 18px; height: 18px; accent-color: var(--accent); }
-@media (min-width: 900px) {
+@media (min-width: 768px) {
   .promo-popup-card { width: 320px; height: 560px; }
   .promo-popup-content img { height: 200px; }
 }

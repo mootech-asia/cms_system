@@ -2808,7 +2808,7 @@
    * ========================================================== */
   /* =========================== 進站公告彈窗 ================================ */
   /* 比照 v1.5 Nuxt 版 components/PromotionModal.vue：首頁進站時，手機一次顯示
-     一張、關閉後換下一張；桌機(>=900px，跟 sidebar/hamburger 收合斷點一致)
+     一張、關閉後換下一張；桌機(>=768px)
      同時顯示最多 3 張。「今天不再提醒」勾選才寫進 localStorage(key 每天
      自動換新)，沒勾選只是這次瀏覽暫時關閉，下次進站還會再出現。 */
   function initPromoPopup() {
@@ -2830,7 +2830,7 @@
     var cards = ALL.filter(function (p) { return dismissedIds.indexOf(String(p.promotion_id)) === -1; });
     if (!cards.length) return;
 
-    var isDesktop = window.matchMedia('(min-width: 900px)').matches;
+    var isDesktop = window.matchMedia('(min-width: 768px)').matches;
     var backdrop = document.createElement('div');
     backdrop.className = 'promo-popup-backdrop';
     document.body.appendChild(backdrop);
