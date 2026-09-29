@@ -43,35 +43,46 @@
     el.innerHTML = html;
   }
 
-  /* 首頁娛樂城網格「載入更多」：每次接續多載 12 款，不限次數，直到載滿
-     標題「全部 (N)」的總數（total）才移除按鈕。下拉捲到按鈕附近（提前 200px）
-     由 IntersectionObserver 自動觸發；按鈕保留給不支援或想手動點的情況。
-     observer 只在「進出可視範圍」時回呼，載入後按鈕被新卡片推出畫面，
-     要再往下捲才會觸發下一批，不會一次連載一大串。 */
-  function initCasinoLoadMore(pageSize, total) {
+  /* 首頁娛樂城網格：先顯示 pageSize 款，往下捲到網格底部附近（提前 200px）
+     由 IntersectionObserver 自動接續載入，直到 autoLimit 款為止；之後停掉
+     自動載入、顯示「載入更多」按鈕，改由使用者手動點擊，每次 +pageSize，
+     直到載滿標題「全部 (N)」的總數（total）才移除按鈕。observer 只在
+     「進出可視範圍」時回呼，載入後偵測點被新卡片推出畫面，要再往下捲才會
+     觸發下一批，不會一次連載一大串。 */
+  function initCasinoLoadMore(pageSize, autoLimit, total) {
     var grid = document.getElementById('casino-grid');
     var btn = document.getElementById('casino-load-more');
     if (!grid || !btn) return;
+    var sentinel = document.createElement('div');
+    sentinel.className = 'h-px';
+    sentinel.setAttribute('aria-hidden', 'true');
+    grid.parentNode.insertBefore(sentinel, btn);
     var observer = null;
-    function loadMore() {
+
+    function append(limit) {
       var start = grid.children.length;
-      if (start >= total) return;
-      var end = Math.min(start + pageSize, total);
+      var end = Math.min(start + pageSize, limit);
       var html = '';
       for (var i = start; i < end; i++) html += cardHTML(i, false);
       grid.insertAdjacentHTML('beforeend', html);
-      if (end >= total) {
-        if (observer) observer.disconnect();
-        btn.remove();
-      }
+      return end;
     }
-    btn.addEventListener('click', loadMore);
-    if ('IntersectionObserver' in window) {
-      observer = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting) loadMore();
-      }, { rootMargin: '0px 0px 200px 0px' });
-      observer.observe(btn);
+    function stopAuto() {
+      if (observer) observer.disconnect();
+      sentinel.remove();
+      if (grid.children.length < total) btn.classList.remove('hidden');
+      else btn.remove();
     }
+
+    btn.addEventListener('click', function () {
+      if (append(total) >= total) btn.remove();
+    });
+    if (grid.children.length >= autoLimit || !('IntersectionObserver' in window)) { stopAuto(); return; }
+    observer = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      if (append(autoLimit) >= autoLimit) stopAuto();
+    }, { rootMargin: '0px 0px 200px 0px' });
+    observer.observe(sentinel);
   }
 
   /* Hero 輪播：4 張 slide 都已經在靜態 HTML 裡(見 hero.mjs 產生的結構)，
@@ -187,8 +198,8 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     fillRail('best-games-rail', 8, true);
-    fillRail('casino-grid', 12, false);
-    initCasinoLoadMore(12, vendors.length * 128);
+    fillRail('casino-grid', 30, false);
+    initCasinoLoadMore(30, 100, vendors.length * 128);
     var bestCount = document.getElementById('best-games-count');
     if (bestCount) bestCount.textContent = '(13)';
     var casinoCount = document.getElementById('casino-count');
