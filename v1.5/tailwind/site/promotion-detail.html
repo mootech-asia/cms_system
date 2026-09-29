@@ -9,16 +9,18 @@
     <link rel="stylesheet" href="assets/css/tailwind.css" />
   </head>
   <body>
-    <div class="page-shell">
+    <div class="min-h-screen pt-[var(--header-h-mobile)] pb-24 xl:pt-[var(--header-h-desktop)] xl:pb-0">
       <div data-mount="header"></div>
 
-      <main class="promotion-detail-page">
-        <a class="page-back-link" href="promotion-list.html">
-          <img src="assets/images/icon/back-white.svg" alt="back" />
+      <main class="bg-navy min-h-[60vh] pt-4 px-5 pb-12 xl:py-14 xl:px-24">
+        <a class="flex items-center gap-1.5 !text-white font-bold mb-4" href="promotion-list.html">
+          <img src="assets/images/icon/back-white.svg" alt="back" class="w-4 h-4" />
           <span data-i18n="common.back">뒤로</span>
         </a>
 
-        <h1 class="promotion-detail-title text-gradient" data-i18n="navbar.desktop.promotion">프로모션</h1>
+        <h1 class="text-gradient text-[20px] font-bold m-0 mb-4 xl:text-[28px]" data-i18n="navbar.desktop.promotion">프로모션</h1>
+        <!-- promotion-detail-content 保留原本 class:內容是資料裡的不受控原始 HTML(p/img),
+             靠既有的 .promotion-detail-content p/img 後代選擇器排版,無法逐一改成 utility class -->
         <div class="promotion-detail-content" data-promo-detail-content></div>
       </main>
 
