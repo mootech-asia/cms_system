@@ -15,6 +15,7 @@
 
   var STRINGS = {
     'nav.home': { zh: '首頁', en: 'Home', ko: '홈', th: 'หน้าแรก' },
+    'nav.sport': { zh: '體育', en: 'Sports', ko: '스포츠', th: 'กีฬา' },
     'nav.casino': { zh: '娛樂城', en: 'Casino', ko: '카지노', th: 'คาสิโน' },
     'nav.live': { zh: '真人視訊', en: 'Live games', ko: '라이브 카지노', th: 'คาสิโนสด' },
     'nav.mainNav': { zh: '主導覽', en: 'Main navigation', ko: '메인 내비게이션', th: 'เมนูหลัก' },
