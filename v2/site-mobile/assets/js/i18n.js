@@ -51,6 +51,9 @@
     'tabbar.live': { zh: '真人視訊', en: 'Live games', ko: '라이브 카지노', th: 'คาสิโนสด' },
     'tabbar.menu': { zh: '選單', en: 'Menu', ko: '메뉴', th: 'เมนู' },
 
+    'action.loadMore': { zh: '載入更多', en: 'Load More', ko: '더보기', th: 'โหลดเพิ่มเติม' },
+    'home.depositSub': { zh: '快速儲值', en: 'Quick deposit', ko: '빠른 입금', th: 'ฝากเงินรวดเร็ว' },
+    'home.withdrawSub': { zh: '快速出款', en: 'Fast withdrawals', ko: '빠른 출금', th: 'ถอนเงินรวดเร็ว' },
     'promo.freeMoneyTitle': { zh: '免費現金', en: 'Free money', ko: '무료 캐시', th: 'เงินสดฟรี' },
     'promo.freeMoneySub': { zh: '免費彩金！', en: 'Free cash!', ko: '무료 보너스!', th: 'โบนัสฟรี!' },
     'promo.bonusTitle': { zh: '優惠活動', en: 'Promotions', ko: '프로모션', th: 'โปรโมชัน' },

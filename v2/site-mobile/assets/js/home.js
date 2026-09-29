@@ -43,6 +43,23 @@
     el.innerHTML = html;
   }
 
+  /* 首頁娛樂城網格「載入更多」：比照 v2/site 桌機版分類頁（MAX_LOADS = 3），
+     每次接續多載 12 款，載滿 3 次後移除按鈕。 */
+  function initCasinoLoadMore(pageSize) {
+    var grid = document.getElementById('casino-grid');
+    var btn = document.getElementById('casino-load-more');
+    if (!grid || !btn) return;
+    var loads = 0;
+    btn.addEventListener('click', function () {
+      var start = grid.children.length;
+      var html = '';
+      for (var i = start; i < start + pageSize; i++) html += cardHTML(i, false);
+      grid.insertAdjacentHTML('beforeend', html);
+      loads += 1;
+      if (loads >= 3) btn.remove();
+    });
+  }
+
   /* Hero 輪播：4 張 slide 都已經在靜態 HTML 裡(見 hero.mjs 產生的結構)，
      這裡只負責切換 opacity 顯示哪一張、同步 dots 樣式，不用另外組字串。
      左右箭頭跟 dot 都走同一個 goTo()，不各自維護一份切換邏輯。 */
@@ -157,6 +174,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     fillRail('best-games-rail', 8, true);
     fillRail('casino-grid', 12, false);
+    initCasinoLoadMore(12);
     var bestCount = document.getElementById('best-games-count');
     if (bestCount) bestCount.textContent = '(13)';
     var casinoCount = document.getElementById('casino-count');
