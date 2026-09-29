@@ -101,7 +101,8 @@
 .rec-confirm.rec-confirm, .rec-confirm:hover:not(:disabled),
 .sb-deposit.is-current, .sb-deposit.is-current:hover:not(:disabled),
 .sb-withdraw.is-current, .sb-withdraw.is-current:hover:not(:disabled),
-.ap-amount-btn.ap-amount-btn.active {
+.ap-amount-btn.ap-amount-btn.active,
+.dp-method-tabs button.active.active, .wd-method-tabs button.active.active {
   background: var(--btn3d-hl), var(--gradient-primary);
   box-shadow: var(--btn3d-shadow);
 }
@@ -114,6 +115,7 @@
 .section-actions .arrow.arrow, .section-collapse.section-collapse,
 .ap-amount-btn.ap-amount-btn, .ap-back.ap-back, .ap-bank-arrow.ap-bank-arrow, .ap-wd-arrow.ap-wd-arrow,
 .rec-status-btn.rec-status-btn,
+.dp-method-tabs button:not(.active), .wd-method-tabs button:not(.active),
 .ap-btn-wide.ap-btn-wide:not(.ap-grad):not(.ghost),
 .ui-button.ui-button:not(.ui-button--primary),
 .btn.btn:not(.primary), .ap-btn.ap-btn:not(.primary),
@@ -125,7 +127,7 @@
   box-shadow: var(--btn3d-shadow-soft), 0 0 0 1px color-mix(in oklch, var(--accent) 45%, transparent);
 }
 
-/* 正圓按鈕 */
+/* 正圓按鈕（遊戲卡收藏鈕 .gcard-fav 維持原樣式，不套 3D） */
 .cms-cs-fab {
   background: var(--btn3d-round-hl), var(--gradient-primary);
   box-shadow: var(--btn3d-round-shadow);
@@ -134,12 +136,9 @@
   background: var(--btn3d-round-hl), var(--accent-grad);
   box-shadow: var(--btn3d-round-shadow);
 }
-.gcard-fav.gcard-fav {
-  background-image: var(--btn3d-round-hl);
-  box-shadow: var(--btn3d-round-shadow);
-}
 
 .ap-btn-wide.ap-grad:not(:disabled):active, .ap-btn.primary:active, .btn.primary:active,
 .ui-button--primary:active, .rec-confirm:active, .cms-cs-fab:active,
 .ap-amount-btn:active, .cat-tab:active, .cv-tab:active, .sport-odd:active, .match-odds-btn:active,
-.ap-btn-wide:not(.ghost):active, .ui-button:active, .btn:active, .ap-btn:active { transform: translateY(1px); }
+.ap-btn-wide:not(.ghost):active, .ui-button:active, .btn:active, .ap-btn:active,
+.dp-method-tabs button:active, .wd-method-tabs button:active { transform: translateY(1px); }
