@@ -255,7 +255,7 @@
 
     function cardHTML(promo) {
       return (
-        '<div class="flex flex-col w-[min(300px,calc(100vw-32px))] max-h-[min(480px,calc(100dvh-32px))] md:w-[320px] md:max-h-[560px] rounded-2xl border border-line-hi bg-bg-panel overflow-hidden" data-promo-card="' + promo.promotion_id + '">' +
+        '<div class="flex flex-col w-[min(300px,calc(100vw-32px))] h-[min(480px,calc(100dvh-32px))] md:w-[320px] md:h-[560px] rounded-2xl border border-line-hi bg-bg-panel overflow-hidden" data-promo-card="' + promo.promotion_id + '">' +
         '<div class="flex-none flex items-center justify-between px-3.5 py-2.5 border-b border-line">' +
         '<span class="text-[13px] font-bold text-gold">WIN100%</span>' +
         '<button type="button" class="h-6 w-6 grid place-items-center rounded-full text-text-dim" data-promo-popup-close aria-label="Close">' +
