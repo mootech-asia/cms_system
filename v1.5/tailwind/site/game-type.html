@@ -150,7 +150,7 @@
             bodyEl.innerHTML = '<div class="py-16 text-center text-white/60 text-[14px]" data-i18n="common.noData">' + W.t('common.noData') + '</div>';
             return;
           }
-          bodyEl.innerHTML = '<div class="grid grid-cols-3 gap-4 mt-7 md:grid-cols-4 xl:gap-7">' + vendors.map(function (v, idx) {
+          bodyEl.innerHTML = '<div class="grid grid-cols-[repeat(3,1fr)] gap-4 mt-7 md:grid-cols-[repeat(4,1fr)] xl:gap-7">' + vendors.map(function (v, idx) {
             var bg = type === 'live'
               ? 'assets/images/index/mainGame/live/live_' + (idx % 33) + '.webp'
               : type === 'sports'
@@ -177,7 +177,7 @@
             return;
           }
           var visible = filtered.slice(0, visibleCount);
-          bodyEl.innerHTML = '<div class="grid grid-cols-3 gap-4 mt-7 md:grid-cols-6 2xl:grid-cols-7">' + visible.map(function (g, idx) {
+          bodyEl.innerHTML = '<div class="grid grid-cols-[repeat(3,1fr)] gap-4 mt-7 md:grid-cols-[repeat(6,1fr)] 2xl:grid-cols-[repeat(7,1fr)]">' + visible.map(function (g, idx) {
             var thumbCls = 'relative rounded-2xl overflow-hidden shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)] bg-[#0b1733]';
             return (
               '<div class="group cursor-pointer" data-gf-game="' + idx + '">' +
