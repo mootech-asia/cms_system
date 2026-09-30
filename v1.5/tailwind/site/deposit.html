@@ -9,94 +9,97 @@
     <link rel="stylesheet" href="assets/css/tailwind.css" />
   </head>
   <body>
-    <div class="page-shell">
+    <div class="min-h-screen pt-[var(--header-h-mobile)] pb-24 max-xl:[body.is-usercenter_&]:pt-0 xl:pt-[var(--header-h-desktop)] xl:pb-0">
       <div data-mount="header"></div>
-      <main class="usercenter-main">
+      <main class="pt-0">
         <div data-mount="user-navbar"></div>
-        <div class="usercenter-grid">
+        <div class="grid grid-cols-1">
           <div data-mount="user-sidebar"></div>
-          <div class="usercenter-content">
-            <div class="pay-page">
-              <h1 class="pay-page-title" data-i18n="userCenter.deposit">입금</h1>
-              <section class="pay-section">
-                <div class="pay-section-inner">
+          <div class="w-full bg-white overflow-x-hidden xl:ml-[260px] xl:w-[calc(100%-260px)]">
+            <div class="bg-white">
+              <h1 class="hidden xl:block xl:m-0 xl:text-navy xl:text-[32px] xl:font-bold xl:pt-4 xl:px-8 xl:pb-2 xl:border-b xl:border-border-soft" data-i18n="userCenter.deposit">입금</h1>
+              <section class="px-4 pt-4 pb-20 xl:px-8 xl:pb-10">
+                <div class="max-w-[945px] mx-auto">
                   <div data-dp-step="amount">
-                  <div class="pay-channel-tabs" data-channel-tabs>
-                    <button type="button" class="pay-channel-tab is-active" data-channel="A" data-i18n="userCenter.depositPage.channelA">채널 A</button>
-                    <button type="button" class="pay-channel-tab" data-channel="B" data-i18n="userCenter.depositPage.channelB">채널 B</button>
-                    <button type="button" class="pay-channel-tab" data-channel="C" data-i18n="userCenter.depositPage.channelC">채널 C</button>
-                    <button type="button" class="pay-channel-tab" data-channel="D" data-i18n="userCenter.depositPage.channelD">채널 D</button>
+                  <div class="flex gap-6 border-b border-border-soft mb-4 overflow-x-auto" data-channel-tabs>
+                    <button type="button" class="shrink-0 !pt-2 !px-0.5 !pb-2.5 !text-[#6d6d6d] !font-semibold !text-[14px] !border-b-2 !border-transparent whitespace-nowrap [&.is-active]:!text-navy [&.is-active]:![border-image:var(--g-primary)] [&.is-active]:![border-image-slice:1] is-active" data-channel="A" data-i18n="userCenter.depositPage.channelA">채널 A</button>
+                    <button type="button" class="shrink-0 !pt-2 !px-0.5 !pb-2.5 !text-[#6d6d6d] !font-semibold !text-[14px] !border-b-2 !border-transparent whitespace-nowrap [&.is-active]:!text-navy [&.is-active]:![border-image:var(--g-primary)] [&.is-active]:![border-image-slice:1]" data-channel="B" data-i18n="userCenter.depositPage.channelB">채널 B</button>
+                    <button type="button" class="shrink-0 !pt-2 !px-0.5 !pb-2.5 !text-[#6d6d6d] !font-semibold !text-[14px] !border-b-2 !border-transparent whitespace-nowrap [&.is-active]:!text-navy [&.is-active]:![border-image:var(--g-primary)] [&.is-active]:![border-image-slice:1]" data-channel="C" data-i18n="userCenter.depositPage.channelC">채널 C</button>
+                    <button type="button" class="shrink-0 !pt-2 !px-0.5 !pb-2.5 !text-[#6d6d6d] !font-semibold !text-[14px] !border-b-2 !border-transparent whitespace-nowrap [&.is-active]:!text-navy [&.is-active]:![border-image:var(--g-primary)] [&.is-active]:![border-image-slice:1]" data-channel="D" data-i18n="userCenter.depositPage.channelD">채널 D</button>
                   </div>
 
                   <!-- 對照 v2 真實原始碼(.payment-tabs):通道分頁下面還有一層
                        付款方式分頁,兩者是各自獨立的分頁層級;跟金額/優惠一起
                        包在 amount 步驟裡,進入 QR 步驟後要一併隱藏,不能讓使用
                        者在已經選定付款方式之後還看到切換通道/付款方式的頁籤 -->
-                  <div class="pay-method-tabs" data-dp-method>
-                    <button type="button" class="pay-method-tab is-selected" data-dp-method-btn="bank" data-i18n="userCenter.withdrawalPage.bankCard">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18"></path><path d="M7 15h4"></path></svg>은행카드
+                  <div class="flex gap-2 mb-4" data-dp-method>
+                    <button type="button" class="flex-1 h-11 rounded-[10px] !border-2 !border-border !bg-white !text-[#6d6d6d] !text-[14px] !font-semibold [&.is-selected]:!border-gold [&.is-selected]:!bg-gold [&.is-selected]:!text-navy is-selected" data-dp-method-btn="bank" data-i18n="userCenter.withdrawalPage.bankCard">
+                      <svg class="inline-block w-4 h-4 align-[-3px] mr-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18"></path><path d="M7 15h4"></path></svg>은행카드
                     </button>
-                    <button type="button" class="pay-method-tab" data-dp-method-btn="linepay">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>LinePay
+                    <button type="button" class="flex-1 h-11 rounded-[10px] !border-2 !border-border !bg-white !text-[#6d6d6d] !text-[14px] !font-semibold [&.is-selected]:!border-gold [&.is-selected]:!bg-gold [&.is-selected]:!text-navy" data-dp-method-btn="linepay">
+                      <svg class="inline-block w-4 h-4 align-[-3px] mr-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>LinePay
                     </button>
-                    <button type="button" class="pay-method-tab" data-dp-method-btn="trc20">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 8h3.8a2.2 2.2 0 0 1 0 4.4H9.5z"></path><path d="M9.5 12.4h4.2a2.3 2.3 0 0 1 0 4.6H9.5z"></path><path d="M9.5 6v12M11 4.5V6M14 4.5V6M11 18v1.5M14 18v1.5"></path></svg>USDT-TRC20
+                    <button type="button" class="flex-1 h-11 rounded-[10px] !border-2 !border-border !bg-white !text-[#6d6d6d] !text-[14px] !font-semibold [&.is-selected]:!border-gold [&.is-selected]:!bg-gold [&.is-selected]:!text-navy" data-dp-method-btn="trc20">
+                      <svg class="inline-block w-4 h-4 align-[-3px] mr-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 8h3.8a2.2 2.2 0 0 1 0 4.4H9.5z"></path><path d="M9.5 12.4h4.2a2.3 2.3 0 0 1 0 4.6H9.5z"></path><path d="M9.5 6v12M11 4.5V6M14 4.5V6M11 18v1.5M14 18v1.5"></path></svg>USDT-TRC20
                     </button>
-                    <button type="button" class="pay-method-tab" data-dp-method-btn="erc20">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 8h3.8a2.2 2.2 0 0 1 0 4.4H9.5z"></path><path d="M9.5 12.4h4.2a2.3 2.3 0 0 1 0 4.6H9.5z"></path><path d="M9.5 6v12M11 4.5V6M14 4.5V6M11 18v1.5M14 18v1.5"></path></svg>USDT-ERC20
+                    <button type="button" class="flex-1 h-11 rounded-[10px] !border-2 !border-border !bg-white !text-[#6d6d6d] !text-[14px] !font-semibold [&.is-selected]:!border-gold [&.is-selected]:!bg-gold [&.is-selected]:!text-navy" data-dp-method-btn="erc20">
+                      <svg class="inline-block w-4 h-4 align-[-3px] mr-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 8h3.8a2.2 2.2 0 0 1 0 4.4H9.5z"></path><path d="M9.5 12.4h4.2a2.3 2.3 0 0 1 0 4.6H9.5z"></path><path d="M9.5 6v12M11 4.5V6M14 4.5V6M11 18v1.5M14 18v1.5"></path></svg>USDT-ERC20
                     </button>
                   </div>
 
                   <div>
-                    <span class="pay-pill-label" data-i18n="userCenter.depositPage.depositAmount">입금 금액</span>
-                    <div class="pay-amount-grid" data-amount-grid>
-                      <button type="button" class="pay-amount-btn" data-amount="10,000">10,000</button>
-                      <button type="button" class="pay-amount-btn" data-amount="50,000">50,000</button>
-                      <button type="button" class="pay-amount-btn" data-amount="100,000">100,000</button>
-                      <button type="button" class="pay-amount-btn" data-amount="500,000">500,000</button>
-                      <button type="button" class="pay-amount-btn" data-amount="1,000,000">1,000,000</button>
+                    <span class="block w-fit mx-auto mb-4 py-1 px-6 rounded-full bg-navy-2 text-white text-[14px]" data-i18n="userCenter.depositPage.depositAmount">입금 금액</span>
+                    <div class="grid grid-cols-[repeat(5,1fr)] gap-1 xl:gap-5" data-amount-grid>
+                      <button type="button" class="h-10 rounded-[10px] !border-2 !border-border !bg-white !text-[#6d6d6d] !text-[12px] xl:h-20 xl:!text-[16px] [&.is-selected]:!border-gold [&.is-selected]:!bg-gold [&.is-selected]:!text-navy [&.is-selected]:!font-bold" data-amount="10,000">10,000</button>
+                      <button type="button" class="h-10 rounded-[10px] !border-2 !border-border !bg-white !text-[#6d6d6d] !text-[12px] xl:h-20 xl:!text-[16px] [&.is-selected]:!border-gold [&.is-selected]:!bg-gold [&.is-selected]:!text-navy [&.is-selected]:!font-bold" data-amount="50,000">50,000</button>
+                      <button type="button" class="h-10 rounded-[10px] !border-2 !border-border !bg-white !text-[#6d6d6d] !text-[12px] xl:h-20 xl:!text-[16px] [&.is-selected]:!border-gold [&.is-selected]:!bg-gold [&.is-selected]:!text-navy [&.is-selected]:!font-bold" data-amount="100,000">100,000</button>
+                      <button type="button" class="h-10 rounded-[10px] !border-2 !border-border !bg-white !text-[#6d6d6d] !text-[12px] xl:h-20 xl:!text-[16px] [&.is-selected]:!border-gold [&.is-selected]:!bg-gold [&.is-selected]:!text-navy [&.is-selected]:!font-bold" data-amount="500,000">500,000</button>
+                      <button type="button" class="h-10 rounded-[10px] !border-2 !border-border !bg-white !text-[#6d6d6d] !text-[12px] xl:h-20 xl:!text-[16px] [&.is-selected]:!border-gold [&.is-selected]:!bg-gold [&.is-selected]:!text-navy [&.is-selected]:!font-bold" data-amount="1,000,000">1,000,000</button>
                     </div>
                   </div>
 
-                  <input type="text" inputmode="numeric" class="pay-input dp-amount-input" data-amount-input placeholder="₩ 10,000 - 9,000,000" />
-                  <p class="pay-note" data-limit-note></p>
-                  <p class="pay-note" data-turnover-note></p>
+                  <input type="text" inputmode="numeric" class="w-full h-10 rounded-[10px] border border-subtitle px-4 text-navy mt-4 placeholder:text-[#6d6d6d] xl:h-12" data-amount-input placeholder="₩ 10,000 - 9,000,000" />
+                  <p class="text-danger text-[12px] mt-4" data-limit-note></p>
+                  <p class="text-danger text-[12px] mt-4" data-turnover-note></p>
 
-                  <div class="dp-promotion-wrap" data-promotion-wrap>
-                    <span class="pay-pill-label" data-i18n="userCenter.depositPage.choosePromotion">프로모션 선택</span>
+                  <div class="mt-4 mb-4 pb-40 xl:mt-6 xl:pb-0" data-promotion-wrap>
+                    <span class="block w-fit mx-auto mb-4 py-1 px-6 rounded-full bg-navy-2 text-white text-[14px]" data-i18n="userCenter.depositPage.choosePromotion">프로모션 선택</span>
                     <div data-promotion-list></div>
                   </div>
 
-                  <p class="dp-bonus-bar" data-bonus-bar hidden></p>
+                  <p class="mt-4 py-3 px-4 rounded-[10px] bg-[image:var(--g-primary)] text-navy font-bold" data-bonus-bar hidden></p>
 
-                  <div class="pay-btn-fixed-wrap">
-                    <button type="button" class="pay-next-btn" data-deposit-next disabled>
+                  <div class="mt-10 max-xl:fixed max-xl:inset-x-0 max-xl:bottom-0 max-xl:z-20 max-xl:mt-0">
+                    <button type="button" class="w-full h-[51px] flex items-center justify-center rounded-[10px] !bg-navy-2 !font-bold disabled:opacity-50 disabled:cursor-not-allowed" data-deposit-next disabled>
                       <span class="text-gradient" data-i18n="common.next">다음</span>
                     </button>
-                    <button type="button" class="pay-back-btn" data-nav-href="account.html" data-i18n="common.back">뒤로</button>
+                    <button type="button" class="w-full h-12 mt-2 rounded-lg !border !border-navy !text-navy !font-bold !bg-white" data-nav-href="account.html" data-i18n="common.back">뒤로</button>
                   </div>
                   </div>
 
                   <!-- 스캔 결제(LinePay/USDT) 단계:對照其他版本(v4)的掃碼付款流程,
                        銀行카드 이외의 방식은 금액 확정 후 먼저 QR 코드 화면을 보여준다 -->
                   <div data-dp-step="qr" hidden>
-                    <div style="text-align: center">
-                      <span class="pay-pill-label" data-i18n="userCenter.depositPage.scanPay">스캔하여 결제</span>
+                    <div class="text-center">
+                      <span class="block w-fit mx-auto mb-4 py-1 px-6 rounded-full bg-navy-2 text-white text-[14px]" data-i18n="userCenter.depositPage.scanPay">스캔하여 결제</span>
                     </div>
-                    <p class="pay-note" style="text-align: center; margin-top: 16px" data-i18n="userCenter.depositPage.scanPayDesc">휴대폰으로 아래 QR 코드를 스캔하거나 결제 주소를 복사하여 결제를 완료해 주세요.</p>
-                    <div style="text-align: center; margin: 16px 0" data-dp-qr-code></div>
-                    <p class="pay-pill-label" data-i18n="userCenter.depositPage.paymentUrl">결제 주소</p>
-                    <div class="pay-copy-row" style="margin-top: 8px">
-                      <input type="text" class="pay-input" readonly data-dp-qr-address />
-                      <button type="button" class="pay-copy-btn" data-dp-qr-copy data-i18n="userCenter.depositPage.copy">복사</button>
+                    <p class="text-danger text-[12px] mt-4 text-center" data-i18n="userCenter.depositPage.scanPayDesc">휴대폰으로 아래 QR 코드를 스캔하거나 결제 주소를 복사하여 결제를 완료해 주세요.</p>
+                    <!-- pb-1:main.css 沒有針對 svg 的 display reset,Tailwind Preflight
+                         的 svg{display:block} 蓋掉原本瀏覽器預設 inline svg 在 line box
+                         底部多出的 ~4px baseline 間距,用 pb-1 補回同等高度 -->
+                    <div class="text-center my-4 pb-1" data-dp-qr-code></div>
+                    <p class="block w-fit mx-auto mt-0 mb-4 py-1 px-6 rounded-full bg-navy-2 text-white text-[14px]" data-i18n="userCenter.depositPage.paymentUrl">결제 주소</p>
+                    <div class="flex gap-2 items-start mt-2">
+                      <input type="text" class="flex-1 h-10 rounded-[10px] border border-subtitle px-4 text-navy placeholder:text-[#6d6d6d]" readonly data-dp-qr-address />
+                      <button type="button" class="h-10 !px-5 rounded-[10px] !bg-gold !text-navy !font-bold whitespace-nowrap" data-dp-qr-copy data-i18n="userCenter.depositPage.copy">복사</button>
                     </div>
-                    <p class="pay-note" style="margin-top: 16px" data-i18n="userCenter.depositPage.qrDemoNote">이 QR 코드와 결제 주소는 인터페이스 시연용이며 실제로 사용할 수 없습니다.</p>
+                    <p class="text-danger text-[12px] mt-4" data-i18n="userCenter.depositPage.qrDemoNote">이 QR 코드와 결제 주소는 인터페이스 시연용이며 실제로 사용할 수 없습니다.</p>
 
-                    <div class="pay-btn-fixed-wrap">
-                      <button type="button" class="pay-next-btn" data-dp-qr-done>
+                    <div class="mt-10 max-xl:fixed max-xl:inset-x-0 max-xl:bottom-0 max-xl:z-20 max-xl:mt-0">
+                      <button type="button" class="w-full h-[51px] flex items-center justify-center rounded-[10px] !bg-navy-2 !font-bold" data-dp-qr-done>
                         <span class="text-gradient" data-i18n="common.next">다음</span>
                       </button>
-                      <button type="button" class="pay-back-btn" data-dp-qr-back data-i18n="common.back">뒤로</button>
+                      <button type="button" class="w-full h-12 mt-2 rounded-lg !border !border-navy !text-navy !font-bold !bg-white" data-dp-qr-back data-i18n="common.back">뒤로</button>
                     </div>
                   </div>
                 </div>
@@ -152,7 +155,7 @@
         }
         function syncAmountButtons() {
           var raw = (input.value || '').replace(/\D/g, '');
-          W.qsa('[data-amount-grid] .pay-amount-btn').forEach(function (b) {
+          W.qsa('[data-amount-grid] [data-amount]').forEach(function (b) {
             b.classList.toggle('is-selected', b.getAttribute('data-amount').replace(/\D/g, '') === raw);
           });
         }
@@ -162,7 +165,7 @@
           refreshNextState();
           renderPromotions();
         }
-        W.qsa('[data-amount-grid] .pay-amount-btn').forEach(function (btn) {
+        W.qsa('[data-amount-grid] [data-amount]').forEach(function (btn) {
           W.on(btn, 'click', function () { setAmount(btn.getAttribute('data-amount')); });
         });
         W.on(input, 'input', function () {
@@ -188,10 +191,10 @@
             var selected = i === selectedPromoIndex;
             var bullets = (p.remarkKeys || []).map(function (k) { return '<li>' + W.t(k) + '</li>'; }).join('');
             return (
-              '<div class="promo-card' + (selected ? ' is-selected' : '') + '" data-promo-index="' + i + '">' +
-              '<div class="promo-card-row"><span class="promo-radio"><span class="promo-radio-dot"></span></span>' +
-              '<div class="promo-card-body"><strong>' + W.t(p.nameKey) + '</strong>' +
-              (bullets ? '<ul class="promo-card-remarks">' + bullets + '</ul>' : '') +
+              '<div class="rounded-[10px] border border-subtitle bg-white py-1 px-2 mt-4 cursor-pointer xl:py-3 xl:px-4 [&.is-selected]:bg-gold [&.is-selected]:border-transparent [&.is-selected]:font-bold' + (selected ? ' is-selected' : '') + '" data-promo-index="' + i + '">' +
+              '<div class="flex gap-2 items-start"><span class="mt-0.5 w-4 h-4 rounded-full border-2 border-navy-2 shrink-0 flex items-center justify-center"><span class="w-2 h-2 rounded-full bg-navy-2 hidden [.is-selected_&]:block"></span></span>' +
+              '<div class="flex-1 text-navy text-[14px]"><strong>' + W.t(p.nameKey) + '</strong>' +
+              (bullets ? '<ul class="mt-1 mb-0 mx-0 pl-4 text-navy text-[12px] font-normal xl:text-[14px] list-disc">' + bullets + '</ul>' : '') +
               '</div></div></div>'
             );
           }).join('');
@@ -227,7 +230,7 @@
            下一步;銀行卡維持原本行為(直接進交易詳情頁)。 */
         var PAY_ADDR = { linepay: 'https://line.example/pay/8f3c1a92b7d4e05f', trc20: 'TXk9YmR2pQ7sN3vB1cE6hK8jL0tUw', erc20: '0x8f3c1a92b7d4e05fA1cE6hK8jL0tUw12' };
         function currentMethod() {
-          var btn = W.qs('[data-dp-method] .pay-method-tab.is-selected');
+          var btn = W.qs('[data-dp-method] [data-dp-method-btn].is-selected');
           return btn ? btn.getAttribute('data-dp-method-btn') : 'bank';
         }
         /* 示意用 QR Code:固定 seed 產生,只求視覺像 QR(三個定位角 + 隨機模組),
