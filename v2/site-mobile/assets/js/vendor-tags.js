@@ -15,7 +15,7 @@
     var current = 'all';
 
     var bar = document.createElement('div');
-    bar.className = 'flex gap-2 overflow-x-auto no-scrollbar -mx-4 px-4 pb-3 mb-1';
+    bar.className = 'flex gap-2 overflow-x-auto no-scrollbar pb-3 mb-1';
     bar.setAttribute('role', 'tablist');
 
     function tagHTML(key, label) {
