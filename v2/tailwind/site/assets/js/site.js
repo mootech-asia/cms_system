@@ -2021,17 +2021,6 @@
     });
   }
 
-  /* ---- .mf-eye password toggles (banking-details / change-password) ---- */
-
-  function initMfEyeToggles() {
-    $all('[data-mf-eye]').forEach(function (btn) {
-      on(btn, 'click', function () {
-        var input = btn.previousElementSibling;
-        if (input && input.tagName === 'INPUT') input.type = input.type === 'password' ? 'text' : 'password';
-      });
-    });
-  }
-
   /* ---- account.html + withdrawal.html bank account carousels (P1) ---- */
 
   function initAccountBankCarousel() {
@@ -3085,7 +3074,6 @@
     initSportProviderTabs();
     initSportLoadMore();
     initMemberPageBehaviors();
-    initMfEyeToggles();
     initAccountBankCarousel();
     initAccountWalletCard();
     initWithdrawalBankCarousel();
