@@ -21,7 +21,7 @@
       '<div class="relative aspect-square overflow-hidden bg-bg-elev">' +
         '<img src="' + esc(m.image || '') + '" alt="" class="h-full w-full object-cover" style="object-position:' + esc(m.focalPoint || '50% 50%') + '" loading="lazy">' +
         '<span class="absolute left-2 top-2 inline-flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-bold text-white">' +
-          '<span class="h-1.5 w-1.5 rounded-full" style="background:var(--live-dot)"></span>LIVE</span>' +
+          '<span class="relative flex h-1.5 w-1.5"><span class="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping" style="background:var(--live-dot)"></span><span class="relative h-1.5 w-1.5 rounded-full" style="background:var(--live-dot)"></span></span><span class="animate-pulse">LIVE</span></span>' +
         (fav ? fav.favToggleHtml(favId, 'right-2 top-2') : '') +
         '<span class="absolute right-2 bottom-2 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-semibold text-white">' + players + '</span>' +
       '</div>' +
