@@ -1647,7 +1647,7 @@
     }
 
     var faqPanel = panels[panels.length - 1];
-    $all('.faq-card', faqPanel).forEach(function (card) {
+    $all('.faq-card, [data-faq-card]', faqPanel).forEach(function (card) {
       var btn = card.querySelector('button');
       if (!btn) return;
       on(btn, 'click', function () {
