@@ -248,7 +248,7 @@
 
         /* ---- 首頁進站廣告彈窗(對照 components/PromotionModal.vue,
            demo 環境沒有真實公告 API,固定取 D.PROMOTIONS 前 4 筆促銷;
-           手機一次顯示一張、關閉後換下一張,桌機(>=1280px)同時列出全部
+           手機一次顯示一張、關閉後換下一張,桌機(>=768px)同時列出全部
            (排同一列,寬度不夠時等比縮窄)。「今天不再提醒」勾選
            才寫入 localStorage,key 每天自動換新，跟原本單張版邏輯一致，
            只是能擴充成多張。 ---- */
@@ -265,7 +265,7 @@
           var cards = ALL.filter(function (p) { return dismissedIds.indexOf(String(p.promotion_id)) === -1; });
           if (!cards.length) return;
 
-          var isDesktop = window.matchMedia('(min-width: 1280px)').matches;
+          var isDesktop = window.matchMedia('(min-width: 768px)').matches;
           var loc = W.currentLocale();
           var backdrop = document.createElement('div');
           backdrop.className = 'fixed inset-0 z-[280] bg-black/70 flex items-center justify-center p-4';
