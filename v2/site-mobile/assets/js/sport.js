@@ -13,7 +13,7 @@
       '<div class="flex items-center justify-between mb-3">' +
         '<span class="text-[11.5px] font-semibold text-text-dim">' + esc(m.league) + '</span>' +
         '<span class="inline-flex items-center gap-1 rounded-full bg-black/30 px-2 py-0.5 text-[10px] font-bold" style="color:var(--live-dot)">' +
-          '<span class="h-1.5 w-1.5 rounded-full" style="background:var(--live-dot)"></span>LIVE</span>' +
+          '<span class="relative flex h-1.5 w-1.5"><span class="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping" style="background:var(--live-dot)"></span><span class="relative h-1.5 w-1.5 rounded-full" style="background:var(--live-dot)"></span></span><span class="animate-pulse">LIVE</span></span>' +
       '</div>' +
       '<div class="flex items-center justify-between gap-2">' +
         '<div class="flex flex-col items-center gap-1.5 w-20">' +
