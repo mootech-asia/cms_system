@@ -76,3 +76,8 @@
   --color-surface-900: rgb(var(--c-surface-900));
   --color-surface-950: rgb(var(--c-surface-950));
 }
+
+@keyframes rk-grow {
+  0% { width: 0; }
+  to { width: var(--rk-pct); }
+}
