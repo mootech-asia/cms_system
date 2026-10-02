@@ -1802,13 +1802,13 @@
     }
 
     if (pageName() === 'promotion') {
-      var firstCard = $all('.promotion-page-card, .promo-tile').filter(function (el) { return el.querySelector('h3'); })[0];
+      var firstCard = $all('.promotion-page-card, [data-promotion-page-card], .promo-tile').filter(function (el) { return el.querySelector('h3'); })[0];
       listSection = firstCard ? firstCard.closest('section') : null;
       mount = listSection ? listSection.parentElement : null;
     }
 
     findPromoDetailButtons().forEach(function (btn) {
-      var card = btn.closest('.promotion-page-card, .promo-tile');
+      var card = btn.closest('.promotion-page-card, [data-promotion-page-card], .promo-tile');
       var h3 = card && card.querySelector('h3');
       var promo = h3 && promoByTitle(h3.textContent.trim());
       if (!promo) return;
