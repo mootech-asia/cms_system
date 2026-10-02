@@ -18,60 +18,42 @@
     <title>CMS_Frontend_v2</title>
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link rel="stylesheet" href="themes/win100.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/tailwind.css" />
   </head>
   <body>
     <div class="page-shell">
-          <header class="site-header">
-            <div class="app-container app-header-desktop">
-              <a href="index.html" class="app-header-logo-link"><img src="logo.png" alt="Casino Logo" class="brand-logo" /></a>
-              <div class="app-header-main">
-                <div class="app-header-top-row">
-                  <button class="app-header-login-btn">登入</button>
-                  <button class="app-header-register-btn">註冊</button>
-                  <div class="dd-trigger-wrap" data-dd-trigger-wrap>
-                    <button type="button" class="skin-switcher-trigger" aria-label="Switch skin" title="切換皮膚">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-lg">
-                        <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"></path>
-                        <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path>
-                        <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path>
-                      </svg>
+          <header class="bg-surface border-b border-border-soft sticky top-0 z-50">
+            <div class="container mx-auto hidden md:flex md:items-stretch md:px-4">
+              <a href="index.html" class="flex items-center pr-6 shrink-0"><img src="logo.png" alt="Casino Logo" class="h-10 mix-blend-lighten" /></a>
+              <div class="flex flex-col flex-1">
+                <div class="flex items-center justify-end gap-3 py-2 text-sm min-h-11">
+                  <button class="bg-surface-2 text-text py-1.5 px-5 rounded-lg transition-opacity hover:opacity-90">登入</button>
+                  <button class="bg-[image:var(--g-primary)] text-on-primary font-semibold py-1.5 px-5 rounded-lg transition-opacity hover:opacity-90">註冊</button>
+                  <div data-dd-trigger-wrap class="relative">
+                    <button type="button" class="flex items-center gap-1 text-text-2 transition-colors hover:text-text" aria-label="Switch skin" title="切換皮膚">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"></path><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path></svg>
                     </button>
                   </div>
-                  <div class="dd-trigger-wrap" data-dd-trigger-wrap>
-                    <button class="header-locale-trigger">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                        <path d="M2 12h20"></path>
-                      </svg><span>中文</span
-                      ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
-                        <path d="m6 9 6 6 6-6"></path>
-                      </svg>
+                  <div data-dd-trigger-wrap class="relative">
+                    <button class="flex items-center gap-1 text-text-2 transition-colors hover:text-text">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg><span>中文</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="m6 9 6 6 6-6"></path></svg>
                     </button>
                   </div>
                 </div>
-                <nav class="app-header-nav">
-                  <a href="index.html" class="app-nav-link"><span>首頁</span></a
-                  ><a href="hot-games.html" class="app-nav-link"><span>熱門遊戲</span></a
+                <nav class="flex items-center justify-end gap-1.5 py-1.5 border-t border-border-soft text-sm relative">
+                  <a href="index.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>首頁</span></a
+                  ><a href="hot-games.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>熱門遊戲</span></a
                   >
-                  <div class="dd-trigger-wrap" data-dd-trigger-wrap>
-                    <a href="sport.html" class="app-nav-link"><span>體育</span
-                      ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
-                        <path d="m6 9 6 6 6-6"></path>
-                      </svg></a
+                  <div data-dd-trigger-wrap class="relative">
+                    <a href="sport.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>體育</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="m6 9 6 6 6-6"></path></svg></a
                     >
                     <div class="dd-panel dd-panel--nav" style="display: none">
                       <a href="sport.html?tab=BTI" class="dd-panel-link" style="text-decoration: none">BTI</a
                       ><a href="sport.html?tab=SABA" class="dd-panel-link" style="text-decoration: none">SABA</a>
                     </div>
                   </div>
-                  <div class="dd-trigger-wrap" data-dd-trigger-wrap>
-                    <a href="live.html" class="app-nav-link"><span>真人娛樂</span
-                      ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
-                        <path d="m6 9 6 6 6-6"></path>
-                      </svg></a
+                  <div data-dd-trigger-wrap class="relative">
+                    <a href="live.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>真人娛樂</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="m6 9 6 6 6-6"></path></svg></a
                     >
                     <div class="dd-panel dd-panel--nav" style="display: none">
                       <a href="live.html?tab=Sexy" class="dd-panel-link" style="text-decoration: none">Sexy</a
@@ -79,62 +61,47 @@
                       ><a href="live.html?tab=Yeebet" class="dd-panel-link" style="text-decoration: none">Yeebet</a>
                     </div>
                   </div>
-                  <a aria-current="page" href="slot.html" class="app-nav-link is-active"><span>老虎機</span></a
-                  ><a href="fish.html" class="app-nav-link"><span>捕魚</span></a
-                  ><a href="mini-games.html" class="app-nav-link"><span>迷你遊戲</span></a
-                  ><a href="promotion.html" class="app-nav-link"><span>優惠活動</span></a
+                  <a aria-current="page" href="slot.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-on-primary no-underline bg-[image:var(--g-primary)] shadow-[0_4px_6px_-1px_rgb(0_0_0_/_0.1),0_2px_4px_-2px_rgb(0_0_0_/_0.1)] font-semibold"><span>老虎機</span></a
+                  ><a href="fish.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>捕魚</span></a
+                  ><a href="mini-games.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>迷你遊戲</span></a
+                  ><a href="promotion.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>優惠活動</span></a
                   >
                 </nav>
               </div>
             </div>
-            <div class="app-header-mobile">
-              <a href="index.html" class="app-header-logo-link"><img src="logo.png" alt="Casino Logo" class="brand-logo" /></a>
-              <div class="app-header-mobile-controls">
-                <div class="dd-trigger-wrap" data-dd-trigger-wrap>
-                  <button type="button" class="skin-switcher-trigger" aria-label="Switch skin" title="切換皮膚">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-lg">
-                      <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"></path>
-                      <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path>
-                      <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path>
-                    </svg>
+            <div class="flex items-center justify-between h-16 px-4 md:hidden">
+              <a href="index.html" class="flex items-center pr-6 shrink-0"><img src="logo.png" alt="Casino Logo" class="h-10 mix-blend-lighten" /></a>
+              <div class="flex items-center gap-3">
+                <div data-dd-trigger-wrap class="relative">
+                  <button type="button" class="flex items-center gap-1 text-text-2 transition-colors hover:text-text" aria-label="Switch skin" title="切換皮膚">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"></path><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path></svg>
                   </button>
                 </div>
-                <div class="dd-trigger-wrap" data-dd-trigger-wrap>
-                  <button class="header-locale-trigger">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                      <path d="M2 12h20"></path>
-                    </svg><span>中文</span
-                    ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
-                      <path d="m6 9 6 6 6-6"></path>
-                    </svg>
+                <div data-dd-trigger-wrap class="relative">
+                  <button class="flex items-center gap-1 text-text-2 transition-colors hover:text-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg><span>中文</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="m6 9 6 6 6-6"></path></svg>
                   </button>
                 </div>
-                <button class="menu-trigger" aria-label="Menu">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-lg">
-                    <line x1="4" x2="20" y1="12" y2="12"></line>
-                    <line x1="4" x2="20" y1="6" y2="6"></line>
-                    <line x1="4" x2="20" y1="18" y2="18"></line>
-                  </svg>
+                <button class="text-text-2 bg-transparent p-0 hover:text-text" aria-label="Menu">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
                 </button>
               </div>
             </div>
           </header>
           <div>
-            <section class="category-hero-media">
+            <section class="relative overflow-hidden bg-bg bg-[image:var(--g-hero)] py-16 md:py-20 min-h-[220px] md:min-h-[300px] [border-block:2px_solid_rgb(var(--c-primary)_/_0.62)] isolate">
               <img
-                src="https://images.pexels.com/photos/29825627/pexels-photo-29825627.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
+                src="https://images.pexels.com/photos/29825627/pexels-photo-29825627.jpeg?auto=compress&cs=tinysrgb&w=1920"
                 alt=""
                 aria-hidden="true"
-                class="category-hero-image"
+                class="absolute inset-0 h-full w-full object-cover scale-[1.02]"
                 style="object-position: 58% 50%"
                 fetchpriority="high"
               />
-              <div class="category-hero-scrim"></div>
-              <div class="category-hero-content app-container">
-                <p class="category-hero-eyebrow">JACKPOT FLOOR</p>
-                <h1 class="category-hero-title">SLOT MACHINES</h1>
+              <div class="absolute inset-0 [background:radial-gradient(circle_at_76%_52%,rgb(var(--c-primary)_/_0.28),transparent_32%),linear-gradient(90deg,rgb(var(--c-bg)_/_0.88)_0,rgb(var(--c-bg)_/_0.66)_38%,rgb(var(--c-surface)_/_0.18)_66%,rgb(var(--c-scrim)_/_0.22))] [box-shadow:inset_0_1px_rgb(var(--c-primary)_/_0.52),inset_0_-1px_rgb(var(--c-primary)_/_0.48),inset_0_-24px_54px_rgb(var(--c-primary)_/_0.08)] max-md:[background:linear-gradient(180deg,rgb(var(--c-scrim)_/_0.06),rgb(var(--c-bg)_/_0.62)),linear-gradient(90deg,rgb(var(--c-bg)_/_0.86)_0,rgb(var(--c-bg)_/_0.62)_64%,rgb(var(--c-scrim)_/_0.22))]"></div>
+              <div data-category-hero-content class="container mx-auto min-h-[inherit] relative z-10 flex flex-col justify-center text-left px-6 md:px-12 xl:px-16">
+                <p class="mb-3 text-xs leading-normal font-bold tracking-[0.06em] text-primary-soft w-fit py-[7px] px-3 border border-[rgb(var(--c-primary)_/_0.56)] rounded [background:rgb(var(--c-bg)_/_0.58)] shadow-[0_0_20px_rgb(var(--c-primary)_/_0.16)] [backdrop-filter:blur(8px)]">JACKPOT FLOOR</p>
+                <h1 data-category-hero-title class="max-w-[900px] max-md:max-w-[88%] italic uppercase text-text text-4xl leading-10 md:text-[4.5rem] md:leading-none font-extrabold [text-shadow:0_3px_0_rgb(var(--c-bg)_/_0.92),0_0_18px_rgb(var(--c-primary)_/_0.76),0_0_46px_rgb(var(--c-primary)_/_0.42)]">SLOT MACHINES</h1>
               </div>
             </section>
             <section class="game-listing-section">
@@ -554,54 +521,50 @@
               </div>
             </section>
           </div>
-                    <footer class="site-footer">
-            <div class="app-container">
-              <div class="site-footer-inner">
-                <img src="logo.png" alt="WIN100% Logo" class="site-footer-logo" />
-                <div class="site-footer-notice">
-                  <p>
+          <footer class="bg-surface border-t border-border-soft pt-12 pb-24 md:pb-16">
+            <div class="container mx-auto px-4">
+              <div class="flex flex-col items-center">
+                <img src="logo.png" alt="WIN100% Logo" class="h-12 mix-blend-lighten mb-6" />
+                <div class="text-center max-w-2xl">
+                  <p class="text-text-3 text-xs leading-[1.625] mb-3">
                     博彩可能造成成癮，請理性遊玩。如需支援資訊，請前往責任博彩協助頁面。
                   </p>
-                  <p>
+                  <p class="text-text-3 text-xs leading-[1.625]">
                     當您存取、繼續使用或瀏覽本站，即表示您同意我們使用部分瀏覽器 Cookie，以改善您的使用體驗。
                   </p>
                 </div>
-                <div class="site-footer-divider"></div>
-                <div class="site-footer-copyright">win10069 © 版權所有，受法律保護</div>
+                <div class="h-px w-full bg-border-soft max-w-2xl my-6"></div>
+                <div class="text-text-4 text-xs">win10069 © 版權所有，受法律保護</div>
               </div>
             </div>
           </footer>
-          <nav class="mobile-bottom-nav">
-            <div class="mobile-bottom-nav-grid">
-              <button class="mobile-bottom-nav-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-md"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg
-                ><span class="mobile-bottom-nav-label">瀏覽</span></button
-              ><a
-                href="index.html"
-                class="mobile-bottom-nav-item"
-                ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-md"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg
-                ><span class="mobile-bottom-nav-label">首頁</span></a
-              ><a href="deposit.html" class="mobile-bottom-nav-item"
-                ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-md"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg
-                ><span class="mobile-bottom-nav-label">儲值</span></a
+          <nav class="block fixed left-0 right-0 bottom-0 z-50 bg-bg border-t border-border-soft md:hidden">
+            <div class="grid grid-cols-5 h-16">
+              <button class="flex flex-col items-center justify-center gap-1 text-text-3 bg-transparent transition-colors [&.is-active]:text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg
+                ><span class="text-xs">瀏覽</span></button
+              ><a href="index.html" class="flex flex-col items-center justify-center gap-1 text-text-3 transition-colors [&.is-active]:text-primary"
+                ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg
+                ><span class="text-xs">首頁</span></a
+              ><a href="deposit.html" class="flex flex-col items-center justify-center gap-1 text-text-3 transition-colors [&.is-active]:text-primary"
+                ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg
+                ><span class="text-xs">儲值</span></a
               ><a
                 href="promotion.html"
-                class="mobile-bottom-nav-item"
-                ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-md"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg
-                ><span class="mobile-bottom-nav-label">優惠活動</span></a
-              ><a href="account.html" class="mobile-bottom-nav-item"
-                ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-md"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg
-                ><span class="mobile-bottom-nav-label">會員</span></a
+                class="flex flex-col items-center justify-center gap-1 text-text-3 transition-colors [&.is-active]:text-primary"
+                ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg
+                ><span class="text-xs">優惠活動</span></a
+              ><a href="account.html" class="flex flex-col items-center justify-center gap-1 text-text-3 transition-colors [&.is-active]:text-primary"
+                ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg
+                ><span class="text-xs">會員</span></a
               >
             </div>
           </nav>
-        </div>
     </div>
-    <div id="teleports"></div>
-    <div class="qr-rail">
-      <a href="#" class="qr-btn" aria-label="Live Chat" data-chat-open
-        ><img src="logo.png" alt /><span class="qr-label">Live Chat</span></a
-      ><a href="https://t.me/win10096cs" target="_blank" rel="noopener noreferrer" class="qr-btn" aria-label="Promo Channel"
+    <div class="fixed right-3.5 max-md:right-2.5 top-1/2 -translate-y-[58%] max-md:-translate-y-1/2 z-[9000] flex flex-col items-center gap-3.5 max-md:gap-3 py-3 px-2 max-md:py-2.25 max-md:px-1.5 rounded-[44px] bg-surface/90 backdrop-blur-[6px] border border-white/8 shadow-[0_10px_30px_#0006]">
+      <a href="#" class="group bg-surface-2 text-primary relative w-14 h-14 max-md:w-12 max-md:h-12 rounded-full flex items-center justify-center shadow-[0_6px_18px_#00000059] [transition:transform_0.15s_ease,background_0.15s_ease] no-underline hover:scale-[1.06] hover:bg-border max-md:hover:scale-100 max-md:hover:bg-surface-2" aria-label="Live Chat" data-chat-open
+        ><img src="logo.png" alt class="w-10 h-10 max-md:w-8.5 max-md:h-8.5 object-contain" /><span class="absolute right-[calc(100%+14px)] top-1/2 -translate-y-1/2 translate-x-2.5 bg-bg text-text whitespace-nowrap font-bold text-base max-md:text-sm py-3 px-5.5 max-md:py-2.5 max-md:px-4 rounded-[14px] opacity-0 pointer-events-none [transition:opacity_0.18s_ease,transform_0.18s_ease] shadow-[0_10px_28px_#00000073] group-hover:opacity-100 group-hover:translate-x-0 max-md:group-hover:opacity-0 max-md:group-hover:translate-x-2.5 group-focus-visible:opacity-100 group-focus-visible:translate-x-0">Live Chat</span></a
+      ><a href="https://t.me/win10096cs" target="_blank" rel="noopener noreferrer" class="group bg-surface-2 text-primary relative w-14 h-14 max-md:w-12 max-md:h-12 rounded-full flex items-center justify-center shadow-[0_6px_18px_#00000059] [transition:transform_0.15s_ease,background_0.15s_ease] no-underline hover:scale-[1.06] hover:bg-border max-md:hover:scale-100 max-md:hover:bg-surface-2" aria-label="Promo Channel"
         ><svg
               viewBox="0 0 24 24"
               fill="none"
@@ -609,11 +572,12 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
+              class="w-6.5 h-6.5 max-md:w-5.5 max-md:h-5.5"
             >
               <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path>
             </svg
-            ><span class="qr-label">Promo Channel</span></a
-      ><a href="about.html?tab=faq" class="qr-btn" aria-label="FAQ"
+            ><span class="absolute right-[calc(100%+14px)] top-1/2 -translate-y-1/2 translate-x-2.5 bg-bg text-text whitespace-nowrap font-bold text-base max-md:text-sm py-3 px-5.5 max-md:py-2.5 max-md:px-4 rounded-[14px] opacity-0 pointer-events-none [transition:opacity_0.18s_ease,transform_0.18s_ease] shadow-[0_10px_28px_#00000073] group-hover:opacity-100 group-hover:translate-x-0 max-md:group-hover:opacity-0 max-md:group-hover:translate-x-2.5 group-focus-visible:opacity-100 group-focus-visible:translate-x-0">Promo Channel</span></a
+      ><a href="about.html?tab=faq" class="group bg-surface-2 text-primary relative w-14 h-14 max-md:w-12 max-md:h-12 rounded-full flex items-center justify-center shadow-[0_6px_18px_#00000059] [transition:transform_0.15s_ease,background_0.15s_ease] no-underline hover:scale-[1.06] hover:bg-border max-md:hover:scale-100 max-md:hover:bg-surface-2" aria-label="FAQ"
         ><svg
           viewBox="0 0 24 24"
           fill="none"
@@ -621,10 +585,11 @@
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
+          class="w-6.5 h-6.5 max-md:w-5.5 max-md:h-5.5"
         >
           <circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path>
         </svg
-        ><span class="qr-label">FAQ</span></a
+        ><span class="absolute right-[calc(100%+14px)] top-1/2 -translate-y-1/2 translate-x-2.5 bg-bg text-text whitespace-nowrap font-bold text-base max-md:text-sm py-3 px-5.5 max-md:py-2.5 max-md:px-4 rounded-[14px] opacity-0 pointer-events-none [transition:opacity_0.18s_ease,transform_0.18s_ease] shadow-[0_10px_28px_#00000073] group-hover:opacity-100 group-hover:translate-x-0 max-md:group-hover:opacity-0 max-md:group-hover:translate-x-2.5 group-focus-visible:opacity-100 group-focus-visible:translate-x-0">FAQ</span></a
       >
     </div>
     <script src="assets/js/data.js"></script>

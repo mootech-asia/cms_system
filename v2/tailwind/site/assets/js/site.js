@@ -375,7 +375,7 @@
        與 I18N 標準文案(Hot Games/Slots)同 zh/ko/th 對應、純字串映射
        會失真;首次呼叫先快照原字,en 時精確還原(zh/ko/th 三者都走一般
        字典,不需要保留英文大寫設計感)。 */
-    var bannerEls = $all('.category-hero-title, .category-hero-content p');
+    var bannerEls = $all('.category-hero-title, [data-category-hero-title], .category-hero-content p, [data-category-hero-content] > p');
     bannerEls.forEach(function (el) {
       if (!el.getAttribute('data-i18n-orig')) el.setAttribute('data-i18n-orig', el.textContent.trim());
     });
