@@ -1688,11 +1688,11 @@
   /* 體育串關展開列（目前只有 betting-record.html 有 .rt-parlay-row，
      其餘 record 頁面靜態表格沒有這個 class，$all 拿到空陣列安全跳過）。 */
   function initBetRecordParlayRows() {
-    $all('.rt-parlay-toggle').forEach(function (btn) {
+    $all('[data-rt-parlay-toggle]').forEach(function (btn) {
       on(btn, 'click', function () {
-        var row = btn.closest('.rt-parlay-row');
+        var row = btn.closest('[data-rt-parlay-row]');
         var detail = row && row.nextElementSibling;
-        if (!detail || !detail.classList.contains('rt-parlay-detail')) return;
+        if (!detail || !detail.hasAttribute('data-rt-parlay-detail')) return;
         var open = row.classList.toggle('is-open');
         detail.hidden = !open;
         btn.setAttribute('aria-expanded', String(open));
@@ -2906,16 +2906,14 @@
   function drpFindToolbar(input) {
     var node = input.parentElement;
     while (node && node !== document.body) {
-      if (node.classList && node.classList.contains('rb-toolbar')) return node;
+      if (node.hasAttribute && node.hasAttribute('data-rb-toolbar')) return node;
       node = node.parentElement;
     }
     return input.parentElement;
   }
 
   function drpFindConfirmBtn(toolbar) {
-    return $all('button.btn-primary', toolbar).filter(function (b) {
-      return /confirm|確認/i.test((b.textContent || '').trim());
-    })[0] || $('button.btn-primary', toolbar);
+    return $('[data-rb-confirm-btn]', toolbar);
   }
 
   function drpFindTable(toolbar) {
@@ -2926,11 +2924,11 @@
   var DRP_WEEKDAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
   function initDateRangeFilter() {
-    var input = $('input.rb-daterange-input');
+    var input = $('[data-rb-daterange-input]');
     if (!input) return;
 
     var toolbar = drpFindToolbar(input);
-    var dropdownBtn = $('button.rb-daterange-btn', toolbar) || document.querySelector('button.rb-daterange-btn');
+    var dropdownBtn = $('[data-rb-daterange-btn]', toolbar) || document.querySelector('[data-rb-daterange-btn]');
     var confirmBtn = drpFindConfirmBtn(toolbar);
     var table = drpFindTable(toolbar);
 
