@@ -18,20 +18,19 @@
     <title>CMS_Frontend_v2</title>
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link rel="stylesheet" href="themes/win100.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/tailwind.css" />
   </head>
   <body>
-    <div class="page-shell">
-          <header class="site-header">
-        <div class="site-header-inner">
-          <div class="site-header-row" data-site-header-row>
-            <a href="index.html" class="brand-link"
-              ><img src="logo.png" alt="Casino Logo" class="brand-logo"
+    <div class="min-h-screen overflow-x-clip bg-bg">
+      <header class="bg-surface border-b border-border-soft sticky top-0 z-50">
+        <div class="px-4">
+          <div data-site-header-row class="flex items-center h-16">
+            <a href="index.html" class="flex items-center gap-3 text-text-2 hover:text-text transition-colors"
+              ><img src="logo.png" alt="Casino Logo" class="h-10 mix-blend-lighten"
             /></a>
-            <div class="header-mobile-controls" data-header-mobile-controls>
-              <div class="dd-trigger-wrap" data-dd-trigger-wrap>
-                <button class="lang-trigger">
+            <div data-header-mobile-controls class="hidden max-md:flex max-md:ml-auto max-md:items-center max-md:gap-3">
+              <div data-dd-trigger-wrap class="relative">
+                <button class="text-text-2 bg-transparent p-0 hover:text-text flex items-center gap-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -42,7 +41,7 @@
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    class="icon-sm"
+                    class="w-4 h-4"
                   >
                     <circle cx="12" cy="12" r="10"></circle>
                     <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
@@ -58,13 +57,13 @@
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    class="icon-xs"
+                    class="w-3 h-3"
                   >
                     <path d="m6 9 6 6 6-6"></path>
                   </svg>
                 </button>
               </div>
-              <button class="menu-trigger" aria-label="Menu">
+              <button class="text-text-2 bg-transparent p-0 hover:text-text" aria-label="Menu">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -75,7 +74,7 @@
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="icon-md"
+                  class="w-6 h-6"
                 >
                   <line x1="4" x2="20" y1="12" y2="12"></line>
                   <line x1="4" x2="20" y1="6" y2="6"></line>
@@ -86,13 +85,12 @@
           </div>
         </div>
       </header>
-      <div class="content-shell">
-          
-            <aside class="sidebar-nav">
-          <nav class="sidebar-nav-list">
+      <div class="min-h-[calc(100vh-4rem)]">
+        <aside class="hidden md:block fixed top-16 bottom-0 left-0 z-40 w-64 overflow-y-auto border-r border-border-soft bg-surface">
+          <nav class="p-4 space-y-2">
             <a
               href="account.html"
-              class="sidebar-link"
+              class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-2 transition-colors hover:bg-bg hover:text-text"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -103,16 +101,16 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="sidebar-icon"
+                class="w-5 h-5 shrink-0"
               >
                 <rect width="7" height="9" x="3" y="3" rx="1"></rect>
                 <rect width="7" height="5" x="14" y="3" rx="1"></rect>
                 <rect width="7" height="9" x="14" y="12" rx="1"></rect>
                 <rect width="7" height="5" x="3" y="16" rx="1"></rect></svg
-              ><span class="sidebar-label">Account Overview</span></a
+              ><span class="text-sm">Account Overview</span></a
             ><a
               href="deposit.html"
-              class="sidebar-link"
+              class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-2 transition-colors hover:bg-bg hover:text-text"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -123,15 +121,15 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="sidebar-icon"
+                class="w-5 h-5 shrink-0"
               >
                 <path d="M12 17V3"></path>
                 <path d="m6 11 6 6 6-6"></path>
                 <path d="M19 21H5"></path></svg
-              ><span class="sidebar-label">Deposit</span></a
+              ><span class="text-sm">Deposit</span></a
             ><a
               href="withdrawal.html"
-              class="sidebar-link"
+              class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-2 transition-colors hover:bg-bg hover:text-text"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -142,15 +140,15 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="sidebar-icon"
+                class="w-5 h-5 shrink-0"
               >
                 <path d="M12 21V7"></path>
                 <path d="m6 11 6-6 6 6"></path>
                 <path d="M5 3h14"></path></svg
-              ><span class="sidebar-label">Withdrawal</span></a
+              ><span class="text-sm">Withdrawal</span></a
             ><a
               href="betting-record.html"
-              class="sidebar-link"
+              class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-2 transition-colors hover:bg-bg hover:text-text"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -161,15 +159,16 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="sidebar-icon"
+                class="w-5 h-5 shrink-0"
               >
                 <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
                 <path d="M3 3v5h5"></path>
                 <path d="M12 7v5l4 2"></path></svg
-              ><span class="sidebar-label">Betting Record</span></a
+              ><span class="text-sm">Betting Record</span></a
             ><a
+              aria-current="page"
               href="deposit-record.html"
-              aria-current="page" class="sidebar-link is-active"
+              class="flex items-center gap-3 py-3 px-4 rounded-lg bg-[image:var(--g-primary)] text-on-primary font-semibold"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -180,16 +179,16 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="sidebar-icon"
+                class="w-5 h-5 shrink-0"
               >
                 <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
                 <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
                 <path d="M16 13H8"></path>
                 <path d="M16 17H8"></path></svg
-              ><span class="sidebar-label">Deposit Record</span></a
+              ><span class="text-sm">Deposit Record</span></a
             ><a
               href="profit-loss.html"
-              class="sidebar-link"
+              class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-2 transition-colors hover:bg-bg hover:text-text"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -200,14 +199,14 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="sidebar-icon"
+                class="w-5 h-5 shrink-0"
               >
                 <path d="M16 7h6v6"></path>
                 <path d="m22 7-8.5 8.5-5-5L2 17"></path></svg
-              ><span class="sidebar-label">Profit And Loss</span></a
+              ><span class="text-sm">Profit And Loss</span></a
             ><a
               href="withdrawal-record.html"
-              class="sidebar-link"
+              class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-2 transition-colors hover:bg-bg hover:text-text"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -218,16 +217,16 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="sidebar-icon"
+                class="w-5 h-5 shrink-0"
               >
                 <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
                 <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
                 <path d="M16 13H8"></path>
                 <path d="M16 17H8"></path></svg
-              ><span class="sidebar-label">Withdrawal Record</span></a
+              ><span class="text-sm">Withdrawal Record</span></a
             ><a
               href="withdrawal-detail.html"
-              class="sidebar-link"
+              class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-2 transition-colors hover:bg-bg hover:text-text"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -238,16 +237,16 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="sidebar-icon"
+                class="w-5 h-5 shrink-0"
               >
                 <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
                 <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
                 <path d="M16 13H8"></path>
                 <path d="M16 17H8"></path></svg
-              ><span class="sidebar-label">Withdrawal Detail</span></a
+              ><span class="text-sm">Withdrawal Detail</span></a
             ><a
               href="account-record.html"
-              class="sidebar-link"
+              class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-2 transition-colors hover:bg-bg hover:text-text"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -258,16 +257,16 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="sidebar-icon"
+                class="w-5 h-5 shrink-0"
               >
                 <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
                 <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
                 <path d="M16 13H8"></path>
                 <path d="M16 17H8"></path></svg
-              ><span class="sidebar-label">Account Record</span></a
+              ><span class="text-sm">Account Record</span></a
             ><a
               href="personal-info.html"
-              class="sidebar-link"
+              class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-2 transition-colors hover:bg-bg hover:text-text"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -278,14 +277,14 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="sidebar-icon"
+                class="w-5 h-5 shrink-0"
               >
                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle></svg
-              ><span class="sidebar-label">Personal Info</span></a
+              ><span class="text-sm">Personal Info</span></a
             ><a
               href="security.html"
-              class="sidebar-link"
+              class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-2 transition-colors hover:bg-bg hover:text-text"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -296,14 +295,14 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="sidebar-icon"
+                class="w-5 h-5 shrink-0"
               >
                 <path
                   d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
                 ></path></svg
-              ><span class="sidebar-label">Security Center</span></a
+              ><span class="text-sm">Security Center</span></a
             ><button
-              class="sidebar-link-btn"
+              class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-2 w-full bg-transparent hover:bg-bg hover:text-text"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -315,43 +314,43 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="sidebar-icon"
+                class="w-5 h-5 shrink-0"
               >
                 <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg
-              ><span class="sidebar-label">Customer Service</span>
+              ><span class="text-sm">Customer Service</span>
             </button>
           </nav>
         </aside>
-            <main class="main-content">
-              <div>
-                <h1 class="record-page-title">Deposit Record</h1>
-                <div class="rb-toolbar">
-                  <div class="rb-select-wrap">
-                    <div class="rb-select"><span class="rb-select-label" tabindex="0" role="combobox" aria-label="All" aria-haspopup="listbox" aria-expanded="false">All</span><div class="rb-select-caret"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="rb-select-caret-icon" aria-hidden="true"><path d="M7.01744 10.398C6.91269 10.3985 6.8089 10.378 6.71215 10.3379C6.61541 10.2977 6.52766 10.2386 6.45405 10.1641L1.13907 4.84913C1.03306 4.69404 0.985221 4.5065 1.00399 4.31958C1.02276 4.13266 1.10693 3.95838 1.24166 3.82747C1.37639 3.69655 1.55301 3.61742 1.74039 3.60402C1.92777 3.59062 2.11386 3.64382 2.26584 3.75424L7.01744 8.47394L11.769 3.75424C11.9189 3.65709 12.097 3.61306 12.2748 3.62921C12.4527 3.64535 12.6199 3.72073 12.7498 3.84328C12.8797 3.96582 12.9647 4.12842 12.9912 4.30502C13.0177 4.48162 12.9841 4.662 12.8958 4.81724L7.58083 10.1322C7.50996 10.2125 7.42344 10.2775 7.32656 10.3232C7.22968 10.3689 7.12449 10.3944 7.01744 10.398Z" fill="currentColor"></path></svg></div></div>
-                  </div>
-                  <div class="rb-daterange-wrap">
-                    <span class="rb-daterange"><input type="text" class="rb-daterange-input" placeholder="YYYY-MM-DD ~ YYYY-MM-DD" autocomplete="off" role="combobox" aria-autocomplete="none" aria-haspopup="dialog" aria-expanded="false" /><button type="button" class="rb-daterange-btn" aria-label="Choose Date" aria-haspopup="dialog" aria-expanded="false"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="rb-daterange-icon" aria-hidden="true"><path d="M10.7838 1.51351H9.83783V0.567568C9.83783 0.417039 9.77804 0.272676 9.6716 0.166237C9.56516 0.0597971 9.42079 0 9.27027 0C9.11974 0 8.97538 0.0597971 8.86894 0.166237C8.7625 0.272676 8.7027 0.417039 8.7027 0.567568V1.51351H5.29729V0.567568C5.29729 0.417039 5.2375 0.272676 5.13106 0.166237C5.02462 0.0597971 4.88025 0 4.72973 0C4.5792 0 4.43484 0.0597971 4.3284 0.166237C4.22196 0.272676 4.16216 0.417039 4.16216 0.567568V1.51351H3.21621C2.66428 1.51351 2.13494 1.73277 1.74467 2.12305C1.35439 2.51333 1.13513 3.04266 1.13513 3.59459V11.9189C1.13513 12.4709 1.35439 13.0002 1.74467 13.3905C2.13494 13.7807 2.66428 14 3.21621 14H10.7838C11.3357 14 11.865 13.7807 12.2553 13.3905C12.6456 13.0002 12.8649 12.4709 12.8649 11.9189V3.59459C12.8649 3.04266 12.6456 2.51333 12.2553 2.12305C11.865 1.73277 11.3357 1.51351 10.7838 1.51351ZM3.21621 2.64865H4.16216V3.59459C4.16216 3.74512 4.22196 3.88949 4.3284 3.99593C4.43484 4.10237 4.5792 4.16216 4.72973 4.16216C4.88025 4.16216 5.02462 4.10237 5.13106 3.99593C5.2375 3.88949 5.29729 3.74512 5.29729 3.59459V2.64865H8.7027V3.59459C8.7027 3.74512 8.7625 3.88949 8.86894 3.99593C8.97538 4.10237 9.11974 4.16216 9.27027 4.16216C9.42079 4.16216 9.56516 4.10237 9.6716 3.99593C9.77804 3.88949 9.83783 3.74512 9.83783 3.59459V2.64865H10.7838C11.0347 2.64865 11.2753 2.74831 11.4527 2.92571C11.6301 3.10311 11.7297 3.34371 11.7297 3.59459V5.67568H2.27027V3.59459C2.27027 3.34371 2.36993 3.10311 2.54733 2.92571C2.72473 2.74831 2.96533 2.64865 3.21621 2.64865ZM10.7838 12.8649H3.21621C2.96533 12.8649 2.72473 12.7652 2.54733 12.5878C2.36993 12.4104 2.27027 12.1698 2.27027 11.9189V6.81081H11.7297V11.9189C11.7297 12.1698 11.6301 12.4104 11.4527 12.5878C11.2753 12.7652 11.0347 12.8649 10.7838 12.8649Z" fill="currentColor"></path></svg></button></span>
-                  </div>
-                  <button type="button" class="btn-primary rb-confirm-btn">Confirm</button>
-                  <div class="text-body text-ink-3">
-                    <span data-refresh-label>Auto refresh in 30 s</span
-                    ><span
-                      class="text-primary"
-                      role="button"
-                      aria-label="Refresh now"
-                      data-refresh-now
-                      >↺</span
-                    >
-                  </div>
-                </div>
-                <div class="record-table-frame"><div class="record-table-container"><table class="record-table-el"><thead class="record-table-thead"><tr><th class="record-table-th"><div class="record-table-th-content"><span class="record-table-th-title">Transaction No.</span></div></th><th class="record-table-th"><div class="record-table-th-content"><span class="record-table-th-title">Date Time</span></div></th><th class="record-table-th"><div class="record-table-th-content record-table-th-content--end"><span class="record-table-th-title">Deposit Amount</span></div></th><th class="record-table-th"><div class="record-table-th-content record-table-th-content--center"><span class="record-table-th-title">Status</span></div></th><th class="record-table-th"><div class="record-table-th-content record-table-th-content--end"><span class="record-table-th-title">Request Amount</span></div></th><th class="record-table-th"><div class="record-table-th-content record-table-th-content--end"><span class="record-table-th-title">Bonus</span></div></th><th class="record-table-th"><div class="record-table-th-content"><span class="record-table-th-title">Method</span></div></th><th class="record-table-th"><div class="record-table-th-content"><span class="record-table-th-title">Bank Reference</span></div></th><th class="record-table-th"><div class="record-table-th-content"><span class="record-table-th-title">Deposit Time</span></div></th><th class="record-table-th"><div class="record-table-th-content record-table-th-content--end"><span class="record-table-th-title">Bank Charge</span></div></th><th class="record-table-th"><div class="record-table-th-content"><span class="record-table-th-title">Promotion</span></div></th><th class="record-table-th"><div class="record-table-th-content"><span class="record-table-th-title">Remark</span></div></th></tr></thead><tbody class="record-table-tbody"><tr><td><span class="rt-mono">DP25081201</span></td><td><span class="rt-muted">2025-08-12 09:14</span></td><td class="text-right">100,000</td><td class="text-center"><span class="pill-ok">Approved</span></td><td class="text-right">100,000</td><td class="text-right">10,000</td><td>Bank</td><td>KB-8841</td><td><span class="rt-muted">2025-08-12 09:18</span></td><td class="text-right">0</td><td>100% Bonus</td><td>-</td></tr><tr><td><span class="rt-mono">DP25081105</span></td><td><span class="rt-muted">2025-08-11 21:02</span></td><td class="text-right">50,000</td><td class="text-center"><span class="pill-ok">Approved</span></td><td class="text-right">50,000</td><td class="text-right">0</td><td>Bank</td><td>SH-2210</td><td><span class="rt-muted">2025-08-11 21:05</span></td><td class="text-right">0</td><td>-</td><td>-</td></tr><tr><td><span class="rt-mono">DP25081008</span></td><td><span class="rt-muted">2025-08-10 13:48</span></td><td class="text-right">200,000</td><td class="text-center"><span class="pill-warn">Pending</span></td><td class="text-right">200,000</td><td class="text-right">20,000</td><td>Crypto</td><td>USDT-4f1</td><td><span class="rt-muted">-</span></td><td class="text-right">0</td><td>VIP Reload</td><td>-</td></tr><tr><td><span class="rt-mono">DP25080902</span></td><td><span class="rt-muted">2025-08-09 18:33</span></td><td class="text-right">30,000</td><td class="text-center"><span class="pill-bad">Rejected</span></td><td class="text-right">30,000</td><td class="text-right">0</td><td>Bank</td><td>WR-0093</td><td><span class="rt-muted">-</span></td><td class="text-right">0</td><td>-</td><td>Name mis</td></tr></tbody></table></div></div>
-                <div class="record-total-bar"><span>Total Deposit Amount</span><span>350,000</span></div>
+        <main class="min-w-0 pt-4 pr-4 pb-24 pl-4 md:ml-64 md:pt-8 md:pr-8 md:pb-24 md:pl-8">
+          <div>
+            <h1 class="text-text text-3xl mb-8">Deposit Record</h1>
+            <div data-rb-toolbar class="mb-4 flex w-full flex-wrap items-center gap-2">
+              <div class="rb-select-wrap">
+                <div class="rb-select"><span class="rb-select-label" tabindex="0" role="combobox" aria-label="All" aria-haspopup="listbox" aria-expanded="false">All</span><div class="rb-select-caret"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="rb-select-caret-icon" aria-hidden="true"><path d="M7.01744 10.398C6.91269 10.3985 6.8089 10.378 6.71215 10.3379C6.61541 10.2977 6.52766 10.2386 6.45405 10.1641L1.13907 4.84913C1.03306 4.69404 0.985221 4.5065 1.00399 4.31958C1.02276 4.13266 1.10693 3.95838 1.24166 3.82747C1.37639 3.69655 1.55301 3.61742 1.74039 3.60402C1.92777 3.59062 2.11386 3.64382 2.26584 3.75424L7.01744 8.47394L11.769 3.75424C11.9189 3.65709 12.097 3.61306 12.2748 3.62921C12.4527 3.64535 12.6199 3.72073 12.7498 3.84328C12.8797 3.96582 12.9647 4.12842 12.9912 4.30502C13.0177 4.48162 12.9841 4.662 12.8958 4.81724L7.58083 10.1322C7.50996 10.2125 7.42344 10.2775 7.32656 10.3232C7.22968 10.3689 7.12449 10.3944 7.01744 10.398Z" fill="currentColor"></path></svg></div></div>
               </div>
-            </main>
-          
-          <nav class="mobile-bottom-nav">
-        <div class="mobile-bottom-nav-grid">
-          <button class="mobile-bottom-nav-item">
+              <div class="w-full max-sm:flex-[1_1_50%] max-sm:w-auto sm:w-80 min-w-0">
+                <span class="inline-flex w-full max-w-full"><input type="text" data-rb-daterange-input class="block w-[1%] flex-1 h-10.5 rounded-l-md border border-surface-600 bg-surface-950 py-2 px-3 text-text shadow-[0_1px_2px_0_rgba(18,18,23,0.05)] placeholder:text-text-4" placeholder="YYYY-MM-DD ~ YYYY-MM-DD" autocomplete="off" role="combobox" aria-autocomplete="none" aria-haspopup="dialog" aria-expanded="false" /><button type="button" data-rb-daterange-btn class="flex w-10 h-10.5 shrink-0 items-center justify-center rounded-r-md border border-surface-600 bg-surface text-text-3" aria-label="Choose Date" aria-haspopup="dialog" aria-expanded="false"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" aria-hidden="true"><path d="M10.7838 1.51351H9.83783V0.567568C9.83783 0.417039 9.77804 0.272676 9.6716 0.166237C9.56516 0.0597971 9.42079 0 9.27027 0C9.11974 0 8.97538 0.0597971 8.86894 0.166237C8.7625 0.272676 8.7027 0.417039 8.7027 0.567568V1.51351H5.29729V0.567568C5.29729 0.417039 5.2375 0.272676 5.13106 0.166237C5.02462 0.0597971 4.88025 0 4.72973 0C4.5792 0 4.43484 0.0597971 4.3284 0.166237C4.22196 0.272676 4.16216 0.417039 4.16216 0.567568V1.51351H3.21621C2.66428 1.51351 2.13494 1.73277 1.74467 2.12305C1.35439 2.51333 1.13513 3.04266 1.13513 3.59459V11.9189C1.13513 12.4709 1.35439 13.0002 1.74467 13.3905C2.13494 13.7807 2.66428 14 3.21621 14H10.7838C11.3357 14 11.865 13.7807 12.2553 13.3905C12.6456 13.0002 12.8649 12.4709 12.8649 11.9189V3.59459C12.8649 3.04266 12.6456 2.51333 12.2553 2.12305C11.865 1.73277 11.3357 1.51351 10.7838 1.51351ZM3.21621 2.64865H4.16216V3.59459C4.16216 3.74512 4.22196 3.88949 4.3284 3.99593C4.43484 4.10237 4.5792 4.16216 4.72973 4.16216C4.88025 4.16216 5.02462 4.10237 5.13106 3.99593C5.2375 3.88949 5.29729 3.74512 5.29729 3.59459V2.64865H8.7027V3.59459C8.7027 3.74512 8.7625 3.88949 8.86894 3.99593C8.97538 4.10237 9.11974 4.16216 9.27027 4.16216C9.42079 4.16216 9.56516 4.10237 9.6716 3.99593C9.77804 3.88949 9.83783 3.74512 9.83783 3.59459V2.64865H10.7838C11.0347 2.64865 11.2753 2.74831 11.4527 2.92571C11.6301 3.10311 11.7297 3.34371 11.7297 3.59459V5.67568H2.27027V3.59459C2.27027 3.34371 2.36993 3.10311 2.54733 2.92571C2.72473 2.74831 2.96533 2.64865 3.21621 2.64865ZM10.7838 12.8649H3.21621C2.96533 12.8649 2.72473 12.7652 2.54733 12.5878C2.36993 12.4104 2.27027 12.1698 2.27027 11.9189V6.81081H11.7297V11.9189C11.7297 12.1698 11.6301 12.4104 11.4527 12.5878C11.2753 12.7652 11.0347 12.8649 10.7838 12.8649Z" fill="currentColor"></path></svg></button></span>
+              </div>
+              <button type="button" data-rb-confirm-btn class="inline-flex items-center justify-center whitespace-nowrap rounded-[var(--radius-ui)] bg-[image:var(--g-primary)] font-semibold text-on-primary transition-opacity hover:opacity-90 focus-visible:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-transparent h-10 px-6 text-sm leading-normal">Confirm</button>
+              <div class="text-sm leading-normal text-text-3">
+                <span data-refresh-label>Auto refresh in 30 s</span
+                ><span
+                  class="text-primary"
+                  role="button"
+                  aria-label="Refresh now"
+                  data-refresh-now
+                  >↺</span
+                >
+              </div>
+            </div>
+            <div class="w-full overflow-hidden rounded-xl border border-border-soft"><div class="overflow-x-auto"><table class="w-full border-collapse text-sm leading-normal"><thead class="sticky"><tr class="bg-[image:var(--g-primary)]"><th class="whitespace-nowrap border-0 bg-transparent py-3 px-4 text-left text-xs leading-normal font-extrabold uppercase tracking-[0.06em] text-on-primary"><div class="flex items-center gap-2"><span>Transaction No.</span></div></th><th class="whitespace-nowrap border-0 bg-transparent py-3 px-4 text-left text-xs leading-normal font-extrabold uppercase tracking-[0.06em] text-on-primary"><div class="flex items-center gap-2"><span>Date Time</span></div></th><th class="whitespace-nowrap border-0 bg-transparent py-3 px-4 text-left text-xs leading-normal font-extrabold uppercase tracking-[0.06em] text-on-primary"><div class="flex items-center justify-end gap-2"><span>Deposit Amount</span></div></th><th class="whitespace-nowrap border-0 bg-transparent py-3 px-4 text-left text-xs leading-normal font-extrabold uppercase tracking-[0.06em] text-on-primary"><div class="flex items-center justify-center gap-2"><span>Status</span></div></th><th class="whitespace-nowrap border-0 bg-transparent py-3 px-4 text-left text-xs leading-normal font-extrabold uppercase tracking-[0.06em] text-on-primary"><div class="flex items-center justify-end gap-2"><span>Request Amount</span></div></th><th class="whitespace-nowrap border-0 bg-transparent py-3 px-4 text-left text-xs leading-normal font-extrabold uppercase tracking-[0.06em] text-on-primary"><div class="flex items-center justify-end gap-2"><span>Bonus</span></div></th><th class="whitespace-nowrap border-0 bg-transparent py-3 px-4 text-left text-xs leading-normal font-extrabold uppercase tracking-[0.06em] text-on-primary"><div class="flex items-center gap-2"><span>Method</span></div></th><th class="whitespace-nowrap border-0 bg-transparent py-3 px-4 text-left text-xs leading-normal font-extrabold uppercase tracking-[0.06em] text-on-primary"><div class="flex items-center gap-2"><span>Bank Reference</span></div></th><th class="whitespace-nowrap border-0 bg-transparent py-3 px-4 text-left text-xs leading-normal font-extrabold uppercase tracking-[0.06em] text-on-primary"><div class="flex items-center gap-2"><span>Deposit Time</span></div></th><th class="whitespace-nowrap border-0 bg-transparent py-3 px-4 text-left text-xs leading-normal font-extrabold uppercase tracking-[0.06em] text-on-primary"><div class="flex items-center justify-end gap-2"><span>Bank Charge</span></div></th><th class="whitespace-nowrap border-0 bg-transparent py-3 px-4 text-left text-xs leading-normal font-extrabold uppercase tracking-[0.06em] text-on-primary"><div class="flex items-center gap-2"><span>Promotion</span></div></th><th class="whitespace-nowrap border-0 bg-transparent py-3 px-4 text-left text-xs leading-normal font-extrabold uppercase tracking-[0.06em] text-on-primary"><div class="flex items-center gap-2"><span>Remark</span></div></th></tr></thead><tbody><tr class="group odd:bg-transparent even:bg-transparent text-text-2"><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]"><span class="font-mono text-xs leading-normal tracking-wider text-text-3">DP25081201</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]"><span class="text-text-3">2025-08-12 09:14</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">100,000</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-center"><span class="inline-block rounded-full py-1 px-2.5 text-xs leading-none font-bold bg-success/10 text-success">Approved</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">100,000</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">10,000</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">Bank</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">KB-8841</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]"><span class="text-text-3">2025-08-12 09:18</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">0</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">100% Bonus</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">-</td></tr><tr class="group odd:bg-transparent even:bg-transparent text-text-2"><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]"><span class="font-mono text-xs leading-normal tracking-wider text-text-3">DP25081105</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]"><span class="text-text-3">2025-08-11 21:02</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">50,000</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-center"><span class="inline-block rounded-full py-1 px-2.5 text-xs leading-none font-bold bg-success/10 text-success">Approved</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">50,000</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">0</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">Bank</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">SH-2210</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]"><span class="text-text-3">2025-08-11 21:05</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">0</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">-</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">-</td></tr><tr class="group odd:bg-transparent even:bg-transparent text-text-2"><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]"><span class="font-mono text-xs leading-normal tracking-wider text-text-3">DP25081008</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]"><span class="text-text-3">2025-08-10 13:48</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">200,000</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-center"><span class="inline-block rounded-full py-1 px-2.5 text-xs leading-none font-bold bg-gold/10 text-gold">Pending</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">200,000</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">20,000</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">Crypto</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">USDT-4f1</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]"><span class="text-text-3">-</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">0</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">VIP Reload</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">-</td></tr><tr class="group odd:bg-transparent even:bg-transparent text-text-2"><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]"><span class="font-mono text-xs leading-normal tracking-wider text-text-3">DP25080902</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]"><span class="text-text-3">2025-08-09 18:33</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">30,000</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-center"><span class="inline-block rounded-full py-1 px-2.5 text-xs leading-none font-bold bg-danger/10 text-danger">Rejected</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">30,000</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">0</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">Bank</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">WR-0093</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]"><span class="text-text-3">-</span></td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-right text-text">0</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">-</td><td class="group-even:bg-white/[0.02] group-hover:bg-bg whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums]">Name mis</td></tr></tbody></table></div></div>
+            <div class="fixed left-0 right-0 bottom-16 md:left-64 md:bottom-0 z-[100] flex items-center justify-between py-3 px-6 bg-surface border-t border-gold/30 text-gold font-semibold"><span>Total Deposit Amount</span><span>350,000</span></div>
+          </div>
+        </main>
+      </div>
+      <nav class="block fixed left-0 right-0 bottom-0 z-50 bg-bg border-t border-border-soft md:hidden">
+        <div class="grid grid-cols-5 h-16">
+          <button class="flex flex-col items-center justify-center gap-1 text-text-3 bg-transparent transition-colors [&.is-active]:text-primary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -362,13 +361,13 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon-md"
+              class="w-6 h-6"
             >
               <line x1="4" x2="20" y1="12" y2="12"></line>
               <line x1="4" x2="20" y1="6" y2="6"></line>
               <line x1="4" x2="20" y1="18" y2="18"></line></svg
-            ><span class="mobile-bottom-nav-label">瀏覽</span></button
-          ><a href="index.html" class="mobile-bottom-nav-item"
+            ><span class="text-xs">瀏覽</span></button
+          ><a href="index.html" class="flex flex-col items-center justify-center gap-1 text-text-3 transition-colors [&.is-active]:text-primary"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -379,14 +378,14 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon-md"
+              class="w-6 h-6"
             >
               <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
               <path
                 d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
               ></path></svg
-            ><span class="mobile-bottom-nav-label">首頁</span></a
-          ><a href="deposit.html" class="mobile-bottom-nav-item"
+            ><span class="text-xs">首頁</span></a
+          ><a href="deposit.html" class="flex flex-col items-center justify-center gap-1 text-text-3 transition-colors [&.is-active]:text-primary"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -397,15 +396,15 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon-md"
+              class="w-6 h-6"
             >
               <path d="M12 17V3"></path>
               <path d="m6 11 6 6 6-6"></path>
               <path d="M19 21H5"></path></svg
-            ><span class="mobile-bottom-nav-label">儲值</span></a
+            ><span class="text-xs">儲值</span></a
           ><a
             href="promotion.html"
-            class="mobile-bottom-nav-item"
+            class="flex flex-col items-center justify-center gap-1 text-text-3 transition-colors [&.is-active]:text-primary"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -416,14 +415,14 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon-md"
+              class="w-6 h-6"
             >
               <rect x="3" y="8" width="18" height="4" rx="1"></rect>
               <path d="M12 8v13"></path>
               <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path>
               <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg
-            ><span class="mobile-bottom-nav-label">優惠活動</span></a
-          ><a href="account.html" class="mobile-bottom-nav-item"
+            ><span class="text-xs">優惠活動</span></a
+          ><a href="account.html" class="flex flex-col items-center justify-center gap-1 text-text-3 transition-colors [&.is-active]:text-primary"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -434,19 +433,20 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon-md"
+              class="w-6 h-6"
             >
               <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle></svg
-            ><span class="mobile-bottom-nav-label">會員</span></a
+            ><span class="text-xs">會員</span></a
           >
         </div>
       </nav>
     </div>
-    <div class="qr-rail">
-      <a href="#" class="qr-btn" aria-label="Live Chat" data-chat-open
-        ><img src="logo.png" alt /><span class="qr-label">Live Chat</span></a
-      ><a href="https://t.me/win10096cs" target="_blank" rel="noopener noreferrer" class="qr-btn" aria-label="Promo Channel"
+    <div id="teleports"></div>
+    <div class="fixed right-3.5 max-md:right-2.5 top-1/2 -translate-y-[58%] max-md:-translate-y-1/2 z-[9000] flex flex-col items-center gap-3.5 max-md:gap-3 py-3 px-2 max-md:py-2.25 max-md:px-1.5 rounded-[44px] bg-surface/90 backdrop-blur-[6px] border border-white/8 shadow-[0_10px_30px_#0006]">
+      <a href="#" class="group bg-surface-2 text-primary relative w-14 h-14 max-md:w-12 max-md:h-12 rounded-full flex items-center justify-center shadow-[0_6px_18px_#00000059] [transition:transform_0.15s_ease,background_0.15s_ease] no-underline hover:scale-[1.06] hover:bg-border max-md:hover:scale-100 max-md:hover:bg-surface-2" aria-label="Live Chat" data-chat-open
+        ><img src="logo.png" alt class="w-10 h-10 max-md:w-8.5 max-md:h-8.5 object-contain" /><span class="absolute right-[calc(100%+14px)] top-1/2 -translate-y-1/2 translate-x-2.5 bg-bg text-text whitespace-nowrap font-bold text-base max-md:text-sm py-3 px-5.5 max-md:py-2.5 max-md:px-4 rounded-[14px] opacity-0 pointer-events-none [transition:opacity_0.18s_ease,transform_0.18s_ease] shadow-[0_10px_28px_#00000073] group-hover:opacity-100 group-hover:translate-x-0 max-md:group-hover:opacity-0 max-md:group-hover:translate-x-2.5 group-focus-visible:opacity-100 group-focus-visible:translate-x-0">Live Chat</span></a
+      ><a href="https://t.me/win10096cs" target="_blank" rel="noopener noreferrer" class="group bg-surface-2 text-primary relative w-14 h-14 max-md:w-12 max-md:h-12 rounded-full flex items-center justify-center shadow-[0_6px_18px_#00000059] [transition:transform_0.15s_ease,background_0.15s_ease] no-underline hover:scale-[1.06] hover:bg-border max-md:hover:scale-100 max-md:hover:bg-surface-2" aria-label="Promo Channel"
         ><svg
               viewBox="0 0 24 24"
               fill="none"
@@ -454,11 +454,12 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
+              class="w-6.5 h-6.5 max-md:w-5.5 max-md:h-5.5"
             >
               <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path>
             </svg
-            ><span class="qr-label">Promo Channel</span></a
-      ><a href="about.html?tab=faq" class="qr-btn" aria-label="FAQ"
+            ><span class="absolute right-[calc(100%+14px)] top-1/2 -translate-y-1/2 translate-x-2.5 bg-bg text-text whitespace-nowrap font-bold text-base max-md:text-sm py-3 px-5.5 max-md:py-2.5 max-md:px-4 rounded-[14px] opacity-0 pointer-events-none [transition:opacity_0.18s_ease,transform_0.18s_ease] shadow-[0_10px_28px_#00000073] group-hover:opacity-100 group-hover:translate-x-0 max-md:group-hover:opacity-0 max-md:group-hover:translate-x-2.5 group-focus-visible:opacity-100 group-focus-visible:translate-x-0">Promo Channel</span></a
+      ><a href="about.html?tab=faq" class="group bg-surface-2 text-primary relative w-14 h-14 max-md:w-12 max-md:h-12 rounded-full flex items-center justify-center shadow-[0_6px_18px_#00000059] [transition:transform_0.15s_ease,background_0.15s_ease] no-underline hover:scale-[1.06] hover:bg-border max-md:hover:scale-100 max-md:hover:bg-surface-2" aria-label="FAQ"
         ><svg
           viewBox="0 0 24 24"
           fill="none"
@@ -466,10 +467,11 @@
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
+          class="w-6.5 h-6.5 max-md:w-5.5 max-md:h-5.5"
         >
           <circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path>
         </svg
-        ><span class="qr-label">FAQ</span></a
+        ><span class="absolute right-[calc(100%+14px)] top-1/2 -translate-y-1/2 translate-x-2.5 bg-bg text-text whitespace-nowrap font-bold text-base max-md:text-sm py-3 px-5.5 max-md:py-2.5 max-md:px-4 rounded-[14px] opacity-0 pointer-events-none [transition:opacity_0.18s_ease,transform_0.18s_ease] shadow-[0_10px_28px_#00000073] group-hover:opacity-100 group-hover:translate-x-0 max-md:group-hover:opacity-0 max-md:group-hover:translate-x-2.5 group-focus-visible:opacity-100 group-focus-visible:translate-x-0">FAQ</span></a
       >
     </div>
     <script src="assets/js/data.js"></script>
