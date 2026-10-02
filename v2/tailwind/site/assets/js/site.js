@@ -436,7 +436,7 @@
     }
     if (typeof cfg.showSkinButton === 'boolean') {
       $all('.skin-switcher-trigger').forEach(function (btn) {
-        (btn.closest('.dd-trigger-wrap') || btn).style.display = cfg.showSkinButton ? '' : 'none';
+        (btn.closest('[data-dd-trigger-wrap]') || btn).style.display = cfg.showSkinButton ? '' : 'none';
       });
     }
     /* 已發佈的 chrome / 區塊順序·顯示開關·變體 —— 真站頂層才套用;
@@ -593,7 +593,7 @@
   /* Header 導覽列 hover 下拉選單(Sports/Live) */
 
   function initNavDropdowns() {
-    $all('nav .dd-trigger-wrap').forEach(function (wrap) {
+    $all('nav [data-dd-trigger-wrap]').forEach(function (wrap) {
       var panel = $('.dd-panel', wrap);
       if (!panel) return;
       var timer = null;
@@ -874,7 +874,7 @@
 
   function localeTriggerHtml() {
     return (
-      '<div class="dd-trigger-wrap"><button class="header-locale-trigger">' +
+      '<div class="dd-trigger-wrap" data-dd-trigger-wrap><button class="header-locale-trigger">' +
       iconSvg('globe', 'icon-sm') + '<span>中文</span>' + iconSvg('chevron-down', 'icon-xs') +
       '</button></div>'
     );
@@ -883,8 +883,8 @@
     if (!isMemberPage()) return;
     $all('header').forEach(function (header) {
       if (header.querySelector('[data-member-account-bar]')) return;
-      var mobileWrap = header.querySelector('.header-mobile-controls');
-      var row = mobileWrap ? mobileWrap.parentElement : header.querySelector('.site-header-row');
+      var mobileWrap = header.querySelector('[data-header-mobile-controls]');
+      var row = mobileWrap ? mobileWrap.parentElement : header.querySelector('[data-site-header-row]');
       if (!row) return;
       var bar = document.createElement('div');
       bar.className = 'header-account-bar';
@@ -2024,7 +2024,7 @@
   /* ---- .mf-eye password toggles (banking-details / change-password) ---- */
 
   function initMfEyeToggles() {
-    $all('.mf-eye').forEach(function (btn) {
+    $all('[data-mf-eye]').forEach(function (btn) {
       on(btn, 'click', function () {
         var input = btn.previousElementSibling;
         if (input && input.tagName === 'INPUT') input.type = input.type === 'password' ? 'text' : 'password';
@@ -2513,12 +2513,12 @@
 
   function initChangePasswordPage() {
     if (pageName() !== 'change-password') return;
-    var card = document.querySelector('.mf-card');
+    var card = document.querySelector('[data-mf-card]');
     if (!card) return;
     var isTxn = /type=txn/.test(location.search);
-    var inputs = $all('.mf-input', card);
+    var inputs = $all('[data-mf-input]', card);
     var newPw = inputs[0], confirmPw = inputs[1];
-    var submitBtn = card.querySelector('.mf-submit');
+    var submitBtn = card.querySelector('[data-mf-submit]');
     if (!newPw || !confirmPw || !submitBtn) return;
     var VISIBLE_ASCII = /^[\x21-\x7E]{5,16}$/;
     bindReadyGate(submitBtn, [newPw, confirmPw], function (ok) { submitBtn.classList.toggle('ready', ok); submitBtn.disabled = !ok; });
