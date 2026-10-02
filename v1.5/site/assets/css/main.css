@@ -4447,6 +4447,12 @@ body.usc-sidebar-open .mobile-bottom-nav {
   height: 20px;
   accent-color: var(--c-navy);
 }
+/* 桌機（>=768px，與其他版本一致）全部公告排同一列，寬度不足時卡片等比縮窄；
+   >=1280px 再放大成原本的大卡尺寸 */
+@media (min-width: 768px) {
+  .promo-popup-stage { flex-direction: row; }
+  .promo-popup-card { flex-shrink: 1; }
+}
 @media (min-width: 1280px) {
   .promo-popup-stage {
     flex-direction: row;
