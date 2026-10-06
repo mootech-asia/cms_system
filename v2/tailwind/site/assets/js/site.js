@@ -1273,9 +1273,9 @@
      between them, so match by the rail's own class instead of adjacency). */
 
   function initHomeRails() {
-    $all('.rail-head').forEach(function (header) {
+    $all('.rail-head, [data-rail-head]').forEach(function (header) {
       var container = header.parentElement;
-      var rail = container ? container.querySelector('.match-rail, .game-rail, .promo-grid-desktop') : null;
+      var rail = container ? container.querySelector('.match-rail, [data-match-rail], .game-rail, [data-game-rail], .promo-grid-desktop, [data-promo-grid-desktop]') : null;
       if (!rail) return;
       var buttons = $all('button', header).filter(function (b) { return b.querySelector('svg'); });
       if (buttons.length < 2) return;
