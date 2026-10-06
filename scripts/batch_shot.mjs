@@ -25,6 +25,13 @@ for (const p of pages) {
     await page.goto(`${baseUrlPrefix}/${p}`, { waitUntil: 'load', timeout: 20000 });
     await page.waitForTimeout(500);
     await page.evaluate(() => Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2000))])).catch(() => {});
+    // 強制 lazy-load 圖片提早載入並等待 decode 完成，避免遊戲卡片截圖
+    // 因為圖片還沒載完而膨脹 pixel-diff（長頁面、卡片多的大廳類頁面尤其明顯）。
+    await page.evaluate(() => { document.querySelectorAll('img[loading="lazy"]').forEach((img) => { img.loading = 'eager'; }); }).catch(() => {});
+    await page.evaluate(() => Promise.race([
+      Promise.all([...document.images].map((img) => img.decode().catch(() => {}))),
+      new Promise((r) => setTimeout(r, 3000)),
+    ])).catch(() => {});
     const height = await page.evaluate(() => document.body.scrollHeight);
     await page.setViewportSize({ width, height: Math.max(height, 200) });
     await page.waitForTimeout(150);
