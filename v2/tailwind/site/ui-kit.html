@@ -6,29 +6,28 @@
     <title>CMS_Frontend_v2</title>
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link rel="stylesheet" href="themes/win100.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/tailwind.css" />
   </head>
   <body>
-    <div class="uikit-page">
-            <header class="uikit-header">
+    <div class="mx-auto max-w-5xl px-4 pt-8 pb-16 [&>*+*]:mt-8">
+            <header class="flex flex-wrap items-start justify-between gap-4">
               <div>
                 <h1 class="text-h1 font-bold text-ink">UI Kit</h1>
-                <p class="uikit-desc">
+                <p class="mt-1 text-sm leading-[21px] text-text-3">
                   基礎元件層視驗頁 — 元件位於 <code class="text-primary">app/components/ui/</code>, 樣式規則位於
                   <code class="text-primary">assets/css/main.css</code> 與 Win100 preset。
                 </p>
               </div>
-              <div class="uikit-skin-switch">
-                <button type="button" class="active seg-btn">Emerald</button
-                ><button type="button" class="seg-btn">Aurora</button
-                ><button type="button" class="seg-btn">Fashion Blue</button
-                ><button type="button" class="seg-btn">Noir Gold</button
-                ><button type="button" class="seg-btn">Rose Graphite</button>
+              <div class="flex shrink-0 items-center gap-2 rounded-[10px] border border-border-soft bg-surface p-1">
+                <button type="button" class="rounded-[10px] px-3 py-1.5 text-xs leading-[18px] font-semibold text-on-primary bg-[image:var(--g-primary)]">Emerald</button
+                ><button type="button" class="rounded-[10px] px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text">Aurora</button
+                ><button type="button" class="rounded-[10px] px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text">Fashion Blue</button
+                ><button type="button" class="rounded-[10px] px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text">Noir Gold</button
+                ><button type="button" class="rounded-[10px] px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text">Rose Graphite</button>
               </div>
             </header>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">Theme tokens(tailwind.config.ts)</h2>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">Theme tokens(tailwind.config.ts)</h2>
               <div class="uikit-token-grid">
                 <div class="uikit-token-item">
                   <div class="bg-primary uikit-token-swatch"></div>
@@ -81,38 +80,38 @@
                 <p class="text-micro tracking-wide2 text-ink-4">MICRO 10PX + WIDE2</p>
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">UiButton</h2>
-              <div class="uikit-demo-row">
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">UiButton</h2>
+              <div class="flex flex-wrap items-center gap-3">
                 <button
                   type="button"
                   aria-label="Primary md"
-                  class="btn-primary btn-md"
+                  class="inline-flex items-center justify-center whitespace-nowrap rounded-[10px] bg-[image:var(--g-primary)] font-semibold text-on-primary transition-opacity duration-150 hover:opacity-90 focus-visible:opacity-90 focus-visible:outline-2 focus-visible:outline-transparent focus-visible:outline-offset-2 h-11 px-6 text-sm leading-[21px]"
                 >
                   <span>Primary md</span></button
                 ><button
                   type="button"
                   aria-label="Primary sm"
-                  class="btn-primary btn-sm"
+                  class="inline-flex items-center justify-center whitespace-nowrap rounded-[10px] bg-[image:var(--g-primary)] font-semibold text-on-primary transition-opacity duration-150 hover:opacity-90 focus-visible:opacity-90 focus-visible:outline-2 focus-visible:outline-transparent focus-visible:outline-offset-2 h-9 px-4 text-sm leading-[21px]"
                 >
                   <span>Primary sm</span></button
                 ><button
                   type="button"
                   aria-label="Primary lg"
-                  class="btn-primary btn-lg"
+                  class="inline-flex items-center justify-center whitespace-nowrap rounded-[10px] bg-[image:var(--g-primary)] font-semibold text-on-primary transition-opacity duration-150 hover:opacity-90 focus-visible:opacity-90 focus-visible:outline-2 focus-visible:outline-transparent focus-visible:outline-offset-2 h-12 px-8 text-base leading-[24px]"
                 >
                   <span>Primary lg</span></button
                 ><button
                   type="button"
                   disabled
                   aria-label="Disabled"
-                  class="btn-primary btn-md"
+                  class="inline-flex items-center justify-center whitespace-nowrap rounded-[10px] bg-[image:var(--g-primary)] font-semibold text-on-primary transition-opacity duration-150 hover:opacity-90 focus-visible:opacity-90 focus-visible:outline-2 focus-visible:outline-transparent focus-visible:outline-offset-2 h-11 px-6 text-sm leading-[21px] disabled:cursor-not-allowed disabled:bg-text-4 disabled:bg-none disabled:text-text-2"
                 >
                   <span>Disabled</span></button
                 ><button
                   type="button"
                   aria-label="Loading"
-                  class="btn-primary btn-md"
+                  class="inline-flex items-center justify-center whitespace-nowrap rounded-[10px] bg-[image:var(--g-primary)] font-semibold text-on-primary transition-opacity duration-150 hover:opacity-90 focus-visible:opacity-90 focus-visible:outline-2 focus-visible:outline-transparent focus-visible:outline-offset-2 h-11 px-6 text-sm leading-[21px]"
                 >
                   <svg
                     width="14"
@@ -120,7 +119,7 @@
                     viewBox="0 0 14 14"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    class="btn-spinner-icon"
+                    class="mr-2 h-4 w-4 animate-spin"
                     aria-hidden="true"
                   >
                     <path
@@ -131,12 +130,12 @@
                 ><button
                   type="button"
                   aria-label="Ghost"
-                  class="btn-ghost btn-md"
+                  class="inline-flex items-center justify-center whitespace-nowrap rounded-[10px] border border-border bg-bg font-semibold text-text transition-colors duration-150 hover:border-text-4 focus-visible:border-text-4 focus-visible:outline-2 focus-visible:outline-transparent focus-visible:outline-offset-2 h-11 px-6 text-sm leading-[21px]"
                 >
                   <span>Ghost</span></button
                 ><button
                   type="button"
-                  class="btn-back"
+                  class="inline-flex h-10 items-center justify-center gap-2 rounded-lg px-3.5 text-[15px] leading-none bg-white/5 border border-white/20 text-text-2 font-semibold cursor-pointer transition-[background-color,border-color,color,box-shadow,transform] duration-[180ms] ease-linear hover:bg-primary-faint hover:border-[rgb(var(--c-primary)_/_0.22)] hover:text-accent hover:shadow-[inset_0_0_0_1px_rgb(var(--c-primary)_/_0.03),0_0_0_1px_rgb(var(--c-primary-faint)_/_0.35)] hover:-translate-y-px active:translate-y-0"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -145,63 +144,64 @@
                     stroke-width="2.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
+                    class="h-[18px] w-[18px] shrink-0"
                   >
                     <path d="M19 12H5"></path>
                     <path d="m12 19-7-7 7-7"></path></svg
                   ><span>Back</span>
                 </button>
               </div>
-              <p class="uikit-demo-note">variant: primary / ghost / back;size: sm / md / lg(back 固定尺寸)</p>
+              <p class="mt-3 text-xs leading-[18px] text-text-4">variant: primary / ghost / back;size: sm / md / lg(back 固定尺寸)</p>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">UiInput</h2>
-              <div class="uikit-demo-grid">
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">UiInput</h2>
+              <div class="grid gap-3 grid-cols-1 md:grid-cols-3">
                 <input
                   type="text"
-                  class="input-ui"
+                  class="w-full rounded-[10px] border border-border bg-bg px-4 py-3 text-sm leading-[21px] text-text placeholder:text-text-4 focus:border-primary focus:outline-2 focus:outline-transparent focus:outline-offset-2"
                   placeholder="Placeholder"
                 /><input
                   type="text"
                   value="內容有誤的狀態"
-                  class="input-ui input-ui-invalid"
+                  class="w-full rounded-[10px] border border-danger bg-bg px-4 py-3 text-sm leading-[21px] text-text placeholder:text-text-4 focus:outline-2 focus:outline-transparent focus:outline-offset-2"
                 /><input
                   type="text"
                   value="Disabled"
                   disabled
-                  class="input-ui"
+                  class="w-full rounded-[10px] border border-border bg-bg px-4 py-3 text-sm leading-[21px] text-text placeholder:text-text-4 disabled:cursor-not-allowed disabled:bg-surface-2 disabled:text-text-4"
                 />
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">UiSelect / UiDatePicker</h2>
-              <div class="uikit-demo-grid">
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">UiSelect / UiDatePicker</h2>
+              <div class="grid gap-3 grid-cols-1 md:grid-cols-3">
                 <div class="rb-select"><span class="rb-select-label is-placeholder" tabindex="0" role="combobox" aria-label="Transaction type" aria-haspopup="listbox" aria-expanded="false">Transaction type</span><div class="rb-select-caret"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="rb-select-caret-icon" aria-hidden="true"><path d="M7.01744 10.398C6.91269 10.3985 6.8089 10.378 6.71215 10.3379C6.61541 10.2977 6.52766 10.2386 6.45405 10.1641L1.13907 4.84913C1.03306 4.69404 0.985221 4.5065 1.00399 4.31958C1.02276 4.13266 1.10693 3.95838 1.24166 3.82747C1.37639 3.69655 1.55301 3.61742 1.74039 3.60402C1.92777 3.59062 2.11386 3.64382 2.26584 3.75424L7.01744 8.47394L11.769 3.75424C11.9189 3.65709 12.097 3.61306 12.2748 3.62921C12.4527 3.64535 12.6199 3.72073 12.7498 3.84328C12.8797 3.96582 12.9647 4.12842 12.9912 4.30502C13.0177 4.48162 12.9841 4.662 12.8958 4.81724L7.58083 10.1322C7.50996 10.2125 7.42344 10.2775 7.32656 10.3232C7.22968 10.3689 7.12449 10.3944 7.01744 10.398Z" fill="currentColor"></path></svg></div></div>
                 <span class="rb-daterange"><input type="text" class="rb-daterange-input" placeholder="Single date" autocomplete="off" role="combobox" aria-autocomplete="none" aria-haspopup="dialog" aria-expanded="false" /><button type="button" class="rb-daterange-btn" aria-label="Choose Date" aria-haspopup="dialog" aria-expanded="false"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="rb-daterange-icon" aria-hidden="true"><path d="M10.7838 1.51351H9.83783V0.567568C9.83783 0.417039 9.77804 0.272676 9.6716 0.166237C9.56516 0.0597971 9.42079 0 9.27027 0C9.11974 0 8.97538 0.0597971 8.86894 0.166237C8.7625 0.272676 8.7027 0.417039 8.7027 0.567568V1.51351H5.29729V0.567568C5.29729 0.417039 5.2375 0.272676 5.13106 0.166237C5.02462 0.0597971 4.88025 0 4.72973 0C4.5792 0 4.43484 0.0597971 4.3284 0.166237C4.22196 0.272676 4.16216 0.417039 4.16216 0.567568V1.51351H3.21621C2.66428 1.51351 2.13494 1.73277 1.74467 2.12305C1.35439 2.51333 1.13513 3.04266 1.13513 3.59459V11.9189C1.13513 12.4709 1.35439 13.0002 1.74467 13.3905C2.13494 13.7807 2.66428 14 3.21621 14H10.7838C11.3357 14 11.865 13.7807 12.2553 13.3905C12.6456 13.0002 12.8649 12.4709 12.8649 11.9189V3.59459C12.8649 3.04266 12.6456 2.51333 12.2553 2.12305C11.865 1.73277 11.3357 1.51351 10.7838 1.51351ZM3.21621 2.64865H4.16216V3.59459C4.16216 3.74512 4.22196 3.88949 4.3284 3.99593C4.43484 4.10237 4.5792 4.16216 4.72973 4.16216C4.88025 4.16216 5.02462 4.10237 5.13106 3.99593C5.2375 3.88949 5.29729 3.74512 5.29729 3.59459V2.64865H8.7027V3.59459C8.7027 3.74512 8.7625 3.88949 8.86894 3.99593C8.97538 4.10237 9.11974 4.16216 9.27027 4.16216C9.42079 4.16216 9.56516 4.10237 9.6716 3.99593C9.77804 3.88949 9.83783 3.74512 9.83783 3.59459V2.64865H10.7838C11.0347 2.64865 11.2753 2.74831 11.4527 2.92571C11.6301 3.10311 11.7297 3.34371 11.7297 3.59459V5.67568H2.27027V3.59459C2.27027 3.34371 2.36993 3.10311 2.54733 2.92571C2.72473 2.74831 2.96533 2.64865 3.21621 2.64865ZM10.7838 12.8649H3.21621C2.96533 12.8649 2.72473 12.7652 2.54733 12.5878C2.36993 12.4104 2.27027 12.1698 2.27027 11.9189V6.81081H11.7297V11.9189C11.7297 12.1698 11.6301 12.4104 11.4527 12.5878C11.2753 12.7652 11.0347 12.8649 10.7838 12.8649Z" fill="currentColor"></path></svg></button></span
                 ><span class="rb-daterange"><input type="text" class="rb-daterange-input" placeholder="Date range" autocomplete="off" role="combobox" aria-autocomplete="none" aria-haspopup="dialog" aria-expanded="false" /><button type="button" class="rb-daterange-btn" aria-label="Choose Date" aria-haspopup="dialog" aria-expanded="false"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="rb-daterange-icon" aria-hidden="true"><path d="M10.7838 1.51351H9.83783V0.567568C9.83783 0.417039 9.77804 0.272676 9.6716 0.166237C9.56516 0.0597971 9.42079 0 9.27027 0C9.11974 0 8.97538 0.0597971 8.86894 0.166237C8.7625 0.272676 8.7027 0.417039 8.7027 0.567568V1.51351H5.29729V0.567568C5.29729 0.417039 5.2375 0.272676 5.13106 0.166237C5.02462 0.0597971 4.88025 0 4.72973 0C4.5792 0 4.43484 0.0597971 4.3284 0.166237C4.22196 0.272676 4.16216 0.417039 4.16216 0.567568V1.51351H3.21621C2.66428 1.51351 2.13494 1.73277 1.74467 2.12305C1.35439 2.51333 1.13513 3.04266 1.13513 3.59459V11.9189C1.13513 12.4709 1.35439 13.0002 1.74467 13.3905C2.13494 13.7807 2.66428 14 3.21621 14H10.7838C11.3357 14 11.865 13.7807 12.2553 13.3905C12.6456 13.0002 12.8649 12.4709 12.8649 11.9189V3.59459C12.8649 3.04266 12.6456 2.51333 12.2553 2.12305C11.865 1.73277 11.3357 1.51351 10.7838 1.51351ZM3.21621 2.64865H4.16216V3.59459C4.16216 3.74512 4.22196 3.88949 4.3284 3.99593C4.43484 4.10237 4.5792 4.16216 4.72973 4.16216C4.88025 4.16216 5.02462 4.10237 5.13106 3.99593C5.2375 3.88949 5.29729 3.74512 5.29729 3.59459V2.64865H8.7027V3.59459C8.7027 3.74512 8.7625 3.88949 8.86894 3.99593C8.97538 4.10237 9.11974 4.16216 9.27027 4.16216C9.42079 4.16216 9.56516 4.10237 9.6716 3.99593C9.77804 3.88949 9.83783 3.74512 9.83783 3.59459V2.64865H10.7838C11.0347 2.64865 11.2753 2.74831 11.4527 2.92571C11.6301 3.10311 11.7297 3.34371 11.7297 3.59459V5.67568H2.27027V3.59459C2.27027 3.34371 2.36993 3.10311 2.54733 2.92571C2.72473 2.74831 2.96533 2.64865 3.21621 2.64865ZM10.7838 12.8649H3.21621C2.96533 12.8649 2.72473 12.7652 2.54733 12.5878C2.36993 12.4104 2.27027 12.1698 2.27027 11.9189V6.81081H11.7297V11.9189C11.7297 12.1698 11.6301 12.4104 11.4527 12.5878C11.2753 12.7652 11.0347 12.8649 10.7838 12.8649Z" fill="currentColor"></path></svg></button></span>
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">UiDialog</h2>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">UiDialog</h2>
               <button
                 type="button"
                 aria-label="Open dialog"
-                class="btn-ghost btn-md"
+                class="inline-flex items-center justify-center whitespace-nowrap rounded-[10px] border border-border bg-bg font-semibold text-text transition-colors duration-150 hover:border-text-4 focus-visible:border-text-4 focus-visible:outline-2 focus-visible:outline-transparent focus-visible:outline-offset-2 h-11 px-6 text-sm leading-[21px]"
               >
                 <span>Open dialog</span>
               </button>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">UiTag</h2>
-              <div class="uikit-demo-row">
-                <span class="pill-ok"><span>Success</span></span
-                ><span class="pill-warn"><span>Processing</span></span
-                ><span class="pill-bad"><span>Failed</span></span
-                ><span class="pill-neutral"><span>Neutral</span></span
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">UiTag</h2>
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="inline-block rounded-full px-2.5 py-1 text-xs leading-none font-bold bg-success/10 text-success"><span>Success</span></span
+                ><span class="inline-block rounded-full px-2.5 py-1 text-xs leading-none font-bold bg-gold/10 text-gold"><span>Processing</span></span
+                ><span class="inline-block rounded-full px-2.5 py-1 text-xs leading-none font-bold bg-danger/10 text-danger"><span>Failed</span></span
+                ><span class="inline-block rounded-full px-2.5 py-1 text-xs leading-none font-bold bg-surface-2 text-text-3"><span>Neutral</span></span
                 >
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">UiTabs</h2>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">UiTabs</h2>
               <div class="mode-tabs">
                 <button type="button" class="active">All</button
                 ><button type="button">Deposit</button
@@ -217,8 +217,8 @@
                 <p class="text-body text-ink-2">Withdrawal panel。</p>
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">UiAccordion</h2>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">UiAccordion</h2>
               <div class="uikit-accordion">
                 <div class="uikit-accordion-panel">
                   <button type="button" class="uikit-accordion-header" aria-expanded="false">
@@ -248,14 +248,14 @@
                 </div>
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">UiSectionTitle / UiCard</h2>
-              <h2 class="section-title">區塊標題(.section-title)</h2>
-              <p class="uikit-demo-note">本頁每個區塊即 UiCard(title + padded)。</p>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">UiSectionTitle / UiCard</h2>
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent">區塊標題(.section-title)</h2>
+              <p class="mt-3 text-xs leading-[18px] text-text-4">本頁每個區塊即 UiCard(title + padded)。</p>
             </div>
-            <header class="uikit-catalog-header">
+            <header class="pt-8">
               <h2 class="text-h1 font-bold text-ink">區塊變體型錄</h2>
-              <p class="uikit-desc">
+              <p class="mt-1 text-sm leading-[21px] text-text-3">
                 登錄表 <code class="text-primary">app/config/blocks.ts</code> — 每個區塊的變體吃同一份內容 (<code
                   class="text-primary"
                   >config/mock/home.ts</code
@@ -263,22 +263,22 @@
                 / props)與同一套皮膚,只換版面。 選擇變體即時渲染於下方(內容同首頁)。
               </p>
             </header>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">首頁 Banner 輪播(home-banner)</h2>
-              <div class="uikit-variant-row">
-                <button type="button" class="active seg-btn" title="Original">v1</button
-                ><button type="button" class="seg-btn" title="Alternate">v2</button
-                ><button type="button" class="seg-btn" title="Compact">v3</button
-                ><button type="button" class="seg-btn" title="Glass ledger">v4</button
-                ><button type="button" class="seg-btn" title="Signal rail">v5</button
-                ><button type="button" class="seg-btn" title="Chain grid">v6</button
-                ><button type="button" class="seg-btn" title="Layered stack">v7</button
-                ><button type="button" class="seg-btn" title="Terminal strip">v8</button
-                ><button type="button" class="seg-btn" title="Protocol frame">v9</button
-                ><button type="button" class="seg-btn" title="Network console">v10</button
-                ><span class="uikit-variant-active-label">Original</span>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">首頁 Banner 輪播(home-banner)</h2>
+              <div class="mb-4 flex flex-wrap items-center gap-2">
+                <button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-on-primary border-transparent bg-[image:var(--g-primary)]" title="Original">v1</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Alternate">v2</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Compact">v3</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Glass ledger">v4</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Signal rail">v5</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Chain grid">v6</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Layered stack">v7</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Terminal strip">v8</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Protocol frame">v9</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Network console">v10</button
+                ><span class="ml-auto text-xs leading-[18px] text-primary">Original</span>
               </div>
-              <div class="uikit-preview-frame">
+              <div class="overflow-hidden rounded-xl border border-border-soft bg-bg">
             <section              class="campaign-hero"
               data-campaign="2"
               aria-roledescription="carousel"
@@ -356,62 +356,62 @@
             </section>
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">中獎跑馬燈(home-ticker)</h2>
-              <div class="uikit-variant-row">
-                <button type="button" class="active seg-btn" title="Original">v1</button
-                ><button type="button" class="seg-btn" title="Alternate">v2</button
-                ><button type="button" class="seg-btn" title="Compact">v3</button
-                ><button type="button" class="seg-btn" title="Glass ledger">v4</button
-                ><button type="button" class="seg-btn" title="Signal rail">v5</button
-                ><button type="button" class="seg-btn" title="Chain grid">v6</button
-                ><button type="button" class="seg-btn" title="Layered stack">v7</button
-                ><button type="button" class="seg-btn" title="Terminal strip">v8</button
-                ><button type="button" class="seg-btn" title="Protocol frame">v9</button
-                ><button type="button" class="seg-btn" title="Network console">v10</button
-                ><span class="uikit-variant-active-label">Original</span>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">中獎跑馬燈(home-ticker)</h2>
+              <div class="mb-4 flex flex-wrap items-center gap-2">
+                <button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-on-primary border-transparent bg-[image:var(--g-primary)]" title="Original">v1</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Alternate">v2</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Compact">v3</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Glass ledger">v4</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Signal rail">v5</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Chain grid">v6</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Layered stack">v7</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Terminal strip">v8</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Protocol frame">v9</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Network console">v10</button
+                ><span class="ml-auto text-xs leading-[18px] text-primary">Original</span>
               </div>
-              <div class="uikit-preview-frame">
-            <div class="ticker-bar">
-              <div class="ticker-viewport">
-                <div class="ticker-track"><span class="ticker-item">恭喜 <span class="ticker-name">Player***123</span> 贏得 <span class="ticker-amount">RM 8,888</span> 於 Gates of Olympus<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">Lucky***456</span> 贏得 <span class="ticker-amount">RM 15,000</span> 於 Sweet Bonanza<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">Win***789</span> 贏得 <span class="ticker-amount">RM 3,200</span> 於 Crazy Time<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">Pro***321</span> 贏得 <span class="ticker-amount">RM 22,500</span> 於 Lightning Roulette<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">Star***654</span> 贏得 <span class="ticker-amount">RM 5,600</span> 於 Mega Moolah<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">Ace***987</span> 贏得 <span class="ticker-amount">RM 11,100</span> 於 Book of Dead<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">King***147</span> 贏得 <span class="ticker-amount">RM 7,777</span> 於 Starburst<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">Rich***258</span> 贏得 <span class="ticker-amount">RM 19,900</span> 於 Wolf Gold<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">Player***123</span> 贏得 <span class="ticker-amount">RM 8,888</span> 於 Gates of Olympus<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">Lucky***456</span> 贏得 <span class="ticker-amount">RM 15,000</span> 於 Sweet Bonanza<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">Win***789</span> 贏得 <span class="ticker-amount">RM 3,200</span> 於 Crazy Time<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">Pro***321</span> 贏得 <span class="ticker-amount">RM 22,500</span> 於 Lightning Roulette<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">Star***654</span> 贏得 <span class="ticker-amount">RM 5,600</span> 於 Mega Moolah<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">Ace***987</span> 贏得 <span class="ticker-amount">RM 11,100</span> 於 Book of Dead<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">King***147</span> 贏得 <span class="ticker-amount">RM 7,777</span> 於 Starburst<span class="ticker-sep">·</span></span><span class="ticker-item">恭喜 <span class="ticker-name">Rich***258</span> 贏得 <span class="ticker-amount">RM 19,900</span> 於 Wolf Gold<span class="ticker-sep">·</span></span></div>
-              </div>
-            </div>
+              <div class="overflow-hidden rounded-xl border border-border-soft bg-bg">
+            <div class="bg-bg border-y border-border-soft py-2 overflow-hidden">
+              <div class="overflow-hidden">
+                <div class="flex gap-0 whitespace-nowrap [animation:ticker-scroll_30s_linear_infinite] hover:[animation-play-state:paused]"><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">Player***123</span> 贏得 <span class="text-text">RM 8,888</span> <span>於</span> Gates of Olympus<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">Lucky***456</span> 贏得 <span class="text-text">RM 15,000</span> <span>於</span> Sweet Bonanza<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">Win***789</span> 贏得 <span class="text-text">RM 3,200</span> <span>於</span> Crazy Time<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">Pro***321</span> 贏得 <span class="text-text">RM 22,500</span> <span>於</span> Lightning Roulette<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">Star***654</span> 贏得 <span class="text-text">RM 5,600</span> <span>於</span> Mega Moolah<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">Ace***987</span> 贏得 <span class="text-text">RM 11,100</span> <span>於</span> Book of Dead<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">King***147</span> 贏得 <span class="text-text">RM 7,777</span> <span>於</span> Starburst<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">Rich***258</span> 贏得 <span class="text-text">RM 19,900</span> <span>於</span> Wolf Gold<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">Player***123</span> 贏得 <span class="text-text">RM 8,888</span> <span>於</span> Gates of Olympus<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">Lucky***456</span> 贏得 <span class="text-text">RM 15,000</span> <span>於</span> Sweet Bonanza<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">Win***789</span> 贏得 <span class="text-text">RM 3,200</span> <span>於</span> Crazy Time<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">Pro***321</span> 贏得 <span class="text-text">RM 22,500</span> <span>於</span> Lightning Roulette<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">Star***654</span> 贏得 <span class="text-text">RM 5,600</span> <span>於</span> Mega Moolah<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">Ace***987</span> 贏得 <span class="text-text">RM 11,100</span> <span>於</span> Book of Dead<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">King***147</span> 贏得 <span class="text-text">RM 7,777</span> <span>於</span> Starburst<span class="mx-3 text-border">·</span></span><span class="text-xs leading-4 text-text-3 px-4 shrink-0">恭喜 <span class="text-primary">Rich***258</span> 贏得 <span class="text-text">RM 19,900</span> <span>於</span> Wolf Gold<span class="mx-3 text-border">·</span></span></div>
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">Live Sport 即時賽事(home-live-sport)</h2>
-              <div class="uikit-variant-row">
-                <button type="button" class="active seg-btn" title="Original">v1</button
-                ><button type="button" class="seg-btn" title="Alternate">v2</button
-                ><button type="button" class="seg-btn" title="Compact">v3</button
-                ><button type="button" class="seg-btn" title="Glass ledger">v4</button
-                ><button type="button" class="seg-btn" title="Signal rail">v5</button
-                ><button type="button" class="seg-btn" title="Chain grid">v6</button
-                ><button type="button" class="seg-btn" title="Layered stack">v7</button
-                ><button type="button" class="seg-btn" title="Terminal strip">v8</button
-                ><button type="button" class="seg-btn" title="Protocol frame">v9</button
-                ><button type="button" class="seg-btn" title="Network console">v10</button
-                ><span class="uikit-variant-active-label">Original</span>
               </div>
-              <div class="uikit-preview-frame">
-            <section class="live-sport-section">
-              <div class="app-container">
-                <div class="rail-head">
-                  <h2 class="rail-title">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-title-icon rail-title-icon--primary"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg
-                    ><span class="rail-title-text">體育直播</span>
+            </div>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">Live Sport 即時賽事(home-live-sport)</h2>
+              <div class="mb-4 flex flex-wrap items-center gap-2">
+                <button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-on-primary border-transparent bg-[image:var(--g-primary)]" title="Original">v1</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Alternate">v2</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Compact">v3</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Glass ledger">v4</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Signal rail">v5</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Chain grid">v6</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Layered stack">v7</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Terminal strip">v8</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Protocol frame">v9</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Network console">v10</button
+                ><span class="ml-auto text-xs leading-[18px] text-primary">Original</span>
+              </div>
+              <div class="overflow-hidden rounded-xl border border-border-soft bg-bg">
+            <section class="py-6 bg-bg">
+              <div class="container mx-auto px-4">
+                <div data-rail-head class="flex items-center justify-between mb-4">
+                  <h2 class="text-text flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg
+                    ><span class="text-base leading-6 md:text-lg md:leading-7">體育直播</span>
                   </h2>
-                  <div class="rail-actions">
-                    <a class="rail-view-all rail-view-all--icon" href="sport.html"
-                      ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-view-all-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
+                  <div class="flex items-center gap-2">
+                    <a class="text-text-3 text-xs leading-4 py-1.5 px-3 border border-border rounded transition-colors hover:text-text no-underline flex items-center gap-1.5" href="sport.html"
+                      ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-primary"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
                       >查看全部直播</a
-                    ><button class="rail-nav-btn">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-nav-icon">
+                    ><button class="text-text-3 p-1.5 border border-border rounded transition-colors hover:text-text">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
                         <path d="m15 18-6-6 6-6"></path>
                       </svg></button
-                    ><button class="rail-nav-btn">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-nav-icon">
+                    ><button class="text-text-3 p-1.5 border border-border rounded transition-colors hover:text-text">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
                         <path d="m9 18 6-6-6-6"></path>
                       </svg>
                     </button>
@@ -464,259 +464,259 @@
                     </div>
                   </div>
                 </div>
-                <div class="match-rail">
-                  <div class="match-card" style="min-width: 220px">
-                    <div class="match-card-body">
-                      <div class="match-card-head">
-                        <span class="match-card-league">Premier League</span
-                        ><span class="match-card-live-badge"
-                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
+                <div data-match-rail class="flex overflow-x-auto gap-3 [scroll-snap-type:x_mandatory] pb-2">
+                  <div class="shrink-0 [scroll-snap-align:start] cursor-pointer bg-surface border border-border-soft rounded-xl min-w-[220px] transition-colors hover:border-primary" style="min-width: 220px">
+                    <div class="p-4">
+                      <div class="flex items-center justify-between mb-3">
+                        <span class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap max-w-[120px]">Premier League</span
+                        ><span class="flex items-center gap-1 text-[10px] bg-[rgb(var(--c-danger)_/_0.2)] text-danger border border-[rgb(var(--c-danger)_/_0.3)] py-0.5 px-1.5 rounded"
+                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 animate-pulse"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
                           >LIVE</span
                         >
                       </div>
-                      <div class="match-card-teams">
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">MU</span>
+                      <div class="flex items-center justify-between gap-2 mb-4">
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">MU</span>
                           </div>
-                          <span class="match-card-team-name">Manchester United</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Manchester United</span>
                         </div>
-                        <div class="match-card-score-wrap">
-                          <div class="match-card-score">2 - 1</div>
-                          <div class="match-card-status">Live 67'</div>
+                        <div class="text-center shrink-0">
+                          <div class="text-primary text-xl leading-none font-bold">2 - 1</div>
+                          <div class="text-text-4 text-[10px] mt-0.5">Live 67'</div>
                         </div>
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">LIV</span>
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">LIV</span>
                           </div>
-                          <span class="match-card-team-name">Liverpool</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Liverpool</span>
                         </div>
                       </div>
-                      <button class="match-card-cta">
+                      <button class="w-full py-1.5 rounded-lg text-xs leading-4 text-on-primary bg-[image:var(--g-primary)] transition-opacity hover:opacity-90">
                         立即投注
                       </button>
                     </div>
                   </div>
-                  <div class="match-card" style="min-width: 220px">
-                    <div class="match-card-body">
-                      <div class="match-card-head">
-                        <span class="match-card-league">NBA</span
-                        ><span class="match-card-live-badge"
-                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
+                  <div class="shrink-0 [scroll-snap-align:start] cursor-pointer bg-surface border border-border-soft rounded-xl min-w-[220px] transition-colors hover:border-primary" style="min-width: 220px">
+                    <div class="p-4">
+                      <div class="flex items-center justify-between mb-3">
+                        <span class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap max-w-[120px]">NBA</span
+                        ><span class="flex items-center gap-1 text-[10px] bg-[rgb(var(--c-danger)_/_0.2)] text-danger border border-[rgb(var(--c-danger)_/_0.3)] py-0.5 px-1.5 rounded"
+                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 animate-pulse"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
                           >LIVE</span
                         >
                       </div>
-                      <div class="match-card-teams">
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">LAL</span>
+                      <div class="flex items-center justify-between gap-2 mb-4">
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">LAL</span>
                           </div>
-                          <span class="match-card-team-name">Lakers</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Lakers</span>
                         </div>
-                        <div class="match-card-score-wrap">
-                          <div class="match-card-score">98 - 105</div>
-                          <div class="match-card-status">Live Q3</div>
+                        <div class="text-center shrink-0">
+                          <div class="text-primary text-xl leading-none font-bold">98 - 105</div>
+                          <div class="text-text-4 text-[10px] mt-0.5">Live Q3</div>
                         </div>
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">GSW</span>
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">GSW</span>
                           </div>
-                          <span class="match-card-team-name">Warriors</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Warriors</span>
                         </div>
                       </div>
-                      <button class="match-card-cta">
+                      <button class="w-full py-1.5 rounded-lg text-xs leading-4 text-on-primary bg-[image:var(--g-primary)] transition-opacity hover:opacity-90">
                         立即投注
                       </button>
                     </div>
                   </div>
-                  <div class="match-card" style="min-width: 220px">
-                    <div class="match-card-body">
-                      <div class="match-card-head">
-                        <span class="match-card-league">La Liga</span
-                        ><span class="match-card-live-badge"
-                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
+                  <div class="shrink-0 [scroll-snap-align:start] cursor-pointer bg-surface border border-border-soft rounded-xl min-w-[220px] transition-colors hover:border-primary" style="min-width: 220px">
+                    <div class="p-4">
+                      <div class="flex items-center justify-between mb-3">
+                        <span class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap max-w-[120px]">La Liga</span
+                        ><span class="flex items-center gap-1 text-[10px] bg-[rgb(var(--c-danger)_/_0.2)] text-danger border border-[rgb(var(--c-danger)_/_0.3)] py-0.5 px-1.5 rounded"
+                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 animate-pulse"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
                           >LIVE</span
                         >
                       </div>
-                      <div class="match-card-teams">
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">RMA</span>
+                      <div class="flex items-center justify-between gap-2 mb-4">
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">RMA</span>
                           </div>
-                          <span class="match-card-team-name">Real Madrid</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Real Madrid</span>
                         </div>
-                        <div class="match-card-score-wrap">
-                          <div class="match-card-score">1 - 1</div>
-                          <div class="match-card-status">Live 82'</div>
+                        <div class="text-center shrink-0">
+                          <div class="text-primary text-xl leading-none font-bold">1 - 1</div>
+                          <div class="text-text-4 text-[10px] mt-0.5">Live 82'</div>
                         </div>
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">FCB</span>
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">FCB</span>
                           </div>
-                          <span class="match-card-team-name">Barcelona</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Barcelona</span>
                         </div>
                       </div>
-                      <button class="match-card-cta">
+                      <button class="w-full py-1.5 rounded-lg text-xs leading-4 text-on-primary bg-[image:var(--g-primary)] transition-opacity hover:opacity-90">
                         立即投注
                       </button>
                     </div>
                   </div>
-                  <div class="match-card" style="min-width: 220px">
-                    <div class="match-card-body">
-                      <div class="match-card-head">
-                        <span class="match-card-league">MLB</span
-                        ><span class="match-card-live-badge"
-                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
+                  <div class="shrink-0 [scroll-snap-align:start] cursor-pointer bg-surface border border-border-soft rounded-xl min-w-[220px] transition-colors hover:border-primary" style="min-width: 220px">
+                    <div class="p-4">
+                      <div class="flex items-center justify-between mb-3">
+                        <span class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap max-w-[120px]">MLB</span
+                        ><span class="flex items-center gap-1 text-[10px] bg-[rgb(var(--c-danger)_/_0.2)] text-danger border border-[rgb(var(--c-danger)_/_0.3)] py-0.5 px-1.5 rounded"
+                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 animate-pulse"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
                           >LIVE</span
                         >
                       </div>
-                      <div class="match-card-teams">
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">NYY</span>
+                      <div class="flex items-center justify-between gap-2 mb-4">
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">NYY</span>
                           </div>
-                          <span class="match-card-team-name">Yankees</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Yankees</span>
                         </div>
-                        <div class="match-card-score-wrap">
-                          <div class="match-card-score">4 - 3</div>
-                          <div class="match-card-status">Live 7th</div>
+                        <div class="text-center shrink-0">
+                          <div class="text-primary text-xl leading-none font-bold">4 - 3</div>
+                          <div class="text-text-4 text-[10px] mt-0.5">Live 7th</div>
                         </div>
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">BOS</span>
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">BOS</span>
                           </div>
-                          <span class="match-card-team-name">Red Sox</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Red Sox</span>
                         </div>
                       </div>
-                      <button class="match-card-cta">
+                      <button class="w-full py-1.5 rounded-lg text-xs leading-4 text-on-primary bg-[image:var(--g-primary)] transition-opacity hover:opacity-90">
                         立即投注
                       </button>
                     </div>
                   </div>
-                  <div class="match-card" style="min-width: 220px">
-                    <div class="match-card-body">
-                      <div class="match-card-head">
-                        <span class="match-card-league">Champions League</span
-                        ><span class="match-card-live-badge"
-                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
+                  <div class="shrink-0 [scroll-snap-align:start] cursor-pointer bg-surface border border-border-soft rounded-xl min-w-[220px] transition-colors hover:border-primary" style="min-width: 220px">
+                    <div class="p-4">
+                      <div class="flex items-center justify-between mb-3">
+                        <span class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap max-w-[120px]">Champions League</span
+                        ><span class="flex items-center gap-1 text-[10px] bg-[rgb(var(--c-danger)_/_0.2)] text-danger border border-[rgb(var(--c-danger)_/_0.3)] py-0.5 px-1.5 rounded"
+                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 animate-pulse"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
                           >LIVE</span
                         >
                       </div>
-                      <div class="match-card-teams">
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">PSG</span>
+                      <div class="flex items-center justify-between gap-2 mb-4">
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">PSG</span>
                           </div>
-                          <span class="match-card-team-name">PSG</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">PSG</span>
                         </div>
-                        <div class="match-card-score-wrap">
-                          <div class="match-card-score">3 - 2</div>
-                          <div class="match-card-status">Live 55'</div>
+                        <div class="text-center shrink-0">
+                          <div class="text-primary text-xl leading-none font-bold">3 - 2</div>
+                          <div class="text-text-4 text-[10px] mt-0.5">Live 55'</div>
                         </div>
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">FCB</span>
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">FCB</span>
                           </div>
-                          <span class="match-card-team-name">Bayern Munich</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Bayern Munich</span>
                         </div>
                       </div>
-                      <button class="match-card-cta">
+                      <button class="w-full py-1.5 rounded-lg text-xs leading-4 text-on-primary bg-[image:var(--g-primary)] transition-opacity hover:opacity-90">
                         立即投注
                       </button>
                     </div>
                   </div>
-                  <div class="match-card" style="min-width: 220px">
-                    <div class="match-card-body">
-                      <div class="match-card-head">
-                        <span class="match-card-league">NBA</span
-                        ><span class="match-card-live-badge"
-                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
+                  <div class="shrink-0 [scroll-snap-align:start] cursor-pointer bg-surface border border-border-soft rounded-xl min-w-[220px] transition-colors hover:border-primary" style="min-width: 220px">
+                    <div class="p-4">
+                      <div class="flex items-center justify-between mb-3">
+                        <span class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap max-w-[120px]">NBA</span
+                        ><span class="flex items-center gap-1 text-[10px] bg-[rgb(var(--c-danger)_/_0.2)] text-danger border border-[rgb(var(--c-danger)_/_0.3)] py-0.5 px-1.5 rounded"
+                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 animate-pulse"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
                           >LIVE</span
                         >
                       </div>
-                      <div class="match-card-teams">
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">BOS</span>
+                      <div class="flex items-center justify-between gap-2 mb-4">
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">BOS</span>
                           </div>
-                          <span class="match-card-team-name">Celtics</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Celtics</span>
                         </div>
-                        <div class="match-card-score-wrap">
-                          <div class="match-card-score">102 - 99</div>
-                          <div class="match-card-status">Live Q4</div>
+                        <div class="text-center shrink-0">
+                          <div class="text-primary text-xl leading-none font-bold">102 - 99</div>
+                          <div class="text-text-4 text-[10px] mt-0.5">Live Q4</div>
                         </div>
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">MIA</span>
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">MIA</span>
                           </div>
-                          <span class="match-card-team-name">Heat</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Heat</span>
                         </div>
                       </div>
-                      <button class="match-card-cta">
+                      <button class="w-full py-1.5 rounded-lg text-xs leading-4 text-on-primary bg-[image:var(--g-primary)] transition-opacity hover:opacity-90">
                         立即投注
                       </button>
                     </div>
                   </div>
-                  <div class="match-card" style="min-width: 220px">
-                    <div class="match-card-body">
-                      <div class="match-card-head">
-                        <span class="match-card-league">Premier League</span
-                        ><span class="match-card-live-badge"
-                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
+                  <div class="shrink-0 [scroll-snap-align:start] cursor-pointer bg-surface border border-border-soft rounded-xl min-w-[220px] transition-colors hover:border-primary" style="min-width: 220px">
+                    <div class="p-4">
+                      <div class="flex items-center justify-between mb-3">
+                        <span class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap max-w-[120px]">Premier League</span
+                        ><span class="flex items-center gap-1 text-[10px] bg-[rgb(var(--c-danger)_/_0.2)] text-danger border border-[rgb(var(--c-danger)_/_0.3)] py-0.5 px-1.5 rounded"
+                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 animate-pulse"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
                           >LIVE</span
                         >
                       </div>
-                      <div class="match-card-teams">
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">ARS</span>
+                      <div class="flex items-center justify-between gap-2 mb-4">
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">ARS</span>
                           </div>
-                          <span class="match-card-team-name">Arsenal</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Arsenal</span>
                         </div>
-                        <div class="match-card-score-wrap">
-                          <div class="match-card-score">1 - 0</div>
-                          <div class="match-card-status">Live 78'</div>
+                        <div class="text-center shrink-0">
+                          <div class="text-primary text-xl leading-none font-bold">1 - 0</div>
+                          <div class="text-text-4 text-[10px] mt-0.5">Live 78'</div>
                         </div>
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">CHE</span>
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">CHE</span>
                           </div>
-                          <span class="match-card-team-name">Chelsea</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Chelsea</span>
                         </div>
                       </div>
-                      <button class="match-card-cta">
+                      <button class="w-full py-1.5 rounded-lg text-xs leading-4 text-on-primary bg-[image:var(--g-primary)] transition-opacity hover:opacity-90">
                         立即投注
                       </button>
                     </div>
                   </div>
-                  <div class="match-card" style="min-width: 220px">
-                    <div class="match-card-body">
-                      <div class="match-card-head">
-                        <span class="match-card-league">Serie A</span
-                        ><span class="match-card-live-badge"
-                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="match-card-live-icon"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
+                  <div class="shrink-0 [scroll-snap-align:start] cursor-pointer bg-surface border border-border-soft rounded-xl min-w-[220px] transition-colors hover:border-primary" style="min-width: 220px">
+                    <div class="p-4">
+                      <div class="flex items-center justify-between mb-3">
+                        <span class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap max-w-[120px]">Serie A</span
+                        ><span class="flex items-center gap-1 text-[10px] bg-[rgb(var(--c-danger)_/_0.2)] text-danger border border-[rgb(var(--c-danger)_/_0.3)] py-0.5 px-1.5 rounded"
+                          ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 animate-pulse"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path></svg
                           >LIVE</span
                         >
                       </div>
-                      <div class="match-card-teams">
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">JUV</span>
+                      <div class="flex items-center justify-between gap-2 mb-4">
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">JUV</span>
                           </div>
-                          <span class="match-card-team-name">Juventus</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Juventus</span>
                         </div>
-                        <div class="match-card-score-wrap">
-                          <div class="match-card-score">0 - 0</div>
-                          <div class="match-card-status">Live 23'</div>
+                        <div class="text-center shrink-0">
+                          <div class="text-primary text-xl leading-none font-bold">0 - 0</div>
+                          <div class="text-text-4 text-[10px] mt-0.5">Live 23'</div>
                         </div>
-                        <div class="match-card-team">
-                          <div class="match-card-team-badge">
-                            <span class="match-card-team-code">INT</span>
+                        <div class="flex flex-col items-center gap-1.5 flex-[1_1_auto]">
+                          <div class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center">
+                            <span class="text-[10px] text-text-2 font-semibold">INT</span>
                           </div>
-                          <span class="match-card-team-name">Inter Milan</span>
+                          <span class="text-text text-[10px] text-center leading-[1.25] overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] min-h-[2.5em]">Inter Milan</span>
                         </div>
                       </div>
-                      <button class="match-card-cta">
+                      <button class="w-full py-1.5 rounded-lg text-xs leading-4 text-on-primary bg-[image:var(--g-primary)] transition-opacity hover:opacity-90">
                         立即投注
                       </button>
                     </div>
@@ -726,251 +726,251 @@
             </section>
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">Hot Games 熱門遊戲(home-hot-games)</h2>
-              <div class="uikit-variant-row">
-                <button type="button" class="active seg-btn" title="Original">v1</button
-                ><button type="button" class="seg-btn" title="Alternate">v2</button
-                ><button type="button" class="seg-btn" title="Compact">v3</button
-                ><button type="button" class="seg-btn" title="Glass ledger">v4</button
-                ><button type="button" class="seg-btn" title="Signal rail">v5</button
-                ><button type="button" class="seg-btn" title="Chain grid">v6</button
-                ><button type="button" class="seg-btn" title="Layered stack">v7</button
-                ><button type="button" class="seg-btn" title="Terminal strip">v8</button
-                ><button type="button" class="seg-btn" title="Protocol frame">v9</button
-                ><button type="button" class="seg-btn" title="Network console">v10</button
-                ><span class="uikit-variant-active-label">Original</span>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">Hot Games 熱門遊戲(home-hot-games)</h2>
+              <div class="mb-4 flex flex-wrap items-center gap-2">
+                <button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-on-primary border-transparent bg-[image:var(--g-primary)]" title="Original">v1</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Alternate">v2</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Compact">v3</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Glass ledger">v4</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Signal rail">v5</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Chain grid">v6</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Layered stack">v7</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Terminal strip">v8</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Protocol frame">v9</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Network console">v10</button
+                ><span class="ml-auto text-xs leading-[18px] text-primary">Original</span>
               </div>
-              <div class="uikit-preview-frame">
-            <section class="hot-games-section">
-              <div class="app-container">
-                <div class="rail-head">
-                  <h2 class="rail-title">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-title-icon rail-title-icon--orange"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg
-                    ><span class="rail-title-text">熱門遊戲</span>
+              <div class="overflow-hidden rounded-xl border border-border-soft bg-bg">
+            <section class="py-6 bg-bg">
+              <div class="container mx-auto px-4">
+                <div data-rail-head class="flex items-center justify-between mb-4">
+                  <h2 class="text-text flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-[rgb(251_146_60)]"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg
+                    ><span class="text-base leading-6 md:text-lg md:leading-7">熱門遊戲</span>
                   </h2>
-                  <div class="rail-actions">
+                  <div class="flex items-center gap-2">
                     <a
-                      class="rail-view-all"
+                      class="text-text-3 text-xs leading-4 py-1.5 px-3 border border-border rounded transition-colors hover:text-text no-underline"
                       href="hot-games.html"
                       >查看全部</a
-                    ><button class="rail-nav-btn">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-nav-icon"><path d="m15 18-6-6 6-6"></path></svg
+                    ><button class="text-text-3 p-1.5 border border-border rounded transition-colors hover:text-text">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="m15 18-6-6 6-6"></path></svg
                     </button
-                    ><button class="rail-nav-btn">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-nav-icon"><path d="m9 18 6-6-6-6"></path></svg
+                    ><button class="text-text-3 p-1.5 border border-border rounded transition-colors hover:text-text">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="m9 18 6-6-6-6"></path></svg
                     </button>
                   </div>
                 </div>
                 <div class="game-rail">
-                  <div class="game-card">
-                    <div class="game-card-media">
+                  <div class="group shrink-0 w-[130px] md:w-[150px] [scroll-snap-align:start] cursor-pointer">
+                    <div class="relative rounded-xl overflow-hidden bg-surface h-[170px]">
                       <img
                         src="_external/images.unsplash.com/photo-1606167668584-78701c57f13d__w-300_h-400_fit-crop"
                         alt="Mega Fortune"
-                        class="game-card-img"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div class="game-card-boost">
+                      <div class="absolute top-2 left-2 bg-[rgb(var(--c-scrim)_/_0.7)] text-text text-[10px] py-0.5 px-2 rounded">
                         加碼 1.2
                       </div>
                       <div
-                        class="game-card-overlay"
+                        class="absolute inset-0 bg-[rgb(var(--c-scrim)_/_0.4)] opacity-0 flex items-center justify-center transition-opacity duration-150 group-hover:opacity-100"
                       >
-                        <button class="game-card-play-btn">立即遊玩</button>
+                        <button class="bg-[image:var(--g-primary)] text-on-primary text-xs leading-4 py-1.5 px-3 rounded-lg">立即遊玩</button>
                       </div>
                     </div>
-                    <div class="game-card-info">
-                      <p class="game-card-name">Mega Fortune</p>
-                      <p class="game-card-provider">Pocket Play</p>
+                    <div class="mt-1.5">
+                      <p class="text-text text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap">Mega Fortune</p>
+                      <p class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap">Pocket Play</p>
                     </div>
                   </div>
-                  <div class="game-card">
-                    <div class="game-card-media">
+                  <div class="group shrink-0 w-[130px] md:w-[150px] [scroll-snap-align:start] cursor-pointer">
+                    <div class="relative rounded-xl overflow-hidden bg-surface h-[170px]">
                       <img
                         src="_external/images.unsplash.com/photo-1596838132731-3301c3fd4317__w-300_h-400_fit-crop"
                         alt="Starburst"
-                        class="game-card-img"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div class="game-card-boost">
+                      <div class="absolute top-2 left-2 bg-[rgb(var(--c-scrim)_/_0.7)] text-text text-[10px] py-0.5 px-2 rounded">
                         加碼 1.5
                       </div>
                       <div
-                        class="game-card-overlay"
+                        class="absolute inset-0 bg-[rgb(var(--c-scrim)_/_0.4)] opacity-0 flex items-center justify-center transition-opacity duration-150 group-hover:opacity-100"
                       >
-                        <button class="game-card-play-btn">立即遊玩</button>
+                        <button class="bg-[image:var(--g-primary)] text-on-primary text-xs leading-4 py-1.5 px-3 rounded-lg">立即遊玩</button>
                       </div>
                     </div>
-                    <div class="game-card-info">
-                      <p class="game-card-name">Starburst</p>
-                      <p class="game-card-provider">NetEnt</p>
+                    <div class="mt-1.5">
+                      <p class="text-text text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap">Starburst</p>
+                      <p class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap">NetEnt</p>
                     </div>
                   </div>
-                  <div class="game-card">
-                    <div class="game-card-media">
+                  <div class="group shrink-0 w-[130px] md:w-[150px] [scroll-snap-align:start] cursor-pointer">
+                    <div class="relative rounded-xl overflow-hidden bg-surface h-[170px]">
                       <img
                         src="_external/images.unsplash.com/photo-1511512578047-dfb367046420__w-300_h-400_fit-crop"
                         alt="Book of Dead"
-                        class="game-card-img"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div class="game-card-boost">
+                      <div class="absolute top-2 left-2 bg-[rgb(var(--c-scrim)_/_0.7)] text-text text-[10px] py-0.5 px-2 rounded">
                         加碼 2.0
                       </div>
                       <div
-                        class="game-card-overlay"
+                        class="absolute inset-0 bg-[rgb(var(--c-scrim)_/_0.4)] opacity-0 flex items-center justify-center transition-opacity duration-150 group-hover:opacity-100"
                       >
-                        <button class="game-card-play-btn">立即遊玩</button>
+                        <button class="bg-[image:var(--g-primary)] text-on-primary text-xs leading-4 py-1.5 px-3 rounded-lg">立即遊玩</button>
                       </div>
                     </div>
-                    <div class="game-card-info">
-                      <p class="game-card-name">Book of Dead</p>
-                      <p class="game-card-provider">Play'n GO</p>
+                    <div class="mt-1.5">
+                      <p class="text-text text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap">Book of Dead</p>
+                      <p class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap">Play'n GO</p>
                     </div>
                   </div>
-                  <div class="game-card">
-                    <div class="game-card-media">
+                  <div class="group shrink-0 w-[130px] md:w-[150px] [scroll-snap-align:start] cursor-pointer">
+                    <div class="relative rounded-xl overflow-hidden bg-surface h-[170px]">
                       <img
                         src="_external/images.unsplash.com/photo-1553481187-be93c21490a9__w-300_h-400_fit-crop"
                         alt="Gonzo Quest"
-                        class="game-card-img"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div class="game-card-boost">
+                      <div class="absolute top-2 left-2 bg-[rgb(var(--c-scrim)_/_0.7)] text-text text-[10px] py-0.5 px-2 rounded">
                         加碼 1.8
                       </div>
                       <div
-                        class="game-card-overlay"
+                        class="absolute inset-0 bg-[rgb(var(--c-scrim)_/_0.4)] opacity-0 flex items-center justify-center transition-opacity duration-150 group-hover:opacity-100"
                       >
-                        <button class="game-card-play-btn">立即遊玩</button>
+                        <button class="bg-[image:var(--g-primary)] text-on-primary text-xs leading-4 py-1.5 px-3 rounded-lg">立即遊玩</button>
                       </div>
                     </div>
-                    <div class="game-card-info">
-                      <p class="game-card-name">Gonzo Quest</p>
-                      <p class="game-card-provider">NetEnt</p>
+                    <div class="mt-1.5">
+                      <p class="text-text text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap">Gonzo Quest</p>
+                      <p class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap">NetEnt</p>
                     </div>
                   </div>
-                  <div class="game-card">
-                    <div class="game-card-media">
+                  <div class="group shrink-0 w-[130px] md:w-[150px] [scroll-snap-align:start] cursor-pointer">
+                    <div class="relative rounded-xl overflow-hidden bg-surface h-[170px]">
                       <img
                         src="_external/images.unsplash.com/photo-1478720568477-152d9b164e26__w-300_h-400_fit-crop"
                         alt="Gates of Olympus"
-                        class="game-card-img"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div class="game-card-boost">
+                      <div class="absolute top-2 left-2 bg-[rgb(var(--c-scrim)_/_0.7)] text-text text-[10px] py-0.5 px-2 rounded">
                         加碼 1.3
                       </div>
                       <div
-                        class="game-card-overlay"
+                        class="absolute inset-0 bg-[rgb(var(--c-scrim)_/_0.4)] opacity-0 flex items-center justify-center transition-opacity duration-150 group-hover:opacity-100"
                       >
-                        <button class="game-card-play-btn">立即遊玩</button>
+                        <button class="bg-[image:var(--g-primary)] text-on-primary text-xs leading-4 py-1.5 px-3 rounded-lg">立即遊玩</button>
                       </div>
                     </div>
-                    <div class="game-card-info">
-                      <p class="game-card-name">Gates of Olympus</p>
-                      <p class="game-card-provider">Pragmatic</p>
+                    <div class="mt-1.5">
+                      <p class="text-text text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap">Gates of Olympus</p>
+                      <p class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap">Pragmatic</p>
                     </div>
                   </div>
-                  <div class="game-card">
-                    <div class="game-card-media">
+                  <div class="group shrink-0 w-[130px] md:w-[150px] [scroll-snap-align:start] cursor-pointer">
+                    <div class="relative rounded-xl overflow-hidden bg-surface h-[170px]">
                       <img
                         src="_external/images.unsplash.com/photo-1518895312237-a9e23508077d__w-300_h-400_fit-crop"
                         alt="Dead or Alive"
-                        class="game-card-img"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div class="game-card-boost">
+                      <div class="absolute top-2 left-2 bg-[rgb(var(--c-scrim)_/_0.7)] text-text text-[10px] py-0.5 px-2 rounded">
                         加碼 1.6
                       </div>
                       <div
-                        class="game-card-overlay"
+                        class="absolute inset-0 bg-[rgb(var(--c-scrim)_/_0.4)] opacity-0 flex items-center justify-center transition-opacity duration-150 group-hover:opacity-100"
                       >
-                        <button class="game-card-play-btn">立即遊玩</button>
+                        <button class="bg-[image:var(--g-primary)] text-on-primary text-xs leading-4 py-1.5 px-3 rounded-lg">立即遊玩</button>
                       </div>
                     </div>
-                    <div class="game-card-info">
-                      <p class="game-card-name">Dead or Alive</p>
-                      <p class="game-card-provider">NetEnt</p>
+                    <div class="mt-1.5">
+                      <p class="text-text text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap">Dead or Alive</p>
+                      <p class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap">NetEnt</p>
                     </div>
                   </div>
-                  <div class="game-card">
-                    <div class="game-card-media">
+                  <div class="group shrink-0 w-[130px] md:w-[150px] [scroll-snap-align:start] cursor-pointer">
+                    <div class="relative rounded-xl overflow-hidden bg-surface h-[170px]">
                       <img
                         src="_external/images.unsplash.com/photo-1534620780923-1ce0db377c3f__w-300_h-400_fit-crop"
                         alt="Limbo"
-                        class="game-card-img"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div class="game-card-boost">
+                      <div class="absolute top-2 left-2 bg-[rgb(var(--c-scrim)_/_0.7)] text-text text-[10px] py-0.5 px-2 rounded">
                         加碼 1.4
                       </div>
                       <div
-                        class="game-card-overlay"
+                        class="absolute inset-0 bg-[rgb(var(--c-scrim)_/_0.4)] opacity-0 flex items-center justify-center transition-opacity duration-150 group-hover:opacity-100"
                       >
-                        <button class="game-card-play-btn">立即遊玩</button>
+                        <button class="bg-[image:var(--g-primary)] text-on-primary text-xs leading-4 py-1.5 px-3 rounded-lg">立即遊玩</button>
                       </div>
                     </div>
-                    <div class="game-card-info">
-                      <p class="game-card-name">Limbo</p>
-                      <p class="game-card-provider">Pocket Play</p>
+                    <div class="mt-1.5">
+                      <p class="text-text text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap">Limbo</p>
+                      <p class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap">Pocket Play</p>
                     </div>
                   </div>
-                  <div class="game-card">
-                    <div class="game-card-media">
+                  <div class="group shrink-0 w-[130px] md:w-[150px] [scroll-snap-align:start] cursor-pointer">
+                    <div class="relative rounded-xl overflow-hidden bg-surface h-[170px]">
                       <img
                         src="_external/images.unsplash.com/photo-1524985069026-dd778a71c7b4__w-300_h-400_fit-crop"
                         alt="Aladdin"
-                        class="game-card-img"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div class="game-card-boost">
+                      <div class="absolute top-2 left-2 bg-[rgb(var(--c-scrim)_/_0.7)] text-text text-[10px] py-0.5 px-2 rounded">
                         加碼 1.9
                       </div>
                       <div
-                        class="game-card-overlay"
+                        class="absolute inset-0 bg-[rgb(var(--c-scrim)_/_0.4)] opacity-0 flex items-center justify-center transition-opacity duration-150 group-hover:opacity-100"
                       >
-                        <button class="game-card-play-btn">立即遊玩</button>
+                        <button class="bg-[image:var(--g-primary)] text-on-primary text-xs leading-4 py-1.5 px-3 rounded-lg">立即遊玩</button>
                       </div>
                     </div>
-                    <div class="game-card-info">
-                      <p class="game-card-name">Aladdin</p>
-                      <p class="game-card-provider">Pocket Play</p>
+                    <div class="mt-1.5">
+                      <p class="text-text text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap">Aladdin</p>
+                      <p class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap">Pocket Play</p>
                     </div>
                   </div>
-                  <div class="game-card">
-                    <div class="game-card-media">
+                  <div class="group shrink-0 w-[130px] md:w-[150px] [scroll-snap-align:start] cursor-pointer">
+                    <div class="relative rounded-xl overflow-hidden bg-surface h-[170px]">
                       <img
                         src="_external/images.unsplash.com/photo-1604028297236-42130c7dcc3a__w-300_h-400_fit-crop"
                         alt="Wolf Gold"
-                        class="game-card-img"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div class="game-card-boost">
+                      <div class="absolute top-2 left-2 bg-[rgb(var(--c-scrim)_/_0.7)] text-text text-[10px] py-0.5 px-2 rounded">
                         加碼 1.5
                       </div>
                       <div
-                        class="game-card-overlay"
+                        class="absolute inset-0 bg-[rgb(var(--c-scrim)_/_0.4)] opacity-0 flex items-center justify-center transition-opacity duration-150 group-hover:opacity-100"
                       >
-                        <button class="game-card-play-btn">立即遊玩</button>
+                        <button class="bg-[image:var(--g-primary)] text-on-primary text-xs leading-4 py-1.5 px-3 rounded-lg">立即遊玩</button>
                       </div>
                     </div>
-                    <div class="game-card-info">
-                      <p class="game-card-name">Wolf Gold</p>
-                      <p class="game-card-provider">Pragmatic</p>
+                    <div class="mt-1.5">
+                      <p class="text-text text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap">Wolf Gold</p>
+                      <p class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap">Pragmatic</p>
                     </div>
                   </div>
-                  <div class="game-card">
-                    <div class="game-card-media">
+                  <div class="group shrink-0 w-[130px] md:w-[150px] [scroll-snap-align:start] cursor-pointer">
+                    <div class="relative rounded-xl overflow-hidden bg-surface h-[170px]">
                       <img
                         src="_external/images.unsplash.com/photo-1590336225155-d7e19a3a954f__w-300_h-400_fit-crop"
                         alt="Crazy Time"
-                        class="game-card-img"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div class="game-card-boost">
+                      <div class="absolute top-2 left-2 bg-[rgb(var(--c-scrim)_/_0.7)] text-text text-[10px] py-0.5 px-2 rounded">
                         加碼 1.7
                       </div>
                       <div
-                        class="game-card-overlay"
+                        class="absolute inset-0 bg-[rgb(var(--c-scrim)_/_0.4)] opacity-0 flex items-center justify-center transition-opacity duration-150 group-hover:opacity-100"
                       >
-                        <button class="game-card-play-btn">立即遊玩</button>
+                        <button class="bg-[image:var(--g-primary)] text-on-primary text-xs leading-4 py-1.5 px-3 rounded-lg">立即遊玩</button>
                       </div>
                     </div>
-                    <div class="game-card-info">
-                      <p class="game-card-name">Crazy Time</p>
-                      <p class="game-card-provider">Evolution</p>
+                    <div class="mt-1.5">
+                      <p class="text-text text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap">Crazy Time</p>
+                      <p class="text-text-4 text-[10px] overflow-hidden text-ellipsis whitespace-nowrap">Evolution</p>
                     </div>
                   </div>
                 </div>
@@ -978,22 +978,22 @@
             </section>
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">遊戲速覽(Mini/Slot/Live)(home-mini-games)</h2>
-              <div class="uikit-variant-row">
-                <button type="button" class="active seg-btn" title="Original">v1</button
-                ><button type="button" class="seg-btn" title="Alternate">v2</button
-                ><button type="button" class="seg-btn" title="Compact">v3</button
-                ><button type="button" class="seg-btn" title="Glass ledger">v4</button
-                ><button type="button" class="seg-btn" title="Signal rail">v5</button
-                ><button type="button" class="seg-btn" title="Chain grid">v6</button
-                ><button type="button" class="seg-btn" title="Layered stack">v7</button
-                ><button type="button" class="seg-btn" title="Terminal strip">v8</button
-                ><button type="button" class="seg-btn" title="Protocol frame">v9</button
-                ><button type="button" class="seg-btn" title="Network console">v10</button
-                ><span class="uikit-variant-active-label">Original</span>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">遊戲速覽(Mini/Slot/Live)(home-mini-games)</h2>
+              <div class="mb-4 flex flex-wrap items-center gap-2">
+                <button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-on-primary border-transparent bg-[image:var(--g-primary)]" title="Original">v1</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Alternate">v2</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Compact">v3</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Glass ledger">v4</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Signal rail">v5</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Chain grid">v6</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Layered stack">v7</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Terminal strip">v8</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Protocol frame">v9</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Network console">v10</button
+                ><span class="ml-auto text-xs leading-[18px] text-primary">Original</span>
               </div>
-              <div class="uikit-preview-frame">
+              <div class="overflow-hidden rounded-xl border border-border-soft bg-bg">
             <section class="mini-games-section">
               <div class="app-container">
                 <div class="game-tabs-head">
@@ -1777,132 +1777,132 @@
             </section>
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">促銷區(home-promotion)</h2>
-              <div class="uikit-variant-row">
-                <button type="button" class="active seg-btn" title="Original">v1</button
-                ><button type="button" class="seg-btn" title="Alternate">v2</button
-                ><button type="button" class="seg-btn" title="Compact">v3</button
-                ><button type="button" class="seg-btn" title="Glass ledger">v4</button
-                ><button type="button" class="seg-btn" title="Signal rail">v5</button
-                ><button type="button" class="seg-btn" title="Chain grid">v6</button
-                ><button type="button" class="seg-btn" title="Layered stack">v7</button
-                ><button type="button" class="seg-btn" title="Terminal strip">v8</button
-                ><button type="button" class="seg-btn" title="Protocol frame">v9</button
-                ><button type="button" class="seg-btn" title="Network console">v10</button
-                ><span class="uikit-variant-active-label">Original</span>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">促銷區(home-promotion)</h2>
+              <div class="mb-4 flex flex-wrap items-center gap-2">
+                <button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-on-primary border-transparent bg-[image:var(--g-primary)]" title="Original">v1</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Alternate">v2</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Compact">v3</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Glass ledger">v4</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Signal rail">v5</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Chain grid">v6</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Layered stack">v7</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Terminal strip">v8</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Protocol frame">v9</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Network console">v10</button
+                ><span class="ml-auto text-xs leading-[18px] text-primary">Original</span>
               </div>
-              <div class="uikit-preview-frame">
-            <section class="promotion-section">
-              <div class="app-container">
-                <div class="rail-head">
-                  <h2 class="rail-title rail-title--tight">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-title-icon rail-title-icon--primary rail-title-icon--responsive"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg
-                    ><span class="rail-title-text rail-title-text--compact">優惠活動</span>
+              <div class="overflow-hidden rounded-xl border border-border-soft bg-bg">
+            <section class="py-6 bg-bg">
+              <div class="container mx-auto px-4">
+                <div data-rail-head class="flex items-center justify-between mb-4">
+                  <h2 class="text-text flex items-center gap-1.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 md:w-5 md:h-5 text-primary"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg
+                    ><span class="text-sm leading-5 md:text-lg md:leading-7">優惠活動</span>
                   </h2>
-                  <div class="rail-actions rail-actions--tight">
+                  <div class="flex items-center gap-1 md:gap-2">
                     <a
-                      class="rail-view-all"
+                      class="text-text-3 text-xs leading-4 py-1.5 px-3 border border-border rounded transition-colors hover:text-text no-underline"
                       href="promotion.html"
                       >查看全部</a
                     ><button
-                      class="rail-nav-btn rail-nav-btn--compact"
+                      class="text-text-3 p-1 md:p-1.5 border border-border rounded transition-colors hover:text-text"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-nav-icon rail-nav-icon--responsive">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 md:w-4 md:h-4">
                         <path d="m15 18-6-6 6-6"></path>
                       </svg></button
                     ><button
-                      class="rail-nav-btn rail-nav-btn--compact"
+                      class="text-text-3 p-1 md:p-1.5 border border-border rounded transition-colors hover:text-text"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-nav-icon rail-nav-icon--responsive">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 md:w-4 md:h-4">
                         <path d="m9 18 6-6-6-6"></path>
                       </svg>
                     </button>
                   </div>
                 </div>
-                <div class="promo-grid-desktop">
-                    <div class="promo-tile">
-                      <div class="promo-tile-art promo-card-art">
+                <div data-promo-grid-desktop class="hidden md:grid grid-cols-4 gap-3">
+                    <div class="bg-bg border border-border-soft rounded-xl overflow-hidden cursor-pointer transition-colors hover:border-primary">
+                      <div class="relative overflow-hidden [background:linear-gradient(135deg,rgb(var(--c-primary-faint))_0,rgb(var(--c-surface)),rgb(var(--c-bg)))] h-28">
                         <img
                           src="https://images.pexels.com/photos/7594128/pexels-photo-7594128.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                           alt="RioBet Casino"
-                          class="operation-promo-media"
+                          class="absolute inset-0 h-full w-full object-cover"
                           style="object-position: 50% 52%"
                           loading="lazy"
                         />
-                        <div class="operation-promo-scrim"></div>
+                        <div class="absolute inset-0 [background:linear-gradient(90deg,rgb(var(--c-bg)_/_0.78)_0,rgb(var(--c-surface)_/_0.54)_56%,rgb(var(--c-scrim)_/_0.3))]"></div>
                       </div>
-                      <div class="promo-tile-body">
-                        <h3 class="promo-tile-title">RioBet Casino</h3>
-                        <div class="promo-tile-actions">
+                      <div class="p-4">
+                        <h3 class="text-text text-sm leading-5 mb-3 text-center">RioBet Casino</h3>
+                        <div>
                           <button
-                            class="promo-tile-cta"
+                            class="w-full py-2 px-3 rounded-lg text-xs leading-4 text-on-primary flex items-center justify-center bg-[image:var(--g-primary)] transition-opacity hover:opacity-90"
                           >
                             查看詳情
                           </button>
                         </div>
                       </div>
                     </div>
-                    <div class="promo-tile">
-                      <div class="promo-tile-art promo-card-art">
+                    <div class="bg-bg border border-border-soft rounded-xl overflow-hidden cursor-pointer transition-colors hover:border-primary">
+                      <div class="relative overflow-hidden [background:linear-gradient(135deg,rgb(var(--c-primary-faint))_0,rgb(var(--c-surface)),rgb(var(--c-bg)))] h-28">
                         <img
                           src="https://images.pexels.com/photos/29825627/pexels-photo-29825627.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                           alt="BitStarz Casino"
-                          class="operation-promo-media"
+                          class="absolute inset-0 h-full w-full object-cover"
                           style="object-position: 54% 50%"
                           loading="lazy"
                         />
-                        <div class="operation-promo-scrim"></div>
+                        <div class="absolute inset-0 [background:linear-gradient(90deg,rgb(var(--c-bg)_/_0.78)_0,rgb(var(--c-surface)_/_0.54)_56%,rgb(var(--c-scrim)_/_0.3))]"></div>
                       </div>
-                      <div class="promo-tile-body">
-                        <h3 class="promo-tile-title">BitStarz Casino</h3>
-                        <div class="promo-tile-actions">
+                      <div class="p-4">
+                        <h3 class="text-text text-sm leading-5 mb-3 text-center">BitStarz Casino</h3>
+                        <div>
                           <button
-                            class="promo-tile-cta"
+                            class="w-full py-2 px-3 rounded-lg text-xs leading-4 text-on-primary flex items-center justify-center bg-[image:var(--g-primary)] transition-opacity hover:opacity-90"
                           >
                             查看詳情
                           </button>
                         </div>
                       </div>
                     </div>
-                    <div class="promo-tile">
-                      <div class="promo-tile-art promo-card-art">
+                    <div class="bg-bg border border-border-soft rounded-xl overflow-hidden cursor-pointer transition-colors hover:border-primary">
+                      <div class="relative overflow-hidden [background:linear-gradient(135deg,rgb(var(--c-primary-faint))_0,rgb(var(--c-surface)),rgb(var(--c-bg)))] h-28">
                         <img
                           src="https://images.pexels.com/photos/32100316/pexels-photo-32100316.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                           alt="IceCasino"
-                          class="operation-promo-media"
+                          class="absolute inset-0 h-full w-full object-cover"
                           style="object-position: 72% 28%"
                           loading="lazy"
                         />
-                        <div class="operation-promo-scrim"></div>
+                        <div class="absolute inset-0 [background:linear-gradient(90deg,rgb(var(--c-bg)_/_0.78)_0,rgb(var(--c-surface)_/_0.54)_56%,rgb(var(--c-scrim)_/_0.3))]"></div>
                       </div>
-                      <div class="promo-tile-body">
-                        <h3 class="promo-tile-title">IceCasino</h3>
-                        <div class="promo-tile-actions">
+                      <div class="p-4">
+                        <h3 class="text-text text-sm leading-5 mb-3 text-center">IceCasino</h3>
+                        <div>
                           <button
-                            class="promo-tile-cta"
+                            class="w-full py-2 px-3 rounded-lg text-xs leading-4 text-on-primary flex items-center justify-center bg-[image:var(--g-primary)] transition-opacity hover:opacity-90"
                           >
                             查看詳情
                           </button>
                         </div>
                       </div>
                     </div>
-                    <div class="promo-tile">
-                      <div class="promo-tile-art promo-card-art">
+                    <div class="bg-bg border border-border-soft rounded-xl overflow-hidden cursor-pointer transition-colors hover:border-primary">
+                      <div class="relative overflow-hidden [background:linear-gradient(135deg,rgb(var(--c-primary-faint))_0,rgb(var(--c-surface)),rgb(var(--c-bg)))] h-28">
                         <img
                           src="https://images.pexels.com/photos/27568815/pexels-photo-27568815.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                           alt="Gamdom Casino"
-                          class="operation-promo-media"
+                          class="absolute inset-0 h-full w-full object-cover"
                           style="object-position: 62% 50%"
                           loading="lazy"
                         />
-                        <div class="operation-promo-scrim"></div>
+                        <div class="absolute inset-0 [background:linear-gradient(90deg,rgb(var(--c-bg)_/_0.78)_0,rgb(var(--c-surface)_/_0.54)_56%,rgb(var(--c-scrim)_/_0.3))]"></div>
                       </div>
-                      <div class="promo-tile-body">
-                        <h3 class="promo-tile-title">Gamdom Casino</h3>
-                        <div class="promo-tile-actions">
+                      <div class="p-4">
+                        <h3 class="text-text text-sm leading-5 mb-3 text-center">Gamdom Casino</h3>
+                        <div>
                           <button
-                            class="promo-tile-cta"
+                            class="w-full py-2 px-3 rounded-lg text-xs leading-4 text-on-primary flex items-center justify-center bg-[image:var(--g-primary)] transition-opacity hover:opacity-90"
                           >
                             查看詳情
                           </button>
@@ -1910,24 +1910,24 @@
                       </div>
                     </div>
                 </div>
-                <div class="promo-rail-mobile">
-                  <div class="promo-rail-mobile-item">
-                    <div class="promo-tile">
-                      <div class="promo-tile-art promo-card-art">
+                <div class="flex md:hidden overflow-x-auto gap-3 [scroll-snap-type:x_mandatory] pb-2">
+                  <div class="shrink-0 [scroll-snap-align:start] w-[220px]">
+                    <div class="bg-bg border border-border-soft rounded-xl overflow-hidden cursor-pointer transition-colors hover:border-primary">
+                      <div class="relative overflow-hidden [background:linear-gradient(135deg,rgb(var(--c-primary-faint))_0,rgb(var(--c-surface)),rgb(var(--c-bg)))] h-28">
                         <img
                           src="https://images.pexels.com/photos/7594128/pexels-photo-7594128.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                           alt="RioBet Casino"
-                          class="operation-promo-media"
+                          class="absolute inset-0 h-full w-full object-cover"
                           style="object-position: 50% 52%"
                           loading="lazy"
                         />
-                        <div class="operation-promo-scrim"></div>
+                        <div class="absolute inset-0 [background:linear-gradient(90deg,rgb(var(--c-bg)_/_0.78)_0,rgb(var(--c-surface)_/_0.54)_56%,rgb(var(--c-scrim)_/_0.3))]"></div>
                       </div>
-                      <div class="promo-tile-body">
-                        <h3 class="promo-tile-title">RioBet Casino</h3>
-                        <div class="promo-tile-actions">
+                      <div class="p-4">
+                        <h3 class="text-text text-sm leading-5 mb-3 text-center">RioBet Casino</h3>
+                        <div>
                           <button
-                            class="promo-tile-cta"
+                            class="w-full py-2 px-3 rounded-lg text-xs leading-4 text-on-primary flex items-center justify-center bg-[image:var(--g-primary)] transition-opacity hover:opacity-90"
                           >
                             查看詳情
                           </button>
@@ -1935,23 +1935,23 @@
                       </div>
                     </div>
                   </div>
-                  <div class="promo-rail-mobile-item">
-                    <div class="promo-tile">
-                      <div class="promo-tile-art promo-card-art">
+                  <div class="shrink-0 [scroll-snap-align:start] w-[220px]">
+                    <div class="bg-bg border border-border-soft rounded-xl overflow-hidden cursor-pointer transition-colors hover:border-primary">
+                      <div class="relative overflow-hidden [background:linear-gradient(135deg,rgb(var(--c-primary-faint))_0,rgb(var(--c-surface)),rgb(var(--c-bg)))] h-28">
                         <img
                           src="https://images.pexels.com/photos/29825627/pexels-photo-29825627.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                           alt="BitStarz Casino"
-                          class="operation-promo-media"
+                          class="absolute inset-0 h-full w-full object-cover"
                           style="object-position: 54% 50%"
                           loading="lazy"
                         />
-                        <div class="operation-promo-scrim"></div>
+                        <div class="absolute inset-0 [background:linear-gradient(90deg,rgb(var(--c-bg)_/_0.78)_0,rgb(var(--c-surface)_/_0.54)_56%,rgb(var(--c-scrim)_/_0.3))]"></div>
                       </div>
-                      <div class="promo-tile-body">
-                        <h3 class="promo-tile-title">BitStarz Casino</h3>
-                        <div class="promo-tile-actions">
+                      <div class="p-4">
+                        <h3 class="text-text text-sm leading-5 mb-3 text-center">BitStarz Casino</h3>
+                        <div>
                           <button
-                            class="promo-tile-cta"
+                            class="w-full py-2 px-3 rounded-lg text-xs leading-4 text-on-primary flex items-center justify-center bg-[image:var(--g-primary)] transition-opacity hover:opacity-90"
                           >
                             查看詳情
                           </button>
@@ -1959,23 +1959,23 @@
                       </div>
                     </div>
                   </div>
-                  <div class="promo-rail-mobile-item">
-                    <div class="promo-tile">
-                      <div class="promo-tile-art promo-card-art">
+                  <div class="shrink-0 [scroll-snap-align:start] w-[220px]">
+                    <div class="bg-bg border border-border-soft rounded-xl overflow-hidden cursor-pointer transition-colors hover:border-primary">
+                      <div class="relative overflow-hidden [background:linear-gradient(135deg,rgb(var(--c-primary-faint))_0,rgb(var(--c-surface)),rgb(var(--c-bg)))] h-28">
                         <img
                           src="https://images.pexels.com/photos/32100316/pexels-photo-32100316.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                           alt="IceCasino"
-                          class="operation-promo-media"
+                          class="absolute inset-0 h-full w-full object-cover"
                           style="object-position: 72% 28%"
                           loading="lazy"
                         />
-                        <div class="operation-promo-scrim"></div>
+                        <div class="absolute inset-0 [background:linear-gradient(90deg,rgb(var(--c-bg)_/_0.78)_0,rgb(var(--c-surface)_/_0.54)_56%,rgb(var(--c-scrim)_/_0.3))]"></div>
                       </div>
-                      <div class="promo-tile-body">
-                        <h3 class="promo-tile-title">IceCasino</h3>
-                        <div class="promo-tile-actions">
+                      <div class="p-4">
+                        <h3 class="text-text text-sm leading-5 mb-3 text-center">IceCasino</h3>
+                        <div>
                           <button
-                            class="promo-tile-cta"
+                            class="w-full py-2 px-3 rounded-lg text-xs leading-4 text-on-primary flex items-center justify-center bg-[image:var(--g-primary)] transition-opacity hover:opacity-90"
                           >
                             查看詳情
                           </button>
@@ -1983,23 +1983,23 @@
                       </div>
                     </div>
                   </div>
-                  <div class="promo-rail-mobile-item">
-                    <div class="promo-tile">
-                      <div class="promo-tile-art promo-card-art">
+                  <div class="shrink-0 [scroll-snap-align:start] w-[220px]">
+                    <div class="bg-bg border border-border-soft rounded-xl overflow-hidden cursor-pointer transition-colors hover:border-primary">
+                      <div class="relative overflow-hidden [background:linear-gradient(135deg,rgb(var(--c-primary-faint))_0,rgb(var(--c-surface)),rgb(var(--c-bg)))] h-28">
                         <img
                           src="https://images.pexels.com/photos/27568815/pexels-photo-27568815.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                           alt="Gamdom Casino"
-                          class="operation-promo-media"
+                          class="absolute inset-0 h-full w-full object-cover"
                           style="object-position: 62% 50%"
                           loading="lazy"
                         />
-                        <div class="operation-promo-scrim"></div>
+                        <div class="absolute inset-0 [background:linear-gradient(90deg,rgb(var(--c-bg)_/_0.78)_0,rgb(var(--c-surface)_/_0.54)_56%,rgb(var(--c-scrim)_/_0.3))]"></div>
                       </div>
-                      <div class="promo-tile-body">
-                        <h3 class="promo-tile-title">Gamdom Casino</h3>
-                        <div class="promo-tile-actions">
+                      <div class="p-4">
+                        <h3 class="text-text text-sm leading-5 mb-3 text-center">Gamdom Casino</h3>
+                        <div>
                           <button
-                            class="promo-tile-cta"
+                            class="w-full py-2 px-3 rounded-lg text-xs leading-4 text-on-primary flex items-center justify-center bg-[image:var(--g-primary)] transition-opacity hover:opacity-90"
                           >
                             查看詳情
                           </button>
@@ -2012,55 +2012,55 @@
             </section>
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">類別頁 Hero 橫幅(category-hero)</h2>
-              <div class="uikit-variant-row">
-                <button type="button" class="active seg-btn" title="Original">v1</button
-                ><button type="button" class="seg-btn" title="Alternate">v2</button
-                ><button type="button" class="seg-btn" title="Compact">v3</button
-                ><button type="button" class="seg-btn" title="Glass ledger">v4</button
-                ><button type="button" class="seg-btn" title="Signal rail">v5</button
-                ><button type="button" class="seg-btn" title="Chain grid">v6</button
-                ><button type="button" class="seg-btn" title="Layered stack">v7</button
-                ><button type="button" class="seg-btn" title="Terminal strip">v8</button
-                ><button type="button" class="seg-btn" title="Protocol frame">v9</button
-                ><button type="button" class="seg-btn" title="Network console">v10</button
-                ><span class="uikit-variant-active-label">Original</span>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">類別頁 Hero 橫幅(category-hero)</h2>
+              <div class="mb-4 flex flex-wrap items-center gap-2">
+                <button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-on-primary border-transparent bg-[image:var(--g-primary)]" title="Original">v1</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Alternate">v2</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Compact">v3</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Glass ledger">v4</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Signal rail">v5</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Chain grid">v6</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Layered stack">v7</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Terminal strip">v8</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Protocol frame">v9</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Network console">v10</button
+                ><span class="ml-auto text-xs leading-[18px] text-primary">Original</span>
               </div>
-              <div class="uikit-preview-frame">
-            <section class="category-hero-media">
+              <div class="overflow-hidden rounded-xl border border-border-soft bg-bg">
+            <section class="relative overflow-hidden bg-bg bg-[image:var(--g-hero)] py-16 md:py-20 min-h-[220px] md:min-h-[300px] [border-block:2px_solid_rgb(var(--c-primary)_/_0.62)] isolate">
               <img
                 src="https://images.pexels.com/photos/7862503/pexels-photo-7862503.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
                 alt=""
                 aria-hidden="true"
-                class="category-hero-image"
+                class="absolute inset-0 h-full w-full object-cover scale-[1.02]"
                 style="object-position: 68% 50%"
                 fetchpriority="high"
               />
-              <div class="category-hero-scrim"></div>
-              <div class="category-hero-content app-container">
-                <p class="category-hero-eyebrow">TRENDING NOW</p>
-                <h1 class="category-hero-title">HOT GAMES</h1>
+              <div class="absolute inset-0 [background:radial-gradient(circle_at_76%_52%,rgb(var(--c-primary)_/_0.28),transparent_32%),linear-gradient(90deg,rgb(var(--c-bg)_/_0.88)_0,rgb(var(--c-bg)_/_0.66)_38%,rgb(var(--c-surface)_/_0.18)_66%,rgb(var(--c-scrim)_/_0.22))] [box-shadow:inset_0_1px_rgb(var(--c-primary)_/_0.52),inset_0_-1px_rgb(var(--c-primary)_/_0.48),inset_0_-24px_54px_rgb(var(--c-primary)_/_0.08)] max-md:[background:linear-gradient(180deg,rgb(var(--c-scrim)_/_0.06),rgb(var(--c-bg)_/_0.62)),linear-gradient(90deg,rgb(var(--c-bg)_/_0.86)_0,rgb(var(--c-bg)_/_0.62)_64%,rgb(var(--c-scrim)_/_0.22))]"></div>
+              <div data-category-hero-content class="container mx-auto min-h-[inherit] relative z-10 flex flex-col justify-center text-left px-6 md:px-12 xl:px-16">
+                <p class="mb-3 text-xs leading-normal font-bold tracking-[0.06em] text-primary-soft w-fit py-[7px] px-3 border border-[rgb(var(--c-primary)_/_0.56)] rounded [background:rgb(var(--c-bg)_/_0.58)] shadow-[0_0_20px_rgb(var(--c-primary)_/_0.16)] [backdrop-filter:blur(8px)]">TRENDING NOW</p>
+                <h1 data-category-hero-title class="max-w-[900px] max-md:max-w-[88%] italic uppercase text-text text-4xl leading-10 md:text-[4.5rem] md:leading-none font-extrabold [text-shadow:0_3px_0_rgb(var(--c-bg)_/_0.92),0_0_18px_rgb(var(--c-primary)_/_0.76),0_0_46px_rgb(var(--c-primary)_/_0.42)]">HOT GAMES</h1>
               </div>
             </section>
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">會員銀行卡(member-card)</h2>
-              <div class="uikit-variant-row">
-                <button type="button" class="active seg-btn" title="Original">v1</button
-                ><button type="button" class="seg-btn" title="Alternate">v2</button
-                ><button type="button" class="seg-btn" title="Compact">v3</button
-                ><button type="button" class="seg-btn" title="Glass ledger">v4</button
-                ><button type="button" class="seg-btn" title="Signal rail">v5</button
-                ><button type="button" class="seg-btn" title="Chain grid">v6</button
-                ><button type="button" class="seg-btn" title="Layered stack">v7</button
-                ><button type="button" class="seg-btn" title="Terminal strip">v8</button
-                ><button type="button" class="seg-btn" title="Protocol frame">v9</button
-                ><button type="button" class="seg-btn" title="Network console">v10</button
-                ><span class="uikit-variant-active-label">Original</span>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">會員銀行卡(member-card)</h2>
+              <div class="mb-4 flex flex-wrap items-center gap-2">
+                <button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-on-primary border-transparent bg-[image:var(--g-primary)]" title="Original">v1</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Alternate">v2</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Compact">v3</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Glass ledger">v4</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Signal rail">v5</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Chain grid">v6</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Layered stack">v7</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Terminal strip">v8</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Protocol frame">v9</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Network console">v10</button
+                ><span class="ml-auto text-xs leading-[18px] text-primary">Original</span>
               </div>
-              <div class="uikit-preview-frame">
+              <div class="overflow-hidden rounded-xl border border-border-soft bg-bg">
                 <div class="bound-card wd-bank-card">
                   <svg
                     class="wd-bank-card-lines"
@@ -2093,71 +2093,61 @@
                 </div>
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">全站頂部導覽(site-header)</h2>
-              <div class="uikit-variant-row">
-                <button type="button" class="active seg-btn" title="Original">v1</button
-                ><button type="button" class="seg-btn" title="Alternate">v2</button
-                ><button type="button" class="seg-btn" title="Compact">v3</button
-                ><button type="button" class="seg-btn" title="Glass ledger">v4</button
-                ><button type="button" class="seg-btn" title="Signal rail">v5</button
-                ><button type="button" class="seg-btn" title="Chain grid">v6</button
-                ><button type="button" class="seg-btn" title="Layered stack">v7</button
-                ><button type="button" class="seg-btn" title="Terminal strip">v8</button
-                ><button type="button" class="seg-btn" title="Protocol frame">v9</button
-                ><button type="button" class="seg-btn" title="Network console">v10</button
-                ><span class="uikit-variant-active-label">Original</span>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">全站頂部導覽(site-header)</h2>
+              <div class="mb-4 flex flex-wrap items-center gap-2">
+                <button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-on-primary border-transparent bg-[image:var(--g-primary)]" title="Original">v1</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Alternate">v2</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Compact">v3</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Glass ledger">v4</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Signal rail">v5</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Chain grid">v6</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Layered stack">v7</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Terminal strip">v8</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Protocol frame">v9</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Network console">v10</button
+                ><span class="ml-auto text-xs leading-[18px] text-primary">Original</span>
               </div>
-              <div class="uikit-preview-frame">
-          <header class="site-header">
-            <div class="app-container app-header-desktop">
-              <a href="index.html" class="app-header-logo-link"><img src="logo.png" alt="Casino Logo" class="brand-logo" /></a>
-              <div class="app-header-main">
-                <div class="app-header-top-row">
-                  <button class="app-header-login-btn">登入</button>
-                  <button class="app-header-register-btn">註冊</button>
-                  <div class="dd-trigger-wrap" data-dd-trigger-wrap>
-                    <button type="button" class="skin-switcher-trigger" aria-label="Switch skin" title="切換皮膚">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-lg">
+              <div class="overflow-hidden rounded-xl border border-border-soft bg-bg">
+          <header class="bg-surface border-b border-border-soft sticky top-0 z-50">
+            <div class="container mx-auto hidden md:flex md:items-stretch md:px-4">
+              <a href="index.html" class="flex items-center pr-6 shrink-0"><img src="logo.png" alt="Casino Logo" class="h-10 mix-blend-lighten" /></a>
+              <div class="flex flex-col flex-1">
+                <div class="flex items-center justify-end gap-3 py-2 text-sm min-h-11">
+                  <button class="bg-surface-2 text-text py-1.5 px-5 rounded-lg transition-opacity hover:opacity-90">登入</button>
+                  <button class="bg-[image:var(--g-primary)] text-on-primary font-semibold py-1.5 px-5 rounded-lg transition-opacity hover:opacity-90">註冊</button>
+                  <div data-dd-trigger-wrap class="relative">
+                    <button type="button" class="flex items-center gap-1 text-text-2 transition-colors hover:text-text" aria-label="Switch skin" title="切換皮膚">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
                         <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"></path>
                         <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path>
                         <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path>
                       </svg>
                     </button>
                   </div>
-                  <div class="dd-trigger-wrap" data-dd-trigger-wrap>
-                    <button class="header-locale-trigger">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                        <path d="M2 12h20"></path>
-                      </svg><span>中文</span
-                      ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
-                        <path d="m6 9 6 6 6-6"></path>
-                      </svg>
+                  <div data-dd-trigger-wrap class="relative">
+                    <button class="flex items-center gap-1 text-text-2 transition-colors hover:text-text">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg><span>中文</span
+                      ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="m6 9 6 6 6-6"></path></svg>
                     </button>
                   </div>
                 </div>
-                <nav class="app-header-nav">
-                  <a href="index.html" class="app-nav-link"><span>首頁</span></a
-                  ><a href="hot-games.html" class="app-nav-link"><span>熱門遊戲</span></a
+                <nav class="flex items-center justify-end gap-1.5 py-1.5 border-t border-border-soft text-sm relative">
+                  <a href="index.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>首頁</span></a
+                  ><a href="hot-games.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>熱門遊戲</span></a
                   >
-                  <div class="dd-trigger-wrap" data-dd-trigger-wrap>
-                    <a href="sport.html" class="app-nav-link"><span>體育</span
-                      ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
-                        <path d="m6 9 6 6 6-6"></path>
-                      </svg></a
+                  <div data-dd-trigger-wrap class="relative">
+                    <a href="sport.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>體育</span
+                      ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="m6 9 6 6 6-6"></path></svg></a
                     >
                     <div class="dd-panel dd-panel--nav" style="display: none">
                       <a href="sport.html?tab=BTI" class="dd-panel-link" style="text-decoration: none">BTI</a
                       ><a href="sport.html?tab=SABA" class="dd-panel-link" style="text-decoration: none">SABA</a>
                     </div>
                   </div>
-                  <div class="dd-trigger-wrap" data-dd-trigger-wrap>
-                    <a href="live.html" class="app-nav-link"><span>真人娛樂</span
-                      ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
-                        <path d="m6 9 6 6 6-6"></path>
-                      </svg></a
+                  <div data-dd-trigger-wrap class="relative">
+                    <a href="live.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>真人娛樂</span
+                      ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="m6 9 6 6 6-6"></path></svg></a
                     >
                     <div class="dd-panel dd-panel--nav" style="display: none">
                       <a href="live.html?tab=Sexy" class="dd-panel-link" style="text-decoration: none">Sexy</a
@@ -2165,90 +2155,80 @@
                       ><a href="live.html?tab=Yeebet" class="dd-panel-link" style="text-decoration: none">Yeebet</a>
                     </div>
                   </div>
-                  <a href="slot.html" class="app-nav-link"><span>老虎機</span></a
-                  ><a href="fish.html" class="app-nav-link"><span>捕魚</span></a
-                  ><a href="mini-games.html" class="app-nav-link"><span>迷你遊戲</span></a
-                  ><a href="promotion.html" class="app-nav-link"><span>優惠活動</span></a
+                  <a href="slot.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>老虎機</span></a
+                  ><a href="fish.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>捕魚</span></a
+                  ><a href="mini-games.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>迷你遊戲</span></a
+                  ><a href="promotion.html" class="flex items-center gap-1.5 py-1.5 px-2 rounded-lg whitespace-nowrap text-text-2 no-underline transition-colors hover:text-on-primary hover:bg-[image:var(--g-primary)]"><span>優惠活動</span></a
                   >
                 </nav>
               </div>
             </div>
-            <div class="app-header-mobile">
-              <a href="index.html" class="app-header-logo-link"><img src="logo.png" alt="Casino Logo" class="brand-logo" /></a>
-              <div class="app-header-mobile-controls">
-                <div class="dd-trigger-wrap" data-dd-trigger-wrap>
-                  <button type="button" class="skin-switcher-trigger" aria-label="Switch skin" title="切換皮膚">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-lg">
+            <div class="flex items-center justify-between h-16 px-4 md:hidden">
+              <a href="index.html" class="flex items-center pr-6 shrink-0"><img src="logo.png" alt="Casino Logo" class="h-10 mix-blend-lighten" /></a>
+              <div class="flex items-center gap-3">
+                <div data-dd-trigger-wrap class="relative">
+                  <button type="button" class="flex items-center gap-1 text-text-2 transition-colors hover:text-text" aria-label="Switch skin" title="切換皮膚">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
                       <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"></path>
                       <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path>
                       <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path>
                     </svg>
                   </button>
                 </div>
-                <div class="dd-trigger-wrap" data-dd-trigger-wrap>
-                  <button class="header-locale-trigger">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                      <path d="M2 12h20"></path>
-                    </svg><span>中文</span
-                    ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
-                      <path d="m6 9 6 6 6-6"></path>
-                    </svg>
+                <div data-dd-trigger-wrap class="relative">
+                  <button class="flex items-center gap-1 text-text-2 transition-colors hover:text-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg><span>中文</span
+                    ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="m6 9 6 6 6-6"></path></svg>
                   </button>
                 </div>
-                <button class="menu-trigger" aria-label="Menu">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-lg">
-                    <line x1="4" x2="20" y1="12" y2="12"></line>
-                    <line x1="4" x2="20" y1="6" y2="6"></line>
-                    <line x1="4" x2="20" y1="18" y2="18"></line>
-                  </svg>
+                <button class="text-text-2 bg-transparent p-0 hover:text-text" aria-label="Menu">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
                 </button>
               </div>
             </div>
           </header>
               </div>
             </div>
-            <div class="card-ui uikit-card">
-              <h2 class="section-title uikit-demo-title">全站頁尾(site-footer)</h2>
-              <div class="uikit-variant-row">
-                <button type="button" class="active seg-btn" title="Original">v1</button
-                ><button type="button" class="seg-btn" title="Alternate">v2</button
-                ><button type="button" class="seg-btn" title="Compact">v3</button
-                ><button type="button" class="seg-btn" title="Glass ledger">v4</button
-                ><button type="button" class="seg-btn" title="Signal rail">v5</button
-                ><button type="button" class="seg-btn" title="Chain grid">v6</button
-                ><button type="button" class="seg-btn" title="Layered stack">v7</button
-                ><button type="button" class="seg-btn" title="Terminal strip">v8</button
-                ><button type="button" class="seg-btn" title="Protocol frame">v9</button
-                ><button type="button" class="seg-btn" title="Network console">v10</button
-                ><span class="uikit-variant-active-label">Original</span>
+            <div class="rounded-xl border border-border-soft bg-surface p-5">
+              <h2 class="border-l-4 border-accent pl-3 text-[18px] leading-[1.2] font-semibold text-accent mb-4">全站頁尾(site-footer)</h2>
+              <div class="mb-4 flex flex-wrap items-center gap-2">
+                <button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-on-primary border-transparent bg-[image:var(--g-primary)]" title="Original">v1</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Alternate">v2</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Compact">v3</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Glass ledger">v4</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Signal rail">v5</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Chain grid">v6</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Layered stack">v7</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Terminal strip">v8</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Protocol frame">v9</button
+                ><button type="button" class="rounded-[10px] border border-border-soft bg-bg px-3 py-1.5 text-xs leading-[18px] font-semibold text-text-3 hover:text-text" title="Network console">v10</button
+                ><span class="ml-auto text-xs leading-[18px] text-primary">Original</span>
               </div>
-              <div class="uikit-preview-frame">
-                    <footer class="site-footer">
-            <div class="app-container">
-              <div class="site-footer-inner">
-                <img src="logo.png" alt="WIN100% Logo" class="site-footer-logo" />
-                <div class="site-footer-notice">
-                  <p>
+              <div class="overflow-hidden rounded-xl border border-border-soft bg-bg">
+                    <footer class="bg-surface border-t border-border-soft pt-12 pb-24 md:pb-16">
+            <div class="container mx-auto px-4">
+              <div class="flex flex-col items-center">
+                <img src="logo.png" alt="WIN100% Logo" class="h-12 mix-blend-lighten mb-6" />
+                <div class="text-center max-w-2xl">
+                  <p class="text-text-3 text-xs leading-[1.625] mb-3">
                     博彩可能造成成癮，請理性遊玩。如需支援資訊，請前往責任博彩協助頁面。
                   </p>
-                  <p>
+                  <p class="text-text-3 text-xs leading-[1.625]">
                     當您存取、繼續使用或瀏覽本站，即表示您同意我們使用部分瀏覽器 Cookie，以改善您的使用體驗。
                   </p>
                 </div>
-                <div class="site-footer-divider"></div>
-                <div class="site-footer-copyright">win10069 © 版權所有，受法律保護</div>
+                <div class="h-px w-full bg-border-soft max-w-2xl my-6"></div>
+                <div class="text-text-4 text-xs">win10069 © 版權所有，受法律保護</div>
               </div>
             </div>
           </footer>
               </div>
             </div>
     </div>
-    <div class="qr-rail">
-      <a href="#" class="qr-btn" aria-label="Live Chat" data-chat-open
-        ><img src="logo.png" alt /><span class="qr-label">Live Chat</span></a
-      ><a href="https://t.me/win10096cs" target="_blank" rel="noopener noreferrer" class="qr-btn" aria-label="Promo Channel"
+    <div class="fixed right-3.5 max-md:right-2.5 top-1/2 -translate-y-[58%] max-md:-translate-y-1/2 z-[9000] flex flex-col items-center gap-3.5 max-md:gap-3 py-3 px-2 max-md:py-2.25 max-md:px-1.5 rounded-[44px] bg-surface/90 backdrop-blur-[6px] border border-white/8 shadow-[0_10px_30px_#0006]">
+      <a href="#" class="group bg-surface-2 text-primary relative w-14 h-14 max-md:w-12 max-md:h-12 rounded-full flex items-center justify-center shadow-[0_6px_18px_#00000059] [transition:transform_0.15s_ease,background_0.15s_ease] no-underline hover:scale-[1.06] hover:bg-border max-md:hover:scale-100 max-md:hover:bg-surface-2" aria-label="Live Chat" data-chat-open
+        ><img src="logo.png" alt class="w-10 h-10 max-md:w-8.5 max-md:h-8.5 object-contain" /><span class="absolute right-[calc(100%+14px)] top-1/2 -translate-y-1/2 translate-x-2.5 bg-bg text-text whitespace-nowrap font-bold text-base max-md:text-sm py-3 px-5.5 max-md:py-2.5 max-md:px-4 rounded-[14px] opacity-0 pointer-events-none [transition:opacity_0.18s_ease,transform_0.18s_ease] shadow-[0_10px_28px_#00000073] group-hover:opacity-100 group-hover:translate-x-0 max-md:group-hover:opacity-0 max-md:group-hover:translate-x-2.5 group-focus-visible:opacity-100 group-focus-visible:translate-x-0">Live Chat</span></a
+      ><a href="https://t.me/win10096cs" target="_blank" rel="noopener noreferrer" class="group bg-surface-2 text-primary relative w-14 h-14 max-md:w-12 max-md:h-12 rounded-full flex items-center justify-center shadow-[0_6px_18px_#00000059] [transition:transform_0.15s_ease,background_0.15s_ease] no-underline hover:scale-[1.06] hover:bg-border max-md:hover:scale-100 max-md:hover:bg-surface-2" aria-label="Promo Channel"
         ><svg
               viewBox="0 0 24 24"
               fill="none"
@@ -2256,11 +2236,12 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
+              class="w-6.5 h-6.5 max-md:w-5.5 max-md:h-5.5"
             >
               <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path>
             </svg
-            ><span class="qr-label">Promo Channel</span></a
-      ><a href="about.html?tab=faq" class="qr-btn" aria-label="FAQ"
+            ><span class="absolute right-[calc(100%+14px)] top-1/2 -translate-y-1/2 translate-x-2.5 bg-bg text-text whitespace-nowrap font-bold text-base max-md:text-sm py-3 px-5.5 max-md:py-2.5 max-md:px-4 rounded-[14px] opacity-0 pointer-events-none [transition:opacity_0.18s_ease,transform_0.18s_ease] shadow-[0_10px_28px_#00000073] group-hover:opacity-100 group-hover:translate-x-0 max-md:group-hover:opacity-0 max-md:group-hover:translate-x-2.5 group-focus-visible:opacity-100 group-focus-visible:translate-x-0">Promo Channel</span></a
+      ><a href="about.html?tab=faq" class="group bg-surface-2 text-primary relative w-14 h-14 max-md:w-12 max-md:h-12 rounded-full flex items-center justify-center shadow-[0_6px_18px_#00000059] [transition:transform_0.15s_ease,background_0.15s_ease] no-underline hover:scale-[1.06] hover:bg-border max-md:hover:scale-100 max-md:hover:bg-surface-2" aria-label="FAQ"
         ><svg
           viewBox="0 0 24 24"
           fill="none"
@@ -2268,10 +2249,11 @@
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
+          class="w-6.5 h-6.5 max-md:w-5.5 max-md:h-5.5"
         >
           <circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path>
         </svg
-        ><span class="qr-label">FAQ</span></a
+        ><span class="absolute right-[calc(100%+14px)] top-1/2 -translate-y-1/2 translate-x-2.5 bg-bg text-text whitespace-nowrap font-bold text-base max-md:text-sm py-3 px-5.5 max-md:py-2.5 max-md:px-4 rounded-[14px] opacity-0 pointer-events-none [transition:opacity_0.18s_ease,transform_0.18s_ease] shadow-[0_10px_28px_#00000073] group-hover:opacity-100 group-hover:translate-x-0 max-md:group-hover:opacity-0 max-md:group-hover:translate-x-2.5 group-focus-visible:opacity-100 group-focus-visible:translate-x-0">FAQ</span></a
       >
     </div>
     <script src="assets/js/data.js"></script>
