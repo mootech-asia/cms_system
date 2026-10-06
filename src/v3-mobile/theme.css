@@ -113,4 +113,8 @@
   button, input, select, textarea { font-size: 13.3333px; line-height: normal; }
   input, select, textarea { padding: 1px 2px; }
   button { padding: 1px 6px; }
+  /* Preflight 把表單元素 margin 也歸零，checkbox/radio 原本吃的是 Chrome
+     UA 預設 margin:3px 3px 3px 4px（實測進站公告彈窗「今天不再提醒」
+     checkbox 偏移 0.5px），這裡補回同一組實測值。 */
+  input[type="checkbox"], input[type="radio"] { margin: 3px 3px 3px 4px; }
 }
