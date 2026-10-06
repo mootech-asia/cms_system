@@ -1,0 +1,116 @@
+/* v3 手機版（v3/site-mobile）— 原地轉換成真正的 Tailwind utility class，
+   跟 v3/tailwind/site（桌機，複製一份轉換）不是同一種做法：v3/site-mobile
+   本來就直接用相對路徑引用 ../site/assets/css/ 底下桌機那份共用 CSS（tokens/
+   main/skins/components/variants/chrome-variants/design-studio/...），自己
+   只有 assets/mobile.css 一份 @media(max-width:768px) 覆寫層，沒有獨立的
+   CSS 副本可以另外開資料夾轉換，所以直接在原始 vN/site-mobile 動手，跟
+   v2-mobile 同層級架構（見 vite.config.js 開頭註解）。
+
+   legacy 層的匯入清單刻意跟 src/v3/theme.css 完全一致（同一批共用桌機
+   CSS 檔案），額外多掛一份 assets/mobile.css——原因與 v3/tailwind/site
+   相同：main.css 等檔案目前仍以未包 @layer 的一般 <link> 留在
+   v3/site-mobile/*.html 上，CSS Cascade Layers 規範下「沒有包在任何
+   @layer 裡的樣式」永遠贏過「任何具名 layer 裡的樣式」，所以頁面一旦
+   開始真的套用 utility class，就要把該頁重複的直連 <link>（main.css/
+   mobile.css 等）拿掉，只留這份 tailwind.css 裡 layer(legacy) 匯入的
+   版本，不然新 utility 會被原本的 unlayered 規則蓋掉。
+
+   v3 的 14px root font-size（main.css 的 html,body{font-size:14px}）
+   同樣適用於這裡，間距/尺寸 utility 一律用任意 px 值，不用 Tailwind
+   預設 rem 刻度（比照 v3/tailwind/site 的做法）。variants.css/
+   chrome-variants.css/design-studio.css 鎖定的設計模組 class（.gcard、
+   .promo-ribbon、.cat-tab、.section-title/.ap-h1/.ap-section-h 等）
+   一律維持 legacy，不得改名或移除——已確認 mobile.css 裡新增的 m-*
+   前綴 class（m-header/m-quicknav/m-tabpanel-wrap/m-provider-filter/
+   m-sports-list/m-home-body 等）完全沒有被這些鎖定選擇器引用，才是
+   真正安全可轉換的範圍。 */
+@layer theme, base, legacy, components, utilities;
+@import 'tailwindcss' source(none);
+@source '../../v3/site-mobile/*.html';
+@source '../../v3/site-mobile/assets/mobile.js';
+@source '../../v3/site/assets/js/site.js';
+@source '../../v3/site/assets/js/data.js';
+@source '../../v3/site/assets/js/i18n.js';
+@source '../../v3/site/assets/js/i18n-member.js';
+@import '../../v3/site/assets/css/design-system/tokens.css' layer(legacy);
+@import '../../v3/site/assets/css/layout.css' layer(legacy);
+@import '../../v3/site/assets/css/main.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/white.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/blue.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/night-esports-green.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/cosmic-spectrum-purple.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/curated-collection.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/jade-jackpot.css' layer(legacy);
+@import '../../v3/site/assets/css/design-system/components.css' layer(legacy);
+@import '../../v3/site/assets/css/load-more.css' layer(legacy);
+@import '../../v3/site/assets/css/design-system/variants.css' layer(legacy);
+@import '../../v3/site/assets/css/design-system/chrome-variants.css' layer(legacy);
+@import '../../v3/site/assets/css/design-system/design-studio.css' layer(legacy);
+@import '../../v3/site/assets/css/static-addon.css' layer(legacy);
+@import '../../v3/site-mobile/assets/mobile.css' layer(legacy);
+
+@theme static {
+  --color-bg: var(--bg);
+  --color-bg-elev: var(--bg-elev);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hi: var(--bg-card-hi);
+  --color-line: var(--line);
+  --color-line-hi: var(--line-hi);
+  --color-text: var(--text);
+  --color-text-mid: var(--text-mid);
+  --color-text-dim: var(--text-dim);
+  --color-text-on-accent: var(--text-on-accent);
+  --color-text-on-accent-soft: var(--text-on-accent-soft);
+  --color-icon-muted: var(--icon-muted);
+  --color-cal-icon: var(--cal-icon);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-shade: var(--accent-shade);
+  --color-primary: var(--primary);
+  --color-primary-start: var(--primary-start);
+  --color-primary-end: var(--primary-end);
+  --color-live: var(--live);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-pos: var(--pos);
+  --color-neg: var(--neg);
+  --color-tier-next: var(--tier-next);
+  --color-control-border: var(--control-border);
+  --color-control-text: var(--control-text);
+  --color-control-hover-border: var(--control-hover-border);
+  --color-control-hover-text: var(--control-hover-text);
+  --color-control-active-border: var(--control-active-border);
+  --color-control-active-text: var(--control-active-text);
+  --color-table-row-bg: var(--table-row-bg);
+  --color-table-row-border: var(--table-row-border);
+  --color-table-header-text: var(--table-header-text);
+  --color-record-total-border: var(--record-total-border);
+  --color-rewards-banner-border: var(--rewards-banner-border);
+  --color-account-hero-border: var(--account-hero-border);
+  --color-secondary-button-bg: var(--secondary-button-bg);
+  --color-secondary-button-border: var(--secondary-button-border);
+  --color-secondary-button-text: var(--secondary-button-text);
+  --color-secondary-button-hover-border: var(--secondary-button-hover-border);
+  --color-secondary-button-hover-text: var(--secondary-button-hover-text);
+  --color-status-success-bg: var(--status-success-bg);
+  --color-status-success-text: var(--status-success-text);
+  --color-status-success-border: var(--status-success-border);
+  --color-badge-highlight-bg: var(--badge-highlight-bg);
+  --color-badge-highlight-text: var(--badge-highlight-text);
+  --color-badge-highlight-border: var(--badge-highlight-border);
+}
+
+/* Preflight 回歸修正，與 src/v3/theme.css 相同原因（main.css 對 button
+   只設 font-family/cursor，input/select/textarea 完全沒重置，Preflight
+   會把這些元素的 font-size/line-height/padding 改成繼承值，撐高手機版
+   同樣共用的按鈕/輸入框/側欄表單列）。 */
+@layer base {
+  button, input, select, textarea { font-size: 13.3333px; line-height: normal; }
+  input, select, textarea { padding: 1px 2px; }
+  button { padding: 1px 6px; }
+}

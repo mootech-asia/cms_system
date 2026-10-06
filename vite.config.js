@@ -30,6 +30,7 @@ export default defineConfig({
         v5: resolve(__dirname, 'src/v5/theme.css'),
         v6: resolve(__dirname, 'src/v6/theme.css'),
         'v2-mobile': resolve(__dirname, 'src/v2-mobile/theme.css'),
+        'v3-mobile': resolve(__dirname, 'src/v3-mobile/theme.css'),
         'v15-tailwind-site': resolve(__dirname, 'src/v1.5/theme.css'),
         'v2-tailwind-site': resolve(__dirname, 'src/v2/theme.css'),
         'v2-tailwind-studio': resolve(__dirname, 'src/v2/theme-studio.css'),
