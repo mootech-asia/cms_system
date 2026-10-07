@@ -2242,7 +2242,7 @@
   }
 
   /* ============================================================
-   * 優惠卡片（index.html 首頁 4 張 + promotion.html 載入更多剩餘 2 張）：
+   * 優惠卡片（index.html 首頁 4 張；promotion.html PC 首屏 4 張、載入更多循環補到 8 張，site-mobile 首屏 2 張、載入更多補到 4 張）：
    * 既有 PROMOTION_OFFERS（4 筆，逐字保留，未新增/未省略），點擊導向 promotion-detail.html（依 data-promo-id
    * 帶 ?id= 深連結），該頁的行動按鈕才導向各自 actionTarget 對照的真實
    * 頁面；promotion.html 缺少的第 3、4 張卡片 markup 逐字取自 index.html
@@ -2280,12 +2280,17 @@
 
     var foot = grid.nextElementSibling;
     var loadMoreBtn = (foot && foot.classList.contains('cv-foot')) ? foot.querySelector('.cv-view-all') : null;
-    if (loadMoreBtn && cards.length < 4) {
+    if (loadMoreBtn) {
+      /* 優惠資料只有 4 筆：首屏 2 張的頁面補到 4 張；首屏已 4 張的頁面依序循環補到 8 張。 */
+      var target = cards.length < 4 ? 4 : 8;
+      var cardHtml = Array.prototype.map.call(cards, function (card) { return card.outerHTML; })
+        .concat(PROMOTION_EXTRA_CARDS_HTML)
+        .slice(0, 4);
       loadMoreBtn.addEventListener('click', function () {
-        PROMOTION_EXTRA_CARDS_HTML.forEach(function (html) {
-          grid.insertAdjacentHTML('beforeend', html);
+        for (var i = grid.querySelectorAll('.promo-card.promo-card-link').length; i < target; i++) {
+          grid.insertAdjacentHTML('beforeend', cardHtml[i % cardHtml.length]);
           bindCard(grid.lastElementChild);
-        });
+        }
         applyI18n(grid);
         foot.style.display = 'none';
       });
