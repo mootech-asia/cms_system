@@ -85,3 +85,14 @@
 }
 .level-progress-fill,
 .rb-progress-fill { box-shadow: none; }
+
+/* 漸層背景預設從 padding-box 起鋪、在透明邊框區重複一次，底部 1px 會露出
+   漸層起點的亮色（像一條底線）；改從 border-box 起鋪讓漸層蓋滿含邊框的整顆。 */
+:is(.ui-button--primary, .btn.primary, .ap-btn.primary, .ap-btn-wide.ap-grad, .rec-confirm, .sb-deposit.is-current, .sb-withdraw.is-current),
+.ap-amount-btn.active,
+.dp-method-tabs button.active,
+.wd-method-tabs button.active,
+.cms-cs-fab,
+.gcard-tag.new {
+  background-origin: border-box;
+}
