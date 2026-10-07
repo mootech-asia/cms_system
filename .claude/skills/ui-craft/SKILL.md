@@ -1,13 +1,13 @@
 ---
 name: ui-craft
-description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、換膚 skin 色板、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', 'improve this UI', 'visual hierarchy', 'design tokens', 'diagnose UI', '設計要有突破/新意'。整合兩份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」的鐵則做了覆寫。"
+description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、動效/轉場時長、換膚 skin 色板、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', 'improve this UI', 'visual hierarchy', 'design tokens', 'diagnose UI', 'motion/transition', '設計要有突破/新意'。整合三份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」的鐵則做了覆寫。"
 ---
 
 # UI 製作與視覺突破技能
 
 ## 來源與改編說明
 
-這份技能整合兩個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
+這份技能整合三個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
 
 1. **[s0xDk/refactoring-ui-skill](https://github.com/s0xDk/refactoring-ui-skill)**（MIT
    license）——把 Adam Wathan／Steve Schoger《Refactoring UI》濃縮成可執行規則的 Claude
@@ -19,6 +19,12 @@ description: "在本 repo 新增或修改任何頁面的視覺呈現時使用—
    generic/「AI 感」設計的**機制**：動手前先講清楚「這次要有的那一個記憶點是什麼」，
    而不是套用最安全、最預設的元件長相。下方「第二層：突破」是**改寫過的版本**，套進
    本 repo 既有品牌調性，不是原文引用。
+3. **[Dammyjay93/interface-design](https://github.com/Dammyjay93/interface-design)**（MIT
+   license）——`references/craft-polish-motion.md` 節錄自此 repo（MIT 授權允許），補
+   前兩個來源完全沒涵蓋的三塊：**動效時長/easing 的具體數值**、**既有優先的元件/樣式
+   升級順序**（native → 既有 class/元件 → 手刻是最後手段，呼應 CLAUDE.md 鐵則）、以及
+   驗收記憶點用的**四個具體測試**（互換/瞇眼/記憶點/token 測試）。省略了原技能裡
+   「自己發明一套新色彩世界」的部分——跟本 repo 顏色鎖定既有 token 的規則衝突，不收。
 
 ## 第一層：基本功（不能先跳過）——覆寫原技能的「自建 scale」前提
 
@@ -70,6 +76,11 @@ footnote/版權這類，正文絕不用最淺那階）。
 `references/systems.md`（色相沿用該版本既有品牌色相去延伸出新色階，不是重新發明一套
 完全無關的配色邏輯；對比公式、深色模式的「不要機械式反轉 ramp」規則都在裡面）。
 
+**刻任何互動元件/樣式前，先看 `references/craft-polish-motion.md` 的「既有優先」
+升級順序**：native HTML → 本版本既有共用 class/元件 → 手刻是最後手段，且手刻要補齊
+完整鍵盤/焦點/ARIA 行為，不能只有外觀。這是 CLAUDE.md「CSS 復用優先」鐵則的具體
+落地步驟。
+
 ## 第二層：突破——不要交出「安全但普通」的設計
 
 使用者明確要求「設計能力要有新突破、要置入新元素」時，光是把基本功做對（層級正確、
@@ -97,11 +108,37 @@ footnote/版權這類，正文絕不用最淺那階）。
      加「風味文案」。
 4. **一個頁面/區塊只做一個記憶點，不要同時塞三種新手法**——多個手法互相競爭注意力，
    效果會抵消，回到「Hierarchy」一節的道理：每次只放大一件事。
+5. **記憶點做完要自己先跑一遍驗收測試，不是自己說好就算數**——見
+   `references/craft-polish-motion.md` 最後一節「驗收測試」的互換/瞇眼/記憶點/token
+   四個測試，逐一回答，答不出具體位置就是沒做到。
+
+## 第三層：打磨與動效——過去完全沒覆蓋、這次新增的能力
+
+基本功跟記憶點之外，還有一類純粹靠執行細節堆出來的「做完 vs 做好」落差，過去這份
+技能沒有涵蓋，這次補上（見 `references/craft-polish-motion.md`）：
+
+- **分層/深度要讓人「感覺到但看不到」**：彈出層疊在正確層級上、輸入框比周圍暗一點
+  （凹陷感）、邊框低調到瞇眼看才找得到。深度策略（純邊框／淺陰影／多層陰影／色階
+  差異）整個版面選一種就不要混用。
+- **容易漏掉的打磨細節**：同心圓角（外圈半徑＝內圈半徑＋內距）、動態數字一律
+  `font-variant-numeric: tabular-nums`、互動狀態 default/hover/active/focus/
+  disabled 缺一不可、點擊熱區至少 40px。
+- **動效（這個 repo 的輪播/tab/彈窗/換膚切換都適用）**：UI 動效時長一律 <300ms（按鈕
+  按壓 100–160ms、彈窗 200–500ms）；進場用自訂 ease-out
+  `cubic-bezier(0.23,1,0.32,1)`，不要用瀏覽器內建 `ease-in`；只對 `transform`／
+  `opacity` 做動畫，不要對 width/height/margin 做動畫（會掉幀）；彈出層要從觸發它的
+  位置長出來（`transform-origin` 對齊觸發元素），不要從畫面中心長出來；高頻率操作
+  （例如語言切換）乾脆不要加動畫，加了反而感覺變慢。
 
 ## 驗收時的自我檢查
 
-- 記憶點是否真的體現在畫面上，還是只停留在描述？
+- 記憶點是否真的體現在畫面上，還是只停留在描述？互換/瞇眼/記憶點/token 四個測試
+  （見 `references/craft-polish-motion.md` 最後一節）有沒有全部通過？
 - 有沒有用到當前版本既有 token 以外的任意色碼/px 值？（`grep` 新增的 CSS/inline style
   找 `#[0-9a-f]{3,6}`、裸 `px` 數字，逐一確認來源是既有 token 還是自己編的）
+- 新增的互動元件是不是先檢查過 native HTML／本版本既有共用 class 才手刻的？手刻的
+  有沒有補齊鍵盤/焦點/ARIA？
+- 有加動效的地方時長是否 <300ms、用的是自訂 ease-out、只對 transform/opacity 做
+  animate？
 - Hard rules 七條有沒有踩到任何一條？
 - 是否符合本 repo 驗收標準（視覺 pixel-diff、功能互動點、內容逐字保留、console 不變多）？
