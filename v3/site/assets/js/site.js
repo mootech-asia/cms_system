@@ -1367,6 +1367,41 @@
     }, 5500);
   }
 
+  /* 頂欄餘額在窄螢幕（≤480px）放不下完整 12 位數金額，會疊到左側 Logo 上；
+     比照 site-mobile（mobile.js）的規則，整數位數達 12 位時縮寫成 k/M/B/T，
+     完整數字放在 title。site-mobile 頁有自己的 .m-header 處理，這裡跳過。
+     initBalanceFloat 會定時寫回完整金額，所以用 MutationObserver 重新套用；
+     寫回縮寫後再觸發一次時文字已一致，不會無限循環。 */
+  var BALANCE_UNITS = [[1e12, 'T'], [1e9, 'B'], [1e6, 'M'], [1e3, 'k']];
+  function initHeaderBalanceFit() {
+    if (document.querySelector('.m-header')) return;
+    var header = document.querySelector('header.header');
+    if (!header || !window.matchMedia) return;
+    var mq = window.matchMedia('(max-width: 480px)');
+    function abbreviate(n) {
+      for (var i = 0; i < BALANCE_UNITS.length; i++) {
+        if (Math.abs(n) >= BALANCE_UNITS[i][0]) return (n / BALANCE_UNITS[i][0]).toFixed(2) + BALANCE_UNITS[i][1];
+      }
+      return fmtNum(n);
+    }
+    function fit() {
+      Array.prototype.forEach.call(header.querySelectorAll('.tb-balance-num'), function (el) {
+        var text = el.textContent;
+        var raw = (el._abbrText && text === el._abbrText) ? el._rawValue : parseFloat(text.replace(/,/g, ''));
+        if (isNaN(raw)) return;
+        el._rawValue = raw;
+        var useAbbr = mq.matches && Math.floor(Math.abs(raw)).toString().length >= 12;
+        var next = useAbbr ? abbreviate(raw) : fmtNum(raw);
+        el._abbrText = useAbbr ? next : null;
+        if (useAbbr) el.setAttribute('title', fmtNum(raw)); else el.removeAttribute('title');
+        if (text !== next) el.textContent = next;
+      });
+    }
+    fit();
+    if (mq.addEventListener) mq.addEventListener('change', fit); else if (mq.addListener) mq.addListener(fit);
+    if (window.MutationObserver) new MutationObserver(fit).observe(header, { childList: true, subtree: true, characterData: true });
+  }
+
   /* ============================================================
    * 手機底部導覽 Browse 按鈕 <-> 側欄遮罩
    * ========================================================== */
@@ -3088,6 +3123,7 @@
     safe(initPromoRibbonClock);
     safe(initCustomerServiceFab);
     safe(initBalanceFloat);
+    safe(initHeaderBalanceFit);
     safe(initMobileNav);
     safe(initAccountOverviewPage);
     safe(initSecurityCenterPage);

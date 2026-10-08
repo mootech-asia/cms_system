@@ -197,3 +197,12 @@
   .ci-stamp-ring svg { width: 12px; height: 12px; }
   .ci-stamp small { display: none; }
 }
+
+/* 窄螢幕頂欄：Logo 允許隨可用寬度等比縮小（不被餘額框蓋住）；≤360px 再收窄餘額框。 */
+@media (max-width: 480px) {
+  .topbar-logo { max-width: 100%; object-fit: contain; object-position: left center; }
+}
+@media (max-width: 360px) {
+  .tb-balance { padding: 4px 8px; }
+  .tb-balance-row { font-size: 11px; gap: 4px; }
+}
