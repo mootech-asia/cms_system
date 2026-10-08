@@ -2000,7 +2000,7 @@
     added.forEach(function (k) { checked[k] = true; });
 
     var view = { y: today.getFullYear(), m: today.getMonth() };
-    var htmlLang = (I18N.LANGS && I18N.LANGS[LOCALE] && I18N.LANGS[LOCALE].htmlLang) || 'en';
+    var htmlLang = ((I18N.LANGS && I18N.LANGS[LOCALE] && I18N.LANGS[LOCALE].htmlLang) || 'en') + '-u-ca-gregory';
     function fmt(path, fallback, n) { return tr('t.checkin.' + path, fallback).replace('{n}', n); }
 
     function computeEntries() {
