@@ -96,3 +96,98 @@
 .gcard-tag.new {
   background-origin: border-box;
 }
+
+/* 每日簽到頁（check-in.html）：摘要沿用 .game-modal-stats、外框沿用 .ap-panel、
+   紀錄表沿用 .rec-table；以下只補月曆格線與簽到印章。 */
+.ci-summary { margin: 0 0 16px; }
+.ci-calendar { margin-bottom: 24px; }
+.ci-cal-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.ci-cal-title {
+  margin: 0;
+  min-width: 150px;
+  text-align: center;
+}
+.ci-checkin-btn { margin-left: auto; }
+.ci-checkin-btn:disabled { cursor: default; opacity: .7; }
+.ci-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+.ci-cal-wd {
+  padding: 4px 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.ci-cal-day {
+  position: relative;
+  min-height: 76px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg-card);
+}
+.ci-cal-day.is-empty { border-color: transparent; background: transparent; }
+.ci-cal-day.is-today { border-color: var(--accent); }
+.ci-cal-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-mid);
+}
+.ci-stamp {
+  position: absolute;
+  inset: 22px 0 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: var(--accent-2);
+}
+.ci-stamp-ring {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--accent) 14%, transparent);
+  transform: rotate(-12deg);
+}
+.ci-stamp small {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.ci-cal-note {
+  margin: 14px 0 0;
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+.ci-rec-title { margin: 0 0 12px; }
+.ci-rec-table { min-width: 560px; }
+@media (max-width: 768px) {
+  .ci-cal-head { flex-wrap: wrap; }
+  .ci-cal-title { flex: 1; min-width: 0; }
+  .ci-checkin-btn { width: 100%; margin-left: 0; }
+  .ci-cal-grid { gap: 4px; }
+  .ci-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .ci-summary .game-modal-stat { padding: 10px; }
+  .ci-summary .game-modal-stat-val { font-size: 15px; }
+  .ci-cal-day { min-height: 56px; padding: 3px 4px; border-radius: 8px; }
+  .ci-cal-num { font-size: 10.5px; line-height: 1.2; }
+  .ci-stamp { inset: 18px 0 4px; }
+  .ci-stamp-ring { width: 22px; height: 22px; border-width: 1.5px; }
+  .ci-stamp-ring svg { width: 12px; height: 12px; }
+  .ci-stamp small { display: none; }
+}

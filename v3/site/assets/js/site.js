@@ -1968,6 +1968,139 @@
   }
 
   /* ============================================================
+   * 每日簽到頁（check-in.html）：月曆（可切上／下個月，已簽到日期蓋章、
+   * 未簽到留白）＋簽到摘要＋當月已完成簽到紀錄表。
+   * 簽到歷史為相對「今天」產生的示範資料；今日簽到寫入 localStorage，
+   * 重新整理後保留。連續天數依前一天是否有簽到逐日累計，漏簽即從 Day 1 重算。
+   * ========================================================== */
+  var CHECKIN_STORE_KEY = 'cms_v3_checkin_added';
+  var CHECKIN_MOCK_MISSED = [9, 24, 31, 32, 33];
+  var CHECKIN_MOCK_SPAN = 45;
+  function ciDayKey(d) {
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function ciAddDays(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; }
+  function ciReward(streakDay) {
+    var cycleDay = ((streakDay - 1) % 7) + 1;
+    return cycleDay === 7 ? 100 : cycleDay * 10;
+  }
+  function initCheckinPage() {
+    var root = document.getElementById('ci-root');
+    if (!root) return;
+    var today = new Date();
+    today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    var todayKey = ciDayKey(today);
+
+    var checked = {};
+    for (var i = 1; i <= CHECKIN_MOCK_SPAN; i++) {
+      if (CHECKIN_MOCK_MISSED.indexOf(i) === -1) checked[ciDayKey(ciAddDays(today, -i))] = true;
+    }
+    var added = [];
+    try { added = JSON.parse(localStorage.getItem(CHECKIN_STORE_KEY) || '[]') || []; } catch (e) { added = []; }
+    added.forEach(function (k) { checked[k] = true; });
+
+    var view = { y: today.getFullYear(), m: today.getMonth() };
+    var htmlLang = (I18N.LANGS && I18N.LANGS[LOCALE] && I18N.LANGS[LOCALE].htmlLang) || 'en';
+    function fmt(path, fallback, n) { return tr('t.checkin.' + path, fallback).replace('{n}', n); }
+
+    function computeEntries() {
+      var keys = Object.keys(checked).sort();
+      var byKey = {};
+      keys.forEach(function (k, idx) {
+        var p = k.split('-');
+        var d = new Date(+p[0], +p[1] - 1, +p[2]);
+        var prevKey = ciDayKey(ciAddDays(d, -1));
+        var streak = byKey[prevKey] ? byKey[prevKey].streak + 1 : 1;
+        byKey[k] = { key: k, date: d, streak: streak, reward: ciReward(streak), reset: streak === 1 && idx > 0 };
+      });
+      return byKey;
+    }
+
+    function render() {
+      var byKey = computeEntries();
+      var keys = Object.keys(byKey);
+      var totalReward = keys.reduce(function (sum, k) { return sum + byKey[k].reward; }, 0);
+      var cur = byKey[todayKey] || byKey[ciDayKey(ciAddDays(today, -1))];
+      var curStreak = cur ? cur.streak : 0;
+      var doneToday = !!checked[todayKey];
+
+      var stat = function (label, val) {
+        return '<div class="game-modal-stat"><div class="game-modal-stat-label">' + escapeHtml(label) + '</div><div class="game-modal-stat-val">' + escapeHtml(val) + '</div></div>';
+      };
+      var summary = '<div class="game-modal-stats ci-summary">' +
+        stat(fmt('totalDays', 'Total Check-in Days'), fmt('days', '{n} days', keys.length)) +
+        stat(fmt('streak', 'Current Streak'), fmt('days', '{n} days', curStreak)) +
+        stat(fmt('totalRewards', 'Total Check-in Rewards'), fmt('points', '{n} Points', totalReward.toLocaleString())) +
+        '</div>';
+
+      var monthTitle = new Intl.DateTimeFormat(htmlLang, { year: 'numeric', month: 'long' }).format(new Date(view.y, view.m, 1));
+      var wdFmt = new Intl.DateTimeFormat(htmlLang, { weekday: 'short' });
+      var wd = '';
+      for (var w = 0; w < 7; w++) wd += '<div class="ci-cal-wd">' + escapeHtml(wdFmt.format(new Date(2023, 0, 1 + w))) + '</div>';
+      var first = new Date(view.y, view.m, 1);
+      var daysInMonth = new Date(view.y, view.m + 1, 0).getDate();
+      var cells = '';
+      for (var b = 0; b < first.getDay(); b++) cells += '<div class="ci-cal-day is-empty"></div>';
+      var stampLabel = fmt('stampLabel', 'Completed Attendance');
+      for (var dd = 1; dd <= daysInMonth; dd++) {
+        var k = ciDayKey(new Date(view.y, view.m, dd));
+        var stamp = checked[k]
+          ? '<span class="ci-stamp" role="img" aria-label="' + escapeAttr(stampLabel) + '"><span class="ci-stamp-ring"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span><small>' + escapeHtml(fmt('stamp', 'Done')) + '</small></span>'
+          : '';
+        cells += '<div class="ci-cal-day' + (k === todayKey ? ' is-today' : '') + (checked[k] ? ' is-done' : '') + '"><span class="ci-cal-num">' + dd + '</span>' + stamp + '</div>';
+      }
+      var arrow = function (dir) {
+        var path = dir === 'prev' ? 'm14 6-6 6 6 6' : 'm10 6 6 6-6 6';
+        var label = dir === 'prev' ? fmt('prevMonth', 'Previous month') : fmt('nextMonth', 'Next month');
+        return '<button type="button" class="icon-btn" data-ci-nav="' + dir + '" aria-label="' + escapeAttr(label) + '" title="' + escapeAttr(label) + '"><svg width="16" height="16" viewBox="0 0 24 24"><path d="' + path + '" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>';
+      };
+      var actionBtn = doneToday
+        ? '<button type="button" class="btn ci-checkin-btn" disabled>' + escapeHtml(fmt('checkedIn', 'Checked in today')) + '</button>'
+        : '<button type="button" class="btn primary ci-checkin-btn" data-ci-checkin>' + escapeHtml(fmt('checkInNow', 'Check in now')) + '</button>';
+      var calendar = '<div class="ap-panel ci-calendar">' +
+        '<div class="ci-cal-head">' + arrow('prev') + '<h2 class="ap-panel-h ci-cal-title">' + escapeHtml(monthTitle) + '</h2>' + arrow('next') + actionBtn + '</div>' +
+        '<div class="ci-cal-grid">' + wd + cells + '</div>' +
+        '<p class="ci-cal-note">' + escapeHtml(fmt('rule', 'Missing a day resets your streak — your next check-in starts again from Day 1.')) + '</p>' +
+        '</div>';
+
+      var tier = fmt('tierUnranked', 'Unranked');
+      var monthKeys = keys.filter(function (key) { var e = byKey[key]; return e.date.getFullYear() === view.y && e.date.getMonth() === view.m; }).sort().reverse();
+      var rows = monthKeys.map(function (key) {
+        var e = byKey[key];
+        var remark = e.reset ? fmt('remarkReset', 'Streak reset after a missed day · Day 1')
+          : (((e.streak - 1) % 7) + 1 === 7 ? fmt('remarkBonus', '7-day streak bonus') : fmt('remarkStreak', 'Streak Day {n}', e.streak));
+        return '<tr><td>' + escapeHtml(key) + '</td><td>' + escapeHtml(tier) + '</td><td>' + escapeHtml(fmt('points', '{n} Points', e.reward)) + '</td><td>' + escapeHtml(remark) + '</td></tr>';
+      }).join('');
+      if (!rows) rows = '<tr><td colspan="4">' + escapeHtml(fmt('noRecords', 'No check-in records this month.')) + '</td></tr>';
+      var records = '<h2 class="ap-panel-h ci-rec-title">' + escapeHtml(fmt('records', 'Check-in Records')) + ' · ' + escapeHtml(monthTitle) + '</h2>' +
+        '<div class="rec-table-scroll"><table class="rec-table ci-rec-table"><thead><tr>' +
+        '<th>' + escapeHtml(fmt('colDate', 'Date')) + '</th><th>' + escapeHtml(fmt('colLevel', 'Member Level')) + '</th><th>' + escapeHtml(fmt('colReward', 'Reward')) + '</th><th>' + escapeHtml(fmt('colRemark', 'Remark')) + '</th>' +
+        '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+
+      root.innerHTML = summary + calendar + records;
+    }
+
+    root.addEventListener('click', function (e) {
+      var nav = e.target.closest('[data-ci-nav]');
+      if (nav) {
+        view.m += nav.getAttribute('data-ci-nav') === 'prev' ? -1 : 1;
+        if (view.m < 0) { view.m = 11; view.y--; }
+        if (view.m > 11) { view.m = 0; view.y++; }
+        render();
+        return;
+      }
+      if (e.target.closest('[data-ci-checkin]') && !checked[todayKey]) {
+        checked[todayKey] = true;
+        added.push(todayKey);
+        try { localStorage.setItem(CHECKIN_STORE_KEY, JSON.stringify(added)); } catch (err) {}
+        view = { y: today.getFullYear(), m: today.getMonth() };
+        render();
+      }
+    });
+    render();
+  }
+
+  /* ============================================================
    * Support 頁：9 個分頁 + FAQ 手風琴 + Exclusion turnover list 篩選。
    * 內容為既有 SUP_CONTENT / EXCLUSION / FAQ_GROUPS 純文字資料，非新增資料模型。
    * ========================================================== */
@@ -2960,6 +3093,7 @@
     safe(initSecurityCenterPage);
     safe(initPersonalInfoPage);
     safe(initRecordPage);
+    safe(initCheckinPage);
     safe(initFavoritesPage);
     safe(initSupportPage);
     safe(initSportsPage);
