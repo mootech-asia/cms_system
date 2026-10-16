@@ -495,7 +495,7 @@
   var DEFAULT_POINTS = '0.00';
   var MEMBER_PAGES = ['account.html', 'deposit.html', 'withdrawal.html', 'betting-record.html',
     'deposit-record.html', 'withdrawal-record.html', 'withdrawal-detail.html', 'account-record.html', 'profit-loss.html',
-    'personal-info.html', 'security.html', 'change-password.html'];
+    'personal-info.html', 'security.html', 'change-password.html', 'check-in.html', 'referral.html'];
 
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; });
@@ -621,6 +621,8 @@
     { href: 'account-record.html', label: tr('sidebar.accountRecord', '帳戶紀錄'), icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
     { href: 'personal-info.html', label: tr('sidebar.personalInfo', '個人資料'), icon: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>' },
     { href: 'security.html', label: tr('sidebar.security', '安全中心'), icon: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>' },
+    { href: 'referral.html', label: tr('nav.Referral', 'Referral Center'), icon: '<circle cx="9" cy="8" r="3.5"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M19 8v6M16 11h6"/>' },
+    { href: 'check-in.html', label: tr('nav.Check-in', 'Daily Check-in'), icon: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="m9 15 2 2 4-4"/>' },
     { href: 'about.html?tab=faq', label: tr('notice.faq', '常見問題'), icon: '<circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8"/><path d="M12 17h.01"/>' },
   ];
   var mobileMenuRoot = null;
@@ -1349,7 +1351,293 @@
     });
   }
 
+  /* ============================================================
+   * 每日簽到（check-in.html）與推薦中心（referral.html）。
+   * 簽到：月曆可切上／下個月，已簽到日期蓋章、未簽到留白；連續天數依前一天
+   * 是否有簽到逐日累計，漏簽即從 Day 1 重算。簽到歷史為相對「今天」產生的
+   * 示範資料，今日簽到寫入 localStorage。
+   * 推薦中心：推薦碼（4–12 位英數，寫入 localStorage）＋推薦連結（複製）＋
+   * 推薦好友列表（示範資料；帳號中間以 *** 遮蔽，獎勵千分位）。
+   * ========================================================== */
+  var CR_CHECKIN_KEY = 'cms_v4_checkin_added';
+  var CR_REFERRAL_KEY = 'cms_v4_referral_code';
+  var CR_CHECKIN_MISSED = [9, 24, 31, 32, 33];
+  var CR_CHECKIN_SPAN = 45;
+  var CR_REFERRAL_DEFAULT = 'pro003';
+  var CR_REFERRAL_BASE = 'https://www.100.gg/?partnercode=';
+  var CR_REFERRAL_RE = /^[A-Za-z0-9]{4,12}$/;
+  var CR_FRIENDS = [
+    { reg: '2026-10-12 21:08', account: 'kimminjun88', login: '2026-10-15 22:41', done: true, reward: 10000 },
+    { reg: '2026-10-09 14:32', account: 'luckystar07', login: '2026-10-14 09:15', done: true, reward: 25000 },
+    { reg: '2026-10-05 18:47', account: 'parkjiho', login: '2026-10-05 19:02', done: false, reward: 0 },
+    { reg: '2026-09-28 11:20', account: 'winnerlee', login: '2026-10-13 23:58', done: true, reward: 150000 },
+    { reg: '2026-09-21 09:55', account: 'choiyuna22', login: '2026-09-22 10:31', done: false, reward: 0 },
+    { reg: '2026-09-14 16:03', account: 'jackpotking', login: '2026-10-11 20:17', done: true, reward: 1250000 },
+    { reg: '2026-09-02 13:44', account: 'hanseoyeon', login: '2026-09-02 13:50', done: false, reward: 0 }
+  ];
+  var CR_CLS = {
+    stats: 'grid grid-cols-3 gap-3 max-[720px]:grid-cols-1 max-[720px]:gap-1.5',
+    stat: 'bg-bg-panel border border-line rounded-lg shadow-card py-3.5 px-4.5 max-[720px]:flex max-[720px]:items-center max-[720px]:justify-between max-[720px]:gap-3 max-[720px]:py-2.5 max-[720px]:px-3.5',
+    statLabel: 'text-[12px] font-bold uppercase tracking-[0.04em] text-text-dim',
+    statVal: 'mt-1 text-[20px] font-extrabold text-gold-deep whitespace-nowrap [font-variant-numeric:tabular-nums] max-[720px]:mt-0 max-[720px]:text-[15px]',
+    panel: 'bg-bg-panel border border-line rounded-lg p-4 shadow-card',
+    panelTitle: 'm-0 mb-4 text-[15px] font-extrabold text-text',
+    sectionTitle: 'm-0 -mb-1 text-[15px] font-extrabold text-text',
+    calHead: 'flex items-center gap-2.5 mb-4 max-[720px]:flex-wrap',
+    calTitle: 'm-0 min-w-[150px] text-center text-[15px] font-extrabold text-text max-[720px]:flex-1 max-[720px]:min-w-0',
+    navBtn: 'w-8.5 h-8.5 grid place-items-center shrink-0 rounded-full border border-line bg-bg text-text-mid cursor-pointer hover:text-text hover:border-line-hi',
+    checkinBtn: 'ml-auto py-2.25 px-5 border! border-gold-hi! rounded-full bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px cursor-pointer btn-gold max-[720px]:ml-0 max-[720px]:w-full',
+    checkinBtnDone: 'ml-auto py-2.25 px-5 rounded-full border border-line bg-bg text-text-dim font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap cursor-default opacity-70 max-[720px]:ml-0 max-[720px]:w-full',
+    calGrid: 'grid grid-cols-7 gap-2 max-[720px]:gap-1',
+    wd: 'py-1 text-center text-[11px] font-bold uppercase tracking-[0.06em] text-text-dim',
+    day: 'relative min-h-19 py-1.5 px-2 rounded-md border bg-bg max-[720px]:min-h-14 max-[720px]:py-0.75 max-[720px]:px-1 max-[720px]:rounded-sm border-line',
+    dayToday: 'relative min-h-19 py-1.5 px-2 rounded-md border bg-bg max-[720px]:min-h-14 max-[720px]:py-0.75 max-[720px]:px-1 max-[720px]:rounded-sm border-gold',
+    dayEmpty: 'min-h-19 max-[720px]:min-h-14',
+    dayNum: 'text-[12px] font-bold text-text-mid [font-variant-numeric:tabular-nums] max-[720px]:text-[10.5px] max-[720px]:leading-[1.2]',
+    stamp: 'absolute inset-x-0 top-5.5 bottom-1.5 flex flex-col items-center justify-center gap-0.75 text-gold-deep max-[720px]:top-6 max-[720px]:bottom-1',
+    stampRing: 'grid place-items-center w-8 h-8 rounded-full border-2 border-current bg-gold/14 -rotate-12 max-[720px]:w-5 max-[720px]:h-5 max-[720px]:border-[1.5px] max-[720px]:[&_svg]:w-3 max-[720px]:[&_svg]:h-3',
+    stampText: 'text-[10px] font-extrabold uppercase tracking-[0.04em] max-[720px]:hidden',
+    note: 'mt-3.5 mb-0 text-[12.5px] text-text-dim',
+    tableWrap: 'record-table-wrap bg-bg-panel',
+    table: 'record-table',
+    th: '',
+    thNum: 'text-right',
+    td: '',
+    tdNum: 'num',
+    pillOk: 'inline-flex items-center py-0.5 px-2.5 rounded-full border border-gold/40 bg-gold/12 text-gold-deep text-[11.5px] font-extrabold',
+    pillPend: 'inline-flex items-center py-0.5 px-2.5 rounded-full border border-line-hi bg-bg text-text-mid text-[11.5px] font-extrabold',
+    rfRowFirst: 'grid grid-cols-[140px_minmax(0,1fr)] items-center gap-x-4 max-[720px]:grid-cols-1 max-[720px]:gap-y-2 pb-3.5',
+    rfRow: 'grid grid-cols-[140px_minmax(0,1fr)] items-center gap-x-4 max-[720px]:grid-cols-1 max-[720px]:gap-y-2 pt-3.5 border-t border-line',
+    rfLabel: 'text-[14px] font-bold text-text-mid',
+    rfField: 'flex gap-2.5 min-w-0',
+    input: 'flex-1 min-w-0 p-[11px_14px] rounded-md border border-line bg-bg text-[14px] text-text outline-none focus:border-gold form-input',
+    saveBtn: 'flex-none min-w-24 rounded-full font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap px-5 max-[720px]:min-w-19 max-[720px]:px-3.5 border border-line-hi bg-transparent text-text cursor-pointer hover:border-gold disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-line-hi',
+    copyBtn: 'flex-none min-w-24 rounded-full font-extrabold text-[13px] uppercase tracking-[0.02em] whitespace-nowrap px-5 max-[720px]:min-w-19 max-[720px]:px-3.5 border! border-gold-hi! rounded-full bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px cursor-pointer btn-gold',
+    error: 'col-start-2 mt-2 mb-0 text-[12.5px] font-semibold text-red max-[720px]:col-start-1 max-[720px]:mt-0'
+  };
+  function crT(key, fallback) {
+    var v = window.CMS_I18N ? window.CMS_I18N.t(key) : null;
+    return v && v !== key ? v : fallback;
+  }
+  function crLocale() { return window.CMS_I18N ? window.CMS_I18N.getLocale() : 'en'; }
+  function crOnLocaleChange(fn) { document.addEventListener('cms-v4:locale-changed', fn); }
+  function crEsc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function crFmt(path, fallback, n) { return crT(path, fallback).replace('{n}', n); }
+  function crDayKey(d) {
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function crAddDays(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; }
+  function crReward(streakDay) {
+    var cycleDay = ((streakDay - 1) % 7) + 1;
+    return cycleDay === 7 ? 100 : cycleDay * 10;
+  }
+  function crIntlLang() {
+    var map = { zh: 'zh-Hant', en: 'en', ko: 'ko', th: 'th' };
+    return (map[crLocale()] || 'en') + '-u-ca-gregory';
+  }
+
+  function initCheckinPage() {
+    var root = document.getElementById('ci-root');
+    if (!root) return;
+    var today = new Date();
+    today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    var todayKey = crDayKey(today);
+    var checked = {};
+    for (var i = 1; i <= CR_CHECKIN_SPAN; i++) {
+      if (CR_CHECKIN_MISSED.indexOf(i) === -1) checked[crDayKey(crAddDays(today, -i))] = true;
+    }
+    var added = [];
+    try { added = JSON.parse(localStorage.getItem(CR_CHECKIN_KEY) || '[]') || []; } catch (e) { added = []; }
+    added.forEach(function (k) { checked[k] = true; });
+    var view = { y: today.getFullYear(), m: today.getMonth() };
+
+    function computeEntries() {
+      var keys = Object.keys(checked).sort();
+      var byKey = {};
+      keys.forEach(function (k, idx) {
+        var p = k.split('-');
+        var d = new Date(+p[0], +p[1] - 1, +p[2]);
+        var prev = byKey[crDayKey(crAddDays(d, -1))];
+        var streak = prev ? prev.streak + 1 : 1;
+        byKey[k] = { key: k, date: d, streak: streak, reward: crReward(streak), reset: streak === 1 && idx > 0 };
+      });
+      return byKey;
+    }
+
+    function render() {
+      var lang = crIntlLang();
+      var byKey = computeEntries();
+      var keys = Object.keys(byKey);
+      var totalReward = keys.reduce(function (sum, k) { return sum + byKey[k].reward; }, 0);
+      var cur = byKey[todayKey] || byKey[crDayKey(crAddDays(today, -1))];
+      var doneToday = !!checked[todayKey];
+
+      var stat = function (label, val) {
+        return '<div class="' + CR_CLS.stat + '"><div class="' + CR_CLS.statLabel + '">' + crEsc(label) + '</div><div class="' + CR_CLS.statVal + '">' + crEsc(val) + '</div></div>';
+      };
+      var summary = '<div class="' + CR_CLS.stats + '">' +
+        stat(crT('checkin.totalDays', 'Total Check-in Days'), crFmt('checkin.days', '{n} days', keys.length)) +
+        stat(crT('checkin.streak', 'Current Streak'), crFmt('checkin.days', '{n} days', cur ? cur.streak : 0)) +
+        stat(crT('checkin.totalRewards', 'Total Check-in Rewards'), crFmt('checkin.points', '{n} Points', totalReward.toLocaleString('en-US'))) +
+        '</div>';
+
+      var monthTitle = new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'long' }).format(new Date(view.y, view.m, 1));
+      var wdFmt = new Intl.DateTimeFormat(lang, { weekday: 'short' });
+      var wd = '';
+      for (var w = 0; w < 7; w++) wd += '<div class="' + CR_CLS.wd + '">' + crEsc(wdFmt.format(new Date(2023, 0, 1 + w))) + '</div>';
+      var first = new Date(view.y, view.m, 1);
+      var daysInMonth = new Date(view.y, view.m + 1, 0).getDate();
+      var cells = '';
+      for (var b = 0; b < first.getDay(); b++) cells += '<div class="' + CR_CLS.dayEmpty + '"></div>';
+      var stampLabel = crT('checkin.stampLabel', 'Completed Attendance');
+      for (var dd = 1; dd <= daysInMonth; dd++) {
+        var k = crDayKey(new Date(view.y, view.m, dd));
+        var stamp = checked[k]
+          ? '<span class="' + CR_CLS.stamp + '" role="img" aria-label="' + crEsc(stampLabel) + '"><span class="' + CR_CLS.stampRing + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span><small class="' + CR_CLS.stampText + '">' + crEsc(crT('checkin.stamp', 'Done')) + '</small></span>'
+          : '';
+        cells += '<div class="' + (k === todayKey ? CR_CLS.dayToday : CR_CLS.day) + '"><span class="' + CR_CLS.dayNum + '">' + dd + '</span>' + stamp + '</div>';
+      }
+      var arrow = function (dir) {
+        var path = dir === 'prev' ? 'm14 6-6 6 6 6' : 'm10 6 6 6-6 6';
+        var label = dir === 'prev' ? crT('checkin.prevMonth', 'Previous month') : crT('checkin.nextMonth', 'Next month');
+        return '<button type="button" class="' + CR_CLS.navBtn + '" data-ci-nav="' + dir + '" aria-label="' + crEsc(label) + '" title="' + crEsc(label) + '"><svg width="16" height="16" viewBox="0 0 24 24"><path d="' + path + '" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>';
+      };
+      var actionBtn = doneToday
+        ? '<button type="button" class="' + CR_CLS.checkinBtnDone + '" disabled>' + crEsc(crT('checkin.checkedIn', 'Checked in today')) + '</button>'
+        : '<button type="button" class="' + CR_CLS.checkinBtn + '" data-ci-checkin>' + crEsc(crT('checkin.checkInNow', 'Check in now')) + '</button>';
+      var calendar = '<div class="' + CR_CLS.panel + '">' +
+        '<div class="' + CR_CLS.calHead + '">' + arrow('prev') + '<h2 class="' + CR_CLS.calTitle + '">' + crEsc(monthTitle) + '</h2>' + arrow('next') + actionBtn + '</div>' +
+        '<div class="' + CR_CLS.calGrid + '">' + wd + cells + '</div>' +
+        '<p class="' + CR_CLS.note + '">' + crEsc(crT('checkin.rule', 'Missing a day resets your streak — your next check-in starts again from Day 1.')) + '</p>' +
+        '</div>';
+
+      var tier = crT('checkin.tierUnranked', 'Unranked');
+      var monthKeys = keys.filter(function (key) { var e = byKey[key]; return e.date.getFullYear() === view.y && e.date.getMonth() === view.m; }).sort().reverse();
+      var rows = monthKeys.map(function (key) {
+        var e = byKey[key];
+        var remark = e.reset ? crT('checkin.remarkReset', 'Streak reset after a missed day · Day 1')
+          : (((e.streak - 1) % 7) + 1 === 7 ? crT('checkin.remarkBonus', '7-day streak bonus') : crFmt('checkin.remarkStreak', 'Streak Day {n}', e.streak));
+        return '<tr><td class="' + CR_CLS.td + '">' + crEsc(key) + '</td><td class="' + CR_CLS.td + '">' + crEsc(tier) + '</td><td class="' + CR_CLS.td + '">' + crEsc(crFmt('checkin.points', '{n} Points', e.reward)) + '</td><td class="' + CR_CLS.td + '">' + crEsc(remark) + '</td></tr>';
+      }).join('');
+      if (!rows) rows = '<tr><td class="' + CR_CLS.td + '" colspan="4">' + crEsc(crT('checkin.noRecords', 'No check-in records this month.')) + '</td></tr>';
+      var th = function (path, fb) { return '<th class="' + CR_CLS.th + '">' + crEsc(crT(path, fb)) + '</th>'; };
+      var records = '<h2 class="' + CR_CLS.sectionTitle + '">' + crEsc(crT('checkin.records', 'Check-in Records')) + ' · ' + crEsc(monthTitle) + '</h2>' +
+        '<div class="' + CR_CLS.tableWrap + '"><table class="' + CR_CLS.table + '"><thead><tr>' +
+        th('checkin.colDate', 'Date') + th('checkin.colLevel', 'Member Level') + th('checkin.colReward', 'Reward') + th('checkin.colRemark', 'Remark') +
+        '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+
+      root.innerHTML = summary + calendar + records;
+    }
+
+    root.addEventListener('click', function (e) {
+      var nav = e.target.closest('[data-ci-nav]');
+      if (nav) {
+        view.m += nav.getAttribute('data-ci-nav') === 'prev' ? -1 : 1;
+        if (view.m < 0) { view.m = 11; view.y--; }
+        if (view.m > 11) { view.m = 0; view.y++; }
+        render();
+        return;
+      }
+      if (e.target.closest('[data-ci-checkin]') && !checked[todayKey]) {
+        checked[todayKey] = true;
+        added.push(todayKey);
+        try { localStorage.setItem(CR_CHECKIN_KEY, JSON.stringify(added)); } catch (err) {}
+        view = { y: today.getFullYear(), m: today.getMonth() };
+        render();
+      }
+    });
+    crOnLocaleChange(render);
+    render();
+  }
+
+  function crMaskAccount(name) {
+    if (name.length <= 4) return name.charAt(0) + '***';
+    return name.slice(0, 2) + '***' + name.slice(-2);
+  }
+  function initReferralPage() {
+    var root = document.getElementById('rf-root');
+    if (!root) return;
+    var code = CR_REFERRAL_DEFAULT;
+    try { code = localStorage.getItem(CR_REFERRAL_KEY) || CR_REFERRAL_DEFAULT; } catch (e) {}
+
+    function render() {
+      var draft = root.querySelector('#rf-code');
+      var draftVal = draft ? draft.value : code;
+      var rows = CR_FRIENDS.map(function (f) {
+        var pill = f.done
+          ? '<span class="' + CR_CLS.pillOk + '">' + crEsc(crT('referral.statusDone', 'Completed')) + '</span>'
+          : '<span class="' + CR_CLS.pillPend + '">' + crEsc(crT('referral.statusPending', 'Not completed')) + '</span>';
+        return '<tr><td class="' + CR_CLS.td + '">' + crEsc(f.reg) + '</td><td class="' + CR_CLS.td + '">' + crEsc(crMaskAccount(f.account)) + '</td><td class="' + CR_CLS.td + '">' + crEsc(f.login) + '</td>' +
+          '<td class="' + CR_CLS.td + '">' + pill + '</td><td class="' + CR_CLS.tdNum + '">' + crEsc(f.reward.toLocaleString('en-US')) + '</td></tr>';
+      }).join('');
+      var th = function (path, fb, cls) { return '<th class="' + (cls || CR_CLS.th) + '">' + crEsc(crT(path, fb)) + '</th>'; };
+      root.innerHTML =
+        '<div class="' + CR_CLS.panel + '">' +
+          '<h2 class="' + CR_CLS.panelTitle + '">' + crEsc(crT('referral.settings', 'Referral Code Settings')) + '</h2>' +
+          '<div class="' + CR_CLS.rfRowFirst + '">' +
+            '<label class="' + CR_CLS.rfLabel + '" for="rf-code">' + crEsc(crT('referral.code', 'Referral Code')) + '</label>' +
+            '<div class="' + CR_CLS.rfField + '"><input id="rf-code" class="' + CR_CLS.input + '" maxlength="12" autocomplete="off" spellcheck="false" value="' + crEsc(draftVal) + '">' +
+            '<button type="button" class="' + CR_CLS.saveBtn + '" data-rf-save disabled>' + crEsc(crT('referral.save', 'Save')) + '</button></div>' +
+            '<p class="' + CR_CLS.error + '" data-rf-error hidden>' + crEsc(crT('referral.codeRule', 'Referral code must be 4–12 letters or numbers.')) + '</p>' +
+          '</div>' +
+          '<div class="' + CR_CLS.rfRow + '">' +
+            '<label class="' + CR_CLS.rfLabel + '" for="rf-link">' + crEsc(crT('referral.link', 'Referral Link')) + '</label>' +
+            '<div class="' + CR_CLS.rfField + '"><input id="rf-link" class="' + CR_CLS.input + '" readonly value="' + crEsc(CR_REFERRAL_BASE + code) + '">' +
+            '<button type="button" class="' + CR_CLS.copyBtn + '" data-rf-copy>' + crEsc(crT('referral.copy', 'Copy')) + '</button></div>' +
+          '</div>' +
+        '</div>' +
+        '<h2 class="' + CR_CLS.sectionTitle + '">' + crEsc(crT('referral.friends', 'Referred Friends')) + '</h2>' +
+        '<div class="' + CR_CLS.tableWrap + '"><table class="' + CR_CLS.table + '"><thead><tr>' +
+          th('referral.colReg', 'Registration Date') + th('referral.colAccount', 'Friend Account') + th('referral.colLogin', 'Last Login Date') + th('referral.colStatus', 'Status') + th('referral.colReward', 'Referral Reward', CR_CLS.thNum) +
+        '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+      bind();
+    }
+
+    function bind() {
+      var codeInput = root.querySelector('#rf-code');
+      var linkInput = root.querySelector('#rf-link');
+      var saveBtn = root.querySelector('[data-rf-save]');
+      var copyBtn = root.querySelector('[data-rf-copy]');
+      var errEl = root.querySelector('[data-rf-error]');
+      function syncSave() {
+        var v = codeInput.value.trim();
+        var valid = CR_REFERRAL_RE.test(v);
+        errEl.hidden = valid || v === '';
+        saveBtn.disabled = !valid || v === code;
+      }
+      codeInput.addEventListener('input', syncSave);
+      saveBtn.addEventListener('click', function () {
+        var v = codeInput.value.trim();
+        if (!CR_REFERRAL_RE.test(v)) return;
+        code = v;
+        codeInput.value = v;
+        try { localStorage.setItem(CR_REFERRAL_KEY, v); } catch (e) {}
+        linkInput.value = CR_REFERRAL_BASE + v;
+        syncSave();
+        var o = saveBtn.textContent; saveBtn.textContent = crT('referral.saved', 'Saved'); setTimeout(function () { saveBtn.textContent = o; }, 1500);
+      });
+      copyBtn.addEventListener('click', function () {
+        var fallback = function () { linkInput.select(); try { document.execCommand('copy'); } catch (err) {} };
+        try {
+          var p = navigator.clipboard.writeText(linkInput.value);
+          if (p && p.catch) p.catch(fallback);
+        } catch (e) { fallback(); }
+        var o = copyBtn.textContent; copyBtn.textContent = crT('referral.copied', 'Copied'); setTimeout(function () { copyBtn.textContent = o; }, 1500);
+      });
+      syncSave();
+    }
+
+    crOnLocaleChange(render);
+    render();
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    safe(initCheckinPage);
+    safe(initReferralPage);
     safe(initAuthGuard);
     safe(renderHeaderAuth);
     safe(initPersonalInfoNickname);
