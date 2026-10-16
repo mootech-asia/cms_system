@@ -2843,3 +2843,57 @@ select.pay-field {
    DOMContentLoaded handler 跑完後加上；JS 失效時 5s 後由動畫強制顯示，不會永遠空白。 */
 html:not(.i18n-ready) body { opacity: 0; animation: i18n-reveal 0s 5s forwards; }
 @keyframes i18n-reveal { to { opacity: 1; } }
+
+/* 每日簽到（check-in.html）與推薦中心（referral.html）：面板沿用 .sec-card、
+   表格沿用 .record-table-*、狀態沿用 .pill-ok／.pill-warn、按鈕沿用
+   .btn-primary／.btn-ghost、輸入框沿用 .mf-input；以下只補摘要格、月曆格線、
+   簽到印章與「標籤｜輸入框＋按鈕」的列排版。 */
+.cr-root { display: flex; flex-direction: column; gap: 1.5rem; }
+.cr-root .sec-card { margin-bottom: 0; }
+.cr-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
+.cr-stat { padding: 1rem 1.25rem; border-radius: 0.5rem; border: 1px solid rgb(var(--c-border-soft) / 1); background-color: rgb(var(--c-surface) / 1); }
+.cr-stat-label { font-size: var(--fs-caption); font-weight: 700; color: rgb(var(--c-text-3) / 1); }
+.cr-stat-val { margin-top: 0.25rem; font-size: 1.375rem; font-weight: 800; color: rgb(var(--c-primary) / 1); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cr-panel-title, .cr-section-title { margin: 0; font-size: 1rem; font-weight: 700; color: rgb(var(--c-text) / 1); }
+.cr-panel-title { margin-bottom: 1rem; }
+.cr-section-title { margin-bottom: -0.75rem; }
+.cr-cal-head { display: flex; align-items: center; gap: 0.625rem; margin-bottom: 1rem; }
+.cr-cal-title { margin: 0; min-width: 150px; text-align: center; font-size: 1rem; font-weight: 700; color: rgb(var(--c-text) / 1); }
+.cr-nav-btn { width: 2.25rem; height: 2.25rem; flex: none; border-radius: 9999px; }
+.cr-checkin-btn { margin-left: auto; }
+.cr-cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem; }
+.cr-cal-wd { padding: 0.25rem 0; text-align: center; font-size: var(--fs-caption); font-weight: 700; color: rgb(var(--c-text-3) / 1); }
+.cr-cal-day { position: relative; min-height: 76px; padding: 6px 8px; border-radius: 0.5rem; border: 1px solid rgb(var(--c-border-soft) / 1); background-color: rgb(var(--c-bg) / 1); }
+.cr-cal-day.is-today { border-color: rgb(var(--c-primary) / 1); }
+.cr-cal-day.is-empty { border-color: transparent; background: transparent; }
+.cr-cal-num { font-size: var(--fs-caption); font-weight: 700; color: rgb(var(--c-text-2) / 1); font-variant-numeric: tabular-nums; }
+.cr-stamp { position: absolute; inset: 22px 0 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: rgb(var(--c-primary) / 1); }
+.cr-stamp-ring { display: grid; place-items: center; width: 32px; height: 32px; border: 2px solid currentColor; border-radius: 9999px; background-color: rgb(var(--c-primary) / 0.14); transform: rotate(-12deg); }
+.cr-stamp-text { font-size: 10px; font-weight: 700; }
+.cr-cal-note { margin: 0.875rem 0 0; font-size: var(--fs-caption); color: rgb(var(--c-text-3) / 1); }
+.cr-th-num { text-align: right; }
+.cr-rf-row { display: grid; grid-template-columns: 140px minmax(0, 1fr); align-items: center; column-gap: 1rem; padding-top: 0.875rem; border-top: 1px solid rgb(var(--c-border-soft) / 1); }
+.cr-rf-row.is-first { padding: 0 0 0.875rem; border-top: 0; }
+.cr-rf-label { font-size: var(--fs-body); font-weight: 600; color: rgb(var(--c-text-2) / 1); }
+.cr-rf-field { display: flex; gap: 0.625rem; min-width: 0; }
+.cr-rf-input { flex: 1; min-width: 0; min-height: 44px; padding-top: 10px; padding-bottom: 10px; }
+.cr-rf-btn { flex: none; min-width: 96px; }
+.cr-rf-error { grid-column: 2; margin: 0.5rem 0 0; font-size: var(--fs-caption); font-weight: 600; color: rgb(var(--c-danger) / 1); }
+@media (max-width: 767.98px) {
+  .cr-stats { grid-template-columns: minmax(0, 1fr); gap: 0.375rem; }
+  .cr-stat { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.625rem 0.875rem; }
+  .cr-stat-val { margin-top: 0; font-size: 0.9375rem; }
+  .cr-cal-head { flex-wrap: wrap; }
+  .cr-cal-title { flex: 1; min-width: 0; }
+  .cr-checkin-btn { width: 100%; margin-left: 0; }
+  .cr-cal-grid { gap: 4px; }
+  .cr-cal-day { min-height: 56px; padding: 3px 4px; }
+  .cr-cal-num { font-size: 10.5px; line-height: 1.2; }
+  .cr-stamp { inset: 24px 0 4px; }
+  .cr-stamp-ring { width: 20px; height: 20px; border-width: 1.5px; }
+  .cr-stamp-ring svg { width: 12px; height: 12px; }
+  .cr-stamp-text { display: none; }
+  .cr-rf-row { grid-template-columns: minmax(0, 1fr); row-gap: 0.5rem; }
+  .cr-rf-error { grid-column: 1; margin-top: 0; }
+  .cr-rf-btn { min-width: 76px; padding-left: 0.875rem; padding-right: 0.875rem; }
+}

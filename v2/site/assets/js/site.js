@@ -68,7 +68,7 @@
      避免兩處各自維護一份、日後漏改。 */
   var MEMBER_PAGES = ['account', 'account-record', 'betting-record',
     'change-password', 'deposit', 'deposit-record', 'personal-info', 'profit-loss',
-    'security', 'withdrawal', 'withdrawal-record', 'withdrawal-detail'];
+    'security', 'withdrawal', 'withdrawal-record', 'withdrawal-detail', 'check-in', 'referral'];
   function isMemberPage() { return MEMBER_PAGES.indexOf(pageName()) !== -1; }
   function isActivePage(href) {
     var target = href.replace(/\.html$/, '');
@@ -3068,6 +3068,338 @@
     });
   }
 
+  /* ============================================================
+   * 每日簽到（check-in.html）與推薦中心（referral.html）。
+   * 簽到：月曆可切上／下個月，已簽到日期蓋章、未簽到留白；連續天數依前一天
+   * 是否有簽到逐日累計，漏簽即從 Day 1 重算。簽到歷史為相對「今天」產生的
+   * 示範資料，今日簽到寫入 localStorage。
+   * 推薦中心：推薦碼（4–12 位英數，寫入 localStorage）＋推薦連結（複製）＋
+   * 推薦好友列表（示範資料；帳號中間以 *** 遮蔽，獎勵千分位）。
+   * ========================================================== */
+  var CR_CHECKIN_KEY = 'cms_v2_checkin_added';
+  var CR_REFERRAL_KEY = 'cms_v2_referral_code';
+  var CR_CHECKIN_MISSED = [9, 24, 31, 32, 33];
+  var CR_CHECKIN_SPAN = 45;
+  var CR_REFERRAL_DEFAULT = 'pro003';
+  var CR_REFERRAL_BASE = 'https://www.100.gg/?partnercode=';
+  var CR_REFERRAL_RE = /^[A-Za-z0-9]{4,12}$/;
+  var CR_FRIENDS = [
+    { reg: '2026-10-12 21:08', account: 'kimminjun88', login: '2026-10-15 22:41', done: true, reward: 10000 },
+    { reg: '2026-10-09 14:32', account: 'luckystar07', login: '2026-10-14 09:15', done: true, reward: 25000 },
+    { reg: '2026-10-05 18:47', account: 'parkjiho', login: '2026-10-05 19:02', done: false, reward: 0 },
+    { reg: '2026-09-28 11:20', account: 'winnerlee', login: '2026-10-13 23:58', done: true, reward: 150000 },
+    { reg: '2026-09-21 09:55', account: 'choiyuna22', login: '2026-09-22 10:31', done: false, reward: 0 },
+    { reg: '2026-09-14 16:03', account: 'jackpotking', login: '2026-10-11 20:17', done: true, reward: 1250000 },
+    { reg: '2026-09-02 13:44', account: 'hanseoyeon', login: '2026-09-02 13:50', done: false, reward: 0 }
+  ];
+  var CR_CLS = {
+    stats: 'cr-stats',
+    stat: 'cr-stat',
+    statLabel: 'cr-stat-label',
+    statVal: 'cr-stat-val',
+    panel: 'sec-card cr-panel',
+    panelTitle: 'cr-panel-title',
+    sectionTitle: 'cr-section-title',
+    calHead: 'cr-cal-head',
+    calTitle: 'cr-cal-title',
+    navBtn: 'btn-ghost cr-nav-btn',
+    checkinBtn: 'btn-primary btn-md cr-checkin-btn',
+    checkinBtnDone: 'btn-primary btn-md cr-checkin-btn',
+    calGrid: 'cr-cal-grid',
+    wd: 'cr-cal-wd',
+    day: 'cr-cal-day',
+    dayToday: 'cr-cal-day is-today',
+    dayEmpty: 'cr-cal-day is-empty',
+    dayNum: 'cr-cal-num',
+    stamp: 'cr-stamp',
+    stampRing: 'cr-stamp-ring',
+    stampText: 'cr-stamp-text',
+    note: 'cr-cal-note',
+    tableWrap: 'record-table-frame',
+    tableInner: 'record-table-container',
+    table: 'record-table-el',
+    thead: 'record-table-thead',
+    tbody: 'record-table-tbody',
+    th: 'record-table-th',
+    thNum: 'record-table-th cr-th-num',
+    td: '',
+    tdNum: 'text-right',
+    pillOk: 'pill-ok',
+    pillPend: 'pill-warn',
+    rfRowFirst: 'cr-rf-row is-first',
+    rfRow: 'cr-rf-row',
+    rfLabel: 'cr-rf-label',
+    rfField: 'cr-rf-field',
+    input: 'mf-input plain cr-rf-input',
+    saveBtn: 'btn-ghost btn-md cr-rf-btn',
+    copyBtn: 'btn-primary btn-md cr-rf-btn',
+    error: 'cr-rf-error'
+  };
+  var CR_STRINGS = {
+    'checkin.totalDays': { zh: '總簽到天數', en: 'Total Check-in Days', ko: '총 출석 일수', th: 'จำนวนวันเช็คอินทั้งหมด' },
+    'checkin.streak': { zh: '目前連續簽到天數', en: 'Current Streak', ko: '현재 연속 출석', th: 'เช็คอินต่อเนื่องปัจจุบัน' },
+    'checkin.totalRewards': { zh: '總簽到獎勵', en: 'Total Check-in Rewards', ko: '총 출석 보상', th: 'รางวัลเช็คอินทั้งหมด' },
+    'checkin.days': { zh: '{n} 天', en: '{n} days', ko: '{n}일', th: '{n} วัน' },
+    'checkin.points': { zh: '{n} 積分', en: '{n} Points', ko: '{n} 포인트', th: '{n} คะแนน' },
+    'checkin.checkInNow': { zh: '立即簽到', en: 'Check in now', ko: '지금 출석하기', th: 'เช็คอินเลย' },
+    'checkin.checkedIn': { zh: '今日已簽到', en: 'Checked in today', ko: '오늘 출석 완료', th: 'เช็คอินวันนี้แล้ว' },
+    'checkin.prevMonth': { zh: '上個月', en: 'Previous month', ko: '이전 달', th: 'เดือนก่อนหน้า' },
+    'checkin.nextMonth': { zh: '下個月', en: 'Next month', ko: '다음 달', th: 'เดือนถัดไป' },
+    'checkin.stamp': { zh: '已簽到', en: 'Done', ko: '완료', th: 'สำเร็จ' },
+    'checkin.stampLabel': { zh: '已完成簽到', en: 'Completed Attendance', ko: '출석 완료', th: 'เช็คอินสำเร็จ' },
+    'checkin.rule': { zh: '若漏簽一天，連續簽到天數將重置，下一次完成簽到時重新從 Day 1 開始。', en: 'Missing a day resets your streak — your next check-in starts again from Day 1.', ko: '하루라도 출석하지 않으면 연속 출석이 초기화되며, 다음 출석은 Day 1부터 다시 시작됩니다.', th: 'หากขาดเช็คอินหนึ่งวัน จำนวนวันต่อเนื่องจะถูกรีเซ็ต และการเช็คอินครั้งถัดไปจะเริ่มนับใหม่จาก Day 1' },
+    'checkin.records': { zh: '簽到紀錄', en: 'Check-in Records', ko: '출석 기록', th: 'ประวัติการเช็คอิน' },
+    'checkin.colDate': { zh: '日期', en: 'Date', ko: '날짜', th: 'วันที่' },
+    'checkin.colLevel': { zh: '會員等級', en: 'Member Level', ko: '회원 등급', th: 'ระดับสมาชิก' },
+    'checkin.colReward': { zh: '獎勵項目', en: 'Reward', ko: '보상', th: 'รางวัล' },
+    'checkin.colRemark': { zh: '備註', en: 'Remark', ko: '비고', th: 'หมายเหตุ' },
+    'checkin.noRecords': { zh: '本月尚無簽到紀錄。', en: 'No check-in records this month.', ko: '이번 달 출석 기록이 없습니다.', th: 'ยังไม่มีประวัติการเช็คอินในเดือนนี้' },
+    'checkin.remarkStreak': { zh: '連續簽到第 {n} 天', en: 'Streak Day {n}', ko: '연속 출석 {n}일차', th: 'เช็คอินต่อเนื่องวันที่ {n}' },
+    'checkin.remarkReset': { zh: '漏簽後重新計算 · Day 1', en: 'Streak reset after a missed day · Day 1', ko: '출석 누락으로 초기화 · Day 1', th: 'รีเซ็ตหลังขาดเช็คอิน · Day 1' },
+    'checkin.remarkBonus': { zh: '連續 7 天加碼獎勵', en: '7-day streak bonus', ko: '7일 연속 보너스', th: 'โบนัสต่อเนื่อง 7 วัน' },
+    'checkin.tierUnranked': { zh: '未排名', en: 'Unranked', ko: '순위 없음', th: 'ยังไม่จัดอันดับ' },
+    'referral.settings': { zh: '推薦碼設定', en: 'Referral Code Settings', ko: '추천 코드 설정', th: 'ตั้งค่ารหัสแนะนำ' },
+    'referral.code': { zh: '推薦碼', en: 'Referral Code', ko: '추천 코드', th: 'รหัสแนะนำ' },
+    'referral.link': { zh: '推薦連結', en: 'Referral Link', ko: '추천 링크', th: 'ลิงก์แนะนำ' },
+    'referral.save': { zh: '儲存', en: 'Save', ko: '저장', th: 'บันทึก' },
+    'referral.saved': { zh: '已儲存', en: 'Saved', ko: '저장됨', th: 'บันทึกแล้ว' },
+    'referral.copy': { zh: '複製', en: 'Copy', ko: '복사', th: 'คัดลอก' },
+    'referral.copied': { zh: '已複製', en: 'Copied', ko: '복사됨', th: 'คัดลอกแล้ว' },
+    'referral.codeRule': { zh: '推薦碼需為 4–12 位英文或數字。', en: 'Referral code must be 4–12 letters or numbers.', ko: '추천 코드는 영문 또는 숫자 4–12자여야 합니다.', th: 'รหัสแนะนำต้องเป็นตัวอักษรภาษาอังกฤษหรือตัวเลข 4–12 ตัว' },
+    'referral.friends': { zh: '推薦好友列表', en: 'Referred Friends', ko: '추천 친구 목록', th: 'รายชื่อเพื่อนที่แนะนำ' },
+    'referral.colReg': { zh: '註冊日期', en: 'Registration Date', ko: '가입일', th: 'วันที่สมัคร' },
+    'referral.colAccount': { zh: '好友帳號', en: 'Friend Account', ko: '친구 계정', th: 'บัญชีเพื่อน' },
+    'referral.colLogin': { zh: '最後登入日期', en: 'Last Login Date', ko: '최근 로그인일', th: 'วันที่เข้าสู่ระบบล่าสุด' },
+    'referral.colStatus': { zh: '狀態', en: 'Status', ko: '상태', th: 'สถานะ' },
+    'referral.colReward': { zh: '推薦獎勵', en: 'Referral Reward', ko: '추천 보상', th: 'รางวัลการแนะนำ' },
+    'referral.statusDone': { zh: '完成推薦', en: 'Completed', ko: '추천 완료', th: 'แนะนำสำเร็จ' },
+    'referral.statusPending': { zh: '尚未完成', en: 'Not completed', ko: '미완료', th: 'ยังไม่สำเร็จ' },
+    'nav.Event': { zh: '活動', en: 'Event', ko: '이벤트', th: 'กิจกรรม' },
+    'nav.Check-in': { zh: '每日簽到', en: 'Daily Check-in', ko: '출석 체크', th: 'เช็คอินรายวัน' },
+    'nav.Referral': { zh: '推薦中心', en: 'Referral Center', ko: '추천 센터', th: 'ศูนย์แนะนำ' }
+  };
+  function crLocale() {
+    var lang = (document.documentElement.getAttribute('lang') || 'en').slice(0, 2);
+    return CR_STRINGS['nav.Event'][lang] ? lang : 'en';
+  }
+  function crT(key, fallback) { var e = CR_STRINGS[key]; return (e && (e[crLocale()] || e.en)) || fallback; }
+  function crOnLocaleChange(fn) {
+    new MutationObserver(function () { fn(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  }
+  function crEsc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function crFmt(path, fallback, n) { return crT(path, fallback).replace('{n}', n); }
+  function crDayKey(d) {
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function crAddDays(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; }
+  function crReward(streakDay) {
+    var cycleDay = ((streakDay - 1) % 7) + 1;
+    return cycleDay === 7 ? 100 : cycleDay * 10;
+  }
+  function crIntlLang() {
+    var map = { zh: 'zh-Hant', en: 'en', ko: 'ko', th: 'th' };
+    return (map[crLocale()] || 'en') + '-u-ca-gregory';
+  }
+
+  function initCheckinPage() {
+    var root = document.getElementById('ci-root');
+    if (!root) return;
+    var today = new Date();
+    today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    var todayKey = crDayKey(today);
+    var checked = {};
+    for (var i = 1; i <= CR_CHECKIN_SPAN; i++) {
+      if (CR_CHECKIN_MISSED.indexOf(i) === -1) checked[crDayKey(crAddDays(today, -i))] = true;
+    }
+    var added = [];
+    try { added = JSON.parse(localStorage.getItem(CR_CHECKIN_KEY) || '[]') || []; } catch (e) { added = []; }
+    added.forEach(function (k) { checked[k] = true; });
+    var view = { y: today.getFullYear(), m: today.getMonth() };
+
+    function computeEntries() {
+      var keys = Object.keys(checked).sort();
+      var byKey = {};
+      keys.forEach(function (k, idx) {
+        var p = k.split('-');
+        var d = new Date(+p[0], +p[1] - 1, +p[2]);
+        var prev = byKey[crDayKey(crAddDays(d, -1))];
+        var streak = prev ? prev.streak + 1 : 1;
+        byKey[k] = { key: k, date: d, streak: streak, reward: crReward(streak), reset: streak === 1 && idx > 0 };
+      });
+      return byKey;
+    }
+
+    function render() {
+      var lang = crIntlLang();
+      var byKey = computeEntries();
+      var keys = Object.keys(byKey);
+      var totalReward = keys.reduce(function (sum, k) { return sum + byKey[k].reward; }, 0);
+      var cur = byKey[todayKey] || byKey[crDayKey(crAddDays(today, -1))];
+      var doneToday = !!checked[todayKey];
+
+      var stat = function (label, val) {
+        return '<div class="' + CR_CLS.stat + '"><div class="' + CR_CLS.statLabel + '">' + crEsc(label) + '</div><div class="' + CR_CLS.statVal + '">' + crEsc(val) + '</div></div>';
+      };
+      var summary = '<div class="' + CR_CLS.stats + '">' +
+        stat(crT('checkin.totalDays', 'Total Check-in Days'), crFmt('checkin.days', '{n} days', keys.length)) +
+        stat(crT('checkin.streak', 'Current Streak'), crFmt('checkin.days', '{n} days', cur ? cur.streak : 0)) +
+        stat(crT('checkin.totalRewards', 'Total Check-in Rewards'), crFmt('checkin.points', '{n} Points', totalReward.toLocaleString('en-US'))) +
+        '</div>';
+
+      var monthTitle = new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'long' }).format(new Date(view.y, view.m, 1));
+      var wdFmt = new Intl.DateTimeFormat(lang, { weekday: 'short' });
+      var wd = '';
+      for (var w = 0; w < 7; w++) wd += '<div class="' + CR_CLS.wd + '">' + crEsc(wdFmt.format(new Date(2023, 0, 1 + w))) + '</div>';
+      var first = new Date(view.y, view.m, 1);
+      var daysInMonth = new Date(view.y, view.m + 1, 0).getDate();
+      var cells = '';
+      for (var b = 0; b < first.getDay(); b++) cells += '<div class="' + CR_CLS.dayEmpty + '"></div>';
+      var stampLabel = crT('checkin.stampLabel', 'Completed Attendance');
+      for (var dd = 1; dd <= daysInMonth; dd++) {
+        var k = crDayKey(new Date(view.y, view.m, dd));
+        var stamp = checked[k]
+          ? '<span class="' + CR_CLS.stamp + '" role="img" aria-label="' + crEsc(stampLabel) + '"><span class="' + CR_CLS.stampRing + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span><small class="' + CR_CLS.stampText + '">' + crEsc(crT('checkin.stamp', 'Done')) + '</small></span>'
+          : '';
+        cells += '<div class="' + (k === todayKey ? CR_CLS.dayToday : CR_CLS.day) + '"><span class="' + CR_CLS.dayNum + '">' + dd + '</span>' + stamp + '</div>';
+      }
+      var arrow = function (dir) {
+        var path = dir === 'prev' ? 'm14 6-6 6 6 6' : 'm10 6 6 6-6 6';
+        var label = dir === 'prev' ? crT('checkin.prevMonth', 'Previous month') : crT('checkin.nextMonth', 'Next month');
+        return '<button type="button" class="' + CR_CLS.navBtn + '" data-ci-nav="' + dir + '" aria-label="' + crEsc(label) + '" title="' + crEsc(label) + '"><svg width="16" height="16" viewBox="0 0 24 24"><path d="' + path + '" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>';
+      };
+      var actionBtn = doneToday
+        ? '<button type="button" class="' + CR_CLS.checkinBtnDone + '" disabled>' + crEsc(crT('checkin.checkedIn', 'Checked in today')) + '</button>'
+        : '<button type="button" class="' + CR_CLS.checkinBtn + '" data-ci-checkin>' + crEsc(crT('checkin.checkInNow', 'Check in now')) + '</button>';
+      var calendar = '<div class="' + CR_CLS.panel + '">' +
+        '<div class="' + CR_CLS.calHead + '">' + arrow('prev') + '<h2 class="' + CR_CLS.calTitle + '">' + crEsc(monthTitle) + '</h2>' + arrow('next') + actionBtn + '</div>' +
+        '<div class="' + CR_CLS.calGrid + '">' + wd + cells + '</div>' +
+        '<p class="' + CR_CLS.note + '">' + crEsc(crT('checkin.rule', 'Missing a day resets your streak — your next check-in starts again from Day 1.')) + '</p>' +
+        '</div>';
+
+      var tier = crT('checkin.tierUnranked', 'Unranked');
+      var monthKeys = keys.filter(function (key) { var e = byKey[key]; return e.date.getFullYear() === view.y && e.date.getMonth() === view.m; }).sort().reverse();
+      var rows = monthKeys.map(function (key) {
+        var e = byKey[key];
+        var remark = e.reset ? crT('checkin.remarkReset', 'Streak reset after a missed day · Day 1')
+          : (((e.streak - 1) % 7) + 1 === 7 ? crT('checkin.remarkBonus', '7-day streak bonus') : crFmt('checkin.remarkStreak', 'Streak Day {n}', e.streak));
+        return '<tr><td class="' + CR_CLS.td + '">' + crEsc(key) + '</td><td class="' + CR_CLS.td + '">' + crEsc(tier) + '</td><td class="' + CR_CLS.td + '">' + crEsc(crFmt('checkin.points', '{n} Points', e.reward)) + '</td><td class="' + CR_CLS.td + '">' + crEsc(remark) + '</td></tr>';
+      }).join('');
+      if (!rows) rows = '<tr><td class="' + CR_CLS.td + '" colspan="4">' + crEsc(crT('checkin.noRecords', 'No check-in records this month.')) + '</td></tr>';
+      var th = function (path, fb) { return '<th class="' + CR_CLS.th + '">' + crEsc(crT(path, fb)) + '</th>'; };
+      var records = '<h2 class="' + CR_CLS.sectionTitle + '">' + crEsc(crT('checkin.records', 'Check-in Records')) + ' · ' + crEsc(monthTitle) + '</h2>' +
+        '<div class="' + CR_CLS.tableWrap + '"><div class="' + CR_CLS.tableInner + '"><table class="' + CR_CLS.table + '"><thead class="' + CR_CLS.thead + '"><tr>' +
+        th('checkin.colDate', 'Date') + th('checkin.colLevel', 'Member Level') + th('checkin.colReward', 'Reward') + th('checkin.colRemark', 'Remark') +
+        '</tr></thead><tbody class="' + CR_CLS.tbody + '">' + rows + '</tbody></table></div></div>';
+
+      root.innerHTML = summary + calendar + records;
+    }
+
+    root.addEventListener('click', function (e) {
+      var nav = e.target.closest('[data-ci-nav]');
+      if (nav) {
+        view.m += nav.getAttribute('data-ci-nav') === 'prev' ? -1 : 1;
+        if (view.m < 0) { view.m = 11; view.y--; }
+        if (view.m > 11) { view.m = 0; view.y++; }
+        render();
+        return;
+      }
+      if (e.target.closest('[data-ci-checkin]') && !checked[todayKey]) {
+        checked[todayKey] = true;
+        added.push(todayKey);
+        try { localStorage.setItem(CR_CHECKIN_KEY, JSON.stringify(added)); } catch (err) {}
+        view = { y: today.getFullYear(), m: today.getMonth() };
+        render();
+      }
+    });
+    crOnLocaleChange(render);
+    render();
+  }
+
+  function crMaskAccount(name) {
+    if (name.length <= 4) return name.charAt(0) + '***';
+    return name.slice(0, 2) + '***' + name.slice(-2);
+  }
+  function initReferralPage() {
+    var root = document.getElementById('rf-root');
+    if (!root) return;
+    var code = CR_REFERRAL_DEFAULT;
+    try { code = localStorage.getItem(CR_REFERRAL_KEY) || CR_REFERRAL_DEFAULT; } catch (e) {}
+
+    function render() {
+      var draft = root.querySelector('#rf-code');
+      var draftVal = draft ? draft.value : code;
+      var rows = CR_FRIENDS.map(function (f) {
+        var pill = f.done
+          ? '<span class="' + CR_CLS.pillOk + '">' + crEsc(crT('referral.statusDone', 'Completed')) + '</span>'
+          : '<span class="' + CR_CLS.pillPend + '">' + crEsc(crT('referral.statusPending', 'Not completed')) + '</span>';
+        return '<tr><td class="' + CR_CLS.td + '">' + crEsc(f.reg) + '</td><td class="' + CR_CLS.td + '">' + crEsc(crMaskAccount(f.account)) + '</td><td class="' + CR_CLS.td + '">' + crEsc(f.login) + '</td>' +
+          '<td class="' + CR_CLS.td + '">' + pill + '</td><td class="' + CR_CLS.tdNum + '">' + crEsc(f.reward.toLocaleString('en-US')) + '</td></tr>';
+      }).join('');
+      var th = function (path, fb, cls) { return '<th class="' + (cls || CR_CLS.th) + '">' + crEsc(crT(path, fb)) + '</th>'; };
+      root.innerHTML =
+        '<div class="' + CR_CLS.panel + '">' +
+          '<h2 class="' + CR_CLS.panelTitle + '">' + crEsc(crT('referral.settings', 'Referral Code Settings')) + '</h2>' +
+          '<div class="' + CR_CLS.rfRowFirst + '">' +
+            '<label class="' + CR_CLS.rfLabel + '" for="rf-code">' + crEsc(crT('referral.code', 'Referral Code')) + '</label>' +
+            '<div class="' + CR_CLS.rfField + '"><input id="rf-code" class="' + CR_CLS.input + '" maxlength="12" autocomplete="off" spellcheck="false" value="' + crEsc(draftVal) + '">' +
+            '<button type="button" class="' + CR_CLS.saveBtn + '" data-rf-save disabled>' + crEsc(crT('referral.save', 'Save')) + '</button></div>' +
+            '<p class="' + CR_CLS.error + '" data-rf-error hidden>' + crEsc(crT('referral.codeRule', 'Referral code must be 4–12 letters or numbers.')) + '</p>' +
+          '</div>' +
+          '<div class="' + CR_CLS.rfRow + '">' +
+            '<label class="' + CR_CLS.rfLabel + '" for="rf-link">' + crEsc(crT('referral.link', 'Referral Link')) + '</label>' +
+            '<div class="' + CR_CLS.rfField + '"><input id="rf-link" class="' + CR_CLS.input + '" readonly value="' + crEsc(CR_REFERRAL_BASE + code) + '">' +
+            '<button type="button" class="' + CR_CLS.copyBtn + '" data-rf-copy>' + crEsc(crT('referral.copy', 'Copy')) + '</button></div>' +
+          '</div>' +
+        '</div>' +
+        '<h2 class="' + CR_CLS.sectionTitle + '">' + crEsc(crT('referral.friends', 'Referred Friends')) + '</h2>' +
+        '<div class="' + CR_CLS.tableWrap + '"><div class="' + CR_CLS.tableInner + '"><table class="' + CR_CLS.table + '"><thead class="' + CR_CLS.thead + '"><tr>' +
+          th('referral.colReg', 'Registration Date') + th('referral.colAccount', 'Friend Account') + th('referral.colLogin', 'Last Login Date') + th('referral.colStatus', 'Status') + th('referral.colReward', 'Referral Reward', CR_CLS.thNum) +
+        '</tr></thead><tbody class="' + CR_CLS.tbody + '">' + rows + '</tbody></table></div></div>';
+      bind();
+    }
+
+    function bind() {
+      var codeInput = root.querySelector('#rf-code');
+      var linkInput = root.querySelector('#rf-link');
+      var saveBtn = root.querySelector('[data-rf-save]');
+      var copyBtn = root.querySelector('[data-rf-copy]');
+      var errEl = root.querySelector('[data-rf-error]');
+      function syncSave() {
+        var v = codeInput.value.trim();
+        var valid = CR_REFERRAL_RE.test(v);
+        errEl.hidden = valid || v === '';
+        saveBtn.disabled = !valid || v === code;
+      }
+      codeInput.addEventListener('input', syncSave);
+      saveBtn.addEventListener('click', function () {
+        var v = codeInput.value.trim();
+        if (!CR_REFERRAL_RE.test(v)) return;
+        code = v;
+        codeInput.value = v;
+        try { localStorage.setItem(CR_REFERRAL_KEY, v); } catch (e) {}
+        linkInput.value = CR_REFERRAL_BASE + v;
+        syncSave();
+        var o = saveBtn.textContent; saveBtn.textContent = crT('referral.saved', 'Saved'); setTimeout(function () { saveBtn.textContent = o; }, 1500);
+      });
+      copyBtn.addEventListener('click', function () {
+        var fallback = function () { linkInput.select(); try { document.execCommand('copy'); } catch (err) {} };
+        try {
+          var p = navigator.clipboard.writeText(linkInput.value);
+          if (p && p.catch) p.catch(fallback);
+        } catch (e) { fallback(); }
+        var o = copyBtn.textContent; copyBtn.textContent = crT('referral.copied', 'Copied'); setTimeout(function () { copyBtn.textContent = o; }, 1500);
+      });
+      syncSave();
+    }
+
+    crOnLocaleChange(render);
+    render();
+  }
+
   /* =================================== boot ================================ */
 
   ready(function () {
@@ -3111,6 +3443,8 @@
     initStudioSectionsSync();
     /* 開機套用已存語系(zh 基準時仍需把 about/FAQ 英文內文換成中文),
        並掛上 observer 讓其後動態產生的節點自動套用當前語系 */
+    initCheckinPage();
+    initReferralPage();
     applyLocale(currentLocale(), false);
     initLocaleObserver();
   });
