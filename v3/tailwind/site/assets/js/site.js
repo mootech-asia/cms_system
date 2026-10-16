@@ -2215,7 +2215,11 @@
       var o = saveBtn.textContent; saveBtn.textContent = fmt('saved', 'Saved'); setTimeout(function () { saveBtn.textContent = o; }, 1500);
     });
     copyBtn.addEventListener('click', function () {
-      try { navigator.clipboard.writeText(linkInput.value); } catch (e) {}
+      var fallback = function () { linkInput.select(); try { document.execCommand('copy'); } catch (err) {} };
+      try {
+        var p = navigator.clipboard.writeText(linkInput.value);
+        if (p && p.catch) p.catch(fallback);
+      } catch (e) { fallback(); }
       var o = copyBtn.textContent; copyBtn.textContent = fmt('copied', 'Copied'); setTimeout(function () { copyBtn.textContent = o; }, 1500);
     });
   }
