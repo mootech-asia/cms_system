@@ -198,6 +198,32 @@
   .ci-stamp small { display: none; }
 }
 
+/* 推薦好友頁（referral.html）：外框沿用 .ap-panel、輸入框 .ap-input、按鈕 .ap-btn-wide、
+   列表 .rec-table／.rec-pill；以下只補「標籤｜輸入框＋按鈕」的列排版。 */
+.rf-panel { margin-bottom: 24px; }
+.rf-row {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+.rf-panel .ap-panel-h + .rf-row { border-top: 0; padding-top: 0; }
+.rf-row:last-child { padding-bottom: 0; }
+.rf-label { font-size: 14px; font-weight: 600; color: var(--text-mid); }
+.rf-field { display: flex; gap: 10px; min-width: 0; }
+.rf-field .ap-input { flex: 1; min-width: 0; }
+.ap-btn-wide.rf-btn { flex: none; width: auto; min-width: 96px; margin: 0; padding: 0 20px; }
+.rf-error { grid-column: 2; }
+.rf-list-title { margin: 0 0 12px; }
+.rf-table { min-width: 640px; }
+@media (max-width: 768px) {
+  .rf-row { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
+  .rf-error { grid-column: 1; margin-top: 0; }
+  .ap-btn-wide.rf-btn { min-width: 76px; padding: 0 14px; }
+}
+
 /* 窄螢幕頂欄：Logo 允許隨可用寬度等比縮小（不被餘額框蓋住）；≤360px 再收窄餘額框。 */
 @media (max-width: 480px) {
   .topbar-logo { max-width: 100%; object-fit: contain; object-position: left center; }

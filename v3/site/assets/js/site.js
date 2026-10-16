@@ -2136,6 +2136,91 @@
   }
 
   /* ============================================================
+   * 推薦好友頁（referral.html）：推薦碼設定＋推薦連結（複製）＋推薦好友列表。
+   * 推薦碼寫入 localStorage，重新整理後保留；好友列表為示範資料，
+   * 帳號只顯示頭尾、中間以 *** 遮蔽，推薦獎勵以千分位顯示。
+   * ========================================================== */
+  var REFERRAL_STORE_KEY = 'cms_v3_referral_code';
+  var REFERRAL_DEFAULT_CODE = 'pro003';
+  var REFERRAL_LINK_BASE = 'https://www.100.gg/?partnercode=';
+  var REFERRAL_CODE_RE = /^[A-Za-z0-9]{4,12}$/;
+  var REFERRAL_FRIENDS = [
+    { reg: '2026-10-12 21:08', account: 'kimminjun88', login: '2026-10-15 22:41', done: true, reward: 10000 },
+    { reg: '2026-10-09 14:32', account: 'luckystar07', login: '2026-10-14 09:15', done: true, reward: 25000 },
+    { reg: '2026-10-05 18:47', account: 'parkjiho', login: '2026-10-05 19:02', done: false, reward: 0 },
+    { reg: '2026-09-28 11:20', account: 'winnerlee', login: '2026-10-13 23:58', done: true, reward: 150000 },
+    { reg: '2026-09-21 09:55', account: 'choiyuna22', login: '2026-09-22 10:31', done: false, reward: 0 },
+    { reg: '2026-09-14 16:03', account: 'jackpotking', login: '2026-10-11 20:17', done: true, reward: 1250000 },
+    { reg: '2026-09-02 13:44', account: 'hanseoyeon', login: '2026-09-02 13:50', done: false, reward: 0 }
+  ];
+  function rfMaskAccount(name) {
+    if (name.length <= 4) return name.charAt(0) + '***';
+    return name.slice(0, 2) + '***' + name.slice(-2);
+  }
+  function initReferralPage() {
+    var root = document.getElementById('rf-root');
+    if (!root) return;
+    function fmt(path, fallback) { return tr('t.referral.' + path, fallback); }
+    var code = REFERRAL_DEFAULT_CODE;
+    try { code = localStorage.getItem(REFERRAL_STORE_KEY) || REFERRAL_DEFAULT_CODE; } catch (e) {}
+
+    var rows = REFERRAL_FRIENDS.map(function (f) {
+      var pill = f.done
+        ? '<span class="rec-pill ok">' + escapeHtml(fmt('statusDone', 'Completed')) + '</span>'
+        : '<span class="rec-pill pend">' + escapeHtml(fmt('statusPending', 'Not completed')) + '</span>';
+      return '<tr><td>' + escapeHtml(f.reg) + '</td><td>' + escapeHtml(rfMaskAccount(f.account)) + '</td><td>' + escapeHtml(f.login) + '</td>' +
+        '<td class="rec-status-cell">' + pill + '</td><td>' + escapeHtml(f.reward.toLocaleString('en-US')) + '</td></tr>';
+    }).join('');
+
+    root.innerHTML =
+      '<div class="ap-panel rf-panel">' +
+        '<h2 class="ap-panel-h">' + escapeHtml(fmt('settings', 'Referral Code Settings')) + '</h2>' +
+        '<div class="rf-row">' +
+          '<label class="rf-label" for="rf-code">' + escapeHtml(fmt('code', 'Referral Code')) + '</label>' +
+          '<div class="rf-field"><input id="rf-code" class="ap-input" maxlength="12" autocomplete="off" spellcheck="false" value="' + escapeAttr(code) + '">' +
+          '<button type="button" class="ap-btn-wide outline rf-btn" data-rf-save disabled>' + escapeHtml(fmt('save', 'Save')) + '</button></div>' +
+          '<p class="ap-error rf-error" data-rf-error hidden>' + escapeHtml(fmt('codeRule', 'Referral code must be 4–12 letters or numbers.')) + '</p>' +
+        '</div>' +
+        '<div class="rf-row">' +
+          '<label class="rf-label" for="rf-link">' + escapeHtml(fmt('link', 'Referral Link')) + '</label>' +
+          '<div class="rf-field"><input id="rf-link" class="ap-input" readonly value="' + escapeAttr(REFERRAL_LINK_BASE + code) + '">' +
+          '<button type="button" class="ap-btn-wide ap-grad rf-btn" data-rf-copy>' + escapeHtml(fmt('copy', 'Copy')) + '</button></div>' +
+        '</div>' +
+      '</div>' +
+      '<h2 class="ap-panel-h rf-list-title">' + escapeHtml(fmt('friends', 'Referred Friends')) + '</h2>' +
+      '<div class="rec-table-scroll"><table class="rec-table rf-table"><thead><tr>' +
+        '<th>' + escapeHtml(fmt('colReg', 'Registration Date')) + '</th><th>' + escapeHtml(fmt('colAccount', 'Friend Account')) + '</th><th>' + escapeHtml(fmt('colLogin', 'Last Login Date')) + '</th><th>' + escapeHtml(fmt('colStatus', 'Status')) + '</th><th>' + escapeHtml(fmt('colReward', 'Referral Reward')) + '</th>' +
+      '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+
+    var codeInput = root.querySelector('#rf-code');
+    var linkInput = root.querySelector('#rf-link');
+    var saveBtn = root.querySelector('[data-rf-save]');
+    var copyBtn = root.querySelector('[data-rf-copy]');
+    var errEl = root.querySelector('[data-rf-error]');
+    function syncSave() {
+      var v = codeInput.value.trim();
+      var valid = REFERRAL_CODE_RE.test(v);
+      errEl.hidden = valid || v === '';
+      saveBtn.disabled = !valid || v === code;
+    }
+    codeInput.addEventListener('input', syncSave);
+    saveBtn.addEventListener('click', function () {
+      var v = codeInput.value.trim();
+      if (!REFERRAL_CODE_RE.test(v)) return;
+      code = v;
+      codeInput.value = v;
+      try { localStorage.setItem(REFERRAL_STORE_KEY, v); } catch (e) {}
+      linkInput.value = REFERRAL_LINK_BASE + v;
+      syncSave();
+      var o = saveBtn.textContent; saveBtn.textContent = fmt('saved', 'Saved'); setTimeout(function () { saveBtn.textContent = o; }, 1500);
+    });
+    copyBtn.addEventListener('click', function () {
+      try { navigator.clipboard.writeText(linkInput.value); } catch (e) {}
+      var o = copyBtn.textContent; copyBtn.textContent = fmt('copied', 'Copied'); setTimeout(function () { copyBtn.textContent = o; }, 1500);
+    });
+  }
+
+  /* ============================================================
    * Support 頁：9 個分頁 + FAQ 手風琴 + Exclusion turnover list 篩選。
    * 內容為既有 SUP_CONTENT / EXCLUSION / FAQ_GROUPS 純文字資料，非新增資料模型。
    * ========================================================== */
@@ -2419,7 +2504,7 @@
   var PROMOTION_ACTION_TARGETS = {
     'first-deposit': 'deposit.html',
     'daily-reload': 'deposit.html',
-    'refer-and-earn': 'account-overview.html',
+    'refer-and-earn': 'referral.html',
     'vip-cashback': 'account-overview.html'
   };
   var PROMOTION_ART = {
@@ -3130,6 +3215,7 @@
     safe(initPersonalInfoPage);
     safe(initRecordPage);
     safe(initCheckinPage);
+    safe(initReferralPage);
     safe(initFavoritesPage);
     safe(initSupportPage);
     safe(initSportsPage);

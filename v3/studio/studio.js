@@ -131,6 +131,8 @@
     { label: 'Withdrawal', file: 'withdrawal.html' },
     { label: 'Personal Info', file: 'personal-info.html' },
     { label: 'Security Center', file: 'security-center.html' },
+    { label: 'Referral', file: 'referral.html' },
+    { label: 'Check-in', file: 'check-in.html' },
     { label: 'Customer Service', file: 'customer-service.html' },
     { label: 'Support', file: 'support.html' },
     { label: 'Betting Record', file: 'betting-record.html' },
