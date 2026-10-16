@@ -4481,3 +4481,61 @@ body.usc-sidebar-open .mobile-bottom-nav {
    DOMContentLoaded handler 跑完後加上；JS 失效時 5s 後由動畫強制顯示，不會永遠空白。 */
 html:not(.i18n-ready) body { opacity: 0; animation: i18n-reveal 0s 5s forwards; }
 @keyframes i18n-reveal { to { opacity: 1; } }
+
+/* 每日簽到（check-in.html）與推薦中心（referral.html）：外框沿用 .sec-card、
+   表格沿用 .record-table、狀態沿用 .status-text-*、按鈕沿用 .record-confirm-btn、
+   輸入框沿用 .pay-input；以下只補摘要格、月曆格線、簽到印章與推薦碼列排版。 */
+.cr-root { display: flex; flex-direction: column; gap: 24px; }
+.cr-panel { padding: 16px; }
+.cr-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.cr-stat { padding: 16px 20px; border-radius: 14px; background: #fff; }
+.cr-stat-label { font-size: 13px; font-weight: 700; color: var(--c-subtitle); }
+.cr-stat-val { margin-top: 4px; font-size: 22px; font-weight: 800; color: var(--c-navy); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cr-panel-title, .cr-section-title { margin: 0; font-size: 18px; font-weight: 700; color: var(--c-navy); }
+.cr-panel-title { margin-bottom: 16px; }
+.cr-section-title { margin-bottom: -24px; }
+.cr-cal-head { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.cr-cal-title { margin: 0; min-width: 150px; text-align: center; font-size: 18px; font-weight: 700; color: var(--c-navy); }
+.cr-nav-btn { display: grid; place-items: center; width: 36px; height: 36px; flex: none; border-radius: 999px; border: 1px solid var(--c-border); background: #fff; color: var(--c-navy); }
+.cr-nav-btn:hover { border-color: var(--c-navy); }
+.cr-checkin-btn { margin-left: auto; }
+.cr-checkin-btn:disabled, .cr-rf-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.cr-cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
+.cr-cal-wd { padding: 4px 0; text-align: center; font-size: 12px; font-weight: 700; color: var(--c-subtitle); }
+.cr-cal-day { position: relative; min-height: 76px; padding: 6px 8px; border-radius: 10px; border: 1px solid var(--c-border); background: #fff; }
+.cr-cal-day.is-today { border-color: var(--c-pink); }
+.cr-cal-day.is-empty { border-color: transparent; background: transparent; }
+.cr-cal-num { font-size: 12px; font-weight: 700; color: var(--c-navy); font-variant-numeric: tabular-nums; }
+.cr-stamp { position: absolute; inset: 22px 0 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: var(--c-pink); }
+.cr-stamp-ring { display: grid; place-items: center; width: 32px; height: 32px; border: 2px solid currentColor; border-radius: 999px; background: color-mix(in srgb, var(--c-pink) 10%, transparent); transform: rotate(-12deg); }
+.cr-stamp-text { font-size: 10px; font-weight: 700; }
+.cr-cal-note { margin: 14px 0 0; font-size: 12.5px; color: var(--c-subtitle); }
+.cr-table-wrap { margin-top: 0; }
+.cr-rf-row { display: grid; grid-template-columns: 140px minmax(0, 1fr); align-items: center; column-gap: 16px; padding-top: 14px; border-top: 1px solid var(--c-border-soft); }
+.cr-rf-row.is-first { padding: 0 0 14px; border-top: 0; }
+.cr-rf-label { font-size: 14px; font-weight: 700; color: var(--c-navy); }
+.cr-rf-field { display: flex; gap: 10px; min-width: 0; }
+.cr-rf-input { flex: 1; min-width: 0; margin-top: 0; }
+.cr-rf-btn { flex: none; min-width: 96px; }
+.cr-rf-save { height: 40px; padding: 0 16px; border-radius: 8px; border: 1px solid var(--c-navy); background: #fff; color: var(--c-navy); font-weight: 700; white-space: nowrap; }
+.cr-rf-error { grid-column: 2; margin: 8px 0 0; font-size: 12.5px; font-weight: 600; color: var(--c-danger); }
+@media (max-width: 767.98px) {
+  .cr-stats { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .cr-stat { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; }
+  .cr-stat-val { margin-top: 0; font-size: 15px; }
+  .cr-cal-head { flex-wrap: wrap; }
+  .cr-cal-title { flex: 1; min-width: 0; }
+  .cr-checkin-btn { width: 100%; margin-left: 0; }
+  .cr-rf-row { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
+  .cr-rf-error { grid-column: 1; margin-top: 0; }
+  .cr-rf-btn { min-width: 76px; }
+}
+@media (max-width: 1279.98px) {
+  .cr-cal-grid { gap: 4px; }
+  .cr-cal-day { min-height: 56px; padding: 3px 4px; border-radius: 8px; }
+  .cr-cal-num { font-size: 10.5px; line-height: 1.2; }
+  .cr-stamp { inset: 24px 0 4px; }
+  .cr-stamp-ring { width: 20px; height: 20px; border-width: 1.5px; }
+  .cr-stamp-ring svg { width: 12px; height: 12px; }
+  .cr-stamp-text { display: none; }
+}

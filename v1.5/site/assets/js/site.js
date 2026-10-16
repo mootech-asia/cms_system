@@ -26,7 +26,7 @@
   /* 對照 layouts/usercenter.vue 覆蓋的頁面清單 */
   var USER_CENTER_PAGES = ['account', 'deposit', 'withdrawal', 'betting-record', 'deposit-record',
     'profit-loss', 'withdrawal-record', 'withdrawal-detail', 'account-record', 'banking-details',
-    'personal-info', 'security', 'change-password', 'transaction-info'];
+    'personal-info', 'security', 'change-password', 'transaction-info', 'check-in', 'referral'];
   function isUserCenterPage() { return USER_CENTER_PAGES.indexOf(pageName()) !== -1; }
   /* 對照真實網站截圖:只有儲值/提款兩個交易頁面不顯示右下角浮動客服 */
   var HIDE_QUICK_SIDEBAR_PAGES = ['deposit', 'withdrawal'];
@@ -414,6 +414,8 @@
    * 會員中心殼 — UserNavbar.vue(手機標題列)/ UserSidebar.vue
    * ================================================================ */
   var USER_CENTER_TITLES = {
+    'check-in': 'nav.Check-in',
+    referral: 'nav.Referral',
     account: 'userCenter.sidebar.accountOverview',
     deposit: 'userCenter.deposit',
     withdrawal: 'userCenter.withdrawal',
@@ -986,10 +988,296 @@
     initDateRangePicker: initDateRangePicker,
   };
 
+  /* ============================================================
+   * 每日簽到（check-in.html）與推薦中心（referral.html）。
+   * 簽到：月曆可切上／下個月，已簽到日期蓋章、未簽到留白；連續天數依前一天
+   * 是否有簽到逐日累計，漏簽即從 Day 1 重算。簽到歷史為相對「今天」產生的
+   * 示範資料，今日簽到寫入 localStorage。
+   * 推薦中心：推薦碼（4–12 位英數，寫入 localStorage）＋推薦連結（複製）＋
+   * 推薦好友列表（示範資料；帳號中間以 *** 遮蔽，獎勵千分位）。
+   * ========================================================== */
+  var CR_CHECKIN_KEY = 'cms_v15_checkin_added';
+  var CR_REFERRAL_KEY = 'cms_v15_referral_code';
+  var CR_CHECKIN_MISSED = [9, 24, 31, 32, 33];
+  var CR_CHECKIN_SPAN = 45;
+  var CR_REFERRAL_DEFAULT = 'pro003';
+  var CR_REFERRAL_BASE = 'https://www.100.gg/?partnercode=';
+  var CR_REFERRAL_RE = /^[A-Za-z0-9]{4,12}$/;
+  var CR_FRIENDS = [
+    { reg: '2026-10-12 21:08', account: 'kimminjun88', login: '2026-10-15 22:41', done: true, reward: 10000 },
+    { reg: '2026-10-09 14:32', account: 'luckystar07', login: '2026-10-14 09:15', done: true, reward: 25000 },
+    { reg: '2026-10-05 18:47', account: 'parkjiho', login: '2026-10-05 19:02', done: false, reward: 0 },
+    { reg: '2026-09-28 11:20', account: 'winnerlee', login: '2026-10-13 23:58', done: true, reward: 150000 },
+    { reg: '2026-09-21 09:55', account: 'choiyuna22', login: '2026-09-22 10:31', done: false, reward: 0 },
+    { reg: '2026-09-14 16:03', account: 'jackpotking', login: '2026-10-11 20:17', done: true, reward: 1250000 },
+    { reg: '2026-09-02 13:44', account: 'hanseoyeon', login: '2026-09-02 13:50', done: false, reward: 0 }
+  ];
+  var CR_CLS = {
+    stats: 'cr-stats',
+    stat: 'cr-stat',
+    statLabel: 'cr-stat-label',
+    statVal: 'cr-stat-val',
+    panel: 'sec-card cr-panel',
+    panelTitle: 'cr-panel-title',
+    sectionTitle: 'cr-section-title',
+    calHead: 'cr-cal-head',
+    calTitle: 'cr-cal-title',
+    navBtn: 'cr-nav-btn',
+    checkinBtn: 'record-confirm-btn cr-checkin-btn',
+    checkinBtnDone: 'record-confirm-btn cr-checkin-btn',
+    calGrid: 'cr-cal-grid',
+    wd: 'cr-cal-wd',
+    day: 'cr-cal-day',
+    dayToday: 'cr-cal-day is-today',
+    dayEmpty: 'cr-cal-day is-empty',
+    dayNum: 'cr-cal-num',
+    stamp: 'cr-stamp',
+    stampRing: 'cr-stamp-ring',
+    stampText: 'cr-stamp-text',
+    note: 'cr-cal-note',
+    tableWrap: 'record-table-wrap cr-table-wrap',
+    tableInner: '',
+    table: 'record-table',
+    thead: '',
+    tbody: '',
+    th: '',
+    thNum: '',
+    td: '',
+    tdNum: '',
+    pillOk: 'status-text-approved',
+    pillPend: 'status-text-pending',
+    rfRowFirst: 'cr-rf-row is-first',
+    rfRow: 'cr-rf-row',
+    rfLabel: 'cr-rf-label',
+    rfField: 'cr-rf-field',
+    input: 'pay-input cr-rf-input',
+    saveBtn: 'cr-rf-btn cr-rf-save',
+    copyBtn: 'record-confirm-btn cr-rf-btn',
+    error: 'cr-rf-error'
+  };
+  function crT(key, fallback) { var v = t(key); return v && v !== key ? v : fallback; }
+  function crLocale() { return currentLocale(); }
+  function crOnLocaleChange(fn) { document.addEventListener('win15:localechange', fn); }
+  function crEsc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function crFmt(path, fallback, n) { return crT(path, fallback).replace('{n}', n); }
+  function crDayKey(d) {
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function crAddDays(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; }
+  function crReward(streakDay) {
+    var cycleDay = ((streakDay - 1) % 7) + 1;
+    return cycleDay === 7 ? 100 : cycleDay * 10;
+  }
+  function crIntlLang() {
+    var map = { zh: 'zh-Hant', en: 'en', ko: 'ko', th: 'th' };
+    return (map[crLocale()] || 'en') + '-u-ca-gregory';
+  }
+
+  function initCheckinPage() {
+    var root = document.getElementById('ci-root');
+    if (!root) return;
+    var today = new Date();
+    today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    var todayKey = crDayKey(today);
+    var checked = {};
+    for (var i = 1; i <= CR_CHECKIN_SPAN; i++) {
+      if (CR_CHECKIN_MISSED.indexOf(i) === -1) checked[crDayKey(crAddDays(today, -i))] = true;
+    }
+    var added = [];
+    try { added = JSON.parse(localStorage.getItem(CR_CHECKIN_KEY) || '[]') || []; } catch (e) { added = []; }
+    added.forEach(function (k) { checked[k] = true; });
+    var view = { y: today.getFullYear(), m: today.getMonth() };
+
+    function computeEntries() {
+      var keys = Object.keys(checked).sort();
+      var byKey = {};
+      keys.forEach(function (k, idx) {
+        var p = k.split('-');
+        var d = new Date(+p[0], +p[1] - 1, +p[2]);
+        var prev = byKey[crDayKey(crAddDays(d, -1))];
+        var streak = prev ? prev.streak + 1 : 1;
+        byKey[k] = { key: k, date: d, streak: streak, reward: crReward(streak), reset: streak === 1 && idx > 0 };
+      });
+      return byKey;
+    }
+
+    function render() {
+      var lang = crIntlLang();
+      var byKey = computeEntries();
+      var keys = Object.keys(byKey);
+      var totalReward = keys.reduce(function (sum, k) { return sum + byKey[k].reward; }, 0);
+      var cur = byKey[todayKey] || byKey[crDayKey(crAddDays(today, -1))];
+      var doneToday = !!checked[todayKey];
+
+      var stat = function (label, val) {
+        return '<div class="' + CR_CLS.stat + '"><div class="' + CR_CLS.statLabel + '">' + crEsc(label) + '</div><div class="' + CR_CLS.statVal + '">' + crEsc(val) + '</div></div>';
+      };
+      var summary = '<div class="' + CR_CLS.stats + '">' +
+        stat(crT('checkin.totalDays', 'Total Check-in Days'), crFmt('checkin.days', '{n} days', keys.length)) +
+        stat(crT('checkin.streak', 'Current Streak'), crFmt('checkin.days', '{n} days', cur ? cur.streak : 0)) +
+        stat(crT('checkin.totalRewards', 'Total Check-in Rewards'), crFmt('checkin.points', '{n} Points', totalReward.toLocaleString('en-US'))) +
+        '</div>';
+
+      var monthTitle = new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'long' }).format(new Date(view.y, view.m, 1));
+      var wdFmt = new Intl.DateTimeFormat(lang, { weekday: 'short' });
+      var wd = '';
+      for (var w = 0; w < 7; w++) wd += '<div class="' + CR_CLS.wd + '">' + crEsc(wdFmt.format(new Date(2023, 0, 1 + w))) + '</div>';
+      var first = new Date(view.y, view.m, 1);
+      var daysInMonth = new Date(view.y, view.m + 1, 0).getDate();
+      var cells = '';
+      for (var b = 0; b < first.getDay(); b++) cells += '<div class="' + CR_CLS.dayEmpty + '"></div>';
+      var stampLabel = crT('checkin.stampLabel', 'Completed Attendance');
+      for (var dd = 1; dd <= daysInMonth; dd++) {
+        var k = crDayKey(new Date(view.y, view.m, dd));
+        var stamp = checked[k]
+          ? '<span class="' + CR_CLS.stamp + '" role="img" aria-label="' + crEsc(stampLabel) + '"><span class="' + CR_CLS.stampRing + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span><small class="' + CR_CLS.stampText + '">' + crEsc(crT('checkin.stamp', 'Done')) + '</small></span>'
+          : '';
+        cells += '<div class="' + (k === todayKey ? CR_CLS.dayToday : CR_CLS.day) + '"><span class="' + CR_CLS.dayNum + '">' + dd + '</span>' + stamp + '</div>';
+      }
+      var arrow = function (dir) {
+        var path = dir === 'prev' ? 'm14 6-6 6 6 6' : 'm10 6 6 6-6 6';
+        var label = dir === 'prev' ? crT('checkin.prevMonth', 'Previous month') : crT('checkin.nextMonth', 'Next month');
+        return '<button type="button" class="' + CR_CLS.navBtn + '" data-ci-nav="' + dir + '" aria-label="' + crEsc(label) + '" title="' + crEsc(label) + '"><svg width="16" height="16" viewBox="0 0 24 24"><path d="' + path + '" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>';
+      };
+      var actionBtn = doneToday
+        ? '<button type="button" class="' + CR_CLS.checkinBtnDone + '" disabled>' + crEsc(crT('checkin.checkedIn', 'Checked in today')) + '</button>'
+        : '<button type="button" class="' + CR_CLS.checkinBtn + '" data-ci-checkin>' + crEsc(crT('checkin.checkInNow', 'Check in now')) + '</button>';
+      var calendar = '<div class="' + CR_CLS.panel + '">' +
+        '<div class="' + CR_CLS.calHead + '">' + arrow('prev') + '<h2 class="' + CR_CLS.calTitle + '">' + crEsc(monthTitle) + '</h2>' + arrow('next') + actionBtn + '</div>' +
+        '<div class="' + CR_CLS.calGrid + '">' + wd + cells + '</div>' +
+        '<p class="' + CR_CLS.note + '">' + crEsc(crT('checkin.rule', 'Missing a day resets your streak — your next check-in starts again from Day 1.')) + '</p>' +
+        '</div>';
+
+      var tier = crT('checkin.tierUnranked', 'Unranked');
+      var monthKeys = keys.filter(function (key) { var e = byKey[key]; return e.date.getFullYear() === view.y && e.date.getMonth() === view.m; }).sort().reverse();
+      var rows = monthKeys.map(function (key) {
+        var e = byKey[key];
+        var remark = e.reset ? crT('checkin.remarkReset', 'Streak reset after a missed day · Day 1')
+          : (((e.streak - 1) % 7) + 1 === 7 ? crT('checkin.remarkBonus', '7-day streak bonus') : crFmt('checkin.remarkStreak', 'Streak Day {n}', e.streak));
+        return '<tr><td class="' + CR_CLS.td + '">' + crEsc(key) + '</td><td class="' + CR_CLS.td + '">' + crEsc(tier) + '</td><td class="' + CR_CLS.td + '">' + crEsc(crFmt('checkin.points', '{n} Points', e.reward)) + '</td><td class="' + CR_CLS.td + '">' + crEsc(remark) + '</td></tr>';
+      }).join('');
+      if (!rows) rows = '<tr><td class="' + CR_CLS.td + '" colspan="4">' + crEsc(crT('checkin.noRecords', 'No check-in records this month.')) + '</td></tr>';
+      var th = function (path, fb) { return '<th class="' + CR_CLS.th + '">' + crEsc(crT(path, fb)) + '</th>'; };
+      var records = '<h2 class="' + CR_CLS.sectionTitle + '">' + crEsc(crT('checkin.records', 'Check-in Records')) + ' · ' + crEsc(monthTitle) + '</h2>' +
+        '<div class="' + CR_CLS.tableWrap + '"><div class="' + CR_CLS.tableInner + '"><table class="' + CR_CLS.table + '"><thead class="' + CR_CLS.thead + '"><tr>' +
+        th('checkin.colDate', 'Date') + th('checkin.colLevel', 'Member Level') + th('checkin.colReward', 'Reward') + th('checkin.colRemark', 'Remark') +
+        '</tr></thead><tbody class="' + CR_CLS.tbody + '">' + rows + '</tbody></table></div></div>';
+
+      root.innerHTML = summary + calendar + records;
+    }
+
+    root.addEventListener('click', function (e) {
+      var nav = e.target.closest('[data-ci-nav]');
+      if (nav) {
+        view.m += nav.getAttribute('data-ci-nav') === 'prev' ? -1 : 1;
+        if (view.m < 0) { view.m = 11; view.y--; }
+        if (view.m > 11) { view.m = 0; view.y++; }
+        render();
+        return;
+      }
+      if (e.target.closest('[data-ci-checkin]') && !checked[todayKey]) {
+        checked[todayKey] = true;
+        added.push(todayKey);
+        try { localStorage.setItem(CR_CHECKIN_KEY, JSON.stringify(added)); } catch (err) {}
+        view = { y: today.getFullYear(), m: today.getMonth() };
+        render();
+      }
+    });
+    crOnLocaleChange(render);
+    render();
+  }
+
+  function crMaskAccount(name) {
+    if (name.length <= 4) return name.charAt(0) + '***';
+    return name.slice(0, 2) + '***' + name.slice(-2);
+  }
+  function initReferralPage() {
+    var root = document.getElementById('rf-root');
+    if (!root) return;
+    var code = CR_REFERRAL_DEFAULT;
+    try { code = localStorage.getItem(CR_REFERRAL_KEY) || CR_REFERRAL_DEFAULT; } catch (e) {}
+
+    function render() {
+      var draft = root.querySelector('#rf-code');
+      var draftVal = draft ? draft.value : code;
+      var rows = CR_FRIENDS.map(function (f) {
+        var pill = f.done
+          ? '<span class="' + CR_CLS.pillOk + '">' + crEsc(crT('referral.statusDone', 'Completed')) + '</span>'
+          : '<span class="' + CR_CLS.pillPend + '">' + crEsc(crT('referral.statusPending', 'Not completed')) + '</span>';
+        return '<tr><td class="' + CR_CLS.td + '">' + crEsc(f.reg) + '</td><td class="' + CR_CLS.td + '">' + crEsc(crMaskAccount(f.account)) + '</td><td class="' + CR_CLS.td + '">' + crEsc(f.login) + '</td>' +
+          '<td class="' + CR_CLS.td + '">' + pill + '</td><td class="' + CR_CLS.tdNum + '">' + crEsc(f.reward.toLocaleString('en-US')) + '</td></tr>';
+      }).join('');
+      var th = function (path, fb, cls) { return '<th class="' + (cls || CR_CLS.th) + '">' + crEsc(crT(path, fb)) + '</th>'; };
+      root.innerHTML =
+        '<div class="' + CR_CLS.panel + '">' +
+          '<h2 class="' + CR_CLS.panelTitle + '">' + crEsc(crT('referral.settings', 'Referral Code Settings')) + '</h2>' +
+          '<div class="' + CR_CLS.rfRowFirst + '">' +
+            '<label class="' + CR_CLS.rfLabel + '" for="rf-code">' + crEsc(crT('referral.code', 'Referral Code')) + '</label>' +
+            '<div class="' + CR_CLS.rfField + '"><input id="rf-code" class="' + CR_CLS.input + '" maxlength="12" autocomplete="off" spellcheck="false" value="' + crEsc(draftVal) + '">' +
+            '<button type="button" class="' + CR_CLS.saveBtn + '" data-rf-save disabled>' + crEsc(crT('referral.save', 'Save')) + '</button></div>' +
+            '<p class="' + CR_CLS.error + '" data-rf-error hidden>' + crEsc(crT('referral.codeRule', 'Referral code must be 4–12 letters or numbers.')) + '</p>' +
+          '</div>' +
+          '<div class="' + CR_CLS.rfRow + '">' +
+            '<label class="' + CR_CLS.rfLabel + '" for="rf-link">' + crEsc(crT('referral.link', 'Referral Link')) + '</label>' +
+            '<div class="' + CR_CLS.rfField + '"><input id="rf-link" class="' + CR_CLS.input + '" readonly value="' + crEsc(CR_REFERRAL_BASE + code) + '">' +
+            '<button type="button" class="' + CR_CLS.copyBtn + '" data-rf-copy>' + crEsc(crT('referral.copy', 'Copy')) + '</button></div>' +
+          '</div>' +
+        '</div>' +
+        '<h2 class="' + CR_CLS.sectionTitle + '">' + crEsc(crT('referral.friends', 'Referred Friends')) + '</h2>' +
+        '<div class="' + CR_CLS.tableWrap + '"><div class="' + CR_CLS.tableInner + '"><table class="' + CR_CLS.table + '"><thead class="' + CR_CLS.thead + '"><tr>' +
+          th('referral.colReg', 'Registration Date') + th('referral.colAccount', 'Friend Account') + th('referral.colLogin', 'Last Login Date') + th('referral.colStatus', 'Status') + th('referral.colReward', 'Referral Reward', CR_CLS.thNum) +
+        '</tr></thead><tbody class="' + CR_CLS.tbody + '">' + rows + '</tbody></table></div></div>';
+      bind();
+    }
+
+    function bind() {
+      var codeInput = root.querySelector('#rf-code');
+      var linkInput = root.querySelector('#rf-link');
+      var saveBtn = root.querySelector('[data-rf-save]');
+      var copyBtn = root.querySelector('[data-rf-copy]');
+      var errEl = root.querySelector('[data-rf-error]');
+      function syncSave() {
+        var v = codeInput.value.trim();
+        var valid = CR_REFERRAL_RE.test(v);
+        errEl.hidden = valid || v === '';
+        saveBtn.disabled = !valid || v === code;
+      }
+      codeInput.addEventListener('input', syncSave);
+      saveBtn.addEventListener('click', function () {
+        var v = codeInput.value.trim();
+        if (!CR_REFERRAL_RE.test(v)) return;
+        code = v;
+        codeInput.value = v;
+        try { localStorage.setItem(CR_REFERRAL_KEY, v); } catch (e) {}
+        linkInput.value = CR_REFERRAL_BASE + v;
+        syncSave();
+        var o = saveBtn.textContent; saveBtn.textContent = crT('referral.saved', 'Saved'); setTimeout(function () { saveBtn.textContent = o; }, 1500);
+      });
+      copyBtn.addEventListener('click', function () {
+        var fallback = function () { linkInput.select(); try { document.execCommand('copy'); } catch (err) {} };
+        try {
+          var p = navigator.clipboard.writeText(linkInput.value);
+          if (p && p.catch) p.catch(fallback);
+        } catch (e) { fallback(); }
+        var o = copyBtn.textContent; copyBtn.textContent = crT('referral.copied', 'Copied'); setTimeout(function () { copyBtn.textContent = o; }, 1500);
+      });
+      syncSave();
+    }
+
+    crOnLocaleChange(render);
+    render();
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     mountChrome();
     applyLocale();
     if (typeof window.WIN15_PAGE_INIT === 'function') window.WIN15_PAGE_INIT();
+    initCheckinPage();
+    initReferralPage();
   });
 })();
 
