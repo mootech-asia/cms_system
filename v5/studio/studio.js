@@ -96,6 +96,8 @@
     { path: 'profit-loss.html', label: '會員 - 損益報表' },
     { path: 'personal-info.html', label: '會員 - 個人資料' },
     { path: 'security.html', label: '會員 - 安全中心' },
+    { path: 'referral.html', label: '會員 - 推薦中心' },
+    { path: 'check-in.html', label: '活動 - 每日簽到' },
     { path: 'change-password.html', label: '會員 - 修改密碼' },
     { path: 'about.html', label: '關於我們' },
     { path: 'ui-kit.html', label: 'UI Kit' },
