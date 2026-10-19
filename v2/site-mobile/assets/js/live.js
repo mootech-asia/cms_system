@@ -17,17 +17,17 @@
     var players = 40 + ((i * 37) % 260);
     var fav = window.__v2mFav;
     var favId = fav ? fav.favIdFor(provider, i, 'live') : '';
-    return '<a href="#" class="rounded-2xl overflow-hidden bg-bg-card border border-line" data-vendor="' + esc(provider) + '">' +
-      '<div class="relative aspect-square overflow-hidden bg-bg-elev">' +
+    return '<a href="#" class="rounded-2xl overflow-hidden bg-surface border border-border-soft" data-vendor="' + esc(provider) + '">' +
+      '<div class="relative aspect-square overflow-hidden bg-surface">' +
         '<img src="' + esc(m.image || '') + '" alt="" class="h-full w-full object-cover" style="object-position:' + esc(m.focalPoint || '50% 50%') + '" loading="lazy">' +
         '<span class="absolute left-2 top-2 inline-flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-bold text-white">' +
-          '<span class="relative flex h-1.5 w-1.5"><span class="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping" style="background:var(--live-dot)"></span><span class="relative h-1.5 w-1.5 rounded-full" style="background:var(--live-dot)"></span></span><span class="animate-pulse">LIVE</span></span>' +
+          '<span class="relative flex h-1.5 w-1.5"><span class="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping" style="background:rgb(var(--c-danger))"></span><span class="relative h-1.5 w-1.5 rounded-full" style="background:rgb(var(--c-danger))"></span></span><span class="animate-pulse">LIVE</span></span>' +
         (fav ? fav.favToggleHtml(favId, 'right-2 top-2') : '') +
         '<span class="absolute right-2 bottom-2 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-semibold text-white">' + players + '</span>' +
       '</div>' +
       '<div class="p-2.5">' +
         '<p class="text-[12.5px] font-bold text-text truncate">' + esc(name) + '</p>' +
-        '<p class="text-[10.5px] text-text-dim truncate">' + esc(provider) + '</p>' +
+        '<p class="text-[10.5px] text-text-3 truncate">' + esc(provider) + '</p>' +
       '</div>' +
     '</a>';
   }

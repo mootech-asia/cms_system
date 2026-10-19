@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh" data-skin="win100">
+<html lang="zh" data-theme="win100">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -9,25 +9,25 @@
   (function () {
     try {
       var s = localStorage.getItem('win100-static-skin');
-      if (s) document.documentElement.setAttribute('data-skin', s);
+      if (s) document.documentElement.setAttribute('data-theme', s);
     } catch (e) {}
   })();
 </script>
 </head>
 <body class="min-h-screen bg-bg text-text font-body pb-20" data-category="casino">
 
-<header class="sticky top-0 z-40 bg-bg/95 backdrop-blur-sm border-b border-line">
+<header class="sticky top-0 z-40 bg-bg/95 backdrop-blur-sm border-b border-border-soft">
   <div class="flex items-center justify-between px-4 pt-3 pb-2.5">
     <a href="index.html" class="flex items-center">
       <img src="../site/logo.png" alt="Logo" class="h-8 w-auto object-contain">
     </a>
     <div class="flex items-center gap-2">
-      <div class="hidden rounded-xl border border-line-hi bg-bg-card px-2.5 py-1 font-mono text-[11px] leading-[1.45] text-text-mid shadow-[inset_0_1px_0_rgba(255,255,255,.08)]" data-auth-account>
-        <p class="relative whitespace-nowrap"><span data-i18n="header.balance">餘額</span>: <b class="font-bold text-accent" data-m-balance data-raw="123456789012.34">123,456,789,012.34</b></p>
-        <p class="whitespace-nowrap"><span data-i18n="header.points">點數</span>: <b class="font-bold text-accent">0.00</b></p>
+      <div class="hidden rounded-xl border border-border bg-surface px-2.5 py-1 font-mono text-[11px] leading-[1.45] text-text-2 shadow-[inset_0_1px_0_rgba(255,255,255,.08)]" data-auth-account>
+        <p class="relative whitespace-nowrap"><span data-i18n="header.balance">餘額</span>: <b class="font-bold text-primary" data-m-balance data-raw="123456789012.34">123,456,789,012.34</b></p>
+        <p class="whitespace-nowrap"><span data-i18n="header.points">點數</span>: <b class="font-bold text-primary">0.00</b></p>
       </div>
       <div class="m-skin-wrap relative">
-        <button type="button" class="m-skin-trigger h-9 w-9 grid place-items-center rounded-xl border border-line-hi text-text-mid" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="skin.label" aria-label="外觀">
+        <button type="button" class="m-skin-trigger h-9 w-9 grid place-items-center rounded-xl border border-border text-text-2" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="skin.label" aria-label="外觀">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 5-8 5-8-5 8-5Z"></path><path d="m5.5 12 6.5 4 6.5-4"></path><path d="m7.5 17 4.5 2.8 4.5-2.8"></path></svg>
         </button>
       </div>
@@ -35,26 +35,26 @@
   </div>
 
   <div class="px-4 pb-3 grid grid-cols-2 gap-2.5" data-auth-guest>
-    <button type="button" class="h-11 rounded-xl bg-login-btn text-white text-[14.5px] font-bold" data-action="open-signin" data-auth-mode="login" data-i18n="auth.login">登入</button>
-    <button type="button" class="h-11 rounded-xl bg-register-btn text-white text-[14.5px] font-bold" data-action="open-signin" data-auth-mode="register" data-i18n="auth.register">註冊</button>
+    <button type="button" class="h-11 rounded-xl bg-surface-2 text-white text-[14.5px] font-bold" data-action="open-signin" data-auth-mode="login" data-i18n="auth.login">登入</button>
+    <button type="button" class="h-11 rounded-xl bg-[image:var(--g-primary)] text-on-primary text-[14.5px] font-bold" data-action="open-signin" data-auth-mode="register" data-i18n="auth.register">註冊</button>
   </div>
 
   <div class="px-4 pb-3 hidden" data-auth-account>
     <div class="relative">
-      <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-bg-card px-3.5 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,.12),0_14px_28px_-12px_rgba(0,0,0,.75)]">
-      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(110%_95%_at_50%_0%,color-mix(in_srgb,var(--accent)_26%,transparent),transparent_70%)] shadow-[inset_0_0_28px_rgba(0,0,0,.25)]" aria-hidden="true"></div>
+      <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-surface px-3.5 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,.12),0_14px_28px_-12px_rgba(0,0,0,.75)]">
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(110%_95%_at_50%_0%,color-mix(in_srgb,rgb(var(--c-primary))_26%,transparent),transparent_70%)] shadow-[inset_0_0_28px_rgba(0,0,0,.25)]" aria-hidden="true"></div>
       <div class="relative flex items-center gap-3">
         <div class="relative flex-none">
-          <span class="h-11 w-11 rounded-full bg-accent-soft ring-2 ring-accent/45 shadow-[0_0_18px_color-mix(in_srgb,var(--accent)_45%,transparent)] grid place-items-center text-accent font-bold text-[13px]">PL</span>
-          <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 h-4 w-4 grid place-items-center rounded-full border border-line-hi bg-bg-elev text-accent" aria-hidden="true"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span>
+          <span class="h-11 w-11 rounded-full bg-primary/16 ring-2 ring-primary/45 shadow-[0_0_18px_color-mix(in_srgb,rgb(var(--c-primary))_45%,transparent)] grid place-items-center text-primary font-bold text-[13px]">PL</span>
+          <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 h-4 w-4 grid place-items-center rounded-full border border-border bg-surface text-primary" aria-hidden="true"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span>
         </div>
         <div class="flex-1 min-w-0">
           <p class="text-[13.5px] font-bold text-text truncate">PlayerOne</p>
-          <p class="flex items-center gap-1 text-[11px] font-semibold text-text-dim">
-            <span class="text-accent"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span><span data-i18n="account.tierUnranked">未排名</span>
+          <p class="flex items-center gap-1 text-[11px] font-semibold text-text-3">
+            <span class="text-primary"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span><span data-i18n="account.tierUnranked">未排名</span>
           </p>
         </div>
-        <button type="button" class="h-8 w-8 flex-none grid place-items-center rounded-lg text-text-mid" data-action="logout" data-i18n-aria="auth.logout" aria-label="登出">
+        <button type="button" class="h-8 w-8 flex-none grid place-items-center rounded-lg text-text-2" data-action="logout" data-i18n-aria="auth.logout" aria-label="登出">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="m16 17 5-5-5-5"></path><path d="M21 12H9"></path></svg>
         </button>
       </div>
@@ -63,12 +63,12 @@
            既有那份完整版共用同一個真實數值，不是這裡另外編的假資料。 -->
       <div class="relative mt-3">
         <div class="h-4 rounded-full bg-white/12 p-0.5 shadow-[inset_0_1px_2px_rgba(0,0,0,.45)]" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="Level progress: 62%">
-          <div class="h-full rounded-full bg-[linear-gradient(90deg,color-mix(in_oklch,var(--accent)_65%,var(--promo-money-a)),color-mix(in_oklch,var(--accent)_75%,white))] shadow-[0_0_16px_color-mix(in_srgb,var(--accent)_65%,transparent),inset_0_1px_1px_rgba(255,255,255,.5)]" style="width:62%"></div>
+          <div class="h-full rounded-full bg-[linear-gradient(90deg,color-mix(in_oklch,rgb(var(--c-primary))_65%,rgb(var(--c-primary-700))),color-mix(in_oklch,rgb(var(--c-primary))_75%,white))] shadow-[0_0_16px_color-mix(in_srgb,rgb(var(--c-primary))_65%,transparent),inset_0_1px_1px_rgba(255,255,255,.5)]" style="width:62%"></div>
         </div>
-        <div class="mt-1.5 flex items-center justify-between text-[10px] font-semibold text-text-dim">
+        <div class="mt-1.5 flex items-center justify-between text-[10px] font-semibold text-text-3">
           <span data-i18n="account.tierUnranked">未排名</span>
           <span class="text-[13px] font-extrabold text-text">62%</span>
-          <span class="rounded-full border border-accent/35 bg-accent-soft px-2 py-0.5 text-accent" data-i18n="account.tierBronze">銅級</span>
+          <span class="rounded-full border border-primary/35 bg-primary/16 px-2 py-0.5 text-primary" data-i18n="account.tierBronze">銅級</span>
         </div>
       </div>
       </div>
@@ -76,11 +76,11 @@
   </div>
 
   <nav class="flex items-center gap-1 px-1.5 pb-2 overflow-x-auto no-scrollbar" data-i18n-aria="nav.mainNav" aria-label="主導覽">
-    <a href="hot-games.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="page.hotGames">熱門遊戲</a>
-    <a href="casino.html" class="flex-none px-2.5 py-2 text-[13.5px] font-bold text-accent shadow-[inset_0_-2px_0_var(--accent)]" aria-current="page" data-i18n="nav.casino">娛樂城</a>
-    <a href="live.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.live">真人視訊</a>
-    <a href="sport.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.sport">體育</a>
-    <a href="favorites.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.favorites">收藏</a>
+    <a href="hot-games.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-2" data-i18n="page.hotGames">熱門遊戲</a>
+    <a href="casino.html" class="flex-none px-2.5 py-2 text-[13.5px] font-bold text-primary shadow-[inset_0_-2px_0_rgb(var(--c-primary))]" aria-current="page" data-i18n="nav.casino">娛樂城</a>
+    <a href="live.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-2" data-i18n="nav.live">真人視訊</a>
+    <a href="sport.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-2" data-i18n="nav.sport">體育</a>
+    <a href="favorites.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-2" data-i18n="nav.favorites">收藏</a>
   </nav>
 </header>
 
@@ -92,32 +92,32 @@
 
 </main>
 
-<nav class="m-tabbar fixed inset-x-3 bottom-[max(12px,env(safe-area-inset-bottom,0px))] z-40 grid grid-cols-5 rounded-[26px] border border-line-hi bg-bg-elev/95 backdrop-blur-md shadow-[0_10px_28px_rgba(0,0,0,0.45)]">
-  <a href="index.html" class="flex flex-col items-center gap-1.5 py-2 text-text-dim">
+<nav class="m-tabbar fixed inset-x-3 bottom-[max(12px,env(safe-area-inset-bottom,0px))] z-40 grid grid-cols-5 rounded-[26px] border border-border bg-surface/95 backdrop-blur-md shadow-[0_10px_28px_rgba(0,0,0,0.45)]">
+  <a href="index.html" class="flex flex-col items-center gap-1.5 py-2 text-text-3">
     <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1v-8Z"></path></svg>
     </span>
     <span class="text-[10px] font-semibold leading-none" data-i18n="tabbar.home">首頁</span>
   </a>
-  <a href="promotion.html" class="flex flex-col items-center gap-1.5 py-2 text-text-dim">
+  <a href="promotion.html" class="flex flex-col items-center gap-1.5 py-2 text-text-3">
     <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="1.5"></rect><path d="M12 9v12M3 13h18M12 9H8.5a2.5 2.5 0 1 1 2.2-3.7L12 9Zm0 0h3.5a2.5 2.5 0 1 0-2.2-3.7L12 9Z"></path></svg>
     </span>
     <span class="text-[10px] font-semibold leading-none" data-i18n="promo.bonusTitle">優惠活動</span>
   </a>
-  <a href="casino.html" class="flex flex-col items-center gap-1.5 py-2 text-accent" aria-current="page">
-    <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors bg-accent-soft animate-[v2m-pop_.35s_cubic-bezier(.34,1.56,.64,1)]">
+  <a href="casino.html" class="flex flex-col items-center gap-1.5 py-2 text-primary" aria-current="page">
+    <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors bg-primary/16 animate-[v2m-pop_.35s_cubic-bezier(.34,1.56,.64,1)]">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M7 9h3v6H7zM14 9h3v6h-3z"></path></svg>
     </span>
     <span class="text-[10px] font-semibold leading-none" data-i18n="tabbar.casino">娛樂城</span>
   </a>
-  <a href="live.html" class="flex flex-col items-center gap-1.5 py-2 text-text-dim">
+  <a href="live.html" class="flex flex-col items-center gap-1.5 py-2 text-text-3">
     <span class="flex h-8 w-11 items-center justify-center rounded-full transition-colors">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3"></circle></svg>
     </span>
     <span class="text-[10px] font-semibold leading-none" data-i18n="tabbar.live">真人視訊</span>
   </a>
-  <button type="button" class="flex flex-col items-center gap-1.5 py-2 text-text-dim" data-tabbar-menu>
+  <button type="button" class="flex flex-col items-center gap-1.5 py-2 text-text-3" data-tabbar-menu>
     <span class="flex h-8 w-11 items-center justify-center rounded-full">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
     </span>
@@ -127,76 +127,76 @@
 
 <template id="m-menu-drawer-tpl">
   <div class="fixed inset-0 z-50 bg-black/60" data-drawer-close data-drawer-backdrop>
-    <div class="absolute inset-y-0 right-0 w-80 max-w-[88vw] bg-bg-elev p-4 overflow-y-auto" data-drawer-panel>
+    <div class="absolute inset-y-0 right-0 w-80 max-w-[88vw] bg-surface p-4 overflow-y-auto" data-drawer-panel>
       <div class="flex items-center justify-between mb-4">
         <span class="text-[17px] font-bold text-text" data-i18n="tabbar.menu">選單</span>
-        <button type="button" class="h-8 w-8 grid place-items-center rounded-lg text-text-mid" data-drawer-close aria-label="Close">
+        <button type="button" class="h-8 w-8 grid place-items-center rounded-lg text-text-2" data-drawer-close aria-label="Close">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
         </button>
       </div>
       <nav class="flex flex-col gap-1">
-        <a href="hot-games.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid" data-i18n="section.bestGames">精選遊戲</a>
-        <a href="live.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.live">真人視訊</a>
-        <a href="sport.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid" data-i18n="page.sport">體育</a>
-        <a href="promotion.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid" data-i18n="promo.bonusTitle">優惠活動</a>
-        <a href="favorites.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid" data-i18n="nav.favorites">收藏</a>
+        <a href="hot-games.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2" data-i18n="section.bestGames">精選遊戲</a>
+        <a href="live.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2" data-i18n="nav.live">真人視訊</a>
+        <a href="sport.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2" data-i18n="page.sport">體育</a>
+        <a href="promotion.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2" data-i18n="promo.bonusTitle">優惠活動</a>
+        <a href="favorites.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2" data-i18n="nav.favorites">收藏</a>
       </nav>
-      <div class="my-4 border-t border-line"></div>
+      <div class="my-4 border-t border-border-soft"></div>
       <nav class="flex flex-col gap-1">
-        <a href="account.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-dim" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>
+        <a href="account.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>
         <span data-i18n="page.accountOverview">Account Overview</span>
       </a>
-      <a href="deposit.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-dim" aria-hidden="true"><path d="M12 4v12m0 0-4-4m4 4 4-4"></path><path d="M4 20h16"></path></svg>
+      <a href="deposit.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="M12 4v12m0 0-4-4m4 4 4-4"></path><path d="M4 20h16"></path></svg>
         <span data-i18n="page.deposit">Deposit</span>
       </a>
-      <a href="withdrawal.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-dim" aria-hidden="true"><path d="M12 20V8m0 0-4 4m4-4 4 4"></path><path d="M4 20h16"></path></svg>
+      <a href="withdrawal.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="M12 20V8m0 0-4 4m4-4 4 4"></path><path d="M4 20h16"></path></svg>
         <span data-i18n="page.withdrawal">Withdrawal</span>
       </a>
-      <a href="betting-record.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-dim" aria-hidden="true"><path d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5L7.2 18l.9-5.4-3.9-3.8 5.4-.8L12 3Z"></path></svg>
+      <a href="betting-record.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5L7.2 18l.9-5.4-3.9-3.8 5.4-.8L12 3Z"></path></svg>
         <span data-i18n="page.bettingRecord">Betting Record</span>
       </a>
-      <a href="deposit-record.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-dim" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
+      <a href="deposit-record.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
         <span data-i18n="page.depositRecord">Deposit Record</span>
       </a>
-      <a href="profit-loss.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-dim" aria-hidden="true"><path d="m4 16 5-5 4 4 7-9"></path><path d="M14 6h6v6"></path></svg>
+      <a href="profit-loss.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="m4 16 5-5 4 4 7-9"></path><path d="M14 6h6v6"></path></svg>
         <span data-i18n="page.profitLoss">Profit And Loss</span>
       </a>
-      <a href="withdrawal-record.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-dim" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
+      <a href="withdrawal-record.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
         <span data-i18n="page.withdrawalRecord">Withdrawal Record</span>
       </a>
-      <a href="withdrawal-detail.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-dim" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
+      <a href="withdrawal-detail.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
         <span data-i18n="page.withdrawalDetail">Withdrawal Detail</span>
       </a>
-      <a href="account-record.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-dim" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
+      <a href="account-record.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
         <span data-i18n="page.accountRecord">Account Record</span>
       </a>
-      <a href="personal-info.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-dim" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="10" r="3"></circle><path d="M6 19a6 6 0 0 1 12 0"></path></svg>
+      <a href="personal-info.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="10" r="3"></circle><path d="M6 19a6 6 0 0 1 12 0"></path></svg>
         <span data-i18n="page.personalInfo">Personal Info</span>
       </a>
-      <a href="security.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-dim" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.3 8 8 9 4.7-1 8-4.5 8-9V6l-8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+      <a href="security.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.3 8 8 9 4.7-1 8-4.5 8-9V6l-8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg>
         <span data-i18n="page.security">Security Center</span>
       </a>
-      <a href="referral.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-dim" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20a6 6 0 0 1 12 0"></path><path d="M19 8v6M16 11h6"></path></svg>
+      <a href="referral.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20a6 6 0 0 1 12 0"></path><path d="M19 8v6M16 11h6"></path></svg>
         <span data-i18n="nav.Referral">Referral Center</span>
       </a>
-      <a href="check-in.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-dim" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18"></path><path d="m9 15 2 2 4-4"></path></svg>
+      <a href="check-in.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18"></path><path d="m9 15 2 2 4-4"></path></svg>
         <span data-i18n="nav.Check-in">Daily Check-in</span>
       </a>
-      <a href="#" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-mid" data-cs-open>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-dim" aria-hidden="true"><path d="M4 12a8 8 0 0 1 16 0v4a3 3 0 0 1-3 3h-2v-7h5M4 12v4a3 3 0 0 0 3 3h2v-7H4"></path></svg>
+      <a href="#" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2" data-cs-open>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="M4 12a8 8 0 0 1 16 0v4a3 3 0 0 1-3 3h-2v-7h5M4 12v4a3 3 0 0 0 3 3h2v-7H4"></path></svg>
         <span data-i18n="page.customerService">Customer Service</span>
       </a>
       </nav>
@@ -206,65 +206,65 @@
 
 <template id="m-auth-modal-tpl">
   <div class="fixed inset-0 z-[60] bg-black/60">
-    <div class="absolute inset-x-0 bottom-0 max-h-[88vh] overflow-y-auto rounded-t-3xl bg-bg-elev p-5" data-auth-sheet>
+    <div class="absolute inset-x-0 bottom-0 max-h-[88vh] overflow-y-auto rounded-t-3xl bg-surface p-5" data-auth-sheet>
       <div class="mb-4 flex items-center justify-between">
-        <div class="flex gap-1 rounded-full bg-bg-card p-1">
+        <div class="flex gap-1 rounded-full bg-surface p-1">
           <button type="button" class="auth-tab-btn rounded-full px-4 py-1.5 text-[13px] font-bold" data-auth-tab="login" data-i18n="auth.signInTab">登入</button>
           <button type="button" class="auth-tab-btn rounded-full px-4 py-1.5 text-[13px] font-bold" data-auth-tab="register" data-i18n="auth.registerTab">註冊</button>
         </div>
-        <button type="button" class="h-8 w-8 grid place-items-center rounded-lg text-text-mid" data-auth-close aria-label="Close">
+        <button type="button" class="h-8 w-8 grid place-items-center rounded-lg text-text-2" data-auth-close aria-label="Close">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
         </button>
       </div>
 
       <div class="space-y-3" data-auth-panel="login">
       <div>
-        <label class="text-[12px] font-semibold text-text-mid" data-i18n="field.account">帳號</label>
-        <input type="text" data-auth-field="username" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.usernamePh" placeholder="請輸入帳號">
+        <label class="text-[12px] font-semibold text-text-2" data-i18n="field.account">帳號</label>
+        <input type="text" data-auth-field="username" class="mt-1 h-11 w-full rounded-xl border border-border bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.usernamePh" placeholder="請輸入帳號">
         <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="username"></p>
       </div>
       <div>
-        <label class="text-[12px] font-semibold text-text-mid" data-i18n="auth.password">密碼</label>
-        <input type="password" data-auth-field="password" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.passwordPh" placeholder="請輸入密碼">
+        <label class="text-[12px] font-semibold text-text-2" data-i18n="auth.password">密碼</label>
+        <input type="password" data-auth-field="password" class="mt-1 h-11 w-full rounded-xl border border-border bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.passwordPh" placeholder="請輸入密碼">
         <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="password"></p>
       </div>
-        <button type="button" class="mt-2 h-11 w-full rounded-xl bg-login-btn text-[14.5px] font-bold text-white" data-auth-submit="login" data-i18n="auth.signInTab">登入</button>
-        <p class="text-center text-[12.5px] text-text-dim"><span data-i18n="auth.noAccount">還沒有帳號？</span> <button type="button" class="font-bold text-accent" data-auth-tab="register" data-i18n="auth.registerTab">註冊</button></p>
+        <button type="button" class="mt-2 h-11 w-full rounded-xl bg-surface-2 text-[14.5px] font-bold text-white" data-auth-submit="login" data-i18n="auth.signInTab">登入</button>
+        <p class="text-center text-[12.5px] text-text-3"><span data-i18n="auth.noAccount">還沒有帳號？</span> <button type="button" class="font-bold text-primary" data-auth-tab="register" data-i18n="auth.registerTab">註冊</button></p>
       </div>
 
       <div class="hidden space-y-3" data-auth-panel="register">
       <div>
-        <label class="text-[12px] font-semibold text-text-mid" data-i18n="field.account">帳號</label>
-        <input type="text" data-auth-field="username" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.usernamePh" placeholder="請輸入帳號">
+        <label class="text-[12px] font-semibold text-text-2" data-i18n="field.account">帳號</label>
+        <input type="text" data-auth-field="username" class="mt-1 h-11 w-full rounded-xl border border-border bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.usernamePh" placeholder="請輸入帳號">
         <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="username"></p>
       </div>
       <div>
-        <label class="text-[12px] font-semibold text-text-mid" data-i18n="auth.password">密碼</label>
-        <input type="password" data-auth-field="password" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.passwordPh" placeholder="請輸入密碼">
+        <label class="text-[12px] font-semibold text-text-2" data-i18n="auth.password">密碼</label>
+        <input type="password" data-auth-field="password" class="mt-1 h-11 w-full rounded-xl border border-border bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.passwordPh" placeholder="請輸入密碼">
         <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="password"></p>
       </div>
       <div>
-        <label class="text-[12px] font-semibold text-text-mid" data-i18n="auth.confirmPassword">確認密碼</label>
-        <input type="password" data-auth-field="confirm" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.confirmPasswordPh" placeholder="請再輸入一次密碼">
+        <label class="text-[12px] font-semibold text-text-2" data-i18n="auth.confirmPassword">確認密碼</label>
+        <input type="password" data-auth-field="confirm" class="mt-1 h-11 w-full rounded-xl border border-border bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.confirmPasswordPh" placeholder="請再輸入一次密碼">
         <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="confirm"></p>
       </div>
       <div>
-        <label class="text-[12px] font-semibold text-text-mid" data-i18n="auth.email">電子郵件</label>
-        <input type="email" data-auth-field="email" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.emailPh" placeholder="請輸入電子郵件">
+        <label class="text-[12px] font-semibold text-text-2" data-i18n="auth.email">電子郵件</label>
+        <input type="email" data-auth-field="email" class="mt-1 h-11 w-full rounded-xl border border-border bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.emailPh" placeholder="請輸入電子郵件">
         <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="email"></p>
       </div>
       <div>
-        <label class="text-[12px] font-semibold text-text-mid" data-i18n="field.name">姓名</label>
-        <input type="text" data-auth-field="realname" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.realNamePh" placeholder="請輸入真實姓名">
+        <label class="text-[12px] font-semibold text-text-2" data-i18n="field.name">姓名</label>
+        <input type="text" data-auth-field="realname" class="mt-1 h-11 w-full rounded-xl border border-border bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.realNamePh" placeholder="請輸入真實姓名">
         <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="realname"></p>
       </div>
       <div>
-        <label class="text-[12px] font-semibold text-text-mid" data-i18n="field.phone">手機號碼</label>
-        <input type="tel" data-auth-field="mobile" class="mt-1 h-11 w-full rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.mobilePh" placeholder="請輸入手機號碼">
+        <label class="text-[12px] font-semibold text-text-2" data-i18n="field.phone">手機號碼</label>
+        <input type="tel" data-auth-field="mobile" class="mt-1 h-11 w-full rounded-xl border border-border bg-bg px-3.5 text-[14px] text-text" data-i18n-placeholder="auth.mobilePh" placeholder="請輸入手機號碼">
         <p class="mt-1 hidden text-[11px] text-[#ef4444]" data-auth-error="mobile"></p>
       </div>
-        <button type="button" class="mt-2 h-11 w-full rounded-xl bg-register-btn text-[14.5px] font-bold text-white" data-auth-submit="register" data-i18n="auth.registerTab">註冊</button>
-        <p class="text-center text-[12.5px] text-text-dim"><span data-i18n="auth.haveAccount">已經有帳號？</span> <button type="button" class="font-bold text-accent" data-auth-tab="login" data-i18n="auth.signInTab">登入</button></p>
+        <button type="button" class="mt-2 h-11 w-full rounded-xl bg-[image:var(--g-primary)] text-[14.5px] font-bold text-on-primary" data-auth-submit="register" data-i18n="auth.registerTab">註冊</button>
+        <p class="text-center text-[12.5px] text-text-3"><span data-i18n="auth.haveAccount">已經有帳號？</span> <button type="button" class="font-bold text-primary" data-auth-tab="login" data-i18n="auth.signInTab">登入</button></p>
       </div>
     </div>
   </div>

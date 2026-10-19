@@ -48,13 +48,13 @@
   function doneStepHTML(successMsgKey, recordHref, recordLabelKey) {
     return (
       '<div class="flex flex-col items-center text-center py-10 px-2">' +
-      '<span class="h-16 w-16 grid place-items-center rounded-full bg-accent-soft text-accent mb-4">' +
+      '<span class="h-16 w-16 grid place-items-center rounded-full bg-primary/16 text-primary mb-4">' +
       '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>' +
       '</span>' +
       '<p class="text-[16px] font-bold text-text mb-1.5">' + t('payment.successTitle') + '</p>' +
-      '<p class="text-[13px] text-text-mid mb-6">' + t(successMsgKey) + '</p>' +
-      '<a href="' + recordHref + '" class="w-full h-11 rounded-xl bg-accent text-text-on-accent text-[14px] font-bold grid place-items-center mb-2.5">' + t(recordLabelKey) + '</a>' +
-      '<a href="index.html" class="w-full h-11 rounded-xl border border-line-hi text-text text-[14px] font-bold grid place-items-center">' + t('payment.backHome') + '</a>' +
+      '<p class="text-[13px] text-text-2 mb-6">' + t(successMsgKey) + '</p>' +
+      '<a href="' + recordHref + '" class="w-full h-11 rounded-xl bg-primary text-on-primary text-[14px] font-bold grid place-items-center mb-2.5">' + t(recordLabelKey) + '</a>' +
+      '<a href="index.html" class="w-full h-11 rounded-xl border border-border text-text text-[14px] font-bold grid place-items-center">' + t('payment.backHome') + '</a>' +
       '</div>'
     );
   }
@@ -83,28 +83,28 @@
       var methods = DP_METHODS.slice(0, methodCount || DP_METHODS.length);
       var tabs = methods.map(function (m, i) {
         return '<button type="button" class="flex-none rounded-full px-4 py-2 text-[13px] font-semibold' +
-          (i === 0 ? ' bg-accent text-text-on-accent' : ' bg-bg-card text-text-mid border border-line') +
+          (i === 0 ? ' bg-primary text-on-primary' : ' bg-surface text-text-2 border border-border-soft') +
           '" data-dp-method="' + m.id + '">' + t(m.key) + '</button>';
       }).join('');
       return (
-        '<button type="button" class="flex items-center gap-1 text-[13px] font-semibold text-text-mid mb-4" data-dp-back>' +
+        '<button type="button" class="flex items-center gap-1 text-[13px] font-semibold text-text-2 mb-4" data-dp-back>' +
         '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>' + t('deposit.back') + '</button>' +
         '<div class="flex items-center gap-2 overflow-x-auto no-scrollbar mb-4" data-dp-method-tabs>' + tabs + '</div>' +
-        '<label class="block text-[12px] text-text-dim mb-1.5">' + t('deposit.amount') + '</label>' +
-        '<input type="number" placeholder="' + t('deposit.amountPh') + '" class="w-full h-12 rounded-xl border border-line bg-bg-card px-4 text-[14px] text-text mb-4" id="dp-amount">' +
-        '<button type="button" class="w-full h-12 rounded-xl bg-accent text-text-on-accent text-[14px] font-bold" data-dp-next>' + t('deposit.next') + '</button>'
+        '<label class="block text-[12px] text-text-3 mb-1.5">' + t('deposit.amount') + '</label>' +
+        '<input type="number" placeholder="' + t('deposit.amountPh') + '" class="w-full h-12 rounded-xl border border-border-soft bg-surface px-4 text-[14px] text-text mb-4" id="dp-amount">' +
+        '<button type="button" class="w-full h-12 rounded-xl bg-primary text-on-primary text-[14px] font-bold" data-dp-next>' + t('deposit.next') + '</button>'
       );
     }
 
     function transferStepHTML(amountVal) {
       return (
-        '<div class="rounded-2xl border border-line bg-bg-card p-4">' +
-        '<p class="inline-block rounded-full bg-accent-soft px-3 py-1 text-[12px] font-bold text-accent mb-4">' + t('deposit.transferPill') + '</p>' +
-        '<div class="flex items-center justify-between py-2 border-b border-line text-[13px]"><span class="text-text-dim">' + t('deposit.amount') + '</span><span class="font-bold text-text">' + esc(amountVal) + '</span></div>' +
-        '<div class="flex items-center justify-between py-2 border-b border-line text-[13px]"><span class="text-text-dim">' + t('deposit.transferAccountLabel') + '</span><span class="font-bold text-text">wururu1234</span></div>' +
-        '<p class="text-[11.5px] text-text-dim leading-relaxed mt-3">' + t('deposit.transferNote') + '</p>' +
+        '<div class="rounded-2xl border border-border-soft bg-surface p-4">' +
+        '<p class="inline-block rounded-full bg-primary/16 px-3 py-1 text-[12px] font-bold text-primary mb-4">' + t('deposit.transferPill') + '</p>' +
+        '<div class="flex items-center justify-between py-2 border-b border-border-soft text-[13px]"><span class="text-text-3">' + t('deposit.amount') + '</span><span class="font-bold text-text">' + esc(amountVal) + '</span></div>' +
+        '<div class="flex items-center justify-between py-2 border-b border-border-soft text-[13px]"><span class="text-text-3">' + t('deposit.transferAccountLabel') + '</span><span class="font-bold text-text">wururu1234</span></div>' +
+        '<p class="text-[11.5px] text-text-3 leading-relaxed mt-3">' + t('deposit.transferNote') + '</p>' +
         '</div>' +
-        '<button type="button" class="w-full h-12 rounded-xl bg-accent text-text-on-accent text-[14px] font-bold mt-4" data-dp-complete>' + t('deposit.complete') + '</button>'
+        '<button type="button" class="w-full h-12 rounded-xl bg-primary text-on-primary text-[14px] font-bold mt-4" data-dp-complete>' + t('deposit.complete') + '</button>'
       );
     }
 
@@ -113,20 +113,20 @@
       var loc = qrData[currentLocale()] || qrData.en || {};
       var addr = (qrData.addresses || {})[methodId] || (qrData.addresses || {}).linepay || '';
       return (
-        '<div class="rounded-2xl border border-line bg-bg-card p-4">' +
-        '<p class="inline-block rounded-full bg-accent-soft px-3 py-1 text-[12px] font-bold text-accent mb-3">' + esc(loc.pill || 'Scan to Pay') + '</p>' +
-        '<p class="text-[12px] text-text-mid mb-4">' + esc(loc.hint || '') + '</p>' +
+        '<div class="rounded-2xl border border-border-soft bg-surface p-4">' +
+        '<p class="inline-block rounded-full bg-primary/16 px-3 py-1 text-[12px] font-bold text-primary mb-3">' + esc(loc.pill || 'Scan to Pay') + '</p>' +
+        '<p class="text-[12px] text-text-2 mb-4">' + esc(loc.hint || '') + '</p>' +
         '<div class="w-40 h-40 mx-auto mb-4">' + qrSvgHtml(methodId + '|' + addr, loc.altText || 'QR') + '</div>' +
-        '<label class="block text-[11.5px] text-text-dim mb-1.5">' + esc(loc.addressLabel || 'Address') + '</label>' +
+        '<label class="block text-[11.5px] text-text-3 mb-1.5">' + esc(loc.addressLabel || 'Address') + '</label>' +
         '<div class="flex items-center gap-2">' +
-        '<input class="flex-1 h-11 rounded-xl border border-line bg-bg px-3 text-[12.5px] text-text truncate" value="' + esc(addr) + '" readonly>' +
-        '<button type="button" class="flex-none h-11 px-3.5 rounded-xl border border-line-hi text-[12.5px] font-semibold text-text" data-dp-copy="' + esc(addr) + '">' + esc(loc.copy || 'Copy') + '</button>' +
+        '<input class="flex-1 h-11 rounded-xl border border-border-soft bg-bg px-3 text-[12.5px] text-text truncate" value="' + esc(addr) + '" readonly>' +
+        '<button type="button" class="flex-none h-11 px-3.5 rounded-xl border border-border text-[12.5px] font-semibold text-text" data-dp-copy="' + esc(addr) + '">' + esc(loc.copy || 'Copy') + '</button>' +
         '</div>' +
-        '<p class="text-[11px] text-text-dim mt-3">' + esc(loc.note || '') + '</p>' +
+        '<p class="text-[11px] text-text-3 mt-3">' + esc(loc.note || '') + '</p>' +
         '</div>' +
         '<div class="flex items-center gap-2.5 mt-4">' +
-        '<button type="button" class="flex-1 h-12 rounded-xl border border-line-hi text-text text-[14px] font-bold" data-dp-back>' + esc(loc.back || t('deposit.back')) + '</button>' +
-        '<button type="button" class="flex-1 h-12 rounded-xl bg-accent text-text-on-accent text-[14px] font-bold" data-dp-qr-next>' + esc(loc.confirm || t('deposit.next')) + '</button>' +
+        '<button type="button" class="flex-1 h-12 rounded-xl border border-border text-text text-[14px] font-bold" data-dp-back>' + esc(loc.back || t('deposit.back')) + '</button>' +
+        '<button type="button" class="flex-1 h-12 rounded-xl bg-primary text-on-primary text-[14px] font-bold" data-dp-qr-next>' + esc(loc.confirm || t('deposit.next')) + '</button>' +
         '</div>'
       );
     }
@@ -150,12 +150,12 @@
           selectedMethodId = btn.getAttribute('data-dp-method');
           step.querySelectorAll('[data-dp-method]').forEach(function (b) {
             var active = b === btn;
-            b.classList.toggle('bg-accent', active);
-            b.classList.toggle('text-text-on-accent', active);
-            b.classList.toggle('bg-bg-card', !active);
-            b.classList.toggle('text-text-mid', !active);
+            b.classList.toggle('bg-primary', active);
+            b.classList.toggle('text-on-primary', active);
+            b.classList.toggle('bg-surface', !active);
+            b.classList.toggle('text-text-2', !active);
             b.classList.toggle('border', !active);
-            b.classList.toggle('border-line', !active);
+            b.classList.toggle('border-border-soft', !active);
           });
         });
       });

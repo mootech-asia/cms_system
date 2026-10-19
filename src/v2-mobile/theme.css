@@ -1,12 +1,11 @@
-/* v2 獨立手機版 — 全新畫面，直接寫真正的 Tailwind utility class（沒有
-   v2/site 那份手寫 main.css/app.css 的歷史包袱要相容，所以不像
-   v4/v5/v6 那樣把既有 CSS 用 layer(legacy) 掛進來）。
+/* v2 獨立手機版 — 全新畫面，直接寫真正的 Tailwind utility class。
 
-   色票見 ../../v2/site-mobile/assets/css/skins/*.css：由 v2/site 桌機 6 套
-   skin 色票換算（檔名同桌機 theme key），預設 win100（Emerald）。
-   每個檔案只定義 :root[data-skin="x"] 底下的 CSS
-   variable，不切換整份 stylesheet（比 v2/site 原本「換 <link href>」
-   的做法少一次網路請求、也不會有短暫無樣式的閃爍）。
+   色彩 token 與換膚跟 v2 桌機版是同一套：直接匯入桌機版
+   ../../v2/site/themes/*.css（win100 為 :root 預設，其餘為
+   :root[data-theme="x"] 覆寫），--color-* 一律包成 rgb(var(--c-*))，
+   跟 src/v2/theme.css 的對應方式相同；手機版不另外維護色票。
+   換膚由 mobile.js 切換 <html data-theme>（與桌機版共用
+   win100-static-skin 這把 localStorage key）。
 
    間距/尺寸類 utility 一律優先採用 Tailwind 預設刻度，只有完全對不上
    4px 刻度時才用任意值（比照 v4~v6 review 過的共識）。 */
@@ -14,40 +13,65 @@
 @import 'tailwindcss' source(none);
 @source '../../v2/site-mobile/*.html';
 @source '../../v2/site-mobile/assets/js/*.js';
-@import '../../v2/site-mobile/assets/css/skins/win100.css' layer(skins);
-@import '../../v2/site-mobile/assets/css/skins/aurora.css' layer(skins);
-@import '../../v2/site-mobile/assets/css/skins/noir.css' layer(skins);
-@import '../../v2/site-mobile/assets/css/skins/fashion-blue.css' layer(skins);
-@import '../../v2/site-mobile/assets/css/skins/rose-graphite.css' layer(skins);
-@import '../../v2/site-mobile/assets/css/skins/cosmic-pink.css' layer(skins);
+@import '../../v2/site/themes/win100.css' layer(skins);
+@import '../../v2/site/themes/aurora.css' layer(skins);
+@import '../../v2/site/themes/noir.css' layer(skins);
+@import '../../v2/site/themes/fashion-blue.css' layer(skins);
+@import '../../v2/site/themes/rose-graphite.css' layer(skins);
+@import '../../v2/site/themes/cosmic-pink.css' layer(skins);
 
 @theme static {
   --font-display: 'Pretendard', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
   --font-body: 'Pretendard', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
 
-  --color-bg: var(--bg);
-  --color-bg-elev: var(--bg-elev);
-  --color-bg-card: var(--bg-card);
-  --color-bg-card-hi: var(--bg-card-hi);
-  --color-line: var(--line);
-  --color-line-hi: var(--line-hi);
+  --color-primary: rgb(var(--c-primary));
+  --color-primary-soft: rgb(var(--c-primary-soft));
+  --color-primary-faint: rgb(var(--c-primary-faint));
+  --color-on-primary: rgb(var(--c-on-primary));
+  --color-accent: rgb(var(--c-accent));
+  --color-bg: rgb(var(--c-bg));
+  --color-surface: rgb(var(--c-surface));
+  --color-surface-2: rgb(var(--c-surface-2));
+  --color-border: rgb(var(--c-border));
+  --color-border-soft: rgb(var(--c-border-soft));
+  --color-disabled: rgb(var(--c-disabled));
+  --color-text: rgb(var(--c-text));
+  --color-text-2: rgb(var(--c-text-2));
+  --color-text-3: rgb(var(--c-text-3));
+  --color-text-4: rgb(var(--c-text-4));
+  --color-danger: rgb(var(--c-danger));
+  --color-scrim: rgb(var(--c-scrim));
+  --color-success: rgb(var(--c-success));
+  --color-gold: rgb(var(--c-gold));
+  --color-card-face-1: rgb(var(--c-card-face-1));
+  --color-card-face-2: rgb(var(--c-card-face-2));
+  --color-card-face-3: rgb(var(--c-card-face-3));
+  --color-card-border: rgb(var(--c-card-border));
+  --color-primary-50: rgb(var(--c-primary-50));
+  --color-primary-100: rgb(var(--c-primary-100));
+  --color-primary-200: rgb(var(--c-primary-200));
+  --color-primary-300: rgb(var(--c-primary-300));
+  --color-primary-400: rgb(var(--c-primary-400));
+  --color-primary-500: rgb(var(--c-primary-500));
+  --color-primary-600: rgb(var(--c-primary-600));
+  --color-primary-700: rgb(var(--c-primary-700));
+  --color-primary-800: rgb(var(--c-primary-800));
+  --color-primary-900: rgb(var(--c-primary-900));
+  --color-primary-950: rgb(var(--c-primary-950));
+  --color-surface-0: rgb(var(--c-surface-0));
+  --color-surface-50: rgb(var(--c-surface-50));
+  --color-surface-100: rgb(var(--c-surface-100));
+  --color-surface-200: rgb(var(--c-surface-200));
+  --color-surface-300: rgb(var(--c-surface-300));
+  --color-surface-400: rgb(var(--c-surface-400));
+  --color-surface-500: rgb(var(--c-surface-500));
+  --color-surface-600: rgb(var(--c-surface-600));
+  --color-surface-700: rgb(var(--c-surface-700));
+  --color-surface-800: rgb(var(--c-surface-800));
+  --color-surface-900: rgb(var(--c-surface-900));
+  --color-surface-950: rgb(var(--c-surface-950));
 
-  --color-text: var(--text);
-  --color-text-mid: var(--text-mid);
-  --color-text-dim: var(--text-dim);
-  --color-text-on-accent: var(--text-on-accent);
-
-  --color-accent: var(--accent);
-  --color-accent-soft: var(--accent-soft);
-  --color-login-btn: var(--login-btn);
-  --color-register-btn: var(--register-btn);
-  --color-promo-money-a: var(--promo-money-a);
-  --color-promo-money-b: var(--promo-money-b);
-  --color-promo-bonus-a: var(--promo-bonus-a);
-  --color-promo-bonus-b: var(--promo-bonus-b);
-  --color-live-dot: var(--live-dot);
-
-  --shadow-card: var(--shadow-card);
+  --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.45);
 }
 
 @layer base {
@@ -67,10 +91,10 @@
    底下很突兀的灰色捲軸。 */
 @utility thin-scrollbar-x {
   scrollbar-width: thin;
-  scrollbar-color: var(--line-hi) transparent;
+  scrollbar-color: rgb(var(--c-border)) transparent;
   &::-webkit-scrollbar { height: 4px; }
   &::-webkit-scrollbar-track { background: transparent; }
-  &::-webkit-scrollbar-thumb { background: var(--line-hi); border-radius: 999px; }
+  &::-webkit-scrollbar-thumb { background: rgb(var(--c-border)); border-radius: 999px; }
 }
 
 /* 導覽選中態進場動畫（頂部 nav pill / 底部 tabbar 圖示圈）＋ menu 抽屜

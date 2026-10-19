@@ -34,7 +34,7 @@
 
   function applySkin(id, persist) {
     var skin = findSkin(id) || SKINS[0];
-    document.documentElement.setAttribute('data-skin', skin.id);
+    document.documentElement.setAttribute('data-theme', skin.id);
     currentSkinId = skin.id;
     if (persist !== false) {
       try { localStorage.setItem(SKIN_KEY, skin.id); } catch (e) { /* storage unavailable */ }
@@ -52,13 +52,13 @@
      m-skin-trigger/m-skin-menu/data-skin-option 純粹是 JS 事件委派用
      的 hook，本身不帶樣式。 */
   function renderSkinMenu(menu) {
-    menu.className = 'm-skin-menu absolute right-0 top-[calc(100%+8px)] z-50 w-52 rounded-2xl border border-line-hi bg-bg-card p-1.5 shadow-card';
+    menu.className = 'm-skin-menu absolute right-0 top-[calc(100%+8px)] z-50 w-52 rounded-2xl border border-border bg-surface p-1.5 shadow-card';
     menu.innerHTML = SKINS.map(function (s) {
       var active = s.id === currentSkinId;
       return '<button type="button" class="w-full flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-semibold' +
-        (active ? ' bg-accent-soft text-accent' : ' text-text-mid') +
+        (active ? ' bg-primary/16 text-primary' : ' text-text-2') +
         '" data-skin-option="' + s.id + '" role="option" aria-selected="' + active + '">' +
-        '<span class="h-5 w-5 flex-none rounded-full border border-line-hi" style="background:' + s.swatch + '" aria-hidden="true"></span>' +
+        '<span class="h-5 w-5 flex-none rounded-full border border-border" style="background:' + s.swatch + '" aria-hidden="true"></span>' +
         '<span>' + s.label + '</span></button>';
     }).join('');
   }
@@ -175,9 +175,9 @@
   function switchAuthTab(root, mode) {
     root.querySelectorAll('[data-auth-tab]').forEach(function (b) {
       var active = b.getAttribute('data-auth-tab') === mode;
-      b.classList.toggle('bg-accent', active);
-      b.classList.toggle('text-text-on-accent', active);
-      b.classList.toggle('text-text-mid', !active);
+      b.classList.toggle('bg-primary', active);
+      b.classList.toggle('text-on-primary', active);
+      b.classList.toggle('text-text-2', !active);
     });
     root.querySelectorAll('[data-auth-panel]').forEach(function (p) {
       p.classList.toggle('hidden', p.getAttribute('data-auth-panel') !== mode);
@@ -238,9 +238,9 @@
       on(btn, 'click', function () {
         tabs.forEach(function (b) {
           var active = b === btn;
-          b.classList.toggle('bg-accent', active);
-          b.classList.toggle('text-text-on-accent', active);
-          b.classList.toggle('text-text-mid', !active);
+          b.classList.toggle('bg-primary', active);
+          b.classList.toggle('text-on-primary', active);
+          b.classList.toggle('text-text-2', !active);
         });
       });
     });
@@ -326,7 +326,7 @@
     if (!el) return;
     var raw = parseFloat(el.getAttribute('data-raw')) || 0;
     var alert = document.createElement('span');
-    alert.className = 'ml-0.5 font-bold text-accent animate-pulse';
+    alert.className = 'ml-0.5 font-bold text-primary animate-pulse';
     alert.textContent = '!';
     function closeTip() {
       var tip = document.querySelector('[data-m-balance-tip]');
@@ -346,7 +346,7 @@
       if (document.querySelector('[data-m-balance-tip]')) { closeTip(); return; }
       var tip = document.createElement('span');
       tip.setAttribute('data-m-balance-tip', '');
-      tip.className = 'absolute right-0 top-[calc(100%+6px)] z-50 whitespace-nowrap rounded-lg border border-line-hi bg-bg-elev px-2 py-1 text-[11px] font-bold text-text shadow-card';
+      tip.className = 'absolute right-0 top-[calc(100%+6px)] z-50 whitespace-nowrap rounded-lg border border-border bg-surface px-2 py-1 text-[11px] font-bold text-text shadow-card';
       tip.textContent = fmtFull(raw);
       el.parentNode.appendChild(tip);
     });
@@ -387,45 +387,45 @@
   ];
   var CR_CLS = {
     stats: 'flex flex-col gap-1.5',
-    stat: 'flex items-center justify-between gap-3 rounded-2xl border border-line bg-bg-card py-2.5 px-3.5',
-    statLabel: 'text-[12px] font-semibold text-text-dim',
-    statVal: 'text-[15px] font-bold text-accent whitespace-nowrap [font-variant-numeric:tabular-nums]',
-    panel: 'rounded-2xl border border-line bg-bg-card p-3.5',
+    stat: 'flex items-center justify-between gap-3 rounded-2xl border border-border-soft bg-surface py-2.5 px-3.5',
+    statLabel: 'text-[12px] font-semibold text-text-3',
+    statVal: 'text-[15px] font-bold text-primary whitespace-nowrap [font-variant-numeric:tabular-nums]',
+    panel: 'rounded-2xl border border-border-soft bg-surface p-3.5',
     panelTitle: 'm-0 mb-3 text-[14px] font-bold text-text',
     sectionTitle: 'm-0 -mb-1 text-[14px] font-bold text-text',
     calHead: 'flex flex-wrap items-center gap-2.5 mb-3',
     calTitle: 'm-0 flex-1 min-w-0 text-center text-[14px] font-bold text-text',
-    navBtn: 'h-9 w-9 grid place-items-center shrink-0 rounded-xl border border-line-hi text-text-mid',
-    checkinBtn: 'h-11 px-5 rounded-xl bg-accent text-text-on-accent text-[13.5px] font-bold whitespace-nowrap disabled:opacity-60 w-full',
-    checkinBtnDone: 'h-11 px-5 rounded-xl bg-accent text-text-on-accent text-[13.5px] font-bold whitespace-nowrap disabled:opacity-60 w-full',
+    navBtn: 'h-9 w-9 grid place-items-center shrink-0 rounded-xl border border-border text-text-2',
+    checkinBtn: 'h-11 px-5 rounded-xl bg-primary text-on-primary text-[13.5px] font-bold whitespace-nowrap disabled:opacity-60 w-full',
+    checkinBtnDone: 'h-11 px-5 rounded-xl bg-primary text-on-primary text-[13.5px] font-bold whitespace-nowrap disabled:opacity-60 w-full',
     calGrid: 'grid grid-cols-7 gap-1',
-    wd: 'py-1 text-center text-[10.5px] font-semibold text-text-dim',
-    day: 'relative min-h-14 py-0.75 px-1 rounded-lg border bg-bg-card border-line',
-    dayToday: 'relative min-h-14 py-0.75 px-1 rounded-lg border bg-bg-card border-accent',
+    wd: 'py-1 text-center text-[10.5px] font-semibold text-text-3',
+    day: 'relative min-h-14 py-0.75 px-1 rounded-lg border bg-surface border-border-soft',
+    dayToday: 'relative min-h-14 py-0.75 px-1 rounded-lg border bg-surface border-primary',
     dayEmpty: 'min-h-14',
-    dayNum: 'text-[10.5px] leading-[1.2] font-semibold text-text-mid [font-variant-numeric:tabular-nums]',
-    stamp: 'absolute inset-x-0 top-6 bottom-1 flex items-center justify-center text-accent',
-    stampRing: 'grid place-items-center w-5 h-5 rounded-full border-[1.5px] border-current bg-accent-soft -rotate-12 [&_svg]:w-3 [&_svg]:h-3',
+    dayNum: 'text-[10.5px] leading-[1.2] font-semibold text-text-2 [font-variant-numeric:tabular-nums]',
+    stamp: 'absolute inset-x-0 top-6 bottom-1 flex items-center justify-center text-primary',
+    stampRing: 'grid place-items-center w-5 h-5 rounded-full border-[1.5px] border-current bg-primary/16 -rotate-12 [&_svg]:w-3 [&_svg]:h-3',
     stampText: 'hidden',
-    note: 'mt-3 mb-0 text-[11.5px] text-text-dim',
-    tableWrap: 'rounded-2xl border border-line bg-bg-card overflow-hidden',
+    note: 'mt-3 mb-0 text-[11.5px] text-text-3',
+    tableWrap: 'rounded-2xl border border-border-soft bg-surface overflow-hidden',
     tableInner: 'overflow-x-auto',
     table: 'w-full border-collapse',
     thead: '',
     tbody: '',
-    th: 'whitespace-nowrap py-2.5 px-3.5 text-left text-[11.5px] font-bold text-text-mid bg-bg-card-hi',
-    thNum: 'whitespace-nowrap py-2.5 px-3.5 text-right text-[11.5px] font-bold text-text-mid bg-bg-card-hi',
-    td: 'whitespace-nowrap border-t border-line py-3 px-3.5 text-[12.5px] text-text',
-    tdNum: 'whitespace-nowrap border-t border-line py-3 px-3.5 text-[12.5px] text-text text-right [font-variant-numeric:tabular-nums]',
-    pillOk: 'inline-block rounded-full py-1 px-2 text-[11px] leading-none font-bold bg-accent-soft text-accent',
-    pillPend: 'inline-block rounded-full py-1 px-2 text-[11px] leading-none font-bold bg-bg-card-hi text-text-mid',
+    th: 'whitespace-nowrap py-2.5 px-3.5 text-left text-[11.5px] font-bold text-text-2 bg-surface-2',
+    thNum: 'whitespace-nowrap py-2.5 px-3.5 text-right text-[11.5px] font-bold text-text-2 bg-surface-2',
+    td: 'whitespace-nowrap border-t border-border-soft py-3 px-3.5 text-[12.5px] text-text',
+    tdNum: 'whitespace-nowrap border-t border-border-soft py-3 px-3.5 text-[12.5px] text-text text-right [font-variant-numeric:tabular-nums]',
+    pillOk: 'inline-block rounded-full py-1 px-2 text-[11px] leading-none font-bold bg-primary/16 text-primary',
+    pillPend: 'inline-block rounded-full py-1 px-2 text-[11px] leading-none font-bold bg-surface-2 text-text-2',
     rfRowFirst: 'flex flex-col gap-2 pb-3',
-    rfRow: 'flex flex-col gap-2 pt-3 border-t border-line',
-    rfLabel: 'text-[12px] font-semibold text-text-mid',
+    rfRow: 'flex flex-col gap-2 pt-3 border-t border-border-soft',
+    rfLabel: 'text-[12px] font-semibold text-text-2',
     rfField: 'flex gap-2 min-w-0',
-    input: 'flex-1 min-w-0 h-11 rounded-xl border border-line-hi bg-bg px-3.5 text-[14px] text-text outline-none focus:border-accent',
-    saveBtn: 'h-11 px-5 rounded-xl border border-line-hi bg-bg text-text text-[13.5px] font-bold whitespace-nowrap disabled:opacity-50 flex-none min-w-19',
-    copyBtn: 'h-11 px-5 rounded-xl bg-accent text-text-on-accent text-[13.5px] font-bold whitespace-nowrap disabled:opacity-60 flex-none min-w-19',
+    input: 'flex-1 min-w-0 h-11 rounded-xl border border-border bg-bg px-3.5 text-[14px] text-text outline-none focus:border-primary',
+    saveBtn: 'h-11 px-5 rounded-xl border border-border bg-bg text-text text-[13.5px] font-bold whitespace-nowrap disabled:opacity-50 flex-none min-w-19',
+    copyBtn: 'h-11 px-5 rounded-xl bg-primary text-on-primary text-[13.5px] font-bold whitespace-nowrap disabled:opacity-60 flex-none min-w-19',
     error: 'm-0 text-[11px] text-[#ef4444]'
   };
   function crT(key, fallback) {

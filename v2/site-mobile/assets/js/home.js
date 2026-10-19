@@ -19,15 +19,15 @@
     var w = wide ? 'w-[128px]' : '';
     var fav = window.__v2mFav;
     var favId = fav ? fav.favIdFor(provider, i, 'slot') : '';
-    return '<a href="hot-games.html" class="' + w + ' flex-none rounded-2xl overflow-hidden bg-bg-card border border-line">' +
-      '<div class="relative aspect-square overflow-hidden bg-bg-elev">' +
+    return '<a href="hot-games.html" class="' + w + ' flex-none rounded-2xl overflow-hidden bg-surface border border-border-soft">' +
+      '<div class="relative aspect-square overflow-hidden bg-surface">' +
         '<img src="' + esc(m.image || '') + '" alt="" class="h-full w-full object-cover" style="object-position:' + esc(m.focalPoint || '50% 50%') + '" loading="lazy">' +
         (fav ? fav.favToggleHtml(favId, 'right-2 bottom-2') : '') +
       '</div>' +
       '<div class="p-2.5">' +
-        '<p class="text-[10.5px] font-medium text-accent truncate">' + esc(t('section.casino')) + '</p>' +
+        '<p class="text-[10.5px] font-medium text-primary truncate">' + esc(t('section.casino')) + '</p>' +
         '<p class="text-[12.5px] font-bold text-text truncate">' + esc(t('game.placeholder')) + '</p>' +
-        '<p class="text-[10.5px] text-text-dim truncate">' + esc(provider) + '</p>' +
+        '<p class="text-[10.5px] text-text-3 truncate">' + esc(provider) + '</p>' +
       '</div>' +
     '</a>';
   }
@@ -145,10 +145,10 @@
 
     function cardHTML(promo) {
       return (
-        '<div class="flex flex-col w-full max-w-[300px] h-[420px] rounded-2xl border border-line-hi bg-bg-card overflow-hidden">' +
-        '<div class="flex-none flex items-center justify-between px-3.5 py-2.5 border-b border-line">' +
+        '<div class="flex flex-col w-full max-w-[300px] h-[420px] rounded-2xl border border-border bg-surface overflow-hidden">' +
+        '<div class="flex-none flex items-center justify-between px-3.5 py-2.5 border-b border-border-soft">' +
         '<img src="../site/logo.png" alt="logo" class="h-5 w-auto object-contain">' +
-        '<button type="button" class="h-7 w-7 grid place-items-center rounded-full text-text-mid" data-promo-popup-close aria-label="Close">' +
+        '<button type="button" class="h-7 w-7 grid place-items-center rounded-full text-text-2" data-promo-popup-close aria-label="Close">' +
         '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>' +
         '</button></div>' +
         '<div class="flex-none cursor-pointer" data-promo-popup-content>' +
@@ -156,11 +156,11 @@
         '</div>' +
         '<div class="flex-1 min-h-0 overflow-y-auto px-3.5 py-3">' +
         '<p class="text-[13.5px] font-bold text-text mb-1.5">' + promo.title[loc] + '</p>' +
-        '<div class="text-[12px] leading-relaxed text-text-mid [&_p]:mb-2 [&_p:last-child]:mb-0">' + promo.content[loc] + '</div>' +
+        '<div class="text-[12px] leading-relaxed text-text-2 [&_p]:mb-2 [&_p:last-child]:mb-0">' + promo.content[loc] + '</div>' +
         '</div>' +
-        '<div class="flex-none flex items-center justify-center gap-1.5 px-3.5 py-2.5 border-t border-line">' +
-        '<input type="checkbox" data-promo-popup-remember class="h-4 w-4 accent-accent">' +
-        '<span class="text-[11.5px] text-text-mid">' + t('promotion.dontRemindToday') + '</span>' +
+        '<div class="flex-none flex items-center justify-center gap-1.5 px-3.5 py-2.5 border-t border-border-soft">' +
+        '<input type="checkbox" data-promo-popup-remember class="h-4 w-4 accent-primary">' +
+        '<span class="text-[11.5px] text-text-2">' + t('promotion.dontRemindToday') + '</span>' +
         '</div>' +
         '</div>'
       );

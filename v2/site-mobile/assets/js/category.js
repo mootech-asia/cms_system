@@ -29,14 +29,14 @@
     var provider = vendors[i % vendors.length];
     var fav = window.__v2mFav;
     var favId = fav ? fav.favIdFor(provider, i, category) : '';
-    return '<a href="#" class="rounded-2xl overflow-hidden bg-bg-card border border-line" data-vendor="' + esc(provider) + '">' +
-      '<div class="relative aspect-square overflow-hidden bg-bg-elev">' +
+    return '<a href="#" class="rounded-2xl overflow-hidden bg-surface border border-border-soft" data-vendor="' + esc(provider) + '">' +
+      '<div class="relative aspect-square overflow-hidden bg-surface">' +
         '<img src="' + esc(m.image || '') + '" alt="" class="h-full w-full object-cover" style="object-position:' + esc(m.focalPoint || '50% 50%') + '" loading="lazy">' +
         (fav ? fav.favToggleHtml(favId, 'right-2 bottom-2') : '') +
       '</div>' +
       '<div class="p-2.5">' +
         '<p class="text-[12.5px] font-bold text-text truncate">' + esc(t('game.placeholder')) + '</p>' +
-        '<p class="text-[10.5px] text-text-dim truncate">' + esc(provider) + '</p>' +
+        '<p class="text-[10.5px] text-text-3 truncate">' + esc(provider) + '</p>' +
       '</div>' +
     '</a>';
   }

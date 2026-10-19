@@ -55,7 +55,7 @@
   function favToggleHtml(id, posClass) {
     var active = isFavorite(id);
     return '<button type="button" class="fav-toggle absolute ' + (posClass || 'right-2 bottom-2') + ' z-10 h-7 w-7 grid place-items-center rounded-full border backdrop-blur-sm transition-colors' +
-      (active ? ' border-accent/50 bg-bg/85 text-accent' : ' border-line-hi bg-bg/70 text-text-dim') +
+      (active ? ' border-primary/50 bg-bg/85 text-primary' : ' border-border bg-bg/70 text-text-3') +
       '" data-fav-id="' + esc(id) + '" aria-pressed="' + active + '" aria-label="' + esc(t('nav.favorites')) + '">' +
       heartSvg(active) + '</button>';
   }
@@ -73,12 +73,12 @@
       var id = btn.getAttribute('data-fav-id');
       if (!id) return;
       var active = toggleFavorite(id);
-      btn.classList.toggle('border-accent/50', active);
+      btn.classList.toggle('border-primary/50', active);
       btn.classList.toggle('bg-bg/85', active);
-      btn.classList.toggle('text-accent', active);
-      btn.classList.toggle('border-line-hi', !active);
+      btn.classList.toggle('text-primary', active);
+      btn.classList.toggle('border-border', !active);
       btn.classList.toggle('bg-bg/70', !active);
-      btn.classList.toggle('text-text-dim', !active);
+      btn.classList.toggle('text-text-3', !active);
       btn.setAttribute('aria-pressed', String(active));
       var svg = btn.querySelector('svg');
       if (svg) {

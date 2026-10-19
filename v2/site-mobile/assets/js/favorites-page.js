@@ -22,18 +22,18 @@
     var name = isLive ? LIVE_GAME_NAMES[i % LIVE_GAME_NAMES.length] : t('game.placeholder');
     var vendorName = isLive ? LIVE_VENDORS[i % LIVE_VENDORS.length] : provider;
     var favId = window.__v2mFav.favIdFor(vendorName, i, kind);
-    return '<a href="' + (HREF_BY_KIND[kind] || 'hot-games.html') + '" class="rounded-2xl overflow-hidden bg-bg-card border border-line">' +
-      '<div class="relative aspect-square overflow-hidden bg-bg-elev">' +
+    return '<a href="' + (HREF_BY_KIND[kind] || 'hot-games.html') + '" class="rounded-2xl overflow-hidden bg-surface border border-border-soft">' +
+      '<div class="relative aspect-square overflow-hidden bg-surface">' +
         '<img src="' + esc(m.image || '') + '" alt="" class="h-full w-full object-cover" style="object-position:' + esc(m.focalPoint || '50% 50%') + '" loading="lazy">' +
         (isLive
           ? '<span class="absolute left-2 top-2 inline-flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-bold text-white">' +
-            '<span class="h-1.5 w-1.5 rounded-full" style="background:var(--live-dot)"></span>LIVE</span>'
+            '<span class="h-1.5 w-1.5 rounded-full" style="background:rgb(var(--c-danger))"></span>LIVE</span>'
           : '') +
         window.__v2mFav.favToggleHtml(favId, isLive ? 'right-2 top-2' : 'right-2 bottom-2') +
       '</div>' +
       '<div class="p-2.5">' +
         '<p class="text-[12.5px] font-bold text-text truncate">' + esc(name) + '</p>' +
-        '<p class="text-[10.5px] text-text-dim truncate">' + esc(vendorName) + '</p>' +
+        '<p class="text-[10.5px] text-text-3 truncate">' + esc(vendorName) + '</p>' +
       '</div>' +
     '</a>';
   }
