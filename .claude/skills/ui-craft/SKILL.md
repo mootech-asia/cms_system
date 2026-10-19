@@ -1,13 +1,13 @@
 ---
 name: ui-craft
-description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、動效/轉場時長、換膚 skin 色板、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', 'improve this UI', 'visual hierarchy', 'design tokens', 'diagnose UI', 'motion/transition', '設計要有突破/新意'。整合三份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」的鐵則做了覆寫。"
+description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、動效/轉場時長、換膚 skin 色板、無障礙(ARIA/鍵盤操作)、表單設計、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', '無障礙/ARIA/鍵盤操作', '表單怎麼設計/驗證', 'improve this UI', 'visual hierarchy', 'design tokens', 'diagnose UI', 'motion/transition', 'accessibility', 'form validation', '設計要有突破/新意'。整合五份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」的鐵則做了覆寫。"
 ---
 
 # UI 製作與視覺突破技能
 
 ## 來源與改編說明
 
-這份技能整合三個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
+這份技能整合五個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
 
 1. **[s0xDk/refactoring-ui-skill](https://github.com/s0xDk/refactoring-ui-skill)**（MIT
    license）——把 Adam Wathan／Steve Schoger《Refactoring UI》濃縮成可執行規則的 Claude
@@ -25,6 +25,20 @@ description: "在本 repo 新增或修改任何頁面的視覺呈現時使用—
    升級順序**（native → 既有 class/元件 → 手刻是最後手段，呼應 CLAUDE.md 鐵則）、以及
    驗收記憶點用的**四個具體測試**（互換/瞇眼/記憶點/token 測試）。省略了原技能裡
    「自己發明一套新色彩世界」的部分——跟本 repo 顏色鎖定既有 token 的規則衝突，不收。
+4. **[rampstackco/claude-skills](https://github.com/rampstackco/claude-skills)**
+   `accessibility-audit` skill（MIT license）——`references/aria-patterns.md` 節錄自
+   它的 `references/aria-patterns.md`。前三個來源一直說「手刻元件要補齊鍵盤/焦點/ARIA」
+   卻從沒講清楚具體該長什麼樣，這份把 tabs/modal/accordion/toggle/disclosure/
+   navigation 這幾種本 repo `site.js` 實際會用到的元件，該有哪些 ARIA attribute、
+   該有哪些鍵盤行為，寫成可以直接核對的清單。省略了原技能裡「正式 WCAG 合規稽核
+   報告」的格式與嚴重度分級——本 repo 驗收走 CLAUDE.md 既有的逐頁標準，不需要另外
+   一份報告交付物。
+5. **[szilu/ux-designer-skill](https://github.com/szilu/ux-designer-skill)**（MIT
+   license）——補表單（label 位置、驗證時機、錯誤訊息怎麼關聯回欄位）跟導覽項目數量
+   這兩塊，前四個來源都沒碰：這個 repo 的存款/提款/註冊這類表單、各版本的
+   header-auth／mobile-tabbar 導覽都用得上。也補了幾個前面沒提到的生成式介面通病
+   （紫色漸層+玻璃擬態當預設、每個區塊都套一樣的卡片+一樣的留白、hover-only 但沒有
+   觸控/鍵盤替代）。
 
 ## 第一層：基本功（不能先跳過）——覆寫原技能的「自建 scale」前提
 
@@ -130,6 +144,49 @@ footnote/版權這類，正文絕不用最淺那階）。
   位置長出來（`transform-origin` 對齊觸發元素），不要從畫面中心長出來；高頻率操作
   （例如語言切換）乾脆不要加動畫，加了反而感覺變慢。
 
+## 第四層：無障礙與表單——同樣是過去完全沒覆蓋的能力
+
+### 無障礙：先原生 HTML，ARIA 是補洞用的
+
+延續第一層「既有優先」的順序：能用原生 `<button>`/`<nav>`/`<input>` 就不要疊加多餘的
+`role`（`<button role="button">` 這種是多餘的，而且有時候還會蓋掉正確語意）。真的要
+手刻 tabs/modal/accordion/toggle/disclosure 這類元件（本 repo `site.js` 的 header-auth
+下拉、彈窗、輪播、betslip 都是這類），該有哪些 ARIA attribute、該有哪些鍵盤行為，
+查 `references/aria-patterns.md`——裡面針對每種元件都列好了「必要 ARIA」「必要行為」
+「要核對什麼」，不要憑印象亂加 `aria-*`。**沒有 ARIA 好過錯的 ARIA**：漏掉頂多讓某個
+功能對輔助科技不可用，加錯的（例如 `aria-expanded` 沒有對應 JS 真的去切換）會讓輔助
+科技回報的狀態直接跟實際不符，更糟。
+
+手刻完任何互動元件，拔掉滑鼠跑一次 `references/aria-patterns.md` 最後的鍵盤測試檢查表
+（Tab 順序、Enter/Space、方向鍵、Escape、focus 可見、彈窗關閉後 focus 回得去、沒有鍵盤
+陷阱）——這是把第一層「手刻要補齊完整鍵盤/焦點/ARIA」這句話兌現成具體動作的地方。
+
+### 表單：存款/提款/註冊這類頁面專用
+
+- **Label 放在欄位上方，不要只靠 placeholder 當 label**——placeholder 一開始打字就消失，
+  使用者/輔助科技都會失去上下文。
+- **驗證時機**：欄位 blur 時驗證一次；一旦該欄位顯示過錯誤，之後改成即時（每次 input
+  都重新驗證），不要等到使用者再次送出才又跳錯誤。
+- **錯誤訊息要跟欄位綁在一起**（`aria-describedby` 指到錯誤文字，見
+  `references/aria-patterns.md`），顯示在該欄位旁邊，送出時再彙總一次有哪些欄位有誤——
+  不要只在頁面最上方丟一句「表單有誤」讓使用者自己去找是哪一欄。
+- **只問真的需要的欄位**，必填/選填兩者中人數較少的那一邊才需要特別標示（例如大部分
+  欄位都必填，就只標「選填」那幾個，不要每個必填欄位都標星號）。
+
+### 補充幾個生成式介面通病（接續第二層的清單）
+
+- 紫色/靛色漸層 + 玻璃擬態 + 發光陰影當作「預設好看」的樣式——這些是沒有設計決策時
+  模型最常見的 fallback，不是本 repo 既有品牌調性的一部分就不要加。
+- 每個區塊都套一樣的卡片外框、一樣的留白——跟第一層「群組間距要有輕重之分」矛盾，
+  也是最容易被看出來「這是套模板」的地方。
+- **hover-only 的互動**（只有滑鼠移上去才會出現的功能）一定要有觸控/鍵盤的對應方式——
+  這個 repo 的頁面要在手機上用，純 hover 的功能在觸控裝置上等於不存在。
+
+### 導覽項目數量
+
+桌機主導覽抓 5–7 項是好讀的上限，手機底部 tabbar 抓 3–5 項（這個 repo 多個版本都有
+`mobile-tabbar`）。超過這個數量不是「資訊都很重要所以都要放」，是該做分類/收合的訊號。
+
 ## 驗收時的自我檢查
 
 - 記憶點是否真的體現在畫面上，還是只停留在描述？互換/瞇眼/記憶點/token 四個測試
@@ -137,8 +194,10 @@ footnote/版權這類，正文絕不用最淺那階）。
 - 有沒有用到當前版本既有 token 以外的任意色碼/px 值？（`grep` 新增的 CSS/inline style
   找 `#[0-9a-f]{3,6}`、裸 `px` 數字，逐一確認來源是既有 token 還是自己編的）
 - 新增的互動元件是不是先檢查過 native HTML／本版本既有共用 class 才手刻的？手刻的
-  有沒有補齊鍵盤/焦點/ARIA？
+  有沒有照 `references/aria-patterns.md` 核對必要 ARIA、跑過鍵盤測試檢查表（拔滑鼠
+  能不能完整操作）？
 - 有加動效的地方時長是否 <300ms、用的是自訂 ease-out、只對 transform/opacity 做
   animate？
+- 有表單的頁面：label 是否在欄位上方、錯誤訊息是否綁定對應欄位且送出時有彙總？
 - Hard rules 七條有沒有踩到任何一條？
 - 是否符合本 repo 驗收標準（視覺 pixel-diff、功能互動點、內容逐字保留、console 不變多）？
