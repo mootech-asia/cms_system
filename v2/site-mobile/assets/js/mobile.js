@@ -1,21 +1,30 @@
 /* v2 獨立手機版共用行為層。刻意不去動 ../site/assets/js/site.js——
    登入狀態(win100-logged-in)、收藏(win100-static-favorites)、語言
-   (win100-locale)三把 key 跟桌機版共用同一份 localStorage，同源自動
-   同步；只有「外觀 skin」刻意獨立（見下方 SKINS），不讀也不寫桌機版
-   的 win100-static-skin，避免兩邊互相蓋掉對方的選擇。 */
+   (win100-locale)、外觀 skin(win100-static-skin)四把 key 跟桌機版共用
+   同一份 localStorage，同源自動同步；skin 清單／名稱／排序取自桌機版
+   data.js 的 THEME_KEYS／THEME_LABELS，studio「公開皮膚」
+   (win100-public-config.publicSkins)的限縮也一併套用，兩邊是同一套。 */
 (function () {
   'use strict';
 
-  /* ============================== 外觀 skin（獨立於桌機版）=========== */
-  var SKIN_KEY = 'win100-mobile-skin';
-  var SKINS = [
-    { id: 'win100', label: 'Emerald', swatch: '#98e7d2' },
-    { id: 'aurora', label: 'Aurora', swatch: '#c9a6ff' },
-    { id: 'noir', label: 'Noir Gold', swatch: '#e8c67a' },
-    { id: 'fashion-blue', label: 'Fashion Blue', swatch: '#5da9ff' },
-    { id: 'rose-graphite', label: 'Rose Graphite', swatch: '#f29ab8' },
-    { id: 'cosmic-pink', label: 'Cosmic Pink', swatch: '#ff8ad6' },
-  ];
+  /* ============================== 外觀 skin（與桌機版共用）=========== */
+  var SKIN_KEY = 'win100-static-skin';
+  var SKIN_SWATCH = {
+    win100: '#98e7d2', aurora: '#c9a6ff', noir: '#e8c67a',
+    'fashion-blue': '#5da9ff', 'rose-graphite': '#f29ab8', 'cosmic-pink': '#ff8ad6'
+  };
+  var SKINS = (function () {
+    var D = window.WIN100_DATA || {};
+    var keys = D.THEME_KEYS || Object.keys(SKIN_SWATCH);
+    var labels = D.THEME_LABELS || {};
+    var cfg = null;
+    try { cfg = JSON.parse(localStorage.getItem('win100-public-config') || 'null'); } catch (e) {}
+    var pub = (cfg && cfg.publicSkins) || [];
+    var visible = pub.length ? keys.filter(function (k) { return pub.indexOf(k) !== -1; }) : keys;
+    return (visible.length ? visible : keys).map(function (k) {
+      return { id: k, label: labels[k] || k, swatch: SKIN_SWATCH[k] || 'transparent' };
+    });
+  })();
   var currentSkinId = 'win100';
 
   function findSkin(id) {
