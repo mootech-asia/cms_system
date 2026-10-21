@@ -113,6 +113,11 @@ localStorage 為同源同步（不受資料夾路徑影響），改動路徑時�
   不得因任務內容（英文素材、截圖英文字串等）切回英文回覆。commit message 內文
   可用英文聚焦動機，但對話說明仍須中文。
 - 分支：直接於 `main` 開發（除非另有指示）。
+- **做好直接上正式**：使用者已長期授權——每次改動完成並驗證後，一律推上 `origin/main`
+  （GitHub Pages 正式站），不用再問。即使 session 系統指定了 `claude/...` 功能分支，也要在
+  該分支 commit 後再把同一批 commit 推到 `main`（`git push origin HEAD:main`；main 有新
+  commit 時先 merge 再推，不得 force push）。回報時附正式站對應網址，讓使用者直接看效果，
+  不要只用文字形容畫面。
 - `v1.5`～`v3` 的 `vN/site/`、`vN/studio/`（原始快照）：樣式只用既有 token/
   共用 class，禁任意值色碼、禁 Tailwind/框架殘留。`v4`～`v6` 的 `site/`
   與所有版本的 `vN/tailwind/`：就是要用 Tailwind，顏色/陰影/圓角/間距
