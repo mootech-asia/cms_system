@@ -2843,3 +2843,50 @@ select.pay-field {
    DOMContentLoaded handler 跑完後加上；JS 失效時 5s 後由動畫強制顯示，不會永遠空白。 */
 html:not(.i18n-ready) body { opacity: 0; animation: i18n-reveal 0s 5s forwards; }
 @keyframes i18n-reveal { to { opacity: 1; } }
+
+/* 手機寬度 logo 下方的遊戲分類列（site.js initMobileGameNav 插在 .app-header-mobile 之後，
+   位於 sticky 的 .site-header 內）。連結樣式沿用 .app-nav-link 的作用中配色。 */
+.mobile-game-nav {
+  display: flex; gap: 0.375rem; overflow-x: auto; padding: 0 1rem 0.625rem;
+  scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.mobile-game-nav::-webkit-scrollbar { display: none; }
+@media (min-width: 768px) { .mobile-game-nav { display: none; } }
+.mobile-game-nav-link {
+  display: flex; align-items: center; gap: 0.375rem; flex-shrink: 0;
+  padding: 0.375rem 0.75rem; border-radius: 9999px; white-space: nowrap;
+  font-size: 0.8125rem; line-height: 1.25rem; font-weight: 600; text-decoration: none;
+  color: rgb(var(--c-text-2) / 1); background-color: rgb(var(--c-surface-2) / 1);
+}
+.mobile-game-nav-link.is-active { color: rgb(var(--c-on-primary) / 1); background-image: var(--g-primary); }
+.mobile-game-nav-icon { width: 0.875rem; height: 0.875rem; }
+
+/* 未登入時手機 header 最上方的細列小顆登入/註冊（沿用 .app-header-login-btn／register-btn 配色）。 */
+.app-header-mobile-auth {
+  display: flex; align-items: center; justify-content: flex-end; gap: 0.375rem;
+  padding: 0.5rem 1rem 0;
+}
+@media (min-width: 768px) { .app-header-mobile-auth { display: none; } }
+.app-header-mobile-auth .app-header-login-btn,
+.app-header-mobile-auth .app-header-register-btn { padding: 0.125rem 0.75rem; font-size: 0.75rem; line-height: 1.25rem; white-space: nowrap; }
+
+/* 底部導覽「會員」的上方抽屜；會員資訊區塊沿用 .mobile-account-*。 */
+.member-top-drawer-overlay { position: fixed; inset: 0; z-index: 10001; background: rgba(0, 0, 0, .6); }
+.member-top-drawer-panel {
+  position: absolute; top: 0; left: 0; right: 0;
+  background-color: rgb(var(--c-surface) / 1);
+  border-bottom: 1px solid rgb(var(--c-border-soft) / 1);
+  border-radius: 0 0 1rem 1rem; padding: 0 1rem 1.25rem;
+  animation: memberTopDrawerIn .22s ease-out;
+}
+.member-top-drawer-head {
+  display: flex; align-items: center; justify-content: space-between; height: 3.5rem;
+  font-size: 1rem; font-weight: 700; color: rgb(var(--c-text) / 1);
+}
+.member-top-drawer-body { display: flex; flex-direction: column; gap: 0.875rem; }
+.member-top-drawer-auth { display: grid; grid-template-columns: 1fr 1fr; gap: 0.625rem; }
+.member-top-drawer-auth .app-header-login-btn,
+.member-top-drawer-auth .app-header-register-btn { padding: 0.75rem 0; font-size: 0.9375rem; }
+@keyframes memberTopDrawerIn { from { transform: translateY(-100%); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .member-top-drawer-panel { animation: none; } }
+@media (min-width: 768px) { .member-top-drawer-overlay { display: none; } }

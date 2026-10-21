@@ -733,6 +733,62 @@
     on(browseBtn, 'click', openMemberDrawer);
   }
 
+  /* 手機寬度：大廳類頁面在 logo 下方固定一排遊戲分類（跟著 sticky header 走），
+     每頁位置一致；首頁與優惠活動已在底部導覽列，這裡不重複。 */
+  function initMobileGameNav() {
+    var bar = document.querySelector('.app-header-mobile');
+    if (!bar || bar.nextElementSibling && bar.nextElementSibling.classList.contains('mobile-game-nav')) return;
+    var links = (D.NAV_LINKS || []).filter(function (l) { return l.href !== 'index.html' && l.href !== 'promotion.html'; });
+    var nav = document.createElement('nav');
+    nav.className = 'mobile-game-nav';
+    nav.innerHTML = links.map(function (l) {
+      return '<a href="' + l.href + '" class="mobile-game-nav-link' + (isActivePage(l.href) ? ' is-active' : '') + '">' +
+        iconSvg(l.icon, 'mobile-game-nav-icon') + '<span>' + escapeHtml(l.label) + '</span></a>';
+    }).join('');
+    bar.parentNode.insertBefore(nav, bar.nextSibling);
+    var active = nav.querySelector('.is-active');
+    if (active) nav.scrollLeft = Math.max(0, active.offsetLeft - 16);
+  }
+
+  /* 未登入時手機 header 最上方（logo 列之上）一條細列放小顆登入/註冊；放在 logo 列
+     內會把漢堡選單擠出 390px 畫面。要在 initAuthTriggers 之前插入，點擊由它依按鈕
+     文字綁定 openAuth；登入後 applyLoggedInHeaderUI 會移除。 */
+  function initMobileHeaderAuth() {
+    if (authState.loggedIn) return;
+    var T = D.T || {};
+    $all('.app-header-mobile').forEach(function (bar) {
+      if (bar.previousElementSibling && bar.previousElementSibling.classList.contains('app-header-mobile-auth')) return;
+      bar.insertAdjacentHTML('beforebegin',
+        '<div class="app-header-mobile-auth">' +
+        '<button type="button" class="app-header-login-btn">' + escapeHtml(T.login) + '</button>' +
+        '<button type="button" class="app-header-register-btn">' + escapeHtml(T.register) + '</button></div>');
+    });
+  }
+
+  /* 底部導覽「會員」：改成由上往下展開的會員抽屜（fixed，不隨頁面捲動），
+     已登入顯示會員資訊，未登入顯示登入/註冊；開關沿用 openMobileOverlay。 */
+  function buildMemberTopDrawerHtml() {
+    var T = D.T || {};
+    var body = authState.loggedIn ? mobileLoggedInBlockHtml() : (
+      '<div class="member-top-drawer-auth">' +
+      '<button type="button" class="app-header-login-btn" data-mobile-login>' + escapeHtml(T.login) + '</button>' +
+      '<button type="button" class="app-header-register-btn" data-mobile-register>' + escapeHtml(T.register) + '</button></div>'
+    );
+    return (
+      '<div class="member-top-drawer-overlay" data-mobile-overlay>' +
+      '<div class="member-top-drawer-panel">' +
+      '<div class="member-top-drawer-head"><span>' + escapeHtml(T.member) + '</span>' +
+      '<button type="button" class="header-mobile-menu-close" aria-label="Close menu" data-mobile-close>' + iconSvg('x', 'icon-lg') + '</button></div>' +
+      '<div class="member-top-drawer-body">' + body + '</div>' +
+      '</div></div>'
+    );
+  }
+  function initMemberTopDrawer() {
+    $all('.mobile-bottom-nav a[href="account.html"]').forEach(function (a) {
+      on(a, 'click', function (e) { e.preventDefault(); openMobileOverlay(buildMemberTopDrawerHtml()); });
+    });
+  }
+
   /* ============================== auth modal ============================= */
   /* AuthModal.vue — Teleport'd, v-if so absent from the static DOM entirely;
      built on demand. Login has no validation in the source app either (dev
@@ -870,6 +926,7 @@
       bar.insertAdjacentHTML('afterbegin', accountBarHtml());
       bindAccountBarLogout(bar);
     });
+    $all('.app-header-mobile-auth').forEach(function (n) { n.remove(); });
   }
 
   function localeTriggerHtml() {
@@ -3402,6 +3459,9 @@
     initLocaleSwitcher();
     initHeaderMobileMenus();
     initMobileBottomNav();
+    initMobileGameNav();
+    initMemberTopDrawer();
+    initMobileHeaderAuth();
     initAuthTriggers();
     initBanner();
     initPromoPopup();
