@@ -117,7 +117,8 @@ localStorage 為同源同步（不受資料夾路徑影響），改動路徑時�
   （GitHub Pages 正式站），不用再問。即使 session 系統指定了 `claude/...` 功能分支，也要在
   該分支 commit 後再把同一批 commit 推到 `main`（`git push origin HEAD:main`；main 有新
   commit 時先 merge 再推，不得 force push）。回報時附正式站對應網址，讓使用者直接看效果，
-  不要只用文字形容畫面。
+  不要只用文字形容畫面。推上 main 後必須查 `Deploy GitHub Pages` workflow 該次 run 的結論，
+  是 success 才能給網址說「可以看了」；failure 就看 log、能重跑就重跑，並在回報寫明。
 - `v1.5`～`v3` 的 `vN/site/`、`vN/studio/`（原始快照）：樣式只用既有 token/
   共用 class，禁任意值色碼、禁 Tailwind/框架殘留。`v4`～`v6` 的 `site/`
   與所有版本的 `vN/tailwind/`：就是要用 Tailwind，顏色/陰影/圓角/間距
