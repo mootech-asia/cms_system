@@ -2523,20 +2523,22 @@
       if (type === 'goal') return '<span class="match-card-live-badge">' + label + '</span>';
       return '<span class="rec-pill' + (type === 'predict' ? ' ok' : '') + '">' + label + '</span>';
     }
+    /* 所有訊息都疊在同一格（CSS grid），只有目前這則可見；框高固定為最長那則，
+       輪播換到較短的訊息時下方賽事列不會跟著上下跳。 */
     function render(entering, isNew) {
-      var item = items[index];
       boxes.forEach(function (box) {
         var viewport = box.querySelector('.sport-notice-viewport');
         var count = box.querySelector('[data-sport-notice-count]');
         if (count) count.textContent = items.length ? (index + 1) + ' / ' + items.length : '0 / 0';
         if (!viewport) return;
-        viewport.innerHTML = item
-          ? '<div class="sport-notice-msg' + (entering ? ' is-entering' : '') + (isNew ? ' is-new' : '') + '">' +
+        viewport.innerHTML = items.map(function (item, i) {
+          var cls = 'sport-notice-msg' + (i === index ? ' is-active' + (entering ? ' is-entering' : '') + (isNew ? ' is-new' : '') : '');
+          return '<div class="' + cls + '"' + (i === index ? '' : ' aria-hidden="true"') + '>' +
               tagHTML(item.type) +
-              '<span class="sport-notice-text" title="' + escapeHtml(item.text) + '">' + escapeHtml(item.text) + '</span>' +
+              '<span class="sport-notice-text">' + escapeHtml(item.text) + '</span>' +
               '<time class="sport-notice-time" datetime="' + item.time.toISOString() + '">' + stamp(item.time) + '</time>' +
-            '</div>'
-          : '';
+            '</div>';
+        }).join('');
         Array.prototype.forEach.call(box.querySelectorAll('[data-sport-notice-prev],[data-sport-notice-next]'), function (b) { b.disabled = items.length < 2; });
       });
     }
@@ -2569,11 +2571,10 @@
     });
 
     var now = Date.now();
-    for (var k = INITIAL - 1; k >= 0 && mockCursor < mock.length; k--) {
+    for (var k = 0; k < INITIAL && mockCursor < mock.length; k++) {
       items.push({ type: mock[mockCursor].type, text: mock[mockCursor].text, time: new Date(now - (k + 1) * 4 * 60000) });
       mockCursor++;
     }
-    items.reverse();
     show(0, false);
     restartRotate();
     window.CMS_SPORT_NOTICE = { push: push };
