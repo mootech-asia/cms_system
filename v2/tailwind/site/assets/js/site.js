@@ -727,7 +727,7 @@
 
   function initMobileBottomNav() {
     var browseLabel = (D.T || {}).browse || '瀏覽';
-    var browseBtn = $all('.mobile-bottom-nav button').filter(function (b) {
+    var browseBtn = $all('.mobile-bottom-nav button, [data-mobile-bottom-nav] button').filter(function (b) {
       return (b.textContent || '').replace(/\s+/g, '') === browseLabel;
     })[0];
     on(browseBtn, 'click', openMemberDrawer);
@@ -784,7 +784,7 @@
     );
   }
   function initMemberTopDrawer() {
-    $all('.mobile-bottom-nav a[href="account.html"]').forEach(function (a) {
+    $all('.mobile-bottom-nav a[href="account.html"], [data-mobile-bottom-nav] a[href="account.html"]').forEach(function (a) {
       on(a, 'click', function (e) { e.preventDefault(); openMobileOverlay(buildMemberTopDrawerHtml()); });
     });
   }
