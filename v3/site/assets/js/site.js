@@ -2499,6 +2499,94 @@
   }
 
   /* ============================================================
+   * 即時體育訊息公告區（index.html 的 live-sport 區塊、site-mobile 的體育分頁）：
+   * 賽事卡片是第三方資料，公告獨立一列不疊在上面。一次顯示一則、每 5 秒輪播，
+   * 滑鼠移入或鍵盤焦點在區塊內時暫停；新推播一律插到最前面並立即顯示。
+   * 真實推播由後端呼叫 window.CMS_SPORT_NOTICE.push({ type, text })；
+   * type 為 predict／goal／notice。目前沒有後端，先每 12 秒從 i18n 的
+   * mock 清單取下一則模擬推播。
+   * ========================================================== */
+  function initSportNotice() {
+    var boxes = Array.prototype.slice.call(document.querySelectorAll('[data-sport-notice]'));
+    if (!boxes.length) return;
+    var mock = resolvePath(localeRoot(LOCALE), 't.lobby.sportNotice.mock') || resolvePath(localeRoot(FALLBACK_LOCALE), 't.lobby.sportNotice.mock') || [];
+    var MAX_ITEMS = 20, ROTATE_MS = 5000, MOCK_PUSH_MS = 12000, INITIAL = 3;
+    var items = [];
+    var index = 0;
+    var mockCursor = 0;
+    var rotateTimer = null;
+
+    function pad(n) { return n < 10 ? '0' + n : String(n); }
+    function stamp(d) { return pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+    function tagHTML(type) {
+      var label = escapeHtml(tr('t.lobby.sportNotice.types.' + type, type));
+      if (type === 'goal') return '<span class="match-card-live-badge">' + label + '</span>';
+      return '<span class="rec-pill' + (type === 'predict' ? ' ok' : '') + '">' + label + '</span>';
+    }
+    function render(entering, isNew) {
+      var item = items[index];
+      boxes.forEach(function (box) {
+        var viewport = box.querySelector('.sport-notice-viewport');
+        var count = box.querySelector('[data-sport-notice-count]');
+        if (count) count.textContent = items.length ? (index + 1) + ' / ' + items.length : '0 / 0';
+        if (!viewport) return;
+        viewport.innerHTML = item
+          ? '<div class="sport-notice-msg' + (entering ? ' is-entering' : '') + (isNew ? ' is-new' : '') + '">' +
+              tagHTML(item.type) +
+              '<span class="sport-notice-text" title="' + escapeHtml(item.text) + '">' + escapeHtml(item.text) + '</span>' +
+              '<time class="sport-notice-time" datetime="' + item.time.toISOString() + '">' + stamp(item.time) + '</time>' +
+            '</div>'
+          : '';
+        Array.prototype.forEach.call(box.querySelectorAll('[data-sport-notice-prev],[data-sport-notice-next]'), function (b) { b.disabled = items.length < 2; });
+      });
+    }
+    function show(i, isNew) {
+      if (!items.length) { render(false, false); return; }
+      index = (i + items.length) % items.length;
+      render(true, isNew);
+    }
+    function isPaused() {
+      return boxes.some(function (box) { return box.matches(':hover') || box.contains(document.activeElement); });
+    }
+    function restartRotate() {
+      if (rotateTimer) clearInterval(rotateTimer);
+      rotateTimer = setInterval(function () { if (!isPaused() && items.length > 1) show(index + 1, false); }, ROTATE_MS);
+    }
+    function push(msg) {
+      if (!msg || !msg.text) return;
+      var type = msg.type === 'goal' || msg.type === 'predict' ? msg.type : 'notice';
+      items.unshift({ type: type, text: String(msg.text), time: msg.time ? new Date(msg.time) : new Date() });
+      if (items.length > MAX_ITEMS) items.length = MAX_ITEMS;
+      show(0, true);
+      restartRotate();
+    }
+
+    boxes.forEach(function (box) {
+      box.addEventListener('click', function (e) {
+        if (e.target.closest('[data-sport-notice-prev]')) { show(index - 1, false); restartRotate(); }
+        else if (e.target.closest('[data-sport-notice-next]')) { show(index + 1, false); restartRotate(); }
+      });
+    });
+
+    var now = Date.now();
+    for (var k = INITIAL - 1; k >= 0 && mockCursor < mock.length; k--) {
+      items.push({ type: mock[mockCursor].type, text: mock[mockCursor].text, time: new Date(now - (k + 1) * 4 * 60000) });
+      mockCursor++;
+    }
+    items.reverse();
+    show(0, false);
+    restartRotate();
+    window.CMS_SPORT_NOTICE = { push: push };
+    if (mock.length) {
+      setInterval(function () {
+        var m = mock[mockCursor % mock.length];
+        mockCursor++;
+        push({ type: m.type, text: m.text });
+      }, MOCK_PUSH_MS);
+    }
+  }
+
+  /* ============================================================
    * 優惠卡片（index.html 首頁 4 張；promotion.html PC 首屏 4 張、載入更多循環補到 8 張，site-mobile 首屏 2 張、載入更多補到 4 張）：
    * 既有 PROMOTION_OFFERS（4 筆，逐字保留，未新增/未省略），點擊導向 promotion-detail.html（依 data-promo-id
    * 帶 ?id= 深連結），該頁的行動按鈕才導向各自 actionTarget 對照的真實
@@ -3223,6 +3311,7 @@
     safe(initFavoritesPage);
     safe(initSupportPage);
     safe(initSportsPage);
+    safe(initSportNotice);
     safe(initPromotionCards);
     safe(initPromotionDetail);
     safe(initDepositPage);
