@@ -619,7 +619,7 @@
       '<button type="button" class="header-account-link" style="margin-left:auto" data-logout aria-label="' + escapeHtml(T.logout) + '">' + iconSvg('log-out', 'icon-lg') + '</button></div>' +
       '<div class="mobile-account-stat-row mobile-account-stat-row--first"><span class="mobile-account-stat-label">' + escapeHtml(T.accountBalance) + '</span><span class="mobile-account-stat-label">: </span><span class="mobile-account-stat-value">₩1,000,000,000</span></div>' +
       '<div class="mobile-account-stat-row"><span class="mobile-account-stat-label">' + escapeHtml(T.accountPoints) + '</span><span class="mobile-account-stat-label">: </span><span class="mobile-account-stat-value">0.00</span></div></div></div>' +
-      '<a href="account.html" class="mobile-account-view-btn" style="padding:10px 18px;text-decoration:none">' + escapeHtml(T.accountView) + '</a>'
+      '<a href="account.html" class="mobile-account-view-btn">' + escapeHtml(T.accountView) + '</a>'
     );
   }
 
@@ -635,8 +635,9 @@
     var links = D.NAV_LINKS || [];
     var T = D.T || {};
     var bottom = authState.loggedIn ? mobileLoggedInBlockHtml() : (
-      '<button style="display:block;width:100%;text-align:left;padding:12px 14px;background:none;border:0;color:#fff;cursor:pointer;font-weight:600;font-size:15px" data-mobile-login>' + escapeHtml(T.login) + '</button>' +
-      '<button class="btn-primary w-full" style="padding:12px 14px;font-size:15px;margin-top:4px" data-mobile-register>' + escapeHtml(T.register) + '</button>'
+      '<div class="mobile-auth-actions">' +
+      '<button type="button" class="app-header-login-btn" data-mobile-login>' + escapeHtml(T.login) + '</button>' +
+      '<button type="button" class="app-header-register-btn" data-mobile-register>' + escapeHtml(T.register) + '</button></div>'
     );
     return (
       '<div class="header-mobile-menu-overlay" style="background:rgba(0,0,0,.6)" data-mobile-overlay>' +
@@ -644,7 +645,7 @@
       '<div class="header-mobile-menu-head">' +
       '<img src="logo.png" alt="Casino Logo" class="header-mobile-menu-logo">' +
       '<button class="header-mobile-menu-close" aria-label="Close menu" data-mobile-close>' + iconSvg('x', 'icon-xl') + '</button></div>' +
-      '<nav class="header-mobile-menu-nav" style="grid-template-rows:repeat(' + links.length + ',minmax(0,1fr))">' + navLinksHtml() + '</nav>' +
+      '<nav class="header-mobile-menu-nav">' + navLinksHtml() + '</nav>' +
       '<div class="header-mobile-menu-foot" data-mobile-bottom>' + bottom + '</div>' +
       '</div></div>'
     );
@@ -658,7 +659,7 @@
       '<div class="header-mobile-menu-head">' +
       '<img src="logo.png" alt="Casino Logo" class="header-mobile-menu-logo">' +
       '<button class="header-mobile-menu-close" aria-label="Close menu" data-mobile-close>' + iconSvg('x', 'icon-xl') + '</button></div>' +
-      '<nav class="header-mobile-menu-nav" style="grid-template-rows:repeat(' + links.length + ',minmax(0,1fr))">' + navLinksHtml() + '</nav>' +
+      '<nav class="header-mobile-menu-nav">' + navLinksHtml() + '</nav>' +
       '<div class="header-mobile-menu-foot">' + mobileLoggedInBlockHtml() + '</div>' +
       '</div></div>'
     );
@@ -706,7 +707,7 @@
       '<div class="mmd-overlay" data-mmd-overlay>' +
       '<div class="mmd-panel">' +
       '<div class="mmd-head"><span>Menu</span><button type="button" aria-label="Close menu" data-mmd-close>' + iconSvg('x', 'icon-md') + '</button></div>' +
-      '<nav class="mmd-links" style="grid-template-rows:repeat(' + links.length + ',minmax(0,1fr))">' + rows + '</nav>' +
+      '<nav class="mmd-links">' + rows + '</nav>' +
       '</div></div>'
     );
   }
@@ -770,7 +771,7 @@
   function buildMemberTopDrawerHtml() {
     var T = D.T || {};
     var body = authState.loggedIn ? mobileLoggedInBlockHtml() : (
-      '<div class="member-top-drawer-auth">' +
+      '<div class="mobile-auth-actions">' +
       '<button type="button" class="app-header-login-btn" data-mobile-login>' + escapeHtml(T.login) + '</button>' +
       '<button type="button" class="app-header-register-btn" data-mobile-register>' + escapeHtml(T.register) + '</button></div>'
     );
