@@ -25,55 +25,61 @@
 
 <main>
   <section class="px-4 pt-4">
-    <div class="overflow-hidden rounded-3xl border border-white/10 bg-surface shadow-[inset_0_1px_0_rgba(255,255,255,.1),0_18px_32px_-16px_rgba(0,0,0,.8)]">
-      <div class="flex items-center gap-3 px-4 pt-4">
+    <!-- 會員卡：外觀比照首頁會員卡（index.html data-auth-account），多放餘額／紅利點數／
+         入會日期／流水；數值沿用原本這張卡的資料（PlayerOne、VIP1、62%、₩16,517.41）。 -->
+    <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-surface px-3.5 py-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,.12),0_14px_28px_-12px_rgba(0,0,0,.75)] motion-safe:animate-[v2m-rise_.55s_cubic-bezier(.22,1,.36,1)_both] motion-safe:[animation-delay:0ms]">
+      <span class="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl motion-reduce:hidden" aria-hidden="true" data-card-shine><span class="card-sheen absolute inset-y-0 -left-2/3 w-2/3 animate-[v2m-shine_6s_cubic-bezier(.45,0,.2,1)_infinite]"></span></span><span class="card-orbit-border pointer-events-none absolute inset-0 rounded-2xl animate-[v2m-orbit_5s_linear_infinite] motion-reduce:hidden" aria-hidden="true" data-card-orbit></span>
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(110%_95%_at_50%_0%,color-mix(in_srgb,rgb(var(--c-primary))_26%,transparent),transparent_70%)] shadow-[inset_0_0_28px_rgba(0,0,0,.25)]" aria-hidden="true"></div>
+
+      <div class="relative flex items-center gap-3 motion-safe:animate-[v2m-rise_.55s_cubic-bezier(.22,1,.36,1)_both] motion-safe:[animation-delay:60ms]">
         <div class="relative flex-none">
-          <span class="h-12 w-12 rounded-full bg-primary/16 ring-2 ring-primary/45 shadow-[0_0_18px_color-mix(in_srgb,rgb(var(--c-primary))_45%,transparent)] grid place-items-center text-primary font-bold">PL</span>
+          <span class="absolute -inset-1 rounded-full bg-primary/25 blur-md motion-safe:animate-[v2m-halo_3.2s_ease-in-out_infinite]" aria-hidden="true"></span>
+          <span class="relative h-11 w-11 rounded-full bg-primary/16 ring-2 ring-primary/45 shadow-[0_0_18px_color-mix(in_srgb,rgb(var(--c-primary))_45%,transparent)] grid place-items-center text-primary font-bold text-[13px]">PL</span>
           <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 h-4 w-4 grid place-items-center rounded-full border border-border bg-surface text-primary" aria-hidden="true"><svg width="10" height="11" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M6 0 0 3.5v7L6 14l6-3.5v-7L6 0Z"></path></svg></span>
         </div>
-        <div class="min-w-0 flex-1">
-          <p class="flex items-center gap-1.5 text-[15px] font-bold text-text">PlayerOne<a href="personal-info.html" class="grid h-6 w-6 place-items-center rounded-md text-text-3" data-i18n-en-aria="Change nickname" aria-label="Change nickname"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></a></p>
-          <p class="mt-0.5 flex items-center gap-2 text-[11.5px] text-text-3"><span data-i18n="account.memberNo">會員編號</span><span class="rounded-full bg-primary/16 px-2 py-px text-[10.5px] font-bold text-primary">VIP1</span></p>
+        <div class="flex-1 min-w-0">
+          <p class="flex items-center gap-1 text-[13.5px] font-bold text-text"><span class="truncate">PlayerOne</span><a href="personal-info.html" class="grid h-6 w-6 flex-none place-items-center rounded-md text-text-3" data-i18n-en-aria="Change nickname" aria-label="Change nickname"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></a></p>
+          <p class="flex items-center gap-1.5 text-[11px] font-semibold text-text-3"><span data-i18n="account.memberNo">會員編號</span><span class="rounded-full border border-primary/35 bg-primary/16 px-1.5 py-px text-[10px] font-bold leading-none text-primary">VIP1</span></p>
         </div>
-        <div class="flex-none text-right text-[11px] text-text-3">
-          <p data-i18n-en="Member Since">Member Since</p>
-          <p class="mt-0.5 text-[12.5px] font-semibold text-text" data-i18n-en="August 2025">August 2025</p>
-        </div>
-      </div>
-
-      <div class="mx-3 mt-4 rounded-2xl border border-white/20 p-4 shadow-[inset_0_1px_1px_rgba(255,255,255,.35)]" style="background:radial-gradient(110% 95% at 50% 0%, color-mix(in srgb, rgb(var(--c-primary-700)) 65%, white), transparent 70%), linear-gradient(180deg, rgb(var(--c-primary-700)), rgb(var(--c-primary-900)))">
-        <div class="flex items-end justify-between gap-3">
-          <div class="min-w-0">
-            <p class="text-[11.5px] font-semibold text-white/80"><span data-i18n="account.balance2">帳戶餘額</span></p>
-            <p class="mt-1 text-[28px] font-extrabold leading-none text-white drop-shadow-[0_1px_2px_rgba(0,0,0,.35)]">$0.00</p>
-          </div>
-          <div class="flex-none rounded-xl bg-black/20 px-3 py-2 text-right ring-1 ring-white/20">
-            <p class="text-[10.5px] font-semibold text-white/75"><span data-i18n="account.bonusPoints">紅利點數</span></p>
-            <p class="text-[15px] font-extrabold text-white">0</p>
-          </div>
-        </div>
-        <div class="mt-4 grid grid-cols-2 gap-2.5">
-          <a href="deposit.html" class="flex h-10 items-center justify-center gap-1.5 rounded-xl bg-white text-[13px] font-bold" style="color:rgb(var(--c-primary-800))"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="m6 13 6 6 6-6"></path></svg><span data-i18n-en="Deposit Now">Deposit Now</span></a>
-          <a href="withdrawal.html" class="flex h-10 items-center justify-center gap-1.5 rounded-xl border border-white/50 text-[13px] font-bold text-white"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="m6 11 6-6 6 6"></path></svg><span data-i18n-en="Withdraw">Withdraw</span></a>
+        <div class="flex-none text-right">
+          <p class="text-[10px] font-semibold text-text-3" data-i18n-en="Member Since">Member Since</p>
+          <p class="mt-0.5 text-[12px] font-bold text-text" data-i18n-en="August 2025">August 2025</p>
         </div>
       </div>
 
-      <div class="px-4 pb-4 pt-4">
-        <div class="flex items-center justify-between text-[11.5px]">
-          <span class="flex items-center gap-1.5 font-semibold text-text-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg><span data-i18n="account.rewardsProgress">等級進度</span></span>
-          <span class="text-[13px] font-extrabold text-text">62%</span>
+      <div class="relative mt-3 grid grid-cols-[1fr_auto] gap-2 motion-safe:animate-[v2m-rise_.55s_cubic-bezier(.22,1,.36,1)_both] motion-safe:[animation-delay:120ms]">
+        <div class="min-w-0 rounded-xl bg-white/[.04] px-3 py-2.5 ring-1 ring-white/10">
+          <p class="text-[10.5px] font-semibold text-text-3"><span data-i18n="account.balance2">帳戶餘額</span></p>
+          <p class="mt-0.5 truncate text-[22px] font-extrabold leading-tight text-text" data-count-up>$0.00</p>
         </div>
-        <div class="mt-2 h-3 rounded-full bg-white/12 p-0.5 shadow-[inset_0_1px_2px_rgba(0,0,0,.45)]" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="Level progress: 62%">
-          <div class="h-full rounded-full bg-[linear-gradient(90deg,color-mix(in_oklch,rgb(var(--c-primary))_65%,rgb(var(--c-primary-700))),color-mix(in_oklch,rgb(var(--c-primary))_75%,white))] shadow-[0_0_16px_color-mix(in_srgb,rgb(var(--c-primary))_65%,transparent),inset_0_1px_1px_rgba(255,255,255,.5)]" style="width:62%"></div>
+        <div class="min-w-[5.5rem] rounded-xl bg-white/[.04] px-3 py-2.5 text-right ring-1 ring-white/10">
+          <p class="text-[10.5px] font-semibold text-text-3"><span data-i18n="account.bonusPoints">紅利點數</span></p>
+          <p class="mt-0.5 text-[22px] font-extrabold leading-tight text-primary" data-count-up>0</p>
         </div>
-        <div class="mt-1.5 flex items-center justify-between text-[11px] font-semibold text-text-3">
-          <span><span data-i18n="account.current">目前</span>: <b class="text-text"><span data-i18n="account.tierUnranked">未排名</span></b></span>
-          <span><span data-i18n="account.next">下一階</span>: <b class="text-primary"><span data-i18n="account.tierBronze">銅級</span></b></span>
+      </div>
+
+      <div class="relative mt-3 motion-safe:animate-[v2m-rise_.55s_cubic-bezier(.22,1,.36,1)_both] motion-safe:[animation-delay:180ms]">
+        <div class="mb-1.5 flex items-center gap-1.5 text-[10.5px] font-semibold text-text-3"><span class="text-primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg></span><span data-i18n="account.rewardsProgress">等級進度</span></div>
+        <div class="h-4 rounded-full bg-white/12 p-0.5 shadow-[inset_0_1px_2px_rgba(0,0,0,.45)]" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="Level progress: 62%">
+          <div class="relative h-full overflow-hidden rounded-full bg-[linear-gradient(90deg,color-mix(in_oklch,rgb(var(--c-primary))_65%,rgb(var(--c-primary-700))),color-mix(in_oklch,rgb(var(--c-primary))_75%,white))] shadow-[0_0_16px_color-mix(in_srgb,rgb(var(--c-primary))_65%,transparent),inset_0_1px_1px_rgba(255,255,255,.5)] origin-left motion-safe:animate-[v2m-bar-fill_1.1s_cubic-bezier(.22,1,.36,1)_.25s_both]" style="width:62%">
+            <span class="absolute inset-y-0 -left-1/3 w-1/3 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent)] motion-safe:animate-[v2m-bar-glint_3.4s_ease-in-out_1.4s_infinite] motion-reduce:hidden" aria-hidden="true"></span>
+          </div>
         </div>
-        <div class="mt-3 flex items-center justify-between rounded-xl bg-bg px-3 py-2.5 text-[11.5px]">
-          <span class="flex items-center gap-1.5"><b class="text-gold" data-i18n-en="Rollover">Rollover</b><span class="text-text-3" data-i18n-en="Remaining Turnover Amount:">Remaining Turnover Amount:</span></span>
-          <span class="font-mono text-[12.5px] font-semibold text-text">₩16,517.41</span>
+        <div class="mt-1.5 flex items-center justify-between text-[10px] font-semibold text-text-3">
+          <span><span data-i18n="account.current">目前</span>: <span class="text-text-2" data-i18n="account.tierUnranked">未排名</span></span>
+          <span class="text-[13px] font-extrabold text-text" data-count-up>62%</span>
+          <span class="flex items-center gap-1"><span data-i18n="account.next">下一階</span><span class="rounded-full border border-primary/35 bg-primary/16 px-2 py-0.5 text-primary" data-i18n="account.tierBronze">銅級</span></span>
         </div>
+      </div>
+
+      <div class="relative mt-3 flex items-center justify-between gap-2 rounded-xl bg-black/25 px-3 py-2 ring-1 ring-white/5 motion-safe:animate-[v2m-rise_.55s_cubic-bezier(.22,1,.36,1)_both] motion-safe:[animation-delay:240ms]">
+        <span class="flex min-w-0 items-center gap-1.5 text-[11px]"><b class="flex-none text-gold" data-i18n-en="Rollover">Rollover</b><span class="truncate text-text-3" data-i18n-en="Remaining Turnover Amount:">Remaining Turnover Amount:</span></span>
+        <span class="flex-none font-mono text-[12.5px] font-semibold text-text" data-count-up>₩16,517.41</span>
+      </div>
+
+      <div class="relative mt-3 grid grid-cols-2 gap-2 motion-safe:animate-[v2m-rise_.55s_cubic-bezier(.22,1,.36,1)_both] motion-safe:[animation-delay:300ms]">
+        <a href="deposit.html" class="flex h-10 items-center justify-center gap-1.5 rounded-xl bg-[image:var(--g-primary)] text-[13px] font-bold text-on-primary transition-transform active:scale-[.97]"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="m6 13 6 6 6-6"></path></svg><span data-i18n="page.deposit">儲值</span></a>
+        <a href="withdrawal.html" class="flex h-10 items-center justify-center gap-1.5 rounded-xl border border-primary/40 text-[13px] font-bold text-primary transition-transform active:scale-[.97]"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="m6 11 6-6 6 6"></path></svg><span data-i18n="page.withdrawal">提款</span></a>
       </div>
     </div>
   </section>

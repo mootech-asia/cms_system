@@ -128,6 +128,36 @@
 
     renderBanks();
     renderWallet();
+    countUp();
+  }
+
+  /* 會員卡數字由 0 跳到實際值（約 0.9 秒、ease-out），保留原字串的前後綴、千分位與
+     小數位數；系統設定減少動態時直接顯示最終值。 */
+  function countUp() {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-count-up]'), function (el) {
+      var m = (el.textContent || '').trim().match(/^(\D*?)(\d[\d,]*(?:\.\d+)?)(.*)$/);
+      if (!m || reduce) return;
+      var prefix = m[1], raw = m[2], suffix = m[3];
+      var target = parseFloat(raw.replace(/,/g, ''));
+      if (!target) return;
+      var decimals = (raw.split('.')[1] || '').length;
+      var grouped = raw.indexOf(',') !== -1;
+      function fmt(v) {
+        var str = v.toFixed(decimals);
+        if (grouped) { var parts = str.split('.'); parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','); str = parts.join('.'); }
+        return prefix + str + suffix;
+      }
+      var start = null, dur = 900, delay = 250;
+      el.textContent = fmt(0);
+      function step(ts) {
+        if (start === null) start = ts + delay;
+        var k = Math.min(1, Math.max(0, (ts - start) / dur));
+        el.textContent = fmt(target * (1 - Math.pow(1 - k, 3)));
+        if (k < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
   }
 
   document.addEventListener('DOMContentLoaded', init);
