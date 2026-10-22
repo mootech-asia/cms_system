@@ -1,9 +1,5 @@
-/* deposit.html / withdrawal.html 共用的多步驟流程。比照 v2/site 桌機版
-   site.js 的 initDepositFlow()/showDepositTransferStep()/showDepositQrStep()
-   與 initWithdrawalForms()：儲值分「選通路→選付款方式+輸入金額→轉帳明細
-   （銀行卡）或掃碼付款（LinePay/USDT）→完成」；提款則是「選帳戶+輸入
-   金額與交易密碼→驗證→完成」。QR 圖案沿用桌機版同一套假圖案演算法
-   （seed 雜湊決定黑白格），不是真的可掃 QR，純示意。 */
+/* deposit.html 的儲值流程（流程說明見下方 initDepositFlow）。QR 圖案沿用桌機版
+   同一套假圖案演算法（seed 雜湊決定黑白格），不是真的可掃 QR，純示意。 */
 (function () {
   'use strict';
   var D = window.WIN100_DATA || {};
@@ -42,21 +38,6 @@
     });
     parts.push('</svg>');
     return parts.join('');
-  }
-
-  /* ============================== 通用完成畫面 ============================== */
-  function doneStepHTML(successMsgKey, recordHref, recordLabelKey) {
-    return (
-      '<div class="flex flex-col items-center text-center py-10 px-2">' +
-      '<span class="h-16 w-16 grid place-items-center rounded-full bg-primary/16 text-primary mb-4">' +
-      '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>' +
-      '</span>' +
-      '<p class="text-[16px] font-bold text-text mb-1.5">' + t('payment.successTitle') + '</p>' +
-      '<p class="text-[13px] text-text-2 mb-6">' + t(successMsgKey) + '</p>' +
-      '<a href="' + recordHref + '" class="w-full h-11 rounded-xl bg-primary text-on-primary text-[14px] font-bold grid place-items-center mb-2.5">' + t(recordLabelKey) + '</a>' +
-      '<a href="index.html" class="w-full h-11 rounded-xl border border-border text-text text-[14px] font-bold grid place-items-center">' + t('payment.backHome') + '</a>' +
-      '</div>'
-    );
   }
 
   /* ============================== Deposit ============================== */
@@ -201,34 +182,7 @@
     });
   }
 
-  /* ============================== Withdrawal ============================== */
-  function initWithdrawalFlow() {
-    var flow = document.getElementById('wd-flow');
-    if (!flow) return;
-    var formStep = flow.querySelector('[data-wd-step="form"]');
-    var submitBtn = document.getElementById('wd-submit');
-    var errorEl = document.getElementById('wd-error');
-    if (!submitBtn) return;
-
-    submitBtn.addEventListener('click', function () {
-      var account = flow.querySelector('input[name="wd-account"]:checked');
-      var amount = document.getElementById('wd-amount');
-      var password = document.getElementById('wd-password');
-      if (!account || !amount.value.trim() || !password.value.trim()) {
-        if (errorEl) errorEl.classList.remove('hidden');
-        return;
-      }
-      if (errorEl) errorEl.classList.add('hidden');
-      var step = flow.querySelector('[data-wd-step="done"]');
-      if (!step) { step = document.createElement('div'); step.setAttribute('data-wd-step', 'done'); flow.appendChild(step); }
-      step.innerHTML = doneStepHTML('withdrawal.successMsg', 'withdrawal-record.html', 'withdrawal.viewRecord');
-      formStep.classList.add('hidden');
-      step.classList.remove('hidden');
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', function () {
     initDepositFlow();
-    initWithdrawalFlow();
   });
 })();

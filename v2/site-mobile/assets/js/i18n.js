@@ -298,7 +298,10 @@
     'Minimize': { zh: '縮小', ko: '최소화', th: 'ย่อ' },
     'Close': { zh: '關閉', ko: '닫기', th: 'ปิด' },
     'Send': { zh: '送出', ko: '보내기', th: 'ส่ง' },
-    'Next': { zh: '下一步', ko: '다음', th: 'ถัดไป' }
+    'Next': { zh: '下一步', ko: '다음', th: 'ถัดไป' },
+    'amount: ₩0.00': { zh: '金額: ₩0.00', ko: '금액: ₩0.00', th: 'จำนวนเงิน: ₩0.00' },
+    'Wallet deleted successfully.': { zh: '錢包已成功刪除。', ko: '지갑이 성공적으로 삭제되었습니다.', th: 'ลบกระเป๋าเงินสำเร็จแล้ว' },
+    'Show password': { zh: '顯示密碼', ko: '비밀번호 표시', th: 'แสดงรหัสผ่าน' }
   };
   function tx(en) {
     var loc = currentLocale();
