@@ -111,11 +111,6 @@
   html.m-lobby .shell { height: 100dvh; height: 100vh; }
   html.m-lobby .shell-main { height: 100dvh; height: 100vh; overflow: hidden; }
   html.m-lobby .shell-content { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
-  /* .footer 是 <main> 在 .shell-main 底下的 flex 手足(不是 fixed 元素)，
-     實測會在 flex 版面裡吃掉近 350px 高度，把 .shell-content 擠到只剩
-     一截——大廳首頁要單畫面顯示，參考圖也沒有頁尾，直接藏起來；其餘
-     一般捲動頁面的頁尾維持正常顯示，不受影響。 */
-  html.m-lobby .shell-main > .footer { display: none; }
 
   .header { height: auto; padding: 10px 0; }
   html.m-lobby .header { flex-shrink: 0; }
