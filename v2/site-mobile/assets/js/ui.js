@@ -169,7 +169,26 @@
     document.body.appendChild(rail);
   }
 
+  /* ============================== 區塊收合 ============================== */
+  /* [data-collapse-toggle] 放在區塊標題裡：標題所在的那一層（section 的直接子元素）
+     之後的所有兄弟元素就是區塊內容，點標題一起收起／展開。首頁、帳戶頁共用。 */
+  function toggleCollapse(btn) {
+    var section = btn.closest('section');
+    if (!section) return;
+    var head = btn;
+    while (head.parentElement && head.parentElement !== section) head = head.parentElement;
+    var open = btn.getAttribute('aria-expanded') !== 'false';
+    btn.setAttribute('aria-expanded', String(!open));
+    /* 用 inline display 而不是 hidden class：內容元素本身常帶 flex／inline-flex／grid，
+       同層的 display utility 會蓋過 hidden */
+    for (var el = head.nextElementSibling; el; el = el.nextElementSibling) el.style.display = open ? 'none' : '';
+    var chev = btn.querySelector('[data-collapse-chevron]');
+    if (chev) chev.classList.toggle('-rotate-90', open);
+  }
+
   document.addEventListener('click', function (e) {
+    var col = e.target.closest('[data-collapse-toggle]');
+    if (col) { toggleCollapse(col); return; }
     if (e.target.closest('[data-cs-open]')) { e.preventDefault(); openCs(); return; }
     if (e.target.closest('[data-chat-open]')) { e.preventDefault(); openChat(); }
   });
