@@ -24,24 +24,36 @@
 </header>
 
 <main>
-  <section class="px-4 pt-2 pb-6">
-    <a href="change-password.html" class="flex items-center justify-between py-3.5 border-b border-border-soft">
-      <span class="text-[13px] font-semibold text-text"><span data-i18n="security.loginPassword">登入密碼</span></span>
-      <span class="text-[12px] text-primary"><span data-i18n="security.change">變更</span></span>
-    </a>
-    <a href="#" class="flex items-center justify-between py-3.5 border-b border-border-soft">
-      <span class="text-[13px] font-semibold text-text"><span data-i18n="security.transactionPassword">交易密碼</span></span>
-      <span class="text-[12px] text-primary"><span data-i18n="security.setUp">設定</span></span>
-    </a>
-    <a href="#" class="flex items-center justify-between py-3.5 border-b border-border-soft">
-      <span class="text-[13px] font-semibold text-text"><span data-i18n="security.twoFactor">雙重驗證</span></span>
-      <span class="text-[12px] text-primary"><span data-i18n="security.notEnabled">未啟用</span></span>
-    </a>
-    <a href="#" class="flex items-center justify-between py-3.5 border-b border-border-soft">
-      <span class="text-[13px] font-semibold text-text"><span data-i18n="security.loginHistory">登入紀錄</span></span>
-      <span class="text-[12px] text-primary"><span data-i18n="security.view">查看</span></span>
-    </a></section>
-
+  <section class="px-4 pt-4 pb-28">
+    <h2 class="mb-2 px-1 text-[12px] font-bold uppercase tracking-wide text-text-3" data-i18n-en="Last login">Last login</h2>
+    <div class="rounded-2xl border border-border-soft bg-surface px-4">
+      <div class="flex items-center justify-between border-b border-border-soft py-3 text-[13px]"><span class="text-text-2" data-i18n-en="Time">Time</span><span class="text-text">2026/04/21 13:29:25</span></div>
+      <div class="flex items-center justify-between py-3 text-[13px]"><span class="text-text-2" data-i18n-en="IP Address">IP Address</span><span class="text-text">125.227.44.193</span></div>
+    </div>
+    <h2 class="mb-2 mt-5 px-1 text-[12px] font-bold uppercase tracking-wide text-text-3" data-i18n-en="Security Setting">Security Setting</h2>
+    <div class="overflow-hidden rounded-2xl border border-border-soft bg-surface">
+      <a href="personal-info.html" class="flex w-full items-center gap-3 border-b border-border-soft px-4 py-3.5 text-left last:border-b-0" >
+        <span class="grid h-9 w-9 flex-none place-items-center rounded-full bg-primary/16 text-primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>
+        <span class="min-w-0 flex-1"><span class="block text-[13.5px] font-bold text-text" data-i18n-en="Personal Info">Personal Info</span><span class="block text-[11.5px] text-text-3" data-i18n-en="Complete your personal profile">Complete your personal profile</span></span>
+        <span class="flex-none text-[12px] text-text-3" data-i18n-en="Not set ›">Not set ›</span>
+      </a>
+      <a href="change-password.html" class="flex w-full items-center gap-3 border-b border-border-soft px-4 py-3.5 text-left last:border-b-0" >
+        <span class="grid h-9 w-9 flex-none place-items-center rounded-full bg-primary/16 text-primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        <span class="min-w-0 flex-1"><span class="block text-[13.5px] font-bold text-text" data-i18n-en="Change Login Password">Change Login Password</span><span class="block text-[11.5px] text-text-3" data-i18n-en="Recommended letter and number combination">Recommended letter and number combination</span></span>
+        <span class="flex-none text-[12px] text-text-3" data-i18n-en="Not set ›">Not set ›</span>
+      </a>
+      <a href="change-password.html?type=txn" class="flex w-full items-center gap-3 border-b border-border-soft px-4 py-3.5 text-left last:border-b-0" >
+        <span class="grid h-9 w-9 flex-none place-items-center rounded-full bg-primary/16 text-primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg></span>
+        <span class="min-w-0 flex-1"><span class="block text-[13.5px] font-bold text-text" data-i18n-en="Change Transaction Password">Change Transaction Password</span><span class="block text-[11.5px] text-text-3" data-i18n-en="Set a password to improve the security of fund operations">Set a password to improve the security of fund operations</span></span>
+        <span class="flex-none text-[12px] text-text-3" data-i18n-en="Not set ›">Not set ›</span>
+      </a>
+      <button type="button" class="flex w-full items-center gap-3 border-b border-border-soft px-4 py-3.5 text-left last:border-b-0" data-security-logout>
+        <span class="grid h-9 w-9 flex-none place-items-center rounded-full bg-primary/16 text-primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="m16 17 5-5-5-5"></path><path d="M21 12H9"></path></svg></span>
+        <span class="min-w-0 flex-1"><span class="block text-[13.5px] font-bold text-text" data-i18n="auth.logout">Logout</span><span class="block text-[11.5px] text-text-3" data-i18n-en="Logout safely">Logout safely</span></span>
+        <span class="flex-none text-[12px] text-text-3" data-i18n-en="Not set ›">Not set ›</span>
+      </button>
+    </div>
+  </section>
 </main>
 
 <nav class="m-tabbar fixed inset-x-3 bottom-[max(12px,env(safe-area-inset-bottom,0px))] z-40 grid grid-cols-5 rounded-[26px] border border-border bg-surface/95 backdrop-blur-md shadow-[0_10px_28px_rgba(0,0,0,0.45)]">
@@ -293,6 +305,7 @@
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/ui.js"></script>
 <script src="assets/js/mobile.js"></script>
+<script src="assets/js/member.js"></script>
 
 </body>
 </html>
