@@ -315,7 +315,9 @@
         if (chev) chev.classList.toggle('-rotate-90', expanded);
         return;
       }
-      if (e.target === menuDrawerRoot || e.target.closest('[data-drawer-close]')) closeMenuDrawer();
+      /* 背景 overlay 本身也帶 data-drawer-close，closest() 會讓面板內任何點擊都關掉抽屜
+         （包括點搜尋框）；只在點背景、關閉鈕或面板內連結時才關 */
+      if (e.target === menuDrawerRoot || e.target.closest('button[data-drawer-close]') || e.target.closest('a')) closeMenuDrawer();
     });
   }
   function toggleMenuDrawer(open) { if (open) openMenuDrawer(); else closeMenuDrawer(); }

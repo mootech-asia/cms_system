@@ -64,7 +64,7 @@
     var idx = 0;
 
     root.innerHTML =
-      '<div class="-mx-4 mb-4 flex border-b border-border-soft px-4">' +
+      '<div class="mb-4 flex border-b border-border-soft">' +
       '<button type="button" class="' + TAB + '" data-wd-mode="withdraw">' + esc(tx('Withdraw')) + '</button>' +
       '<button type="button" class="' + TAB + '" data-wd-mode="management">' + esc(tx('Account Management')) + '</button></div>' +
 

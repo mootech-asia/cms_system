@@ -64,7 +64,10 @@
   <div class="fixed inset-0 z-50 bg-black/60" data-drawer-close data-drawer-backdrop>
     <div class="absolute inset-y-0 right-0 w-80 max-w-[88vw] bg-surface p-4 overflow-y-auto" data-drawer-panel>
       <div class="flex items-center justify-between mb-4">
-        <span class="text-[17px] font-bold text-text" data-i18n="tabbar.menu">選單</span>
+        <div class="relative mr-2 min-w-0 flex-1">
+          <input type="search" enterkeyhint="search" autocomplete="off" class="h-11 w-full rounded-xl border border-border-soft bg-bg pl-3.5 pr-11 text-[14px] text-text placeholder:text-text-3 [&::-webkit-search-cancel-button]:hidden" data-drawer-search data-i18n-placeholder="search.game" placeholder="搜尋遊戲">
+          <button type="button" class="absolute right-1 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-lg text-text-2" data-drawer-search-go data-i18n-aria="search.action" aria-label="搜尋"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
+        </div>
         <button type="button" class="h-8 w-8 grid place-items-center rounded-lg text-text-2" data-drawer-close aria-label="Close">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
         </button>
@@ -275,6 +278,7 @@
 <script src="../site/assets/js/data.js"></script>
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/ui.js"></script>
+<script src="assets/js/search.js"></script>
 <script src="assets/js/mobile.js"></script>
 <script src="assets/js/withdrawal.js"></script>
 </body>
