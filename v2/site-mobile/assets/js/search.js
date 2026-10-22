@@ -52,6 +52,8 @@
     empty.textContent = t('search.noResults');
     grid.insertAdjacentElement('afterend', empty);
     input.addEventListener('input', apply);
+    input.addEventListener('change', function () { addRecent(input.value); });
+    input.addEventListener('keydown', function (e) { if (e.key === 'Enter') { addRecent(input.value); input.blur(); } });
     wrap.querySelector('[data-search-clear]').addEventListener('click', function () { input.value = ''; apply(); input.focus(); });
     /* 廠商標籤切換後重新計算「是否無結果」 */
     grid.parentElement.addEventListener('click', function (e) { if (e.target.closest('[data-vendor-tag]')) setTimeout(apply, 0); });
@@ -64,6 +66,8 @@
   function submitDrawer(field) {
     var q = field.value.trim();
     if (!q) return;
+    addRecent(q);
+    hideRecent();
     if (input) {
       input.value = q;
       apply();
@@ -80,6 +84,77 @@
   document.addEventListener('click', function (e) {
     var go = e.target.closest('[data-drawer-search-go]');
     if (go) submitDrawer(go.parentElement.querySelector('[data-drawer-search]'));
+  });
+
+  /* ============================== 最近搜尋 ============================== */
+  /* 選單與分類頁的搜尋框共用同一份紀錄（localStorage，最多 8 筆，新的在前、
+     重複的移到最前）。聚焦搜尋框時在下方展開完整紀錄；開始輸入後只列出包含輸入字的紀錄。
+     點紀錄直接搜尋，× 刪單筆，「清除全部」清空。 */
+  var RECENT_KEY = 'win100-recent-searches';
+  var RECENT_MAX = 8;
+  function getRecent() {
+    try { var v = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]'); return Array.isArray(v) ? v : []; } catch (e) { return []; }
+  }
+  function saveRecent(list) { try { localStorage.setItem(RECENT_KEY, JSON.stringify(list.slice(0, RECENT_MAX))); } catch (e) { /* storage unavailable */ } }
+  function addRecent(q) {
+    q = (q || '').trim();
+    if (!q) return;
+    saveRecent([q].concat(getRecent().filter(function (x) { return x.toLowerCase() !== q.toLowerCase(); })));
+  }
+  function removeRecent(q) { saveRecent(getRecent().filter(function (x) { return x !== q; })); }
+
+  var CLOCK_SVG = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>';
+  function escAttr(x) { return String(x).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  var recentPanel = null;
+  var recentFor = null;
+  function hideRecent() { if (recentPanel) { recentPanel.remove(); recentPanel = null; recentFor = null; } }
+  function renderRecent(field, filter) {
+    var all = getRecent();
+    var q = filter ? field.value.trim().toLowerCase() : '';
+    var list = q ? all.filter(function (x) { return x.toLowerCase().indexOf(q) !== -1 && x.toLowerCase() !== q; }) : all;
+    if (q && !list.length) { hideRecent(); return; }
+    if (!recentPanel || recentFor !== field) {
+      hideRecent();
+      recentPanel = document.createElement('div');
+      recentPanel.className = 'absolute left-0 right-0 top-full z-30 mt-1.5 rounded-2xl border border-border bg-surface p-1.5 shadow-card';
+      recentPanel.setAttribute('data-recent-panel', '');
+      field.parentElement.appendChild(recentPanel);
+      recentFor = field;
+      /* 點面板時不讓搜尋框失焦，否則 focusout 會先把面板關掉 */
+      recentPanel.addEventListener('pointerdown', function (e) { e.preventDefault(); });
+      recentPanel.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    }
+    recentPanel.innerHTML =
+      '<div class="flex items-center justify-between px-2.5 pb-1 pt-1.5">' +
+      '<span class="text-[11.5px] font-semibold text-text-3">' + escAttr(t('search.recent')) + '</span>' +
+      (all.length ? '<button type="button" class="h-8 px-1 text-[12px] font-semibold text-primary" data-recent-clear>' + escAttr(t('search.clearAll')) + '</button>' : '') +
+      '</div>' +
+      (list.length
+        ? list.map(function (x) {
+          return '<div class="flex items-center">' +
+            '<button type="button" class="flex h-11 min-w-0 flex-1 items-center gap-2.5 rounded-xl px-2.5 text-left text-[14px] text-text" data-recent-term="' + escAttr(x) + '"><span class="flex-none text-text-3">' + CLOCK_SVG + '</span><span class="truncate">' + escAttr(x) + '</span></button>' +
+            '<button type="button" class="grid h-11 w-11 flex-none place-items-center rounded-xl text-text-3" data-recent-remove="' + escAttr(x) + '" aria-label="' + escAttr(t('search.remove')) + '">' + X_SVG + '</button></div>';
+        }).join('')
+        : '<p class="px-2.5 pb-3 pt-1 text-[13px] text-text-3">' + escAttr(t('search.noRecent')) + '</p>');
+  }
+  function isSearchField(el) { return el && el.matches && el.matches('[data-drawer-search], [data-page-search]'); }
+  document.addEventListener('focusin', function (e) { if (isSearchField(e.target)) renderRecent(e.target); });
+  document.addEventListener('input', function (e) { if (isSearchField(e.target) && document.activeElement === e.target) renderRecent(e.target, true); });
+  document.addEventListener('focusout', function (e) { if (isSearchField(e.target)) setTimeout(function () { if (document.activeElement !== recentFor) hideRecent(); }, 0); });
+  document.addEventListener('click', function (e) {
+    if (!recentPanel || !recentPanel.contains(e.target)) return;
+    var field = recentFor;
+    var rm = e.target.closest('[data-recent-remove]');
+    if (rm) { removeRecent(rm.getAttribute('data-recent-remove')); renderRecent(field); return; }
+    if (e.target.closest('[data-recent-clear]')) { saveRecent([]); renderRecent(field); return; }
+    var term = e.target.closest('[data-recent-term]');
+    if (!term) return;
+    field.value = term.getAttribute('data-recent-term');
+    if (field.matches('[data-drawer-search]')) { submitDrawer(field); return; }
+    addRecent(field.value);
+    hideRecent();
+    apply();
+    field.blur();
   });
 
   window.__v2mSearchBox = boxHtml;

@@ -26,7 +26,7 @@
     return names.map(function (title, i) { return { title: title, img: pool.length ? src(pool[i % pool.length]) : '', focalPoint: 'center' }; });
   }
   function cardHtml(g) {
-    return '<div class="w-28 flex-none" data-game-card>' +
+    return '<div class="w-25 flex-none" data-game-card>' +
       '<div class="aspect-square overflow-hidden rounded-xl bg-surface-2 ring-1 ring-border">' +
       '<img src="' + esc(g.img) + '" alt="' + esc(g.title) + '" class="h-full w-full object-cover" style="object-position:' + esc(g.focalPoint) + '" loading="lazy"></div>' +
       '<p class="mt-1.5 truncate text-center text-[12px] font-semibold text-text">' + esc(g.title) + '</p></div>';
@@ -62,7 +62,7 @@
     function move(dir) {
       var card = rail.querySelector('[data-game-card]');
       var gap = parseFloat(getComputedStyle(rail).columnGap) || 12;
-      var w = (card && card.offsetWidth) || 112;
+      var w = (card && card.offsetWidth) || 100;
       var visible = Math.max(1, Math.floor((rail.clientWidth + gap) / (w + gap)));
       var jump = (w + gap) * visible;
       var max = Math.max(0, rail.scrollWidth - rail.clientWidth);
