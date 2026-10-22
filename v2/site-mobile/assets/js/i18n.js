@@ -301,7 +301,9 @@
     'Next': { zh: '下一步', ko: '다음', th: 'ถัดไป' },
     'amount: ₩0.00': { zh: '金額: ₩0.00', ko: '금액: ₩0.00', th: 'จำนวนเงิน: ₩0.00' },
     'Wallet deleted successfully.': { zh: '錢包已成功刪除。', ko: '지갑이 성공적으로 삭제되었습니다.', th: 'ลบกระเป๋าเงินสำเร็จแล้ว' },
-    'Show password': { zh: '顯示密碼', ko: '비밀번호 표시', th: 'แสดงรหัสผ่าน' }
+    'Show password': { zh: '顯示密碼', ko: '비밀번호 표시', th: 'แสดงรหัสผ่าน' },
+    'August 2025': { zh: '2025 年 8 月', ko: '2025년 8월', th: 'สิงหาคม 2025' },
+    'Change nickname': { zh: '修改暱稱', ko: '닉네임 변경', th: 'เปลี่ยนชื่อเล่น' }
   };
   function tx(en) {
     var loc = currentLocale();
