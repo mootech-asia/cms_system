@@ -1,13 +1,13 @@
 ---
 name: ui-craft
-description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、動效/轉場時長、換膚 skin 色板、無障礙(ARIA/鍵盤操作)、表單設計、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', '無障礙/ARIA/鍵盤操作', '表單怎麼設計/驗證', 'improve this UI', 'visual hierarchy', 'design tokens', 'diagnose UI', 'motion/transition', 'accessibility', 'form validation', '設計要有突破/新意'。整合五份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」的鐵則做了覆寫。"
+description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、動效/轉場時長、換膚 skin 色板、無障礙(ARIA/鍵盤操作)、表單設計、多語言排版(韓文/泰文字長撐版面)、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', '無障礙/ARIA/鍵盤操作', '表單怎麼設計/驗證', '多語言版面會不會爆/文字被裁切', 'improve this UI', 'visual hierarchy', 'design tokens', 'diagnose UI', 'motion/transition', 'accessibility', 'form validation', 'i18n layout', '設計要有突破/新意'。整合六份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」的鐵則做了覆寫。"
 ---
 
 # UI 製作與視覺突破技能
 
 ## 來源與改編說明
 
-這份技能整合五個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
+這份技能整合六個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
 
 1. **[s0xDk/refactoring-ui-skill](https://github.com/s0xDk/refactoring-ui-skill)**（MIT
    license）——把 Adam Wathan／Steve Schoger《Refactoring UI》濃縮成可執行規則的 Claude
@@ -39,6 +39,14 @@ description: "在本 repo 新增或修改任何頁面的視覺呈現時使用—
    header-auth／mobile-tabbar 導覽都用得上。也補了幾個前面沒提到的生成式介面通病
    （紫色漸層+玻璃擬態當預設、每個區塊都套一樣的卡片+一樣的留白、hover-only 但沒有
    觸控/鍵盤替代）。
+6. **[mindrally/skills](https://github.com/mindrally/skills) 的 internationalization-i18n**
+   （Apache License 2.0，依授權標示來源＋說明改動如下）——原文以 React/Vue/React
+   Native 技術堆疊為主，跟本 repo 完全不符，**沒有照搬程式碼**，只取「文字變長版面
+   要撐得住」「文字不要烤進圖片」這幾個跟框架無關的通用原則，重寫成
+   `references/i18n-layout.md`，串起本 repo 既有的 `data-i18n` 機制（`cms-scaffold`
+   技能文件化過）跟視覺驗收標準之間一直沒人講的那塊：翻譯到位之後，版面撐不撐得住
+   韓文/泰文比中文長 20–50% 這件事。RTL 排版鏡像的部分整段省略——本 repo 語言
+   （zh/en/ko/th）都是 left-to-right，用不到。
 
 ## 第一層：基本功（不能先跳過）——覆寫原技能的「自建 scale」前提
 
@@ -187,6 +195,23 @@ footnote/版權這類，正文絕不用最淺那階）。
 桌機主導覽抓 5–7 項是好讀的上限，手機底部 tabbar 抓 3–5 項（這個 repo 多個版本都有
 `mobile-tabbar`）。超過這個數量不是「資訊都很重要所以都要放」，是該做分類/收合的訊號。
 
+## 第五層：多語言排版——翻譯到位之後，版面撐不撐得住
+
+這個 repo 用 `data-i18n` 機制支援 zh/en/ko/th 四種語言（`cms-scaffold` 技能有完整
+文件），但那解決的是「怎麼換字」，沒有解決「換了字之後版面會不會爆」——這是純視覺
+排版問題，見 `references/i18n-layout.md`：
+
+- 按鈕/badge/輸入框的寬度盡量讓內容決定，不要寫死 `width`；真的需要固定寬度的欄位，
+  量測基準要用四種語言裡最長的那個，韓文/泰文常比中文長 20–50%。
+- 文字一律是真的 HTML 文字節點/屬性，不要烤進圖片——`data-i18n` 掃不到圖片裡的文字，
+  遇到這種素材要回報使用者，不要假裝已經處理好。
+- 改完視覺之後，額外切到韓文或泰文看同一個斷點，確認沒有文字被裁切/按鈕被撐到換行——
+  這跟 `cms-scaffold` 的殘留語言稽核是两件事（稽核抓「沒翻譯到」，這裡抓「翻譯到了
+  但排版撐不住」），兩者都要做。
+- 視覺調整時如果看到賠率/金額這類數字的千分位/小數格式，不要順手「修正」成自己覺得
+  對的格式——格式差異可能是刻意設計，不確定要跟使用者確認，這跟驗收標準「內容逐字
+  保留」是同一條界線。
+
 ## 驗收時的自我檢查
 
 - 記憶點是否真的體現在畫面上，還是只停留在描述？互換/瞇眼/記憶點/token 四個測試
@@ -199,5 +224,6 @@ footnote/版權這類，正文絕不用最淺那階）。
 - 有加動效的地方時長是否 <300ms、用的是自訂 ease-out、只對 transform/opacity 做
   animate？
 - 有表單的頁面：label 是否在欄位上方、錯誤訊息是否綁定對應欄位且送出時有彙總？
+- 有固定寬度的按鈕/badge/欄位嗎？換成韓文/泰文看同一個斷點會不會被裁切或撐到換行？
 - Hard rules 七條有沒有踩到任何一條？
 - 是否符合本 repo 驗收標準（視覺 pixel-diff、功能互動點、內容逐字保留、console 不變多）？
