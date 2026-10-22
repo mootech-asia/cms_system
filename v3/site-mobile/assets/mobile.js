@@ -459,56 +459,10 @@
   }
 })();
 
-/* 手機版遊戲詳情 modal 的登入前狀態：未登入時在 .modal-body 後面補一段
-   「請先登入才能開始遊玩」+ 登入/註冊按鈕，取代先前拿掉的
-   Demo/Play for real(那兩顆按鈕本來就沒有真正的遊玩流程可接，桌機版
-   維持拿掉後乾淨結束，不加這段——只有手機版需要)。判斷登入狀態沿用
-   site-mobile/personal-info.html 同一把 cms_v3_logged_out 旗標；圖示
-   /按鈕沿用既有的 .wd-compact-empty／.wd-empty-action(withdrawal 管理
-   頁「尚未設定」提示同款)，不新增等價樣式。openGameModal() 每次開新
-   遊戲都會整個換掉 .modal 的 innerHTML，所以用 MutationObserver 監看，
-   換掉後才有機會補這段；另外監看 signin modal 的 style 變化，登入/
-   註冊成功關掉那個 modal 時，背後開著的遊戲 modal 也會跟著重新判斷。 */
-(function () {
-  var gameModalEl = document.getElementById('cms-modal-game');
-  if (!gameModalEl) return;
-  var STORAGE_KEY = 'cms_v3_logged_out';
-  var GATE_CLASS = 'gm-mobile-gate';
-  var GATE_HTML = '<div class="wd-compact-empty"><span class="wd-empty-symbol" aria-hidden="true">' +
-      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><circle cx="12" cy="9" r="3.5"></circle><path d="M5 20a7 7 0 0 1 14 0"></path></svg>' +
-    '</span><span>請先登入才能開始遊玩</span></div>' +
-    '<button type="button" class="wd-empty-action" data-action="open-signin" style="margin:0 20px 20px">' +
-      '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"></path></svg> 登入 / 註冊' +
-    '</button>';
-  function isLoggedOut() {
-    try { return localStorage.getItem(STORAGE_KEY) === '1'; } catch (e) { return false; }
-  }
-  function syncGate() {
-    var body = gameModalEl.querySelector('.modal-body');
-    if (!body) return;
-    var existing = gameModalEl.querySelector('.' + GATE_CLASS);
-    if (isLoggedOut()) {
-      if (!existing) {
-        var wrap = document.createElement('div');
-        wrap.className = GATE_CLASS;
-        wrap.innerHTML = GATE_HTML;
-        body.insertAdjacentElement('afterend', wrap);
-      }
-    } else if (existing) {
-      existing.remove();
-    }
-  }
-  if (window.MutationObserver) {
-    new MutationObserver(syncGate).observe(gameModalEl, { childList: true, subtree: true });
-    var signinModal = document.getElementById('cms-modal-signin');
-    if (signinModal) new MutationObserver(syncGate).observe(signinModal, { attributes: true, attributeFilter: ['style'] });
-  }
-})();
-
 /* 頂欄餘額/點數位數安全網：正常金額完整顯示到小數點兩位，一旦整數位數
    到 12 位才縮寫成 k/M/B/T，縮寫後的數字可點一下彈出小 tip 看完整數字。
    site.js 的 setAuthSection() 登入狀態改變時會整段換掉 .header-actions
-   （PC/手機共用同一份 template），所以跟上面遊戲 modal 那段一樣用
+   （PC/手機共用同一份 template），所以用
    MutationObserver 監看重新套用；只處理 .m-header 範圍內的餘額，不碰
    桌機版 header 的餘額顯示。 */
 (function () {
@@ -630,17 +584,35 @@
     rail.appendChild(items);
     document.body.appendChild(rail);
 
-    function clampY(y) {
-      var half = rail.offsetHeight / 2;
+    /* 上緣：一般頁是頂部列下緣；大廳首頁（.m-tabpanel-wrap）頂部固定區還包含
+       hero／跑馬燈／分類圖示，捲動收合後（.m-scrolled）再加上黏在頂端的廠商篩選列。 */
+    function topLimit() {
       var header = document.querySelector('.shell-header');
       var top = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      var wrap = document.querySelector('.m-tabpanel-wrap');
+      if (!wrap) return top;
+      top = Math.max(top, wrap.getBoundingClientRect().top);
+      if (document.querySelector('.m-home-body.m-scrolled')) {
+        wrap.querySelectorAll('.m-provider-filter').forEach(function (f) {
+          var r = f.getBoundingClientRect();
+          if (r.height && r.left >= -1 && r.left < window.innerWidth - 1) top = Math.max(top, r.bottom);
+        });
+      }
+      return top;
+    }
+    function clampY(y) {
+      var half = rail.offsetHeight / 2;
       var floor = document.querySelector('.rec-total') || document.querySelector('.shell-mobile-nav');
       var bottom = floor ? floor.getBoundingClientRect().top : window.innerHeight;
-      var min = top + 8 + half;
+      var min = topLimit() + 8 + half;
       var max = Math.max(min, bottom - 8 - half);
       return Math.max(min, Math.min(max, y));
     }
+    /* wantY 是使用者拖到的位置；頂部固定區伸縮時只重新夾回範圍，區塊縮回去
+       後把手會回到原本拖到的位置，不會被一路往下推。 */
+    var wantY = null;
     function placeAt(y) { rail.style.top = clampY(y) + 'px'; }
+    function reclamp() { if (wantY !== null && !dragging) placeAt(wantY); }
     function center() { var r = rail.getBoundingClientRect(); return r.top + r.height / 2; }
 
     var dragging = false, moved = false, justDragged = false, startY = 0, startCenter = 0;
@@ -656,7 +628,8 @@
       var dy = e.clientY - startY;
       if (!moved && Math.abs(dy) < 6) return;
       moved = true;
-      placeAt(startCenter + dy);
+      wantY = startCenter + dy;
+      placeAt(wantY);
     });
     function endDrag() {
       if (!dragging) return;
@@ -674,14 +647,18 @@
       var c = center();
       var open = rail.classList.toggle('is-open');
       handle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      placeAt(c);
+      placeAt(wantY !== null ? wantY : c);
     });
-    window.addEventListener('resize', function () { placeAt(center()); });
+    window.addEventListener('resize', reclamp);
+    /* 大廳捲動時 hero 以 transition 收合／展開，捲動與 transition 結束都重新夾一次 */
+    document.addEventListener('scroll', reclamp, true);
+    document.addEventListener('transitionend', reclamp, true);
 
     var saved = null;
     try { saved = parseFloat(localStorage.getItem(POS_KEY)); } catch (err) {}
     setTimeout(function () {
-      placeAt(saved > 0 ? saved * window.innerHeight : center());
+      wantY = saved > 0 ? saved * window.innerHeight : center();
+      placeAt(wantY);
     }, 0);
   }
 

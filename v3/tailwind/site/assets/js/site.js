@@ -1582,8 +1582,6 @@
       favBtn.innerHTML = gcardHeartSvg(nowFav);
       return;
     }
-    var gcard = t.closest('.gcard');
-    if (gcard) { openGameModal(resolveGameFromCard(gcard)); return; }
 
     var signinTabBtn = t.closest('#cms-modal-signin .signin-tab');
     if (signinTabBtn) { captureSignInFormValues(); SIGNIN_STATE.tab = signinTabBtn.getAttribute('data-tab'); renderSignInModal(); return; }
