@@ -18,6 +18,12 @@
     'nav.sport': { zh: '體育', en: 'Sports', ko: '스포츠', th: 'กีฬา' },
     'nav.casino': { zh: '娛樂城', en: 'Casino', ko: '카지노', th: 'คาสิโน' },
     'nav.live': { zh: '真人視訊', en: 'Live games', ko: '라이브 카지노', th: 'คาสิโนสด' },
+    'catnav.hotGames': { zh: '熱門遊戲', en: 'Hot Games', ko: '인기 게임', th: 'เกมยอดนิยม' },
+    'catnav.sports': { zh: '體育', en: 'Sports', ko: '스포츠', th: 'กีฬา' },
+    'catnav.live': { zh: '真人娛樂', en: 'Live', ko: '카지노', th: 'ไลฟ์' },
+    'catnav.slots': { zh: '老虎機', en: 'Slots', ko: '슬롯', th: 'สล็อต' },
+    'catnav.fish': { zh: '捕魚', en: 'Fish', ko: '낚시 게임', th: 'เกมยิงปลา' },
+    'catnav.miniGames': { zh: '迷你遊戲', en: 'Mini Games', ko: '미니게임', th: 'เกมมินิเกม' },
     'nav.mainNav': { zh: '主導覽', en: 'Main navigation', ko: '메인 내비게이션', th: 'เมนูหลัก' },
     'game.placeholder': { zh: '遊戲名稱', en: 'Game Name', ko: '게임명', th: 'ชื่อเกม' },
 

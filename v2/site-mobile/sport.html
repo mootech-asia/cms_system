@@ -76,11 +76,12 @@
   </div>
 
   <nav class="flex items-center gap-1 px-1.5 pb-2 overflow-x-auto no-scrollbar" data-i18n-aria="nav.mainNav" aria-label="主導覽">
-    <a href="hot-games.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-2" data-i18n="page.hotGames">熱門遊戲</a>
-    <a href="casino.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-2" data-i18n="nav.casino">娛樂城</a>
-    <a href="live.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-2" data-i18n="nav.live">真人視訊</a>
-    <a href="sport.html" class="flex-none px-2.5 py-2 text-[13.5px] font-bold text-primary shadow-[inset_0_-2px_0_rgb(var(--c-primary))]" aria-current="page" data-i18n="nav.sport">體育</a>
-    <a href="favorites.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-2" data-i18n="nav.favorites">收藏</a>
+    <a href="hot-games.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-2" data-i18n="catnav.hotGames">熱門遊戲</a>
+    <a href="sport.html" class="flex-none px-2.5 py-2 text-[13.5px] font-bold text-primary shadow-[inset_0_-2px_0_rgb(var(--c-primary))]" aria-current="page" data-i18n="catnav.sports">體育</a>
+    <a href="live.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-2" data-i18n="catnav.live">真人娛樂</a>
+    <a href="slot.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-2" data-i18n="catnav.slots">老虎機</a>
+    <a href="fish.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-2" data-i18n="catnav.fish">捕魚</a>
+    <a href="mini-games.html" class="flex-none px-2.5 py-2 text-[13.5px] font-semibold text-text-2" data-i18n="catnav.miniGames">迷你遊戲</a>
   </nav>
 </header>
 
@@ -135,11 +136,26 @@
         </button>
       </div>
       <nav class="flex flex-col gap-1">
-        <a href="hot-games.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2" data-i18n="section.bestGames">精選遊戲</a>
-        <a href="live.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2" data-i18n="nav.live">真人視訊</a>
-        <a href="sport.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2" data-i18n="page.sport">體育</a>
-        <a href="promotion.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2" data-i18n="promo.bonusTitle">優惠活動</a>
-        <a href="favorites.html" class="rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2" data-i18n="nav.favorites">收藏</a>
+        <a href="hot-games.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
+        <span data-i18n="page.hotGames">熱門遊戲</span>
+      </a>
+        <a href="live.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg>
+        <span data-i18n="nav.live">真人視訊</span>
+      </a>
+        <a href="sport.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+        <span data-i18n="page.sport">體育</span>
+      </a>
+        <a href="promotion.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg>
+        <span data-i18n="promo.bonusTitle">優惠活動</span>
+      </a>
+        <a href="favorites.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z"></path></svg>
+        <span data-i18n="nav.favorites">收藏</span>
+      </a>
       </nav>
       <div class="my-4 border-t border-border-soft"></div>
       <nav class="flex flex-col gap-1">
@@ -160,7 +176,7 @@
         <span data-i18n="page.bettingRecord">Betting Record</span>
       </a>
       <a href="deposit-record.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M12 18v-6"></path><path d="m9 15 3 3 3-3"></path></svg>
         <span data-i18n="page.depositRecord">Deposit Record</span>
       </a>
       <a href="profit-loss.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
@@ -168,15 +184,15 @@
         <span data-i18n="page.profitLoss">Profit And Loss</span>
       </a>
       <a href="withdrawal-record.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M12 12v6"></path><path d="m15 15-3-3-3 3"></path></svg>
         <span data-i18n="page.withdrawalRecord">Withdrawal Record</span>
       </a>
       <a href="withdrawal-detail.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><circle cx="11.5" cy="14.5" r="2.5"></circle><path d="M13.3 16.3 15 18"></path></svg>
         <span data-i18n="page.withdrawalDetail">Withdrawal Detail</span>
       </a>
       <a href="account-record.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
         <span data-i18n="page.accountRecord">Account Record</span>
       </a>
       <a href="personal-info.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
@@ -191,13 +207,17 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20a6 6 0 0 1 12 0"></path><path d="M19 8v6M16 11h6"></path></svg>
         <span data-i18n="nav.Referral">Referral Center</span>
       </a>
-      <a href="check-in.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18"></path><path d="m9 15 2 2 4-4"></path></svg>
-        <span data-i18n="nav.Check-in">Daily Check-in</span>
-      </a>
       <a href="#" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2" data-cs-open>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="M4 12a8 8 0 0 1 16 0v4a3 3 0 0 1-3 3h-2v-7h5M4 12v4a3 3 0 0 0 3 3h2v-7H4"></path></svg>
         <span data-i18n="page.customerService">Customer Service</span>
+      </a>
+      </nav>
+      <div class="my-4 border-t border-border-soft"></div>
+      <p class="px-3 pb-1 text-[11.5px] font-semibold text-text-3" data-i18n="nav.Event">活動</p>
+      <nav class="flex flex-col gap-1">
+      <a href="check-in.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold text-text-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18"></path><path d="m9 15 2 2 4-4"></path></svg>
+        <span data-i18n="nav.Check-in">Daily Check-in</span>
       </a>
       </nav>
     </div>
