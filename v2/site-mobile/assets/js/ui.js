@@ -187,12 +187,20 @@
   }
 
   document.addEventListener('click', function (e) {
+    /* 整張卡片可點（會員卡 → 帳戶總覽），卡片內本身就有動作的連結／按鈕照常各自運作 */
+    var card = e.target.closest('[data-card-link]');
+    if (card && !e.target.closest('a, button, input, select, label')) { location.href = card.getAttribute('data-card-link'); return; }
     var col = e.target.closest('[data-collapse-toggle]');
     if (col) { toggleCollapse(col); return; }
     if (e.target.closest('[data-cs-open]')) { e.preventDefault(); openCs(); return; }
     if (e.target.closest('[data-chat-open]')) { e.preventDefault(); openChat(); }
   });
   document.addEventListener('keydown', function (e) {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('[data-card-link]')) {
+      e.preventDefault();
+      location.href = e.target.getAttribute('data-card-link');
+      return;
+    }
     if (e.key !== 'Escape') return;
     closeSheet();
     closeModal();
