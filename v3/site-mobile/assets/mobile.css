@@ -38,6 +38,20 @@
      844px 螢幕下)以上，點擊才點得到而不是點到 nav 上的按鈕。只在手機
      覆寫，桌機版 main.css 的 .sc-item 原值不動。 */
   .sc-item { padding: 10px 14px; }
+  /* 紀錄頁（儲值／提款紀錄）底部的 Total 統計列固定在底部導覽列上方，
+     捲動表格時一直看得到；左右對齊頁面內容的 22px 邊距。頁面底部留出
+     統計列的高度，最後一列才捲得出來；右下角客服鈕同頁往上移到統計列上方，
+     不跟它重疊。main.css 的 .rec-total 原規則（桌機版）不動。 */
+  .rec-total {
+    position: fixed;
+    left: 22px;
+    right: 22px;
+    bottom: calc(var(--mobile-nav-h) + 8px);
+    z-index: 30;
+    margin-top: 0;
+  }
+  .rec-page:has(.rec-total) { padding-bottom: 84px; }
+  body:has(.rec-total) .cms-cs-fab { bottom: calc(var(--mobile-nav-h) + 8px + 56px + 10px); }
   /* 側欄抽屜頂列：拿掉搜尋框，語系選擇跟關閉鈕併成同一行——
      .sidebar-search 這個 class 名稱維持不動(main.css 的
      .sidebar-search .sb-collapse-toggle{margin-left:-34px} 靠它定位)，
