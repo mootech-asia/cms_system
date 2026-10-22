@@ -287,8 +287,39 @@
     return row[currentLocale()] || row[DEFAULT_LOCALE] || key;
   }
 
+  /* 跟桌機版共用的內容字串（儲值/提款/紀錄頁等直接搬自 v2/site 的文案）以
+     英文原文當 key，直接查桌機版 data.js 的 SWEEP_PAIRS / _KO / _TH，譯文跟
+     桌機版逐字一致、不另外維護一份；桌機版沒翻到的句子才用 EXTRA 補。 */
+  var EXTRA = {
+    'Online': { zh: '線上', ko: '온라인', th: 'ออนไลน์' },
+    'Type a message…': { zh: '輸入訊息…', ko: '메시지를 입력하세요…', th: 'พิมพ์ข้อความ…' },
+    'Hi there! How can we help? A support agent will reply shortly.': { zh: '您好！有什麼可以幫您？客服人員將盡快回覆。', ko: '안녕하세요! 무엇을 도와드릴까요? 상담원이 곧 답변드리겠습니다.', th: 'สวัสดีค่ะ! มีอะไรให้เราช่วยไหม? เจ้าหน้าที่จะตอบกลับในไม่ช้า' },
+    'Thanks for your message — a support agent will reply shortly.': { zh: '已收到您的訊息，客服人員將盡快回覆。', ko: '메시지 감사합니다. 상담원이 곧 답변드리겠습니다.', th: 'ขอบคุณสำหรับข้อความ เจ้าหน้าที่จะตอบกลับในไม่ช้า' },
+    'Minimize': { zh: '縮小', ko: '최소화', th: 'ย่อ' },
+    'Close': { zh: '關閉', ko: '닫기', th: 'ปิด' },
+    'Send': { zh: '送出', ko: '보내기', th: 'ส่ง' },
+    'Next': { zh: '下一步', ko: '다음', th: 'ถัดไป' }
+  };
+  function tx(en) {
+    var loc = currentLocale();
+    if (loc === 'en') return en;
+    var D = window.WIN100_DATA || {};
+    var table = loc === 'zh' ? D.SWEEP_PAIRS : loc === 'ko' ? D.SWEEP_PAIRS_KO : loc === 'th' ? D.SWEEP_PAIRS_TH : null;
+    if (table && table[en]) return table[en];
+    return (EXTRA[en] && EXTRA[en][loc]) || en;
+  }
+
   function applyLocale(root) {
     root = root || document;
+    root.querySelectorAll('[data-i18n-en]').forEach(function (el) {
+      el.textContent = tx(el.getAttribute('data-i18n-en'));
+    });
+    root.querySelectorAll('[data-i18n-en-aria]').forEach(function (el) {
+      el.setAttribute('aria-label', tx(el.getAttribute('data-i18n-en-aria')));
+    });
+    root.querySelectorAll('[data-i18n-en-placeholder]').forEach(function (el) {
+      el.setAttribute('placeholder', tx(el.getAttribute('data-i18n-en-placeholder')));
+    });
     root.querySelectorAll('[data-i18n]').forEach(function (el) {
       el.textContent = t(el.getAttribute('data-i18n'));
     });
@@ -305,6 +336,7 @@
 
   document.addEventListener('DOMContentLoaded', function () { applyLocale(document); });
   window.__v2mT = t;
+  window.__v2mTx = tx;
   window.__v2mApplyLocale = applyLocale;
 })();
 

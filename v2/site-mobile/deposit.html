@@ -24,41 +24,46 @@
 </header>
 
 <main>
-  <section class="px-4 pt-4 pb-6" id="dp-flow">
-    <div data-dp-step="channel">
-      <p class="text-[12.5px] text-text-3 mb-3" data-i18n="deposit.selectChannel">選擇儲值通道</p>
-      <div class="flex flex-col gap-3">
-    <button type="button" class="w-full flex items-center justify-between rounded-2xl border border-border-soft bg-surface p-4 text-left" data-dp-gateway="a" data-dp-methods="4">
-      <div>
-        <p class="text-[13.5px] font-bold text-text">Provider A</p>
-        <p class="text-[11.5px] text-text-3">4 <span data-i18n="deposit.methodCount">種付款方式</span></p>
+  <section class="px-4 pt-4 pb-28" id="dp-flow">
+    <div data-dp-step="form">
+    <div class="-mx-4 mb-3 flex gap-2 overflow-x-auto px-4 no-scrollbar" data-dp-gateways>
+      <button type="button" class="flex-none rounded-full px-4 py-2 text-[13px] font-semibold bg-primary text-on-primary" data-dp-gateway="0" data-dp-methods="4" data-i18n-en="Provider A">Provider A</button>
+      <button type="button" class="flex-none rounded-full px-4 py-2 text-[13px] font-semibold bg-surface text-text-2 border border-border-soft" data-dp-gateway="1" data-dp-methods="3" data-i18n-en="Provider B">Provider B</button>
+      <button type="button" class="flex-none rounded-full px-4 py-2 text-[13px] font-semibold bg-surface text-text-2 border border-border-soft" data-dp-gateway="2" data-dp-methods="2" data-i18n-en="Provider C">Provider C</button>
+      <button type="button" class="flex-none rounded-full px-4 py-2 text-[13px] font-semibold bg-surface text-text-2 border border-border-soft" data-dp-gateway="3" data-dp-methods="1" data-i18n-en="Provider D">Provider D</button>
+    </div>
+    <div class="mb-4 grid grid-cols-2 gap-2" data-dp-methods-grid>
+      <button type="button" class="flex h-12 items-center justify-center gap-2 rounded-xl border text-[13px] font-bold border-transparent bg-[image:var(--g-primary)] text-on-primary" data-dp-method="bank"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18"></path><path d="M7 15h4"></path></svg><span data-i18n-en="Bank Card">Bank Card</span></button>
+      <button type="button" class="flex h-12 items-center justify-center gap-2 rounded-xl border text-[13px] font-bold border-border-soft bg-surface text-text" data-dp-method="linepay"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>LinePay</span></button>
+      <button type="button" class="flex h-12 items-center justify-center gap-2 rounded-xl border text-[13px] font-bold border-border-soft bg-surface text-text" data-dp-method="trc20"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 8h3.8a2.2 2.2 0 0 1 0 4.4H9.5z"></path><path d="M9.5 12.4h4.2a2.3 2.3 0 0 1 0 4.6H9.5z"></path><path d="M9.5 6v12M11 4.5V6M14 4.5V6M11 18v1.5M14 18v1.5"></path></svg><span>USDT-TRC20</span></button>
+      <button type="button" class="flex h-12 items-center justify-center gap-2 rounded-xl border text-[13px] font-bold border-border-soft bg-surface text-text" data-dp-method="erc20"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 8h3.8a2.2 2.2 0 0 1 0 4.4H9.5z"></path><path d="M9.5 12.4h4.2a2.3 2.3 0 0 1 0 4.6H9.5z"></path><path d="M9.5 6v12M11 4.5V6M14 4.5V6M11 18v1.5M14 18v1.5"></path></svg><span>USDT-ERC20</span></button>
+    </div>
+    <div class="rounded-2xl border border-border-soft bg-surface p-4">
+      <h2 class="mb-3 border-l-[3px] border-primary pl-2.5 text-[14.5px] font-bold text-primary" data-i18n-en="Deposit Amount">Deposit Amount</h2>
+      <div class="grid grid-cols-3 gap-2">
+        <button type="button" class="h-10 rounded-xl border text-[13px] font-bold border-primary/40 bg-primary/16 text-primary" data-dp-quick="10,000">10,000</button>
+        <button type="button" class="h-10 rounded-xl border text-[13px] font-bold border-border-soft bg-bg text-text" data-dp-quick="50,000">50,000</button>
+        <button type="button" class="h-10 rounded-xl border text-[13px] font-bold border-border-soft bg-bg text-text" data-dp-quick="100,000">100,000</button>
+        <button type="button" class="h-10 rounded-xl border text-[13px] font-bold border-border-soft bg-bg text-text" data-dp-quick="500,000">500,000</button>
+        <button type="button" class="h-10 rounded-xl border text-[13px] font-bold border-border-soft bg-bg text-text" data-dp-quick="1,000,000">1,000,000</button>
       </div>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-text-3" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
-    </button>
-    <button type="button" class="w-full flex items-center justify-between rounded-2xl border border-border-soft bg-surface p-4 text-left" data-dp-gateway="b" data-dp-methods="3">
-      <div>
-        <p class="text-[13.5px] font-bold text-text">Provider B</p>
-        <p class="text-[11.5px] text-text-3">3 <span data-i18n="deposit.methodCount">種付款方式</span></p>
+      <input type="text" inputmode="numeric" value="₩ 10,000" placeholder="₩ 10,000" class="mt-3 h-12 w-full rounded-xl border border-border-soft bg-bg px-4 text-[14px] text-text" data-dp-amount data-i18n-en-aria="Deposit Amount" aria-label="Deposit Amount">
+      <p class="mt-2 text-[11.5px] text-danger" data-i18n-en="* Minimum Amount: ₩ 10,000; Maximum Amount: ₩ 9,000,000 *">* Minimum Amount: ₩ 10,000; Maximum Amount: ₩ 9,000,000 *</p>
+      <h2 class="mt-5 mb-3 border-l-[3px] border-primary pl-2.5 text-[14.5px] font-bold text-primary" data-i18n-en="Choose promotion">Choose promotion</h2>
+      <div class="flex flex-col gap-2.5">
+      <button type="button" class="flex w-full items-start gap-3 rounded-2xl border border-border-soft bg-bg p-3.5 text-left" data-dp-promo aria-pressed="false">
+        <span class="mt-0.5 grid h-5 w-5 flex-none place-items-center rounded-full border-2 border-border" data-dp-radio></span>
+        <span class="min-w-0"><strong class="block text-[13.5px] font-bold text-text" data-i18n-en="New Sign-up First Deposit 50%">New Sign-up First Deposit 50%</strong><span class="mt-1 block text-[11.5px] leading-snug text-text-3" data-i18n-en="• Note: This event is not applicable to Evolution Gaming and Pragmatic Play casino games.">• Note: This event is not applicable to Evolution Gaming and Pragmatic Play casino games.</span><span class="mt-1 block text-[11.5px] leading-snug text-text-3" data-i18n-en="• Rollover Requirement: The rollover for all funds is calculated as 300% of (Deposit Amount + Bonus).">• Rollover Requirement: The rollover for all funds is calculated as 300% of (Deposit Amount + Bonus).</span><span class="mt-1 block text-[11.5px] leading-snug text-text-3" data-i18n-en="• Bets with odds less than 1.7 will not count towards the rollover requirement.">• Bets with odds less than 1.7 will not count towards the rollover requirement.</span></span>
+      </button>
+      <button type="button" class="flex w-full items-start gap-3 rounded-2xl border border-border-soft bg-bg p-3.5 text-left" data-dp-promo aria-pressed="false">
+        <span class="mt-0.5 grid h-5 w-5 flex-none place-items-center rounded-full border-2 border-border" data-dp-radio></span>
+        <span class="min-w-0"><strong class="block text-[13.5px] font-bold text-text" data-i18n-en="Exclusive to Evolution Gaming, Pragmatic Play Casinos Unlimited Deposit...">Exclusive to Evolution Gaming, Pragmatic Play Casinos Unlimited Deposit...</strong><span class="mt-1 block text-[11.5px] leading-snug text-text-3" data-i18n-en="• The rollover for all funds is (Deposit Amount + Bonus) multiplied by">• The rollover for all funds is (Deposit Amount + Bonus) multiplied by</span><span class="mt-1 block text-[11.5px] leading-snug text-text-3" data-i18n-en="• Maximum Bonus Amount: ₩200,000.">• Maximum Bonus Amount: ₩200,000.</span><span class="mt-1 block text-[11.5px] leading-snug text-text-3" data-i18n-en="• Withdrawal Rollover Condition: 10 times (1,000%).">• Withdrawal Rollover Condition: 10 times (1,000%).</span><span class="mt-1 block text-[11.5px] leading-snug text-text-3" data-i18n-en="• Example: Deposit ₩1,000,000, receive a ₩200,000 bonus.">• Example: Deposit ₩1,000,000, receive a ₩200,000 bonus.</span><span class="mt-1 block text-[11.5px] leading-snug text-text-3" data-i18n-en="• (1,000,000 + 200,000) X 10 = 12,000,000">• (1,000,000 + 200,000) X 10 = 12,000,000</span></span>
+      </button>
       </div>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-text-3" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
-    </button>
-    <button type="button" class="w-full flex items-center justify-between rounded-2xl border border-border-soft bg-surface p-4 text-left" data-dp-gateway="c" data-dp-methods="2">
-      <div>
-        <p class="text-[13.5px] font-bold text-text">Provider C</p>
-        <p class="text-[11.5px] text-text-3">2 <span data-i18n="deposit.methodCount">種付款方式</span></p>
-      </div>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-text-3" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
-    </button>
-    <button type="button" class="w-full flex items-center justify-between rounded-2xl border border-border-soft bg-surface p-4 text-left" data-dp-gateway="d" data-dp-methods="1">
-      <div>
-        <p class="text-[13.5px] font-bold text-text">Provider D</p>
-        <p class="text-[11.5px] text-text-3">1 <span data-i18n="deposit.methodCount">種付款方式</span></p>
-      </div>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-text-3" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
-    </button></div>
+      <button type="button" class="mt-5 h-12 w-full rounded-xl bg-surface-2 text-[14px] font-bold text-text-3" data-dp-next disabled data-i18n-en="Next">Next</button>
+    </div>
     </div>
   </section>
-
 </main>
 
 <nav class="m-tabbar fixed inset-x-3 bottom-[max(12px,env(safe-area-inset-bottom,0px))] z-40 grid grid-cols-5 rounded-[26px] border border-border bg-surface/95 backdrop-blur-md shadow-[0_10px_28px_rgba(0,0,0,0.45)]">
@@ -308,6 +313,7 @@
 
 <script src="../site/assets/js/data.js"></script>
 <script src="assets/js/i18n.js"></script>
+<script src="assets/js/ui.js"></script>
 <script src="assets/js/mobile.js"></script>
 <script src="assets/js/payment.js"></script>
 </body>
