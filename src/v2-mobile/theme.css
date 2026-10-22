@@ -100,12 +100,48 @@
 /* 導覽選中態進場動畫（頂部 nav pill / 底部 tabbar 圖示圈）＋ menu 抽屜
    滑入/滑出動畫。純 CSS @keyframes，用 Tailwind 的 animate-[name_...]
    任意值語法套用，不需要額外的 JS 動畫函式庫。*/
-/* 會員卡流光：斜向光帶由左往右掃過整張卡，前 55% 時間在移動、其餘時間停在
-   卡片外等待下一輪，避免光帶一直在畫面上晃。 */
+/* 會員卡流光（兩層）：
+   1. 光帶：中心白、兩側帶主題色的柔和漸層，以 screen 混合疊在卡片底色上，
+      前 45% 時間緩入緩出掃過、其餘時間停在卡外。
+   2. 邊框流光：一段主題色亮光沿卡片邊框繞行。conic-gradient 的起始角度用
+      @property 註冊成可動畫的 <angle>，再用 mask 只露出 1px 邊框。 */
 @keyframes v2m-shine {
-  0% { transform: translateX(0) skewX(-18deg); }
-  55%, 100% { transform: translateX(320%) skewX(-18deg); }
+  0% { transform: translateX(0) skewX(-20deg); opacity: 0; }
+  8% { opacity: 1; }
+  45% { transform: translateX(260%) skewX(-20deg); opacity: 1; }
+  52%, 100% { transform: translateX(260%) skewX(-20deg); opacity: 0; }
 }
+@property --v2m-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes v2m-orbit {
+  to { --v2m-angle: 360deg; }
+}
+@utility card-sheen {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    color-mix(in srgb, rgb(var(--c-primary)) 14%, transparent) 30%,
+    rgba(255, 255, 255, 0.42) 50%,
+    color-mix(in srgb, rgb(var(--c-primary)) 14%, transparent) 70%,
+    transparent 100%);
+  mix-blend-mode: screen;
+  filter: blur(2px);
+}
+@utility card-orbit-border {
+  padding: 1px;
+  background: conic-gradient(from var(--v2m-angle),
+    transparent 0deg 250deg,
+    color-mix(in srgb, rgb(var(--c-primary)) 70%, transparent) 300deg,
+    rgba(255, 255, 255, 0.9) 330deg,
+    color-mix(in srgb, rgb(var(--c-primary)) 70%, transparent) 345deg,
+    transparent 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+
 @keyframes v2m-pop {
   0% { transform: scale(.7); opacity: 0; }
   60% { transform: scale(1.08); opacity: 1; }
