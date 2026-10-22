@@ -17,18 +17,16 @@
   var COPY = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>';
   var CHECK = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>';
 
-  function bankCardHtml(a, i) {
-    return '<div class="relative flex-none w-64">' +
-      '<div class="relative overflow-hidden rounded-2xl p-4 bg-surface border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,.1),0_14px_24px_-12px_rgba(0,0,0,.8)]">' +
-      '<span class="pointer-events-none absolute inset-x-0 top-0 h-[52px] rounded-br-[40px] bg-[linear-gradient(120deg,color-mix(in_srgb,rgb(var(--c-primary))_55%,white),rgb(var(--c-primary))_55%,color-mix(in_srgb,rgb(var(--c-primary))_70%,black))] shadow-[inset_0_1px_0_rgba(255,255,255,.5)]" aria-hidden="true"></span>' +
-      '<div class="relative flex items-center justify-between">' +
-      '<p class="text-[12px] font-bold text-on-primary">' + esc(a.bank) + '</p>' +
-      '<button type="button" class="grid h-7 w-7 place-items-center rounded-lg bg-black/15 text-on-primary" data-acct-bank-del="' + i + '" aria-label="' + esc(tx('Delete bank account')) + '">' + TRASH + '</button>' +
-      '</div>' +
-      '<p class="relative mt-4 text-[15px] font-bold tracking-widest text-text">' + esc(a.num) + '</p>' +
-      '<div class="relative mt-3 flex items-center justify-between text-[11px] text-text-3">' +
-      '<span>' + esc(a.holder) + '</span><span>' + esc(t('account.bound')) + ' ' + esc(a.bindDate) + '</span>' +
-      '</div></div></div>';
+  /* 比照桌機版 account.html 的 Banking Details 面板：卡號列（含刪除）＋銀行名稱列，
+     一次顯示一張，用左右鍵或左右滑動切換。 */
+  function bankPanelHtml(a, i) {
+    return '<div class="flex items-center gap-3 border-b border-border-soft pb-2.5 text-[13px] text-text">' +
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>' +
+      '<span class="flex-1 font-mono text-[12.5px] tracking-wider">' + esc(a.num) + '</span>' +
+      '<button type="button" class="grid h-8 w-8 place-items-center rounded-lg text-text-3" data-acct-bank-del="' + i + '" aria-label="' + esc(tx('Delete bank account')) + '">' + TRASH + '</button></div>' +
+      '<div class="flex items-center gap-3 pt-2.5 text-[13px] text-text">' +
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"></path></svg>' +
+      '<span class="flex-1 font-semibold">' + esc(a.bank) + '</span></div>';
   }
 
   function init() {
@@ -38,11 +36,35 @@
     var banks = D.BANK_ACCOUNTS = D.BANK_ACCOUNTS || [];
     var wallets = D.WALLET_ACCOUNTS = D.WALLET_ACCOUNTS || [];
 
+    var bankIdx = 0;
+    var bankPrev = document.querySelector('[data-acct-bank-prev]');
+    var bankNext = document.querySelector('[data-acct-bank-next]');
+    var bankCount = document.querySelector('[data-acct-bank-count]');
     function renderBanks() {
+      if (bankIdx >= banks.length) bankIdx = Math.max(0, banks.length - 1);
       bankWrap.innerHTML = banks.length
-        ? banks.map(bankCardHtml).join('')
-        : '<div class="flex w-full flex-col items-center gap-2 rounded-2xl border border-border-soft bg-surface py-6 text-[12.5px] text-text-3">' + esc(tx('No bank account')) + '</div>';
+        ? bankPanelHtml(banks[bankIdx], bankIdx)
+        : '<div class="flex flex-col items-center gap-2 py-3 text-[12.5px] text-text-3">' + esc(tx('No bank account')) + '</div>';
+      if (bankCount) bankCount.textContent = banks.length ? (bankIdx + 1) + '/' + banks.length : '0/0';
+      if (bankPrev) bankPrev.disabled = banks.length < 2;
+      if (bankNext) bankNext.disabled = banks.length < 2;
     }
+    function stepBank(d) {
+      if (banks.length < 2) return;
+      bankIdx = (bankIdx + d + banks.length) % banks.length;
+      renderBanks();
+    }
+    if (bankPrev) bankPrev.addEventListener('click', function () { stepBank(-1); });
+    if (bankNext) bankNext.addEventListener('click', function () { stepBank(1); });
+    var swipeX = null, swipeY = 0;
+    bankWrap.addEventListener('pointerdown', function (e) { swipeX = e.clientX; swipeY = e.clientY; });
+    bankWrap.addEventListener('pointerup', function (e) {
+      if (swipeX === null) return;
+      var dx = e.clientX - swipeX, dy = e.clientY - swipeY;
+      swipeX = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) stepBank(dx < 0 ? 1 : -1);
+    });
+    bankWrap.addEventListener('pointercancel', function () { swipeX = null; });
     function renderWallet() {
       if (!wallets.length) {
         walletWrap.innerHTML = '<div class="flex flex-col items-center gap-2 py-3 text-[12.5px] text-text-3"><span class="grid h-11 w-11 place-items-center rounded-full border border-border text-[18px]">₿</span>' + esc(tx('Empty wallet list')) + '</div>';

@@ -317,6 +317,7 @@
      英文原文當 key，直接查桌機版 data.js 的 SWEEP_PAIRS / _KO / _TH，譯文跟
      桌機版逐字一致、不另外維護一份；桌機版沒翻到的句子才用 EXTRA 補。 */
   var EXTRA = {
+    'Previous bank account': { zh: '上一個銀行帳戶', ko: '이전 계좌', th: 'บัญชีก่อนหน้า' },
     'Online': { zh: '線上', ko: '온라인', th: 'ออนไลน์' },
     'Type a message…': { zh: '輸入訊息…', ko: '메시지를 입력하세요…', th: 'พิมพ์ข้อความ…' },
     'Hi there! How can we help? A support agent will reply shortly.': { zh: '您好！有什麼可以幫您？客服人員將盡快回覆。', ko: '안녕하세요! 무엇을 도와드릴까요? 상담원이 곧 답변드리겠습니다.', th: 'สวัสดีค่ะ! มีอะไรให้เราช่วยไหม? เจ้าหน้าที่จะตอบกลับในไม่ช้า' },
