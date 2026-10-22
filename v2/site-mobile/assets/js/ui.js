@@ -157,7 +157,51 @@
       '<a href="https://t.me/win10096cs" target="_blank" rel="noopener noreferrer" class="' + btn + '" aria-label="' + esc(tx('Promo Channel')) + '"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg></a>' +
       '<a href="about.html?tab=faq" class="' + btn + '" aria-label="' + esc(tx('FAQ')) + '"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg></a>' +
       '</div>';
-    rail.querySelector('[data-qr-rail-toggle]').addEventListener('click', function () {
+    /* 把手可上下拖動：位移超過 6px 才算拖動（不觸發展開），放開後把位置
+       （中心點佔視窗高度的比例）記在 localStorage，換頁、重新整理沿用。
+       範圍限制在 header 下方到底部導覽列上方之間。 */
+    var POS_KEY = 'win100-qr-rail-y';
+    var handle = rail.querySelector('[data-qr-rail-toggle]');
+    handle.style.touchAction = 'none';
+    function clampY(y) {
+      var half = rail.offsetHeight / 2;
+      var min = 72 + half;
+      var max = window.innerHeight - 96 - half;
+      return Math.max(min, Math.min(max, y));
+    }
+    function placeAt(y) { rail.style.top = clampY(y) + 'px'; }
+    var drag = null;
+    var justDragged = false;
+    handle.addEventListener('pointerdown', function (e) {
+      drag = { startY: e.clientY, startTop: rail.getBoundingClientRect().top + rail.offsetHeight / 2, moved: false };
+      handle.setPointerCapture(e.pointerId);
+    });
+    handle.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var dy = e.clientY - drag.startY;
+      if (!drag.moved && Math.abs(dy) < 6) return;
+      drag.moved = true;
+      placeAt(drag.startTop + dy);
+    });
+    function endDrag() {
+      if (!drag) return;
+      if (drag.moved) {
+        justDragged = true;
+        var center = rail.getBoundingClientRect().top + rail.offsetHeight / 2;
+        try { localStorage.setItem(POS_KEY, String(center / window.innerHeight)); } catch (err) { /* storage unavailable */ }
+      }
+      drag = null;
+    }
+    handle.addEventListener('pointerup', endDrag);
+    handle.addEventListener('pointercancel', endDrag);
+    window.addEventListener('resize', function () {
+      var saved = null;
+      try { saved = parseFloat(localStorage.getItem(POS_KEY)); } catch (err) { /* ignore */ }
+      if (saved) placeAt(saved * window.innerHeight);
+    });
+
+    handle.addEventListener('click', function () {
+      if (justDragged) { justDragged = false; return; }
       var toggle = this;
       var open = toggle.getAttribute('aria-expanded') !== 'true';
       toggle.setAttribute('aria-expanded', String(open));
@@ -165,8 +209,13 @@
       items.classList.toggle('hidden', !open);
       items.classList.toggle('flex', open);
       rail.querySelector('[data-qr-rail-chevron]').classList.toggle('rotate-180', open);
+      /* 展開後變高，重新夾在可用範圍內，避免被 header 或底部導覽蓋住 */
+      if (rail.style.top) placeAt(parseFloat(rail.style.top));
     });
     document.body.appendChild(rail);
+    var saved = null;
+    try { saved = parseFloat(localStorage.getItem(POS_KEY)); } catch (err) { /* ignore */ }
+    if (saved) placeAt(saved * window.innerHeight);
   }
 
   /* ============================== 區塊收合 ============================== */
