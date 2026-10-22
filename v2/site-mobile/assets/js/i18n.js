@@ -75,6 +75,7 @@
     'tabbar.freeMoney': { zh: '免費金', en: 'Free Money', ko: '무료 캐시', th: 'เงินฟรี' },
     'tabbar.casino': { zh: '娛樂城', en: 'Casino', ko: '카지노', th: 'คาสิโน' },
     'tabbar.live': { zh: '真人視訊', en: 'Live games', ko: '라이브 카지노', th: 'คาสิโนสด' },
+    'tabbar.member': { zh: '會員', en: 'Member', ko: '회원', th: 'สมาชิก' },
     'tabbar.menu': { zh: '選單', en: 'Menu', ko: '메뉴', th: 'เมนู' },
 
     'action.loadMore': { zh: '載入更多', en: 'Load More', ko: '더보기', th: 'โหลดเพิ่มเติม' },
