@@ -151,7 +151,22 @@
     render();
   }
 
+  /* 首頁區塊（熱門遊戲、體育賽事）標題可收合：標題列的下一個兄弟元素就是該區塊的卡片列 */
+  function initSectionCollapse() {
+    document.querySelectorAll('[data-home-collapse]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var head = btn.closest('h2').parentElement;
+        var body = head.nextElementSibling;
+        var open = btn.getAttribute('aria-expanded') !== 'false';
+        btn.setAttribute('aria-expanded', String(!open));
+        if (body) body.classList.toggle('hidden', open);
+        btn.querySelector('[data-home-collapse-chevron]').classList.toggle('-rotate-90', open);
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    initSectionCollapse();
     fillRail('best-games-rail', 8, true);
     var bestCount = document.getElementById('best-games-count');
     if (bestCount) bestCount.textContent = '(13)';

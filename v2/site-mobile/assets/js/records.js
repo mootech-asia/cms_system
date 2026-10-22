@@ -61,7 +61,7 @@
 
   function toolbarHtml(withStatus, withRefresh) {
     var statusHtml = withStatus
-      ? '<select class="h-11 flex-none rounded-xl border border-border-soft bg-surface px-3 text-[13px] font-semibold text-text" data-rec-status data-i18n-aria="rec.status" aria-label="' + t('rec.status') + '">' +
+      ? '<select class="h-11 min-w-[104px] flex-none rounded-xl border border-border-soft bg-surface px-3 text-[13px] font-semibold text-text" data-rec-status data-i18n-aria="rec.status" aria-label="' + t('rec.status') + '">' +
         STATUSES.map(function (s) { return '<option value="' + s + '">' + t('rec.status' + s) + '</option>'; }).join('') +
         '</select>'
       : '';
@@ -197,6 +197,7 @@
     bar.innerHTML = toolbarHtml(bar.hasAttribute('data-status'), bar.hasAttribute('data-refresh'));
     var status = bar.querySelector('[data-rec-status]');
     if (status) status.addEventListener('change', function () { applyStatus(list, status.value); });
+    if (status && window.__v2mSheetSelect) window.__v2mSheetSelect(status, t('rec.status'));
     var input = bar.querySelector('[data-rec-date]');
     initCalendar(input, bar.querySelector('[data-rec-date-btn]'), bar.querySelector('[data-rec-date-wrap]'), function (v) { applyDate(list, v); });
     bar.querySelector('[data-rec-confirm]').addEventListener('click', function () { applyDate(list, input.value); });

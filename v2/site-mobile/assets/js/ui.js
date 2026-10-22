@@ -175,6 +175,7 @@
   });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
+    closeSheet();
     closeModal();
     closeCs();
   });
@@ -209,6 +210,73 @@
     trigger.addEventListener('click', function () { setOpen(menu.classList.contains('hidden')); });
     document.addEventListener('click', function (e) { if (!wrap.contains(e.target)) setOpen(false); });
   }
+
+  /* ============================== 底部選單（取代原生 <select>）============================== */
+  /* 原生 <select> 在手機瀏覽器（尤其 iOS／桌機模擬）彈出的清單很小、難點。
+     select 本身保留在 DOM（藏起來）當資料來源與表單值，旁邊插一顆跟輸入框
+     等高的按鈕；點按鈕從底部滑出大列表（每列 56px），選了寫回 select.value
+     並觸發 input/change，既有的篩選、送出 gate 邏輯不用改。 */
+  var sheetRoot = null;
+  function closeSheet() { if (sheetRoot) { sheetRoot.remove(); sheetRoot = null; unlock(); } }
+  var CHECK = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>';
+  function openSheet(select, title, trigger) {
+    closeSheet();
+    /* 空值的「請選擇…」是提示文字，不列成可選項目 */
+    var opts = Array.prototype.slice.call(select.options).filter(function (o) { return o.value !== ''; });
+    sheetRoot = document.createElement('div');
+    sheetRoot.className = 'fixed inset-0 z-[85] flex items-end bg-black/60';
+    sheetRoot.innerHTML =
+      '<div class="w-full rounded-t-3xl bg-surface pb-[max(16px,env(safe-area-inset-bottom,0px))]" role="dialog" aria-modal="true">' +
+      '<div class="flex items-center justify-between px-5 pb-2 pt-4">' +
+      '<h3 class="text-[16px] font-bold text-text">' + esc(title) + '</h3>' +
+      '<button type="button" class="grid h-10 w-10 place-items-center rounded-xl text-text-2" data-sheet-close aria-label="' + esc(tx('Close')) + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg></button>' +
+      '</div>' +
+      '<div class="max-h-[60vh] overflow-y-auto px-3" role="listbox">' +
+      opts.map(function (o) {
+        var on = o.value === select.value;
+        return '<button type="button" role="option" aria-selected="' + on + '" class="flex h-14 w-full items-center justify-between rounded-2xl px-4 text-left text-[15px] font-semibold ' +
+          (on ? 'bg-primary/16 text-primary' : 'text-text') + '" data-sheet-value="' + esc(o.value) + '"><span>' + esc(o.textContent) + '</span>' + (on ? CHECK : '') + '</button>';
+      }).join('') +
+      '</div></div>';
+    sheetRoot.addEventListener('click', function (e) {
+      if (e.target === sheetRoot || e.target.closest('[data-sheet-close]')) { closeSheet(); trigger.focus(); return; }
+      var opt = e.target.closest('[data-sheet-value]');
+      if (!opt) return;
+      select.value = opt.getAttribute('data-sheet-value');
+      select.dispatchEvent(new Event('input', { bubbles: true }));
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+      closeSheet();
+      trigger.focus();
+    });
+    document.body.appendChild(sheetRoot);
+    lock();
+  }
+  function enhanceSelect(select, title) {
+    if (!select || select.hasAttribute('data-sheet-enhanced')) return;
+    select.setAttribute('data-sheet-enhanced', '');
+    var trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = select.className.replace(/\bhidden\b/, '') + ' flex items-center justify-between gap-2 text-left';
+    trigger.setAttribute('aria-haspopup', 'listbox');
+    if (select.getAttribute('aria-label')) trigger.setAttribute('aria-label', select.getAttribute('aria-label'));
+    var label = document.createElement('span');
+    label.className = 'truncate';
+    trigger.appendChild(label);
+    trigger.insertAdjacentHTML('beforeend', '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>');
+    function sync() {
+      var o = select.options[select.selectedIndex];
+      label.textContent = o ? o.textContent : '';
+      label.classList.toggle('text-text-3', !select.value && !!select.querySelector('option[value=""]'));
+    }
+    select.addEventListener('change', sync);
+    select.addEventListener('input', sync);
+    trigger.addEventListener('click', function () { openSheet(select, title || label.textContent, trigger); });
+    select.classList.add('hidden');
+    select.setAttribute('tabindex', '-1');
+    select.parentNode.insertBefore(trigger, select.nextSibling);
+    sync();
+  }
+  window.__v2mSheetSelect = enhanceSelect;
 
   document.addEventListener('DOMContentLoaded', initRail);
   document.addEventListener('DOMContentLoaded', initHeaderLocale);

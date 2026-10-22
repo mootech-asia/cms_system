@@ -1,6 +1,6 @@
 /* 首頁遊戲分頁輪播：比照 v2/site 桌機版 initMiniGamesGrid()（MiniGamesGrid.vue）。
    迷你遊戲／老虎機／真人娛樂三個分頁每 8 秒自動切到下一個，選中分頁底部的
-   進度條顯示倒數；點分頁或左右箭頭會重新計時。左右箭頭一次捲動「一屏可見的
+   進度條顯示倒數（線性連續增長）；點分頁或左右箭頭會重新計時。左右箭頭一次捲動「一屏可見的
    卡片數」，到底再按回到開頭。「查看全部」連到該分類頁。遊戲名稱與圖片取自
    桌機版 D.MINI_NAMES / D.MINI_IMG_POOL / D.LIVE_TABLES。 */
 (function () {
@@ -8,7 +8,6 @@
   var D = window.WIN100_DATA || {};
   var KEYS = ['mini', 'slot', 'live'];
   var INTERVAL = 8000;
-  var TICK = 250;
 
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   /* 桌機版圖庫路徑相對於 v2/site，手機版在隔壁資料夾，要補上 ../site/ */
@@ -41,11 +40,11 @@
     var tabs = {};
     root.querySelectorAll('[data-mini-tab]').forEach(function (b) { tabs[b.getAttribute('data-mini-tab')] = b; });
     var current = 'mini';
-    var remaining = INTERVAL;
+    var startedAt = 0;
 
     function setActive(key) {
       current = key;
-      remaining = INTERVAL;
+      startedAt = performance.now();
       rail.innerHTML = gamesFor(key).map(cardHtml).join('');
       rail.scrollLeft = 0;
       KEYS.forEach(function (k) {
@@ -71,7 +70,7 @@
       var target = dir > 0
         ? (rail.scrollLeft >= max - 2 ? 0 : Math.min(max, rail.scrollLeft + jump))
         : (rail.scrollLeft <= 2 ? max : Math.max(0, rail.scrollLeft - jump));
-      remaining = INTERVAL;
+      startedAt = performance.now();
       rail.scrollTo({ left: target, behavior: 'smooth' });
     }
 
@@ -80,12 +79,18 @@
       b.addEventListener('click', function () { move(+b.getAttribute('data-mini-move')); });
     });
     setActive('mini');
-    setInterval(function () {
-      remaining -= TICK;
+    /* 每一幀依實際經過時間算寬度，進度條連續線性增長，不會一格一格跳 */
+    function frame(now) {
+      var elapsed = now - startedAt;
+      if (elapsed >= INTERVAL) {
+        setActive(KEYS[(KEYS.indexOf(current) + 1) % KEYS.length]);
+        elapsed = 0;
+      }
       var bar = tabs[current].querySelector('[data-mini-bar]');
-      if (bar) bar.style.width = Math.max(0, Math.min(100, ((INTERVAL - remaining) / INTERVAL) * 100)) + '%';
-      if (remaining <= 0) setActive(KEYS[(KEYS.indexOf(current) + 1) % KEYS.length]);
-    }, TICK);
+      if (bar) bar.style.width = Math.min(100, (elapsed / INTERVAL) * 100) + '%';
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
   }
 
   document.addEventListener('DOMContentLoaded', init);

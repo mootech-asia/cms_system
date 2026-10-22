@@ -126,33 +126,22 @@
           <span class="rounded-full border border-primary/35 bg-primary/16 px-2 py-0.5 text-primary" data-i18n="account.tierBronze">銅級</span>
         </div>
       </div>
+      <div class="relative mt-3 grid grid-cols-2 gap-2">
+        <a href="deposit.html" class="flex h-10 items-center justify-center gap-1.5 rounded-xl bg-[image:var(--g-primary)] text-[13px] font-bold text-on-primary"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="m6 13 6 6 6-6"></path></svg><span data-i18n="page.deposit">儲值</span></a>
+        <a href="withdrawal.html" class="flex h-10 items-center justify-center gap-1.5 rounded-xl border border-primary/40 text-[13px] font-bold text-primary"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="m6 11 6-6 6 6"></path></svg><span data-i18n="page.withdrawal">提款</span></a>
+      </div>
       </div>
     </div>
   </div>
 
-  <section class="px-4 mt-3 grid grid-cols-2 gap-4 pt-2">
-    <a href="deposit.html" class="relative block h-24 active:translate-y-px">
-      <span class="relative h-full rounded-2xl p-4 flex flex-col justify-between overflow-hidden ring-1 ring-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,.35),inset_0_0_28px_rgba(0,0,0,.18),0_4px_10px_-4px_rgba(0,0,0,.45)]" style="background:radial-gradient(110% 95% at 50% 0%, color-mix(in srgb, rgb(var(--c-primary-700)) 65%, white), transparent 70%), linear-gradient(180deg, rgb(var(--c-primary-700)), rgb(var(--c-primary-900)))">
-        <span class="relative text-[16px] font-extrabold text-white drop-shadow-[0_1px_2px_rgba(0,0,0,.35)]" data-i18n="page.deposit">儲值</span>
-        <span class="relative text-[12px] font-medium text-white/85" data-i18n="home.depositSub">快速儲值</span>
-        <span class="absolute right-3 bottom-3 h-8 w-8 grid place-items-center rounded-full bg-linear-to-b from-white/40 to-white/10 ring-1 ring-white/35 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,.65),inset_0_-2px_3px_rgba(0,0,0,.2),0_4px_10px_-4px_rgba(0,0,0,.4)]" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m6 13 6 6 6-6"></path></svg></span>
-      </span>
-    </a>
-    <a href="withdrawal.html" class="relative block h-24 active:translate-y-px">
-      <span class="relative h-full rounded-2xl p-4 flex flex-col justify-between overflow-hidden ring-1 ring-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,.35),inset_0_0_28px_rgba(0,0,0,.18),0_4px_10px_-4px_rgba(0,0,0,.45)]" style="background:radial-gradient(110% 95% at 50% 0%, color-mix(in srgb, rgb(var(--c-primary-800)) 65%, white), transparent 70%), linear-gradient(180deg, rgb(var(--c-primary-800)), rgb(var(--c-primary-950)))">
-        <span class="relative text-[16px] font-extrabold text-white drop-shadow-[0_1px_2px_rgba(0,0,0,.35)]" data-i18n="page.withdrawal">提款</span>
-        <span class="relative text-[12px] font-medium text-white/85" data-i18n="home.withdrawSub">快速出款</span>
-        <span class="absolute right-3 bottom-3 h-8 w-8 grid place-items-center rounded-full bg-linear-to-b from-white/40 to-white/10 ring-1 ring-white/35 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,.65),inset_0_-2px_3px_rgba(0,0,0,.2),0_4px_10px_-4px_rgba(0,0,0,.4)]" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"></path><path d="m6 11 6-6 6 6"></path></svg></span>
-      </span>
-    </a>
-  </section>
 
   <section class="mt-6">
     <div class="flex items-center justify-between px-4 mb-3">
-      <h2 class="flex items-center gap-2 text-[15px] font-bold text-text">
+      <h2><button type="button" class="flex items-center gap-2 text-[15px] font-bold text-text" data-home-collapse aria-expanded="true">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" class="text-primary" aria-hidden="true"><path d="M3 8.5 7 11l5-6 5 6 4-2.5L19.5 18h-15L3 8.5Z"></path></svg>
         <span data-i18n="page.hotGames">熱門遊戲</span>
-      </h2>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-text-3 transition-transform" data-home-collapse-chevron aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+      </button></h2>
       <a href="hot-games.html" class="text-[12.5px] font-semibold text-primary"><span data-i18n="section.all">全部</span> <span id="best-games-count"></span></a>
     </div>
     <div class="mx-4 flex gap-3 overflow-x-auto no-scrollbar" id="best-games-rail"></div>
@@ -160,10 +149,11 @@
 
   <section class="mt-6">
     <div class="flex items-center justify-between px-4 mb-3">
-      <h2 class="flex items-center gap-2 text-[15px] font-bold text-text">
+      <h2><button type="button" class="flex items-center gap-2 text-[15px] font-bold text-text" data-home-collapse aria-expanded="true">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m12 7 4 3-1.5 4.5h-5L8 10l4-3Z"></path><path d="M12 3v4M21 10.5l-5-.5M18 19l-3.5-4.5M6 19l3.5-4.5M3 10.5l5-.5"></path></svg>
         <span data-i18n="page.sport">體育賽事</span>
-      </h2>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-text-3 transition-transform" data-home-collapse-chevron aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+      </button></h2>
       <a href="sport.html" class="text-[12.5px] font-semibold text-primary"><span data-i18n="section.all">全部</span></a>
     </div>
     <div class="mx-4 flex gap-3 overflow-x-auto no-scrollbar" id="home-sport-rail"></div>
@@ -226,13 +216,6 @@
         <button type="button" class="h-8 w-8 grid place-items-center rounded-lg text-text-2" data-drawer-close aria-label="Close">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
         </button>
-      </div>
-      <div class="mb-3 flex items-center gap-2 overflow-x-auto no-scrollbar" data-drawer-locales>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-text-3" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20"></path></svg>
-        <button type="button" class="flex-none rounded-full px-3 py-1.5 text-[12.5px] font-semibold" data-locale-option="en">English</button>
-        <button type="button" class="flex-none rounded-full px-3 py-1.5 text-[12.5px] font-semibold" data-locale-option="ko">한국어</button>
-        <button type="button" class="flex-none rounded-full px-3 py-1.5 text-[12.5px] font-semibold" data-locale-option="th">ภาษาไทย</button>
-        <button type="button" class="flex-none rounded-full px-3 py-1.5 text-[12.5px] font-semibold" data-locale-option="zh">中文</button>
       </div>
       <section class="" data-drawer-section>
         <button type="button" class="flex w-full items-center justify-between px-3 py-1.5 text-[11.5px] font-semibold uppercase tracking-wide text-text-3" data-drawer-section-toggle aria-expanded="true"><span data-i18n="tabbar.menu">選單</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform" data-drawer-section-chevron aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>

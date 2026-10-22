@@ -138,6 +138,13 @@
       '</div></section>' +
       '</div>';
 
+    /* 原生 <select> 換成底部大選單（ui.js），標題用欄位前面的 label 文字 */
+    if (window.__v2mSheetSelect) {
+      Array.prototype.forEach.call(root.querySelectorAll('select'), function (sel) {
+        var lab = sel.previousElementSibling;
+        window.__v2mSheetSelect(sel, lab ? lab.textContent.replace(/[:：]\s*$/, '') : '');
+      });
+    }
     var q = function (sel) { return root.querySelector(sel); };
     var qa = function (sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); };
 
@@ -284,7 +291,7 @@
           wallets.push({ type: fields[0].value, address: fields[1].value, bindDate: today() });
           renderWallets();
         }
-        if (which !== 'crypto') fields.forEach(function (f) { f.value = ''; });
+        if (which !== 'crypto') fields.forEach(function (f) { f.value = ''; f.dispatchEvent(new Event('change', { bubbles: true })); });
         gate(b);
         modal({ type: 'success', message: tx('Your request has been submitted successfully.') });
       }
