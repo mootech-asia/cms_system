@@ -237,20 +237,31 @@
     if (menuBtn) on(menuBtn, 'click', function () { toggleMenuDrawer(true); });
   }
 
-  /* about.html 分頁鈕：目前只有單一內容區塊(3 個分頁共用同一段介紹文字，
-     沒有各自獨立的公告/FAQ 內容——桌機版 about.html 有 8 個分頁的完整
-     內容，手機版這裡先做視覺上可切換的精簡版)，點擊只切換 active 樣式。 */
+  /* about.html：8 個分頁（Support/Notice/.../FAQ）各自切換面板，?tab=faq 等
+     深連結直接開該分頁；FAQ 每題可展開收合。比照 v2/site 桌機版 initAboutTabs()。 */
   function initAboutTabs() {
-    var tabs = document.querySelectorAll('[data-about-tab]');
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-about-tab]'));
     if (!tabs.length) return;
-    tabs.forEach(function (btn) {
+    function show(key) {
+      tabs.forEach(function (b) {
+        var active = b.getAttribute('data-about-tab') === key;
+        ['bg-primary', 'text-on-primary'].forEach(function (c) { b.classList.toggle(c, active); });
+        ['border', 'border-border-soft', 'bg-surface', 'text-text-2'].forEach(function (c) { b.classList.toggle(c, !active); });
+        if (active) b.scrollIntoView({ block: 'nearest', inline: 'center' });
+      });
+      document.querySelectorAll('[data-about-panel]').forEach(function (p) {
+        p.classList.toggle('hidden', p.getAttribute('data-about-panel') !== key);
+      });
+    }
+    tabs.forEach(function (btn) { on(btn, 'click', function () { show(btn.getAttribute('data-about-tab')); }); });
+    var q = (new URLSearchParams(location.search).get('tab') || '').toLowerCase();
+    if (q && tabs.some(function (b) { return b.getAttribute('data-about-tab') === q; })) show(q);
+    document.querySelectorAll('[data-faq-toggle]').forEach(function (btn) {
       on(btn, 'click', function () {
-        tabs.forEach(function (b) {
-          var active = b === btn;
-          b.classList.toggle('bg-primary', active);
-          b.classList.toggle('text-on-primary', active);
-          b.classList.toggle('text-text-2', !active);
-        });
+        var open = btn.getAttribute('aria-expanded') !== 'true';
+        btn.setAttribute('aria-expanded', String(open));
+        btn.parentElement.querySelector('[data-faq-body]').classList.toggle('hidden', !open);
+        btn.querySelector('[data-faq-chevron]').classList.toggle('rotate-180', open);
       });
     });
   }

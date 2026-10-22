@@ -305,12 +305,26 @@
     'August 2025': { zh: '2025 年 8 月', ko: '2025년 8월', th: 'สิงหาคม 2025' },
     'Change nickname': { zh: '修改暱稱', ko: '닉네임 변경', th: 'เปลี่ยนชื่อเล่น' }
   };
+  /* 桌機版字典的 key 有些帶換行（長段落原文），比對前一律把空白正規化。
+     FAQ_* 是 about 頁 FAQ 的譯文，桌機版同樣跟 SWEEP_PAIRS 一起查。 */
+  var normTables = {};
+  function normWs(x) { return String(x).replace(/\s+/g, ' ').trim(); }
+  function tableFor(loc) {
+    if (normTables[loc]) return normTables[loc];
+    var D = window.WIN100_DATA || {};
+    var srcs = loc === 'zh' ? [D.FAQ_ZH, D.SWEEP_PAIRS] : loc === 'ko' ? [D.FAQ_KO, D.SWEEP_PAIRS_KO] : loc === 'th' ? [D.FAQ_TH, D.SWEEP_PAIRS_TH] : [];
+    var map = {};
+    srcs.forEach(function (src) {
+      Object.keys(src || {}).forEach(function (k) { map[normWs(k)] = src[k]; });
+    });
+    normTables[loc] = map;
+    return map;
+  }
   function tx(en) {
     var loc = currentLocale();
     if (loc === 'en') return en;
-    var D = window.WIN100_DATA || {};
-    var table = loc === 'zh' ? D.SWEEP_PAIRS : loc === 'ko' ? D.SWEEP_PAIRS_KO : loc === 'th' ? D.SWEEP_PAIRS_TH : null;
-    if (table && table[en]) return table[en];
+    var hit = tableFor(loc)[normWs(en)];
+    if (hit) return hit;
     return (EXTRA[en] && EXTRA[en][loc]) || en;
   }
 
