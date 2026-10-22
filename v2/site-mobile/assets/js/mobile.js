@@ -294,6 +294,16 @@
     if (window.__v2mApplyLocale) window.__v2mApplyLocale(menuDrawerRoot);
     document.documentElement.classList.add('overflow-hidden');
     on(menuDrawerRoot, 'click', function (e) {
+      var secToggle = e.target.closest('[data-drawer-section-toggle]');
+      if (secToggle) {
+        var items = secToggle.parentElement.querySelector('[data-drawer-section-items]');
+        var expanded = secToggle.getAttribute('aria-expanded') !== 'false';
+        secToggle.setAttribute('aria-expanded', String(!expanded));
+        if (items) items.classList.toggle('hidden', expanded);
+        var chev = secToggle.querySelector('[data-drawer-section-chevron]');
+        if (chev) chev.classList.toggle('-rotate-90', expanded);
+        return;
+      }
       if (e.target === menuDrawerRoot || e.target.closest('[data-drawer-close]')) closeMenuDrawer();
     });
   }
