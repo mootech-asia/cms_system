@@ -101,6 +101,7 @@
   var AUTH_FIELDS = {
     login: ['username', 'password'],
     register: ['username', 'password', 'confirm', 'email', 'realname', 'mobile'],
+    forgot: ['username', 'email'],
   };
 
   function t(key) { return window.__v2mT ? window.__v2mT(key) : key; }
@@ -166,6 +167,7 @@
         if (inputEl) inputEl.classList.toggle('border-[#ef4444]', !!msg);
       });
       if (!ok) return;
+      if (mode === 'forgot') { switchAuthTab(authModalRoot, 'forgot-sent'); return; }
       persistLogin(true);
       closeAuthModal();
       applyAuthUI();
@@ -173,7 +175,7 @@
   }
 
   function switchAuthTab(root, mode) {
-    root.querySelectorAll('[data-auth-tab]').forEach(function (b) {
+    root.querySelectorAll('.auth-tab-btn').forEach(function (b) {
       var active = b.getAttribute('data-auth-tab') === mode;
       b.classList.toggle('bg-primary', active);
       b.classList.toggle('text-on-primary', active);
@@ -204,8 +206,15 @@
     switchAuthTab(authModalRoot, mode || 'login');
     bindAuthPanel(authModalRoot.querySelector('[data-auth-panel="login"]'), 'login');
     bindAuthPanel(authModalRoot.querySelector('[data-auth-panel="register"]'), 'register');
+    bindAuthPanel(authModalRoot.querySelector('[data-auth-panel="forgot"]'), 'forgot');
     on(authModalRoot, 'click', function (e) {
       if (e.target === authModalRoot || e.target.closest('[data-auth-close]')) { closeAuthModal(); return; }
+      var eyeBtn = e.target.closest('[data-auth-eye]');
+      if (eyeBtn) {
+        var pwInput = eyeBtn.parentElement.querySelector('input');
+        if (pwInput) pwInput.type = pwInput.type === 'password' ? 'text' : 'password';
+        return;
+      }
       var tabBtn = e.target.closest('[data-auth-tab]');
       if (tabBtn) switchAuthTab(authModalRoot, tabBtn.getAttribute('data-auth-tab'));
     });
