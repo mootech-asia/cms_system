@@ -40,8 +40,7 @@
   .sc-item { padding: 10px 14px; }
   /* 紀錄頁（儲值／提款紀錄）底部的 Total 統計列固定在底部導覽列上方，
      捲動表格時一直看得到；左右對齊頁面內容的 22px 邊距。頁面底部留出
-     統計列的高度，最後一列才捲得出來；右下角客服鈕同頁往上移到統計列上方，
-     不跟它重疊。main.css 的 .rec-total 原規則（桌機版）不動。 */
+     統計列的高度，最後一列才捲得出來。main.css 的 .rec-total 原規則（桌機版）不動。 */
   .rec-total {
     position: fixed;
     left: 22px;
@@ -51,7 +50,49 @@
     margin-top: 0;
   }
   .rec-page:has(.rec-total) { padding-bottom: 84px; }
-  body:has(.rec-total) .cms-cs-fab { bottom: calc(var(--mobile-nav-h) + 8px + 56px + 10px); }
+  /* 客服漂浮鈕收進右緣把手（mobile.js 建立 .m-qr-rail，top 由 JS 依拖曳位置設定）；
+     鈕本身改回一般排版，static-addon.css 的 fixed／right／bottom 不再作用。 */
+  .m-qr-rail {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    z-index: 150;
+    display: flex;
+    align-items: center;
+    transform: translateY(-50%);
+  }
+  .m-qr-handle {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 48px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-right: 0;
+    border-radius: 12px 0 0 12px;
+    background: color-mix(in srgb, var(--bg-elev) 90%, transparent);
+    color: var(--text-mid);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(4px);
+    cursor: grab;
+  }
+  .m-qr-handle svg { transition: transform .2s; }
+  .m-qr-rail.is-open .m-qr-handle svg { transform: rotate(180deg); }
+  .m-qr-items {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    border: 1px solid var(--line);
+    border-right: 0;
+    border-radius: 24px 0 0 24px;
+    background: color-mix(in srgb, var(--bg-elev) 90%, transparent);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(4px);
+  }
+  .m-qr-rail.is-open .m-qr-items { display: flex; }
+  .m-qr-rail .cms-cs-fab { position: static; }
   /* 側欄抽屜頂列：拿掉搜尋框，語系選擇跟關閉鈕併成同一行——
      .sidebar-search 這個 class 名稱維持不動(main.css 的
      .sidebar-search .sb-collapse-toggle{margin-left:-34px} 靠它定位)，
@@ -450,4 +491,9 @@
 @keyframes m-balance-blink {
   0%, 100% { opacity: 1; }
   50% { opacity: .2; }
+}
+
+/* 跟 static-addon.css 隱藏 .cms-cs-fab 的桌機斷點一致：寬螢幕連同把手一起藏起來。 */
+@media (min-width: 769px) {
+  .m-qr-rail { display: none; }
 }

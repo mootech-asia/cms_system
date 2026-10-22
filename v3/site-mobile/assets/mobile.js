@@ -599,3 +599,92 @@
     new MutationObserver(syncBalanceNums).observe(container, { childList: true, subtree: true, characterData: true });
   }
 })();
+
+/* 右下客服漂浮鈕改成右緣收合把手（比照 v2 手機版 ui.js initRail）：平常只露出
+   一條「<」把手，點開才展開客服鈕；把手可上下拖曳，範圍限制在頂部列下緣到
+   底部導覽（或紀錄頁固定的 Total 列）上緣之間，位置以畫面高度比例存在
+   localStorage。site.js 的 makeFabDraggable 會寫入 left/top 行內樣式，所以
+   放進把手的是不帶監聽器的複本；開客服仍走 site.js 的 [data-action="open-cs"]
+   委派點擊。這段在 site.js 的 DOMContentLoaded 之後註冊，執行時漂浮鈕已建立。 */
+(function () {
+  'use strict';
+  var POS_KEY = 'win100-v3m-qr-rail-y';
+  var CHEVRON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>';
+
+  function init() {
+    var fab = document.querySelector('.cms-cs-fab');
+    if (!fab || fab.closest('.m-qr-rail')) return;
+    var rail = document.createElement('div');
+    rail.className = 'm-qr-rail';
+    var handle = document.createElement('button');
+    handle.type = 'button';
+    handle.className = 'm-qr-handle';
+    handle.setAttribute('aria-expanded', 'false');
+    handle.setAttribute('aria-label', fab.getAttribute('aria-label') || '');
+    handle.innerHTML = CHEVRON;
+    var items = document.createElement('div');
+    items.className = 'm-qr-items';
+    items.appendChild(fab.cloneNode(true));
+    fab.remove();
+    rail.appendChild(handle);
+    rail.appendChild(items);
+    document.body.appendChild(rail);
+
+    function clampY(y) {
+      var half = rail.offsetHeight / 2;
+      var header = document.querySelector('.shell-header');
+      var top = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      var floor = document.querySelector('.rec-total') || document.querySelector('.shell-mobile-nav');
+      var bottom = floor ? floor.getBoundingClientRect().top : window.innerHeight;
+      var min = top + 8 + half;
+      var max = Math.max(min, bottom - 8 - half);
+      return Math.max(min, Math.min(max, y));
+    }
+    function placeAt(y) { rail.style.top = clampY(y) + 'px'; }
+    function center() { var r = rail.getBoundingClientRect(); return r.top + r.height / 2; }
+
+    var dragging = false, moved = false, justDragged = false, startY = 0, startCenter = 0;
+    handle.style.touchAction = 'none';
+    handle.addEventListener('pointerdown', function (e) {
+      if (e.button != null && e.button !== 0) return;
+      dragging = true; moved = false;
+      startY = e.clientY; startCenter = center();
+      try { handle.setPointerCapture(e.pointerId); } catch (err) {}
+    });
+    handle.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      var dy = e.clientY - startY;
+      if (!moved && Math.abs(dy) < 6) return;
+      moved = true;
+      placeAt(startCenter + dy);
+    });
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
+      if (moved) {
+        justDragged = true;
+        setTimeout(function () { justDragged = false; }, 0);
+        try { localStorage.setItem(POS_KEY, String(center() / window.innerHeight)); } catch (err) {}
+      }
+    }
+    handle.addEventListener('pointerup', endDrag);
+    handle.addEventListener('pointercancel', endDrag);
+    handle.addEventListener('click', function () {
+      if (justDragged) return;
+      var c = center();
+      var open = rail.classList.toggle('is-open');
+      handle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      placeAt(c);
+    });
+    window.addEventListener('resize', function () { placeAt(center()); });
+
+    var saved = null;
+    try { saved = parseFloat(localStorage.getItem(POS_KEY)); } catch (err) {}
+    setTimeout(function () {
+      placeAt(saved > 0 ? saved * window.innerHeight : center());
+    }, 0);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
