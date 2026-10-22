@@ -47,10 +47,11 @@
      USDT 直接送出）。送出結果用成功彈窗，與桌機版 showMemberModal 相同。 */
   function tx(en) { return window.__v2mTx ? window.__v2mTx(en) : en; }
   function modal(opts) { if (window.__v2mModal) window.__v2mModal(opts); }
-  var TAB_ON = ['bg-primary', 'text-on-primary'];
-  var TAB_OFF = ['bg-surface', 'text-text-2', 'border', 'border-border-soft'];
-  var METHOD_ON = ['border-transparent', 'bg-[image:var(--g-primary)]', 'text-on-primary'];
-  var METHOD_OFF = ['border-border-soft', 'bg-surface', 'text-text'];
+  /* 通道是第一層（底線分頁），付款方式是第二層（外框膠囊），跟提款頁同一套層級樣式。 */
+  var TAB_ON = ['text-primary', 'shadow-[inset_0_-2px_0_rgb(var(--c-primary))]'];
+  var TAB_OFF = ['text-text-3'];
+  var METHOD_ON = ['border-primary', 'bg-primary/16', 'text-primary'];
+  var METHOD_OFF = ['border-border-soft', 'text-text-2'];
   var CHIP_ON = ['border-primary/40', 'bg-primary/16', 'text-primary'];
   var CHIP_OFF = ['border-border-soft', 'bg-bg', 'text-text'];
   function setOn(el, on, onCls, offCls) {

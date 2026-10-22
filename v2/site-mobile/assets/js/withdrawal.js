@@ -20,9 +20,15 @@
   function acctMask(num) { var d = (num || '').replace(/\D/g, ''); return '********' + (d.slice(-4) || '0000'); }
   function today() { return new Date().toISOString().slice(0, 10); }
 
-  var TAB = 'h-10 flex-1 rounded-xl text-[13px] font-bold';
-  var TAB_ON = ['bg-[image:var(--g-primary)]', 'text-on-primary'];
-  var TAB_OFF = ['bg-surface', 'text-text-2'];
+  /* 兩層切換要看得出主從：第一層（提款／帳戶管理）是整頁分頁，用底線分頁，
+     跟大廳分類列同一種選中樣式；第二層（銀行卡／加密錢包）是分頁內的方式
+     選擇，用較小的外框膠囊。 */
+  var TAB = 'h-11 flex-1 text-[14px] font-bold';
+  var TAB_ON = ['text-primary', 'shadow-[inset_0_-2px_0_rgb(var(--c-primary))]'];
+  var TAB_OFF = ['text-text-3'];
+  var CHIP = 'flex h-9 items-center justify-center gap-1.5 rounded-full border px-4 text-[12.5px] font-semibold [&_svg]:h-4 [&_svg]:w-4';
+  var CHIP_ON = ['border-primary', 'bg-primary/16', 'text-primary'];
+  var CHIP_OFF = ['border-border-soft', 'text-text-2'];
   var FIELD = 'h-12 w-full rounded-xl border border-border-soft bg-bg px-4 text-[14px] text-text';
   var LABEL = 'mb-1.5 mt-3 block text-[12px] font-semibold text-text-2';
   var H2 = 'mb-3 border-l-[3px] border-primary pl-2.5 text-[14.5px] font-bold text-primary';
@@ -58,15 +64,15 @@
     var idx = 0;
 
     root.innerHTML =
-      '<div class="mb-3 flex gap-2 rounded-2xl bg-surface p-1">' +
+      '<div class="-mx-4 mb-4 flex border-b border-border-soft px-4">' +
       '<button type="button" class="' + TAB + '" data-wd-mode="withdraw">' + esc(tx('Withdraw')) + '</button>' +
       '<button type="button" class="' + TAB + '" data-wd-mode="management">' + esc(tx('Account Management')) + '</button></div>' +
 
       /* ---------- Withdraw ---------- */
       '<div data-wd-panel="withdraw">' +
-      '<div class="mb-3 grid grid-cols-2 gap-2">' +
-      '<button type="button" class="flex h-12 items-center justify-center gap-2 rounded-xl border text-[13px] font-bold" data-wd-method="bank">' + BANK_SVG + esc(tx('Bank Card')) + '</button>' +
-      '<button type="button" class="flex h-12 items-center justify-center gap-2 rounded-xl border text-[13px] font-bold" data-wd-method="crypto">' + COIN_SVG + esc(tx('Crypto Wallet')) + '</button></div>' +
+      '<div class="mb-3 flex gap-2">' +
+      '<button type="button" class="' + CHIP + '" data-wd-method="bank">' + BANK_SVG + esc(tx('Bank Card')) + '</button>' +
+      '<button type="button" class="' + CHIP + '" data-wd-method="crypto">' + COIN_SVG + esc(tx('Crypto Wallet')) + '</button></div>' +
 
       '<section class="rounded-2xl border border-border-soft bg-surface p-4" data-wd-section="bank">' +
       '<div class="mb-3 flex items-center justify-center gap-3">' +
@@ -106,9 +112,9 @@
 
       /* ---------- Account Management ---------- */
       '<div class="hidden" data-wd-panel="management">' +
-      '<div class="mb-3 grid grid-cols-2 gap-2">' +
-      '<button type="button" class="flex h-12 items-center justify-center gap-2 rounded-xl border text-[13px] font-bold" data-wd-mgmt-tab="bank">' + BANK_SVG + esc(tx('Bank Account')) + '</button>' +
-      '<button type="button" class="flex h-12 items-center justify-center gap-2 rounded-xl border text-[13px] font-bold" data-wd-mgmt-tab="crypto">' + COIN_SVG + esc(tx('Crypto Wallet')) + '</button></div>' +
+      '<div class="mb-3 flex gap-2">' +
+      '<button type="button" class="' + CHIP + '" data-wd-mgmt-tab="bank">' + BANK_SVG + esc(tx('Bank Account')) + '</button>' +
+      '<button type="button" class="' + CHIP + '" data-wd-mgmt-tab="crypto">' + COIN_SVG + esc(tx('Crypto Wallet')) + '</button></div>' +
       '<section class="rounded-2xl border border-border-soft bg-surface p-4" data-wd-mgmt="bank">' +
       '<h2 class="' + H2 + '">' + esc(tx('Registered Withdrawal Accounts')) + ' <span data-wd-mgmt-count></span></h2>' +
       '<div class="flex flex-col gap-2" data-wd-mgmt-list></div>' +
@@ -189,11 +195,11 @@
       qa('[data-wd-mode]').forEach(function (b) { setOn(b, b.getAttribute('data-wd-mode') === mode, TAB_ON, TAB_OFF); });
       qa('[data-wd-panel]').forEach(function (p) { p.classList.toggle('hidden', p.getAttribute('data-wd-panel') !== mode); });
       qa('[data-wd-method]').forEach(function (b) {
-        setOn(b, b.getAttribute('data-wd-method') === method, ['border-transparent', 'bg-[image:var(--g-primary)]', 'text-on-primary'], ['border-border-soft', 'bg-surface', 'text-text']);
+        setOn(b, b.getAttribute('data-wd-method') === method, CHIP_ON, CHIP_OFF);
       });
       qa('[data-wd-section]').forEach(function (s) { s.classList.toggle('hidden', s.getAttribute('data-wd-section') !== method); });
       qa('[data-wd-mgmt-tab]').forEach(function (b) {
-        setOn(b, b.getAttribute('data-wd-mgmt-tab') === mgmtTab, ['border-transparent', 'bg-[image:var(--g-primary)]', 'text-on-primary'], ['border-border-soft', 'bg-surface', 'text-text']);
+        setOn(b, b.getAttribute('data-wd-mgmt-tab') === mgmtTab, CHIP_ON, CHIP_OFF);
       });
       qa('[data-wd-mgmt]').forEach(function (s) { s.classList.toggle('hidden', s.getAttribute('data-wd-mgmt') !== mgmtTab); });
     }

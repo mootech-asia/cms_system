@@ -60,6 +60,7 @@
     'rec.chooseDate': { zh: '選擇日期', en: 'Choose Date', ko: '날짜 선택', th: 'เลือกวันที่' },
     'drawer.lobby': { zh: '大廳', en: 'Lobby', ko: '홈', th: 'ล็อบบี้' },
     'drawer.myAccount': { zh: '我的帳戶', en: 'My Account', ko: '내 계정', th: 'บัญชีของฉัน' },
+    'home.showAll': { zh: '查看全部', en: 'Show all', ko: '전체보기', th: 'แสดงทั้งหมด' },
     'auth.logout': { zh: '登出', en: 'Logout', ko: '로그아웃', th: 'ออกจากระบบ' },
     'auth.err.username': { zh: '帳號需為 3-16 個字元', en: 'Username must be 3-16 characters.', ko: '아이디는 3~16자로 입력하세요.', th: 'ชื่อผู้ใช้ต้องมี 3-16 ตัวอักษร' },
     'auth.err.password': { zh: '密碼需為 5-16 個字元', en: 'Length must be 5-16 characters.', ko: '비밀번호는 5~16자여야 합니다.', th: 'รหัสผ่านต้องมี 5-16 ตัวอักษร' },
