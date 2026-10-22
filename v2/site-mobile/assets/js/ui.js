@@ -159,13 +159,16 @@
       '</div>';
     /* 把手可上下拖動：位移超過 6px 才算拖動（不觸發展開），放開後把位置
        （中心點佔視窗高度的比例）記在 localStorage，換頁、重新整理沿用。
-       範圍限制在 header 下方到底部導覽列上方之間。 */
+       範圍限制在頁首下緣到底部導覽列上方之間。 */
     var POS_KEY = 'win100-qr-rail-y';
     var handle = rail.querySelector('[data-qr-rail-toggle]');
     handle.style.touchAction = 'none';
     function clampY(y) {
       var half = rail.offsetHeight / 2;
-      var min = 72 + half;
+      /* 上限是頁首（sticky，大廳頁含會員卡）的下緣，不能拖到頁首上面 */
+      var header = document.querySelector('header');
+      var headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      var min = headerBottom + 8 + half;
       var max = window.innerHeight - 96 - half;
       return Math.max(min, Math.min(max, y));
     }
@@ -213,9 +216,13 @@
       if (rail.style.top) placeAt(parseFloat(rail.style.top));
     });
     document.body.appendChild(rail);
-    var saved = null;
-    try { saved = parseFloat(localStorage.getItem(POS_KEY)); } catch (err) { /* ignore */ }
-    if (saved) placeAt(saved * window.innerHeight);
+    /* 會員卡由 mobile.js 在同一個 DOMContentLoaded 之後才顯示，頁首高度會變，
+       等這一輪跑完再定位／夾範圍；沒存過位置時也要夾（預設置中可能落在頁首內） */
+    setTimeout(function () {
+      var saved = null;
+      try { saved = parseFloat(localStorage.getItem(POS_KEY)); } catch (err) { /* ignore */ }
+      placeAt(saved ? saved * window.innerHeight : rail.getBoundingClientRect().top + rail.offsetHeight / 2);
+    }, 0);
   }
 
   /* ============================== 區塊收合 ============================== */
