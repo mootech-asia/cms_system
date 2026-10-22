@@ -76,6 +76,20 @@
 
 @layer base {
   html, body { background: var(--color-bg); color: var(--color-text); }
+  /* 六套主題都是深色底，要宣告 color-scheme: dark：沒宣告時瀏覽器用淺色表單樣式，
+     使用者選了「自動填入」的帳號／密碼／金額欄會被 Chrome 塗成淺藍白底（只有用過
+     自動填入的人看得到）。再把自動填入的底色、字色蓋回跟一般輸入框一致。 */
+  html { color-scheme: dark; }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-text-fill-color: rgb(var(--c-text));
+    caret-color: rgb(var(--c-text));
+    -webkit-box-shadow: 0 0 0 1000px rgb(var(--c-bg)) inset;
+    transition: background-color 600000s 0s;
+  }
   body { -webkit-font-smoothing: antialiased; overscroll-behavior-y: none; }
   img { display: block; max-width: 100%; }
 }

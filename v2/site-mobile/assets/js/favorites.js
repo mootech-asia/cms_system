@@ -73,18 +73,23 @@
       var id = btn.getAttribute('data-fav-id');
       if (!id) return;
       var active = toggleFavorite(id);
-      btn.classList.toggle('border-primary/50', active);
-      btn.classList.toggle('bg-bg/85', active);
-      btn.classList.toggle('text-primary', active);
-      btn.classList.toggle('border-border', !active);
-      btn.classList.toggle('bg-bg/70', !active);
-      btn.classList.toggle('text-text-3', !active);
-      btn.setAttribute('aria-pressed', String(active));
-      var svg = btn.querySelector('svg');
-      if (svg) {
-        svg.classList.toggle('fill-current', active);
-        svg.classList.toggle('fill-none', !active);
-      }
+      /* 同一款遊戲在網格裡可能出現多次（共用同一個收藏 id），全部一起更新，
+         不然只有被點的那顆變色、重新整理後其他張才跟著變 */
+      document.querySelectorAll('.fav-toggle').forEach(function (b) {
+        if (b.getAttribute('data-fav-id') !== id) return;
+        b.classList.toggle('border-primary/50', active);
+        b.classList.toggle('bg-bg/85', active);
+        b.classList.toggle('text-primary', active);
+        b.classList.toggle('border-border', !active);
+        b.classList.toggle('bg-bg/70', !active);
+        b.classList.toggle('text-text-3', !active);
+        b.setAttribute('aria-pressed', String(active));
+        var svg = b.querySelector('svg');
+        if (svg) {
+          svg.classList.toggle('fill-current', active);
+          svg.classList.toggle('fill-none', !active);
+        }
+      });
       document.dispatchEvent(new CustomEvent('win100-favorite-change', { detail: { id: id, active: active } }));
     });
   }
