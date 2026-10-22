@@ -16,6 +16,7 @@
     fish: D.SLOT_VENDORS,
     'mini-games': D.SLOT_VENDORS,
   };
+  var TAG_CATEGORIES = ['casino', 'slot', 'fish', 'mini-games'];
   var MEDIA_KEY_BY_CATEGORY = { 'hot-games': 'slot', casino: 'slot', slot: 'slot', fish: 'fish', 'mini-games': 'mini-games' };
 
   var vendors = VENDOR_BY_CATEGORY[category] || D.SLOT_VENDORS || ['Pragmatic Play'];
@@ -44,7 +45,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     var grid = document.getElementById('category-grid');
     if (!grid) return;
-    var withTags = category === 'casino' && window.__v2mVendorTags;
+    var withTags = TAG_CATEGORIES.indexOf(category) !== -1 && window.__v2mVendorTags;
     // 有廠商標籤時每家至少 3 款，單選某廠商時不會只剩一張卡
     var count = Math.max(withTags ? vendors.length * 3 : vendors.length, media.length * 3, 24);
     var html = '';

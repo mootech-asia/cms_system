@@ -1,4 +1,4 @@
-/* Casino / Live games 頁的廠商標籤列：比照 v3 的 cv-tabs（全部 / 收藏 / 各廠商），
+/* Casino / Live / Slots / Fish / Mini Games 頁的廠商標籤列：比照 v3 的 cv-tabs（全部 / 收藏 / 各廠商），
    插在遊戲網格上方，點擊後依卡片的 data-vendor 在 DOM 上顯示/隱藏，不重繪
    卡片（收藏按鈕狀態留在原節點上）。 */
 (function () {
