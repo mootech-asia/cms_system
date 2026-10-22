@@ -178,7 +178,40 @@
     closeModal();
     closeCs();
   });
+  /* ============================== 語言切換（大廳頁 header）============================== */
+  /* 桌機版 header 右上角的語言下拉；手機版放在換膚鈕左邊。選項跟選單抽屜裡
+     的語言列一樣是 [data-locale-option]，點選與樣式由 i18n.js 處理。 */
+  var LOCALES = [['en', 'EN', 'English'], ['ko', '한국어', '한국어'], ['th', 'ไทย', 'ภาษาไทย'], ['zh', '中文', '中文']];
+  function initHeaderLocale() {
+    var skinWrap = document.querySelector('.m-skin-wrap');
+    if (!skinWrap || document.querySelector('[data-locale-wrap]')) return;
+    var cur = window.__v2mLocale ? window.__v2mLocale() : 'zh';
+    var short = (LOCALES.filter(function (l) { return l[0] === cur; })[0] || LOCALES[0])[1];
+    var wrap = document.createElement('div');
+    wrap.className = 'relative';
+    wrap.setAttribute('data-locale-wrap', '');
+    wrap.innerHTML =
+      '<button type="button" class="flex h-9 items-center gap-1 rounded-xl border border-border px-2 text-[12px] font-semibold text-text-2" data-locale-trigger aria-haspopup="listbox" aria-expanded="false">' +
+      '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20"></path></svg>' +
+      '<span>' + esc(short) + '</span></button>' +
+      '<div class="absolute right-0 top-[calc(100%+8px)] z-50 hidden w-40 flex-col gap-1 rounded-2xl border border-border bg-surface p-1.5 shadow-card" data-locale-menu>' +
+      LOCALES.map(function (l) { return '<button type="button" class="w-full rounded-xl px-3 py-2.5 text-left text-sm font-semibold" data-locale-option="' + l[0] + '">' + esc(l[2]) + '</button>'; }).join('') +
+      '</div>';
+    skinWrap.parentElement.insertBefore(wrap, skinWrap);
+    if (window.__v2mApplyLocale) window.__v2mApplyLocale(wrap);
+    var trigger = wrap.querySelector('[data-locale-trigger]');
+    var menu = wrap.querySelector('[data-locale-menu]');
+    function setOpen(open) {
+      menu.classList.toggle('hidden', !open);
+      menu.classList.toggle('flex', open);
+      trigger.setAttribute('aria-expanded', String(open));
+    }
+    trigger.addEventListener('click', function () { setOpen(menu.classList.contains('hidden')); });
+    document.addEventListener('click', function (e) { if (!wrap.contains(e.target)) setOpen(false); });
+  }
+
   document.addEventListener('DOMContentLoaded', initRail);
+  document.addEventListener('DOMContentLoaded', initHeaderLocale);
 
   window.__v2mModal = showModal;
   window.__v2mOpenCs = openCs;

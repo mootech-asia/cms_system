@@ -281,6 +281,23 @@
     try { return localStorage.getItem(LOCALE_KEY) || DEFAULT_LOCALE; } catch (e) { return DEFAULT_LOCALE; }
   }
 
+  /* 前台可選語言跟桌機版同一個設定：studio 寫進 win100-public-config 的
+     publicLocales，沒設定時預設 en/ko/th（桌機版 DEFAULT_PUBLIC_LOCALES）。
+     目前使用中的語言即使不在清單內也照樣顯示，才看得出現在是哪一種。 */
+  function publicLocales() {
+    var cfg = null;
+    try { cfg = JSON.parse(localStorage.getItem('win100-public-config') || 'null'); } catch (e) { /* ignore */ }
+    return (cfg && Array.isArray(cfg.publicLocales) && cfg.publicLocales.length) ? cfg.publicLocales : ['en', 'ko', 'th'];
+  }
+  function setLocale(code) {
+    try { localStorage.setItem(LOCALE_KEY, code); } catch (e) { /* storage unavailable */ }
+    location.reload();
+  }
+  document.addEventListener('click', function (e) {
+    var opt = e.target.closest && e.target.closest('[data-locale-option]');
+    if (opt && opt.getAttribute('data-locale-option') !== currentLocale()) setLocale(opt.getAttribute('data-locale-option'));
+  });
+
   function t(key) {
     var row = STRINGS[key];
     if (!row) return key;
@@ -330,6 +347,16 @@
 
   function applyLocale(root) {
     root = root || document;
+    var loc = currentLocale();
+    var pub = publicLocales();
+    root.querySelectorAll('[data-locale-option]').forEach(function (el) {
+      var code = el.getAttribute('data-locale-option');
+      var active = code === loc;
+      el.classList.toggle('hidden', !active && pub.indexOf(code) === -1);
+      el.setAttribute('aria-pressed', String(active));
+      ['bg-primary', 'text-on-primary'].forEach(function (c) { el.classList.toggle(c, active); });
+      ['border', 'border-border-soft', 'text-text-2'].forEach(function (c) { el.classList.toggle(c, !active); });
+    });
     root.querySelectorAll('[data-i18n-en]').forEach(function (el) {
       el.textContent = tx(el.getAttribute('data-i18n-en'));
     });
@@ -356,6 +383,8 @@
   document.addEventListener('DOMContentLoaded', function () { applyLocale(document); });
   window.__v2mT = t;
   window.__v2mTx = tx;
+  window.__v2mLocale = currentLocale;
+  window.__v2mPublicLocales = publicLocales;
   window.__v2mApplyLocale = applyLocale;
 })();
 
