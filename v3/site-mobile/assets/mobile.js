@@ -554,8 +554,8 @@
   }
 })();
 
-/* 右下客服漂浮鈕改成右緣收合把手（比照 v2 手機版 ui.js initRail）：平常只露出
-   一條「<」把手，點開才展開客服鈕；把手可上下拖曳，範圍限制在頂部列下緣到
+/* 右下客服漂浮鈕改成右緣收合把手（比照 v2 手機版 ui.js initRail）：預設展開客服鈕，
+   點「>」把手可收成一條；把手可上下拖曳，範圍限制在頂部列下緣到
    底部導覽（或紀錄頁固定的 Total 列）上緣之間，位置以畫面高度比例存在
    localStorage。site.js 的 makeFabDraggable 會寫入 left/top 行內樣式，所以
    放進把手的是不帶監聽器的複本；開客服仍走 site.js 的 [data-action="open-cs"]
@@ -569,11 +569,11 @@
     var fab = document.querySelector('.cms-cs-fab');
     if (!fab || fab.closest('.m-qr-rail')) return;
     var rail = document.createElement('div');
-    rail.className = 'm-qr-rail';
+    rail.className = 'm-qr-rail is-open';
     var handle = document.createElement('button');
     handle.type = 'button';
     handle.className = 'm-qr-handle';
-    handle.setAttribute('aria-expanded', 'false');
+    handle.setAttribute('aria-expanded', 'true');
     handle.setAttribute('aria-label', fab.getAttribute('aria-label') || '');
     handle.innerHTML = CHEVRON;
     var items = document.createElement('div');
