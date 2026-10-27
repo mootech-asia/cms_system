@@ -610,19 +610,26 @@
     'promotion.dontRemindToday': { zh: '今天不再提醒', en: "Don't remind me again today", ko: '오늘 다시 알리지 않기', th: 'ไม่ต้องแจ้งเตือนอีกวันนี้' },
   };
 
-  /* 編輯用中文預覽：中文不在前台語系選單內，編輯者按 Ctrl+Alt+L（Mac 為
-     Control+Option+L）切換。旗標只存在 sessionStorage（關掉分頁即失效），
-     不寫進語系偏好；焦點在輸入框時不觸發，避免 AltGr（= Ctrl+Alt）鍵盤
-     打字時誤切。 */
+  /* 編輯用中文預覽：中文不在前台語系選單內，只有頁面位於設計後台（studio）
+     的預覽 iframe 內時，編輯者按 Ctrl+Alt+L（Mac 為 Control+Option+L）才會
+     切換；直接開前台頁面時快捷鍵與旗標一律無效。旗標只存在 sessionStorage
+     （關掉分頁即失效），不寫進語系偏好；焦點在輸入框時不觸發，避免 AltGr
+     （= Ctrl+Alt）鍵盤打字時誤切。 */
   var ZH_PREVIEW_KEY = 'cms-zh-preview';
+  function inStudioPreview() {
+    try {
+      return window.top !== window.self && /\/studio\/(index\.html)?$/.test(window.parent.location.pathname);
+    } catch (e) { return false; }
+  }
   function zhPreviewOn() {
+    if (!inStudioPreview()) return false;
     try { return sessionStorage.getItem(ZH_PREVIEW_KEY) === '1'; } catch (e) { return false; }
   }
   function setZhPreview(on) {
     try { if (on) sessionStorage.setItem(ZH_PREVIEW_KEY, '1'); else sessionStorage.removeItem(ZH_PREVIEW_KEY); } catch (e) {}
   }
   document.addEventListener('keydown', function (e) {
-    if (!e.ctrlKey || !e.altKey || e.metaKey || e.shiftKey || e.code !== 'KeyL') return;
+    if (!e.ctrlKey || !e.altKey || e.metaKey || e.shiftKey || e.code !== 'KeyL' || !inStudioPreview()) return;
     var el = e.target;
     if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
     e.preventDefault();
