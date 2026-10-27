@@ -1255,7 +1255,7 @@
       '</div>';
   }
   function setAuthSection(html) {
-    /* site/mobile 頁面的 topbar 其實有兩個 .header-actions：一個是桌機版
+    /* site-mobile 頁面的 topbar 其實有兩個 .header-actions：一個是桌機版
        樣式(含 .tb-skin-wrap，這寬度下用 CSS 隱藏)，另一個才是手機版
        實際顯示的(.tb-balance.m-header-balance + 通知鈴 .m-header-
        bell-wrap)。原本只用 querySelector 抓第一個，手機版真正看得到的
@@ -1372,7 +1372,7 @@
     closeUserMenu();
     /* USER 只存在單頁記憶體，換頁就重置——這裡寫 localStorage 旗標，
        上面 USER 初始化時會讀它，換頁/整頁重整後才會維持登出狀態。
-       手機版個人資料頁登入引導(site/mobile/personal-info.html)也是
+       手機版個人資料頁登入引導(site-mobile/personal-info.html)也是
        靠同一把旗標判斷。原本試過登出後直接 location.href 導回首頁，
        但同一分頁在這次瀏覽階段如果已經造訪過目標網址，實測會被還原成
        上一次造訪時的狀態、不會重新跑開機腳本，導致換頁後畫面又變回
@@ -1401,8 +1401,8 @@
   }
 
   /* 頂欄餘額在窄螢幕（≤480px）放不下完整 12 位數金額，會疊到左側 Logo 上；
-     比照 site/mobile（mobile.js）的規則，整數位數達 12 位時縮寫成 k/M/B/T，
-     完整數字放在 title。site/mobile 頁有自己的 .m-header 處理，這裡跳過。
+     比照 site-mobile（mobile.js）的規則，整數位數達 12 位時縮寫成 k/M/B/T，
+     完整數字放在 title。site-mobile 頁有自己的 .m-header 處理，這裡跳過。
      initBalanceFloat 會定時寫回完整金額，所以用 MutationObserver 重新套用；
      寫回縮寫後再觸發一次時文字已一致，不會無限循環。 */
   var BALANCE_UNITS = [[1e12, 'T'], [1e9, 'B'], [1e6, 'M'], [1e3, 'k']];
@@ -2530,7 +2530,7 @@
   }
 
   /* ============================================================
-   * 即時體育訊息公告區（index.html 的 live-sport 區塊、site/mobile 的體育分頁）：
+   * 即時體育訊息公告區（index.html 的 live-sport 區塊、site-mobile 的體育分頁）：
    * 賽事卡片是第三方資料，公告獨立一列不疊在上面。一次顯示一則、每 5 秒輪播，
    * 滑鼠移入或鍵盤焦點在區塊內時暫停；新推播一律插到最前面並立即顯示。
    * 真實推播由後端呼叫 window.CMS_SPORT_NOTICE.push({ type, text })；
@@ -2619,7 +2619,7 @@
   }
 
   /* ============================================================
-   * 優惠卡片（index.html 首頁 4 張；promotion.html PC 首屏 4 張、載入更多循環補到 8 張，site/mobile 首屏 2 張、載入更多補到 4 張）：
+   * 優惠卡片（index.html 首頁 4 張；promotion.html PC 首屏 4 張、載入更多循環補到 8 張，site-mobile 首屏 2 張、載入更多補到 4 張）：
    * 既有 PROMOTION_OFFERS（4 筆，逐字保留，未新增/未省略），點擊導向 promotion-detail.html（依 data-promo-id
    * 帶 ?id= 深連結），該頁的行動按鈕才導向各自 actionTarget 對照的真實
    * 頁面；promotion.html 缺少的第 3、4 張卡片 markup 逐字取自 index.html
@@ -3211,11 +3211,11 @@
     if (CURRENT_PAGE !== 'index.html') return;
     var ALL = DATA.PROMO_POPUP || [];
     if (!ALL.length) return;
-    /* site/mobile/ 直接引入這份共用 site.js（見檔案開頭 DOMContentLoaded
+    /* site-mobile/ 直接引入這份共用 site.js（見檔案開頭 DOMContentLoaded
        comment 之外的架構），本身沒有 assets/logo.png，走的是 ../site/
        assets/logo.png；promo-popup 的宣傳圖片則兩邊都各自複製了一份，
        不需要加前綴。 */
-    var logoSrc = (location.pathname.indexOf('/site/mobile/') !== -1 ? '../' : '') + 'assets/logo.png';
+    var logoSrc = (location.pathname.indexOf('/site-mobile/') !== -1 ? '../site/' : '') + 'assets/logo.png';
     function todayKey() {
       var d = new Date();
       function pad(n) { return String(n).padStart(2, '0'); }
