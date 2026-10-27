@@ -1,13 +1,13 @@
 ---
 name: ui-craft
-description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、動效/轉場時長、換膚 skin 色板、無障礙(ARIA/鍵盤操作)、表單設計、多語言排版(韓文/泰文字長撐版面)、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', '無障礙/ARIA/鍵盤操作', '表單怎麼設計/驗證', '多語言版面會不會爆/文字被裁切', 'improve this UI', 'visual hierarchy', 'design tokens', 'diagnose UI', 'motion/transition', 'accessibility', 'form validation', 'i18n layout', '設計要有突破/新意'。整合六份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」的鐵則做了覆寫。"
+description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、動效/轉場時長、換膚 skin 色板、無障礙(ARIA/鍵盤操作)、表單設計、多語言排版(韓文/泰文字長撐版面)、投注/交易記錄這類資料表格、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', '無障礙/ARIA/鍵盤操作', '表單怎麼設計/驗證', '多語言版面會不會爆/文字被裁切', '記錄表格/table 怎麼設計', 'improve this UI', 'visual hierarchy', 'design tokens', 'diagnose UI', 'motion/transition', 'accessibility', 'form validation', 'i18n layout', 'data table', '設計要有突破/新意'。整合七份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」的鐵則做了覆寫。"
 ---
 
 # UI 製作與視覺突破技能
 
 ## 來源與改編說明
 
-這份技能整合六個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
+這份技能整合七個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
 
 1. **[s0xDk/refactoring-ui-skill](https://github.com/s0xDk/refactoring-ui-skill)**（MIT
    license）——把 Adam Wathan／Steve Schoger《Refactoring UI》濃縮成可執行規則的 Claude
@@ -47,6 +47,16 @@ description: "在本 repo 新增或修改任何頁面的視覺呈現時使用—
    技能文件化過）跟視覺驗收標準之間一直沒人講的那塊：翻譯到位之後，版面撐不撐得住
    韓文/泰文比中文長 20–50% 這件事。RTL 排版鏡像的部分整段省略——本 repo 語言
    （zh/en/ko/th）都是 left-to-right，用不到。
+7. **[Criptso/data-table-standard](https://github.com/Criptso/data-table-standard)**
+   （MIT license）——原文 25 條規則鎖定「有後端資料庫、每個使用者能自訂欄位並持久化」
+   的互動式資料網格（SaaS 後台那種），本 repo 的 `betting-record.html`／
+   `deposit-record.html`／`withdrawal-record.html`／`profit-loss.html` 這類頁面雖然
+   真的用 `<table>`，但沒有後端、沒有逐使用者持久化設定，所以「新增欄位寫回資料庫」
+   「拖曳排序持久化」這類規則整段不收，只取純前端 CSS/結構就能做到的部分（表頭明度
+   對比量測、數值欄位右對齊、長內容 3 行截斷+hover、窄螢幕下首欄/操作欄 sticky
+   固定），重寫進 `references/data-tables.md`。原文檔案裡「這份檔案每次編輯都自動
+   commit/push」的附帶說明是它自己 repo 的 meta 註記，跟本 repo 無關，沒有照搬那個
+   行為。
 
 ## 第一層：基本功（不能先跳過）——覆寫原技能的「自建 scale」前提
 
@@ -212,6 +222,23 @@ footnote/版權這類，正文絕不用最淺那階）。
   對的格式——格式差異可能是刻意設計，不確定要跟使用者確認，這跟驗收標準「內容逐字
   保留」是同一條界線。
 
+## 第六層：資料表格——投注記錄/交易記錄/盈虧明細這類頁面專用
+
+本 repo 的 `betting-record.html`／`deposit-record.html`／`withdrawal-record.html`／
+`profit-loss.html` 這類頁面用的是真的 `<table>`，有專屬規則，見
+`references/data-tables.md`：
+
+- 表頭底色跟內文要有實際可量測的明度差（不是肉眼覺得有換色就好），表頭文字對表頭
+  底色對比至少 7:1（比一般內文的 4.5:1 更嚴）。
+- 數值欄位（金額/賠率/盈虧）右對齊 + 等寬數字，一般文字/狀態/日期欄位置中，長文字
+  換行欄位左對齊。
+- 同一頁面的日期格式/月份語言要前後一致，日期+時間同時存在時時間放日期下面一行，
+  不要擠成一串。
+- 長內容（備註/遊戲名稱）3 行截斷 + hover 顯示完整內容；手機寬度橫向捲動時第一欄/
+  操作欄用 `position: sticky` 固定。
+- 這份參考資料裡「排序/搜尋」那段只在頁面本來就有互動排序功能時才適用，不要為了
+  套規則反過來無中生有加功能。
+
 ## 驗收時的自我檢查
 
 - 記憶點是否真的體現在畫面上，還是只停留在描述？互換/瞇眼/記憶點/token 四個測試
@@ -225,5 +252,6 @@ footnote/版權這類，正文絕不用最淺那階）。
   animate？
 - 有表單的頁面：label 是否在欄位上方、錯誤訊息是否綁定對應欄位且送出時有彙總？
 - 有固定寬度的按鈕/badge/欄位嗎？換成韓文/泰文看同一個斷點會不會被裁切或撐到換行？
+- 有 `<table>` 的頁面：表頭對比量過了嗎？數值欄位右對齊+等寬數字了嗎？
 - Hard rules 七條有沒有踩到任何一條？
 - 是否符合本 repo 驗收標準（視覺 pixel-diff、功能互動點、內容逐字保留、console 不變多）？
