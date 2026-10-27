@@ -80,26 +80,19 @@
   var LOCALE_KEY = I18N.LOCALE_STORAGE_KEY || 'cms-v3:locale';
   var FALLBACK_LOCALE = 'en';
   var LANG_FLAGS = { zh: '<svg width="18" height="12" viewBox="0 0 30 20"><rect width="30" height="20" fill="#de2910"></rect><polygon points="5.000,2.000 5.674,4.073 7.853,4.073 6.090,5.354 6.763,7.427 5.000,6.146 3.237,7.427 3.910,5.354 2.147,4.073 4.326,4.073" fill="#ffde00"></polygon><polygon points="9.143,2.514 9.620,1.966 9.246,1.343 9.914,1.628 10.391,1.080 10.328,1.803 10.996,2.088 10.288,2.251 10.224,2.975 9.851,2.352" fill="#ffde00"></polygon><polygon points="11.010,4.141 11.662,3.821 11.560,3.102 12.065,3.624 12.718,3.304 12.378,3.946 12.884,4.467 12.168,4.343 11.829,4.985 11.726,4.266" fill="#ffde00"></polygon><polygon points="11.038,6.725 11.765,6.699 11.964,6.001 12.213,6.683 12.939,6.657 12.367,7.105 12.616,7.787 12.014,7.382 11.442,7.830 11.641,7.131" fill="#ffde00"></polygon><polygon points="9.219,8.375 9.899,8.632 10.353,8.064 10.319,8.790 10.999,9.046 10.298,9.239 10.265,9.964 9.865,9.357 9.165,9.550 9.618,8.982" fill="#ffde00"></polygon></svg>', en: '<svg width="18" height="12" viewBox="0 0 30 20"><rect width="30" height="20" fill="#B22234"></rect><rect y="1.54" width="30" height="1.54" fill="#fff"></rect><rect y="4.62" width="30" height="1.54" fill="#fff"></rect><rect y="7.69" width="30" height="1.54" fill="#fff"></rect><rect y="10.77" width="30" height="1.54" fill="#fff"></rect><rect y="13.85" width="30" height="1.54" fill="#fff"></rect><rect y="16.92" width="30" height="1.54" fill="#fff"></rect><rect width="13" height="10.77" fill="#3C3B6E"></rect><g fill="#fff"><circle cx="2.6" cy="2.2" r="0.7"></circle><circle cx="6.5" cy="2.2" r="0.7"></circle><circle cx="10.4" cy="2.2" r="0.7"></circle><circle cx="4.5" cy="4.5" r="0.7"></circle><circle cx="8.4" cy="4.5" r="0.7"></circle><circle cx="2.6" cy="6.8" r="0.7"></circle><circle cx="6.5" cy="6.8" r="0.7"></circle><circle cx="10.4" cy="6.8" r="0.7"></circle><circle cx="4.5" cy="9" r="0.7"></circle><circle cx="8.4" cy="9" r="0.7"></circle></g></svg>', ko: '<svg width="18" height="12" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"></rect><circle cx="15" cy="10" r="6" fill="#CD2E3A"></circle><path d="M15,4 a6,6 0 0,0 0,12 a3,3 0 0,0 0,-6 a3,3 0 0,1 0,-6" fill="#0047A0"></path></svg>', th: '<svg width="18" height="12" viewBox="0 0 30 20"><rect width="30" height="20" fill="#A51931"></rect><rect y="3.33" width="30" height="13.34" fill="#F4F5F8"></rect><rect y="6.67" width="30" height="6.66" fill="#2D2A4A"></rect></svg>' };
-  /* 編輯用中文預覽：中文不在前台語系選單內，只有頁面位於設計後台（studio）
-     的預覽 iframe 內時，編輯者按 Ctrl+Alt+L（Mac 為 Control+Option+L）才會
-     切換；直接開前台頁面時快捷鍵與旗標一律無效。旗標只存在 sessionStorage
-     （關掉分頁即失效），不寫進語系偏好；焦點在輸入框時不觸發，避免 AltGr
-     （= Ctrl+Alt）鍵盤打字時誤切。 */
+  /* 編輯用中文預覽：中文不在前台語系選單內，編輯者按 Ctrl+Alt+L（Mac 為
+     Control+Option+L）切換。旗標只存在 sessionStorage（關掉分頁即失效），
+     不寫進語系偏好；焦點在輸入框時不觸發，避免 AltGr（= Ctrl+Alt）鍵盤
+     打字時誤切。 */
   var ZH_PREVIEW_KEY = 'cms-zh-preview';
-  function inStudioPreview() {
-    try {
-      return window.top !== window.self && /\/studio\/(index\.html)?$/.test(window.parent.location.pathname);
-    } catch (e) { return false; }
-  }
   function zhPreviewOn() {
-    if (!inStudioPreview()) return false;
     try { return sessionStorage.getItem(ZH_PREVIEW_KEY) === '1'; } catch (e) { return false; }
   }
   function setZhPreview(on) {
     try { if (on) sessionStorage.setItem(ZH_PREVIEW_KEY, '1'); else sessionStorage.removeItem(ZH_PREVIEW_KEY); } catch (e) {}
   }
   document.addEventListener('keydown', function (e) {
-    if (!e.ctrlKey || !e.altKey || e.metaKey || e.shiftKey || e.code !== 'KeyL' || !inStudioPreview()) return;
+    if (!e.ctrlKey || !e.altKey || e.metaKey || e.shiftKey || e.code !== 'KeyL') return;
     var el = e.target;
     if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
     e.preventDefault();
