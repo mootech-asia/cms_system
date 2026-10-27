@@ -1,13 +1,13 @@
 ---
 name: ui-craft
-description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、動效/轉場時長、換膚 skin 色板、無障礙(ARIA/鍵盤操作)、表單設計、多語言排版(韓文/泰文字長撐版面)、投注/交易記錄這類資料表格、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', '無障礙/ARIA/鍵盤操作', '表單怎麼設計/驗證', '多語言版面會不會爆/文字被裁切', '記錄表格/table 怎麼設計', 'improve this UI', 'visual hierarchy', 'design tokens', 'diagnose UI', 'motion/transition', 'accessibility', 'form validation', 'i18n layout', 'data table', '設計要有突破/新意'。整合七份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」的鐵則做了覆寫。"
+description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、版面構成/變化性(不對稱分欄/留白集中)、動效/轉場時長、換膚 skin 色板、無障礙(ARIA/鍵盤操作)、表單設計、多語言排版(韓文/泰文字長撐版面)、投注/交易記錄這類資料表格、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓/每個區塊都長一樣」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '視覺排列/版面構成', '變化性不夠/每頁都一樣', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', '無障礙/ARIA/鍵盤操作', '表單怎麼設計/驗證', '多語言版面會不會爆/文字被裁切', '記錄表格/table 怎麼設計', 'improve this UI', 'visual hierarchy', 'layout composition', 'design tokens', 'diagnose UI', 'motion/transition', 'accessibility', 'form validation', 'i18n layout', 'data table', '設計要有突破/新意'。整合八份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」的鐵則做了覆寫。"
 ---
 
 # UI 製作與視覺突破技能
 
 ## 來源與改編說明
 
-這份技能整合七個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
+這份技能整合八個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
 
 1. **[s0xDk/refactoring-ui-skill](https://github.com/s0xDk/refactoring-ui-skill)**（MIT
    license）——把 Adam Wathan／Steve Schoger《Refactoring UI》濃縮成可執行規則的 Claude
@@ -57,6 +57,13 @@ description: "在本 repo 新增或修改任何頁面的視覺呈現時使用—
    固定），重寫進 `references/data-tables.md`。原文檔案裡「這份檔案每次編輯都自動
    commit/push」的附帶說明是它自己 repo 的 meta 註記，跟本 repo 無關，沒有照搬那個
    行為。
+8. **[luukalleman/premium-design-skill](https://github.com/luukalleman/premium-design-skill)**
+   （MIT license）——只取它第五條「Composition breaks the grid intentionally」裡跟
+   字型/色票無關的純版面構成手法（不對稱分欄、尺寸對比、留白集中、跨界溢出），重寫進
+   `references/layout-composition.md`，補的是使用者明確要求「視覺排列/變化性要加強」
+   的這塊：前面幾層都在講單一元件/色彩怎麼做對，這份是整頁/整區塊的版面骨架怎麼
+   避免每次都長一樣。原技能其餘內容（指定 serif 展示字型、固定的暖黑/暖白/赤陶色
+   palette，整套「奢華編輯感」美學）跟本 repo 既有的各版本品牌識別無關，沒有照搬。
 
 ## 第一層：基本功（不能先跳過）——覆寫原技能的「自建 scale」前提
 
@@ -122,8 +129,10 @@ footnote/版權這類，正文絕不用最淺那階）。
    而是具體到「用一個 XX 手法讓這個區塊跟同版本其他頁不一樣」——例如：用
    `techniques.md` 的 overlap（負 margin 讓卡片跨兩個背景區塊）取代平鋪；用兩階陰影
    （cast + contact）取代單一陰影讓卡片有真實浮起感；用 `techniques.md` 的「打破預設
-   元件形狀」把一般的 dropdown 改成帶 icon/描述的多欄選單、把一般的 radio 改成可選卡片。
-   這句話要能被具體驗收（做完後看得出來那個記憶點有沒有真的在畫面上）,不是空泛形容詞。
+   元件形狀」把一般的 dropdown 改成帶 icon/描述的多欄選單、把一般的 radio 改成可選卡片；
+   或用 `references/layout-composition.md` 的版面構成手法（不對稱分欄、尺寸對比、留白
+   集中、跨界溢出）打破「永遠等寬置中網格」。這句話要能被具體驗收（做完後看得出來
+   那個記憶點有沒有真的在畫面上）,不是空泛形容詞。
 2. **記憶點只能用當前版本既有 token 調色盤跟品牌調性去實現，不能換一套全新美學**。
    例如 v4「紅金喜慶」不會因為要「突破」就變成 Brutalist 純色撞色——突破是「用金/紅
    既有色階做出沒人做過的層次感」，不是「換掉整套美學語言」。這條界線由 CLAUDE.md
@@ -143,6 +152,11 @@ footnote/版權這類，正文絕不用最淺那階）。
 5. **記憶點做完要自己先跑一遍驗收測試，不是自己說好就算數**——見
    `references/craft-polish-motion.md` 最後一節「驗收測試」的互換/瞇眼/記憶點/token
    四個測試，逐一回答，答不出具體位置就是沒做到。
+6. **同一頁/同一版本裡，區塊長得太像也是一種沒做到記憶點**：見
+   `references/layout-composition.md` 的「變化性稽核」——超過三個卡片/區塊用一模一樣
+   的等寬網格+內距+圓角，就是在套公式，不是每個區塊都要打破，但要先意識到自己正在
+   重複同一個版面骨架，再判斷這裡適不適合用不對稱分欄/尺寸對比/留白集中/跨界溢出
+   打破它。
 
 ## 第三層：打磨與動效——過去完全沒覆蓋、這次新增的能力
 
@@ -243,6 +257,9 @@ footnote/版權這類，正文絕不用最淺那階）。
 
 - 記憶點是否真的體現在畫面上，還是只停留在描述？互換/瞇眼/記憶點/token 四個測試
   （見 `references/craft-polish-motion.md` 最後一節）有沒有全部通過？
+- 同一頁/同一版本裡有沒有超過三個區塊用一模一樣的等寬網格+內距+圓角？適合打破的
+  地方有沒有用上不對稱分欄/尺寸對比/留白集中/跨界溢出其中一種（見
+  `references/layout-composition.md`）？
 - 有沒有用到當前版本既有 token 以外的任意色碼/px 值？（`grep` 新增的 CSS/inline style
   找 `#[0-9a-f]{3,6}`、裸 `px` 數字，逐一確認來源是既有 token 還是自己編的）
 - 新增的互動元件是不是先檢查過 native HTML／本版本既有共用 class 才手刻的？手刻的
