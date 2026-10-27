@@ -249,7 +249,7 @@
     if (!cards.length) return;
 
     var isDesktop = window.matchMedia('(min-width: 768px)').matches;
-    var loc = (window.CMS_I18N && window.CMS_I18N.getLocale) ? window.CMS_I18N.getLocale() : 'zh';
+    var loc = (window.CMS_I18N && window.CMS_I18N.getLocale) ? window.CMS_I18N.getLocale() : 'en';
     var backdrop = document.createElement('div');
     backdrop.className = 'fixed inset-0 z-[1200] bg-black/75 flex items-center justify-center p-4';
 

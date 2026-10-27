@@ -285,7 +285,27 @@
     var cfg = publicConfig();
     return (cfg && Array.isArray(cfg.publicLocales) && cfg.publicLocales.length) ? cfg.publicLocales : DEFAULT_PUBLIC_LOCALES;
   }
+  /* 編輯用中文預覽：中文不在前台語系選單內，編輯者按 Ctrl+Alt+L（Mac 為
+     Control+Option+L）切換。旗標只存在 sessionStorage（關掉分頁即失效），
+     不寫進語系偏好；焦點在輸入框時不觸發，避免 AltGr（= Ctrl+Alt）鍵盤
+     打字時誤切。 */
+  var ZH_PREVIEW_KEY = 'cms-zh-preview';
+  function zhPreviewOn() {
+    try { return sessionStorage.getItem(ZH_PREVIEW_KEY) === '1'; } catch (e) { return false; }
+  }
+  function setZhPreview(on) {
+    try { if (on) sessionStorage.setItem(ZH_PREVIEW_KEY, '1'); else sessionStorage.removeItem(ZH_PREVIEW_KEY); } catch (e) {}
+  }
+  document.addEventListener('keydown', function (e) {
+    if (!e.ctrlKey || !e.altKey || e.metaKey || e.shiftKey || e.code !== 'KeyL') return;
+    var el = e.target;
+    if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
+    e.preventDefault();
+    setZhPreview(!zhPreviewOn());
+    location.reload();
+  });
   function currentLocale() {
+    if (zhPreviewOn()) return 'zh';
     try {
       var saved = localStorage.getItem(LOCALE_KEY);
       var visible = publicLocaleCodes();
@@ -578,6 +598,7 @@
         $all('[data-locale-option]', panel).forEach(function (opt) {
           on(opt, 'click', function () {
             close();
+            setZhPreview(false);
             applyLocale(opt.getAttribute('data-locale-option'), true);
           });
         });
@@ -1139,7 +1160,7 @@
         '</div>' +
         '<div class="promo-popup-foot">' +
         '<input type="checkbox" data-promo-popup-remember>' +
-        '<span>' + (((D.I18N || {})[loc] || (D.I18N || {}).zh || {})['promotion.dontRemindToday'] || '') + '</span>' +
+        '<span>' + (((D.I18N || {})[loc] || (D.I18N || {}).en || {})['promotion.dontRemindToday'] || '') + '</span>' +
         '</div>' +
         '</div>'
       );
@@ -1564,7 +1585,7 @@
     function updateSearchPlaceholder() {
       if (!searchInput) return;
       var showingVendors = !direct && !state.provider;
-      var dict = (D.I18N || {})[currentLocale()] || (D.I18N || {}).zh || {};
+      var dict = (D.I18N || {})[currentLocale()] || (D.I18N || {}).en || {};
       searchInput.placeholder = showingVendors
         ? (dict['search.vendorName'] || T.searchVendor)
         : (dict['game.placeholder'] || T.gamePlaceholder);

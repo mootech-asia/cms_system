@@ -600,3 +600,22 @@
 
   scheduleApply(); /* 首次 iframe 載入也套用當前草稿 */
 })();
+
+/* 編輯用中文預覽：焦點在設計後台（不在預覽 iframe 內）時按 Ctrl+Alt+L（Mac 為
+   Control+Option+L），切換前台的中文預覽旗標並重新載入預覽 iframe。iframe 與
+   後台同源同分頁，共用 sessionStorage；旗標名稱需與前台 ZH_PREVIEW_KEY 一致。 */
+(function () {
+  var ZH_PREVIEW_KEY = 'cms-zh-preview';
+  document.addEventListener('keydown', function (e) {
+    if (!e.ctrlKey || !e.altKey || e.metaKey || e.shiftKey || e.code !== 'KeyL') return;
+    var el = e.target;
+    if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
+    e.preventDefault();
+    try {
+      if (sessionStorage.getItem(ZH_PREVIEW_KEY) === '1') sessionStorage.removeItem(ZH_PREVIEW_KEY);
+      else sessionStorage.setItem(ZH_PREVIEW_KEY, '1');
+    } catch (err) { return; }
+    var frame = document.getElementById('st-frame');
+    try { if (frame && frame.contentWindow) frame.contentWindow.location.reload(); } catch (err) { /* ignore */ }
+  });
+})();

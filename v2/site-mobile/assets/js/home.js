@@ -84,7 +84,7 @@
     var cards = ALL.filter(function (p) { return dismissedIds.indexOf(String(p.promotion_id)) === -1; });
     if (!cards.length) return;
 
-    var loc = window.__v2mT ? (localStorage.getItem('win100-locale') || 'zh') : 'zh';
+    var loc = window.__v2mLocale ? window.__v2mLocale() : 'en';
     var backdrop = document.createElement('div');
     backdrop.className = 'fixed inset-0 z-[70] bg-black/70 flex items-center justify-center p-4';
     document.body.appendChild(backdrop);

@@ -49,7 +49,32 @@
     try { localStorage.setItem(LOGIN_KEY, value ? 'true' : 'false'); } catch (e) { /* ignore */ }
   }
 
+  /* 編輯用中文預覽：中文不在前台語系選單內，編輯者按 Ctrl+Alt+L（Mac 為
+     Control+Option+L）切換。旗標只存在 sessionStorage（關掉分頁即失效），
+     不寫進語系偏好；焦點在輸入框時不觸發，避免 AltGr（= Ctrl+Alt）鍵盤
+     打字時誤切。 */
+  var ZH_PREVIEW_KEY = 'cms-zh-preview';
+  function zhPreviewOn() {
+    try { return sessionStorage.getItem(ZH_PREVIEW_KEY) === '1'; } catch (e) { return false; }
+  }
+  function setZhPreview(on) {
+    try { if (on) sessionStorage.setItem(ZH_PREVIEW_KEY, '1'); else sessionStorage.removeItem(ZH_PREVIEW_KEY); } catch (e) { /* ignore */ }
+  }
+  document.addEventListener('keydown', function (e) {
+    if (!e.ctrlKey || !e.altKey || e.metaKey || e.shiftKey || e.code !== 'KeyL') return;
+    var el = e.target;
+    if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
+    e.preventDefault();
+    setZhPreview(!zhPreviewOn());
+    location.reload();
+  });
+  /* 選單只列 LOCALE_CODES（玩家可選的語系），中文不列出。 */
+  function selectableLanguages() {
+    return (D.LANGUAGES || []).filter(function (l) { return LOCALE_CODES.indexOf(l.code) !== -1; });
+  }
+
   function currentLocale() {
+    if (zhPreviewOn()) return 'zh';
     try {
       var saved = localStorage.getItem(LOCALE_KEY);
       return LOCALE_CODES.indexOf(saved) !== -1 ? saved : 'en';
@@ -58,6 +83,8 @@
   function setLocale(code) {
     if (LOCALE_CODES.indexOf(code) === -1) return;
     try { localStorage.setItem(LOCALE_KEY, code); } catch (e) { /* ignore */ }
+    /* 中文預覽時頁面的動態內容是以中文產生的，離開預覽需整頁重新載入 */
+    if (zhPreviewOn()) { setZhPreview(false); location.reload(); return; }
     applyLocale();
   }
   function t(key) {
@@ -137,7 +164,7 @@
       '<span data-locale-label>' + ((D.LANGUAGES || []).filter(function (l) { return l.code === currentLocale(); })[0] || {}).label + '</span>' +
       '</button>' +
       '<div class="header-lang-panel">' +
-      (D.LANGUAGES || []).map(function (l) {
+      selectableLanguages().map(function (l) {
         return '<button type="button" data-set-locale="' + l.code + '"><img src="' + icon(l.image) + '" alt="' + l.code + '"><span>' + l.label + '</span></button>';
       }).join('') +
       '</div></div>';
@@ -248,7 +275,7 @@
       '<img src="' + icon('lang-us.svg') + '" alt="lang" style="width:20px;height:20px">' +
       '<span data-locale-label>' + ((D.LANGUAGES || []).filter(function (l) { return l.code === currentLocale(); })[0] || {}).label + '</span></button>' +
       '<div class="header-lang-panel">' +
-      (D.LANGUAGES || []).map(function (l) {
+      selectableLanguages().map(function (l) {
         return '<button type="button" data-set-locale="' + l.code + '"><img src="' + icon(l.image) + '" alt="' + l.code + '"><span>' + l.label + '</span></button>';
       }).join('') +
       '</div></div></div>' +

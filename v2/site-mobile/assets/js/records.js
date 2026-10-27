@@ -14,7 +14,7 @@
   var WEEKDAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
   function t(key) { return window.__v2mT ? window.__v2mT(key) : key; }
-  function currentLocale() { try { return localStorage.getItem('win100-locale') || 'zh'; } catch (e) { return 'zh'; } }
+  function currentLocale() { return window.__v2mLocale ? window.__v2mLocale() : 'en'; }
   function pad2(n) { return n < 10 ? '0' + n : '' + n; }
   function fmt(d) { return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
   function sameDay(a, b) { return !!a && !!b && fmt(a) === fmt(b); }

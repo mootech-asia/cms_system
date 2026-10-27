@@ -269,7 +269,7 @@
   function initHeaderLocale() {
     var skinWrap = document.querySelector('.m-skin-wrap');
     if (!skinWrap || document.querySelector('[data-locale-wrap]')) return;
-    var cur = window.__v2mLocale ? window.__v2mLocale() : 'zh';
+    var cur = window.__v2mLocale ? window.__v2mLocale() : 'en';
     var short = (LOCALES.filter(function (l) { return l[0] === cur; })[0] || LOCALES[0])[1];
     var wrap = document.createElement('div');
     wrap.className = 'relative';

@@ -11,7 +11,7 @@
 (function () {
   'use strict';
   var LOCALE_KEY = 'win100-locale';
-  var DEFAULT_LOCALE = 'zh';
+  var DEFAULT_LOCALE = 'en';
 
   var STRINGS = {
     'nav.home': { zh: '首頁', en: 'Home', ko: '홈', th: 'หน้าแรก' },
@@ -286,19 +286,45 @@
     'promotion.dontRemindToday': { zh: '今天不再提醒', en: "Don't remind me again today", ko: '오늘 다시 알리지 않기', th: 'ไม่ต้องแจ้งเตือนอีกวันนี้' },
   };
 
-  function currentLocale() {
-    try { return localStorage.getItem(LOCALE_KEY) || DEFAULT_LOCALE; } catch (e) { return DEFAULT_LOCALE; }
+  /* 編輯用中文預覽：中文不在前台語系選單內，編輯者按 Ctrl+Alt+L（Mac 為
+     Control+Option+L）切換。旗標只存在 sessionStorage（關掉分頁即失效），
+     不寫進語系偏好；焦點在輸入框時不觸發，避免 AltGr（= Ctrl+Alt）鍵盤
+     打字時誤切。 */
+  var ZH_PREVIEW_KEY = 'cms-zh-preview';
+  function zhPreviewOn() {
+    try { return sessionStorage.getItem(ZH_PREVIEW_KEY) === '1'; } catch (e) { return false; }
   }
+  function setZhPreview(on) {
+    try { if (on) sessionStorage.setItem(ZH_PREVIEW_KEY, '1'); else sessionStorage.removeItem(ZH_PREVIEW_KEY); } catch (e) { /* storage unavailable */ }
+  }
+  document.addEventListener('keydown', function (e) {
+    if (!e.ctrlKey || !e.altKey || e.metaKey || e.shiftKey || e.code !== 'KeyL') return;
+    var el = e.target;
+    if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
+    e.preventDefault();
+    setZhPreview(!zhPreviewOn());
+    location.reload();
+  });
 
   /* 前台可選語言跟桌機版同一個設定：studio 寫進 win100-public-config 的
-     publicLocales，沒設定時預設 en/ko/th（桌機版 DEFAULT_PUBLIC_LOCALES）。
-     目前使用中的語言即使不在清單內也照樣顯示，才看得出現在是哪一種。 */
+     publicLocales，沒設定時預設 en/ko/th（桌機版 DEFAULT_PUBLIC_LOCALES）。 */
   function publicLocales() {
     var cfg = null;
     try { cfg = JSON.parse(localStorage.getItem('win100-public-config') || 'null'); } catch (e) { /* ignore */ }
     return (cfg && Array.isArray(cfg.publicLocales) && cfg.publicLocales.length) ? cfg.publicLocales : ['en', 'ko', 'th'];
   }
+  /* 已存的語言若不在 publicLocales 內（例如中文），一律落回 en（或清單第一個），
+     玩家不會因為舊偏好或沒選過語言而看到隱藏的語系。 */
+  function currentLocale() {
+    if (zhPreviewOn()) return 'zh';
+    var saved = null;
+    try { saved = localStorage.getItem(LOCALE_KEY); } catch (e) { /* ignore */ }
+    var pub = publicLocales();
+    if (saved && pub.indexOf(saved) !== -1) return saved;
+    return pub.indexOf(DEFAULT_LOCALE) !== -1 ? DEFAULT_LOCALE : pub[0];
+  }
   function setLocale(code) {
+    setZhPreview(false);
     try { localStorage.setItem(LOCALE_KEY, code); } catch (e) { /* storage unavailable */ }
     location.reload();
   }
@@ -359,10 +385,11 @@
     root = root || document;
     var loc = currentLocale();
     var pub = publicLocales();
+    document.documentElement.setAttribute('lang', loc === 'zh' ? 'zh-Hant' : loc);
     root.querySelectorAll('[data-locale-option]').forEach(function (el) {
       var code = el.getAttribute('data-locale-option');
       var active = code === loc;
-      el.classList.toggle('hidden', !active && pub.indexOf(code) === -1);
+      el.classList.toggle('hidden', pub.indexOf(code) === -1);
       el.setAttribute('aria-pressed', String(active));
       ['bg-primary', 'text-on-primary'].forEach(function (c) { el.classList.toggle(c, active); });
       ['border', 'border-border-soft', 'text-text-2'].forEach(function (c) { el.classList.toggle(c, !active); });

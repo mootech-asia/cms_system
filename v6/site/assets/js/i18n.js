@@ -641,7 +641,28 @@
     'promotion.dontRemindToday': { zh: '今天不再提醒', en: "Don't remind me again today", ko: '오늘 다시 알리지 않기', th: 'ไม่ต้องแจ้งเตือนอีกวันนี้' },
   };
 
+  /* 編輯用中文預覽：中文不在前台語系選單內，編輯者按 Ctrl+Alt+L（Mac 為
+     Control+Option+L）切換。旗標只存在 sessionStorage（關掉分頁即失效），
+     不寫進語系偏好；焦點在輸入框時不觸發，避免 AltGr（= Ctrl+Alt）鍵盤
+     打字時誤切。 */
+  var ZH_PREVIEW_KEY = 'cms-zh-preview';
+  function zhPreviewOn() {
+    try { return sessionStorage.getItem(ZH_PREVIEW_KEY) === '1'; } catch (e) { return false; }
+  }
+  function setZhPreview(on) {
+    try { if (on) sessionStorage.setItem(ZH_PREVIEW_KEY, '1'); else sessionStorage.removeItem(ZH_PREVIEW_KEY); } catch (e) {}
+  }
+  document.addEventListener('keydown', function (e) {
+    if (!e.ctrlKey || !e.altKey || e.metaKey || e.shiftKey || e.code !== 'KeyL') return;
+    var el = e.target;
+    if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
+    e.preventDefault();
+    setZhPreview(!zhPreviewOn());
+    location.reload();
+  });
+
   function getLocale() {
+    if (zhPreviewOn()) return 'zh';
     var saved;
     try { saved = localStorage.getItem(LOCALE_KEY); } catch (e) { saved = null; }
     var visible = visibleLocaleIds();
@@ -652,6 +673,7 @@
   }
   function setLocale(id) {
     if (!LOCALES.some(function (l) { return l.id === id; })) return;
+    setZhPreview(false);
     try { localStorage.setItem(LOCALE_KEY, id); } catch (e) {}
     applyLocale();
   }

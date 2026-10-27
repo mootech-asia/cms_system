@@ -6,7 +6,7 @@
 
   function t(key) { return window.__v2mT ? window.__v2mT(key) : key; }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-  function currentLocale() { try { return localStorage.getItem('win100-locale') || 'zh'; } catch (e) { return 'zh'; } }
+  function currentLocale() { return window.__v2mLocale ? window.__v2mLocale() : 'en'; }
 
   /* ============================== QR 假圖案（比照桌機版）============== */
   var QR_SIZE = 21;

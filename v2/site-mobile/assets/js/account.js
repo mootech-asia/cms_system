@@ -10,7 +10,7 @@
   function t(key) { return window.__v2mT ? window.__v2mT(key) : key; }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function modal(opts) { if (window.__v2mModal) window.__v2mModal(opts); }
-  function currentLocale() { try { return localStorage.getItem('win100-locale') || 'zh'; } catch (e) { return 'zh'; } }
+  function currentLocale() { return window.__v2mLocale ? window.__v2mLocale() : 'en'; }
   function walletMask(addr) { addr = addr || ''; return addr.length > 12 ? addr.slice(0, 6) + '...' + addr.slice(-4) : addr; }
 
   var TRASH = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>';

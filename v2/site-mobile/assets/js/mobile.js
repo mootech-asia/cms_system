@@ -465,7 +465,7 @@
     return v && v !== key ? v : fallback;
   }
   function crLocale() {
-    try { return localStorage.getItem('win100-locale') || 'zh'; } catch (e) { return 'zh'; }
+    return window.__v2mLocale ? window.__v2mLocale() : 'en';
   }
   function crOnLocaleChange() {}
   function crEsc(s) {
