@@ -19,7 +19,7 @@ const DEST_BY_ENTRY = {
   v5: 'v5/site/assets/css',
   v6: 'v6/site/assets/css',
   'v2-mobile': 'v2/site-mobile/assets/css',
-  'v15-tailwind-site': 'v1.5/tailwind/site/assets/css',
+  'v15-site': 'v1.5/site/assets/css',
   'v2-site': 'v2/site/assets/css',
   'v2-studio': 'v2/studio',
   'v3-site': 'v3/site/assets/css',

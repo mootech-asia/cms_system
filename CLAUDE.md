@@ -9,11 +9,10 @@ Tailwind 編譯輸出／PrimeVue 等），CSS 一律手寫、以 CSS variable/to
 （不是複製一份快照，直接編輯同一份 HTML，靠 git 歷史回溯舊版），`assets/css/
 tailwind.css` 是這三版的合法編譯輸出，不算框架殘留；`studio/` 維持不動，仍直接
 `<link>` 原始 `main.css`／`skins/*.css`，因為 studio 控制台本身的畫面完全依賴
-它們渲染。**v2／v3 的 `site/`、`studio/` 已是 Tailwind 版**（2026-10-27 起以原
-`vN/tailwind/` 取代原版，舊的非 Tailwind 版已刪除、不再維護，需要時從 git 歷史
-找）；`v2/site-mobile` 也是 Tailwind，`v3/site-mobile` 直接引用 `../site/` 的
-CSS／JS。v1.5 仍是原始 `v1.5/site/`（不得修改或刪除，做為轉換對照基準）＋轉換用
-的 `v1.5/tailwind/site/`。建置管線：`src/vN/theme.css` + 統一 `vite.config.js`
+它們渲染。**v1.5／v2／v3 的 `site/`（v2／v3 另有 `studio/`）已是 Tailwind 版**
+（2026-10-27 起以原 `vN/tailwind/` 取代原版，舊的非 Tailwind 版已刪除、不再維護，
+需要時從 git 歷史找；不再有任何 `tailwind/` 資料夾）；`v2/site-mobile` 也是
+Tailwind，`v3/site-mobile` 直接引用 `../site/` 的 CSS／JS。建置管線：`src/vN/theme.css` + 統一 `vite.config.js`
 的 `rollupOptions.input` entry + `scripts/publish.mjs` 依 entry key 輸出固定檔名
 的 `tailwind.css`，不用另外架設獨立建置專案。
 
@@ -72,7 +71,7 @@ localStorage 為同源同步（不受資料夾路徑影響），改動路徑時�
     「main 已含此修改，正式站未親眼確認」。
 11. 「所有版本／每個版本」必須對照 `scripts/pre-report-check.sh` 印出的 main 版本資料夾清單逐一列出。
 12. 修一個 bug 後，grep 全站同類寫法，並檢查同型的 skin、版本、目錄
-    （site／site-mobile／tailwind／studio），回報中寫出檢查了哪些。
+    （site／site-mobile／studio），回報中寫出檢查了哪些。
 13. 自己造成的 bug 要明說「是我上一輪造成的」，不得稱「既有」「正常行為」「通性」。
     說「既有」必須附證據（例：git worktree 切回舊版重現）。
 14. 介面元素要確認按下去會發生使用者期待的結果才算完成；只有提示訊息、只寫 localStorage、
@@ -120,7 +119,7 @@ localStorage 為同源同步（不受資料夾路徑影響），改動路徑時�
   commit 時先 merge 再推，不得 force push）。回報時附正式站對應網址，讓使用者直接看效果，
   不要只用文字形容畫面。推上 main 後必須查 `Deploy GitHub Pages` workflow 該次 run 的結論，
   是 success 才能給網址說「可以看了」；failure 就看 log、能重跑就重跑，並在回報寫明。
-- `v1.5/site/`（原始快照）：樣式只用既有 token/共用 class，禁任意值色碼、禁
-  Tailwind/框架殘留。`v2`～`v6` 的 `site/`、`v2`／`v3` 的 `studio/`、
-  `v2/site-mobile/` 與 `v1.5/tailwind/`：就是要用 Tailwind，顏色/陰影/圓角/間距
-  一律引用既有 `--color-*`／`--radius-*` 等 token，不寫死任意值色碼。
+- `v1.5`～`v6` 的 `site/`、`v2`／`v3` 的 `studio/`、`v2/site-mobile/`：就是要用
+  Tailwind，顏色/陰影/圓角/間距一律引用既有 `--color-*`／`--radius-*` 等 token，
+  不寫死任意值色碼。`v3/site-mobile/` 是手寫 CSS（引用 `../site/` 的 main.css），
+  樣式只用既有 token/共用 class，禁任意值色碼。

@@ -11,7 +11,7 @@ CMS 生成系統的統一預覽 repo。整合 `cms_system_v1.5`、`cms_system_v2
 cms_system/
 ├── index.html       # 統一首頁，各版型入口（依版本號排序：v1.5 → v2 → v3 → v4 → v5）
 ├── v1.5/
-│   ├── site/         # WIN10096 前台（純 HTML+CSS+JS,對照 Nuxt/ 真實原始碼與正式站截圖手刻）
+│   ├── site/         # WIN10096 前台（Tailwind 版，對照 Nuxt/ 真實原始碼與正式站截圖）
 │   ├── Nuxt/          # 對照用真實 Nuxt 專案原始碼(cms-customer-frontend-theme-purple)
 │   └── temp/          # 上一版手刻靜態站封存(備查用,非對外內容)
 ├── v2/
