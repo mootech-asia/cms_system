@@ -128,3 +128,29 @@
   input, select, textarea { padding: 1px 2px; }
   button { padding: 1px 6px; }
 }
+
+/* 會員進度卡（.rewards-banner）邊框流光：一段主題色亮光沿卡片內緣繞行，同
+   v2/site-mobile 會員卡的 card-orbit-border。conic-gradient 的起始角度用
+   @property 註冊成可動畫的 <angle>，再用 mask 只露出 1px 邊。卡片本身的
+   ::before／::after 已被 main.css 與設計後台 profile 變體佔用，所以流光是
+   卡片內一個獨立 <span>。 */
+@property --rb-orbit-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes rb-orbit {
+  to { --rb-orbit-angle: 360deg; }
+}
+@utility rb-orbit-border {
+  padding: 1px;
+  background: conic-gradient(from var(--rb-orbit-angle),
+    transparent 0deg 250deg,
+    color-mix(in srgb, var(--accent) 70%, transparent) 300deg,
+    var(--accent-2) 330deg,
+    color-mix(in srgb, var(--accent) 70%, transparent) 345deg,
+    transparent 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
