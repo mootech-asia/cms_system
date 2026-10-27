@@ -163,3 +163,20 @@
     display: none;
   }
 }
+
+/* 會員進度卡進度條掃光：與邊框流光同色（accent-2 為主、混一半 --text-on-media
+   提亮，否則在本身就是 accent→accent-2 漸層的進度條上看不出來）、同 8s 週期，
+   前 30% 時間由左掃到右、其餘時間停在條外隱藏。寬度是進度條的 40%，
+   translateX(250%) 剛好走到右端。 */
+@keyframes rb-bar-glint {
+  0% { transform: translateX(-100%); opacity: 0; }
+  4% { opacity: 1; }
+  30% { transform: translateX(250%); opacity: 1; }
+  33%, 100% { transform: translateX(250%); opacity: 0; }
+}
+@utility rb-bar-glint {
+  background: linear-gradient(90deg,
+    transparent,
+    color-mix(in srgb, var(--accent-2) 50%, var(--text-on-media)) 50%,
+    transparent);
+}
