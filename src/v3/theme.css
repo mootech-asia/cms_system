@@ -129,28 +129,37 @@
   button { padding: 1px 6px; }
 }
 
-/* 會員進度卡（.rewards-banner）邊框流光：一段主題色亮光沿卡片內緣繞行，同
-   v2/site-mobile 會員卡的 card-orbit-border。conic-gradient 的起始角度用
-   @property 註冊成可動畫的 <angle>，再用 mask 只露出 1px 邊。卡片本身的
-   ::before／::after 已被 main.css 與設計後台 profile 變體佔用，所以流光是
-   卡片內一個獨立 <span>。 */
-@property --rb-orbit-angle {
-  syntax: '<angle>';
-  inherits: false;
-  initial-value: 0deg;
-}
+/* 會員進度卡（.rewards-banner）邊框流光：一團主題色光點沿卡片圓角外框等速繞行，
+   外層用 mask 只露出 1px 邊。不用 v2 那種「conic-gradient 轉角度」寫法：這張卡
+   又寬又扁，等角速度旋轉時亮光在長邊兩端暴衝、短邊一閃而過、光帶長度忽長忽短，
+   而且每格都要重畫整張漸層。改用 motion path：offset-path: border-box 直接取外層
+   （rounded-[inherit]，跟著卡片實際圓角）的外框，offset-distance 線性 0→100%
+   就是沿周長等速。卡片本身的 ::before／::after 已被 main.css 與設計後台 profile
+   變體佔用，所以流光是卡片內獨立的 <span>。不支援 offset-path <coord-box> 的
+   瀏覽器直接不顯示光點，不會停在角落。 */
 @keyframes rb-orbit {
-  to { --rb-orbit-angle: 360deg; }
+  to { offset-distance: 100%; }
 }
 @utility rb-orbit-border {
   padding: 1px;
-  background: conic-gradient(from var(--rb-orbit-angle),
-    transparent 0deg 250deg,
-    color-mix(in srgb, var(--accent) 70%, transparent) 300deg,
-    var(--accent-2) 330deg,
-    color-mix(in srgb, var(--accent) 70%, transparent) 345deg,
-    transparent 360deg);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+@utility rb-orbit-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 48px;
+  offset-path: border-box;
+  offset-rotate: auto;
+  background: radial-gradient(closest-side,
+    var(--accent-2),
+    color-mix(in srgb, var(--accent) 75%, transparent) 40%,
+    transparent);
+  will-change: offset-distance;
+  @supports not (offset-path: border-box) {
+    display: none;
+  }
 }
