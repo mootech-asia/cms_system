@@ -275,7 +275,7 @@
   .sport-notice-msg { flex-wrap: wrap; row-gap: 6px; }
   .sport-notice-text { order: 3; flex-basis: 100%; }
 }
-/* 手機寬度（含 site-mobile 體育分頁）暫不顯示公告區；markup、JS 與上方手機排版都保留，
+/* 手機寬度（含 site/mobile 體育分頁）暫不顯示公告區；markup、JS 與上方手機排版都保留，
    要恢復顯示時刪掉這段即可。 */
 @media (max-width: 700px) {
   .sport-notice { display: none; }

@@ -9,12 +9,13 @@ Tailwind 編譯輸出／PrimeVue 等），CSS 一律手寫、以 CSS variable/to
 （不是複製一份快照，直接編輯同一份 HTML，靠 git 歷史回溯舊版），`assets/css/
 tailwind.css` 是這三版的合法編譯輸出，不算框架殘留；`studio/` 維持不動，仍直接
 `<link>` 原始 `main.css`／`skins/*.css`，因為 studio 控制台本身的畫面完全依賴
-它們渲染。v1.5／v2／v3 未來也要轉換，但做法不同：**原始 `vN/site/`、`vN/studio/`
-維持不動、不得修改或刪除**（做為轉換對照基準），另外在各自版本資料夾內新增
-`vN/tailwind/site/`、`vN/tailwind/studio/`，把原始檔案複製進去做轉換。建置管線
-沿用 v4/v5/v6 既有模式：`src/vN/theme.css` + 統一 `vite.config.js` 的
-`rollupOptions.input` entry + `scripts/publish.mjs` 依 entry key 輸出固定檔名到
-`vN/tailwind/site/assets/css/tailwind.css`，不用另外架設獨立建置專案。
+它們渲染。**v2／v3 的 `site/`、`studio/` 已是 Tailwind 版**（2026-10-27 起以原
+`vN/tailwind/` 取代原版，舊的非 Tailwind 版已刪除、不再維護，需要時從 git 歷史
+找）；`v2/site-mobile` 也是 Tailwind，`v3/site-mobile` 直接引用 `../site/` 的
+CSS／JS。v1.5 仍是原始 `v1.5/site/`（不得修改或刪除，做為轉換對照基準）＋轉換用
+的 `v1.5/tailwind/site/`。建置管線：`src/vN/theme.css` + 統一 `vite.config.js`
+的 `rollupOptions.input` entry + `scripts/publish.mjs` 依 entry key 輸出固定檔名
+的 `tailwind.css`，不用另外架設獨立建置專案。
 
 ## 目錄結構
 ```
@@ -119,7 +120,7 @@ localStorage 為同源同步（不受資料夾路徑影響），改動路徑時�
   commit 時先 merge 再推，不得 force push）。回報時附正式站對應網址，讓使用者直接看效果，
   不要只用文字形容畫面。推上 main 後必須查 `Deploy GitHub Pages` workflow 該次 run 的結論，
   是 success 才能給網址說「可以看了」；failure 就看 log、能重跑就重跑，並在回報寫明。
-- `v1.5`～`v3` 的 `vN/site/`、`vN/studio/`（原始快照）：樣式只用既有 token/
-  共用 class，禁任意值色碼、禁 Tailwind/框架殘留。`v4`～`v6` 的 `site/`
-  與所有版本的 `vN/tailwind/`：就是要用 Tailwind，顏色/陰影/圓角/間距
+- `v1.5/site/`（原始快照）：樣式只用既有 token/共用 class，禁任意值色碼、禁
+  Tailwind/框架殘留。`v2`～`v6` 的 `site/`、`v2`／`v3` 的 `studio/`、
+  `v2/site-mobile/` 與 `v1.5/tailwind/`：就是要用 Tailwind，顏色/陰影/圓角/間距
   一律引用既有 `--color-*`／`--radius-*` 等 token，不寫死任意值色碼。

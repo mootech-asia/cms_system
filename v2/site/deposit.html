@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <!-- 手機裝置判斷：只認實機手機 UA(不含平板)，符合就在畫面畫出來之前
-         轉往獨立的手機版 ../site-mobile/（比照 v3/site 的既有做法）。
+         轉往獨立的手機版 mobile/（比照 v3/site 的既有做法）。
          桌機／平板不受影響。 -->
     <script>
       (function () {
         var ua = navigator.userAgent || '';
         if (/iPhone|iPod|Android.*Mobile|Windows Phone|BlackBerry|Opera Mini|IEMobile/i.test(ua)) {
-          location.replace('../site-mobile/deposit.html' + location.search + location.hash);
+          location.replace('mobile/deposit.html' + location.search + location.hash);
         }
       })();
     </script>
@@ -19,17 +19,18 @@
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link rel="stylesheet" href="themes/win100.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/tailwind.css" />
   </head>
   <body>
     <div class="page-shell">
       <header class="site-header">
         <div class="site-header-inner">
-          <div class="site-header-row">
+          <div class="site-header-row" data-site-header-row>
             <a href="index.html" class="brand-link"
               ><img src="logo.png" alt="Casino Logo" class="brand-logo"
             /></a>
-            <div class="header-mobile-controls">
-              <div class="dd-trigger-wrap">
+            <div class="header-mobile-controls" data-header-mobile-controls>
+              <div class="dd-trigger-wrap" data-dd-trigger-wrap>
                 <button class="lang-trigger">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -345,10 +346,10 @@
           <div>
             <h1 class="page-title">Deposit</h1>
             <div class="mode-tabs" style="">
-              <button class="active"><span class="leading-tight">Provider A</span></button
-              ><button class=""><span class="leading-tight">Provider B</span></button
-              ><button class=""><span class="leading-tight">Provider C</span></button
-              ><button class=""><span class="leading-tight">Provider D</span></button>
+              <button class="active"><span>Provider A</span></button
+              ><button class=""><span>Provider B</span></button
+              ><button class=""><span>Provider C</span></button
+              ><button class=""><span>Provider D</span></button>
             </div>
             <div class="payment-tabs" style="">
               <button class="active">

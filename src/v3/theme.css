@@ -19,29 +19,29 @@
    main.css 完全沒定義過、目前零效果的死語法殘留（例如 `class="...
    outline"`、`<td class="text-right">`），這批因為沒有 unlayered 規則
    競爭，Tailwind 生成的 utility 會直接套用，變成非預期的新行為，已經
-   從 v3/tailwind/site 的 class 清單裡移除（不動 v3/site 原始檔）。 */
+   從 v3/site 的 class 清單裡移除。 */
 @layer theme, base, legacy, components, utilities;
 @import 'tailwindcss' source(none);
-@source '../../v3/tailwind/site/*.html';
-@source '../../v3/tailwind/site/assets/js/site.js';
-@source '../../v3/tailwind/site/assets/js/data.js';
-@source '../../v3/tailwind/site/assets/js/i18n.js';
-@source '../../v3/tailwind/site/assets/js/i18n-member.js';
-@import '../../v3/tailwind/site/assets/css/design-system/tokens.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/layout.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/main.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/skins/white.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/skins/blue.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/skins/night-esports-green.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/skins/cosmic-spectrum-purple.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/skins/curated-collection.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/skins/jade-jackpot.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/design-system/components.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/load-more.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/design-system/variants.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/design-system/chrome-variants.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/design-system/design-studio.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/static-addon.css' layer(legacy);
+@source '../../v3/site/*.html';
+@source '../../v3/site/assets/js/site.js';
+@source '../../v3/site/assets/js/data.js';
+@source '../../v3/site/assets/js/i18n.js';
+@source '../../v3/site/assets/js/i18n-member.js';
+@import '../../v3/site/assets/css/design-system/tokens.css' layer(legacy);
+@import '../../v3/site/assets/css/layout.css' layer(legacy);
+@import '../../v3/site/assets/css/main.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/white.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/blue.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/night-esports-green.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/cosmic-spectrum-purple.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/curated-collection.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/jade-jackpot.css' layer(legacy);
+@import '../../v3/site/assets/css/design-system/components.css' layer(legacy);
+@import '../../v3/site/assets/css/load-more.css' layer(legacy);
+@import '../../v3/site/assets/css/design-system/variants.css' layer(legacy);
+@import '../../v3/site/assets/css/design-system/chrome-variants.css' layer(legacy);
+@import '../../v3/site/assets/css/design-system/design-studio.css' layer(legacy);
+@import '../../v3/site/assets/css/static-addon.css' layer(legacy);
 
 @theme static {
   --color-bg: var(--bg);

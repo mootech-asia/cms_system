@@ -15,11 +15,12 @@ cms_system/
 │   ├── Nuxt/          # 對照用真實 Nuxt 專案原始碼(cms-customer-frontend-theme-purple)
 │   └── temp/          # 上一版手刻靜態站封存(備查用,非對外內容)
 ├── v2/
-│   ├── site/         # WIN100 前台（純 HTML+CSS+JS，可換膚）
-│   └── studio/        # 設計後台（純 HTML+CSS+JS，iframe 預覽 site/，localStorage 同步）
+│   ├── site/         # WIN100 前台（Tailwind 版，可換膚）
+│   ├── site-mobile/   # 手機版（Tailwind 版）
+│   └── studio/        # 設計後台（Tailwind 版，iframe 預覽 site/，localStorage 同步）
 ├── v3/
-│   ├── site/         # Gaming Lobby 前台（純 HTML+CSS+JS）
-│   ├── studio/        # 設計後台（同上）
+│   ├── site/         # Gaming Lobby 前台（Tailwind 版）
+│   ├── studio/        # 設計後台（Tailwind 版）
 │   └── site-mobile/   # 手機版大廳（獨立頁面；沿用 site/ 的 assets，其餘頁面轉址回 site/）
 ├── v4/
 │   ├── site/         # 紅金喜慶前台（純 HTML+CSS+JS）

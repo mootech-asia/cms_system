@@ -1,14 +1,14 @@
-/* v2/tailwind/studio — 跟 v2/tailwind/site 用同一組 --c-* token（透過
+/* v2/studio — 跟 v2/site 用同一組 --c-* token（透過
    ../site/themes/win100.css 帶入，studio 本來就用相對路徑跨資料夾讀取
    site 的 skin 檔案），但另開一份 @theme 而非共用 src/v2/theme.css，
    因為 @source 掃描目標（studio 自己的 index.html/studio.js）跟 site
    不同，混在同一份容易日後改 site 的 @source 清單時誤動到 studio。 */
 @layer theme, base, legacy, components, utilities;
 @import 'tailwindcss' source(none);
-@source '../../v2/tailwind/studio/index.html';
-@source '../../v2/tailwind/studio/studio.js';
-@import '../../v2/tailwind/studio/studio.css' layer(legacy);
-@import '../../v2/tailwind/site/themes/win100.css' layer(legacy);
+@source '../../v2/studio/index.html';
+@source '../../v2/studio/studio.js';
+@import '../../v2/studio/studio.css' layer(legacy);
+@import '../../v2/site/themes/win100.css' layer(legacy);
 
 @theme static {
   --color-primary: rgb(var(--c-primary));

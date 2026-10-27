@@ -6,7 +6,7 @@ import fs from 'fs';
 
 const pages = fs.readFileSync(process.argv[2], 'utf8').trim().split('\n');
 const outDir = process.argv[3];
-const baseUrlPrefix = process.argv[4]; // e.g. http://127.0.0.1:8899/v1.5/site or .../v1.5/tailwind/site
+const baseUrlPrefix = process.argv[4]; // e.g. http://127.0.0.1:8899/v1.5/site or .../v1.5/tailwind/site or .../v3/site
 const width = Number(process.argv[5] || 1440);
 const loginKey = process.argv[6] || '';
 const loginValue = process.argv[7] || '';

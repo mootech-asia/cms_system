@@ -349,7 +349,7 @@
         return '<button type="button" class="seg-btn-sm' + (draft.chrome[part] === vk ? ' active' : '') +
           '" data-chrome="' + part + '" data-variant="' + vk + '">' + vk + '</button>';
       }).join('');
-      return '<div class="st-section-card" style="margin-bottom:8px">' +
+      return '<div class="st-section-card mb-2">' +
         '<span class="st-section-name">' + escapeHtml(BLOCK_LABELS['site-' + part]) + '</span>' +
         '<div class="variant-grid st-mt-sm">' + chips + '</div></div>';
     }).join('');

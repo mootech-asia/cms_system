@@ -456,7 +456,7 @@
     }
     if (typeof cfg.showSkinButton === 'boolean') {
       $all('.skin-switcher-trigger').forEach(function (btn) {
-        (btn.closest('.dd-trigger-wrap') || btn).style.display = cfg.showSkinButton ? '' : 'none';
+        (btn.closest('[data-dd-trigger-wrap]') || btn).style.display = cfg.showSkinButton ? '' : 'none';
       });
     }
     /* 已發佈的 chrome / 區塊順序·顯示開關·變體 —— 真站頂層才套用;
@@ -614,7 +614,7 @@
   /* Header 導覽列 hover 下拉選單(Sports/Live) */
 
   function initNavDropdowns() {
-    $all('nav .dd-trigger-wrap').forEach(function (wrap) {
+    $all('nav [data-dd-trigger-wrap]').forEach(function (wrap) {
       var panel = $('.dd-panel', wrap);
       if (!panel) return;
       var timer = null;
@@ -953,7 +953,7 @@
 
   function localeTriggerHtml() {
     return (
-      '<div class="dd-trigger-wrap"><button class="header-locale-trigger">' +
+      '<div class="dd-trigger-wrap" data-dd-trigger-wrap><button class="header-locale-trigger">' +
       iconSvg('globe', 'icon-sm') + '<span>中文</span>' + iconSvg('chevron-down', 'icon-xs') +
       '</button></div>'
     );
@@ -962,8 +962,8 @@
     if (!isMemberPage()) return;
     $all('header').forEach(function (header) {
       if (header.querySelector('[data-member-account-bar]')) return;
-      var mobileWrap = header.querySelector('.header-mobile-controls');
-      var row = mobileWrap ? mobileWrap.parentElement : header.querySelector('.site-header-row');
+      var mobileWrap = header.querySelector('[data-header-mobile-controls]');
+      var row = mobileWrap ? mobileWrap.parentElement : header.querySelector('[data-site-header-row]');
       if (!row) return;
       var bar = document.createElement('div');
       bar.className = 'header-account-bar';
@@ -1767,11 +1767,11 @@
   /* 體育串關展開列（目前只有 betting-record.html 有 .rt-parlay-row，
      其餘 record 頁面靜態表格沒有這個 class，$all 拿到空陣列安全跳過）。 */
   function initBetRecordParlayRows() {
-    $all('.rt-parlay-toggle').forEach(function (btn) {
+    $all('[data-rt-parlay-toggle]').forEach(function (btn) {
       on(btn, 'click', function () {
-        var row = btn.closest('.rt-parlay-row');
+        var row = btn.closest('[data-rt-parlay-row]');
         var detail = row && row.nextElementSibling;
-        if (!detail || !detail.classList.contains('rt-parlay-detail')) return;
+        if (!detail || !detail.hasAttribute('data-rt-parlay-detail')) return;
         var open = row.classList.toggle('is-open');
         detail.hidden = !open;
         btn.setAttribute('aria-expanded', String(open));
@@ -2103,7 +2103,7 @@
   /* ---- .mf-eye password toggles (banking-details / change-password) ---- */
 
   function initMfEyeToggles() {
-    $all('.mf-eye').forEach(function (btn) {
+    $all('[data-mf-eye]').forEach(function (btn) {
       on(btn, 'click', function () {
         var input = btn.previousElementSibling;
         if (input && input.tagName === 'INPUT') input.type = input.type === 'password' ? 'text' : 'password';
@@ -2194,10 +2194,7 @@
       on(body.querySelector('[data-wallet-copy]'), 'click', function (e) {
         e.stopPropagation();
         var btn = e.currentTarget;
-        try {
-          var copyP = navigator.clipboard.writeText(w.address);
-          if (copyP && copyP.catch) copyP.catch(function () { /* clipboard 權限被拒,占位流程靜默略過 */ });
-        } catch (err) { /* clipboard 不可用,占位流程靜默略過 */ }
+        try { navigator.clipboard.writeText(w.address); } catch (err) { /* clipboard 不可用,占位流程靜默略過 */ }
         btn.innerHTML = iconSvg('check', 'w-4 h-4');
         btn.setAttribute('aria-label', copiedLabel);
         setTimeout(function () {
@@ -2595,12 +2592,12 @@
 
   function initChangePasswordPage() {
     if (pageName() !== 'change-password') return;
-    var card = document.querySelector('.mf-card');
+    var card = document.querySelector('[data-mf-card]');
     if (!card) return;
     var isTxn = /type=txn/.test(location.search);
-    var inputs = $all('.mf-input', card);
+    var inputs = $all('[data-mf-input]', card);
     var newPw = inputs[0], confirmPw = inputs[1];
-    var submitBtn = card.querySelector('.mf-submit');
+    var submitBtn = card.querySelector('[data-mf-submit]');
     if (!newPw || !confirmPw || !submitBtn) return;
     var VISIBLE_ASCII = /^[\x21-\x7E]{5,16}$/;
     bindReadyGate(submitBtn, [newPw, confirmPw], function (ok) { submitBtn.classList.toggle('ready', ok); submitBtn.disabled = !ok; });
@@ -2852,10 +2849,7 @@
     formCard.parentElement.insertBefore(section, formCard.nextSibling);
     on(section.querySelector('[data-qr-copy]'), 'click', function (e) {
       var b = e.currentTarget;
-      try {
-        var copyP2 = navigator.clipboard.writeText(addr);
-        if (copyP2 && copyP2.catch) copyP2.catch(function () { /* clipboard 權限被拒,占位流程靜默略過 */ });
-      } catch (err) { /* clipboard 不可用,占位流程靜默略過 */ }
+      try { navigator.clipboard.writeText(addr); } catch (err) { /* clipboard 不可用,占位流程靜默略過 */ }
       b.textContent = t8.copied || 'Copied';
       setTimeout(function () { b.textContent = t8.copy || 'Copy'; }, 1500);
     });
@@ -2991,16 +2985,14 @@
   function drpFindToolbar(input) {
     var node = input.parentElement;
     while (node && node !== document.body) {
-      if (node.classList && node.classList.contains('rb-toolbar')) return node;
+      if (node.hasAttribute && node.hasAttribute('data-rb-toolbar')) return node;
       node = node.parentElement;
     }
     return input.parentElement;
   }
 
   function drpFindConfirmBtn(toolbar) {
-    return $all('button.btn-primary', toolbar).filter(function (b) {
-      return /confirm|確認/i.test((b.textContent || '').trim());
-    })[0] || $('button.btn-primary', toolbar);
+    return $('[data-rb-confirm-btn]', toolbar);
   }
 
   function drpFindTable(toolbar) {
@@ -3011,11 +3003,11 @@
   var DRP_WEEKDAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
   function initDateRangeFilter() {
-    var input = $('input.rb-daterange-input');
+    var input = $('[data-rb-daterange-input]');
     if (!input) return;
 
     var toolbar = drpFindToolbar(input);
-    var dropdownBtn = $('button.rb-daterange-btn', toolbar) || document.querySelector('button.rb-daterange-btn');
+    var dropdownBtn = $('[data-rb-daterange-btn]', toolbar) || document.querySelector('[data-rb-daterange-btn]');
     var confirmBtn = drpFindConfirmBtn(toolbar);
     var table = drpFindTable(toolbar);
 
@@ -3155,8 +3147,8 @@
    * 推薦中心：推薦碼（4–12 位英數，寫入 localStorage）＋推薦連結（複製）＋
    * 推薦好友列表（示範資料；帳號中間以 *** 遮蔽，獎勵千分位）。
    * ========================================================== */
-  var CR_CHECKIN_KEY = 'cms_v2_checkin_added';
-  var CR_REFERRAL_KEY = 'cms_v2_referral_code';
+  var CR_CHECKIN_KEY = 'cms_v2tw_checkin_added';
+  var CR_REFERRAL_KEY = 'cms_v2tw_referral_code';
   var CR_CHECKIN_MISSED = [9, 24, 31, 32, 33];
   var CR_CHECKIN_SPAN = 45;
   var CR_REFERRAL_DEFAULT = 'pro003';
@@ -3172,47 +3164,47 @@
     { reg: '2026-09-02 13:44', account: 'hanseoyeon', login: '2026-09-02 13:50', done: false, reward: 0 }
   ];
   var CR_CLS = {
-    stats: 'cr-stats',
-    stat: 'cr-stat',
-    statLabel: 'cr-stat-label',
-    statVal: 'cr-stat-val',
-    panel: 'sec-card cr-panel',
-    panelTitle: 'cr-panel-title',
-    sectionTitle: 'cr-section-title',
-    calHead: 'cr-cal-head',
-    calTitle: 'cr-cal-title',
-    navBtn: 'btn-ghost cr-nav-btn',
-    checkinBtn: 'btn-primary btn-md cr-checkin-btn',
-    checkinBtnDone: 'btn-primary btn-md cr-checkin-btn',
-    calGrid: 'cr-cal-grid',
-    wd: 'cr-cal-wd',
-    day: 'cr-cal-day',
-    dayToday: 'cr-cal-day is-today',
-    dayEmpty: 'cr-cal-day is-empty',
-    dayNum: 'cr-cal-num',
-    stamp: 'cr-stamp',
-    stampRing: 'cr-stamp-ring',
-    stampText: 'cr-stamp-text',
-    note: 'cr-cal-note',
-    tableWrap: 'record-table-frame',
-    tableInner: 'record-table-container',
-    table: 'record-table-el',
-    thead: 'record-table-thead',
-    tbody: 'record-table-tbody',
-    th: 'record-table-th',
-    thNum: 'record-table-th cr-th-num',
-    td: '',
-    tdNum: 'text-right',
-    pillOk: 'pill-ok',
-    pillPend: 'pill-warn',
-    rfRowFirst: 'cr-rf-row is-first',
-    rfRow: 'cr-rf-row',
-    rfLabel: 'cr-rf-label',
-    rfField: 'cr-rf-field',
-    input: 'mf-input plain cr-rf-input',
-    saveBtn: 'btn-ghost btn-md cr-rf-btn',
-    copyBtn: 'btn-primary btn-md cr-rf-btn',
-    error: 'cr-rf-error'
+    stats: 'grid grid-cols-3 gap-3 max-md:grid-cols-1 max-md:gap-1.5',
+    stat: 'py-4 px-5 rounded-lg border border-border-soft bg-surface max-md:flex max-md:items-center max-md:justify-between max-md:gap-3 max-md:py-2.5 max-md:px-3.5',
+    statLabel: 'text-xs font-bold text-text-3',
+    statVal: 'mt-1 text-[22px] font-extrabold text-primary whitespace-nowrap [font-variant-numeric:tabular-nums] max-md:mt-0 max-md:text-[15px]',
+    panel: 'bg-surface border border-border-soft rounded-lg p-4',
+    panelTitle: 'm-0 mb-4 text-base font-bold text-text',
+    sectionTitle: 'm-0 -mb-3 text-base font-bold text-text',
+    calHead: 'flex items-center gap-2.5 mb-4 max-md:flex-wrap',
+    calTitle: 'm-0 min-w-[150px] text-center text-base font-bold text-text max-md:flex-1 max-md:min-w-0',
+    navBtn: 'inline-flex items-center justify-center w-9 h-9 shrink-0 rounded-full border border-border bg-bg text-text transition-colors hover:border-text-4 cursor-pointer',
+    checkinBtn: 'inline-flex items-center justify-center whitespace-nowrap rounded-[var(--radius-ui)] bg-[image:var(--g-primary)] font-semibold text-on-primary transition-opacity hover:opacity-90 h-11 px-6 text-sm leading-normal cursor-pointer disabled:cursor-not-allowed disabled:bg-none disabled:bg-text-4 disabled:text-text-2 ml-auto max-md:ml-0 max-md:w-full',
+    checkinBtnDone: 'inline-flex items-center justify-center whitespace-nowrap rounded-[var(--radius-ui)] bg-[image:var(--g-primary)] font-semibold text-on-primary transition-opacity hover:opacity-90 h-11 px-6 text-sm leading-normal cursor-pointer disabled:cursor-not-allowed disabled:bg-none disabled:bg-text-4 disabled:text-text-2 ml-auto max-md:ml-0 max-md:w-full',
+    calGrid: 'grid grid-cols-7 gap-2 max-md:gap-1',
+    wd: 'py-1 text-center text-xs font-bold text-text-3',
+    day: 'relative min-h-19 py-1.5 px-2 rounded-lg border bg-bg max-md:min-h-14 max-md:py-0.75 max-md:px-1 border-border-soft',
+    dayToday: 'relative min-h-19 py-1.5 px-2 rounded-lg border bg-bg max-md:min-h-14 max-md:py-0.75 max-md:px-1 border-primary',
+    dayEmpty: 'min-h-19 max-md:min-h-14',
+    dayNum: 'text-xs font-bold text-text-2 [font-variant-numeric:tabular-nums] max-md:text-[10.5px] max-md:leading-[1.2]',
+    stamp: 'absolute inset-x-0 top-5.5 bottom-1.5 flex flex-col items-center justify-center gap-0.75 text-primary max-md:top-6 max-md:bottom-1',
+    stampRing: 'grid place-items-center w-8 h-8 rounded-full border-2 border-current bg-primary/14 -rotate-12 max-md:w-5 max-md:h-5 max-md:border-[1.5px] max-md:[&_svg]:w-3 max-md:[&_svg]:h-3',
+    stampText: 'text-[10px] font-bold max-md:hidden',
+    note: 'mt-3.5 mb-0 text-xs text-text-3',
+    tableWrap: 'w-full overflow-hidden rounded-xl border border-border-soft',
+    tableInner: 'overflow-x-auto',
+    table: 'w-full border-collapse text-sm leading-normal',
+    thead: 'bg-[image:var(--g-primary)]',
+    tbody: '[&>tr:nth-child(even)>td]:bg-white/[0.02] [&>tr:hover>td]:bg-bg',
+    th: 'whitespace-nowrap border-0 bg-transparent py-3 px-4 text-left text-xs leading-normal font-extrabold uppercase tracking-[0.06em] text-on-primary',
+    thNum: 'whitespace-nowrap border-0 bg-transparent py-3 px-4 text-right text-xs leading-normal font-extrabold uppercase tracking-[0.06em] text-on-primary',
+    td: 'whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-text-2',
+    tdNum: 'whitespace-nowrap border-t border-border-soft py-3.5 px-4 text-sm leading-normal [font-variant-numeric:tabular-nums] text-text-2 text-right text-text',
+    pillOk: 'inline-block rounded-full py-1 px-2.5 text-xs leading-none font-bold bg-success/10 text-success',
+    pillPend: 'inline-block rounded-full py-1 px-2.5 text-xs leading-none font-bold bg-gold/10 text-gold',
+    rfRowFirst: 'grid grid-cols-[140px_minmax(0,1fr)] items-center gap-x-4 max-md:grid-cols-1 max-md:gap-y-2 pb-3.5',
+    rfRow: 'grid grid-cols-[140px_minmax(0,1fr)] items-center gap-x-4 max-md:grid-cols-1 max-md:gap-y-2 pt-3.5 border-t border-border-soft',
+    rfLabel: 'text-sm font-semibold text-text-2',
+    rfField: 'flex gap-2.5 min-w-0',
+    input: 'flex-1 min-w-0 rounded-[var(--radius-ui)] border border-border bg-bg text-text min-h-11 py-2.5 px-4 text-[15px] outline-none focus:border-primary',
+    saveBtn: 'inline-flex items-center justify-center whitespace-nowrap rounded-[var(--radius-ui)] border border-border bg-bg font-semibold text-text transition-colors hover:border-text-4 h-11 px-6 text-sm leading-normal cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed flex-none min-w-24 max-md:min-w-19 max-md:px-3.5',
+    copyBtn: 'inline-flex items-center justify-center whitespace-nowrap rounded-[var(--radius-ui)] bg-[image:var(--g-primary)] font-semibold text-on-primary transition-opacity hover:opacity-90 h-11 px-6 text-sm leading-normal cursor-pointer disabled:cursor-not-allowed disabled:bg-none disabled:bg-text-4 disabled:text-text-2 flex-none min-w-24 max-md:min-w-19 max-md:px-3.5',
+    error: 'col-start-2 mt-2 mb-0 text-xs font-semibold text-danger max-md:col-start-1 max-md:mt-0'
   };
   var CR_STRINGS = {
     'checkin.totalDays': { zh: '總簽到天數', en: 'Total Check-in Days', ko: '총 출석 일수', th: 'จำนวนวันเช็คอินทั้งหมด' },

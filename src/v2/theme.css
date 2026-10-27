@@ -22,11 +22,11 @@
    舊版那種字串代換機制，包成單純 rgb() 就相容。 */
 @layer theme, base, legacy, components, utilities;
 @import 'tailwindcss' source(none);
-@source '../../v2/tailwind/site/*.html';
-@source '../../v2/tailwind/site/assets/js/site.js';
-@source '../../v2/tailwind/site/assets/js/data.js';
-@import '../../v2/tailwind/site/assets/css/main.css' layer(legacy);
-@import '../../v2/tailwind/site/themes/win100.css' layer(legacy);
+@source '../../v2/site/*.html';
+@source '../../v2/site/assets/js/site.js';
+@source '../../v2/site/assets/js/data.js';
+@import '../../v2/site/assets/css/main.css' layer(legacy);
+@import '../../v2/site/themes/win100.css' layer(legacy);
 
 @theme static {
   --color-primary: rgb(var(--c-primary));

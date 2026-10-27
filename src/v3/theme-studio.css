@@ -1,23 +1,23 @@
-/* v3/tailwind/studio — 另開一份 @theme（跟 src/v3/theme.css 分開），
+/* v3/studio — 另開一份 @theme（跟 src/v3/theme.css 分開），
    因為 @source 掃描目標是 studio 自己的 index.html/studio.js，不是
    site 的頁面，混在同一份容易日後改 site 的 @source 清單時誤動到
    studio。色彩 token 映射跟 src/v3/theme.css 完全一致（同一組
    skins/*.css）。 */
 @layer theme, base, legacy, components, utilities;
 @import 'tailwindcss' source(none);
-@source '../../v3/tailwind/studio/index.html';
-@source '../../v3/tailwind/studio/studio.js';
-@import '../../v3/tailwind/site/assets/css/design-system/tokens.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/skins/white.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/skins/blue.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/skins/night-esports-green.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/skins/cosmic-spectrum-purple.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/skins/jade-jackpot.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/skins/curated-collection.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/design-system/components.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/design-system/variants.css' layer(legacy);
-@import '../../v3/tailwind/site/assets/css/design-system/design-studio.css' layer(legacy);
-@import '../../v3/tailwind/studio/studio.css' layer(legacy);
+@source '../../v3/studio/index.html';
+@source '../../v3/studio/studio.js';
+@import '../../v3/site/assets/css/design-system/tokens.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/white.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/blue.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/night-esports-green.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/cosmic-spectrum-purple.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/jade-jackpot.css' layer(legacy);
+@import '../../v3/site/assets/css/skins/curated-collection.css' layer(legacy);
+@import '../../v3/site/assets/css/design-system/components.css' layer(legacy);
+@import '../../v3/site/assets/css/design-system/variants.css' layer(legacy);
+@import '../../v3/site/assets/css/design-system/design-studio.css' layer(legacy);
+@import '../../v3/studio/studio.css' layer(legacy);
 
 @theme static {
   --color-bg: var(--bg);

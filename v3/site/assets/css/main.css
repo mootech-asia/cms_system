@@ -1844,7 +1844,7 @@ section.lobby-section { margin-top: 44px; }
    較高 specificity 的規則才擋得住，讓 .gcard-art-broken 墊底圖能顯示。 */
 .gcard-art-image[hidden] { display: none; }
 /* site.js 在 img 載入失敗時掛上這個 class：墊底圖路徑相對本檔案位置
-   解析（main.css 固定在 assets/css/ 下），site/ 與 site-mobile/ 兩邊
+   解析（main.css 固定在 assets/css/ 下），site/ 與 site/mobile/ 兩邊
    共用同一份 main.css，不受頁面所在資料夾影響。 */
 .gcard-art.gcard-art-broken {
   background-image: url(../mock/game-fallback.svg);
@@ -2492,7 +2492,7 @@ section.lobby-section { margin-top: 44px; }
      重複，隱藏但不從 HTML 移除——site.js 的 initPromosAndCategoryViews()
      用 document.querySelector('.cat-tabs') 找不找得到來判斷「這是不是
      分類頁」，找到才會 mountCategoryView() 掛上廠商篩選/載入更多需要
-     的 _cvParams，整個拿掉會讓這兩個功能失效(手機版 site-mobile/
+     的 _cvParams，整個拿掉會讓這兩個功能失效(手機版 site/mobile/
      mobile.css 已經踩過這個雷，這裡沿用同一個修法)。 */
   .cat-tabs { display: none; }
   /* 底部固定列 .shell-mobile-nav(Browse/Home/Deposit/Promotion/Member)在
@@ -3719,6 +3719,11 @@ select.twk-field {
   background: transparent;
   border: 1px solid var(--line-hi);
   color: var(--text-mid);
+  /* Tailwind 也有一個叫 outline 的內建 utility（outline-style:solid），
+     跟這裡的語意 class 同名巧合；本檔仍是 unlayered stylesheet，優先權
+     高於 tailwind.css 裡任何 @layer utilities 規則，這裡明確蓋掉，
+     避免按鈕外圍多長出一圈非預期的 outline 環。 */
+  outline: none;
 }
 .ap-btn-wide.outline:hover { color: var(--control-hover-text); border-color: var(--accent); }
 

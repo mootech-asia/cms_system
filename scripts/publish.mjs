@@ -20,10 +20,10 @@ const DEST_BY_ENTRY = {
   v6: 'v6/site/assets/css',
   'v2-mobile': 'v2/site-mobile/assets/css',
   'v15-tailwind-site': 'v1.5/tailwind/site/assets/css',
-  'v2-tailwind-site': 'v2/tailwind/site/assets/css',
-  'v2-tailwind-studio': 'v2/tailwind/studio',
-  'v3-tailwind-site': 'v3/tailwind/site/assets/css',
-  'v3-tailwind-studio': 'v3/tailwind/studio',
+  'v2-site': 'v2/site/assets/css',
+  'v2-studio': 'v2/studio',
+  'v3-site': 'v3/site/assets/css',
+  'v3-studio': 'v3/studio',
 };
 
 for (const file of entries) {
