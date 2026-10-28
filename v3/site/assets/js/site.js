@@ -2585,6 +2585,27 @@
       var pct = /(\d+(?:\.\d+)?)\s*%/.exec(m[3]);
       return { league: m[1].trim(), home: teams[0], away: teams[1] || '', sentence: m[3].trim(), pct: pct ? Math.min(100, Number(pct[1])) : null };
     }
+    /* 預測句裡點名的那一隊就是 AI 看好的一方（四個語系的句子都直接寫隊名，有時只寫
+       第一個字，例如 Manchester United → "Manchester"）。兩隊都比對到或都比對不到時
+       不標，避免標錯。 */
+    function predictedSide(p) {
+      var s = p.sentence.toLowerCase();
+      function named(team) {
+        if (!team) return false;
+        var t = team.toLowerCase();
+        if (s.indexOf(t) !== -1) return true;
+        var first = t.split(/\s+/)[0];
+        return first.length >= 4 && s.indexOf(first) !== -1;
+      }
+      var h = named(p.home), a = named(p.away);
+      return h && !a ? 'home' : a && !h ? 'away' : null;
+    }
+    var WIN_BADGE = '<span class="inline-flex shrink-0 items-center gap-1 rounded-full bg-linear-to-r from-accent to-accent-2 px-2.5 py-1 font-mono text-[11px] font-extrabold leading-none tracking-wider text-text-on-accent">' +
+      '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 3h10v2h4v3a5 5 0 0 1-4.6 5A5 5 0 0 1 13 15.9V18h3v3H8v-3h3v-2.1A5 5 0 0 1 7.6 13 5 5 0 0 1 3 8V5h4V3zm-2 4v1a3 3 0 0 0 2 2.8V7H5zm12 0v3.8A3 3 0 0 0 19 8V7h-2z"></path></svg>' +
+      'WIN</span>';
+    function teamHTML(name, isWinner) {
+      return '<span class="flex min-w-0 items-center gap-2"><span class="truncate">' + escapeHtml(name) + '</span>' + (isWinner ? WIN_BADGE : '') + '</span>';
+    }
     function noticeSlideHTML(item, active, entering, isNew) {
       var cls = 'sport-notice-msg' + (active ? ' is-active' + (entering ? ' is-entering' : '') + (isNew ? ' is-new' : '') : '');
       return '<div class="' + cls + '"' + (active ? '' : ' aria-hidden="true"') + '>' +
@@ -2610,6 +2631,7 @@
             stub + tagHTML(item.type) + time + '</div>' +
           '</div>';
       }
+      var side = predictedSide(p);
       var pct = p.pct == null ? '' :
         '<span class="font-mono text-3xl font-extrabold leading-none text-accent-2">' + escapeHtml(String(p.pct)) + '%</span>' +
         '<span class="h-1.5 w-full overflow-hidden rounded-full bg-line"><span class="block h-full rounded-full bg-linear-to-r from-accent to-accent-2" style="width:' + p.pct + '%"></span></span>';
@@ -2617,9 +2639,9 @@
           body +
             '<span class="match-card-league truncate">' + escapeHtml(p.league) + '</span>' +
             '<div class="flex min-w-0 flex-col text-base font-bold leading-tight text-text">' +
-              '<span class="truncate">' + escapeHtml(p.home) + '</span>' +
+              teamHTML(p.home, side === 'home') +
               '<span class="font-mono text-xs font-normal text-text-dim">VS</span>' +
-              '<span class="truncate">' + escapeHtml(p.away) + '</span>' +
+              teamHTML(p.away, side === 'away') +
             '</div>' +
             '<p class="m-0 text-[13px] leading-snug text-text-mid">' + escapeHtml(p.sentence) + '</p>' +
           '</div>' +
