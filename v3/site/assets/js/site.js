@@ -2600,11 +2600,16 @@
       var h = named(p.home), a = named(p.away);
       return h && !a ? 'home' : a && !h ? 'away' : null;
     }
-    var WIN_BADGE = '<span class="inline-flex shrink-0 items-center gap-1 rounded-full bg-linear-to-r from-accent to-accent-2 px-2.5 py-1 font-mono text-[11px] font-extrabold leading-none tracking-wider text-text-on-accent">' +
-      '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 3h10v2h4v3a5 5 0 0 1-4.6 5A5 5 0 0 1 13 15.9V18h3v3H8v-3h3v-2.1A5 5 0 0 1 7.6 13 5 5 0 0 1 3 8V5h4V3zm-2 4v1a3 3 0 0 0 2 2.8V7H5zm12 0v3.8A3 3 0 0 0 19 8V7h-2z"></path></svg>' +
+    /* WIN 用 --warning（金色、獎盃色），跟各 skin 的主色（--accent）拉開：深色 skin 是
+       亮金底配 --bg 近黑字；淺色 skin 的 --warning 是深金，配淺色字對比不足（實測
+       2.7~3.4:1），改成 --text 深色底、--bg 淺色字、金色獎盃。沒被看好的一隊整列
+       調暗，一眼就分得出誰贏。 */
+    var WIN_BADGE = '<span class="inline-flex shrink-0 items-center gap-1 rounded-md bg-warning px-2 py-1 font-mono text-xs font-extrabold leading-none tracking-wider text-bg shadow-[0_0_14px_color-mix(in_srgb,var(--warning)_55%,transparent)] [[data-theme=light]_&]:bg-text">' +
+      '<svg class="[[data-theme=light]_&]:text-warning" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 3h10v2h4v3a5 5 0 0 1-4.6 5A5 5 0 0 1 13 15.9V18h3v3H8v-3h3v-2.1A5 5 0 0 1 7.6 13 5 5 0 0 1 3 8V5h4V3zm-2 4v1a3 3 0 0 0 2 2.8V7H5zm12 0v3.8A3 3 0 0 0 19 8V7h-2z"></path></svg>' +
       'WIN</span>';
-    function teamHTML(name, isWinner) {
-      return '<span class="flex min-w-0 items-center gap-2"><span class="truncate">' + escapeHtml(name) + '</span>' + (isWinner ? WIN_BADGE : '') + '</span>';
+    function teamHTML(name, state) {
+      var cls = state === 'win' ? 'text-text' : state === 'lose' ? 'text-text-dim' : '';
+      return '<span class="flex min-w-0 items-center gap-2 ' + cls + '"><span class="truncate">' + escapeHtml(name) + '</span>' + (state === 'win' ? WIN_BADGE : '') + '</span>';
     }
     function noticeSlideHTML(item, active, entering, isNew) {
       var cls = 'sport-notice-msg' + (active ? ' is-active' + (entering ? ' is-entering' : '') + (isNew ? ' is-new' : '') : '');
@@ -2639,9 +2644,9 @@
           body +
             '<span class="match-card-league truncate">' + escapeHtml(p.league) + '</span>' +
             '<div class="flex min-w-0 flex-col text-base font-bold leading-tight text-text">' +
-              teamHTML(p.home, side === 'home') +
+              teamHTML(p.home, side ? (side === 'home' ? 'win' : 'lose') : '') +
               '<span class="font-mono text-xs font-normal text-text-dim">VS</span>' +
-              teamHTML(p.away, side === 'away') +
+              teamHTML(p.away, side ? (side === 'away' ? 'win' : 'lose') : '') +
             '</div>' +
             '<p class="m-0 text-[13px] leading-snug text-text-mid">' + escapeHtml(p.sentence) + '</p>' +
           '</div>' +
