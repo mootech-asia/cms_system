@@ -2532,8 +2532,9 @@
   /* ============================================================
    * 即時體育訊息（index.html 的 live-sport 區塊、site-mobile 的體育分頁）：
    * 兩種外框共用同一份訊息清單、同一個輪播計時——
-   *   [data-sport-predict]：桌機首頁的 AI 預測卡片（取代原本的直播影片框），
-   *     卡片底部有倒數條與「N 秒後切換」；
+   *   [data-sport-predict]：桌機首頁的 AI 預測卡片（取代原本的直播影片框）。
+   *     每則訊息是一張卡，疊成一疊（後兩張露出底邊）；換下一則時最上面那張以
+   *     左邊為軸翻開、後面的往前遞補，上一則則反向翻回來；右上角圓環倒數。
    *   [data-sport-notice]：site-mobile 仍沿用的單列快訊。
    * 一次顯示一則、每 5 秒輪播，滑鼠移入或鍵盤焦點在外框內時暫停（倒數也停住）；
    * 新推播一律插到最前面並立即顯示、倒數重來。真實推播由後端呼叫
@@ -2545,6 +2546,23 @@
     if (!boxes.length) return;
     var mock = resolvePath(localeRoot(LOCALE), 't.lobby.sportNotice.mock') || resolvePath(localeRoot(FALLBACK_LOCALE), 't.lobby.sportNotice.mock') || [];
     var MAX_ITEMS = 20, ROTATE_MS = 5000, MOCK_PUSH_MS = 12000, INITIAL = 3, TICK_MS = 100;
+    var FLIP_MS = 600, RING_LEN = 69.115;
+    /* 疊放深度 0（最上面）～2 的位移／縮放／透明度；更深的完全隱藏在第 2 張後面。
+       以底部中心縮放，後面的卡只露出下緣。 */
+    var DEPTH = [
+      { y: 0, s: 1, o: 1 },
+      { y: 14, s: 0.94, o: 0.7 },
+      { y: 28, s: 0.88, o: 0.4 }
+    ];
+    /* 卡片沿用 .match-card，main.css（未分層、優先於 Tailwind utilities）在它上面
+       寫死了 transition: border-color，所以過場一律用行內樣式指定。 */
+    var SHEET_TRANSITION = 'transform 600ms cubic-bezier(.22,.61,.36,1), opacity 600ms cubic-bezier(.22,.61,.36,1), border-color .15s';
+    var FLIP_POSE = 'perspective(1400px) rotateY(-95deg)';
+    /* 翻開時卡片要清楚可見到快翻完才淡掉（opacity 用 ease-in），翻回來則先出現再轉正。 */
+    var FLIP_OUT_TRANSITION = 'transform 600ms cubic-bezier(.4,0,.2,1), opacity 600ms cubic-bezier(.7,0,1,.5), border-color .15s';
+    var FLIP_IN_TRANSITION = 'transform 600ms cubic-bezier(.22,.61,.36,1), opacity 250ms ease-out, border-color .15s';
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var SHEET_TRANSITION_ON = reduceMotion ? 'none' : SHEET_TRANSITION;
     var items = [];
     var index = 0;
     var mockCursor = 0;
@@ -2575,12 +2593,14 @@
           '<time class="sport-notice-time" datetime="' + item.time.toISOString() + '">' + stamp(item.time) + '</time>' +
         '</div>';
     }
-    function predictSlideHTML(item, active, entering) {
+    /* 每張卡上方留 pt-12 給疊在最上層的工具列（標題、倒數環、上一則／下一則）。
+       疊在後面的卡（data-behind）只露出卡邊，內容隱藏，避免從底緣透出文字。 */
+    function predictSheetHTML(item, j) {
       var p = item.type === 'predict' ? parsePredict(item.text) : null;
-      var cls = '[grid-area:1/1] flex min-w-0 flex-col gap-2 ' + (active ? 'visible' + (entering ? ' motion-safe:animate-[sportNoticeIn_.35s_ease-out]' : '') : 'invisible');
+      var open = '<div class="match-card [grid-area:1/1] flex min-w-0 flex-col gap-2 p-4 pt-12 [&[data-behind]>*]:invisible" data-sheet="' + j + '">';
       var time = '<time class="font-mono text-xs text-text-dim" datetime="' + item.time.toISOString() + '">' + stamp(item.time) + '</time>';
       if (!p) {
-        return '<div class="' + cls + '"' + (active ? '' : ' aria-hidden="true"') + '>' +
+        return open +
             '<div class="flex items-center justify-between gap-2">' + tagHTML(item.type) + time + '</div>' +
             '<p class="m-0 text-sm leading-relaxed text-text">' + escapeHtml(item.text) + '</p>' +
           '</div>';
@@ -2590,7 +2610,7 @@
           '<span class="font-mono text-3xl font-extrabold leading-none text-accent-2">' + escapeHtml(String(p.pct)) + '%</span>' +
           '<span class="h-1.5 flex-1 overflow-hidden rounded-full bg-line"><span class="block h-full rounded-full bg-linear-to-r from-accent to-accent-2" style="width:' + p.pct + '%"></span></span>' +
         '</div>';
-      return '<div class="' + cls + '"' + (active ? '' : ' aria-hidden="true"') + '>' +
+      return open +
           '<div class="flex items-center justify-between gap-2"><span class="match-card-league truncate">' + escapeHtml(p.league) + '</span>' + time + '</div>' +
           '<div class="flex min-w-0 items-center gap-2 text-base font-bold text-text">' +
             '<span class="truncate">' + escapeHtml(p.home) + '</span>' +
@@ -2601,36 +2621,110 @@
           '<p class="m-0 text-[13px] leading-snug text-text-mid">' + escapeHtml(p.sentence) + '</p>' +
         '</div>';
     }
-    /* 所有訊息都疊在同一格（CSS grid），只有目前這則可見；框高固定為最長那則，
-       輪播換到較短的訊息時外框與下方賽事列不會跟著上下跳。 */
-    function render(entering, isNew) {
+    function setPose(el, d, animate) {
+      var n = items.length;
+      var k = Math.min(d, DEPTH.length - 1);
+      var pose = DEPTH[k];
+      if (!animate) el.style.transition = 'none';
+      el.style.transformOrigin = '50% 100%';
+      el.style.transform = 'translateY(' + pose.y + 'px) scale(' + pose.s + ')';
+      el.style.opacity = d < DEPTH.length ? String(pose.o) : '0';
+      el.style.zIndex = String(10 - Math.min(d, 9));
+      var top = d === 0;
+      el.inert = !top;
+      if (top) el.removeAttribute('aria-hidden'); else el.setAttribute('aria-hidden', 'true');
+      if (top) el.removeAttribute('data-behind'); else el.setAttribute('data-behind', '');
+      if (!animate) void el.offsetWidth;
+      el.style.transition = SHEET_TRANSITION_ON;
+      return n;
+    }
+    function depthOf(j) { return (j - index + items.length) % items.length; }
+    function sheetsOf(box) { return Array.prototype.slice.call(box.querySelectorAll('[data-sheet]')); }
+    /* dir：1 = 往下一則（原本最上面那張翻開後回到最底），-1 = 往上一則（新的最上面
+       那張從翻開的姿勢翻回來），0 = 不做翻頁動畫。 */
+    function placeSheets(box, dir, prevIndex) {
+      sheetsOf(box).forEach(function (el) {
+        var j = Number(el.getAttribute('data-sheet'));
+        var d = depthOf(j);
+        if (!reduceMotion && dir === 1 && j === prevIndex) {
+          el.style.transition = FLIP_OUT_TRANSITION;
+          el.style.transformOrigin = '0% 50%';
+          el.style.zIndex = '20';
+          el.style.transform = FLIP_POSE;
+          el.style.opacity = '0';
+          el.inert = true;
+          el.setAttribute('aria-hidden', 'true');
+          el.removeAttribute('data-behind');
+          setTimeout(function () {
+            if (depthOf(j) === 0) return;
+            setPose(el, depthOf(j), false);
+            var o = el.style.opacity;
+            el.style.transition = 'none'; el.style.opacity = '0'; void el.offsetWidth;
+            el.style.transition = SHEET_TRANSITION_ON; el.style.opacity = o;
+          }, FLIP_MS);
+        } else if (!reduceMotion && dir === -1 && d === 0) {
+          el.style.transition = 'none';
+          el.style.transformOrigin = '0% 50%';
+          el.style.transform = FLIP_POSE;
+          el.style.opacity = '0';
+          el.style.zIndex = '20';
+          void el.offsetWidth;
+          el.style.transition = FLIP_IN_TRANSITION;
+          el.style.transform = 'none';
+          el.style.opacity = '1';
+          el.inert = false;
+          el.removeAttribute('aria-hidden');
+          el.removeAttribute('data-behind');
+          setTimeout(function () { if (depthOf(j) === 0) setPose(el, 0, false); }, FLIP_MS);
+        } else {
+          setPose(el, d, true);
+        }
+      });
+    }
+    function renderBoxes(entering, isNew, dir) {
       boxes.forEach(function (box) {
         var isCard = box.hasAttribute('data-sport-predict');
         var viewport = box.querySelector(isCard ? '[data-sport-predict-viewport]' : '.sport-notice-viewport');
         var count = box.querySelector('[data-sport-notice-count]');
         if (count) count.textContent = items.length ? (index + 1) + ' / ' + items.length : '0 / 0';
-        if (!viewport) return;
-        viewport.innerHTML = items.map(function (item, i) {
-          return isCard ? predictSlideHTML(item, i === index, entering) : noticeSlideHTML(item, i === index, entering, isNew);
-        }).join('');
         Array.prototype.forEach.call(box.querySelectorAll('[data-sport-notice-prev],[data-sport-notice-next]'), function (b) { b.disabled = items.length < 2; });
+        if (!viewport) return;
+        if (isCard) {
+          viewport.innerHTML = items.map(predictSheetHTML).join('');
+          sheetsOf(box).forEach(function (el) { setPose(el, depthOf(Number(el.getAttribute('data-sheet'))), false); });
+          if (dir === -1) placeSheets(box, -1, -1);
+        } else {
+          viewport.innerHTML = items.map(function (item, i) { return noticeSlideHTML(item, i === index, entering, isNew); }).join('');
+        }
       });
       renderCountdown();
     }
     function renderCountdown() {
       var running = items.length > 1;
       var secs = Math.max(1, Math.ceil(remaining / 1000));
+      var label = running ? tr('t.lobby.sportNotice.nextIn', 'Next in {n}s').replace('{n}', secs) : '';
       boxes.forEach(function (box) {
-        var fill = box.querySelector('[data-sport-predict-timer]');
-        var label = box.querySelector('[data-sport-predict-countdown]');
-        if (fill) fill.style.transform = 'scaleX(' + (running ? Math.max(0, remaining / ROTATE_MS) : 0) + ')';
-        if (label) label.textContent = running ? tr('t.lobby.sportNotice.nextIn', 'Next in {n}s').replace('{n}', secs) : '';
+        var ring = box.querySelector('[data-sport-predict-ring]');
+        var num = box.querySelector('[data-sport-predict-countdown]');
+        var wrap = box.querySelector('[data-sport-predict-ring-wrap]');
+        if (ring) ring.style.strokeDashoffset = String(RING_LEN * (1 - (running ? Math.max(0, remaining / ROTATE_MS) : 0)));
+        if (num) num.textContent = running ? String(secs) : '';
+        if (wrap) { wrap.setAttribute('title', label); wrap.setAttribute('aria-label', label); wrap.hidden = !running; }
       });
     }
-    function show(i, isNew) {
-      if (!items.length) { render(false, false); return; }
+    /* 換則：單列快訊整個重畫（進場動畫），預測卡片只改每張卡的疊放位置，
+       讓 transition 接得上、做出翻頁。 */
+    function show(i, dir) {
+      if (!items.length) { renderBoxes(false, false, 0); return; }
+      var prevIndex = index;
       index = (i + items.length) % items.length;
-      render(true, isNew);
+      boxes.forEach(function (box) {
+        var count = box.querySelector('[data-sport-notice-count]');
+        if (count) count.textContent = (index + 1) + ' / ' + items.length;
+        if (box.hasAttribute('data-sport-predict')) { placeSheets(box, dir, prevIndex); return; }
+        var viewport = box.querySelector('.sport-notice-viewport');
+        if (viewport) viewport.innerHTML = items.map(function (item, k) { return noticeSlideHTML(item, k === index, true, false); }).join('');
+      });
     }
     function isPaused() {
       return boxes.some(function (box) { return box.matches(':hover') || box.contains(document.activeElement); });
@@ -2645,14 +2739,15 @@
       var type = msg.type === 'goal' || msg.type === 'predict' ? msg.type : 'notice';
       items.unshift({ type: type, text: String(msg.text), time: msg.time ? new Date(msg.time) : new Date() });
       if (items.length > MAX_ITEMS) items.length = MAX_ITEMS;
-      show(0, true);
+      index = 0;
+      renderBoxes(true, true, -1);
       restartRotate();
     }
 
     boxes.forEach(function (box) {
       box.addEventListener('click', function (e) {
-        if (e.target.closest('[data-sport-notice-prev]')) { show(index - 1, false); restartRotate(); }
-        else if (e.target.closest('[data-sport-notice-next]')) { show(index + 1, false); restartRotate(); }
+        if (e.target.closest('[data-sport-notice-prev]')) { show(index - 1, -1); restartRotate(); }
+        else if (e.target.closest('[data-sport-notice-next]')) { show(index + 1, 1); restartRotate(); }
       });
     });
 
@@ -2661,7 +2756,7 @@
       items.push({ type: mock[mockCursor].type, text: mock[mockCursor].text, time: new Date(now - (k + 1) * 4 * 60000) });
       mockCursor++;
     }
-    show(0, false);
+    renderBoxes(false, false, 0);
     restartRotate();
     setInterval(function () {
       var t = Date.now();
@@ -2669,7 +2764,7 @@
       lastTick = t;
       if (items.length < 2 || isPaused()) return;
       remaining -= dt;
-      if (remaining <= 0) { show(index + 1, false); remaining = ROTATE_MS; }
+      if (remaining <= 0) { show(index + 1, 1); remaining = ROTATE_MS; }
       renderCountdown();
     }, TICK_MS);
     window.CMS_SPORT_NOTICE = { push: push };
