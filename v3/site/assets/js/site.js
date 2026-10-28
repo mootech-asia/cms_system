@@ -2732,7 +2732,19 @@
       });
       renderCountdown();
     }
+    /* 預測卡的 NEW：目前這張是 NEW_MS 內收到的才顯示（時間取自推播的 time），
+       每個 tick 都重新判斷，所以時間到就自動消失，滑鼠停在卡片上時也一樣。 */
+    var NEW_MS = 60000;
+    function renderNewFlag() {
+      var cur = items[index];
+      var fresh = !!cur && Date.now() - cur.time.getTime() < NEW_MS;
+      boxes.forEach(function (box) {
+        var flag = box.querySelector('[data-sport-predict-new]');
+        if (flag && flag.hidden === fresh) flag.hidden = !fresh;
+      });
+    }
     function renderCountdown() {
+      renderNewFlag();
       var running = items.length > 1;
       var secs = Math.max(1, Math.ceil(remaining / 1000));
       var label = running ? tr('t.lobby.sportNotice.nextIn', 'Next in {n}s').replace('{n}', secs) : '';
@@ -2751,6 +2763,7 @@
       if (!items.length) { renderBoxes(false, false, 0); return; }
       var prevIndex = index;
       index = (i + items.length) % items.length;
+      renderNewFlag();
       boxes.forEach(function (box) {
         var count = box.querySelector('[data-sport-notice-count]');
         if (count) count.textContent = (index + 1) + ' / ' + items.length;
@@ -2795,6 +2808,7 @@
       var t = Date.now();
       var dt = t - lastTick;
       lastTick = t;
+      renderNewFlag();
       if (items.length < 2 || isPaused()) return;
       remaining -= dt;
       if (remaining <= 0) { show(index + 1, 1); remaining = ROTATE_MS; }
