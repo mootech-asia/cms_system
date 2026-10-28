@@ -2530,22 +2530,26 @@
   }
 
   /* ============================================================
-   * 即時體育訊息公告區（index.html 的 live-sport 區塊、site-mobile 的體育分頁）：
-   * 賽事卡片是第三方資料，公告獨立一列不疊在上面。一次顯示一則、每 5 秒輪播，
-   * 滑鼠移入或鍵盤焦點在區塊內時暫停；新推播一律插到最前面並立即顯示。
-   * 真實推播由後端呼叫 window.CMS_SPORT_NOTICE.push({ type, text })；
-   * type 為 predict／goal／notice。目前沒有後端，先每 12 秒從 i18n 的
-   * mock 清單取下一則模擬推播。
+   * 即時體育訊息（index.html 的 live-sport 區塊、site-mobile 的體育分頁）：
+   * 兩種外框共用同一份訊息清單、同一個輪播計時——
+   *   [data-sport-predict]：桌機首頁的 AI 預測卡片（取代原本的直播影片框），
+   *     卡片底部有倒數條與「N 秒後切換」；
+   *   [data-sport-notice]：site-mobile 仍沿用的單列快訊。
+   * 一次顯示一則、每 5 秒輪播，滑鼠移入或鍵盤焦點在外框內時暫停（倒數也停住）；
+   * 新推播一律插到最前面並立即顯示、倒數重來。真實推播由後端呼叫
+   * window.CMS_SPORT_NOTICE.push({ type, text })，type 為 predict／goal／notice。
+   * 目前沒有後端，先每 12 秒從 i18n 的 mock 清單取下一則模擬推播。
    * ========================================================== */
   function initSportNotice() {
-    var boxes = Array.prototype.slice.call(document.querySelectorAll('[data-sport-notice]'));
+    var boxes = Array.prototype.slice.call(document.querySelectorAll('[data-sport-notice],[data-sport-predict]'));
     if (!boxes.length) return;
     var mock = resolvePath(localeRoot(LOCALE), 't.lobby.sportNotice.mock') || resolvePath(localeRoot(FALLBACK_LOCALE), 't.lobby.sportNotice.mock') || [];
-    var MAX_ITEMS = 20, ROTATE_MS = 5000, MOCK_PUSH_MS = 12000, INITIAL = 3;
+    var MAX_ITEMS = 20, ROTATE_MS = 5000, MOCK_PUSH_MS = 12000, INITIAL = 3, TICK_MS = 100;
     var items = [];
     var index = 0;
     var mockCursor = 0;
-    var rotateTimer = null;
+    var remaining = ROTATE_MS;
+    var lastTick = Date.now();
 
     function pad(n) { return n < 10 ? '0' + n : String(n); }
     function stamp(d) { return pad(d.getHours()) + ':' + pad(d.getMinutes()); }
@@ -2554,23 +2558,73 @@
       if (type === 'goal') return '<span class="match-card-live-badge">' + label + '</span>';
       return '<span class="rec-pill' + (type === 'predict' ? ' ok' : '') + '">' + label + '</span>';
     }
+    /* 推播文字格式：League  -   "Home VS Away"    預測句（含 NN%）。四個語系只有
+       預測句不同，聯賽與隊名都是原文，所以用同一條規則拆；拆不出來就整句照原文顯示。 */
+    function parsePredict(text) {
+      var m = /^(.*?)\s+-\s+"([^"]+)"\s+([\s\S]+)$/.exec(text);
+      if (!m) return null;
+      var teams = m[2].split(/\s+VS\s+/i);
+      var pct = /(\d+(?:\.\d+)?)\s*%/.exec(m[3]);
+      return { league: m[1].trim(), home: teams[0], away: teams[1] || '', sentence: m[3].trim(), pct: pct ? Math.min(100, Number(pct[1])) : null };
+    }
+    function noticeSlideHTML(item, active, entering, isNew) {
+      var cls = 'sport-notice-msg' + (active ? ' is-active' + (entering ? ' is-entering' : '') + (isNew ? ' is-new' : '') : '');
+      return '<div class="' + cls + '"' + (active ? '' : ' aria-hidden="true"') + '>' +
+          tagHTML(item.type) +
+          '<span class="sport-notice-text">' + escapeHtml(item.text) + '</span>' +
+          '<time class="sport-notice-time" datetime="' + item.time.toISOString() + '">' + stamp(item.time) + '</time>' +
+        '</div>';
+    }
+    function predictSlideHTML(item, active, entering) {
+      var p = item.type === 'predict' ? parsePredict(item.text) : null;
+      var cls = '[grid-area:1/1] flex min-w-0 flex-col gap-2 ' + (active ? 'visible' + (entering ? ' motion-safe:animate-[sportNoticeIn_.35s_ease-out]' : '') : 'invisible');
+      var time = '<time class="font-mono text-xs text-text-dim" datetime="' + item.time.toISOString() + '">' + stamp(item.time) + '</time>';
+      if (!p) {
+        return '<div class="' + cls + '"' + (active ? '' : ' aria-hidden="true"') + '>' +
+            '<div class="flex items-center justify-between gap-2">' + tagHTML(item.type) + time + '</div>' +
+            '<p class="m-0 text-sm leading-relaxed text-text">' + escapeHtml(item.text) + '</p>' +
+          '</div>';
+      }
+      var meter = p.pct == null ? '' :
+        '<div class="flex items-center gap-3">' +
+          '<span class="font-mono text-3xl font-extrabold leading-none text-accent-2">' + escapeHtml(String(p.pct)) + '%</span>' +
+          '<span class="h-1.5 flex-1 overflow-hidden rounded-full bg-line"><span class="block h-full rounded-full bg-linear-to-r from-accent to-accent-2" style="width:' + p.pct + '%"></span></span>' +
+        '</div>';
+      return '<div class="' + cls + '"' + (active ? '' : ' aria-hidden="true"') + '>' +
+          '<div class="flex items-center justify-between gap-2"><span class="match-card-league truncate">' + escapeHtml(p.league) + '</span>' + time + '</div>' +
+          '<div class="flex min-w-0 items-center gap-2 text-base font-bold text-text">' +
+            '<span class="truncate">' + escapeHtml(p.home) + '</span>' +
+            '<span class="shrink-0 font-mono text-xs text-text-dim">VS</span>' +
+            '<span class="truncate">' + escapeHtml(p.away) + '</span>' +
+          '</div>' +
+          meter +
+          '<p class="m-0 text-[13px] leading-snug text-text-mid">' + escapeHtml(p.sentence) + '</p>' +
+        '</div>';
+    }
     /* 所有訊息都疊在同一格（CSS grid），只有目前這則可見；框高固定為最長那則，
-       輪播換到較短的訊息時下方賽事列不會跟著上下跳。 */
+       輪播換到較短的訊息時外框與下方賽事列不會跟著上下跳。 */
     function render(entering, isNew) {
       boxes.forEach(function (box) {
-        var viewport = box.querySelector('.sport-notice-viewport');
+        var isCard = box.hasAttribute('data-sport-predict');
+        var viewport = box.querySelector(isCard ? '[data-sport-predict-viewport]' : '.sport-notice-viewport');
         var count = box.querySelector('[data-sport-notice-count]');
         if (count) count.textContent = items.length ? (index + 1) + ' / ' + items.length : '0 / 0';
         if (!viewport) return;
         viewport.innerHTML = items.map(function (item, i) {
-          var cls = 'sport-notice-msg' + (i === index ? ' is-active' + (entering ? ' is-entering' : '') + (isNew ? ' is-new' : '') : '');
-          return '<div class="' + cls + '"' + (i === index ? '' : ' aria-hidden="true"') + '>' +
-              tagHTML(item.type) +
-              '<span class="sport-notice-text">' + escapeHtml(item.text) + '</span>' +
-              '<time class="sport-notice-time" datetime="' + item.time.toISOString() + '">' + stamp(item.time) + '</time>' +
-            '</div>';
+          return isCard ? predictSlideHTML(item, i === index, entering) : noticeSlideHTML(item, i === index, entering, isNew);
         }).join('');
         Array.prototype.forEach.call(box.querySelectorAll('[data-sport-notice-prev],[data-sport-notice-next]'), function (b) { b.disabled = items.length < 2; });
+      });
+      renderCountdown();
+    }
+    function renderCountdown() {
+      var running = items.length > 1;
+      var secs = Math.max(1, Math.ceil(remaining / 1000));
+      boxes.forEach(function (box) {
+        var fill = box.querySelector('[data-sport-predict-timer]');
+        var label = box.querySelector('[data-sport-predict-countdown]');
+        if (fill) fill.style.transform = 'scaleX(' + (running ? Math.max(0, remaining / ROTATE_MS) : 0) + ')';
+        if (label) label.textContent = running ? tr('t.lobby.sportNotice.nextIn', 'Next in {n}s').replace('{n}', secs) : '';
       });
     }
     function show(i, isNew) {
@@ -2582,8 +2636,9 @@
       return boxes.some(function (box) { return box.matches(':hover') || box.contains(document.activeElement); });
     }
     function restartRotate() {
-      if (rotateTimer) clearInterval(rotateTimer);
-      rotateTimer = setInterval(function () { if (!isPaused() && items.length > 1) show(index + 1, false); }, ROTATE_MS);
+      remaining = ROTATE_MS;
+      lastTick = Date.now();
+      renderCountdown();
     }
     function push(msg) {
       if (!msg || !msg.text) return;
@@ -2608,6 +2663,15 @@
     }
     show(0, false);
     restartRotate();
+    setInterval(function () {
+      var t = Date.now();
+      var dt = t - lastTick;
+      lastTick = t;
+      if (items.length < 2 || isPaused()) return;
+      remaining -= dt;
+      if (remaining <= 0) { show(index + 1, false); remaining = ROTATE_MS; }
+      renderCountdown();
+    }, TICK_MS);
     window.CMS_SPORT_NOTICE = { push: push };
     if (mock.length) {
       setInterval(function () {

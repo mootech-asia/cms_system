@@ -410,6 +410,8 @@ const TRANSLATIONS = Object.freeze({
         title: "即時快訊",
         prev: "上一則",
         next: "下一則",
+        cardTitle: "AI 賽事預測",
+        nextIn: "{n} 秒後切換",
         types: Object.freeze({ predict: "預測", goal: "進球", notice: "公告" }),
         mock: Object.freeze([
           Object.freeze({ type: "predict", text: "Premier League  -   \"Manchester United VS Liverpool\"    預測 Manchester 的勝率為 63%（依據 CLOUD AI 提供的評估）。" }),
@@ -747,6 +749,8 @@ const TRANSLATIONS = Object.freeze({
         title: "Live updates",
         prev: "Previous",
         next: "Next",
+        cardTitle: "AI Match Prediction",
+        nextIn: "Next in {n}s",
         types: Object.freeze({ predict: "Prediction", goal: "Goal", notice: "Notice" }),
         mock: Object.freeze([
           Object.freeze({ type: "predict", text: "Premier League  -   \"Manchester United VS Liverpool\"    Manchester's win probability is predicted to be 63% (based on an assessment provided by CLOUD AI)." }),
@@ -1078,6 +1082,8 @@ const TRANSLATIONS = Object.freeze({
         title: "실시간 소식",
         prev: "이전",
         next: "다음",
+        cardTitle: "AI 경기 예측",
+        nextIn: "{n}초 후 다음",
         types: Object.freeze({ predict: "예측", goal: "골", notice: "공지" }),
         mock: Object.freeze([
           Object.freeze({ type: "predict", text: "Premier League  -   \"Manchester United VS Liverpool\"    Manchester의 승률은 63%로 예측됩니다 (CLOUD AI 제공 평가 기준)." }),
@@ -1405,6 +1411,8 @@ const TRANSLATIONS = Object.freeze({
         title: "ข่าวสดล่าสุด",
         prev: "ก่อนหน้า",
         next: "ถัดไป",
+        cardTitle: "AI ทำนายผลการแข่งขัน",
+        nextIn: "ถัดไปใน {n} วินาที",
         types: Object.freeze({ predict: "ทำนาย", goal: "ประตู", notice: "ประกาศ" }),
         mock: Object.freeze([
           Object.freeze({ type: "predict", text: "Premier League  -   \"Manchester United VS Liverpool\"    คาดการณ์โอกาสชนะของ Manchester อยู่ที่ 63% (อ้างอิงการประเมินจาก CLOUD AI)" }),
