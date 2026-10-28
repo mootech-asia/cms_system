@@ -2604,7 +2604,8 @@
        亮金底配 --bg 近黑字；淺色 skin 的 --warning 是深金，配淺色字對比不足（實測
        2.7~3.4:1），改成 --text 深色底、--bg 淺色字、金色獎盃。沒被看好的一隊整列
        調暗，一眼就分得出誰贏。 */
-    var WIN_BADGE = '<span class="inline-flex shrink-0 items-center gap-1 rounded-md bg-warning px-2 py-1 font-mono text-xs font-extrabold leading-none tracking-wider text-bg shadow-[0_0_14px_color-mix(in_srgb,var(--warning)_55%,transparent)] [[data-theme=light]_&]:bg-text">' +
+    var WIN_BADGE = '<span class="relative inline-flex shrink-0 items-center gap-1 overflow-hidden rounded-md bg-warning px-2 py-1 font-mono text-xs font-extrabold leading-none tracking-wider text-bg shadow-[0_0_14px_color-mix(in_srgb,var(--warning)_55%,transparent)] motion-safe:animate-[win-pulse_1.6s_ease-in-out_infinite] [[data-theme=light]_&]:bg-text">' +
+      '<span class="win-shine pointer-events-none absolute inset-y-0 left-0 w-1/3 animate-[win-shine_2.4s_ease-in-out_infinite] motion-reduce:hidden" aria-hidden="true"></span>' +
       '<svg class="[[data-theme=light]_&]:text-warning" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 3h10v2h4v3a5 5 0 0 1-4.6 5A5 5 0 0 1 13 15.9V18h3v3H8v-3h3v-2.1A5 5 0 0 1 7.6 13 5 5 0 0 1 3 8V5h4V3zm-2 4v1a3 3 0 0 0 2 2.8V7H5zm12 0v3.8A3 3 0 0 0 19 8V7h-2z"></path></svg>' +
       'WIN</span>';
     function teamHTML(name, state) {
