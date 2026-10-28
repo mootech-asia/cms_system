@@ -181,11 +181,11 @@
     transparent);
 }
 
-/* AI 預測卡片的「比賽門票」外形：右側票根（寬 --ticket-stub）上下各一個半圓缺口，
+/* AI 預測卡片的「比賽門票」外形：右側票根（寬 --ticket-stub，定義在外層
+   [data-sport-predict] 上，票卡、撕線、頂部工具列的票根段共用）上下各一個半圓缺口，
    用 mask 挖空、mask-composite 取交集；票根與票身之間的虛線撕線由 ticket-perf 畫。
    合成運算子作用在「該層」與「它下面所有層的合成結果」之間，所以交集標在第 1 層。 */
 @utility ticket-shape {
-  --ticket-stub: 148px;
   --ticket-notch: 9px;
   -webkit-mask:
     radial-gradient(circle var(--ticket-notch) at calc(100% - var(--ticket-stub)) 0, transparent calc(var(--ticket-notch) - .5px), #000 var(--ticket-notch)),
