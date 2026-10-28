@@ -180,3 +180,34 @@
     color-mix(in srgb, var(--accent-2) 50%, var(--text-on-media)) 50%,
     transparent);
 }
+
+/* AI 預測卡片的「比賽門票」外形：右側票根（寬 --ticket-stub）上下各一個半圓缺口，
+   左上角一個打孔（套環從這裡穿過，整疊票像串起來的小冊子）。三個洞都用 mask 挖空，
+   mask-composite 取交集；票根與票身之間的虛線撕線由 ticket-perf 畫。 */
+@utility ticket-shape {
+  --ticket-stub: 148px;
+  --ticket-notch: 9px;
+  --ticket-hole-x: 20px;
+  --ticket-hole-y: 20px;
+  --ticket-hole-r: 6px;
+  -webkit-mask:
+    radial-gradient(circle var(--ticket-notch) at calc(100% - var(--ticket-stub)) 0, transparent calc(var(--ticket-notch) - .5px), #000 var(--ticket-notch)),
+    radial-gradient(circle var(--ticket-notch) at calc(100% - var(--ticket-stub)) 100%, transparent calc(var(--ticket-notch) - .5px), #000 var(--ticket-notch)),
+    radial-gradient(circle var(--ticket-hole-r) at var(--ticket-hole-x) var(--ticket-hole-y), transparent calc(var(--ticket-hole-r) - .5px), #000 var(--ticket-hole-r));
+  -webkit-mask-composite: source-in, source-in;
+  /* 合成運算子作用在「該層」與「它下面所有層的合成結果」之間，所以交集要標在第 1、2 層。 */
+  mask:
+    radial-gradient(circle var(--ticket-notch) at calc(100% - var(--ticket-stub)) 0, transparent calc(var(--ticket-notch) - .5px), #000 var(--ticket-notch)) intersect,
+    radial-gradient(circle var(--ticket-notch) at calc(100% - var(--ticket-stub)) 100%, transparent calc(var(--ticket-notch) - .5px), #000 var(--ticket-notch)) intersect,
+    radial-gradient(circle var(--ticket-hole-r) at var(--ticket-hole-x) var(--ticket-hole-y), transparent calc(var(--ticket-hole-r) - .5px), #000 var(--ticket-hole-r));
+}
+@utility ticket-perf {
+  position: absolute;
+  top: calc(var(--ticket-notch) + 4px);
+  bottom: calc(var(--ticket-notch) + 4px);
+  right: var(--ticket-stub);
+  border-left: 2px dashed var(--line);
+}
+@utility ticket-stub-w {
+  width: var(--ticket-stub);
+}

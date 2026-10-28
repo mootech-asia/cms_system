@@ -2533,8 +2533,8 @@
    * 即時體育訊息（index.html 的 live-sport 區塊、site-mobile 的體育分頁）：
    * 兩種外框共用同一份訊息清單、同一個輪播計時——
    *   [data-sport-predict]：桌機首頁的 AI 預測卡片（取代原本的直播影片框）。
-   *     每則訊息是一張卡，疊成一疊（後兩張露出底邊）；換下一則時最上面那張以
-   *     左邊為軸翻開、後面的往前遞補，上一則則反向翻回來；右上角圓環倒數。
+   *     每則訊息是一張比賽門票，左上角用套環串成一疊（後兩張露出底邊）；換下一則
+   *     時最上面那張繞套環甩開、後面的往前遞補，上一則則反向轉回來；圓環倒數。
    *   [data-sport-notice]：site-mobile 仍沿用的單列快訊。
    * 一次顯示一則、每 5 秒輪播，滑鼠移入或鍵盤焦點在外框內時暫停（倒數也停住）；
    * 新推播一律插到最前面並立即顯示、倒數重來。真實推播由後端呼叫
@@ -2547,18 +2547,22 @@
     var mock = resolvePath(localeRoot(LOCALE), 't.lobby.sportNotice.mock') || resolvePath(localeRoot(FALLBACK_LOCALE), 't.lobby.sportNotice.mock') || [];
     var MAX_ITEMS = 20, ROTATE_MS = 5000, MOCK_PUSH_MS = 12000, INITIAL = 3, TICK_MS = 100;
     var FLIP_MS = 600, RING_LEN = 69.115;
-    /* 疊放深度 0（最上面）～2 的位移／縮放／透明度；更深的完全隱藏在第 2 張後面。
-       以底部中心縮放，後面的卡只露出下緣。 */
+    /* 疊放深度 0（最上面）～2 的角度／透明度；更深的完全隱藏在第 2 張後面。
+       每張票都繞左上角的套環孔（PIVOT，對應 ticket-shape 的 --ticket-hole-x/y）
+       往右下展開成扇形：孔永遠對齊在套環上，後面的票只露出右下緣。 */
+    var PIVOT = '20px 20px';
     var DEPTH = [
-      { y: 0, s: 1, o: 1 },
-      { y: 14, s: 0.94, o: 0.7 },
-      { y: 28, s: 0.88, o: 0.4 }
+      { r: 0, o: 1 },
+      { r: 2, o: 0.7 },
+      { r: 4, o: 0.4 }
     ];
     /* 卡片沿用 .match-card，main.css（未分層、優先於 Tailwind utilities）在它上面
        寫死了 transition: border-color，所以過場一律用行內樣式指定。 */
     var SHEET_TRANSITION = 'transform 600ms cubic-bezier(.22,.61,.36,1), opacity 600ms cubic-bezier(.22,.61,.36,1), border-color .15s';
-    var FLIP_POSE = 'perspective(1400px) rotateY(-95deg)';
-    /* 翻開時卡片要清楚可見到快翻完才淡掉（opacity 用 ease-in），翻回來則先出現再轉正。 */
+    /* 換頁：最上面那張繞套環往下甩、淡出後回到整疊最後面；反向則從那裡轉回來。 */
+    var FLIP_ORIGIN = PIVOT;
+    var FLIP_POSE = 'rotate(28deg)';
+    /* 甩開時卡片要清楚可見到快轉完才淡掉（opacity 用 ease-in），轉回來則先出現再轉正。 */
     var FLIP_OUT_TRANSITION = 'transform 600ms cubic-bezier(.4,0,.2,1), opacity 600ms cubic-bezier(.7,0,1,.5), border-color .15s';
     var FLIP_IN_TRANSITION = 'transform 600ms cubic-bezier(.22,.61,.36,1), opacity 250ms ease-out, border-color .15s';
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2593,32 +2597,37 @@
           '<time class="sport-notice-time" datetime="' + item.time.toISOString() + '">' + stamp(item.time) + '</time>' +
         '</div>';
     }
-    /* 每張卡上方留 pt-12 給疊在最上層的工具列（標題、倒數環、上一則／下一則）。
-       疊在後面的卡（data-behind）只露出卡邊，內容隱藏，避免從底緣透出文字。 */
+    /* 每張卡是一張「比賽門票」（ticket-shape：右側票根上下半圓缺口、左上角打孔，
+       套環從孔穿過）。票身與票根上方各留 pt-12 給疊在最上層的工具列（標題在票身、
+       倒數環與上一則／下一則在票根）。疊在後面的卡（data-behind）只露出卡邊，
+       內容隱藏，避免從底緣透出文字。 */
     function predictSheetHTML(item, j) {
       var p = item.type === 'predict' ? parsePredict(item.text) : null;
-      var open = '<div class="match-card [grid-area:1/1] flex min-w-0 flex-col gap-2 p-4 pt-12 [&[data-behind]>*]:invisible" data-sheet="' + j + '">';
+      var open = '<div class="match-card ticket-shape relative [grid-area:1/1] flex min-w-0 [&[data-behind]>*]:invisible" data-sheet="' + j + '">' +
+        '<span class="ticket-perf pointer-events-none" aria-hidden="true"></span>';
       var time = '<time class="font-mono text-xs text-text-dim" datetime="' + item.time.toISOString() + '">' + stamp(item.time) + '</time>';
+      var body = '<div class="flex min-w-0 flex-1 flex-col gap-2 p-4 pt-12">';
+      var stub = '<div class="ticket-stub-w flex shrink-0 flex-col items-center justify-center gap-2 px-4 pb-4 pt-12">';
       if (!p) {
         return open +
-            '<div class="flex items-center justify-between gap-2">' + tagHTML(item.type) + time + '</div>' +
-            '<p class="m-0 text-sm leading-relaxed text-text">' + escapeHtml(item.text) + '</p>' +
+            body + '<p class="m-0 text-sm leading-relaxed text-text">' + escapeHtml(item.text) + '</p></div>' +
+            stub + tagHTML(item.type) + time + '</div>' +
           '</div>';
       }
-      var meter = p.pct == null ? '' :
-        '<div class="flex items-center gap-3">' +
-          '<span class="font-mono text-3xl font-extrabold leading-none text-accent-2">' + escapeHtml(String(p.pct)) + '%</span>' +
-          '<span class="h-1.5 flex-1 overflow-hidden rounded-full bg-line"><span class="block h-full rounded-full bg-linear-to-r from-accent to-accent-2" style="width:' + p.pct + '%"></span></span>' +
-        '</div>';
+      var pct = p.pct == null ? '' :
+        '<span class="font-mono text-3xl font-extrabold leading-none text-accent-2">' + escapeHtml(String(p.pct)) + '%</span>' +
+        '<span class="h-1.5 w-full overflow-hidden rounded-full bg-line"><span class="block h-full rounded-full bg-linear-to-r from-accent to-accent-2" style="width:' + p.pct + '%"></span></span>';
       return open +
-          '<div class="flex items-center justify-between gap-2"><span class="match-card-league truncate">' + escapeHtml(p.league) + '</span>' + time + '</div>' +
-          '<div class="flex min-w-0 items-center gap-2 text-base font-bold text-text">' +
-            '<span class="truncate">' + escapeHtml(p.home) + '</span>' +
-            '<span class="shrink-0 font-mono text-xs text-text-dim">VS</span>' +
-            '<span class="truncate">' + escapeHtml(p.away) + '</span>' +
+          body +
+            '<span class="match-card-league truncate">' + escapeHtml(p.league) + '</span>' +
+            '<div class="flex min-w-0 flex-col text-base font-bold leading-tight text-text">' +
+              '<span class="truncate">' + escapeHtml(p.home) + '</span>' +
+              '<span class="font-mono text-xs font-normal text-text-dim">VS</span>' +
+              '<span class="truncate">' + escapeHtml(p.away) + '</span>' +
+            '</div>' +
+            '<p class="m-0 text-[13px] leading-snug text-text-mid">' + escapeHtml(p.sentence) + '</p>' +
           '</div>' +
-          meter +
-          '<p class="m-0 text-[13px] leading-snug text-text-mid">' + escapeHtml(p.sentence) + '</p>' +
+          stub + pct + time + '</div>' +
         '</div>';
     }
     function setPose(el, d, animate) {
@@ -2626,8 +2635,8 @@
       var k = Math.min(d, DEPTH.length - 1);
       var pose = DEPTH[k];
       if (!animate) el.style.transition = 'none';
-      el.style.transformOrigin = '50% 100%';
-      el.style.transform = 'translateY(' + pose.y + 'px) scale(' + pose.s + ')';
+      el.style.transformOrigin = PIVOT;
+      el.style.transform = 'rotate(' + pose.r + 'deg)';
       el.style.opacity = d < DEPTH.length ? String(pose.o) : '0';
       el.style.zIndex = String(10 - Math.min(d, 9));
       var top = d === 0;
@@ -2648,7 +2657,7 @@
         var d = depthOf(j);
         if (!reduceMotion && dir === 1 && j === prevIndex) {
           el.style.transition = FLIP_OUT_TRANSITION;
-          el.style.transformOrigin = '0% 50%';
+          el.style.transformOrigin = FLIP_ORIGIN;
           el.style.zIndex = '20';
           el.style.transform = FLIP_POSE;
           el.style.opacity = '0';
@@ -2664,7 +2673,7 @@
           }, FLIP_MS);
         } else if (!reduceMotion && dir === -1 && d === 0) {
           el.style.transition = 'none';
-          el.style.transformOrigin = '0% 50%';
+          el.style.transformOrigin = FLIP_ORIGIN;
           el.style.transform = FLIP_POSE;
           el.style.opacity = '0';
           el.style.zIndex = '20';
