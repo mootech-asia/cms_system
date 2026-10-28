@@ -148,11 +148,13 @@
     var rail = document.createElement('div');
     rail.setAttribute('data-qr-rail', '');
     rail.className = 'fixed right-0 top-1/2 z-30 flex -translate-y-1/2 items-center';
+    /* 底板圓角 27px = 按鈕半徑 20（h-10）+ 留白 6（p-1.5）+ 框線 1，跟圓形按鈕同心；
+       把手用同一個圓角，所以至少要 27px 寬、54px 高（w-7 h-14）才不會被瀏覽器縮小。 */
     var btn = 'grid h-10 w-10 place-items-center rounded-full bg-surface-2 text-primary';
     rail.innerHTML =
-      '<button type="button" class="grid h-12 w-5 place-items-center rounded-l-xl border border-r-0 border-border bg-surface/90 text-text-2 shadow-card backdrop-blur-sm" data-qr-rail-toggle aria-expanded="true" aria-label="' + esc(tx('Customer Service')) + '">' +
+      '<button type="button" class="grid h-14 w-7 place-items-center rounded-l-[27px] border border-r-0 border-border bg-surface/72 text-text-2 shadow-card backdrop-blur-sm" data-qr-rail-toggle aria-expanded="true" aria-label="' + esc(tx('Customer Service')) + '">' +
       '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="rotate-180 transition-transform" data-qr-rail-chevron aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>' +
-      '<div class="flex flex-col items-center gap-2.5 rounded-l-3xl border border-r-0 border-border bg-surface/90 px-1.5 py-2 shadow-card backdrop-blur-sm" data-qr-rail-items>' +
+      '<div class="flex flex-col items-center gap-2.5 rounded-l-[27px] border border-r-0 border-border bg-surface/72 p-1.5 shadow-card backdrop-blur-sm" data-qr-rail-items>' +
       '<a href="#" class="' + btn + '" data-chat-open aria-label="' + esc(tx('Live Chat')) + '"><img src="../site/logo.png" alt="" class="w-7 object-contain"></a>' +
       '<a href="https://t.me/win10096cs" target="_blank" rel="noopener noreferrer" class="' + btn + '" aria-label="' + esc(tx('Promo Channel')) + '"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg></a>' +
       '<a href="about.html?tab=faq" class="' + btn + '" aria-label="' + esc(tx('FAQ')) + '"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg></a>' +
