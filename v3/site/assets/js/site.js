@@ -2533,9 +2533,8 @@
    * 即時體育訊息（index.html 的 live-sport 區塊、site-mobile 的體育分頁）：
    * 兩種外框共用同一份訊息清單、同一個輪播計時——
    *   [data-sport-predict]：桌機首頁的 AI 預測卡片（取代原本的直播影片框）。
-   *     每則訊息是一張比賽門票，左上角用套環串成一疊（後兩張露出底邊）；換下一則
-   *     時最上面那張以套環那側為軸往後翻走、後面的往前遞補，上一則則反向翻回來；
-   *     圓環倒數。
+   *     每則訊息是一張比賽門票，疊成一疊（後兩張露出底邊）；換下一則時最上面那張
+   *     以左邊為軸翻開、後面的往前遞補，上一則則反向翻回來；右上角圓環倒數。
    *   [data-sport-notice]：site-mobile 仍沿用的單列快訊。
    * 一次顯示一則、每 5 秒輪播，滑鼠移入或鍵盤焦點在外框內時暫停（倒數也停住）；
    * 新推播一律插到最前面並立即顯示、倒數重來。真實推播由後端呼叫
@@ -2547,29 +2546,21 @@
     if (!boxes.length) return;
     var mock = resolvePath(localeRoot(LOCALE), 't.lobby.sportNotice.mock') || resolvePath(localeRoot(FALLBACK_LOCALE), 't.lobby.sportNotice.mock') || [];
     var MAX_ITEMS = 20, ROTATE_MS = 5000, MOCK_PUSH_MS = 12000, INITIAL = 3, TICK_MS = 100;
-    var FLIP_MS = 650, RING_LEN = 69.115;
-    /* 疊放深度 0（最上面）～2 的角度／透明度；更深的完全隱藏在第 2 張後面。
-       每張票都繞左上角的套環孔（PIVOT，對應 ticket-shape 的 --ticket-hole-x/y）
-       往右下展開成扇形：孔永遠對齊在套環上，後面的票只露出右下緣。 */
-    var PIVOT = '20px 20px';
+    var FLIP_MS = 600, RING_LEN = 69.115;
+    /* 疊放深度 0（最上面）～2 的位移／縮放／透明度；更深的完全隱藏在第 2 張後面。
+       以底部中心縮放，後面的卡只露出下緣。 */
     var DEPTH = [
-      { r: 0, o: 1 },
-      { r: 2, o: 0.7 },
-      { r: 4, o: 0.4 }
+      { y: 0, s: 1, o: 1 },
+      { y: 14, s: 0.94, o: 0.7 },
+      { y: 28, s: 0.88, o: 0.4 }
     ];
-    /* 換頁：最上面那張以套環那一側（x = 套環孔）為軸往畫面裡翻，全程不透明、
-       越翻越暗，翻到側面（90°）時背面朝前、backface 隱藏而消失，再回到整疊最後面；
-       往畫面裡翻只會越翻越小，不會蓋到旁邊的賽事卡或下方區塊。上一則／新推播則
-       從側面翻回來。四種狀態的 transform 都用同一組函式（perspective rotateY rotate），
-       transition 才能逐項內插、不會走矩陣內插變形。 */
-    var FLIP_ORIGIN = '20px 50%';
-    function pose(rotY, rot) { return 'perspective(1200px) rotateY(' + rotY + 'deg) rotate(' + rot + 'deg)'; }
-    var FLIP_SHADE = 'brightness(.55)';
     /* 卡片沿用 .match-card，main.css（未分層、優先於 Tailwind utilities）在它上面
        寫死了 transition: border-color，所以過場一律用行內樣式指定。 */
     var SHEET_TRANSITION = 'transform 600ms cubic-bezier(.22,.61,.36,1), opacity 600ms cubic-bezier(.22,.61,.36,1), border-color .15s';
-    var FLIP_OUT_TRANSITION = 'transform ' + FLIP_MS + 'ms cubic-bezier(.45,0,.75,.35), filter ' + FLIP_MS + 'ms ease-in, border-color .15s';
-    var FLIP_IN_TRANSITION = 'transform ' + FLIP_MS + 'ms cubic-bezier(.2,.75,.3,1), filter ' + FLIP_MS + 'ms ease-out, border-color .15s';
+    var FLIP_POSE = 'perspective(1400px) rotateY(-95deg)';
+    /* 翻開時卡片要清楚可見到快翻完才淡掉（opacity 用 ease-in），翻回來則先出現再轉正。 */
+    var FLIP_OUT_TRANSITION = 'transform 600ms cubic-bezier(.4,0,.2,1), opacity 600ms cubic-bezier(.7,0,1,.5), border-color .15s';
+    var FLIP_IN_TRANSITION = 'transform 600ms cubic-bezier(.22,.61,.36,1), opacity 250ms ease-out, border-color .15s';
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var SHEET_TRANSITION_ON = reduceMotion ? 'none' : SHEET_TRANSITION;
     var items = [];
@@ -2602,8 +2593,8 @@
           '<time class="sport-notice-time" datetime="' + item.time.toISOString() + '">' + stamp(item.time) + '</time>' +
         '</div>';
     }
-    /* 每張卡是一張「比賽門票」（ticket-shape：右側票根上下半圓缺口、左上角打孔，
-       套環從孔穿過）。票身與票根上方各留 pt-12 給疊在最上層的工具列（標題在票身、
+    /* 每張卡是一張「比賽門票」（ticket-shape：右側票根上下半圓缺口、虛線撕線）。
+       票身與票根上方各留 pt-12 給疊在最上層的工具列（標題在票身、
        倒數環與上一則／下一則在票根）。疊在後面的卡（data-behind）只露出卡邊，
        內容隱藏，避免從底緣透出文字。 */
     function predictSheetHTML(item, j) {
@@ -2636,12 +2627,13 @@
         '</div>';
     }
     function setPose(el, d, animate) {
+      var n = items.length;
       var k = Math.min(d, DEPTH.length - 1);
+      var pose = DEPTH[k];
       if (!animate) el.style.transition = 'none';
-      el.style.transformOrigin = PIVOT;
-      el.style.transform = pose(0, DEPTH[k].r);
-      el.style.filter = '';
-      el.style.opacity = d < DEPTH.length ? String(DEPTH[k].o) : '0';
+      el.style.transformOrigin = '50% 100%';
+      el.style.transform = 'translateY(' + pose.y + 'px) scale(' + pose.s + ')';
+      el.style.opacity = d < DEPTH.length ? String(pose.o) : '0';
       el.style.zIndex = String(10 - Math.min(d, 9));
       var top = d === 0;
       el.inert = !top;
@@ -2649,22 +2641,22 @@
       if (top) el.removeAttribute('data-behind'); else el.setAttribute('data-behind', '');
       if (!animate) void el.offsetWidth;
       el.style.transition = SHEET_TRANSITION_ON;
+      return n;
     }
     function depthOf(j) { return (j - index + items.length) % items.length; }
     function sheetsOf(box) { return Array.prototype.slice.call(box.querySelectorAll('[data-sheet]')); }
-    /* dir：1 = 往下一則（原本最上面那張翻走後回到最底），-1 = 往上一則／新推播（新的
-       最上面那張從側面翻回來），0 = 不做翻頁動畫。 */
+    /* dir：1 = 往下一則（原本最上面那張翻開後回到最底），-1 = 往上一則（新的最上面
+       那張從翻開的姿勢翻回來），0 = 不做翻頁動畫。 */
     function placeSheets(box, dir, prevIndex) {
       sheetsOf(box).forEach(function (el) {
         var j = Number(el.getAttribute('data-sheet'));
         var d = depthOf(j);
-        el.style.backfaceVisibility = 'hidden';
         if (!reduceMotion && dir === 1 && j === prevIndex) {
           el.style.transition = FLIP_OUT_TRANSITION;
-          el.style.transformOrigin = FLIP_ORIGIN;
+          el.style.transformOrigin = '0% 50%';
           el.style.zIndex = '20';
-          el.style.transform = pose(90, 0);
-          el.style.filter = FLIP_SHADE;
+          el.style.transform = FLIP_POSE;
+          el.style.opacity = '0';
           el.inert = true;
           el.setAttribute('aria-hidden', 'true');
           el.removeAttribute('data-behind');
@@ -2677,18 +2669,17 @@
           }, FLIP_MS);
         } else if (!reduceMotion && dir === -1 && d === 0) {
           el.style.transition = 'none';
-          el.style.transformOrigin = FLIP_ORIGIN;
-          el.style.transform = pose(90, 0);
-          el.style.filter = FLIP_SHADE;
-          el.style.opacity = '1';
+          el.style.transformOrigin = '0% 50%';
+          el.style.transform = FLIP_POSE;
+          el.style.opacity = '0';
           el.style.zIndex = '20';
-          el.removeAttribute('data-behind');
           void el.offsetWidth;
           el.style.transition = FLIP_IN_TRANSITION;
-          el.style.transform = pose(0, 0);
-          el.style.filter = '';
+          el.style.transform = 'none';
+          el.style.opacity = '1';
           el.inert = false;
           el.removeAttribute('aria-hidden');
+          el.removeAttribute('data-behind');
           setTimeout(function () { if (depthOf(j) === 0) setPose(el, 0, false); }, FLIP_MS);
         } else {
           setPose(el, d, true);
