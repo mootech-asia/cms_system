@@ -2653,7 +2653,8 @@
             stub + tagHTML(item.type) + time + '</div>' +
           '</div>';
       }
-      var side = predictedSide(p);
+      /* 有和局機率（足球等）時不標 WIN、也不調暗另一隊，只在沒有和局的賽事標出看好的一方。 */
+      var side = item.draw == null ? predictedSide(p) : null;
       var pct = p.pct == null ? '' :
         '<span class="font-mono text-3xl font-extrabold leading-none text-accent-2">' + escapeHtml(String(p.pct)) + '%</span>' +
         '<span class="h-1.5 w-full overflow-hidden rounded-full bg-line"><span class="block h-full rounded-full bg-linear-to-r from-accent to-accent-2" style="width:' + p.pct + '%"></span></span>';
