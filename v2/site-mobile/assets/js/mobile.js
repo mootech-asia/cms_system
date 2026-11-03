@@ -446,11 +446,21 @@
     thead: '',
     tbody: '',
     th: 'whitespace-nowrap py-2.5 px-3.5 text-left text-[11.5px] font-bold text-text-2 bg-surface-2',
-    thNum: 'whitespace-nowrap py-2.5 px-3.5 text-right text-[11.5px] font-bold text-text-2 bg-surface-2',
     td: 'whitespace-nowrap border-t border-border-soft py-3 px-3.5 text-[12.5px] text-text',
-    tdNum: 'whitespace-nowrap border-t border-border-soft py-3 px-3.5 text-[12.5px] text-text text-right [font-variant-numeric:tabular-nums]',
-    pillOk: 'inline-block rounded-full py-1 px-2 text-[11px] leading-none font-bold bg-primary/16 text-primary',
-    pillPend: 'inline-block rounded-full py-1 px-2 text-[11px] leading-none font-bold bg-surface-2 text-text-2',
+    list: 'flex flex-col gap-3',
+    card: 'rounded-2xl border border-border-soft bg-surface overflow-hidden',
+    cardToggle: 'w-full flex items-center justify-between gap-3 p-3.5 text-left',
+    cardTitle: 'text-[12.5px] font-semibold text-text',
+    cardSub: 'text-[11px] text-text-3 truncate mt-0.5',
+    cardAmtOk: 'text-[14.5px] font-bold text-primary [font-variant-numeric:tabular-nums]',
+    cardAmt: 'text-[14.5px] font-bold text-text-2 [font-variant-numeric:tabular-nums]',
+    cardStatusOk: 'text-[11.5px] font-semibold text-primary mt-0.5',
+    cardStatus: 'text-[11.5px] font-semibold text-text-3 mt-0.5',
+    cardChevron: 'record-chevron h-4 w-4 flex-none text-text-3 transition-transform',
+    cardDetail: 'record-detail hidden border-t border-border-soft px-3.5 py-3 flex flex-col gap-2',
+    cardRow: 'flex items-center justify-between text-[12px]',
+    cardRowLabel: 'text-text-3',
+    cardRowVal: 'font-medium text-right text-text',
     rfRowFirst: 'flex flex-col gap-2 pb-3',
     rfRow: 'flex flex-col gap-2 pt-3 border-t border-border-soft',
     rfLabel: 'text-[12px] font-semibold text-text-2',
@@ -614,14 +624,28 @@
     function render() {
       var draft = root.querySelector('#rf-code');
       var draftVal = draft ? draft.value : code;
-      var rows = CR_FRIENDS.map(function (f) {
-        var pill = f.done
-          ? '<span class="' + CR_CLS.pillOk + '">' + crEsc(crT('referral.statusDone', 'Completed')) + '</span>'
-          : '<span class="' + CR_CLS.pillPend + '">' + crEsc(crT('referral.statusPending', 'Not completed')) + '</span>';
-        return '<tr><td class="' + CR_CLS.td + '">' + crEsc(f.reg) + '</td><td class="' + CR_CLS.td + '">' + crEsc(crMaskAccount(f.account)) + '</td><td class="' + CR_CLS.td + '">' + crEsc(f.login) + '</td>' +
-          '<td class="' + CR_CLS.td + '">' + pill + '</td><td class="' + CR_CLS.tdNum + '">' + crEsc(f.reward.toLocaleString('en-US')) + '</td></tr>';
+      var row = function (path, fb, val) {
+        return '<div class="' + CR_CLS.cardRow + '"><span class="' + CR_CLS.cardRowLabel + '">' + crEsc(crT(path, fb)) + '</span><span class="' + CR_CLS.cardRowVal + '">' + crEsc(val) + '</span></div>';
+      };
+      var cards = CR_FRIENDS.map(function (f) {
+        var status = f.done ? crT('referral.statusDone', 'Completed') : crT('referral.statusPending', 'Not completed');
+        var reward = f.reward.toLocaleString('en-US');
+        var account = crMaskAccount(f.account);
+        return '<div class="' + CR_CLS.card + '" data-record-card>' +
+          '<button type="button" class="' + CR_CLS.cardToggle + '" data-record-toggle aria-expanded="false">' +
+            '<div class="min-w-0"><p class="' + CR_CLS.cardTitle + '">' + crEsc(account) + '</p><p class="' + CR_CLS.cardSub + '">' + crEsc(f.reg) + '</p></div>' +
+            '<div class="text-right flex-none"><p class="' + (f.done ? CR_CLS.cardAmtOk : CR_CLS.cardAmt) + '">' + crEsc(reward) + '</p><p class="' + (f.done ? CR_CLS.cardStatusOk : CR_CLS.cardStatus) + '">' + crEsc(status) + '</p></div>' +
+            '<svg class="' + CR_CLS.cardChevron + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>' +
+          '</button>' +
+          '<div class="' + CR_CLS.cardDetail + '" data-record-detail>' +
+            row('referral.colAccount', 'Friend Account', account) +
+            row('referral.colReg', 'Registration Date', f.reg) +
+            row('referral.colLogin', 'Last Login Date', f.login) +
+            row('referral.colStatus', 'Status', status) +
+            row('referral.colReward', 'Referral Reward', reward) +
+          '</div>' +
+        '</div>';
       }).join('');
-      var th = function (path, fb, cls) { return '<th class="' + (cls || CR_CLS.th) + '">' + crEsc(crT(path, fb)) + '</th>'; };
       root.innerHTML =
         '<div class="' + CR_CLS.panel + '">' +
           '<h2 class="' + CR_CLS.panelTitle + '">' + crEsc(crT('referral.settings', 'Referral Code Settings')) + '</h2>' +
@@ -638,9 +662,7 @@
           '</div>' +
         '</div>' +
         '<h2 class="' + CR_CLS.sectionTitle + '">' + crEsc(crT('referral.friends', 'Referred Friends')) + '</h2>' +
-        '<div class="' + CR_CLS.tableWrap + '"><div class="' + CR_CLS.tableInner + '"><table class="' + CR_CLS.table + '"><thead class="' + CR_CLS.thead + '"><tr>' +
-          th('referral.colReg', 'Registration Date') + th('referral.colAccount', 'Friend Account') + th('referral.colLogin', 'Last Login Date') + th('referral.colStatus', 'Status') + th('referral.colReward', 'Referral Reward', CR_CLS.thNum) +
-        '</tr></thead><tbody class="' + CR_CLS.tbody + '">' + rows + '</tbody></table></div></div>';
+        '<div class="' + CR_CLS.list + '">' + cards + '</div>';
       bind();
     }
 

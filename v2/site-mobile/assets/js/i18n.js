@@ -58,7 +58,6 @@
     'rec.statusRejected': { zh: '已拒絕', en: 'Rejected', ko: '거절됨', th: 'ถูกปฏิเสธ' },
     'rec.confirm': { zh: '確認', en: 'Confirm', ko: '확인', th: 'ยืนยัน' },
     'rec.chooseDate': { zh: '選擇日期', en: 'Choose Date', ko: '날짜 선택', th: 'เลือกวันที่' },
-    'drawer.lobby': { zh: '大廳', en: 'Lobby', ko: '홈', th: 'ล็อบบี้' },
     'drawer.myAccount': { zh: '我的帳戶', en: 'My Account', ko: '내 계정', th: 'บัญชีของฉัน' },
     'home.showAll': { zh: '查看全部', en: 'Show all', ko: '전체보기', th: 'แสดงทั้งหมด' },
     'search.game': { zh: '搜尋遊戲', en: 'Search Game', ko: '게임 검색', th: 'ค้นหาเกม' },
