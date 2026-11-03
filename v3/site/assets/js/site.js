@@ -2612,6 +2612,22 @@
       var cls = state === 'win' ? 'text-text' : state === 'lose' ? 'text-text-dim' : '';
       return '<span class="flex min-w-0 items-center gap-2 ' + cls + '"><span class="truncate">' + escapeHtml(name) + '</span>' + (state === 'win' ? WIN_BADGE : '') + '</span>';
     }
+    /* 和局機率：推播的 draw 欄位（0~100）。籃球、棒球等沒有和局的賽事不帶，
+       票根就不顯示這一列。 */
+    function drawOf(msg) {
+      var d = Number(msg && msg.draw);
+      return isFinite(d) && d >= 0 && d <= 100 && msg.draw !== '' && msg.draw != null ? d : null;
+    }
+    function drawHTML(d) {
+      if (d == null) return '';
+      return '<div class="flex w-full flex-col gap-1">' +
+          '<div class="flex items-baseline justify-between gap-2 font-mono text-xs text-text-dim">' +
+            '<span>' + escapeHtml(tr('t.lobby.sportNotice.draw', 'Draw')) + '</span>' +
+            '<span class="text-sm font-extrabold text-text-mid">' + escapeHtml(String(d)) + '%</span>' +
+          '</div>' +
+          '<span class="h-1 w-full overflow-hidden rounded-full bg-line"><span class="block h-full rounded-full bg-text-dim" style="width:' + d + '%"></span></span>' +
+        '</div>';
+    }
     function noticeSlideHTML(item, active, entering, isNew) {
       var cls = 'sport-notice-msg' + (active ? ' is-active' + (entering ? ' is-entering' : '') + (isNew ? ' is-new' : '') : '');
       return '<div class="' + cls + '"' + (active ? '' : ' aria-hidden="true"') + '>' +
@@ -2651,7 +2667,7 @@
             '</div>' +
             '<p class="m-0 text-[13px] leading-snug text-text-mid">' + escapeHtml(p.sentence) + '</p>' +
           '</div>' +
-          stub + pct + time + '</div>' +
+          stub + pct + drawHTML(item.draw) + time + '</div>' +
         '</div>';
     }
     function setPose(el, d, animate) {
@@ -2783,7 +2799,7 @@
     function push(msg) {
       if (!msg || !msg.text) return;
       var type = msg.type === 'goal' || msg.type === 'predict' ? msg.type : 'notice';
-      items.unshift({ type: type, text: String(msg.text), time: msg.time ? new Date(msg.time) : new Date() });
+      items.unshift({ type: type, text: String(msg.text), time: msg.time ? new Date(msg.time) : new Date(), draw: drawOf(msg) });
       if (items.length > MAX_ITEMS) items.length = MAX_ITEMS;
       index = 0;
       renderBoxes(true, true, -1);
@@ -2799,7 +2815,7 @@
 
     var now = Date.now();
     for (var k = 0; k < INITIAL && mockCursor < mock.length; k++) {
-      items.push({ type: mock[mockCursor].type, text: mock[mockCursor].text, time: new Date(now - (k + 1) * 4 * 60000) });
+      items.push({ type: mock[mockCursor].type, text: mock[mockCursor].text, time: new Date(now - (k + 1) * 4 * 60000), draw: drawOf(mock[mockCursor]) });
       mockCursor++;
     }
     renderBoxes(false, false, 0);
@@ -2819,7 +2835,7 @@
       setInterval(function () {
         var m = mock[mockCursor % mock.length];
         mockCursor++;
-        push({ type: m.type, text: m.text });
+        push({ type: m.type, text: m.text, draw: m.draw });
       }, MOCK_PUSH_MS);
     }
   }
