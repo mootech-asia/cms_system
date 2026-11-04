@@ -112,8 +112,6 @@
   min-width: 150px;
   text-align: center;
 }
-.ci-checkin-btn { margin-left: auto; }
-.ci-checkin-btn:disabled { cursor: default; opacity: .7; }
 .ci-cal-grid {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
@@ -179,7 +177,6 @@
 @media (max-width: 768px) {
   .ci-cal-head { flex-wrap: wrap; }
   .ci-cal-title { flex: 1; min-width: 0; }
-  .ci-checkin-btn { width: 100%; margin-left: 0; }
   .ci-cal-grid { gap: 4px; }
   .ci-summary { grid-template-columns: 1fr; gap: 6px; }
   .ci-summary .game-modal-stat {

@@ -2064,6 +2064,11 @@
     var added = [];
     try { added = JSON.parse(localStorage.getItem(CHECKIN_STORE_KEY) || '[]') || []; } catch (e) { added = []; }
     added.forEach(function (k) { checked[k] = true; });
+    if (!checked[todayKey]) {
+      checked[todayKey] = true;
+      added.push(todayKey);
+      try { localStorage.setItem(CHECKIN_STORE_KEY, JSON.stringify(added)); } catch (e) {}
+    }
 
     var view = { y: today.getFullYear(), m: today.getMonth() };
     var htmlLang = ((I18N.LANGS && I18N.LANGS[LOCALE] && I18N.LANGS[LOCALE].htmlLang) || 'en') + '-u-ca-gregory';
@@ -2088,7 +2093,6 @@
       var totalReward = keys.reduce(function (sum, k) { return sum + byKey[k].reward; }, 0);
       var cur = byKey[todayKey] || byKey[ciDayKey(ciAddDays(today, -1))];
       var curStreak = cur ? cur.streak : 0;
-      var doneToday = !!checked[todayKey];
 
       var stat = function (label, val) {
         return '<div class="game-modal-stat"><div class="game-modal-stat-label">' + escapeHtml(label) + '</div><div class="game-modal-stat-val">' + escapeHtml(val) + '</div></div>';
@@ -2120,11 +2124,8 @@
         var label = dir === 'prev' ? fmt('prevMonth', 'Previous month') : fmt('nextMonth', 'Next month');
         return '<button type="button" class="icon-btn" data-ci-nav="' + dir + '" aria-label="' + escapeAttr(label) + '" title="' + escapeAttr(label) + '"><svg width="16" height="16" viewBox="0 0 24 24"><path d="' + path + '" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>';
       };
-      var actionBtn = doneToday
-        ? '<button type="button" class="btn ci-checkin-btn" disabled>' + escapeHtml(fmt('checkedIn', 'Checked in today')) + '</button>'
-        : '<button type="button" class="btn primary ci-checkin-btn" data-ci-checkin>' + escapeHtml(fmt('checkInNow', 'Check in now')) + '</button>';
       var calendar = '<div class="ap-panel ci-calendar">' +
-        '<div class="ci-cal-head">' + arrow('prev') + '<h2 class="ap-panel-h ci-cal-title">' + escapeHtml(monthTitle) + '</h2>' + arrow('next') + actionBtn + '</div>' +
+        '<div class="ci-cal-head">' + arrow('prev') + '<h2 class="ap-panel-h ci-cal-title">' + escapeHtml(monthTitle) + '</h2>' + arrow('next') + '</div>' +
         '<div class="ci-cal-grid">' + wd + cells + '</div>' +
         '<p class="ci-cal-note">' + escapeHtml(fmt('rule', 'Missing a day resets your streak — your next check-in starts again from Day 1.')) + '</p>' +
         '</div>';
@@ -2152,14 +2153,6 @@
         view.m += nav.getAttribute('data-ci-nav') === 'prev' ? -1 : 1;
         if (view.m < 0) { view.m = 11; view.y--; }
         if (view.m > 11) { view.m = 0; view.y++; }
-        render();
-        return;
-      }
-      if (e.target.closest('[data-ci-checkin]') && !checked[todayKey]) {
-        checked[todayKey] = true;
-        added.push(todayKey);
-        try { localStorage.setItem(CHECKIN_STORE_KEY, JSON.stringify(added)); } catch (err) {}
-        view = { y: today.getFullYear(), m: today.getMonth() };
         render();
       }
     });

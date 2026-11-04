@@ -3143,7 +3143,7 @@
    * 每日簽到（check-in.html）與推薦中心（referral.html）。
    * 簽到：月曆可切上／下個月，已簽到日期蓋章、未簽到留白；連續天數依前一天
    * 是否有簽到逐日累計，漏簽即從 Day 1 重算。簽到歷史為相對「今天」產生的
-   * 示範資料，今日簽到寫入 localStorage。
+   * 示範資料；進入頁面即自動完成今日簽到並寫入 localStorage。
    * 推薦中心：推薦碼（4–12 位英數，寫入 localStorage）＋推薦連結（複製）＋
    * 推薦好友列表（示範資料；帳號中間以 *** 遮蔽，獎勵千分位）。
    * ========================================================== */
@@ -3174,8 +3174,6 @@
     calHead: 'flex items-center gap-2.5 mb-4 max-md:flex-wrap',
     calTitle: 'm-0 min-w-[150px] text-center text-base font-bold text-text max-md:flex-1 max-md:min-w-0',
     navBtn: 'inline-flex items-center justify-center w-9 h-9 shrink-0 rounded-full border border-border bg-bg text-text transition-colors hover:border-text-4 cursor-pointer',
-    checkinBtn: 'inline-flex items-center justify-center whitespace-nowrap rounded-[var(--radius-ui)] bg-[image:var(--g-primary)] font-semibold text-on-primary transition-opacity hover:opacity-90 h-11 px-6 text-sm leading-normal cursor-pointer disabled:cursor-not-allowed disabled:bg-none disabled:bg-text-4 disabled:text-text-2 ml-auto max-md:ml-0 max-md:w-full',
-    checkinBtnDone: 'inline-flex items-center justify-center whitespace-nowrap rounded-[var(--radius-ui)] bg-[image:var(--g-primary)] font-semibold text-on-primary transition-opacity hover:opacity-90 h-11 px-6 text-sm leading-normal cursor-pointer disabled:cursor-not-allowed disabled:bg-none disabled:bg-text-4 disabled:text-text-2 ml-auto max-md:ml-0 max-md:w-full',
     calGrid: 'grid grid-cols-7 gap-2 max-md:gap-1',
     wd: 'py-1 text-center text-xs font-bold text-text-3',
     day: 'relative min-h-19 py-1.5 px-2 rounded-lg border bg-bg max-md:min-h-14 max-md:py-0.75 max-md:px-1 border-border-soft',
@@ -3212,8 +3210,6 @@
     'checkin.totalRewards': { zh: '總簽到獎勵', en: 'Total Check-in Rewards', ko: '총 출석 보상', th: 'รางวัลเช็คอินทั้งหมด' },
     'checkin.days': { zh: '{n} 天', en: '{n} days', ko: '{n}일', th: '{n} วัน' },
     'checkin.points': { zh: '{n} 積分', en: '{n} Points', ko: '{n} 포인트', th: '{n} คะแนน' },
-    'checkin.checkInNow': { zh: '立即簽到', en: 'Check in now', ko: '지금 출석하기', th: 'เช็คอินเลย' },
-    'checkin.checkedIn': { zh: '今日已簽到', en: 'Checked in today', ko: '오늘 출석 완료', th: 'เช็คอินวันนี้แล้ว' },
     'checkin.prevMonth': { zh: '上個月', en: 'Previous month', ko: '이전 달', th: 'เดือนก่อนหน้า' },
     'checkin.nextMonth': { zh: '下個月', en: 'Next month', ko: '다음 달', th: 'เดือนถัดไป' },
     'checkin.stamp': { zh: '已簽到', en: 'Done', ko: '완료', th: 'สำเร็จ' },
@@ -3289,6 +3285,11 @@
     var added = [];
     try { added = JSON.parse(localStorage.getItem(CR_CHECKIN_KEY) || '[]') || []; } catch (e) { added = []; }
     added.forEach(function (k) { checked[k] = true; });
+    if (!checked[todayKey]) {
+      checked[todayKey] = true;
+      added.push(todayKey);
+      try { localStorage.setItem(CR_CHECKIN_KEY, JSON.stringify(added)); } catch (e) {}
+    }
     var view = { y: today.getFullYear(), m: today.getMonth() };
 
     function computeEntries() {
@@ -3310,7 +3311,6 @@
       var keys = Object.keys(byKey);
       var totalReward = keys.reduce(function (sum, k) { return sum + byKey[k].reward; }, 0);
       var cur = byKey[todayKey] || byKey[crDayKey(crAddDays(today, -1))];
-      var doneToday = !!checked[todayKey];
 
       var stat = function (label, val) {
         return '<div class="' + CR_CLS.stat + '"><div class="' + CR_CLS.statLabel + '">' + crEsc(label) + '</div><div class="' + CR_CLS.statVal + '">' + crEsc(val) + '</div></div>';
@@ -3342,11 +3342,8 @@
         var label = dir === 'prev' ? crT('checkin.prevMonth', 'Previous month') : crT('checkin.nextMonth', 'Next month');
         return '<button type="button" class="' + CR_CLS.navBtn + '" data-ci-nav="' + dir + '" aria-label="' + crEsc(label) + '" title="' + crEsc(label) + '"><svg width="16" height="16" viewBox="0 0 24 24"><path d="' + path + '" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>';
       };
-      var actionBtn = doneToday
-        ? '<button type="button" class="' + CR_CLS.checkinBtnDone + '" disabled>' + crEsc(crT('checkin.checkedIn', 'Checked in today')) + '</button>'
-        : '<button type="button" class="' + CR_CLS.checkinBtn + '" data-ci-checkin>' + crEsc(crT('checkin.checkInNow', 'Check in now')) + '</button>';
       var calendar = '<div class="' + CR_CLS.panel + '">' +
-        '<div class="' + CR_CLS.calHead + '">' + arrow('prev') + '<h2 class="' + CR_CLS.calTitle + '">' + crEsc(monthTitle) + '</h2>' + arrow('next') + actionBtn + '</div>' +
+        '<div class="' + CR_CLS.calHead + '">' + arrow('prev') + '<h2 class="' + CR_CLS.calTitle + '">' + crEsc(monthTitle) + '</h2>' + arrow('next') + '</div>' +
         '<div class="' + CR_CLS.calGrid + '">' + wd + cells + '</div>' +
         '<p class="' + CR_CLS.note + '">' + crEsc(crT('checkin.rule', 'Missing a day resets your streak — your next check-in starts again from Day 1.')) + '</p>' +
         '</div>';
@@ -3375,14 +3372,6 @@
         view.m += nav.getAttribute('data-ci-nav') === 'prev' ? -1 : 1;
         if (view.m < 0) { view.m = 11; view.y--; }
         if (view.m > 11) { view.m = 0; view.y++; }
-        render();
-        return;
-      }
-      if (e.target.closest('[data-ci-checkin]') && !checked[todayKey]) {
-        checked[todayKey] = true;
-        added.push(todayKey);
-        try { localStorage.setItem(CR_CHECKIN_KEY, JSON.stringify(added)); } catch (err) {}
-        view = { y: today.getFullYear(), m: today.getMonth() };
         render();
       }
     });

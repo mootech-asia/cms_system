@@ -121,8 +121,6 @@
     'checkin.totalRewards': { zh: '總簽到獎勵', en: 'Total Check-in Rewards', ko: '총 출석 보상', th: 'รางวัลเช็คอินทั้งหมด' },
     'checkin.days': { zh: '{n} 天', en: '{n} days', ko: '{n}일', th: '{n} วัน' },
     'checkin.points': { zh: '{n} 積分', en: '{n} Points', ko: '{n} 포인트', th: '{n} คะแนน' },
-    'checkin.checkInNow': { zh: '立即簽到', en: 'Check in now', ko: '지금 출석하기', th: 'เช็คอินเลย' },
-    'checkin.checkedIn': { zh: '今日已簽到', en: 'Checked in today', ko: '오늘 출석 완료', th: 'เช็คอินวันนี้แล้ว' },
     'checkin.prevMonth': { zh: '上個月', en: 'Previous month', ko: '이전 달', th: 'เดือนก่อนหน้า' },
     'checkin.nextMonth': { zh: '下個月', en: 'Next month', ko: '다음 달', th: 'เดือนถัดไป' },
     'checkin.stamp': { zh: '已簽到', en: 'Done', ko: '완료', th: 'สำเร็จ' },
