@@ -1,13 +1,13 @@
 ---
 name: ui-craft
-description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、版面構成/變化性(不對稱分欄/留白集中)、動效/轉場時長、換膚 skin 色板、無障礙(ARIA/鍵盤操作)、表單設計、多語言排版(韓文/泰文字長撐版面)、投注/交易記錄這類資料表格、新寫錯誤訊息/空狀態/通知文案、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓/每個區塊都長一樣」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '視覺排列/版面構成', '變化性不夠/每頁都一樣', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', '無障礙/ARIA/鍵盤操作', '表單怎麼設計/驗證', '多語言版面會不會爆/文字被裁切', '記錄表格/table 怎麼設計', '錯誤訊息/空狀態文案怎麼寫', 'improve this UI', 'visual hierarchy', 'layout composition', 'design tokens', 'diagnose UI', 'motion/transition', 'accessibility', 'form validation', 'i18n layout', 'data table', 'ux writing', 'error message copy', '設計要有突破/新意'。整合九份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」與「內容逐字保留」的鐵則做了覆寫。"
+description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、版面構成/變化性(不對稱分欄/留白集中)、動效/轉場時長、換膚 skin 色板、無障礙(ARIA/鍵盤操作)、表單設計、多語言排版(韓文/泰文字長撐版面)、投注/交易記錄這類資料表格、新寫錯誤訊息/空狀態/通知文案、loading/骨架載入畫面、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓/每個區塊都長一樣」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '視覺排列/版面構成', '變化性不夠/每頁都一樣', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', '無障礙/ARIA/鍵盤操作', '表單怎麼設計/驗證', '多語言版面會不會爆/文字被裁切', '記錄表格/table 怎麼設計', '錯誤訊息/空狀態文案怎麼寫', 'loading/skeleton 載入畫面怎麼做', 'improve this UI', 'visual hierarchy', 'layout composition', 'design tokens', 'diagnose UI', 'motion/transition', 'accessibility', 'form validation', 'i18n layout', 'data table', 'ux writing', 'error message copy', 'skeleton loading', 'loading state', '設計要有突破/新意'。整合十份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」與「內容逐字保留」的鐵則做了覆寫。"
 ---
 
 # UI 製作與視覺突破技能
 
 ## 來源與改編說明
 
-這份技能整合九個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
+這份技能整合十個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
 
 1. **[s0xDk/refactoring-ui-skill](https://github.com/s0xDk/refactoring-ui-skill)**（MIT
    license）——把 Adam Wathan／Steve Schoger《Refactoring UI》濃縮成可執行規則的 Claude
@@ -72,6 +72,14 @@ description: "在本 repo 新增或修改任何頁面的視覺呈現時使用—
    改寫」，這份參考資料只能用在**新寫**的文案，不能拿來「順手優化」既有頁面的既有
    文字。原文「句長/易讀度」的具體英文字數門檻（8 字=100%理解率這類）是針對英文
    算的，中文/韓文/泰文沒有對應算法，只取背後的精簡原則，沒有照搬數字本身。
+10. **[FranciscoYuster/skeleton-loading](https://github.com/FranciscoYuster/skeleton-loading)**
+    （MIT license）——原文照搬進 `references/skeleton-loading.md`，補的是前九個來源
+    都只提過一句「loading 狀態不能省略」、卻從沒給過具體規格的部分：骨架畫面該在
+    什麼時候掛載/撤掉（200ms／3s／10s 的升級門檻）、shimmer 動畫該怎麼做（單一
+    方向、單一時間軸，不是每個方塊各自跑）、什麼情況該用骨架而不是 spinner 或
+    樂觀更新。CSS 範例原文用 `color-mix(in oklch, currentColor ...)` 取代寫死
+    色碼，本來就不需要新增色票，只把 `border-radius` 的寫死 px 值換成本版本既有
+    token。
 
 ## 第一層：基本功（不能先跳過）——覆寫原技能的「自建 scale」前提
 
@@ -282,6 +290,22 @@ footnote/版權這類，正文絕不用最淺那階）。
 - 新文案一樣要掛 `data-i18n`、四種語言都要寫，原文的英文字數門檻不適用中文/韓文/
   泰文，只取「精簡、前置重點」的原則。
 
+## 第八層：Loading／骨架載入畫面
+
+前面幾層都提過「互動狀態 loading/empty/error 缺一不可」，但從沒給過具體規格——
+這層補上，見 `references/skeleton-loading.md`：
+
+- 等待 < 200ms 不要顯示任何 loading 指示；200ms–3s 且版面已知時才用骨架畫面，
+  版面未知用 inline spinner，進度可量測用確定式進度條，使用者主動觸發且結果可預期
+  （例如收藏按鈕）用樂觀更新，不用 loading 畫面。
+- 骨架畫面只能是單一方向、單一時間軸的 shimmer 掃光動畫（1.5–2 秒一輪），不是
+  靜態灰色方塊，也不是每個方塊各自閃爍的 pulse；`prefers-reduced-motion` 時完全
+  不顯示骨架，改純文字「載入中…」。
+- 骨架尺寸跟著真實元件既有 token 走，換上內容那一刻版面不能跳動（CLS 要是 0）。
+- 等待時間拉長要有升級機制：200ms 掛骨架 → 3s 換成「仍在載入中」文字+spinner →
+  10s 給使用者可以做的動作（重試/取消/轉背景）→ 錯誤就撤掉骨架換成具體失敗原因
+  +重試（文案部分適用第七層的只限新寫文案規則）。
+
 ## 驗收時的自我檢查
 
 - 記憶點是否真的體現在畫面上，還是只停留在描述？互換/瞇眼/記憶點/token 四個測試
@@ -301,5 +325,7 @@ footnote/版權這類，正文絕不用最淺那階）。
 - 有 `<table>` 的頁面：表頭對比量過了嗎？數值欄位右對齊+等寬數字了嗎？
 - 有新寫文案（錯誤訊息/空狀態/通知）嗎？是新增功能才寫的，還是不小心順手改了既有
   頁面的既有文字？後者直接違反驗收標準，要改回原文。
+- 有加 loading/骨架畫面嗎？200ms 才掛載了嗎？shimmer 是單一方向單一時間軸，不是
+  靜態方塊或各自閃爍的 pulse？`prefers-reduced-motion` 時有沒有改成純文字狀態？
 - Hard rules 七條有沒有踩到任何一條？
 - 是否符合本 repo 驗收標準（視覺 pixel-diff、功能互動點、內容逐字保留、console 不變多）？
