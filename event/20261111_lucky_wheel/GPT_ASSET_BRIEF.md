@@ -4,7 +4,7 @@
 
 ## 使用方式
 
-1. 開新對話，**附上 `reference/` 的三張北極熊參考圖**，再貼上第 2 節「共通風格」。
+1. 開新對話，**附上 `reference/` 的四張三視圖（`bear-view-1`～`4`）＋相關貼圖**，再貼上第 2 節「共通風格」。
 2. 依序執行第 3 節（角色設定圖）→ 人工比對 `DESIGN_TASKS.md` 第四節驗收表 → 通過後執行第 4 節（動態）→ 第 5 節（靜態圖）。
 3. 每次生成只做一項；不滿意就在同一對話要求修改，保持角色一致。
 4. 產出檔名照表格命名，放進 `assets/img/`（吉祥物放 `assets/img/mascot/`），同檔名覆蓋即可上線；若副檔名不同，改 `assets/js/config.js` 的路徑。
@@ -12,41 +12,42 @@
 
 ---
 
-## 1. 參考圖內容轉寫（Mootech Bear）
+## 1. 參考角色設定（熊北 Mootech Bear，官方）
 
-GPT 看不到圖或理解有偏差時，以這份文字為準。
+來源：官網 repo `mootech-asia/mootech_website` → `brand/熊北-吉祥物/01_角色設定/角色設定.md`。GPT 看不到圖或理解有偏差時，以這份文字為準。
 
-| 項目 | 內容 |
+| 項目 | 官方設定 |
 |---|---|
-| 角色 | Mootech Bear（北極熊），品牌吉祥物；用途：品牌／UI／動態／3D |
-| 風格 | Tech × Friendly × Professional；3D 寫實毛髮、柔和棚拍光、Q 版偏寫實、高大圓潤 |
-| 性格 | 穩重、自信、友善、專注 |
-| 色彩 | 毛 `#E9EDF2`、背心 `#1A2233`、科技藍 `#3DA8FF`、活力橘 `#FF9A3C` |
-| 眼鏡 | 寬版科技眼鏡，黑色鏡框，鏡片左橘右藍／紫漸層，鏡片內有 HUD 圓形瞄準與資料紋路 |
-| 耳機 | 黑色頭戴式電競耳機，耳罩外側有發光環（藍、橘），右側有細長麥克風 |
-| 服裝 | 深藍連帽羽絨背心（無袖），銀色金屬拉鍊、灰色抽繩＋金屬繩頭、兩側口袋，左胸 Mootech logo（藍綠漸層線條、刺繡質感） |
-| 手腳 | 熊掌白色長毛、黑色短爪、掌心黑色肉墊 |
-| 五視圖 | Front／3/4 View／Side／Back／3/4 Rear；背面可見帽子與短尾巴 |
-| 表情組 | Smile／Laugh（開口大笑）／Focused／Listening（手放耳機旁）／Thinking（手托下巴）／Thumbs Up（眨眼＋比讚＋星星） |
-| 細節特寫 | 眼鏡 HUD、耳機發光環、刺繡 logo、拉鍊頭、毛髮質感、掌心 |
-| 比例 | 熊約 200cm、成人約 175cm 並排 |
-| 貼圖集動作 | 比讚、抱盾牌、捧地球、拿手機、拿履歷、握手、握拳歡呼、疑問、靈感燈泡、抱愛心、比心 THANK YOU、OK 手勢、流汗扶眼鏡、靠 logo 看板 |
-| 版面 | 角色設定圖為深藍科技背景、左上 logo、左側設定表與色票、上排五視圖、中排表情、下排細節＋右下比例 |
-
----
+| 名稱 | 熊北（Mootech Bear）；MOOTECH 網路維運夥伴、官網線上客服 |
+| 風格 | 科技 × 親和 × 專業；高擬真 3D 角色渲染、C4D 質感、柔和攝影棚光 |
+| 性格 | 穩重、自信、友善、專注；從容不迫 |
+| 體型 | Q 版偏寫實、高大圓潤；圓肚子、寬肩、粗手臂、大而厚的掌、短腿；頭身比約 1：3 |
+| 臉部 | 臉圓、臉頰肉肉、吻部短、耳朵小而圓、表情親切自信 |
+| 毛髮 | 蓬鬆細緻、根根分明的白毛 `#E9EDF2` |
+| 科技墨鏡 | 漸層鏡片 **橘 → 洋紅 → 紫藍**，鏡片上有 HUD 數位圖形；**深灰金屬鏡框** |
+| 耳機 | 深色耳罩式，耳罩外側有**青藍與橘色**發光圓環；**角色自己的左側**有細長麥克風臂到嘴邊（正面看在畫面右邊） |
+| 背心 | 深海軍藍 `#1A2233` 泡泡羽絨背心（一格一格鼓起）、正面拉鍊、**左胸 MOOTECH 標誌**；背面無標誌 |
+| 內搭 | **深灰色連帽衣**，帽子在背後自然垂下（帽子屬於內搭，不是背心） |
+| 配色 | 毛 `#E9EDF2`、背心 `#1A2233`、科技藍 `#3DA8FF`、點綴橘 `#FF9A3C` |
+| 比例 | 身高約 200cm，與 175cm 成人並排高一個頭 |
+| 配件規則 | 墨鏡、耳機、背心與標誌**不可省略、不可換色** |
+| 禁止事項 | 不出現國旗、國徽或其他公司標誌；不出現紅色警示、錯誤畫面；不做兇猛、露牙威嚇表情；背景不用機房、伺服器、成排螢幕 |
+| 官方提示詞要點 | 每次生成都上傳三視圖當參考；表情貼圖要寫「角色佔畫面八成」，否則角色會太小 |
 
 ## 2. 共通風格（每次都貼在提示詞最前面）
 
 ```
 STYLE LOCK — apply to every image in this conversation:
 - Same universe and render quality as the attached Mootech Bear reference images:
-  3D character render, realistic soft fur, soft studio lighting, chibi-realistic
-  proportions (big head, tall rounded body), friendly, confident, calm personality.
+  high-fidelity 3D character render, C4D look, fluffy detailed fur, soft studio lighting,
+  chibi-realistic proportions (head:body about 1:3, tall and rounded), friendly, confident, calm personality.
 - Brand colors only: fur #E9EDF2, vest navy #1A2233, tech blue #3DA8FF, energetic orange #FF9A3C.
 - Event theme: bright, warm, festive modern Broadway stage; clean, simple, cheerful;
   colorful casino-style lucky wheel. Warm and comfortable overall tone. No dark nightclub mood.
 - NEVER include Chinese characters anywhere. Do not add any text unless the prompt explicitly gives the exact text.
 - No host / MC character, no handheld microphone, no speech bubbles.
+- Never show national flags, emblems or other companies' logos; no red warning/error visuals;
+  no fierce or teeth-baring expressions; no server rooms or rows of monitors.
 ```
 
 ---
@@ -56,20 +57,22 @@ STYLE LOCK — apply to every image in this conversation:
 輸出：`reference/rabbit-turnaround.png`（1536×1024），通過驗收後才能進入第 4 節。
 
 ```
-Using the attached Mootech Bear character turnaround sheet as the exact layout and
-quality reference, create a CHARACTER TURNAROUND SHEET for a new sibling mascot:
+Using the attached Mootech Bear reference views (front / 3/4 / side / back) as the exact
+style and quality reference, create a CHARACTER TURNAROUND SHEET for a new sibling mascot:
 "Mootech Bunny", a white rabbit.
 
 Character (must match the bear's outfit and accessories 1:1, adapted to a rabbit):
-- White long fur #E9EDF2, soft pink inner ears and nose (show the pink hex in the palette).
+- Fluffy, finely detailed white fur #E9EDF2; soft pink inner ears and nose (show the pink hex in the palette).
+- Round face, chubby cheeks, short muzzle, friendly confident expression.
 - Long upright ears are the signature feature; the headphone band sits between/behind
   the ears so both ears pass through naturally.
-- Same tech glasses: black wide frame, left lens orange, right lens blue/purple gradient, HUD rings.
-- Same black gaming headphones with glowing blue/orange rings and a thin mic on the right side.
-- Same navy #1A2233 hooded sleeveless puffer vest, silver zipper, grey drawstrings with metal tips,
-  side pockets, Mootech logo embroidered on the left chest.
+- Same tech sunglasses: dark grey metal frame, gradient lenses orange -> magenta -> purple-blue, HUD graphics on the lenses.
+- Same dark over-ear headphones with glowing cyan-blue and orange rings on the ear cups,
+  and a thin mic boom on the CHARACTER'S OWN LEFT side reaching the mouth (appears on the viewer's right in front view).
+- Same deep navy #1A2233 quilted puffer vest with front zipper and the MOOTECH logo on the left chest; no logo on the back.
+- Same dark grey hoodie worn UNDER the vest; the hood hangs naturally at the back.
 - Rabbit paws with pink pads, no claws; able to do a thumbs up. Short fluffy tail visible from the back.
-- Head-to-body ratio identical to the bear (head about 1/3 of height, ears excluded).
+- Head-to-body ratio about 1:3 like the bear (ears excluded); tall, round belly, short legs.
 - Personality: calm, confident, friendly, focused (not childish).
 
 Layout (same as the reference, ALL LABELS IN ENGLISH ONLY):
@@ -80,7 +83,7 @@ Layout (same as the reference, ALL LABELS IN ENGLISH ONLY):
 - Middle row "Expression Set": Smile / Laugh / Focused / Listening / Thinking / Thumbs Up.
 - Bottom row "Details": HUD Glasses / Headphones (Glow Ring) / Embroidered Logo / Zipper / Fur Texture / Paw Pad.
 - Bottom-right "Scale": bunny about 150 cm (ears excluded) next to the bear (200 cm) and a 175 cm human silhouette.
-- Dark navy tech background like the reference.
+- Dark navy tech background, clean modern layout.
 ```
 
 ---
@@ -115,9 +118,9 @@ ANIMATION SPRITE SHEET RULES:
 |---|---|---|
 | `mascot/idle-1.gif` | Smile | `IDLE 1: relaxed standing pose, gentle breathing (chest rises and falls), one slow blink around frames 6-7, ears sway slightly.` |
 | `mascot/idle-2.gif` | Listening | `IDLE 2: tilts head toward the right as if listening, one ear twitches and folds then springs back, paw lightly touches the headphone.` |
-| `mascot/idle-3.gif` | Thinking | `IDLE 3: friendly wave with the right paw at shoulder height, then pushes the tech glasses up with one finger, returns to neutral.` |
+| `mascot/idle-3.gif` | Thinking（`bear-sticker-think`）、揮手（`bear-sticker-wave`） | `IDLE 3: friendly wave with the right paw at shoulder height, then pushes the tech glasses up with one finger, returns to neutral.` |
 | `mascot/spinning.gif` | Focused | `SPINNING: excited anticipation — both paws in fists close to the chest, small bouncing hops in place, ears fully upright and trembling, focused smiling face watching to the left (where the wheel is).` |
-| `mascot/result.gif` | Laugh + Thumbs Up | `RESULT: jumps up with joy, open-mouth laugh, both arms raised, lands and gives a big thumbs up with a wink, small golden sparkle stars pop around (sparkles inside the cell only).` |
+| `mascot/result.gif` | Laugh + 眨眼比讚（`bear-sticker-wink-thumbsup`） | `RESULT: jumps up with joy, open-mouth laugh, both arms raised, lands and gives a big thumbs up with a wink, small golden sparkle stars pop around (sparkles inside the cell only).` |
 
 需要第 13～24 幀時，在同一對話追加：
 
