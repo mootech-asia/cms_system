@@ -62,7 +62,7 @@
 | ☑ | D02 | idle-2 | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | 2b528e9 | ☐ |
 | ☑ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | 8124547 | ☐ |
 | ☑ | D04 | spinning | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | afc4b6b | ☐ |
-| ☐ | D05 | result | 400×500 gif≥24 | `assets/img/mascot/result.gif` | | ☐ |
+| ☑ | D05 | result | 400×500 gif≥24 | `assets/img/mascot/result.gif` | 8971110 | ☐ |
 
 ## E. 吉祥物附件（10）
 
@@ -74,18 +74,18 @@
 | ☑ | E02 | idle-2 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-2/` | 2b528e9 | ☐ |
 | ☑ | E03 | idle-3 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-3/` | 8124547 | ☐ |
 | ☑ | E04 | spinning PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/spinning/` | afc4b6b | ☐ |
-| ☐ | E05 | result PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/result/` | | ☐ |
+| ☑ | E05 | result PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/result/` | 8971110 | ☐ |
 | ☑ | E06 | idle-1 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-1.{png,webp}` | ee11803 | ☐ |
 | ☑ | E07 | idle-2 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-2.{png,webp}` | 2b528e9 | ☐ |
 | ☑ | E08 | idle-3 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-3.{png,webp}` | 8124547 | ☐ |
 | ☑ | E09 | spinning 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/spinning.{png,webp}` | afc4b6b | ☐ |
-| ☐ | E10 | result 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/result.{png,webp}` | | ☐ |
+| ☑ | E10 | result 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/result.{png,webp}` | 8971110 | ☐ |
 
 ## F. 程式路徑（1）
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 |
 |---|---|---|---|---|---|---|
-| ☐ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | | ☐ |
+| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | 8971110 | ☐ |
 
 ## G. 音效（選配 3）
 
@@ -98,3 +98,8 @@
 ## 備註
 
 （GPT 有疑問或無法照規格交付時寫在這裡，附列號）
+
+- C01：使用者於本對話指示「用新版設定」，已據此進入 D 區；審核欄保留由業主填寫。
+- G01–G03：選配音效未另製，沿用原有程式合成。
+- 提交紀錄目前為本地 Git commit；先前遠端推送回傳 HTTP 403，並不代表已上線。
+- 每個動作使用兩張 12 格原始序列圖（24 個生成幀），以光流補幀為 48 張輸出 PNG；GIF 平均 24fps，2 秒循環。

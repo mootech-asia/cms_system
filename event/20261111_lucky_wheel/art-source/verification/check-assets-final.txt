@@ -1,0 +1,44 @@
+已提交且通過檢查：39 / 42 項；打勾但不符：0 項
+
+OK      A01  stage-bg  — assets/img/stage-bg.svg
+OK      A02  stage-floor  — assets/img/stage-floor.svg
+OK      A03  title-en  — assets/img/title-en.svg
+OK      A04  title-ko  — assets/img/title-ko.svg
+OK      A05  title-th  — assets/img/title-th.svg
+OK      A06  spotlight  — assets/img/spotlight.svg
+OK      A07  wheel-frame  — assets/img/wheel-frame.svg
+OK      A08  wheel-gloss  — assets/img/wheel-gloss.svg
+OK      A09  pointer  — assets/img/pointer.svg
+OK      A10  btn-go  — assets/img/btn-go.svg
+OK      A11  modal-bg  — assets/img/modal-bg.svg
+OK      A12  btn-primary  — assets/img/btn-primary.svg
+OK      A13  icon-sound-on  — assets/img/icon-sound-on.svg
+OK      A14  icon-sound-off  — assets/img/icon-sound-off.svg
+OK      A15  icon-cash  — assets/img/icon-cash.svg
+OK      A16  icon-coin  — assets/img/icon-coin.svg
+OK      A17  icon-gift  — assets/img/icon-gift.svg
+OK      A18  icon-spin  — assets/img/icon-spin.svg
+OK      A19  icon-bonus  — assets/img/icon-bonus.svg
+OK      A20  icon-points  — assets/img/icon-points.svg
+OK      A21  icon-thanks  — assets/img/icon-thanks.svg
+MANUAL  B01  扇區色 6 組（底色＋文字色）＋分隔線色  — 色票需人工審核
+OK      C01  rabbit-turnaround  — reference/rabbit-turnaround.png
+OK      D01  idle-1  — assets/img/mascot/idle-1.gif 48 幀
+OK      D02  idle-2  — assets/img/mascot/idle-2.gif 48 幀
+OK      D03  idle-3  — assets/img/mascot/idle-3.gif 48 幀
+OK      D04  spinning  — assets/img/mascot/spinning.gif 48 幀
+OK      D05  result  — assets/img/mascot/result.gif 48 幀
+OK      E01  idle-1 PNG 序列幀  — source/mascot-frames/idle-1/ 48 張
+OK      E02  idle-2 PNG 序列幀  — source/mascot-frames/idle-2/ 48 張
+OK      E03  idle-3 PNG 序列幀  — source/mascot-frames/idle-3/ 48 張
+OK      E04  spinning PNG 序列幀  — source/mascot-frames/spinning/ 48 張
+OK      E05  result PNG 序列幀  — source/mascot-frames/result/ 48 張
+OK      E06  idle-1 關鍵幀 vs 角色設定圖  — source/mascot-compare/idle-1.png
+OK      E07  idle-2 關鍵幀 vs 角色設定圖  — source/mascot-compare/idle-2.png
+OK      E08  idle-3 關鍵幀 vs 角色設定圖  — source/mascot-compare/idle-3.png
+OK      E09  spinning 關鍵幀 vs 角色設定圖  — source/mascot-compare/spinning.png
+OK      E10  result 關鍵幀 vs 角色設定圖  — source/mascot-compare/result.png
+OK      F01  `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖  — config.js 所有路徑都存在
+TODO    G01  drumroll
+TODO    G02  win
+TODO    G03  lose

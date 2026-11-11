@@ -37,11 +37,11 @@
       "brokenImages": []
     },
     {
-      "spinning": "assets/img/mascot/spinning.svg"
+      "spinning": "assets/img/mascot/spinning.gif"
     },
     {
-      "result": "assets/img/mascot/result.svg",
-      "prize": "Try Again",
+      "result": "assets/img/mascot/result.gif",
+      "prize": "10 Free Spins",
       "chances": "2"
     },
     {

@@ -1,0 +1,50 @@
+{
+  "result": [
+    {
+      "src": "../assets/img/mascot/idle-1.gif",
+      "animated": true,
+      "size": [
+        400,
+        500
+      ]
+    },
+    {
+      "src": "../assets/img/mascot/idle-2.gif",
+      "animated": true,
+      "size": [
+        400,
+        500
+      ]
+    },
+    {
+      "src": "../assets/img/mascot/idle-3.gif",
+      "animated": true,
+      "size": [
+        400,
+        500
+      ]
+    },
+    {
+      "src": "../assets/img/mascot/spinning.gif",
+      "animated": true,
+      "size": [
+        400,
+        500
+      ]
+    },
+    {
+      "src": "../assets/img/mascot/result.gif",
+      "animated": true,
+      "size": [
+        400,
+        500
+      ]
+    }
+  ],
+  "idleRotation": [
+    "assets/img/mascot/idle-1.gif",
+    "assets/img/mascot/idle-2.gif",
+    "assets/img/mascot/idle-3.gif"
+  ],
+  "errors": []
+}

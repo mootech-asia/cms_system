@@ -1,0 +1,22 @@
+{
+  "idle-1": {
+    "loop_seam_mean_difference": 7.408,
+    "max_adjacent_difference": 11.012
+  },
+  "idle-3": {
+    "loop_seam_mean_difference": 1.683,
+    "max_adjacent_difference": 2.916
+  },
+  "result": {
+    "loop_seam_mean_difference": 5.642,
+    "max_adjacent_difference": 11.212
+  },
+  "idle-2": {
+    "loop_seam_mean_difference": 3.408,
+    "max_adjacent_difference": 6.481
+  },
+  "spinning": {
+    "loop_seam_mean_difference": 6.141,
+    "max_adjacent_difference": 6.393
+  }
+}
