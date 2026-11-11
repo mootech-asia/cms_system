@@ -29,16 +29,16 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | A01 | stage-bg | 750×1000 | `assets/img/stage-bg.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | A02 | stage-floor | 750×140 | `assets/img/stage-floor.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | | ☐ | P0 |
+| ☑ | A01 | stage-bg | 750×1000 | `assets/img/stage-bg.{png,webp,svg}` | d913f7f | ☐ | P0 |
+| ☑ | A02 | stage-floor | 750×140 | `assets/img/stage-floor.{png,webp,svg}` | d913f7f | ☐ | P0 |
+| ☑ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | d913f7f | ☐ | P0 |
+| ☑ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | d913f7f | ☐ | P0 |
+| ☑ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☐ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | A07 | wheel-frame | 680×680 | `assets/img/wheel-frame.{png,webp,svg}` | | ☐ | P0 |
+| ☑ | A07 | wheel-frame | 680×680 | `assets/img/wheel-frame.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☐ | A08 | wheel-gloss | 600×600 | `assets/img/wheel-gloss.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | A09 | pointer | 120×160 | `assets/img/pointer.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | A10 | btn-go | 200×200 | `assets/img/btn-go.{png,webp,svg}` | | ☐ | P0 |
+| ☑ | A09 | pointer | 120×160 | `assets/img/pointer.{png,webp,svg}` | d913f7f | ☐ | P0 |
+| ☑ | A10 | btn-go | 200×200 | `assets/img/btn-go.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☐ | A11 | modal-bg | 600×760 | `assets/img/modal-bg.{png,webp,svg}` | | ☐ | P1 |
 | ☐ | A12 | btn-primary | 400×110 | `assets/img/btn-primary.{png,webp,svg}` | | ☐ | P1 |
 | ☐ | A13 | icon-sound-on | 64×64 | `assets/img/icon-sound-on.{png,webp,svg}` | | ☐ | P2 |
@@ -50,7 +50,7 @@
 | ☐ | A19 | icon-bonus | 160×160 | `assets/img/icon-bonus.{png,webp,svg}` | | ☐ | P2 |
 | ☐ | A20 | icon-points | 160×160 | `assets/img/icon-points.{png,webp,svg}` | | ☐ | P2 |
 | ☐ | A21 | icon-thanks | 160×160 | `assets/img/icon-thanks.{png,webp,svg}` | | ☐ | P2 |
-| ☐ | A22 | stage-bg-desktop | 1920×1000 | `assets/img/stage-bg-desktop.{png,webp,svg}` | | ☐ | P0 |
+| ☑ | A22 | stage-bg-desktop | 1920×1000 | `assets/img/stage-bg-desktop.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☐ | A23 | info-bg | 750×750 | `assets/img/info-bg.{png,webp,svg}` | | ☐ | P1 |
 | ☐ | A24 | period-badge | 480×64 | `assets/img/period-badge.{png,webp,svg}` | | ☐ | P1 |
 | ☐ | A25 | chances-badge | 360×88 | `assets/img/chances-badge.{png,webp,svg}` | | ☐ | P1 |
@@ -60,13 +60,13 @@
 | ☐ | A29 | icon-share | 64×64 | `assets/img/icon-share.{png,webp,svg}` | | ☐ | P2 |
 | ☐ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | | ☐ | P1 |
 | ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ | P3 |
-| ☐ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | | ☐ | P0 |
+| ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | d913f7f | ☐ | P0 |
 
 ## B. 色票（1）
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | | ☐ | P0 |
+| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | d913f7f | ☐ | P0 |
 
 ## C. 吉祥物角色設定圖（1，第一階段）
 
@@ -111,7 +111,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | | ☐ | P2 |
+| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | d913f7f | ☐ | P2 |
 
 ## G. 音效（選配 3）
 
@@ -128,3 +128,9 @@
 - A31：原始檔放雲端時，在 `source/title-source.md` 寫下檔案連結即可（腳本只檢查這個說明檔存在，內容由我們人工審核）。
 
 - D01～D05（2026-11-11 收檔）：5 個 GIF 規格符合（400×500、48 幀、24fps、無限循環），已套用到前台。待審核注意：背心字樣放大後有拼錯（讀起來像 WOOTECH／MADTECH 等），logo 圖形為橘藍配色而非官方藍綠→黃綠漸層（`DESIGN_TASKS.md` 驗收表第 6 項）。E01～E10（PNG 序列幀、比對圖）尚未交付。
+
+### P0 本機交付 2026-11-11
+
+- d913f7f：10 張正式靜態圖＋扇區色票；三語主標、手機／桌機透視舞台、外框、底座、指針與主按鈕。
+- 預覽及三語雙寬檢查：`art-source/verification/p0/`。P1/P2 尚未按新版清單完成驗收。
+- D01～D05 沿用退回紀錄；頁面目前的 GIF 是待精修示意，不算正式交付。
