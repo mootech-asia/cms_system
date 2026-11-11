@@ -9,7 +9,7 @@
    ```bash
    python3 scripts/check_delivery.py brand/moo-rabbit/DELIVERY_CHECKLIST.md
    ```
-   腳本會實際檢查：檔案存在、像素尺寸、填的 commit 裡確實包含這份檔案且之後沒再改過。第一行印出「已提交且通過檢查 x / 總項數」；已打勾的列必須全部 `OK`（影片 D02 為 `MANUAL`，長度與循環由我們人工審核）。
+   腳本會實際檢查：檔案存在、像素尺寸、填的 commit 裡確實包含這份檔案且之後沒再改過。第一行印出「已提交且通過檢查 x / 總項數」；已打勾的列必須全部 `OK`（影片 D02 暫緩：需用即夢製作，GPT 先不做，腳本會顯示 `SKIP` 且不計入總數）。
 3. 「審核」欄由我們填寫（`☐` 待審／`☑` 通過／`✗` 退回＋原因），**GPT 不要改審核欄**。
 4. 不要刪除或新增列；有疑問寫在最下方「備註」。
 5. 轉盤活動的吉祥物 GIF（07_motion）在 `event/20261111_lucky_wheel/DELIVERY_CHECKLIST.md` 的 D、E 區勾選，不在本表。
@@ -60,7 +60,7 @@
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 |
 |---|---|---|---|---|---|---|
 | ☐ | D01 | key-visual | 1280×720 | `04_key-visual/k01-key-visual.jpg` | | ☐ |
-| ☐ | D02 | loop-15s | 1280×720 15 秒（人工） | `04_key-visual/k02-loop-15s.mp4` | | ☐ |
+| ☐ | D02 | loop-15s | 1280×720 15 秒（暫緩：需用即夢，GPT 先不做） | `04_key-visual/k02-loop-15s.mp4` | | ☐ |
 
 ## E. 客服介面（3）
 

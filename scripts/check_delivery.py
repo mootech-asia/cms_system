@@ -10,7 +10,7 @@
     python3 scripts/check_delivery.py brand/moo-rabbit/DELIVERY_CHECKLIST.md
 
 結果：OK＝符合；FAIL＝已打勾但不符（仍是佔位圖、尺寸／幀數錯、commit 裡沒有這個檔案…，exit code 1）；TODO＝未打勾；
-MANUAL＝無法自動判斷，需人工審核（色票、音效長度）。
+MANUAL＝無法自動判斷，需人工審核（色票、音效長度）；SKIP＝尺寸欄標「暫緩」的列，不計入總數。
 需要 Pillow（pip install pillow）。
 """
 import hashlib
@@ -178,6 +178,10 @@ def main():
         rows += 1
         mark, rid, name, spec, rel, commit = [g.strip() for g in m.groups()]
         ticked = mark == '☑'
+        if '暫緩' in spec:
+            rows -= 1
+            out.append('SKIP    %s  %s  — 暫緩，不計入' % (rid, name))
+            continue
         if not ticked and not check_all:
             out.append('TODO    %s  %s' % (rid, name))
             continue
