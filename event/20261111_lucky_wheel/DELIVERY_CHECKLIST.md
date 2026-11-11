@@ -14,99 +14,110 @@
 4. 「審核」欄由我們填寫（`☐` 待審／`☑` 通過／`✗` 退回＋原因），**GPT 不要改審核欄**。
 5. 不要刪除或新增列；有疑問寫在最下方「備註」。
 
+## 製作優先級（照順序做，先快速掌握整體設計質感）
+
+| 級別 | 定義 | 做法 |
+|---|---|---|
+| **P0 全局視覺** | 面積大、決定第一眼的整體質感，且製作相對直接 | **最先做**。全部 P0 到位後先整頁截圖確認整體方向，再往下做 |
+| **P1 版面元件** | 主要版面與互動元件 | P0 確認後接著做 |
+| **P2 細節** | 小圖示、裝飾、設定調整 | P1 之後 |
+| **P3 精修與動態** | 複雜、需要時間打磨的項目（吉祥物動態、角色設定圖、原始檔、音效、影片） | **放最後慢慢雕出品質**；需要時可先交靜態「假圖」讓頁面先成形（假圖不打勾，正式版交付才打勾） |
+
+勾選表每列最後一欄是優先級；檢查腳本會顯示各級進度（例：`P0 3/11`）。
+
 ## A. 靜態圖（31）＋主標原始檔（1）
 
-| 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 |
-|---|---|---|---|---|---|---|
-| ☐ | A01 | stage-bg | 750×1000 | `assets/img/stage-bg.{png,webp,svg}` | | ☐ |
-| ☐ | A02 | stage-floor | 750×140 | `assets/img/stage-floor.{png,webp,svg}` | | ☐ |
-| ☐ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | | ☐ |
-| ☐ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | | ☐ |
-| ☐ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | | ☐ |
-| ☐ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | | ☐ |
-| ☐ | A07 | wheel-frame | 680×680 | `assets/img/wheel-frame.{png,webp,svg}` | | ☐ |
-| ☐ | A08 | wheel-gloss | 600×600 | `assets/img/wheel-gloss.{png,webp,svg}` | | ☐ |
-| ☐ | A09 | pointer | 120×160 | `assets/img/pointer.{png,webp,svg}` | | ☐ |
-| ☐ | A10 | btn-go | 200×200 | `assets/img/btn-go.{png,webp,svg}` | | ☐ |
-| ☐ | A11 | modal-bg | 600×760 | `assets/img/modal-bg.{png,webp,svg}` | | ☐ |
-| ☐ | A12 | btn-primary | 400×110 | `assets/img/btn-primary.{png,webp,svg}` | | ☐ |
-| ☐ | A13 | icon-sound-on | 64×64 | `assets/img/icon-sound-on.{png,webp,svg}` | | ☐ |
-| ☐ | A14 | icon-sound-off | 64×64 | `assets/img/icon-sound-off.{png,webp,svg}` | | ☐ |
-| ☐ | A15 | icon-cash | 160×160 | `assets/img/icon-cash.{png,webp,svg}` | | ☐ |
-| ☐ | A16 | icon-coin | 160×160 | `assets/img/icon-coin.{png,webp,svg}` | | ☐ |
-| ☐ | A17 | icon-gift | 160×160 | `assets/img/icon-gift.{png,webp,svg}` | | ☐ |
-| ☐ | A18 | icon-spin | 160×160 | `assets/img/icon-spin.{png,webp,svg}` | | ☐ |
-| ☐ | A19 | icon-bonus | 160×160 | `assets/img/icon-bonus.{png,webp,svg}` | | ☐ |
-| ☐ | A20 | icon-points | 160×160 | `assets/img/icon-points.{png,webp,svg}` | | ☐ |
-| ☐ | A21 | icon-thanks | 160×160 | `assets/img/icon-thanks.{png,webp,svg}` | | ☐ |
-| ☐ | A22 | stage-bg-desktop | 1920×1000 | `assets/img/stage-bg-desktop.{png,webp,svg}` | | ☐ |
-| ☐ | A23 | info-bg | 750×750 | `assets/img/info-bg.{png,webp,svg}` | | ☐ |
-| ☐ | A24 | period-badge | 480×64 | `assets/img/period-badge.{png,webp,svg}` | | ☐ |
-| ☐ | A25 | chances-badge | 360×88 | `assets/img/chances-badge.{png,webp,svg}` | | ☐ |
-| ☐ | A26 | card-frame | 120×120 | `assets/img/card-frame.{png,webp,svg}` | | ☐ |
-| ☐ | A27 | card-title | 400×72 | `assets/img/card-title.{png,webp,svg}` | | ☐ |
-| ☐ | A28 | footer-deco | 750×160 | `assets/img/footer-deco.{png,webp,svg}` | | ☐ |
-| ☐ | A29 | icon-share | 64×64 | `assets/img/icon-share.{png,webp,svg}` | | ☐ |
-| ☐ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | | ☐ |
-| ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ |
-| ☐ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | | ☐ |
+| 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☐ | A01 | stage-bg | 750×1000 | `assets/img/stage-bg.{png,webp,svg}` | | ☐ | P0 |
+| ☐ | A02 | stage-floor | 750×140 | `assets/img/stage-floor.{png,webp,svg}` | | ☐ | P0 |
+| ☐ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | | ☐ | P0 |
+| ☐ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | | ☐ | P0 |
+| ☐ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | | ☐ | P0 |
+| ☐ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A07 | wheel-frame | 680×680 | `assets/img/wheel-frame.{png,webp,svg}` | | ☐ | P0 |
+| ☐ | A08 | wheel-gloss | 600×600 | `assets/img/wheel-gloss.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A09 | pointer | 120×160 | `assets/img/pointer.{png,webp,svg}` | | ☐ | P0 |
+| ☐ | A10 | btn-go | 200×200 | `assets/img/btn-go.{png,webp,svg}` | | ☐ | P0 |
+| ☐ | A11 | modal-bg | 600×760 | `assets/img/modal-bg.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A12 | btn-primary | 400×110 | `assets/img/btn-primary.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A13 | icon-sound-on | 64×64 | `assets/img/icon-sound-on.{png,webp,svg}` | | ☐ | P2 |
+| ☐ | A14 | icon-sound-off | 64×64 | `assets/img/icon-sound-off.{png,webp,svg}` | | ☐ | P2 |
+| ☐ | A15 | icon-cash | 160×160 | `assets/img/icon-cash.{png,webp,svg}` | | ☐ | P2 |
+| ☐ | A16 | icon-coin | 160×160 | `assets/img/icon-coin.{png,webp,svg}` | | ☐ | P2 |
+| ☐ | A17 | icon-gift | 160×160 | `assets/img/icon-gift.{png,webp,svg}` | | ☐ | P2 |
+| ☐ | A18 | icon-spin | 160×160 | `assets/img/icon-spin.{png,webp,svg}` | | ☐ | P2 |
+| ☐ | A19 | icon-bonus | 160×160 | `assets/img/icon-bonus.{png,webp,svg}` | | ☐ | P2 |
+| ☐ | A20 | icon-points | 160×160 | `assets/img/icon-points.{png,webp,svg}` | | ☐ | P2 |
+| ☐ | A21 | icon-thanks | 160×160 | `assets/img/icon-thanks.{png,webp,svg}` | | ☐ | P2 |
+| ☐ | A22 | stage-bg-desktop | 1920×1000 | `assets/img/stage-bg-desktop.{png,webp,svg}` | | ☐ | P0 |
+| ☐ | A23 | info-bg | 750×750 | `assets/img/info-bg.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A24 | period-badge | 480×64 | `assets/img/period-badge.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A25 | chances-badge | 360×88 | `assets/img/chances-badge.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A26 | card-frame | 120×120 | `assets/img/card-frame.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A27 | card-title | 400×72 | `assets/img/card-title.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A28 | footer-deco | 750×160 | `assets/img/footer-deco.{png,webp,svg}` | | ☐ | P2 |
+| ☐ | A29 | icon-share | 64×64 | `assets/img/icon-share.{png,webp,svg}` | | ☐ | P2 |
+| ☐ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | | ☐ | P1 |
+| ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ | P3 |
+| ☐ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | | ☐ | P0 |
 
 ## B. 色票（1）
 
-| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 |
-|---|---|---|---|---|---|---|
-| ☐ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | | ☐ |
+| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☐ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | | ☐ | P0 |
 
 ## C. 吉祥物角色設定圖（1，第一階段）
 
 > 由品牌包 `brand/moo-rabbit/` 製作，這裡只追蹤同一個檔案；品牌包勾選表 A01 打勾時，這列可填同一個 commit。
 
-> C01 審核通過（☑）之前，不要開始 D 區。
+> 兔比完整設定排在轉盤活動完成之後，C01 暫緩、不計入本活動進度；D 區（動態）不必等 C01，但排在 P0～P2 之後。
 
-| 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 |
-|---|---|---|---|---|---|---|
-| ☐ | C01 | turnaround-sheet（品牌包同一檔案） | 1536×1024 | `../../brand/moo-rabbit/01_character/turnaround-sheet.png` | | ☐ |
+| 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☐ | C01 | turnaround-sheet（品牌包同一檔案） | 1536×1024（暫緩：兔比完整設定排在轉盤活動之後） | `../../brand/moo-rabbit/01_character/turnaround-sheet.png` | | ☐ | P3 |
 
 ## D. 吉祥物 GIF（5，第二階段）
 
-| 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 |
-|---|---|---|---|---|---|---|
-| ☑ | D01 | idle-1 | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | 61c9eab | ☐ |
-| ☑ | D02 | idle-2 | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | 61c9eab | ☐ |
-| ☑ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | 61c9eab | ☐ |
-| ☑ | D04 | spinning | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | 61c9eab | ☐ |
-| ☑ | D05 | result | 400×500 gif≥24 | `assets/img/mascot/result.gif` | 61c9eab | ☐ |
+| 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☑ | D01 | idle-1 | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | 61c9eab | ☐ | P3 |
+| ☑ | D02 | idle-2 | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | 61c9eab | ☐ | P3 |
+| ☑ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | 61c9eab | ☐ | P3 |
+| ☑ | D04 | spinning | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | 61c9eab | ☐ | P3 |
+| ☑ | D05 | result | 400×500 gif≥24 | `assets/img/mascot/result.gif` | 61c9eab | ☐ | P3 |
 
 ## E. 吉祥物附件（10）
 
 序列幀與比對圖不會上線，放在 `source/`。
 
-| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 |
-|---|---|---|---|---|---|---|
-| ☐ | E01 | idle-1 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-1/` | | ☐ |
-| ☐ | E02 | idle-2 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-2/` | | ☐ |
-| ☐ | E03 | idle-3 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-3/` | | ☐ |
-| ☐ | E04 | spinning PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/spinning/` | | ☐ |
-| ☐ | E05 | result PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/result/` | | ☐ |
-| ☐ | E06 | idle-1 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-1.{png,webp}` | | ☐ |
-| ☐ | E07 | idle-2 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-2.{png,webp}` | | ☐ |
-| ☐ | E08 | idle-3 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-3.{png,webp}` | | ☐ |
-| ☐ | E09 | spinning 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/spinning.{png,webp}` | | ☐ |
-| ☐ | E10 | result 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/result.{png,webp}` | | ☐ |
+| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☐ | E01 | idle-1 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-1/` | | ☐ | P3 |
+| ☐ | E02 | idle-2 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-2/` | | ☐ | P3 |
+| ☐ | E03 | idle-3 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-3/` | | ☐ | P3 |
+| ☐ | E04 | spinning PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/spinning/` | | ☐ | P3 |
+| ☐ | E05 | result PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/result/` | | ☐ | P3 |
+| ☐ | E06 | idle-1 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-1.{png,webp}` | | ☐ | P3 |
+| ☐ | E07 | idle-2 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-2.{png,webp}` | | ☐ | P3 |
+| ☐ | E08 | idle-3 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-3.{png,webp}` | | ☐ | P3 |
+| ☐ | E09 | spinning 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/spinning.{png,webp}` | | ☐ | P3 |
+| ☐ | E10 | result 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/result.{png,webp}` | | ☐ | P3 |
 
 ## F. 程式路徑（1）
 
-| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 |
-|---|---|---|---|---|---|---|
-| ☐ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | | ☐ |
+| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☐ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | | ☐ | P2 |
 
 ## G. 音效（選配 3）
 
-| 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 |
-|---|---|---|---|---|---|---|
-| ☐ | G01 | drumroll | 約 5 秒 | `assets/audio/drumroll.mp3` | | ☐ |
-| ☐ | G02 | win | 1～2 秒 | `assets/audio/win.mp3` | | ☐ |
-| ☐ | G03 | lose | 1 秒內 | `assets/audio/lose.mp3` | | ☐ |
+| 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☐ | G01 | drumroll | 約 5 秒 | `assets/audio/drumroll.mp3` | | ☐ | P3 |
+| ☐ | G02 | win | 1～2 秒 | `assets/audio/win.mp3` | | ☐ | P3 |
+| ☐ | G03 | lose | 1 秒內 | `assets/audio/lose.mp3` | | ☐ | P3 |
 
 ## 備註
 

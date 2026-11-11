@@ -75,6 +75,7 @@ PLACEHOLDERS = {
     'fdf1fb27ec7749af',
 }
 ROW = re.compile(r'^\|\s*(☐|☑)\s*\|\s*([A-Z]\d{2})\s*\|([^|]*)\|([^|]*)\|\s*`([^`]+)`[^|]*\|([^|]*)\|')
+PRIO = re.compile(r'\|\s*(P\d)\s*\|\s*$')
 
 try:
     from PIL import Image
@@ -188,19 +189,24 @@ def main():
     rows = 0
     passed = 0
     out = []
+    by = {}
     for line in open(CHECKLIST, encoding='utf-8'):
         m = ROW.match(line)
         if not m:
             continue
         rows += 1
         mark, rid, name, spec, rel, commit = [g.strip() for g in m.groups()]
+        pm = PRIO.search(line.rstrip())
+        prio = pm.group(1) if pm else '-'
         ticked = mark == '☑'
         if '暫緩' in spec:
             rows -= 1
-            out.append('SKIP    %s  %s  — 暫緩，不計入' % (rid, name))
+            out.append((prio, 'SKIP    %s  %s  %s  — 暫緩，不計入' % (prio, rid, name)))
             continue
+        stat = by.setdefault(prio, [0, 0])
+        stat[1] += 1
         if not ticked and not check_all:
-            out.append('TODO    %s  %s' % (rid, name))
+            out.append((prio, 'TODO    %s  %s  %s' % (prio, rid, name)))
             continue
         if rel.endswith('.md') or '（人工）' in spec:
             exists = os.path.isfile(os.path.join(ROOT, rel))
@@ -225,9 +231,14 @@ def main():
             fails += 1
         if ticked and status in ('OK', 'MANUAL'):
             passed += 1
-        out.append('%-7s %s  %s  — %s' % (status, rid, name, msg))
-    print('已提交且通過檢查：%d / %d 項；打勾但不符：%d 項\n' % (passed, rows, fails))
-    print('\n'.join(out))
+            stat[0] += 1
+        out.append((prio, '%-7s %s  %s  %s  — %s' % (status, prio, rid, name, msg)))
+    print('已提交且通過檢查：%d / %d 項；打勾但不符：%d 項' % (passed, rows, fails))
+    if any(k != '-' for k in by):
+        print('依優先級（P0 全局視覺 → P3 精修與動態）：' + '　'.join(
+            '%s %d/%d' % (k, v[0], v[1]) for k, v in sorted(by.items())))
+    print()
+    print('\n'.join(t for _, t in sorted(out, key=lambda x: x[0])))
     sys.exit(1 if fails else 0)
 
 

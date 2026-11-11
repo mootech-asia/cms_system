@@ -5,7 +5,7 @@
 ## 使用方式
 
 1. 開新對話，**附上 `reference/` 的四張三視圖（`bear-view-1`～`4`）＋相關貼圖＋ `mootech-logo-mark.png`**（無法上傳時用 `reference/README.md` 的公開連結），再貼上第 2 節「共通風格」。
-2. 依序執行第 3 節（角色設定圖）→ 人工比對 `DESIGN_TASKS.md` 第四節驗收表 → 通過後執行第 4 節（動態）→ 第 5 節（靜態圖）。
+2. **依優先級製作**（見 `DESIGN_TASKS.md`「製作優先級」）：先做第 5 節的 P0 全局視覺 → P1 → P2 靜態圖；第 3 節角色設定圖與第 4 節動態屬於 P3，放最後慢慢打磨（可先交靜態假圖）。
 3. 每次生成只做一項；不滿意就在同一對話要求修改，保持角色一致。
 4. 產出檔名照表格命名，放進 `assets/img/`（吉祥物放 `assets/img/mascot/`），同檔名覆蓋即可上線；若副檔名不同，改 `assets/js/config.js` 的路徑。
 5. 每交付一項就 commit，並在 `DELIVERY_CHECKLIST.md` 該列打勾（☐ → ☑）、填 commit hash，再執行 `python3 scripts/check_delivery.py event/20261111_lucky_wheel/DELIVERY_CHECKLIST.md`，已打勾的列必須全部 `OK`。
@@ -57,13 +57,13 @@ STYLE LOCK — apply to every image in this conversation:
 
 ---
 
-## 3. 吉祥物角色設定圖（第一階段）
+## 3. 吉祥物角色設定圖（暫緩：排在轉盤活動完成之後）
 
 吉祥物已定名 **Moo Rabbit（兔比）**，為 MOOTECH cms_system 事業部吉祥物，整套形象由品牌包管理：
 - 角色設定、共通設定（CHARACTER LOCK）與角色設定圖提示詞：`brand/moo-rabbit/ART_REQUIREMENTS.md` 第 1 節、第 4.1、4.2 節
 - 輸出：`brand/moo-rabbit/01_character/turnaround-sheet.png`（1536×1024）＋四視圖單張
 
-本活動不另做角色設定圖；品牌包的角色設定圖審核通過後，才能進入第 4 節。
+**兔比完整設定（含角色設定圖）排在轉盤活動完成之後，本活動先不做，也不必等它。** 第 4 節的動態直接以目前已交付的兔比造型為準，附上 `reference/` 熊北四視圖與官方 logo 修正細節。
 
 ---
 
@@ -84,8 +84,8 @@ STYLE LOCK — apply to every image in this conversation:
 
 ```
 ANIMATION SPRITE SHEET RULES:
-- Character: Moo Rabbit exactly as in the approved turnaround sheet and four views (attach them),
-  using the CHARACTER LOCK block from brand/moo-rabbit/ART_REQUIREMENTS.md section 4.1.
+- Character: Moo Rabbit exactly as in the current delivered GIFs (attach a key frame) and the CHARACTER LOCK block from
+  brand/moo-rabbit/ART_REQUIREMENTS.md section 4.1; match accessories to the attached Mootech Bear views and official logo.
 - Output 1024x1536, transparent background, a 3-column x 4-row grid = 12 equal cells.
 - Frames read left-to-right, top-to-bottom (frame 1 top-left, frame 12 bottom-right).
 - Full body in every cell, same scale, same camera, feet on the same baseline, centered.
