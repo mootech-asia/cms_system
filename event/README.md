@@ -12,6 +12,12 @@ YYYYMMDD_event_name[_N]
 - `event_name`：英文小寫、單字以底線分隔（例：`lucky_wheel`）。
 - `_N`：日期與名稱都相同時才加，從 `_2` 開始編號（例：`20261111_lucky_wheel_2`）。
 
+## 工作流
+
+每個活動都照 **mock up → 製作美術圖 → 套用** 進行，完整步驟、規格與常見問題見
+[`.claude/skills/event-workflow/SKILL.md`](../.claude/skills/event-workflow/SKILL.md)（Claude 做活動時會自動載入）。
+範本活動：`20261111_lucky_wheel/`。
+
 ## 共通規則
 
 - 前台語系只有 **en / ko / th**（預設 en），畫面與交付圖檔不得出現中文。
