@@ -31,9 +31,9 @@
 |---|---|---|---|---|---|---|---|
 | ☑ | A01 | stage-bg | 750×1000 | `assets/img/stage-bg.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A02 | stage-floor | 750×140 | `assets/img/stage-floor.{png,webp,svg}` | d913f7f | ☐ | P0 |
-| ☑ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | d913f7f | ☐ | P0 |
-| ☑ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | d913f7f | ☐ | P0 |
-| ☑ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | d913f7f | ☐ | P0 |
+| ☐ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☐ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☐ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
 | ☑ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A07 | wheel-frame | 680×680 | `assets/img/wheel-frame.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A08 | wheel-gloss | 600×600 | `assets/img/wheel-gloss.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
@@ -58,7 +58,7 @@
 | ☑ | A27 | card-title | 400×72 | `assets/img/card-title.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A28 | footer-deco | 750×160 | `assets/img/footer-deco.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
 | ☑ | A29 | icon-share | 64×64 | `assets/img/icon-share.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
-| ☑ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | e5e2f55 | ☐ | P1 |
+| ☑ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | e5e2f55 | 主標定稿後要換新主標重出 | P1 |
 | ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ | P3 |
 | ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | 8349b85 | ☐ | P1 |

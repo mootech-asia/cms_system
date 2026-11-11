@@ -21,6 +21,7 @@
   var modal = $('resultModal');
   var toast = $('toast');
   var mascot = $('mascot');
+  var mascotShadow = $('mascotShadow');
 
   var player = loadPlayer();
   var rotation = 0;
@@ -200,6 +201,7 @@
     clearTimeout(mascotSwapTimer);
     var swap = function () {
       mascot.src = src;
+      mascotShadow.src = src;
       mascotShownAt = performance.now();
       mascotState = state;
       renderAssetLabels();

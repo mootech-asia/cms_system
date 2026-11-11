@@ -205,7 +205,6 @@ img { display: block; max-width: 100%; }
 .ev-stage-inner {
   position: relative;
   z-index: 3;
-  overflow: hidden;
   max-width: var(--ev-page-max);
   margin: 0 auto;
   padding: 48px var(--ev-space-4) 0;
@@ -410,34 +409,34 @@ img { display: block; max-width: 100%; }
    放在 .ev-console 裡 absolute 定位，不佔版面高度，所以操作台能緊接在轉盤下方、第一屏就看得到 */
 .ev-host {
   position: absolute;
-  right: -13%;
-  bottom: calc(100% - 18px);
+  right: -36%;
+  bottom: calc(100% - 38px);
   z-index: 1;
-  width: 54%;
+  width: 81%;
   pointer-events: none;
 }
 .ev-host::before { content: ""; display: block; padding-top: 125%; }
-.ev-host::after {
-  /* 雙腳（GIF 畫布 x 30–70%、y 95%）下方的接地陰影，略偏右後 */
-  content: "";
+.ev-mascot,
+.ev-mascot-shadow {
   position: absolute;
-  left: 24%;
-  bottom: 0;
-  width: 60%;
-  height: 8%;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgb(60 22 4 / 0.55), rgb(60 22 4 / 0.25) 60%, transparent);
-  pointer-events: none;
-}
-.ev-mascot {
-  position: absolute;
-  z-index: 1;
-  filter: drop-shadow(8px 10px 10px rgb(60 22 4 / 0.3));
   inset: 0;
   width: 100%;
   max-width: none;
   height: 100%;
   pointer-events: none;
+}
+.ev-mascot {
+  z-index: 1;
+  filter: drop-shadow(8px 10px 10px rgb(60 22 4 / 0.3));
+}
+/* 地板投影：同一個 GIF 壓扁、斜切成剪影，所以會跟著角色的動作一起擺動
+   （同網址的 GIF 在瀏覽器共用同一條動畫時間軸，兩張圖逐幀同步）。
+   光源在前上方偏左 → 影子往右後方（畫面上方）倒，以雙腳（畫布 y 95%）為支點 */
+.ev-mascot-shadow {
+  transform-origin: 50% 95%;
+  transform: skewX(-38deg) scaleY(0.32);
+  filter: brightness(0) blur(2px);
+  opacity: 0.3;
 }
 .ev-chances { pointer-events: auto; }
 .ev-chances {
