@@ -30,7 +30,9 @@ YYYYMMDD_event_name[_N]
 ```
 20261111_lucky_wheel/
 ├── index.html
-├── DESIGN_TASKS.md        # 美術製作需求單
+├── DESIGN_TASKS.md        # 美術製作需求單（規格與驗收）
+├── GPT_ASSET_BRIEF.md     # 交給 GPT 產素材的步驟、提示詞與組 GIF 腳本
+├── reference/             # 吉祥物角色設計參考圖
 └── assets/
     ├── css/event.css      # token（含轉盤扇區色票）
     ├── js/config.js       # 圖片／音效／吉祥物路徑、動畫時間、mock 預設內容
