@@ -47,6 +47,8 @@ STYLE LOCK — apply to every image in this conversation:
 - Event theme: bright, warm, festive modern Broadway stage seen as a 3D space with depth and perspective
   (never a flat front-facing backdrop); clean, simple, cheerful;
   colorful casino-style lucky wheel. Warm and comfortable overall tone. No dark nightclub mood.
+- Real spatial sense: everything lives in ONE 3D stage with a key light from the upper front-left;
+  keep lighting and perspective consistent; do NOT paint ground shadows (the page adds contact shadows).
 - NEVER include Chinese characters anywhere. Do not add any text unless the prompt explicitly gives the exact text.
 - No host / MC character, no handheld microphone, no speech bubbles.
 - Never show national flags, emblems or other companies' logos; no red warning/error visuals;
@@ -87,6 +89,8 @@ ANIMATION SPRITE SHEET RULES:
 - Output 1024x1536, transparent background, a 3-column x 4-row grid = 12 equal cells.
 - Frames read left-to-right, top-to-bottom (frame 1 top-left, frame 12 bottom-right).
 - Full body in every cell, same scale, same camera, feet on the same baseline, centered.
+- The character fills about 80% of the cell width, feet close to the bottom edge; key light from the upper front-left.
+- No ground shadow under the feet (the page adds a contact shadow).
 - Only the pose changes between frames; motion must be smooth and evenly spaced.
 - Frame 12 must flow seamlessly back into frame 1 (loop).
 - No text, no grid lines, no frame numbers, no background, no shadows outside the character.
@@ -188,6 +192,7 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
 | `footer-deco.png` | 750×160 | 1536×1024 → 裁切 | `Decorative page footer: a soft stage-edge arc with small gold stars along it and a few confetti strips below, warm and light. NO TEXT. Transparent background above the arc.` |
 | `icon-share.png` | 64×64 | 1024×1024 | `Round cream share icon with a gold border and a red share symbol (three connected dots), same style as the sound toggle icons. Transparent background.` |
 | `share-preview.png` | 1200×630（PNG） | 1536×1024 → 裁切 | `Social link preview: the LUCKY WHEEL marquee title on the left, the colorful casino wheel in the center-right, Moo Rabbit cheering at the bottom right, bright warm Broadway stage background. Keep all key content inside the central 1100x580. Only the text "LUCKY WHEEL" (and optionally "SPIN & WIN").` |
+| `wheel-stand.png` | 400×600 | 1024×1536 → 縮小 | `A gold casino wheel stand: a tapered glossy gold pillar rising from a round gold-and-red base drawn as a perspective ellipse (same slightly-high camera angle as the stage floor), small warm bulbs around the base rim, key light from the upper front-left. The top 20% of the pillar will be hidden behind the wheel. No wheel, no ground shadow, transparent background.` |
 
 ---
 

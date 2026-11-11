@@ -14,7 +14,7 @@
 4. 「審核」欄由我們填寫（`☐` 待審／`☑` 通過／`✗` 退回＋原因），**GPT 不要改審核欄**。
 5. 不要刪除或新增列；有疑問寫在最下方「備註」。
 
-## A. 靜態圖（30）＋主標原始檔（1）
+## A. 靜態圖（31）＋主標原始檔（1）
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 |
 |---|---|---|---|---|---|---|
@@ -49,6 +49,7 @@
 | ☐ | A29 | icon-share | 64×64 | `assets/img/icon-share.{png,webp,svg}` | | ☐ |
 | ☐ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | | ☐ |
 | ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ |
+| ☐ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | | ☐ |
 
 ## B. 色票（1）
 
