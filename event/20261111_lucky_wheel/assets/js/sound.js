@@ -15,7 +15,22 @@ window.EventSound = (function () {
 
   try { enabled = localStorage.getItem(KEY) !== 'off'; } catch (e) { /* 預設開啟 */ }
 
+  // iOS 的靜音鍵會把 Web Audio 一起靜音；在第一次使用者操作時播一段無聲 <audio>，
+  // 把音訊工作階段切成「播放」類別，之後合成音在靜音模式下也能出聲。
+  var unlocked = false;
+  var SILENT_WAV = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+  function unlockIOS() {
+    if (unlocked) return;
+    unlocked = true;
+    try {
+      var a = new Audio(SILENT_WAV);
+      a.setAttribute('playsinline', '');
+      a.play().catch(function () { /* 不支援時略過 */ });
+    } catch (e) { /* 同上 */ }
+  }
+
   function ensure() {
+    unlockIOS();
     if (!ctx) {
       var AC = window.AudioContext || window.webkitAudioContext;
       if (!AC) return null;
@@ -83,9 +98,62 @@ window.EventSound = (function () {
     var t = ctx.currentTime + 0.01;
     kick(t);
     if (!isLose) {
-      noise(t, 1.8, 0.45, 'highpass', 5000);
-      noise(t, 0.4, 0.3, 'bandpass', 3000);
+      noise(t, 0.9, 0.35, 'highpass', 5000);
+      noise(t, 0.3, 0.25, 'bandpass', 3000);
     }
+  }
+
+  // 開獎彈窗出現時的獎賞音：中獎＝上行鈴聲琶音＋閃亮高音；未中獎＝兩個柔和下行音
+  function bell(t, freq, dur, gain, type) {
+    var o = track(ctx.createOscillator());
+    var g = ctx.createGain();
+    o.type = type || 'triangle';
+    o.frequency.setValueAtTime(freq, t);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(gain, t + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(ctx.destination);
+    o.start(t);
+    o.stop(t + dur + 0.05);
+  }
+
+  function brass(t, freq, dur, gain) {
+    var o = track(ctx.createOscillator());
+    var f = ctx.createBiquadFilter();
+    var g = ctx.createGain();
+    o.type = 'sawtooth';
+    o.frequency.setValueAtTime(freq, t);
+    f.type = 'lowpass';
+    f.frequency.setValueAtTime(2600, t);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(gain, t + 0.04);
+    g.gain.setValueAtTime(gain, t + dur * 0.6);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(f).connect(g).connect(ctx.destination);
+    o.start(t);
+    o.stop(t + dur + 0.05);
+  }
+
+  function reward(isLose) {
+    if (!enabled) return;
+    var file = isLose ? cfg.sounds.rewardLose : cfg.sounds.reward;
+    if (file) { playFile(file); return; }
+    if (!ensure()) return;
+    var t = ctx.currentTime + 0.02;
+    if (isLose) {
+      bell(t, 523.25, 0.6, 0.55, 'sine');
+      bell(t + 0.24, 392, 0.8, 0.5, 'sine');
+      return;
+    }
+    // 上行鈴聲琶音 → 小號和弦收尾 → 閃亮高音
+    [523.25, 659.25, 783.99, 1046.5].forEach(function (f, i) {
+      bell(t + i * 0.09, f, 0.9, 0.6);
+      bell(t + i * 0.09, f * 2, 0.5, 0.15, 'sine');
+    });
+    [523.25, 659.25, 783.99].forEach(function (f) { brass(t + 0.38, f, 0.9, 0.16); });
+    bell(t + 0.4, 1318.5, 1.2, 0.4);
+    bell(t + 0.4, 1567.98, 1.2, 0.3);
+    for (var k = 0; k < 6; k++) noise(t + 0.45 + k * 0.07, 0.12, 0.08, 'highpass', 7000);
   }
 
   function stopAll() {
@@ -104,6 +172,7 @@ window.EventSound = (function () {
   return {
     drumroll: drumroll,
     finale: finale,
+    reward: reward,
     setEnabled: setEnabled,
     isEnabled: function () { return enabled; }
   };

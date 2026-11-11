@@ -5,6 +5,7 @@
  *     period: '2026/11/11 – 2026/11/30',
  *     freeSpins: 3,
  *     prizes: [ { name: { en, ko, th, zh }, icon: '圖片網址', weight: 10, isLose: false }, ... ],
+ *     winners: [ { name: 'pl***88', prize: 0 }, ... ],   // 中獎跑馬燈；prize 為獎項索引或 { en, ko, th, zh }，名字請先遮罩
  *     rulesTitle: { en, ko, th, zh },
  *     rules: { en: ['…'], ko: ['…'], th: ['…'], zh: ['…'] },
  *     updatedAt: '內容版本；變動時前台會重發抽獎次數'

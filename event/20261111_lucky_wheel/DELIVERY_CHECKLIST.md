@@ -61,12 +61,13 @@
 | ☑ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | e5e2f55 | ☐ | P1 |
 | ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ | P3 |
 | ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | d913f7f | ☐ | P0 |
+| ☐ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | | ☐ | P1 |
 
 ## B. 色票（1）
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | d913f7f | ☐ | P0 |
+| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | 36827ae | ☐ | P0 |
 
 ## C. 吉祥物角色設定圖（1，第一階段）
 
@@ -111,19 +112,23 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | e5e2f55 | ☐ | P2 |
+| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | 39d85a9 | ☐ | P2 |
 
-## G. 音效（選配 3）
+## G. 音效（選配 5）
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
 | ☐ | G01 | drumroll | 約 5 秒 | `assets/audio/drumroll.mp3` | | ☐ | P3 |
 | ☐ | G02 | win | 1～2 秒 | `assets/audio/win.mp3` | | ☐ | P3 |
 | ☐ | G03 | lose | 1 秒內 | `assets/audio/lose.mp3` | | ☐ | P3 |
+| ☐ | G04 | reward | 1～1.5 秒 | `assets/audio/reward.mp3` | | ☐ | P3 |
+| ☐ | G05 | reward-lose | 1 秒內 | `assets/audio/reward-lose.mp3` | | ☐ | P3 |
 
 ## 備註
 
 （GPT 有疑問或無法照規格交付時寫在這裡，附列號）
+
+- A11 modal-bg（2026-11-11 檢查）：卡片中央 alpha 約 244/255（96%），彈窗打開時後方轉盤的「SPIN」字樣會透出來；中央內容區應為 100% 不透明。
 
 - A31：原始檔放雲端時，在 `source/title-source.md` 寫下檔案連結即可（腳本只檢查這個說明檔存在，內容由我們人工審核）。
 

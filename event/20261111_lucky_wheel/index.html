@@ -44,6 +44,7 @@
         </h1>
         <p class="ev-period-wrap"><span class="ev-period" id="period"></span><span class="ev-asset ev-asset--period" data-asset="periodBadge" aria-hidden="true"></span></p>
 
+        <div class="ev-play">
         <div class="ev-wheel-area">
           <div class="ev-wheel-stand" aria-hidden="true">
             <img data-img="wheelStand" alt="" />
@@ -69,15 +70,27 @@
           </div>
         </div>
 
-        <div class="ev-host">
-          <img class="ev-mascot" id="mascot" alt="" />
-          <span class="ev-asset ev-asset--mascot" data-asset="mascot" aria-hidden="true"></span>
-          <span class="ev-asset ev-asset--chances" data-asset="chancesBadge" aria-hidden="true"></span>
-          <p class="ev-chances">
-            <span data-i18n="chances.before"></span>
-            <strong id="chances">0</strong>
-            <span data-i18n="chances.after"></span>
-          </p>
+        <div class="ev-console">
+          <div class="ev-host">
+            <img class="ev-mascot" id="mascot" alt="" />
+            <span class="ev-asset ev-asset--mascot" data-asset="mascot" aria-hidden="true"></span>
+          </div>
+
+          <div class="ev-ticker" id="ticker">
+            <span class="ev-ticker-label" data-i18n="ticker.label"></span>
+            <div class="ev-ticker-track"><div class="ev-ticker-items" id="tickerItems"></div></div>
+            <span class="ev-asset ev-asset--ticker" data-asset="tickerBar" aria-hidden="true"></span>
+          </div>
+          <div class="ev-console-row">
+            <p class="ev-chances">
+              <span data-i18n="chances.before"></span>
+              <strong id="chances">0</strong>
+              <span data-i18n="chances.after"></span>
+            </p>
+            <button type="button" class="ev-cta" id="btnSpinCta"><span data-i18n="cta.spin"></span></button>
+            <span class="ev-asset ev-asset--chances" data-asset="chancesBadge btnPrimary" aria-hidden="true"></span>
+          </div>
+        </div>
         </div>
       </div>
 
