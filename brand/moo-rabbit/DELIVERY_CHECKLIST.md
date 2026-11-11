@@ -78,6 +78,14 @@
 | ☐ | F02 | banner-copyspace | 1920×1008 | `06_social/m02-banner-copyspace.png` | | ☐ |
 | ☐ | F03 | share-preview | 1200×630 | `06_social/m03-share-preview.jpg` | | ☐ |
 
+## G. 根目錄代表素材（3，比照熊北：主要形象、視訊連線動畫、profile）
+
+| 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 |
+|---|---|---|---|---|---|---|
+| ☐ | G01 | main-image | 1024×1536 | `main-image.png` | | ☐ |
+| ☐ | G02 | video-call | 720×720 gif≥24 | `video-call.gif` | | ☐ |
+| ☐ | G03 | profile | 2000×2000 | `profile.jpg` | | ☐ |
+
 ## 備註
 
 （GPT 有疑問或無法照規格交付時寫在這裡，附列號）

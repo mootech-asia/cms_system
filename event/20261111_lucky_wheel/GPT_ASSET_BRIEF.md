@@ -15,7 +15,7 @@
 
 ## 1. 參考角色設定（熊北 Mootech Bear，官方）
 
-來源：官網 repo `mootech-asia/mootech_website` → `brand/熊北-吉祥物/01_角色設定/角色設定.md`。GPT 看不到圖或理解有偏差時，以這份文字為準。
+來源：官網 repo `mootech-asia/mootech_website` → `brand/moo-bear/01_character/character.md`。GPT 看不到圖或理解有偏差時，以這份文字為準。
 
 | 項目 | 官方設定 |
 |---|---|

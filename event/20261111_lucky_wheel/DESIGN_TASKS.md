@@ -72,7 +72,7 @@
 
 > 兔比是 MOOTECH cms_system 事業部吉祥物，整套形象（角色設定、姿勢、貼圖、主視覺、客服、社群）見 `brand/moo-rabbit/`；本節只管本活動的 5 個動態 GIF。角色設定圖由品牌包製作。
 
-> **必須比對角色設計參考圖製作。** 參考圖已歸檔在 `reference/`（來源：官網 repo `mootech-asia/mootech_website` 的 `brand/熊北-吉祥物/`，說明見 `reference/README.md`）：
+> **必須比對角色設計參考圖製作。** 參考圖已歸檔在 `reference/`（來源：官網 repo `mootech-asia/mootech_website` 的 `brand/moo-bear/`，說明見 `reference/README.md`）：
 > 四張三視圖 `bear-view-1-front` / `2-three-quarter` / `3-side` / `4-back`（官方「唯一依據」），以及揮手、眨眼比讚、思考貼圖與全身姿勢各一張。
 > 用 GPT 生成時請照 `GPT_ASSET_BRIEF.md` 的步驟與提示詞，並附上這些參考圖。
 

@@ -5,7 +5,7 @@
 
 - 美術需求（規格＋GPT 提示詞）：[`ART_REQUIREMENTS.md`](ART_REQUIREMENTS.md)
 - 交付勾選表：[`DELIVERY_CHECKLIST.md`](DELIVERY_CHECKLIST.md)，核對：`python3 scripts/check_delivery.py brand/moo-rabbit/DELIVERY_CHECKLIST.md`
-- 熊北參考圖：[`../../event/20261111_lucky_wheel/reference/`](../../event/20261111_lucky_wheel/reference/)（來源：官網 repo `mootech-asia/mootech_website` 的 `brand/熊北-吉祥物/`）
+- 熊北參考圖：[`../../event/20261111_lucky_wheel/reference/`](../../event/20261111_lucky_wheel/reference/)（來源：官網 repo `mootech-asia/mootech_website` 的 `brand/moo-bear/`）
 
 ## 資料夾分類（比照熊北）
 
@@ -17,6 +17,7 @@
 | `04_key-visual/` | 事業部主視覺靜態圖＋15 秒循環影片 | cms_system 首頁首屏、展示、社群影片 |
 | `05_support/` | 圓形頭像、客服形象原圖、視訊畫面直式 | 前台右下角客服 |
 | `06_social/` | 長橫幅、留白橫幅、分享預覽 1200×630 | 社群封面、網址分享預覽 |
+| 根目錄 | `main-image.png`（主要形象）、`video-call.gif`（視訊連線動畫）、`profile.jpg` | 代表圖、客服視訊、社群頭像 |
 | `07_motion/` | 活動用循環 GIF（目前：轉盤活動 5 個狀態） | 活動頁吉祥物動態 |
 
 檔名規則：`編號-動作或用途.副檔名`，一律英文小寫、以連字號分隔（圖上與檔名都不出現中文）。

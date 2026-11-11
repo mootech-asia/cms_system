@@ -62,7 +62,7 @@
 
 ---
 
-## 2. 製作物清單（共 34 項＋活動動態）
+## 2. 製作物清單（共 37 項＋活動動態）
 
 畫布尺寸固定（方便自動核對）。透明背景一律輸出 PNG（含 alpha）。
 
@@ -135,6 +135,16 @@
 | M01 | `06_social/m01-banner-long.png` | 1575×300 | 長橫幅：兔比在右側，左側留白可放字，**圖上不放文字** |
 | M02 | `06_social/m02-banner-copyspace.png` | 1920×1008 | 橫幅：兔比托多語系地球（同 P03）在右側，左側留白可放字 |
 | M03 | `06_social/m03-share-preview.jpg` | 1200×630 | 網址分享預覽：兔比＋官方 MOOTECH 標誌，可放英文「MOOTECH CMS」（若不確定文案就不放字） |
+
+### 根目錄代表素材（3）— 比照熊北品牌包根目錄
+
+熊北品牌包根目錄另有「主要形象、視訊連線動畫、profile」三項（官網 repo `brand/moo-bear/` 的 `profile.jpg` 與熊北原始素材資料夾），兔比比照製作。設定圖即本表 `01_character/turnaround-sheet.png`。
+
+| # | 檔名 | 尺寸 | 內容 |
+|---|---|---|---|
+| R1 | `main-image.png` | 1024×1536 | **主要形象**：兔比的代表全身圖，正面站姿、雙手自然下垂、自信微笑，透明背景（真正的 alpha 透明，**不可把棋盤格畫進圖裡**）。構圖比照熊北主要形象（全身正面、四周少量留白） |
+| R2 | `video-call.gif` | 720×720，≥24 幀循環 | **視訊連線動畫**：方形視訊通話畫面。外框為發光藍色科技 UI：左上 MOOTECH 標誌＋「● Video Call」、右上訊號與攝影機圖示、左側「Connecting...」面板（耳機圖示＋進度條動畫）、底部通話按鈕列（麥克風、攝影機、更多、紅色掛斷）；兔比在右側半身入鏡，一手扶耳機、耳朵輕晃、眨眼。**UI 文字只能是上述英文**。頭尾無縫循環（製作方式同轉盤 GIF：sprite sheet＋組 GIF 腳本，`size=(720, 720)`） |
+| R3 | `profile.jpg` | 2000×2000 | **profile 主圖**：深藍科技背景，漂浮全像網站版面卡片與發光地球（地球旁可有 EN／KO／TH 標籤），兔比在右側半身、一手朝畫面左上揮手招呼，背心左胸官方 MOOTECH 標誌清楚可見；構圖比照熊北 `profile.jpg`。GPT 先生成 1024×1024，再用 Code Interpreter 以 LANCZOS 放大到 2000×2000 |
 
 ### 07_motion 活動動態
 
@@ -250,7 +260,22 @@ Moo Rabbit taps panels, ears twitch, and gives a thumbs up near the end; everyth
 Sunglasses and headphone LEDs stay lit. No text, no red warnings.
 ```
 
-### 4.6 客服介面（05）與社群分享（06）
+### 4.6 根目錄代表素材（R1～R3）
+
+```
+(CHARACTER LOCK) [R1 main-image.png] 1024x1536, TRUE transparent background PNG (real alpha, never a painted checkerboard),
+full body front view, arms relaxed at the sides, confident smile, ears upright, even margins. The definitive hero image of Moo Rabbit.
+(CHARACTER LOCK) [R2 video-call.gif] Sprite sheet 1024x1536, 3x4 grid = 12 square-ish frames (make 2 sheets = 24 frames):
+  a square video-call screen with glowing blue tech UI: top-left the MOOTECH logo and "● Video Call", top-right signal and camera icons,
+  a left panel with a headset icon, the text "Connecting..." and an animated progress bar, a bottom call bar (mic, camera, more, red hang-up).
+  Moo Rabbit upper body on the right, one paw on the headphone, ears swaying, one blink. Only these exact English words. Seamless loop.
+  Assemble with the GIF script in event/20261111_lucky_wheel/GPT_ASSET_BRIEF.md 4.3 using size=(720, 720).
+(CHARACTER LOCK) [R3 profile.jpg] 1024x1024 then upscale to 2000x2000: deep blue tech background with floating holographic website
+  layout cards and a glowing globe with small "EN" "KO" "TH" tags; Moo Rabbit upper body on the right, waving toward the upper left,
+  the official MOOTECH logo on the vest clearly visible. No other text.
+```
+
+### 4.7 客服介面（05）與社群分享（06）
 
 ```
 (CHARACTER LOCK) [C01] 512x512 square portrait for a round avatar, face and both ears fully inside a centered circle, light clean background.
