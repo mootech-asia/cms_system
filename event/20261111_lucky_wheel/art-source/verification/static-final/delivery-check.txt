@@ -1,0 +1,57 @@
+已提交且通過檢查：33 / 53 項；打勾但不符：0 項
+依優先級（P0 全局視覺 → P3 精修與動態）：P0 11/11　P1 10/10　P2 12/12　P3 0/20
+
+OK      P0  A01  stage-bg  — assets/img/stage-bg.webp
+OK      P0  A02  stage-floor  — assets/img/stage-floor.webp
+OK      P0  A03  title-en  — assets/img/title-en.webp
+OK      P0  A04  title-ko  — assets/img/title-ko.webp
+OK      P0  A05  title-th  — assets/img/title-th.webp
+OK      P0  A07  wheel-frame  — assets/img/wheel-frame.webp
+OK      P0  A09  pointer  — assets/img/pointer.webp
+OK      P0  A10  btn-go  — assets/img/btn-go.webp
+OK      P0  A22  stage-bg-desktop  — assets/img/stage-bg-desktop.webp
+OK      P0  A32  wheel-stand  — assets/img/wheel-stand.webp
+MANUAL  P0  B01  扇區色 6 組（底色＋文字色）＋分隔線色  — 色票需人工審核
+OK      P1  A06  spotlight  — assets/img/spotlight.svg
+OK      P1  A08  wheel-gloss  — assets/img/wheel-gloss.svg
+OK      P1  A11  modal-bg  — assets/img/modal-bg.webp
+OK      P1  A12  btn-primary  — assets/img/btn-primary.webp
+OK      P1  A23  info-bg  — assets/img/info-bg.webp
+OK      P1  A24  period-badge  — assets/img/period-badge.webp
+OK      P1  A25  chances-badge  — assets/img/chances-badge.webp
+OK      P1  A26  card-frame  — assets/img/card-frame.webp
+OK      P1  A27  card-title  — assets/img/card-title.webp
+OK      P1  A30  share-preview  — assets/img/share-preview.jpg
+OK      P2  A13  icon-sound-on  — assets/img/icon-sound-on.webp
+OK      P2  A14  icon-sound-off  — assets/img/icon-sound-off.webp
+OK      P2  A15  icon-cash  — assets/img/icon-cash.svg
+OK      P2  A16  icon-coin  — assets/img/icon-coin.svg
+OK      P2  A17  icon-gift  — assets/img/icon-gift.svg
+OK      P2  A18  icon-spin  — assets/img/icon-spin.svg
+OK      P2  A19  icon-bonus  — assets/img/icon-bonus.svg
+OK      P2  A20  icon-points  — assets/img/icon-points.svg
+OK      P2  A21  icon-thanks  — assets/img/icon-thanks.svg
+OK      P2  A28  footer-deco  — assets/img/footer-deco.webp
+OK      P2  A29  icon-share  — assets/img/icon-share.webp
+OK      P2  F01  `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖  — config.js 所有路徑都存在
+TODO    P3  A31  title 原始檔（PSD／AI／Figma）
+SKIP    P3  C01  turnaround-sheet（品牌包同一檔案）  — 暫緩，不計入
+TODO    P3  D00  base-frame（所有動態共用的基準幀）
+TODO    P3  D01  idle-1
+TODO    P3  D02  idle-2
+TODO    P3  D03  idle-3
+TODO    P3  D04  spinning
+TODO    P3  D05  result
+TODO    P3  E01  idle-1 PNG 序列幀
+TODO    P3  E02  idle-2 PNG 序列幀
+TODO    P3  E03  idle-3 PNG 序列幀
+TODO    P3  E04  spinning PNG 序列幀
+TODO    P3  E05  result PNG 序列幀
+TODO    P3  E06  idle-1 關鍵幀 vs 熊北參考
+TODO    P3  E07  idle-2 關鍵幀 vs 熊北參考
+TODO    P3  E08  idle-3 關鍵幀 vs 熊北參考
+TODO    P3  E09  spinning 關鍵幀 vs 熊北參考
+TODO    P3  E10  result 關鍵幀 vs 熊北參考
+TODO    P3  G01  drumroll
+TODO    P3  G02  win
+TODO    P3  G03  lose

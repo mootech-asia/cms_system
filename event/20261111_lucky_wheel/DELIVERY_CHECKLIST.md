@@ -34,31 +34,31 @@
 | ☑ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | d913f7f | ☐ | P0 |
-| ☐ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | | ☐ | P1 |
+| ☑ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A07 | wheel-frame | 680×680 | `assets/img/wheel-frame.{png,webp,svg}` | d913f7f | ☐ | P0 |
-| ☐ | A08 | wheel-gloss | 600×600 | `assets/img/wheel-gloss.{png,webp,svg}` | | ☐ | P1 |
+| ☑ | A08 | wheel-gloss | 600×600 | `assets/img/wheel-gloss.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A09 | pointer | 120×160 | `assets/img/pointer.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A10 | btn-go | 200×200 | `assets/img/btn-go.{png,webp,svg}` | d913f7f | ☐ | P0 |
-| ☐ | A11 | modal-bg | 600×760 | `assets/img/modal-bg.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | A12 | btn-primary | 400×110 | `assets/img/btn-primary.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | A13 | icon-sound-on | 64×64 | `assets/img/icon-sound-on.{png,webp,svg}` | | ☐ | P2 |
-| ☐ | A14 | icon-sound-off | 64×64 | `assets/img/icon-sound-off.{png,webp,svg}` | | ☐ | P2 |
-| ☐ | A15 | icon-cash | 160×160 | `assets/img/icon-cash.{png,webp,svg}` | | ☐ | P2 |
-| ☐ | A16 | icon-coin | 160×160 | `assets/img/icon-coin.{png,webp,svg}` | | ☐ | P2 |
-| ☐ | A17 | icon-gift | 160×160 | `assets/img/icon-gift.{png,webp,svg}` | | ☐ | P2 |
-| ☐ | A18 | icon-spin | 160×160 | `assets/img/icon-spin.{png,webp,svg}` | | ☐ | P2 |
-| ☐ | A19 | icon-bonus | 160×160 | `assets/img/icon-bonus.{png,webp,svg}` | | ☐ | P2 |
-| ☐ | A20 | icon-points | 160×160 | `assets/img/icon-points.{png,webp,svg}` | | ☐ | P2 |
-| ☐ | A21 | icon-thanks | 160×160 | `assets/img/icon-thanks.{png,webp,svg}` | | ☐ | P2 |
+| ☑ | A11 | modal-bg | 600×760 | `assets/img/modal-bg.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
+| ☑ | A12 | btn-primary | 400×110 | `assets/img/btn-primary.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
+| ☑ | A13 | icon-sound-on | 64×64 | `assets/img/icon-sound-on.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
+| ☑ | A14 | icon-sound-off | 64×64 | `assets/img/icon-sound-off.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
+| ☑ | A15 | icon-cash | 160×160 | `assets/img/icon-cash.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
+| ☑ | A16 | icon-coin | 160×160 | `assets/img/icon-coin.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
+| ☑ | A17 | icon-gift | 160×160 | `assets/img/icon-gift.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
+| ☑ | A18 | icon-spin | 160×160 | `assets/img/icon-spin.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
+| ☑ | A19 | icon-bonus | 160×160 | `assets/img/icon-bonus.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
+| ☑ | A20 | icon-points | 160×160 | `assets/img/icon-points.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
+| ☑ | A21 | icon-thanks | 160×160 | `assets/img/icon-thanks.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
 | ☑ | A22 | stage-bg-desktop | 1920×1000 | `assets/img/stage-bg-desktop.{png,webp,svg}` | d913f7f | ☐ | P0 |
-| ☐ | A23 | info-bg | 750×750 | `assets/img/info-bg.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | A24 | period-badge | 480×64 | `assets/img/period-badge.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | A25 | chances-badge | 360×88 | `assets/img/chances-badge.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | A26 | card-frame | 120×120 | `assets/img/card-frame.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | A27 | card-title | 400×72 | `assets/img/card-title.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | A28 | footer-deco | 750×160 | `assets/img/footer-deco.{png,webp,svg}` | | ☐ | P2 |
-| ☐ | A29 | icon-share | 64×64 | `assets/img/icon-share.{png,webp,svg}` | | ☐ | P2 |
-| ☐ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | | ☐ | P1 |
+| ☑ | A23 | info-bg | 750×750 | `assets/img/info-bg.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
+| ☑ | A24 | period-badge | 480×64 | `assets/img/period-badge.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
+| ☑ | A25 | chances-badge | 360×88 | `assets/img/chances-badge.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
+| ☑ | A26 | card-frame | 120×120 | `assets/img/card-frame.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
+| ☑ | A27 | card-title | 400×72 | `assets/img/card-title.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
+| ☑ | A28 | footer-deco | 750×160 | `assets/img/footer-deco.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
+| ☑ | A29 | icon-share | 64×64 | `assets/img/icon-share.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
+| ☑ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | e5e2f55 | ☐ | P1 |
 | ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ | P3 |
 | ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | d913f7f | ☐ | P0 |
 
@@ -111,7 +111,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | d913f7f | ☐ | P2 |
+| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | e5e2f55 | ☐ | P2 |
 
 ## G. 音效（選配 3）
 
@@ -134,3 +134,9 @@
 - d913f7f：10 張正式靜態圖＋扇區色票；三語主標、手機／桌機透視舞台、外框、底座、指針與主按鈕。
 - 預覽及三語雙寬檢查：`art-source/verification/p0/`。P1/P2 尚未按新版清單完成驗收。
 - D01～D05 沿用退回紀錄；頁面目前的 GIF 是待精修示意，不算正式交付。
+### 靜態元件提交 2026-11-11
+
+- P1/P2 靜態素材與程式路徑：`e5e2f55`；P0～P2 共 33 項提交，審核欄保持待審。
+- 分享圖採規格允許的 JPEG（1200×630，217,485 bytes），保留漸層，OG/Twitter metadata 同步改指 `.jpg`。
+- 尺寸、檔案大小、底紋四邊無縫已核對；en/ko/th × 390/1440 初始、轉動、結果、次數用完與分享面板見 `art-source/verification/static-final/`。
+- P3 不在本批完成範圍：GIF、共用基準幀、主標編輯原始檔等保留未提交與退回狀態。

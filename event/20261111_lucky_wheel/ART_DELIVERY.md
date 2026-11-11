@@ -1,3 +1,5 @@
+> 最新交付狀態請看 [STATIC_REVIEW.md](STATIC_REVIEW.md)。Git 寫入權限已恢復；以下為歷史階段紀錄。
+
 > 此為歷史交付紀錄。新版需求、退回狀態與本次主視覺進度請以 [P0_REVIEW.md](P0_REVIEW.md) 和 DELIVERY_CHECKLIST.md 為準。
 
 # Lucky Wheel 美術交付：新版動畫待審
