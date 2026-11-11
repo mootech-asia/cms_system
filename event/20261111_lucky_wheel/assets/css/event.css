@@ -406,12 +406,12 @@ img { display: block; max-width: 100%; }
 .ev-wheel-go[aria-busy="true"] { cursor: progress; }
 .ev-wheel-go.is-disabled { filter: grayscale(1) brightness(0.85); }
 
-/* 吉祥物：400×500 GIF，站在轉盤右前方的舞台地板上，雙腳踩在操作台上緣（腳與接地陰影都要露出來）。
+/* 吉祥物：400×500 GIF，站在轉盤右前方、中獎跑馬燈後方（跑馬燈蓋住兔比的腳與小腿）。
    放在 .ev-console 裡 absolute 定位，不佔版面高度，所以操作台能緊接在轉盤下方、第一屏就看得到 */
 .ev-host {
   position: absolute;
   right: -17%;
-  bottom: calc(100% + var(--ev-space-3));
+  bottom: calc(100% - 18px);
   z-index: 1;
   width: 74%;
   pointer-events: none;
