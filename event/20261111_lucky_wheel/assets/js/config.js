@@ -37,12 +37,12 @@ window.EVENT_CONFIG = {
   /* 吉祥物：每個狀態一個循環 GIF；idle 會在多張之間輪播。 */
   mascot: {
     idle: [
-      'assets/img/mascot/idle-1.svg',
-      'assets/img/mascot/idle-2.svg',
-      'assets/img/mascot/idle-3.svg'
+      'assets/img/mascot/idle-1.gif',
+      'assets/img/mascot/idle-2.gif',
+      'assets/img/mascot/idle-3.gif'
     ],
-    spinning: 'assets/img/mascot/spinning.svg',
-    result: 'assets/img/mascot/result.svg'
+    spinning: 'assets/img/mascot/spinning.gif',
+    result: 'assets/img/mascot/result.gif'
   },
 
   /* 音效：留空時用 Web Audio 即時合成鼓聲；交付音檔後填路徑即改播音檔。 */
