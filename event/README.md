@@ -32,6 +32,8 @@ YYYYMMDD_event_name[_N]
 ├── index.html
 ├── DESIGN_TASKS.md        # 美術製作需求單（規格與驗收）
 ├── GPT_ASSET_BRIEF.md     # 交給 GPT 產素材的步驟、提示詞與組 GIF 腳本
+├── DELIVERY_CHECKLIST.md  # 交付勾選表（提交狀態）
+├── tools/check_assets.py  # 核對勾選表是否屬實
 ├── reference/             # 吉祥物角色設計參考圖
 └── assets/
     ├── css/event.css      # token（含轉盤扇區色票）
