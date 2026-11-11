@@ -18,6 +18,13 @@
   --ev-color-tag-text: #ffffff;
   --ev-color-danger: #c62f35;
 
+  /* 分享平台代表色 */
+  --ev-share-line: #06c755;
+  --ev-share-facebook: #1877f2;
+  --ev-share-x: #14171a;
+  --ev-share-whatsapp: #25d366;
+  --ev-share-telegram: #229ed9;
+
   /* 轉盤扇區配色（依序循環）；設計交付色票後改這裡 */
   --ev-wheel-count: 6;
   --ev-wheel-1: #e5484d;
@@ -85,8 +92,11 @@ img { display: block; max-width: 100%; }
 .ev-asset--tl { top: 0; left: 0; }
 .ev-asset--tr { top: 0; right: 0; }
 .ev-asset--bl { bottom: 0; left: 0; }
-.ev-asset--mascot { bottom: calc(100% + 2px); right: 0; }
+.ev-asset--mascot { top: 28%; right: 0; }
 .ev-asset--floor { position: static; align-self: flex-end; margin-top: calc(var(--ev-space-3) * -1); }
+.ev-asset--period { top: -14px; right: 0; }
+.ev-asset--chances { left: 0; bottom: calc(var(--ev-space-10) + 52px); }
+.ev-asset--card { top: -30px; right: -10px; }
 .ev-asset--modal { position: static; margin: var(--ev-space-2) auto 0; width: max-content; }
 
 /* ---------- 上半：舞台 ---------- */
@@ -172,7 +182,7 @@ img { display: block; max-width: 100%; }
 .ev-lang-btn[aria-pressed="true"] { background: var(--ev-color-primary); color: var(--ev-color-on-primary); }
 .ev-lang-btn:focus-visible { outline: 2px solid var(--ev-color-gold); outline-offset: 2px; }
 
-.ev-sound-wrap { position: relative; }
+.ev-sound-wrap { position: relative; display: flex; gap: var(--ev-space-2); }
 .ev-sound {
   width: 40px;
   height: 40px;
@@ -189,6 +199,7 @@ img { display: block; max-width: 100%; }
 .ev-stage-inner {
   position: relative;
   z-index: 3;
+  overflow: hidden;
   max-width: var(--ev-page-max);
   margin: 0 auto;
   padding: var(--ev-space-5) var(--ev-space-4) 0;
@@ -198,21 +209,22 @@ img { display: block; max-width: 100%; }
 .ev-title { position: relative; margin: 0 auto; max-width: 400px; }
 .ev-title img { width: 100%; height: auto; }
 
+.ev-period-wrap { position: relative; margin: var(--ev-space-3) 0 0; }
+.ev-period-wrap:has(.ev-period:empty) { display: none; }
 .ev-period {
   display: inline-block;
-  margin: var(--ev-space-3) 0 0;
-  padding: var(--ev-space-1) var(--ev-space-3);
-  border-radius: var(--ev-radius-pill);
-  background: rgb(255 255 255 / 0.7);
+  min-width: 70%;
+  padding: var(--ev-space-2) calc(var(--ev-space-10) + var(--ev-space-2));
+  background: var(--ev-img-periodBadge, linear-gradient(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.7))) center / 100% 100% no-repeat;
   color: var(--ev-color-text);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
 }
-.ev-period:empty { display: none; }
 
 /* 轉盤：frame 680、disc 600、go 200（設計稿像素），以 frame 為 100% 換算比例 */
 .ev-wheel-area {
   position: relative;
+  z-index: 2;
   width: var(--ev-wheel-size);
   margin: var(--ev-space-8) auto 0;
 }
@@ -352,27 +364,35 @@ img { display: block; max-width: 100%; }
 .ev-wheel-go[aria-busy="true"] { cursor: progress; }
 .ev-wheel-go.is-disabled { filter: grayscale(1) brightness(0.85); }
 
-/* 吉祥物：400×500 GIF，站在轉盤右下 */
-.ev-mascot-wrap {
-  position: absolute;
-  right: -9%;
-  bottom: -6%;
-  z-index: 6;
-  width: 32%;
-}
-.ev-mascot { width: 100%; height: auto; pointer-events: none; }
-
-.ev-chances {
+/* 吉祥物：400×500 GIF，放大為上半身探頭。百分比 margin/padding 以容器寬度為基準，
+   讓畫布、角色位置與裁切高度都隨欄寬等比縮放；畫布頂端預留跳躍空間（result 會往上跳） */
+.ev-host {
   position: relative;
+  z-index: 1;
+  margin-top: -26%;
+}
+.ev-host::before { content: ""; display: block; padding-top: 92%; }
+.ev-mascot {
+  position: absolute;
+  top: 0;
+  left: 6%;
+  width: 135%;
+  max-width: none;
+  height: auto;
+  margin-top: -6%;
+  pointer-events: none;
+}
+.ev-chances {
+  position: absolute;
+  left: 0;
+  bottom: var(--ev-space-10);
   z-index: 4;
   display: inline-flex;
   align-items: baseline;
   gap: var(--ev-space-2);
-  margin: var(--ev-space-5) 0 0;
-  padding: var(--ev-space-2) var(--ev-space-5);
-  border-radius: var(--ev-radius-pill);
-  background: var(--ev-color-surface);
-  box-shadow: var(--ev-shadow-btn);
+  margin: 0;
+  padding: var(--ev-space-3) var(--ev-space-6);
+  background: var(--ev-img-chancesBadge, linear-gradient(var(--ev-color-surface), var(--ev-color-surface))) center / 100% 100% no-repeat;
   font-size: 14px;
   font-weight: 700;
 }
@@ -383,28 +403,40 @@ img { display: block; max-width: 100%; }
 .ev-stage-floor { width: 100%; height: 72px; object-fit: cover; object-position: center top; }
 
 /* ---------- 下半：活動說明（後台填寫） ---------- */
-.ev-info { background: var(--ev-color-bg); }
+.ev-info { background: var(--ev-color-bg) center top / 375px repeat; }
 .ev-info-inner {
   display: flex;
   flex-direction: column;
-  gap: var(--ev-space-4);
+  gap: var(--ev-space-6);
   max-width: var(--ev-page-max);
   margin: 0 auto;
-  padding: var(--ev-space-4) var(--ev-space-4) var(--ev-space-10);
+  padding: var(--ev-space-8) var(--ev-space-4) var(--ev-space-10);
 }
 
 .ev-card {
-  padding: var(--ev-space-5);
-  border: 1px solid var(--ev-color-border);
-  border-radius: var(--ev-radius);
-  background: var(--ev-color-surface);
-  box-shadow: var(--ev-shadow-card);
+  position: relative;
+  padding: var(--ev-space-2) var(--ev-space-1) var(--ev-space-1);
+  border: 20px solid transparent;
+  border-image: var(--ev-img-cardFrame, linear-gradient(var(--ev-color-surface), var(--ev-color-surface))) 40 fill / 20px stretch;
+  filter: drop-shadow(0 6px 14px rgb(154 90 20 / 0.12));
 }
 .ev-card-title {
-  margin: 0 0 var(--ev-space-3);
-  color: var(--ev-color-primary);
-  font-size: 17px;
+  display: table;
+  min-width: 60%;
+  margin: -34px auto var(--ev-space-4);
+  padding: var(--ev-space-3) var(--ev-space-8) var(--ev-space-4);
+  background: var(--ev-img-cardTitle, linear-gradient(var(--ev-color-primary), var(--ev-color-primary))) center / 100% 100% no-repeat;
+  color: var(--ev-color-on-primary);
+  font-size: 16px;
   font-weight: 800;
+  text-align: center;
+}
+.ev-footer-deco {
+  position: relative;
+  height: 0;
+  padding-top: 21.33%;
+  margin: 0 calc(var(--ev-space-4) * -1);
+  background: var(--ev-img-footerDeco) center / 100% 100% no-repeat;
 }
 
 .ev-rules { margin: 0; padding-left: 1.3em; font-size: 14px; }
@@ -445,6 +477,97 @@ img { display: block; max-width: 100%; }
   font: inherit;
   text-decoration: underline;
   cursor: pointer;
+}
+
+/* ---------- 分享面板 ---------- */
+.ev-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: var(--ev-color-scrim);
+}
+.ev-sheet-panel {
+  width: 100%;
+  max-width: var(--ev-page-max);
+  padding: var(--ev-space-4) var(--ev-space-4) calc(var(--ev-space-6) + env(safe-area-inset-bottom));
+  border-radius: var(--ev-radius) var(--ev-radius) 0 0;
+  background: var(--ev-color-surface);
+  animation: ev-sheet-up 0.24s ease-out;
+}
+.ev-sheet-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--ev-space-4); }
+.ev-sheet-title { margin: 0; color: var(--ev-color-text); font-size: 17px; font-weight: 800; }
+.ev-sheet-close {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ev-color-surface-2);
+  color: var(--ev-color-text);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.ev-share-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--ev-space-2); }
+.ev-share-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ev-space-1);
+  min-width: 0;
+  color: var(--ev-color-text);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.ev-share-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--ev-color-primary);
+  color: var(--ev-color-on-primary);
+  font-size: 18px;
+  font-weight: 800;
+}
+.ev-share-dot--line { background: var(--ev-share-line); }
+.ev-share-dot--facebook { background: var(--ev-share-facebook); }
+.ev-share-dot--x { background: var(--ev-share-x); }
+.ev-share-dot--whatsapp { background: var(--ev-share-whatsapp); }
+.ev-share-dot--telegram { background: var(--ev-share-telegram); }
+.ev-share-item:focus-visible { outline: 2px solid var(--ev-color-gold); outline-offset: 2px; border-radius: var(--ev-radius-sm); }
+.ev-share-url { display: flex; gap: var(--ev-space-2); margin-top: var(--ev-space-5); }
+.ev-share-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 var(--ev-space-3);
+  border: 1px solid var(--ev-color-border);
+  border-radius: var(--ev-radius-pill);
+  background: var(--ev-color-bg);
+  color: var(--ev-color-text-2);
+  font: 400 13px/1 var(--ev-font);
+}
+.ev-share-copy {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 0 var(--ev-space-5);
+  border: 0;
+  border-radius: var(--ev-radius-pill);
+  background: var(--ev-color-primary);
+  color: var(--ev-color-on-primary);
+  font: 800 14px/1 var(--ev-font);
+  cursor: pointer;
+}
+.ev-share-native { display: block; margin: var(--ev-space-4) auto 0; font-size: 13px; }
+
+@keyframes ev-sheet-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
 }
 
 /* ---------- 結果彈窗：modal-bg 600×760 ---------- */
@@ -530,6 +653,7 @@ img { display: block; max-width: 100%; }
 
 @media (prefers-reduced-motion: reduce) {
   .ev-modal-wrap,
+  .ev-sheet-panel,
   .ev-spot,
   .ev-wheel-bulbs i { animation: none !important; }
 }

@@ -14,7 +14,7 @@
 4. 「審核」欄由我們填寫（`☐` 待審／`☑` 通過／`✗` 退回＋原因），**GPT 不要改審核欄**。
 5. 不要刪除或新增列；有疑問寫在最下方「備註」。
 
-## A. 靜態圖（21）
+## A. 靜態圖（30）＋主標原始檔（1）
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 |
 |---|---|---|---|---|---|---|
@@ -39,6 +39,16 @@
 | ☐ | A19 | icon-bonus | 160×160 | `assets/img/icon-bonus.{png,webp,svg}` | | ☐ |
 | ☐ | A20 | icon-points | 160×160 | `assets/img/icon-points.{png,webp,svg}` | | ☐ |
 | ☐ | A21 | icon-thanks | 160×160 | `assets/img/icon-thanks.{png,webp,svg}` | | ☐ |
+| ☐ | A22 | stage-bg-desktop | 1920×1000 | `assets/img/stage-bg-desktop.{png,webp,svg}` | | ☐ |
+| ☐ | A23 | info-bg | 750×750 | `assets/img/info-bg.{png,webp,svg}` | | ☐ |
+| ☐ | A24 | period-badge | 480×64 | `assets/img/period-badge.{png,webp,svg}` | | ☐ |
+| ☐ | A25 | chances-badge | 360×88 | `assets/img/chances-badge.{png,webp,svg}` | | ☐ |
+| ☐ | A26 | card-frame | 120×120 | `assets/img/card-frame.{png,webp,svg}` | | ☐ |
+| ☐ | A27 | card-title | 400×72 | `assets/img/card-title.{png,webp,svg}` | | ☐ |
+| ☐ | A28 | footer-deco | 750×160 | `assets/img/footer-deco.{png,webp,svg}` | | ☐ |
+| ☐ | A29 | icon-share | 64×64 | `assets/img/icon-share.{png,webp,svg}` | | ☐ |
+| ☐ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | | ☐ |
+| ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ |
 
 ## B. 色票（1）
 
@@ -100,5 +110,7 @@
 ## 備註
 
 （GPT 有疑問或無法照規格交付時寫在這裡，附列號）
+
+- A31：原始檔放雲端時，在 `source/title-source.md` 寫下檔案連結即可（腳本只檢查這個說明檔存在，內容由我們人工審核）。
 
 - D01～D05（2026-11-11 收檔）：5 個 GIF 規格符合（400×500、48 幀、24fps、無限循環），已套用到前台。待審核注意：背心字樣放大後有拼錯（讀起來像 WOOTECH／MADTECH 等），logo 圖形為橘藍配色而非官方藍綠→黃綠漸層（`DESIGN_TASKS.md` 驗收表第 6 項）。E01～E10（PNG 序列幀、比對圖）尚未交付。
