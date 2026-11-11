@@ -12,21 +12,31 @@ YYYYMMDD_event_name[_N]
 - `event_name`：英文小寫、單字以底線分隔（例：`lucky_wheel`）。
 - `_N`：日期與名稱都相同時才加，從 `_2` 開始編號（例：`20261111_lucky_wheel_2`）。
 
+## 共通規則
+
+- 前台語系只有 **en / ko / th**（預設 en），畫面與交付圖檔不得出現中文。
+- 中文僅供內部編輯預覽：按 **Ctrl+Alt+L**（Mac：Control+Option+L）切換，不在語系選單內。
+- 瀏覽器分頁標題（`<title>`）一律英文。
+- 獎項、規則等內容由我們的後台提供；活動頁只保留空位與資料格式。
+
 ## 活動列表
 
 | 資料夾 | 類型 | 狀態 |
 |---|---|---|
-| [`20261111_lucky_wheel`](./20261111_lucky_wheel/) | 轉盤抽獎 | mock up（佔位圖，待設計替換） |
+| [`20261111_lucky_wheel`](./20261111_lucky_wheel/) | 轉盤抽獎 | mock up（佔位圖，待美術依 `DESIGN_TASKS.md` 替換） |
 
 ## 單一活動資料夾結構
 
 ```
 20261111_lucky_wheel/
 ├── index.html
-├── DESIGN_TASKS.md        # 設計需求任務清單（要交付哪些圖、尺寸、規格）
+├── DESIGN_TASKS.md        # 美術製作需求單
 └── assets/
-    ├── css/event.css
-    ├── js/config.js       # 換圖、改獎項、改機率只改這裡
+    ├── css/event.css      # token（含轉盤扇區色票）
+    ├── js/config.js       # 圖片／音效／吉祥物路徑、動畫時間、mock 預設內容
+    ├── js/i18n.js         # en / ko / th（＋ zh 內部預覽）
+    ├── js/store.js        # 後台資料格式與讀取
+    ├── js/sound.js        # 鼓聲（未交付音檔時即時合成）
     ├── js/wheel.js
-    └── img/               # 設計稿以「同檔名覆蓋」或改 config.js 路徑的方式替換
+    └── img/               # 同檔名覆蓋即可換圖
 ```

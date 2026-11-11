@@ -1,69 +1,115 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>幸運大轉盤</title>
+    <title>Lucky Wheel</title>
     <link rel="stylesheet" href="assets/css/event.css" />
   </head>
   <body>
-    <div class="ev-page" data-img="bg">
-      <header class="ev-header">
-        <h1 class="ev-title"><img data-img="title" alt="幸運大轉盤" /></h1>
-        <p class="ev-period">活動期間：2026/11/11 – 2026/11/30</p>
-      </header>
+    <section class="ev-stage" id="stage" data-img="stageBg" data-i18n-aria="stage.aria">
+      <div class="ev-stage-dim" aria-hidden="true"></div>
+      <img class="ev-spot ev-spot--l" data-img="spotlight" alt="" />
+      <img class="ev-spot ev-spot--r" data-img="spotlight" alt="" />
 
-      <main class="ev-main">
-        <section class="ev-wheel" aria-label="轉盤">
-          <img class="ev-wheel-frame" data-img="wheelFrame" alt="" />
-          <div class="ev-wheel-disc" id="wheelDisc">
-            <img data-img="wheelDisc" alt="" />
-            <ol class="ev-wheel-labels" id="wheelLabels"></ol>
-          </div>
-          <img class="ev-wheel-pointer" data-img="pointer" alt="" />
-          <button type="button" class="ev-wheel-go" id="btnSpin" aria-label="開始抽獎">
-            <img data-img="btnGo" alt="" />
+      <div class="ev-topbar">
+        <div class="ev-lang" id="langSwitch"></div>
+        <div class="ev-sound-wrap">
+          <button type="button" class="ev-sound" id="btnSound" aria-pressed="true">
+            <img id="soundIcon" alt="" />
           </button>
-        </section>
+          <span class="ev-asset ev-asset--sound" data-asset="sound" aria-hidden="true"></span>
+        </div>
+      </div>
 
-        <p class="ev-chances">剩餘抽獎次數：<strong id="chances">0</strong> 次</p>
+      <div class="ev-stage-inner">
+        <h1 class="ev-title">
+          <img data-img="title" data-i18n-alt="title.alt" alt="Lucky Wheel" />
+          <span class="ev-asset ev-asset--title" data-asset="title" aria-hidden="true"></span>
+        </h1>
+        <p class="ev-period" id="period"></p>
 
-        <section class="ev-panel">
-          <h2 class="ev-panel-title">獎項一覽</h2>
-          <ul class="ev-prize-list" id="prizeList"></ul>
-        </section>
+        <div class="ev-wheel-area">
+          <div class="ev-wheel">
+            <img class="ev-wheel-frame" data-img="wheelFrame" alt="" />
+            <div class="ev-wheel-disc" id="wheelDisc">
+              <svg viewBox="-300 -300 600 600" aria-hidden="true"></svg>
+              <ol class="ev-wheel-labels" id="wheelLabels"></ol>
+            </div>
+            <img class="ev-wheel-gloss" data-img="wheelGloss" alt="" />
+            <div class="ev-wheel-bulbs" id="wheelBulbs" aria-hidden="true"></div>
+            <p class="ev-wheel-empty" id="wheelEmpty" data-i18n="wheel.empty" hidden></p>
+            <img class="ev-wheel-pointer" data-img="pointer" alt="" />
+            <button type="button" class="ev-wheel-go" id="btnSpin" data-i18n-aria="spin.aria">
+              <img data-img="btnGo" alt="" />
+              <span class="ev-wheel-go-text" data-i18n="spin.text" aria-hidden="true"></span>
+            </button>
+            <span class="ev-asset ev-asset--tl" data-asset="wheelFrame" aria-hidden="true"></span>
+            <span class="ev-asset ev-asset--tr" data-asset="pointer" aria-hidden="true"></span>
+            <span class="ev-asset ev-asset--bl" data-asset="btnGo wheelGloss" aria-hidden="true"></span>
+          </div>
+          <div class="ev-mascot-wrap">
+            <img class="ev-mascot" id="mascot" alt="" />
+            <span class="ev-asset ev-asset--mascot" data-asset="mascot" aria-hidden="true"></span>
+          </div>
+        </div>
 
-        <section class="ev-panel">
-          <h2 class="ev-panel-title">我的中獎紀錄</h2>
+        <p class="ev-chances">
+          <span data-i18n="chances.before"></span>
+          <strong id="chances">0</strong>
+          <span data-i18n="chances.after"></span>
+        </p>
+      </div>
+
+      <div class="ev-stage-floor-wrap">
+        <img class="ev-stage-floor" data-img="stageFloor" alt="" />
+      </div>
+    </section>
+
+    <section class="ev-info" data-i18n-aria="info.aria">
+      <div class="ev-info-inner">
+        <span class="ev-asset ev-asset--floor" data-asset="stageBg stageFloor spotlight" aria-hidden="true"></span>
+        <article class="ev-card">
+          <h2 class="ev-card-title" id="rulesTitle"></h2>
+          <ol class="ev-rules" id="rulesList"></ol>
+          <p class="ev-slot" id="rulesEmpty" data-i18n="rules.empty" hidden></p>
+        </article>
+
+        <article class="ev-card">
+          <h2 class="ev-card-title" data-i18n="records.title"></h2>
           <ul class="ev-record-list" id="recordList">
-            <li class="ev-empty" id="recordEmpty">還沒有紀錄，轉一次試試手氣。</li>
+            <li class="ev-empty" id="recordEmpty" data-i18n="records.empty"></li>
           </ul>
-        </section>
+        </article>
 
-        <section class="ev-panel">
-          <h2 class="ev-panel-title">活動規則</h2>
-          <ol class="ev-rules">
-            <li>活動期間每位會員可獲得 3 次免費抽獎機會。</li>
-            <li>獎項於中獎後 24 小時內發放至會員帳戶。</li>
-            <li>本頁為 mock up，抽獎結果由前端隨機產生，僅供展示。</li>
-          </ol>
-          <button type="button" class="ev-link" id="btnReset">重設次數（mock 用）</button>
-        </section>
-      </main>
-    </div>
+        <div class="ev-mock-tools">
+          <span data-i18n="mock.tools"></span>
+          <button type="button" class="ev-link" id="btnReset" data-i18n="mock.reset"></button>
+          <button type="button" class="ev-link" id="btnLabels" aria-pressed="true">
+            <span data-i18n="mock.labels"></span>: <span id="labelsState"></span>
+          </button>
+        </div>
+      </div>
+    </section>
 
     <div class="ev-modal" id="resultModal" role="dialog" aria-modal="true" aria-labelledby="resultTitle" hidden>
-      <div class="ev-modal-box" data-img="modalBg">
-        <h2 class="ev-modal-title" id="resultTitle">恭喜中獎</h2>
-        <img class="ev-modal-icon" id="resultIcon" alt="" />
-        <p class="ev-modal-prize" id="resultName"></p>
-        <button type="button" class="ev-btn" id="btnClose" data-img="btnPrimary">收下獎勵</button>
+      <div class="ev-modal-wrap">
+        <div class="ev-modal-box" data-img="modalBg">
+          <h2 class="ev-modal-title" id="resultTitle"></h2>
+          <img class="ev-modal-icon" id="resultIcon" alt="" />
+          <p class="ev-modal-prize" id="resultName"></p>
+          <button type="button" class="ev-btn" id="btnClose" data-img="btnPrimary"></button>
+        </div>
+        <span class="ev-asset ev-asset--modal" data-asset="modalBg btnPrimary" aria-hidden="true"></span>
       </div>
     </div>
 
     <div class="ev-toast" id="toast" role="status" aria-live="polite" hidden></div>
 
     <script src="assets/js/config.js"></script>
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/store.js"></script>
+    <script src="assets/js/sound.js"></script>
     <script src="assets/js/wheel.js"></script>
   </body>
 </html>
