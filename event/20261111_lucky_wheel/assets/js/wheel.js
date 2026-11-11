@@ -310,6 +310,7 @@
     if (prize.icon) icon.src = prize.icon;
     renderModal();
     modal.hidden = false;
+    Sound.reward(prize.isLose);
     $('btnClose').focus();
   }
 

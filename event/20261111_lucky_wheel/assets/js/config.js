@@ -60,7 +60,9 @@ window.EVENT_CONFIG = {
   sounds: {
     drumroll: '',
     win: '',
-    lose: ''
+    lose: '',
+    reward: '',
+    rewardLose: ''
   },
 
   /* 換圖標籤（mock 用）：顯示在元素旁的檔名與交付尺寸，可由 mock 工具列關閉。 */

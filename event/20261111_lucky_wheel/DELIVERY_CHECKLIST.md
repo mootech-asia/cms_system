@@ -114,13 +114,15 @@
 |---|---|---|---|---|---|---|---|
 | ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | 5adb3b5 | ☐ | P2 |
 
-## G. 音效（選配 3）
+## G. 音效（選配 5）
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
 | ☐ | G01 | drumroll | 約 5 秒 | `assets/audio/drumroll.mp3` | | ☐ | P3 |
 | ☐ | G02 | win | 1～2 秒 | `assets/audio/win.mp3` | | ☐ | P3 |
 | ☐ | G03 | lose | 1 秒內 | `assets/audio/lose.mp3` | | ☐ | P3 |
+| ☐ | G04 | reward | 1～1.5 秒 | `assets/audio/reward.mp3` | | ☐ | P3 |
+| ☐ | G05 | reward-lose | 1 秒內 | `assets/audio/reward-lose.mp3` | | ☐ | P3 |
 
 ## 備註
 
