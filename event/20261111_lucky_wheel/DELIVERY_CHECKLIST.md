@@ -25,7 +25,7 @@
 
 勾選表每列最後一欄是優先級；檢查腳本會顯示各級進度（例：`P0 3/11`）。
 
-## A. 靜態圖（31）＋主標原始檔（1）
+## A. 靜態圖（36）＋主標原始檔（1）
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
@@ -34,7 +34,7 @@
 | ☐ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
 | ☐ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
 | ☐ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
-| ☑ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
+| ☐ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | | ✗ 退回重做：硬邊平面楔形，要做有煙霧體積感的光束（見需求單「舞台燈光」） | P1 |
 | ☑ | A07 | wheel-frame | 680×680 | `assets/img/wheel-frame.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A08 | wheel-gloss | 600×600 | `assets/img/wheel-gloss.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A09 | pointer | 120×160 | `assets/img/pointer.{png,webp,svg}` | d913f7f | ☐ | P0 |
@@ -62,6 +62,11 @@
 | ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ | P3 |
 | ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | 8349b85 | ☐ | P1 |
+| ☐ | A34 | light-pool | 600×220 | `assets/img/light-pool.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A35 | stage-vignette | 750×1000 | `assets/img/stage-vignette.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A36 | stage-vignette-desktop | 1920×1000 | `assets/img/stage-vignette-desktop.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A37 | bulb-on | 48×48 | `assets/img/bulb-on.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A38 | bulb-off | 48×48 | `assets/img/bulb-off.{png,webp,svg}` | | ☐ | P1 |
 
 ## B. 色票（1）
 

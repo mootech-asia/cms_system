@@ -29,6 +29,11 @@ CHECKLIST = os.path.abspath(_args[0])
 ROOT = os.path.dirname(CHECKLIST)
 # event/20261111_lucky_wheel mock 階段的佔位圖指紋（sha256 前 16 碼）：交付檔若仍是這些檔案，代表沒有真的換圖。
 PLACEHOLDERS = {
+    '582ea424708e4a9c',  # bulb-off.svg
+    '739a46f1509c6c25',  # bulb-on.svg
+    'ea5e42a6fe982699',  # light-pool.svg
+    'bb65f44c2cfc3ff7',  # stage-vignette.svg
+    'c90d74b8a247b4d8',  # stage-vignette-desktop.svg
     '002106becb5c85c6',
     '038411be37fb69ea',
     '03d5bb529d09a722',
