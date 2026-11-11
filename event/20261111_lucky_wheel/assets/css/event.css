@@ -1,5 +1,6 @@
 :root {
   --ev-color-bg: #fff6ea;
+  --ev-color-backdrop: #2b140a;
   --ev-color-surface: #ffffff;
   --ev-color-surface-2: #fdebd6;
   --ev-color-border: #f1dcc4;
@@ -59,9 +60,15 @@
 
 * { box-sizing: border-box; }
 
-html, body {
-  margin: 0;
+html { background: var(--ev-color-backdrop); }
+/* 只做 H5 寬度：任何螢幕都只顯示置中的 480px 頁面，兩側是素色底 */
+body {
+  position: relative;
+  max-width: var(--ev-page-max);
+  margin: 0 auto;
   background: var(--ev-color-bg);
+}
+html, body {
   color: var(--ev-color-text);
   font-family: var(--ev-font);
   line-height: 1.5;
@@ -88,6 +95,7 @@ img { display: block; max-width: 100%; }
 .ev-asset--sound { top: calc(100% + var(--ev-space-1)); right: 0; }
 .ev-asset--title { top: -8px; left: var(--ev-space-3); }
 .ev-asset--tl { top: 0; left: 0; }
+.ev-asset--rotate { right: var(--ev-space-4); bottom: var(--ev-space-4); }
 .ev-asset--tr { top: 0; right: 0; }
 .ev-asset--bl { bottom: 0; left: 0; }
 .ev-asset--mascot { top: 8%; right: 0; }
@@ -115,9 +123,6 @@ img { display: block; max-width: 100%; }
   pointer-events: none;
 }
 .ev-stage.is-spinning .ev-stage-dim { opacity: 1; }
-@media (min-width: 768px) {
-  .ev-stage-dim { background-image: var(--ev-img-stageVignetteDesktop); }
-}
 
 .ev-spot {
   position: absolute;
@@ -246,7 +251,7 @@ img { display: block; max-width: 100%; }
   .ev-wheel-area { margin-top: var(--ev-space-6); }
 }
 
-.ev-wheel { position: relative; z-index: 1; width: 100%; filter: drop-shadow(8px 14px 14px rgb(60 22 4 / 0.3)); }
+.ev-wheel { position: relative; z-index: 1; width: 100%; }
 
 /* 轉盤底座：400×600，上端藏在轉盤後方，下端底盤踩在透視地板上；底盤下有接地陰影 */
 .ev-wheel-stand {
@@ -294,7 +299,11 @@ img { display: block; max-width: 100%; }
 
 .ev-wheel-frame,
 .ev-wheel-bulbs { position: absolute; inset: 0; width: 100%; height: 100%; }
-.ev-wheel-frame { z-index: 2; }
+.ev-wheel-frame {
+  z-index: 2;
+  /* 陰影只加在不會動的外框圖上：加在整個轉盤（含旋轉的盤面）會讓瀏覽器轉動時每一幀重算濾鏡 */
+  filter: drop-shadow(8px 14px 14px rgb(60 22 4 / 0.3));
+}
 
 .ev-wheel-disc,
 .ev-wheel-gloss {
@@ -347,6 +356,7 @@ img { display: block; max-width: 100%; }
 .is-dense .ev-wheel-label { font-size: clamp(9px, 2.4vw, 11px); }
 
 .ev-wheel-bulbs { z-index: 3; pointer-events: none; }
+.ev-wheel-bulbs > div { position: absolute; inset: 0; }
 .ev-wheel-bulbs i {
   /* 48×48 燈泡圖：燈泡本體占畫布一半（盤面 3.4%），外圈留給 bulb-on 的光暈 */
   position: absolute;
@@ -354,16 +364,18 @@ img { display: block; max-width: 100%; }
   height: 6.8%;
   background: var(--ev-img-bulbOff) center / contain no-repeat;
   transform: translate(-50%, -50%);
-  animation: ev-bulb 1.4s steps(1) infinite;
 }
-.ev-wheel-bulbs i:nth-child(even) { animation-delay: -0.7s; }
-.is-spinning .ev-wheel-bulbs i { animation-duration: 0.24s; }
-.is-spinning .ev-wheel-bulbs i:nth-child(even) { animation-delay: -0.12s; }
-.is-result .ev-wheel-bulbs i { animation: ev-bulb 0.3s steps(1) infinite; }
+.ev-bulbs-on i { background-image: var(--ev-img-bulbOn); }
+.ev-bulbs-on { animation: ev-bulb 1.4s steps(1) infinite; will-change: opacity; }
+.ev-bulbs-on--b { animation-delay: -0.7s; }
+.is-spinning .ev-bulbs-on { animation-duration: 0.24s; }
+.is-spinning .ev-bulbs-on--b { animation-delay: -0.12s; }
+.is-result .ev-bulbs-on { animation: ev-bulb 0.3s steps(1) infinite; }
+.is-result .ev-bulbs-on--b { animation-delay: -0.15s; }
 
 @keyframes ev-bulb {
-  0% { background-image: var(--ev-img-bulbOn); }
-  50% { background-image: var(--ev-img-bulbOff); }
+  0% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .ev-wheel-empty {
@@ -755,12 +767,39 @@ img { display: block; max-width: 100%; }
 }
 .ev-btn:focus-visible { outline: 3px solid var(--ev-color-gold); outline-offset: 3px; border-radius: var(--ev-radius-pill); }
 
+/* ---------- 直向鎖定：手機橫放時蓋上提示，請使用者轉回直向 ----------
+   網頁無法真正鎖住螢幕方向（screen.orientation.lock 只在全螢幕／已安裝 App 有效，iOS 不支援），
+   所以用提示層擋住；只在觸控裝置的橫向矮螢幕出現，桌機視窗再矮都不會觸發 */
+.ev-rotate { display: none; }
+@media (orientation: landscape) and (max-height: 540px) and (pointer: coarse) {
+  .ev-rotate {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ev-space-4);
+    padding: var(--ev-space-6);
+    background: var(--ev-color-backdrop);
+    color: var(--ev-color-on-primary);
+    text-align: center;
+  }
+  .ev-rotate-icon { width: 96px; height: 96px; animation: ev-rotate-hint 2s ease-in-out infinite; }
+  .ev-rotate-text { margin: 0; font-size: 16px; font-weight: 700; }
+}
+@keyframes ev-rotate-hint {
+  0%, 30% { transform: rotate(-90deg); }
+  60%, 100% { transform: rotate(0deg); }
+}
+
 .ev-toast {
   position: fixed;
   left: 50%;
   bottom: var(--ev-space-8);
   z-index: 30;
-  max-width: calc(100vw - var(--ev-space-8));
+  max-width: calc(min(100vw, var(--ev-page-max)) - var(--ev-space-8));
   padding: var(--ev-space-2) var(--ev-space-4);
   border-radius: var(--ev-radius-pill);
   background: var(--ev-color-scrim);
@@ -779,5 +818,5 @@ img { display: block; max-width: 100%; }
   .ev-sheet-panel,
   .ev-ticker-items,
   .ev-spot,
-  .ev-wheel-bulbs i { animation: none !important; }
+  .ev-bulbs-on { animation: none !important; }
 }

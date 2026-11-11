@@ -16,7 +16,6 @@ window.EVENT_CONFIG = {
 
   images: {
     stageBg: 'assets/img/stage-bg.webp',
-    stageBgDesktop: 'assets/img/stage-bg-desktop.webp',
     infoBg: 'assets/img/info-bg.webp',
     stageFloor: 'assets/img/stage-floor.webp',
     title: {
@@ -28,7 +27,6 @@ window.EVENT_CONFIG = {
     spotlight: 'assets/img/spotlight.svg',
     lightPool: 'assets/img/light-pool.svg',
     stageVignette: 'assets/img/stage-vignette.svg',
-    stageVignetteDesktop: 'assets/img/stage-vignette-desktop.svg',
     bulbOn: 'assets/img/bulb-on.svg',
     bulbOff: 'assets/img/bulb-off.svg',
     wheelFrame: 'assets/img/wheel-frame.webp',
@@ -46,19 +44,22 @@ window.EVENT_CONFIG = {
     cardFrame: 'assets/img/card-frame.webp',
     cardTitle: 'assets/img/card-title.webp',
     tickerBar: 'assets/img/ticker-bar.webp',
-    footerDeco: 'assets/img/footer-deco.webp'
+    footerDeco: 'assets/img/footer-deco.webp',
+    rotateHint: 'assets/img/icon-rotate.svg'
   },
 
   /* 吉祥物：每個狀態一個循環 GIF，全部共用同一張基準幀（頭尾）且長度相同（loopMs），
      程式在一輪結束時才切換，動作可以隨時無縫替換。idle 會在多張之間輪播。 */
+  /* 網頁載入的是 tools/gif_to_webp.py 由交付 GIF 轉出的動態 WebP（同內容、約 1/3 大小）；
+     換新 GIF 後重跑該腳本。loopMs 必須等於 GIF 每幀時長總和（目前 48 幀 = 2000ms）。 */
   mascot: {
-    loopMs: 1920,
+    loopMs: 2000,
     idle: [
-      'assets/img/mascot/idle-2.gif',
-      'assets/img/mascot/idle-3.gif'
+      'assets/img/mascot/idle-2.webp',
+      'assets/img/mascot/idle-3.webp'
     ],
-    spinning: 'assets/img/mascot/spinning.gif',
-    result: 'assets/img/mascot/result.gif'
+    spinning: 'assets/img/mascot/spinning.webp',
+    result: 'assets/img/mascot/result.webp'
   },
 
   /* 音效：留空時用 Web Audio 即時合成鼓聲；交付音檔後填路徑即改播音檔。 */
@@ -73,7 +74,6 @@ window.EVENT_CONFIG = {
   /* 換圖標籤（mock 用）：顯示在元素旁的檔名與交付尺寸，可由 mock 工具列關閉。 */
   assetSpecs: {
     stageBg: 'stage-bg · 750×1000',
-    stageBgDesktop: 'stage-bg-desktop · 1920×1000 (>=768px)',
     infoBg: 'info-bg · 750×750 tile',
     share: 'icon-share · 64×64',
     periodBadge: 'period-badge · 480×64',
@@ -87,7 +87,7 @@ window.EVENT_CONFIG = {
     title: 'title-{locale} · 690×240',
     spotlight: 'spotlight · 260×900',
     lightPool: 'light-pool · 600×220',
-    stageVignette: 'stage-vignette · 750×1000 / desktop 1920×1000',
+    stageVignette: 'stage-vignette · 750×1000',
     bulbs: 'bulb-on / bulb-off · 48×48',
     wheelFrame: 'wheel-frame · 680×680',
     pointer: 'pointer · 120×160',
@@ -97,7 +97,8 @@ window.EVENT_CONFIG = {
     mascot: 'mascot-{state}\n400×500 GIF',
     modalBg: 'modal-bg · 600×760',
     sound: 'icon-sound-on/off · 64×64',
-    sharePreview: 'share-preview.jpg · 1200×630 (og:image)'
+    sharePreview: 'share-preview.jpg · 1200×630 (og:image)',
+    rotateHint: 'icon-rotate · 160×160'
   },
 
   /* mock 假資料（後台沒提供 EVENT_CONTENT 時使用）。文字欄位皆為 { en, ko, th, zh }，ko/th 留空時前台顯示 en。 */

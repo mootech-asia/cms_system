@@ -50,7 +50,7 @@
 | ☑ | A19 | icon-bonus | 160×160 | `assets/img/icon-bonus.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
 | ☑ | A20 | icon-points | 160×160 | `assets/img/icon-points.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
 | ☑ | A21 | icon-thanks | 160×160 | `assets/img/icon-thanks.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
-| ☑ | A22 | stage-bg-desktop | 1920×1000 | `assets/img/stage-bg-desktop.{png,webp,svg}` | d913f7f | ☐ | P0 |
+| ☑ | A22 | stage-bg-desktop | 1920×1000 | `assets/img/stage-bg-desktop.{png,webp,svg}` | d913f7f | 已停用（只用 H5 寬度），不再需要 | P0 |
 | ☑ | A23 | info-bg | 750×750 | `assets/img/info-bg.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A24 | period-badge | 480×64 | `assets/img/period-badge.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A25 | chances-badge | 360×88 | `assets/img/chances-badge.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
@@ -64,9 +64,9 @@
 | ☑ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | 8349b85 | ☐ | P1 |
 | ☐ | A34 | light-pool | 600×220 | `assets/img/light-pool.{png,webp,svg}` | | ☐ | P1 |
 | ☐ | A35 | stage-vignette | 750×1000 | `assets/img/stage-vignette.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | A36 | stage-vignette-desktop | 1920×1000 | `assets/img/stage-vignette-desktop.{png,webp,svg}` | | ☐ | P1 |
 | ☐ | A37 | bulb-on | 48×48 | `assets/img/bulb-on.{png,webp,svg}` | | ☐ | P1 |
 | ☐ | A38 | bulb-off | 48×48 | `assets/img/bulb-off.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A39 | icon-rotate | 160×160 | `assets/img/icon-rotate.{png,webp,svg}` | | ☐ | P2 |
 
 ## B. 色票（1）
 

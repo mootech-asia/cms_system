@@ -54,8 +54,6 @@
     try { localStorage.setItem(PLAYER_KEY, JSON.stringify(player)); } catch (e) { /* 同上 */ }
   }
 
-  var desktopMq = window.matchMedia('(min-width: 768px)');
-
   // 版面元件圖（徽章、卡片框…）以 CSS 變數 --ev-img-<key> 提供給 event.css；沒設定的 key 走 CSS 預設樣式
   function applyImageVars() {
     var root = document.documentElement.style;
@@ -70,8 +68,6 @@
     applyImageVars();
     document.querySelectorAll('[data-img]').forEach(function (el) {
       var key = el.getAttribute('data-img');
-      var desktopKey = el.getAttribute('data-img-desktop');
-      if (desktopKey && desktopMq.matches && cfg.images[desktopKey]) key = desktopKey;
       var src = pick(cfg.images[key]);
       if (!src) return;
       if (el.tagName === 'IMG') el.src = src;
@@ -124,13 +120,18 @@
     }).join('');
   }
 
+  // 燈泡分三層：全部熄燈（不動）＋奇數亮燈一組＋偶數亮燈一組；閃爍只切換兩組的透明度，
+  // 24 顆燈泡共用 2 個動畫，手機上比每顆各自動畫省很多
   function renderBulbs() {
-    var html = '';
+    var off = '', on = ['', ''];
     for (var i = 0; i < cfg.bulbCount; i++) {
       var a = (i / cfg.bulbCount) * Math.PI * 2;
-      html += '<i style="left:' + (50 + 46.6 * Math.sin(a)).toFixed(2) + '%;top:' + (50 - 46.6 * Math.cos(a)).toFixed(2) + '%"></i>';
+      var pos = '<i style="left:' + (50 + 46.6 * Math.sin(a)).toFixed(2) + '%;top:' + (50 - 46.6 * Math.cos(a)).toFixed(2) + '%"></i>';
+      off += pos;
+      on[i % 2] += pos;
     }
-    $('wheelBulbs').innerHTML = html;
+    $('wheelBulbs').innerHTML = '<div class="ev-bulbs-off">' + off + '</div>' +
+      '<div class="ev-bulbs-on">' + on[0] + '</div><div class="ev-bulbs-on ev-bulbs-on--b">' + on[1] + '</div>';
   }
 
   function renderContent() {
@@ -175,7 +176,6 @@
     var specs = cfg.assetSpecs;
     document.querySelectorAll('[data-asset]').forEach(function (el) {
       el.textContent = el.getAttribute('data-asset').split(' ').map(function (k) {
-        if (k === 'stageBg' && desktopMq.matches) k = 'stageBgDesktop';
         return specs[k].replace('{locale}', I18n.getLocale()).replace('{state}', mascotState);
       }).join('\n');
     });
@@ -196,18 +196,45 @@
   var mascotShownAt = 0;
   var mascotSwapTimer = null;
 
+  // 動態圖每段約 400KB：頁面載入完成後在背景依序預載所有狀態；切換時若目標還沒下載完，
+  // 先保留目前的動作，下載完才換（不然慢網路下角色會整隻消失好幾秒）。
+  var mascotCache = {};
+  function loadMascot(src, done) {
+    var entry = mascotCache[src];
+    if (!entry) {
+      entry = mascotCache[src] = { ready: false, cbs: [] };
+      var img = new Image();
+      img.onload = img.onerror = function () {
+        entry.ready = true;
+        entry.cbs.splice(0).forEach(function (cb) { cb(); });
+      };
+      img.src = src;
+    }
+    if (done) { if (entry.ready) done(); else entry.cbs.push(done); }
+  }
+  function preloadMascots() {
+    var list = [cfg.mascot.spinning, cfg.mascot.result].concat(cfg.mascot.idle);
+    (function next(i) { if (i < list.length) loadMascot(list[i], function () { next(i + 1); }); })(0);
+  }
+
+  var mascotWant = null;
   function showMascot(src, state) {
     clearTimeout(mascotSwapTimer);
+    mascotWant = src;
     var swap = function () {
+      if (mascotWant !== src) return;
       mascot.src = src;
       mascotShownAt = performance.now();
       mascotState = state;
       renderAssetLabels();
     };
-    var loop = cfg.mascot.loopMs;
-    if (!mascotShownAt || !loop) { swap(); return; }
-    var wait = (loop - (performance.now() - mascotShownAt) % loop) % loop;
-    mascotSwapTimer = setTimeout(swap, wait);
+    loadMascot(src, function () {
+      if (mascotWant !== src) return;
+      var loop = cfg.mascot.loopMs;
+      if (!mascotShownAt || !loop) { swap(); return; }
+      var wait = (loop - (performance.now() - mascotShownAt) % loop) % loop;
+      mascotSwapTimer = setTimeout(swap, wait);
+    });
   }
 
   function setMascot(state) {
@@ -364,8 +391,13 @@
     showToast(t('toast.reset', { n: player.chances }));
   });
   document.addEventListener('ev:locale', renderLocale);
-  if (desktopMq.addEventListener) desktopMq.addEventListener('change', applyImages);
   window.EventShare.init(showToast);
+  if (document.readyState === 'complete') preloadMascots();
+  else window.addEventListener('load', preloadMascots);
+  // 支援的瀏覽器（Android 全螢幕／已安裝）直接鎖直向；不支援時由 .ev-rotate 提示層處理
+  try {
+    if (screen.orientation && screen.orientation.lock) screen.orientation.lock('portrait').catch(function () {});
+  } catch (e) { /* 不支援 */ }
 
   document.body.classList.toggle('show-asset-labels', labelsOn());
   I18n.renderSwitcher($('langSwitch'));

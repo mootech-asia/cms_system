@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="assets/css/event.css" />
   </head>
   <body>
-    <section class="ev-stage" id="stage" data-img="stageBg" data-img-desktop="stageBgDesktop" data-i18n-aria="stage.aria">
+    <section class="ev-stage" id="stage" data-img="stageBg" data-i18n-aria="stage.aria">
       <div class="ev-stage-dim" aria-hidden="true"></div>
       <img class="ev-spot ev-spot--l" data-img="spotlight" alt="" />
       <img class="ev-spot ev-spot--r" data-img="spotlight" alt="" />
@@ -159,6 +159,12 @@
     </div>
 
     <div class="ev-toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <div class="ev-rotate" role="alert">
+      <img class="ev-rotate-icon" data-img="rotateHint" alt="" />
+      <p class="ev-rotate-text" data-i18n="rotate.hint"></p>
+      <span class="ev-asset ev-asset--rotate" data-asset="rotateHint" aria-hidden="true"></span>
+    </div>
 
     <script src="assets/js/config.js"></script>
     <script src="assets/js/i18n.js"></script>

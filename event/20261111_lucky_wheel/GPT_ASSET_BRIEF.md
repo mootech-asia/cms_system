@@ -171,7 +171,7 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
 #           base_frame="base-frame.png")
 ```
 
-交付：5 個 GIF（每個建議 ≤ 1.5MB；太大就把 fps 降到 18，或幀數減半）＋各自的 PNG 序列幀資料夾＋每個狀態一張「關鍵幀 vs 角色設定圖」並排比對圖。
+交付：5 個 GIF（每個建議 ≤ 1.5MB；**幀數與每幀時長不要改**，所有動作都是 48 幀、合計 2000ms，換動作才對得上；網頁實際載入的是我們用 `tools/gif_to_webp.py` 轉出的動態 WebP，約 GIF 的 1/3 大小，GPT 不用做 WebP）＋各自的 PNG 序列幀資料夾＋每個狀態一張「關鍵幀 vs 角色設定圖」並排比對圖。
 
 ---
 
@@ -189,7 +189,7 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
 | `spotlight.png` | 260×900 | 1024×1536 → 裁切 | **（重做，P1）** `A single volumetric theatre spotlight beam on a fully transparent background, seen from the audience: the beam enters from the top edge about 30px wide and widens downward to about 240px, warm white light (3200K, slightly golden). Soft feathered edges with no hard outline, subtle drifting stage haze texture inside the beam and a few tiny floating dust sparkles, brightest at the top center, fading smoothly to completely transparent over the bottom 15%. No lamp fixture, no floor, no dark pixels at all (it is composited with screen blending).` 生成後縮放到 260×900，確認四周 alpha＝0 |
 | `light-pool.png` | 600×220 | 1536×1024 → 裁切 | `A warm white spotlight pool of light on a stage floor, seen in perspective from the audience as a flat wide ellipse (about 600 wide by 160 tall) centered in the image, soft glowing center, gently brighter rim like a real spotlight edge, fading to fully transparent outside. Light only: no floor texture, no objects, transparent background.` |
 | `stage-vignette.png` | 750×1000 | 1024×1536 → 縮放 | `A theatrical darkening overlay on a transparent background: fully clear in an oval area around the upper center (x 50%, y 45%), gradually darkening toward all edges and the top into warm deep brown (#280F05) at about 65% opacity, with faint soft haze layers. No objects, no text.` |
-| `stage-vignette-desktop.png` | 1920×1000 | 1536×1024 → 縮放 | 同上提示詞改為寬版：`clear oval in the center column (about 480px wide area at x 50%, y 45%), sides darker.` |
+| `icon-rotate.png` | 160×160 | 1024×1024 → 縮放 | `A small game UI icon in the same style as the share icon: an upright smartphone outline with a curved rotation arrow around it, gold and cream colors with soft 3D bevel, no text, transparent background.`（P2） |
 | `bulb-on.png` | 48×48 | 1024×1024 → 縮放 | `One glowing marquee light bulb seen from the front, warm white glowing glass with a bright highlight, bulb diameter half of the canvas and centered, soft warm glow halo around it fading to fully transparent before the canvas edge. Transparent background.` |
 | `bulb-off.png` | 48×48 | 1024×1024 → 縮放 | `The same marquee light bulb switched off: amber glass with highlights and depth, no glow, no halo, same size and position as the lit version (diameter half of the canvas, centered). Transparent background.` 與 bulb-on 疊在一起檢查本體完全重合 |
 | `wheel-frame.png` | 680×680 | 1024×1024 | `Casino lucky wheel outer rim only, front view: thick glossy gold ring with bevels and highlights, outer diameter 100%, inner opening diameter 88%. The inner circle must be completely empty/transparent. Do NOT draw light bulbs (they are added in code), leave a smooth band in the middle of the ring. Transparent background.` |
@@ -200,7 +200,7 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
 | `btn-primary.png` | 400×110 | 1536×1024 → 裁切 | `Pill-shaped button, orange-to-coral gradient with a thin gold border and a soft top highlight. NO TEXT. Transparent background.` |
 | `icon-sound-on.png` / `icon-sound-off.png` | 64×64 | 1024×1024 | `Round cream sound toggle icon with a gold border: (on) red speaker with sound waves / (off) grey speaker with an X. Transparent background.` |
 | `icon-cash` `icon-coin` `icon-gift` `icon-spin` `icon-bonus` `icon-points` `icon-thanks`（.png） | 160×160 | 1024×1024 | `3D prize icon, same style for the whole set, bold readable at 40px, white outline, transparent background: (cash) green banknote / (coin) gold coin / (gift) red gift box with gold ribbon / (spin) purple circular arrow / (bonus) orange star badge with a percent sign / (points) teal circle with a star / (thanks) warm yellow smiley. No words.` |
-| `stage-bg-desktop.png` | 1920×1000 | 1536×1024 → 放大裁切 | `Wide desktop version of the SAME 3D perspective Broadway stage (same camera height, vanishing point and lighting as the mobile one): wider wood floor with stronger depth, curtains and side walls extending further to both sides, gold arch on the back wall, spotlight pool on the floor center. Keep the central 480px column clean (wheel and mascot sit there). No characters, no text.` |
+| `stage-bg-desktop.png` | 1920×1000 | — | **已停用，不用做**（只用 H5 寬度展示） |
 | `info-bg.png` | 750×750（無縫） | 1024×1024 → 縮小 | `Seamless tileable pattern on cream #FFF6EA: sparse small confetti strips and tiny stars in the event colors, very subtle and light so dark text on top stays readable. Edges must tile seamlessly.`（再用 Code Interpreter 檢查四邊接縫） |
 | `period-badge.png` | 480×64 | 1536×1024 → 裁切 | `Horizontal gold ribbon banner with folded tails on both ends, a light cream center area for text, flat and clean. NO TEXT. Transparent background.` |
 | `chances-badge.png` | 360×88 | 1536×1024 → 裁切 | `Rounded pill badge with a gold rim and a light cream center for text, small gold dots at both ends. NO TEXT. Transparent background.` |

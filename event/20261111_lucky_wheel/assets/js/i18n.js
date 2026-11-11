@@ -49,6 +49,7 @@ window.EventI18n = (function () {
     'share.urlLabel': { en: 'Event link', ko: '이벤트 링크', th: 'ลิงก์กิจกรรม', zh: '活動連結' },
     'share.text': { en: 'Spin the Lucky Wheel and win prizes!', ko: '행운의 룰렛을 돌리고 상품을 받아 가세요!', th: 'หมุนวงล้อนำโชคแล้วรับรางวัลกันเลย!', zh: '來轉幸運大轉盤贏獎品！' },
     'cta.spin': { en: 'Spin now', ko: '지금 돌리기', th: 'หมุนเลย', zh: '立即抽獎' },
+    'rotate.hint': { en: 'Please turn your phone upright to play.', ko: '휴대폰을 세로로 돌려서 플레이해 주세요.', th: 'กรุณาหมุนโทรศัพท์เป็นแนวตั้งเพื่อเล่น', zh: '請將手機轉為直向再遊玩' },
     'ticker.label': { en: 'Winners', ko: '당첨자', th: 'ผู้โชคดี', zh: '中獎名單' },
     'ticker.item': { en: '{name} won {prize}', ko: '{name}님 {prize} 당첨', th: '{name} ได้รับ {prize}', zh: '{name} 抽中 {prize}' },
     'modal.win': { en: 'Congratulations!', ko: '축하합니다!', th: 'ยินดีด้วย!', zh: '恭喜中獎' },

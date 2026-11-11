@@ -33,7 +33,7 @@ PLACEHOLDERS = {
     '739a46f1509c6c25',  # bulb-on.svg
     'ea5e42a6fe982699',  # light-pool.svg
     'bb65f44c2cfc3ff7',  # stage-vignette.svg
-    'c90d74b8a247b4d8',  # stage-vignette-desktop.svg
+    '442ea3a88088a747',  # icon-rotate.svg
     '002106becb5c85c6',
     '038411be37fb69ea',
     '03d5bb529d09a722',

@@ -37,9 +37,11 @@ description: "在 cms_system 的 event/ 底下新增或修改任何活動頁（�
 6. **第一屏要有完整操作**：主要道具（轉盤）下方做操作台（中獎跑馬燈＋剩餘次數＋主行動大按鈕），手機 360×640、
    桌機 1280×720 起第一屏就看得到；道具尺寸用 `min(寬, 高)` 依螢幕高度縮放；吉祥物用 absolute 疊在操作台後方，不佔版面高度。
    含長文字的 grid/flex 子項要 `minmax(0,1fr)`／`min-width: 0`，否則會被撐到畫面外（overflow hidden 時看不到也不會出現橫捲）。
-   **版面寬度**：內容維持 H5 寬（480px 置中），**不做全螢幕版面**（2026-11-11 使用者定案）；背景圖用滿版設計
-   （桌機背景 1920 寬、底紋鋪滿），桌機兩側只露背景。內容欄不要 `overflow: hidden`，否則吉祥物超出欄位的部分
-   在桌機會被切成一條直線（橫向捲動由最外層舞台擋）。
+   **版面寬度**：**只用 H5 寬度展示**（2026-11-11 使用者定案）：`body` 限寬 480px 置中，桌機兩側是素色底
+   （token `--ev-color-backdrop`），不做全螢幕、不做桌機版背景；背景圖只出手機版。
+   **鎖直向**：網頁無法真正鎖螢幕方向（`screen.orientation.lock` 只在 Android 全螢幕／已安裝有效，iOS 不支援），
+   所以呼叫 lock（失敗靜默）＋觸控裝置橫向矮螢幕（`orientation: landscape` 且 `max-height: 540px` 且 `pointer: coarse`）
+   蓋上「請轉直向」提示層（三語文字＋可換圖示 `icon-rotate`）；桌機視窗再矮都不觸發。
 6-2. **影子與音效**：主要道具（底座）腳下要有接地陰影，且**不可被操作台蓋住**；另加柔和 drop-shadow 增加立體感。
    **吉祥物不加任何陰影**（2026-11-11 使用者定案：試過貼身 drop-shadow、腳底接觸陰影、用同一 GIF 做會擺動的地板投影，
    使用者評「太爛」後決定拿掉）；新活動要加角色陰影前先問。中獎跑馬燈蓋在吉祥物上（z-index 高於吉祥物）。音效：轉動鼓聲、停止大鼓＋鈸、
@@ -95,6 +97,18 @@ description: "在 cms_system 的 event/ 底下新增或修改任何活動頁（�
    失敗情境（後台空資料、localStorage 被封鎖、剪貼簿被拒）。
 4. **勾選與上線**：commit 素材 → 勾選表打勾填該 commit → 腳本全 OK → 推 `main` → 查 `Deploy GitHub Pages`
    結論；回報附正式站網址與 pre-report-check 輸出，未驗證項目照實寫。
+
+## 效能（手機慢網路／低階機，每個活動都要檢查）
+
+- **吉祥物動態圖**：交付 GIF（每段約 1.2MB）→ 用 `tools/gif_to_webp.py` 轉動態 WebP（約 1/3）給網頁載入；
+  頁面 load 後背景預載所有狀態（先 spinning／result 再 idle），切換時目標還沒下載完就保留目前動作——
+  否則慢網路下按抽獎後角色會整隻消失好幾秒（實測 Slow 4G 轉動＋開獎全程空白）。
+  `config.mascot.loopMs` 必須等於 GIF 實際每幀時長總和（用 Pillow 讀 `duration` 加總，不要用 幀數×40 推算）。
+- **不要對會動的東西加 filter**：drop-shadow 加在含旋轉盤面的容器上，每一幀都要重算；陰影只加在靜止的外框圖。
+- **大量同步閃爍的元件分組**：24 顆燈泡各自動畫 → 改成「熄燈層＋兩組亮燈層」只切兩組 opacity。
+- 驗證：Playwright＋CDP `Emulation.setCPUThrottlingRate 6`、iPhone 裝置模擬，轉動期間量 `Performance.getMetrics` 的
+  TaskDuration 與 rAF 幀間隔，逐項關閉元素比對貢獻；`Network.emulateNetworkConditions`（1.6Mbps、150ms）量載入時間與
+  轉動中吉祥物是否空白。本案：主執行緒 1.85s → 0.82s，Slow 4G 載入 14.1s → 5.8s。
 
 ## 交付後常見退回項目（先自查）
 
