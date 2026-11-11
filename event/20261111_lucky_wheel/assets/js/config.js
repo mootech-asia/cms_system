@@ -39,7 +39,7 @@ window.EVENT_CONFIG = {
     idle: [
       'assets/img/mascot/idle-1.gif',
       'assets/img/mascot/idle-2.gif',
-      'assets/img/mascot/idle-3.svg'
+      'assets/img/mascot/idle-3.gif'
     ],
     spinning: 'assets/img/mascot/spinning.svg',
     result: 'assets/img/mascot/result.svg'
