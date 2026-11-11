@@ -17,7 +17,7 @@ window.EVENT_CONFIG = {
   images: {
     stageBg: 'assets/img/stage-bg.webp',
     stageBgDesktop: 'assets/img/stage-bg-desktop.webp',
-    infoBg: 'assets/img/info-bg.svg',
+    infoBg: 'assets/img/info-bg.webp',
     stageFloor: 'assets/img/stage-floor.webp',
     title: {
       en: 'assets/img/title-en.webp',
@@ -31,16 +31,16 @@ window.EVENT_CONFIG = {
     wheelStand: 'assets/img/wheel-stand.webp',
     pointer: 'assets/img/pointer.webp',
     btnGo: 'assets/img/btn-go.webp',
-    btnPrimary: 'assets/img/btn-primary.svg',
-    modalBg: 'assets/img/modal-bg.svg',
-    soundOn: 'assets/img/icon-sound-on.svg',
-    soundOff: 'assets/img/icon-sound-off.svg',
-    share: 'assets/img/icon-share.svg',
-    periodBadge: 'assets/img/period-badge.svg',
-    chancesBadge: 'assets/img/chances-badge.svg',
-    cardFrame: 'assets/img/card-frame.svg',
-    cardTitle: 'assets/img/card-title.svg',
-    footerDeco: 'assets/img/footer-deco.svg'
+    btnPrimary: 'assets/img/btn-primary.webp',
+    modalBg: 'assets/img/modal-bg.webp',
+    soundOn: 'assets/img/icon-sound-on.webp',
+    soundOff: 'assets/img/icon-sound-off.webp',
+    share: 'assets/img/icon-share.webp',
+    periodBadge: 'assets/img/period-badge.webp',
+    chancesBadge: 'assets/img/chances-badge.webp',
+    cardFrame: 'assets/img/card-frame.webp',
+    cardTitle: 'assets/img/card-title.webp',
+    footerDeco: 'assets/img/footer-deco.webp'
   },
 
   /* 吉祥物：每個狀態一個循環 GIF，全部共用同一張基準幀（頭尾）且長度相同（loopMs），

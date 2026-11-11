@@ -1,0 +1,280 @@
+{
+  "report": [
+    {
+      "width": 390,
+      "lang": "en",
+      "state": "initial",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "state": "spinning",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "state": "result",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "state": "exhausted",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "state": "labels-on",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "share": "http://127.0.0.1:8000/event/20261111_lucky_wheel/?lang=en"
+    },
+    {
+      "width": 390,
+      "lang": "ko",
+      "state": "initial",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "ko",
+      "state": "spinning",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "ko",
+      "state": "result",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "ko",
+      "state": "exhausted",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "ko",
+      "state": "labels-on",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "ko",
+      "share": "http://127.0.0.1:8000/event/20261111_lucky_wheel/?lang=ko"
+    },
+    {
+      "width": 390,
+      "lang": "th",
+      "state": "initial",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "th",
+      "state": "spinning",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "th",
+      "state": "result",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "th",
+      "state": "exhausted",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "th",
+      "state": "labels-on",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 390,
+      "lang": "th",
+      "share": "http://127.0.0.1:8000/event/20261111_lucky_wheel/?lang=th"
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "state": "initial",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "state": "spinning",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "state": "result",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "state": "exhausted",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "state": "labels-on",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "share": "http://127.0.0.1:8000/event/20261111_lucky_wheel/?lang=en"
+    },
+    {
+      "width": 1440,
+      "lang": "ko",
+      "state": "initial",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "ko",
+      "state": "spinning",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "ko",
+      "state": "result",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "ko",
+      "state": "exhausted",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "ko",
+      "state": "labels-on",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "ko",
+      "share": "http://127.0.0.1:8000/event/20261111_lucky_wheel/?lang=ko"
+    },
+    {
+      "width": 1440,
+      "lang": "th",
+      "state": "initial",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "th",
+      "state": "spinning",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "th",
+      "state": "result",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "th",
+      "state": "exhausted",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "th",
+      "state": "labels-on",
+      "overflow": false,
+      "broken": [],
+      "cjk": false
+    },
+    {
+      "width": 1440,
+      "lang": "th",
+      "share": "http://127.0.0.1:8000/event/20261111_lucky_wheel/?lang=th"
+    },
+    {
+      "clipboardDeniedFallback": true,
+      "text": "Could not copy. Please copy the link manually."
+    }
+  ],
+  "errors": [],
+  "bad": []
+}
