@@ -8,7 +8,8 @@
 2. 依序執行第 3 節（角色設定圖）→ 人工比對 `DESIGN_TASKS.md` 第四節驗收表 → 通過後執行第 4 節（動態）→ 第 5 節（靜態圖）。
 3. 每次生成只做一項；不滿意就在同一對話要求修改，保持角色一致。
 4. 產出檔名照表格命名，放進 `assets/img/`（吉祥物放 `assets/img/mascot/`），同檔名覆蓋即可上線；若副檔名不同，改 `assets/js/config.js` 的路徑。
-5. **所有圖不得出現中文。** 需要文字的只有活動主標（英／韓／泰各一張）。
+5. 每交付一項就 commit，並在 `DELIVERY_CHECKLIST.md` 該列打勾（☐ → ☑）、填 commit hash，再執行 `python3 event/20261111_lucky_wheel/tools/check_assets.py`，已打勾的列必須全部 `OK`。
+6. **所有圖不得出現中文。** 需要文字的只有活動主標（英／韓／泰各一張）。
 
 ---
 
@@ -208,6 +209,8 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
 ---
 
 ## 6. 交付前自我檢查（GPT 產出後逐項確認）
+
+- [ ] `DELIVERY_CHECKLIST.md` 已打勾並填 commit；`tools/check_assets.py` 沒有 FAIL
 
 - [ ] 檔名與尺寸和 `DESIGN_TASKS.md` 完全一致
 - [ ] 任何一張圖都沒有中文；除活動主標外沒有任何文字
