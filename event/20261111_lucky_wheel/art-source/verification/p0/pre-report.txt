@@ -1,0 +1,13 @@
+PASS  工作樹沒有未提交的改動
+FAIL  HEAD 077f243 不在 origin/main：只在分支上，正式站看不到
+PASS  npm run build 後 tailwind.css 沒有差異（建置結果已提交）
+
+main 上實際存在的版本資料夾（回報「所有版本」時逐一對照這份清單）：
+  v1.5/  Nuxt site 
+  v2/  site-mobile site studio 
+  v3/  site-mobile site studio 
+  v4/  site studio 
+  v5/  site studio 
+  v6/  site studio 
+
+有 FAIL：回報只能寫「進行中／未上線」，並說明哪一項沒過。
