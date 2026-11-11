@@ -389,20 +389,20 @@ img { display: block; max-width: 100%; }
 .ev-wheel-go[aria-busy="true"] { cursor: progress; }
 .ev-wheel-go.is-disabled { filter: grayscale(1) brightness(0.85); }
 
-/* 吉祥物：400×500 GIF，全身站在舞台地板上、位於轉盤前方（離觀眾較近，壓住轉盤右下角）。
+/* 吉祥物：400×500 GIF，全身站在舞台地板上、位於轉盤前方（離觀眾較近，只壓住轉盤右下角外框一小塊，約 3% 盤面）。
    百分比 margin/padding 以容器寬度為基準，畫布與角色位置隨欄寬等比縮放；
    容器底部壓進舞台地板，讓腳踩在地板金邊上；轉盤中央按鈕不在兔比範圍內 */
 .ev-host {
   position: relative;
   z-index: 3;
-  margin-top: -36%;
+  margin-top: -22%;
   margin-bottom: -34px;
   pointer-events: none;
 }
 .ev-host::after {
   content: "";
   position: absolute;
-  left: 44%;
+  left: 47%;
   bottom: 1%;
   width: 46%;
   height: 5%;
@@ -416,7 +416,7 @@ img { display: block; max-width: 100%; }
   position: absolute;
   z-index: 1;
   bottom: 0;
-  left: 20.5%;
+  left: 23%;
   width: 95%;
   max-width: none;
   height: auto;
