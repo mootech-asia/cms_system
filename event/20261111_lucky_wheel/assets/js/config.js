@@ -42,7 +42,7 @@ window.EVENT_CONFIG = {
       'assets/img/mascot/idle-3.gif'
     ],
     spinning: 'assets/img/mascot/spinning.gif',
-    result: 'assets/img/mascot/result.svg'
+    result: 'assets/img/mascot/result.gif'
   },
 
   /* 音效：留空時用 Web Audio 即時合成鼓聲；交付音檔後填路徑即改播音檔。 */
