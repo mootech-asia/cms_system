@@ -40,18 +40,12 @@ def build(name):
    bg=Image.new('RGBA',im.size,MATTE+(255,));bg.alpha_composite(im);bg.convert('RGB').save(tmp/f'color-{i:02}.png')
   subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-framerate','12','-i',str(tmp/'key-%02d.png'),'-framerate','12','-i',str(tmp/'color-%02d.png'),'-filter_complex','[1:v]format=rgb24,minterpolate=fps=24:mi_mode=mci:mc_mode=aobmc:me_mode=bidir:vsbmc=1[col];[0:v]alphaextract,minterpolate=fps=24:mi_mode=mci:mc_mode=aobmc:me_mode=bidir:vsbmc=1[al];[col][al]alphamerge','-frames:v','48',str(out/'frame_%03d.png')],check=True)
  frames=[Image.open(f).convert('RGBA') for f in sorted(out.glob('frame_*.png'))]
- # Fixed palette prevents color flicker between frames. Reserve index 255 for alpha.
- samples=Image.new('RGB',(400*8,500*6),MATTE)
- for i,f in enumerate(frames):
-  bg=Image.new('RGBA',f.size,MATTE+(255,));bg.alpha_composite(f);samples.paste(bg.convert('RGB'),((i%8)*400,(i//8)*500))
- palette=samples.quantize(colors=96,method=Image.Quantize.MEDIANCUT)
- gif=[]
- for f in frames:
-  bg=Image.new('RGBA',f.size,MATTE+(255,));bg.alpha_composite(f)
-  indexed=bg.convert('RGB').quantize(palette=palette,dither=Image.Dither.NONE)
-  indexed.paste(255,mask=f.getchannel('A').point(lambda a:255 if a<128 else 0));indexed.info['transparency']=255;gif.append(indexed)
  dest=ROOT/'assets/img/mascot'/f'{name}.gif'
- gif[0].save(dest,save_all=True,append_images=gif[1:],duration=[50 if (i+1)%6==0 else 40 for i in range(48)],loop=0,disposal=2,transparency=255,optimize=False)
+ cmd=['convert','-dispose','background']
+ for i,f in enumerate(sorted(out.glob('frame_*.png'))):
+  cmd+=['-delay',str(5 if (i+1)%6==0 else 4),str(f)]
+ cmd+=['-loop','0','-background','#FFE6CC','-alpha','background','-channel','A','-threshold','50%','+channel','+dither','-colors','64','-layers','Optimize',str(dest)]
+ subprocess.run(cmd,check=True)
  compare=ROOT/'source/mascot-compare';compare.mkdir(exist_ok=True)
  board=Image.new('RGB',(1600,680),(15,27,46));d=ImageDraw.Draw(board);font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',24)
  d.text((35,20),f'MOOTECH BUNNY / {name.upper()} / CHARACTER CONSISTENCY',font=font,fill='white')
