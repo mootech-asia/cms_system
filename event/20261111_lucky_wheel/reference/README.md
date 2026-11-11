@@ -14,5 +14,23 @@
 | `bear-sticker-wink-thumbsup.webp` | `03_貼圖/S07_眨眼比讚.png`（縮為 1024px WebP） | 發表結果「眨眼比讚」參考 |
 | `bear-sticker-think.webp` | `03_貼圖/S08_思考.png`（縮為 1024px WebP） | 待機「思考」參考 |
 
+## 品牌 logo（背心左胸標誌必須用這個）
+
+來源：官網 repo `assets/brand/`。圖形是「不可能 M」立體線框，**藍綠 → 黃綠漸層**（約 `#00A0E0` → `#B0C040`），字標為 MOOTECH。**不是橘色 M。**
+
+| 檔案 | 來源 | 用途 |
+|---|---|---|
+| `mootech-logo-mark.png` | `favicon.png` | 只有圖形（64×64），背心刺繡用的圖形參考 |
+| `mootech-logo-horizontal.png` | `logo-h.png` | 橫式（圖形＋字標），淺色背景 |
+| `mootech-logo-horizontal-white.png` | `logo-h-white.png` | 橫式，字標反白，深色背景（深藍背心上用這種配色） |
+| `mootech-logo-stacked.png` | `logo-stacked.png` | 直式 |
+
+官網沒有向量檔（SVG／AI），以上皆為 PNG。
+
+## 公開連結（給 GPT／外部工具直接讀取）
+
+正式站：`https://mootech-asia.github.io/cms_system/event/20261111_lucky_wheel/reference/<檔名>`，例如
+`https://mootech-asia.github.io/cms_system/event/20261111_lucky_wheel/reference/bear-view-1-front.png`。
+
 完整高解析原檔、其餘姿勢與貼圖、官方生成提示詞（`01_角色設定/生成提示詞.md`）請到官網 repo 取用。
 角色設定與禁止事項的重點已轉寫進 `../GPT_ASSET_BRIEF.md` 第 1 節。

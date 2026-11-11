@@ -4,7 +4,7 @@
 
 ## 使用方式
 
-1. 開新對話，**附上 `reference/` 的四張三視圖（`bear-view-1`～`4`）＋相關貼圖**，再貼上第 2 節「共通風格」。
+1. 開新對話，**附上 `reference/` 的四張三視圖（`bear-view-1`～`4`）＋相關貼圖＋ `mootech-logo-mark.png`**（無法上傳時用 `reference/README.md` 的公開連結），再貼上第 2 節「共通風格」。
 2. 依序執行第 3 節（角色設定圖）→ 人工比對 `DESIGN_TASKS.md` 第四節驗收表 → 通過後執行第 4 節（動態）→ 第 5 節（靜態圖）。
 3. 每次生成只做一項；不滿意就在同一對話要求修改，保持角色一致。
 4. 產出檔名照表格命名，放進 `assets/img/`（吉祥物放 `assets/img/mascot/`），同檔名覆蓋即可上線；若副檔名不同，改 `assets/js/config.js` 的路徑。
@@ -27,6 +27,7 @@
 | 科技墨鏡 | 漸層鏡片 **橘 → 洋紅 → 紫藍**，鏡片上有 HUD 數位圖形；**深灰金屬鏡框** |
 | 耳機 | 深色耳罩式，耳罩外側有**青藍與橘色**發光圓環；**角色自己的左側**有細長麥克風臂到嘴邊（正面看在畫面右邊） |
 | 背心 | 深海軍藍 `#1A2233` 泡泡羽絨背心（一格一格鼓起）、正面拉鍊、**左胸 MOOTECH 標誌**；背面無標誌 |
+| 標誌 | 官方 MOOTECH logo：「不可能 M」立體線框圖形，**藍綠 → 黃綠漸層**（約 `#00A0E0` → `#B0C040`）＋ MOOTECH 字標（深藍背心上字標為白色）。檔案：`reference/mootech-logo-mark.png`、`mootech-logo-horizontal-white.png`。**不可用橘色 M 或自創徽記** |
 | 內搭 | **深灰色連帽衣**，帽子在背後自然垂下（帽子屬於內搭，不是背心） |
 | 配色 | 毛 `#E9EDF2`、背心 `#1A2233`、科技藍 `#3DA8FF`、點綴橘 `#FF9A3C` |
 | 比例 | 身高約 200cm，與 175cm 成人並排高一個頭 |
@@ -69,7 +70,9 @@ Character (must match the bear's outfit and accessories 1:1, adapted to a rabbit
 - Same tech sunglasses: dark grey metal frame, gradient lenses orange -> magenta -> purple-blue, HUD graphics on the lenses.
 - Same dark over-ear headphones with glowing cyan-blue and orange rings on the ear cups,
   and a thin mic boom on the CHARACTER'S OWN LEFT side reaching the mouth (appears on the viewer's right in front view).
-- Same deep navy #1A2233 quilted puffer vest with front zipper and the MOOTECH logo on the left chest; no logo on the back.
+- Same deep navy #1A2233 quilted puffer vest with front zipper and the official MOOTECH logo on the left chest
+  (attached logo: an "impossible M" 3D line mark with a cyan-to-lime gradient, approx #00A0E0 -> #B0C040, plus the
+  MOOTECH wordmark in white). Do NOT use an orange M or invent a different emblem. No logo on the back.
 - Same dark grey hoodie worn UNDER the vest; the hood hangs naturally at the back.
 - Rabbit paws with pink pads, no claws; able to do a thumbs up. Short fluffy tail visible from the back.
 - Head-to-body ratio about 1:3 like the bear (ears excluded); tall, round belly, short legs.
