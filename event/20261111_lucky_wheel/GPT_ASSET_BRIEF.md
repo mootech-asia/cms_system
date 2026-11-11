@@ -5,17 +5,17 @@
 ## 使用方式
 
 1. 開新對話，**附上 `reference/` 的四張三視圖（`bear-view-1`～`4`）＋相關貼圖＋ `mootech-logo-mark.png`**（無法上傳時用 `reference/README.md` 的公開連結），再貼上第 2 節「共通風格」。
-2. 依序執行第 3 節（角色設定圖）→ 人工比對 `DESIGN_TASKS.md` 第四節驗收表 → 通過後執行第 4 節（動態）→ 第 5 節（靜態圖）。
+2. **依優先級製作**（見 `DESIGN_TASKS.md`「製作優先級」）：先做第 5 節的 P0 全局視覺 → P1 → P2 靜態圖；第 3 節角色設定圖與第 4 節動態屬於 P3，放最後慢慢打磨（可先交靜態假圖）。
 3. 每次生成只做一項；不滿意就在同一對話要求修改，保持角色一致。
 4. 產出檔名照表格命名，放進 `assets/img/`（吉祥物放 `assets/img/mascot/`），同檔名覆蓋即可上線；若副檔名不同，改 `assets/js/config.js` 的路徑。
-5. 每交付一項就 commit，並在 `DELIVERY_CHECKLIST.md` 該列打勾（☐ → ☑）、填 commit hash，再執行 `python3 event/20261111_lucky_wheel/tools/check_assets.py`，已打勾的列必須全部 `OK`。
+5. 每交付一項就 commit，並在 `DELIVERY_CHECKLIST.md` 該列打勾（☐ → ☑）、填 commit hash，再執行 `python3 scripts/check_delivery.py event/20261111_lucky_wheel/DELIVERY_CHECKLIST.md`，已打勾的列必須全部 `OK`。
 6. **所有圖不得出現中文。** 需要文字的只有活動主標（英／韓／泰各一張）。
 
 ---
 
 ## 1. 參考角色設定（熊北 Mootech Bear，官方）
 
-來源：官網 repo `mootech-asia/mootech_website` → `brand/熊北-吉祥物/01_角色設定/角色設定.md`。GPT 看不到圖或理解有偏差時，以這份文字為準。
+來源：官網 repo `mootech-asia/mootech_website` → `brand/moo-bear/01_character/character.md`。GPT 看不到圖或理解有偏差時，以這份文字為準。
 
 | 項目 | 官方設定 |
 |---|---|
@@ -44,8 +44,11 @@ STYLE LOCK — apply to every image in this conversation:
   high-fidelity 3D character render, C4D look, fluffy detailed fur, soft studio lighting,
   chibi-realistic proportions (head:body about 1:3, tall and rounded), friendly, confident, calm personality.
 - Brand colors only: fur #E9EDF2, vest navy #1A2233, tech blue #3DA8FF, energetic orange #FF9A3C.
-- Event theme: bright, warm, festive modern Broadway stage; clean, simple, cheerful;
+- Event theme: bright, warm, festive modern Broadway stage seen as a 3D space with depth and perspective
+  (never a flat front-facing backdrop); clean, simple, cheerful;
   colorful casino-style lucky wheel. Warm and comfortable overall tone. No dark nightclub mood.
+- Real spatial sense: everything lives in ONE 3D stage with a key light from the upper front-left;
+  keep lighting and perspective consistent; do NOT paint ground shadows (the page adds contact shadows).
 - NEVER include Chinese characters anywhere. Do not add any text unless the prompt explicitly gives the exact text.
 - No host / MC character, no handheld microphone, no speech bubbles.
 - Never show national flags, emblems or other companies' logos; no red warning/error visuals;
@@ -54,47 +57,22 @@ STYLE LOCK — apply to every image in this conversation:
 
 ---
 
-## 3. 吉祥物角色設定圖（第一階段）
+## 3. 吉祥物角色設定圖（暫緩：排在轉盤活動完成之後）
 
-輸出：`reference/rabbit-turnaround.png`（1536×1024），通過驗收後才能進入第 4 節。
+吉祥物已定名 **Moo Rabbit（兔比）**，為 MOOTECH cms_system 事業部吉祥物，整套形象由品牌包管理：
+- 角色設定、共通設定（CHARACTER LOCK）與角色設定圖提示詞：`brand/moo-rabbit/ART_REQUIREMENTS.md` 第 1 節、第 4.1、4.2 節
+- 輸出：`brand/moo-rabbit/01_character/turnaround-sheet.png`（1536×1024）＋四視圖單張
 
-```
-Using the attached Mootech Bear reference views (front / 3/4 / side / back) as the exact
-style and quality reference, create a CHARACTER TURNAROUND SHEET for a new sibling mascot:
-"Mootech Bunny", a white rabbit.
-
-Character (must match the bear's outfit and accessories 1:1, adapted to a rabbit):
-- Fluffy, finely detailed white fur #E9EDF2; soft pink inner ears and nose (show the pink hex in the palette).
-- Round face, chubby cheeks, short muzzle, friendly confident expression.
-- Long upright ears are the signature feature; the headphone band sits between/behind
-  the ears so both ears pass through naturally.
-- Same tech sunglasses: dark grey metal frame, gradient lenses orange -> magenta -> purple-blue, HUD graphics on the lenses.
-- Same dark over-ear headphones with glowing cyan-blue and orange rings on the ear cups,
-  and a thin mic boom on the CHARACTER'S OWN LEFT side reaching the mouth (appears on the viewer's right in front view).
-- Same deep navy #1A2233 quilted puffer vest with front zipper and the official MOOTECH logo on the left chest
-  (attached logo: an "impossible M" 3D line mark with a cyan-to-lime gradient, approx #00A0E0 -> #B0C040, plus the
-  MOOTECH wordmark in white). Do NOT use an orange M or invent a different emblem. No logo on the back.
-- Same dark grey hoodie worn UNDER the vest; the hood hangs naturally at the back.
-- Rabbit paws with pink pads, no claws; able to do a thumbs up. Short fluffy tail visible from the back.
-- Head-to-body ratio about 1:3 like the bear (ears excluded); tall, round belly, short legs.
-- Personality: calm, confident, friendly, focused (not childish).
-
-Layout (same as the reference, ALL LABELS IN ENGLISH ONLY):
-- Top-left: Mootech logo + "CHARACTER TURNAROUND SHEET". Top-right: "Mootech Bunny | 3D Character Design".
-- Left panel "Character Profile": Name / Style / Proportion / Personality / Usage.
-- Left panel "Color Palette": #E9EDF2, #1A2233, #3DA8FF, #FF9A3C, plus the inner-ear pink hex.
-- Top row: Front / 3/4 View / Side / Back / 3/4 Rear (full body, neutral standing pose).
-- Middle row "Expression Set": Smile / Laugh / Focused / Listening / Thinking / Thumbs Up.
-- Bottom row "Details": HUD Glasses / Headphones (Glow Ring) / Embroidered Logo / Zipper / Fur Texture / Paw Pad.
-- Bottom-right "Scale": bunny about 150 cm (ears excluded) next to the bear (200 cm) and a 175 cm human silhouette.
-- Dark navy tech background, clean modern layout.
-```
+**兔比完整設定（含角色設定圖）排在轉盤活動完成之後，本活動先不做，也不必等它。** 第 4 節的動態直接以目前已交付的兔比造型為準，附上 `reference/` 熊北四視圖與官方 logo 修正細節。
 
 ---
 
 ## 4. 吉祥物動態 GIF（第二階段）
 
 ### 4.1 產出方式
+
+- **先做基準幀** `base-frame.png`（400×500 透明，正面自然站姿），之後每張 sheet 都附上它；組 GIF 時一律傳 `base_frame="base-frame.png"`，腳本會把它放在第一幀和最後一幀。
+- 每段一律 48 幀（2 張 sheet）、24fps，所有狀態長度相同。
 
 每個狀態用 **sprite sheet（序列幀拼圖）** 產出，再用 4.3 的腳本切幀組成 GIF。
 
@@ -105,22 +83,27 @@ Layout (same as the reference, ALL LABELS IN ENGLISH ONLY):
 
 ### 4.2 各狀態提示詞
 
-先貼第 2 節共通風格，再貼「共通動態規則」，最後貼該狀態的動作描述。
+先貼第 2 節共通風格與品牌包的 CHARACTER LOCK，再貼「共通動態規則」，最後貼該狀態的動作描述。
 
 ```
 ANIMATION SPRITE SHEET RULES:
-- Character: Mootech Bunny exactly as in the approved turnaround sheet (attach it).
+- Character: Moo Rabbit exactly as in the current delivered GIFs (attach a key frame) and the CHARACTER LOCK block from
+  brand/moo-rabbit/ART_REQUIREMENTS.md section 4.1; match accessories to the attached Mootech Bear views and official logo.
 - Output 1024x1536, transparent background, a 3-column x 4-row grid = 12 equal cells.
 - Frames read left-to-right, top-to-bottom (frame 1 top-left, frame 12 bottom-right).
 - Full body in every cell, same scale, same camera, feet on the same baseline, centered.
+- The character fills about 80% of the cell width, feet close to the bottom edge; key light from the upper front-left.
+- No ground shadow under the feet (the page adds a contact shadow).
 - Only the pose changes between frames; motion must be smooth and evenly spaced.
-- Frame 12 must flow seamlessly back into frame 1 (loop).
+- Fixed camera: never zoom or scale the whole character between frames.
+- Every animation starts AND ends on the shared base pose (attach base-frame.png): frame 1 = the base pose, and the motion
+  returns to exactly that pose at the end, so all states can be swapped at any loop boundary without a jump.
 - No text, no grid lines, no frame numbers, no background, no shadows outside the character.
 ```
 
 | 檔名 | 對應參考表情 | 動作描述（貼在規則後面） |
 |---|---|---|
-| `mascot/idle-1.gif` | Smile | `IDLE 1: relaxed standing pose, gentle breathing (chest rises and falls), one slow blink around frames 6-7, ears sway slightly.` |
+| `mascot/idle-1.gif` | Smile | `IDLE 1: relaxed standing pose, very subtle breathing (only the chest and belly move slightly), one slow blink around frames 6-7, ears sway slightly. The character's overall size and outline must stay exactly the same in every frame: NO zoom, NO scaling, NO pulsing.` |
 | `mascot/idle-2.gif` | Listening | `IDLE 2: tilts head toward the right as if listening, one ear twitches and folds then springs back, paw lightly touches the headphone.` |
 | `mascot/idle-3.gif` | Thinking（`bear-sticker-think`）、揮手（`bear-sticker-wave`） | `IDLE 3: friendly wave with the right paw at shoulder height, then pushes the tech glasses up with one finger, returns to neutral.` |
 | `mascot/spinning.gif` | Focused | `SPINNING: excited anticipation — both paws in fists close to the chest, small bouncing hops in place, ears fully upright and trembling, focused smiling face watching to the left (where the wheel is).` |
@@ -142,7 +125,9 @@ from PIL import Image
 import os
 
 def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
-              matte=(0xFF, 0xE6, 0xCC), pingpong=False, png_dir=None):
+              matte=(0xFF, 0xE6, 0xCC), pingpong=False, png_dir=None, base_frame=None):
+    # base_frame：所有動態共用的基準幀 PNG（mascot/base-frame.png）。給了就強制放在第一幀與最後一幀，
+    # 讓每個 GIF 從同一個姿勢開始、回到同一個姿勢結束 → 無縫循環，也能隨時切換動作。
     frames = []
     for path in sheets:
         sheet = Image.open(path).convert("RGBA")
@@ -157,6 +142,9 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
                 frames.append(canvas)
     if pingpong:
         frames = frames + frames[-2:0:-1]
+    if base_frame:
+        base = Image.open(base_frame).convert("RGBA").resize(size, Image.LANCZOS)
+        frames = [base] + frames + [base]
     if png_dir:
         os.makedirs(png_dir, exist_ok=True)
         for i, f in enumerate(frames, 1):
@@ -177,8 +165,10 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
     print(out_gif, len(frames), "frames")
 
 # 範例：
-# build_gif(["spinning_01-12.png", "spinning_13-24.png"], "spinning.gif", fps=24, png_dir="spinning_png")
-# build_gif(["idle1_01-12.png", "idle1_13-24.png"], "idle-1.gif", fps=24, pingpong=True, png_dir="idle1_png")
+# build_gif(["spinning_01-12.png", "spinning_13-24.png"], "spinning.gif", fps=24, png_dir="spinning_png",
+#           base_frame="base-frame.png")
+# build_gif(["idle1_01-12.png", "idle1_13-24.png"], "idle-1.gif", fps=24, pingpong=True, png_dir="idle1_png",
+#           base_frame="base-frame.png")
 ```
 
 交付：5 個 GIF（每個建議 ≤ 1.5MB；太大就把 fps 降到 18，或幀數減半）＋各自的 PNG 序列幀資料夾＋每個狀態一張「關鍵幀 vs 角色設定圖」並排比對圖。
@@ -191,11 +181,11 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
 
 | 檔名 | 精確尺寸 | 生成比例 | 提示詞 |
 |---|---|---|---|
-| `stage-bg.png` | 750×1000 | 1024×1536 | `Mobile event background, bright warm modern Broadway stage: soft peach/cream back wall with a gentle radial glow in the center, red velvet curtains on both left and right edges, a scalloped red valance with gold fringe across the top. Keep the center (where a big wheel will be placed) clean and bright. No characters, no text, no wheel.` |
+| `stage-bg.png` | 750×1000 | 1024×1536 | `Mobile event background: a bright, warm modern Broadway stage rendered as a 3D space in one-point perspective (vanishing point upper center): polished warm wood floor with planks converging into the depth and a soft spotlight pool in the lower middle, side walls with red velvet curtains receding toward a back wall with a gold arch, scalloped red valance with gold fringe across the top front. Upper 60% = back wall area kept clean and bright for the wheel; lower 40% = the stage floor where the mascot stands. No characters, no text, no wheel.` |
 | `stage-floor.png` | 750×140 | 1536×1024 → 裁切 | `Front edge of a stage seen from the audience: a gentle upward arc of polished gold stage floor with a row of warm marquee light bulbs along the edge, a coral red apron below. The bottom 20px must be flat solid #FFF6EA. Put the bulbs and the arc in the upper half. No text.` |
-| `title-en.png` | 690×240 | 1536×1024 → 裁切 | `Broadway marquee sign, rounded rectangle, gold frame with glowing bulbs all around, red inner panel, the exact text "LUCKY WHEEL" in bold cream-white letters, transparent background.` |
+| `title-en.png` | 690×240 | 1536×1024 → 裁切 | `Broadway marquee sign logo, rounded rectangle, gold 3D frame with glowing bulbs all around, red inner panel, the exact text "LUCKY WHEEL" as bold, rounded, 3D cream-gold lettering with highlights, letters fully inside the red panel, readable when shown at 345px wide, transparent background.`（規格見 `DESIGN_TASKS.md`「主視覺文字」） |
 | `title-ko.png` | 690×240 | 同上 | 同上，文字改為 `"행운의 룰렛"`（構圖與 title-en 完全一致，只換字） |
-| `title-th.png` | 690×240 | 同上 | 同上，文字改為 `"วงล้อนำโชค"`（構圖與 title-en 完全一致，只換字） |
+| `title-th.png` | 690×240 | 同上 | 同上，文字改為 `"วงล้อนำโชค"`（構圖與 title-en 完全一致，只換字；泰文上下標符號上下各留約字高 25% 空間，不可被框切到） |
 | `spotlight.png` | 260×900 | 1024×1536 → 裁切 | `A single stage spotlight beam on a transparent background: narrow at the top, widening downward, warm white light fading to fully transparent at the bottom. No lamp, no stage.` |
 | `wheel-frame.png` | 680×680 | 1024×1024 | `Casino lucky wheel outer rim only, front view: thick glossy gold ring with bevels and highlights, outer diameter 100%, inner opening diameter 88%. The inner circle must be completely empty/transparent. Do NOT draw light bulbs (they are added in code), leave a smooth band in the middle of the ring. Transparent background.` |
 | `wheel-gloss.png` | 600×600 | 1024×1024 | `A circular glossy overlay for a wheel: soft white highlight in the upper-left fading out, and a subtle warm inner shadow around the edge. Mostly transparent, no colors, no segments. Transparent background.` |
@@ -205,12 +195,22 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
 | `btn-primary.png` | 400×110 | 1536×1024 → 裁切 | `Pill-shaped button, orange-to-coral gradient with a thin gold border and a soft top highlight. NO TEXT. Transparent background.` |
 | `icon-sound-on.png` / `icon-sound-off.png` | 64×64 | 1024×1024 | `Round cream sound toggle icon with a gold border: (on) red speaker with sound waves / (off) grey speaker with an X. Transparent background.` |
 | `icon-cash` `icon-coin` `icon-gift` `icon-spin` `icon-bonus` `icon-points` `icon-thanks`（.png） | 160×160 | 1024×1024 | `3D prize icon, same style for the whole set, bold readable at 40px, white outline, transparent background: (cash) green banknote / (coin) gold coin / (gift) red gift box with gold ribbon / (spin) purple circular arrow / (bonus) orange star badge with a percent sign / (points) teal circle with a star / (thanks) warm yellow smiley. No words.` |
+| `stage-bg-desktop.png` | 1920×1000 | 1536×1024 → 放大裁切 | `Wide desktop version of the SAME 3D perspective Broadway stage (same camera height, vanishing point and lighting as the mobile one): wider wood floor with stronger depth, curtains and side walls extending further to both sides, gold arch on the back wall, spotlight pool on the floor center. Keep the central 480px column clean (wheel and mascot sit there). No characters, no text.` |
+| `info-bg.png` | 750×750（無縫） | 1024×1024 → 縮小 | `Seamless tileable pattern on cream #FFF6EA: sparse small confetti strips and tiny stars in the event colors, very subtle and light so dark text on top stays readable. Edges must tile seamlessly.`（再用 Code Interpreter 檢查四邊接縫） |
+| `period-badge.png` | 480×64 | 1536×1024 → 裁切 | `Horizontal gold ribbon banner with folded tails on both ends, a light cream center area for text, flat and clean. NO TEXT. Transparent background.` |
+| `chances-badge.png` | 360×88 | 1536×1024 → 裁切 | `Rounded pill badge with a gold rim and a light cream center for text, small gold dots at both ends. NO TEXT. Transparent background.` |
+| `card-frame.png` | 120×120（九宮格 40） | 1024×1024 → 縮小 | `Square card frame for 9-slice scaling: gold rounded border, cream center, decoration ONLY in the four corners (small red dots or stars); straight edges and the center must be plain so they can stretch. Transparent background outside the frame.` |
+| `card-title.png` | 400×72 | 1536×1024 → 裁切 | `Red ribbon title banner with a thin gold outline and folded darker tails on both ends, center area dark enough for white text. NO TEXT. Transparent background.` |
+| `footer-deco.png` | 750×160 | 1536×1024 → 裁切 | `Decorative page footer: a soft stage-edge arc with small gold stars along it and a few confetti strips below, warm and light. NO TEXT. Transparent background above the arc.` |
+| `icon-share.png` | 64×64 | 1024×1024 | `Round cream share icon with a gold border and a red share symbol (three connected dots), same style as the sound toggle icons. Transparent background.` |
+| `share-preview.png` | 1200×630（PNG） | 1536×1024 → 裁切 | `Social link preview: the LUCKY WHEEL marquee title on the left, the colorful casino wheel in the center-right, Moo Rabbit cheering at the bottom right, bright warm Broadway stage background. Keep all key content inside the central 1100x580. Only the text "LUCKY WHEEL" (and optionally "SPIN & WIN").` |
+| `wheel-stand.png` | 400×600 | 1024×1536 → 縮小 | `A gold casino wheel stand: a tapered glossy gold pillar rising from a round gold-and-red base drawn as a perspective ellipse (same slightly-high camera angle as the stage floor), small warm bulbs around the base rim, key light from the upper front-left. The top 20% of the pillar will be hidden behind the wheel. No wheel, no ground shadow, transparent background.` |
 
 ---
 
 ## 6. 交付前自我檢查（GPT 產出後逐項確認）
 
-- [ ] `DELIVERY_CHECKLIST.md` 已打勾並填 commit；`tools/check_assets.py` 沒有 FAIL
+- [ ] `DELIVERY_CHECKLIST.md` 已打勾並填 commit；`scripts/check_delivery.py`（repo 根目錄） 沒有 FAIL
 
 - [ ] 檔名與尺寸和 `DESIGN_TASKS.md` 完全一致
 - [ ] 任何一張圖都沒有中文；除活動主標外沒有任何文字

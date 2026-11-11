@@ -54,9 +54,25 @@
     try { localStorage.setItem(PLAYER_KEY, JSON.stringify(player)); } catch (e) { /* 同上 */ }
   }
 
+  var desktopMq = window.matchMedia('(min-width: 768px)');
+
+  // 版面元件圖（徽章、卡片框…）以 CSS 變數 --ev-img-<key> 提供給 event.css；沒設定的 key 走 CSS 預設樣式
+  function applyImageVars() {
+    var root = document.documentElement.style;
+    Object.keys(cfg.images).forEach(function (key) {
+      var src = pick(cfg.images[key]);
+      // CSS 變數裡的 url() 會以「使用它的樣式表」為基準解析相對路徑，所以先轉成絕對網址
+      if (typeof src === 'string' && src) root.setProperty('--ev-img-' + key, 'url("' + new URL(src, document.baseURI).href + '")');
+    });
+  }
+
   function applyImages() {
+    applyImageVars();
     document.querySelectorAll('[data-img]').forEach(function (el) {
-      var src = pick(cfg.images[el.getAttribute('data-img')]);
+      var key = el.getAttribute('data-img');
+      var desktopKey = el.getAttribute('data-img-desktop');
+      if (desktopKey && desktopMq.matches && cfg.images[desktopKey]) key = desktopKey;
+      var src = pick(cfg.images[key]);
       if (!src) return;
       if (el.tagName === 'IMG') el.src = src;
       else el.style.backgroundImage = 'url("' + src + '")';
@@ -147,6 +163,7 @@
     var specs = cfg.assetSpecs;
     document.querySelectorAll('[data-asset]').forEach(function (el) {
       el.textContent = el.getAttribute('data-asset').split(' ').map(function (k) {
+        if (k === 'stageBg' && desktopMq.matches) k = 'stageBgDesktop';
         return specs[k].replace('{locale}', I18n.getLocale()).replace('{state}', mascotState);
       }).join('\n');
     });
@@ -162,21 +179,38 @@
     $('labelsState').textContent = t(on ? 'mock.on' : 'mock.off');
   }
 
+  // 所有吉祥物 GIF 都從同一張基準幀開始、回到同一張結束，且每段長度相同（cfg.mascot.loopMs），
+  // 所以切換時等目前這段播完一輪（剛好回到基準幀）再換，畫面不會跳；第一次顯示則立即換。
+  var mascotShownAt = 0;
+  var mascotSwapTimer = null;
+
+  function showMascot(src, state) {
+    clearTimeout(mascotSwapTimer);
+    var swap = function () {
+      mascot.src = src;
+      mascotShownAt = performance.now();
+      mascotState = state;
+      renderAssetLabels();
+    };
+    var loop = cfg.mascot.loopMs;
+    if (!mascotShownAt || !loop) { swap(); return; }
+    var wait = (loop - (performance.now() - mascotShownAt) % loop) % loop;
+    mascotSwapTimer = setTimeout(swap, wait);
+  }
+
   function setMascot(state) {
     clearTimeout(idleTimer);
     if (state === 'idle') {
       var i = idleIndex % cfg.mascot.idle.length;
-      mascot.src = cfg.mascot.idle[i];
-      mascotState = 'idle-' + (i + 1);
+      var src = cfg.mascot.idle[i];
+      showMascot(src, src.split('/').pop().replace(/\.[a-z]+$/, ''));
       idleTimer = setTimeout(function () {
         idleIndex++;
         setMascot('idle');
       }, cfg.idleSwapMs);
     } else {
-      mascot.src = cfg.mascot[state];
-      mascotState = state;
+      showMascot(cfg.mascot[state], state);
     }
-    renderAssetLabels();
   }
 
   function setStage(state) {
@@ -315,6 +349,8 @@
     showToast(t('toast.reset', { n: player.chances }));
   });
   document.addEventListener('ev:locale', renderLocale);
+  if (desktopMq.addEventListener) desktopMq.addEventListener('change', applyImages);
+  window.EventShare.init(showToast);
 
   document.body.classList.toggle('show-asset-labels', labelsOn());
   I18n.renderSwitcher($('langSwitch'));

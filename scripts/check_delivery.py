@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """
-核對 DELIVERY_CHECKLIST.md：已打勾（☑）的列，檔案必須真的存在且規格正確。
+核對交付勾選表（DELIVERY_CHECKLIST.md）：已打勾（☑）的列，檔案必須真的存在且規格正確。
+交付路徑以勾選表所在資料夾為基準。
 
-  python3 event/20261111_lucky_wheel/tools/check_assets.py          只檢查已打勾的列
-  python3 event/20261111_lucky_wheel/tools/check_assets.py --all    未打勾的列也檢查（看目前檔案離規格多遠）
+  python3 scripts/check_delivery.py <勾選表路徑>          只檢查已打勾的列
+  python3 scripts/check_delivery.py <勾選表路徑> --all    未打勾的列也檢查（看目前檔案離規格多遠）
+
+例：python3 scripts/check_delivery.py event/20261111_lucky_wheel/DELIVERY_CHECKLIST.md
+    python3 scripts/check_delivery.py brand/moo-rabbit/DELIVERY_CHECKLIST.md
 
 結果：OK＝符合；FAIL＝已打勾但不符（仍是佔位圖、尺寸／幀數錯、commit 裡沒有這個檔案…，exit code 1）；TODO＝未打勾；
-MANUAL＝無法自動判斷，需人工審核（色票、音效長度）。
+MANUAL＝無法自動判斷，需人工審核（色票、音效長度）；SKIP＝尺寸欄標「暫緩」的列，不計入總數。
 需要 Pillow（pip install pillow）。
 """
 import hashlib
@@ -18,20 +22,31 @@ import sys
 
 signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHECKLIST = os.path.join(ROOT, 'DELIVERY_CHECKLIST.md')
-# mock 階段的佔位圖指紋（sha256 前 16 碼）：交付檔若仍是這些檔案，代表沒有真的換圖。
+_args = [a for a in sys.argv[1:] if not a.startswith('--')]
+if not _args:
+    sys.exit(__doc__)
+CHECKLIST = os.path.abspath(_args[0])
+ROOT = os.path.dirname(CHECKLIST)
+# event/20261111_lucky_wheel mock 階段的佔位圖指紋（sha256 前 16 碼）：交付檔若仍是這些檔案，代表沒有真的換圖。
 PLACEHOLDERS = {
     '002106becb5c85c6',
     '038411be37fb69ea',
+    '03d5bb529d09a722',
+    '0a1e1bfb307fd9ec',
+    '1005b7fd8bf39614',
     '1e08321e5ea40c7c',
     '211783801ae49f4e',
     '2d7ead69e127a716',
     '333328ad874e3a80',
     '34391fdcb0f1fab2',
+    '37530f3859fa83da',
     '3bb9d58c7a45af3b',
+    '3c8c9da3a693f5ad',
     '40383b38e8cceedc',
+    '4b83622f2cadaf2e',
+    '4f3720775b8551e9',
     '548d2c23694120ea',
+    '56dce8e96644b133',
     '62d58fd3dbcf2d8b',
     '63256e51da516722',
     '6b7d35f08466e86c',
@@ -40,17 +55,27 @@ PLACEHOLDERS = {
     '75029fe59bf64095',
     '83da9a30a92b0548',
     '83fa5faf16da21a6',
+    '897e6a0c48bb9c9f',
+    '946c1941b3aa56c2',
     '965f6fe1710c6a71',
+    '96720a5304292b89',
+    '9abde38f737ca1da',
+    '9c70379b403c9add',
     'a9706ba65ccb7975',
     'b7b6148d46b4fa1b',
+    'c6137077de6e3dcb',
+    'c819f950dcf962a2',
     'd30a56edc1c2999e',
     'd65f3986a98ebb04',
+    'd78a64c124c45713',
+    'db073a09c101a2df',
     'e9d1f1a59fc718f9',
     'ed025b42ded13040',
     'f644e3678cf0184e',
     'fdf1fb27ec7749af',
 }
 ROW = re.compile(r'^\|\s*(☐|☑)\s*\|\s*([A-Z]\d{2})\s*\|([^|]*)\|([^|]*)\|\s*`([^`]+)`[^|]*\|([^|]*)\|')
+PRIO = re.compile(r'\|\s*(P\d)\s*\|\s*$')
 
 try:
     from PIL import Image
@@ -96,8 +121,8 @@ def check_file(rel, spec):
     p = os.path.join(ROOT, found[0])
     if hashlib.sha256(open(p, 'rb').read()).hexdigest()[:16] in PLACEHOLDERS:
         return False, found[0] + ' 仍是 mock 佔位圖，尚未換成正式素材'
-    if p.endswith('.mp3'):
-        return os.path.getsize(p) > 0, found[0] + '（長度需人工確認）'
+    if p.endswith(('.mp3', '.mp4')):
+        return os.path.getsize(p) > 0, found[0] + '（長度／內容需人工確認）'
     got = image_size(p)
     if size and got != size:
         return False, '%s 尺寸 %s，應為 %dx%d' % (found[0], got and '%dx%d' % got, size[0], size[1])
@@ -105,12 +130,53 @@ def check_file(rel, spec):
         with Image.open(p) as im:
             frames = getattr(im, 'n_frames', 1)
             loop = im.info.get('loop')
+            im.seek(0)
+            first = im.convert('RGBA')
+            im.seek(frames - 1)
+            last = im.convert('RGBA')
         if frames < min_frames:
             return False, '%s 只有 %d 幀，至少 %d 幀' % (found[0], frames, min_frames)
         if loop != 0:
             return False, '%s 未設定無限循環（loop=0）' % found[0]
-        return True, '%s %d 幀' % (found[0], frames)
+        # 吉祥物動態規則：每個 GIF 第一幀＝最後一幀＝共用基準幀（同資料夾 base-frame.png），才能無縫循環、隨時換動作
+        if frame_diff(first, last) > FRAME_TOLERANCE:
+            return False, '%s 最後一幀與第一幀不同（差異 %.1f），無法無縫循環' % (found[0], frame_diff(first, last))
+        base = os.path.join(os.path.dirname(p), 'base-frame.png')
+        if os.path.isfile(base):
+            with Image.open(base) as b:
+                mism, col = base_diff(first, b.convert('RGBA'))
+            if mism > 0.01 or col > 8:
+                return False, '%s 第一幀與 base-frame.png 不同（輪廓差 %.1f%%、顏色差 %.1f），切換動作會跳' % (found[0], mism * 100, col)
+        else:
+            return False, '%s 同資料夾缺少 base-frame.png（所有動態共用的基準幀）' % found[0]
+        return True, '%s %d 幀，頭尾與基準幀一致' % (found[0], frames)
     return True, found[0]
+
+
+FRAME_TOLERANCE = 1.5  # RGBA 平均差異（0~255）；GIF 重新量化的雜訊約 <1
+
+
+def frame_diff(a, b):
+    from PIL import ImageChops, ImageStat
+    if a.size != b.size:
+        return 255.0
+    return sum(ImageStat.Stat(ImageChops.difference(a, b)).mean) / 4
+
+
+def base_diff(gif_frame, base):
+    """GIF 幀（1-bit 透明＋matte 邊）對 PNG 基準幀（柔邊 alpha）：比不透明輪廓是否吻合、重疊處顏色差。"""
+    if gif_frame.size != base.size:
+        return 1.0, 255.0
+    ga = gif_frame.getchannel('A').point(lambda v: 255 if v >= 128 else 0)
+    ba = base.getchannel('A').point(lambda v: 255 if v >= 128 else 0)
+    from PIL import ImageChops, ImageStat
+    mism = ImageStat.Stat(ImageChops.difference(ga, ba)).mean[0] / 255
+    both = ImageChops.multiply(ga, ba)
+    if not both.getbbox():
+        return mism, 255.0
+    d = ImageChops.difference(gif_frame.convert('RGB'), base.convert('RGB'))
+    col = sum(ImageStat.Stat(d, mask=both).mean) / 3
+    return mism, col
 
 
 def check_dir(rel, spec):
@@ -164,21 +230,32 @@ def main():
     rows = 0
     passed = 0
     out = []
+    by = {}
     for line in open(CHECKLIST, encoding='utf-8'):
         m = ROW.match(line)
         if not m:
             continue
         rows += 1
         mark, rid, name, spec, rel, commit = [g.strip() for g in m.groups()]
+        pm = PRIO.search(line.rstrip())
+        prio = pm.group(1) if pm else '-'
         ticked = mark == '☑'
-        if not ticked and not check_all:
-            out.append('TODO    %s  %s' % (rid, name))
+        if '暫緩' in spec:
+            rows -= 1
+            out.append((prio, 'SKIP    %s  %s  %s  — 暫緩，不計入' % (prio, rid, name)))
             continue
-        if rid == 'B01':
+        stat = by.setdefault(prio, [0, 0])
+        stat[1] += 1
+        if not ticked and not check_all:
+            out.append((prio, 'TODO    %s  %s  %s' % (prio, rid, name)))
+            continue
+        if rel.endswith('.md') or '（人工）' in spec:
+            exists = os.path.isfile(os.path.join(ROOT, rel))
+            ok, msg = (None, '需人工審核') if exists else (False, '找不到檔案 ' + rel)
+        elif rel == 'assets/css/event.css':
             ok, msg = None, '色票需人工審核'
-        elif rid == 'F01':
+        elif rel == 'assets/js/config.js':
             ok, msg = check_config()
-            rel = 'assets/js/config.js'
         elif rel.endswith('/'):
             ok, msg = check_dir(rel, spec)
         else:
@@ -195,9 +272,14 @@ def main():
             fails += 1
         if ticked and status in ('OK', 'MANUAL'):
             passed += 1
-        out.append('%-7s %s  %s  — %s' % (status, rid, name, msg))
-    print('已提交且通過檢查：%d / %d 項；打勾但不符：%d 項\n' % (passed, rows, fails))
-    print('\n'.join(out))
+            stat[0] += 1
+        out.append((prio, '%-7s %s  %s  %s  — %s' % (status, prio, rid, name, msg)))
+    print('已提交且通過檢查：%d / %d 項；打勾但不符：%d 項' % (passed, rows, fails))
+    if any(k != '-' for k in by):
+        print('依優先級（P0 全局視覺 → P3 精修與動態）：' + '　'.join(
+            '%s %d/%d' % (k, v[0], v[1]) for k, v in sorted(by.items())))
+    print()
+    print('\n'.join(t for _, t in sorted(out, key=lambda x: x[0])))
     sys.exit(1 if fails else 0)
 
 

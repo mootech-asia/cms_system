@@ -4,10 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lucky Wheel</title>
+    <meta name="description" content="Spin the Lucky Wheel and win prizes!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Lucky Wheel" />
+    <meta property="og:description" content="Spin the Lucky Wheel and win prizes!" />
+    <meta property="og:url" content="https://mootech-asia.github.io/cms_system/event/20261111_lucky_wheel/" />
+    <meta property="og:image" content="https://mootech-asia.github.io/cms_system/event/20261111_lucky_wheel/assets/img/share-preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Lucky Wheel" />
+    <meta name="twitter:description" content="Spin the Lucky Wheel and win prizes!" />
+    <meta name="twitter:image" content="https://mootech-asia.github.io/cms_system/event/20261111_lucky_wheel/assets/img/share-preview.png" />
     <link rel="stylesheet" href="assets/css/event.css" />
   </head>
   <body>
-    <section class="ev-stage" id="stage" data-img="stageBg" data-i18n-aria="stage.aria">
+    <section class="ev-stage" id="stage" data-img="stageBg" data-img-desktop="stageBgDesktop" data-i18n-aria="stage.aria">
       <div class="ev-stage-dim" aria-hidden="true"></div>
       <img class="ev-spot ev-spot--l" data-img="spotlight" alt="" />
       <img class="ev-spot ev-spot--r" data-img="spotlight" alt="" />
@@ -15,10 +27,13 @@
       <div class="ev-topbar">
         <div class="ev-lang" id="langSwitch"></div>
         <div class="ev-sound-wrap">
+          <button type="button" class="ev-sound" id="btnShare" data-i18n-aria="share.button">
+            <img data-img="share" alt="" />
+          </button>
           <button type="button" class="ev-sound" id="btnSound" aria-pressed="true">
             <img id="soundIcon" alt="" />
           </button>
-          <span class="ev-asset ev-asset--sound" data-asset="sound" aria-hidden="true"></span>
+          <span class="ev-asset ev-asset--sound" data-asset="share sound" aria-hidden="true"></span>
         </div>
       </div>
 
@@ -27,9 +42,13 @@
           <img data-img="title" data-i18n-alt="title.alt" alt="Lucky Wheel" />
           <span class="ev-asset ev-asset--title" data-asset="title" aria-hidden="true"></span>
         </h1>
-        <p class="ev-period" id="period"></p>
+        <p class="ev-period-wrap"><span class="ev-period" id="period"></span><span class="ev-asset ev-asset--period" data-asset="periodBadge" aria-hidden="true"></span></p>
 
         <div class="ev-wheel-area">
+          <div class="ev-wheel-stand" aria-hidden="true">
+            <img data-img="wheelStand" alt="" />
+            <span class="ev-asset ev-asset--stand" data-asset="wheelStand"></span>
+          </div>
           <div class="ev-wheel">
             <img class="ev-wheel-frame" data-img="wheelFrame" alt="" />
             <div class="ev-wheel-disc" id="wheelDisc">
@@ -48,17 +67,18 @@
             <span class="ev-asset ev-asset--tr" data-asset="pointer" aria-hidden="true"></span>
             <span class="ev-asset ev-asset--bl" data-asset="btnGo wheelGloss" aria-hidden="true"></span>
           </div>
-          <div class="ev-mascot-wrap">
-            <img class="ev-mascot" id="mascot" alt="" />
-            <span class="ev-asset ev-asset--mascot" data-asset="mascot" aria-hidden="true"></span>
-          </div>
         </div>
 
-        <p class="ev-chances">
-          <span data-i18n="chances.before"></span>
-          <strong id="chances">0</strong>
-          <span data-i18n="chances.after"></span>
-        </p>
+        <div class="ev-host">
+          <img class="ev-mascot" id="mascot" alt="" />
+          <span class="ev-asset ev-asset--mascot" data-asset="mascot" aria-hidden="true"></span>
+          <span class="ev-asset ev-asset--chances" data-asset="chancesBadge" aria-hidden="true"></span>
+          <p class="ev-chances">
+            <span data-i18n="chances.before"></span>
+            <strong id="chances">0</strong>
+            <span data-i18n="chances.after"></span>
+          </p>
+        </div>
       </div>
 
       <div class="ev-stage-floor-wrap">
@@ -66,10 +86,11 @@
       </div>
     </section>
 
-    <section class="ev-info" data-i18n-aria="info.aria">
+    <section class="ev-info" data-img="infoBg" data-i18n-aria="info.aria">
       <div class="ev-info-inner">
         <span class="ev-asset ev-asset--floor" data-asset="stageBg stageFloor spotlight" aria-hidden="true"></span>
         <article class="ev-card">
+          <span class="ev-asset ev-asset--card" data-asset="cardFrame cardTitle" aria-hidden="true"></span>
           <h2 class="ev-card-title" id="rulesTitle"></h2>
           <ol class="ev-rules" id="rulesList"></ol>
           <p class="ev-slot" id="rulesEmpty" data-i18n="rules.empty" hidden></p>
@@ -81,6 +102,10 @@
             <li class="ev-empty" id="recordEmpty" data-i18n="records.empty"></li>
           </ul>
         </article>
+
+        <div class="ev-footer-deco" aria-hidden="true">
+          <span class="ev-asset ev-asset--floor" data-asset="footerDeco"></span>
+        </div>
 
         <div class="ev-mock-tools">
           <span data-i18n="mock.tools"></span>
@@ -104,12 +129,28 @@
       </div>
     </div>
 
+    <div class="ev-sheet" id="shareSheet" role="dialog" aria-modal="true" aria-labelledby="shareTitle" hidden>
+      <div class="ev-sheet-panel">
+        <div class="ev-sheet-head">
+          <h2 class="ev-sheet-title" id="shareTitle" data-i18n="share.title"></h2>
+          <button type="button" class="ev-sheet-close" id="btnShareClose" data-i18n-aria="share.close">×</button>
+        </div>
+        <div class="ev-share-grid" id="shareLinks"></div>
+        <div class="ev-share-url">
+          <input class="ev-share-input" id="shareUrl" type="text" readonly data-i18n-aria="share.urlLabel" />
+          <button type="button" class="ev-share-copy" id="btnShareCopy" data-i18n="share.copy"></button>
+        </div>
+        <button type="button" class="ev-link ev-share-native" id="btnShareNative" data-i18n="share.more" hidden></button>
+      </div>
+    </div>
+
     <div class="ev-toast" id="toast" role="status" aria-live="polite" hidden></div>
 
     <script src="assets/js/config.js"></script>
     <script src="assets/js/i18n.js"></script>
     <script src="assets/js/store.js"></script>
     <script src="assets/js/sound.js"></script>
+    <script src="assets/js/share.js"></script>
     <script src="assets/js/wheel.js"></script>
   </body>
 </html>

@@ -16,6 +16,8 @@ window.EVENT_CONFIG = {
 
   images: {
     stageBg: 'assets/img/stage-bg.svg',
+    stageBgDesktop: 'assets/img/stage-bg-desktop.svg',
+    infoBg: 'assets/img/info-bg.svg',
     stageFloor: 'assets/img/stage-floor.svg',
     title: {
       en: 'assets/img/title-en.svg',
@@ -26,18 +28,26 @@ window.EVENT_CONFIG = {
     spotlight: 'assets/img/spotlight.svg',
     wheelFrame: 'assets/img/wheel-frame.svg',
     wheelGloss: 'assets/img/wheel-gloss.svg',
+    wheelStand: 'assets/img/wheel-stand.svg',
     pointer: 'assets/img/pointer.svg',
     btnGo: 'assets/img/btn-go.svg',
     btnPrimary: 'assets/img/btn-primary.svg',
     modalBg: 'assets/img/modal-bg.svg',
     soundOn: 'assets/img/icon-sound-on.svg',
-    soundOff: 'assets/img/icon-sound-off.svg'
+    soundOff: 'assets/img/icon-sound-off.svg',
+    share: 'assets/img/icon-share.svg',
+    periodBadge: 'assets/img/period-badge.svg',
+    chancesBadge: 'assets/img/chances-badge.svg',
+    cardFrame: 'assets/img/card-frame.svg',
+    cardTitle: 'assets/img/card-title.svg',
+    footerDeco: 'assets/img/footer-deco.svg'
   },
 
-  /* 吉祥物：每個狀態一個循環 GIF；idle 會在多張之間輪播。 */
+  /* 吉祥物：每個狀態一個循環 GIF，全部共用同一張基準幀（頭尾）且長度相同（loopMs），
+     程式在一輪結束時才切換，動作可以隨時無縫替換。idle 會在多張之間輪播。 */
   mascot: {
+    loopMs: 1920,
     idle: [
-      'assets/img/mascot/idle-1.gif',
       'assets/img/mascot/idle-2.gif',
       'assets/img/mascot/idle-3.gif'
     ],
@@ -55,6 +65,14 @@ window.EVENT_CONFIG = {
   /* 換圖標籤（mock 用）：顯示在元素旁的檔名與交付尺寸，可由 mock 工具列關閉。 */
   assetSpecs: {
     stageBg: 'stage-bg · 750×1000',
+    stageBgDesktop: 'stage-bg-desktop · 1920×1000 (>=768px)',
+    infoBg: 'info-bg · 750×750 tile',
+    share: 'icon-share · 64×64',
+    periodBadge: 'period-badge · 480×64',
+    chancesBadge: 'chances-badge · 360×88',
+    cardFrame: 'card-frame · 120×120 (9-slice 40)',
+    cardTitle: 'card-title · 400×72',
+    footerDeco: 'footer-deco · 750×160',
     stageFloor: 'stage-floor · 750×140',
     title: 'title-{locale} · 690×240',
     spotlight: 'spotlight · 260×900',
@@ -62,10 +80,12 @@ window.EVENT_CONFIG = {
     pointer: 'pointer · 120×160',
     btnGo: 'btn-go · 200×200',
     wheelGloss: 'wheel-gloss · 600×600',
+    wheelStand: 'wheel-stand · 400×600',
     mascot: 'mascot-{state}\n400×500 GIF',
     modalBg: 'modal-bg · 600×760',
     btnPrimary: 'btn-primary · 400×110',
-    sound: 'icon-sound-on/off · 64×64'
+    sound: 'icon-sound-on/off · 64×64',
+    sharePreview: 'share-preview.png · 1200×630 (og:image)'
   },
 
   /* mock 假資料（後台沒提供 EVENT_CONTENT 時使用）。文字欄位皆為 { en, ko, th, zh }，ko/th 留空時前台顯示 en。 */

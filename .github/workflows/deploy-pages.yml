@@ -19,12 +19,23 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
+      # 上傳剛完成時 GitHub 的 artifact 列表可能還查不到（deploy 會報 No artifacts named "github-pages"），
+      # 先等一下再部署；仍失敗就再等 30 秒重試一次，重試也失敗整個 job 才算失敗。
+      - name: Wait for the artifact to become visible
+        run: sleep 15
       - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Wait before retrying the deployment
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+      - id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4

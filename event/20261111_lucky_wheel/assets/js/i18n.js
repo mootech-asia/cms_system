@@ -15,6 +15,7 @@ window.EventI18n = (function () {
   var DEFAULT_LOCALE = 'en';
   var LOCALE_KEY = 'event_20261111_lucky_wheel_locale';
   var ZH_PREVIEW_KEY = 'event-zh-preview';
+  var URL_LOCALE = null;
 
   var STRINGS = {
     'lang.aria': { en: 'Language', ko: '언어', th: 'ภาษา', zh: '語言' },
@@ -38,6 +39,15 @@ window.EventI18n = (function () {
     'mock.labels': { en: 'Asset labels', ko: '에셋 라벨', th: 'ป้ายชื่อไฟล์ภาพ', zh: '換圖標籤' },
     'mock.on': { en: 'On', ko: '켜짐', th: 'เปิด', zh: '開' },
     'mock.off': { en: 'Off', ko: '꺼짐', th: 'ปิด', zh: '關' },
+    'share.button': { en: 'Share this event', ko: '이벤트 공유하기', th: 'แชร์กิจกรรมนี้', zh: '分享活動' },
+    'share.title': { en: 'Share with friends', ko: '친구에게 공유하기', th: 'แชร์ให้เพื่อน', zh: '分享給朋友' },
+    'share.close': { en: 'Close', ko: '닫기', th: 'ปิด', zh: '關閉' },
+    'share.copy': { en: 'Copy link', ko: '링크 복사', th: 'คัดลอกลิงก์', zh: '複製連結' },
+    'share.copied': { en: 'Link copied', ko: '링크를 복사했습니다', th: 'คัดลอกลิงก์แล้ว', zh: '已複製連結' },
+    'share.copyFailed': { en: 'Could not copy. Please copy the link manually.', ko: '복사하지 못했습니다. 링크를 직접 복사해 주세요.', th: 'คัดลอกไม่สำเร็จ กรุณาคัดลอกลิงก์ด้วยตนเอง', zh: '無法複製，請手動複製連結。' },
+    'share.more': { en: 'More sharing options', ko: '다른 방법으로 공유', th: 'ตัวเลือกการแชร์เพิ่มเติม', zh: '更多分享方式' },
+    'share.urlLabel': { en: 'Event link', ko: '이벤트 링크', th: 'ลิงก์กิจกรรม', zh: '活動連結' },
+    'share.text': { en: 'Spin the Lucky Wheel and win prizes!', ko: '행운의 룰렛을 돌리고 상품을 받아 가세요!', th: 'หมุนวงล้อนำโชคแล้วรับรางวัลกันเลย!', zh: '來轉幸運大轉盤贏獎品！' },
     'modal.win': { en: 'Congratulations!', ko: '축하합니다!', th: 'ยินดีด้วย!', zh: '恭喜中獎' },
     'modal.lose': { en: 'Better luck next time', ko: '다음 기회에', th: 'โชคดีครั้งหน้า', zh: '再接再厲' },
     'modal.claim': { en: 'Claim Prize', ko: '상품 받기', th: 'รับรางวัล', zh: '收下獎勵' },
@@ -59,10 +69,21 @@ window.EventI18n = (function () {
     } catch (e) { /* sessionStorage 不可用時無法進入預覽 */ }
   }
 
+  // 分享連結帶 ?lang=（en/ko/th）時，以網址為準並記住
+  (function () {
+    var m = /[?&]lang=([a-z]{2})\b/.exec(location.search);
+    if (m && LOCALES.some(function (l) { return l.id === m[1]; })) {
+      try { localStorage.setItem(LOCALE_KEY, m[1]); } catch (e) { /* 只在本次頁面生效 */ }
+      URL_LOCALE = m[1];
+    }
+  })();
+
   function getLocale() {
     if (zhPreviewOn()) return 'zh';
-    var saved = null;
-    try { saved = localStorage.getItem(LOCALE_KEY); } catch (e) { /* 用預設 */ }
+    var saved = URL_LOCALE;
+    if (!saved) {
+      try { saved = localStorage.getItem(LOCALE_KEY); } catch (e) { /* 用預設 */ }
+    }
     return LOCALES.some(function (l) { return l.id === saved; }) ? saved : DEFAULT_LOCALE;
   }
 
@@ -104,7 +125,14 @@ window.EventI18n = (function () {
   function setLocale(id) {
     if (!LOCALES.some(function (l) { return l.id === id; })) return;
     setZhPreview(false);
+    URL_LOCALE = id;
     try { localStorage.setItem(LOCALE_KEY, id); } catch (e) { /* 只在本次頁面生效 */ }
+    // 網址帶 ?lang= 時同步改掉，避免重新整理後又被網址切回原語系
+    if (/[?&]lang=/.test(location.search) && history.replaceState) {
+      var u = new URL(location.href);
+      u.searchParams.set('lang', id);
+      history.replaceState(null, '', u.toString());
+    }
     applyLocale();
   }
 
