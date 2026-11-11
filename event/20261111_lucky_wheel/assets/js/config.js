@@ -85,7 +85,7 @@ window.EVENT_CONFIG = {
     modalBg: 'modal-bg · 600×760',
     btnPrimary: 'btn-primary · 400×110',
     sound: 'icon-sound-on/off · 64×64',
-    sharePreview: 'share-preview.png · 1200×630 (og:image)'
+    sharePreview: 'share-preview.jpg · 1200×630 (og:image)'
   },
 
   /* mock 假資料（後台沒提供 EVENT_CONTENT 時使用）。文字欄位皆為 { en, ko, th, zh }，ko/th 留空時前台顯示 en。 */
