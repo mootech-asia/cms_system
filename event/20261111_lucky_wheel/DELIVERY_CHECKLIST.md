@@ -60,11 +60,11 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 |
 |---|---|---|---|---|---|---|
-| ☐ | D01 | idle-1 | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | | ☐ |
-| ☐ | D02 | idle-2 | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | | ☐ |
-| ☐ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | | ☐ |
-| ☐ | D04 | spinning | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | | ☐ |
-| ☐ | D05 | result | 400×500 gif≥24 | `assets/img/mascot/result.gif` | | ☐ |
+| ☑ | D01 | idle-1 | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | 61c9eab | ☐ |
+| ☑ | D02 | idle-2 | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | 61c9eab | ☐ |
+| ☑ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | 61c9eab | ☐ |
+| ☑ | D04 | spinning | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | 61c9eab | ☐ |
+| ☑ | D05 | result | 400×500 gif≥24 | `assets/img/mascot/result.gif` | 61c9eab | ☐ |
 
 ## E. 吉祥物附件（10）
 
@@ -100,3 +100,5 @@
 ## 備註
 
 （GPT 有疑問或無法照規格交付時寫在這裡，附列號）
+
+- D01～D05（2026-11-11 收檔）：5 個 GIF 規格符合（400×500、48 幀、24fps、無限循環），已套用到前台。待審核注意：背心字樣放大後有拼錯（讀起來像 WOOTECH／MADTECH 等），logo 圖形為橘藍配色而非官方藍綠→黃綠漸層（`DESIGN_TASKS.md` 驗收表第 6 項）。E01～E10（PNG 序列幀、比對圖）尚未交付。
