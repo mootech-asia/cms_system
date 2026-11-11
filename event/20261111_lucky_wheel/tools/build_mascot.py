@@ -40,6 +40,12 @@ def build(name):
    bg=Image.new('RGBA',im.size,MATTE+(255,));bg.alpha_composite(im);bg.convert('RGB').save(tmp/f'color-{i:02}.png')
   subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-framerate','12','-i',str(tmp/'key-%02d.png'),'-framerate','12','-i',str(tmp/'color-%02d.png'),'-filter_complex','[1:v]format=rgb24,minterpolate=fps=24:mi_mode=mci:mc_mode=aobmc:me_mode=bidir:vsbmc=1[col];[0:v]alphaextract,minterpolate=fps=24:mi_mode=mci:mc_mode=aobmc:me_mode=bidir:vsbmc=1[al];[col][al]alphamerge','-frames:v','48',str(out/'frame_%03d.png')],check=True)
  frames=[Image.open(f).convert('RGBA') for f in sorted(out.glob('frame_*.png'))]
+ # Generated glow masks include semi-opaque rectangular backdrops. Keep only
+ # the high-confidence foreground and retain a narrow antialiased fur edge.
+ for i,f in enumerate(frames):
+  f.putalpha(f.getchannel('A').point(lambda a:max(0,min(255,round((a-220)*255/35)))))
+  f.save(out/f'frame_{i+1:03d}.png')
+
  dest=ROOT/'assets/img/mascot'/f'{name}.gif'
  cmd=['convert','-dispose','background']
  for i,f in enumerate(sorted(out.glob('frame_*.png'))):
