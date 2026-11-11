@@ -43,8 +43,10 @@ window.EVENT_CONFIG = {
     footerDeco: 'assets/img/footer-deco.svg'
   },
 
-  /* 吉祥物：每個狀態一個循環 GIF；idle 會在多張之間輪播。 */
+  /* 吉祥物：每個狀態一個循環 GIF，全部共用同一張基準幀（頭尾）且長度相同（loopMs），
+     程式在一輪結束時才切換，動作可以隨時無縫替換。idle 會在多張之間輪播。 */
   mascot: {
+    loopMs: 1920,
     idle: [
       'assets/img/mascot/idle-2.gif',
       'assets/img/mascot/idle-3.gif'

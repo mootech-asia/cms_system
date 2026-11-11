@@ -130,12 +130,53 @@ def check_file(rel, spec):
         with Image.open(p) as im:
             frames = getattr(im, 'n_frames', 1)
             loop = im.info.get('loop')
+            im.seek(0)
+            first = im.convert('RGBA')
+            im.seek(frames - 1)
+            last = im.convert('RGBA')
         if frames < min_frames:
             return False, '%s 只有 %d 幀，至少 %d 幀' % (found[0], frames, min_frames)
         if loop != 0:
             return False, '%s 未設定無限循環（loop=0）' % found[0]
-        return True, '%s %d 幀' % (found[0], frames)
+        # 吉祥物動態規則：每個 GIF 第一幀＝最後一幀＝共用基準幀（同資料夾 base-frame.png），才能無縫循環、隨時換動作
+        if frame_diff(first, last) > FRAME_TOLERANCE:
+            return False, '%s 最後一幀與第一幀不同（差異 %.1f），無法無縫循環' % (found[0], frame_diff(first, last))
+        base = os.path.join(os.path.dirname(p), 'base-frame.png')
+        if os.path.isfile(base):
+            with Image.open(base) as b:
+                mism, col = base_diff(first, b.convert('RGBA'))
+            if mism > 0.01 or col > 8:
+                return False, '%s 第一幀與 base-frame.png 不同（輪廓差 %.1f%%、顏色差 %.1f），切換動作會跳' % (found[0], mism * 100, col)
+        else:
+            return False, '%s 同資料夾缺少 base-frame.png（所有動態共用的基準幀）' % found[0]
+        return True, '%s %d 幀，頭尾與基準幀一致' % (found[0], frames)
     return True, found[0]
+
+
+FRAME_TOLERANCE = 1.5  # RGBA 平均差異（0~255）；GIF 重新量化的雜訊約 <1
+
+
+def frame_diff(a, b):
+    from PIL import ImageChops, ImageStat
+    if a.size != b.size:
+        return 255.0
+    return sum(ImageStat.Stat(ImageChops.difference(a, b)).mean) / 4
+
+
+def base_diff(gif_frame, base):
+    """GIF 幀（1-bit 透明＋matte 邊）對 PNG 基準幀（柔邊 alpha）：比不透明輪廓是否吻合、重疊處顏色差。"""
+    if gif_frame.size != base.size:
+        return 1.0, 255.0
+    ga = gif_frame.getchannel('A').point(lambda v: 255 if v >= 128 else 0)
+    ba = base.getchannel('A').point(lambda v: 255 if v >= 128 else 0)
+    from PIL import ImageChops, ImageStat
+    mism = ImageStat.Stat(ImageChops.difference(ga, ba)).mean[0] / 255
+    both = ImageChops.multiply(ga, ba)
+    if not both.getbbox():
+        return mism, 255.0
+    d = ImageChops.difference(gif_frame.convert('RGB'), base.convert('RGB'))
+    col = sum(ImageStat.Stat(d, mask=both).mean) / 3
+    return mism, col
 
 
 def check_dir(rel, spec):

@@ -179,21 +179,38 @@
     $('labelsState').textContent = t(on ? 'mock.on' : 'mock.off');
   }
 
+  // 所有吉祥物 GIF 都從同一張基準幀開始、回到同一張結束，且每段長度相同（cfg.mascot.loopMs），
+  // 所以切換時等目前這段播完一輪（剛好回到基準幀）再換，畫面不會跳；第一次顯示則立即換。
+  var mascotShownAt = 0;
+  var mascotSwapTimer = null;
+
+  function showMascot(src, state) {
+    clearTimeout(mascotSwapTimer);
+    var swap = function () {
+      mascot.src = src;
+      mascotShownAt = performance.now();
+      mascotState = state;
+      renderAssetLabels();
+    };
+    var loop = cfg.mascot.loopMs;
+    if (!mascotShownAt || !loop) { swap(); return; }
+    var wait = (loop - (performance.now() - mascotShownAt) % loop) % loop;
+    mascotSwapTimer = setTimeout(swap, wait);
+  }
+
   function setMascot(state) {
     clearTimeout(idleTimer);
     if (state === 'idle') {
       var i = idleIndex % cfg.mascot.idle.length;
-      mascot.src = cfg.mascot.idle[i];
-      mascotState = cfg.mascot.idle[i].split('/').pop().replace(/\.[a-z]+$/, '');
+      var src = cfg.mascot.idle[i];
+      showMascot(src, src.split('/').pop().replace(/\.[a-z]+$/, ''));
       idleTimer = setTimeout(function () {
         idleIndex++;
         setMascot('idle');
       }, cfg.idleSwapMs);
     } else {
-      mascot.src = cfg.mascot[state];
-      mascotState = state;
+      showMascot(cfg.mascot[state], state);
     }
-    renderAssetLabels();
   }
 
   function setStage(state) {

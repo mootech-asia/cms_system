@@ -73,6 +73,7 @@
 > 由品牌包 `brand/moo-rabbit/` 製作，這裡只追蹤同一個檔案；品牌包勾選表 A01 打勾時，這列可填同一個 commit。
 
 > 兔比完整設定排在轉盤活動完成之後，C01 暫緩、不計入本活動進度；D 區（動態）不必等 C01，但排在 P0～P2 之後。
+> **D 區規則**：先交 D00 基準幀；每個 GIF 第一幀＝最後一幀＝D00，且每段長度相同（48 幀、2 秒），檢查腳本會逐一驗證。
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
@@ -82,11 +83,12 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
+| ☐ | D00 | base-frame（所有動態共用的基準幀） | 400×500 | `assets/img/mascot/base-frame.png` | | ☐ | P3 |
 | ☐ | D01 | idle-1 | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | | ✗ 退回：整隻角色忽大忽小（寬度變化約 19%），已從頁面移除，需重做 | P3 |
-| ☑ | D02 | idle-2 | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | 61c9eab | ☐ | P3 |
-| ☑ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | 61c9eab | ☐ | P3 |
-| ☑ | D04 | spinning | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | 61c9eab | ☐ | P3 |
-| ☑ | D05 | result | 400×500 gif≥24 | `assets/img/mascot/result.gif` | 61c9eab | ☐ | P3 |
+| ☐ | D02 | idle-2 | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | | ✗ 需重做：頭尾幀不一致、與其他動態起始姿勢不同（目前當假圖留在頁面） | P3 |
+| ☐ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | | ✗ 需重做：頭尾幀不一致、與其他動態起始姿勢不同（目前當假圖留在頁面） | P3 |
+| ☐ | D04 | spinning | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | | ✗ 需重做：頭尾幀不一致、與其他動態起始姿勢不同（目前當假圖留在頁面） | P3 |
+| ☐ | D05 | result | 400×500 gif≥24 | `assets/img/mascot/result.gif` | | ✗ 需重做：頭尾幀不一致、與其他動態起始姿勢不同（目前當假圖留在頁面） | P3 |
 
 ## E. 吉祥物附件（10）
 

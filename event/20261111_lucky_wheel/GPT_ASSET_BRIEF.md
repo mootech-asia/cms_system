@@ -71,6 +71,9 @@ STYLE LOCK — apply to every image in this conversation:
 
 ### 4.1 產出方式
 
+- **先做基準幀** `base-frame.png`（400×500 透明，正面自然站姿），之後每張 sheet 都附上它；組 GIF 時一律傳 `base_frame="base-frame.png"`，腳本會把它放在第一幀和最後一幀。
+- 每段一律 48 幀（2 張 sheet）、24fps，所有狀態長度相同。
+
 每個狀態用 **sprite sheet（序列幀拼圖）** 產出，再用 4.3 的腳本切幀組成 GIF。
 
 - Sheet 尺寸 **1024×1536**、**3 欄 × 4 列 = 12 格**，由左到右、由上到下為第 1～12 幀。
@@ -93,7 +96,8 @@ ANIMATION SPRITE SHEET RULES:
 - No ground shadow under the feet (the page adds a contact shadow).
 - Only the pose changes between frames; motion must be smooth and evenly spaced.
 - Fixed camera: never zoom or scale the whole character between frames.
-- Frame 12 must flow seamlessly back into frame 1 (loop).
+- Every animation starts AND ends on the shared base pose (attach base-frame.png): frame 1 = the base pose, and the motion
+  returns to exactly that pose at the end, so all states can be swapped at any loop boundary without a jump.
 - No text, no grid lines, no frame numbers, no background, no shadows outside the character.
 ```
 
@@ -121,7 +125,9 @@ from PIL import Image
 import os
 
 def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
-              matte=(0xFF, 0xE6, 0xCC), pingpong=False, png_dir=None):
+              matte=(0xFF, 0xE6, 0xCC), pingpong=False, png_dir=None, base_frame=None):
+    # base_frame：所有動態共用的基準幀 PNG（mascot/base-frame.png）。給了就強制放在第一幀與最後一幀，
+    # 讓每個 GIF 從同一個姿勢開始、回到同一個姿勢結束 → 無縫循環，也能隨時切換動作。
     frames = []
     for path in sheets:
         sheet = Image.open(path).convert("RGBA")
@@ -136,6 +142,9 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
                 frames.append(canvas)
     if pingpong:
         frames = frames + frames[-2:0:-1]
+    if base_frame:
+        base = Image.open(base_frame).convert("RGBA").resize(size, Image.LANCZOS)
+        frames = [base] + frames + [base]
     if png_dir:
         os.makedirs(png_dir, exist_ok=True)
         for i, f in enumerate(frames, 1):
@@ -156,8 +165,10 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
     print(out_gif, len(frames), "frames")
 
 # 範例：
-# build_gif(["spinning_01-12.png", "spinning_13-24.png"], "spinning.gif", fps=24, png_dir="spinning_png")
-# build_gif(["idle1_01-12.png", "idle1_13-24.png"], "idle-1.gif", fps=24, pingpong=True, png_dir="idle1_png")
+# build_gif(["spinning_01-12.png", "spinning_13-24.png"], "spinning.gif", fps=24, png_dir="spinning_png",
+#           base_frame="base-frame.png")
+# build_gif(["idle1_01-12.png", "idle1_13-24.png"], "idle-1.gif", fps=24, pingpong=True, png_dir="idle1_png",
+#           base_frame="base-frame.png")
 ```
 
 交付：5 個 GIF（每個建議 ≤ 1.5MB；太大就把 fps 降到 18，或幀數減半）＋各自的 PNG 序列幀資料夾＋每個狀態一張「關鍵幀 vs 角色設定圖」並排比對圖。

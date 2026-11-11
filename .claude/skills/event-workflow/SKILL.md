@@ -61,6 +61,8 @@ description: "在 cms_system 的 event/ 底下新增或修改任何活動頁（�
 2. `GPT_ASSET_BRIEF.md`：STYLE LOCK 共通段落＋每項英文提示詞；GPT 原生尺寸（1024²/1536×1024/1024×1536）
    與目標尺寸不同時寫明縮放裁切；吉祥物動態用 sprite sheet 3×4 + 組 GIF 腳本（400×500、24fps、≥24 幀、無縫循環、
    GIF 1-bit 透明用舞台暖色 matte）。
+   **共用基準幀**：所有吉祥物 GIF 第一幀＝最後一幀＝同一張 `base-frame.png`，且每段長度相同（48 幀、2 秒）→
+   無縫循環、可隨時換動作；程式（`showMascot`）在一輪結束時才切換，`check_delivery.py` 會驗證頭尾與基準幀。
 3. 吉祥物形象一律以品牌包為準：Moo Rabbit `brand/moo-rabbit/`（cms_system 事業部）、熊北官方
    `mootech-asia/mootech_website` 的 `brand/moo-bear/`。生成時附四視圖＋官方 MOOTECH logo
    （藍綠→黃綠漸層的「不可能 M」，不是橘色 M）。驗收時放大檢查**背心字樣拼字**（AI 常拼錯）。
