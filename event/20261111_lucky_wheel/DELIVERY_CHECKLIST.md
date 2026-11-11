@@ -62,7 +62,7 @@
 | ☑ | D02 | idle-2 | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | 0e22a5f | ☐ |
 | ☑ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | ab7eab9 | ☐ |
 | ☑ | D04 | spinning | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | a3b6cbf | ☐ |
-| ☐ | D05 | result | 400×500 gif≥24 | `assets/img/mascot/result.gif` | | ☐ |
+| ☑ | D05 | result | 400×500 gif≥24 | `assets/img/mascot/result.gif` | 37e00d8 | ☐ |
 
 ## E. 吉祥物附件（10）
 
@@ -74,12 +74,12 @@
 | ☑ | E02 | idle-2 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-2/` | 0e22a5f | ☐ |
 | ☑ | E03 | idle-3 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-3/` | ab7eab9 | ☐ |
 | ☑ | E04 | spinning PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/spinning/` | a3b6cbf | ☐ |
-| ☐ | E05 | result PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/result/` | | ☐ |
+| ☑ | E05 | result PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/result/` | 37e00d8 | ☐ |
 | ☑ | E06 | idle-1 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-1.{png,webp}` | 47dd674 | ☐ |
 | ☑ | E07 | idle-2 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-2.{png,webp}` | 0e22a5f | ☐ |
 | ☑ | E08 | idle-3 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-3.{png,webp}` | ab7eab9 | ☐ |
 | ☑ | E09 | spinning 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/spinning.{png,webp}` | a3b6cbf | ☐ |
-| ☐ | E10 | result 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/result.{png,webp}` | | ☐ |
+| ☑ | E10 | result 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/result.{png,webp}` | 37e00d8 | ☐ |
 
 ## F. 程式路徑（1）
 
