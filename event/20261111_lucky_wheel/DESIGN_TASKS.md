@@ -7,7 +7,7 @@
 頁面上的深色小標籤（例：`wheel-frame · 680×680`）標出每個位置對應的檔名與尺寸；頁面最下方的 mock 工具列可以關閉這些標籤。
 
 - 前台：`index.html`
-- **提交狀態**：`DELIVERY_CHECKLIST.md`（GPT 交付後打勾；`tools/check_assets.py` 會核對打勾是否屬實）
+- **提交狀態**：`DELIVERY_CHECKLIST.md`（GPT 交付後打勾；`scripts/check_delivery.py`（repo 根目錄） 會核對打勾是否屬實）
 - **用 GPT 製作素材**：照 `GPT_ASSET_BRIEF.md`（逐項英文提示詞、sprite sheet 規則、組 GIF 腳本、交付前檢查）
 - 吉祥物參考圖：`reference/`
 - 後台資料格式：見 `assets/js/store.js` 開頭註解
@@ -68,7 +68,9 @@
 
 ---
 
-## 四、吉祥物：兔子（循環 GIF）
+## 四、吉祥物：Moo Rabbit（兔比）（循環 GIF）
+
+> 兔比是 MOOTECH cms_system 事業部吉祥物，整套形象（角色設定、姿勢、貼圖、主視覺、客服、社群）見 `brand/moo-rabbit/`；本節只管本活動的 5 個動態 GIF。角色設定圖由品牌包製作。
 
 > **必須比對角色設計參考圖製作。** 參考圖已歸檔在 `reference/`（來源：官網 repo `mootech-asia/mootech_website` 的 `brand/熊北-吉祥物/`，說明見 `reference/README.md`）：
 > 四張三視圖 `bear-view-1-front` / `2-three-quarter` / `3-side` / `4-back`（官方「唯一依據」），以及揮手、眨眼比讚、思考貼圖與全身姿勢各一張。
@@ -76,7 +78,7 @@
 
 ### 製作流程（兩階段，第一階段通過才做第二階段）
 
-1. **角色設定圖**：比照熊北的角色設定圖版面（`reference/` 四張三視圖＋官方設定），產出兔子版角色設定圖（五視圖＋六表情＋六細節＋色彩＋比例）。**圖上標註一律英文**（Front / 3/4 View / Side / Back / 3/4 Rear …），不得有中文。
+1. **角色設定圖**（由品牌包製作，`brand/moo-rabbit/01_character/turnaround-sheet.png`）：比照熊北的角色設定圖版面（`reference/` 四張三視圖＋官方設定），產出兔比的角色設定圖（五視圖＋六表情＋六細節＋色彩＋比例）。**圖上標註一律英文**（Front / 3/4 View / Side / Back / 3/4 Rear …），不得有中文。
 2. **比對通過後**才製作下方 5 個動態 GIF；每個 GIF 交付時附一張「關鍵幀 vs 角色設定圖」並排比對圖。
 
 ### 與參考圖逐項比對（驗收表）

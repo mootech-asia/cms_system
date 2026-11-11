@@ -8,7 +8,7 @@
 2. 依序執行第 3 節（角色設定圖）→ 人工比對 `DESIGN_TASKS.md` 第四節驗收表 → 通過後執行第 4 節（動態）→ 第 5 節（靜態圖）。
 3. 每次生成只做一項；不滿意就在同一對話要求修改，保持角色一致。
 4. 產出檔名照表格命名，放進 `assets/img/`（吉祥物放 `assets/img/mascot/`），同檔名覆蓋即可上線；若副檔名不同，改 `assets/js/config.js` 的路徑。
-5. 每交付一項就 commit，並在 `DELIVERY_CHECKLIST.md` 該列打勾（☐ → ☑）、填 commit hash，再執行 `python3 event/20261111_lucky_wheel/tools/check_assets.py`，已打勾的列必須全部 `OK`。
+5. 每交付一項就 commit，並在 `DELIVERY_CHECKLIST.md` 該列打勾（☐ → ☑）、填 commit hash，再執行 `python3 scripts/check_delivery.py event/20261111_lucky_wheel/DELIVERY_CHECKLIST.md`，已打勾的列必須全部 `OK`。
 6. **所有圖不得出現中文。** 需要文字的只有活動主標（英／韓／泰各一張）。
 
 ---
@@ -56,39 +56,11 @@ STYLE LOCK — apply to every image in this conversation:
 
 ## 3. 吉祥物角色設定圖（第一階段）
 
-輸出：`reference/rabbit-turnaround.png`（1536×1024），通過驗收後才能進入第 4 節。
+吉祥物已定名 **Moo Rabbit（兔比）**，為 MOOTECH cms_system 事業部吉祥物，整套形象由品牌包管理：
+- 角色設定、共通設定（CHARACTER LOCK）與角色設定圖提示詞：`brand/moo-rabbit/ART_REQUIREMENTS.md` 第 1 節、第 4.1、4.2 節
+- 輸出：`brand/moo-rabbit/01_character/turnaround-sheet.png`（1536×1024）＋四視圖單張
 
-```
-Using the attached Mootech Bear reference views (front / 3/4 / side / back) as the exact
-style and quality reference, create a CHARACTER TURNAROUND SHEET for a new sibling mascot:
-"Mootech Bunny", a white rabbit.
-
-Character (must match the bear's outfit and accessories 1:1, adapted to a rabbit):
-- Fluffy, finely detailed white fur #E9EDF2; soft pink inner ears and nose (show the pink hex in the palette).
-- Round face, chubby cheeks, short muzzle, friendly confident expression.
-- Long upright ears are the signature feature; the headphone band sits between/behind
-  the ears so both ears pass through naturally.
-- Same tech sunglasses: dark grey metal frame, gradient lenses orange -> magenta -> purple-blue, HUD graphics on the lenses.
-- Same dark over-ear headphones with glowing cyan-blue and orange rings on the ear cups,
-  and a thin mic boom on the CHARACTER'S OWN LEFT side reaching the mouth (appears on the viewer's right in front view).
-- Same deep navy #1A2233 quilted puffer vest with front zipper and the official MOOTECH logo on the left chest
-  (attached logo: an "impossible M" 3D line mark with a cyan-to-lime gradient, approx #00A0E0 -> #B0C040, plus the
-  MOOTECH wordmark in white). Do NOT use an orange M or invent a different emblem. No logo on the back.
-- Same dark grey hoodie worn UNDER the vest; the hood hangs naturally at the back.
-- Rabbit paws with pink pads, no claws; able to do a thumbs up. Short fluffy tail visible from the back.
-- Head-to-body ratio about 1:3 like the bear (ears excluded); tall, round belly, short legs.
-- Personality: calm, confident, friendly, focused (not childish).
-
-Layout (same as the reference, ALL LABELS IN ENGLISH ONLY):
-- Top-left: Mootech logo + "CHARACTER TURNAROUND SHEET". Top-right: "Mootech Bunny | 3D Character Design".
-- Left panel "Character Profile": Name / Style / Proportion / Personality / Usage.
-- Left panel "Color Palette": #E9EDF2, #1A2233, #3DA8FF, #FF9A3C, plus the inner-ear pink hex.
-- Top row: Front / 3/4 View / Side / Back / 3/4 Rear (full body, neutral standing pose).
-- Middle row "Expression Set": Smile / Laugh / Focused / Listening / Thinking / Thumbs Up.
-- Bottom row "Details": HUD Glasses / Headphones (Glow Ring) / Embroidered Logo / Zipper / Fur Texture / Paw Pad.
-- Bottom-right "Scale": bunny about 150 cm (ears excluded) next to the bear (200 cm) and a 175 cm human silhouette.
-- Dark navy tech background, clean modern layout.
-```
+本活動不另做角色設定圖；品牌包的角色設定圖審核通過後，才能進入第 4 節。
 
 ---
 
@@ -105,11 +77,12 @@ Layout (same as the reference, ALL LABELS IN ENGLISH ONLY):
 
 ### 4.2 各狀態提示詞
 
-先貼第 2 節共通風格，再貼「共通動態規則」，最後貼該狀態的動作描述。
+先貼第 2 節共通風格與品牌包的 CHARACTER LOCK，再貼「共通動態規則」，最後貼該狀態的動作描述。
 
 ```
 ANIMATION SPRITE SHEET RULES:
-- Character: Mootech Bunny exactly as in the approved turnaround sheet (attach it).
+- Character: Moo Rabbit exactly as in the approved turnaround sheet and four views (attach them),
+  using the CHARACTER LOCK block from brand/moo-rabbit/ART_REQUIREMENTS.md section 4.1.
 - Output 1024x1536, transparent background, a 3-column x 4-row grid = 12 equal cells.
 - Frames read left-to-right, top-to-bottom (frame 1 top-left, frame 12 bottom-right).
 - Full body in every cell, same scale, same camera, feet on the same baseline, centered.
@@ -210,7 +183,7 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
 
 ## 6. 交付前自我檢查（GPT 產出後逐項確認）
 
-- [ ] `DELIVERY_CHECKLIST.md` 已打勾並填 commit；`tools/check_assets.py` 沒有 FAIL
+- [ ] `DELIVERY_CHECKLIST.md` 已打勾並填 commit；`scripts/check_delivery.py`（repo 根目錄） 沒有 FAIL
 
 - [ ] 檔名與尺寸和 `DESIGN_TASKS.md` 完全一致
 - [ ] 任何一張圖都沒有中文；除活動主標外沒有任何文字

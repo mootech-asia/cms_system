@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """
-核對 DELIVERY_CHECKLIST.md：已打勾（☑）的列，檔案必須真的存在且規格正確。
+核對交付勾選表（DELIVERY_CHECKLIST.md）：已打勾（☑）的列，檔案必須真的存在且規格正確。
+交付路徑以勾選表所在資料夾為基準。
 
-  python3 event/20261111_lucky_wheel/tools/check_assets.py          只檢查已打勾的列
-  python3 event/20261111_lucky_wheel/tools/check_assets.py --all    未打勾的列也檢查（看目前檔案離規格多遠）
+  python3 scripts/check_delivery.py <勾選表路徑>          只檢查已打勾的列
+  python3 scripts/check_delivery.py <勾選表路徑> --all    未打勾的列也檢查（看目前檔案離規格多遠）
+
+例：python3 scripts/check_delivery.py event/20261111_lucky_wheel/DELIVERY_CHECKLIST.md
+    python3 scripts/check_delivery.py brand/moo-rabbit/DELIVERY_CHECKLIST.md
 
 結果：OK＝符合；FAIL＝已打勾但不符（仍是佔位圖、尺寸／幀數錯、commit 裡沒有這個檔案…，exit code 1）；TODO＝未打勾；
 MANUAL＝無法自動判斷，需人工審核（色票、音效長度）。
@@ -18,9 +22,12 @@ import sys
 
 signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHECKLIST = os.path.join(ROOT, 'DELIVERY_CHECKLIST.md')
-# mock 階段的佔位圖指紋（sha256 前 16 碼）：交付檔若仍是這些檔案，代表沒有真的換圖。
+_args = [a for a in sys.argv[1:] if not a.startswith('--')]
+if not _args:
+    sys.exit(__doc__)
+CHECKLIST = os.path.abspath(_args[0])
+ROOT = os.path.dirname(CHECKLIST)
+# event/20261111_lucky_wheel mock 階段的佔位圖指紋（sha256 前 16 碼）：交付檔若仍是這些檔案，代表沒有真的換圖。
 PLACEHOLDERS = {
     '002106becb5c85c6',
     '038411be37fb69ea',
@@ -96,8 +103,8 @@ def check_file(rel, spec):
     p = os.path.join(ROOT, found[0])
     if hashlib.sha256(open(p, 'rb').read()).hexdigest()[:16] in PLACEHOLDERS:
         return False, found[0] + ' 仍是 mock 佔位圖，尚未換成正式素材'
-    if p.endswith('.mp3'):
-        return os.path.getsize(p) > 0, found[0] + '（長度需人工確認）'
+    if p.endswith(('.mp3', '.mp4')):
+        return os.path.getsize(p) > 0, found[0] + '（長度／內容需人工確認）'
     got = image_size(p)
     if size and got != size:
         return False, '%s 尺寸 %s，應為 %dx%d' % (found[0], got and '%dx%d' % got, size[0], size[1])
@@ -174,11 +181,13 @@ def main():
         if not ticked and not check_all:
             out.append('TODO    %s  %s' % (rid, name))
             continue
-        if rid == 'B01':
+        if rel.endswith('.md') or '（人工）' in spec:
+            exists = os.path.isfile(os.path.join(ROOT, rel))
+            ok, msg = (None, '需人工審核') if exists else (False, '找不到檔案 ' + rel)
+        elif rel == 'assets/css/event.css':
             ok, msg = None, '色票需人工審核'
-        elif rid == 'F01':
+        elif rel == 'assets/js/config.js':
             ok, msg = check_config()
-            rel = 'assets/js/config.js'
         elif rel.endswith('/'):
             ok, msg = check_dir(rel, spec)
         else:
