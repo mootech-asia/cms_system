@@ -54,7 +54,7 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 |
 |---|---|---|---|---|---|---|
-| ☐ | C01 | character-sheet（品牌包同一檔案） | 1536×1024 | `../../brand/moo-rabbit/promo/character-sheet.png` | | ☐ |
+| ☐ | C01 | turnaround-sheet（品牌包同一檔案） | 1536×1024 | `../../brand/moo-rabbit/01_character/turnaround-sheet.png` | | ☐ |
 
 ## D. 吉祥物 GIF（5，第二階段）
 

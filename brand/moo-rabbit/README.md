@@ -7,17 +7,19 @@
 - 交付勾選表：[`DELIVERY_CHECKLIST.md`](DELIVERY_CHECKLIST.md)，核對：`python3 scripts/check_delivery.py brand/moo-rabbit/DELIVERY_CHECKLIST.md`
 - 熊北參考圖：[`../../event/20261111_lucky_wheel/reference/`](../../event/20261111_lucky_wheel/reference/)（來源：官網 repo `mootech-asia/mootech_website` 的 `brand/熊北-吉祥物/`）
 
-## 素材分類（比照熊北 MooBear 素材資料夾）
+## 資料夾分類（比照熊北）
 
-| 熊北資料夾 | 兔比路徑 | 內容 | 用途 |
-|---|---|---|---|
-| 主要形象.png | `main-image.png` | 代表形象主圖 | 各處需要一張代表圖時 |
-| 表情包/ | `stickers/` | 總覽圖 `stickers-sheet.png`、半身貼圖 S01～S11、全身姿勢 `full-body/` P01～P10 | 客服對話、社群、即時通訊、版面點綴 |
-| 宣傳/ | `promo/` | 設定圖 `character-sheet.png`、四視圖 `views/`、視訊連線動畫 `video-call.gif`、墊底圖 `backdrop.png`、`profile.jpg`、客服形象、主視覺、橫幅、分享預覽、與熊北同框 | 生圖依據、客服介面、社群與宣傳物料 |
-| 網站影片/ | `website-video/` | 15 秒循環影片 | cms_system 首頁首屏、展示 |
+| 資料夾 | 內容 | 用途 |
+|---|---|---|
+| `01_character/` | 角色設定圖、四視圖單張 | 生圖、設計、外包時的唯一依據 |
+| `02_poses/` | P01～P10 全身姿勢（透明背景） | 網站版面點綴、簡報、海報、活動物料 |
+| `03_stickers/` | S01～S11 半身貼圖（透明背景） | 客服對話、社群貼文、即時通訊貼圖 |
+| `04_key-visual/` | 事業部主視覺靜態圖＋15 秒循環影片 | cms_system 首頁首屏、展示、社群影片 |
+| `05_support/` | 圓形頭像、客服形象原圖、視訊畫面直式 | 前台右下角客服 |
+| `06_social/` | 長橫幅、留白橫幅、分享預覽 1200×630 | 社群封面、網址分享預覽 |
+| `07_motion/` | 活動用循環 GIF（目前：轉盤活動 5 個狀態） | 活動頁吉祥物動態 |
 
-活動專用動態（例如轉盤 GIF）放在各活動資料夾，品牌包只列索引。
-檔名與資料夾一律英文小寫、以連字號分隔。
+檔名規則：`編號-動作或用途.副檔名`，一律英文小寫、以連字號分隔（圖上與檔名都不出現中文）。
 
 ## 角色速覽
 

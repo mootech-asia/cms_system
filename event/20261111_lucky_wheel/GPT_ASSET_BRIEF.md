@@ -57,8 +57,8 @@ STYLE LOCK — apply to every image in this conversation:
 ## 3. 吉祥物角色設定圖（第一階段）
 
 吉祥物已定名 **Moo Rabbit（兔比）**，為 MOOTECH cms_system 事業部吉祥物，整套形象由品牌包管理：
-- 角色設定、共通設定（CHARACTER LOCK）與設定圖提示詞：`brand/moo-rabbit/ART_REQUIREMENTS.md` 第 1 節、第 4.1、4.2 節
-- 輸出：`brand/moo-rabbit/promo/character-sheet.png`（1536×1024）＋四視圖單張 `promo/views/`
+- 角色設定、共通設定（CHARACTER LOCK）與角色設定圖提示詞：`brand/moo-rabbit/ART_REQUIREMENTS.md` 第 1 節、第 4.1、4.2 節
+- 輸出：`brand/moo-rabbit/01_character/turnaround-sheet.png`（1536×1024）＋四視圖單張
 
 本活動不另做角色設定圖；品牌包的角色設定圖審核通過後，才能進入第 4 節。
 
