@@ -58,7 +58,7 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 |
 |---|---|---|---|---|---|---|
-| ☐ | D01 | idle-1 | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | | ☐ |
+| ☑ | D01 | idle-1 | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | 47dd674 | ☐ |
 | ☐ | D02 | idle-2 | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | | ☐ |
 | ☐ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | | ☐ |
 | ☐ | D04 | spinning | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | | ☐ |
@@ -70,12 +70,12 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 |
 |---|---|---|---|---|---|---|
-| ☐ | E01 | idle-1 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-1/` | | ☐ |
+| ☑ | E01 | idle-1 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-1/` | 47dd674 | ☐ |
 | ☐ | E02 | idle-2 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-2/` | | ☐ |
 | ☐ | E03 | idle-3 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-3/` | | ☐ |
 | ☐ | E04 | spinning PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/spinning/` | | ☐ |
 | ☐ | E05 | result PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/result/` | | ☐ |
-| ☐ | E06 | idle-1 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-1.{png,webp}` | | ☐ |
+| ☑ | E06 | idle-1 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-1.{png,webp}` | 47dd674 | ☐ |
 | ☐ | E07 | idle-2 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-2.{png,webp}` | | ☐ |
 | ☐ | E08 | idle-3 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-3.{png,webp}` | | ☐ |
 | ☐ | E09 | spinning 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/spinning.{png,webp}` | | ☐ |
