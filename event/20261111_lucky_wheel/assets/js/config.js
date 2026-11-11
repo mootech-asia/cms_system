@@ -40,6 +40,7 @@ window.EVENT_CONFIG = {
     chancesBadge: 'assets/img/chances-badge.svg',
     cardFrame: 'assets/img/card-frame.svg',
     cardTitle: 'assets/img/card-title.svg',
+    tickerBar: 'assets/img/ticker-bar.svg',
     footerDeco: 'assets/img/footer-deco.svg'
   },
 
@@ -72,6 +73,8 @@ window.EVENT_CONFIG = {
     chancesBadge: 'chances-badge · 360×88',
     cardFrame: 'card-frame · 120×120 (9-slice 40)',
     cardTitle: 'card-title · 400×72',
+    tickerBar: 'ticker-bar · 690×64',
+    btnPrimary: 'btn-primary · 400×110',
     footerDeco: 'footer-deco · 750×160',
     stageFloor: 'stage-floor · 750×140',
     title: 'title-{locale} · 690×240',
@@ -100,6 +103,10 @@ window.EVENT_CONFIG = {
       { name: { en: '100 Coins', ko: '코인 100개', th: '100 เหรียญ', zh: '金幣 ×100' }, icon: 'assets/img/icon-coin.svg', weight: 15, isLose: false },
       { name: { en: 'Mystery Gift', ko: '미스터리 선물', th: 'ของขวัญปริศนา', zh: '神秘禮物' }, icon: 'assets/img/icon-gift.svg', weight: 5, isLose: false },
       { name: { en: 'Try Again', ko: '꽝', th: 'ลองใหม่อีกครั้ง', zh: '銘謝惠顧' }, icon: 'assets/img/icon-thanks.svg', weight: 25, isLose: true }
+    ],
+    winners: [
+      { name: 'pl***88', prize: 0 }, { name: 'ka***21', prize: 3 }, { name: 'so***07', prize: 1 },
+      { name: 'ni***55', prize: 4 }, { name: 'ja***19', prize: 2 }, { name: 'ar***33', prize: 5 }
     ],
     rulesTitle: { en: 'Event Rules', ko: '이벤트 규칙', th: 'กติกากิจกรรม', zh: '活動規則' },
     rules: {

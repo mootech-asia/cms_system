@@ -205,6 +205,7 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
 | `icon-share.png` | 64×64 | 1024×1024 | `Round cream share icon with a gold border and a red share symbol (three connected dots), same style as the sound toggle icons. Transparent background.` |
 | `share-preview.png` | 1200×630（PNG） | 1536×1024 → 裁切 | `Social link preview: the LUCKY WHEEL marquee title on the left, the colorful casino wheel in the center-right, Moo Rabbit cheering at the bottom right, bright warm Broadway stage background. Keep all key content inside the central 1100x580. Only the text "LUCKY WHEEL" (and optionally "SPIN & WIN").` |
 | `wheel-stand.png` | 400×600 | 1024×1536 → 縮小 | `A gold casino wheel stand: a tapered glossy gold pillar rising from a round gold-and-red base drawn as a perspective ellipse (same slightly-high camera angle as the stage floor), small warm bulbs around the base rim, key light from the upper front-left. The top 20% of the pillar will be hidden behind the wheel. No wheel, no ground shadow, transparent background.` |
+| `ticker-bar.png` | 690×64 | 1536×1024 → 裁切 | `A slim horizontal winners ticker bar for a casino event: rounded pill shape with a thin gold outline; the left 150px is a bright gold label tab, the rest is a deep wine-red semi-transparent strip for scrolling white text; small bulbs at both ends. NO TEXT. Transparent background.` |
 
 ---
 

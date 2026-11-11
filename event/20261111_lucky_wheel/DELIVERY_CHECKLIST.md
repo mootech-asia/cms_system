@@ -61,6 +61,7 @@
 | ☐ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | | ☐ | P1 |
 | ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ | P3 |
 | ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | d913f7f | ☐ | P0 |
+| ☐ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | | ☐ | P1 |
 
 ## B. 色票（1）
 

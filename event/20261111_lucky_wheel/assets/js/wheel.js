@@ -142,6 +142,17 @@
     $('rulesEmpty').hidden = rules.length > 0;
   }
 
+  // 中獎跑馬燈：winners 由後台提供（prize 為獎項索引或 {en,ko,th,zh} 名稱）；內容複製一份讓捲動無縫
+  function renderTicker() {
+    var list = (content.winners || []).map(function (w) {
+      var prize = typeof w.prize === 'number' ? (prizes[w.prize] || {}).name : w.prize;
+      return prize ? t('ticker.item', { name: esc(w.name), prize: esc(pick(prize)) }) : '';
+    }).filter(Boolean);
+    $('ticker').hidden = !list.length;
+    var html = list.map(function (x) { return '<span class="ev-ticker-item">' + x + '</span>'; }).join('');
+    $('tickerItems').innerHTML = html + html;
+  }
+
   function renderRecords() {
     var list = $('recordList');
     list.querySelectorAll('.ev-record').forEach(function (li) { li.remove(); });
@@ -157,6 +168,7 @@
   function renderChances() {
     $('chances').textContent = player.chances;
     btnSpin.classList.toggle('is-disabled', player.chances <= 0 || !n);
+    $('btnSpinCta').classList.toggle('is-disabled', player.chances <= 0 || !n);
   }
 
   function renderAssetLabels() {
@@ -319,6 +331,7 @@
     applyImages();
     if (n) renderWheelLabels();
     renderContent();
+    renderTicker();
     renderRecords();
     renderSound();
     renderModal();
@@ -327,6 +340,7 @@
   }
 
   btnSpin.addEventListener('click', spin);
+  $('btnSpinCta').addEventListener('click', spin);
   $('btnClose').addEventListener('click', closeModal);
   modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
