@@ -82,7 +82,7 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | D01 | idle-1 | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | 61c9eab | ☐ | P3 |
+| ☐ | D01 | idle-1 | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | | ✗ 退回：整隻角色忽大忽小（寬度變化約 19%），已從頁面移除，需重做 | P3 |
 | ☑ | D02 | idle-2 | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | 61c9eab | ☐ | P3 |
 | ☑ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | 61c9eab | ☐ | P3 |
 | ☑ | D04 | spinning | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | 61c9eab | ☐ | P3 |

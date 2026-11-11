@@ -46,7 +46,6 @@ window.EVENT_CONFIG = {
   /* 吉祥物：每個狀態一個循環 GIF；idle 會在多張之間輪播。 */
   mascot: {
     idle: [
-      'assets/img/mascot/idle-1.gif',
       'assets/img/mascot/idle-2.gif',
       'assets/img/mascot/idle-3.gif'
     ],

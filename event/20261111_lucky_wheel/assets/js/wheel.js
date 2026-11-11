@@ -184,7 +184,7 @@
     if (state === 'idle') {
       var i = idleIndex % cfg.mascot.idle.length;
       mascot.src = cfg.mascot.idle[i];
-      mascotState = 'idle-' + (i + 1);
+      mascotState = cfg.mascot.idle[i].split('/').pop().replace(/\.[a-z]+$/, '');
       idleTimer = setTimeout(function () {
         idleIndex++;
         setMascot('idle');

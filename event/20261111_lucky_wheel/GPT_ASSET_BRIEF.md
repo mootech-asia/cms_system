@@ -92,13 +92,14 @@ ANIMATION SPRITE SHEET RULES:
 - The character fills about 80% of the cell width, feet close to the bottom edge; key light from the upper front-left.
 - No ground shadow under the feet (the page adds a contact shadow).
 - Only the pose changes between frames; motion must be smooth and evenly spaced.
+- Fixed camera: never zoom or scale the whole character between frames.
 - Frame 12 must flow seamlessly back into frame 1 (loop).
 - No text, no grid lines, no frame numbers, no background, no shadows outside the character.
 ```
 
 | 檔名 | 對應參考表情 | 動作描述（貼在規則後面） |
 |---|---|---|
-| `mascot/idle-1.gif` | Smile | `IDLE 1: relaxed standing pose, gentle breathing (chest rises and falls), one slow blink around frames 6-7, ears sway slightly.` |
+| `mascot/idle-1.gif` | Smile | `IDLE 1: relaxed standing pose, very subtle breathing (only the chest and belly move slightly), one slow blink around frames 6-7, ears sway slightly. The character's overall size and outline must stay exactly the same in every frame: NO zoom, NO scaling, NO pulsing.` |
 | `mascot/idle-2.gif` | Listening | `IDLE 2: tilts head toward the right as if listening, one ear twitches and folds then springs back, paw lightly touches the headphone.` |
 | `mascot/idle-3.gif` | Thinking（`bear-sticker-think`）、揮手（`bear-sticker-wave`） | `IDLE 3: friendly wave with the right paw at shoulder height, then pushes the tech glasses up with one finger, returns to neutral.` |
 | `mascot/spinning.gif` | Focused | `SPINNING: excited anticipation — both paws in fists close to the chest, small bouncing hops in place, ears fully upright and trembling, focused smiling face watching to the left (where the wheel is).` |
