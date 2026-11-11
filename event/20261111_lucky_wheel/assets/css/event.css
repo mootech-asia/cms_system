@@ -55,7 +55,7 @@
   --ev-space-10: 40px;
   --ev-page-max: 480px;
   /* 轉盤同時受寬與高限制：矮螢幕也要在第一屏看到轉盤＋操作台 */
-  --ev-wheel-size: min(84vw, 380px, calc((100svh - 335px) / 1.32));
+  --ev-wheel-size: min(84vw, 380px, calc((100svh - 340px) / 1.32));
   --ev-ease-spin: cubic-bezier(0.12, 0.7, 0.12, 1);
   --ev-font: -apple-system, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Leelawadee UI", "Noto Sans Thai", "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
 }
@@ -410,10 +410,10 @@ img { display: block; max-width: 100%; }
    放在 .ev-console 裡 absolute 定位，不佔版面高度，所以操作台能緊接在轉盤下方、第一屏就看得到 */
 .ev-host {
   position: absolute;
-  right: -17%;
+  right: -13%;
   bottom: calc(100% - 18px);
   z-index: 1;
-  width: 74%;
+  width: 54%;
   pointer-events: none;
 }
 .ev-host::before { content: ""; display: block; padding-top: 125%; }
@@ -440,18 +440,6 @@ img { display: block; max-width: 100%; }
   pointer-events: none;
 }
 .ev-chances { pointer-events: auto; }
-.ev-host::before { content: ""; display: block; padding-top: 108%; }
-.ev-mascot {
-  position: absolute;
-  z-index: 1;
-  filter: drop-shadow(8px 10px 10px rgb(60 22 4 / 0.3));
-  bottom: 0;
-  left: 23%;
-  width: 95%;
-  max-width: none;
-  height: auto;
-  pointer-events: none;
-}
 .ev-chances {
   position: absolute;
   left: 0;
@@ -481,7 +469,7 @@ img { display: block; max-width: 100%; }
   grid-template-columns: minmax(0, 1fr);
   gap: var(--ev-space-3);
   margin-top: calc(var(--ev-wheel-size) * 0.32);
-  padding-bottom: var(--ev-space-4);
+  padding-bottom: var(--ev-space-2);
 }
 .ev-ticker {
   position: relative;

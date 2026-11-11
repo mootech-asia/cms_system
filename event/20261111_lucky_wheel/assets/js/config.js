@@ -40,7 +40,7 @@ window.EVENT_CONFIG = {
     chancesBadge: 'assets/img/chances-badge.webp',
     cardFrame: 'assets/img/card-frame.webp',
     cardTitle: 'assets/img/card-title.webp',
-    tickerBar: 'assets/img/ticker-bar.svg',
+    tickerBar: 'assets/img/ticker-bar.webp',
     footerDeco: 'assets/img/footer-deco.webp'
   },
 

@@ -5,7 +5,7 @@ from PIL import Image,ImageDraw,ImageOps
 import numpy as np
 ROOT=Path(__file__).resolve().parents[1]
 SRC=ROOT/'source/ui-components';OUT=ROOT/'assets/img'
-SIZES={'modal-bg':(600,760),'btn-primary':(400,110),'period-badge':(480,64),'chances-badge':(360,88),'card-frame':(120,120),'card-title':(400,72),'footer-deco':(750,160),'icon-share':(64,64),'icon-sound-on':(64,64),'icon-sound-off':(64,64)}
+SIZES={'ticker-bar':(690,64),'modal-bg':(600,760),'btn-primary':(400,110),'period-badge':(480,64),'chances-badge':(360,88),'card-frame':(120,120),'card-title':(400,72),'footer-deco':(750,160),'icon-share':(64,64),'icon-sound-on':(64,64),'icon-sound-off':(64,64)}
 updated=[]
 for name,size in SIZES.items():
  path=SRC/(name+'-original.png')
@@ -18,7 +18,10 @@ for name,size in SIZES.items():
   ar=np.array(im);ar[40:80,40:80]=[255,249,238,255]
   ar[:40,40:80]=ar[:40,60:61];ar[80:,40:80]=ar[80:,60:61]
   ar[40:80,:40]=ar[60:61,:40];ar[40:80,80:]=ar[60:61,80:];im=Image.fromarray(ar)
- elif name=='modal-bg':im=im.resize(size,Image.Resampling.LANCZOS)
+ elif name=='ticker-bar':
+  cut=round(im.width*.245);left=im.crop((0,0,cut,im.height)).resize((150,64),Image.Resampling.LANCZOS);right=im.crop((cut,0,im.width,im.height)).resize((540,64),Image.Resampling.LANCZOS);im=Image.new('RGBA',size);im.alpha_composite(left,(0,0));im.alpha_composite(right,(150,0))
+ elif name=='modal-bg':
+  under=Image.new('RGBA',im.size);d=ImageDraw.Draw(under);d.rounded_rectangle((20,20,im.width-21,im.height-21),radius=im.width*.09,fill='#fff5e5');under.alpha_composite(im);im=under.resize(size,Image.Resampling.LANCZOS)
  else:
   # Reserve a minimal transparent margin without distorting metal/satin forms.
   im.thumbnail((size[0]-2,size[1]-2),Image.Resampling.LANCZOS);canvas=Image.new('RGBA',size);canvas.alpha_composite(im,((size[0]-im.width)//2,(size[1]-im.height)//2));im=canvas
