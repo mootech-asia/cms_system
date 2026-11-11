@@ -1,0 +1,17 @@
+{
+  "en": {
+    "text": "LUCKY WHEEL",
+    "font": "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+    "font_index": 0
+  },
+  "ko": {
+    "text": "행운의 룰렛",
+    "font": "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
+    "font_index": 1
+  },
+  "th": {
+    "text": "วงล้อนำโชค",
+    "font": "/usr/share/fonts/truetype/noto/NotoSansThai-Bold.ttf",
+    "font_index": 0
+  }
+}

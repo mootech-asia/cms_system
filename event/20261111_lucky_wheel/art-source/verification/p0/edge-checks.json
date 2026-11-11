@@ -1,0 +1,25 @@
+{
+  "storageDenied": true,
+  "results": [
+    {
+      "lang": "en",
+      "title": "Better luck next time",
+      "prize": "Try Again"
+    },
+    {
+      "lang": "ko",
+      "title": "다음 기회에",
+      "prize": "꽝"
+    },
+    {
+      "lang": "th",
+      "title": "โชคดีครั้งหน้า",
+      "prize": "ลองใหม่อีกครั้ง"
+    },
+    {
+      "soundBefore": "true",
+      "soundAfter": "false"
+    }
+  ],
+  "errors": []
+}

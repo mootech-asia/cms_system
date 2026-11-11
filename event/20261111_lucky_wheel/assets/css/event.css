@@ -236,7 +236,7 @@ img { display: block; max-width: 100%; }
 /* 轉盤底座：400×600，上端藏在轉盤後方，下端底盤踩在透視地板上；底盤下有接地陰影 */
 .ev-wheel-stand {
   position: absolute;
-  top: 50%;
+  top: 62%;
   left: 50%;
   z-index: 0;
   width: 46%;
@@ -249,7 +249,7 @@ img { display: block; max-width: 100%; }
   position: absolute;
   left: 8%;
   right: 8%;
-  bottom: -3%;
+  bottom: 10%;
   height: 9%;
   border-radius: 50%;
   background: radial-gradient(closest-side, rgb(90 42 8 / 0.35), transparent);
@@ -396,14 +396,14 @@ img { display: block; max-width: 100%; }
   position: relative;
   z-index: 3;
   margin-top: -22%;
-  margin-bottom: -34px;
+  margin-bottom: var(--ev-space-3);
   pointer-events: none;
 }
 .ev-host::after {
   content: "";
   position: absolute;
   left: 47%;
-  bottom: 1%;
+  bottom: 2%;
   width: 46%;
   height: 5%;
   border-radius: 50%;
