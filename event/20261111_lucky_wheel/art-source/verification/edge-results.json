@@ -1,0 +1,25 @@
+{
+  "storageDenied": true,
+  "results": [
+    {
+      "lang": "en",
+      "title": "Better luck next time",
+      "prize": "Try Again"
+    },
+    {
+      "lang": "ko",
+      "title": "Better luck next time",
+      "prize": "Try Again"
+    },
+    {
+      "lang": "th",
+      "title": "Better luck next time",
+      "prize": "Try Again"
+    },
+    {
+      "soundBefore": "true",
+      "soundAfter": "false"
+    }
+  ],
+  "errors": []
+}

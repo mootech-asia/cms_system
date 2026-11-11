@@ -18,19 +18,19 @@
   --ev-color-tag-text: #ffffff;
   --ev-color-danger: #c62f35;
 
-  /* 轉盤扇區配色（依序循環）；設計交付色票後改這裡 */
+  /* 轉盤扇區配色（依序循環） */
   --ev-wheel-count: 6;
-  --ev-wheel-1: #e5484d;
+  --ev-wheel-1: #bd3048;
   --ev-wheel-1-text: #ffffff;
-  --ev-wheel-2: #f7b733;
+  --ev-wheel-2: #f7c65c;
   --ev-wheel-2-text: #5a2a00;
-  --ev-wheel-3: #e5468f;
+  --ev-wheel-3: #b92f73;
   --ev-wheel-3-text: #ffffff;
-  --ev-wheel-4: #ff8a3d;
+  --ev-wheel-4: #f6a15a;
   --ev-wheel-4-text: #4a1d00;
-  --ev-wheel-5: #23a99a;
+  --ev-wheel-5: #157d77;
   --ev-wheel-5-text: #ffffff;
-  --ev-wheel-6: #7a5af0;
+  --ev-wheel-6: #6941b5;
   --ev-wheel-6-text: #ffffff;
 
   --ev-radius-sm: 8px;

@@ -1,0 +1,59 @@
+{
+  "report": [
+    {
+      "width": 390,
+      "lang": "en",
+      "overflow": false,
+      "brokenImages": []
+    },
+    {
+      "width": 390,
+      "lang": "ko",
+      "overflow": false,
+      "brokenImages": []
+    },
+    {
+      "width": 390,
+      "lang": "th",
+      "overflow": false,
+      "brokenImages": []
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "overflow": false,
+      "brokenImages": []
+    },
+    {
+      "width": 1440,
+      "lang": "ko",
+      "overflow": false,
+      "brokenImages": []
+    },
+    {
+      "width": 1440,
+      "lang": "th",
+      "overflow": false,
+      "brokenImages": []
+    },
+    {
+      "spinning": "assets/img/mascot/spinning.svg"
+    },
+    {
+      "result": "assets/img/mascot/result.svg",
+      "prize": "Try Again",
+      "chances": "2"
+    },
+    {
+      "closed": true
+    },
+    {
+      "exhausted": "ev-wheel-go is-disabled",
+      "chances": "0"
+    },
+    {
+      "empty": true
+    }
+  ],
+  "errors": []
+}
