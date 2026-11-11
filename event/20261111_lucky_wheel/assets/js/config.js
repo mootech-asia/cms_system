@@ -41,7 +41,7 @@ window.EVENT_CONFIG = {
       'assets/img/mascot/idle-2.gif',
       'assets/img/mascot/idle-3.gif'
     ],
-    spinning: 'assets/img/mascot/spinning.svg',
+    spinning: 'assets/img/mascot/spinning.gif',
     result: 'assets/img/mascot/result.svg'
   },
 

@@ -60,7 +60,7 @@
 |---|---|---|---|---|---|---|
 | ☑ | D01 | idle-1 | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | ee11803 | ☐ |
 | ☑ | D02 | idle-2 | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | 2b528e9 | ☐ |
-| ☐ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | | ☐ |
+| ☑ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | 8124547 | ☐ |
 | ☐ | D04 | spinning | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | | ☐ |
 | ☐ | D05 | result | 400×500 gif≥24 | `assets/img/mascot/result.gif` | | ☐ |
 
@@ -72,12 +72,12 @@
 |---|---|---|---|---|---|---|
 | ☑ | E01 | idle-1 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-1/` | ee11803 | ☐ |
 | ☑ | E02 | idle-2 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-2/` | 2b528e9 | ☐ |
-| ☐ | E03 | idle-3 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-3/` | | ☐ |
+| ☑ | E03 | idle-3 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-3/` | 8124547 | ☐ |
 | ☐ | E04 | spinning PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/spinning/` | | ☐ |
 | ☐ | E05 | result PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/result/` | | ☐ |
 | ☑ | E06 | idle-1 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-1.{png,webp}` | ee11803 | ☐ |
 | ☑ | E07 | idle-2 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-2.{png,webp}` | 2b528e9 | ☐ |
-| ☐ | E08 | idle-3 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-3.{png,webp}` | | ☐ |
+| ☑ | E08 | idle-3 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/idle-3.{png,webp}` | 8124547 | ☐ |
 | ☐ | E09 | spinning 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/spinning.{png,webp}` | | ☐ |
 | ☐ | E10 | result 關鍵幀 vs 角色設定圖 | — | `source/mascot-compare/result.{png,webp}` | | ☐ |
 
