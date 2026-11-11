@@ -44,7 +44,8 @@ STYLE LOCK — apply to every image in this conversation:
   high-fidelity 3D character render, C4D look, fluffy detailed fur, soft studio lighting,
   chibi-realistic proportions (head:body about 1:3, tall and rounded), friendly, confident, calm personality.
 - Brand colors only: fur #E9EDF2, vest navy #1A2233, tech blue #3DA8FF, energetic orange #FF9A3C.
-- Event theme: bright, warm, festive modern Broadway stage; clean, simple, cheerful;
+- Event theme: bright, warm, festive modern Broadway stage seen as a 3D space with depth and perspective
+  (never a flat front-facing backdrop); clean, simple, cheerful;
   colorful casino-style lucky wheel. Warm and comfortable overall tone. No dark nightclub mood.
 - NEVER include Chinese characters anywhere. Do not add any text unless the prompt explicitly gives the exact text.
 - No host / MC character, no handheld microphone, no speech bubbles.
@@ -164,7 +165,7 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
 
 | 檔名 | 精確尺寸 | 生成比例 | 提示詞 |
 |---|---|---|---|
-| `stage-bg.png` | 750×1000 | 1024×1536 | `Mobile event background, bright warm modern Broadway stage: soft peach/cream back wall with a gentle radial glow in the center, red velvet curtains on both left and right edges, a scalloped red valance with gold fringe across the top. Keep the center (where a big wheel will be placed) clean and bright. No characters, no text, no wheel.` |
+| `stage-bg.png` | 750×1000 | 1024×1536 | `Mobile event background: a bright, warm modern Broadway stage rendered as a 3D space in one-point perspective (vanishing point upper center): polished warm wood floor with planks converging into the depth and a soft spotlight pool in the lower middle, side walls with red velvet curtains receding toward a back wall with a gold arch, scalloped red valance with gold fringe across the top front. Upper 60% = back wall area kept clean and bright for the wheel; lower 40% = the stage floor where the mascot stands. No characters, no text, no wheel.` |
 | `stage-floor.png` | 750×140 | 1536×1024 → 裁切 | `Front edge of a stage seen from the audience: a gentle upward arc of polished gold stage floor with a row of warm marquee light bulbs along the edge, a coral red apron below. The bottom 20px must be flat solid #FFF6EA. Put the bulbs and the arc in the upper half. No text.` |
 | `title-en.png` | 690×240 | 1536×1024 → 裁切 | `Broadway marquee sign logo, rounded rectangle, gold 3D frame with glowing bulbs all around, red inner panel, the exact text "LUCKY WHEEL" as bold, rounded, 3D cream-gold lettering with highlights, letters fully inside the red panel, readable when shown at 345px wide, transparent background.`（規格見 `DESIGN_TASKS.md`「主視覺文字」） |
 | `title-ko.png` | 690×240 | 同上 | 同上，文字改為 `"행운의 룰렛"`（構圖與 title-en 完全一致，只換字） |
@@ -178,7 +179,7 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
 | `btn-primary.png` | 400×110 | 1536×1024 → 裁切 | `Pill-shaped button, orange-to-coral gradient with a thin gold border and a soft top highlight. NO TEXT. Transparent background.` |
 | `icon-sound-on.png` / `icon-sound-off.png` | 64×64 | 1024×1024 | `Round cream sound toggle icon with a gold border: (on) red speaker with sound waves / (off) grey speaker with an X. Transparent background.` |
 | `icon-cash` `icon-coin` `icon-gift` `icon-spin` `icon-bonus` `icon-points` `icon-thanks`（.png） | 160×160 | 1024×1024 | `3D prize icon, same style for the whole set, bold readable at 40px, white outline, transparent background: (cash) green banknote / (coin) gold coin / (gift) red gift box with gold ribbon / (spin) purple circular arrow / (bonus) orange star badge with a percent sign / (points) teal circle with a star / (thanks) warm yellow smiley. No words.` |
-| `stage-bg-desktop.png` | 1920×1000 | 1536×1024 → 放大裁切 | `Wide desktop version of the same bright warm Broadway stage background: soft peach/cream back wall with a central glow, wide red velvet curtains with folds on both sides, scalloped red valance with gold fringe across the top. Keep the central 480px column clean and bright (the wheel sits there). No characters, no text.` |
+| `stage-bg-desktop.png` | 1920×1000 | 1536×1024 → 放大裁切 | `Wide desktop version of the SAME 3D perspective Broadway stage (same camera height, vanishing point and lighting as the mobile one): wider wood floor with stronger depth, curtains and side walls extending further to both sides, gold arch on the back wall, spotlight pool on the floor center. Keep the central 480px column clean (wheel and mascot sit there). No characters, no text.` |
 | `info-bg.png` | 750×750（無縫） | 1024×1024 → 縮小 | `Seamless tileable pattern on cream #FFF6EA: sparse small confetti strips and tiny stars in the event colors, very subtle and light so dark text on top stays readable. Edges must tile seamlessly.`（再用 Code Interpreter 檢查四邊接縫） |
 | `period-badge.png` | 480×64 | 1536×1024 → 裁切 | `Horizontal gold ribbon banner with folded tails on both ends, a light cream center area for text, flat and clean. NO TEXT. Transparent background.` |
 | `chances-badge.png` | 360×88 | 1536×1024 → 裁切 | `Rounded pill badge with a gold rim and a light cream center for text, small gold dots at both ends. NO TEXT. Transparent background.` |

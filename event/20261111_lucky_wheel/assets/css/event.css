@@ -92,7 +92,7 @@ img { display: block; max-width: 100%; }
 .ev-asset--tl { top: 0; left: 0; }
 .ev-asset--tr { top: 0; right: 0; }
 .ev-asset--bl { bottom: 0; left: 0; }
-.ev-asset--mascot { top: 28%; right: 0; }
+.ev-asset--mascot { top: 8%; right: 0; }
 .ev-asset--floor { position: static; align-self: flex-end; margin-top: calc(var(--ev-space-3) * -1); }
 .ev-asset--period { top: -14px; right: 0; }
 .ev-asset--chances { left: 0; bottom: calc(var(--ev-space-10) + 52px); }
@@ -103,7 +103,7 @@ img { display: block; max-width: 100%; }
 .ev-stage {
   position: relative;
   overflow: hidden;
-  background: var(--ev-color-surface-2) center top / cover no-repeat;
+  background: var(--ev-color-surface-2) center bottom / cover no-repeat;
 }
 
 .ev-stage-dim {
@@ -214,7 +214,8 @@ img { display: block; max-width: 100%; }
 .ev-period {
   display: inline-block;
   min-width: 70%;
-  padding: var(--ev-space-2) calc(var(--ev-space-10) + var(--ev-space-2));
+  padding: var(--ev-space-2) clamp(var(--ev-space-6), 9vw, calc(var(--ev-space-10) + var(--ev-space-2)));
+  white-space: nowrap;
   background: var(--ev-img-periodBadge, linear-gradient(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.7))) center / 100% 100% no-repeat;
   color: var(--ev-color-text);
   font-size: 13px;
@@ -364,22 +365,22 @@ img { display: block; max-width: 100%; }
 .ev-wheel-go[aria-busy="true"] { cursor: progress; }
 .ev-wheel-go.is-disabled { filter: grayscale(1) brightness(0.85); }
 
-/* 吉祥物：400×500 GIF，放大為上半身探頭。百分比 margin/padding 以容器寬度為基準，
-   讓畫布、角色位置與裁切高度都隨欄寬等比縮放；畫布頂端預留跳躍空間（result 會往上跳） */
+/* 吉祥物：400×500 GIF，全身站在舞台地板上。百分比 margin/padding 以容器寬度為基準，
+   畫布與角色位置隨欄寬等比縮放；容器底部壓進舞台地板，讓腳踩在地板金邊上 */
 .ev-host {
   position: relative;
   z-index: 1;
-  margin-top: -26%;
+  margin-top: -14%;
+  margin-bottom: -34px;
 }
-.ev-host::before { content: ""; display: block; padding-top: 92%; }
+.ev-host::before { content: ""; display: block; padding-top: 84%; }
 .ev-mascot {
   position: absolute;
-  top: 0;
-  left: 6%;
-  width: 135%;
+  bottom: 0;
+  left: 33%;
+  width: 70%;
   max-width: none;
   height: auto;
-  margin-top: -6%;
   pointer-events: none;
 }
 .ev-chances {
