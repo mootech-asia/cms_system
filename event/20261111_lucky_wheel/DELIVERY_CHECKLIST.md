@@ -39,7 +39,7 @@
 | ☑ | A08 | wheel-gloss | 600×600 | `assets/img/wheel-gloss.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A09 | pointer | 120×160 | `assets/img/pointer.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A10 | btn-go | 200×200 | `assets/img/btn-go.{png,webp,svg}` | d913f7f | ☐ | P0 |
-| ☑ | A11 | modal-bg | 600×760 | `assets/img/modal-bg.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
+| ☑ | A11 | modal-bg | 600×760 | `assets/img/modal-bg.{png,webp,svg}` | 8349b85 | ☐ | P1 |
 | ☑ | A12 | btn-primary | 400×110 | `assets/img/btn-primary.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A13 | icon-sound-on | 64×64 | `assets/img/icon-sound-on.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
 | ☑ | A14 | icon-sound-off | 64×64 | `assets/img/icon-sound-off.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
@@ -61,13 +61,13 @@
 | ☑ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | e5e2f55 | ☐ | P1 |
 | ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ | P3 |
 | ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | d913f7f | ☐ | P0 |
-| ☐ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | | ☐ | P1 |
+| ☑ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | 8349b85 | ☐ | P1 |
 
 ## B. 色票（1）
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | 36827ae | ☐ | P0 |
+| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | 8349b85 | ☐ | P0 |
 
 ## C. 吉祥物角色設定圖（1，第一階段）
 
@@ -84,8 +84,8 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | D00 | base-frame（所有動態共用的基準幀） | 400×500 | `assets/img/mascot/base-frame.png` | | ☐ | P3 |
-| ☐ | D01 | idle-1 | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | | ✗ 退回：整隻角色忽大忽小（寬度變化約 19%），已從頁面移除，需重做 | P3 |
+| ☑ | D00 | base-frame（所有動態共用的基準幀） | 400×500 | `assets/img/mascot/base-frame.png` | ccc0982 | ☐ | P3 |
+| ☑ | D01 | idle-1 | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | ccc0982 | ✗ 退回：整隻角色忽大忽小（寬度變化約 19%），已從頁面移除，需重做 | P3 |
 | ☐ | D02 | idle-2 | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | | ✗ 需重做：頭尾幀不一致、與其他動態起始姿勢不同（目前當假圖留在頁面） | P3 |
 | ☐ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | | ✗ 需重做：頭尾幀不一致、與其他動態起始姿勢不同（目前當假圖留在頁面） | P3 |
 | ☐ | D04 | spinning | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | | ✗ 需重做：頭尾幀不一致、與其他動態起始姿勢不同（目前當假圖留在頁面） | P3 |
@@ -97,12 +97,12 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | E01 | idle-1 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-1/` | | ☐ | P3 |
+| ☑ | E01 | idle-1 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-1/` | ccc0982 | ☐ | P3 |
 | ☐ | E02 | idle-2 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-2/` | | ☐ | P3 |
 | ☐ | E03 | idle-3 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-3/` | | ☐ | P3 |
 | ☐ | E04 | spinning PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/spinning/` | | ☐ | P3 |
 | ☐ | E05 | result PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/result/` | | ☐ | P3 |
-| ☐ | E06 | idle-1 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-1.{png,webp}` | | ☐ | P3 |
+| ☑ | E06 | idle-1 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-1.{png,webp}` | ccc0982 | ☐ | P3 |
 | ☐ | E07 | idle-2 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-2.{png,webp}` | | ☐ | P3 |
 | ☐ | E08 | idle-3 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-3.{png,webp}` | | ☐ | P3 |
 | ☐ | E09 | spinning 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/spinning.{png,webp}` | | ☐ | P3 |
@@ -112,7 +112,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | 39d85a9 | ☐ | P2 |
+| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | 8349b85 | ☐ | P2 |
 
 ## G. 音效（選配 5）
 
@@ -145,3 +145,9 @@
 - 分享圖採規格允許的 JPEG（1200×630，217,485 bytes），保留漸層，OG/Twitter metadata 同步改指 `.jpg`。
 - 尺寸、檔案大小、底紋四邊無縫已核對；en/ko/th × 390/1440 初始、轉動、結果、次數用完與分享面板見 `art-source/verification/static-final/`。
 - P3 不在本批完成範圍：GIF、共用基準幀、主標編輯原始檔等保留未提交與退回狀態。
+### 新增跑馬燈與待機 1 重交
+
+- `8349b85`：A33 跑馬燈；A11 中心 alpha 改為255；合併新版操作台並移除重複角色定位，依螢幕高度調整轉盤，三語360/390×640、1280/1440×720操作台完整入第一屏。
+- `ccc0982`：D00 共用基準幀、D01 待機1新稿、E01序列48幀、E06品牌比對。D01沿用原退回審核欄，待審核者確認新稿後更新；提交勾不代表已審過。
+- 新待機1為48幀、2000ms、113244 bytes、無限循環，首尾完全相同，整段透明輪廓變更像素為0，只移動背心內部紋理與眨眼；見 source/mascot-v3/preview.html。
+- 其餘四段尚未共用新基準，頁面暫不把新待機1加入輪播；先單獨提供GIF預覽。
