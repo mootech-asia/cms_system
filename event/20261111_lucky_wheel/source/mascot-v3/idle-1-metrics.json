@@ -1,0 +1,23 @@
+{
+  "frames": 48,
+  "duration_ms": 2000,
+  "loop": 0,
+  "bytes": 113244,
+  "identical_first_last": true,
+  "silhouette_pixels_changed": 0,
+  "canvas": [
+    400,
+    500
+  ],
+  "base_bbox": [
+    57,
+    12,
+    342,
+    486
+  ],
+  "max_internal_fabric_displacement_px": 0.75,
+  "blink_frames": [
+    17,
+    22
+  ]
+}
