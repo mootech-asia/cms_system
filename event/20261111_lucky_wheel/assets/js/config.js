@@ -22,6 +22,9 @@ window.EVENT_CONFIG = {
   skins: {
     survival: {
       css: 'skins/survival/skin.css',
+      strings: {
+        'title.alt': { en: 'Survival Spin', ko: '서바이벌 스핀', th: 'สปินเอาตัวรอด', zh: '生存轉盤' }
+      },
       images: {
         title: {
           en: 'skins/survival/img/title-en.webp',
@@ -63,9 +66,9 @@ window.EVENT_CONFIG = {
       th: 'assets/img/title-th.webp',
       zh: 'assets/img/title-zh.svg'
     },
-    spotlight: 'assets/img/spotlight.png',
-    lightPool: 'assets/img/light-pool.png',
-    stageVignette: 'assets/img/stage-vignette.png',
+    spotlight: 'assets/img/spotlight.webp',
+    lightPool: 'assets/img/light-pool.webp',
+    stageVignette: 'assets/img/stage-vignette.webp',
     bulbOn: 'assets/img/bulb-on.png',
     bulbOff: 'assets/img/bulb-off.png',
     wheelFrame: 'assets/img/wheel-frame.webp',

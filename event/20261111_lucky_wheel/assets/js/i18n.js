@@ -34,7 +34,6 @@ window.EventI18n = (function () {
     'rules.empty': { en: 'Event rules from the back office will appear here.', ko: '관리자에서 입력한 이벤트 규칙이 여기에 표시됩니다.', th: 'กติกากิจกรรมจากระบบหลังบ้านจะแสดงที่นี่', zh: '後台填寫的活動規則會顯示在這裡。' },
     'records.title': { en: 'My Prizes', ko: '나의 당첨 내역', th: 'รางวัลของฉัน', zh: '我的中獎紀錄' },
     'records.empty': { en: 'No spins yet. Give it a try!', ko: '아직 기록이 없습니다. 한번 돌려 보세요!', th: 'ยังไม่มีประวัติ ลองหมุนดูสิ!', zh: '還沒有紀錄，轉一次試試手氣。' },
-    'mock.tools': { en: 'Mock tools:', ko: '목업 도구:', th: 'เครื่องมือม็อกอัป:', zh: 'mock 工具：' },
     'mock.reset': { en: 'Reset spins', ko: '횟수 초기화', th: 'รีเซ็ตสิทธิ์', zh: '重設次數' },
     'mock.prizes': { en: 'Prizes', ko: '상품 수', th: 'จำนวนรางวัล', zh: '獎項數' },
     'mock.labels': { en: 'Asset labels', ko: '에셋 라벨', th: 'ป้ายชื่อไฟล์ภาพ', zh: '換圖標籤' },
@@ -49,7 +48,6 @@ window.EventI18n = (function () {
     'share.more': { en: 'More sharing options', ko: '다른 방법으로 공유', th: 'ตัวเลือกการแชร์เพิ่มเติม', zh: '更多分享方式' },
     'share.urlLabel': { en: 'Event link', ko: '이벤트 링크', th: 'ลิงก์กิจกรรม', zh: '活動連結' },
     'share.text': { en: 'Spin the Lucky Wheel and win prizes!', ko: '행운의 룰렛을 돌리고 상품을 받아 가세요!', th: 'หมุนวงล้อนำโชคแล้วรับรางวัลกันเลย!', zh: '來轉幸運大轉盤贏獎品！' },
-    'cta.spin': { en: 'Spin now', ko: '지금 돌리기', th: 'หมุนเลย', zh: '立即抽獎' },
     'rotate.hint': { en: 'Please turn your phone upright to play.', ko: '휴대폰을 세로로 돌려서 플레이해 주세요.', th: 'กรุณาหมุนโทรศัพท์เป็นแนวตั้งเพื่อเล่น', zh: '請將手機轉為直向再遊玩' },
     'ticker.label': { en: 'Winners', ko: '당첨자', th: 'ผู้โชคดี', zh: '中獎名單' },
     'ticker.item': { en: '{name} won {prize}', ko: '{name}님 {prize} 당첨', th: '{name} ได้รับ {prize}', zh: '{name} 抽中 {prize}' },
@@ -66,6 +64,11 @@ window.EventI18n = (function () {
 
 
   };
+
+  // 皮可以覆寫文字（例：活動名稱），寫在 config.skins.<名稱>.strings，格式同上
+  var SKIN = window.EVENT_CONFIG && window.EVENT_CONFIG.skins && window.EVENT_CONFIG.skins[window.EVENT_CONFIG.activeSkin];
+  if (SKIN && SKIN.strings) Object.keys(SKIN.strings).forEach(function (k) { STRINGS[k] = SKIN.strings[k]; });
+
 
   function zhPreviewOn() {
     try { return sessionStorage.getItem(ZH_PREVIEW_KEY) === '1'; } catch (e) { return false; }

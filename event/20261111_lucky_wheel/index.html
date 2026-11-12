@@ -47,11 +47,14 @@
         <div class="ev-play">
         <div class="ev-wheel-area" id="wheelArea">
           <div class="ev-prize-panel" id="prizePanel" hidden>
-            <span data-i18n="mock.prizes"></span>
-            <button type="button" id="panelPrizeLess" aria-label="−">−</button>
-            <b id="panelPrizeCount"></b>
-            <button type="button" id="panelPrizeMore" aria-label="+">+</button>
-            <button type="button" class="ev-prize-panel-reset" id="panelReset" data-i18n="mock.reset"></button>
+            <span class="ev-prize-panel-group">
+              <span data-i18n="mock.prizes"></span>
+              <button type="button" id="panelPrizeLess" aria-label="−">−</button>
+              <b id="panelPrizeCount"></b>
+              <button type="button" id="panelPrizeMore" aria-label="+">+</button>
+            </span>
+            <button type="button" class="ev-prize-panel-text" id="btnReset" data-i18n="mock.reset"></button>
+            <button type="button" class="ev-prize-panel-text" id="btnLabels" aria-pressed="true"><span data-i18n="mock.labels"></span>: <span id="labelsState"></span></button>
             <button type="button" id="panelPrizeClose" aria-label="×">×</button>
           </div>
           <div class="ev-wheel-cast" aria-hidden="true"></div>
@@ -61,6 +64,12 @@
             <img data-img="wheelStand" alt="" />
             <span class="ev-asset ev-asset--stand" data-asset="wheelStand lightPool"></span>
           </div>
+          <p class="ev-chances">
+            <span data-i18n="chances.before"></span>
+            <strong id="chances">0</strong>
+            <span data-i18n="chances.after"></span>
+            <span class="ev-asset ev-asset--chances" data-asset="chancesBadge" aria-hidden="true"></span>
+          </p>
           <div class="ev-wheel">
             <img class="ev-wheel-frame" data-img="wheelFrame" alt="" />
             <div class="ev-wheel-disc" id="wheelDisc">
@@ -92,15 +101,6 @@
             <div class="ev-ticker-track"><div class="ev-ticker-items" id="tickerItems"></div></div>
             <span class="ev-asset ev-asset--ticker" data-asset="tickerBar" aria-hidden="true"></span>
           </div>
-          <div class="ev-console-row">
-            <p class="ev-chances">
-              <span data-i18n="chances.before"></span>
-              <strong id="chances">0</strong>
-              <span data-i18n="chances.after"></span>
-            </p>
-            <button type="button" class="ev-cta" id="btnSpinCta"><span data-i18n="cta.spin"></span></button>
-            <span class="ev-asset ev-asset--chances" data-asset="chancesBadge btnPrimary" aria-hidden="true"></span>
-          </div>
         </div>
         </div>
       </div>
@@ -129,15 +129,6 @@
 
         <div class="ev-footer-deco" aria-hidden="true">
           <span class="ev-asset ev-asset--floor" data-asset="footerDeco"></span>
-        </div>
-
-        <div class="ev-mock-tools" id="mockTools" hidden>
-          <span data-i18n="mock.tools"></span>
-          <button type="button" class="ev-link" id="btnReset" data-i18n="mock.reset"></button>
-          <span class="ev-mock-prizes"><span data-i18n="mock.prizes"></span>: <button type="button" class="ev-link" id="btnPrizeLess" aria-label="−">−</button> <span id="prizeCount"></span> <button type="button" class="ev-link" id="btnPrizeMore" aria-label="+">+</button></span>
-          <button type="button" class="ev-link" id="btnLabels" aria-pressed="true">
-            <span data-i18n="mock.labels"></span>: <span id="labelsState"></span>
-          </button>
         </div>
       </div>
     </section>

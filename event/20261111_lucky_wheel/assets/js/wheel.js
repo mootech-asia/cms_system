@@ -172,7 +172,6 @@
   function renderChances() {
     $('chances').textContent = player.chances;
     btnSpin.classList.toggle('is-disabled', player.chances <= 0 || !n);
-    $('btnSpinCta').classList.toggle('is-disabled', player.chances <= 0 || !n);
   }
 
   function renderAssetLabels() {
@@ -221,7 +220,10 @@
     }
     if (done) { if (entry.ready) done(); else entry.cbs.push(done); }
   }
+  // 兔比每段動畫約 400KB：等頁面載完且瀏覽器閒置才逐一預載；省流量模式／2G 不預載（要用時才載，載好再換）
   function preloadMascots() {
+    var net = navigator.connection || {};
+    if (net.saveData || /2g/.test(net.effectiveType || '')) return;
     var list = [cfg.mascot.spinning, cfg.mascot.result, cfg.mascot.lose].concat(cfg.mascot.idle).filter(Boolean);
     (function next(i) { if (i < list.length) loadMascot(list[i], function () { next(i + 1); }); })(0);
   }
@@ -367,6 +369,8 @@
   }
 
   function renderLocale() {
+    var skin = cfg.skins[cfg.activeSkin];
+    if (skin && skin.strings && skin.strings['title.alt']) document.title = t('title.alt');
     applyImages();
     if (n) renderWheelLabels();
     renderContent();
@@ -379,7 +383,6 @@
   }
 
   btnSpin.addEventListener('click', spin);
-  $('btnSpinCta').addEventListener('click', spin);
   $('btnClose').addEventListener('click', closeModal);
   modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
@@ -403,7 +406,7 @@
     showToast(t('toast.reset', { n: player.chances }));
   });
   // 獎項數量預覽（內部用）：獎項本來就由後台決定、扇區由程式依數量畫出；這裡只在本分頁暫時增減，
-  // 方便看 3～12 項時盤面的樣子。快捷鍵 Ctrl+Alt+↑／↓（Mac：Control+Option+↑／↓），mock 工具列也有按鈕。
+  // 方便看 3～12 項時盤面的樣子。快捷鍵 Ctrl+Alt+↑／↓（Mac：Control+Option+↑／↓），內部面板也有按鈕。
   // 減少＝取前 N 項；增加＝補上「Prize N」假獎項（圖示沿用現有獎項輪流）。不會寫回後台。
   var PRIZE_PREVIEW_KEY = 'event-prize-preview';
   var basePrizes = prizes.slice();
@@ -430,7 +433,6 @@
     disc.style.transform = 'rotate(0deg)';
     renderWheel();
     renderTicker();
-    $('prizeCount').textContent = n;
     $('panelPrizeCount').textContent = n;
     try { sessionStorage.setItem(PRIZE_PREVIEW_KEY, String(n)); } catch (e) { /* 只在本次頁面生效 */ }
     if (!silent) showToast(t('toast.prizes', { n: n }));
@@ -443,14 +445,19 @@
     e.preventDefault();
     setPrizeCount(n + (e.code === 'ArrowUp' ? 1 : -1));
   });
-  $('btnPrizeMore').addEventListener('click', function () { setPrizeCount(n + 1); });
-  $('btnPrizeLess').addEventListener('click', function () { setPrizeCount(n - 1); });
-  $('prizeCount').textContent = n;
   $('panelPrizeCount').textContent = n;
-  // 手機沒有鍵盤：在畫面同一個位置連點三下叫出／收起獎項數量面板（面板裡也有重設次數）。
-  // 判斷方式：每一下和前一下相隔 0.5 秒內、相距 40px 內就累計（一般人連點三下約 0.6～1 秒，
+  // 內部面板（獎項數、重設次數、換圖標籤）平常隱藏（老闆／客戶看不到）；手機與電腦同一個面板、同樣叫法：
+  // 畫面同一個位置連點三下（手指或滑鼠）。本分頁內記住狀態。
+  // 連點判斷：每一下和前一下相隔 0.5 秒內、相距 40px 內就累計（一般人連點三下約 0.6～1 秒，
   // 不能用「三下總共幾秒內」判斷）；點在按鈕、連結、輸入框上不算，避免誤觸抽獎或關閉彈窗。
+  var MOCK_KEY = 'event-mock-tools';
   var panel = $('prizePanel');
+  function setPanel(open) {
+    panel.hidden = !open;
+    try { sessionStorage.setItem(MOCK_KEY, open ? 'on' : 'off'); } catch (e) { /* 只在本次頁面生效 */ }
+    if (open) panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+  try { panel.hidden = sessionStorage.getItem(MOCK_KEY) !== 'on'; } catch (e) { /* 預設隱藏 */ }
   var taps = [];
   document.addEventListener('pointerup', function (e) {
     if (e.target.closest('button, a, input, select, textarea, label, [role="button"], #prizePanel')) { taps = []; return; }
@@ -458,42 +465,25 @@
     var last = taps[taps.length - 1];
     if (!last || now - last.t > 500 || Math.abs(last.x - e.clientX) > 40 || Math.abs(last.y - e.clientY) > 40) taps = [];
     taps.push({ t: now, x: e.clientX, y: e.clientY });
-    if (taps.length >= 3) {
-      taps = [];
-      if (basePrizes.length) {
-        panel.hidden = !panel.hidden;
-        if (!panel.hidden) panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-      }
-    }
+    if (taps.length >= 3) { taps = []; setPanel(panel.hidden); }
   });
   $('panelPrizeMore').addEventListener('click', function () { setPrizeCount(n + 1); });
   $('panelPrizeLess').addEventListener('click', function () { setPrizeCount(n - 1); });
-  $('panelReset').addEventListener('click', function () { $('btnReset').click(); });
-  $('panelPrizeClose').addEventListener('click', function () { panel.hidden = true; });
+  $('panelPrizeClose').addEventListener('click', function () { setPanel(false); });
   try {
     var savedCount = Number(sessionStorage.getItem(PRIZE_PREVIEW_KEY));
     if (savedCount && savedCount !== n) setPrizeCount(savedCount, true);
   } catch (e) { /* 預設用後台數量 */ }
 
-  // mock 工具列平常隱藏（老闆／客戶看不到），內部用 Ctrl+Alt+H（Mac：Control+Option+H）叫出／收起，
-  // 本分頁內記住狀態
-  var MOCK_KEY = 'event-mock-tools';
-  var mockTools = $('mockTools');
-  try { mockTools.hidden = sessionStorage.getItem(MOCK_KEY) !== 'on'; } catch (e) { /* 預設隱藏 */ }
-  document.addEventListener('keydown', function (e) {
-    if (!e.ctrlKey || !e.altKey || e.metaKey || e.shiftKey || e.code !== 'KeyH') return;
-    var el = e.target;
-    if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
-    e.preventDefault();
-    mockTools.hidden = !mockTools.hidden;
-    try { sessionStorage.setItem(MOCK_KEY, mockTools.hidden ? 'off' : 'on'); } catch (err) { /* 只在本次頁面生效 */ }
-    if (!mockTools.hidden) mockTools.scrollIntoView({ block: 'center', behavior: 'smooth' });
-  });
   document.addEventListener('ev:locale', renderLocale);
   document.addEventListener('ev:skin', function () { if (n) renderWheel(); });
   window.EventShare.init(showToast);
-  if (document.readyState === 'complete') preloadMascots();
-  else window.addEventListener('load', preloadMascots);
+  function idlePreload() {
+    if (window.requestIdleCallback) requestIdleCallback(preloadMascots, { timeout: 4000 });
+    else setTimeout(preloadMascots, 1500);
+  }
+  if (document.readyState === 'complete') idlePreload();
+  else window.addEventListener('load', idlePreload);
   // 支援的瀏覽器（Android 全螢幕／已安裝）直接鎖直向；不支援時由 .ev-rotate 提示層處理
   try {
     if (screen.orientation && screen.orientation.lock) screen.orientation.lock('portrait').catch(function () {});
