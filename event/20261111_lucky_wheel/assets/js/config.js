@@ -23,6 +23,10 @@ window.EVENT_CONFIG = {
     survival: {
       css: 'skins/survival/skin.css',
       images: {
+        soundOn: 'skins/survival/img/icon-sound-on.webp',
+        soundOff: 'skins/survival/img/icon-sound-off.webp',
+        share: 'skins/survival/img/icon-share.webp',
+        rotateHint: 'skins/survival/img/icon-rotate.webp',
         title: {
           en: 'skins/survival/img/title-en.webp',
           ko: 'skins/survival/img/title-ko.webp',
@@ -30,7 +34,7 @@ window.EVENT_CONFIG = {
           zh: 'skins/survival/img/title-en.webp'
         },
         stageBg: 'skins/survival/img/stage-bg.webp',
-        infoBg: 'skins/survival/img/info-bg.svg',
+        infoBg: 'skins/survival/img/info-bg.webp',
         stageFloor: 'skins/survival/img/stage-floor.webp',
         spotlight: 'skins/survival/img/spotlight.webp',
         lightPool: 'skins/survival/img/light-pool.webp',
@@ -41,14 +45,14 @@ window.EVENT_CONFIG = {
         wheelStand: 'skins/survival/img/wheel-stand.webp',
         pointer: 'skins/survival/img/pointer.webp',
         btnGo: 'skins/survival/img/btn-go.webp',
-        btnPrimary: 'skins/survival/img/btn-primary.svg',
-        modalBg: 'skins/survival/img/modal-bg.svg',
-        periodBadge: 'skins/survival/img/period-badge.svg',
-        chancesBadge: 'skins/survival/img/chances-badge.svg',
-        cardFrame: 'skins/survival/img/card-frame.svg',
-        cardTitle: 'skins/survival/img/card-title.svg',
-        tickerBar: 'skins/survival/img/ticker-bar.svg',
-        footerDeco: 'skins/survival/img/footer-deco.svg'
+        btnPrimary: 'skins/survival/img/btn-primary.webp',
+        modalBg: 'skins/survival/img/modal-bg.webp',
+        periodBadge: 'skins/survival/img/period-badge.webp',
+        chancesBadge: 'skins/survival/img/chances-badge.webp',
+        cardFrame: 'skins/survival/img/card-frame.webp',
+        cardTitle: 'skins/survival/img/card-title.webp',
+        tickerBar: 'skins/survival/img/ticker-bar.webp',
+        footerDeco: 'skins/survival/img/footer-deco.webp'
       }
     }
   },
