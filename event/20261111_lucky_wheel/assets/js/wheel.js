@@ -447,7 +447,7 @@
   $('btnPrizeLess').addEventListener('click', function () { setPrizeCount(n - 1); });
   $('prizeCount').textContent = n;
   $('panelPrizeCount').textContent = n;
-  // 手機沒有鍵盤：在畫面同一個位置連點三下叫出／收起獎項數量面板。
+  // 手機沒有鍵盤：在畫面同一個位置連點三下叫出／收起獎項數量面板（面板裡也有重設次數）。
   // 判斷方式：每一下和前一下相隔 0.5 秒內、相距 40px 內就累計（一般人連點三下約 0.6～1 秒，
   // 不能用「三下總共幾秒內」判斷）；點在按鈕、連結、輸入框上不算，避免誤觸抽獎或關閉彈窗。
   var panel = $('prizePanel');
@@ -468,6 +468,7 @@
   });
   $('panelPrizeMore').addEventListener('click', function () { setPrizeCount(n + 1); });
   $('panelPrizeLess').addEventListener('click', function () { setPrizeCount(n - 1); });
+  $('panelReset').addEventListener('click', function () { $('btnReset').click(); });
   $('panelPrizeClose').addEventListener('click', function () { panel.hidden = true; });
   try {
     var savedCount = Number(sessionStorage.getItem(PRIZE_PREVIEW_KEY));
