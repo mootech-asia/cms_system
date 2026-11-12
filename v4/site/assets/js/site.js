@@ -683,14 +683,24 @@
     }).join('');
     openMobileOverlay(navHtml);
   }
+  /* 會員選單比照桌機側欄分成「我的帳戶／活動」兩組，標題可點擊收合
+     （由檔案開頭的 [data-member-group-toggle] 事件委派處理）。 */
   function openMemberMenu() {
     var page = currentPage();
-    var navHtml = '<div class="p-[12px_12px_6px] text-[12px] font-bold text-text-dim mobile-menu-section">' + tr('sidebar.myAccount', '我的帳戶') + '</div>' +
-      MEMBER_MENU_ITEMS.map(function (item) {
+    var split = 0;
+    while (split < MEMBER_MENU_ITEMS.length && MEMBER_MENU_ITEMS[split].href !== 'check-in.html') split++;
+    function links(items) {
+      return items.map(function (item) {
         var active = item.href.split('?')[0] === page;
-        var section = item.href === 'check-in.html' ? '<div class="p-[12px_12px_6px] text-[12px] font-bold text-text-dim mobile-menu-section">' + tr('nav.Event', '活動') + '</div>' : '';
-        return section + '<a href="' + item.href + '" class="flex items-center gap-3 p-[13px_12px] rounded-md text-[14.5px] font-bold text-text hover:bg-bg-panel [&.active]:bg-bg-panel [&.active]:text-red [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-text-mid [&>svg]:shrink-0 [&.active>svg]:text-red mobile-menu-link' + (active ? ' active' : '') + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + item.icon + '</svg><span>' + item.label + '</span></a>';
+        return '<a href="' + item.href + '" class="flex items-center gap-3 p-[13px_12px] rounded-md text-[14.5px] font-bold text-text hover:bg-bg-panel [&.active]:bg-bg-panel [&.active]:text-red [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-text-mid [&>svg]:shrink-0 [&.active>svg]:text-red mobile-menu-link' + (active ? ' active' : '') + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + item.icon + '</svg><span>' + item.label + '</span></a>';
       }).join('');
+    }
+    function group(title, items) {
+      return '<div class="group/mg" data-member-group><button type="button" class="flex w-full items-center justify-between p-[12px_12px_6px] bg-transparent border-0 text-[12px] leading-[inherit] font-bold text-text-dim cursor-pointer hover:text-text mobile-menu-section" data-member-group-toggle aria-expanded="true"><span>' + title + '</span><svg class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 group-[.is-collapsed]/mg:-rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>' +
+        '<div class="flex flex-col group-[.is-collapsed]/mg:hidden">' + links(items) + '</div></div>';
+    }
+    var navHtml = group(tr('sidebar.myAccount', '我的帳戶'), MEMBER_MENU_ITEMS.slice(0, split)) +
+      (split < MEMBER_MENU_ITEMS.length ? group(tr('nav.Event', '活動'), MEMBER_MENU_ITEMS.slice(split)) : '');
     openMobileOverlay(navHtml);
   }
   function initHeaderMobileMenu() {
