@@ -65,6 +65,11 @@ window.EventI18n = (function () {
 
   };
 
+  // 皮可以覆寫文字（例：活動名稱），寫在 config.skins.<名稱>.strings，格式同上
+  var SKIN = window.EVENT_CONFIG && window.EVENT_CONFIG.skins && window.EVENT_CONFIG.skins[window.EVENT_CONFIG.activeSkin];
+  if (SKIN && SKIN.strings) Object.keys(SKIN.strings).forEach(function (k) { STRINGS[k] = SKIN.strings[k]; });
+
+
   function zhPreviewOn() {
     try { return sessionStorage.getItem(ZH_PREVIEW_KEY) === '1'; } catch (e) { return false; }
   }

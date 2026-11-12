@@ -22,6 +22,9 @@ window.EVENT_CONFIG = {
   skins: {
     survival: {
       css: 'skins/survival/skin.css',
+      strings: {
+        'title.alt': { en: 'Survival Spin', ko: '서바이벌 스핀', th: 'สปินเอาตัวรอด', zh: '生存轉盤' }
+      },
       images: {
         title: {
           en: 'skins/survival/img/title-en.webp',

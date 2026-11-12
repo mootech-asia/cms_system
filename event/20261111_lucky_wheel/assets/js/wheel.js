@@ -369,6 +369,8 @@
   }
 
   function renderLocale() {
+    var skin = cfg.skins[cfg.activeSkin];
+    if (skin && skin.strings && skin.strings['title.alt']) document.title = t('title.alt');
     applyImages();
     if (n) renderWheelLabels();
     renderContent();
