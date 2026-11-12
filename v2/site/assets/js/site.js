@@ -13,6 +13,14 @@
  */
 (function () {
   'use strict';
+  // 會員側欄分組（My Account／Event）可收合：點標題切換，事件委派所以不必等側欄渲染完
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('[data-member-group-toggle]');
+    if (!btn) return;
+    var collapsed = btn.closest('[data-member-group]').classList.toggle('is-collapsed');
+    btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+  });
+
 
   var D = window.WIN100_DATA || {};
 

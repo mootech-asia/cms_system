@@ -1,6 +1,14 @@
 // CMS_Frontend_v5 — 純靜態站 vanilla JS 行為層（無框架、無 build）。
 (function () {
   'use strict';
+  // 會員側欄分組（My Account／Event）可收合：點標題切換，事件委派所以不必等側欄渲染完
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('[data-member-group-toggle]');
+    if (!btn) return;
+    var collapsed = btn.closest('[data-member-group]').classList.toggle('is-collapsed');
+    btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+  });
+
 
   function safe(fn) { try { fn(); } catch (e) { /* 避免單一功能失敗拖垮整頁 */ } }
   function on(el, ev, fn) { if (el) el.addEventListener(ev, fn); }
