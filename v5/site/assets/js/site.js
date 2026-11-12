@@ -665,18 +665,11 @@
      整顆換掉,不額外疊 class 控制顯示/隱藏兩組 svg。 */
   var HAMBURGER_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
   var CLOSE_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>';
-  /* 關閉時先把面板由下往上收回（clip-path 收合，約 200ms）再移除；切換到另一個
-     選單時傳 true 直接移除，不播動畫。 */
-  function closeMobileMenu(instant) {
+  function closeMobileMenu() {
     if (!mobileMenuRoot) return;
-    var root = mobileMenuRoot;
+    mobileMenuRoot.remove();
     mobileMenuRoot = null;
     unlockScroll();
-    if (instant === true) root.remove();
-    else {
-      root.classList.add('is-collapsed');
-      setTimeout(function () { root.remove(); }, 220);
-    }
     var trigger = document.querySelector('.header-menu-trigger');
     if (trigger) { trigger.innerHTML = HAMBURGER_ICON; trigger.setAttribute('aria-expanded', 'false'); }
   }
@@ -685,7 +678,7 @@
      position:absolute 定位,scrim 只負責接住「點外面關閉」,本身透明
      不遮蔽頁面內容。 */
   function openMobileOverlay(navHtml) {
-    closeMobileMenu(true);
+    closeMobileMenu();
     var header = document.querySelector('.site-header');
     if (!header) return;
     var mobileUser = loadAuth();
@@ -697,19 +690,19 @@
     var wrap = document.createElement('div');
     wrap.innerHTML =
       '<div class="fixed inset-0 z-[10001] bg-transparent header-menu-scrim" data-mobile-overlay></div>' +
-      '<div class="absolute top-full right-0 z-[10002] w-full max-w-[560px] max-h-[calc(100vh-72px)] max-[600px]:max-w-full flex flex-col bg-bg border border-line border-t-0 shadow-card overflow-hidden [clip-path:inset(0)] transition-[clip-path] duration-200 ease-out motion-reduce:transition-none group-[.is-collapsed]/mm:[clip-path:inset(0_0_100%_0)] header-menu-panel">' +
-      '<nav class="flex flex-col min-h-0 overflow-y-auto header-menu-nav">' + navHtml + '</nav>' +
+      '<div class="absolute top-full right-0 z-[10002] w-full max-w-[560px] max-h-[calc(100vh-72px)] max-[600px]:max-w-full flex flex-col bg-bg border border-line border-t-0 shadow-card overflow-hidden header-menu-panel">' +
+      '<nav class="flex flex-col flex-1 min-h-0 overflow-y-auto header-menu-nav">' + navHtml + '</nav>' +
       '<div class="pt-3.5 px-5 pb-5 border-t border-line shrink-0 header-menu-foot">' + footHtml + '</div>' +
       '</div>';
     mobileMenuRoot = document.createElement('div');
-    mobileMenuRoot.className = 'group/mm is-collapsed header-menu-root';
+    mobileMenuRoot.className = 'header-menu-root';
     while (wrap.firstChild) mobileMenuRoot.appendChild(wrap.firstChild);
     header.appendChild(mobileMenuRoot);
-    // 面板最大高度扣掉 header 實際高度(可能因會員態分兩行而變化),
-    // 避免固定寫死的高度在較高的 header 下算錯,底部被裁掉還出不了捲軸。
-    mobileMenuRoot.querySelector('.header-menu-panel').style.maxHeight = 'calc(100vh - ' + header.offsetHeight + 'px)';
-    void mobileMenuRoot.offsetHeight;
-    mobileMenuRoot.classList.remove('is-collapsed');
+    // 面板固定撐到視窗底（扣掉 header 實際高度，header 可能因會員態分兩行而變高），
+    // 底部帳戶區固定在面板最下方，分組收合或內容較短時面板高度都不變。
+    var panelH = 'calc(100vh - ' + header.offsetHeight + 'px)';
+    mobileMenuRoot.querySelector('.header-menu-panel').style.height = panelH;
+    mobileMenuRoot.querySelector('.header-menu-panel').style.maxHeight = panelH;
     lockScroll();
     var trigger = document.querySelector('.header-menu-trigger');
     if (trigger) { trigger.innerHTML = CLOSE_ICON; trigger.setAttribute('aria-expanded', 'true'); }

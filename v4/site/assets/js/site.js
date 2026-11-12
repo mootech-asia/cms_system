@@ -636,19 +636,9 @@
     { href: 'about.html?tab=faq', label: tr('notice.faq', '常見問題'), icon: '<circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8"/><path d="M12 17h.01"/>' },
   ];
   var mobileMenuRoot = null;
-  /* 關閉時先把面板由下往上收回（clip-path 收合，約 200ms）再移除；切換到另一個
-     選單時傳 true 直接移除，不播動畫。 */
-  function closeMobileMenu(instant) {
-    if (!mobileMenuRoot) return;
-    var root = mobileMenuRoot;
-    mobileMenuRoot = null;
-    unlockScroll();
-    if (instant === true) { root.remove(); return; }
-    root.classList.add('is-collapsed');
-    setTimeout(function () { root.remove(); }, 220);
-  }
+  function closeMobileMenu() { if (mobileMenuRoot) { mobileMenuRoot.remove(); mobileMenuRoot = null; unlockScroll(); } }
   function openMobileOverlay(navHtml) {
-    closeMobileMenu(true);
+    closeMobileMenu();
     var mobileUser = loadAuth();
     var footHtml = mobileUser
       ? '<div class="flex items-center gap-2.5 p-[6px_0_14px] text-[13.5px] font-bold text-text [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-gold-deep mobile-menu-account">' + USER_ICON + '<span>' + escapeHtml(mobileUser.name) + '・' + tr('auth.balancePrefix', '餘額：') + escapeHtml(mobileUser.balance) + '</span></div>' +
@@ -657,8 +647,8 @@
         '<button type="button" class="block w-full text-center mb-2 p-[9px_20px] border! border-gold-hi! rounded-full bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold" data-mobile-register>' + tr('auth.registerNow', '立即註冊') + '</button>';
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="fixed inset-0 z-[10001] bg-[rgba(20,6,10,0.6)] transition-opacity duration-200 [&.is-collapsed]:opacity-0 motion-reduce:transition-none group/mm is-collapsed mobile-menu-overlay" data-mobile-overlay>' +
-      '<div class="absolute inset-0 flex flex-col bg-bg overflow-hidden [clip-path:inset(0)] transition-[clip-path] duration-200 ease-out motion-reduce:transition-none group-[.is-collapsed]/mm:[clip-path:inset(0_0_100%_0)]">' +
+      '<div class="fixed inset-0 z-[10001] bg-[rgba(20,6,10,0.6)] mobile-menu-overlay" data-mobile-overlay>' +
+      '<div class="absolute inset-0 flex flex-col bg-bg overflow-hidden">' +
       '<div class="flex items-center justify-between p-[16px_20px] bg-[image:var(--header-grad)] shrink-0"><img src="logo.png" alt="Bet100" class="h-8 w-auto">' +
       '<button type="button" class="w-8 h-8 grid place-items-center rounded-full text-text-on-header bg-[rgba(255,255,255,0.14)]" aria-label="' + tr('cs.chatClose', '關閉') + '" data-mobile-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
       '<nav class="flex flex-col p-2.5 flex-1 min-h-0 overflow-y-auto">' + navHtml + '</nav>' +
@@ -666,8 +656,6 @@
       '</div></div>';
     mobileMenuRoot = wrap.firstElementChild;
     document.body.appendChild(mobileMenuRoot);
-    void mobileMenuRoot.offsetHeight;
-    mobileMenuRoot.classList.remove('is-collapsed');
     lockScroll();
     on(mobileMenuRoot, 'click', function (e) { if (e.target === mobileMenuRoot) closeMobileMenu(); });
     on(mobileMenuRoot.querySelector('[data-mobile-close]'), 'click', closeMobileMenu);
