@@ -264,30 +264,24 @@ html { touch-action: manipulation; }
   top: 2%;
   left: 50%;
   z-index: 6;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--ev-space-2);
-  width: max-content;
-  max-width: calc(100vw - 2 * var(--ev-space-2));
-  padding: var(--ev-space-3) var(--ev-space-10);
+  display: grid;
+  gap: var(--ev-space-3);
+  width: min(288px, calc(100vw - 2 * var(--ev-space-4)));
+  padding: var(--ev-space-4);
   border-radius: var(--ev-radius);
   background: var(--ev-color-tag-bg);
   color: var(--ev-color-tag-text);
   font-size: 13px;
   font-weight: 700;
-  white-space: nowrap;
   transform: translateX(-50%);
 }
-/* 兩行：上行獎項數量、下行重設次數與換圖標籤；× 固定在右上角。轉盤區比面板窄，寬度以螢幕為準 */
-.ev-prize-panel-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--ev-space-2); }
-.ev-prize-panel-label { margin-right: var(--ev-space-1); }
+/* 上行：獎項數量（字靠左、− N + 靠右）；下行：兩顆等寬按鈕；× 在右上角、樣式跟該皮的圓形按鈕一致。
+   轉盤區比面板窄，寬度以螢幕為準 */
+.ev-prize-panel-row { display: flex; align-items: center; gap: var(--ev-space-2); padding-right: var(--ev-space-6); }
+.ev-prize-panel-label { flex: 1; min-width: 0; text-align: left; }
+.ev-prize-panel-row:has(.ev-prize-panel-text) { display: grid; grid-template-columns: 1fr 1fr; padding-right: 0; }
 /* 面板開著時轉盤區（含面板）移到兔比前面，不然兔耳會蓋到面板 */
 .ev-wheel-area:has(.ev-prize-panel:not([hidden])) { z-index: 5; }
-@media (max-width: 359px) {
-  .ev-prize-panel { padding-inline: var(--ev-space-8); }
-  .ev-prize-panel .ev-prize-panel-text { padding: 0 var(--ev-space-2); font-size: 12px; }
-}
 .ev-prize-panel b { min-width: 2ch; text-align: center; font-size: 16px; }
 .ev-prize-panel button {
   width: 32px;
@@ -302,20 +296,26 @@ html { touch-action: manipulation; }
   line-height: 1;
   cursor: pointer;
 }
-
 .ev-prize-panel .ev-prize-panel-text {
-  width: auto;
-  padding: 0 var(--ev-space-3);
+  width: 100%;
+  height: auto;
+  min-height: 36px;
+  padding: var(--ev-space-1) var(--ev-space-2);
   border-radius: var(--ev-radius-pill);
   font-size: 13px;
+  line-height: 1.2;
 }
 .ev-prize-panel .ev-prize-panel-close {
   position: absolute;
-  top: var(--ev-space-2);
-  right: var(--ev-space-2);
-  width: 26px;
-  height: 26px;
-  font-size: 15px;
+  top: calc(var(--ev-space-2) * -1);
+  right: calc(var(--ev-space-2) * -1);
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--ev-color-gold);
+  background: radial-gradient(circle at 50% 35%, var(--ev-color-primary), var(--ev-color-gold-dark));
+  color: var(--ev-color-on-primary);
+  font-size: 18px;
+  box-shadow: var(--ev-shadow-btn);
 }
 
 /* 轉盤底座：400×600，上端藏在轉盤後方，下端底盤踩在透視地板上；底盤下有接地陰影 */

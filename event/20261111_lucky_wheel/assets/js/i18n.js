@@ -36,7 +36,7 @@ window.EventI18n = (function () {
     'records.empty': { en: 'No spins yet. Give it a try!', ko: '아직 기록이 없습니다. 한번 돌려 보세요!', th: 'ยังไม่มีประวัติ ลองหมุนดูสิ!', zh: '還沒有紀錄，轉一次試試手氣。' },
     'mock.reset': { en: 'Reset spins', ko: '횟수 초기화', th: 'รีเซ็ตสิทธิ์', zh: '重設次數' },
     'mock.prizes': { en: 'Prizes', ko: '상품 수', th: 'จำนวนรางวัล', zh: '獎項數' },
-    'mock.labels': { en: 'Asset labels', ko: '에셋 라벨', th: 'ป้ายชื่อไฟล์ภาพ', zh: '換圖標籤' },
+    'mock.labels': { en: 'Asset labels', ko: '에셋 라벨', th: 'ป้ายภาพ', zh: '換圖標籤' },
     'mock.on': { en: 'On', ko: '켜짐', th: 'เปิด', zh: '開' },
     'mock.off': { en: 'Off', ko: '꺼짐', th: 'ปิด', zh: '關' },
     'share.button': { en: 'Share this event', ko: '이벤트 공유하기', th: 'แชร์กิจกรรมนี้', zh: '分享活動' },
