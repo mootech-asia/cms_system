@@ -6,8 +6,9 @@ import numpy as np,json
 R=Path(__file__).resolve().parents[1];S=R/'source/ui';O=R/'img'
 sizes={'modal-bg':(600,760),'btn-primary':(400,110),'period-badge':(480,64),'chances-badge':(360,88),'ticker-bar':(690,64),'card-frame':(120,120),'card-title':(400,72),'footer-deco':(750,160),'icon-sound-on':(64,64),'icon-sound-off':(64,64),'icon-share':(64,64),'icon-rotate':(160,160)}
 updated=[]
+SHARP={'ticker-bar','chances-badge','card-title','period-badge'}
 def save(n,im):
- im.save(O/(n+'.webp'),lossless=True,method=2);(O/(n+'.svg')).unlink(missing_ok=True);updated.append(n)
+ im.save(O/(n+'.webp'),quality=95 if n in SHARP else 88,method=6,alpha_quality=100 if n in SHARP else 95);(O/(n+'.svg')).unlink(missing_ok=True);updated.append(n)
 for n,size in sizes.items():
  im=Image.open(S/(n+'-original.png')).convert('RGBA');im.putalpha(im.getchannel('A').point(lambda a:round(max(0,a-210)*255/45)));box=im.getbbox();im=im.crop(box)
  if n in ['modal-bg','card-frame']:
