@@ -540,6 +540,8 @@
   /* 依登入狀態重繪 header-auth,取代原本每頁寫死的訪客/會員版面。
      訪客態的「登錄／立即註冊」一律開對應的登入彈窗完成帳密輸入。 */
   function renderHeaderAuth() {
+    // 側欄的登入／註冊捷徑跟著登入狀態一起更新（登入彈窗送出後不會重新整理頁面）
+    renderSidebarAuth();
     var bar = document.querySelector('.header-auth');
     if (!bar) return;
     var user = loadAuth();
