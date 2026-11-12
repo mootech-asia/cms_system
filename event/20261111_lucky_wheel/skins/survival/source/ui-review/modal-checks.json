@@ -1,0 +1,74 @@
+[
+  {
+    "lang": "en",
+    "mode": "win",
+    "title": "Congratulations!",
+    "body": "20% Deposit Bonus",
+    "visible": true
+  },
+  {
+    "lang": "en",
+    "mode": "win",
+    "closes": true
+  },
+  {
+    "lang": "en",
+    "mode": "lose",
+    "title": "Better luck next time",
+    "body": "Try Again",
+    "visible": true
+  },
+  {
+    "lang": "en",
+    "mode": "lose",
+    "closes": true
+  },
+  {
+    "lang": "ko",
+    "mode": "win",
+    "title": "축하합니다!",
+    "body": "충전 보너스 20%",
+    "visible": true
+  },
+  {
+    "lang": "ko",
+    "mode": "win",
+    "closes": true
+  },
+  {
+    "lang": "ko",
+    "mode": "lose",
+    "title": "다음 기회에",
+    "body": "꽝",
+    "visible": true
+  },
+  {
+    "lang": "ko",
+    "mode": "lose",
+    "closes": true
+  },
+  {
+    "lang": "th",
+    "mode": "win",
+    "title": "ยินดีด้วย!",
+    "body": "โบนัสเติมเงิน 20%",
+    "visible": true
+  },
+  {
+    "lang": "th",
+    "mode": "win",
+    "closes": true
+  },
+  {
+    "lang": "th",
+    "mode": "lose",
+    "title": "โชคดีครั้งหน้า",
+    "body": "ลองใหม่อีกครั้ง",
+    "visible": true
+  },
+  {
+    "lang": "th",
+    "mode": "lose",
+    "closes": true
+  }
+]

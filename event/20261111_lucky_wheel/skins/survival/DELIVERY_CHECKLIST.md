@@ -36,19 +36,19 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 | ☑ | S12 | stage-vignette | 750×1000 | `img/stage-vignette.{png,webp,svg}` | 560465b | ☐ | P0 |
 | ☑ | S13 | bulb-on | 48×48 | `img/bulb-on.{png,webp,svg}` | 560465b | ☐ | P0 |
 | ☑ | S14 | bulb-off | 48×48 | `img/bulb-off.{png,webp,svg}` | 560465b | ☐ | P0 |
-| ☐ | S15 | modal-bg | 600×760 | `img/modal-bg.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | S16 | btn-primary | 400×110 | `img/btn-primary.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | S17 | period-badge | 480×64 | `img/period-badge.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | S18 | chances-badge | 360×88 | `img/chances-badge.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | S19 | ticker-bar | 690×64 | `img/ticker-bar.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | S20 | card-frame | 120×120 | `img/card-frame.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | S21 | card-title | 400×72 | `img/card-title.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | S22 | info-bg | 750×750 | `img/info-bg.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | S23 | footer-deco | 750×160 | `img/footer-deco.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | S24 | icon-sound-on | 64×64 | `img/icon-sound-on.{png,webp,svg}` | | ☐ | P2 |
-| ☐ | S25 | icon-sound-off | 64×64 | `img/icon-sound-off.{png,webp,svg}` | | ☐ | P2 |
-| ☐ | S26 | icon-share | 64×64 | `img/icon-share.{png,webp,svg}` | | ☐ | P2 |
-| ☐ | S27 | icon-rotate | 160×160 | `img/icon-rotate.{png,webp,svg}` | | ☐ | P2 |
+| ☑ | S15 | modal-bg | 600×760 | `img/modal-bg.{png,webp,svg}` | be67d07 | ☐ | P1 |
+| ☑ | S16 | btn-primary | 400×110 | `img/btn-primary.{png,webp,svg}` | be67d07 | ☐ | P1 |
+| ☑ | S17 | period-badge | 480×64 | `img/period-badge.{png,webp,svg}` | be67d07 | ☐ | P1 |
+| ☑ | S18 | chances-badge | 360×88 | `img/chances-badge.{png,webp,svg}` | be67d07 | ☐ | P1 |
+| ☑ | S19 | ticker-bar | 690×64 | `img/ticker-bar.{png,webp,svg}` | be67d07 | ☐ | P1 |
+| ☑ | S20 | card-frame | 120×120 | `img/card-frame.{png,webp,svg}` | be67d07 | ☐ | P1 |
+| ☑ | S21 | card-title | 400×72 | `img/card-title.{png,webp,svg}` | be67d07 | ☐ | P1 |
+| ☑ | S22 | info-bg | 750×750 | `img/info-bg.{png,webp,svg}` | be67d07 | ☐ | P1 |
+| ☑ | S23 | footer-deco | 750×160 | `img/footer-deco.{png,webp,svg}` | be67d07 | ☐ | P1 |
+| ☑ | S24 | icon-sound-on | 64×64 | `img/icon-sound-on.{png,webp,svg}` | be67d07 | ☐ | P2 |
+| ☑ | S25 | icon-sound-off | 64×64 | `img/icon-sound-off.{png,webp,svg}` | be67d07 | ☐ | P2 |
+| ☑ | S26 | icon-share | 64×64 | `img/icon-share.{png,webp,svg}` | be67d07 | ☐ | P2 |
+| ☑ | S27 | icon-rotate | 160×160 | `img/icon-rotate.{png,webp,svg}` | be67d07 | ☐ | P2 |
 | ☐ | S28 | share-preview | 1200×630 | `img/share-preview.{png,jpg}` | | ☐ | P1 |
 
 ## B. 色票（1）
@@ -87,3 +87,5 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 （GPT 交付說明寫在這裡）
 
 - 2026-11-12：P0 14 張正式圖與色票已提交（560465b），方向加強粉彩樓梯迷宮與桃紅／墨綠空間對比。預覽與測試位於 `source/review/`。P1／P2 元件及 P3 工作服兔比尚未交付，現用兔比仍為佔位。S44 待其餘素材交齊後確認；審核欄未改。
+
+- 2026-11-12：S15–S27 已提交 be67d07：9項介面面板／裝飾與4項控制圖示。預覽 `source/ui-review/`，彈窗內部與卡片中心不透明、底紋四邊相接。分享圖 S28 等工作服兔比定稿後製作；S44 等角色路徑交齊再確認。審核欄未改。
