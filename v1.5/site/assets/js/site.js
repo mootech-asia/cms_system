@@ -318,7 +318,7 @@
       { icon: 'sidebar-telegram.svg', tKey: 'sidebar.promoChannel', action: 'telegram' },
       { icon: 'sidebar-helps.svg', tKey: 'about.tabs.faq', action: 'faq' },
     ];
-    return '<div class="fixed top-1/2 right-2 -translate-y-1/2 z-[100] flex flex-col gap-2.5 py-2.5 px-1.5 rounded-full bg-white/[0.14] [backdrop-filter:blur(6px)] [-webkit-backdrop-filter:blur(6px)] border border-white/25 shadow-[0_18px_50px_rgba(10,17,64,0.18)] max-[720px]:right-1.5 max-[720px]:gap-2">' + items.map(function (item) {
+    return '<div data-quick-rail class="fixed top-1/2 right-2 -translate-y-1/2 z-[100] flex flex-col gap-2.5 py-2.5 px-1.5 rounded-full bg-white/[0.14] [backdrop-filter:blur(6px)] [-webkit-backdrop-filter:blur(6px)] border border-white/25 shadow-[0_18px_50px_rgba(10,17,64,0.18)] max-[720px]:right-1.5 max-[720px]:gap-2">' + items.map(function (item) {
       return (
         '<button type="button" class="group/qr relative w-11.5 h-11.5 rounded-full !bg-navy flex items-center justify-center shadow-[0_18px_50px_rgba(10,17,64,0.18)] max-[720px]:!w-10 max-[720px]:!h-10" data-quick-action="' + item.action + '" aria-label="' + t(item.tKey) + '">' +
         '<img src="' + icon(item.icon) + '" alt="" class="w-full h-full">' +
@@ -326,6 +326,101 @@
         '</button>'
       );
     }).join('') + '</div>';
+  }
+
+  /* 手機寬度右側快捷比照 v2 手機版：快捷列貼齊右緣，左側小把手點一下收起／展開，
+     把手可上下拖曳（位移超過 6px 才算拖曳、不觸發收合），位置以視窗高度比例存在
+     localStorage，範圍夾在頁首下緣與底部導覽列上緣之間。桌機寬度外層 dock 為
+     display:contents，快捷列維持原本的定位。 */
+  function initQuickRailDock() {
+    var rail = document.querySelector('[data-quick-rail]');
+    if (!rail || rail.parentElement.hasAttribute('data-qr-dock')) return;
+    var mq = window.matchMedia('(max-width: 720px)');
+    var dock = document.createElement('div');
+    dock.setAttribute('data-qr-dock', '');
+    dock.className = 'contents max-[720px]:flex max-[720px]:fixed max-[720px]:right-0 max-[720px]:top-1/2 max-[720px]:-translate-y-1/2 max-[720px]:items-center max-[720px]:z-[100] group/qrd';
+    var handle = document.createElement('button');
+    handle.type = 'button';
+    handle.className = 'hidden max-[720px]:grid h-12 w-5 place-items-center rounded-l-xl border border-r-0 cursor-pointer touch-none bg-white/[0.14] border-white/25 text-white [backdrop-filter:blur(6px)] [-webkit-backdrop-filter:blur(6px)] shadow-[0_18px_50px_rgba(10,17,64,0.18)]';
+    handle.setAttribute('data-qr-dock-toggle', '');
+    handle.setAttribute('aria-expanded', 'true');
+    handle.setAttribute('aria-label', t('userCenter.customerService'));
+    handle.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="rotate-180 transition-transform group-[.is-collapsed]/qrd:rotate-0" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>';
+    rail.parentElement.insertBefore(dock, rail);
+    dock.appendChild(handle);
+    dock.appendChild(rail);
+    rail.className += ' max-[720px]:static max-[720px]:translate-y-0 max-[720px]:[transform:none] max-[720px]:gap-2.5 max-[720px]:p-1.5 max-[720px]:rounded-[27px_0_0_27px] max-[720px]:border-r-0 max-[720px]:group-[.is-collapsed]/qrd:hidden';
+    var POS_KEY = 'cms-v1.5-qr-rail-y';
+    function bottomBarTop() {
+      var top = window.innerHeight;
+      var hits = document.elementsFromPoint ? document.elementsFromPoint(window.innerWidth / 2, window.innerHeight - 20) : [];
+      for (var i = 0; i < hits.length; i++) {
+        var el = hits[i];
+        while (el && el !== document.body) {
+          var cs = window.getComputedStyle(el);
+          if (cs.position === 'fixed' && el.offsetWidth >= window.innerWidth * 0.8) {
+            var r = el.getBoundingClientRect();
+            if (r.bottom >= window.innerHeight - 24 && r.height < window.innerHeight / 3) return Math.min(top, r.top);
+          }
+          el = el.parentElement;
+        }
+      }
+      return top;
+    }
+    function clampY(y) {
+      var half = dock.offsetHeight / 2;
+      var header = document.querySelector('header');
+      var headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      var min = headerBottom + 8 + half;
+      var max = bottomBarTop() - 8 - half;
+      if (max < min) return min;
+      return Math.max(min, Math.min(max, y));
+    }
+    function placeAt(y) { dock.style.top = clampY(y) + 'px'; }
+    function savedY() {
+      var v = null;
+      try { v = parseFloat(localStorage.getItem(POS_KEY)); } catch (e) { v = null; }
+      return v ? v * window.innerHeight : null;
+    }
+    function place() {
+      if (!mq.matches) { dock.style.top = ''; return; }
+      var y = savedY();
+      placeAt(y != null ? y : window.innerHeight / 2);
+    }
+    var drag = null, justDragged = false;
+    handle.addEventListener('pointerdown', function (e) {
+      if (e.button != null && e.button !== 0) return;
+      drag = { startY: e.clientY, startCenter: dock.getBoundingClientRect().top + dock.offsetHeight / 2, moved: false };
+      try { handle.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+    });
+    handle.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var dy = e.clientY - drag.startY;
+      if (!drag.moved && Math.abs(dy) < 6) return;
+      drag.moved = true;
+      placeAt(drag.startCenter + dy);
+    });
+    function endDrag() {
+      if (!drag) return;
+      if (drag.moved) {
+        justDragged = true;
+        setTimeout(function () { justDragged = false; }, 0);
+        var center = dock.getBoundingClientRect().top + dock.offsetHeight / 2;
+        try { localStorage.setItem(POS_KEY, String(center / window.innerHeight)); } catch (err) { /* storage unavailable */ }
+      }
+      drag = null;
+    }
+    handle.addEventListener('pointerup', endDrag);
+    handle.addEventListener('pointercancel', endDrag);
+    handle.addEventListener('click', function () {
+      if (justDragged) return;
+      var collapsed = dock.classList.toggle('is-collapsed');
+      handle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      if (dock.style.top) placeAt(parseFloat(dock.style.top));
+    });
+    window.addEventListener('resize', place);
+    if (mq.addEventListener) mq.addEventListener('change', place); else if (mq.addListener) mq.addListener(place);
+    setTimeout(place, 0);
   }
 
   function bindQuickSidebar(root) {
@@ -801,6 +896,7 @@
       } else {
         quickSidebarMount.outerHTML = quickSidebarHtml();
         bindQuickSidebar(document);
+        initQuickRailDock();
       }
     }
     if (userNavbarMount) userNavbarMount.outerHTML = userNavbarHtml();
