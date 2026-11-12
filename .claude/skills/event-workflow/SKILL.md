@@ -24,7 +24,8 @@ description: "在 cms_system 的 event/ 底下新增或修改任何活動頁（�
    - 元件底圖用 CSS 變數 `--ev-img-<key>`，由 JS 從 config 寫入。**`url()` 放進 CSS 變數時要先轉絕對網址**
      （`new URL(src, document.baseURI).href`），否則會以樣式表位置解析而 404。
 2. **圖上不放會變的文字**：按鈕、彈窗、徽章文字一律程式疊字；只有活動主標是「每個語系一張圖」。
-3. **後台內容只留空位＋假資料**：獎項、規則、次數等由我們的後台提供（`window.EVENT_CONTENT`，格式寫在
+3. **後台內容只留空位＋假資料**（轉盤類：獎項數量／名稱／圖示／機率／可選扇區色都由後台給，扇區由程式畫，美術只出外框與色票；
+   內部預覽用 Ctrl+Alt+↑／↓ 增減獎項數量）：獎項、規則、次數等由我們的後台提供（`window.EVENT_CONTENT`，格式寫在
    `store.js` 開頭）。mock 用 config 的 `defaultContent` 假資料；後台沒給時要有空狀態（例：規則區虛線空位）。
    不要自己做後台。
 4. **語系**：前台只有 en/ko/th（預設 en）；zh 只供內部預覽，Ctrl+Alt+L（Mac：Control+Option+L）切換，

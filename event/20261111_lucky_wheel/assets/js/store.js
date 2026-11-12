@@ -4,7 +4,8 @@
  *   {
  *     period: '2026/11/11 – 2026/11/30',
  *     freeSpins: 3,
- *     prizes: [ { name: { en, ko, th, zh }, icon: '圖片網址', weight: 10, isLose: false }, ... ],
+ *     prizes: [ { name: { en, ko, th, zh }, icon: '圖片網址', weight: 10, isLose: false,
+ *                 color: '#選填扇區底色', textColor: '#選填文字色' }, ... ],   // 數量 3～12，扇區由程式依數量畫出
  *     winners: [ { name: 'pl***88', prize: 0 }, ... ],   // 中獎跑馬燈；prize 為獎項索引或 { en, ko, th, zh }，名字請先遮罩
  *     rulesTitle: { en, ko, th, zh },
  *     rules: { en: ['…'], ko: ['…'], th: ['…'], zh: ['…'] },
@@ -12,6 +13,8 @@
  *   }
  * 文字欄位 ko / th 留空時前台顯示 en；zh 只在內部預覽（Ctrl+Alt+L）顯示。
  * prizes[0] 在指針下方，其餘順時針排列；數量需在 config.prizeLimits 範圍內。
+ * color／textColor 不填時用 event.css 的 --ev-wheel-1～6 預設色票輪流（相鄰不同色）。
+ * 內部預覽可用 Ctrl+Alt+↑／↓（Mac：Control+Option+↑／↓）暫時增減獎項數量看盤面，不會寫回後台。
  * en / ko / th 欄位不得含中文，需由後台在儲存時把關。
  */
 window.EventStore = (function () {

@@ -81,6 +81,9 @@
     var k = i % len;
     // 獎項數除不盡色數時，最後一格可能與第一格同色而相鄰，改用下一個顏色
     if (i === n - 1 && n > 1 && k === 0) k = 1 % len;
+    // 後台可為單一獎項指定顏色（color／textColor）；沒指定的用預設色票輪流
+    var own = prizes[i] || {};
+    if (own.color) return { bg: own.color, text: own.textColor || '#ffffff' };
     return {
       bg: css.getPropertyValue('--ev-wheel-' + (k + 1)).trim(),
       text: css.getPropertyValue('--ev-wheel-' + (k + 1) + '-text').trim()
@@ -398,6 +401,54 @@
     renderRecords();
     showToast(t('toast.reset', { n: player.chances }));
   });
+  // 獎項數量預覽（內部用）：獎項本來就由後台決定、扇區由程式依數量畫出；這裡只在本分頁暫時增減，
+  // 方便看 3～12 項時盤面的樣子。快捷鍵 Ctrl+Alt+↑／↓（Mac：Control+Option+↑／↓），mock 工具列也有按鈕。
+  // 減少＝取前 N 項；增加＝補上「Prize N」假獎項（圖示沿用現有獎項輪流）。不會寫回後台。
+  var PRIZE_PREVIEW_KEY = 'event-prize-preview';
+  var basePrizes = prizes.slice();
+  function previewPrizes(count) {
+    var list = basePrizes.slice(0, count);
+    for (var k = list.length; k < count; k++) {
+      var src = basePrizes[k % basePrizes.length] || {};
+      list.push({ name: I18n.all('mock.prize', { n: k + 1 }), icon: src.icon, weight: 10, isLose: false, preview: true });
+    }
+    return list;
+  }
+  function setPrizeCount(count, silent) {
+    if (!basePrizes.length || spinning) return;
+    var lim = cfg.prizeLimits;
+    if (count < lim.min || count > lim.max) {
+      if (!silent) showToast(t('toast.prizeLimit', { min: lim.min, max: lim.max }));
+      return;
+    }
+    prizes = previewPrizes(count);
+    n = prizes.length;
+    seg = 360 / n;
+    rotation = 0;
+    disc.style.transitionDuration = '0ms';
+    disc.style.transform = 'rotate(0deg)';
+    renderWheel();
+    renderTicker();
+    $('prizeCount').textContent = n;
+    try { sessionStorage.setItem(PRIZE_PREVIEW_KEY, String(n)); } catch (e) { /* 只在本次頁面生效 */ }
+    if (!silent) showToast(t('toast.prizes', { n: n }));
+  }
+  document.addEventListener('keydown', function (e) {
+    if (!e.ctrlKey || !e.altKey || e.metaKey || e.shiftKey) return;
+    if (e.code !== 'ArrowUp' && e.code !== 'ArrowDown') return;
+    var el = e.target;
+    if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
+    e.preventDefault();
+    setPrizeCount(n + (e.code === 'ArrowUp' ? 1 : -1));
+  });
+  $('btnPrizeMore').addEventListener('click', function () { setPrizeCount(n + 1); });
+  $('btnPrizeLess').addEventListener('click', function () { setPrizeCount(n - 1); });
+  $('prizeCount').textContent = n;
+  try {
+    var savedCount = Number(sessionStorage.getItem(PRIZE_PREVIEW_KEY));
+    if (savedCount && savedCount !== n) setPrizeCount(savedCount, true);
+  } catch (e) { /* 預設用後台數量 */ }
+
   // mock 工具列平常隱藏（老闆／客戶看不到），內部用 Ctrl+Alt+H（Mac：Control+Option+H）叫出／收起，
   // 本分頁內記住狀態
   var MOCK_KEY = 'event-mock-tools';

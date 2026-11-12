@@ -36,6 +36,7 @@ window.EventI18n = (function () {
     'records.empty': { en: 'No spins yet. Give it a try!', ko: '아직 기록이 없습니다. 한번 돌려 보세요!', th: 'ยังไม่มีประวัติ ลองหมุนดูสิ!', zh: '還沒有紀錄，轉一次試試手氣。' },
     'mock.tools': { en: 'Mock tools:', ko: '목업 도구:', th: 'เครื่องมือม็อกอัป:', zh: 'mock 工具：' },
     'mock.reset': { en: 'Reset spins', ko: '횟수 초기화', th: 'รีเซ็ตสิทธิ์', zh: '重設次數' },
+    'mock.prizes': { en: 'Prizes', ko: '상품 수', th: 'จำนวนรางวัล', zh: '獎項數' },
     'mock.labels': { en: 'Asset labels', ko: '에셋 라벨', th: 'ป้ายชื่อไฟล์ภาพ', zh: '換圖標籤' },
     'mock.on': { en: 'On', ko: '켜짐', th: 'เปิด', zh: '開' },
     'mock.off': { en: 'Off', ko: '꺼짐', th: 'ปิด', zh: '關' },
@@ -58,6 +59,9 @@ window.EventI18n = (function () {
     'modal.ok': { en: 'Got it', ko: '확인', th: 'ตกลง', zh: '知道了' },
     'toast.noPrizes': { en: 'No prizes have been set up yet', ko: '아직 상품이 설정되지 않았습니다', th: 'ยังไม่ได้ตั้งค่ารางวัล', zh: '活動尚未設定獎項' },
     'toast.noChances': { en: 'No spins left', ko: '남은 기회가 없습니다', th: 'สิทธิ์หมุนหมดแล้ว', zh: '抽獎次數已用完' },
+    'toast.prizes': { en: 'Wheel preview: {n} prizes', ko: '룰렛 미리보기: 상품 {n}개', th: 'ตัวอย่างวงล้อ: {n} รางวัล', zh: '轉盤預覽：{n} 個獎項' },
+    'toast.prizeLimit': { en: 'Prizes must be between {min} and {max}', ko: '상품 수는 {min}~{max}개입니다', th: 'จำนวนรางวัลต้องอยู่ระหว่าง {min}–{max}', zh: '獎項數需在 {min}～{max} 之間' },
+    'mock.prize': { en: 'Prize {n}', ko: '상품 {n}', th: 'รางวัล {n}', zh: '獎項 {n}' },
     'toast.reset': { en: 'Reset to {n} spins', ko: '{n}회로 초기화했습니다', th: 'รีเซ็ตเป็น {n} ครั้งแล้ว', zh: '已重設為 {n} 次' },
 
 
@@ -95,6 +99,14 @@ window.EventI18n = (function () {
     return String(str).replace(/\{(\w+)\}/g, function (m, k) {
       return params && params[k] != null ? params[k] : m;
     });
+  }
+
+  // 同一句在所有語系的版本（{ en, ko, th, zh }），給需要「多語文字物件」的資料用，例如預覽用的假獎項名稱
+  function all(key, params) {
+    var e = STRINGS[key] || {};
+    var out = {};
+    ['en', 'ko', 'th', 'zh'].forEach(function (l) { out[l] = fill(e[l] != null ? e[l] : e[DEFAULT_LOCALE], params); });
+    return out;
   }
 
   function t(key, params) {
@@ -166,6 +178,7 @@ window.EventI18n = (function () {
     LOCALES: LOCALES,
     DEFAULT_LOCALE: DEFAULT_LOCALE,
     t: t,
+    all: all,
     pick: pick,
     getLocale: getLocale,
     setLocale: setLocale,
