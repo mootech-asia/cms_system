@@ -14,7 +14,7 @@
  * 文字欄位 ko / th 留空時前台顯示 en；zh 只在內部預覽（Ctrl+Alt+L）顯示。
  * prizes[0] 在指針下方，其餘順時針排列；數量需在 config.prizeLimits 範圍內。
  * color／textColor 不填時用 event.css 的 --ev-wheel-1～6 預設色票輪流（相鄰不同色）。
- * 內部預覽可用 Ctrl+Alt+↑／↓（Mac：Control+Option+↑／↓）或手機在轉盤上連點三下，暫時增減獎項數量看盤面，不會寫回後台。
+ * 內部預覽可用 Ctrl+Alt+↑／↓（Mac：Control+Option+↑／↓）或手機在畫面同一位置連點三下，暫時增減獎項數量看盤面，不會寫回後台。
  * en / ko / th 欄位不得含中文，需由後台在儲存時把關。
  */
 window.EventStore = (function () {

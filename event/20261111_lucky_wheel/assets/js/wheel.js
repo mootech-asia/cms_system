@@ -447,18 +447,23 @@
   $('btnPrizeLess').addEventListener('click', function () { setPrizeCount(n - 1); });
   $('prizeCount').textContent = n;
   $('panelPrizeCount').textContent = n;
-  // 手機沒有鍵盤：在轉盤上同一個位置連點三下（0.6 秒內、相距 30px 內）叫出／收起獎項數量面板；
-  // 點在按鈕上（SPIN 等）不算，避免連點誤觸抽獎
+  // 手機沒有鍵盤：在畫面同一個位置連點三下叫出／收起獎項數量面板。
+  // 判斷方式：每一下和前一下相隔 0.5 秒內、相距 40px 內就累計（一般人連點三下約 0.6～1 秒，
+  // 不能用「三下總共幾秒內」判斷）；點在按鈕、連結、輸入框上不算，避免誤觸抽獎或關閉彈窗。
   var panel = $('prizePanel');
   var taps = [];
-  $('wheelArea').addEventListener('pointerup', function (e) {
-    if (e.target.closest('button, a')) { taps = []; return; }
+  document.addEventListener('pointerup', function (e) {
+    if (e.target.closest('button, a, input, select, textarea, label, [role="button"], #prizePanel')) { taps = []; return; }
     var now = performance.now();
-    taps = taps.filter(function (tp) { return now - tp.t < 600 && Math.abs(tp.x - e.clientX) < 30 && Math.abs(tp.y - e.clientY) < 30; });
+    var last = taps[taps.length - 1];
+    if (!last || now - last.t > 500 || Math.abs(last.x - e.clientX) > 40 || Math.abs(last.y - e.clientY) > 40) taps = [];
     taps.push({ t: now, x: e.clientX, y: e.clientY });
     if (taps.length >= 3) {
       taps = [];
-      if (basePrizes.length) panel.hidden = !panel.hidden;
+      if (basePrizes.length) {
+        panel.hidden = !panel.hidden;
+        if (!panel.hidden) panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
     }
   });
   $('panelPrizeMore').addEventListener('click', function () { setPrizeCount(n + 1); });

@@ -257,8 +257,8 @@ img { display: block; max-width: 100%; }
 }
 
 .ev-wheel { position: relative; z-index: 1; width: 100%; }
-/* 轉盤區連點三下叫出的獎項數量面板（內部預覽用）；關掉雙擊縮放，連點才不會被當成放大 */
-#wheelArea { touch-action: manipulation; }
+/* 畫面連點三下叫出的獎項數量面板（內部預覽用）；整頁關掉雙擊縮放（雙指縮放仍可用），連點才不會被當成放大 */
+html { touch-action: manipulation; }
 .ev-prize-panel {
   position: absolute;
   top: 2%;
