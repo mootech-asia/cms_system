@@ -664,11 +664,18 @@
      整顆換掉,不額外疊 class 控制顯示/隱藏兩組 svg。 */
   var HAMBURGER_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
   var CLOSE_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>';
-  function closeMobileMenu() {
+  /* 關閉時先把面板由下往上收回（clip-path 收合，約 200ms）再移除；切換到另一個
+     選單時傳 true 直接移除，不播動畫。 */
+  function closeMobileMenu(instant) {
     if (!mobileMenuRoot) return;
-    mobileMenuRoot.remove();
+    var root = mobileMenuRoot;
     mobileMenuRoot = null;
     unlockScroll();
+    if (instant === true) root.remove();
+    else {
+      root.classList.add('is-collapsed');
+      setTimeout(function () { root.remove(); }, 220);
+    }
     var trigger = document.querySelector('.header-menu-trigger');
     if (trigger) { trigger.innerHTML = HAMBURGER_ICON; trigger.setAttribute('aria-expanded', 'false'); }
   }
@@ -677,7 +684,7 @@
      position:absolute 定位,scrim 只負責接住「點外面關閉」,本身透明
      不遮蔽頁面內容。 */
   function openMobileOverlay(navHtml) {
-    closeMobileMenu();
+    closeMobileMenu(true);
     var header = document.querySelector('.site-header');
     if (!header) return;
     var mobileUser = loadAuth();
@@ -689,17 +696,19 @@
     var wrap = document.createElement('div');
     wrap.innerHTML =
       '<div class="fixed inset-0 z-[10001] bg-transparent header-menu-scrim" data-mobile-overlay></div>' +
-      '<div class="absolute top-full right-0 z-[10002] w-full max-w-[560px] max-h-[calc(100vh-72px)] max-[600px]:max-w-full flex flex-col bg-bg border border-line border-t-0 shadow-card overflow-y-auto header-menu-panel">' +
-      '<nav class="flex flex-col header-menu-nav">' + navHtml + '</nav>' +
+      '<div class="absolute top-full right-0 z-[10002] w-full max-w-[560px] max-h-[calc(100vh-72px)] max-[600px]:max-w-full flex flex-col bg-bg border border-line border-t-0 shadow-card overflow-hidden [clip-path:inset(0)] transition-[clip-path] duration-200 ease-out motion-reduce:transition-none group-[.is-collapsed]/mm:[clip-path:inset(0_0_100%_0)] header-menu-panel">' +
+      '<nav class="flex flex-col min-h-0 overflow-y-auto header-menu-nav">' + navHtml + '</nav>' +
       '<div class="pt-3.5 px-5 pb-5 border-t border-line shrink-0 header-menu-foot">' + footHtml + '</div>' +
       '</div>';
     mobileMenuRoot = document.createElement('div');
-    mobileMenuRoot.className = 'header-menu-root';
+    mobileMenuRoot.className = 'group/mm is-collapsed header-menu-root';
     while (wrap.firstChild) mobileMenuRoot.appendChild(wrap.firstChild);
     header.appendChild(mobileMenuRoot);
     // 面板最大高度扣掉 header 實際高度(可能因會員態分兩行而變化),
     // 避免固定寫死的高度在較高的 header 下算錯,底部被裁掉還出不了捲軸。
     mobileMenuRoot.querySelector('.header-menu-panel').style.maxHeight = 'calc(100vh - ' + header.offsetHeight + 'px)';
+    void mobileMenuRoot.offsetHeight;
+    mobileMenuRoot.classList.remove('is-collapsed');
     lockScroll();
     var trigger = document.querySelector('.header-menu-trigger');
     if (trigger) { trigger.innerHTML = CLOSE_ICON; trigger.setAttribute('aria-expanded', 'true'); }
@@ -817,71 +826,100 @@
     on(csModalRoot, 'click', function (e) { if (e.target === csModalRoot) closeCsModal(); });
     on(csModalRoot.querySelector('[data-cs-close]'), 'click', closeCsModal);
   }
-  /* 手機版右側快捷改成單顆漂浮鈕（對照 v3 客服鈕）：點擊展開/收合三顆捷徑，
-     可用手指拖曳整組移動。拖曳後以 right/bottom 重新定位，讓展開方向維持往上；
-     放開後標記 justDragged，跳過瀏覽器補發的 click，避免拖完就展開。
-     回到桌機寬度時清掉 inline 定位，還原 Tailwind 的直立側欄。 */
-  function initQuickRailFab() {
+  /* 手機寬度右側快捷比照 v2 手機版：快捷列貼齊右緣，左側小把手點一下收起／展開，
+     把手可上下拖曳（位移超過 6px 才算拖曳、不觸發收合），位置以視窗高度比例存在
+     localStorage，範圍夾在頁首下緣與底部導覽列上緣之間。桌機寬度外層 dock 為
+     display:contents，快捷列維持原本的定位。 */
+  function initQuickRailDock() {
     var rail = document.querySelector('[data-quick-rail]');
-    var fab = rail && rail.querySelector('[data-quick-rail-toggle]');
-    if (!fab) return;
+    if (!rail || rail.parentElement.hasAttribute('data-qr-dock')) return;
     var mq = window.matchMedia('(max-width: 720px)');
-    function setOpen(open) {
-      rail.classList.toggle('is-open', open);
-      fab.setAttribute('aria-expanded', open ? 'true' : 'false');
-      if (open) {
-        var r = rail.getBoundingClientRect();
-        if (r.top < 6) rail.style.bottom = (parseFloat(rail.style.bottom) || (window.innerHeight - r.bottom)) - (6 - r.top) + 'px';
+    var dock = document.createElement('div');
+    dock.setAttribute('data-qr-dock', '');
+    dock.className = 'contents max-[720px]:flex max-[720px]:fixed max-[720px]:right-0 max-[720px]:top-1/2 max-[720px]:-translate-y-1/2 max-[720px]:items-center max-[720px]:z-[900] group/qrd';
+    var handle = document.createElement('button');
+    handle.type = 'button';
+    handle.className = 'hidden max-[720px]:grid h-12 w-5 place-items-center rounded-l-xl border border-r-0 cursor-pointer touch-none bg-[var(--panel-glass)] border-line-hi text-text-mid shadow-card [backdrop-filter:blur(6px)] [-webkit-backdrop-filter:blur(6px)]';
+    handle.setAttribute('data-qr-dock-toggle', '');
+    handle.setAttribute('aria-expanded', 'true');
+    handle.setAttribute('aria-label', tr('mobileTabbar.ariaLabel', '快捷選單'));
+    handle.setAttribute('data-i18n-aria', 'mobileTabbar.ariaLabel');
+    handle.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="rotate-180 transition-transform group-[.is-collapsed]/qrd:rotate-0" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>';
+    rail.parentElement.insertBefore(dock, rail);
+    dock.appendChild(handle);
+    dock.appendChild(rail);
+    rail.className += ' max-[720px]:static max-[720px]:translate-y-0 max-[720px]:[transform:none] max-[720px]:gap-2.5 max-[720px]:p-1.5 max-[720px]:rounded-[27px_0_0_27px] max-[720px]:border-r-0 max-[720px]:group-[.is-collapsed]/qrd:hidden';
+    var POS_KEY = 'cms-v5-qr-rail-y';
+    function bottomBarTop() {
+      var top = window.innerHeight;
+      var hits = document.elementsFromPoint ? document.elementsFromPoint(window.innerWidth / 2, window.innerHeight - 20) : [];
+      for (var i = 0; i < hits.length; i++) {
+        var el = hits[i];
+        while (el && el !== document.body) {
+          var cs = window.getComputedStyle(el);
+          if (cs.position === 'fixed' && el.offsetWidth >= window.innerWidth * 0.8) {
+            var r = el.getBoundingClientRect();
+            if (r.bottom >= window.innerHeight - 24 && r.height < window.innerHeight / 3) return Math.min(top, r.top);
+          }
+          el = el.parentElement;
+        }
       }
+      return top;
     }
-    var dragging = false, moved = false, justDragged = false;
-    var startX = 0, startY = 0, startRight = 0, startBottom = 0;
-    on(fab, 'pointerdown', function (e) {
+    function clampY(y) {
+      var half = dock.offsetHeight / 2;
+      var header = document.querySelector('header');
+      var headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      var min = headerBottom + 8 + half;
+      var max = bottomBarTop() - 8 - half;
+      if (max < min) return min;
+      return Math.max(min, Math.min(max, y));
+    }
+    function placeAt(y) { dock.style.top = clampY(y) + 'px'; }
+    function savedY() {
+      var v = null;
+      try { v = parseFloat(localStorage.getItem(POS_KEY)); } catch (e) { v = null; }
+      return v ? v * window.innerHeight : null;
+    }
+    function place() {
+      if (!mq.matches) { dock.style.top = ''; return; }
+      var y = savedY();
+      placeAt(y != null ? y : window.innerHeight / 2);
+    }
+    var drag = null, justDragged = false;
+    handle.addEventListener('pointerdown', function (e) {
       if (e.button != null && e.button !== 0) return;
-      var r = rail.getBoundingClientRect();
-      dragging = true; moved = false;
-      startX = e.clientX; startY = e.clientY;
-      startRight = window.innerWidth - r.right; startBottom = window.innerHeight - r.bottom;
-      try { fab.setPointerCapture(e.pointerId); } catch (err) {}
+      drag = { startY: e.clientY, startCenter: dock.getBoundingClientRect().top + dock.offsetHeight / 2, moved: false };
+      try { handle.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
     });
-    on(fab, 'pointermove', function (e) {
-      if (!dragging) return;
-      var dx = e.clientX - startX, dy = e.clientY - startY;
-      if (!moved && Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
-      moved = true;
-      var r = rail.getBoundingClientRect();
-      var maxRight = Math.max(window.innerWidth - r.width - 6, 6);
-      var maxBottom = Math.max(window.innerHeight - r.height - 6, 6);
-      rail.style.right = Math.min(Math.max(startRight - dx, 6), maxRight) + 'px';
-      rail.style.bottom = Math.min(Math.max(startBottom - dy, 6), maxBottom) + 'px';
+    handle.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var dy = e.clientY - drag.startY;
+      if (!drag.moved && Math.abs(dy) < 6) return;
+      drag.moved = true;
+      placeAt(drag.startCenter + dy);
     });
     function endDrag() {
-      if (!dragging) return;
-      dragging = false;
-      if (moved) { justDragged = true; setTimeout(function () { justDragged = false; }, 0); }
+      if (!drag) return;
+      if (drag.moved) {
+        justDragged = true;
+        setTimeout(function () { justDragged = false; }, 0);
+        var center = dock.getBoundingClientRect().top + dock.offsetHeight / 2;
+        try { localStorage.setItem(POS_KEY, String(center / window.innerHeight)); } catch (err) { /* storage unavailable */ }
+      }
+      drag = null;
     }
-    on(fab, 'pointerup', endDrag);
-    on(fab, 'pointercancel', endDrag);
-    on(fab, 'click', function (e) {
-      e.preventDefault();
+    handle.addEventListener('pointerup', endDrag);
+    handle.addEventListener('pointercancel', endDrag);
+    handle.addEventListener('click', function () {
       if (justDragged) return;
-      setOpen(!rail.classList.contains('is-open'));
+      var collapsed = dock.classList.toggle('is-collapsed');
+      handle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      if (dock.style.top) placeAt(parseFloat(dock.style.top));
     });
-    Array.prototype.slice.call(rail.querySelectorAll('.quick-rail-btn')).forEach(function (a) {
-      on(a, 'click', function () { if (mq.matches) setOpen(false); });
-    });
-    on(document, 'click', function (e) {
-      if (rail.classList.contains('is-open') && !rail.contains(e.target)) setOpen(false);
-    });
-    on(document, 'keydown', function (e) {
-      if (e.key === 'Escape' && rail.classList.contains('is-open')) setOpen(false);
-    });
-    function onMqChange() {
-      if (mq.matches) return;
-      rail.style.right = ''; rail.style.bottom = '';
-      setOpen(false);
-    }
-    if (mq.addEventListener) mq.addEventListener('change', onMqChange); else if (mq.addListener) mq.addListener(onMqChange);
+    window.addEventListener('resize', place);
+    if (mq.addEventListener) mq.addEventListener('change', place); else if (mq.addListener) mq.addListener(place);
+    setTimeout(place, 0);
   }
 
   function initCsTriggers() {
@@ -1740,7 +1778,7 @@
     safe(initMemberLogout);
     safe(initHeaderMobileMenu);
     safe(initCsTriggers);
-    safe(initQuickRailFab);
+    safe(initQuickRailDock);
     safe(initAboutTabs);
     safe(initFaqAccordion);
     safe(initBetRecordParlayRows);

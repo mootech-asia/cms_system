@@ -635,9 +635,19 @@
     { href: 'about.html?tab=faq', label: tr('notice.faq', '常見問題'), icon: '<circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8"/><path d="M12 17h.01"/>' },
   ];
   var mobileMenuRoot = null;
-  function closeMobileMenu() { if (mobileMenuRoot) { mobileMenuRoot.remove(); mobileMenuRoot = null; unlockScroll(); } }
+  /* 關閉時先把面板由下往上收回（clip-path 收合，約 200ms）再移除；切換到另一個
+     選單時傳 true 直接移除，不播動畫。 */
+  function closeMobileMenu(instant) {
+    if (!mobileMenuRoot) return;
+    var root = mobileMenuRoot;
+    mobileMenuRoot = null;
+    unlockScroll();
+    if (instant === true) { root.remove(); return; }
+    root.classList.add('is-collapsed');
+    setTimeout(function () { root.remove(); }, 220);
+  }
   function openMobileOverlay(navHtml) {
-    closeMobileMenu();
+    closeMobileMenu(true);
     var mobileUser = loadAuth();
     var footHtml = mobileUser
       ? '<div class="flex items-center gap-2.5 p-[6px_0_14px] text-[13.5px] font-bold text-text [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-gold-deep mobile-menu-account">' + USER_ICON + '<span>' + escapeHtml(mobileUser.name) + '・' + tr('auth.balancePrefix', '餘額：') + escapeHtml(mobileUser.balance) + '</span></div>' +
@@ -646,15 +656,17 @@
         '<button type="button" class="block w-full text-center mb-2 p-[9px_20px] border! border-gold-hi! rounded-full bg-[image:var(--gold-grad)]! text-[#3a2604] font-bold text-[13px] whitespace-nowrap shadow-gold transition-[filter,transform] duration-150 hover:brightness-[1.06] hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none btn-gold" data-mobile-register>' + tr('auth.registerNow', '立即註冊') + '</button>';
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div class="fixed inset-0 z-[10001] bg-[rgba(20,6,10,0.6)] mobile-menu-overlay" data-mobile-overlay>' +
-      '<div class="absolute inset-0 flex flex-col bg-bg overflow-y-auto">' +
+      '<div class="fixed inset-0 z-[10001] bg-[rgba(20,6,10,0.6)] transition-opacity duration-200 [&.is-collapsed]:opacity-0 motion-reduce:transition-none group/mm is-collapsed mobile-menu-overlay" data-mobile-overlay>' +
+      '<div class="absolute inset-0 flex flex-col bg-bg overflow-hidden [clip-path:inset(0)] transition-[clip-path] duration-200 ease-out motion-reduce:transition-none group-[.is-collapsed]/mm:[clip-path:inset(0_0_100%_0)]">' +
       '<div class="flex items-center justify-between p-[16px_20px] bg-[image:var(--header-grad)] shrink-0"><img src="logo.png" alt="Bet100" class="h-8 w-auto">' +
       '<button type="button" class="w-8 h-8 grid place-items-center rounded-full text-text-on-header bg-[rgba(255,255,255,0.14)]" aria-label="' + tr('cs.chatClose', '關閉') + '" data-mobile-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
-      '<nav class="flex flex-col p-2.5 flex-1">' + navHtml + '</nav>' +
+      '<nav class="flex flex-col p-2.5 flex-1 min-h-0 overflow-y-auto">' + navHtml + '</nav>' +
       '<div class="p-[14px_20px_22px] border-t border-line shrink-0">' + footHtml + '</div>' +
       '</div></div>';
     mobileMenuRoot = wrap.firstElementChild;
     document.body.appendChild(mobileMenuRoot);
+    void mobileMenuRoot.offsetHeight;
+    mobileMenuRoot.classList.remove('is-collapsed');
     lockScroll();
     on(mobileMenuRoot, 'click', function (e) { if (e.target === mobileMenuRoot) closeMobileMenu(); });
     on(mobileMenuRoot.querySelector('[data-mobile-close]'), 'click', closeMobileMenu);
@@ -794,6 +806,102 @@
     on(csModalRoot, 'click', function (e) { if (e.target === csModalRoot) closeCsModal(); });
     on(csModalRoot.querySelector('[data-cs-close]'), 'click', closeCsModal);
   }
+  /* 手機寬度右側快捷比照 v2 手機版：快捷列貼齊右緣，左側小把手點一下收起／展開，
+     把手可上下拖曳（位移超過 6px 才算拖曳、不觸發收合），位置以視窗高度比例存在
+     localStorage，範圍夾在頁首下緣與底部導覽列上緣之間。桌機寬度外層 dock 為
+     display:contents，快捷列維持原本的定位。 */
+  function initQuickRailDock() {
+    var rail = (function () { var a = document.querySelector('.fixed > a[href*="t.me/win10096cs"]'); return a ? a.parentElement : null; })();
+    if (!rail || rail.parentElement.hasAttribute('data-qr-dock')) return;
+    var mq = window.matchMedia('(max-width: 720px)');
+    var dock = document.createElement('div');
+    dock.setAttribute('data-qr-dock', '');
+    dock.className = 'contents max-[720px]:flex max-[720px]:fixed max-[720px]:right-0 max-[720px]:top-1/2 max-[720px]:-translate-y-1/2 max-[720px]:items-center max-[720px]:z-[900] group/qrd';
+    var handle = document.createElement('button');
+    handle.type = 'button';
+    handle.className = 'hidden max-[720px]:grid h-12 w-5 place-items-center rounded-l-xl border border-r-0 cursor-pointer touch-none bg-[var(--panel-glass)] border-line-hi text-text-mid shadow-card [backdrop-filter:blur(6px)]';
+    handle.setAttribute('data-qr-dock-toggle', '');
+    handle.setAttribute('aria-expanded', 'true');
+    handle.setAttribute('aria-label', tr('mobileTabbar.ariaLabel', '快捷選單'));
+    handle.setAttribute('data-i18n-aria', 'mobileTabbar.ariaLabel');
+    handle.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="rotate-180 transition-transform group-[.is-collapsed]/qrd:rotate-0" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>';
+    rail.parentElement.insertBefore(dock, rail);
+    dock.appendChild(handle);
+    dock.appendChild(rail);
+    rail.className += ' max-[720px]:static max-[720px]:translate-y-0 max-[720px]:[transform:none] max-[720px]:gap-2.5 max-[720px]:p-1.5 max-[720px]:rounded-[27px_0_0_27px] max-[720px]:border-r-0 max-[720px]:group-[.is-collapsed]/qrd:hidden';
+    var POS_KEY = 'cms-v4-qr-rail-y';
+    function bottomBarTop() {
+      var top = window.innerHeight;
+      var hits = document.elementsFromPoint ? document.elementsFromPoint(window.innerWidth / 2, window.innerHeight - 20) : [];
+      for (var i = 0; i < hits.length; i++) {
+        var el = hits[i];
+        while (el && el !== document.body) {
+          var cs = window.getComputedStyle(el);
+          if (cs.position === 'fixed' && el.offsetWidth >= window.innerWidth * 0.8) {
+            var r = el.getBoundingClientRect();
+            if (r.bottom >= window.innerHeight - 24 && r.height < window.innerHeight / 3) return Math.min(top, r.top);
+          }
+          el = el.parentElement;
+        }
+      }
+      return top;
+    }
+    function clampY(y) {
+      var half = dock.offsetHeight / 2;
+      var header = document.querySelector('header');
+      var headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      var min = headerBottom + 8 + half;
+      var max = bottomBarTop() - 8 - half;
+      if (max < min) return min;
+      return Math.max(min, Math.min(max, y));
+    }
+    function placeAt(y) { dock.style.top = clampY(y) + 'px'; }
+    function savedY() {
+      var v = null;
+      try { v = parseFloat(localStorage.getItem(POS_KEY)); } catch (e) { v = null; }
+      return v ? v * window.innerHeight : null;
+    }
+    function place() {
+      if (!mq.matches) { dock.style.top = ''; return; }
+      var y = savedY();
+      placeAt(y != null ? y : window.innerHeight / 2);
+    }
+    var drag = null, justDragged = false;
+    handle.addEventListener('pointerdown', function (e) {
+      if (e.button != null && e.button !== 0) return;
+      drag = { startY: e.clientY, startCenter: dock.getBoundingClientRect().top + dock.offsetHeight / 2, moved: false };
+      try { handle.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+    });
+    handle.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var dy = e.clientY - drag.startY;
+      if (!drag.moved && Math.abs(dy) < 6) return;
+      drag.moved = true;
+      placeAt(drag.startCenter + dy);
+    });
+    function endDrag() {
+      if (!drag) return;
+      if (drag.moved) {
+        justDragged = true;
+        setTimeout(function () { justDragged = false; }, 0);
+        var center = dock.getBoundingClientRect().top + dock.offsetHeight / 2;
+        try { localStorage.setItem(POS_KEY, String(center / window.innerHeight)); } catch (err) { /* storage unavailable */ }
+      }
+      drag = null;
+    }
+    handle.addEventListener('pointerup', endDrag);
+    handle.addEventListener('pointercancel', endDrag);
+    handle.addEventListener('click', function () {
+      if (justDragged) return;
+      var collapsed = dock.classList.toggle('is-collapsed');
+      handle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      if (dock.style.top) placeAt(parseFloat(dock.style.top));
+    });
+    window.addEventListener('resize', place);
+    if (mq.addEventListener) mq.addEventListener('change', place); else if (mq.addListener) mq.addListener(place);
+    setTimeout(place, 0);
+  }
+
   function initCsTriggers() {
     /* [data-cs-open]：任何元素只要掛這個屬性都能開客服彈窗（首頁公告列
        「線上客服」連結即用此屬性),不綁定特定 class。quick-rail 的「線上
@@ -1653,6 +1761,7 @@
     safe(initMemberLogout);
     safe(initHeaderMobileMenu);
     safe(initCsTriggers);
+    safe(initQuickRailDock);
     safe(initAboutTabs);
     safe(initFaqAccordion);
     safe(initBetRecordParlayRows);
