@@ -186,6 +186,7 @@
 
   // 被 CMS 前台用 iframe 嵌入時，換圖標籤預設關閉（mock 工具列手動打開才顯示）
   var embedded = (function () { try { return window.self !== window.top; } catch (e) { return true; } })();
+  document.documentElement.classList.toggle('is-embedded', embedded);
   function labelsOn() {
     try {
       var v = localStorage.getItem(LABELS_KEY);

@@ -218,6 +218,10 @@ img { display: block; max-width: 100%; }
 }
 
 .ev-title { position: relative; margin: 0 auto; max-width: min(400px, 92%, calc((100svh - 420px) * 1.4)); }
+/* 被 CMS 用 iframe 嵌入時高度只剩約 500px，照高度縮會讓轉盤與主標小到字看不清：
+   設最小尺寸（轉盤約螢幕寬 66%、主標 58%），放不下就在 iframe 內捲動 */
+.is-embedded { --ev-wheel-size: min(84vw, 380px, max(calc((100svh - 340px) / 1.32), 66vw)); }
+.is-embedded .ev-title { max-width: min(400px, 92%, max(calc((100svh - 420px) * 1.4), 58vw)); }
 .ev-title img { width: 100%; height: auto; }
 
 .ev-period-wrap { position: relative; margin: var(--ev-space-3) 0 0; }
