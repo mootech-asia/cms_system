@@ -130,6 +130,7 @@
       'referral.statusPending': '尚未完成',
       'nav.Event': '活動',
       'nav.Check-in': '每日簽到',
+      'nav.LuckyWheel': '幸運轉盤',
       'nav.Referral': '推薦中心',
       'userCenter.sidebar.customerService': '客服中心',
       'userCenter.accountOverview': '帳戶總覽',
@@ -504,6 +505,7 @@
       'referral.statusPending': '미완료',
       'nav.Event': '이벤트',
       'nav.Check-in': '출석 체크',
+      'nav.LuckyWheel': '행운의 룰렛',
       'nav.Referral': '추천 센터',
       'userCenter.sidebar.customerService': '고객센터',
       'userCenter.accountOverview': '나의 계정',
@@ -878,6 +880,7 @@
       'referral.statusPending': 'Not completed',
       'nav.Event': 'Event',
       'nav.Check-in': 'Daily Check-in',
+      'nav.LuckyWheel': 'Lucky Wheel',
       'nav.Referral': 'Referral Center',
       'userCenter.sidebar.customerService': 'Customer Service',
       'userCenter.accountOverview': 'Account Overview',
@@ -1269,6 +1272,7 @@
     { id: 'securityCenter', tKey: 'userCenter.sidebar.securityCenter', url: 'security.html', icon: 'securityCenter.svg' },
     { id: 'referralCenter', tKey: 'nav.Referral', url: 'referral.html', icon: 'InviteFriends.svg' },
     { id: 'dailyCheckin', tKey: 'nav.Check-in', url: 'check-in.html', icon: 'date.svg' },
+    { id: 'luckyWheel', tKey: 'nav.LuckyWheel', url: 'lucky-wheel.html', icon: 'wheel.svg' },
     { id: 'customerService', tKey: 'userCenter.sidebar.customerService', url: '', icon: 'customerService.svg' },
   ];
 

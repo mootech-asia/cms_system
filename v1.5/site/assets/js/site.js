@@ -26,7 +26,7 @@
   /* 對照 layouts/usercenter.vue 覆蓋的頁面清單 */
   var USER_CENTER_PAGES = ['account', 'deposit', 'withdrawal', 'betting-record', 'deposit-record',
     'profit-loss', 'withdrawal-record', 'withdrawal-detail', 'account-record', 'banking-details',
-    'personal-info', 'security', 'change-password', 'transaction-info', 'check-in', 'referral'];
+    'personal-info', 'security', 'change-password', 'transaction-info', 'check-in', 'referral', 'lucky-wheel'];
   function isUserCenterPage() { return USER_CENTER_PAGES.indexOf(pageName()) !== -1; }
   /* 對照真實網站截圖:只有儲值/提款兩個交易頁面不顯示右下角浮動客服 */
   var HIDE_QUICK_SIDEBAR_PAGES = ['deposit', 'withdrawal'];
@@ -446,6 +446,7 @@
    * ================================================================ */
   var USER_CENTER_TITLES = {
     'check-in': 'nav.Check-in',
+    'lucky-wheel': 'nav.LuckyWheel',
     referral: 'nav.Referral',
     account: 'userCenter.sidebar.accountOverview',
     deposit: 'userCenter.deposit',

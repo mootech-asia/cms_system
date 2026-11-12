@@ -181,8 +181,13 @@
     });
   }
 
+  // 被 CMS 前台用 iframe 嵌入時，換圖標籤預設關閉（mock 工具列手動打開才顯示）
+  var embedded = (function () { try { return window.self !== window.top; } catch (e) { return true; } })();
   function labelsOn() {
-    try { return localStorage.getItem(LABELS_KEY) !== 'off'; } catch (e) { return true; }
+    try {
+      var v = localStorage.getItem(LABELS_KEY);
+      return v ? v !== 'off' : !embedded;
+    } catch (e) { return !embedded; }
   }
 
   function renderLabelToggle() {
