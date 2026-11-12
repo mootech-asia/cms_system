@@ -817,6 +817,73 @@
     on(csModalRoot, 'click', function (e) { if (e.target === csModalRoot) closeCsModal(); });
     on(csModalRoot.querySelector('[data-cs-close]'), 'click', closeCsModal);
   }
+  /* 手機版右側快捷改成單顆漂浮鈕（對照 v3 客服鈕）：點擊展開/收合三顆捷徑，
+     可用手指拖曳整組移動。拖曳後以 right/bottom 重新定位，讓展開方向維持往上；
+     放開後標記 justDragged，跳過瀏覽器補發的 click，避免拖完就展開。
+     回到桌機寬度時清掉 inline 定位，還原 Tailwind 的直立側欄。 */
+  function initQuickRailFab() {
+    var rail = document.querySelector('[data-quick-rail]');
+    var fab = rail && rail.querySelector('[data-quick-rail-toggle]');
+    if (!fab) return;
+    var mq = window.matchMedia('(max-width: 720px)');
+    function setOpen(open) {
+      rail.classList.toggle('is-open', open);
+      fab.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) {
+        var r = rail.getBoundingClientRect();
+        if (r.top < 6) rail.style.bottom = (parseFloat(rail.style.bottom) || (window.innerHeight - r.bottom)) - (6 - r.top) + 'px';
+      }
+    }
+    var dragging = false, moved = false, justDragged = false;
+    var startX = 0, startY = 0, startRight = 0, startBottom = 0;
+    on(fab, 'pointerdown', function (e) {
+      if (e.button != null && e.button !== 0) return;
+      var r = rail.getBoundingClientRect();
+      dragging = true; moved = false;
+      startX = e.clientX; startY = e.clientY;
+      startRight = window.innerWidth - r.right; startBottom = window.innerHeight - r.bottom;
+      try { fab.setPointerCapture(e.pointerId); } catch (err) {}
+    });
+    on(fab, 'pointermove', function (e) {
+      if (!dragging) return;
+      var dx = e.clientX - startX, dy = e.clientY - startY;
+      if (!moved && Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+      moved = true;
+      var r = rail.getBoundingClientRect();
+      var maxRight = Math.max(window.innerWidth - r.width - 6, 6);
+      var maxBottom = Math.max(window.innerHeight - r.height - 6, 6);
+      rail.style.right = Math.min(Math.max(startRight - dx, 6), maxRight) + 'px';
+      rail.style.bottom = Math.min(Math.max(startBottom - dy, 6), maxBottom) + 'px';
+    });
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
+      if (moved) { justDragged = true; setTimeout(function () { justDragged = false; }, 0); }
+    }
+    on(fab, 'pointerup', endDrag);
+    on(fab, 'pointercancel', endDrag);
+    on(fab, 'click', function (e) {
+      e.preventDefault();
+      if (justDragged) return;
+      setOpen(!rail.classList.contains('is-open'));
+    });
+    Array.prototype.slice.call(rail.querySelectorAll('.quick-rail-btn')).forEach(function (a) {
+      on(a, 'click', function () { if (mq.matches) setOpen(false); });
+    });
+    on(document, 'click', function (e) {
+      if (rail.classList.contains('is-open') && !rail.contains(e.target)) setOpen(false);
+    });
+    on(document, 'keydown', function (e) {
+      if (e.key === 'Escape' && rail.classList.contains('is-open')) setOpen(false);
+    });
+    function onMqChange() {
+      if (mq.matches) return;
+      rail.style.right = ''; rail.style.bottom = '';
+      setOpen(false);
+    }
+    if (mq.addEventListener) mq.addEventListener('change', onMqChange); else if (mq.addListener) mq.addListener(onMqChange);
+  }
+
   function initCsTriggers() {
     /* [data-cs-open]：任何元素只要掛這個屬性都能開客服彈窗（首頁公告列
        「線上客服」連結即用此屬性),不綁定特定 class。quick-rail 的「線上
@@ -1673,6 +1740,7 @@
     safe(initMemberLogout);
     safe(initHeaderMobileMenu);
     safe(initCsTriggers);
+    safe(initQuickRailFab);
     safe(initAboutTabs);
     safe(initFaqAccordion);
     safe(initBetRecordParlayRows);
