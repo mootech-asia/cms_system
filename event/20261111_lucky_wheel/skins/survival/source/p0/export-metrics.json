@@ -1,0 +1,128 @@
+{
+  "title-en": {
+    "size": [
+      690,
+      240
+    ],
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "edgeAlphaMax": 0
+  },
+  "title-ko": {
+    "size": [
+      690,
+      240
+    ],
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "edgeAlphaMax": 0
+  },
+  "title-th": {
+    "size": [
+      690,
+      240
+    ],
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "edgeAlphaMax": 0
+  },
+  "stage-bg": {
+    "size": [
+      750,
+      1000
+    ],
+    "alphaMin": 255,
+    "alphaMax": 255,
+    "edgeAlphaMax": 255
+  },
+  "stage-floor": {
+    "size": [
+      750,
+      140
+    ],
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "edgeAlphaMax": 255
+  },
+  "wheel-frame": {
+    "size": [
+      680,
+      680
+    ],
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "edgeAlphaMax": 137
+  },
+  "wheel-stand": {
+    "size": [
+      400,
+      600
+    ],
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "edgeAlphaMax": 0
+  },
+  "pointer": {
+    "size": [
+      120,
+      160
+    ],
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "edgeAlphaMax": 0
+  },
+  "btn-go": {
+    "size": [
+      200,
+      200
+    ],
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "edgeAlphaMax": 0
+  },
+  "spotlight": {
+    "size": [
+      260,
+      900
+    ],
+    "alphaMin": 0,
+    "alphaMax": 234,
+    "edgeAlphaMax": 0
+  },
+  "light-pool": {
+    "size": [
+      600,
+      220
+    ],
+    "alphaMin": 0,
+    "alphaMax": 139,
+    "edgeAlphaMax": 0
+  },
+  "stage-vignette": {
+    "size": [
+      750,
+      1000
+    ],
+    "alphaMin": 0,
+    "alphaMax": 172,
+    "edgeAlphaMax": 172
+  },
+  "bulb-off": {
+    "size": [
+      48,
+      48
+    ],
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "edgeAlphaMax": 0
+  },
+  "bulb-on": {
+    "size": [
+      48,
+      48
+    ],
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "edgeAlphaMax": 0
+  }
+}
