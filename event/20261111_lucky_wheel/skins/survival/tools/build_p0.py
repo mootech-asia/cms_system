@@ -6,15 +6,15 @@ from scipy.ndimage import map_coordinates
 import json
 R=Path(__file__).resolve().parents[1];S=R/'source/p0';O=R/'img';updated=[]
 def src(n):return Image.open(S/(n+'-original.png')).convert('RGBA')
-def save(n,im):
- im.save(O/(n+'.webp'),lossless=True,method=2);(O/(n+'.svg')).unlink(missing_ok=True);updated.append(n)
+def save(n,im,q=86):
+ im.save(O/(n+'.webp'),quality=q,method=6,alpha_quality=95);(O/(n+'.svg')).unlink(missing_ok=True);updated.append(n)
 def clean(im,low=220):
  im=im.copy();im.putalpha(im.getchannel('A').point(lambda a:round(max(0,a-low)*255/(255-low))));return im
 
 def fit(n,size,inner):
  im=clean(src(n));im=im.crop(im.getbbox());im.thumbnail(inner,Image.Resampling.LANCZOS);o=Image.new('RGBA',size);o.alpha_composite(im,((size[0]-im.width)//2,(size[1]-im.height)//2));save(n,o)
 for l in ['en','ko','th']:
- im=src('title-'+l);im.thumbnail((650,212),Image.Resampling.LANCZOS);o=Image.new('RGBA',(690,240));o.alpha_composite(im,((690-im.width)//2,(240-im.height)//2));save('title-'+l,o)
+ im=src('title-'+l);im.thumbnail((650,212),Image.Resampling.LANCZOS);o=Image.new('RGBA',(690,240));o.alpha_composite(im,((690-im.width)//2,(240-im.height)//2));save('title-'+l,o,92)
 save('stage-bg',src('stage-bg').convert('RGB').resize((750,1000),Image.Resampling.LANCZOS))
 im=clean(src('stage-floor'),160);box=im.getbbox();im=im.crop(box).resize((750,140),Image.Resampling.LANCZOS);a=np.array(im)
 for y in range(106,120):
