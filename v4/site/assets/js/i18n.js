@@ -103,6 +103,7 @@
     'referral.statusPending': { zh: '尚未完成', en: 'Not completed', ko: '미완료', th: 'ยังไม่สำเร็จ' },
     'nav.Event': { zh: '活動', en: 'Event', ko: '이벤트', th: 'กิจกรรม' },
     'nav.Check-in': { zh: '每日簽到', en: 'Daily Check-in', ko: '출석 체크', th: 'เช็คอินรายวัน' },
+    'nav.SurvivalSpin': { zh: '生存轉盤', en: 'Survival Spin', ko: '서바이벌 스핀', th: 'สปินเอาตัวรอด' },
     'nav.LuckyWheel': { zh: '幸運轉盤', en: 'Lucky Wheel', ko: '행운의 룰렛', th: 'วงล้อนำโชค' },
     'nav.Referral': { zh: '推薦中心', en: 'Referral Center', ko: '추천 센터', th: 'ศูนย์แนะนำ' },
     'page.changePassword': { zh: '修改登入密碼', en: 'Change Login Password', ko: '로그인 비밀번호 변경', th: 'เปลี่ยนรหัสผ่านเข้าสู่ระบบ' },

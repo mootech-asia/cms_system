@@ -656,6 +656,7 @@
     { href: 'security.html', label: tr('sidebar.security', '安全中心'), icon: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>' },
     { href: 'referral.html', label: tr('nav.Referral', 'Referral Center'), icon: '<circle cx="9" cy="8" r="3.5"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M19 8v6M16 11h6"/>' },
     { href: 'check-in.html', label: tr('nav.Check-in', 'Daily Check-in'), icon: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="m9 15 2 2 4-4"/>' },
+    { href: 'survival-spin.html', label: tr('nav.SurvivalSpin', 'Survival Spin'), icon: '<circle cx="12" cy="13" r="8"></circle><circle cx="12" cy="13" r="2"></circle><path d="M12 5v6M12 15v6M4 13h6M14 13h6M9.5 1.5h5L12 4.5z"></path>' },
     { href: 'lucky-wheel.html', label: tr('nav.LuckyWheel', 'Lucky Wheel'), icon: '<circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="2.5"></circle><path d="M12 3v6.5M12 14.5V21M3 12h6.5M14.5 12H21M5.6 5.6l4.6 4.6M13.8 13.8l4.6 4.6M18.4 5.6l-4.6 4.6M10.2 13.8l-4.6 4.6"></path>' },
     { href: 'about.html?tab=faq', label: tr('notice.faq', '常見問題'), icon: '<circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8"/><path d="M12 17h.01"/>' },
   ];
