@@ -1,5 +1,15 @@
 # 美術交付勾選表（20261111_lucky_wheel）
 
+> ## 🔴 本批最優先（2026-11-12 指定，先做完這兩項再做其他任何項目）
+>
+> | 順序 | 項目 | 檔案（勾選表編號） | 規格 |
+> |---|---|---|---|
+> | 1 | **幸運轉盤主視覺文字（三語）** | `title-en`（A03）、`title-ko`（A04）、`title-th`（A05） | `DESIGN_TASKS.md`「主視覺文字」：客製 Logo 字、融入轉盤元素，不是字型打在招牌上；690×240 去背；三語各自設計字形 |
+> | 2 | **舞台燈光** | `spotlight` 重做（A06）、`light-pool`（A34）、`stage-vignette`（A35）、`bulb-on`（A37）、`bulb-off`（A38） | `DESIGN_TASKS.md`「舞台燈光」：暖白 3200K、體積光、地板光圈、轉動時四周壓暗、燈泡亮暗一對 |
+>
+> 交付：放到交付路徑、刪掉同名 `.svg` 佔位檔、改 `assets/js/config.js` 路徑 → commit → 勾選表打勾填 commit → `python3 scripts/check_delivery.py event/20261111_lucky_wheel/DELIVERY_CHECKLIST.md` 已打勾列全部 OK。
+> 另附：三語主標並排比對圖、主標縮到 345 寬放在舞台上的效果圖、待機／轉動／開獎三種狀態的燈光截圖。
+
 **提交狀態以這份表為準；是否屬實以 `scripts/check_delivery.py`（repo 根目錄） 的結果為準。** 規格看 `DESIGN_TASKS.md`，製作步驟看 `GPT_ASSET_BRIEF.md`。
 
 ## 打勾規則（GPT 必讀）
@@ -34,7 +44,7 @@
 | ☐ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
 | ☐ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
 | ☐ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
-| ☐ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | | ✗ 退回重做：硬邊平面楔形，要做有煙霧體積感的光束（見需求單「舞台燈光」） | P1 |
+| ☐ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | | ✗ 退回重做：硬邊平面楔形，要做有煙霧體積感的光束（見需求單「舞台燈光」） | P0 |
 | ☑ | A07 | wheel-frame | 680×680 | `assets/img/wheel-frame.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A08 | wheel-gloss | 600×600 | `assets/img/wheel-gloss.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A09 | pointer | 120×160 | `assets/img/pointer.{png,webp,svg}` | d913f7f | ☐ | P0 |
@@ -62,10 +72,10 @@
 | ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ | P3 |
 | ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | 8349b85 | ☐ | P1 |
-| ☐ | A34 | light-pool | 600×220 | `assets/img/light-pool.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | A35 | stage-vignette | 750×1000 | `assets/img/stage-vignette.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | A37 | bulb-on | 48×48 | `assets/img/bulb-on.{png,webp,svg}` | | ☐ | P1 |
-| ☐ | A38 | bulb-off | 48×48 | `assets/img/bulb-off.{png,webp,svg}` | | ☐ | P1 |
+| ☐ | A34 | light-pool | 600×220 | `assets/img/light-pool.{png,webp,svg}` | | ☐ | P0 |
+| ☐ | A35 | stage-vignette | 750×1000 | `assets/img/stage-vignette.{png,webp,svg}` | | ☐ | P0 |
+| ☐ | A37 | bulb-on | 48×48 | `assets/img/bulb-on.{png,webp,svg}` | | ☐ | P0 |
+| ☐ | A38 | bulb-off | 48×48 | `assets/img/bulb-off.{png,webp,svg}` | | ☐ | P0 |
 | ☐ | A39 | icon-rotate | 160×160 | `assets/img/icon-rotate.{png,webp,svg}` | | ☐ | P2 |
 
 ## B. 色票（1）

@@ -1,5 +1,15 @@
 # GPT 素材製作指引（20261111_lucky_wheel）
 
+> ## 🔴 本批最優先（2026-11-12 指定，先做完這兩項再做其他任何項目）
+>
+> | 順序 | 項目 | 檔案（勾選表編號） | 規格 |
+> |---|---|---|---|
+> | 1 | **幸運轉盤主視覺文字（三語）** | `title-en`（A03）、`title-ko`（A04）、`title-th`（A05） | `DESIGN_TASKS.md`「主視覺文字」：客製 Logo 字、融入轉盤元素，不是字型打在招牌上；690×240 去背；三語各自設計字形 |
+> | 2 | **舞台燈光** | `spotlight` 重做（A06）、`light-pool`（A34）、`stage-vignette`（A35）、`bulb-on`（A37）、`bulb-off`（A38） | `DESIGN_TASKS.md`「舞台燈光」：暖白 3200K、體積光、地板光圈、轉動時四周壓暗、燈泡亮暗一對 |
+>
+> 交付：放到交付路徑、刪掉同名 `.svg` 佔位檔、改 `assets/js/config.js` 路徑 → commit → 勾選表打勾填 commit → `python3 scripts/check_delivery.py event/20261111_lucky_wheel/DELIVERY_CHECKLIST.md` 已打勾列全部 OK。
+> 另附：三語主標並排比對圖、主標縮到 345 寬放在舞台上的效果圖、待機／轉動／開獎三種狀態的燈光截圖。
+
 給 GPT（ChatGPT 圖像生成＋Code Interpreter）照著做的步驟。規格以 `DESIGN_TASKS.md` 為準，本檔只負責「怎麼產出」。
 
 ## 使用方式
@@ -186,7 +196,7 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
 | `title-en.png` | 690×240 | 1536×1024 → 裁切 | **（重做，P0）** `Event logo lettering (key visual title) for a casino-style lucky wheel event on a bright Broadway stage. The exact text "LUCKY WHEEL" as CUSTOM hand-crafted display lettering, NOT a plain font: chunky rounded letterforms with a playful bouncy baseline (letters slightly vary in size and tilt, the whole word gently arcs upward), cream-white to gold gradient faces with glossy highlights, thick deep-red 3D extrusion, gold outline plus a dark outer stroke for contrast. A small colorful casino wheel (red, gold, magenta, orange, teal, purple segments) with radiating light rays integrated between or behind the two words. Optional Broadway marquee plaque with glowing bulbs BEHIND the letters, letters overlapping and breaking out of the plaque edge. A few stars and gold sparkles around the outside only. Light from the upper left front. Must stay readable when shown 345px wide. Transparent background, no other text.`（規格見 `DESIGN_TASKS.md`「主視覺文字」；生成後縮放到 690×240，字形占寬 85% 以上） |
 | `title-ko.png` | 690×240 | 同上 | **（重做，P0）** 同上提示詞，文字改為 `"행운의 룰렛"`：同一套材質、立體厚度、描邊、轉盤元素與點綴，**字形依韓文重新設計**（粗黑體骨架加圓角，不可變形到讀不出），不是只換字型 |
 | `title-th.png` | 690×240 | 同上 | **（重做，P0）** 同上提示詞，文字改為 `"วงล้อนำโชค"`：同一套造型語言，字形依泰文重新設計；上標聲調符號與下標母音上下各留約字高 25% 空間不可被裁切；交付前逐字核對拼寫 |
-| `spotlight.png` | 260×900 | 1024×1536 → 裁切 | **（重做，P1）** `A single volumetric theatre spotlight beam on a fully transparent background, seen from the audience: the beam enters from the top edge about 30px wide and widens downward to about 240px, warm white light (3200K, slightly golden). Soft feathered edges with no hard outline, subtle drifting stage haze texture inside the beam and a few tiny floating dust sparkles, brightest at the top center, fading smoothly to completely transparent over the bottom 15%. No lamp fixture, no floor, no dark pixels at all (it is composited with screen blending).` 生成後縮放到 260×900，確認四周 alpha＝0 |
+| `spotlight.png` | 260×900 | 1024×1536 → 裁切 | **（重做，P0 本批最優先）** `A single volumetric theatre spotlight beam on a fully transparent background, seen from the audience: the beam enters from the top edge about 30px wide and widens downward to about 240px, warm white light (3200K, slightly golden). Soft feathered edges with no hard outline, subtle drifting stage haze texture inside the beam and a few tiny floating dust sparkles, brightest at the top center, fading smoothly to completely transparent over the bottom 15%. No lamp fixture, no floor, no dark pixels at all (it is composited with screen blending).` 生成後縮放到 260×900，確認四周 alpha＝0 |
 | `light-pool.png` | 600×220 | 1536×1024 → 裁切 | `A warm white spotlight pool of light on a stage floor, seen in perspective from the audience as a flat wide ellipse (about 600 wide by 160 tall) centered in the image, soft glowing center, gently brighter rim like a real spotlight edge, fading to fully transparent outside. Light only: no floor texture, no objects, transparent background.` |
 | `stage-vignette.png` | 750×1000 | 1024×1536 → 縮放 | `A theatrical darkening overlay on a transparent background: fully clear in an oval area around the upper center (x 50%, y 45%), gradually darkening toward all edges and the top into warm deep brown (#280F05) at about 65% opacity, with faint soft haze layers. No objects, no text.` |
 | `icon-rotate.png` | 160×160 | 1024×1024 → 縮放 | `A small game UI icon in the same style as the share icon: an upright smartphone outline with a curved rotation arrow around it, gold and cream colors with soft 3D bevel, no text, transparent background.`（P2） |

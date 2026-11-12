@@ -2,9 +2,19 @@
 
 > 版本：2026-11-11 第 2 版（依美術方向修正：彩色博弈風轉盤、百老匯舞台、吉祥物兔子、英韓泰多語系）
 
+> ## 🔴 本批最優先（2026-11-12 指定，先做完這兩項再做其他任何項目）
+>
+> | 順序 | 項目 | 檔案（勾選表編號） | 規格 |
+> |---|---|---|---|
+> | 1 | **幸運轉盤主視覺文字（三語）** | `title-en`（A03）、`title-ko`（A04）、`title-th`（A05） | `DESIGN_TASKS.md`「主視覺文字」：客製 Logo 字、融入轉盤元素，不是字型打在招牌上；690×240 去背；三語各自設計字形 |
+> | 2 | **舞台燈光** | `spotlight` 重做（A06）、`light-pool`（A34）、`stage-vignette`（A35）、`bulb-on`（A37）、`bulb-off`（A38） | `DESIGN_TASKS.md`「舞台燈光」：暖白 3200K、體積光、地板光圈、轉動時四周壓暗、燈泡亮暗一對 |
+>
+> 交付：放到交付路徑、刪掉同名 `.svg` 佔位檔、改 `assets/js/config.js` 路徑 → commit → 勾選表打勾填 commit → `python3 scripts/check_delivery.py event/20261111_lucky_wheel/DELIVERY_CHECKLIST.md` 已打勾列全部 OK。
+> 另附：三語主標並排比對圖、主標縮到 345 寬放在舞台上的效果圖、待機／轉動／開獎三種狀態的燈光截圖。
+
 目前頁面是可操作的 mock up：轉盤抽獎、舞台燈光、鼓聲、吉祥物狀態切換、多語系都已經能運作；獎項與規則保留給我們的後台填寫，目前先填入假資料。
 所有圖片都是佔位圖，**美術依本單交付圖檔，放進 `assets/img/` 就能完成活動，不需要改程式。**
-頁面上的深色小標籤（例：`wheel-frame · 680×680`）標出每個位置對應的檔名與尺寸；頁面最下方的 mock 工具列可以關閉這些標籤。
+頁面上的深色小標籤（例：`wheel-frame · 680×680`）標出每個位置對應的檔名與尺寸；頁面最下方的 mock 工具列（平常隱藏，按 Ctrl+Option+H 叫出）可以關閉這些標籤。
 
 - 前台：`index.html`
 - **提交狀態**：`DELIVERY_CHECKLIST.md`（GPT 交付後打勾；`scripts/check_delivery.py`（repo 根目錄） 會核對打勾是否屬實）
@@ -26,8 +36,9 @@
 勾選表每列最後一欄是優先級；檢查腳本會顯示各級進度（例：`P0 3/11`）。
 
 本活動的順序：
-- **P0**：`stage-bg`、`stage-floor`、`title-en/ko/th`、`wheel-frame`、`wheel-stand`、`pointer`、`btn-go`、扇區色票
-- **P1**：舞台燈光整組（`spotlight` 重做、`light-pool`、`stage-vignette`、`bulb-on`／`bulb-off`）、`wheel-gloss`、`modal-bg`、`btn-primary`、`info-bg`、`period-badge`、`chances-badge`、`card-frame`、`card-title`、`share-preview`
+- **P0（本批最優先，見最上方）**：`title-en/ko/th` 重做、舞台燈光整組（`spotlight` 重做、`light-pool`、`stage-vignette`、`bulb-on`／`bulb-off`）
+- **P0（已交付）**：`stage-bg`、`stage-floor`、`wheel-frame`、`wheel-stand`、`pointer`、`btn-go`、扇區色票
+- **P1**：`wheel-gloss`、`modal-bg`、`btn-primary`、`info-bg`、`period-badge`、`chances-badge`、`card-frame`、`card-title`、`share-preview`
 - **P2**：`icon-sound-on/off`、`icon-share`、`icon-rotate`、獎項圖示 ×7、`footer-deco`
 - **P3**：主標原始檔、角色設定圖、吉祥物 GIF ×5 與序列幀／比對圖、音效
 
@@ -90,7 +101,7 @@
 | 24～28 | `light-pool`、`stage-vignette`、`bulb-on`、`bulb-off` | 見下方「舞台燈光」 | 舞台燈光整組美術（P1）。 |
 | 29 | `icon-rotate` | 160 × 160 | **請轉直向提示圖示**：手機橫放時整頁蓋上深色提示層（暖深棕底），中間顯示此圖示＋程式疊的提示文字（三語）。畫一支手機＋旋轉箭頭，金色／奶油色線條或立體小圖示，和 `icon-share` 同一套風格。程式會讓圖示做「橫→直」轉動動畫，所以**手機要畫成直立**、箭頭表示旋轉方向。去背，不放文字。P2。 |
 
-### 舞台燈光（P1，整組一起做）
+### 舞台燈光（P0 本批最優先，整組一起做）
 
 > 2026-11-11 要求：舞台光也要做美術。目前畫面上的燈光是程式畫的（純色變暗遮罩、圓點燈泡）或平面向量楔形（聚光燈），
 > 全部改成美術圖。所有燈光的**光源方向、色溫一致**：暖白（約 3200K，淡金黃），和舞台背景的燈光一致；不要冷白、不要彩色雷射。

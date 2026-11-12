@@ -13,6 +13,7 @@ window.EVENT_CONFIG = {
   idleSwapMs: 6000,
   resultHoldMs: 600,
   prizeLimits: { min: 3, max: 12 },
+  mockResetSpins: 10,
 
   images: {
     stageBg: 'assets/img/stage-bg.webp',

@@ -385,10 +385,25 @@
   $('btnReset').addEventListener('click', function () {
     if (spinning) return;
     player = freshPlayer();
+    player.chances = cfg.mockResetSpins;
     savePlayer();
     renderChances();
     renderRecords();
     showToast(t('toast.reset', { n: player.chances }));
+  });
+  // mock 工具列平常隱藏（老闆／客戶看不到），內部用 Ctrl+Alt+H（Mac：Control+Option+H）叫出／收起，
+  // 本分頁內記住狀態
+  var MOCK_KEY = 'event-mock-tools';
+  var mockTools = $('mockTools');
+  try { mockTools.hidden = sessionStorage.getItem(MOCK_KEY) !== 'on'; } catch (e) { /* 預設隱藏 */ }
+  document.addEventListener('keydown', function (e) {
+    if (!e.ctrlKey || !e.altKey || e.metaKey || e.shiftKey || e.code !== 'KeyH') return;
+    var el = e.target;
+    if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
+    e.preventDefault();
+    mockTools.hidden = !mockTools.hidden;
+    try { sessionStorage.setItem(MOCK_KEY, mockTools.hidden ? 'off' : 'on'); } catch (err) { /* 只在本次頁面生效 */ }
+    if (!mockTools.hidden) mockTools.scrollIntoView({ block: 'center', behavior: 'smooth' });
   });
   document.addEventListener('ev:locale', renderLocale);
   window.EventShare.init(showToast);
