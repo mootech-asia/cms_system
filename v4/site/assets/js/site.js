@@ -631,6 +631,7 @@
     { href: 'security.html', label: tr('sidebar.security', '安全中心'), icon: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>' },
     { href: 'referral.html', label: tr('nav.Referral', 'Referral Center'), icon: '<circle cx="9" cy="8" r="3.5"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M19 8v6M16 11h6"/>' },
     { href: 'check-in.html', label: tr('nav.Check-in', 'Daily Check-in'), icon: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="m9 15 2 2 4-4"/>' },
+    { href: 'survival-spin.html', label: tr('nav.SurvivalSpin', 'Survival Spin'), icon: '<circle cx="12" cy="13" r="8"></circle><circle cx="12" cy="13" r="2"></circle><path d="M12 5v6M12 15v6M4 13h6M14 13h6M9.5 1.5h5L12 4.5z"></path>' },
     { href: 'lucky-wheel.html', label: tr('nav.LuckyWheel', 'Lucky Wheel'), icon: '<circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="2.5"></circle><path d="M12 3v6.5M12 14.5V21M3 12h6.5M14.5 12H21M5.6 5.6l4.6 4.6M13.8 13.8l4.6 4.6M18.4 5.6l-4.6 4.6M10.2 13.8l-4.6 4.6"></path>' },
     { href: 'about.html?tab=faq', label: tr('notice.faq', '常見問題'), icon: '<circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8"/><path d="M12 17h.01"/>' },
   ];
@@ -647,10 +648,10 @@
     var wrap = document.createElement('div');
     wrap.innerHTML =
       '<div class="fixed inset-0 z-[10001] bg-[rgba(20,6,10,0.6)] mobile-menu-overlay" data-mobile-overlay>' +
-      '<div class="absolute inset-0 flex flex-col bg-bg overflow-y-auto">' +
+      '<div class="absolute inset-0 flex flex-col bg-bg overflow-hidden">' +
       '<div class="flex items-center justify-between p-[16px_20px] bg-[image:var(--header-grad)] shrink-0"><img src="logo.png" alt="Bet100" class="h-8 w-auto">' +
       '<button type="button" class="w-8 h-8 grid place-items-center rounded-full text-text-on-header bg-[rgba(255,255,255,0.14)]" aria-label="' + tr('cs.chatClose', '關閉') + '" data-mobile-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
-      '<nav class="flex flex-col p-2.5 flex-1">' + navHtml + '</nav>' +
+      '<nav class="flex flex-col p-2.5 flex-1 min-h-0 overflow-y-auto">' + navHtml + '</nav>' +
       '<div class="p-[14px_20px_22px] border-t border-line shrink-0">' + footHtml + '</div>' +
       '</div></div>';
     mobileMenuRoot = wrap.firstElementChild;
@@ -670,14 +671,24 @@
     }).join('');
     openMobileOverlay(navHtml);
   }
+  /* 會員選單比照桌機側欄分成「我的帳戶／活動」兩組，標題可點擊收合
+     （由檔案開頭的 [data-member-group-toggle] 事件委派處理）。 */
   function openMemberMenu() {
     var page = currentPage();
-    var navHtml = '<div class="p-[12px_12px_6px] text-[12px] font-bold text-text-dim mobile-menu-section">' + tr('sidebar.myAccount', '我的帳戶') + '</div>' +
-      MEMBER_MENU_ITEMS.map(function (item) {
+    var split = 0;
+    while (split < MEMBER_MENU_ITEMS.length && MEMBER_MENU_ITEMS[split].href !== 'check-in.html') split++;
+    function links(items) {
+      return items.map(function (item) {
         var active = item.href.split('?')[0] === page;
-        var section = item.href === 'check-in.html' ? '<div class="p-[12px_12px_6px] text-[12px] font-bold text-text-dim mobile-menu-section">' + tr('nav.Event', '活動') + '</div>' : '';
-        return section + '<a href="' + item.href + '" class="flex items-center gap-3 p-[13px_12px] rounded-md text-[14.5px] font-bold text-text hover:bg-bg-panel [&.active]:bg-bg-panel [&.active]:text-red [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-text-mid [&>svg]:shrink-0 [&.active>svg]:text-red mobile-menu-link' + (active ? ' active' : '') + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + item.icon + '</svg><span>' + item.label + '</span></a>';
+        return '<a href="' + item.href + '" class="flex items-center gap-3 p-[13px_12px] rounded-md text-[14.5px] font-bold text-text hover:bg-bg-panel [&.active]:bg-bg-panel [&.active]:text-red [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-text-mid [&>svg]:shrink-0 [&.active>svg]:text-red mobile-menu-link' + (active ? ' active' : '') + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + item.icon + '</svg><span>' + item.label + '</span></a>';
       }).join('');
+    }
+    function group(title, items) {
+      return '<div class="group/mg" data-member-group><button type="button" class="flex w-full items-center justify-between p-[12px_12px_6px] bg-transparent border-0 text-[12px] leading-[inherit] font-bold text-text-dim cursor-pointer hover:text-text mobile-menu-section" data-member-group-toggle aria-expanded="true"><span>' + title + '</span><svg class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 group-[.is-collapsed]/mg:-rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>' +
+        '<div class="flex flex-col group-[.is-collapsed]/mg:hidden">' + links(items) + '</div></div>';
+    }
+    var navHtml = group(tr('sidebar.myAccount', '我的帳戶'), MEMBER_MENU_ITEMS.slice(0, split)) +
+      (split < MEMBER_MENU_ITEMS.length ? group(tr('nav.Event', '活動'), MEMBER_MENU_ITEMS.slice(split)) : '');
     openMobileOverlay(navHtml);
   }
   function initHeaderMobileMenu() {
@@ -794,6 +805,102 @@
     on(csModalRoot, 'click', function (e) { if (e.target === csModalRoot) closeCsModal(); });
     on(csModalRoot.querySelector('[data-cs-close]'), 'click', closeCsModal);
   }
+  /* 手機寬度右側快捷比照 v2 手機版：快捷列貼齊右緣，左側小把手點一下收起／展開，
+     把手可上下拖曳（位移超過 6px 才算拖曳、不觸發收合），位置以視窗高度比例存在
+     localStorage，範圍夾在頁首下緣與底部導覽列上緣之間。桌機寬度外層 dock 為
+     display:contents，快捷列維持原本的定位。 */
+  function initQuickRailDock() {
+    var rail = (function () { var a = document.querySelector('.fixed > a[href*="t.me/win10096cs"]'); return a ? a.parentElement : null; })();
+    if (!rail || rail.parentElement.hasAttribute('data-qr-dock')) return;
+    var mq = window.matchMedia('(max-width: 720px)');
+    var dock = document.createElement('div');
+    dock.setAttribute('data-qr-dock', '');
+    dock.className = 'contents max-[720px]:flex max-[720px]:fixed max-[720px]:right-0 max-[720px]:top-1/2 max-[720px]:-translate-y-1/2 max-[720px]:items-center max-[720px]:z-[900] group/qrd';
+    var handle = document.createElement('button');
+    handle.type = 'button';
+    handle.className = 'hidden max-[720px]:grid h-12 w-5 place-items-center rounded-l-xl border border-r-0 cursor-pointer touch-none bg-[var(--panel-glass)] border-line-hi text-text-mid shadow-card [backdrop-filter:blur(6px)]';
+    handle.setAttribute('data-qr-dock-toggle', '');
+    handle.setAttribute('aria-expanded', 'true');
+    handle.setAttribute('aria-label', tr('mobileTabbar.ariaLabel', '快捷選單'));
+    handle.setAttribute('data-i18n-aria', 'mobileTabbar.ariaLabel');
+    handle.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="rotate-180 transition-transform group-[.is-collapsed]/qrd:rotate-0" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>';
+    rail.parentElement.insertBefore(dock, rail);
+    dock.appendChild(handle);
+    dock.appendChild(rail);
+    rail.className += ' max-[720px]:static max-[720px]:translate-y-0 max-[720px]:[transform:none] max-[720px]:gap-2.5 max-[720px]:p-1.5 max-[720px]:rounded-[27px_0_0_27px] max-[720px]:border-r-0 max-[720px]:group-[.is-collapsed]/qrd:hidden';
+    var POS_KEY = 'cms-v4-qr-rail-y';
+    function bottomBarTop() {
+      var top = window.innerHeight;
+      var hits = document.elementsFromPoint ? document.elementsFromPoint(window.innerWidth / 2, window.innerHeight - 20) : [];
+      for (var i = 0; i < hits.length; i++) {
+        var el = hits[i];
+        while (el && el !== document.body) {
+          var cs = window.getComputedStyle(el);
+          if (cs.position === 'fixed' && el.offsetWidth >= window.innerWidth * 0.8) {
+            var r = el.getBoundingClientRect();
+            if (r.bottom >= window.innerHeight - 24 && r.height < window.innerHeight / 3) return Math.min(top, r.top);
+          }
+          el = el.parentElement;
+        }
+      }
+      return top;
+    }
+    function clampY(y) {
+      var half = dock.offsetHeight / 2;
+      var header = document.querySelector('header');
+      var headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      var min = headerBottom + 8 + half;
+      var max = bottomBarTop() - 8 - half;
+      if (max < min) return min;
+      return Math.max(min, Math.min(max, y));
+    }
+    function placeAt(y) { dock.style.top = clampY(y) + 'px'; }
+    function savedY() {
+      var v = null;
+      try { v = parseFloat(localStorage.getItem(POS_KEY)); } catch (e) { v = null; }
+      return v ? v * window.innerHeight : null;
+    }
+    function place() {
+      if (!mq.matches) { dock.style.top = ''; return; }
+      var y = savedY();
+      placeAt(y != null ? y : window.innerHeight / 2);
+    }
+    var drag = null, justDragged = false;
+    handle.addEventListener('pointerdown', function (e) {
+      if (e.button != null && e.button !== 0) return;
+      drag = { startY: e.clientY, startCenter: dock.getBoundingClientRect().top + dock.offsetHeight / 2, moved: false };
+      try { handle.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+    });
+    handle.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var dy = e.clientY - drag.startY;
+      if (!drag.moved && Math.abs(dy) < 6) return;
+      drag.moved = true;
+      placeAt(drag.startCenter + dy);
+    });
+    function endDrag() {
+      if (!drag) return;
+      if (drag.moved) {
+        justDragged = true;
+        setTimeout(function () { justDragged = false; }, 0);
+        var center = dock.getBoundingClientRect().top + dock.offsetHeight / 2;
+        try { localStorage.setItem(POS_KEY, String(center / window.innerHeight)); } catch (err) { /* storage unavailable */ }
+      }
+      drag = null;
+    }
+    handle.addEventListener('pointerup', endDrag);
+    handle.addEventListener('pointercancel', endDrag);
+    handle.addEventListener('click', function () {
+      if (justDragged) return;
+      var collapsed = dock.classList.toggle('is-collapsed');
+      handle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      if (dock.style.top) placeAt(parseFloat(dock.style.top));
+    });
+    window.addEventListener('resize', place);
+    if (mq.addEventListener) mq.addEventListener('change', place); else if (mq.addListener) mq.addListener(place);
+    setTimeout(place, 0);
+  }
+
   function initCsTriggers() {
     /* [data-cs-open]：任何元素只要掛這個屬性都能開客服彈窗（首頁公告列
        「線上客服」連結即用此屬性),不綁定特定 class。quick-rail 的「線上
@@ -1653,6 +1760,7 @@
     safe(initMemberLogout);
     safe(initHeaderMobileMenu);
     safe(initCsTriggers);
+    safe(initQuickRailDock);
     safe(initAboutTabs);
     safe(initFaqAccordion);
     safe(initBetRecordParlayRows);

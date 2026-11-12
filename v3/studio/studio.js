@@ -133,6 +133,7 @@
     { label: 'Security Center', file: 'security-center.html' },
     { label: 'Referral', file: 'referral.html' },
     { label: 'Check-in', file: 'check-in.html' },
+    { label: 'Survival Spin', file: 'survival-spin.html' },
     { label: 'Lucky Wheel', file: 'lucky-wheel.html' },
     { label: 'Customer Service', file: 'customer-service.html' },
     { label: 'Support', file: 'support.html' },

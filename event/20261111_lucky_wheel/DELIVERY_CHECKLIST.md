@@ -40,11 +40,11 @@
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
 | ☑ | A01 | stage-bg | 750×1000 | `assets/img/stage-bg.{png,webp,svg}` | d913f7f | ☐ | P0 |
-| ☑ | A02 | stage-floor | 750×140 | `assets/img/stage-floor.{png,webp,svg}` | d913f7f | ☐ | P0 |
-| ☑ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | b577931 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
-| ☑ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | b577931 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
-| ☑ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | b577931 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
-| ☑ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | b577931 | ✗ 退回重做：硬邊平面楔形，要做有煙霧體積感的光束（見需求單「舞台燈光」） | P0 |
+| ☑ | A02 | stage-floor | 750×140 | `assets/img/stage-floor.{png,webp,svg}` | 6e95855 | ☐ | P0 |
+| ☑ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | 6e95855 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | 6e95855 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | 6e95855 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | 6e95855 | ✗ 退回重做：硬邊平面楔形，要做有煙霧體積感的光束（見需求單「舞台燈光」） | P0 |
 | ☑ | A07 | wheel-frame | 680×680 | `assets/img/wheel-frame.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A08 | wheel-gloss | 600×600 | `assets/img/wheel-gloss.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A09 | pointer | 120×160 | `assets/img/pointer.{png,webp,svg}` | d913f7f | ☐ | P0 |
@@ -61,7 +61,7 @@
 | ☑ | A20 | icon-points | 160×160 | `assets/img/icon-points.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
 | ☑ | A21 | icon-thanks | 160×160 | `assets/img/icon-thanks.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
 | ☑ | A22 | stage-bg-desktop | 1920×1000 | `assets/img/stage-bg-desktop.{png,webp,svg}` | d913f7f | 已停用（只用 H5 寬度），不再需要 | P0 |
-| ☑ | A23 | info-bg | 750×750 | `assets/img/info-bg.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
+| ☑ | A23 | info-bg | 750×750 | `assets/img/info-bg.{png,webp,svg}` | 6e95855 | ☐ | P1 |
 | ☑ | A24 | period-badge | 480×64 | `assets/img/period-badge.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A25 | chances-badge | 360×88 | `assets/img/chances-badge.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A26 | card-frame | 120×120 | `assets/img/card-frame.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
@@ -72,8 +72,8 @@
 | ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ | P3 |
 | ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | 8349b85 | ☐ | P1 |
-| ☑ | A34 | light-pool | 600×220 | `assets/img/light-pool.{png,webp,svg}` | b577931 | ☐ | P0 |
-| ☑ | A35 | stage-vignette | 750×1000 | `assets/img/stage-vignette.{png,webp,svg}` | b577931 | ☐ | P0 |
+| ☑ | A34 | light-pool | 600×220 | `assets/img/light-pool.{png,webp,svg}` | 6e95855 | ☐ | P0 |
+| ☑ | A35 | stage-vignette | 750×1000 | `assets/img/stage-vignette.{png,webp,svg}` | 6e95855 | ☐ | P0 |
 | ☑ | A37 | bulb-on | 48×48 | `assets/img/bulb-on.{png,webp,svg}` | b577931 | ☐ | P0 |
 | ☑ | A38 | bulb-off | 48×48 | `assets/img/bulb-off.{png,webp,svg}` | b577931 | ☐ | P0 |
 | ☐ | A39 | icon-rotate | 160×160 | `assets/img/icon-rotate.{png,webp,svg}` | | ☐ | P2 |
@@ -82,7 +82,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | 0238a10 | ☐ | P0 |
+| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | 93eb52e | ☐ | P0 |
 
 ## C. 吉祥物角色設定圖（1，第一階段）
 
@@ -171,3 +171,4 @@
 - 其餘四段尚未共用新基準，頁面暫不把新待機1加入輪播；先單獨提供GIF預覽。
 
 - 2026-11-12：A03–A06、A34、A35、A37、A38 已以 b577931 重新提交；主標為三語客製立體 Logo，燈光含半透明體積光與同位亮暗燈泡。審核欄維持原記錄，待重新審核。B01／F01 同步最新 CSS／config commit。
+- 2026-11-12：效能優化重新壓縮（6e95855），畫面內容不變：A02／A03–A05／A23 由無損 WebP 改有損（主標 q92、其餘 q86），A06／A34／A35 由 PNG 轉 WebP；B01／F01 同步最新 CSS／config commit。審核欄維持原記錄。

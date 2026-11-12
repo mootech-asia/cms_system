@@ -3251,6 +3251,7 @@
     'referral.statusPending': { zh: '尚未完成', en: 'Not completed', ko: '미완료', th: 'ยังไม่สำเร็จ' },
     'nav.Event': { zh: '活動', en: 'Event', ko: '이벤트', th: 'กิจกรรม' },
     'nav.Check-in': { zh: '每日簽到', en: 'Daily Check-in', ko: '출석 체크', th: 'เช็คอินรายวัน' },
+    'nav.SurvivalSpin': { zh: '生存轉盤', en: 'Survival Spin', ko: '서바이벌 스핀', th: 'สปินเอาตัวรอด' },
     'nav.LuckyWheel': { zh: '幸運轉盤', en: 'Lucky Wheel', ko: '행운의 룰렛', th: 'วงล้อนำโชค' },
     'nav.Referral': { zh: '推薦中心', en: 'Referral Center', ko: '추천 센터', th: 'ศูนย์แนะนำ' }
   };
@@ -3471,8 +3472,104 @@
 
   /* =================================== boot ================================ */
 
+  /* 手機寬度右側快捷比照 v2 手機版：快捷列貼齊右緣，左側小把手點一下收起／展開，
+     把手可上下拖曳（位移超過 6px 才算拖曳、不觸發收合），位置以視窗高度比例存在
+     localStorage，範圍夾在頁首下緣與底部導覽列上緣之間。桌機寬度外層 dock 為
+     display:contents，快捷列維持原本的定位。 */
+  function initQuickRailDock() {
+    var rail = document.querySelector('.qr-rail');
+    if (!rail || rail.parentElement.hasAttribute('data-qr-dock')) return;
+    var mq = window.matchMedia('(max-width: 768px)');
+    var dock = document.createElement('div');
+    dock.setAttribute('data-qr-dock', '');
+    dock.className = 'contents max-[768px]:flex max-[768px]:fixed max-[768px]:right-0 max-[768px]:top-1/2 max-[768px]:-translate-y-1/2 max-[768px]:items-center max-[768px]:z-[9000] group/qrd';
+    var handle = document.createElement('button');
+    handle.type = 'button';
+    handle.className = 'hidden max-[768px]:grid h-12 w-5 place-items-center rounded-l-xl border! border-r-0! cursor-pointer touch-none bg-surface/90! border-white/8! text-text-2! shadow-[0_10px_30px_#0006] [backdrop-filter:blur(6px)] [-webkit-backdrop-filter:blur(6px)]';
+    handle.setAttribute('data-qr-dock-toggle', '');
+    handle.setAttribute('aria-expanded', 'true');
+    handle.setAttribute('aria-label', 'Customer Service');
+    handle.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="rotate-180 transition-transform group-[.is-collapsed]/qrd:rotate-0" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>';
+    rail.parentElement.insertBefore(dock, rail);
+    dock.appendChild(handle);
+    dock.appendChild(rail);
+    rail.className += ' max-[768px]:static! max-[768px]:translate-y-0! max-[768px]:[transform:none]! max-[768px]:gap-2.5! max-[768px]:p-1.5! max-[768px]:rounded-[27px_0_0_27px]! max-[768px]:border-r-0! max-[768px]:group-[.is-collapsed]/qrd:hidden! max-[768px]:[&_.qr-btn]:w-10! max-[768px]:[&_.qr-btn]:h-10! max-[768px]:[&_.qr-btn_img]:w-7! max-[768px]:[&_.qr-btn_img]:h-7! max-[768px]:[&_.qr-btn_svg]:w-4.5! max-[768px]:[&_.qr-btn_svg]:h-4.5!';
+    var POS_KEY = 'cms-v2-qr-rail-y';
+    function bottomBarTop() {
+      var top = window.innerHeight;
+      var hits = document.elementsFromPoint ? document.elementsFromPoint(window.innerWidth / 2, window.innerHeight - 20) : [];
+      for (var i = 0; i < hits.length; i++) {
+        var el = hits[i];
+        while (el && el !== document.body) {
+          var cs = window.getComputedStyle(el);
+          if (cs.position === 'fixed' && el.offsetWidth >= window.innerWidth * 0.8) {
+            var r = el.getBoundingClientRect();
+            if (r.bottom >= window.innerHeight - 24 && r.height < window.innerHeight / 3) return Math.min(top, r.top);
+          }
+          el = el.parentElement;
+        }
+      }
+      return top;
+    }
+    function clampY(y) {
+      var half = dock.offsetHeight / 2;
+      var header = document.querySelector('header');
+      var headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      var min = headerBottom + 8 + half;
+      var max = bottomBarTop() - 8 - half;
+      if (max < min) return min;
+      return Math.max(min, Math.min(max, y));
+    }
+    function placeAt(y) { dock.style.top = clampY(y) + 'px'; }
+    function savedY() {
+      var v = null;
+      try { v = parseFloat(localStorage.getItem(POS_KEY)); } catch (e) { v = null; }
+      return v ? v * window.innerHeight : null;
+    }
+    function place() {
+      if (!mq.matches) { dock.style.top = ''; return; }
+      var y = savedY();
+      placeAt(y != null ? y : window.innerHeight / 2);
+    }
+    var drag = null, justDragged = false;
+    handle.addEventListener('pointerdown', function (e) {
+      if (e.button != null && e.button !== 0) return;
+      drag = { startY: e.clientY, startCenter: dock.getBoundingClientRect().top + dock.offsetHeight / 2, moved: false };
+      try { handle.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+    });
+    handle.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var dy = e.clientY - drag.startY;
+      if (!drag.moved && Math.abs(dy) < 6) return;
+      drag.moved = true;
+      placeAt(drag.startCenter + dy);
+    });
+    function endDrag() {
+      if (!drag) return;
+      if (drag.moved) {
+        justDragged = true;
+        setTimeout(function () { justDragged = false; }, 0);
+        var center = dock.getBoundingClientRect().top + dock.offsetHeight / 2;
+        try { localStorage.setItem(POS_KEY, String(center / window.innerHeight)); } catch (err) { /* storage unavailable */ }
+      }
+      drag = null;
+    }
+    handle.addEventListener('pointerup', endDrag);
+    handle.addEventListener('pointercancel', endDrag);
+    handle.addEventListener('click', function () {
+      if (justDragged) return;
+      var collapsed = dock.classList.toggle('is-collapsed');
+      handle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      if (dock.style.top) placeAt(parseFloat(dock.style.top));
+    });
+    window.addEventListener('resize', place);
+    if (mq.addEventListener) mq.addEventListener('change', place); else if (mq.addListener) mq.addListener(place);
+    setTimeout(place, 0);
+  }
+
   ready(function () {
     initFavorites();
+    initQuickRailDock();
     initTheme();
     applyMemberHeaderAccountBar();
     initNavDropdowns();

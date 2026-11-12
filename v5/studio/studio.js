@@ -98,6 +98,7 @@
     { path: 'security.html', label: '會員 - 安全中心' },
     { path: 'referral.html', label: '會員 - 推薦中心' },
     { path: 'check-in.html', label: '活動 - 每日簽到' },
+    { path: 'survival-spin.html', label: '活動 - 生存轉盤' },
     { path: 'lucky-wheel.html', label: '活動 - 幸運轉盤' },
     { path: 'change-password.html', label: '會員 - 修改密碼' },
     { path: 'about.html', label: '關於我們' },
