@@ -61,7 +61,7 @@ window.EVENT_CONFIG = {
     ],
     spinning: 'assets/img/mascot/spinning.webp',
     result: 'assets/img/mascot/result.webp',
-    // 未中獎的「失望」動作：交付後填 'assets/img/mascot/lose.webp'；留空時用 result
+    // 未中獎的「失望」動作：交付後填 mascot 資料夾裡的 lose 動態檔；留空時用 result
     lose: ''
   },
 
