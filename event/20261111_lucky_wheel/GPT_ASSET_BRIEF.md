@@ -81,6 +81,9 @@ STYLE LOCK — apply to every image in this conversation:
 
 ### 4.1 產出方式
 
+> **2026-11-12 全部重做（P3，排在最後）**：品質提升、6 段（新增失望）、影子畫進角色、任何一幀不可貼邊、頭尾＝基準幀。
+> 規格見 `DESIGN_TASKS.md`「2026-11-12 重做要求」。基準幀 `base-frame.png` 也要重做（含影子）。
+
 - **先做基準幀** `base-frame.png`（400×500 透明，正面自然站姿），之後每張 sheet 都附上它；組 GIF 時一律傳 `base_frame="base-frame.png"`，腳本會把它放在第一幀和最後一幀。
 - 每段一律 48 幀（2 張 sheet）、24fps，所有狀態長度相同。
 
@@ -103,12 +106,17 @@ ANIMATION SPRITE SHEET RULES:
 - Frames read left-to-right, top-to-bottom (frame 1 top-left, frame 12 bottom-right).
 - Full body in every cell, same scale, same camera, feet on the same baseline, centered.
 - The character fills about 80% of the cell width, feet close to the bottom edge; key light from the upper front-left.
-- No ground shadow under the feet (the page adds a contact shadow).
+- Draw the character's OWN ground shadow in every frame: a soft contact shadow under the feet plus a soft cast shadow
+  falling to the back-right (key light from the upper front-left), semi-transparent warm dark brown (#321202, max ~50% opacity).
+  The shadow follows the motion (smaller and lighter when jumping) and is part of the transparent PNG.
 - Only the pose changes between frames; motion must be smooth and evenly spaced.
 - Fixed camera: never zoom or scale the whole character between frames.
 - Every animation starts AND ends on the shared base pose (attach base-frame.png): frame 1 = the base pose, and the motion
   returns to exactly that pose at the end, so all states can be swapped at any loop boundary without a jump.
-- No text, no grid lines, no frame numbers, no background, no shadows outside the character.
+- Nothing may touch the cell edges in ANY frame: raised ears, raised arms, jump height, confetti and the shadow all stay
+  inside with a clear margin. Plan the scale from the biggest pose of the whole animation.
+- High quality: crisp fur, accessories and logo consistent in every frame; no warping between frames.
+- No text, no grid lines, no frame numbers, no background.
 ```
 
 | 檔名 | 對應參考表情 | 動作描述（貼在規則後面） |
@@ -116,8 +124,9 @@ ANIMATION SPRITE SHEET RULES:
 | `mascot/idle-1.gif` | Smile | `IDLE 1: relaxed standing pose, very subtle breathing (only the chest and belly move slightly), one slow blink around frames 6-7, ears sway slightly. The character's overall size and outline must stay exactly the same in every frame: NO zoom, NO scaling, NO pulsing.` |
 | `mascot/idle-2.gif` | Listening | `IDLE 2: tilts head toward the right as if listening, one ear twitches and folds then springs back, paw lightly touches the headphone.` |
 | `mascot/idle-3.gif` | Thinking（`bear-sticker-think`）、揮手（`bear-sticker-wave`） | `IDLE 3: friendly wave with the right paw at shoulder height, then pushes the tech glasses up with one finger, returns to neutral.` |
-| `mascot/spinning.gif` | Focused | `SPINNING: excited anticipation — both paws in fists close to the chest, small bouncing hops in place, ears fully upright and trembling, focused smiling face watching to the left (where the wheel is).` |
-| `mascot/result.gif` | Laugh + 眨眼比讚（`bear-sticker-wink-thumbsup`） | `RESULT: jumps up with joy, open-mouth laugh, both arms raised, lands and gives a big thumbs up with a wink, small golden sparkle stars pop around (sparkles inside the cell only).` |
+| `mascot/spinning.gif`（期待） | Focused | `SPINNING: excited anticipation — both paws in fists close to the chest, small bouncing hops in place, ears fully upright and trembling, focused smiling face watching to the left (where the wheel is).` |
+| `mascot/result.gif`（慶祝，中獎） | Laugh + 眨眼比讚（`bear-sticker-wink-thumbsup`） | `RESULT: jumps up with joy, open-mouth laugh, both arms raised, lands and gives a big thumbs up with a wink, small golden sparkle stars pop around (sparkles inside the cell only).` |
+| `mascot/lose.gif`（失望，未中獎，**新增**） | Listening／Thinking 的反向 | `LOSE: a gentle, good-natured disappointment — ears slowly droop, shoulders sink, a small sigh and head shake, then a tiny fist pump to cheer himself up ("next time!"), returning to the base pose. Never crying, never angry.` |
 
 需要第 13～24 幀時，在同一對話追加：
 
@@ -181,7 +190,7 @@ def build_gif(sheets, out_gif, fps=24, cols=3, rows=4, size=(400, 500),
 #           base_frame="base-frame.png")
 ```
 
-交付：5 個 GIF（每個建議 ≤ 1.5MB；**幀數與每幀時長不要改**，所有動作都是 48 幀、合計 2000ms，換動作才對得上；網頁實際載入的是我們用 `tools/gif_to_webp.py` 轉出的動態 WebP，約 GIF 的 1/3 大小，GPT 不用做 WebP）＋各自的 PNG 序列幀資料夾＋每個狀態一張「關鍵幀 vs 角色設定圖」並排比對圖。
+交付：6 段（idle-1／idle-2／idle-3／spinning／result／lose）的 **PNG 序列幀（RGBA、含半透明影子，主交付）**＋GIF 預覽（每個建議 ≤ 1.5MB；**幀數與每幀時長不要改**，所有動作都是 48 幀、合計 2000ms，換動作才對得上；網頁實際載入的是我們用 `tools/gif_to_webp.py` 轉出的動態 WebP，約 GIF 的 1/3 大小，GPT 不用做 WebP）＋各自的 PNG 序列幀資料夾＋每個狀態一張「關鍵幀 vs 角色設定圖」並排比對圖。
 
 ---
 

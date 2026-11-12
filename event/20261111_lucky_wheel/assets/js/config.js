@@ -52,7 +52,7 @@ window.EVENT_CONFIG = {
   /* 吉祥物：每個狀態一個循環 GIF，全部共用同一張基準幀（頭尾）且長度相同（loopMs），
      程式在一輪結束時才切換，動作可以隨時無縫替換。idle 會在多張之間輪播。 */
   /* 網頁載入的是 tools/gif_to_webp.py 由交付 GIF 轉出的動態 WebP（同內容、約 1/3 大小）；
-     換新 GIF 後重跑該腳本。loopMs 必須等於 GIF 每幀時長總和（目前 48 幀 = 2000ms）。 */
+     換新素材後重跑該腳本（有 PNG 序列幀時優先用序列幀，保留半透明影子）。loopMs 必須等於 GIF 每幀時長總和（目前 48 幀 = 2000ms）。 */
   mascot: {
     loopMs: 2000,
     idle: [
@@ -60,7 +60,9 @@ window.EVENT_CONFIG = {
       'assets/img/mascot/idle-3.webp'
     ],
     spinning: 'assets/img/mascot/spinning.webp',
-    result: 'assets/img/mascot/result.webp'
+    result: 'assets/img/mascot/result.webp',
+    // 未中獎的「失望」動作：交付後填 mascot 資料夾裡的 lose 動態檔；留空時用 result
+    lose: ''
   },
 
   /* 音效：留空時用 Web Audio 即時合成鼓聲；交付音檔後填路徑即改播音檔。 */
