@@ -25,6 +25,8 @@ window.EventShare = (function () {
     u.search = '';
     var locale = I18n.getLocale();
     u.searchParams.set('lang', locale === 'zh' ? I18n.DEFAULT_LOCALE : locale);
+    var cfg = window.EVENT_CONFIG;
+    if (cfg.activeSkin && cfg.activeSkin !== cfg.skin) u.searchParams.set('skin', cfg.activeSkin);
     return u.toString();
   }
 

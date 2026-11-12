@@ -484,6 +484,7 @@
     if (!mockTools.hidden) mockTools.scrollIntoView({ block: 'center', behavior: 'smooth' });
   });
   document.addEventListener('ev:locale', renderLocale);
+  document.addEventListener('ev:skin', function () { if (n) renderWheel(); });
   window.EventShare.init(showToast);
   if (document.readyState === 'complete') preloadMascots();
   else window.addEventListener('load', preloadMascots);

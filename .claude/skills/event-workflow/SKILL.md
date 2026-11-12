@@ -65,6 +65,16 @@ description: "在 cms_system 的 event/ 底下新增或修改任何活動頁（�
 10. **mock 工具列**（重設次數、換圖標籤開關）**預設隱藏**，Ctrl+Alt+H（Mac：Control+Option+H）叫出／收起（sessionStorage 記住，新分頁又隱藏）；
     「重設次數」給 `config.mockResetSpins`（本案 10 次）方便內部連續測試，不改後台的 freeSpins。上線前整段拿掉，寫進需求單的「上線前」清單。
 
+## 換皮（同一個活動程式做不同主題）
+
+- 活動建好後，新主題＝新皮：`skins/<名稱>/` 放 `skin.css`（只覆寫色票）、`img/`（只放跟預設不同的圖片槽）、
+  `DESIGN_TASKS.md`／`GPT_ASSET_BRIEF.md`／`DELIVERY_CHECKLIST.md`（交付路徑以皮資料夾為基準）。
+- `config.js` 的 `skins.<名稱>` 列出圖片槽覆蓋與 css；`assets/js/skin.js` 依 `config.skin` 或網址 `?skin=` 套用，
+  色票載入後發 `ev:skin` 讓轉盤重畫扇區顏色；分享連結會帶上非預設的 skin。
+- 新皮先做 mock（佔位 SVG＋色票，指紋加進 `check_delivery.py`），再開需求、交 GPT。
+- **仿某作品風格時**：可以貼近類型氛圍，但需求單要寫明禁止元素（作品名稱／標誌、招牌符號組合、招牌服裝道具），
+  改名不等於原創；本案範例見 `skins/survival/DESIGN_TASKS.md` 第一節。
+
 ## 第 2 步：製作美術圖（開需求 → GPT 產出 → 勾選）
 
 0. **先排優先級，照順序做**（目的是快速掌握整體設計質感）：

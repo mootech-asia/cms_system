@@ -15,6 +15,44 @@ window.EVENT_CONFIG = {
   prizeLimits: { min: 3, max: 12 },
   mockResetSpins: 10,
 
+  /* 換皮：同一個活動程式，換一套圖＋色票就是另一個活動。skin 決定預設皮，網址 ?skin=<名稱> 可臨時切換。
+     每套皮只需列出跟預設（broadway）不同的圖片槽；css 是該皮的色票覆寫檔。
+     皮的美術需求、提示詞、交付勾選表放在 skins/<名稱>/。 */
+  skin: 'broadway',
+  skins: {
+    survival: {
+      css: 'skins/survival/skin.css',
+      images: {
+        title: {
+          en: 'skins/survival/img/title-en.svg',
+          ko: 'skins/survival/img/title-ko.svg',
+          th: 'skins/survival/img/title-th.svg',
+          zh: 'skins/survival/img/title-en.svg'
+        },
+        stageBg: 'skins/survival/img/stage-bg.svg',
+        infoBg: 'skins/survival/img/info-bg.svg',
+        stageFloor: 'skins/survival/img/stage-floor.svg',
+        spotlight: 'skins/survival/img/spotlight.svg',
+        lightPool: 'skins/survival/img/light-pool.svg',
+        stageVignette: 'skins/survival/img/stage-vignette.svg',
+        bulbOn: 'skins/survival/img/bulb-on.svg',
+        bulbOff: 'skins/survival/img/bulb-off.svg',
+        wheelFrame: 'skins/survival/img/wheel-frame.svg',
+        wheelStand: 'skins/survival/img/wheel-stand.svg',
+        pointer: 'skins/survival/img/pointer.svg',
+        btnGo: 'skins/survival/img/btn-go.svg',
+        btnPrimary: 'skins/survival/img/btn-primary.svg',
+        modalBg: 'skins/survival/img/modal-bg.svg',
+        periodBadge: 'skins/survival/img/period-badge.svg',
+        chancesBadge: 'skins/survival/img/chances-badge.svg',
+        cardFrame: 'skins/survival/img/card-frame.svg',
+        cardTitle: 'skins/survival/img/card-title.svg',
+        tickerBar: 'skins/survival/img/ticker-bar.svg',
+        footerDeco: 'skins/survival/img/footer-deco.svg'
+      }
+    }
+  },
+
   images: {
     stageBg: 'assets/img/stage-bg.webp',
     infoBg: 'assets/img/info-bg.webp',

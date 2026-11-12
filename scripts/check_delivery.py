@@ -29,6 +29,29 @@ CHECKLIST = os.path.abspath(_args[0])
 ROOT = os.path.dirname(CHECKLIST)
 # event/20261111_lucky_wheel mock 階段的佔位圖指紋（sha256 前 16 碼）：交付檔若仍是這些檔案，代表沒有真的換圖。
 PLACEHOLDERS = {
+    '3f16928fa15311b8',  # survival/btn-go.svg
+    '8ff2bce33a5f533b',  # survival/btn-primary.svg
+    'f80ba273aa0ec849',  # survival/bulb-off.svg
+    '447d5660d1d5068e',  # survival/bulb-on.svg
+    '65005a6e38caa7b3',  # survival/card-frame.svg
+    'd90476c8ba533471',  # survival/card-title.svg
+    'ef9524dd31b6cc2e',  # survival/chances-badge.svg
+    '190f5d05cc827274',  # survival/footer-deco.svg
+    '6eeb333988ee3445',  # survival/info-bg.svg
+    'd64cd63d83b2ce55',  # survival/light-pool.svg
+    'f9a687500efd0458',  # survival/modal-bg.svg
+    '07106a4b533f89bf',  # survival/period-badge.svg
+    'e9fe03a8d939f048',  # survival/pointer.svg
+    '80ec849785c9535f',  # survival/spotlight.svg
+    'cf115b4f56ebc17f',  # survival/stage-bg.svg
+    'bb3ca5114881152f',  # survival/stage-floor.svg
+    'ca9efe6c0a04982e',  # survival/stage-vignette.svg
+    '087f03bb1d48cc60',  # survival/ticker-bar.svg
+    '9eea4d54b731ed21',  # survival/title-en.svg
+    '555ffc6f20ea1b42',  # survival/title-ko.svg
+    'b23ed4b2ab0b10c9',  # survival/title-th.svg
+    'e41c60bb2aa211da',  # survival/wheel-frame.svg
+    '46a21c819f9639f9',  # survival/wheel-stand.svg
     '582ea424708e4a9c',  # bulb-off.svg
     '739a46f1509c6c25',  # bulb-on.svg
     'ea5e42a6fe982699',  # light-pool.svg
@@ -215,9 +238,12 @@ def check_dir(rel, spec):
     return True, '%s %d 張' % (rel, len(pngs))
 
 
-def check_config():
-    src = open(os.path.join(ROOT, 'assets/js/config.js'), encoding='utf-8').read()
-    missing = [p for p in re.findall(r"'(assets/[^']+)'", src) if not os.path.isfile(os.path.join(ROOT, p))]
+def check_config(rel='assets/js/config.js'):
+    # 皮的勾選表（skins/<名稱>/）指向上兩層的 config.js；路徑在 config 裡以活動資料夾為基準
+    cfg_path = os.path.normpath(os.path.join(ROOT, rel))
+    base = os.path.dirname(os.path.dirname(os.path.dirname(cfg_path)))
+    src = open(cfg_path, encoding='utf-8').read()
+    missing = [p for p in re.findall(r"'((?:assets|skins)/[^']+)'", src) if not os.path.isfile(os.path.join(base, p))]
     if missing:
         return False, 'config.js 指向不存在的檔案：' + ', '.join(missing)
     return True, 'config.js 所有路徑都存在'
@@ -274,10 +300,10 @@ def main():
         if rel.endswith('.md') or '（人工）' in spec:
             exists = os.path.isfile(os.path.join(ROOT, rel))
             ok, msg = (None, '需人工審核') if exists else (False, '找不到檔案 ' + rel)
-        elif rel == 'assets/css/event.css':
+        elif rel.endswith('.css'):
             ok, msg = None, '色票需人工審核'
-        elif rel == 'assets/js/config.js':
-            ok, msg = check_config()
+        elif rel.endswith('assets/js/config.js'):
+            ok, msg = check_config(rel)
         elif rel.endswith('/'):
             ok, msg = check_dir(rel, spec)
         else:
