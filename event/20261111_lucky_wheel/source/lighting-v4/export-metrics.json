@@ -1,0 +1,57 @@
+{
+  "spotlight": {
+    "size": [
+      260,
+      900
+    ],
+    "alphaRange": [
+      0,
+      233
+    ],
+    "edgeAlphaMax": 0
+  },
+  "light-pool": {
+    "size": [
+      600,
+      220
+    ],
+    "alphaRange": [
+      0,
+      131
+    ],
+    "edgeAlphaMax": 0
+  },
+  "stage-vignette": {
+    "size": [
+      750,
+      1000
+    ],
+    "alphaRange": [
+      0,
+      164
+    ],
+    "edgeAlphaMax": 163
+  },
+  "bulb-on": {
+    "size": [
+      48,
+      48
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "edgeAlphaMax": 0
+  },
+  "bulb-off": {
+    "size": [
+      48,
+      48
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "edgeAlphaMax": 0
+  }
+}
