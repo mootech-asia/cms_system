@@ -68,6 +68,7 @@
     userPlus: '<circle cx="9" cy="8" r="3.5"></circle><path d="M3 20a6 6 0 0 1 12 0"></path><path d="M19 8v6M16 11h6"></path>',
     shield: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>',
     chat: '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>',
+    circleHelp: '<circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path>',
     card: '<rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18"></path><path d="M7 15h4"></path>',
     bitcoin: '<circle cx="12" cy="12" r="9"></circle><path d="M9.5 8h3.8a2.2 2.2 0 0 1 0 4.4H9.5z"></path><path d="M9.5 12.4h4.2a2.3 2.3 0 0 1 0 4.6H9.5z"></path><path d="M9.5 6v12M11 4.5V6M14 4.5V6M11 18v1.5M14 18v1.5"></path>',
     eye: '<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle>',
@@ -308,25 +309,38 @@
     { label: T.promotion, href: 'promotion.html', icon: 'gift' },
   ];
 
-  // ---- MemberMenuDrawer.vue links[] (Browse button on the mobile bottom nav) --
-  var MEMBER_MENU_LINKS = [
-    { label: 'Account Overview', href: 'account.html', icon: 'grid' },
-    { label: 'Deposit', href: 'deposit.html', icon: 'download' },
-    { label: 'Withdrawal', href: 'withdrawal.html', icon: 'upload' },
-    { label: 'Betting Record', href: 'betting-record.html', icon: 'history' },
-    { label: 'Deposit Record', href: 'deposit-record.html', icon: 'fileDown' },
-    { label: 'Profit And Loss', href: 'profit-loss.html', icon: 'trend' },
-    { label: 'Withdrawal Record', href: 'withdrawal-record.html', icon: 'fileUp' },
-    { label: 'Withdrawal Detail', href: 'withdrawal-detail.html', icon: 'fileSearch' },
-    { label: 'Account Record', href: 'account-record.html', icon: 'clipboardList' },
-    { label: 'Personal Info', href: 'personal-info.html', icon: 'user' },
-    { label: 'Security Center', href: 'security.html', icon: 'shield' },
-    { label: 'Referral Center', href: 'referral.html', icon: 'userPlus' },
-    { label: 'Daily Check-in', href: 'check-in.html', icon: 'calendarCheck' },
-    { label: 'Survival Spin', href: 'survival-spin.html', icon: 'survivalWheel' },
-    { label: 'Lucky Wheel', href: 'lucky-wheel.html', icon: 'wheel' },
-    { label: 'Customer Service', href: '#', icon: 'chat', csOpen: true },
-  ];
+  /* 左側會員選單（桌機）與底部「Browse」抽屜（手機）共用這一份資料，以 v3 側欄為準：
+     選單／活動／我的帳戶三組，頂部儲值／提款兩顆按鈕。改這裡兩邊會同步。
+     label 用英文原字，由 site.js 的語系字典（含 MutationObserver）換成當前語系。 */
+  function navItem(href) { return NAV_LINKS.filter(function (l) { return l.href === href; })[0]; }
+  var MEMBER_NAV = {
+    actions: [
+      { label: 'Deposit', href: 'deposit.html', primary: true },
+      { label: 'Withdrawal', href: 'withdrawal.html' }
+    ],
+    groups: [
+      { title: 'Menu', items: ['index.html', 'hot-games.html', 'mini-games.html', 'slot.html', 'sport.html', 'live.html', 'fish.html', 'promotion.html'].map(navItem) },
+      { title: 'Event', items: [
+        { label: 'Daily Check-in', href: 'check-in.html', icon: 'calendarCheck' },
+        { label: 'Survival Spin', href: 'survival-spin.html', icon: 'survivalWheel' },
+        { label: 'Lucky Wheel', href: 'lucky-wheel.html', icon: 'wheel' }
+      ] },
+      { title: 'My Account', items: [
+        { label: 'Account Overview', href: 'account.html', icon: 'grid' },
+        { label: 'Betting Record', href: 'betting-record.html', icon: 'history' },
+        { label: 'Deposit Record', href: 'deposit-record.html', icon: 'fileDown' },
+        { label: 'Profit And Loss', href: 'profit-loss.html', icon: 'trend' },
+        { label: 'Withdrawal Record', href: 'withdrawal-record.html', icon: 'fileUp' },
+        { label: 'Withdrawal Detail', href: 'withdrawal-detail.html', icon: 'fileSearch' },
+        { label: 'Account Record', href: 'account-record.html', icon: 'clipboardList' },
+        { label: 'Personal Info', href: 'personal-info.html', icon: 'user' },
+        { label: 'Security Center', href: 'security.html', icon: 'shield' },
+        { label: 'Referral Center', href: 'referral.html', icon: 'userPlus' },
+        { label: 'Customer Service', href: '#', icon: 'chat', csOpen: true },
+        { label: 'FAQ', href: 'about.html?tab=faq', icon: 'circleHelp' }
+      ] }
+    ]
+  };
 
 
   // ---- i18n dictionaries (ported verbatim from composables/useLocale.ts zh/en) ----
@@ -1906,7 +1920,7 @@
     BANK_ACCOUNTS: BANK_ACCOUNTS,
     WALLET_ACCOUNTS: WALLET_ACCOUNTS,
     NAV_LINKS: NAV_LINKS,
-    MEMBER_MENU_LINKS: MEMBER_MENU_LINKS,
+    MEMBER_NAV: MEMBER_NAV,
     DEPOSIT_GATEWAYS: DEPOSIT_GATEWAYS,
     LOCALES: LOCALES,
     I18N: I18N,

@@ -54,6 +54,7 @@
     'nav.member': { zh: '會員', en: 'Account', ko: '계정', th: 'บัญชี' },
     'nav.menu': { zh: '選單', en: 'Menu', ko: '메뉴', th: 'เมนู' },
 
+    'sidebar.customerService': { zh: '客服中心', en: 'Customer Service', ko: '고객 지원', th: 'ฝ่ายบริการลูกค้า' },
     'sidebar.myAccount': { zh: '我的帳戶', en: 'My Account', ko: '내 계정', th: 'บัญชีของฉัน' },
     'sidebar.overview': { zh: '帳戶總覽', en: 'Account Overview', ko: '계정 개요', th: 'ภาพรวมบัญชี' },
     'sidebar.withdrawal': { zh: '提款', en: 'Withdrawal', ko: '출금', th: 'ถอนเงิน' },

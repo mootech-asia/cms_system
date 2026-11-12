@@ -722,21 +722,54 @@
     });
   }
 
-  /* MemberMenuDrawer.vue — mobile bottom nav "Browse" button (left drawer) */
-
-  function buildMemberDrawerHtml() {
-    var links = D.MEMBER_MENU_LINKS || [];
-    var rows = links.map(function (l) {
-      /* Customer Service 一列改走 data-cs-open 代理點擊 openCsModal(),
-         不導頁(見 initCsOpenTriggers)。 */
-      var active = !l.csOpen && isActivePage(l.href);
-      return '<a href="' + l.href + '" class="mmd-row' + (active ? ' active' : '') + '"' + (l.csOpen ? ' data-cs-open' : '') + '>' + iconSvg(l.icon, 'mmd-icon') + '<span>' + escapeHtml(l.label) + '</span></a>';
+  /* 左側會員選單（桌機）與底部「Browse」抽屜（手機）共用 D.MEMBER_NAV，st 只決定 class。
+     Customer Service 一列走 data-cs-open（見 initCsOpenTriggers），不導頁。 */
+  function memberNavHtml(st) {
+    var nav = D.MEMBER_NAV || { actions: [], groups: [] };
+    var acts = '<div class="' + st.actions + '">' + nav.actions.map(function (a) {
+      return '<a href="' + a.href + '" class="' + (a.primary ? st.btnPrimary : st.btnSecondary) + '">' + escapeHtml(a.label) + '</a>';
+    }).join('') + '</div>';
+    return acts + nav.groups.map(function (g, gi) {
+      var rows = g.items.map(function (l) {
+        var active = !l.csOpen && isActivePage(l.href.split('?')[0]);
+        return st.item(l, active);
+      }).join('');
+      return '<div class="group/mg" data-member-group><button type="button" class="' + st.head(gi) + '" data-member-group-toggle aria-expanded="true"><span>' + escapeHtml(g.title) + '</span><svg class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 group-[.is-collapsed]/mg:-rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>' +
+        '<div class="' + st.list + ' group-[.is-collapsed]/mg:hidden">' + rows + '</div></div>';
     }).join('');
+  }
+  var MEMBER_SIDEBAR_STYLE = {
+    actions: 'flex gap-2 pb-2',
+    btnPrimary: 'flex-1 text-center py-2 px-2 rounded-lg bg-[image:var(--g-primary)] text-on-primary text-sm font-semibold',
+    btnSecondary: 'flex-1 text-center py-2 px-2 rounded-lg border border-border text-text-2 text-sm font-semibold transition-colors hover:bg-bg hover:text-text',
+    head: function (gi) { return 'flex w-full items-center justify-between px-4 ' + (gi ? 'pt-3' : 'pt-1') + ' pb-1 bg-transparent border-0 text-[11.5px] font-semibold uppercase tracking-wide text-text-3 cursor-pointer hover:text-text-2'; },
+    list: 'space-y-2 mt-1',
+    item: function (l, active) {
+      return '<a href="' + l.href + '" class="flex items-center gap-3 py-3 px-4 rounded-lg ' + (active ? 'bg-[image:var(--g-primary)] text-on-primary font-semibold" aria-current="page"' : 'text-text-2 transition-colors hover:bg-bg hover:text-text"') + (l.csOpen ? ' data-cs-open' : '') + '>' + iconSvg(l.icon, 'w-5 h-5 shrink-0') + '<span class="text-sm">' + escapeHtml(l.label) + '</span></a>';
+    }
+  };
+  function renderMemberSidebar() {
+    var el = document.querySelector('[data-member-nav]');
+    if (el) el.innerHTML = memberNavHtml(MEMBER_SIDEBAR_STYLE);
+  }
+
+  /* MemberMenuDrawer.vue — mobile bottom nav "Browse" button (left drawer) */
+  var MEMBER_DRAWER_STYLE = {
+    actions: 'flex gap-2 px-4 pt-1 pb-2',
+    btnPrimary: 'flex-1 text-center py-2 px-2 rounded-lg bg-[image:var(--g-primary)] text-on-primary! text-sm font-semibold',
+    btnSecondary: 'flex-1 text-center py-2 px-2 rounded-lg border! border-border! text-text-2! text-sm font-semibold transition-colors hover:bg-bg hover:text-text!',
+    head: function (gi) { return 'flex w-full items-center justify-between px-4 ' + (gi ? 'pt-3' : 'pt-1') + ' pb-1 bg-transparent border-0 text-[11.5px]! font-semibold! uppercase! tracking-wide! text-text-3! cursor-pointer hover:text-text-2!'; },
+    list: '',
+    item: function (l, active) {
+      return '<a href="' + l.href + '" class="mmd-row' + (active ? ' active' : '') + '"' + (l.csOpen ? ' data-cs-open' : '') + '>' + iconSvg(l.icon, 'mmd-icon') + '<span>' + escapeHtml(l.label) + '</span></a>';
+    }
+  };
+  function buildMemberDrawerHtml() {
     return (
       '<div class="mmd-overlay" data-mmd-overlay>' +
       '<div class="mmd-panel">' +
       '<div class="mmd-head"><span>Menu</span><button type="button" aria-label="Close menu" data-mmd-close>' + iconSvg('x', 'icon-md') + '</button></div>' +
-      '<nav class="mmd-links">' + rows + '</nav>' +
+      '<nav class="mmd-links">' + memberNavHtml(MEMBER_DRAWER_STYLE) + '</nav>' +
       '</div></div>'
     );
   }
@@ -752,7 +785,7 @@
     lockBodyScroll();
     on(memberDrawerRoot, 'click', function (e) { if (e.target === memberDrawerRoot) closeMemberDrawer(); });
     on(memberDrawerRoot.querySelector('[data-mmd-close]'), 'click', closeMemberDrawer);
-    $all('.mmd-row', memberDrawerRoot).forEach(function (a) { on(a, 'click', closeMemberDrawer); });
+    $all('.mmd-row, .mmd-links > div:first-child a', memberDrawerRoot).forEach(function (a) { on(a, 'click', closeMemberDrawer); });
   }
 
   function initMobileBottomNav() {
@@ -3568,6 +3601,7 @@
   }
 
   ready(function () {
+    renderMemberSidebar();
     initFavorites();
     initQuickRailDock();
     initTheme();

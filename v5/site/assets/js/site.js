@@ -644,22 +644,77 @@
      帳戶」會員專區捷徑清單,icon 沿用 .member-sidebar-link／FAQ 連結既有
      的 svg path。兩者共用同一套 overlay/footer 渲染邏輯,只有 nav 清單
      內容不同。 ── */
-  var MEMBER_MENU_ITEMS = [
-    { href: 'account.html', label: tr('sidebar.overview', '帳戶總覽'), icon: '<rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>' },
-    { href: 'betting-record.html', label: tr('sidebar.bettingRecord', '投注紀錄'), icon: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/>' },
-    { href: 'deposit-record.html', label: tr('sidebar.depositRecord', '儲值紀錄'), icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
-    { href: 'profit-loss.html', label: tr('sidebar.profitLoss', '損益報表'), icon: '<path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/>' },
-    { href: 'withdrawal-record.html', label: tr('sidebar.withdrawalRecord', '提款紀錄'), icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
-    { href: 'withdrawal-detail.html', label: tr('sidebar.withdrawalDetail', '提款明細'), icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
-    { href: 'account-record.html', label: tr('sidebar.accountRecord', '帳戶紀錄'), icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
-    { href: 'personal-info.html', label: tr('sidebar.personalInfo', '個人資料'), icon: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>' },
-    { href: 'security.html', label: tr('sidebar.security', '安全中心'), icon: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>' },
-    { href: 'referral.html', label: tr('nav.Referral', 'Referral Center'), icon: '<circle cx="9" cy="8" r="3.5"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M19 8v6M16 11h6"/>' },
-    { href: 'check-in.html', label: tr('nav.Check-in', 'Daily Check-in'), icon: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="m9 15 2 2 4-4"/>' },
-    { href: 'survival-spin.html', label: tr('nav.SurvivalSpin', 'Survival Spin'), icon: '<circle cx="12" cy="13" r="8"></circle><circle cx="12" cy="13" r="2"></circle><path d="M12 5v6M12 15v6M4 13h6M14 13h6M9.5 1.5h5L12 4.5z"></path>' },
-    { href: 'lucky-wheel.html', label: tr('nav.LuckyWheel', 'Lucky Wheel'), icon: '<circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="2.5"></circle><path d="M12 3v6.5M12 14.5V21M3 12h6.5M14.5 12H21M5.6 5.6l4.6 4.6M13.8 13.8l4.6 4.6M18.4 5.6l-4.6 4.6M10.2 13.8l-4.6 4.6"></path>' },
-    { href: 'about.html?tab=faq', label: tr('notice.faq', '常見問題'), icon: '<circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8"/><path d="M12 17h.01"/>' },
-  ];
+  /* 左側會員選單與手機「Menu」選單共用這一份資料（以 v3 側欄為準：選單／活動／我的帳戶，
+     頂部儲值／提款兩顆按鈕），改這裡兩邊會同步。 */
+  var MEMBER_NAV = {
+    actions: [
+      { href: 'deposit.html', key: 'nav.deposit', fb: '儲值', primary: true },
+      { href: 'withdrawal.html', key: 'sidebar.withdrawal', fb: '提款' }
+    ],
+    groups: [
+      { key: 'nav.menu', fb: '選單', items: [
+      { href: 'index.html', key: 'nav.lobby', fb: '大廳', icon: '<path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1v-8Z"/>' },
+      { href: 'hot-games.html', key: 'nav.electronic', fb: '電子遊戲', icon: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/>' },
+      { href: 'mini-games.html', key: 'game.miniGames', fb: '小遊戲', icon: '<path d="M7 8h10a4 4 0 0 1 3.8 5.2l-1.1 3.4a2.2 2.2 0 0 1-3.5 1.1L14.5 16h-5l-1.7 1.7a2.2 2.2 0 0 1-3.5-1.1l-1.1-3.4A4 4 0 0 1 7 8Z"/><path d="M8 11v4M6 13h4"/><circle cx="16" cy="12" r=".8" fill="currentColor" stroke="none"/><circle cx="18" cy="14" r=".8" fill="currentColor" stroke="none"/>' },
+      { href: 'slot.html', key: 'nav.slots', fb: '老虎機', icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h3v6H7zM14 9h3v6h-3z"/>' },
+      { href: 'sport.html', key: 'nav.sport', fb: '體育', icon: '<circle cx="12" cy="12" r="9"/><path d="m12 3 2.5 6M21 12l-6 2.5M12 21l-2.5-6M3 12l6-2.5"/>' },
+      { href: 'live.html', key: 'nav.live', fb: '真人娛樂', icon: '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>' },
+      { href: 'fish.html', key: 'nav.fish', fb: '捕魚達人', icon: '<path d="M4 12c3-4 8-5 12-4l4-2v12l-4-2c-4 1-9 0-12-4Z"/>' },
+      { href: 'promotion.html', key: 'nav.promotion', fb: '優惠活動', icon: '<rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M12 9v12M3 13h18"/>' }
+      ] },
+      { key: 'nav.Event', fb: '活動', items: [
+      { href: 'check-in.html', key: 'nav.Check-in', fb: 'Daily Check-in', icon: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="m9 15 2 2 4-4"/>' },
+      { href: 'survival-spin.html', key: 'nav.SurvivalSpin', fb: 'Survival Spin', icon: '<circle cx="12" cy="13" r="8"></circle><circle cx="12" cy="13" r="2"></circle><path d="M12 5v6M12 15v6M4 13h6M14 13h6M9.5 1.5h5L12 4.5z"></path>' },
+      { href: 'lucky-wheel.html', key: 'nav.LuckyWheel', fb: 'Lucky Wheel', icon: '<circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="2.5"></circle><path d="M12 3v6.5M12 14.5V21M3 12h6.5M14.5 12H21M5.6 5.6l4.6 4.6M13.8 13.8l4.6 4.6M18.4 5.6l-4.6 4.6M10.2 13.8l-4.6 4.6"></path>' }
+      ] },
+      { key: 'sidebar.myAccount', fb: '我的帳戶', items: [
+      { href: 'account.html', key: 'sidebar.overview', fb: '帳戶總覽', icon: '<rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>' },
+      { href: 'betting-record.html', key: 'sidebar.bettingRecord', fb: '投注紀錄', icon: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/>' },
+      { href: 'deposit-record.html', key: 'sidebar.depositRecord', fb: '儲值紀錄', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
+      { href: 'profit-loss.html', key: 'sidebar.profitLoss', fb: '損益報表', icon: '<path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/>' },
+      { href: 'withdrawal-record.html', key: 'sidebar.withdrawalRecord', fb: '提款紀錄', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
+      { href: 'withdrawal-detail.html', key: 'sidebar.withdrawalDetail', fb: '提款明細', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
+      { href: 'account-record.html', key: 'sidebar.accountRecord', fb: '帳戶紀錄', icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/>' },
+      { href: 'personal-info.html', key: 'sidebar.personalInfo', fb: '個人資料', icon: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>' },
+      { href: 'security.html', key: 'sidebar.security', fb: '安全中心', icon: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>' },
+      { href: 'referral.html', key: 'nav.Referral', fb: 'Referral Center', icon: '<circle cx="9" cy="8" r="3.5"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M19 8v6M16 11h6"/>' },
+      { href: '#', key: 'sidebar.customerService', fb: '客服中心', icon: '<path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>', cs: true },
+      { href: 'about.html?tab=faq', key: 'notice.faq', fb: '常見問題', icon: '<circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8"/><path d="M12 17h.01"/>' }
+      ] }
+    ]
+  };
+  /* st：各處的樣式（桌機側欄／手機選單），結構相同、只有 class 不同。 */
+  function memberNavHtml(st) {
+    var page = currentPage();
+    var acts = '<div class="' + st.actions + '">' + MEMBER_NAV.actions.map(function (a) {
+      return '<a href="' + a.href + '" class="' + (a.primary ? st.btnPrimary : st.btnSecondary) + '" data-i18n="' + a.key + '">' + tr(a.key, a.fb) + '</a>';
+    }).join('') + '</div>';
+    return acts + MEMBER_NAV.groups.map(function (g, gi) {
+      var links = g.items.map(function (item) {
+        var active = !item.cs && item.href.split('?')[0] === page;
+        return st.item(item, active, tr(item.key, item.fb));
+      }).join('');
+      return '<div class="group/mg" data-member-group><button type="button" class="' + st.head(gi) + '" data-member-group-toggle aria-expanded="true"><span data-i18n="' + g.key + '">' + tr(g.key, g.fb) + '</span><svg class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 group-[.is-collapsed]/mg:-rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>' +
+        '<div class="' + st.list(gi) + ' group-[.is-collapsed]/mg:hidden">' + links + '</div></div>';
+    }).join('');
+  }
+  function memberNavAttrs(item) {
+    return 'href="' + item.href + '"' + (item.cs ? ' data-cs-open' : '');
+  }
+  var MEMBER_SIDEBAR_STYLE = {
+    actions: 'flex gap-2 px-1 pb-2.5',
+    btnPrimary: 'flex-1 text-center py-2 px-1.5 border border-transparent rounded-full bg-[image:var(--accent-grad)] text-accent-ink font-extrabold text-[12.5px] uppercase tracking-[0.02em] whitespace-nowrap shadow-accent transition-[filter] duration-150 hover:brightness-[1.06]',
+    btnSecondary: 'flex-1 text-center py-2 px-1.5 border border-line rounded-full bg-white/8 text-accent-hi font-extrabold text-[12.5px] uppercase tracking-[0.02em] whitespace-nowrap transition-[filter] duration-150 hover:brightness-[1.06]',
+    head: function (gi) { return 'flex w-full items-center justify-between px-3 pb-1.5 bg-transparent border-0 text-[12px] font-bold text-text-dim cursor-pointer hover:text-text' + (gi ? ' pt-3' : ' pt-1'); },
+    list: function () { return 'flex flex-col gap-1'; },
+    item: function (item, active, label) {
+      return '<a ' + memberNavAttrs(item) + ' class="' + (active ? 'flex items-center gap-2.5 py-2.5 px-3 rounded-md text-[13.5px] font-bold transition-[background,color] duration-150 bg-[image:var(--accent-grad)] text-accent-ink member-sidebar-link active' : 'flex items-center gap-2.5 py-2.5 px-3 rounded-md text-[13.5px] font-bold transition-[background,color] duration-150 text-text-mid hover:bg-bg-soft hover:text-text member-sidebar-link') + '"><svg class="w-4.5 h-4.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + item.icon + '</svg><span data-i18n="' + item.key + '">' + label + '</span></a>';
+    }
+  };
+  function renderMemberSidebar() {
+    var el = document.querySelector('[data-member-nav]');
+    if (el) el.innerHTML = memberNavHtml(MEMBER_SIDEBAR_STYLE);
+  }
   var mobileMenuRoot = null;
   /* 漢堡鈕在選單開啟時要變成 X,關閉時要換回三線 icon;innerHTML 直接
      整顆換掉,不額外疊 class 控制顯示/隱藏兩組 svg。 */
@@ -703,6 +758,9 @@
     var panelH = 'calc(100vh - ' + header.offsetHeight + 'px)';
     mobileMenuRoot.querySelector('.header-menu-panel').style.height = panelH;
     mobileMenuRoot.querySelector('.header-menu-panel').style.maxHeight = panelH;
+    Array.prototype.slice.call(mobileMenuRoot.querySelectorAll('[data-cs-open]')).forEach(function (a) {
+      on(a, 'click', function (e) { e.preventDefault(); closeMobileMenu(); openCsModal(); });
+    });
     lockScroll();
     var trigger = document.querySelector('.header-menu-trigger');
     if (trigger) { trigger.innerHTML = CLOSE_ICON; trigger.setAttribute('aria-expanded', 'true'); }
@@ -725,28 +783,20 @@
   /* 會員捷徑清單項目較多(10 項)，改成兩欄文字清單＋右側 chevron，
      對齊參考站選單第二段「更多功能」清單的樣式，跟上方 icon 網格
      區隔出不同的資訊密度層級。 */
-  /* 會員捷徑清單項目較多，改成兩欄文字清單＋右側 chevron，對齊參考站選單第二段
-     「更多功能」清單的樣式；並比照桌機側欄分成「我的帳戶／活動」兩組，標題可點擊
-     收合（由檔案開頭的 [data-member-group-toggle] 事件委派處理）。 */
+  /* 手機「Menu」選單：跟左側會員選單同一份 MEMBER_NAV，只換成兩欄卡片的樣式。 */
+  var MEMBER_MENU_STYLE = {
+    actions: 'flex gap-2 pt-3.5 px-3.5',
+    btnPrimary: 'flex-1 text-center py-2 px-1.5 border border-transparent rounded-full bg-[image:var(--accent-grad)] text-accent-ink font-extrabold text-[12.5px] uppercase tracking-[0.02em] whitespace-nowrap shadow-accent transition-[filter] duration-150 hover:brightness-[1.06]',
+    btnSecondary: 'flex-1 text-center py-2 px-1.5 border border-line rounded-full bg-white/8 text-accent-hi font-extrabold text-[12.5px] uppercase tracking-[0.02em] whitespace-nowrap transition-[filter] duration-150 hover:brightness-[1.06]',
+    head: function (gi) { return 'flex w-full items-center justify-between ' + (gi ? 'pt-4' : 'pt-3.5') + ' px-3.5 pb-2 bg-transparent border-0 text-[12px] leading-[inherit] font-bold text-text-dim cursor-pointer hover:text-text header-menu-section'; },
+    list: function (gi) { return 'grid grid-cols-2 gap-2 pt-0 px-3.5 ' + (gi === MEMBER_NAV.groups.length - 1 ? 'pb-3.5' : 'pb-0') + ' header-menu-list'; },
+    item: function (item, active, label) {
+      return '<a ' + memberNavAttrs(item) + ' class="flex items-center justify-between gap-1.5 p-3 rounded-md bg-bg-panel border border-line text-[12.5px] font-bold text-text [&.active]:text-accent-hi [&.active]:border-accent-hi [&.active_.chevron]:text-accent-hi header-menu-list-item' + (active ? ' active' : '') + '"><span data-i18n="' + item.key + '">' + label + '</span><svg class="w-3.5 h-3.5 text-text-dim shrink-0 chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>';
+    }
+  };
   function openMemberMenu() {
     if (mobileMenuRoot) { closeMobileMenu(); return; }
-    var page = currentPage();
-    var split = 0;
-    while (split < MEMBER_MENU_ITEMS.length && MEMBER_MENU_ITEMS[split].href !== 'check-in.html') split++;
-    function links(items) {
-      return items.map(function (item) {
-        var active = item.href.split('?')[0] === page;
-        return '<a href="' + item.href + '" class="flex items-center justify-between gap-1.5 p-3 rounded-md bg-bg-panel border border-line text-[12.5px] font-bold text-text [&.active]:text-accent-hi [&.active]:border-accent-hi [&.active_.chevron]:text-accent-hi header-menu-list-item' + (active ? ' active' : '') + '"><span>' + item.label + '</span><svg class="w-3.5 h-3.5 text-text-dim shrink-0 chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>';
-      }).join('');
-    }
-    function group(title, items, headPad, listPad) {
-      return '<div class="group/mg" data-member-group><button type="button" class="flex w-full items-center justify-between ' + headPad + ' bg-transparent border-0 text-[12px] leading-[inherit] font-bold text-text-dim cursor-pointer hover:text-text header-menu-section" data-member-group-toggle aria-expanded="true"><span>' + title + '</span><svg class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 group-[.is-collapsed]/mg:-rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>' +
-        '<div class="grid grid-cols-2 gap-2 ' + listPad + ' header-menu-list group-[.is-collapsed]/mg:hidden">' + links(items) + '</div></div>';
-    }
-    var hasEvent = split < MEMBER_MENU_ITEMS.length;
-    var navHtml = group(tr('sidebar.myAccount', '我的帳戶'), MEMBER_MENU_ITEMS.slice(0, split), 'pt-3.5 px-3 pb-1', hasEvent ? 'pt-1 px-3.5 pb-0' : 'pt-1 px-3.5 pb-3.5') +
-      (hasEvent ? group(tr('nav.Event', '活動'), MEMBER_MENU_ITEMS.slice(split), 'pt-4 px-3.5 pb-2', 'pt-0 px-3.5 pb-3.5') : '');
-    openMobileOverlay(navHtml);
+    openMobileOverlay(memberNavHtml(MEMBER_MENU_STYLE));
   }
   function initHeaderMobileMenu() {
     on(document.querySelector('.header-menu-trigger'), 'click', openHeaderMenu);
@@ -1782,6 +1832,7 @@
     safe(initListingSearch);
     safe(initListingLoadMore);
     safe(initMemberLogout);
+    safe(renderMemberSidebar);
     safe(initHeaderMobileMenu);
     safe(initCsTriggers);
     safe(initQuickRailDock);
