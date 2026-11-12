@@ -341,7 +341,7 @@
     dock.className = 'contents max-[720px]:flex max-[720px]:fixed max-[720px]:right-0 max-[720px]:top-1/2 max-[720px]:-translate-y-1/2 max-[720px]:items-center max-[720px]:z-[100] group/qrd';
     var handle = document.createElement('button');
     handle.type = 'button';
-    handle.className = 'hidden max-[720px]:grid h-12 w-5 place-items-center rounded-l-xl border border-r-0 cursor-pointer touch-none bg-white/[0.14] border-white/25 text-white [backdrop-filter:blur(6px)] [-webkit-backdrop-filter:blur(6px)] shadow-[0_18px_50px_rgba(10,17,64,0.18)]';
+    handle.className = 'hidden max-[720px]:grid h-12 w-5 place-items-center rounded-l-xl border! border-r-0! cursor-pointer touch-none bg-navy! border-white/25! text-white! [backdrop-filter:blur(6px)] [-webkit-backdrop-filter:blur(6px)] shadow-[0_18px_50px_rgba(10,17,64,0.18)]';
     handle.setAttribute('data-qr-dock-toggle', '');
     handle.setAttribute('aria-expanded', 'true');
     handle.setAttribute('aria-label', t('userCenter.customerService'));

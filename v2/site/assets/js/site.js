@@ -3485,7 +3485,7 @@
     dock.className = 'contents max-[768px]:flex max-[768px]:fixed max-[768px]:right-0 max-[768px]:top-1/2 max-[768px]:-translate-y-1/2 max-[768px]:items-center max-[768px]:z-[9000] group/qrd';
     var handle = document.createElement('button');
     handle.type = 'button';
-    handle.className = 'hidden max-[768px]:grid h-12 w-5 place-items-center rounded-l-xl border border-r-0 cursor-pointer touch-none bg-surface/90 border-white/8 text-text-2 shadow-[0_10px_30px_#0006] [backdrop-filter:blur(6px)] [-webkit-backdrop-filter:blur(6px)]';
+    handle.className = 'hidden max-[768px]:grid h-12 w-5 place-items-center rounded-l-xl border! border-r-0! cursor-pointer touch-none bg-surface/90! border-white/8! text-text-2! shadow-[0_10px_30px_#0006] [backdrop-filter:blur(6px)] [-webkit-backdrop-filter:blur(6px)]';
     handle.setAttribute('data-qr-dock-toggle', '');
     handle.setAttribute('aria-expanded', 'true');
     handle.setAttribute('aria-label', 'Customer Service');
