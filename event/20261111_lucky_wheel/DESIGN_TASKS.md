@@ -122,7 +122,8 @@
 - **扇區顏色**：預設用 `assets/css/event.css` 的 6 組色票 `--ev-wheel-1`～`6`（底色＋文字色，已交付，依序輪流、相鄰不同色）；
   後台也可以為單一獎項指定 `color`／`textColor` 覆蓋。換皮時只要換這 6 組色票。
 - **內部預覽**：按 Ctrl+Option+↑／↓（Windows：Ctrl+Alt+↑／↓）即時增減獎項數量（3～12），看不同數量時盤面與文字的樣子；
-  mock 工具列（Ctrl+Option+H）也有「Prizes − N +」按鈕。只在本分頁暫時生效，不會寫回後台。
+  mock 工具列（Ctrl+Option+H）也有「Prizes − N +」按鈕；**手機上在轉盤同一個位置連點三下**叫出同樣的面板（點在 SPIN 按鈕上不算）。
+  只在本分頁暫時生效，不會寫回後台。
 - 美術仍要提供的只有：外框 `wheel-frame`、光澤 `wheel-gloss`、指針、中央按鈕、獎項圖示庫（後台可選用）。
 
 ### 主視覺文字（活動主標 `title-en` / `title-ko` / `title-th`）—— 重做，P0

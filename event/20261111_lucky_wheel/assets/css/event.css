@@ -253,6 +253,39 @@ img { display: block; max-width: 100%; }
 }
 
 .ev-wheel { position: relative; z-index: 1; width: 100%; }
+/* 轉盤區連點三下叫出的獎項數量面板（內部預覽用）；關掉雙擊縮放，連點才不會被當成放大 */
+#wheelArea { touch-action: manipulation; }
+.ev-prize-panel {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: var(--ev-space-2);
+  padding: var(--ev-space-1) var(--ev-space-2) var(--ev-space-1) var(--ev-space-3);
+  border-radius: var(--ev-radius-pill);
+  background: var(--ev-color-tag-bg);
+  color: var(--ev-color-tag-text);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+.ev-prize-panel b { min-width: 2ch; text-align: center; font-size: 16px; }
+.ev-prize-panel button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ev-color-surface);
+  color: var(--ev-color-text);
+  font: inherit;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
 
 /* 轉盤底座：400×600，上端藏在轉盤後方，下端底盤踩在透視地板上；底盤下有接地陰影 */
 .ev-wheel-stand {

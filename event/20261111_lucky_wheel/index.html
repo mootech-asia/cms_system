@@ -45,7 +45,14 @@
         <p class="ev-period-wrap"><span class="ev-period" id="period"></span><span class="ev-asset ev-asset--period" data-asset="periodBadge" aria-hidden="true"></span></p>
 
         <div class="ev-play">
-        <div class="ev-wheel-area">
+        <div class="ev-wheel-area" id="wheelArea">
+          <div class="ev-prize-panel" id="prizePanel" hidden>
+            <span data-i18n="mock.prizes"></span>
+            <button type="button" id="panelPrizeLess" aria-label="−">−</button>
+            <b id="panelPrizeCount"></b>
+            <button type="button" id="panelPrizeMore" aria-label="+">+</button>
+            <button type="button" id="panelPrizeClose" aria-label="×">×</button>
+          </div>
           <div class="ev-wheel-cast" aria-hidden="true"></div>
           <div class="ev-wheel-cast-pole" aria-hidden="true"></div>
           <div class="ev-wheel-stand" aria-hidden="true">

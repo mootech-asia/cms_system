@@ -430,6 +430,7 @@
     renderWheel();
     renderTicker();
     $('prizeCount').textContent = n;
+    $('panelPrizeCount').textContent = n;
     try { sessionStorage.setItem(PRIZE_PREVIEW_KEY, String(n)); } catch (e) { /* 只在本次頁面生效 */ }
     if (!silent) showToast(t('toast.prizes', { n: n }));
   }
@@ -444,6 +445,24 @@
   $('btnPrizeMore').addEventListener('click', function () { setPrizeCount(n + 1); });
   $('btnPrizeLess').addEventListener('click', function () { setPrizeCount(n - 1); });
   $('prizeCount').textContent = n;
+  $('panelPrizeCount').textContent = n;
+  // 手機沒有鍵盤：在轉盤上同一個位置連點三下（0.6 秒內、相距 30px 內）叫出／收起獎項數量面板；
+  // 點在按鈕上（SPIN 等）不算，避免連點誤觸抽獎
+  var panel = $('prizePanel');
+  var taps = [];
+  $('wheelArea').addEventListener('pointerup', function (e) {
+    if (e.target.closest('button, a')) { taps = []; return; }
+    var now = performance.now();
+    taps = taps.filter(function (tp) { return now - tp.t < 600 && Math.abs(tp.x - e.clientX) < 30 && Math.abs(tp.y - e.clientY) < 30; });
+    taps.push({ t: now, x: e.clientX, y: e.clientY });
+    if (taps.length >= 3) {
+      taps = [];
+      if (basePrizes.length) panel.hidden = !panel.hidden;
+    }
+  });
+  $('panelPrizeMore').addEventListener('click', function () { setPrizeCount(n + 1); });
+  $('panelPrizeLess').addEventListener('click', function () { setPrizeCount(n - 1); });
+  $('panelPrizeClose').addEventListener('click', function () { panel.hidden = true; });
   try {
     var savedCount = Number(sessionStorage.getItem(PRIZE_PREVIEW_KEY));
     if (savedCount && savedCount !== n) setPrizeCount(savedCount, true);
