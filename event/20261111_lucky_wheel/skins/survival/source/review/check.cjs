@@ -1,0 +1,20 @@
+const {chromium}=require('playwright');const fs=require('fs');
+(async()=>{const b=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});const report=[],errors=[],bad=[];const root=__dirname;
+for(const width of [360,390,1280,1440])for(const lang of ['en','ko','th']){
+const p=await b.newPage({viewport:{width,height:width<768?640:720}});p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.status()>=400)bad.push(r.url())});
+await p.route('**/assets/js/config.js',async r=>{const res=await r.fetch();await r.fulfill({response:res,body:(await res.text())+'\nEVENT_CONFIG.spinDurationMs=1200;'});});
+await p.goto('http://127.0.0.1:8000/event/20261111_lucky_wheel/?skin=survival&lang='+lang);
+await p.evaluate(()=>Promise.all([...document.images].filter(i=>i.src).map(i=>i.decode().catch(()=>{}))));
+await p.keyboard.press('Control+Alt+h');await p.locator('#btnLabels').click();await p.keyboard.press('Control+Alt+h');await p.evaluate(()=>scrollTo(0,0));
+const scan=async state=>{await p.evaluate(()=>Promise.all([...document.images].filter(i=>i.src).map(i=>i.decode().catch(()=>{}))));report.push({width,lang,state,...await p.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,broken:[...document.images].filter(e=>e.getAttribute('src')&&(!e.complete||!e.naturalWidth)).map(e=>e.src),cjk:/[\u3400-\u9fff]/.test(document.body.innerText+[...document.querySelectorAll('[alt],[aria-label],[title]')].map(e=>[e.alt,e.getAttribute('aria-label'),e.title].join('')).join(''))}))});};
+await scan('idle');report.push({width,lang,firstScreen:await p.locator('.ev-console').evaluate(e=>e.getBoundingClientRect().bottom<=innerHeight)});
+await p.screenshot({path:root+`/idle-${lang}-${width}.png`});
+for(let i=0;i<3;i++){
+await p.locator('#btnSpinCta').click();if(!i){await p.waitForTimeout(450);await scan('spinning');await p.screenshot({path:root+`/spinning-${lang}-${width}.png`});}
+await p.locator('#resultModal').waitFor({state:'visible'});if(!i){await scan('result');await p.screenshot({path:root+`/result-${lang}-${width}.png`});}
+await p.locator('#btnClose').click();}
+await scan('exhausted');report.push({width,lang,exhausted:(await p.locator('#chances').textContent())==='0'});
+await p.keyboard.press('Control+Alt+h');await p.locator('#btnLabels').click();await scan('labels-on');await p.locator('#btnReset').click();report.push({width,lang,reset:await p.locator('#chances').textContent()});
+await p.locator('#btnShare').click();report.push({width,lang,share:await p.locator('#shareUrl').inputValue()});await p.close();}
+for(const mode of ['clipboard-denied','storage-denied','empty-content']){const p=await b.newPage();p.on('pageerror',e=>errors.push(e.message));await p.addInitScript(mode=>{if(mode==='clipboard-denied'){Object.defineProperty(navigator,'clipboard',{value:{writeText:()=>Promise.reject(Error('denied'))}});document.execCommand=()=>false;}if(mode==='storage-denied'){Object.defineProperty(window,'localStorage',{get:()=>{throw Error('denied')}});}if(mode==='empty-content')window.EVENT_CONTENT={prizes:[],freeSpins:0,rules:{en:[],ko:[],th:[]}};},mode);await p.goto('http://127.0.0.1:8000/event/20261111_lucky_wheel/?skin=survival');if(mode==='clipboard-denied'){await p.locator('#btnShare').click();await p.locator('#btnShareCopy').click();await p.waitForTimeout(100);report.push({mode,pass:await p.locator('#shareUrl').evaluate(e=>document.activeElement===e&&e.selectionEnd===e.value.length)});}else if(mode==='empty-content')report.push({mode,pass:await p.locator('#wheelEmpty').isVisible()});else {await p.locator('#btnSpinCta').click();report.push({mode,pass:await p.locator('#stage').evaluate(e=>e.classList.contains('is-spinning'))});}await p.close();}
+await b.close();const failures=report.filter(r=>r.overflow||r.cjk||r.broken?.length||r.firstScreen===false||r.exhausted===false||r.pass===false||(r.reset!==undefined&&r.reset!=='10'));fs.writeFileSync(root+'/checks.json',JSON.stringify({report,errors,bad,failures},null,2));console.log(JSON.stringify({cases:report.length,failures,errors,bad}));if(failures.length||errors.length||bad.length)process.exitCode=1;})();

@@ -22,20 +22,20 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | S01 | title-en | 690×240 | `img/title-en.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | S02 | title-ko | 690×240 | `img/title-ko.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | S03 | title-th | 690×240 | `img/title-th.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | S04 | stage-bg | 750×1000 | `img/stage-bg.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | S05 | stage-floor | 750×140 | `img/stage-floor.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | S06 | wheel-frame | 680×680 | `img/wheel-frame.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | S07 | wheel-stand | 400×600 | `img/wheel-stand.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | S08 | pointer | 120×160 | `img/pointer.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | S09 | btn-go | 200×200 | `img/btn-go.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | S10 | spotlight | 260×900 | `img/spotlight.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | S11 | light-pool | 600×220 | `img/light-pool.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | S12 | stage-vignette | 750×1000 | `img/stage-vignette.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | S13 | bulb-on | 48×48 | `img/bulb-on.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | S14 | bulb-off | 48×48 | `img/bulb-off.{png,webp,svg}` | | ☐ | P0 |
+| ☑ | S01 | title-en | 690×240 | `img/title-en.{png,webp,svg}` | 560465b | ☐ | P0 |
+| ☑ | S02 | title-ko | 690×240 | `img/title-ko.{png,webp,svg}` | 560465b | ☐ | P0 |
+| ☑ | S03 | title-th | 690×240 | `img/title-th.{png,webp,svg}` | 560465b | ☐ | P0 |
+| ☑ | S04 | stage-bg | 750×1000 | `img/stage-bg.{png,webp,svg}` | 560465b | ☐ | P0 |
+| ☑ | S05 | stage-floor | 750×140 | `img/stage-floor.{png,webp,svg}` | 560465b | ☐ | P0 |
+| ☑ | S06 | wheel-frame | 680×680 | `img/wheel-frame.{png,webp,svg}` | 560465b | ☐ | P0 |
+| ☑ | S07 | wheel-stand | 400×600 | `img/wheel-stand.{png,webp,svg}` | 560465b | ☐ | P0 |
+| ☑ | S08 | pointer | 120×160 | `img/pointer.{png,webp,svg}` | 560465b | ☐ | P0 |
+| ☑ | S09 | btn-go | 200×200 | `img/btn-go.{png,webp,svg}` | 560465b | ☐ | P0 |
+| ☑ | S10 | spotlight | 260×900 | `img/spotlight.{png,webp,svg}` | 560465b | ☐ | P0 |
+| ☑ | S11 | light-pool | 600×220 | `img/light-pool.{png,webp,svg}` | 560465b | ☐ | P0 |
+| ☑ | S12 | stage-vignette | 750×1000 | `img/stage-vignette.{png,webp,svg}` | 560465b | ☐ | P0 |
+| ☑ | S13 | bulb-on | 48×48 | `img/bulb-on.{png,webp,svg}` | 560465b | ☐ | P0 |
+| ☑ | S14 | bulb-off | 48×48 | `img/bulb-off.{png,webp,svg}` | 560465b | ☐ | P0 |
 | ☐ | S15 | modal-bg | 600×760 | `img/modal-bg.{png,webp,svg}` | | ☐ | P1 |
 | ☐ | S16 | btn-primary | 400×110 | `img/btn-primary.{png,webp,svg}` | | ☐ | P1 |
 | ☐ | S17 | period-badge | 480×64 | `img/period-badge.{png,webp,svg}` | | ☐ | P1 |
@@ -55,7 +55,7 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | S29 | 扇區色 6 組（底色＋文字色） | — | `skin.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | | ☐ | P0 |
+| ☑ | S29 | 扇區色 6 組（底色＋文字色） | — | `skin.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | 560465b | ☐ | P0 |
 
 ## C. 兔比工作人員造型與動態（14）
 
@@ -85,3 +85,5 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 ## 備註
 
 （GPT 交付說明寫在這裡）
+
+- 2026-11-12：P0 14 張正式圖與色票已提交（560465b），方向加強粉彩樓梯迷宮與桃紅／墨綠空間對比。預覽與測試位於 `source/review/`。P1／P2 元件及 P3 工作服兔比尚未交付，現用兔比仍為佔位。S44 待其餘素材交齊後確認；審核欄未改。
