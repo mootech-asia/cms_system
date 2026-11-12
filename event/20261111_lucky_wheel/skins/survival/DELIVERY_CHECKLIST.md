@@ -36,19 +36,19 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 | ☑ | S12 | stage-vignette | 750×1000 | `img/stage-vignette.{png,webp,svg}` | 6e95855 | ☐ | P0 |
 | ☑ | S13 | bulb-on | 48×48 | `img/bulb-on.{png,webp,svg}` | 560465b | ☐ | P0 |
 | ☑ | S14 | bulb-off | 48×48 | `img/bulb-off.{png,webp,svg}` | 560465b | ☐ | P0 |
-| ☑ | S15 | modal-bg | 600×760 | `img/modal-bg.{png,webp,svg}` | be67d07 | ☐ | P1 |
-| ☑ | S16 | btn-primary | 400×110 | `img/btn-primary.{png,webp,svg}` | be67d07 | ☐ | P1 |
-| ☑ | S17 | period-badge | 480×64 | `img/period-badge.{png,webp,svg}` | be67d07 | ☐ | P1 |
-| ☑ | S18 | chances-badge | 360×88 | `img/chances-badge.{png,webp,svg}` | be67d07 | ☐ | P1 |
-| ☑ | S19 | ticker-bar | 690×64 | `img/ticker-bar.{png,webp,svg}` | be67d07 | ☐ | P1 |
+| ☑ | S15 | modal-bg | 600×760 | `img/modal-bg.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
+| ☑ | S16 | btn-primary | 400×110 | `img/btn-primary.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
+| ☑ | S17 | period-badge | 480×64 | `img/period-badge.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
+| ☑ | S18 | chances-badge | 360×88 | `img/chances-badge.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
+| ☑ | S19 | ticker-bar | 690×64 | `img/ticker-bar.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
 | ☑ | S20 | card-frame | 120×120 | `img/card-frame.{png,webp,svg}` | be67d07 | ☐ | P1 |
-| ☑ | S21 | card-title | 400×72 | `img/card-title.{png,webp,svg}` | be67d07 | ☐ | P1 |
-| ☑ | S22 | info-bg | 750×750 | `img/info-bg.{png,webp,svg}` | be67d07 | ☐ | P1 |
-| ☑ | S23 | footer-deco | 750×160 | `img/footer-deco.{png,webp,svg}` | be67d07 | ☐ | P1 |
+| ☑ | S21 | card-title | 400×72 | `img/card-title.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
+| ☑ | S22 | info-bg | 750×750 | `img/info-bg.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
+| ☑ | S23 | footer-deco | 750×160 | `img/footer-deco.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
 | ☑ | S24 | icon-sound-on | 64×64 | `img/icon-sound-on.{png,webp,svg}` | be67d07 | ☐ | P2 |
 | ☑ | S25 | icon-sound-off | 64×64 | `img/icon-sound-off.{png,webp,svg}` | be67d07 | ☐ | P2 |
 | ☑ | S26 | icon-share | 64×64 | `img/icon-share.{png,webp,svg}` | be67d07 | ☐ | P2 |
-| ☑ | S27 | icon-rotate | 160×160 | `img/icon-rotate.{png,webp,svg}` | be67d07 | ☐ | P2 |
+| ☑ | S27 | icon-rotate | 160×160 | `img/icon-rotate.{png,webp,svg}` | 6bf12e1 | ☐ | P2 |
 | ☐ | S28 | share-preview | 1200×630 | `img/share-preview.{png,jpg}` | | ☐ | P1 |
 
 ## B. 色票（1）
@@ -90,3 +90,5 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 
 - 2026-11-12：S15–S27 已提交 be67d07：9項介面面板／裝飾與4項控制圖示。預覽 `source/ui-review/`，彈窗內部與卡片中心不透明、底紋四邊相接。分享圖 S28 等工作服兔比定稿後製作；S44 等角色路徑交齊再確認。審核欄未改。
 - 2026-11-12：效能優化（6e95855）：S01–S12 由無損 WebP 重新壓成有損（主標 q92、其餘 q86，透明度預乘後 99% 像素差 ≤ 22），內容與尺寸不變；stage-bg 由 665KB 降到 48KB。`tools/build_p0.py` 已同步改為有損輸出。
+
+- 2026-11-12：效能優化（6bf12e1）：P1／P2 介面圖由無損 WebP 改有損（面板／底紋／圖示 q88；細框標籤條 q95、透明度無損），內容與尺寸不變；`tools/build_ui.py` 同步改為有損輸出。
