@@ -1,0 +1,34 @@
+[
+  {
+    "file": "title-en.webp",
+    "matches": true
+  },
+  {
+    "file": "title-ko.webp",
+    "matches": true
+  },
+  {
+    "file": "title-th.webp",
+    "matches": true
+  },
+  {
+    "file": "spotlight.png",
+    "matches": true
+  },
+  {
+    "file": "light-pool.png",
+    "matches": true
+  },
+  {
+    "file": "stage-vignette.png",
+    "matches": true
+  },
+  {
+    "file": "bulb-on.png",
+    "matches": true
+  },
+  {
+    "file": "bulb-off.png",
+    "matches": true
+  }
+]

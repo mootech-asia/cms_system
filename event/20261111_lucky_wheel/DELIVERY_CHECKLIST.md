@@ -41,10 +41,10 @@
 |---|---|---|---|---|---|---|---|
 | ☑ | A01 | stage-bg | 750×1000 | `assets/img/stage-bg.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A02 | stage-floor | 750×140 | `assets/img/stage-floor.{png,webp,svg}` | d913f7f | ☐ | P0 |
-| ☐ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
-| ☐ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
-| ☐ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
-| ☐ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | | ✗ 退回重做：硬邊平面楔形，要做有煙霧體積感的光束（見需求單「舞台燈光」） | P0 |
+| ☑ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | b577931 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | b577931 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | b577931 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | b577931 | ✗ 退回重做：硬邊平面楔形，要做有煙霧體積感的光束（見需求單「舞台燈光」） | P0 |
 | ☑ | A07 | wheel-frame | 680×680 | `assets/img/wheel-frame.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A08 | wheel-gloss | 600×600 | `assets/img/wheel-gloss.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A09 | pointer | 120×160 | `assets/img/pointer.{png,webp,svg}` | d913f7f | ☐ | P0 |
@@ -72,17 +72,17 @@
 | ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ | P3 |
 | ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | 8349b85 | ☐ | P1 |
-| ☐ | A34 | light-pool | 600×220 | `assets/img/light-pool.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | A35 | stage-vignette | 750×1000 | `assets/img/stage-vignette.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | A37 | bulb-on | 48×48 | `assets/img/bulb-on.{png,webp,svg}` | | ☐ | P0 |
-| ☐ | A38 | bulb-off | 48×48 | `assets/img/bulb-off.{png,webp,svg}` | | ☐ | P0 |
+| ☑ | A34 | light-pool | 600×220 | `assets/img/light-pool.{png,webp,svg}` | b577931 | ☐ | P0 |
+| ☑ | A35 | stage-vignette | 750×1000 | `assets/img/stage-vignette.{png,webp,svg}` | b577931 | ☐ | P0 |
+| ☑ | A37 | bulb-on | 48×48 | `assets/img/bulb-on.{png,webp,svg}` | b577931 | ☐ | P0 |
+| ☑ | A38 | bulb-off | 48×48 | `assets/img/bulb-off.{png,webp,svg}` | b577931 | ☐ | P0 |
 | ☐ | A39 | icon-rotate | 160×160 | `assets/img/icon-rotate.{png,webp,svg}` | | ☐ | P2 |
 
 ## B. 色票（1）
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | d5dad7d | ☐ | P0 |
+| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | d62a35e | ☐ | P0 |
 
 ## C. 吉祥物角色設定圖（1，第一階段）
 
@@ -130,7 +130,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | e39eeac | ☐ | P2 |
+| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | d62a35e | ☐ | P2 |
 
 ## G. 音效（選配 5）
 
@@ -169,3 +169,5 @@
 - `ccc0982`：D00 共用基準幀、D01 待機1新稿、E01序列48幀、E06品牌比對。D01沿用原退回審核欄，待審核者確認新稿後更新；提交勾不代表已審過。
 - 新待機1為48幀、2000ms、113244 bytes、無限循環，首尾完全相同，整段透明輪廓變更像素為0，只移動背心內部紋理與眨眼；見 source/mascot-v3/preview.html。
 - 其餘四段尚未共用新基準，頁面暫不把新待機1加入輪播；先單獨提供GIF預覽。
+
+- 2026-11-12：A03–A06、A34、A35、A37、A38 已以 b577931 重新提交；主標為三語客製立體 Logo，燈光含半透明體積光與同位亮暗燈泡。審核欄維持原記錄，待重新審核。B01／F01 同步最新 CSS／config commit。
