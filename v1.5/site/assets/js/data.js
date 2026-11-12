@@ -134,6 +134,8 @@
       'nav.LuckyWheel': '幸運轉盤',
       'nav.Referral': '推薦中心',
       'userCenter.sidebar.customerService': '客服中心',
+      'userCenter.sidebar.menu': '選單',
+      'userCenter.sidebar.myAccountTitle': '我的帳戶',
       'userCenter.accountOverview': '帳戶總覽',
       'userCenter.nickname': '暱稱',
       'userCenter.bankingDetails': '銀行帳戶資料',
@@ -510,6 +512,8 @@
       'nav.LuckyWheel': '행운의 룰렛',
       'nav.Referral': '추천 센터',
       'userCenter.sidebar.customerService': '고객센터',
+      'userCenter.sidebar.menu': '메뉴',
+      'userCenter.sidebar.myAccountTitle': '내 계정',
       'userCenter.accountOverview': '나의 계정',
       'userCenter.nickname': '닉네임',
       'userCenter.bankingDetails': '결제 정보',
@@ -886,6 +890,8 @@
       'nav.LuckyWheel': 'Lucky Wheel',
       'nav.Referral': 'Referral Center',
       'userCenter.sidebar.customerService': 'Customer Service',
+      'userCenter.sidebar.menu': 'Menu',
+      'userCenter.sidebar.myAccountTitle': 'My Account',
       'userCenter.accountOverview': 'Account Overview',
       'userCenter.nickname': 'Nickname',
       'userCenter.bankingDetails': 'Banking Details',
@@ -1262,22 +1268,38 @@
   };
 
   /* ---- 會員中心側欄清單(對照 components/UserSidebar.vue items) ---- */
-  var USER_SIDEBAR_ITEMS = [
-    { id: 'gameLobby', tKey: 'userCenter.sidebar.gameLobby', url: 'index.html', icon: 'gameLobby.svg' },
-    { id: 'accountOverview', tKey: 'userCenter.sidebar.accountOverview', url: 'account.html', icon: 'dashboard.svg' },
-    { id: 'bettingRecord', tKey: 'userCenter.sidebar.bettingRecord', url: 'betting-record.html', icon: 'bettingRecord.svg' },
-    { id: 'depositRecord', tKey: 'userCenter.sidebar.depositRecord', url: 'deposit-record.html', icon: 'depositRecord.svg' },
-    { id: 'profitAndLoss', tKey: 'userCenter.sidebar.profitAndLoss', url: 'profit-loss.html', icon: 'profitAndLoss.svg' },
-    { id: 'withdrawalRecord', tKey: 'userCenter.sidebar.withdrawalRecord', url: 'withdrawal-record.html', icon: 'withdrawalRecord.svg' },
-    { id: 'withdrawalDetail', tKey: 'userCenter.sidebar.withdrawalDetail', url: 'withdrawal-detail.html', icon: 'withdrawalDetail.svg' },
-    { id: 'accountRecord', tKey: 'userCenter.sidebar.accountRecord', url: 'account-record.html', icon: 'accountRecord.svg' },
-    { id: 'personalInfo', tKey: 'userCenter.sidebar.personalInfo', url: 'personal-info.html', icon: 'myAccount.svg' },
-    { id: 'securityCenter', tKey: 'userCenter.sidebar.securityCenter', url: 'security.html', icon: 'securityCenter.svg' },
-    { id: 'referralCenter', tKey: 'nav.Referral', url: 'referral.html', icon: 'InviteFriends.svg' },
-    { id: 'dailyCheckin', tKey: 'nav.Check-in', url: 'check-in.html', icon: 'date.svg' },
-    { id: 'survivalSpin', tKey: 'nav.SurvivalSpin', url: 'survival-spin.html', icon: 'survival-wheel.svg' },
-    { id: 'luckyWheel', tKey: 'nav.LuckyWheel', url: 'lucky-wheel.html', icon: 'wheel.svg' },
-    { id: 'customerService', tKey: 'userCenter.sidebar.customerService', url: '', icon: 'customerService.svg' },
+  /* 會員中心側欄（桌機左側／手機展開）以 v3 左側選單為準：選單／活動／我的帳戶三組，
+     頂部儲值／提款按鈕由 site.js 的 userSidebarHtml 產生。iconPath 是相對 icon/ 的路徑。 */
+  var USER_SIDEBAR_GROUPS = [
+    { tKey: 'userCenter.sidebar.menu', items: [
+      { id: 'home', tKey: 'navbar.desktop.home', url: 'index.html', iconPath: 'nav-home.svg' },
+      { id: 'hotGames', tKey: 'navbar.desktop.hotGames', url: 'game-type.html?type=hotgames', iconPath: 'hotGame2.svg' },
+      { id: 'miniGames', tKey: 'navbar.desktop.miniGames', url: 'game-type.html?type=mini_game', iconPath: 'miniGames.svg' },
+      { id: 'slots', tKey: 'navbar.desktop.slots', url: 'game-type.html?type=slot', iconPath: 'slotGames.svg' },
+      { id: 'sports', tKey: 'navbar.desktop.sports', url: 'game-type.html?type=sports', iconPath: 'sports.svg' },
+      { id: 'live', tKey: 'navbar.desktop.live', url: 'game-type.html?type=live', iconPath: '../index/hotGame/icon-Live2.png' },
+      { id: 'fish', tKey: 'navbar.desktop.fish', url: 'game-type.html?type=fish', iconPath: 'fish.svg' },
+      { id: 'promotion', tKey: 'navbar.desktop.promotion', url: 'promotion-list.html', iconPath: 'nav-promotion-logo.svg' }
+    ] },
+    { tKey: 'nav.Event', items: [
+      { id: 'dailyCheckin', tKey: 'nav.Check-in', url: 'check-in.html', icon: 'date.svg' },
+      { id: 'survivalSpin', tKey: 'nav.SurvivalSpin', url: 'survival-spin.html', icon: 'survival-wheel.svg' },
+      { id: 'luckyWheel', tKey: 'nav.LuckyWheel', url: 'lucky-wheel.html', icon: 'wheel.svg' }
+    ] },
+    { tKey: 'userCenter.sidebar.myAccountTitle', items: [
+      { id: 'accountOverview', tKey: 'userCenter.sidebar.accountOverview', url: 'account.html', icon: 'dashboard.svg' },
+      { id: 'bettingRecord', tKey: 'userCenter.sidebar.bettingRecord', url: 'betting-record.html', icon: 'bettingRecord.svg' },
+      { id: 'depositRecord', tKey: 'userCenter.sidebar.depositRecord', url: 'deposit-record.html', icon: 'depositRecord.svg' },
+      { id: 'profitAndLoss', tKey: 'userCenter.sidebar.profitAndLoss', url: 'profit-loss.html', icon: 'profitAndLoss.svg' },
+      { id: 'withdrawalRecord', tKey: 'userCenter.sidebar.withdrawalRecord', url: 'withdrawal-record.html', icon: 'withdrawalRecord.svg' },
+      { id: 'withdrawalDetail', tKey: 'userCenter.sidebar.withdrawalDetail', url: 'withdrawal-detail.html', icon: 'withdrawalDetail.svg' },
+      { id: 'accountRecord', tKey: 'userCenter.sidebar.accountRecord', url: 'account-record.html', icon: 'accountRecord.svg' },
+      { id: 'personalInfo', tKey: 'userCenter.sidebar.personalInfo', url: 'personal-info.html', icon: 'myAccount.svg' },
+      { id: 'securityCenter', tKey: 'userCenter.sidebar.securityCenter', url: 'security.html', icon: 'securityCenter.svg' },
+      { id: 'referralCenter', tKey: 'nav.Referral', url: 'referral.html', icon: 'InviteFriends.svg' },
+      { id: 'customerService', tKey: 'userCenter.sidebar.customerService', url: '', icon: 'customerService.svg' },
+      { id: 'faq', tKey: 'about.tabs.faq', url: 'about.html?tab=faq', iconPath: 'sidebar-helps.svg' }
+    ] }
   ];
 
   /* ---- 提款頁銀行卡列表(對照 api.getBankCardList 假資料;卡號/持卡人皆為
@@ -1886,7 +1908,7 @@
     PROMOTIONS: PROMOTIONS,
     ABOUT_CONTENT: ABOUT_CONTENT,
     MOCK_PROFILE: MOCK_PROFILE,
-    USER_SIDEBAR_ITEMS: USER_SIDEBAR_ITEMS,
+    USER_SIDEBAR_GROUPS: USER_SIDEBAR_GROUPS,
     MOCK_TRANSACTIONS: MOCK_TRANSACTIONS,
     BANK_CARDS: BANK_CARDS,
     CRYPTO_WALLETS: CRYPTO_WALLETS,

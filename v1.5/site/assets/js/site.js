@@ -577,11 +577,12 @@
 
   function userSidebarNavItemHtml(item) {
     var isActive = !!item.url && sidebarActivePage() === item.url.replace(/\.html$/, '');
+    var itemIcon = icon(item.iconPath || ('usercenter/' + item.icon));
     return (
       '<li class="px-6 mb-4 xl:px-8 xl:pl-8 xl:pr-7.5">' +
       '<button type="button" class="group/usn w-full h-9 flex items-center gap-2 !py-0 !px-2 rounded-card border-b border-white/15 !text-navy xl:gap-1 xl:!text-white [&:hover:not(.is-active)]:xl:!bg-pink-hover [&:hover:not(.is-active)]:xl:!border-transparent [&.is-active]:xl:!bg-[image:var(--g-primary)] [&.is-active]:xl:!border-transparent' + (isActive ? ' is-active' : '') + '" data-usc-item="' + item.id + '"' +
       (item.url ? ' data-nav-href="' + item.url + '"' : ' data-open-cs') + '>' +
-      '<span class="w-6 h-6 shrink-0 bg-[image:var(--g-primary)] [mask-repeat:no-repeat] [mask-position:center] [mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center] [-webkit-mask-size:contain] xl:group-[:hover:not(.is-active)]/usn:!bg-none xl:group-[:hover:not(.is-active)]/usn:!bg-white xl:group-[.is-active]/usn:!bg-none xl:group-[.is-active]/usn:!bg-navy" style="-webkit-mask-image:url(' + icon('usercenter/' + item.icon) + ');mask-image:url(' + icon('usercenter/' + item.icon) + ')"></span>' +
+      '<span class="w-6 h-6 shrink-0 bg-[image:var(--g-primary)] [mask-repeat:no-repeat] [mask-position:center] [mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center] [-webkit-mask-size:contain] xl:group-[:hover:not(.is-active)]/usn:!bg-none xl:group-[:hover:not(.is-active)]/usn:!bg-white xl:group-[.is-active]/usn:!bg-none xl:group-[.is-active]/usn:!bg-navy" style="-webkit-mask-image:url(' + itemIcon + ');mask-image:url(' + itemIcon + ')"></span>' +
       '<span class="flex-1 bg-[#f4f4f4] rounded-card py-2 px-2 text-left font-semibold xl:bg-transparent xl:p-0 xl:group-[:hover:not(.is-active)]/usn:!text-white xl:group-[:hover:not(.is-active)]/usn:!bg-transparent xl:group-[.is-active]/usn:!bg-transparent xl:group-[.is-active]/usn:!text-navy" data-i18n="' + item.tKey + '">' + t(item.tKey) + '</span>' +
       '</button></li>'
     );
@@ -605,14 +606,17 @@
   }
 
   function userSidebarHtml() {
-    var itemsHtml = (D.USER_SIDEBAR_ITEMS || []).map(userSidebarNavItemHtml).join('');
+    var itemsHtml = (D.USER_SIDEBAR_GROUPS || []).map(function (g) {
+      return '<li class="group/mg" data-member-group><button type="button" class="flex w-full items-center justify-between !px-6 !pt-1 !pb-3 xl:!px-8 !bg-transparent !border-0 !text-[12px] !font-bold uppercase tracking-wide !text-navy/50 xl:!text-white/60 cursor-pointer" data-member-group-toggle aria-expanded="true"><span data-i18n="' + g.tKey + '">' + t(g.tKey) + '</span><svg class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 group-[.is-collapsed]/mg:-rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>' +
+        '<ul class="list-none m-0 p-0 group-[.is-collapsed]/mg:hidden">' + g.items.map(userSidebarNavItemHtml).join('') + '</ul></li>';
+    }).join('');
     var toggles =
       '<div class="hidden gap-2 py-1.5 px-6 mb-4 xl:flex xl:gap-3 xl:py-0 xl:px-8">' +
       userSidebarToggleBtnHtml('deposit.html', 'userCenter.deposit') +
       userSidebarToggleBtnHtml('withdrawal.html', 'userCenter.withdrawal') +
       '</div>';
     var actions =
-      '<div class="flex gap-2 px-6 pb-6 xl:!hidden">' +
+      '<div class="flex gap-2 px-6 pt-4 pb-4 xl:!hidden">' +
       userSidebarActionBtnHtml('deposit.html', 'userCenter.deposit') +
       userSidebarActionBtnHtml('withdrawal.html', 'userCenter.withdrawal') +
       '</div>';
@@ -620,13 +624,22 @@
       '<nav class="relative w-full bg-white xl:fixed xl:top-31 xl:bottom-0 xl:left-0 xl:w-65 xl:bg-navy xl:py-4.5 xl:overflow-y-auto">' +
       '<div class="hidden fixed inset-0 top-8 z-10 bg-transparent [&.is-open]:block xl:!hidden" data-usc-overlay></div>' +
       '<ul class="hidden list-none m-0 p-0 [&.is-open]:block [&.is-open]:fixed [&.is-open]:top-8 [&.is-open]:bottom-0 [&.is-open]:right-0 [&.is-open]:w-full [&.is-open]:overflow-y-auto [&.is-open]:z-20 [&.is-open]:bg-white xl:!block xl:static xl:bg-transparent" data-usc-panel>' +
-      toggles + itemsHtml + actions +
+      toggles + actions + itemsHtml +
       '</ul>' +
       '</nav>'
     );
   }
 
   function bindUserSidebar(root) {
+    if (!document.__memberGroupToggleBound) {
+      document.__memberGroupToggleBound = true;
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest && e.target.closest('[data-member-group-toggle]');
+        if (!btn) return;
+        var collapsed = btn.closest('[data-member-group]').classList.toggle('is-collapsed');
+        btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      });
+    }
     var panel = qs('[data-usc-panel]', root);
     var overlay = qs('[data-usc-overlay]', root);
     var toggleBtn = qs('[data-toggle-user-sidebar]', root);
