@@ -667,7 +667,8 @@
     var navHtml = '<div class="p-[12px_12px_6px] text-[12px] font-bold text-text-dim mobile-menu-section">' + tr('sidebar.myAccount', '我的帳戶') + '</div>' +
       MEMBER_MENU_ITEMS.map(function (item) {
         var active = item.href.split('?')[0] === page;
-        return '<a href="' + item.href + '" class="flex items-center gap-3 p-[13px_12px] rounded-md text-[14.5px] font-bold text-text hover:bg-bg-panel [&.active]:bg-bg-panel [&.active]:text-red [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-text-mid [&>svg]:shrink-0 [&.active>svg]:text-red mobile-menu-link' + (active ? ' active' : '') + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + item.icon + '</svg><span>' + item.label + '</span></a>';
+        var section = item.href === 'check-in.html' ? '<div class="p-[12px_12px_6px] text-[12px] font-bold text-text-dim mobile-menu-section">' + tr('nav.Event', '活動') + '</div>' : '';
+        return section + '<a href="' + item.href + '" class="flex items-center gap-3 p-[13px_12px] rounded-md text-[14.5px] font-bold text-text hover:bg-bg-panel [&.active]:bg-bg-panel [&.active]:text-red [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-text-mid [&>svg]:shrink-0 [&.active>svg]:text-red mobile-menu-link' + (active ? ' active' : '') + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + item.icon + '</svg><span>' + item.label + '</span></a>';
       }).join('');
     openMobileOverlay(navHtml);
   }

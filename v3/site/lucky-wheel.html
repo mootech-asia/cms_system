@@ -54,7 +54,18 @@
                 });
                 return h;
               }
+              // 手機寬度時撐滿螢幕左右（有些站的內容區在右側預留浮動客服欄的位置），桌機維持置中 H5 寬
+              function bleed() {
+                var wrap = frame.parentElement;
+                wrap.style.marginLeft = wrap.style.marginRight = '';
+                if (window.innerWidth > 768) return;
+                var w = wrap.getBoundingClientRect();
+                var vw = document.documentElement.clientWidth;
+                wrap.style.marginLeft = (-w.left) + 'px';
+                wrap.style.marginRight = (w.right - vw) + 'px';
+              }
               function fit() {
+                bleed();
                 var top = frame.getBoundingClientRect().top + window.pageYOffset;
                 frame.style.height = Math.max(520, window.innerHeight - top - bottomBar() - 16) + 'px';
               }

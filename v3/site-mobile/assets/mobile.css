@@ -514,3 +514,7 @@
 @media (min-width: 769px) {
   .m-qr-rail { display: none; }
 }
+
+/* 幸運轉盤活動頁（lucky-wheel.html）的 H5 內嵌 iframe；本資料夾不吃 Tailwind，所以另寫 */
+.lw-embed { padding: var(--space-4) 0; }
+.lw-embed-frame { display: block; width: 100%; max-width: 480px; margin: 0 auto; border: 0; }

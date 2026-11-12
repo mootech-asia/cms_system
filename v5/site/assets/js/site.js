@@ -720,7 +720,8 @@
     var navHtml = '<div class="pt-3.5 px-3 pb-1 text-[12px] font-bold text-text-dim header-menu-section">' + tr('sidebar.myAccount', '我的帳戶') + '</div>' +
       '<div class="grid grid-cols-2 gap-2 pt-1 px-3.5 pb-3.5 header-menu-list">' + MEMBER_MENU_ITEMS.map(function (item) {
         var active = item.href.split('?')[0] === page;
-        return '<a href="' + item.href + '" class="flex items-center justify-between gap-1.5 p-3 rounded-md bg-bg-panel border border-line text-[12.5px] font-bold text-text [&.active]:text-accent-hi [&.active]:border-accent-hi [&.active_.chevron]:text-accent-hi header-menu-list-item' + (active ? ' active' : '') + '"><span>' + item.label + '</span><svg class="w-3.5 h-3.5 text-text-dim shrink-0 chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>';
+        var section = item.href === 'check-in.html' ? '<div class="col-span-2 pt-2 text-[12px] font-bold text-text-dim">' + tr('nav.Event', '活動') + '</div>' : '';
+        return section + '<a href="' + item.href + '" class="flex items-center justify-between gap-1.5 p-3 rounded-md bg-bg-panel border border-line text-[12.5px] font-bold text-text [&.active]:text-accent-hi [&.active]:border-accent-hi [&.active_.chevron]:text-accent-hi header-menu-list-item' + (active ? ' active' : '') + '"><span>' + item.label + '</span><svg class="w-3.5 h-3.5 text-text-dim shrink-0 chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>';
       }).join('') + '</div>';
     openMobileOverlay(navHtml);
   }
