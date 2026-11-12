@@ -95,33 +95,36 @@
 |---|---|---|---|---|---|---|---|
 | ☐ | C01 | turnaround-sheet（品牌包同一檔案） | 1536×1024（暫緩：兔比完整設定排在轉盤活動之後） | `../../brand/moo-rabbit/01_character/turnaround-sheet.png` | | ☐ | P3 |
 
-## D. 吉祥物 GIF（5，第二階段）
+## D. 吉祥物動態（基準幀＋6 段，P3 最後做）
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | D00 | base-frame（所有動態共用的基準幀） | 400×500 | `assets/img/mascot/base-frame.png` | ccc0982 | ☐ | P3 |
-| ☑ | D01 | idle-1 | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | ccc0982 | ✗ 退回：整隻角色忽大忽小（寬度變化約 19%），已從頁面移除，需重做 | P3 |
-| ☐ | D02 | idle-2 | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | | ✗ 需重做：頭尾幀不一致、與其他動態起始姿勢不同（目前當假圖留在頁面） | P3 |
-| ☐ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | | ✗ 需重做：頭尾幀不一致、與其他動態起始姿勢不同（目前當假圖留在頁面） | P3 |
-| ☐ | D04 | spinning | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | | ✗ 需重做：頭尾幀不一致、與其他動態起始姿勢不同（目前當假圖留在頁面） | P3 |
-| ☐ | D05 | result | 400×500 gif≥24 | `assets/img/mascot/result.gif` | | ✗ 需重做：頭尾幀不一致、與其他動態起始姿勢不同（目前當假圖留在頁面） | P3 |
+| ☐ | D00 | base-frame（所有動態共用的基準幀，含影子） | 400×500 | `assets/img/mascot/base-frame.png` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | D01 | idle-1 | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | D02 | idle-2 | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | D03 | idle-3 | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | D04 | spinning（期待） | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | D05 | result（慶祝，中獎） | 400×500 gif≥24 | `assets/img/mascot/result.gif` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | D06 | lose（失望，未中獎，新增） | 400×500 gif≥24 | `assets/img/mascot/lose.gif` | | ☐ | P3 |
 
-## E. 吉祥物附件（10）
+## E. 吉祥物附件（12，PNG 序列幀為主交付）
 
 序列幀與比對圖不會上線，放在 `source/`。
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | E01 | idle-1 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-1/` | ccc0982 | ☐ | P3 |
+| ☐ | E01 | idle-1 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-1/` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
 | ☐ | E02 | idle-2 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-2/` | | ☐ | P3 |
 | ☐ | E03 | idle-3 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-3/` | | ☐ | P3 |
 | ☐ | E04 | spinning PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/spinning/` | | ☐ | P3 |
 | ☐ | E05 | result PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/result/` | | ☐ | P3 |
-| ☑ | E06 | idle-1 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-1.{png,webp}` | ccc0982 | ☐ | P3 |
+| ☐ | E11 | lose PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/lose/` | | ☐ | P3 |
+| ☐ | E06 | idle-1 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-1.{png,webp}` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
 | ☐ | E07 | idle-2 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-2.{png,webp}` | | ☐ | P3 |
 | ☐ | E08 | idle-3 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-3.{png,webp}` | | ☐ | P3 |
 | ☐ | E09 | spinning 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/spinning.{png,webp}` | | ☐ | P3 |
 | ☐ | E10 | result 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/result.{png,webp}` | | ☐ | P3 |
+| ☐ | E12 | lose 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/lose.{png,webp}` | | ☐ | P3 |
 
 ## F. 程式路徑（1）
 

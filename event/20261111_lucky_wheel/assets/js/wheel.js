@@ -213,7 +213,7 @@
     if (done) { if (entry.ready) done(); else entry.cbs.push(done); }
   }
   function preloadMascots() {
-    var list = [cfg.mascot.spinning, cfg.mascot.result].concat(cfg.mascot.idle);
+    var list = [cfg.mascot.spinning, cfg.mascot.result, cfg.mascot.lose].concat(cfg.mascot.idle).filter(Boolean);
     (function next(i) { if (i < list.length) loadMascot(list[i], function () { next(i + 1); }); })(0);
   }
 
@@ -248,7 +248,9 @@
         setMascot('idle');
       }, cfg.idleSwapMs);
     } else {
-      showMascot(cfg.mascot[state], state);
+      // 「失望」動作還沒交付時先用「慶祝」那段
+      var key = state === 'lose' && !cfg.mascot.lose ? 'result' : state;
+      showMascot(cfg.mascot[key], state);
     }
   }
 
@@ -310,7 +312,7 @@
     setTimeout(function () {
       var prize = prizes[idx];
       setStage('result');
-      setMascot('result');
+      setMascot(prize.isLose ? 'lose' : 'result');
       Sound.finale(prize.isLose);
       player.records.push({ name: prize.name, time: now() });
       savePlayer();

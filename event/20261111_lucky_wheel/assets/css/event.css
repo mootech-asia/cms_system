@@ -284,26 +284,54 @@ img { display: block; max-width: 100%; }
   to { opacity: 1; }
 }
 .ev-wheel-stand::after {
-  /* 底盤（wheel-stand 圖 y 430–520 / 600）正下方的接地陰影；光源在左前上方，陰影略偏右後 */
+  /* 底盤（wheel-stand 圖 y 430–520 / 600）的接觸陰影：貼著底盤邊緣最深，往右後方稍微拖長 */
   content: "";
   position: absolute;
-  left: 6%;
-  right: -4%;
-  top: 80%;
-  height: 12%;
+  left: 8%;
+  right: -10%;
+  top: 76%;
+  height: 15%;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgb(60 22 4 / 0.55), rgb(60 22 4 / 0.25) 60%, transparent);
+  background: radial-gradient(closest-side, rgb(50 18 2 / 0.7), rgb(50 18 2 / 0.4) 55%, rgb(50 18 2 / 0.12) 80%, transparent);
   z-index: -1;
+}
+
+/* 轉盤在地板上的投影（座標以轉盤寬 W 為單位：牆腳線約 0.73W、底盤中心約 1.17W）。
+   轉盤立在離背牆很遠的地板上，光源在前上方偏左，所以盤面的影子是一個壓扁的橢圓，
+   落在轉盤右後方的地板上（大半被盤面擋住，只露出右側與下緣），立柱影子從底盤往右後方延伸過去。
+   全部是靜止元素，不加在會旋轉的盤面上 */
+.ev-wheel-cast,
+.ev-wheel-cast-pole {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.ev-wheel-cast {
+  left: 46%;
+  top: 84%;
+  width: 72%;
+  height: 24%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(50 18 2 / 0.62), rgb(50 18 2 / 0.46) 45%, rgb(50 18 2 / 0.18) 78%, transparent);
+  transform: rotate(-8deg);
+}
+/* 立柱影子：從底盤中心（50%, 1.17W）往右後方接到盤面影子 */
+.ev-wheel-cast-pole {
+  left: 48.25%;
+  top: 88.5%;
+  width: 3.5%;
+  height: 28%;
+  border-radius: 50%;
+  background: linear-gradient(to top, rgb(50 18 2 / 0.45), rgb(50 18 2 / 0.15));
+  filter: blur(1.5px);
+  transform: rotate(49deg);
+  transform-origin: 50% 100%;
 }
 .ev-wheel::before { content: ""; display: block; padding-top: 100%; }
 
 .ev-wheel-frame,
 .ev-wheel-bulbs { position: absolute; inset: 0; width: 100%; height: 100%; }
-.ev-wheel-frame {
-  z-index: 2;
-  /* 陰影只加在不會動的外框圖上：加在整個轉盤（含旋轉的盤面）會讓瀏覽器轉動時每一幀重算濾鏡 */
-  filter: drop-shadow(8px 14px 14px rgb(60 22 4 / 0.3));
-}
+.ev-wheel-frame { z-index: 2; }
 
 .ev-wheel-disc,
 .ev-wheel-gloss {

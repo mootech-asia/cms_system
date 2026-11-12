@@ -136,14 +136,28 @@ def check_file(rel, spec):
         with Image.open(p) as im:
             frames = getattr(im, 'n_frames', 1)
             loop = im.info.get('loop')
+            total_ms, union = 0, None
+            for i in range(frames):
+                im.seek(i)
+                total_ms += im.info.get('duration', 0)
+                box = im.convert('RGBA').getchannel('A').getbbox()
+                if box:
+                    union = box if union is None else (min(union[0], box[0]), min(union[1], box[1]), max(union[2], box[2]), max(union[3], box[3]))
             im.seek(0)
             first = im.convert('RGBA')
             im.seek(frames - 1)
             last = im.convert('RGBA')
+            w, h = im.size
         if frames < min_frames:
             return False, '%s 只有 %d 幀，至少 %d 幀' % (found[0], frames, min_frames)
         if loop != 0:
             return False, '%s 未設定無限循環（loop=0）' % found[0]
+        # 所有動作同長度，程式才能在一輪結束（回到基準幀）時切換；長度要等於 config.mascot.loopMs
+        if abs(total_ms - MASCOT_LOOP_MS) > 20:
+            return False, '%s 一輪 %dms，所有動作必須是 %dms（48 幀）' % (found[0], total_ms, MASCOT_LOOP_MS)
+        # 任何一幀的角色（含耳朵、手、跳起、影子、特效）都不能碰到畫布邊緣，否則會被裁切
+        if union and min(union[0], union[1], w - union[2], h - union[3]) < EDGE_MARGIN:
+            return False, '%s 角色或影子貼到畫布邊緣（全部幀的外框 %s，四邊至少要留 %dpx），會被裁切' % (found[0], union, EDGE_MARGIN)
         # 吉祥物動態規則：每個 GIF 第一幀＝最後一幀＝共用基準幀（同資料夾 base-frame.png），才能無縫循環、隨時換動作
         if frame_diff(first, last) > FRAME_TOLERANCE:
             return False, '%s 最後一幀與第一幀不同（差異 %.1f），無法無縫循環' % (found[0], frame_diff(first, last))
@@ -160,6 +174,8 @@ def check_file(rel, spec):
 
 
 FRAME_TOLERANCE = 1.5  # RGBA 平均差異（0~255）；GIF 重新量化的雜訊約 <1
+MASCOT_LOOP_MS = 2000
+EDGE_MARGIN = 8
 
 
 def frame_diff(a, b):
