@@ -790,6 +790,108 @@
     on(csModalRoot, 'click', function (e) { if (e.target === csModalRoot) closeCsModal(); });
     on(csModalRoot.querySelector('[data-cs-close]'), 'click', closeCsModal);
   }
+  /* 手機寬度客服對話鈕比照 v3 手機版：貼齊右緣，左側把手與客服鈕併成同一條底板
+     （只有左側圓角），點把手收成一條小把手、再點展開；把手可上下拖曳（位移超過
+     6px 才算拖曳），位置以視窗高度比例存在 localStorage，範圍夾在頁首下緣與底部
+     導覽列上緣之間。桌機寬度外層為 display:contents，對話鈕維持原本的右下角。 */
+  function initChatFabDock() {
+    var fab = document.querySelector('.v6-chat-fab');
+    if (!fab || fab.parentElement.hasAttribute('data-cs-dock-items')) return;
+    var rail = document.createElement('div');
+    rail.setAttribute('data-cs-dock-items', '');
+    rail.className = 'contents max-[720px]:flex max-[720px]:flex-col max-[720px]:items-center max-[720px]:gap-2.5 max-[720px]:py-2 max-[720px]:pr-2 max-[720px]:group-[.is-collapsed]/qrd:hidden';
+    fab.parentElement.insertBefore(rail, fab);
+    rail.appendChild(fab);
+    fab.className += ' max-[720px]:static max-[720px]:w-10 max-[720px]:h-10 max-[720px]:bg-none max-[720px]:bg-bg-soft max-[720px]:text-accent max-[720px]:shadow-none max-[720px]:hover:scale-100 max-[720px]:[&_svg]:w-4.5 max-[720px]:[&_svg]:h-4.5';
+    if (rail.parentElement.hasAttribute('data-qr-dock')) return;
+    var mq = window.matchMedia('(max-width: 720px)');
+    var dock = document.createElement('div');
+    dock.setAttribute('data-qr-dock', '');
+    dock.className = 'contents max-[720px]:flex max-[720px]:fixed max-[720px]:right-0 max-[720px]:top-1/2 max-[720px]:-translate-y-1/2 max-[720px]:items-stretch max-[720px]:z-[900] max-[720px]:border max-[720px]:border-r-0 max-[720px]:border-line max-[720px]:rounded-l-2xl max-[720px]:bg-[var(--panel-glass)] max-[720px]:[backdrop-filter:blur(8px)] max-[720px]:[-webkit-backdrop-filter:blur(8px)] max-[720px]:shadow-card max-[720px]:[&.is-collapsed]:items-center max-[720px]:[&.is-collapsed]:border-0 max-[720px]:[&.is-collapsed]:bg-transparent max-[720px]:[&.is-collapsed]:shadow-none max-[720px]:[&.is-collapsed]:[backdrop-filter:none] max-[720px]:[&.is-collapsed]:[-webkit-backdrop-filter:none] group/qrd';
+    var handle = document.createElement('button');
+    handle.type = 'button';
+    handle.className = 'hidden max-[720px]:grid w-5 place-items-center rounded-l-xl text-text-mid cursor-grab touch-none group-[.is-collapsed]/qrd:h-12 group-[.is-collapsed]/qrd:border group-[.is-collapsed]/qrd:border-r-0 group-[.is-collapsed]/qrd:border-line group-[.is-collapsed]/qrd:bg-[var(--panel-glass)] group-[.is-collapsed]/qrd:[backdrop-filter:blur(8px)] group-[.is-collapsed]/qrd:[-webkit-backdrop-filter:blur(8px)] group-[.is-collapsed]/qrd:shadow-card';
+    handle.setAttribute('data-qr-dock-toggle', '');
+    handle.setAttribute('aria-expanded', 'true');
+    handle.setAttribute('aria-label', tr('notice.liveChat', '線上客服'));
+    handle.setAttribute('data-i18n-aria', 'notice.liveChat');
+    handle.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="rotate-180 transition-transform group-[.is-collapsed]/qrd:rotate-0" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>';
+    rail.parentElement.insertBefore(dock, rail);
+    dock.appendChild(handle);
+    dock.appendChild(rail);
+    var POS_KEY = 'cms-v6-qr-rail-y';
+    function bottomBarTop() {
+      var top = window.innerHeight;
+      var hits = document.elementsFromPoint ? document.elementsFromPoint(window.innerWidth / 2, window.innerHeight - 2) : [];
+      for (var i = 0; i < hits.length; i++) {
+        var el = hits[i];
+        while (el && el !== document.body) {
+          var cs = window.getComputedStyle(el);
+          if (cs.position === 'fixed' && el.offsetWidth >= window.innerWidth * 0.9) {
+            var r = el.getBoundingClientRect();
+            if (r.bottom >= window.innerHeight - 1 && r.height < window.innerHeight / 3) return Math.min(top, r.top);
+          }
+          el = el.parentElement;
+        }
+      }
+      return top;
+    }
+    function clampY(y) {
+      var half = dock.offsetHeight / 2;
+      var header = document.querySelector('header');
+      var headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      var min = headerBottom + 8 + half;
+      var max = bottomBarTop() - 8 - half;
+      if (max < min) return min;
+      return Math.max(min, Math.min(max, y));
+    }
+    function placeAt(y) { dock.style.top = clampY(y) + 'px'; }
+    function savedY() {
+      var v = null;
+      try { v = parseFloat(localStorage.getItem(POS_KEY)); } catch (e) { v = null; }
+      return v ? v * window.innerHeight : null;
+    }
+    function place() {
+      if (!mq.matches) { dock.style.top = ''; return; }
+      var y = savedY();
+      placeAt(y != null ? y : window.innerHeight / 2);
+    }
+    var drag = null, justDragged = false;
+    handle.addEventListener('pointerdown', function (e) {
+      if (e.button != null && e.button !== 0) return;
+      drag = { startY: e.clientY, startCenter: dock.getBoundingClientRect().top + dock.offsetHeight / 2, moved: false };
+      try { handle.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+    });
+    handle.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var dy = e.clientY - drag.startY;
+      if (!drag.moved && Math.abs(dy) < 6) return;
+      drag.moved = true;
+      placeAt(drag.startCenter + dy);
+    });
+    function endDrag() {
+      if (!drag) return;
+      if (drag.moved) {
+        justDragged = true;
+        setTimeout(function () { justDragged = false; }, 0);
+        var center = dock.getBoundingClientRect().top + dock.offsetHeight / 2;
+        try { localStorage.setItem(POS_KEY, String(center / window.innerHeight)); } catch (err) { /* storage unavailable */ }
+      }
+      drag = null;
+    }
+    handle.addEventListener('pointerup', endDrag);
+    handle.addEventListener('pointercancel', endDrag);
+    handle.addEventListener('click', function () {
+      if (justDragged) return;
+      var collapsed = dock.classList.toggle('is-collapsed');
+      handle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      if (dock.style.top) placeAt(parseFloat(dock.style.top));
+    });
+    window.addEventListener('resize', place);
+    if (mq.addEventListener) mq.addEventListener('change', place); else if (mq.addListener) mq.addListener(place);
+    setTimeout(place, 0);
+  }
+
   function initCsTriggers() {
     /* [data-cs-open]：任何元素只要掛這個屬性都能開客服彈窗（首頁公告列
        「線上客服」連結即用此屬性),不綁定特定 class。quick-rail 的「線上
@@ -1644,6 +1746,7 @@
     safe(initSidebar);
     safe(initHeroCarousel);
     safe(initCsTriggers);
+    safe(initChatFabDock);
     safe(initAboutTabs);
     safe(initFaqAccordion);
     safe(initBetRecordParlayRows);
