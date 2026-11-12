@@ -732,15 +732,27 @@
   /* 會員捷徑清單項目較多(10 項)，改成兩欄文字清單＋右側 chevron，
      對齊參考站選單第二段「更多功能」清單的樣式，跟上方 icon 網格
      區隔出不同的資訊密度層級。 */
+  /* 會員捷徑清單項目較多，改成兩欄文字清單＋右側 chevron，對齊參考站選單第二段
+     「更多功能」清單的樣式；並比照桌機側欄分成「我的帳戶／活動」兩組，標題可點擊
+     收合（由檔案開頭的 [data-member-group-toggle] 事件委派處理）。 */
   function openMemberMenu() {
     if (mobileMenuRoot) { closeMobileMenu(); return; }
     var page = currentPage();
-    var navHtml = '<div class="pt-3.5 px-3 pb-1 text-[12px] font-bold text-text-dim header-menu-section">' + tr('sidebar.myAccount', '我的帳戶') + '</div>' +
-      '<div class="grid grid-cols-2 gap-2 pt-1 px-3.5 pb-3.5 header-menu-list">' + MEMBER_MENU_ITEMS.map(function (item) {
+    var split = 0;
+    while (split < MEMBER_MENU_ITEMS.length && MEMBER_MENU_ITEMS[split].href !== 'check-in.html') split++;
+    function links(items) {
+      return items.map(function (item) {
         var active = item.href.split('?')[0] === page;
-        var section = item.href === 'check-in.html' ? '<div class="col-span-2 pt-2 text-[12px] font-bold text-text-dim">' + tr('nav.Event', '活動') + '</div>' : '';
-        return section + '<a href="' + item.href + '" class="flex items-center justify-between gap-1.5 p-3 rounded-md bg-bg-panel border border-line text-[12.5px] font-bold text-text [&.active]:text-accent-hi [&.active]:border-accent-hi [&.active_.chevron]:text-accent-hi header-menu-list-item' + (active ? ' active' : '') + '"><span>' + item.label + '</span><svg class="w-3.5 h-3.5 text-text-dim shrink-0 chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>';
-      }).join('') + '</div>';
+        return '<a href="' + item.href + '" class="flex items-center justify-between gap-1.5 p-3 rounded-md bg-bg-panel border border-line text-[12.5px] font-bold text-text [&.active]:text-accent-hi [&.active]:border-accent-hi [&.active_.chevron]:text-accent-hi header-menu-list-item' + (active ? ' active' : '') + '"><span>' + item.label + '</span><svg class="w-3.5 h-3.5 text-text-dim shrink-0 chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>';
+      }).join('');
+    }
+    function group(title, items, headPad, listPad) {
+      return '<div class="group/mg" data-member-group><button type="button" class="flex w-full items-center justify-between ' + headPad + ' bg-transparent border-0 text-[12px] leading-[inherit] font-bold text-text-dim cursor-pointer hover:text-text header-menu-section" data-member-group-toggle aria-expanded="true"><span>' + title + '</span><svg class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 group-[.is-collapsed]/mg:-rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>' +
+        '<div class="grid grid-cols-2 gap-2 ' + listPad + ' header-menu-list group-[.is-collapsed]/mg:hidden">' + links(items) + '</div></div>';
+    }
+    var hasEvent = split < MEMBER_MENU_ITEMS.length;
+    var navHtml = group(tr('sidebar.myAccount', '我的帳戶'), MEMBER_MENU_ITEMS.slice(0, split), 'pt-3.5 px-3 pb-1', hasEvent ? 'pt-1 px-3.5 pb-0' : 'pt-1 px-3.5 pb-3.5') +
+      (hasEvent ? group(tr('nav.Event', '活動'), MEMBER_MENU_ITEMS.slice(split), 'pt-4 px-3.5 pb-2', 'pt-0 px-3.5 pb-3.5') : '');
     openMobileOverlay(navHtml);
   }
   function initHeaderMobileMenu() {
