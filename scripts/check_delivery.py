@@ -175,6 +175,11 @@ def check_file(rel, spec):
             return False, '%s 只有 %d 幀，至少 %d 幀' % (found[0], frames, min_frames)
         if loop != 0:
             return False, '%s 未設定無限循環（loop=0）' % found[0]
+        if frame_diff(first, last) > FRAME_TOLERANCE:
+            return False, '%s 最後一幀與第一幀不同（差異 %.1f），無法無縫循環' % (found[0], frame_diff(first, last))
+        # 獨立品牌視訊含滿版 UI，不參與轉盤角色的共用基準幀切換。
+        if 'mascot' not in os.path.normpath(p).split(os.sep):
+            return True, '%s %d 幀，%dms，頭尾一致' % (found[0], frames, total_ms)
         # 所有動作同長度，程式才能在一輪結束（回到基準幀）時切換；長度要等於 config.mascot.loopMs
         if abs(total_ms - MASCOT_LOOP_MS) > 20:
             return False, '%s 一輪 %dms，所有動作必須是 %dms（48 幀）' % (found[0], total_ms, MASCOT_LOOP_MS)
@@ -182,8 +187,6 @@ def check_file(rel, spec):
         if union and min(union[0], union[1], w - union[2], h - union[3]) < EDGE_MARGIN:
             return False, '%s 角色或影子貼到畫布邊緣（全部幀的外框 %s，四邊至少要留 %dpx），會被裁切' % (found[0], union, EDGE_MARGIN)
         # 吉祥物動態規則：每個 GIF 第一幀＝最後一幀＝共用基準幀（同資料夾 base-frame.png），才能無縫循環、隨時換動作
-        if frame_diff(first, last) > FRAME_TOLERANCE:
-            return False, '%s 最後一幀與第一幀不同（差異 %.1f），無法無縫循環' % (found[0], frame_diff(first, last))
         base = os.path.join(os.path.dirname(p), 'base-frame.png')
         if os.path.isfile(base):
             with Image.open(base) as b:
