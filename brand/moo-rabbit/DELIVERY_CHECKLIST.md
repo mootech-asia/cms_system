@@ -95,7 +95,7 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | G01 | main-image | 1024×1536 | `main-image.png` | | ☐ | P0 |
+| ☑ | G01 | main-image | 1024×1536 | `main-image.png` | 7431d9f | ☐ | P0 |
 | ☐ | G02 | video-call | 720×720 gif≥24 | `video-call.gif` | | ☐ | P3 |
 | ☐ | G03 | profile | 2000×2000 | `profile.jpg` | | ☐ | P1 |
 
