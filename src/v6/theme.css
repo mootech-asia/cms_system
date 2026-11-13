@@ -130,18 +130,29 @@ html:not(.i18n-ready) body { opacity: 0; animation: i18n-reveal 0s 5s forwards; 
     .v6-sidebar-collapse:hover .v6-collapse-arrow-right { opacity: 1; }
     html.is-sidebar-collapsed .v6-collapse-arrow-left { display: none; }
     html.is-sidebar-collapsed .v6-collapse-arrow-right { display: block; }
-    /* 收合後 logo 只留三角形圖示，按鈕移到 64px 窄欄右側 */
+    /* 收合後 logo 只留三角形圖示 */
     html.is-sidebar-collapsed .header-left .brand-mark > span { display: none; }
+    /* 過渡：側欄寬度、文字淡出縮寬、固定區收合高度；文字不能用 display:none，否則沒有動畫 */
+    .v6-sidebar { transition: flex-basis 280ms cubic-bezier(0.2, 0.8, 0.2, 1), width 280ms cubic-bezier(0.2, 0.8, 0.2, 1), padding 280ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .v6-sidebar-link, .v6-sidebar-group-toggle { transition: padding 280ms cubic-bezier(0.2, 0.8, 0.2, 1), gap 280ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .v6-sidebar-link span, .v6-sidebar-group-toggle span, .v6-sidebar-group-chevron {
+      max-width: 200px; overflow: hidden; white-space: nowrap;
+      transition: opacity 160ms ease, max-width 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .v6-sidebar-fixed { max-height: 640px; overflow: hidden; transition: max-height 280ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 180ms ease, margin 280ms cubic-bezier(0.2, 0.8, 0.2, 1), padding 280ms cubic-bezier(0.2, 0.8, 0.2, 1); }
     /* !important：aside 本身帶 flex-[0_0_224px] w-56 px-2.5 utility，utilities layer 在 components 之後 */
     html.is-sidebar-collapsed .v6-sidebar { flex-basis: 64px !important; width: 64px !important; padding-left: 8px !important; padding-right: 8px !important; }
     /* !important：兩顆按鈕各自帶 hidden／min-[1081px]:grid utility */
     html.is-sidebar-collapsed .v6-sidebar-collapse-rail { display: grid !important; height: 28px; flex-shrink: 0; }
     html.is-sidebar-collapsed .header-left .v6-sidebar-collapse { display: none !important; }
-    html.is-sidebar-collapsed .v6-sidebar-fixed,
+    html.is-sidebar-collapsed .v6-sidebar-fixed { max-height: 0; opacity: 0; margin-top: 0 !important; margin-bottom: 0; padding-top: 0 !important; pointer-events: none; }
     html.is-sidebar-collapsed .v6-sidebar-link span,
     html.is-sidebar-collapsed .v6-sidebar-group-toggle span,
-    html.is-sidebar-collapsed .v6-sidebar-group-chevron { display: none; }
-    html.is-sidebar-collapsed .v6-sidebar-link { justify-content: center; padding-left: 0 !important; padding-right: 0 !important; }
+    html.is-sidebar-collapsed .v6-sidebar-group-chevron { opacity: 0; max-width: 0; }
+    html.is-sidebar-collapsed .v6-sidebar-link { justify-content: center; gap: 0; padding-left: 0 !important; padding-right: 0 !important; }
     html.is-sidebar-collapsed .v6-sidebar-group-toggle { height: 0; margin: 0; padding: 0; overflow: hidden; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v6-sidebar, .v6-sidebar-link, .v6-sidebar-group-toggle, .v6-sidebar-link span, .v6-sidebar-group-toggle span, .v6-sidebar-group-chevron, .v6-sidebar-fixed { transition: none; }
   }
 }
