@@ -19,6 +19,13 @@
     <link rel="stylesheet" href="assets/css/event.css" />
   </head>
   <body>
+    <div class="ev-loading" id="loading" role="status" aria-live="polite">
+      <div class="ev-loading-box">
+        <p class="ev-loading-title" data-i18n="loading.title">Loading…</p>
+        <div class="ev-loading-bar"><div class="ev-loading-fill" id="loadingFill"></div></div>
+        <p class="ev-loading-pct" id="loadingPct">0%</p>
+      </div>
+    </div>
     <section class="ev-stage" id="stage" data-img="stageBg" data-i18n-aria="stage.aria">
       <div class="ev-stage-dim" aria-hidden="true"></div>
       <img class="ev-spot ev-spot--l" data-img="spotlight" alt="" />

@@ -485,6 +485,45 @@
   }
   if (document.readyState === 'complete') idlePreload();
   else window.addEventListener('load', idlePreload);
+
+  // 進站 loading：把這一套皮會用到的每張圖（含吉祥物全部狀態、獎項圖示）都載完才移除遮罩。
+  // 單張載入失敗也算完成，遮罩才不會永遠卡住。
+  function runLoading() {
+    var overlay = $('loading');
+    if (!overlay) return;
+    var urls = {};
+    function add(src) { if (typeof src === 'string' && src) urls[new URL(src, document.baseURI).href] = true; }
+    Object.keys(cfg.images).forEach(function (key) {
+      var v = cfg.images[key];
+      if (v && typeof v === 'object') Object.keys(v).forEach(function (l) { add(v[l]); }); else add(v);
+    });
+    [cfg.mascot.spinning, cfg.mascot.result, cfg.mascot.lose].concat(cfg.mascot.idle).forEach(add);
+    prizes.forEach(function (p) { add(p.icon); });
+    var list = Object.keys(urls);
+    var done = 0;
+    function render() {
+      var pct = list.length ? Math.round(done / list.length * 100) : 100;
+      $('loadingFill').style.width = pct + '%';
+      $('loadingPct').textContent = pct + '%';
+    }
+    function finish() {
+      overlay.hidden = true;
+      document.body.classList.remove('is-loading');
+    }
+    document.body.classList.add('is-loading');
+    render();
+    if (!list.length) { finish(); return; }
+    list.forEach(function (src) {
+      var img = new Image();
+      img.onload = img.onerror = function () {
+        done += 1;
+        render();
+        if (done === list.length) setTimeout(finish, 150);
+      };
+      img.src = src;
+    });
+  }
+  runLoading();
   // 支援的瀏覽器（Android 全螢幕／已安裝）直接鎖直向；不支援時由 .ev-rotate 提示層處理
   try {
     if (screen.orientation && screen.orientation.lock) screen.orientation.lock('portrait').catch(function () {});

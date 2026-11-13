@@ -40,6 +40,7 @@ window.EventI18n = (function () {
     'mock.on': { en: 'On', ko: '켜짐', th: 'เปิด', zh: '開' },
     'mock.off': { en: 'Off', ko: '꺼짐', th: 'ปิด', zh: '關' },
     'share.button': { en: 'Share this event', ko: '이벤트 공유하기', th: 'แชร์กิจกรรมนี้', zh: '分享活動' },
+    'loading.title': { en: 'Loading…', ko: '로딩 중…', th: 'กำลังโหลด…', zh: '載入中…' },
     'share.title': { en: 'Share with friends', ko: '친구에게 공유하기', th: 'แชร์ให้เพื่อน', zh: '分享給朋友' },
     'share.close': { en: 'Close', ko: '닫기', th: 'ปิด', zh: '關閉' },
     'share.copy': { en: 'Copy link', ko: '링크 복사', th: 'คัดลอกลิงก์', zh: '複製連結' },

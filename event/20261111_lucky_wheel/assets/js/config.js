@@ -164,8 +164,9 @@ window.EVENT_CONFIG = {
 
   /* mock 假資料（後台沒提供 EVENT_CONTENT 時使用）。文字欄位皆為 { en, ko, th, zh }，ko/th 留空時前台顯示 en。 */
   defaultContent: {
+    updatedAt: 'mock-2026-11-13',
     period: '2026/11/11 – 2026/11/30',
-    freeSpins: 3,
+    freeSpins: 10,
     prizes: [
       { name: { en: 'Cash 888', ko: '현금 888', th: 'เงินสด 888', zh: '現金 888 元' }, icon: 'assets/img/icon-cash.svg', weight: 2, isLose: false },
       { name: { en: '10 Free Spins', ko: '무료 스핀 10회', th: 'ฟรีสปิน 10 ครั้ง', zh: '免費旋轉 ×10' }, icon: 'assets/img/icon-spin.svg', weight: 15, isLose: false },
