@@ -244,5 +244,205 @@
       2000
     ],
     "mode": "RGB"
+  },
+  {
+    "id": "B01",
+    "file": "02_poses/p01-intro.png",
+    "native_size": [
+      1024,
+      1536
+    ],
+    "delivery_size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 795570,
+    "alpha_bbox_128": [
+      78,
+      55,
+      989,
+      1486
+    ]
+  },
+  {
+    "id": "B02",
+    "file": "02_poses/p02-templates.png",
+    "native_size": [
+      1024,
+      1536
+    ],
+    "delivery_size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 722407,
+    "alpha_bbox_128": [
+      110,
+      41,
+      921,
+      1508
+    ]
+  },
+  {
+    "id": "B03",
+    "file": "02_poses/p03-globe-languages.png",
+    "native_size": [
+      1024,
+      1536
+    ],
+    "delivery_size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 597153,
+    "alpha_bbox_128": [
+      42,
+      56,
+      954,
+      1508
+    ]
+  },
+  {
+    "id": "B04",
+    "file": "02_poses/p04-tablet-thumbsup.png",
+    "native_size": [
+      1024,
+      1536
+    ],
+    "delivery_size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 683650,
+    "alpha_bbox_128": [
+      53,
+      41,
+      959,
+      1480
+    ]
+  },
+  {
+    "id": "B05",
+    "file": "02_poses/p05-call-wave.png",
+    "native_size": [
+      1024,
+      1536
+    ],
+    "delivery_size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 720640,
+    "alpha_bbox_128": [
+      64,
+      25,
+      927,
+      1503
+    ]
+  },
+  {
+    "id": "B06",
+    "file": "02_poses/p06-wave.png",
+    "native_size": [
+      1024,
+      1536
+    ],
+    "delivery_size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 675112,
+    "alpha_bbox_128": [
+      41,
+      34,
+      977,
+      1504
+    ]
+  },
+  {
+    "id": "B07",
+    "file": "02_poses/p07-thinking.png",
+    "native_size": [
+      1024,
+      1536
+    ],
+    "delivery_size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 849366,
+    "alpha_bbox_128": [
+      155,
+      17,
+      814,
+      1509
+    ]
+  },
+  {
+    "id": "B08",
+    "file": "02_poses/p08-wink-thumbsup.png",
+    "native_size": [
+      1024,
+      1536
+    ],
+    "delivery_size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 744927,
+    "alpha_bbox_128": [
+      87,
+      18,
+      943,
+      1516
+    ]
+  },
+  {
+    "id": "B09",
+    "file": "02_poses/p09-handshake.png",
+    "native_size": [
+      1024,
+      1536
+    ],
+    "delivery_size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 868802,
+    "alpha_bbox_128": [
+      120,
+      95,
+      983,
+      1466
+    ]
+  },
+  {
+    "id": "B10",
+    "file": "02_poses/p10-heart-hands.png",
+    "native_size": [
+      1024,
+      1536
+    ],
+    "delivery_size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 741347,
+    "alpha_bbox_128": [
+      152,
+      19,
+      877,
+      1512
+    ]
   }
 ]

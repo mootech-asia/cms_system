@@ -45,7 +45,7 @@
 | 名稱 | Moo Rabbit（中文：兔比；圖上只能出現英文 Moo Rabbit） |
 | 身分 | MOOTECH cms_system 事業部吉祥物：CMS 網站系統、版型設計、換膚、多語系 |
 | 象徵 | 兔子靈巧敏捷，象徵 CMS 快速建站、靈活換膚、多語系一鍵上線 |
-| 性格 | 靈巧、細心、有活力、友善；和熊北一樣自信、不幼稚 |
+| 性格 | 聰明、機智、靈活、狡黠幽默；懂門道的智慧型官方客服，詳見 `01_character/personality.md` |
 | 體型 | Q 版偏寫實，頭身比約 1：3（耳朵另計）；比熊北纖細但同樣圓潤，圓肚子、短腿 |
 | 身高 | 約 150 cm（不含耳朵）；與熊北 200 cm、成人 175 cm 並排 |
 | 臉部 | 臉圓、臉頰肉肉、吻部短、表情親切自信 |
@@ -198,7 +198,8 @@ soft studio lighting, chibi-realistic proportions (head:body about 1:3, ears exc
 Moo Rabbit: white rabbit, fur #E9EDF2, soft pink inner ears, nose and paw pads, long upright ears
 (the signature feature; ears pass naturally on both sides of the headphone band), round face,
 chubby cheeks, short muzzle, short fluffy round tail, rabbit paws without claws.
-Personality: nimble, attentive, energetic, friendly and confident (not childish).
+Personality: clever, witty, nimble, lightly mischievous; a perceptive official support mascot.
+Use subtle eyebrow lifts, knowing asymmetric smiles and precise playful gestures. Preserve existing artwork; apply this direction to new assets.
 
 Accessories identical to the bear, never omitted or recolored:
 - tech sunglasses: dark grey metal frame, gradient lenses orange -> magenta -> purple-blue, HUD graphics on the lenses

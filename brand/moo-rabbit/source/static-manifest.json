@@ -125,5 +125,106 @@
       2000
     ],
     "source": "/workspace/generated_images/exec-71d2749f-588f-4b0e-a540-01abab8d70a5.png"
+  },
+  {
+    "id": "B01",
+    "target": "02_poses/p01-intro.png",
+    "pose": "P01 INTRO: standing slightly sideways, one paw open palm-up toward viewer right introducing content, other paw on hip, confident smile.",
+    "source": "/workspace/generated_images/exec-2c13dd4b-362e-4696-acc9-7569b3cda285.png",
+    "size": [
+      1024,
+      1536
+    ]
+  },
+  {
+    "id": "B02",
+    "target": "02_poses/p02-templates.png",
+    "pose": "P02 TEMPLATES: both paws display a fan of three translucent cyan glowing website layout cards in front of chest, colored layout blocks only, no writing. Friendly smile, lively yet balanced stance.",
+    "source": "/workspace/generated_images/exec-edd98775-63f5-4a7d-89e0-b2e7a1f0710f.png",
+    "size": [
+      1024,
+      1536
+    ]
+  },
+  {
+    "id": "B03",
+    "target": "02_poses/p03-globe-languages.png",
+    "pose": "P03 LANGUAGES: one paw holds a glowing blue-green globe around shoulder level, other paw rests at hip, looking up smiling. Three exact EN KO TH luminous tags around globe, no other text.",
+    "source": "/workspace/generated_images/exec-02a86c43-db11-4179-b99b-fd86694bc86b.png",
+    "size": [
+      1024,
+      1536
+    ]
+  },
+  {
+    "id": "B04",
+    "target": "02_poses/p04-tablet-thumbsup.png",
+    "pose": "P04 TABLET THUMBS UP: one paw holds a cyan holographic tablet with website layout blocks/color palette, other gives big thumbs-up, happy laughing face.",
+    "source": "/workspace/generated_images/exec-37e23f54-7166-4574-b149-ef8d85ab896b.png",
+    "size": [
+      1024,
+      1536
+    ]
+  },
+  {
+    "id": "B05",
+    "target": "02_poses/p05-call-wave.png",
+    "pose": "P05 CALL WAVE: one paw touches character's left headset/microphone, other paw waves to viewer with pinkpads visible, small floating cyan envelope icon nearby. Friendly listening smile.",
+    "source": "/workspace/generated_images/exec-e61358ed-3c8e-4893-ae16-d47a0c803f87.png",
+    "size": [
+      1024,
+      1536
+    ]
+  },
+  {
+    "id": "B06",
+    "target": "02_poses/p06-wave.png",
+    "pose": "P06 WAVE: rabbit faces viewer waving hello with one open paw, other on hip, one ear bends playfully to side, broad smile. Full legs andfeet visible.",
+    "source": "/workspace/generated_images/exec-d4241d69-e24b-4f1e-8da0-7194f2988594.png",
+    "size": [
+      1024,
+      1536
+    ]
+  },
+  {
+    "id": "B07",
+    "target": "02_poses/p07-thinking.png",
+    "pose": "P07 THINKING: paw on chin, other arm supports elbow, one long ear tip folded, head tilted thoughtfully, curious friendly expression, natural weight on one leg.",
+    "source": "/workspace/generated_images/exec-56c7761a-c5e0-4ad9-8d82-62ee82f64cd0.png",
+    "size": [
+      1024,
+      1536
+    ]
+  },
+  {
+    "id": "B08",
+    "target": "02_poses/p08-wink-thumbsup.png",
+    "pose": "P08 WINK THUMBS UP: one clear wink through translucent glasses, one big thumbs up, other paw on hip, upright ears and happy smile.",
+    "source": "/workspace/generated_images/exec-efc92c51-6369-4c33-96e6-48cc62412835.png",
+    "size": [
+      1024,
+      1536
+    ]
+  },
+  {
+    "id": "B09",
+    "target": "02_poses/p09-handshake.png",
+    "pose": "P09 HANDSHAKE: rabbit reaches to viewer right shaking a human hand entering right, only humanhand and short navy sleeve visible, no second face/body. Friendly business greeting, convincing handcontact, full rabbitbody.",
+    "source": "/workspace/generated_images/exec-e012f93f-d0b8-439b-bb6c-daabad46a5f4.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "previous_source": "/workspace/generated_images/exec-340d9476-50ae-4a76-ac08-da2408c70654.png"
+  },
+  {
+    "id": "B10",
+    "target": "02_poses/p10-heart-hands.png",
+    "pose": "P10 HEART HANDS: both paws form clear heart in front of chest, closed-eye warm smile, relaxed playful ears and balanced stance.",
+    "source": "/workspace/generated_images/exec-8c4a76d6-8f76-43bd-becc-c1a1081009dd.png",
+    "size": [
+      1024,
+      1536
+    ]
   }
 ]

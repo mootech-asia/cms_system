@@ -3,8 +3,9 @@
 > **排程：兔比完整設定排在轉盤活動（`event/20261111_lucky_wheel/`）完成之後。** 轉盤要用的兔比動態在活動勾選表追蹤，不等本包。
 
 兔比是 MOOTECH **cms_system 事業部**的吉祥物，和集團吉祥物「熊北（Mootech Bear）」同一個世界觀、同一套配件與渲染質感。
-熊北代表網路服務「厚實可靠、全天候守護」；兔比代表 CMS 網站系統「靈巧快速、一鍵換膚、多語系上線」。
+熊北代表網路服務「厚實可靠、全天候守護」；兔比代表 cms_system 事業體的智慧型官方客服：機靈、懂門道、有點狡黠與賤萌。
 
+- 最新性格與表演方向：[`personality.md`](01_character/personality.md)；既有素材保留，後續逐步體現。
 - 角色設定與高清四視圖：[`01_character/`](01_character/README.md)（已製作，待審）
 - 美術需求（規格＋GPT 提示詞）：[`ART_REQUIREMENTS.md`](ART_REQUIREMENTS.md)
 - 交付勾選表：[`DELIVERY_CHECKLIST.md`](DELIVERY_CHECKLIST.md)，核對：`python3 scripts/check_delivery.py brand/moo-rabbit/DELIVERY_CHECKLIST.md`
@@ -33,7 +34,7 @@
 | 身分 | MOOTECH cms_system 事業部吉祥物 |
 | 風格 | 科技 × 親和 × 專業（同熊北） |
 | 比例 | Q 版偏寫實，頭身比約 1：3；身高約 150 cm（不含耳朵） |
-| 性格 | 靈巧、細心、有活力、友善（熊北的穩重搭檔） |
+| 性格 | 聰明、機智、靈活、狡黠幽默（Clever / Witty / Nimble / Mischievous） |
 | 配件 | 與熊北相同：科技墨鏡、發光耳機、深藍泡泡背心＋MOOTECH 標誌、深灰連帽內搭 |
 
 ## 使用原則（沿用熊北）
