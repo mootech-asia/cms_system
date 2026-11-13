@@ -1,13 +1,13 @@
 ---
 name: ui-craft
-description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、版面構成/變化性(不對稱分欄/留白集中)、動效/轉場時長、換膚 skin 色板、無障礙(ARIA/鍵盤操作)、表單設計、多語言排版(韓文/泰文字長撐版面)、投注/交易記錄這類資料表格、新寫錯誤訊息/空狀態/通知文案、loading/骨架載入畫面、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓/每個區塊都長一樣」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '視覺排列/版面構成', '變化性不夠/每頁都一樣', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', '無障礙/ARIA/鍵盤操作', '表單怎麼設計/驗證', '多語言版面會不會爆/文字被裁切', '記錄表格/table 怎麼設計', '錯誤訊息/空狀態文案怎麼寫', 'loading/skeleton 載入畫面怎麼做', 'improve this UI', 'visual hierarchy', 'layout composition', 'design tokens', 'diagnose UI', 'motion/transition', 'accessibility', 'form validation', 'i18n layout', 'data table', 'ux writing', 'error message copy', 'skeleton loading', 'loading state', '設計要有突破/新意'。整合十份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」與「內容逐字保留」的鐵則做了覆寫。"
+description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、版面構成/變化性(不對稱分欄/留白集中/鏡子測試)、動效/轉場時長、hover微互動/scroll動效、換膚 skin 色板、無障礙(ARIA/鍵盤操作)、表單設計、多語言排版(韓文/泰文字長撐版面)、投注/交易記錄這類資料表格、新寫錯誤訊息/空狀態/通知文案、loading/骨架載入畫面、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓/每個區塊都長一樣」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '視覺排列/版面構成', '變化性不夠/每頁都一樣', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', '互動能力/手勢/hover效果', '無障礙/ARIA/鍵盤操作', '表單怎麼設計/驗證', '多語言版面會不會爆/文字被裁切', '記錄表格/table 怎麼設計', '錯誤訊息/空狀態文案怎麼寫', 'loading/skeleton 載入畫面怎麼做', 'improve this UI', 'visual hierarchy', 'layout composition', 'design tokens', 'diagnose UI', 'motion/transition', 'micro-interaction', 'accessibility', 'form validation', 'i18n layout', 'data table', 'ux writing', 'error message copy', 'skeleton loading', 'loading state', '設計要有突破/新意'。整合十一份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」與「內容逐字保留」的鐵則做了覆寫。"
 ---
 
 # UI 製作與視覺突破技能
 
 ## 來源與改編說明
 
-這份技能整合十個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
+這份技能整合十一個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
 
 1. **[s0xDk/refactoring-ui-skill](https://github.com/s0xDk/refactoring-ui-skill)**（MIT
    license）——把 Adam Wathan／Steve Schoger《Refactoring UI》濃縮成可執行規則的 Claude
@@ -80,6 +80,22 @@ description: "在本 repo 新增或修改任何頁面的視覺呈現時使用—
     樂觀更新。CSS 範例原文用 `color-mix(in oklch, currentColor ...)` 取代寫死
     色碼，本來就不需要新增色票，只把 `border-radius` 的寫死 px 值換成本版本既有
     token。
+11. **[nutlope/hallmark](https://github.com/nutlope/hallmark)**（MIT license）與
+    **[Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill)**（MIT
+    license）——使用者直接貼了這兩個連結要求分析。兩者核心機制（從一句 brief
+    產生全新網站的 50 種主題 catalog、`deal.mjs`／`theme.mjs` 隨機配方腳本、自動
+    抓圖庫照片、瀏覽器 render 檢查腳本、跨次建置的 `history.json`）是設計給「從零
+    生出全新網站」用的，跟本 repo「維護/遷移已經定案的多版本既有頁面」是兩回事，
+    整套機制沒有照搬，只取兩者互相印證、跟框架/建置工具無關的部分重寫進
+    `references/micro-interactions.md`：hover/進場動效的具體數值（卡片 hover 2px、
+    圖片 hover 縮放 1.02–1.03、禁止 3D tilt/走馬燈/定時 tab）、**哪種題材才適合放
+    scroll/shader 這類花俏效果的判斷依據**（taste-skill 把電玩/金融科技列為可以用
+    的分類——本 repo 的博弈+儲值/提款內容剛好落在這個分類裡，這點直接拿來佐證
+    使用者要求的「互動能力加強」方向在這個 repo 是站得住腳的）、兩個避免橫向捲動/
+    版面被圖片或長字串撐壞的 CSS 技巧、「鏡子測試」這個更具體的變化性自我測試法、
+    以及幾個補充的生成式介面通病（箭頭黏在連結文字後面、手繪瀏覽器外框包裝截圖）。
+    hallmark 的 hero 文案字數建議（≤7 字標題這類）一樣只適用新寫文案，跟第七層
+    同一條界線。
 
 ## 第一層：基本功（不能先跳過）——覆寫原技能的「自建 scale」前提
 
@@ -172,7 +188,9 @@ footnote/版權這類，正文絕不用最淺那階）。
    `references/layout-composition.md` 的「變化性稽核」——超過三個卡片/區塊用一模一樣
    的等寬網格+內距+圓角，就是在套公式，不是每個區塊都要打破，但要先意識到自己正在
    重複同一個版面骨架，再判斷這裡適不適合用不對稱分欄/尺寸對比/留白集中/跨界溢出
-   打破它。
+   打破它。**鏡子測試**（`references/micro-interactions.md`）：做完一個版面決定後
+   問自己「換一個差不多的頁面/區塊，會不會剛好套出一模一樣的組合？」會的話換掉
+   其中一個決定，並講出來換了哪一個。
 
 ## 第三層：打磨與動效——過去完全沒覆蓋、這次新增的能力
 
@@ -191,6 +209,17 @@ footnote/版權這類，正文絕不用最淺那階）。
   `opacity` 做動畫，不要對 width/height/margin 做動畫（會掉幀）；彈出層要從觸發它的
   位置長出來（`transform-origin` 對齊觸發元素），不要從畫面中心長出來；高頻率操作
   （例如語言切換）乾脆不要加動畫，加了反而感覺變慢。
+
+**互動能力要加強時**（使用者明確要求過），先讀 `references/micro-interactions.md`：
+- 這個 repo 的題材（博弈/電玩 + 儲值提款這類金融科技內容）剛好落在「可以用 scroll
+  觸發/shader 這類花俏效果」的分類裡——不是隨便加，是這個題材本來就站得住腳，單一
+  頁面還是只配一到兩個記憶點等級的效果，不是每個區塊都疊特效。
+- hover/進場動效有具體數值可以抄：卡片 hover 位移 2px、圖片 hover 在容器內縮放
+  1.02–1.03 倍、卡片 loop 動畫一輪 2.5–4 秒且 hover 時重啟；明確禁止 3D tilt、
+  無目的走馬燈、定時自動切換的 tab。
+- 防止橫向捲動用 `overflow-x: clip`，不要用 `hidden`（會吃掉 sticky）或 `100vw`
+  （比實際可視寬度寬）；圖片/卡片網格欄位用 `minmax(0, 1fr)` 不要只寫 `1fr`，避免
+  被過長內容撐爆版面——這點也呼應第五層多語言排版的版面彈性要求。
 
 ## 第四層：無障礙與表單——同樣是過去完全沒覆蓋的能力
 
@@ -319,7 +348,10 @@ footnote/版權這類，正文絕不用最淺那階）。
   有沒有照 `references/aria-patterns.md` 核對必要 ARIA、跑過鍵盤測試檢查表（拔滑鼠
   能不能完整操作）？
 - 有加動效的地方時長是否 <300ms、用的是自訂 ease-out、只對 transform/opacity 做
-  animate？
+  animate？有加 scroll/shader 類花俏效果嗎？是不是這個博弈/金融科技題材站得住腳、
+  而不是為了加而加？
+- 橫向捲動用的是 `overflow-x: clip` 而不是 `hidden`/`100vw`？圖片/卡片網格欄位有
+  用 `minmax(0, 1fr)` 嗎？
 - 有表單的頁面：label 是否在欄位上方、錯誤訊息是否綁定對應欄位且送出時有彙總？
 - 有固定寬度的按鈕/badge/欄位嗎？換成韓文/泰文看同一個斷點會不會被裁切或撐到換行？
 - 有 `<table>` 的頁面：表頭對比量過了嗎？數值欄位右對齊+等寬數字了嗎？
