@@ -1,0 +1,160 @@
+[
+  {
+    "width": 390,
+    "format": "gif",
+    "animation": 1,
+    "motion_observed": true
+  },
+  {
+    "width": 390,
+    "format": "gif",
+    "animation": 2,
+    "motion_observed": true
+  },
+  {
+    "width": 390,
+    "format": "gif",
+    "animation": 3,
+    "motion_observed": true
+  },
+  {
+    "width": 390,
+    "format": "gif",
+    "animation": 4,
+    "motion_observed": true
+  },
+  {
+    "width": 390,
+    "format": "gif",
+    "animation": 5,
+    "motion_observed": true
+  },
+  {
+    "width": 390,
+    "format": "gif",
+    "animation": 6,
+    "motion_observed": true
+  },
+  {
+    "width": 390,
+    "format": "webp",
+    "animation": 1,
+    "motion_observed": true
+  },
+  {
+    "width": 390,
+    "format": "webp",
+    "animation": 2,
+    "motion_observed": true
+  },
+  {
+    "width": 390,
+    "format": "webp",
+    "animation": 3,
+    "motion_observed": true
+  },
+  {
+    "width": 390,
+    "format": "webp",
+    "animation": 4,
+    "motion_observed": true
+  },
+  {
+    "width": 390,
+    "format": "webp",
+    "animation": 5,
+    "motion_observed": true
+  },
+  {
+    "width": 390,
+    "format": "webp",
+    "animation": 6,
+    "motion_observed": true
+  },
+  {
+    "width": 390,
+    "pause_resume": true,
+    "background_switch": true,
+    "horizontal_overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "format": "gif",
+    "animation": 1,
+    "motion_observed": true
+  },
+  {
+    "width": 1440,
+    "format": "gif",
+    "animation": 2,
+    "motion_observed": true
+  },
+  {
+    "width": 1440,
+    "format": "gif",
+    "animation": 3,
+    "motion_observed": true
+  },
+  {
+    "width": 1440,
+    "format": "gif",
+    "animation": 4,
+    "motion_observed": true
+  },
+  {
+    "width": 1440,
+    "format": "gif",
+    "animation": 5,
+    "motion_observed": true
+  },
+  {
+    "width": 1440,
+    "format": "gif",
+    "animation": 6,
+    "motion_observed": true
+  },
+  {
+    "width": 1440,
+    "format": "webp",
+    "animation": 1,
+    "motion_observed": true
+  },
+  {
+    "width": 1440,
+    "format": "webp",
+    "animation": 2,
+    "motion_observed": true
+  },
+  {
+    "width": 1440,
+    "format": "webp",
+    "animation": 3,
+    "motion_observed": true
+  },
+  {
+    "width": 1440,
+    "format": "webp",
+    "animation": 4,
+    "motion_observed": true
+  },
+  {
+    "width": 1440,
+    "format": "webp",
+    "animation": 5,
+    "motion_observed": true
+  },
+  {
+    "width": 1440,
+    "format": "webp",
+    "animation": 6,
+    "motion_observed": true
+  },
+  {
+    "width": 1440,
+    "pause_resume": true,
+    "background_switch": true,
+    "horizontal_overflow": false,
+    "errors": []
+  }
+]

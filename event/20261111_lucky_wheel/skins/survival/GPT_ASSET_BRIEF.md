@@ -1,5 +1,7 @@
 # GPT 素材製作指引：生存遊戲秀皮（survival）
 
+> 角色製作以 `DESIGN_TASKS.md` 頂部的最新方向為準：桃紅連帽服＋黑色全罩面具人形角色，單一白圓標記；下文舊 STYLE LOCK 的面具禁用與兔比露臉設定不適用於這批角色。固定鏡頭，400×500、48 幀／2000ms，共用頭尾姿勢；陰影保留於 RGBA 幀中。動態研究原圖與序列位於 `source/guard-motion/`，可播放預覽在 `source/guard-review/`。
+
 規格以同資料夾 `DESIGN_TASKS.md` 為準；尺寸與技術細節同預設皮（`../../GPT_ASSET_BRIEF.md`）。每次生成只做一項，依 P0 → P3 順序。
 
 ## 1. STYLE LOCK（每次都貼在提示詞最前面）

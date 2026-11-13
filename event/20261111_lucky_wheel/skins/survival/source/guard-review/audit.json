@@ -1,0 +1,134 @@
+[
+  {
+    "state": "idle-1",
+    "format": "gif",
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_margin_px": 49,
+    "exact_loop_seam": true,
+    "premultiplied_seam_mean_255": 0.0,
+    "motion_present": true,
+    "bytes": 1702682
+  },
+  {
+    "state": "idle-1",
+    "format": "webp",
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_margin_px": 31,
+    "exact_loop_seam": false,
+    "premultiplied_seam_mean_255": 0.4741381503267974,
+    "motion_present": true,
+    "bytes": 425394
+  },
+  {
+    "state": "idle-2",
+    "format": "gif",
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_margin_px": 49,
+    "exact_loop_seam": true,
+    "premultiplied_seam_mean_255": 0.0,
+    "motion_present": true,
+    "bytes": 1708127
+  },
+  {
+    "state": "idle-2",
+    "format": "webp",
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_margin_px": 31,
+    "exact_loop_seam": false,
+    "premultiplied_seam_mean_255": 0.5013072549019608,
+    "motion_present": true,
+    "bytes": 812738
+  },
+  {
+    "state": "idle-3",
+    "format": "gif",
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_margin_px": 47,
+    "exact_loop_seam": true,
+    "premultiplied_seam_mean_255": 0.0,
+    "motion_present": true,
+    "bytes": 1713561
+  },
+  {
+    "state": "idle-3",
+    "format": "webp",
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_margin_px": 31,
+    "exact_loop_seam": false,
+    "premultiplied_seam_mean_255": 0.49016388888888884,
+    "motion_present": true,
+    "bytes": 649560
+  },
+  {
+    "state": "spinning",
+    "format": "gif",
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_margin_px": 49,
+    "exact_loop_seam": true,
+    "premultiplied_seam_mean_255": 0.0,
+    "motion_present": true,
+    "bytes": 1633253
+  },
+  {
+    "state": "spinning",
+    "format": "webp",
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_margin_px": 31,
+    "exact_loop_seam": false,
+    "premultiplied_seam_mean_255": 0.48799130065359475,
+    "motion_present": true,
+    "bytes": 684992
+  },
+  {
+    "state": "result",
+    "format": "gif",
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_margin_px": 39,
+    "exact_loop_seam": true,
+    "premultiplied_seam_mean_255": 0.0,
+    "motion_present": true,
+    "bytes": 1712349
+  },
+  {
+    "state": "result",
+    "format": "webp",
+    "frames": 47,
+    "duration_ms": 2000,
+    "minimum_margin_px": 31,
+    "exact_loop_seam": false,
+    "premultiplied_seam_mean_255": 0.5044857124183006,
+    "motion_present": true,
+    "bytes": 1138968
+  },
+  {
+    "state": "lose",
+    "format": "gif",
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_margin_px": 49,
+    "exact_loop_seam": true,
+    "premultiplied_seam_mean_255": 0.0,
+    "motion_present": true,
+    "bytes": 1700929
+  },
+  {
+    "state": "lose",
+    "format": "webp",
+    "frames": 47,
+    "duration_ms": 2000,
+    "minimum_margin_px": 31,
+    "exact_loop_seam": false,
+    "premultiplied_seam_mean_255": 0.5009361960784314,
+    "motion_present": true,
+    "bytes": 793022
+  }
+]
