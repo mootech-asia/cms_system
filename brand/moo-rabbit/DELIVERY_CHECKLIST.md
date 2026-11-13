@@ -41,16 +41,16 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | B01 | intro | 1024×1536 | `02_poses/p01-intro.png` | | ☐ | P2 |
-| ☐ | B02 | templates | 1024×1536 | `02_poses/p02-templates.png` | | ☐ | P2 |
-| ☐ | B03 | globe-languages | 1024×1536 | `02_poses/p03-globe-languages.png` | | ☐ | P2 |
-| ☐ | B04 | tablet-thumbsup | 1024×1536 | `02_poses/p04-tablet-thumbsup.png` | | ☐ | P2 |
-| ☐ | B05 | call-wave | 1024×1536 | `02_poses/p05-call-wave.png` | | ☐ | P2 |
-| ☐ | B06 | wave | 1024×1536 | `02_poses/p06-wave.png` | | ☐ | P2 |
-| ☐ | B07 | thinking | 1024×1536 | `02_poses/p07-thinking.png` | | ☐ | P2 |
-| ☐ | B08 | wink-thumbsup | 1024×1536 | `02_poses/p08-wink-thumbsup.png` | | ☐ | P2 |
-| ☐ | B09 | handshake | 1024×1536 | `02_poses/p09-handshake.png` | | ☐ | P2 |
-| ☐ | B10 | heart-hands | 1024×1536 | `02_poses/p10-heart-hands.png` | | ☐ | P2 |
+| ☑ | B01 | intro | 1024×1536 | `02_poses/p01-intro.png` | a77c1a3 | ☐ | P2 |
+| ☑ | B02 | templates | 1024×1536 | `02_poses/p02-templates.png` | a77c1a3 | ☐ | P2 |
+| ☑ | B03 | globe-languages | 1024×1536 | `02_poses/p03-globe-languages.png` | a77c1a3 | ☐ | P2 |
+| ☑ | B04 | tablet-thumbsup | 1024×1536 | `02_poses/p04-tablet-thumbsup.png` | a77c1a3 | ☐ | P2 |
+| ☑ | B05 | call-wave | 1024×1536 | `02_poses/p05-call-wave.png` | a77c1a3 | ☐ | P2 |
+| ☑ | B06 | wave | 1024×1536 | `02_poses/p06-wave.png` | a77c1a3 | ☐ | P2 |
+| ☑ | B07 | thinking | 1024×1536 | `02_poses/p07-thinking.png` | a77c1a3 | ☐ | P2 |
+| ☑ | B08 | wink-thumbsup | 1024×1536 | `02_poses/p08-wink-thumbsup.png` | a77c1a3 | ☐ | P2 |
+| ☑ | B09 | handshake | 1024×1536 | `02_poses/p09-handshake.png` | a77c1a3 | ☐ | P2 |
+| ☑ | B10 | heart-hands | 1024×1536 | `02_poses/p10-heart-hands.png` | a77c1a3 | ☐ | P2 |
 
 ## C. 半身貼圖（11）
 
