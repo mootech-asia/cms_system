@@ -646,9 +646,35 @@
     var shell = document.querySelector('.v6-shell');
     setSidebarOpen(!(shell && shell.classList.contains('is-sidebar-open')));
   }
+  /* 桌機常駐側欄的收合（比照 v3 左側欄）：狀態放在 <html> 上，header 裡的
+     按鈕與側欄都看得到；記在 localStorage，各頁共用。1080px 以下的抽屜／
+     底部選單不受影響（CSS 只在 min-width:1081px 套用）。 */
+  var SIDEBAR_COLLAPSED_KEY = 'v6:sidebar-collapsed';
+  function setSidebarCollapsed(on) {
+    document.documentElement.classList.toggle('is-sidebar-collapsed', on);
+    var label = on ? 'Expand sidebar' : 'Collapse sidebar';
+    Array.prototype.slice.call(document.querySelectorAll('[data-sidebar-collapse]')).forEach(function (b) {
+      b.setAttribute('aria-label', label);
+      b.setAttribute('title', label);
+      b.setAttribute('aria-expanded', on ? 'false' : 'true');
+    });
+    try { localStorage.setItem(SIDEBAR_COLLAPSED_KEY, on ? '1' : '0'); } catch (e) {}
+  }
+  function initSidebarCollapse() {
+    var btns = document.querySelectorAll('[data-sidebar-collapse]');
+    if (!btns.length) return;
+    var saved = false;
+    try { saved = localStorage.getItem(SIDEBAR_COLLAPSED_KEY) === '1'; } catch (e) {}
+    setSidebarCollapsed(saved);
+    Array.prototype.slice.call(btns).forEach(function (b) {
+      on(b, 'click', function () { setSidebarCollapsed(!document.documentElement.classList.contains('is-sidebar-collapsed')); });
+    });
+  }
+
   function initSidebar() {
     var shell = document.querySelector('.v6-shell');
     if (!shell) return;
+    initSidebarCollapse();
     Array.prototype.slice.call(shell.querySelectorAll('[data-sidebar-close]')).forEach(function (el) {
       on(el, 'click', function () { setSidebarOpen(false); });
     });
