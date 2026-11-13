@@ -444,5 +444,83 @@
       877,
       1512
     ]
+  },
+  {
+    "id": "D01",
+    "file": "04_key-visual/k01-key-visual.jpg",
+    "native_size": [
+      1672,
+      941
+    ],
+    "delivery_size": [
+      1280,
+      720
+    ],
+    "mode": "RGB"
+  },
+  {
+    "id": "E02",
+    "file": "05_support/c02-support-portrait.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "delivery_size": [
+      1280,
+      1280
+    ],
+    "mode": "RGB"
+  },
+  {
+    "id": "E03",
+    "file": "05_support/c03-video-call-vertical.png",
+    "native_size": [
+      1086,
+      1448
+    ],
+    "delivery_size": [
+      720,
+      960
+    ],
+    "mode": "RGB"
+  },
+  {
+    "id": "F01",
+    "file": "06_social/m01-banner-long.png",
+    "native_size": [
+      2200,
+      715
+    ],
+    "delivery_size": [
+      1575,
+      300
+    ],
+    "mode": "RGB"
+  },
+  {
+    "id": "F02",
+    "file": "06_social/m02-banner-copyspace.png",
+    "native_size": [
+      1733,
+      907
+    ],
+    "delivery_size": [
+      1920,
+      1008
+    ],
+    "mode": "RGB"
+  },
+  {
+    "id": "F03",
+    "file": "06_social/m03-share-preview.jpg",
+    "native_size": [
+      1731,
+      909
+    ],
+    "delivery_size": [
+      1200,
+      630
+    ],
+    "mode": "RGB"
   }
 ]

@@ -22,7 +22,7 @@
 | `05_support/` | 圓形頭像、客服形象原圖、視訊畫面直式 | 前台右下角客服 |
 | `06_social/` | 長橫幅、留白橫幅、分享預覽 1200×630 | 社群封面、網址分享預覽 |
 | 根目錄 | `main-image.png`（主要形象）、`video-call.gif`（視訊連線動畫）、`profile.jpg` | 代表圖、客服視訊、社群頭像 |
-| `07_motion/` | 活動用循環 GIF（目前：轉盤活動 5 個狀態） | 活動頁吉祥物動態 |
+| `07_motion/` | 活動用循環 GIF（待機、興奮、慶祝、再接再厲） | 活動頁吉祥物動態 |
 
 檔名規則：`編號-動作或用途.副檔名`，一律英文小寫、以連字號分隔（圖上與檔名都不出現中文）。
 
@@ -44,3 +44,7 @@
 3. **動態要輕**：浮動、眨眼、耳朵輕晃即可；大動作只用在主視覺影片與活動。
 4. **一致性**：配件不可缺少或換色；生成新圖時一律附上四視圖當參考。
 5. **語系**：對外素材不得出現中文；需要文字時只用英文／韓文／泰文。
+
+## 交付與下載
+
+36 項素材的提交狀態與審核欄以交付勾選表為準。[分類歸檔](https://github.com/mootech-asia/mootech_website/tree/claude/inspiring-hypatia-rpjq0j/brand/moo-rabbit) · [素材 ZIP](https://github.com/mootech-asia/mootech_website/raw/refs/heads/claude/inspiring-hypatia-rpjq0j/brand/moo-rabbit.zip) · [來源與尺寸紀錄](source/README.md)。

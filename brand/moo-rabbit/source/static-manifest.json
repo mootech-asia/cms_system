@@ -226,5 +226,65 @@
       1024,
       1536
     ]
+  },
+  {
+    "id": "D01",
+    "target": "04_key-visual/k01-key-visual.jpg",
+    "size": [
+      1280,
+      720
+    ],
+    "pose": "Wide cinematic 16:9 key visual. Rabbit full body on right third, tapping elegant translucent cyan website layout cards, exactly two arms. Left 45 percent uncluttered dark navy copy space. Premium entertainment-platform official support visual, subtle teal orbital lines, no words except chest logo. Entire ears and feet within central 80 percent height, safe for 16:9 crop.",
+    "source": "/workspace/generated_images/exec-5e0f7828-e32a-4bb6-923a-456d56bf67a3.png"
+  },
+  {
+    "id": "E02",
+    "target": "05_support/c02-support-portrait.png",
+    "size": [
+      1280,
+      1280
+    ],
+    "pose": "Square official customer support portrait, waist-up with complete tall ears and hands within frame. One paw gently near headset, other relaxed. Clever reassuring eyebrow lift, subtle knowing smile. Soft pale blue seamless background, crisp studio fur, 8 percent margins.",
+    "source": "/workspace/generated_images/exec-6c7eb470-6324-4c6a-88c6-40009920736f.png"
+  },
+  {
+    "id": "E03",
+    "target": "05_support/c03-video-call-vertical.png",
+    "size": [
+      720,
+      960
+    ],
+    "pose": "Portrait 3:4 video call artwork, waist-up rabbit waving one paw hello, other naturally down, head tilt with intelligent knowing smile. Both complete ears and hand inside 10 percent safe margins. Soft navy teal futuristic video-call backdrop, no text, no UI, detailed fur.",
+    "source": "/workspace/generated_images/exec-345bf57b-d7e8-4801-b489-ddc7fa079eed.png"
+  },
+  {
+    "id": "F01",
+    "target": "06_social/m01-banner-long.png",
+    "size": [
+      1575,
+      300
+    ],
+    "pose": "EXTREMELY WIDE 5.25:1 horizontal web banner, output 1575x300. Navy teal gradient, subtle flowing cyan lines, left 70 percent empty copy space. Small complete rabbit on far right, clever introducing palm-up pose. IMPORTANT composition: all character including ear tips and feet fits inside central horizontal strip from 40 percent to 60 percent image height if canvas is taller than 5.25:1, so it survives an extreme panoramic center crop. No text except chest logo.",
+    "source": "/workspace/generated_images/exec-50b132c5-6166-4d94-9f4c-6063f67069f1.png"
+  },
+  {
+    "id": "F02",
+    "target": "06_social/m02-banner-copyspace.png",
+    "size": [
+      1920,
+      1008
+    ],
+    "pose": "Wide 1.905:1 premium social banner. Rabbit on right third, holds luminous cyan lime globe, intelligent cheeky smile. Full ears and feet safe within central 80 percent height. Left 55 percent blank elegant navy gradient copy space, subtle teal particle arcs, precise high resolution fur. No text except chest logo.",
+    "source": "/workspace/generated_images/exec-1f41e3a3-ca77-4678-9475-5f490ac3e9a6.png"
+  },
+  {
+    "id": "F03",
+    "target": "06_social/m03-share-preview.jpg",
+    "size": [
+      1200,
+      630
+    ],
+    "pose": "Wide 1.905:1 polished social sharing cover. Right side clever rabbit waist-up with complete ears, welcoming one open paw, knowing smirk. Left side official supplied cyan lime MOOTECH logo, large exact white words MOOTECH CMS below. Smaller tagline SMART SUPPORT. Navy teal luminous premium entertainment-platform service identity, clear hierarchy, no other words, safe 10 percent margins.",
+    "source": "/workspace/generated_images/exec-b8b69214-e93c-4097-9d24-f8ceb5873002.png"
   }
 ]

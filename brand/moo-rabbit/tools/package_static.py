@@ -9,7 +9,13 @@ for item in manifest:
  target=root/item['target'];master=(root/'source/originals'/item['target']).with_suffix('.png');master.parent.mkdir(parents=True,exist_ok=True)
  if not master.exists(): shutil.copy2(item['source'],master)
  im=Image.open(master);size=tuple(item['size']);target.parent.mkdir(parents=True,exist_ok=True)
- if im.mode=='RGBA':
+ if item['id']=='F01':
+  # Fit the panoramic art by height; extend only its empty background at the left.
+  fitted=ImageOps.contain(im.convert('RGB'),size,Image.Resampling.LANCZOS)
+  out=Image.new('RGB',size)
+  edge=fitted.crop((0,0,1,fitted.height)).resize((size[0]-fitted.width,size[1]))
+  out.paste(edge,(0,0));out.paste(fitted,(size[0]-fitted.width,0))
+ elif im.mode=='RGBA' and im.getchannel('A').getextrema()[0]<255:
   # Premultiplied interpolation avoids fringes from RGB in transparent pixels.
   pad=42 if '03_stickers/' in item['target'] else 0
   fitted=ImageOps.contain(im.convert('RGBa'),(size[0]-2*pad,size[1]-2*pad),Image.Resampling.LANCZOS).convert('RGBA')
