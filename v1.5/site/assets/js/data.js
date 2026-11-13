@@ -1298,7 +1298,7 @@
       { id: 'securityCenter', tKey: 'userCenter.sidebar.securityCenter', url: 'security.html', icon: 'securityCenter.svg' },
       { id: 'referralCenter', tKey: 'nav.Referral', url: 'referral.html', icon: 'InviteFriends.svg' },
       { id: 'customerService', tKey: 'userCenter.sidebar.customerService', url: '', icon: 'customerService.svg' },
-      { id: 'faq', tKey: 'about.tabs.faq', url: 'about.html?tab=faq', iconPath: 'sidebar-helps.svg' }
+      { id: 'faq', tKey: 'about.tabs.faq', url: 'about.html?tab=faq', icon: 'faq.svg' }
     ] }
   ];
 
