@@ -1,0 +1,87 @@
+{
+  "status": "motion study only; airborne poses not generated",
+  "generated_fullbody_keyposes": 4,
+  "frames": 48,
+  "unique_poses": 4,
+  "interpolation": false,
+  "duration_ms": 2000,
+  "size": [
+    512,
+    682
+  ],
+  "upscaled": false,
+  "limb_rig_used": false,
+  "poses": [
+    {
+      "pose": 0,
+      "native_cell": [
+        543,
+        724
+      ],
+      "translation_only": [
+        -3,
+        1
+      ],
+      "export": [
+        512,
+        682
+      ],
+      "source_bottom": 643
+    },
+    {
+      "pose": 1,
+      "native_cell": [
+        543,
+        724
+      ],
+      "translation_only": [
+        6,
+        1
+      ],
+      "export": [
+        512,
+        682
+      ],
+      "source_bottom": 643
+    },
+    {
+      "pose": 2,
+      "native_cell": [
+        543,
+        724
+      ],
+      "translation_only": [
+        -2,
+        17
+      ],
+      "export": [
+        512,
+        682
+      ],
+      "source_bottom": 627
+    },
+    {
+      "pose": 3,
+      "native_cell": [
+        543,
+        724
+      ],
+      "translation_only": [
+        7,
+        15
+      ],
+      "export": [
+        512,
+        682
+      ],
+      "source_bottom": 629
+    }
+  ],
+  "keypose_min_margins_px": [
+    61,
+    74,
+    74,
+    64
+  ],
+  "quality_status": "Stepped pose preview only; optical-flow version rejected for ghosting. Not production-ready."
+}
