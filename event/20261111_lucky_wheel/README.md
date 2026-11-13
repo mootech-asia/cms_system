@@ -13,3 +13,7 @@
 主視覺與介面素材已套用，活動仍使用 mock 資料。兔比下一輪先優化四段：待機、興奮、慶祝、再接再厲；每段需有足夠中間姿勢、透明邊緣檢查與 GIF 預覽。四段之後再做完整吉祥物設定；15 秒影片不做。
 
 `survival.html`、入口的 `?skin=survival` 轉址與 `skins/survival/img/share-preview.jpg` 僅保留舊連結相容用途，不是第二份生存輪盤。
+
+## 兔比動態優化進度
+
+[待機首段 GIF 預覽](./source/rabbit-fullpose-v4/idle.gif) 已輸出，使用原生透明姿勢與全畫面補幀；胸前字標仍需修整，尚未替換遊戲。興奮、慶祝、再接再厲尚待製作，詳細限制見 [製作說明](./source/rabbit-fullpose-v4/README.md)。
