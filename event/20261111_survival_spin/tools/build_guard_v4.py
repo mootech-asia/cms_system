@@ -83,6 +83,10 @@ for j in range(48):
   wa=cv2.remap(a,ma[:,:,0],ma[:,:,1],cv2.INTER_LINEAR,borderMode=cv2.BORDER_CONSTANT)
   wb=cv2.remap(b,mb[:,:,0],mb[:,:,1],cv2.INTER_LINEAR,borderMode=cv2.BORDER_CONSTANT)
   c=wa*(1-t)+wb*t
+  # Suppress disocclusion ghosts where the two warped silhouettes disagree.
+  alpha=c[:,:,3:].copy();common=np.minimum(wa[:,:,3:],wb[:,:,3:])
+  clean=alpha+(common-alpha)*(4*t*(1-t))
+  c[:,:,:3]*=clean/np.maximum(alpha,1e-6);c[:,:,3:]=clean
  else:
   fa,fb=flows[k];c=warp(a,fa,t)*(1-t)+warp(b,fb,1-t)*t
  c[:,:,:3]/=np.maximum(c[:,:,3:],1e-6);c=np.clip(c,0,1)
