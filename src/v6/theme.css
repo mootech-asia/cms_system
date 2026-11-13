@@ -118,3 +118,28 @@
    DOMContentLoaded handler 跑完後加上；JS 失效時 5s 後由動畫強制顯示，不會永遠空白。 */
 html:not(.i18n-ready) body { opacity: 0; animation: i18n-reveal 0s 5s forwards; }
 @keyframes i18n-reveal { to { opacity: 1; } }
+
+/* 桌機側欄收合（html.is-sidebar-collapsed，由 site.js 切換並記在
+   localStorage）：側欄縮成 64px 只留圖示，Deposit/Withdraw 與促銷卡
+   整塊隱藏；1080px 以下是抽屜／底部選單，不套用。 */
+@layer components {
+  @media (min-width: 1081px) {
+    .v6-collapse-arrow-left, .v6-collapse-arrow-right { opacity: 0; transition: opacity 150ms; }
+    .v6-collapse-arrow-right { display: none; }
+    .v6-sidebar-collapse:hover .v6-collapse-arrow-left,
+    .v6-sidebar-collapse:hover .v6-collapse-arrow-right { opacity: 1; }
+    html.is-sidebar-collapsed .v6-collapse-arrow-left { display: none; }
+    html.is-sidebar-collapsed .v6-collapse-arrow-right { display: block; }
+    /* 收合後 logo 只留三角形圖示，按鈕移到 64px 窄欄右側 */
+    html.is-sidebar-collapsed .v6-sidebar-collapse { left: 76px !important; }
+    html.is-sidebar-collapsed .header-left .brand-mark > span { display: none; }
+    /* !important：aside 本身帶 flex-[0_0_224px] w-56 px-2.5 utility，utilities layer 在 components 之後 */
+    html.is-sidebar-collapsed .v6-sidebar { flex-basis: 64px !important; width: 64px !important; padding-left: 8px !important; padding-right: 8px !important; }
+    html.is-sidebar-collapsed .v6-sidebar-fixed,
+    html.is-sidebar-collapsed .v6-sidebar-link span,
+    html.is-sidebar-collapsed .v6-sidebar-group-toggle span,
+    html.is-sidebar-collapsed .v6-sidebar-group-chevron { display: none; }
+    html.is-sidebar-collapsed .v6-sidebar-link { justify-content: center; padding-left: 0 !important; padding-right: 0 !important; }
+    html.is-sidebar-collapsed .v6-sidebar-group-toggle { height: 0; margin: 0; padding: 0; overflow: hidden; }
+  }
+}
