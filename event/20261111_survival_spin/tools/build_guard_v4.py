@@ -82,11 +82,16 @@ for j in range(48):
   ma=LinearNDInterpolator(mid,pa)(x,y).astype(np.float32);mb=LinearNDInterpolator(mid,pb)(x,y).astype(np.float32)
   wa=cv2.remap(a,ma[:,:,0],ma[:,:,1],cv2.INTER_LINEAR,borderMode=cv2.BORDER_CONSTANT)
   wb=cv2.remap(b,mb[:,:,0],mb[:,:,1],cv2.INTER_LINEAR,borderMode=cv2.BORDER_CONSTANT)
-  c=wa*(1-t)+wb*t
-  # Suppress disocclusion ghosts where the two warped silhouettes disagree.
-  alpha=c[:,:,3:].copy();common=np.minimum(wa[:,:,3:],wb[:,:,3:])
-  clean=alpha+(common-alpha)*(4*t*(1-t))
-  c[:,:,:3]*=clean/np.maximum(alpha,1e-6);c[:,:,3:]=clean
+  # A frame has one texture source. Cross-dissolving imperfectly aligned gloves
+  # creates two visible outlines even when the outer alpha has been cleaned.
+  # Refine the coarse landmark mapping before selecting a texture, so switching
+  # source poses does not also jump between two differently placed glove contours.
+  gray=lambda z:cv2.cvtColor(np.uint8(np.clip(z[:,:,:3]*255,0,255)),cv2.COLOR_RGB2GRAY)
+  refine=cv2.DISOpticalFlow_create(cv2.DISOPTICAL_FLOW_PRESET_MEDIUM)
+  if t<0.5:
+   residual=refine.calc(gray(wa),gray(wb),None);c=warp(wa,residual,t)
+  else:
+   residual=refine.calc(gray(wb),gray(wa),None);c=warp(wb,residual,1-t)
  else:
   fa,fb=flows[k];c=warp(a,fa,t)*(1-t)+warp(b,fb,1-t)*t
  c[:,:,:3]/=np.maximum(c[:,:,3:],1e-6);c=np.clip(c,0,1)
@@ -113,5 +118,5 @@ with Image.open(O/f'{name}.gif') as im:
  first=im.convert('RGB').tobytes();ms=0
  for i in range(im.n_frames):im.seek(i);ms+=im.info['duration']
  assert ms==2000 and im.convert('RGB').tobytes()==first
-report={'action':name,'frames':48,'distinct_rgba_frames':len({f.tobytes() for f in frames}),'duration_ms':ms,'native_sheet':[1536,1024],'native_key':[512,512],'output':[400,500],'min_margin_px':min(margins),'whole_pose_flow':True,'flow_method':'full-frame landmark morph' if use_mesh else ('RAFT-large' if use_raft else 'DIS'),'limb_rig':False,'chromakey':False,'alpha_and_rgb_shared_flow':True,'runtime_installed':False}
+report={'action':name,'frames':48,'distinct_rgba_frames':len({f.tobytes() for f in frames}),'duration_ms':ms,'native_sheet':[1536,1024],'native_key':[512,512],'output':[400,500],'min_margin_px':min(margins),'whole_pose_flow':True,'flow_method':'single-source full-frame landmark morph' if use_mesh else ('RAFT-large' if use_raft else 'DIS'),'limb_rig':False,'chromakey':False,'alpha_and_rgb_shared_flow':True,'runtime_installed':False}
 (D/'checks.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

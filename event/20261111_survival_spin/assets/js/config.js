@@ -31,7 +31,7 @@ window.EVENT_CONFIG = {
           'img/mascot/rifle-v1/idle.webp'
         ],
         spinning: 'img/mascot/rifle-v1/anticipation.webp',
-        result: 'img/mascot/rifle-v1/celebration.webp',
+        result: 'img/mascot/rifle-v1/celebration-v2.webp',
         lose: 'img/mascot/rifle-v1/disappointment.webp'
       },
       images: {
@@ -82,7 +82,7 @@ window.EVENT_CONFIG = {
       'img/mascot/rifle-v1/idle.webp'
     ],
     spinning: 'img/mascot/rifle-v1/anticipation.webp',
-    result: 'img/mascot/rifle-v1/celebration.webp',
+    result: 'img/mascot/rifle-v1/celebration-v2.webp',
     // 未中獎的「失望」動作：交付後填 mascot 資料夾裡的 lose 動態檔；留空時用 result
     lose: 'img/mascot/rifle-v1/disappointment.webp'
   },

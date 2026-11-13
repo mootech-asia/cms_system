@@ -17,9 +17,11 @@
   ],
   "min_margin_px": 26,
   "whole_pose_flow": true,
-  "flow_method": "full-frame landmark morph",
+  "flow_method": "single-source full-frame landmark morph",
   "limb_rig": false,
   "chromakey": false,
   "alpha_and_rgb_shared_flow": true,
-  "runtime_installed": true
+  "runtime_installed": true,
+  "texture_crossfade": false,
+  "residual_alignment": "DIS after landmark warp"
 }
