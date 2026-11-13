@@ -31,11 +31,11 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | A01 | turnaround-sheet | 1536×1024 | `01_character/turnaround-sheet.png` | | ☐ | P0 |
-| ☐ | A02 | view-front | 1024×1536 | `01_character/views/01-front.png` | | ☐ | P0 |
-| ☐ | A03 | view-three-quarter | 1024×1536 | `01_character/views/02-three-quarter.png` | | ☐ | P0 |
-| ☐ | A04 | view-side | 1024×1536 | `01_character/views/03-side.png` | | ☐ | P0 |
-| ☐ | A05 | view-back | 1024×1536 | `01_character/views/04-back.png` | | ☐ | P0 |
+| ☑ | A01 | turnaround-sheet | 1536×1024 | `01_character/turnaround-sheet.png` | 219d4e8 | ☐ | P0 |
+| ☑ | A02 | view-front | 1024×1536 | `01_character/views/01-front.png` | 219d4e8 | ☐ | P0 |
+| ☑ | A03 | view-three-quarter | 1024×1536 | `01_character/views/02-three-quarter.png` | 219d4e8 | ☐ | P0 |
+| ☑ | A04 | view-side | 1024×1536 | `01_character/views/03-side.png` | 219d4e8 | ☐ | P0 |
+| ☑ | A05 | view-back | 1024×1536 | `01_character/views/04-back.png` | 219d4e8 | ☐ | P0 |
 
 ## B. 全身姿勢（10）
 
@@ -102,3 +102,5 @@
 ## 備註
 
 （GPT 有疑問或無法照規格交付時寫在這裡，附列號）
+
+A01–A05：提交 219d4e8，原生尺寸與透明通道檢查見 `01_character/checks.json`。四視圖腳底相差 4px；身高面板為概念示意，尚非精準建模量測圖。人工審核待填。
