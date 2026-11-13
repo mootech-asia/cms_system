@@ -33,20 +33,6 @@ event/
 
 兩個活動各自包含 `DESIGN_TASKS.md`（美術需求）、`GPT_ASSET_BRIEF.md`（製作規格）、`DELIVERY_CHECKLIST.md`（提交與審核）。生存輪盤沿用已驗證的轉盤程式與 CSS，存放在自己的 `assets/`，可獨立載入；後續共同行為修正需同步檢查兩個活動。
 
-## 分享網址與舊連結
-
-- 原版：`20261111_lucky_wheel/index.html?lang=en`。
-- 生存輪盤：`20261111_survival_spin/index.html?lang=en`；HTML 直接提供專屬的 OG / Twitter 分享圖片，無需社群爬蟲執行 JavaScript。
-- `lang` 支援 `en`、`ko`、`th`。
-- 舊 `20261111_lucky_wheel/?skin=survival`、`index.html?skin=survival` 與 `survival.html` 入口會導向新的生存輪盤。舊社群圖片網址保留相容檔；新素材與程式只在新資料夾維護。
-- 各版網站的生存輪盤 iframe 已改指向新活動入口。
-
-## 接續製作順序
-
-1. 活動資料夾分類、入口與說明同步更新。
-2. 兔比動態先做四段：待機、興奮、慶祝、再接再厲。需增加真正的中間姿勢、使用透明素材，逐段檢查流暢度與輪廓；每段直接提供 GIF 預覽。
-3. 兔比完整吉祥物設定與素材，需求見 [brand/moo-rabbit](../brand/moo-rabbit/)。15 秒影片目前不做。
-
 ## 工作流與共通規則
 
 - 工作流：mock up → 製作美術 → 套用 → 驗證。詳見 [event-workflow](../.claude/skills/event-workflow/SKILL.md)。
