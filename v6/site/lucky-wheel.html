@@ -45,6 +45,10 @@
                 return l === 'ko' || l === 'th' ? l : 'en';
               }
               function load() {
+                if (frame.contentWindow && frame.contentWindow.EventI18n) {
+                  frame.contentWindow.EventI18n.applyLocale();
+                  return;
+                }
                 var url = base + '?lang=' + lang();
                 if (frame.getAttribute('src') !== url) frame.setAttribute('src', url);
               }

@@ -45,6 +45,10 @@
                 return l === 'ko' || l === 'th' ? l : 'en';
               }
               function load() {
+                if (frame.contentWindow && frame.contentWindow.EventI18n) {
+                  frame.contentWindow.EventI18n.applyLocale();
+                  return;
+                }
                 var target = new URL(base, location.href);
                 target.searchParams.set('lang', lang());
                 var url = target.href;

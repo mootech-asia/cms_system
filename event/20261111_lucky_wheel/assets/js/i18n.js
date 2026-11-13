@@ -90,7 +90,17 @@ window.EventI18n = (function () {
     }
   })();
 
+  function parentLocale() {
+    try {
+      if (window.parent === window || !window.frameElement || window.frameElement.id !== 'luckyWheelFrame') return null;
+      var locale = (window.parent.document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
+      return ['en', 'ko', 'th', 'zh'].indexOf(locale) !== -1 ? locale : 'en';
+    } catch (e) { return null; }
+  }
+
   function getLocale() {
+    var inherited = parentLocale();
+    if (inherited) return inherited;
     if (zhPreviewOn()) return 'zh';
     var saved = URL_LOCALE;
     if (!saved) {
@@ -131,6 +141,8 @@ window.EventI18n = (function () {
 
   function applyLocale() {
     var locale = getLocale();
+    var switcher = document.getElementById('langSwitch');
+    if (switcher && parentLocale()) switcher.hidden = true;
     document.documentElement.setAttribute('lang', locale === 'zh' ? 'zh-Hant' : locale);
     document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria'))); });
@@ -143,6 +155,7 @@ window.EventI18n = (function () {
   }
 
   function setLocale(id) {
+    if (parentLocale()) return;
     if (!LOCALES.some(function (l) { return l.id === id; })) return;
     setZhPreview(false);
     URL_LOCALE = id;
@@ -158,6 +171,7 @@ window.EventI18n = (function () {
 
   function renderSwitcher(root) {
     if (!root) return;
+    if (parentLocale()) { root.hidden = true; return; }
     root.setAttribute('role', 'group');
     root.setAttribute('data-i18n-aria', 'lang.aria');
     root.innerHTML = LOCALES.map(function (l) {
@@ -173,6 +187,7 @@ window.EventI18n = (function () {
     if (!e.ctrlKey || !e.altKey || e.metaKey || e.shiftKey || e.code !== 'KeyL') return;
     var el = e.target;
     if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
+    if (parentLocale()) return;
     e.preventDefault();
     setZhPreview(!zhPreviewOn());
     applyLocale();
