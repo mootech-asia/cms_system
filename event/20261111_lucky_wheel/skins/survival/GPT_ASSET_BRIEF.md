@@ -42,7 +42,7 @@ STYLE LOCK — "Survival Spin" mobile event, original artwork:
 | `card-title.png` | 400×72 | 1536×1024 → 裁切 | `Hot-pink title ribbon with black outline, dark enough center for white text, no text, transparent background.` |
 | `info-bg.png` | 750×750（無縫） | 1024×1024 → 縮放 | `Seamless tile: cream #F3ECE0 background with faint pink dots and tiny ticket-stub shapes, low contrast, edges tile perfectly. No circle-triangle-square trio.` |
 | `footer-deco.png` | 750×160 | 1536×1024 → 裁切 | `Footer decoration: a pink arc with small black light dots and a few number tags, transparent background.` |
-| `share-preview.jpg` | 1200×630 | 1536×1024 → 裁切 | `Social preview: the SURVIVAL SPIN logo on the left, the pink casino wheel center-right, Moo Rabbit in a hot-pink staff jumpsuit cheering at the bottom right, deep-green game hall background, key content inside the central 1100x580.` |
+| `share-preview.jpg` | 1200×630 | 1536×1024 → 裁切 | `Social preview: the SURVIVAL SPIN logo on the left, the pink casino wheel center-right, the approved pink masked character giving a double thumbs-up at the right, deep-green game hall background, key content inside the central 1100x580.` |
 
 ## 3. 兔比工作人員造型（P3，最後）
 

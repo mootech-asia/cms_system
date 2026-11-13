@@ -53,7 +53,7 @@
 | P0 | 舞台燈光 `spotlight`／`light-pool`／`stage-vignette`／`bulb-on`／`bulb-off` | 規格同預設皮，光色改成帶粉的暖白；燈泡亮＝粉白發光、暗＝深桃紅玻璃 |
 | P0 | 扇區色票（`skin.css` 的 `--ev-wheel-1`～`6`） | 6 組底色＋文字色，桃紅／米白／墨綠／亮粉／黑／薄荷依序輪流；後台也可單獨指定 |
 | P1 | `modal-bg`、`btn-primary`、`period-badge`、`chances-badge`、`ticker-bar`、`card-frame`（九宮格）、`card-title`、`info-bg`（無縫底紋：米白底＋淡粉圓點或票根紋，不可○△□）、`footer-deco` | 粗黑外框＋桃紅／米白的遊戲 UI 風格 |
-| P1 | `share-preview`（1200×630 PNG/JPG） | 新主標＋轉盤＋穿工作服的兔比，深墨綠大廳背景 |
+| P1 | `share-preview`（1200×630 PNG/JPG） | 新主標＋桃紅轉盤＋桃紅面具人物，深墨綠階梯大廳背景 |
 | P2 | `icon-sound-on`／`icon-sound-off`／`icon-share`／`icon-rotate`、獎項圖示（選做） | 黑框＋桃紅的圓角圖示 |
 | **P3 最後** | 兔比工作人員造型設定圖＋6 段動態（見第四節） | 先出設定圖給我們確認，再做動態 |
 
