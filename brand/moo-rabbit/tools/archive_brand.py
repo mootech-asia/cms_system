@@ -3,6 +3,7 @@ from pathlib import Path
 import shutil,json,zipfile,hashlib,subprocess
 src=Path(__file__).resolve().parents[1]; dst=Path('/workspace/mootech_website/brand/moo-rabbit')
 shutil.copy2(src/'01_character/personality.md',dst/'01_character/personality.md')
+shutil.copy2(src/'GENERATION_PROMPTS.md',dst/'GENERATION_PROMPTS.md')
 files=[]
 for p in sorted(src.rglob('*')):
  rel=p.relative_to(src)
@@ -18,7 +19,7 @@ for folder,title in [('01_character','設定圖與四視圖'),('02_poses','全�
  count=sum(f['path'].startswith(folder+'/') for f in files);rows.append('| ['+folder+']('+folder+'/) | '+title+' | '+str(count)+' 張／段 |')
 for f in files:
  if '/' not in f['path']:rows.append('| ['+f['path']+']('+f['path']+') | 代表素材 | 已歸檔 |')
-(dst/'README.md').write_text('# Moo Rabbit（兔比）｜CMS 事業部吉祥物\n\n[最新性格與表演方向](01_character/personality.md)：智慧型官方客服，聰明、機靈、帶點狡黠幽默；既有素材保留。\n\n目前 '+str(len(files))+'／36 項素材已歸檔，待人工審核；15 秒影片不列製作範圍。\n\n| 分類 | 內容 | 已歸檔 |\n|---|---|---|\n'+'\n'.join(rows)+'\n\n[下載素材 ZIP](../moo-rabbit.zip) · [活動動態索引](07_motion/README.md)\n\n製作與驗收以 [cms_system 交付表](https://github.com/mootech-asia/cms_system/blob/main/brand/moo-rabbit/DELIVERY_CHECKLIST.md) 為準。原始生成檔、尺寸處理與檢查紀錄保留於該專案的 `source/`；這裡提供分類後交付檔。\n')
+(dst/'README.md').write_text('# Moo Rabbit（兔比）｜CMS 事業部吉祥物\n\n[最新性格與表演方向](01_character/personality.md)：智慧型官方客服，聰明、機靈、帶點狡黠幽默；既有素材保留。\n\n目前 '+str(len(files))+'／36 項素材已歸檔，待人工審核；15 秒影片不列製作範圍。\n\n| 分類 | 內容 | 已歸檔 |\n|---|---|---|\n'+'\n'.join(rows)+'\n\n[生成提示詞](GENERATION_PROMPTS.md) · [下載素材 ZIP](../moo-rabbit.zip) · [活動動態索引](07_motion/README.md)\n\n製作與驗收以 [cms_system 交付表](https://github.com/mootech-asia/cms_system/blob/main/brand/moo-rabbit/DELIVERY_CHECKLIST.md) 為準。原始生成檔、尺寸處理與檢查紀錄保留於該專案的 `source/`；這裡提供分類後交付檔。\n')
 (dst/'archive-manifest.json').write_text(json.dumps({'source_repo':'mootech-asia/cms_system','status':'submitted-for-review','files':files},indent=2)+'\n')
 with zipfile.ZipFile(dst.parent/'moo-rabbit.zip','w',zipfile.ZIP_DEFLATED) as z:
  for p in sorted(dst.rglob('*')):

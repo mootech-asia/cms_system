@@ -48,3 +48,5 @@
 ## 交付與下載
 
 36 項素材的提交狀態與審核欄以交付勾選表為準。[分類歸檔](https://github.com/mootech-asia/mootech_website/tree/claude/inspiring-hypatia-rpjq0j/brand/moo-rabbit) · [素材 ZIP](https://github.com/mootech-asia/mootech_website/raw/refs/heads/claude/inspiring-hypatia-rpjq0j/brand/moo-rabbit.zip) · [來源與尺寸紀錄](source/README.md)。
+
+- [生成提示詞：角色鎖定、設定圖、四段動態與各類素材](GENERATION_PROMPTS.md)
