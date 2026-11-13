@@ -1,0 +1,20 @@
+{
+  "name": "anticipation",
+  "size": [
+    512,
+    682
+  ],
+  "native_pose_size": [
+    543,
+    724
+  ],
+  "unique_poses": 4,
+  "gif_frame_records": 48,
+  "duration_ms": 2000,
+  "min_margin_px": 57,
+  "common_endpoints": true,
+  "interpolation": false,
+  "limb_rig": false,
+  "style": "Approved stepped full-body poses",
+  "runtime_installed": false
+}
