@@ -1,3 +1,3 @@
-# 慶祝 V4 衣料修正版
+# 慶祝 V4 衣料修正版（已停用）
 
-已確認並套用至 `img/mascot/rifle-v1/celebration-v4-fixed.webp`。12 張完整姿勢，2 秒循環；GIF 為驗收預覽，WebP 為透明正式素材。其他三段動態與角色位置不變。
+目前中獎狀態改用待機動畫 `img/mascot/rifle-v1/idle.webp`。本目錄僅保留製作紀錄，不再作為正式慶祝動作。
