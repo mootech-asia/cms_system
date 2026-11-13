@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><defs>
+<linearGradient id="gold" x2=".25" y2="1"><stop stop-color="#fff6bf"/><stop offset=".22" stop-color="#f8d574"/><stop offset=".48" stop-color="#d38b28"/><stop offset=".7" stop-color="#fff0ac"/><stop offset="1" stop-color="#a65b19"/></linearGradient>
+<linearGradient id="red" x2=".1" y2="1"><stop stop-color="#ff8470"/><stop offset=".4" stop-color="#db3b4b"/><stop offset="1" stop-color="#9d213c"/></linearGradient>
+<linearGradient id="cream" x2="0" y2="1"><stop stop-color="#fffdf1"/><stop offset="1" stop-color="#ffe3ba"/></linearGradient>
+<linearGradient id="blue" x2=".4" y2="1"><stop stop-color="#8ee8fa"/><stop offset=".5" stop-color="#36b7dc"/><stop offset="1" stop-color="#186dba"/></linearGradient>
+<linearGradient id="mint" x2=".4" y2="1"><stop stop-color="#b2f7d0"/><stop offset="1" stop-color="#249f88"/></linearGradient>
+<radialGradient id="wall"><stop stop-color="#fffef3"/><stop offset=".65" stop-color="#ffe9c7"/><stop offset="1" stop-color="#f4c695"/></radialGradient>
+<linearGradient id="velvet"><stop stop-color="#98263f"/><stop offset=".2" stop-color="#ea5c58"/><stop offset=".4" stop-color="#b63045"/><stop offset=".65" stop-color="#f17a67"/><stop offset=".85" stop-color="#ad2c42"/><stop offset="1" stop-color="#d94b51"/></linearGradient>
+</defs><path d="M80 137C13 100 8 73 25 49C44 23 68 41 80 56C92 41 116 23 135 49C152 73 147 100 80 137Z" fill="url(#red)"/><path d="M36 63Q44 46 58 55" fill="none" stroke="#ffb9a3" stroke-width="8" stroke-linecap="round"/><polygon points="126.00,11.00 129.01,24.99 143.00,28.00 129.01,31.01 126.00,45.00 122.99,31.01 109.00,28.00 122.99,24.99" fill="#fff3b8"/></svg>

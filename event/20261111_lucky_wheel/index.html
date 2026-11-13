@@ -3,6 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var params = new URLSearchParams(location.search);
+        if (params.get('skin') !== 'survival') return;
+        var target = new URL('../20261111_survival_spin/index.html', location.href);
+        params.delete('skin');
+        target.search = params.toString();
+        target.hash = location.hash;
+        location.replace(target.href);
+      })();
+    </script>
     <title>Lucky Wheel</title>
     <meta name="description" content="Spin the Lucky Wheel and win prizes!" />
     <meta property="og:type" content="website" />

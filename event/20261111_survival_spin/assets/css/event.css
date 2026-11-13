@@ -1,0 +1,927 @@
+:root {
+  --ev-color-bg: #fff6ea;
+  --ev-color-backdrop: #2b140a;
+  --ev-color-surface: #ffffff;
+  --ev-color-surface-2: #fdebd6;
+  --ev-color-border: #f1dcc4;
+  --ev-color-text: #4a2a1c;
+  --ev-color-text-2: #8a6650;
+  --ev-color-primary: #e5484d;
+  --ev-color-primary-2: #ff8a3d;
+  --ev-color-gold: #f2b53a;
+  --ev-color-gold-dark: #9a5a14;
+  --ev-color-on-primary: #ffffff;
+  --ev-color-scrim: rgb(60 25 10 / 0.6);
+  --ev-color-tag-bg: rgb(30 15 5 / 0.72);
+  --ev-color-tag-text: #ffffff;
+  --ev-color-danger: #c62f35;
+
+  /* 分享平台代表色 */
+  --ev-share-line: #06c755;
+  --ev-share-facebook: #1877f2;
+  --ev-share-x: #14171a;
+  --ev-share-whatsapp: #25d366;
+  --ev-share-telegram: #229ed9;
+
+  /* 轉盤扇區配色（依序循環）；設計交付色票後改這裡 */
+  --ev-wheel-count: 6;
+  --ev-wheel-1: #bd3048;
+  --ev-wheel-1-text: #ffffff;
+  --ev-wheel-2: #f7c65c;
+  --ev-wheel-2-text: #5a2a00;
+  --ev-wheel-3: #b92f73;
+  --ev-wheel-3-text: #ffffff;
+  --ev-wheel-4: #f6a15a;
+  --ev-wheel-4-text: #4a1d00;
+  --ev-wheel-5: #157d77;
+  --ev-wheel-5-text: #ffffff;
+  --ev-wheel-6: #6941b5;
+  --ev-wheel-6-text: #ffffff;
+
+  --ev-radius-sm: 8px;
+  --ev-radius: 16px;
+  --ev-radius-pill: 999px;
+  --ev-shadow-card: 0 6px 20px rgb(154 90 20 / 0.12);
+  --ev-shadow-btn: 0 2px 6px rgb(154 90 20 / 0.25);
+  --ev-space-1: 4px;
+  --ev-space-2: 8px;
+  --ev-space-3: 12px;
+  --ev-space-4: 16px;
+  --ev-space-5: 20px;
+  --ev-space-6: 24px;
+  --ev-space-8: 32px;
+  --ev-space-10: 40px;
+  --ev-page-max: 480px;
+  /* 轉盤同時受寬與高限制：矮螢幕也要在第一屏看到轉盤＋操作台 */
+  --ev-wheel-size: min(84vw, 380px, calc((100svh - 340px) / 1.32));
+  --ev-ease-spin: cubic-bezier(0.12, 0.7, 0.12, 1);
+  --ev-font: -apple-system, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Leelawadee UI", "Noto Sans Thai", "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--ev-color-backdrop); }
+/* 只做 H5 寬度：任何螢幕都只顯示置中的 480px 頁面，兩側是素色底 */
+body {
+  position: relative;
+  max-width: var(--ev-page-max);
+  margin: 0 auto;
+  background: var(--ev-color-bg);
+}
+html, body {
+  color: var(--ev-color-text);
+  font-family: var(--ev-font);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+[hidden] { display: none !important; }
+
+/* ---------- 換圖標籤（mock） ---------- */
+.ev-asset {
+  display: none;
+  position: absolute;
+  z-index: 8;
+  padding: 2px var(--ev-space-2);
+  border-radius: var(--ev-radius-sm);
+  background: var(--ev-color-tag-bg);
+  color: var(--ev-color-tag-text);
+  font: 600 10px/1.45 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  white-space: pre;
+  pointer-events: none;
+}
+.show-asset-labels .ev-asset { display: block; }
+.ev-asset--sound { top: calc(100% + var(--ev-space-1)); right: 0; }
+.ev-asset--title { top: -8px; left: var(--ev-space-3); }
+.ev-asset--tl { top: 0; left: 0; }
+.ev-asset--rotate { right: var(--ev-space-4); bottom: var(--ev-space-4); }
+.ev-asset--tr { top: 0; right: 0; }
+.ev-asset--bl { bottom: 0; left: 0; }
+.ev-asset--mascot { top: 8%; right: 0; }
+.ev-asset--stand { bottom: 12%; left: -40%; }
+.ev-asset--floor { position: static; align-self: flex-end; margin-top: calc(var(--ev-space-3) * -1); }
+.ev-asset--period { top: -14px; right: 0; }
+.ev-asset--chances { left: 0; top: -18px; white-space: nowrap; }
+.ev-asset--card { top: -30px; right: -10px; }
+.ev-asset--modal { position: static; margin: var(--ev-space-2) auto 0; width: max-content; }
+
+/* ---------- 進站 loading：所有圖檔（含吉祥物各狀態）載完才移除 ---------- */
+.ev-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ev-color-backdrop);
+  color: var(--ev-color-on-primary);
+  font-family: var(--ev-font);
+}
+.ev-loading[hidden] { display: none; }
+.ev-loading-box { width: min(70vw, 260px); text-align: center; }
+.ev-loading-title { margin: 0 0 var(--ev-space-3); font: 800 16px/1.3 var(--ev-font); }
+.ev-loading-bar {
+  height: 10px;
+  border-radius: var(--ev-radius-pill);
+  background: rgb(255 255 255 / 0.18);
+  overflow: hidden;
+}
+.ev-loading-fill {
+  width: 0;
+  height: 100%;
+  border-radius: var(--ev-radius-pill);
+  background: linear-gradient(90deg, var(--ev-color-primary), var(--ev-color-primary-2));
+  transition: width 0.2s ease-out;
+}
+.ev-loading-pct { margin: var(--ev-space-2) 0 0; font: 700 13px/1 var(--ev-font); opacity: 0.85; }
+
+/* ---------- 上半：舞台 ---------- */
+.ev-stage {
+  position: relative;
+  overflow: hidden;
+  background: var(--ev-color-surface-2) center bottom / cover no-repeat;
+}
+
+.ev-stage-dim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--ev-img-stageVignette) center / 100% 100% no-repeat;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+.ev-stage.is-spinning .ev-stage-dim,
+.ev-stage.is-result .ev-stage-dim { opacity: 1; }
+
+.ev-spot {
+  position: absolute;
+  top: -40px;
+  z-index: 6;
+  width: min(34vw, 240px);
+  opacity: 0.45;
+  mix-blend-mode: screen;
+  transform-origin: 50% 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.ev-spot--l { left: 6%; --ev-spot-dir: -1; }
+.ev-spot--r { right: 6%; --ev-spot-dir: 1; }
+.ev-spot { animation: ev-spot-sway 6s ease-in-out infinite alternate; }
+.ev-spot--r { animation-delay: -3s; }
+.ev-stage.is-spinning .ev-spot { opacity: 0.95; animation: ev-spot-sweep 0.7s ease-in-out infinite alternate; }
+.ev-stage.is-result .ev-spot { opacity: 1; animation: ev-spot-hit 0.35s ease-in-out infinite alternate; }
+
+@keyframes ev-spot-sway {
+  from { transform: rotate(calc(var(--ev-spot-dir) * 14deg)); }
+  to { transform: rotate(calc(var(--ev-spot-dir) * 30deg)); }
+}
+@keyframes ev-spot-sweep {
+  from { transform: rotate(calc(var(--ev-spot-dir) * 2deg)); }
+  to { transform: rotate(calc(var(--ev-spot-dir) * 46deg)); }
+}
+@keyframes ev-spot-hit {
+  from { transform: rotate(calc(var(--ev-spot-dir) * 22deg)); opacity: 0.7; }
+  to { transform: rotate(calc(var(--ev-spot-dir) * 22deg)); opacity: 1; }
+}
+
+.ev-topbar {
+  /* 浮在布幕上、不佔版面高度，讓主標與轉盤往上提（小螢幕第一屏能看到完整主視覺） */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 7;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ev-space-3);
+  max-width: var(--ev-page-max);
+  margin: 0 auto;
+  padding: var(--ev-space-2) var(--ev-space-4) 0;
+}
+
+.ev-lang {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--ev-color-border);
+  border-radius: var(--ev-radius-pill);
+  background: var(--ev-color-surface);
+  box-shadow: var(--ev-shadow-btn);
+}
+.ev-lang-btn {
+  min-width: 44px;
+  min-height: 30px;
+  padding: 0 var(--ev-space-3);
+  border: 0;
+  border-radius: var(--ev-radius-pill);
+  background: none;
+  color: var(--ev-color-text-2);
+  font: 700 13px/1 var(--ev-font);
+  cursor: pointer;
+}
+.ev-lang-btn[aria-pressed="true"] { background: var(--ev-color-primary); color: var(--ev-color-on-primary); }
+.ev-lang-btn:focus-visible { outline: 2px solid var(--ev-color-gold); outline-offset: 2px; }
+
+.ev-sound-wrap { position: relative; display: flex; gap: var(--ev-space-2); }
+.ev-sound {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  box-shadow: var(--ev-shadow-btn);
+  cursor: pointer;
+}
+.ev-sound img { width: 100%; height: 100%; }
+.ev-sound:focus-visible { outline: 2px solid var(--ev-color-gold); outline-offset: 2px; }
+
+.ev-stage-inner {
+  position: relative;
+  z-index: 3;
+  max-width: var(--ev-page-max);
+  margin: 0 auto;
+  padding: 48px var(--ev-space-4) 0;
+  text-align: center;
+}
+
+.ev-title { position: relative; margin: 0 auto; max-width: min(400px, 92%, calc((100svh - 420px) * 1.4)); }
+/* 被 CMS 用 iframe 嵌入時高度只剩約 500px，照高度縮會讓轉盤與主標小到字看不清：
+   設最小尺寸（轉盤約螢幕寬 66%、主標 58%），放不下就在 iframe 內捲動 */
+.is-embedded { --ev-wheel-size: min(84vw, 380px, max(calc((100svh - 340px) / 1.32), 66vw)); }
+.is-embedded .ev-title { max-width: min(400px, 92%, max(calc((100svh - 420px) * 1.4), 58vw)); }
+.ev-title img { width: 100%; height: auto; }
+
+.ev-period-wrap { position: relative; margin: var(--ev-space-2) 0 0; }
+.ev-period-wrap:has(.ev-period:empty) { display: none; }
+.ev-period {
+  display: inline-block;
+  min-width: 70%;
+  padding: var(--ev-space-2) clamp(var(--ev-space-6), 9vw, calc(var(--ev-space-10) + var(--ev-space-2)));
+  white-space: nowrap;
+  background: var(--ev-img-periodBadge, linear-gradient(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.7))) center / 100% 100% no-repeat;
+  color: var(--ev-color-text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* 轉盤：frame 680、disc 600、go 200（設計稿像素），以 frame 為 100% 換算比例 */
+.ev-wheel-area {
+  position: relative;
+  z-index: 2;
+  width: var(--ev-wheel-size);
+  margin: var(--ev-space-5) auto 0;
+}
+@media (max-height: 760px) {
+  .ev-stage-inner { padding-top: 46px; }
+  .ev-period-wrap { margin-top: var(--ev-space-2); }
+  .ev-wheel-area { margin-top: var(--ev-space-4); }
+}
+@media (min-width: 768px) and (max-height: 820px) {
+  .ev-stage-inner { padding-top: 46px; }
+  .ev-title { max-width: 300px; }
+  .ev-period-wrap { margin-top: var(--ev-space-2); }
+  .ev-wheel-area { margin-top: var(--ev-space-4); }
+}
+
+.ev-wheel { position: relative; z-index: 1; width: 100%; }
+/* 內部面板（獎項數／重設次數／換圖標籤），手機與電腦都是畫面連點三下叫出；整頁關掉雙擊縮放（雙指縮放仍可用），連點才不會被當成放大 */
+html { touch-action: manipulation; }
+.ev-prize-panel {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  z-index: 6;
+  display: grid;
+  gap: var(--ev-space-3);
+  width: min(288px, calc(100vw - 2 * var(--ev-space-4)));
+  padding: var(--ev-space-4);
+  border-radius: var(--ev-radius);
+  background: var(--ev-color-tag-bg);
+  color: var(--ev-color-tag-text);
+  font-size: 13px;
+  font-weight: 700;
+  transform: translateX(-50%);
+}
+/* 上行：獎項數量（字靠左、− N + 靠右）；下行：兩顆等寬按鈕；× 在右上角、樣式跟該皮的圓形按鈕一致。
+   轉盤區比面板窄，寬度以螢幕為準 */
+.ev-prize-panel-row { display: flex; align-items: center; gap: var(--ev-space-2); padding-right: var(--ev-space-6); }
+.ev-prize-panel-label { flex: 1; min-width: 0; text-align: left; }
+.ev-prize-panel-row:has(.ev-prize-panel-text) { display: grid; grid-template-columns: 1fr 1fr; padding-right: 0; }
+/* 面板開著時轉盤區（含面板）移到兔比前面，不然兔耳會蓋到面板 */
+.ev-wheel-area:has(.ev-prize-panel:not([hidden])) { z-index: 5; }
+.ev-prize-panel b { min-width: 2ch; text-align: center; font-size: 16px; }
+.ev-prize-panel button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ev-color-surface);
+  color: var(--ev-color-text);
+  font: inherit;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+.ev-prize-panel .ev-prize-panel-text {
+  width: 100%;
+  height: auto;
+  min-height: 36px;
+  padding: var(--ev-space-1) var(--ev-space-2);
+  border-radius: var(--ev-radius-pill);
+  font-size: 13px;
+  line-height: 1.2;
+}
+.ev-prize-panel .ev-prize-panel-close {
+  position: absolute;
+  top: calc(var(--ev-space-2) * -1);
+  right: calc(var(--ev-space-2) * -1);
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--ev-color-gold);
+  background: radial-gradient(circle at 50% 35%, var(--ev-color-primary), var(--ev-color-gold-dark));
+  color: var(--ev-color-on-primary);
+  font-size: 18px;
+  box-shadow: var(--ev-shadow-btn);
+}
+
+/* 轉盤底座：400×600，上端藏在轉盤後方，下端底盤踩在透視地板上；底盤下有接地陰影 */
+.ev-wheel-stand {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  z-index: 0;
+  width: 46%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.ev-wheel-stand img { width: 100%; height: auto; }
+/* 地板光圈：600×220，中心對準底盤（wheel-stand 圖 y 約 79%），寬約轉盤 1.05 倍；
+   轉動中變亮呼吸、開獎時閃爍 */
+.ev-wheel-stand .ev-light-pool {
+  position: absolute;
+  top: 79%;
+  left: 50%;
+  z-index: -2;
+  width: 230%;
+  max-width: none;
+  transform: translate(-50%, -50%);
+  opacity: 0.6;
+  transition: opacity 0.4s ease;
+}
+.is-spinning .ev-light-pool { animation: ev-pool-breathe 0.7s ease-in-out infinite alternate; }
+.is-result .ev-light-pool { animation: ev-pool-breathe 0.3s steps(2) infinite alternate; }
+@keyframes ev-pool-breathe {
+  from { opacity: 0.75; }
+  to { opacity: 1; }
+}
+.ev-wheel-stand::after {
+  /* 底盤（wheel-stand 圖 y 430–520 / 600）的接觸陰影：貼著底盤邊緣最深，往右後方稍微拖長 */
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: -10%;
+  top: 76%;
+  height: 15%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(50 18 2 / 0.7), rgb(50 18 2 / 0.4) 55%, rgb(50 18 2 / 0.12) 80%, transparent);
+  z-index: -1;
+}
+
+/* 轉盤在地板上的投影（座標以轉盤寬 W 為單位：牆腳線約 0.73W、底盤中心約 1.17W）。
+   轉盤立在離背牆很遠的地板上，光源在前上方偏左，所以盤面的影子是一個壓扁的橢圓，
+   落在轉盤右後方的地板上（大半被盤面擋住，只露出右側與下緣），立柱影子從底盤往右後方延伸過去。
+   全部是靜止元素，不加在會旋轉的盤面上 */
+.ev-wheel-cast,
+.ev-wheel-cast-pole {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.ev-wheel-cast {
+  left: 46%;
+  top: 84%;
+  width: 72%;
+  height: 24%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(50 18 2 / 0.62), rgb(50 18 2 / 0.46) 45%, rgb(50 18 2 / 0.18) 78%, transparent);
+  transform: rotate(-8deg);
+}
+/* 立柱影子：從底盤中心（50%, 1.17W）往右後方接到盤面影子 */
+.ev-wheel-cast-pole {
+  left: 48.25%;
+  top: 88.5%;
+  width: 3.5%;
+  height: 28%;
+  border-radius: 50%;
+  background: linear-gradient(to top, rgb(50 18 2 / 0.45), rgb(50 18 2 / 0.15));
+  filter: blur(1.5px);
+  transform: rotate(49deg);
+  transform-origin: 50% 100%;
+}
+.ev-wheel::before { content: ""; display: block; padding-top: 100%; }
+
+.ev-wheel-frame,
+.ev-wheel-bulbs { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ev-wheel-frame { z-index: 2; }
+
+.ev-wheel-disc,
+.ev-wheel-gloss {
+  position: absolute;
+  top: 5.882%;
+  left: 5.882%;
+  width: 88.236%;
+  height: 88.236%;
+  border-radius: 50%;
+}
+.ev-wheel-disc {
+  z-index: 1;
+  overflow: hidden;
+  background: var(--ev-color-surface-2);
+  transition-property: transform;
+  transition-timing-function: var(--ev-ease-spin);
+  will-change: transform;
+}
+.ev-wheel-disc svg { display: block; width: 100%; height: 100%; }
+.ev-wheel-dividers line { stroke: var(--ev-color-gold); stroke-width: 4; }
+.ev-wheel-gloss { z-index: 2; pointer-events: none; }
+
+.ev-wheel-labels { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
+.ev-wheel-labels li { position: absolute; inset: 0; transform: rotate(var(--ev-angle)); }
+.ev-wheel-label {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  width: var(--ev-label-w, 30%);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: var(--ev-label-color);
+  font-size: clamp(10px, 2.9vw, 13px);
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: center;
+}
+.ev-wheel-label img { width: 44%; max-width: 44px; filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.2)); }
+.ev-wheel-label span {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow-wrap: break-word;
+}
+.ev-wheel-label.is-long { font-size: 0.85em; }
+.is-dense .ev-wheel-label { font-size: clamp(9px, 2.4vw, 11px); }
+
+.ev-wheel-bulbs { z-index: 3; pointer-events: none; }
+.ev-wheel-bulbs > div { position: absolute; inset: 0; }
+.ev-wheel-bulbs i {
+  /* 48×48 燈泡圖：燈泡本體占畫布一半（盤面 3.4%），外圈留給 bulb-on 的光暈 */
+  position: absolute;
+  width: 6.8%;
+  height: 6.8%;
+  background: var(--ev-img-bulbOff) center / contain no-repeat;
+  transform: translate(-50%, -50%);
+}
+.ev-bulbs-on i { background-image: var(--ev-img-bulbOn); }
+.ev-bulbs-on { animation: ev-bulb 1.4s steps(1) infinite; will-change: opacity; }
+.ev-bulbs-on--b { animation-delay: -0.7s; }
+.is-spinning .ev-bulbs-on { animation-duration: 0.24s; }
+.is-spinning .ev-bulbs-on--b { animation-delay: -0.12s; }
+.is-result .ev-bulbs-on { animation: ev-bulb 0.3s steps(1) infinite; }
+.is-result .ev-bulbs-on--b { animation-delay: -0.15s; }
+
+@keyframes ev-bulb {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.ev-wheel-empty {
+  position: absolute;
+  top: 62%;
+  left: 20%;
+  right: 20%;
+  z-index: 4;
+  margin: 0;
+  color: var(--ev-color-text-2);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ev-wheel-pointer {
+  position: absolute;
+  top: -8%;
+  left: 50%;
+  z-index: 5;
+  width: 14%;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 3px 3px rgb(90 42 8 / 0.3));
+  pointer-events: none;
+}
+
+.ev-wheel-go {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  width: 29.4%;
+  height: 29.4%;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.ev-wheel-go img { width: 100%; height: 100%; filter: drop-shadow(0 4px 6px rgb(90 42 8 / 0.35)); }
+.ev-wheel-go-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14%;
+  color: var(--ev-color-on-primary);
+  font-size: clamp(14px, 4.4vw, 20px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 2px rgb(120 20 20 / 0.45);
+}
+.ev-wheel-go:active { transform: translate(-50%, -50%) scale(0.94); }
+.ev-wheel-go:focus-visible { outline: 3px solid var(--ev-color-gold); outline-offset: 4px; }
+.ev-wheel-go[aria-busy="true"] { cursor: progress; }
+.ev-wheel-go.is-disabled { filter: grayscale(1) brightness(0.85); }
+
+/* 吉祥物：400×500 GIF，站在轉盤右前方、中獎跑馬燈後方（跑馬燈蓋住兔比的腳與小腿）。
+   放在 .ev-console 裡 absolute 定位，不佔版面高度，所以操作台能緊接在轉盤下方、第一屏就看得到 */
+.ev-host {
+  position: absolute;
+  right: -36%;
+  bottom: calc(100% - 38px);
+  z-index: 1;
+  width: 81%;
+  pointer-events: none;
+}
+.ev-host::before { content: ""; display: block; padding-top: 125%; }
+.ev-mascot {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  pointer-events: none;
+}
+.ev-chances { pointer-events: auto; }
+/* 剩餘次數牌放在轉盤底座的底盤上（底座 top 62%、高為轉盤寬 69%，底盤約在 118%～128%） */
+.ev-chances {
+  position: absolute;
+  top: 116%;
+  left: 50%;
+  z-index: 4;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--ev-space-2);
+  margin: 0;
+  padding: var(--ev-space-3) var(--ev-space-6);
+  background: var(--ev-img-chancesBadge, linear-gradient(var(--ev-color-surface), var(--ev-color-surface))) center / 100% 100% no-repeat;
+  font-size: 14px;
+  font-weight: 700;
+}
+.ev-chances strong { color: var(--ev-color-primary); font-size: 22px; line-height: 1; }
+/* 320px 寬時兔比會蓋到牌子右端（泰文最長），縮小字與內距 */
+@media (max-width: 359px) {
+  .ev-chances { gap: var(--ev-space-1); padding: var(--ev-space-2) var(--ev-space-4); font-size: 12px; }
+  .ev-chances strong { font-size: 18px; }
+}
+.ev-chances span:empty { display: none; }
+
+.ev-stage-floor-wrap { position: relative; z-index: 2; margin-top: calc(var(--ev-space-6) * -1); }
+.ev-stage-floor { width: 100%; height: 72px; object-fit: cover; object-position: center top; }
+
+/* ---------- 轉盤下方操作台：中獎跑馬燈 ---------- */
+.ev-play { position: relative; }
+.ev-console {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ev-space-3);
+  /* 至少要讓開底座上的剩餘次數牌（牌頂在轉盤 116%、高約 48px） */
+  margin-top: max(calc(var(--ev-wheel-size) * 0.32), calc(var(--ev-wheel-size) * 0.16 + 52px));
+  padding-bottom: var(--ev-space-2);
+}
+.ev-ticker {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--ev-space-2);
+  height: 40px;
+  padding: 0 var(--ev-space-3) 0 0;
+  background: var(--ev-img-tickerBar, linear-gradient(var(--ev-color-scrim), var(--ev-color-scrim))) center / 100% 100% no-repeat;
+  color: var(--ev-color-on-primary);
+  font-size: 13px;
+  font-weight: 700;
+}
+.ev-ticker-label {
+  flex-shrink: 0;
+  width: 22%;
+  color: var(--ev-color-on-accent, #4a2300);
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+}
+.ev-ticker-track { flex: 1; min-width: 0; overflow: hidden; }
+.ev-ticker-items { display: inline-flex; gap: var(--ev-space-8); white-space: nowrap; animation: ev-ticker 22s linear infinite; }
+.ev-ticker-item::before { content: "★ "; color: var(--ev-color-gold); }
+@keyframes ev-ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.ev-asset--ticker { top: -16px; right: 0; }
+
+/* ---------- 下半：活動說明（後台填寫） ---------- */
+.ev-info { background: var(--ev-color-bg) center top / 375px repeat; }
+.ev-info-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ev-space-6);
+  max-width: var(--ev-page-max);
+  margin: 0 auto;
+  padding: var(--ev-space-8) var(--ev-space-4) var(--ev-space-10);
+}
+
+.ev-card {
+  position: relative;
+  padding: var(--ev-space-2) var(--ev-space-1) var(--ev-space-1);
+  border: 20px solid transparent;
+  border-image: var(--ev-img-cardFrame, linear-gradient(var(--ev-color-surface), var(--ev-color-surface))) 40 fill / 20px stretch;
+  filter: drop-shadow(0 6px 14px rgb(154 90 20 / 0.12));
+}
+.ev-card-title {
+  display: table;
+  min-width: 60%;
+  margin: -34px auto var(--ev-space-4);
+  padding: var(--ev-space-3) var(--ev-space-8) var(--ev-space-4);
+  background: var(--ev-img-cardTitle, linear-gradient(var(--ev-color-primary), var(--ev-color-primary))) center / 100% 100% no-repeat;
+  color: var(--ev-color-on-primary);
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+}
+.ev-footer-deco {
+  position: relative;
+  height: 0;
+  padding-top: 21.33%;
+  margin: 0 calc(var(--ev-space-4) * -1);
+  background: var(--ev-img-footerDeco) center / 100% 100% no-repeat;
+}
+
+.ev-rules { margin: 0; padding-left: 1.3em; font-size: 14px; }
+.ev-rules li + li { margin-top: var(--ev-space-2); }
+
+.ev-record-list { margin: 0; padding: 0; list-style: none; font-size: 14px; }
+.ev-record { display: flex; justify-content: space-between; gap: var(--ev-space-3); padding: var(--ev-space-2) 0; border-top: 1px solid var(--ev-color-border); }
+.ev-record:first-of-type { border-top: 0; padding-top: 0; }
+.ev-record time { flex-shrink: 0; color: var(--ev-color-text-2); font-variant-numeric: tabular-nums; }
+.ev-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  margin: 0;
+  padding: var(--ev-space-4);
+  border: 2px dashed var(--ev-color-border);
+  border-radius: var(--ev-radius-sm);
+  color: var(--ev-color-text-2);
+  font-size: 13px;
+  text-align: center;
+}
+.ev-empty { margin: 0; color: var(--ev-color-text-2); font-size: 14px; }
+
+.ev-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ev-color-text-2);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------- 分享面板 ---------- */
+.ev-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: var(--ev-color-scrim);
+}
+.ev-sheet-panel {
+  width: 100%;
+  max-width: var(--ev-page-max);
+  padding: var(--ev-space-4) var(--ev-space-4) calc(var(--ev-space-6) + env(safe-area-inset-bottom));
+  border-radius: var(--ev-radius) var(--ev-radius) 0 0;
+  background: var(--ev-color-surface);
+  animation: ev-sheet-up 0.24s ease-out;
+}
+.ev-sheet-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--ev-space-4); }
+.ev-sheet-title { margin: 0; color: var(--ev-color-text); font-size: 17px; font-weight: 800; }
+.ev-sheet-close {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ev-color-surface-2);
+  color: var(--ev-color-text);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.ev-share-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--ev-space-2); }
+.ev-share-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ev-space-1);
+  min-width: 0;
+  color: var(--ev-color-text);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.ev-share-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--ev-color-primary);
+  color: var(--ev-color-on-primary);
+  font-size: 18px;
+  font-weight: 800;
+}
+.ev-share-dot--line { background: var(--ev-share-line); }
+.ev-share-dot--facebook { background: var(--ev-share-facebook); }
+.ev-share-dot--x { background: var(--ev-share-x); }
+.ev-share-dot--whatsapp { background: var(--ev-share-whatsapp); }
+.ev-share-dot--telegram { background: var(--ev-share-telegram); }
+.ev-share-item:focus-visible { outline: 2px solid var(--ev-color-gold); outline-offset: 2px; border-radius: var(--ev-radius-sm); }
+.ev-share-url { display: flex; gap: var(--ev-space-2); margin-top: var(--ev-space-5); }
+.ev-share-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 var(--ev-space-3);
+  border: 1px solid var(--ev-color-border);
+  border-radius: var(--ev-radius-pill);
+  background: var(--ev-color-bg);
+  color: var(--ev-color-text-2);
+  font: 400 13px/1 var(--ev-font);
+}
+.ev-share-copy {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 0 var(--ev-space-5);
+  border: 0;
+  border-radius: var(--ev-radius-pill);
+  background: var(--ev-color-primary);
+  color: var(--ev-color-on-primary);
+  font: 800 14px/1 var(--ev-font);
+  cursor: pointer;
+}
+.ev-share-native { display: block; margin: var(--ev-space-4) auto 0; font-size: 13px; }
+
+@keyframes ev-sheet-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* ---------- 結果彈窗：modal-bg 600×760 ---------- */
+.ev-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ev-space-4);
+  background: var(--ev-color-scrim);
+}
+.ev-modal-wrap { width: 320px; max-width: 100%; animation: ev-pop 0.32s cubic-bezier(0.2, 0.9, 0.3, 1.3); }
+.ev-modal-box {
+  position: relative;
+  width: 100%;
+  background: center / 100% 100% no-repeat;
+  text-align: center;
+}
+.ev-modal-box::before { content: ""; display: block; padding-top: 126.67%; }
+.ev-modal-title {
+  position: absolute;
+  top: 2.6%;
+  left: 14%;
+  right: 14%;
+  height: 10.6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: var(--ev-color-on-primary);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+.ev-modal-icon { position: absolute; top: 21%; left: 50%; width: 38%; transform: translateX(-50%); }
+.ev-modal-prize {
+  position: absolute;
+  top: 57%;
+  left: 10%;
+  right: 10%;
+  margin: 0;
+  color: var(--ev-color-primary);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+.ev-btn {
+  position: absolute;
+  bottom: 9%;
+  left: 50%;
+  width: 66%;
+  height: 0;
+  padding: 9% 0;
+  border: 0;
+  background: center / 100% 100% no-repeat;
+  color: var(--ev-color-on-primary);
+  font: 800 16px/0 var(--ev-font);
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+.ev-btn:focus-visible { outline: 3px solid var(--ev-color-gold); outline-offset: 3px; border-radius: var(--ev-radius-pill); }
+
+/* ---------- 直向鎖定：手機橫放時蓋上提示，請使用者轉回直向 ----------
+   網頁無法真正鎖住螢幕方向（screen.orientation.lock 只在全螢幕／已安裝 App 有效，iOS 不支援），
+   所以用提示層擋住；只在觸控裝置的橫向矮螢幕出現，桌機視窗再矮都不會觸發 */
+.ev-rotate { display: none; }
+@media (orientation: landscape) and (max-height: 540px) and (pointer: coarse) {
+  .ev-rotate {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ev-space-4);
+    padding: var(--ev-space-6);
+    background: var(--ev-color-backdrop);
+    color: var(--ev-color-on-primary);
+    text-align: center;
+  }
+  .ev-rotate-icon { width: 96px; height: 96px; animation: ev-rotate-hint 2s ease-in-out infinite; }
+  .ev-rotate-text { margin: 0; font-size: 16px; font-weight: 700; }
+}
+@keyframes ev-rotate-hint {
+  0%, 30% { transform: rotate(-90deg); }
+  60%, 100% { transform: rotate(0deg); }
+}
+
+.ev-toast {
+  position: fixed;
+  left: 50%;
+  bottom: var(--ev-space-8);
+  z-index: 30;
+  max-width: calc(min(100vw, var(--ev-page-max)) - var(--ev-space-8));
+  padding: var(--ev-space-2) var(--ev-space-4);
+  border-radius: var(--ev-radius-pill);
+  background: var(--ev-color-scrim);
+  color: var(--ev-color-on-primary);
+  font-size: 14px;
+  transform: translateX(-50%);
+}
+
+@keyframes ev-pop {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ev-modal-wrap,
+  .ev-sheet-panel,
+  .ev-ticker-items,
+  .ev-spot,
+  .ev-bulbs-on { animation: none !important; }
+}

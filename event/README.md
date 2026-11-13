@@ -1,53 +1,57 @@
 # event — 活動頁
 
-每個活動一個獨立資料夾，免建置純 HTML+CSS+JS，直接以靜態檔部署。
-
-## 資料夾命名規則
-
-```
-YYYYMMDD_event_name[_N]
-```
-
-- `YYYYMMDD`：活動建立日期（例：`20261111`）。
-- `event_name`：英文小寫、單字以底線分隔（例：`lucky_wheel`）。
-- `_N`：日期與名稱都相同時才加，從 `_2` 開始編號（例：`20261111_lucky_wheel_2`）。
-
-## 工作流
-
-每個活動都照 **mock up → 製作美術圖 → 套用** 進行，完整步驟、規格與常見問題見
-[`.claude/skills/event-workflow/SKILL.md`](../.claude/skills/event-workflow/SKILL.md)（Claude 做活動時會自動載入）。
-範本活動：`20261111_lucky_wheel/`。
-
-## 共通規則
-
-- 前台語系只有 **en / ko / th**（預設 en），畫面與交付圖檔不得出現中文。
-- 中文僅供內部編輯預覽：按 **Ctrl+Alt+L**（Mac：Control+Option+L）切換，不在語系選單內。
-- 瀏覽器分頁標題（`<title>`）一律英文。
-- 獎項、規則等內容由我們的後台提供；活動頁只保留空位與資料格式。
-- 吉祥物 Moo Rabbit（兔比，cms_system 事業部）的整套形象在 [`../brand/moo-rabbit/`](../brand/moo-rabbit/)；活動只放該活動用的動態。
-- 交付勾選表一律用 `python3 scripts/check_delivery.py <勾選表>` 核對。
+每個活動在這一層有自己的資料夾、入口、圖片、程式與美術文件。原版轉盤與生存輪盤已分開管理，不再把生存輪盤放在原版的 skin 子目錄裡。
 
 ## 活動列表
 
-| 資料夾 | 類型 | 狀態 |
-|---|---|---|
-| [`20261111_lucky_wheel`](./20261111_lucky_wheel/) | 轉盤抽獎 | mock up（佔位圖，待美術依 `DESIGN_TASKS.md` 替換） |
+| 活動 | 資料夾與入口 | 主題與目前狀態 | 美術清單 |
+|---|---|---|---|
+| Lucky Wheel 原版轉盤 | [20261111_lucky_wheel](./20261111_lucky_wheel/) · [開啟活動](./20261111_lucky_wheel/index.html) | 百老匯舞台、兔比；已有主視覺、介面與可操作轉盤，仍有美術項目待交付 | [交付清單](./20261111_lucky_wheel/DELIVERY_CHECKLIST.md) |
+| Survival Spin 生存輪盤 | [20261111_survival_spin](./20261111_survival_spin/) · [開啟活動](./20261111_survival_spin/index.html) | 墨綠／桃紅舞台、桃紅面具人物；目前使用第一版人物動態，已有專屬社群圖 | [交付清單](./20261111_survival_spin/DELIVERY_CHECKLIST.md) |
 
-## 單一活動資料夾結構
+「已有素材」不等於所有交付與人工審核完成；各活動以自己的交付清單與檢查結果為準。正式站仍使用 mock 獎項資料，不代表已串接後台。
 
+## 資料夾分類
+
+```text
+event/
+├── README.md
+├── 20261111_lucky_wheel/       # 原版轉盤、兔比活動素材
+│   ├── index.html
+│   ├── assets/{css,js,img}/
+│   ├── reference/
+│   ├── source/
+│   └── tools/
+└── 20261111_survival_spin/     # 生存輪盤、桃紅人物素材
+    ├── index.html
+    ├── assets/{css,js}/
+    ├── img/
+    ├── skin.css
+    ├── source/
+    └── tools/
 ```
-20261111_lucky_wheel/
-├── index.html
-├── DESIGN_TASKS.md        # 美術製作需求單（規格與驗收）
-├── GPT_ASSET_BRIEF.md     # 交給 GPT 產素材的步驟、提示詞與組 GIF 腳本
-├── DELIVERY_CHECKLIST.md  # 交付勾選表（提交狀態）
-├── reference/             # 吉祥物角色設計參考圖
-└── assets/
-    ├── css/event.css      # token（含轉盤扇區色票）
-    ├── js/config.js       # 圖片／音效／吉祥物路徑、動畫時間、mock 預設內容
-    ├── js/i18n.js         # en / ko / th（＋ zh 內部預覽）
-    ├── js/store.js        # 後台資料格式與讀取
-    ├── js/sound.js        # 鼓聲（未交付音檔時即時合成）
-    ├── js/wheel.js
-    └── img/               # 同檔名覆蓋即可換圖
-```
+
+兩個活動各自包含 `DESIGN_TASKS.md`（美術需求）、`GPT_ASSET_BRIEF.md`（製作規格）、`DELIVERY_CHECKLIST.md`（提交與審核）。生存輪盤沿用已驗證的轉盤程式與 CSS，存放在自己的 `assets/`，可獨立載入；後續共同行為修正需同步檢查兩個活動。
+
+## 分享網址與舊連結
+
+- 原版：`20261111_lucky_wheel/index.html?lang=en`。
+- 生存輪盤：`20261111_survival_spin/index.html?lang=en`；HTML 直接提供專屬的 OG / Twitter 分享圖片，無需社群爬蟲執行 JavaScript。
+- `lang` 支援 `en`、`ko`、`th`。
+- 舊 `20261111_lucky_wheel/?skin=survival`、`index.html?skin=survival` 與 `survival.html` 入口會導向新的生存輪盤。舊社群圖片網址保留相容檔；新素材與程式只在新資料夾維護。
+- 各版網站的生存輪盤 iframe 已改指向新活動入口。
+
+## 接續製作順序
+
+1. 活動資料夾分類、入口與說明同步更新。
+2. 兔比動態先做四段：待機、興奮、慶祝、再接再厲。需增加真正的中間姿勢、使用透明素材，逐段檢查流暢度與輪廓；每段直接提供 GIF 預覽。
+3. 兔比完整吉祥物設定與素材，需求見 [brand/moo-rabbit](../brand/moo-rabbit/)。15 秒影片目前不做。
+
+## 工作流與共通規則
+
+- 工作流：mock up → 製作美術 → 套用 → 驗證。詳見 [event-workflow](../.claude/skills/event-workflow/SKILL.md)。
+- 前台語系為 en / ko / th，預設 en；中文僅供 Ctrl+Alt+L 內部預覽，不列入分享語系。
+- 獎項、規則與次數由後台提供，活動程式保留資料介面與 mock 資料。
+- 素材移動或換名時同步更新 config、入口、分享 metadata、文件與交付 commit；人工審核欄不可代填。
+- 核對提交：`python3 scripts/check_delivery.py event/<活動資料夾>/DELIVERY_CHECKLIST.md`。
+- 新活動命名：`YYYYMMDD_event_name[_N]`，英文小寫與底線；相同日期與名稱才加 `_2` 等序號。

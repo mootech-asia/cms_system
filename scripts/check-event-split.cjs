@@ -1,0 +1,11 @@
+const {chromium}=require('playwright');const assert=require('assert');const fs=require('fs');
+(async()=>{const b=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});const base=process.env.EVENT_TEST_BASE || 'http://127.0.0.1:8011/';const results=[];
+for(const event of ['20261111_lucky_wheel','20261111_survival_spin'])for(const width of [390,1440])for(const lang of ['en','ko','th']){
+ const p=await b.newPage({viewport:{width,height:844}});const errors=[];p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.status()>=400)errors.push(r.status()+' '+r.url());});
+ await p.goto(base+'event/'+event+'/index.html?lang='+lang,{waitUntil:'networkidle'});await p.locator('#mascot').evaluate(i=>i.decode());assert.equal(await p.locator('html').getAttribute('data-skin'),event.includes('survival')?'survival':'broadway');
+ await p.locator('#btnShare').click();const url=await p.locator('#shareUrl').inputValue();assert.equal(new URL(url).pathname,'/event/'+event+'/index.html');assert.equal(new URL(url).searchParams.get('lang'),lang);await p.locator('#btnShareClose').click();
+ await p.evaluate(()=>{window.EVENT_CONFIG.spinDurationMs=100;window.EVENT_CONFIG.resultHoldMs=0;});await p.locator('#btnSpin').click();await p.locator('#resultModal').waitFor({state:'visible',timeout:10000});
+ assert.deepEqual(errors,[]);assert(!(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth)));results.push({event,width,lang,loaded:true,share:true,spin_result:true,errors});await p.close();}
+const p=await b.newPage();for(const entry of ['index.html?skin=survival&lang=th','?skin=survival&lang=th','survival.html?lang=th']){await p.goto(base+'event/20261111_lucky_wheel/'+entry,{waitUntil:'networkidle'});assert(new URL(p.url()).pathname.includes('20261111_survival_spin'));assert.equal(new URL(p.url()).searchParams.get('lang'),'th');}
+const c=await b.newContext({javaScriptEnabled:false});const cp=await c.newPage();await cp.goto(base+'event/20261111_survival_spin/');assert((await cp.locator('meta[property="og:image"]').getAttribute('content')).includes('/20261111_survival_spin/img/share-preview.jpg'));await c.close();
+await b.close();console.log(JSON.stringify({cases:results,legacy_redirects:3,crawler_metadata:true}));})().catch(e=>{console.error(e);process.exit(1)});

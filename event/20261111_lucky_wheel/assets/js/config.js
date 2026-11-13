@@ -17,59 +17,9 @@ window.EVENT_CONFIG = {
 
   /* 換皮：同一個活動程式，換一套圖＋色票就是另一個活動。skin 決定預設皮，網址 ?skin=<名稱> 可臨時切換。
      每套皮只需列出跟預設（broadway）不同的圖片槽；css 是該皮的色票覆寫檔。
-     皮的美術需求、提示詞、交付勾選表放在 skins/<名稱>/。 */
+     原版與生存輪盤分別在 event/ 的獨立活動資料夾維護，需求與交付清單位於各活動根目錄。 */
   skin: 'broadway',
-  skins: {
-    survival: {
-      css: 'skins/survival/skin.css',
-      strings: {
-        'title.alt': { en: 'Survival Spin', ko: '서바이벌 스핀', th: 'สปินเอาตัวรอด', zh: '生存轉盤' }
-      },
-      sounds: {},
-      mascot: {
-        idle: [
-          'skins/survival/img/mascot/idle-1.webp',
-          'skins/survival/img/mascot/idle-2.webp',
-          'skins/survival/img/mascot/idle-3.webp'
-        ],
-        spinning: 'skins/survival/img/mascot/spinning.webp',
-        result: 'skins/survival/img/mascot/result.webp',
-        lose: 'skins/survival/img/mascot/lose.webp'
-      },
-      images: {
-        soundOn: 'skins/survival/img/icon-sound-on.webp',
-        soundOff: 'skins/survival/img/icon-sound-off.webp',
-        share: 'skins/survival/img/icon-share.webp',
-        rotateHint: 'skins/survival/img/icon-rotate.webp',
-        title: {
-          en: 'skins/survival/img/title-en.webp',
-          ko: 'skins/survival/img/title-ko.webp',
-          th: 'skins/survival/img/title-th.webp',
-          zh: 'skins/survival/img/title-en.webp'
-        },
-        stageBg: 'skins/survival/img/stage-bg.webp',
-        infoBg: 'skins/survival/img/info-bg.webp',
-        stageFloor: 'skins/survival/img/stage-floor.webp',
-        spotlight: 'skins/survival/img/spotlight.webp',
-        lightPool: 'skins/survival/img/light-pool.webp',
-        stageVignette: 'skins/survival/img/stage-vignette.webp',
-        bulbOn: 'skins/survival/img/bulb-on.webp',
-        bulbOff: 'skins/survival/img/bulb-off.webp',
-        wheelFrame: 'skins/survival/img/wheel-frame.webp',
-        wheelStand: 'skins/survival/img/wheel-stand.webp',
-        pointer: 'skins/survival/img/pointer.webp',
-        btnGo: 'skins/survival/img/btn-go.webp',
-        btnPrimary: 'skins/survival/img/btn-primary.webp',
-        modalBg: 'skins/survival/img/modal-bg.webp',
-        periodBadge: 'skins/survival/img/period-badge.webp',
-        chancesBadge: 'skins/survival/img/chances-badge.webp',
-        cardFrame: 'skins/survival/img/card-frame.webp',
-        cardTitle: 'skins/survival/img/card-title.webp',
-        tickerBar: 'skins/survival/img/ticker-bar.webp',
-        footerDeco: 'skins/survival/img/footer-deco.webp'
-      }
-    }
-  },
+  skins: {},
 
   images: {
     stageBg: 'assets/img/stage-bg.webp',

@@ -33,10 +33,10 @@
     <div class="max-w-[1360px] mx-auto grid grid-cols-[220px_minmax(0,1fr)] gap-5 pt-5 pb-12 pl-5 pr-24 items-start max-[720px]:pr-5 max-[720px]:grid-cols-[1fr] member-shell">
       <aside class="sticky top-5 bg-bg-panel border border-line rounded-lg p-4 shadow-card max-[720px]:hidden max-h-[calc(100vh-40px)] overflow-y-auto" data-member-nav></aside>
       <div class="min-w-0 flex flex-col gap-4"><div class="py-4">
-            <iframe id="luckyWheelFrame" class="block w-full max-w-120 mx-auto border-0" data-src="../../event/20261111_lucky_wheel/index.html?skin=survival" title="Survival Spin" allow="clipboard-write; web-share; autoplay"></iframe>
+            <iframe id="luckyWheelFrame" class="block w-full max-w-120 mx-auto border-0" data-src="../../event/20261111_survival_spin/index.html" title="Survival Spin" allow="clipboard-write; web-share; autoplay"></iframe>
           </div>
           <script>
-            /* 生存轉盤活動（event/20261111_lucky_wheel）以 H5 寬 iframe 嵌入：
+            /* 生存轉盤活動（event/20261111_survival_spin）以 H5 寬 iframe 嵌入：
                語系跟著本站 <html lang>（活動只有 en/ko/th，其他語系一律帶 en），
                高度填滿視窗扣掉頂部列與底部固定列，活動在 iframe 內自己捲動 */
             (function () {
@@ -47,7 +47,9 @@
                 return l === 'ko' || l === 'th' ? l : 'en';
               }
               function load() {
-                var url = base + '&lang=' + lang();
+                var target = new URL(base, location.href);
+                target.searchParams.set('lang', lang());
+                var url = target.href;
                 if (frame.getAttribute('src') !== url) frame.setAttribute('src', url);
               }
               function bottomBar() {
