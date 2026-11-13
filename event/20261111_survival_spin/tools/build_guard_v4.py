@@ -19,6 +19,23 @@ for i in range(6):
   else:frame=Image.open(O/'neutral.png').convert('RGBA')
  frame.save(D/f'key-{i:02d}.png');keys.append(np.array(frame,dtype=np.float32)/255)
 flows=[]
+use_mesh=name=='celebration' and '--rifle' in sys.argv
+if use_mesh:
+ from scipy.interpolate import LinearNDInterpolator
+ # Corresponding full-frame landmarks align the moving glove while anchoring the rifle.
+ hands=[(186,225),(168,210),(150,182),(133,142),(144,171),(167,211)]
+ elbows=[(134,208),(128,203),(119,202),(114,190),(117,199),(128,208)]
+ fixed=[(0,0),(200,0),(399,0),(0,250),(399,250),(0,499),(200,499),(399,499),
+        (165,75),(235,75),(160,130),(240,130),(200,145),(158,157),(245,157),
+        (168,168),(180,190),(200,220),(246,270),(285,321),(153,250),(200,250),(250,250),
+        (145,350),(250,350),(148,450),(250,450)]
+ def points(i):
+  hx,hy=hands[i];ex,ey=elbows[i]
+  rgb=keys[i][:,:,:3];white=(rgb.min(2)>.65)&((rgb.max(2)-rgb.min(2))<.10)&(keys[i][:,:,3]>.95)
+  yy,xx=np.indices(white.shape);white&=(xx>170)&(xx<230)&(yy>60)&(yy<125)
+  cy,cx=np.where(white);left,right,top,bottom=xx[white].min(),xx[white].max(),yy[white].min(),yy[white].max();cx=(left+right)/2;cy=(top+bottom)/2
+  circle=[(left,cy),(right,cy),(cx,top),(cx,bottom),(cx,cy)]
+  return np.array(fixed+circle+[(hx-9,hy),(hx+9,hy),(hx,hy-11),(hx,hy+11),(hx,hy),(ex-10,ey),(ex+10,ey),(ex,ey)],np.float32)
 use_raft='--raft' in sys.argv
 if use_raft:
  import torch
@@ -34,7 +51,8 @@ if use_raft:
   return f[0].permute(1,2,0).numpy()[:500].copy()
 for i,a in enumerate(keys):
  b=keys[(i+1)%6];gray=lambda c:cv2.cvtColor(np.uint8(c[:,:,:3]*c[:,:,3:]*255),cv2.COLOR_RGB2GRAY)
- if use_raft:flows.append((infer(a,b),infer(b,a)))
+ if use_mesh:flows.append((None,None))
+ elif use_raft:flows.append((infer(a,b),infer(b,a)))
  else:
   dis=cv2.DISOpticalFlow_create(cv2.DISOPTICAL_FLOW_PRESET_MEDIUM);flows.append((dis.calc(gray(a),gray(b),None),dis.calc(gray(b),gray(a),None)))
 y,x=np.indices((500,400),dtype=np.float32)
@@ -59,7 +77,15 @@ frames=[];margins=[];times=[0,8,16,24,32,40,47]
 for j in range(48):
  k=min(5,int(np.searchsorted(times,j,side='right')-1));t=float(j-times[k])/(times[k+1]-times[k])
  a=keys[k].copy();b=keys[(k+1)%6].copy();a[:,:,:3]*=a[:,:,3:];b[:,:,:3]*=b[:,:,3:]
- fa,fb=flows[k];c=warp(a,fa,t)*(1-t)+warp(b,fb,1-t)*t;c[:,:,:3]/=np.maximum(c[:,:,3:],1e-6);c=np.clip(c,0,1)
+ if use_mesh:
+  pa=points(k);pb=points((k+1)%6);mid=pa*(1-t)+pb*t
+  ma=LinearNDInterpolator(mid,pa)(x,y).astype(np.float32);mb=LinearNDInterpolator(mid,pb)(x,y).astype(np.float32)
+  wa=cv2.remap(a,ma[:,:,0],ma[:,:,1],cv2.INTER_LINEAR,borderMode=cv2.BORDER_CONSTANT)
+  wb=cv2.remap(b,mb[:,:,0],mb[:,:,1],cv2.INTER_LINEAR,borderMode=cv2.BORDER_CONSTANT)
+  c=wa*(1-t)+wb*t
+ else:
+  fa,fb=flows[k];c=warp(a,fa,t)*(1-t)+warp(b,fb,1-t)*t
+ c[:,:,:3]/=np.maximum(c[:,:,3:],1e-6);c=np.clip(c,0,1)
  if j in [0,47]:c=keys[0]
  rgba=Image.fromarray(np.uint8(np.round(c*255)),'RGBA');out=shadow.copy();out.alpha_composite(rgba);frames.append(out)
  ys,xs=np.where(np.array(out)[:,:,3]>16);margins.append(int(min(xs.min(),ys.min(),399-xs.max(),499-ys.max())))
@@ -83,5 +109,5 @@ with Image.open(O/f'{name}.gif') as im:
  first=im.convert('RGB').tobytes();ms=0
  for i in range(im.n_frames):im.seek(i);ms+=im.info['duration']
  assert ms==2000 and im.convert('RGB').tobytes()==first
-report={'action':name,'frames':48,'distinct_rgba_frames':len({f.tobytes() for f in frames}),'duration_ms':ms,'native_sheet':[1536,1024],'native_key':[512,512],'output':[400,500],'min_margin_px':min(margins),'whole_pose_flow':True,'flow_method':'RAFT-large' if use_raft else 'DIS','limb_rig':False,'chromakey':False,'alpha_and_rgb_shared_flow':True,'runtime_installed':False}
+report={'action':name,'frames':48,'distinct_rgba_frames':len({f.tobytes() for f in frames}),'duration_ms':ms,'native_sheet':[1536,1024],'native_key':[512,512],'output':[400,500],'min_margin_px':min(margins),'whole_pose_flow':True,'flow_method':'full-frame landmark morph' if use_mesh else ('RAFT-large' if use_raft else 'DIS'),'limb_rig':False,'chromakey':False,'alpha_and_rgb_shared_flow':True,'runtime_installed':False}
 (D/'checks.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

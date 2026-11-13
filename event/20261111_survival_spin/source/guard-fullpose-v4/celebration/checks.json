@@ -17,6 +17,7 @@
   ],
   "min_margin_px": 26,
   "whole_pose_flow": true,
+  "flow_method": "RAFT-large",
   "limb_rig": false,
   "chromakey": false,
   "alpha_and_rgb_shared_flow": true,

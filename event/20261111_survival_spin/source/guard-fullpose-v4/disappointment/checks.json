@@ -1,0 +1,25 @@
+{
+  "action": "disappointment",
+  "frames": 48,
+  "distinct_rgba_frames": 47,
+  "duration_ms": 2000,
+  "native_sheet": [
+    1536,
+    1024
+  ],
+  "native_key": [
+    512,
+    512
+  ],
+  "output": [
+    400,
+    500
+  ],
+  "min_margin_px": 26,
+  "whole_pose_flow": true,
+  "flow_method": "RAFT-large",
+  "limb_rig": false,
+  "chromakey": false,
+  "alpha_and_rgb_shared_flow": true,
+  "runtime_installed": false
+}
