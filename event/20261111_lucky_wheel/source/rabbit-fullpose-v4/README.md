@@ -11,6 +11,8 @@
 
 逐幀尺寸、留白與共用頭尾檢查見 four-actions-checks.json；深淺背景邊緣檢視見 actions-edge-check.jpg。GIF 使用固定底色，遊戲透明格式為 WebP。
 
-目前為動作預覽，尚未替換遊戲；生成胸前字標仍需修整，不能視為完整品牌素材交付。首版再接再厲因重影已淘汰，不在本資料夾交付。
+四段動作已套用原版轉盤；生成胸前字標仍需修整，不能視為完整品牌素材交付。首版再接再厲因重影已淘汰，不在本資料夾交付。
 
 工具：tools/build_rabbit_fullpose_idle.py、tools/build_rabbit_fullpose_actions.py，需 Pillow、NumPy、opencv-python-headless。
+
+網頁套用：待機 `idle-1.webp`、抽獎中 `spinning.webp`、中獎 `result.webp`、未中獎 `lose.webp`。皆為透明 WebP，2 秒循環。

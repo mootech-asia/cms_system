@@ -62,13 +62,11 @@ window.EVENT_CONFIG = {
   mascot: {
     loopMs: 2000,
     idle: [
-      'assets/img/mascot/idle-2.webp',
-      'assets/img/mascot/idle-3.webp'
+      'assets/img/mascot/idle-1.webp'
     ],
     spinning: 'assets/img/mascot/spinning.webp',
     result: 'assets/img/mascot/result.webp',
-    // 未中獎的「失望」動作：交付後填 mascot 資料夾裡的 lose 動態檔；留空時用 result
-    lose: ''
+    lose: 'assets/img/mascot/lose.webp'
   },
 
   /* 音效與 BGM：留空時用 Web Audio 即時合成（sound.js 依皮選音色）；交付音檔後填路徑即改播音檔。

@@ -1,0 +1,137 @@
+{
+  "cases": [
+    {
+      "width": 390,
+      "lang": "en",
+      "outcome": "win",
+      "states_verified": [
+        "idle",
+        "spinning",
+        "win",
+        "idle"
+      ]
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "outcome": "lose",
+      "states_verified": [
+        "idle",
+        "spinning",
+        "lose",
+        "idle"
+      ]
+    },
+    {
+      "width": 390,
+      "lang": "ko",
+      "outcome": "win",
+      "states_verified": [
+        "idle",
+        "spinning",
+        "win",
+        "idle"
+      ]
+    },
+    {
+      "width": 390,
+      "lang": "ko",
+      "outcome": "lose",
+      "states_verified": [
+        "idle",
+        "spinning",
+        "lose",
+        "idle"
+      ]
+    },
+    {
+      "width": 390,
+      "lang": "th",
+      "outcome": "win",
+      "states_verified": [
+        "idle",
+        "spinning",
+        "win",
+        "idle"
+      ]
+    },
+    {
+      "width": 390,
+      "lang": "th",
+      "outcome": "lose",
+      "states_verified": [
+        "idle",
+        "spinning",
+        "lose",
+        "idle"
+      ]
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "outcome": "win",
+      "states_verified": [
+        "idle",
+        "spinning",
+        "win",
+        "idle"
+      ]
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "outcome": "lose",
+      "states_verified": [
+        "idle",
+        "spinning",
+        "lose",
+        "idle"
+      ]
+    },
+    {
+      "width": 1440,
+      "lang": "ko",
+      "outcome": "win",
+      "states_verified": [
+        "idle",
+        "spinning",
+        "win",
+        "idle"
+      ]
+    },
+    {
+      "width": 1440,
+      "lang": "ko",
+      "outcome": "lose",
+      "states_verified": [
+        "idle",
+        "spinning",
+        "lose",
+        "idle"
+      ]
+    },
+    {
+      "width": 1440,
+      "lang": "th",
+      "outcome": "win",
+      "states_verified": [
+        "idle",
+        "spinning",
+        "win",
+        "idle"
+      ]
+    },
+    {
+      "width": 1440,
+      "lang": "th",
+      "outcome": "lose",
+      "states_verified": [
+        "idle",
+        "spinning",
+        "lose",
+        "idle"
+      ]
+    }
+  ],
+  "storage_blocked": "loaded"
+}
