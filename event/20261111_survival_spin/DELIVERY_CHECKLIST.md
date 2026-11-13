@@ -22,40 +22,40 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | S01 | title-en | 690×240 | `img/title-en.{png,webp,svg}` | 6e95855 | ☐ | P0 |
-| ☑ | S02 | title-ko | 690×240 | `img/title-ko.{png,webp,svg}` | 6e95855 | ☐ | P0 |
-| ☑ | S03 | title-th | 690×240 | `img/title-th.{png,webp,svg}` | 6e95855 | ☐ | P0 |
-| ☑ | S04 | stage-bg | 750×1000 | `img/stage-bg.{png,webp,svg}` | 6e95855 | ☐ | P0 |
-| ☑ | S05 | stage-floor | 750×140 | `img/stage-floor.{png,webp,svg}` | 6e95855 | ☐ | P0 |
-| ☑ | S06 | wheel-frame | 680×680 | `img/wheel-frame.{png,webp,svg}` | 6e95855 | ☐ | P0 |
-| ☑ | S07 | wheel-stand | 400×600 | `img/wheel-stand.{png,webp,svg}` | 6e95855 | ☐ | P0 |
-| ☑ | S08 | pointer | 120×160 | `img/pointer.{png,webp,svg}` | 6e95855 | ☐ | P0 |
-| ☑ | S09 | btn-go | 200×200 | `img/btn-go.{png,webp,svg}` | 6e95855 | ☐ | P0 |
-| ☑ | S10 | spotlight | 260×900 | `img/spotlight.{png,webp,svg}` | 6e95855 | ☐ | P0 |
-| ☑ | S11 | light-pool | 600×220 | `img/light-pool.{png,webp,svg}` | 6e95855 | ☐ | P0 |
-| ☑ | S12 | stage-vignette | 750×1000 | `img/stage-vignette.{png,webp,svg}` | 6e95855 | ☐ | P0 |
-| ☑ | S13 | bulb-on | 48×48 | `img/bulb-on.{png,webp,svg}` | 560465b | ☐ | P0 |
-| ☑ | S14 | bulb-off | 48×48 | `img/bulb-off.{png,webp,svg}` | 560465b | ☐ | P0 |
-| ☑ | S15 | modal-bg | 600×760 | `img/modal-bg.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
-| ☑ | S16 | btn-primary | 400×110 | `img/btn-primary.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
-| ☑ | S17 | period-badge | 480×64 | `img/period-badge.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
-| ☑ | S18 | chances-badge | 360×88 | `img/chances-badge.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
-| ☑ | S19 | ticker-bar | 690×64 | `img/ticker-bar.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
-| ☑ | S20 | card-frame | 120×120 | `img/card-frame.{png,webp,svg}` | be67d07 | ☐ | P1 |
-| ☑ | S21 | card-title | 400×72 | `img/card-title.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
-| ☑ | S22 | info-bg | 750×750 | `img/info-bg.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
-| ☑ | S23 | footer-deco | 750×160 | `img/footer-deco.{png,webp,svg}` | 6bf12e1 | ☐ | P1 |
-| ☑ | S24 | icon-sound-on | 64×64 | `img/icon-sound-on.{png,webp,svg}` | be67d07 | ☐ | P2 |
-| ☑ | S25 | icon-sound-off | 64×64 | `img/icon-sound-off.{png,webp,svg}` | be67d07 | ☐ | P2 |
-| ☑ | S26 | icon-share | 64×64 | `img/icon-share.{png,webp,svg}` | be67d07 | ☐ | P2 |
-| ☑ | S27 | icon-rotate | 160×160 | `img/icon-rotate.{png,webp,svg}` | 6bf12e1 | ☐ | P2 |
-| ☑ | S28 | share-preview | 1200×630 | `img/share-preview.{png,jpg}` | 2e31750 | ☐ | P1 |
+| ☑ | S01 | title-en | 690×240 | `img/title-en.{png,webp,svg}` | 8854f62 | ☐ | P0 |
+| ☑ | S02 | title-ko | 690×240 | `img/title-ko.{png,webp,svg}` | 8854f62 | ☐ | P0 |
+| ☑ | S03 | title-th | 690×240 | `img/title-th.{png,webp,svg}` | 8854f62 | ☐ | P0 |
+| ☑ | S04 | stage-bg | 750×1000 | `img/stage-bg.{png,webp,svg}` | 8854f62 | ☐ | P0 |
+| ☑ | S05 | stage-floor | 750×140 | `img/stage-floor.{png,webp,svg}` | 8854f62 | ☐ | P0 |
+| ☑ | S06 | wheel-frame | 680×680 | `img/wheel-frame.{png,webp,svg}` | 8854f62 | ☐ | P0 |
+| ☑ | S07 | wheel-stand | 400×600 | `img/wheel-stand.{png,webp,svg}` | 8854f62 | ☐ | P0 |
+| ☑ | S08 | pointer | 120×160 | `img/pointer.{png,webp,svg}` | 8854f62 | ☐ | P0 |
+| ☑ | S09 | btn-go | 200×200 | `img/btn-go.{png,webp,svg}` | 8854f62 | ☐ | P0 |
+| ☑ | S10 | spotlight | 260×900 | `img/spotlight.{png,webp,svg}` | 8854f62 | ☐ | P0 |
+| ☑ | S11 | light-pool | 600×220 | `img/light-pool.{png,webp,svg}` | 8854f62 | ☐ | P0 |
+| ☑ | S12 | stage-vignette | 750×1000 | `img/stage-vignette.{png,webp,svg}` | 8854f62 | ☐ | P0 |
+| ☑ | S13 | bulb-on | 48×48 | `img/bulb-on.{png,webp,svg}` | 8854f62 | ☐ | P0 |
+| ☑ | S14 | bulb-off | 48×48 | `img/bulb-off.{png,webp,svg}` | 8854f62 | ☐ | P0 |
+| ☑ | S15 | modal-bg | 600×760 | `img/modal-bg.{png,webp,svg}` | 8854f62 | ☐ | P1 |
+| ☑ | S16 | btn-primary | 400×110 | `img/btn-primary.{png,webp,svg}` | 8854f62 | ☐ | P1 |
+| ☑ | S17 | period-badge | 480×64 | `img/period-badge.{png,webp,svg}` | 8854f62 | ☐ | P1 |
+| ☑ | S18 | chances-badge | 360×88 | `img/chances-badge.{png,webp,svg}` | 8854f62 | ☐ | P1 |
+| ☑ | S19 | ticker-bar | 690×64 | `img/ticker-bar.{png,webp,svg}` | 8854f62 | ☐ | P1 |
+| ☑ | S20 | card-frame | 120×120 | `img/card-frame.{png,webp,svg}` | 8854f62 | ☐ | P1 |
+| ☑ | S21 | card-title | 400×72 | `img/card-title.{png,webp,svg}` | 8854f62 | ☐ | P1 |
+| ☑ | S22 | info-bg | 750×750 | `img/info-bg.{png,webp,svg}` | 8854f62 | ☐ | P1 |
+| ☑ | S23 | footer-deco | 750×160 | `img/footer-deco.{png,webp,svg}` | 8854f62 | ☐ | P1 |
+| ☑ | S24 | icon-sound-on | 64×64 | `img/icon-sound-on.{png,webp,svg}` | 8854f62 | ☐ | P2 |
+| ☑ | S25 | icon-sound-off | 64×64 | `img/icon-sound-off.{png,webp,svg}` | 8854f62 | ☐ | P2 |
+| ☑ | S26 | icon-share | 64×64 | `img/icon-share.{png,webp,svg}` | 8854f62 | ☐ | P2 |
+| ☑ | S27 | icon-rotate | 160×160 | `img/icon-rotate.{png,webp,svg}` | 8854f62 | ☐ | P2 |
+| ☑ | S28 | share-preview | 1200×630 | `img/share-preview.{png,jpg}` | 8854f62 | ☐ | P1 |
 
 ## B. 色票（1）
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | S29 | 扇區色 6 組（底色＋文字色） | — | `skin.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | 560465b | ☐ | P0 |
+| ☑ | S29 | 扇區色 6 組（底色＋文字色） | — | `skin.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | 8854f62 | ☐ | P0 |
 
 ## C. 兔比工作人員造型與動態（14）
 
@@ -80,7 +80,7 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | S44 | `assets/js/config.js` 的 skins.survival 圖片／吉祥物路徑改成實際交付的檔名，新活動入口無破圖 | — | `assets/js/config.js` | | ☐ | P2 |
+| ☑ | S44 | `assets/js/config.js` 的 skins.survival 圖片／吉祥物路徑改成實際交付的檔名，新活動入口無破圖 | — | `assets/js/config.js` | 8854f62 | ☐ | P2 |
 
 ## 備註
 
@@ -97,3 +97,5 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 - 2026-11-12：效能優化（6bf12e1）：P1／P2 介面圖由無損 WebP 改有損（面板／底紋／圖示 q88；細框標籤條 q95、透明度無損），內容與尺寸不變；`tools/build_ui.py` 同步改為有損輸出。
 
 - S28：提交專屬橫式社群推廣圖 2e31750。主標、桃紅轉盤、面具人物與階梯大廳；1200×630 JPG，原圖保存在 source/social-promo/。審核欄保留。後續已透過 index.html 獨立活動入口引用此圖。
+
+- 活動拆分：已提交素材與 config 的路徑遷移至本活動資料夾，對應 commit 統一更新為 8854f62；原美術提交仍可從 git 歷史追溯。S44 已驗證新入口與八個網站內嵌入口，人工審核欄不變。
