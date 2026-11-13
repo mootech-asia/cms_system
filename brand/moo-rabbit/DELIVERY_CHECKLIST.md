@@ -72,7 +72,7 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | D01 | key-visual | 1280×720 | `04_key-visual/k01-key-visual.jpg` | | ☐ | P2 |
+| ☑ | D01 | key-visual | 1280×720 | `04_key-visual/k01-key-visual.jpg` | 7a0faf0 | ☐ | P2 |
 | ☐ | D02 | loop-15s | 1280×720 15 秒（暫緩：目前忽略不做，不列待辦） | `04_key-visual/k02-loop-15s.mp4` | | ☐ | P3 |
 
 ## E. 客服介面（3）
@@ -80,23 +80,23 @@
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
 | ☑ | E01 | avatar-round | 512×512 | `05_support/c01-avatar-round.png` | d2890a9 | ☐ | P1 |
-| ☐ | E02 | support-portrait | 1280×1280 | `05_support/c02-support-portrait.png` | | ☐ | P2 |
-| ☐ | E03 | video-call-vertical | 720×960 | `05_support/c03-video-call-vertical.png` | | ☐ | P3 |
+| ☑ | E02 | support-portrait | 1280×1280 | `05_support/c02-support-portrait.png` | 7a0faf0 | ☐ | P2 |
+| ☑ | E03 | video-call-vertical | 720×960 | `05_support/c03-video-call-vertical.png` | 7a0faf0 | ☐ | P3 |
 
 ## F. 社群分享（3）
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | F01 | banner-long | 1575×300 | `06_social/m01-banner-long.png` | | ☐ | P2 |
-| ☐ | F02 | banner-copyspace | 1920×1008 | `06_social/m02-banner-copyspace.png` | | ☐ | P2 |
-| ☐ | F03 | share-preview | 1200×630 | `06_social/m03-share-preview.jpg` | | ☐ | P2 |
+| ☑ | F01 | banner-long | 1575×300 | `06_social/m01-banner-long.png` | 7a0faf0 | ☐ | P2 |
+| ☑ | F02 | banner-copyspace | 1920×1008 | `06_social/m02-banner-copyspace.png` | 7a0faf0 | ☐ | P2 |
+| ☑ | F03 | share-preview | 1200×630 | `06_social/m03-share-preview.jpg` | 7a0faf0 | ☐ | P2 |
 
 ## G. 根目錄代表素材（3，比照熊北：主要形象、視訊連線動畫、profile）
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
 | ☑ | G01 | main-image | 1024×1536 | `main-image.png` | 7431d9f | ☐ | P0 |
-| ☐ | G02 | video-call | 720×720 gif≥24 | `video-call.gif` | | ☐ | P3 |
+| ☑ | G02 | video-call | 720×720 gif≥24 | `video-call.gif` | 7a0faf0 | ☐ | P3 |
 | ☑ | G03 | profile | 2000×2000 | `profile.jpg` | d2890a9 | ☐ | P1 |
 
 ## 備註
