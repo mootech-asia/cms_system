@@ -49,7 +49,7 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 | ☑ | S25 | icon-sound-off | 64×64 | `img/icon-sound-off.{png,webp,svg}` | be67d07 | ☐ | P2 |
 | ☑ | S26 | icon-share | 64×64 | `img/icon-share.{png,webp,svg}` | be67d07 | ☐ | P2 |
 | ☑ | S27 | icon-rotate | 160×160 | `img/icon-rotate.{png,webp,svg}` | 6bf12e1 | ☐ | P2 |
-| ☐ | S28 | share-preview | 1200×630 | `img/share-preview.{png,jpg}` | | ☐ | P1 |
+| ☑ | S28 | share-preview | 1200×630 | `img/share-preview.{png,jpg}` | 2e31750 | ☐ | P1 |
 
 ## B. 色票（1）
 
@@ -95,3 +95,5 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 - 2026-11-12：效能優化（6e95855）：S01–S12 由無損 WebP 重新壓成有損（主標 q92、其餘 q86，透明度預乘後 99% 像素差 ≤ 22），內容與尺寸不變；stage-bg 由 665KB 降到 48KB。`tools/build_p0.py` 已同步改為有損輸出。
 
 - 2026-11-12：效能優化（6bf12e1）：P1／P2 介面圖由無損 WebP 改有損（面板／底紋／圖示 q88；細框標籤條 q95、透明度無損），內容與尺寸不變；`tools/build_ui.py` 同步改為有損輸出。
+
+- S28：提交專屬橫式社群推廣圖 2e31750。主標、桃紅轉盤、面具人物與階梯大廳；1200×630 JPG，原圖保存在 source/social-promo/。審核欄保留，未變更 OG metadata。
