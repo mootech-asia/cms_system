@@ -41,3 +41,7 @@ event/
 - 素材移動或換名時同步更新 config、入口、分享 metadata、文件與交付 commit；人工審核欄不可代填。
 - 核對提交：`python3 scripts/check_delivery.py event/<活動資料夾>/DELIVERY_CHECKLIST.md`。
 - 新活動命名：`YYYYMMDD_event_name[_N]`，英文小寫與底線；相同日期與名稱才加 `_2` 等序號。
+
+### 轉盤角色換圖規格
+
+幸運轉盤與生存轉盤共用角色容器規格：4:5 畫布，`width: 81%`、`right: -36%`、`bottom: calc(100% - 38px)`。Skin 不覆寫角色尺寸或定位。更換視覺僅替換對應動作圖片；素材須在相同比例畫布中維持一致的站位、腳底基準與動作安全區，不靠修改版面配合新圖。
