@@ -91,7 +91,7 @@ window.EVENT_CONFIG = {
     cardTitle: 'assets/img/card-title.webp',
     tickerBar: 'assets/img/ticker-bar.webp',
     footerDeco: 'assets/img/footer-deco.webp',
-    rotateHint: 'assets/img/icon-rotate.svg'
+    rotateHint: 'assets/img/icon-rotate.webp'
   },
 
   /* 吉祥物：每個狀態一個循環 GIF，全部共用同一張基準幀（頭尾）且長度相同（loopMs），

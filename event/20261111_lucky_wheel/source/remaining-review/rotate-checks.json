@@ -1,0 +1,29 @@
+[
+  {
+    "lang": "en",
+    "landscapeVisible": true,
+    "image": "assets/img/icon-rotate.webp"
+  },
+  {
+    "lang": "en",
+    "portraitHidden": true
+  },
+  {
+    "lang": "ko",
+    "landscapeVisible": true,
+    "image": "assets/img/icon-rotate.webp"
+  },
+  {
+    "lang": "ko",
+    "portraitHidden": true
+  },
+  {
+    "lang": "th",
+    "landscapeVisible": true,
+    "image": "assets/img/icon-rotate.webp"
+  },
+  {
+    "lang": "th",
+    "portraitHidden": true
+  }
+]
