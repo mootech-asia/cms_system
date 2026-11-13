@@ -24,6 +24,8 @@ for i in range(4):
  frame.save(folder/f'pose-{i:02d}.png');poses.append(frame)
  ys,xs=np.where(np.array(frame)[:,:,3]>16);margins.append(int(min(xs.min(),ys.min(),511-xs.max(),681-ys.max())))
 seq=[0]*6+[1]*6+[2]*6+[3]*6+[2]*6+[3]*6+[1]*6+[0]*6
+if name in ['recover','celebration']:
+ seq=[0]*6+[1]*6+[2]*12+[3]*18+[0]*6
 frames=[poses[k] for k in seq];fd=folder/'frames';fd.mkdir(exist_ok=True)
 for i,f in enumerate(frames):f.save(fd/f'frame-{i:03d}.png')
 mat=[]
