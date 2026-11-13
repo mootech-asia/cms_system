@@ -1,0 +1,90 @@
+{
+  "views": [
+    {
+      "file": "views/01-front.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": 701860,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "alpha_128_bbox": [
+        48,
+        37,
+        977,
+        1510
+      ],
+      "foot_baseline": 1509,
+      "native_resolution": true
+    },
+    {
+      "file": "views/02-three-quarter.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": 755133,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "alpha_128_bbox": [
+        66,
+        40,
+        950,
+        1508
+      ],
+      "foot_baseline": 1507,
+      "native_resolution": true
+    },
+    {
+      "file": "views/03-side.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": 983193,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "alpha_128_bbox": [
+        232,
+        21,
+        814,
+        1508
+      ],
+      "foot_baseline": 1507,
+      "native_resolution": true
+    },
+    {
+      "file": "views/04-back.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": 730136,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "alpha_128_bbox": [
+        55,
+        48,
+        969,
+        1506
+      ],
+      "foot_baseline": 1505,
+      "native_resolution": true
+    }
+  ],
+  "baseline_spread_px": 4,
+  "review": "Submitted for visual review; no upscale, no chroma key. Baselines within 4px, not exactly registered. Sheet scale panel is conceptual, not a measured 3D model."
+}

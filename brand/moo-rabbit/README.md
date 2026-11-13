@@ -5,6 +5,7 @@
 兔比是 MOOTECH **cms_system 事業部**的吉祥物，和集團吉祥物「熊北（Mootech Bear）」同一個世界觀、同一套配件與渲染質感。
 熊北代表網路服務「厚實可靠、全天候守護」；兔比代表 CMS 網站系統「靈巧快速、一鍵換膚、多語系上線」。
 
+- 角色設定與高清四視圖：[`01_character/`](01_character/README.md)（已製作，待審）
 - 美術需求（規格＋GPT 提示詞）：[`ART_REQUIREMENTS.md`](ART_REQUIREMENTS.md)
 - 交付勾選表：[`DELIVERY_CHECKLIST.md`](DELIVERY_CHECKLIST.md)，核對：`python3 scripts/check_delivery.py brand/moo-rabbit/DELIVERY_CHECKLIST.md`
 - 熊北參考圖：[`../../event/20261111_lucky_wheel/reference/`](../../event/20261111_lucky_wheel/reference/)（來源：官網 repo `mootech-asia/mootech_website` 的 `brand/moo-bear/`）
