@@ -20,13 +20,16 @@ window.EventShare = (function () {
   ];
 
   function shareUrl() {
-    var u = new URL(location.href);
+    var cfg = window.EVENT_CONFIG;
+    // Static metadata is required by social crawlers that do not run JavaScript.
+    var u = cfg.activeSkin === 'survival'
+      ? new URL('survival.html', document.baseURI)
+      : new URL(location.href);
     u.hash = '';
     u.search = '';
     var locale = I18n.getLocale();
     u.searchParams.set('lang', locale === 'zh' ? I18n.DEFAULT_LOCALE : locale);
-    var cfg = window.EVENT_CONFIG;
-    if (cfg.activeSkin && cfg.activeSkin !== cfg.skin) u.searchParams.set('skin', cfg.activeSkin);
+    if (cfg.activeSkin && cfg.activeSkin !== cfg.skin && cfg.activeSkin !== 'survival') u.searchParams.set('skin', cfg.activeSkin);
     return u.toString();
   }
 

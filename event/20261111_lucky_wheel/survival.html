@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Survival Spin</title>
+    <meta name="description" content="Enter Survival Spin and take your turn at the wheel." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Survival Spin" />
+    <meta property="og:description" content="Enter Survival Spin and take your turn at the wheel." />
+    <meta property="og:url" content="https://mootech-asia.github.io/cms_system/event/20261111_lucky_wheel/survival.html" />
+    <meta property="og:image" content="https://mootech-asia.github.io/cms_system/event/20261111_lucky_wheel/skins/survival/img/share-preview.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Survival Spin with a pink prize wheel and masked character in a green game hall" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Survival Spin" />
+    <meta name="twitter:description" content="Enter Survival Spin and take your turn at the wheel." />
+    <meta name="twitter:image" content="https://mootech-asia.github.io/cms_system/event/20261111_lucky_wheel/skins/survival/img/share-preview.jpg" />
+    <script>
+      (function () {
+        var locale = new URLSearchParams(location.search).get('lang');
+        if (['en', 'ko', 'th'].indexOf(locale) < 0) locale = 'en';
+        var target = new URL('index.html', location.href);
+        target.searchParams.set('skin', 'survival');
+        target.searchParams.set('lang', locale);
+        location.replace(target.href);
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="index.html?skin=survival&amp;lang=en">Play Survival Spin</a>
+  </body>
+</html>
