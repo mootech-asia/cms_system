@@ -1,0 +1,129 @@
+[
+  {
+    "id": "C01",
+    "target": "03_stickers/s01-intro.png",
+    "source": "/workspace/generated_images/exec-8bd0d30c-8915-4bcf-b770-49bef8aebb6a.png",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "C02",
+    "target": "03_stickers/s02-templates.png",
+    "pose": "S02 TEMPLATES: smiling rabbit holds a fan of three translucent cyan holographic website layout cards with BOTH paws at chest level. Cards show only elegant colored layout blocks, no writing. Hands and card corners fully visible.",
+    "source": "/workspace/generated_images/exec-7ee7fa16-aecb-4bdf-ba1b-17412471f7d3.png",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "C03",
+    "target": "03_stickers/s03-globe-languages.png",
+    "pose": "S03 LANGUAGES: one paw holds a small luminous blue-green globe; rabbit looks up at it with a delighted smile. Three discrete glowing tags EN, KO, TH orbit the globe. Exact tags only. Globe to viewer right, unobscured face and logo.",
+    "source": "/workspace/generated_images/exec-a47173cd-3084-47da-b445-5ce5cf1ec192.png",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "C04",
+    "target": "03_stickers/s04-tablet-thumbsup.png",
+    "pose": "S04 TABLET THUMBS UP: one paw holds a thin translucent cyan holographic tablet displaying website blocks and a color palette, other paw gives clear big thumbs-up. Happy open-mouth laugh. No words on tablet.",
+    "source": "/workspace/generated_images/exec-a643d7b9-6c64-494a-9cf3-90488a77ac07.png",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "C05",
+    "target": "03_stickers/s05-call-wave.png",
+    "pose": "S05 CALL WAVE: one paw gently touches the left headset near microphone, the other paw raised waving hello with visible soft pink pads. Friendly listening smile. Small floating cyan envelope icon beside head, not touching ears. No text.",
+    "source": "/workspace/generated_images/exec-5c895333-98c7-4563-a0f2-bed26a95e06a.png",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "C06",
+    "target": "03_stickers/s06-wave.png",
+    "pose": "S06 WAVE: face camera, one open paw enthusiastically waves hello, friendly broad smile, one ear playfully leaning to side. Other paw rests near waist. No props.",
+    "source": "/workspace/generated_images/exec-757f675e-2e5a-4bf5-930f-758e736fe777.png",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "C07",
+    "target": "03_stickers/s07-wink-thumbsup.png",
+    "pose": "S07 WINK THUMBS UP: rabbit winks clearly through translucent glasses and gives one big thumbs-up beside chest, other paw resting down. Cheerful confident smile, upright ears. No props.",
+    "source": "/workspace/generated_images/exec-e76e84de-b7c3-4a2a-8e05-93d4e3f62843.png",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "C08",
+    "target": "03_stickers/s08-thinking.png",
+    "pose": "S08 THINKING: one paw rests under chin, head tilted thoughtfully up and toward viewer left, other arm loosely supports thinking elbow. One ear gently folded at tip. Curious friendly thoughtful face, not worried. No props.",
+    "source": "/workspace/generated_images/exec-4f88f085-a7c5-4ba3-b98f-66cc4db10fd9.png",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "C09",
+    "target": "03_stickers/s09-handshake.png",
+    "pose": "S09 HANDSHAKE: smiling rabbit reaches diagonally toward viewer right to shake a human hand entering from right; only human hand and short navy sleeve, no second face/body. Handshake clear with anatomically plausible contact. Complete rabbit ears and other paw visible.",
+    "source": "/workspace/generated_images/exec-f4073b00-2611-43e6-95fd-d99266e3caee.png",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "C10",
+    "target": "03_stickers/s10-heart-hands.png",
+    "pose": "S10 HEART HANDS: BOTH white rabbit paws form a readable heart outline in front of chest, warm closed-eye smile through translucent glasses, ears slightly angled joyfully. Keep logo visible above or beside hands. No extra floating hearts or props.",
+    "source": "/workspace/generated_images/exec-0e095140-5890-4c81-84b2-62cfb978bd31.png",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "C11",
+    "target": "03_stickers/s11-hug-palette.png",
+    "pose": "S11 HUG PALETTE: rabbit lovingly hugs a softly glowing cyan artist color-palette board containing four colored circular swatches (blue, lime, orange, purple), both arms around palette, happy closed-eye smile. Friendly soft ears, no text except chest logo.",
+    "source": "/workspace/generated_images/exec-191d0831-5ef8-4cd3-8021-8b1e1831b390.png",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "E01",
+    "target": "05_support/c01-avatar-round.png",
+    "size": [
+      512,
+      512
+    ],
+    "source": "/workspace/generated_images/exec-7969bafb-cea2-4082-b62e-1ef78562e987.png"
+  },
+  {
+    "id": "G03",
+    "target": "profile.jpg",
+    "size": [
+      2000,
+      2000
+    ],
+    "source": "/workspace/generated_images/exec-71d2749f-588f-4b0e-a540-01abab8d70a5.png"
+  }
+]

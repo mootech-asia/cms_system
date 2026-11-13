@@ -1,0 +1,248 @@
+[
+  {
+    "id": "C01",
+    "file": "03_stickers/s01-intro.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "delivery_size": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 646133,
+    "alpha_bbox_128": [
+      133,
+      60,
+      944,
+      956
+    ]
+  },
+  {
+    "id": "C02",
+    "file": "03_stickers/s02-templates.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "delivery_size": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 613376,
+    "alpha_bbox_128": [
+      162,
+      55,
+      863,
+      972
+    ]
+  },
+  {
+    "id": "C03",
+    "file": "03_stickers/s03-globe-languages.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "delivery_size": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 431705,
+    "alpha_bbox_128": [
+      101,
+      52,
+      958,
+      974
+    ]
+  },
+  {
+    "id": "C04",
+    "file": "03_stickers/s04-tablet-thumbsup.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "delivery_size": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 560074,
+    "alpha_bbox_128": [
+      109,
+      55,
+      912,
+      973
+    ]
+  },
+  {
+    "id": "C05",
+    "file": "03_stickers/s05-call-wave.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "delivery_size": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 542386,
+    "alpha_bbox_128": [
+      107,
+      54,
+      884,
+      973
+    ]
+  },
+  {
+    "id": "C06",
+    "file": "03_stickers/s06-wave.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "delivery_size": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 611649,
+    "alpha_bbox_128": [
+      137,
+      47,
+      884,
+      976
+    ]
+  },
+  {
+    "id": "C07",
+    "file": "03_stickers/s07-wink-thumbsup.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "delivery_size": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 627051,
+    "alpha_bbox_128": [
+      169,
+      55,
+      852,
+      962
+    ]
+  },
+  {
+    "id": "C08",
+    "file": "03_stickers/s08-thinking.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "delivery_size": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 667219,
+    "alpha_bbox_128": [
+      239,
+      52,
+      775,
+      973
+    ]
+  },
+  {
+    "id": "C09",
+    "file": "03_stickers/s09-handshake.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "delivery_size": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 629587,
+    "alpha_bbox_128": [
+      220,
+      52,
+      982,
+      982
+    ]
+  },
+  {
+    "id": "C10",
+    "file": "03_stickers/s10-heart-hands.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "delivery_size": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 589427,
+    "alpha_bbox_128": [
+      154,
+      54,
+      866,
+      975
+    ]
+  },
+  {
+    "id": "C11",
+    "file": "03_stickers/s11-hug-palette.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "delivery_size": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 639887,
+    "alpha_bbox_128": [
+      175,
+      53,
+      793,
+      954
+    ]
+  },
+  {
+    "id": "E01",
+    "file": "05_support/c01-avatar-round.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "delivery_size": [
+      512,
+      512
+    ],
+    "mode": "RGB"
+  },
+  {
+    "id": "G03",
+    "file": "profile.jpg",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "delivery_size": [
+      2000,
+      2000
+    ],
+    "mode": "RGB"
+  }
+]
