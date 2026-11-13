@@ -1,0 +1,12 @@
+{
+  "frames": 48,
+  "duration_ms": 2000,
+  "minimum_alpha_margin_px": 31,
+  "lower_body_exactly_fixed_below_y": 240,
+  "head_lift_px": 2.6,
+  "shoulder_lift_px_approx": 4.8,
+  "chest_expansion_each_side_px_max": 3.8,
+  "identical_first_last": true,
+  "preview_background": "#06231f",
+  "source": "existing accepted base; local deformation, no new image generation"
+}
