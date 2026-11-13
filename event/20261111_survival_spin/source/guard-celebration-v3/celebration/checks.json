@@ -1,0 +1,28 @@
+{
+  "action": "celebration",
+  "frames": 48,
+  "gif_encoded_frames": 41,
+  "distinct_rgba_frames": 33,
+  "duration_ms": 2000,
+  "native_sheet": [
+    1536,
+    1024
+  ],
+  "native_key": [
+    512,
+    512
+  ],
+  "output": [
+    400,
+    500
+  ],
+  "min_margin_px": 25,
+  "whole_pose_flow": true,
+  "flow_method": "single-source smooth nonfolding warp",
+  "limb_rig": false,
+  "chromakey": false,
+  "alpha_and_rgb_shared_flow": true,
+  "runtime_installed": true,
+  "texture_crossfade": false,
+  "minimum_mapping_jacobian": 0.3134649395942688
+}
