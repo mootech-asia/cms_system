@@ -25,6 +25,17 @@ window.EVENT_CONFIG = {
       strings: {
         'title.alt': { en: 'Survival Spin', ko: '서바이벌 스핀', th: 'สปินเอาตัวรอด', zh: '生存轉盤' }
       },
+      sounds: {},
+      mascot: {
+        idle: [
+          'skins/survival/img/mascot/idle-1.webp',
+          'skins/survival/img/mascot/idle-2.webp',
+          'skins/survival/img/mascot/idle-3.webp'
+        ],
+        spinning: 'skins/survival/img/mascot/spinning.webp',
+        result: 'skins/survival/img/mascot/result.webp',
+        lose: 'skins/survival/img/mascot/lose.webp'
+      },
       images: {
         soundOn: 'skins/survival/img/icon-sound-on.webp',
         soundOff: 'skins/survival/img/icon-sound-off.webp',
@@ -110,13 +121,15 @@ window.EVENT_CONFIG = {
     lose: ''
   },
 
-  /* 音效：留空時用 Web Audio 即時合成鼓聲；交付音檔後填路徑即改播音檔。 */
+  /* 音效與 BGM：留空時用 Web Audio 即時合成（sound.js 依皮選音色）；交付音檔後填路徑即改播音檔。
+     bgm 為循環播放的背景音樂。每套皮可在 skins.<名稱>.sounds 覆寫同名欄位。 */
   sounds: {
     drumroll: '',
     win: '',
     lose: '',
     reward: '',
-    rewardLose: ''
+    rewardLose: '',
+    bgm: ''
   },
 
   /* 換圖標籤（mock 用）：顯示在元素旁的檔名與交付尺寸，可由 mock 工具列關閉。 */

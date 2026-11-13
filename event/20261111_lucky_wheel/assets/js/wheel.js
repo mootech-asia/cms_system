@@ -358,6 +358,7 @@
     modal.hidden = true;
     setStage('idle');
     setMascot('idle');
+    Sound.bgmDuck(false);
     btnSpin.focus();
   }
 
