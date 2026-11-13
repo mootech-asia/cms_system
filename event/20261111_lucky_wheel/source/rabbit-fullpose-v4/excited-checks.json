@@ -1,0 +1,76 @@
+{
+  "name": "excited",
+  "status": "motion and alpha preview; not installed",
+  "native_sheet": [
+    1536,
+    1024
+  ],
+  "native_pose": [
+    512,
+    512
+  ],
+  "output": [
+    400,
+    500
+  ],
+  "generated_keyposes": 6,
+  "output_frames": 48,
+  "distinct_rgba_frames": 24,
+  "duration_ms": 2000,
+  "min_margin_px": 9,
+  "whole_body_flow": true,
+  "same_flow_for_color_and_alpha": true,
+  "chromakey": false,
+  "limb_rig": false,
+  "upscaled": false,
+  "metrics": [
+    {
+      "key": 0,
+      "body_height": 447,
+      "translation": [
+        -42,
+        22
+      ]
+    },
+    {
+      "key": 1,
+      "body_height": 448,
+      "translation": [
+        -41,
+        22
+      ]
+    },
+    {
+      "key": 2,
+      "body_height": 453,
+      "translation": [
+        -42,
+        22
+      ]
+    },
+    {
+      "key": 3,
+      "body_height": 450,
+      "translation": [
+        -42,
+        22
+      ]
+    },
+    {
+      "key": 4,
+      "body_height": 442,
+      "translation": [
+        -42,
+        22
+      ]
+    },
+    {
+      "key": 5,
+      "body_height": 428,
+      "translation": [
+        -42,
+        22
+      ]
+    }
+  ]
+}
