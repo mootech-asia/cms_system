@@ -4,7 +4,7 @@ import sys,json,shutil
 import numpy as np
 import cv2
 from PIL import Image,ImageDraw,ImageFilter
-R=Path(__file__).resolve().parents[1];O=R/'source/guard-fullpose-v4'
+R=Path(__file__).resolve().parents[1];O=R/('source/guard-rifle-v1' if '--rifle' in sys.argv else 'source/guard-fullpose-v4')
 name=sys.argv[1];src=Path(sys.argv[2]);D=O/name;D.mkdir(parents=True,exist_ok=True)
 shutil.copy2(src,D/'keyposes-original.png')
 sheet=Image.open(src).convert('RGBA');assert sheet.size==(1536,1024)
@@ -19,16 +19,41 @@ for i in range(6):
   else:frame=Image.open(O/'neutral.png').convert('RGBA')
  frame.save(D/f'key-{i:02d}.png');keys.append(np.array(frame,dtype=np.float32)/255)
 flows=[]
+use_raft='--raft' in sys.argv
+if use_raft:
+ import torch
+ from torchvision.models.optical_flow import raft_large,Raft_Large_Weights
+ torch.set_num_threads(4)
+ model=raft_large(weights=Raft_Large_Weights.DEFAULT).eval()
+ def tensor(c):
+  rgb=c[:,:,:3]*c[:,:,3:]+np.array([6,35,31],dtype=np.float32)/255*(1-c[:,:,3:])
+  rgb=np.pad(rgb,((0,4),(0,0),(0,0)),mode='edge')
+  return torch.from_numpy(rgb).permute(2,0,1).unsqueeze(0)*2-1
+ def infer(a,b):
+  with torch.inference_mode():f=model(tensor(a),tensor(b),num_flow_updates=12)[-1]
+  return f[0].permute(1,2,0).numpy()[:500].copy()
 for i,a in enumerate(keys):
  b=keys[(i+1)%6];gray=lambda c:cv2.cvtColor(np.uint8(c[:,:,:3]*c[:,:,3:]*255),cv2.COLOR_RGB2GRAY)
- dis=cv2.DISOpticalFlow_create(cv2.DISOPTICAL_FLOW_PRESET_MEDIUM);flows.append((dis.calc(gray(a),gray(b),None),dis.calc(gray(b),gray(a),None)))
+ if use_raft:flows.append((infer(a,b),infer(b,a)))
+ else:
+  dis=cv2.DISOpticalFlow_create(cv2.DISOPTICAL_FLOW_PRESET_MEDIUM);flows.append((dis.calc(gray(a),gray(b),None),dis.calc(gray(b),gray(a),None)))
 y,x=np.indices((500,400),dtype=np.float32)
 def warp(im,flow,t):
- mx=x.copy();my=y.copy()
- for _ in range(8):
-  f=cv2.remap(flow,mx,my,cv2.INTER_LINEAR,borderMode=cv2.BORDER_REPLICATE)
-  mx=((mx+x-t*f[:,:,0])*.5).astype(np.float32);my=((my+y-t*f[:,:,1])*.5).astype(np.float32)
- return cv2.remap(im,mx,my,cv2.INTER_LINEAR,borderMode=cv2.BORDER_CONSTANT)
+ if not use_raft:
+  mx=x.copy();my=y.copy()
+  for _ in range(8):
+   f=cv2.remap(flow,mx,my,cv2.INTER_LINEAR,borderMode=cv2.BORDER_REPLICATE)
+   mx=((mx+x-t*f[:,:,0])*.5).astype(np.float32);my=((my+y-t*f[:,:,1])*.5).astype(np.float32)
+  return cv2.remap(im,mx,my,cv2.INTER_LINEAR,borderMode=cv2.BORDER_CONSTANT)
+ # Forward splatting prevents disoccluded background from retaining the old arm.
+ dx=x+t*flow[:,:,0];dy=y+t*flow[:,:,1];ix=np.floor(dx).astype(int);iy=np.floor(dy).astype(int)
+ fx=dx-ix;fy=dy-iy;out=np.zeros((500,400,4),np.float32);weight=np.zeros((500,400),np.float32)
+ for ox,oy,w in [(0,0,(1-fx)*(1-fy)),(1,0,fx*(1-fy)),(0,1,(1-fx)*fy),(1,1,fx*fy)]:
+  xx=ix+ox;yy=iy+oy;valid=(xx>=0)&(xx<400)&(yy>=0)&(yy<500)&(im[:,:,3]>.005)
+  np.add.at(weight,(yy[valid],xx[valid]),w[valid])
+  for channel in range(4):np.add.at(out[:,:,channel],(yy[valid],xx[valid]),im[:,:,channel][valid]*w[valid])
+ weight=cv2.GaussianBlur(weight,(3,3),.45);out=cv2.GaussianBlur(out,(3,3),.45)
+ return out/np.maximum(weight[:,:,None],1e-6)
 shadow=Image.new('RGBA',(400,500));ImageDraw.Draw(shadow).ellipse((137,455,263,470),fill=(0,0,0,80));shadow=shadow.filter(ImageFilter.GaussianBlur(4))
 frames=[];margins=[];times=[0,8,16,24,32,40,47]
 for j in range(48):
@@ -58,5 +83,5 @@ with Image.open(O/f'{name}.gif') as im:
  first=im.convert('RGB').tobytes();ms=0
  for i in range(im.n_frames):im.seek(i);ms+=im.info['duration']
  assert ms==2000 and im.convert('RGB').tobytes()==first
-report={'action':name,'frames':48,'distinct_rgba_frames':len({f.tobytes() for f in frames}),'duration_ms':ms,'native_sheet':[1536,1024],'native_key':[512,512],'output':[400,500],'min_margin_px':min(margins),'whole_pose_flow':True,'limb_rig':False,'chromakey':False,'alpha_and_rgb_shared_flow':True,'runtime_installed':False}
+report={'action':name,'frames':48,'distinct_rgba_frames':len({f.tobytes() for f in frames}),'duration_ms':ms,'native_sheet':[1536,1024],'native_key':[512,512],'output':[400,500],'min_margin_px':min(margins),'whole_pose_flow':True,'flow_method':'RAFT-large' if use_raft else 'DIS','limb_rig':False,'chromakey':False,'alpha_and_rgb_shared_flow':True,'runtime_installed':False}
 (D/'checks.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
