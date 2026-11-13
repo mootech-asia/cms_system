@@ -21,7 +21,7 @@ window.EVENT_CONFIG = {
   skin: 'survival',
   skins: {
     survival: {
-      css: 'skin.css?v=guard-rifle-v1',
+      css: 'skin.css?v=guard-position-v2',
       strings: {
         'title.alt': { en: 'Survival Spin', ko: '서바이벌 스핀', th: 'สปินเอาตัวรอด', zh: '生存轉盤' }
       },

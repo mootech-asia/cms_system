@@ -35,7 +35,7 @@
 
 /* Keep the rifle and extended celebration hand inside the activity viewport. */
 [data-skin="survival"] .ev-host {
-  right: -10%;
+  right: -15%;
   bottom: calc(100% - 20px);
   width: 65%;
 }
