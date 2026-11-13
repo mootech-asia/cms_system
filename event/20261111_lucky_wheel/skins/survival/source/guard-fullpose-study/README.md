@@ -11,3 +11,7 @@
 - 檢查：頭尾一致、48 影格、2000ms、四個姿勢完整留白，詳 checks.json。
 
 直接預覽：anticipation-fullpose-study.gif。來源：keyposes-original.png。
+
+## 方向確認
+
+使用者已確認此分段動態可接受，後續六段依同方法製作，見 ../guard-fullpose-v3/。先前流暢動畫限制保留為技術說明，不再作為此已確認風格的否決條件。
