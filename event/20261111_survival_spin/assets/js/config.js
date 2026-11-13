@@ -21,20 +21,18 @@ window.EVENT_CONFIG = {
   skin: 'survival',
   skins: {
     survival: {
-      css: 'skin.css',
+      css: 'skin.css?v=guard-rifle-v1',
       strings: {
         'title.alt': { en: 'Survival Spin', ko: '서바이벌 스핀', th: 'สปินเอาตัวรอด', zh: '生存轉盤' }
       },
       sounds: {},
       mascot: {
         idle: [
-          'img/mascot/idle-1.webp',
-          'img/mascot/idle-2.webp',
-          'img/mascot/idle-3.webp'
+          'img/mascot/rifle-v1/idle.webp'
         ],
-        spinning: 'img/mascot/spinning.webp',
-        result: 'img/mascot/result.webp',
-        lose: 'img/mascot/lose.webp'
+        spinning: 'img/mascot/rifle-v1/anticipation.webp',
+        result: 'img/mascot/rifle-v1/celebration.webp',
+        lose: 'img/mascot/rifle-v1/disappointment.webp'
       },
       images: {
         wheelGloss: 'img/wheel-gloss.svg',
@@ -81,13 +79,12 @@ window.EVENT_CONFIG = {
   mascot: {
     loopMs: 2000,
     idle: [
-      'img/mascot/idle-2.webp',
-      'img/mascot/idle-3.webp'
+      'img/mascot/rifle-v1/idle.webp'
     ],
-    spinning: 'img/mascot/spinning.webp',
-    result: 'img/mascot/result.webp',
+    spinning: 'img/mascot/rifle-v1/anticipation.webp',
+    result: 'img/mascot/rifle-v1/celebration.webp',
     // 未中獎的「失望」動作：交付後填 mascot 資料夾裡的 lose 動態檔；留空時用 result
-    lose: ''
+    lose: 'img/mascot/rifle-v1/disappointment.webp'
   },
 
   /* 音效與 BGM：留空時用 Web Audio 即時合成（sound.js 依皮選音色）；交付音檔後填路徑即改播音檔。
