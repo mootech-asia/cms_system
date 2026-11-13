@@ -68,7 +68,7 @@
 | ☑ | A27 | card-title | 400×72 | `assets/img/card-title.{png,webp,svg}` | e5e2f55 | ☐ | P1 |
 | ☑ | A28 | footer-deco | 750×160 | `assets/img/footer-deco.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
 | ☑ | A29 | icon-share | 64×64 | `assets/img/icon-share.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
-| ☑ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | e5e2f55 | 主標定稿後要換新主標重出 | P1 |
+| ☑ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | 144304b | 主標定稿後要換新主標重出 | P1 |
 | ☐ | A31 | title 原始檔（PSD／AI／Figma） | 暫緩：目前忽略不做，不列待辦 | `source/title-source.md` | | ☐ | P3 |
 | ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | 8349b85 | ☐ | P1 |
@@ -76,7 +76,7 @@
 | ☑ | A35 | stage-vignette | 750×1000 | `assets/img/stage-vignette.{png,webp,svg}` | 6e95855 | ☐ | P0 |
 | ☑ | A37 | bulb-on | 48×48 | `assets/img/bulb-on.{png,webp,svg}` | b577931 | ☐ | P0 |
 | ☑ | A38 | bulb-off | 48×48 | `assets/img/bulb-off.{png,webp,svg}` | b577931 | ☐ | P0 |
-| ☐ | A39 | icon-rotate | 160×160 | `assets/img/icon-rotate.{png,webp,svg}` | | ☐ | P2 |
+| ☑ | A39 | icon-rotate | 160×160 | `assets/img/icon-rotate.{png,webp,svg}` | 144304b | ☐ | P2 |
 
 ## B. 色票（1）
 
@@ -130,7 +130,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | 1d4fd3f | ☐ | P2 |
+| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | 144304b | ☐ | P2 |
 
 ## G. 音效（選配 5）
 
@@ -172,3 +172,5 @@
 
 - 2026-11-12：A03–A06、A34、A35、A37、A38 已以 b577931 重新提交；主標為三語客製立體 Logo，燈光含半透明體積光與同位亮暗燈泡。審核欄維持原記錄，待重新審核。B01／F01 同步最新 CSS／config commit。
 - 2026-11-12：效能優化重新壓縮（6e95855），畫面內容不變：A02／A03–A05／A23 由無損 WebP 改有損（主標 q92、其餘 q86），A06／A34／A35 由 PNG 轉 WebP；B01／F01 同步最新 CSS／config commit。審核欄維持原記錄。
+
+- 2026-11-13：144304b 提交 A39 金紅轉直向圖示、A30 新版立體主標分享圖（移除未定稿兔比），F01 同步路徑。三語觸控橫向顯示／直向隱藏通過，見 `source/remaining-review/`；審核欄維持原記錄。
