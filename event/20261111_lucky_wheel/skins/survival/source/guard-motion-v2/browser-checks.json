@@ -1,0 +1,32 @@
+[
+  {
+    "name": "idle-look",
+    "http": 200,
+    "decoded": true,
+    "motion_observed": true
+  },
+  {
+    "name": "idle-greet",
+    "http": 200,
+    "decoded": true,
+    "motion_observed": true
+  },
+  {
+    "name": "anticipation",
+    "http": 200,
+    "decoded": true,
+    "motion_observed": true
+  },
+  {
+    "name": "celebration",
+    "http": 200,
+    "decoded": true,
+    "motion_observed": true
+  },
+  {
+    "name": "recover",
+    "http": 200,
+    "decoded": true,
+    "motion_observed": true
+  }
+]

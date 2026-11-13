@@ -1,0 +1,37 @@
+{
+  "idle-look": {
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_alpha_margin_px": 31,
+    "shared_base_first_last": true,
+    "bytes": 1866451
+  },
+  "idle-greet": {
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_alpha_margin_px": 31,
+    "shared_base_first_last": true,
+    "bytes": 1862598
+  },
+  "anticipation": {
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_alpha_margin_px": 31,
+    "shared_base_first_last": true,
+    "bytes": 1736585
+  },
+  "celebration": {
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_alpha_margin_px": 28,
+    "shared_base_first_last": true,
+    "bytes": 1856376
+  },
+  "recover": {
+    "frames": 48,
+    "duration_ms": 2000,
+    "minimum_alpha_margin_px": 31,
+    "shared_base_first_last": true,
+    "bytes": 1812295
+  }
+}
