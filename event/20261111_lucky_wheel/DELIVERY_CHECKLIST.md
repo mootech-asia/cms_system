@@ -69,7 +69,7 @@
 | ☑ | A28 | footer-deco | 750×160 | `assets/img/footer-deco.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
 | ☑ | A29 | icon-share | 64×64 | `assets/img/icon-share.{png,webp,svg}` | e5e2f55 | ☐ | P2 |
 | ☑ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | e5e2f55 | 主標定稿後要換新主標重出 | P1 |
-| ☐ | A31 | title 原始檔（PSD／AI／Figma） | —（人工） | `source/title-source.md` | | ☐ | P3 |
+| ☐ | A31 | title 原始檔（PSD／AI／Figma） | 暫緩：目前忽略不做，不列待辦 | `source/title-source.md` | | ☐ | P3 |
 | ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | d913f7f | ☐ | P0 |
 | ☑ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | 8349b85 | ☐ | P1 |
 | ☑ | A34 | light-pool | 600×220 | `assets/img/light-pool.{png,webp,svg}` | 6e95855 | ☐ | P0 |
@@ -148,7 +148,7 @@
 
 - A11 modal-bg（2026-11-11 檢查）：卡片中央 alpha 約 244/255（96%），彈窗打開時後方轉盤的「SPIN」字樣會透出來；中央內容區應為 100% 不透明。
 
-- A31：原始檔放雲端時，在 `source/title-source.md` 寫下檔案連結即可（腳本只檢查這個說明檔存在，內容由我們人工審核）。
+- A31：目前忽略不做，不列入待辦與交付缺件；保留列號供追蹤，不需提供 PSD／AI／Figma 或原始檔連結。
 
 - D01～D05（2026-11-11 收檔）：5 個 GIF 規格符合（400×500、48 幀、24fps、無限循環），已套用到前台。待審核注意：背心字樣放大後有拼錯（讀起來像 WOOTECH／MADTECH 等），logo 圖形為橘藍配色而非官方藍綠→黃綠漸層（`DESIGN_TASKS.md` 驗收表第 6 項）。E01～E10（PNG 序列幀、比對圖）尚未交付。
 
