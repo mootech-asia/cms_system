@@ -16,4 +16,4 @@
 
 ## 兔比動態優化進度
 
-[待機首段 GIF 預覽](./source/rabbit-fullpose-v4/idle.gif) 已輸出，使用原生透明姿勢與全畫面補幀；胸前字標仍需修整，尚未替換遊戲。興奮、慶祝、再接再厲尚待製作，詳細限制見 [製作說明](./source/rabbit-fullpose-v4/README.md)。
+[四段動態預覽與透明素材](./source/rabbit-fullpose-v4/README.md)：待機、興奮、慶祝、再接再厲。尚未替換遊戲，胸前字標仍需修整。

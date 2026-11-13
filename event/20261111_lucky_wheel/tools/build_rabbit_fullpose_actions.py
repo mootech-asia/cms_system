@@ -10,13 +10,17 @@ assert name in ['excited','celebration','recover']
 src=Path(sys.argv[1]);shutil.copy2(src,O/f'{name}-keyposes-original.png') if src.resolve()!=(O/f'{name}-keyposes-original.png').resolve() else None
 im=Image.open(src).convert('RGBA');assert im.size==(1536,1024)
 keys=[];metrics=[]
+side=481
+if name=='recover':
+ alpha=np.array(im.crop((0,0,512,512)))[:,:,3];ys,xs=np.where(alpha>64)
+ side=min(512,round(512*447/(ys.max()-ys.min()+1)))
 for i in range(6):
  p=im.crop((i%3*512,i//3*512,(i%3+1)*512,(i//3+1)*512))
  # Premultiplied resampling prevents the RGB of transparent pixels leaking into fur.
- p=p.convert('RGBa').resize((481,481),Image.Resampling.LANCZOS).convert('RGBA')
+ p=p.convert('RGBa').resize((side,side),Image.Resampling.LANCZOS).convert('RGBA')
  a=np.array(p);a[:,:,3][a[:,:,3]<=2]=0;p=Image.fromarray(a,'RGBA');ys,xs=np.where(a[:,:,3]>64);bottom=ys.max();fx=np.where(a[max(0,bottom-12):bottom+1,:,3]>64)[1];cx=(fx.min()+fx.max())/2
  frame=Image.new('RGBA',(400,500));frame.alpha_composite(p,(round(200-cx),480-int(bottom)))
- if i==0 or (name=='recover' and i==5):frame=Image.open(O/'idle-key-00.png').convert('RGBA')
+ if i==0:frame=Image.open(O/'idle-key-00.png').convert('RGBA')
  frame.save(O/f'{name}-key-{i:02d}.png');keys.append(np.asarray(frame,dtype=np.float32)/255)
  metrics.append({'key':i,'body_height':int(ys.max()-ys.min()+1),'translation':[round(200-cx),480-int(bottom)]})
 flows=[]
@@ -24,9 +28,6 @@ for a,b in zip(keys,keys[1:]):
  ga=cv2.cvtColor(np.uint8(a[:,:,:3]*a[:,:,3:]*255),cv2.COLOR_RGB2GRAY);gb=cv2.cvtColor(np.uint8(b[:,:,:3]*b[:,:,3:]*255),cv2.COLOR_RGB2GRAY)
  dis=cv2.DISOpticalFlow_create(cv2.DISOPTICAL_FLOW_PRESET_MEDIUM)
  flows.append((dis.calc(ga,gb,None),dis.calc(gb,ga,None)))
-if name=='recover':
- ground_weight=np.clip((475-np.arange(500,dtype=np.float32))/45,0,1)[:,None,None]
- flows=[(fa*ground_weight,fb*ground_weight) for fa,fb in flows]
 y,x=np.indices((500,400),dtype=np.float32);frames=[];margins=[]
 def warp_at(image,flow,amount):
  mx=x.copy();my=y.copy()
@@ -38,7 +39,7 @@ def warp_at(image,flow,amount):
 
 shadow=Image.new('RGBA',(400,500));ImageDraw.Draw(shadow).ellipse((102,472,304,488),fill=(0,0,0,65));shadow=shadow.filter(ImageFilter.GaussianBlur(3))
 for i in range(48):
- phase=5*i/47 if name=='recover' else (1-np.cos(2*np.pi*i/47))*2.5;k=min(4,int(phase));t=phase-k
+ phase=(1-np.cos(2*np.pi*i/47))*2.5;k=min(4,int(phase));t=phase-k
  a,b=keys[k].copy(),keys[k+1].copy();a[:,:,:3]*=a[:,:,3:];b[:,:,:3]*=b[:,:,3:];fa,fb=flows[k]
  wa=warp_at(a,fa,t)
  wb=warp_at(b,fb,1-t)

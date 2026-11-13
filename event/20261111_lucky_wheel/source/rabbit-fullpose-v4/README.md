@@ -1,13 +1,16 @@
-# 兔比四動作優化：待機首段預覽
+# 兔比四個動態優化預覽
 
-本階段只做待機、興奮、慶祝、再接再厲。先提供待機動作與透明邊緣預覽，尚未替換遊戲使用素材。其餘三段未製作。
+| 動作 | GIF | 透明 WebP |
+|---|---|---|
+| 待機 | [idle.gif](idle.gif) | [idle.webp](idle.webp) |
+| 興奮：屈膝握拳期待 | [excited.gif](excited.gif) | [excited.webp](excited.webp) |
+| 慶祝：開心比雙讚 | [celebration.gif](celebration.gif) | [celebration.webp](celebration.webp) |
+| 再接再厲：點頭、單手比讚 | [recover.gif](recover.gif) | [recover.webp](recover.webp) |
 
-- 原生透明 RGBA 姿勢圖：1536×1024，6 個完整人物關鍵姿勢，每格 512×512。
-- 輸出 400×500、2 秒循環；6 個關鍵姿勢以全畫面光流產生中間畫面，48 個影格紀錄，正反呼吸循環共有 24 張不同的 RGBA 畫面。不是 48 張獨立繪製姿勢。
-- 同一位移場同時處理預乘 RGB 與 alpha，避免輪廓和顏色分離；沒有拆手腳旋轉，也沒有色差去背。原生 alpha 只清除 2/255 以下的背景雜訊。
-- 影格頭尾一致；逐幀留白、尺寸與實際不同畫面數見 checks.json。
-- GIF 使用暖棕固定底，透明遊戲格式另附 idle.webp 與 idle-frames/ PNG 序列。GIF 無半透明能力，不以透明 GIF 當遊戲素材。
-- idle-edge-check.jpg 檢視深綠、米白背景上的四個時間點；idle-keyframes.jpg 檢視動作過程。
-- 胸前生成字標仍需品牌細節修整，本段先驗證動作與透明邊緣，不標為正式交付。
+每段 400×500、2 秒循環，附 RGBA PNG 序列及原生透明姿勢圖。每段 6 個完整關鍵姿勢，以全畫面光流補幀成 48 個影格紀錄；呼吸／回復循環含 24～25 張不同畫面，不宣稱 48 張獨立繪製姿勢。顏色與 alpha 共用位移場，沒有手腳拆件旋轉或色差去背。
 
-製作腳本 tools/build_rabbit_fullpose_idle.py 需要 Pillow、NumPy、opencv-python-headless；原始產圖保留，沒有新增預覽網頁。
+逐幀尺寸、留白與共用頭尾檢查見 four-actions-checks.json；深淺背景邊緣檢視見 actions-edge-check.jpg。GIF 使用固定底色，遊戲透明格式為 WebP。
+
+目前為動作預覽，尚未替換遊戲；生成胸前字標仍需修整，不能視為完整品牌素材交付。首版再接再厲因重影已淘汰，不在本資料夾交付。
+
+工具：tools/build_rabbit_fullpose_idle.py、tools/build_rabbit_fullpose_actions.py，需 Pillow、NumPy、opencv-python-headless。
