@@ -394,6 +394,10 @@
     renderAssetLabels();
   }
 
+  btnSpin.addEventListener('pointerenter', function (e) {
+    if (e.pointerType !== 'mouse' || spinning || btnSpin.classList.contains('is-disabled')) return;
+    Sound.hover();
+  });
   btnSpin.addEventListener('click', spin);
   $('btnClose').addEventListener('click', closeModal);
   modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });

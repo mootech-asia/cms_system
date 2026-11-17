@@ -14,6 +14,8 @@ window.EventSound = (function () {
   var ctx = null;
   var noiseBuf = null;
   var sfxBus = null;
+  var uiBus = null;
+  var lastHover = -Infinity;
   var bgmBus = null;
   var enabled = true;
   var clickUntil = 0;
@@ -48,6 +50,16 @@ window.EventSound = (function () {
       for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
       sfxBus = ctx.createGain();
       sfxBus.connect(ctx.destination);
+      // Bound overlapping UI transients without hard clipping.
+      uiBus = ctx.createWaveShaper();
+      var curve = new Float32Array(2049);
+      for (var j = 0; j < curve.length; j++) {
+        var x = (j / (curve.length - 1)) * 2 - 1;
+        curve[j] = 0.82 * Math.tanh(x * 1.8);
+      }
+      uiBus.curve = curve;
+      uiBus.oversample = '2x';
+      uiBus.connect(ctx.destination);
       bgmBus = ctx.createGain();
       bgmBus.gain.value = BGM_LEVEL;
       bgmBus.connect(ctx.destination);
@@ -399,7 +411,7 @@ window.EventSound = (function () {
     var t = ctx.currentTime;
     bgmBus.gain.cancelScheduledValues(t);
     bgmBus.gain.setValueAtTime(bgmBus.gain.value, t);
-    bgmBus.gain.linearRampToValueAtTime(on ? BGM_DUCK : BGM_LEVEL, t + 0.25);
+    bgmBus.gain.linearRampToValueAtTime(on ? BGM_DUCK : BGM_LEVEL, t + (on ? 0.015 : 0.25));
   }
 
   // 第一次使用者操作就開始 BGM（瀏覽器自動播放限制）
@@ -419,26 +431,39 @@ window.EventSound = (function () {
 
   /* ---------- 對外 ---------- */
 
+  function feedbackTone(t, hover) {
+    noise(t, hover ? 0.028 : 0.04, hover ? 0.42 : 0.85, 'bandpass', hover ? 4200 : 3200, uiBus, 0.9);
+    var o = track(ctx.createOscillator());
+    var g = ctx.createGain();
+    o.type = 'triangle';
+    o.frequency.setValueAtTime(hover ? 1800 : 900, t);
+    o.frequency.exponentialRampToValueAtTime(hover ? 1100 : 220, t + 0.055);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(hover ? 0.48 : 0.95, t + 0.0015);
+    g.gain.setValueAtTime(hover ? 0.48 : 0.95, t + (hover ? 0.008 : 0.018));
+    g.gain.exponentialRampToValueAtTime(0.0001, t + (hover ? 0.055 : 0.09));
+    o.connect(g).connect(uiBus);
+    o.start(t);
+    o.stop(t + 0.1);
+  }
+
+  function hover() {
+    // Hover cannot unlock browser audio; first pointerdown/keydown handles that.
+    if (!enabled || !ctx || ctx.state !== 'running') return;
+    var t = ctx.currentTime;
+    if (t - lastHover < 0.18) return;
+    lastHover = t;
+    try { feedbackTone(t + 0.005, true); } catch (e) { /* Optional feedback. */ }
+  }
+
   function click() {
     if (!enabled) return;
     try {
       if (!ensure()) return;
       var t = ctx.currentTime + 0.005;
-      clickUntil = t + 0.09;
+      clickUntil = t + 0.12;
       bgmDuck(true);
-      // A crisp contact transient plus a short body; reserve its attack before the roll.
-      noise(t, 0.025, 0.65, 'bandpass', 2800, sfxBus, 0.9);
-      var o = track(ctx.createOscillator());
-      var g = ctx.createGain();
-      o.type = 'triangle';
-      o.frequency.setValueAtTime(620, t);
-      o.frequency.exponentialRampToValueAtTime(160, t + 0.055);
-      g.gain.setValueAtTime(0.0001, t);
-      g.gain.linearRampToValueAtTime(0.65, t + 0.002);
-      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.075);
-      o.connect(g).connect(sfxBus);
-      o.start(t);
-      o.stop(t + 0.08);
+      feedbackTone(t, false);
     } catch (e) { /* Audio restrictions must not block the draw. */ }
   }
 
@@ -481,6 +506,7 @@ window.EventSound = (function () {
   }
 
   return {
+    hover: hover,
     click: click,
     drumroll: drumroll,
     finale: finale,
