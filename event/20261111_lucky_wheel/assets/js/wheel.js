@@ -293,11 +293,21 @@
     return d.getFullYear() + '/' + p(d.getMonth() + 1) + '/' + p(d.getDate()) + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
   }
 
+  function pressFeedback() {
+    btnSpin.classList.add('is-pressing');
+    setTimeout(function () { btnSpin.classList.remove('is-pressing'); }, 140);
+    // Vibration is optional: unsupported or denied devices retain visual feedback.
+    try {
+      if (typeof navigator.vibrate === 'function') navigator.vibrate(18);
+    } catch (e) { /* The draw must not depend on device haptics. */ }
+  }
+
   function spin() {
     if (spinning) return;
     if (!n) { showToast(t('toast.noPrizes')); return; }
     if (player.chances <= 0) { showToast(t('toast.noChances')); return; }
 
+    pressFeedback();
     var idx = pickIndex();
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var duration = reduced ? 600 : cfg.spinDurationMs;
