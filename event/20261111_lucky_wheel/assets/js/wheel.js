@@ -183,14 +183,14 @@
     });
   }
 
-  // 被 CMS 前台用 iframe 嵌入時，換圖標籤預設關閉（mock 工具列手動打開才顯示）
+  // iframe 嵌入模式另有版面樣式；素材標籤僅在明確開啟時顯示。
   var embedded = (function () { try { return window.self !== window.top; } catch (e) { return true; } })();
   document.documentElement.classList.toggle('is-embedded', embedded);
   function labelsOn() {
     try {
       var v = localStorage.getItem(LABELS_KEY);
-      return v ? v !== 'off' : !embedded;
-    } catch (e) { return !embedded; }
+      return v === 'on';
+    } catch (e) { return false; }
   }
 
   function renderLabelToggle() {
