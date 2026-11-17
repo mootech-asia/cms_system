@@ -21,7 +21,7 @@ window.EVENT_CONFIG = {
   skin: 'survival',
   skins: {
     survival: {
-      css: 'skin.css?v=shared-mascot-layout',
+      css: 'skin.css?v=led-spin',
       strings: {
         'title.alt': { en: 'Survival Spin', ko: '서바이벌 스핀', th: 'สปินเอาตัวรอด', zh: '生存轉盤' }
       },
@@ -40,7 +40,6 @@ window.EVENT_CONFIG = {
         soundOff: 'img/icon-sound-off.webp',
         share: 'img/icon-share.webp',
         rotateHint: 'img/icon-rotate.webp',
-        tapHint: 'img/icon-tap.svg',
         title: {
           en: 'img/title-en.webp',
           ko: 'img/title-ko.webp',
@@ -127,7 +126,6 @@ window.EVENT_CONFIG = {
     sound: 'icon-sound-on/off · 64×64',
     sharePreview: 'share-preview.jpg · 1200×630 (og:image)',
     rotateHint: 'icon-rotate · 160×160',
-    tapHint: 'icon-tap · 160×160'
   },
 
   /* mock 假資料（後台沒提供 EVENT_CONTENT 時使用）。文字欄位皆為 { en, ko, th, zh }，ko/th 留空時前台顯示 en。 */

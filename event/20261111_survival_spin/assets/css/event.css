@@ -14,6 +14,13 @@
   --ev-color-scrim: rgb(60 25 10 / 0.6);
   --ev-color-tag-bg: rgb(30 15 5 / 0.72);
   --ev-color-tag-text: #ffffff;
+  --ev-led-core: #fff7d6;
+  --ev-led-color: #ffcc62;
+  --ev-led-halo: #ff9b32;
+  --ev-led-rim: #bd823c;
+  --ev-led-face-light: #513820;
+  --ev-led-face: #190f09;
+  --ev-led-shadow: #0b0604;
   --ev-color-danger: #c62f35;
 
   /* 分享平台代表色 */
@@ -540,90 +547,59 @@ html { touch-action: manipulation; }
   transition: transform 0.15s ease, filter 0.15s ease;
 }
 .ev-wheel-go img { width: 100%; height: 100%; filter: drop-shadow(0 4px 6px rgb(90 42 8 / 0.35)); }
+/* The steady LED cores remain readable while only the light layer pulses. */
+.ev-wheel-go::before {
+  content: "";
+  position: absolute;
+  inset: 15%;
+  z-index: 1;
+  border: 1px solid var(--ev-led-rim);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 35% 20%, var(--ev-led-face-light), var(--ev-led-face) 72%);
+  box-shadow: inset 0 2px 3px var(--ev-led-shadow), 0 1px 1px var(--ev-led-core);
+  pointer-events: none;
+}
 .ev-wheel-go-text {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 2;
+  display: grid;
+  place-content: center;
   padding: 0 14%;
-  color: var(--ev-color-on-primary);
+  color: var(--ev-led-core);
   font-size: clamp(14px, 4.4vw, 20px);
   font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: 0.02em;
-  text-shadow: 0 2px 2px rgb(120 20 20 / 0.45);
+  line-height: 1.5;
+  letter-spacing: 0.035em;
+  pointer-events: none;
+}
+.ev-led-core, .ev-led-glow { grid-area: 1 / 1; }
+.ev-led-core {
+  background: radial-gradient(circle, var(--ev-led-core) 0 36%, var(--ev-led-color) 43%, transparent 66%) 0 0 / 2.5px 2.5px;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 1px var(--ev-led-color));
+}
+.ev-led-glow {
+  color: var(--ev-led-color);
+  text-shadow: 0 0 4px var(--ev-led-color), 0 0 9px var(--ev-led-color), 0 0 16px var(--ev-led-halo);
+  opacity: 0.35;
+  animation: ev-led-breathe 2.8s ease-in-out infinite;
+}
+.ev-wheel-go:hover .ev-led-glow,
+.ev-wheel-go:focus-visible .ev-led-glow { animation-duration: 1.6s; }
+.ev-wheel-go[aria-busy="true"] .ev-led-glow { animation-duration: 1s; }
+.ev-stage.is-result .ev-led-glow { animation: none; opacity: 0.8; }
+.ev-wheel-go.is-disabled .ev-led-glow { animation: none; opacity: 0.15; }
+@keyframes ev-led-breathe {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.85; }
 }
 .ev-wheel-go:active { transform: translate(-50%, -50%) scale(0.94); }
 .ev-wheel-go:focus-visible { outline: 3px solid var(--ev-color-gold); outline-offset: 4px; }
 .ev-wheel-go[aria-busy="true"] { cursor: progress; }
 .ev-wheel-go.is-disabled { filter: grayscale(1) brightness(0.85); }
-
-/* SPIN 操作提示：外擴光圈、壓在按鈕上緣的文字標籤（不蓋獎項名稱）與手勢；整組不接收點擊，點到的仍是按鈕。
-   只動 transform／opacity，且不放在帶 filter 的元素上。 */
-.ev-spin-hint {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 6;
-  width: 29.4%;
-  height: 29.4%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-.ev-stage.is-spinning .ev-spin-hint,
-.ev-stage.is-result .ev-spin-hint,
-.ev-wheel-go.is-disabled ~ .ev-spin-hint { display: none; }
-.ev-spin-hint-ring {
-  position: absolute;
-  inset: 0;
-  border: 4px solid var(--ev-color-on-primary);
-  border-radius: 50%;
-  opacity: 0;
-  animation: ev-spin-ring 1.8s ease-out infinite;
-  will-change: transform, opacity;
-}
-.ev-spin-hint-ring--b { animation-delay: -0.9s; }
-.ev-spin-hint-text {
-  position: absolute;
-  left: 50%;
-  bottom: 72%;
-  width: max-content;
-  padding: var(--ev-space-1) var(--ev-space-3);
-  border: 2px solid var(--ev-color-gold);
-  border-radius: var(--ev-radius-pill);
-  background: var(--ev-color-surface);
-  box-shadow: var(--ev-shadow-btn);
-  color: var(--ev-color-primary);
-  font-size: clamp(11px, 3.4vw, 14px);
-  font-weight: 900;
-  line-height: 1.3;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  transform: translateX(-50%);
-  animation: ev-spin-hint-bob 0.9s ease-in-out infinite alternate;
-}
-.ev-spin-hint-hand {
-  position: absolute;
-  top: 60%;
-  left: 58%;
-  width: 46%;
-  transform-origin: 40% 10%;
-  transform: rotate(-24deg);
-  animation: ev-spin-hint-tap 1.8s ease-in-out infinite;
-}
-@keyframes ev-spin-ring {
-  0% { opacity: 0.9; transform: scale(0.92); }
-  100% { opacity: 0; transform: scale(1.6); }
-}
-@keyframes ev-spin-hint-bob {
-  from { transform: translate(-50%, 0); }
-  to { transform: translate(-50%, -4px); }
-}
-@keyframes ev-spin-hint-tap {
-  0%, 55%, 100% { transform: translate(14%, 14%) rotate(-24deg) scale(1); }
-  20%, 35% { transform: translate(0, 0) rotate(-24deg) scale(0.88); }
-}
 
 /* 吉祥物：400×500 GIF，站在轉盤右前方、中獎跑馬燈後方（跑馬燈蓋住兔比的腳與小腿）。
    放在 .ev-console 裡 absolute 定位，不佔版面高度，所以操作台能緊接在轉盤下方、第一屏就看得到 */
@@ -990,7 +966,5 @@ html { touch-action: manipulation; }
   .ev-ticker-items,
   .ev-spot,
   .ev-bulbs-on,
-  .ev-spin-hint-text,
-  .ev-spin-hint-hand { animation: none !important; }
-  .ev-spin-hint-ring { animation: none !important; opacity: 0.9; transform: scale(1.18); }
+  .ev-led-glow { animation: none !important; }
 }

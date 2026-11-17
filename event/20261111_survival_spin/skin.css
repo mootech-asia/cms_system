@@ -1,6 +1,13 @@
 /* 生存遊戲秀皮（survival）：只覆寫色票，版面與元件沿用 event.css。
    桃紅（主色）＋墨綠（背景）＋米白（紙卡）＋黑（文字、外框）。 */
 [data-skin="survival"] {
+  --ev-led-core: #fff1f8;
+  --ev-led-color: #ff8fc6;
+  --ev-led-halo: #ff2786;
+  --ev-led-rim: #bb507f;
+  --ev-led-face-light: #482337;
+  --ev-led-face: #180b17;
+  --ev-led-shadow: #08050b;
   --ev-color-bg: #f3ece0;
   --ev-color-backdrop: #06231f;
   --ev-color-surface: #fffaf2;
