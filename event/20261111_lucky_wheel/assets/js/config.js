@@ -72,16 +72,16 @@ window.EVENT_CONFIG = {
 
   /* 音效與 BGM：留空時用 Web Audio 即時合成（sound.js 依皮選音色）；交付音檔後填路徑即改播音檔。
      bgm 為循環播放的背景音樂。每套皮可在 skins.<名稱>.sounds 覆寫同名欄位。 */
-  feedbackLevels: { hover: 0.7, click: 0.9, reward: 1.6, rewardLose: 0.9 },
+  feedbackLevels: { hover: 0.7, click: 0.9, reward: 1.6, rewardLose: 0.2 },
 
   sounds: {
     drumroll: '',
     win: '',
     lose: '',
     hover: '../20261111_survival_spin/assets/audio/hover.mp3',
-    click: '../20261111_survival_spin/assets/audio/click.mp3',
+    click: '../20261111_survival_spin/assets/audio/click.mp3?v=active-v2',
     reward: 'assets/audio/reward.mp3',
-    rewardLose: 'assets/audio/reward-lose.mp3',
+    rewardLose: '../20261111_survival_spin/assets/audio/reward-lose.mp3',
     bgm: ''
   },
 
