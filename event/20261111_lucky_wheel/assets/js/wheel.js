@@ -409,18 +409,10 @@
     stopHoverMotion();
     hoverMotion = btnSpin.animate([
       { transform: current, offset: 0, easing: 'ease-out' },
-      { transform: hoverTransform(1.09), offset: 0.6, easing: 'ease-in-out' },
-      { transform: hoverTransform(1.025), offset: 1 }
-    ], { duration: 520, fill: 'forwards' });
-    hoverMotion.onfinish = function () {
-      if (!hoverInside || spinning || motionPreference.matches) return;
-      stopHoverMotion();
-      hoverMotion = btnSpin.animate([
-        { transform: hoverTransform(1.025), easing: 'ease-in-out' },
-        { transform: hoverTransform(1.055), easing: 'ease-in-out' },
-        { transform: hoverTransform(1.025) }
-      ], { duration: 1800, iterations: Infinity });
-    };
+      { transform: 'translate(-50%, -50%) scale(1.10, 0.94)', offset: 0.35, easing: 'ease-in-out' },
+      { transform: 'translate(-50%, -50%) scale(0.98, 1.05)', offset: 0.68, easing: 'ease-out' },
+      { transform: hoverTransform(1), offset: 1 }
+    ], { duration: 520 / 3, fill: 'forwards' });
   }
   btnSpin.addEventListener('pointerenter', function (e) {
     if (e.pointerType !== 'mouse') return;
@@ -437,7 +429,7 @@
     if (!motionPreference.matches && !spinning) {
       hoverMotion = btnSpin.animate([
         { transform: current }, { transform: hoverTransform(1) }
-      ], { duration: 220, easing: 'ease-out' });
+      ], { duration: 220 / 3, easing: 'ease-out' });
     }
   });
   // Release the animation's transform before CSS applies the pressed state.
