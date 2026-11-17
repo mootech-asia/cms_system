@@ -294,6 +294,7 @@
   }
 
   function pressFeedback() {
+    stopHoverMotion();
     Sound.click();
     btnSpin.classList.add('is-pressing');
     setTimeout(function () { btnSpin.classList.remove('is-pressing'); }, 140);
@@ -394,9 +395,59 @@
     renderAssetLabels();
   }
 
+  var hoverMotion = null;
+  var hoverInside = false;
+  var motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function stopHoverMotion() {
+    if (hoverMotion) hoverMotion.cancel();
+    hoverMotion = null;
+  }
+  function hoverTransform(scale) { return 'translate(-50%, -50%) scale(' + scale + ')'; }
+  function startHoverMotion() {
+    if (!hoverInside || spinning || btnSpin.classList.contains('is-disabled') || motionPreference.matches) return;
+    var current = getComputedStyle(btnSpin).transform;
+    stopHoverMotion();
+    hoverMotion = btnSpin.animate([
+      { transform: current, offset: 0, easing: 'ease-out' },
+      { transform: hoverTransform(1.09), offset: 0.6, easing: 'ease-in-out' },
+      { transform: hoverTransform(1.025), offset: 1 }
+    ], { duration: 520, fill: 'forwards' });
+    hoverMotion.onfinish = function () {
+      if (!hoverInside || spinning || motionPreference.matches) return;
+      stopHoverMotion();
+      hoverMotion = btnSpin.animate([
+        { transform: hoverTransform(1.025), easing: 'ease-in-out' },
+        { transform: hoverTransform(1.055), easing: 'ease-in-out' },
+        { transform: hoverTransform(1.025) }
+      ], { duration: 1800, iterations: Infinity });
+    };
+  }
   btnSpin.addEventListener('pointerenter', function (e) {
-    if (e.pointerType !== 'mouse' || spinning || btnSpin.classList.contains('is-disabled')) return;
+    if (e.pointerType !== 'mouse') return;
+    hoverInside = true;
+    if (spinning || btnSpin.classList.contains('is-disabled')) return;
     Sound.hover();
+    startHoverMotion();
+  });
+  btnSpin.addEventListener('pointerleave', function () {
+    hoverInside = false;
+    if (!hoverMotion) return;
+    var current = getComputedStyle(btnSpin).transform;
+    stopHoverMotion();
+    if (!motionPreference.matches && !spinning) {
+      hoverMotion = btnSpin.animate([
+        { transform: current }, { transform: hoverTransform(1) }
+      ], { duration: 220, easing: 'ease-out' });
+    }
+  });
+  // Release the animation's transform before CSS applies the pressed state.
+  btnSpin.addEventListener('pointerdown', stopHoverMotion);
+  btnSpin.addEventListener('pointerup', function () {
+    if (hoverInside && !spinning) requestAnimationFrame(startHoverMotion);
+  });
+  if (motionPreference.addEventListener) motionPreference.addEventListener('change', function () {
+    stopHoverMotion();
+    if (!motionPreference.matches) startHoverMotion();
   });
   btnSpin.addEventListener('click', spin);
   $('btnClose').addEventListener('click', closeModal);
