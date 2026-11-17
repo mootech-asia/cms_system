@@ -17,3 +17,7 @@
 ## 兔比動態優化進度
 
 [四段動態預覽與透明素材](./source/rabbit-fullpose-v4/README.md)：待機、興奮、慶祝、再接再厲。已套用原版轉盤，胸前字標仍需修整。
+
+## 載入與動畫交付
+
+首屏只等待目前語系及舞台必要素材，角色先顯示 `optimized/poster.webp`，動畫在畫面可操作後載入。`config.js` 的角色路徑使用各角色目錄下的 `optimized/` 網頁交付檔；原動畫保留作為來源。執行 `python3 scripts/optimize_event_mascots.py` 可重建交付檔，保留原尺寸、透明背景與循環時長。

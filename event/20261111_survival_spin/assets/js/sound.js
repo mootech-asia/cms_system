@@ -432,16 +432,16 @@ window.EventSound = (function () {
   /* ---------- 對外 ---------- */
 
   function feedbackTone(t, hover) {
-    noise(t, hover ? 0.028 : 0.04, hover ? 0.42 : 0.85, 'bandpass', hover ? 4200 : 3200, uiBus, 0.9);
+    noise(t, hover ? 0.035 : 0.04, hover ? 0.12 : 0.85, 'bandpass', hover ? 1400 : 3200, uiBus, 0.9);
     var o = track(ctx.createOscillator());
     var g = ctx.createGain();
-    o.type = 'triangle';
-    o.frequency.setValueAtTime(hover ? 1800 : 900, t);
-    o.frequency.exponentialRampToValueAtTime(hover ? 1100 : 220, t + 0.055);
+    o.type = hover ? 'sine' : 'triangle';
+    o.frequency.setValueAtTime(hover ? 720 : 900, t);
+    o.frequency.exponentialRampToValueAtTime(hover ? 480 : 220, t + 0.055);
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.linearRampToValueAtTime(hover ? 0.48 : 0.95, t + 0.0015);
-    g.gain.setValueAtTime(hover ? 0.48 : 0.95, t + (hover ? 0.008 : 0.018));
-    g.gain.exponentialRampToValueAtTime(0.0001, t + (hover ? 0.055 : 0.09));
+    g.gain.linearRampToValueAtTime(hover ? 0.4 : 0.95, t + (hover ? 0.004 : 0.0015));
+    g.gain.setValueAtTime(hover ? 0.4 : 0.95, t + (hover ? 0.008 : 0.018));
+    g.gain.exponentialRampToValueAtTime(0.0001, t + (hover ? 0.075 : 0.09));
     o.connect(g).connect(uiBus);
     o.start(t);
     o.stop(t + 0.1);

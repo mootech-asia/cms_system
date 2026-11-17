@@ -27,12 +27,13 @@ window.EVENT_CONFIG = {
       },
       sounds: {},
       mascot: {
+        poster: 'img/mascot/rifle-v1/optimized/poster.webp',
         idle: [
-          'img/mascot/rifle-v1/idle.webp'
+          'img/mascot/rifle-v1/optimized/idle.webp'
         ],
-        spinning: 'img/mascot/rifle-v1/anticipation.webp',
-        result: 'img/mascot/rifle-v1/anticipation.webp',
-        lose: 'img/mascot/rifle-v1/disappointment.webp'
+        spinning: 'img/mascot/rifle-v1/optimized/anticipation.webp',
+        result: 'img/mascot/rifle-v1/optimized/anticipation.webp',
+        lose: 'img/mascot/rifle-v1/optimized/disappointment.webp'
       },
       images: {
         wheelGloss: 'img/wheel-gloss.svg',
@@ -77,14 +78,15 @@ window.EVENT_CONFIG = {
   /* 網頁載入的是 tools/gif_to_webp.py 由交付 GIF 轉出的動態 WebP（同內容、約 1/3 大小）；
      換新素材後重跑該腳本（有 PNG 序列幀時優先用序列幀，保留半透明影子）。loopMs 必須等於 GIF 每幀時長總和（目前 48 幀 = 2000ms）。 */
   mascot: {
+    poster: 'img/mascot/rifle-v1/optimized/poster.webp',
     loopMs: 2000,
     idle: [
-      'img/mascot/rifle-v1/idle.webp'
+      'img/mascot/rifle-v1/optimized/idle.webp'
     ],
-    spinning: 'img/mascot/rifle-v1/anticipation.webp',
-    result: 'img/mascot/rifle-v1/anticipation.webp',
+    spinning: 'img/mascot/rifle-v1/optimized/anticipation.webp',
+    result: 'img/mascot/rifle-v1/optimized/anticipation.webp',
     // 未中獎的「失望」動作：交付後填 mascot 資料夾裡的 lose 動態檔；留空時用 result
-    lose: 'img/mascot/rifle-v1/disappointment.webp'
+    lose: 'img/mascot/rifle-v1/optimized/disappointment.webp'
   },
 
   /* 音效與 BGM：留空時用 Web Audio 即時合成（sound.js 依皮選音色）；交付音檔後填路徑即改播音檔。

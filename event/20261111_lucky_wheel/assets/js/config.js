@@ -60,13 +60,14 @@ window.EVENT_CONFIG = {
   /* 網頁載入的是 tools/gif_to_webp.py 由交付 GIF 轉出的動態 WebP（同內容、約 1/3 大小）；
      換新素材後重跑該腳本（有 PNG 序列幀時優先用序列幀，保留半透明影子）。loopMs 必須等於 GIF 每幀時長總和（目前 48 幀 = 2000ms）。 */
   mascot: {
+    poster: 'assets/img/mascot/optimized/poster.webp',
     loopMs: 2000,
     idle: [
-      'assets/img/mascot/idle-1.webp'
+      'assets/img/mascot/optimized/idle-1.webp'
     ],
-    spinning: 'assets/img/mascot/spinning.webp',
-    result: 'assets/img/mascot/result.webp',
-    lose: 'assets/img/mascot/lose.webp'
+    spinning: 'assets/img/mascot/optimized/spinning.webp',
+    result: 'assets/img/mascot/optimized/result.webp',
+    lose: 'assets/img/mascot/optimized/lose.webp'
   },
 
   /* 音效與 BGM：留空時用 Web Audio 即時合成（sound.js 依皮選音色）；交付音檔後填路徑即改播音檔。

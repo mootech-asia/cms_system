@@ -23,3 +23,7 @@
 - 舊文件中的「兔比工作人員造型」是先前方向；目前遊戲角色為桃紅面具人物。原交付表保留歷史審核欄，不冒填舊項目。
 
 原版轉盤與兔比活動素材位於 [../20261111_lucky_wheel/](../20261111_lucky_wheel/)。品牌完整吉祥物包位於 [../../brand/moo-rabbit/](../../brand/moo-rabbit/)。
+
+## 載入與動畫交付
+
+首屏只等待目前語系及舞台必要素材，角色先顯示 `optimized/poster.webp`，動畫在畫面可操作後載入。`config.js` 的角色路徑使用各角色目錄下的 `optimized/` 網頁交付檔；原動畫保留作為來源。執行 `python3 scripts/optimize_event_mascots.py` 可重建交付檔，保留原尺寸、透明背景與循環時長。

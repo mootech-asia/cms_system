@@ -70,7 +70,7 @@
       var key = el.getAttribute('data-img');
       var src = pick(cfg.images[key]);
       if (!src) return;
-      if (el.tagName === 'IMG') el.src = src;
+      if (el.tagName === 'IMG') { el.decoding = 'async'; el.src = src; }
       else el.style.backgroundImage = 'url("' + src + '")';
     });
   }
@@ -204,23 +204,28 @@
   var mascotShownAt = 0;
   var mascotSwapTimer = null;
 
-  // 動態圖每段約 400KB：頁面載入完成後在背景依序預載所有狀態；切換時若目標還沒下載完，
-  // 先保留目前的動作，下載完才換（不然慢網路下角色會整隻消失好幾秒）。
+  // Keep the current frame visible until the requested animation loads successfully.
   var mascotCache = {};
   function loadMascot(src, done) {
+    if (!src) { if (done) done(false); return; }
     var entry = mascotCache[src];
-    if (!entry) {
-      entry = mascotCache[src] = { ready: false, cbs: [] };
+    if (!entry || entry.failed) {
+      entry = mascotCache[src] = { ready: false, failed: false, cbs: [] };
       var img = new Image();
-      img.onload = img.onerror = function () {
-        entry.ready = true;
-        entry.cbs.splice(0).forEach(function (cb) { cb(); });
-      };
+      img.decoding = 'async';
+      img.fetchPriority = 'low';
+      function settle(ok) {
+        entry.ready = ok;
+        entry.failed = !ok;
+        entry.cbs.splice(0).forEach(function (cb) { cb(ok); });
+      }
+      img.onload = function () { settle(true); };
+      img.onerror = function () { settle(false); };
       img.src = src;
     }
-    if (done) { if (entry.ready) done(); else entry.cbs.push(done); }
+    if (done) { if (entry.ready) done(true); else entry.cbs.push(done); }
   }
-  // 兔比每段動畫約 400KB：等頁面載完且瀏覽器閒置才逐一預載；省流量模式／2G 不預載（要用時才載，載好再換）
+  // 第一段動畫可用後再依序預載其他動作；省流量模式／2G 改為按需載入。
   function preloadMascots() {
     var net = navigator.connection || {};
     if (net.saveData || /2g/.test(net.effectiveType || '')) return;
@@ -239,8 +244,8 @@
       mascotState = state;
       renderAssetLabels();
     };
-    loadMascot(src, function () {
-      if (mascotWant !== src) return;
+    loadMascot(src, function (ready) {
+      if (!ready || mascotWant !== src) return;
       var loop = cfg.mascot.loopMs;
       if (!mascotShownAt || !loop) { swap(); return; }
       var wait = (loop - (performance.now() - mascotShownAt) % loop) % loop;
@@ -537,51 +542,57 @@
   document.addEventListener('ev:locale', renderLocale);
   document.addEventListener('ev:skin', function () { if (n) renderWheel(); });
   window.EventShare.init(showToast);
-  function idlePreload() {
-    if (window.requestIdleCallback) requestIdleCallback(preloadMascots, { timeout: 4000 });
-    else setTimeout(preloadMascots, 1500);
-  }
-  if (document.readyState === 'complete') idlePreload();
-  else window.addEventListener('load', idlePreload);
-
-  // 進站 loading：把這一套皮會用到的每張圖（含吉祥物全部狀態、獎項圖示）都載完才移除遮罩。
-  // 單張載入失敗也算完成，遮罩才不會永遠卡住。
+  // Only the current locale and first-screen art gate interaction.
   function runLoading() {
     var overlay = $('loading');
-    if (!overlay) return;
     var urls = {};
+    var keys = ['stageBg', 'title', 'stageFloor', 'spotlight', 'lightPool',
+      'stageVignette', 'wheelFrame', 'wheelStand', 'wheelGloss', 'pointer',
+      'btnGo', 'bulbOn', 'bulbOff', 'periodBadge', 'chancesBadge', 'tickerBar',
+      'share', 'soundOn'];
     function add(src) { if (typeof src === 'string' && src) urls[new URL(src, document.baseURI).href] = true; }
-    Object.keys(cfg.images).forEach(function (key) {
-      var v = cfg.images[key];
-      if (v && typeof v === 'object') Object.keys(v).forEach(function (l) { add(v[l]); }); else add(v);
-    });
-    [cfg.mascot.spinning, cfg.mascot.result, cfg.mascot.lose].concat(cfg.mascot.idle).forEach(add);
+    keys.forEach(function (key) { add(pick(cfg.images[key])); });
+    add(cfg.mascot.poster);
     prizes.forEach(function (p) { add(p.icon); });
     var list = Object.keys(urls);
     var done = 0;
+    var finished = false;
+    var deadline;
     function render() {
       var pct = list.length ? Math.round(done / list.length * 100) : 100;
       $('loadingFill').style.width = pct + '%';
       $('loadingPct').textContent = pct + '%';
     }
     function finish() {
+      if (finished) return;
+      finished = true;
+      clearTimeout(deadline);
       overlay.hidden = true;
       document.body.classList.remove('is-loading');
+      // Start the first animation after the stage is usable, then warm later states serially.
+      setMascot('idle');
+      loadMascot(cfg.mascot.idle[0], function () {
+        if (window.requestIdleCallback) requestIdleCallback(preloadMascots, { timeout: 4000 });
+        else setTimeout(preloadMascots, 1000);
+      });
     }
+    if (!overlay) { setMascot('idle'); return; }
     document.body.classList.add('is-loading');
     render();
     if (!list.length) { finish(); return; }
+    // A stalled image must not trap the user behind the loading screen.
+    deadline = setTimeout(finish, 10000);
     list.forEach(function (src) {
       var img = new Image();
+      img.decoding = 'async';
       img.onload = img.onerror = function () {
         done += 1;
         render();
-        if (done === list.length) setTimeout(finish, 150);
+        if (done === list.length) finish();
       };
       img.src = src;
     });
   }
-  runLoading();
   // 支援的瀏覽器（Android 全螢幕／已安裝）直接鎖直向；不支援時由 .ev-rotate 提示層處理
   try {
     if (screen.orientation && screen.orientation.lock) screen.orientation.lock('portrait').catch(function () {});
@@ -593,6 +604,7 @@
   if (n) renderWheel();
   else $('wheelEmpty').hidden = false;
   renderChances();
-  setMascot('idle');
+  if (cfg.mascot.poster) { mascot.decoding = 'async'; mascot.src = cfg.mascot.poster; }
   I18n.applyLocale();
+  runLoading();
 })();
