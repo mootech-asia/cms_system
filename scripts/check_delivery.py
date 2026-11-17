@@ -57,6 +57,7 @@ PLACEHOLDERS = {
     'ea5e42a6fe982699',  # light-pool.svg
     'bb65f44c2cfc3ff7',  # stage-vignette.svg
     '442ea3a88088a747',  # icon-rotate.svg
+    'f6e9ea6f63f26e4c',  # icon-tap.svg
     '002106becb5c85c6',
     '038411be37fb69ea',
     '03d5bb529d09a722',

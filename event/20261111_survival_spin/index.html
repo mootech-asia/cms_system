@@ -16,7 +16,7 @@
     <meta name="twitter:title" content="Survival Spin" />
     <meta name="twitter:description" content="Enter Survival Spin and take your turn at the wheel." />
     <meta name="twitter:image" content="https://mootech-asia.github.io/cms_system/event/20261111_survival_spin/img/share-preview.jpg" />
-    <link rel="stylesheet" href="assets/css/event.css" />
+    <link rel="stylesheet" href="assets/css/event.css?v=spin-hint" />
   </head>
   <body>
     <div class="ev-loading" id="loading" role="status" aria-live="polite">
@@ -93,9 +93,15 @@
               <img data-img="btnGo" alt="" />
               <span class="ev-wheel-go-text" data-i18n="spin.text" aria-hidden="true"></span>
             </button>
+            <div class="ev-spin-hint" aria-hidden="true">
+              <i class="ev-spin-hint-ring"></i>
+              <i class="ev-spin-hint-ring ev-spin-hint-ring--b"></i>
+              <span class="ev-spin-hint-text" data-i18n="spin.hint"></span>
+              <img class="ev-spin-hint-hand" data-img="tapHint" alt="" />
+            </div>
             <span class="ev-asset ev-asset--tl" data-asset="wheelFrame bulbs" aria-hidden="true"></span>
             <span class="ev-asset ev-asset--tr" data-asset="pointer" aria-hidden="true"></span>
-            <span class="ev-asset ev-asset--bl" data-asset="btnGo wheelGloss" aria-hidden="true"></span>
+            <span class="ev-asset ev-asset--bl" data-asset="btnGo wheelGloss tapHint" aria-hidden="true"></span>
           </div>
         </div>
 
@@ -177,9 +183,9 @@
       <span class="ev-asset ev-asset--rotate" data-asset="rotateHint" aria-hidden="true"></span>
     </div>
 
-    <script src="assets/js/config.js?v=result-anticipation"></script>
+    <script src="assets/js/config.js?v=spin-hint"></script>
     <script src="assets/js/skin.js"></script>
-    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/i18n.js?v=spin-hint"></script>
     <script src="assets/js/store.js"></script>
     <script src="assets/js/sound.js"></script>
     <script src="assets/js/share.js"></script>

@@ -559,6 +559,72 @@ html { touch-action: manipulation; }
 .ev-wheel-go[aria-busy="true"] { cursor: progress; }
 .ev-wheel-go.is-disabled { filter: grayscale(1) brightness(0.85); }
 
+/* SPIN 操作提示：外擴光圈、壓在按鈕上緣的文字標籤（不蓋獎項名稱）與手勢；整組不接收點擊，點到的仍是按鈕。
+   只動 transform／opacity，且不放在帶 filter 的元素上。 */
+.ev-spin-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 6;
+  width: 29.4%;
+  height: 29.4%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.ev-stage.is-spinning .ev-spin-hint,
+.ev-stage.is-result .ev-spin-hint,
+.ev-wheel-go.is-disabled ~ .ev-spin-hint { display: none; }
+.ev-spin-hint-ring {
+  position: absolute;
+  inset: 0;
+  border: 4px solid var(--ev-color-on-primary);
+  border-radius: 50%;
+  opacity: 0;
+  animation: ev-spin-ring 1.8s ease-out infinite;
+  will-change: transform, opacity;
+}
+.ev-spin-hint-ring--b { animation-delay: -0.9s; }
+.ev-spin-hint-text {
+  position: absolute;
+  left: 50%;
+  bottom: 72%;
+  width: max-content;
+  padding: var(--ev-space-1) var(--ev-space-3);
+  border: 2px solid var(--ev-color-gold);
+  border-radius: var(--ev-radius-pill);
+  background: var(--ev-color-surface);
+  box-shadow: var(--ev-shadow-btn);
+  color: var(--ev-color-primary);
+  font-size: clamp(11px, 3.4vw, 14px);
+  font-weight: 900;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  animation: ev-spin-hint-bob 0.9s ease-in-out infinite alternate;
+}
+.ev-spin-hint-hand {
+  position: absolute;
+  top: 60%;
+  left: 58%;
+  width: 46%;
+  transform-origin: 40% 10%;
+  transform: rotate(-24deg);
+  animation: ev-spin-hint-tap 1.8s ease-in-out infinite;
+}
+@keyframes ev-spin-ring {
+  0% { opacity: 0.9; transform: scale(0.92); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+@keyframes ev-spin-hint-bob {
+  from { transform: translate(-50%, 0); }
+  to { transform: translate(-50%, -4px); }
+}
+@keyframes ev-spin-hint-tap {
+  0%, 55%, 100% { transform: translate(14%, 14%) rotate(-24deg) scale(1); }
+  20%, 35% { transform: translate(0, 0) rotate(-24deg) scale(0.88); }
+}
+
 /* 吉祥物：400×500 GIF，站在轉盤右前方、中獎跑馬燈後方（跑馬燈蓋住兔比的腳與小腿）。
    放在 .ev-console 裡 absolute 定位，不佔版面高度，所以操作台能緊接在轉盤下方、第一屏就看得到 */
 .ev-host {
@@ -923,5 +989,8 @@ html { touch-action: manipulation; }
   .ev-sheet-panel,
   .ev-ticker-items,
   .ev-spot,
-  .ev-bulbs-on { animation: none !important; }
+  .ev-bulbs-on,
+  .ev-spin-hint-text,
+  .ev-spin-hint-hand { animation: none !important; }
+  .ev-spin-hint-ring { animation: none !important; opacity: 0.9; transform: scale(1.18); }
 }

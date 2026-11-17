@@ -35,7 +35,7 @@
 
 勾選表每列最後一欄是優先級；檢查腳本會顯示各級進度（例：`P0 3/11`）。
 
-## A. 靜態圖（36）＋主標原始檔（1）
+## A. 靜態圖（37）＋主標原始檔（1）
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
@@ -77,6 +77,7 @@
 | ☑ | A37 | bulb-on | 48×48 | `assets/img/bulb-on.{png,webp,svg}` | b577931 | ☐ | P0 |
 | ☑ | A38 | bulb-off | 48×48 | `assets/img/bulb-off.{png,webp,svg}` | b577931 | ☐ | P0 |
 | ☑ | A39 | icon-rotate | 160×160 | `assets/img/icon-rotate.{png,webp,svg}` | 144304b | ☐ | P2 |
+| ☐ | A40 | icon-tap | 160×160 | `assets/img/icon-tap.{png,webp,svg}` | | ☐ | P2 |
 
 ## B. 色票（1）
 

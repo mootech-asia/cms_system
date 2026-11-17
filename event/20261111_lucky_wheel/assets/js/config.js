@@ -52,7 +52,8 @@ window.EVENT_CONFIG = {
     cardTitle: 'assets/img/card-title.webp',
     tickerBar: 'assets/img/ticker-bar.webp',
     footerDeco: 'assets/img/footer-deco.webp',
-    rotateHint: 'assets/img/icon-rotate.webp'
+    rotateHint: 'assets/img/icon-rotate.webp',
+    tapHint: 'assets/img/icon-tap.svg'
   },
 
   /* 吉祥物：每個狀態一個循環 GIF，全部共用同一張基準幀（頭尾）且長度相同（loopMs），
@@ -107,7 +108,8 @@ window.EVENT_CONFIG = {
     modalBg: 'modal-bg · 600×760',
     sound: 'icon-sound-on/off · 64×64',
     sharePreview: 'share-preview.jpg · 1200×630 (og:image)',
-    rotateHint: 'icon-rotate · 160×160'
+    rotateHint: 'icon-rotate · 160×160',
+    tapHint: 'icon-tap · 160×160'
   },
 
   /* mock 假資料（後台沒提供 EVENT_CONTENT 時使用）。文字欄位皆為 { en, ko, th, zh }，ko/th 留空時前台顯示 en。 */

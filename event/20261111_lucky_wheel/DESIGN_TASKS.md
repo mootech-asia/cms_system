@@ -39,7 +39,7 @@
 - **P0（本批最優先，見最上方）**：`title-en/ko/th` 重做、舞台燈光整組（`spotlight` 重做、`light-pool`、`stage-vignette`、`bulb-on`／`bulb-off`）
 - **P0（已交付）**：`stage-bg`、`stage-floor`、`wheel-frame`、`wheel-stand`、`pointer`、`btn-go`、扇區色票
 - **P1**：`wheel-gloss`、`modal-bg`、`btn-primary`、`info-bg`、`period-badge`、`chances-badge`、`card-frame`、`card-title`、`share-preview`
-- **P2**：`icon-sound-on/off`、`icon-share`、`icon-rotate`、獎項圖示 ×7、`footer-deco`
+- **P2**：`icon-sound-on/off`、`icon-share`、`icon-rotate`、`icon-tap`、獎項圖示 ×7、`footer-deco`
 - **P3（最後）**：吉祥物動態 ×6（含新增「失望」、影子畫進角色、全部重做）＋序列幀／比對圖、主標原始檔、角色設定圖、音效
 
 ## 一、美術方向
@@ -100,6 +100,7 @@
 | 23 | `ticker-bar` | 690 × 64 | **中獎跑馬燈底條**：轉盤下方操作台最上排，左側約 150px 為標籤區（程式疊「Winners／당첨자／ผู้โชคดี」，深色字，請用亮色底），右側為滾動名單區（程式疊白字，請用深色半透明底）。不畫文字。 |
 | 24～28 | `light-pool`、`stage-vignette`、`bulb-on`、`bulb-off` | 見下方「舞台燈光」 | 舞台燈光整組美術（P1）。 |
 | 29 | `icon-rotate` | 160 × 160 | **請轉直向提示圖示**：手機橫放時整頁蓋上深色提示層（暖深棕底），中間顯示此圖示＋程式疊的提示文字（三語）。畫一支手機＋旋轉箭頭，金色／奶油色線條或立體小圖示，和 `icon-share` 同一套風格。程式會讓圖示做「橫→直」轉動動畫，所以**手機要畫成直立**、箭頭表示旋轉方向。去背，不放文字。P2。 |
+| 30 | `icon-tap` | 160 × 160 | **SPIN 點擊提示手勢**：轉盤待機時疊在中央 SPIN 按鈕右下，程式讓它做「點一下」的動畫，並在按鈕上緣疊提示文字（三語，程式疊字）與外擴光圈（程式畫）。畫一隻食指朝上的手（指尖在畫布上方約 x 40%、y 10%，程式以指尖為軸轉 -24°），白色或奶油色手＋深色描邊，放在各種扇區顏色上都要清楚。去背，不放文字、不畫陰影。目前是程式內的暫用向量圖。P2。 |
 
 ### 舞台燈光（P0 本批最優先，整組一起做）
 

@@ -25,6 +25,7 @@ window.EventI18n = (function () {
     'title.alt': { en: 'Lucky Wheel', ko: '행운의 룰렛', th: 'วงล้อนำโชค', zh: '幸運大轉盤' },
     'period': { en: 'Event period: {p}', ko: '이벤트 기간: {p}', th: 'ระยะเวลากิจกรรม: {p}', zh: '活動期間：{p}' },
     'spin.text': { en: 'SPIN', ko: '돌리기', th: 'หมุน', zh: '抽獎' },
+    'spin.hint': { en: 'TAP HERE', ko: '여기를 터치', th: 'แตะที่นี่', zh: '點這裡' },
     'spin.aria': { en: 'Spin the wheel', ko: '룰렛 돌리기', th: 'หมุนวงล้อ', zh: '開始抽獎' },
     'chances.before': { en: 'Spins left', ko: '남은 기회', th: 'สิทธิ์หมุนคงเหลือ', zh: '剩餘抽獎次數' },
     'chances.after': { en: '', ko: '회', th: 'ครั้ง', zh: '次' },
