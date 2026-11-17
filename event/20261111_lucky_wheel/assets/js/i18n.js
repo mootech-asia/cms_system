@@ -148,7 +148,7 @@ window.EventI18n = (function () {
     letters.forEach(function (letter, i) {
       var glyph = document.createElement('span');
       glyph.className = 'ev-led-letter';
-      glyph.style.setProperty('--ev-letter-delay', (i * 0.32) + 's');
+      glyph.style.setProperty('--ev-letter-delay', (-i * 0.18) + 's');
       ['glow', 'core', 'sweep'].forEach(function (layer) {
         var span = document.createElement('span');
         span.className = 'ev-led-' + layer;

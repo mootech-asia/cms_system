@@ -532,7 +532,7 @@ html { touch-action: manipulation; }
 }
 
 .ev-wheel-go {
-  --ev-led-cycle: 4.8s;
+  --ev-led-cycle: 3.6s;
   container-type: inline-size;
   position: absolute;
   top: 50%;
@@ -569,12 +569,13 @@ html { touch-action: manipulation; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.06em;
+  gap: 0.025em;
   padding: 0 14%;
   color: var(--ev-led-core);
   font-family: "Arial", var(--ev-font);
   font-size: clamp(12px, 20cqi, 21px);
   font-weight: 900;
+  font-style: italic;
   line-height: 1.5;
   letter-spacing: 0.035em;
   pointer-events: none;
@@ -582,14 +583,14 @@ html { touch-action: manipulation; }
 .ev-led-letter {
   display: grid;
   flex: 0 0 auto;
+  padding-inline: 0.025em;
   transform-origin: 50% 65%;
-  animation: ev-led-letter-pop 2.4s ease-in-out infinite;
+  animation: ev-led-letter-wave 1.8s cubic-bezier(0.37, 0, 0.63, 1) infinite;
   animation-delay: var(--ev-letter-delay);
 }
-@keyframes ev-led-letter-pop {
-  0%, 28%, 100% { transform: scale(1); }
-  12% { transform: translateY(-0.04em) scale(1.24); }
-  22% { transform: scale(1.03); }
+@keyframes ev-led-letter-wave {
+  0%, 100% { transform: translateY(0.025em) scale(1); }
+  50% { transform: translateY(-0.045em) scale(1.09); }
 }
 .ev-led-core, .ev-led-glow, .ev-led-sweep { grid-area: 1 / 1; }
 .ev-led-core {
@@ -615,7 +616,8 @@ html { touch-action: manipulation; }
   background-clip: text;
   -webkit-background-clip: text;
   opacity: 0;
-  animation: ev-led-scan var(--ev-led-cycle) ease-in-out infinite;
+  animation: ev-led-scan var(--ev-led-cycle) linear infinite;
+  animation-delay: var(--ev-letter-delay);
 }
 @media (hover: hover) {
   .ev-wheel-go:hover { --ev-led-cycle: 2.4s; }
@@ -627,17 +629,14 @@ html { touch-action: manipulation; }
 .ev-stage.is-result .ev-led-sweep,
 .ev-wheel-go.is-disabled .ev-led-sweep { animation: none; opacity: 0; }
 @keyframes ev-led-breathe {
-  0%, 100% { opacity: 0.2; }
-  22% { opacity: 0.75; }
-  34% { opacity: 0.35; }
-  50%, 62% { opacity: 0.9; }
-  82% { opacity: 0.3; }
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.7; }
 }
 @keyframes ev-led-scan {
-  0%, 24% { background-position: 120% 0; opacity: 0; }
-  28% { opacity: 1; }
-  58% { background-position: -20% 0; opacity: 1; }
-  64%, 100% { background-position: -20% 0; opacity: 0; }
+  0% { background-position: 120% 0; opacity: 0; }
+  15% { opacity: 0.85; }
+  85% { opacity: 0.85; }
+  100% { background-position: -20% 0; opacity: 0; }
 }
 /* Hover effects stay within the hub, away from the prize labels. */
 .ev-wheel-go::after {
