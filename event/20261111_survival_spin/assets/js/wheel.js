@@ -294,6 +294,7 @@
   }
 
   function pressFeedback() {
+    Sound.click();
     btnSpin.classList.add('is-pressing');
     setTimeout(function () { btnSpin.classList.remove('is-pressing'); }, 140);
     // Vibration is optional: unsupported or denied devices retain visual feedback.

@@ -139,12 +139,36 @@ window.EventI18n = (function () {
     return empty ? obj[DEFAULT_LOCALE] : v;
   }
 
+  function renderSpinLetters(el, text, locale) {
+    // Keep Thai combining marks attached when scaling individual graphemes.
+    var letters = typeof Intl.Segmenter === 'function'
+      ? Array.from(new Intl.Segmenter(locale, { granularity: 'grapheme' }).segment(text), function (part) { return part.segment; })
+      : (text.match(/[^\p{M}]\p{M}*/gu) || [text]);
+    el.textContent = '';
+    letters.forEach(function (letter, i) {
+      var glyph = document.createElement('span');
+      glyph.className = 'ev-led-letter';
+      glyph.style.setProperty('--ev-letter-delay', (i * 0.32) + 's');
+      ['glow', 'core', 'sweep'].forEach(function (layer) {
+        var span = document.createElement('span');
+        span.className = 'ev-led-' + layer;
+        span.textContent = letter;
+        glyph.appendChild(span);
+      });
+      el.appendChild(glyph);
+    });
+  }
+
   function applyLocale() {
     var locale = getLocale();
     var switcher = document.getElementById('langSwitch');
     if (switcher && parentLocale()) switcher.hidden = true;
     document.documentElement.setAttribute('lang', locale === 'zh' ? 'zh-Hant' : locale);
-    document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (key === 'spin.text') renderSpinLetters(el, t(key), locale);
+      else el.textContent = t(key);
+    });
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria'))); });
     document.querySelectorAll('[data-i18n-alt]').forEach(function (el) { el.setAttribute('alt', t(el.getAttribute('data-i18n-alt'))); });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) { el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder'))); });

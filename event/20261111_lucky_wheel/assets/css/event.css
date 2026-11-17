@@ -533,6 +533,7 @@ html { touch-action: manipulation; }
 
 .ev-wheel-go {
   --ev-led-cycle: 4.8s;
+  container-type: inline-size;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -565,23 +566,39 @@ html { touch-action: manipulation; }
   position: absolute;
   inset: 0;
   z-index: 2;
-  display: grid;
-  place-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.06em;
   padding: 0 14%;
   color: var(--ev-led-core);
-  font-size: clamp(14px, 4.4vw, 20px);
+  font-family: "Arial", var(--ev-font);
+  font-size: clamp(12px, 20cqi, 21px);
   font-weight: 900;
   line-height: 1.5;
   letter-spacing: 0.035em;
   pointer-events: none;
 }
+.ev-led-letter {
+  display: grid;
+  flex: 0 0 auto;
+  transform-origin: 50% 65%;
+  animation: ev-led-letter-pop 2.4s ease-in-out infinite;
+  animation-delay: var(--ev-letter-delay);
+}
+@keyframes ev-led-letter-pop {
+  0%, 28%, 100% { transform: scale(1); }
+  12% { transform: translateY(-0.04em) scale(1.24); }
+  22% { transform: scale(1.03); }
+}
 .ev-led-core, .ev-led-glow, .ev-led-sweep { grid-area: 1 / 1; }
 .ev-led-core {
-  background: radial-gradient(circle, var(--ev-led-core) 0 36%, var(--ev-led-color) 43%, transparent 66%) 0 0 / 2.5px 2.5px;
+  background: radial-gradient(circle, var(--ev-led-core) 0 36%, var(--ev-led-color) 43%, transparent 66%) 0 0 / 2px 2px;
+  background-color: color-mix(in srgb, var(--ev-led-color) 60%, transparent);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 1px var(--ev-led-color));
+  -webkit-text-stroke: 0.45px var(--ev-led-color);
 }
 .ev-led-glow {
   color: var(--ev-led-color);
@@ -1034,6 +1051,7 @@ html { touch-action: manipulation; }
   .ev-ticker-items,
   .ev-spot,
   .ev-bulbs-on,
+  .ev-led-letter,
   .ev-led-glow,
   .ev-led-sweep,
   .ev-wheel-go::after { animation: none !important; }

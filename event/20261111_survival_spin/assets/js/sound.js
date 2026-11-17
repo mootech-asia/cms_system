@@ -16,6 +16,7 @@ window.EventSound = (function () {
   var sfxBus = null;
   var bgmBus = null;
   var enabled = true;
+  var clickUntil = 0;
   var playing = [];
   var BGM_LEVEL = 0.22;
   var BGM_DUCK = 0.06;
@@ -155,8 +156,8 @@ window.EventSound = (function () {
 
   var broadway = {
     drumroll: function (ms) {
-      var t0 = ctx.currentTime + 0.02;
-      var end = t0 + ms / 1000;
+      var t0 = Math.max(ctx.currentTime + 0.02, clickUntil);
+      var end = ctx.currentTime + ms / 1000;
       for (var t = t0, i = 0; t < end; t += 0.045, i++) {
         var p = (t - t0) / (end - t0);
         noise(t, 0.06, 0.06 + 0.3 * p, 'bandpass', i % 2 ? 2100 : 1800);
@@ -256,8 +257,8 @@ window.EventSound = (function () {
   var survival = {
     // 滴答逐漸加速 ＋ 鋸齒波上升音牆 ＋ 每秒一次重低音脈衝
     drumroll: function (ms) {
-      var t0 = ctx.currentTime + 0.02;
-      var len = ms / 1000;
+      var t0 = Math.max(ctx.currentTime + 0.02, clickUntil);
+      var len = Math.max(0.1, ms / 1000 - (t0 - ctx.currentTime));
       var end = t0 + len;
       var gap = 0.16;
       for (var t = t0; t < end; t += gap) {
@@ -418,6 +419,29 @@ window.EventSound = (function () {
 
   /* ---------- 對外 ---------- */
 
+  function click() {
+    if (!enabled) return;
+    try {
+      if (!ensure()) return;
+      var t = ctx.currentTime + 0.005;
+      clickUntil = t + 0.09;
+      bgmDuck(true);
+      // A crisp contact transient plus a short body; reserve its attack before the roll.
+      noise(t, 0.025, 0.65, 'bandpass', 2800, sfxBus, 0.9);
+      var o = track(ctx.createOscillator());
+      var g = ctx.createGain();
+      o.type = 'triangle';
+      o.frequency.setValueAtTime(620, t);
+      o.frequency.exponentialRampToValueAtTime(160, t + 0.055);
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.linearRampToValueAtTime(0.65, t + 0.002);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.075);
+      o.connect(g).connect(sfxBus);
+      o.start(t);
+      o.stop(t + 0.08);
+    } catch (e) { /* Audio restrictions must not block the draw. */ }
+  }
+
   function drumroll(ms) {
     if (!enabled) return;
     bgmDuck(true);
@@ -457,6 +481,7 @@ window.EventSound = (function () {
   }
 
   return {
+    click: click,
     drumroll: drumroll,
     finale: finale,
     reward: reward,
