@@ -49,7 +49,7 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 | ☑ | S25 | icon-sound-off | 64×64 | `img/icon-sound-off.{png,webp,svg}` | 8854f62 | ☐ | P2 |
 | ☑ | S26 | icon-share | 64×64 | `img/icon-share.{png,webp,svg}` | 8854f62 | ☐ | P2 |
 | ☑ | S27 | icon-rotate | 160×160 | `img/icon-rotate.{png,webp,svg}` | 8854f62 | ☐ | P2 |
-| ☐ | S27-2 | icon-tap | 160×160 | `img/icon-tap.{png,webp,svg}` | | ☐ | P2 |
+| ☐ | S45 | icon-tap | 160×160 | `img/icon-tap.{png,webp,svg}` | | ☐ | P2 |
 | ☑ | S28 | share-preview | 1200×630 | `img/share-preview.{png,jpg}` | 8854f62 | ☐ | P1 |
 
 ## B. 色票（1）
