@@ -99,7 +99,7 @@ window.EVENT_CONFIG = {
     lose: '',
     hover: 'assets/audio/hover.mp3',
     click: 'assets/audio/click.mp3',
-    reward: 'assets/audio/reward.mp3',
+    reward: 'assets/audio/reward.mp3?v=success-v2',
     rewardLose: 'assets/audio/reward-lose.mp3',
     bgm: ''
   },
