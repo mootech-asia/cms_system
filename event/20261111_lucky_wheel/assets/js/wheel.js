@@ -375,6 +375,7 @@
     modal.hidden = true;
     setStage('idle');
     setMascot('idle');
+    Sound.stopReward();
     Sound.bgmDuck(false);
     btnSpin.focus();
   }
@@ -569,6 +570,8 @@
       clearTimeout(deadline);
       overlay.hidden = true;
       document.body.classList.remove('is-loading');
+      if (window.requestIdleCallback) requestIdleCallback(Sound.preloadFeedback, { timeout: 3000 });
+      else setTimeout(Sound.preloadFeedback, 500);
       // Start the first animation after the stage is usable, then warm later states serially.
       setMascot('idle');
       loadMascot(cfg.mascot.idle[0], function () {

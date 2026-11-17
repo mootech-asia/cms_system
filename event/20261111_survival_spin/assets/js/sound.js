@@ -150,6 +150,65 @@ window.EventSound = (function () {
     o.stop(t + dur + 0.05);
   }
 
+  var clipCache = {};
+  var clipVoices = {};
+  var clipTokens = {};
+  function loadClip(src) {
+    if (!clipCache[src]) {
+      var entry = clipCache[src] = {};
+      entry.bytes = fetch(src).then(function (response) {
+        if (!response.ok) throw new Error('Audio download failed');
+        return response.arrayBuffer();
+      }).catch(function (error) { delete clipCache[src]; throw error; });
+    }
+    return clipCache[src];
+  }
+  function decodeClip(src) {
+    var entry = loadClip(src);
+    if (!entry.decoded) entry.decoded = entry.bytes.then(function (bytes) {
+      return ctx.decodeAudioData(bytes.slice(0));
+    }).catch(function (error) { delete clipCache[src]; throw error; });
+    return entry.decoded;
+  }
+  function stopClip(channel) {
+    clipTokens[channel] = (clipTokens[channel] || 0) + 1;
+    if (clipVoices[channel]) {
+      try { clipVoices[channel].stop(); } catch (e) { /* Already stopped. */ }
+      delete clipVoices[channel];
+    }
+  }
+  function playClip(src, channel, level) {
+    if (!enabled || !ensure()) return;
+    stopClip(channel);
+    var token = clipTokens[channel];
+    decodeClip(src).then(function (buffer) {
+      if (!enabled || clipTokens[channel] !== token) return;
+      var voice = ctx.createBufferSource();
+      var gain = ctx.createGain();
+      gain.gain.value = typeof level === 'number' ? level : 1;
+      voice.buffer = buffer;
+      voice.connect(gain).connect(sfxBus);
+      clipVoices[channel] = voice;
+      voice.onended = function () {
+        voice.disconnect(); gain.disconnect();
+        if (clipVoices[channel] === voice) delete clipVoices[channel];
+      };
+      voice.start();
+    }).catch(function () { /* Missing audio must not interrupt the draw. */ });
+  }
+  function preloadFeedback() {
+    // Warm only the small interaction clips after entry; result clips load on demand.
+    ['hover', 'click'].forEach(function (key) {
+      if (cfg.sounds[key]) loadClip(cfg.sounds[key]).bytes.catch(function () {});
+    });
+  }
+  function prepareResult() {
+    ['reward', 'rewardLose'].forEach(function (key) {
+      if (cfg.sounds[key]) loadClip(cfg.sounds[key]).bytes.catch(function () {});
+    });
+  }
+  function stopReward() { stopClip('result'); }
+
   function playFile(src, loop) {
     var a = new Audio(src);
     if (loop) a.loop = true;
@@ -453,6 +512,10 @@ window.EventSound = (function () {
     var t = ctx.currentTime;
     if (t - lastHover < 0.18) return;
     lastHover = t;
+    if (cfg.sounds.hover) {
+      playClip(cfg.sounds.hover, 'interaction', (cfg.feedbackLevels || {}).hover);
+      return;
+    }
     try { feedbackTone(t + 0.005, true); } catch (e) { /* Optional feedback. */ }
   }
 
@@ -463,6 +526,12 @@ window.EventSound = (function () {
       var t = ctx.currentTime + 0.005;
       clickUntil = t + 0.12;
       bgmDuck(true);
+      stopReward();
+      prepareResult();
+      if (cfg.sounds.click) {
+        playClip(cfg.sounds.click, 'interaction', (cfg.feedbackLevels || {}).click);
+        return;
+      }
       feedbackTone(t, false);
     } catch (e) { /* Audio restrictions must not block the draw. */ }
   }
@@ -477,6 +546,7 @@ window.EventSound = (function () {
 
   function finale(isLose) {
     if (!enabled) return;
+    if (isLose ? cfg.sounds.rewardLose : cfg.sounds.reward) return;
     var file = isLose ? cfg.sounds.lose : cfg.sounds.win;
     if (file) { playFile(file); return; }
     if (!ensure()) return;
@@ -486,12 +556,19 @@ window.EventSound = (function () {
   function reward(isLose) {
     if (!enabled) return;
     var file = isLose ? cfg.sounds.rewardLose : cfg.sounds.reward;
-    if (file) { playFile(file); return; }
+    if (file) {
+      stopClip('interaction');
+      var levels = cfg.feedbackLevels || {};
+      playClip(file, 'result', isLose ? levels.rewardLose : levels.reward);
+      return;
+    }
     if (!ensure()) return;
     profile().reward(isLose);
   }
 
   function stopAll() {
+    stopClip('interaction');
+    stopReward();
     bgmStop();
     playing.forEach(function (n) {
       try { if (n.pause) n.pause(); else n.stop(); } catch (e) { /* 已停止的節點 */ }
@@ -506,6 +583,8 @@ window.EventSound = (function () {
   }
 
   return {
+    preloadFeedback: preloadFeedback,
+    stopReward: stopReward,
     hover: hover,
     click: click,
     drumroll: drumroll,
