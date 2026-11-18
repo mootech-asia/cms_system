@@ -59,15 +59,15 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | bc5fb9b | ☐ | P0 |
+| ☑ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 3554392 | ☐ | P0 |
 | ☑ | C34 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C35 | 音效 move：切換選項（≤0.15 秒） | 選配 | `assets/audio/move.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C36 | 音效 tear：撕封條／開箱（約 0.5 秒） | 選配 | `assets/audio/tear.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C37 | 音效 flip：翻卡（≤0.25 秒） | 選配 | `assets/audio/flip.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C38 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `assets/audio/reveal.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C39 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | bc5fb9b | ☐ | P3 |
-| ☑ | C40 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | bc5fb9b | ☐ | P3 |
-| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 0b817cd | ☐ | P2 |
+| ☑ | C40 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | 3554392 | ☐ | P3 |
+| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 3554392 | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -83,3 +83,12 @@
 - 2026-11-18：第 2 版，主題改為「宇宙幻象（Cosmic Illusion）」、角色改用兔比宇宙兔女郎造型。全部為 mock 佔位圖，尚無任何交付。
 
 - 2026-11-18：本批美術已提交於 bc5fb9b，替換正式圖片槽並接入六種音效。提交勾不代表品牌最終審核；角色基準已由使用者確認，細小標誌仍待品牌校對。
+
+## 主視覺強化版
+
+本次指定中文主標，各語系共用；先前三語 SVG 保留為舊版素材。新藝術字為透明點陣圖，原始 PNG 並非可編輯文字或分層檔。
+
+| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☑ | C46 | 宇宙神奇魔幻卡包 | 690×240 | `assets/img/title/title-main.webp` | 3554392 | ☐ | P0 |
+| ☑ | C47 | 新主標原圖 | 2126×740 | `source/title/title-main-original.png` | 3554392 | ☐ | P3 |
