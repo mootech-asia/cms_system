@@ -21,38 +21,39 @@ window.EVENT_CONFIG = {
   skins: {},
 
   images: {
-    stageBg: 'assets/img/scene/stage-bg.webp?v=20261118-art4',
-    infoBg: 'assets/img/scene/info-bg.svg?v=20261118-art4',
+    folioHeader: 'assets/img/ui/folio-header.webp?v=20261118-folio1',
+    stageBg: 'assets/img/scene/stage-bg.webp?v=20261118-folio1',
+    infoBg: 'assets/img/scene/info-bg.svg?v=20261118-folio1',
     title: {
-      en: 'assets/img/title/title-en.webp?v=20261118-art4',
-      ko: 'assets/img/title/title-ko.webp?v=20261118-art4',
-      th: 'assets/img/title/title-th.webp?v=20261118-art4',
-      zh: 'assets/img/title/title-main.webp?v=20261118-art4'
+      en: 'assets/img/title/title-en.webp?v=20261118-folio1',
+      ko: 'assets/img/title/title-ko.webp?v=20261118-folio1',
+      th: 'assets/img/title/title-th.webp?v=20261118-folio1',
+      zh: 'assets/img/title/title-main.webp?v=20261118-folio1'
     },
-    periodBadge: 'assets/img/ui/period-badge.svg?v=20261118-art4',
-    chancesBadge: 'assets/img/ui/chances-badge.svg?v=20261118-art4',
-    btnPrimary: 'assets/img/ui/btn-primary.svg?v=20261118-art4',
-    btnArrow: 'assets/img/ui/btn-arrow.svg?v=20261118-art4',
-    tickerBar: 'assets/img/ui/ticker-bar.svg?v=20261118-art4',
-    cardFrame: 'assets/img/ui/card-frame.svg?v=20261118-art4',
-    cardTitle: 'assets/img/ui/card-title.svg?v=20261118-art4',
-    footerDeco: 'assets/img/scene/footer-deco.svg?v=20261118-art4',
-    soundOn: 'assets/img/icon/icon-sound-on.svg?v=20261118-art4',
-    soundOff: 'assets/img/icon/icon-sound-off.svg?v=20261118-art4',
-    share: 'assets/img/icon/icon-share.svg?v=20261118-art4',
-    rotateHint: 'assets/img/icon/icon-rotate.svg?v=20261118-art4',
-    tapHint: 'assets/img/icon/icon-tap.svg?v=20261118-art4',
+    periodBadge: 'assets/img/ui/period-badge.svg?v=20261118-folio1',
+    chancesBadge: 'assets/img/ui/chances-badge.svg?v=20261118-folio1',
+    btnPrimary: 'assets/img/ui/btn-primary.svg?v=20261118-folio1',
+    btnArrow: 'assets/img/ui/btn-arrow.svg?v=20261118-folio1',
+    tickerBar: 'assets/img/ui/ticker-bar.svg?v=20261118-folio1',
+    cardFrame: 'assets/img/ui/card-frame.svg?v=20261118-folio1',
+    cardTitle: 'assets/img/ui/card-title.svg?v=20261118-folio1',
+    footerDeco: 'assets/img/scene/footer-deco.svg?v=20261118-folio1',
+    soundOn: 'assets/img/icon/icon-sound-on.svg?v=20261118-folio1',
+    soundOff: 'assets/img/icon/icon-sound-off.svg?v=20261118-folio1',
+    share: 'assets/img/icon/icon-share.svg?v=20261118-folio1',
+    rotateHint: 'assets/img/icon/icon-rotate.svg?v=20261118-folio1',
+    tapHint: 'assets/img/icon/icon-tap.svg?v=20261118-folio1',
     /* 3D 卡包：正面可給 1～6 張不同設計，環上六包依序輪流；側邊與封條會乘上 --ev-3d-item-N 色票 */
-    packFront: ['assets/img/3d/pack-front-1.webp?v=20261118-art4', 'assets/img/3d/pack-front-2.webp?v=20261118-art4', 'assets/img/3d/pack-front-3.webp?v=20261118-art4'],
-    packBack: 'assets/img/3d/pack-back.webp?v=20261118-art4',
-    packCrimp: 'assets/img/3d/pack-crimp.svg?v=20261118-art4',
+    packFront: ['assets/img/3d/pack-front-1.webp?v=20261118-folio1', 'assets/img/3d/pack-front-2.webp?v=20261118-folio1', 'assets/img/3d/pack-front-3.webp?v=20261118-folio1'],
+    packBack: 'assets/img/3d/pack-back.webp?v=20261118-folio1',
+    packCrimp: 'assets/img/3d/pack-crimp.svg?v=20261118-folio1',
     /* 揭曉 */
-    revealRays: 'assets/img/reveal/reveal-rays.svg?v=20261118-art4',
-    rewardBack: 'assets/img/reveal/reward-back.webp?v=20261118-art4',
-    rewardFrameCommon: 'assets/img/reveal/reward-front.webp?v=20261118-art4',
-    rewardFrameRare: 'assets/img/reveal/reward-front.webp?v=20261118-art4',
-    rewardFrameEpic: 'assets/img/reveal/reward-front.webp?v=20261118-art4',
-    rewardFrameLegendary: 'assets/img/reveal/reward-front.webp?v=20261118-art4'
+    revealRays: 'assets/img/reveal/reveal-rays.svg?v=20261118-folio1',
+    rewardBack: 'assets/img/reveal/reward-back.webp?v=20261118-folio1',
+    rewardFrameCommon: 'assets/img/reveal/reward-front.webp?v=20261118-folio1',
+    rewardFrameRare: 'assets/img/reveal/reward-front.webp?v=20261118-folio1',
+    rewardFrameEpic: 'assets/img/reveal/reward-front.webp?v=20261118-folio1',
+    rewardFrameLegendary: 'assets/img/reveal/reward-front.webp?v=20261118-folio1'
   },
 
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
@@ -64,6 +65,7 @@ window.EVENT_CONFIG = {
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
+    folioHeader: 'folio-header · 900×300',
     stageBg: 'stage-bg · 750×1000',
     infoBg: 'info-bg · 750×750 tile',
     title: 'title-{locale} · 690×240',

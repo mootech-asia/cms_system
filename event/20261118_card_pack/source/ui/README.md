@@ -1,0 +1,1 @@
+folio-header-original.png is the generated raster master. The 900×300 WebP is used as a text-free decorative header; localized titles and content remain HTML. Toolbar glyphs are inline SVG in index.html; button housing and state styling are in theme.css.

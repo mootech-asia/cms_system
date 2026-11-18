@@ -50,11 +50,13 @@ window.EventShare = (function () {
     lastFocus = document.activeElement;
     renderSheet();
     sheet.hidden = false;
+    $('btnShare').setAttribute('aria-expanded', 'true');
     $('btnShareCopy').focus();
   }
 
   function close() {
     sheet.hidden = true;
+    $('btnShare').setAttribute('aria-expanded', 'false');
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 

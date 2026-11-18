@@ -16,10 +16,10 @@
     <meta name="twitter:title" content="Desert Genie’s Gift" />
     <meta name="twitter:description" content="Pick a blind box and reveal your surprise!" />
     <meta name="twitter:image" content="https://mootech-asia.github.io/cms_system/event/20261118_blind_box/assets/img/share/share-preview.jpg" />
-    <link rel="preload" as="image" href="assets/img/scene/stage-bg.webp?v=20261118-art4" fetchpriority="high" />
-    <link rel="modulepreload" href="../shared/unbox-3d/vendor/three.min.js?v=20261118-art4" />
-    <link rel="stylesheet" href="../shared/unbox-3d/css/unbox.css?v=20261118-art4" />
-    <link rel="stylesheet" href="assets/css/theme.css?v=20261118-art4" />
+    <link rel="preload" as="image" href="assets/img/scene/stage-bg.webp?v=20261118-folio1" fetchpriority="high" />
+    <link rel="modulepreload" href="../shared/unbox-3d/vendor/three.min.js?v=20261118-folio1" />
+    <link rel="stylesheet" href="../shared/unbox-3d/css/unbox.css?v=20261118-folio1" />
+    <link rel="stylesheet" href="assets/css/theme.css?v=20261118-folio1" />
   </head>
   <body>
     <div class="ev-loading" id="loading" role="status" aria-live="polite">
@@ -34,8 +34,8 @@
       <div class="ev-topbar">
         <div class="ev-lang" id="langSwitch"></div>
         <div class="ev-sound-wrap">
-          <button type="button" class="ev-sound" id="btnShare" data-i18n-aria="share.button"><img data-img="share" alt="" /></button>
-          <button type="button" class="ev-sound" id="btnSound" aria-pressed="true"><img id="soundIcon" alt="" /></button>
+          <button type="button" class="ev-sound" id="btnShare" aria-expanded="false" aria-haspopup="dialog" aria-controls="shareSheet" data-i18n-aria="share.button"><img data-img="share" alt="" hidden /><svg class="ev-tool-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 10.5 16 6.5M9 13.5l7 4"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="5" r="3"/><circle cx="18" cy="19" r="3"/></svg></button>
+          <button type="button" class="ev-sound" id="btnSound" aria-pressed="true"><img id="soundIcon" alt="" hidden /><svg class="ev-tool-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4 6 8H3v8h3l5 4z"/><g class="ev-tool-waves"><path d="M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></g><path class="ev-tool-muted" d="m16 9 6 6m0-6-6 6"/></svg></button>
           <span class="ev-asset ev-asset--sound" data-asset="share sound" aria-hidden="true"></span>
         </div>
       </div>
@@ -93,16 +93,16 @@
       </div>
     </section>
 
-    <section class="ev-info" data-img="infoBg" data-i18n-aria="info.aria">
+    <section id="eventInfo" class="ev-info" data-i18n-aria="info.aria">
       <div class="ev-info-inner">
-        <article class="ev-card">
-          <span class="ev-asset ev-asset--card" data-asset="cardFrame cardTitle infoBg" aria-hidden="true"></span>
-          <h2 class="ev-card-title" id="rulesTitle"></h2>
+        <article class="ev-card ev-card--rules">
+          <span class="ev-asset ev-asset--card" data-asset="folioHeader" aria-hidden="true"></span>
+          <header class="ev-section-heading"><div class="ev-section-art" data-img="folioHeader" aria-hidden="true"></div><span class="ev-section-index" aria-hidden="true">01</span><h2 class="ev-card-title" id="rulesTitle"></h2><span class="ev-section-rule" aria-hidden="true"></span></header>
           <ol class="ev-rules" id="rulesList"></ol>
           <p class="ev-slot" id="rulesEmpty" data-i18n="rules.empty" hidden></p>
         </article>
-        <article class="ev-card">
-          <h2 class="ev-card-title" data-i18n="records.title"></h2>
+        <article class="ev-card ev-card--collection">
+          <header class="ev-section-heading"><div class="ev-section-art" data-img="folioHeader" aria-hidden="true"></div><span class="ev-section-index" aria-hidden="true">02</span><h2 class="ev-card-title" data-i18n="records.title"></h2><span class="ev-section-rule" aria-hidden="true"></span></header>
           <ul class="ev-record-list" id="recordList">
             <li class="ev-empty" id="recordEmpty" data-i18n="records.empty"></li>
           </ul>
@@ -152,12 +152,12 @@
       <span class="ev-asset ev-asset--rotate" data-asset="rotateHint" aria-hidden="true"></span>
     </div>
 
-    <script defer src="assets/js/config.js?v=20261118-art4"></script>
-    <script defer src="../shared/unbox-3d/js/skin.js?v=20261118-art4"></script>
-    <script defer src="../shared/unbox-3d/js/i18n.js?v=20261118-art4"></script>
-    <script defer src="../shared/unbox-3d/js/store.js?v=20261118-art4"></script>
-    <script defer src="../shared/unbox-3d/js/sound.js?v=20261118-art4"></script>
-    <script defer src="../shared/unbox-3d/js/share.js?v=20261118-art4"></script>
-    <script type="module" src="../shared/unbox-3d/js/app.js?v=20261118-art4"></script>
+    <script defer src="assets/js/config.js?v=20261118-folio1"></script>
+    <script defer src="../shared/unbox-3d/js/skin.js?v=20261118-folio1"></script>
+    <script defer src="../shared/unbox-3d/js/i18n.js?v=20261118-folio1"></script>
+    <script defer src="../shared/unbox-3d/js/store.js?v=20261118-folio1"></script>
+    <script defer src="../shared/unbox-3d/js/sound.js?v=20261118-folio1"></script>
+    <script defer src="../shared/unbox-3d/js/share.js?v=20261118-folio1"></script>
+    <script type="module" src="../shared/unbox-3d/js/app.js?v=20261118-folio1"></script>
   </body>
 </html>

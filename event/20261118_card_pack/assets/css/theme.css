@@ -75,10 +75,6 @@
 .ev-ticker::before { border-radius:0; border-width:0 0 1px; }
 .ev-ticker-label { border-radius:0; border:0; border-right:1px solid var(--ev-3d-accent); background:none; color:var(--ev-3d-accent); letter-spacing:.5px; }
 .ev-ticker-label::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--ev-3d-accent); box-shadow:0 0 6px var(--ev-3d-accent); }
-.ev-info { background-color:var(--ev-color-bg); background-blend-mode:multiply; }
-.ev-card { border:1px solid var(--ev-ui-trim); border-image:none; border-radius:2px; padding:24px 20px; background:linear-gradient(135deg,#1E1B40,#10152D); color:var(--ev-color-on-primary); box-shadow:inset 3px 0 var(--ev-color-primary),0 10px 24px var(--ev-color-scrim); }
-.ev-card-title { border:1px solid var(--ev-3d-accent); background:linear-gradient(110deg,#33235F,#142C47); clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px); color:var(--ev-color-on-primary); }
-.ev-empty,.ev-slot,.ev-record time { color:#B6BAD8; }.ev-record { border-color:var(--ev-ui-trim); }
 
 /* Printed celestial artwork, dynamic prize labels and a one-pass foil reflection. */
 .ev-prize-face { --card-foil:var(--ev-rarity-common); overflow:hidden; border-radius:12px; box-shadow:0 0 0 1px var(--card-foil),2px 3px 0 var(--ev-ui-edge),5px 8px 20px var(--ev-color-scrim); }
@@ -99,3 +95,36 @@
 @media(prefers-reduced-motion:reduce) { .ev-prize-card.is-flipped .ev-prize-front::after { animation:none; } }
 .ev-arrow { border:1px solid var(--ev-3d-accent); border-radius:3px; background:var(--ev-color-bg); box-shadow:inset 0 0 10px var(--ev-ui-glint); }
 .ev-arrow { color:var(--ev-3d-accent); }
+
+:root {
+  --ev-folio-ground:#080d20;
+  --ev-folio-paper:#0b1029;
+  --ev-folio-ink:#e4eafa;
+  --ev-folio-muted:#8796b5;
+  --ev-folio-accent:#a8cceb;
+  --ev-folio-edge:rgb(146 182 218 / .35);
+  --ev-folio-line:rgb(146 182 218 / .16);
+}
+.ev-info { background-image:radial-gradient(ellipse at 0 20%,rgb(94 56 171 / .18),transparent 60%),repeating-linear-gradient(0deg,transparent 0 39px,rgb(128 174 221 / .035) 40px),repeating-linear-gradient(90deg,transparent 0 39px,rgb(128 174 221 / .035) 40px)!important; }
+.ev-info::before { content:''; display:block; height:1px; background:linear-gradient(90deg,transparent,var(--ev-folio-accent),transparent); }
+.ev-card { border-radius:3px 3px 18px 3px; box-shadow:0 14px 30px rgb(0 0 0 / .2),inset 0 0 0 5px var(--ev-folio-ground); }
+.ev-card::after { content:''; position:absolute; right:10px; bottom:10px; width:27px; height:3px; border-block:1px solid var(--ev-folio-accent); opacity:.65; }
+.ev-section-art { border-radius:3px 3px 0 0; opacity:.95; }
+.ev-card-title { letter-spacing:-.4px; font-weight:550; }
+.ev-section-index { width:24px; height:24px; border:1px solid var(--ev-folio-edge); display:grid; place-items:center; border-radius:50%; letter-spacing:0; }
+.ev-rules li::before { border:1px solid var(--ev-folio-edge); border-radius:50%; background:var(--ev-folio-ground); box-shadow:3px 0 0 var(--ev-folio-paper),4px 0 0 var(--ev-folio-line); }
+.ev-record-art { border:1px solid var(--ev-folio-edge); border-radius:4px; background:radial-gradient(ellipse,var(--ev-ui-glint),transparent 75%); }
+.ev-record[data-rarity="rare"] { --ev-folio-accent:var(--ev-rarity-rare); }
+.ev-record[data-rarity="epic"] { --ev-folio-accent:var(--ev-rarity-epic); }
+.ev-record[data-rarity="legendary"] { --ev-folio-accent:var(--ev-rarity-legendary); }
+.ev-ticker { height:42px; border:0; border-block:1px solid var(--ev-folio-edge); border-radius:0; background:linear-gradient(90deg,var(--ev-folio-paper),var(--ev-folio-ground)); box-shadow:none; padding-inline:10px; gap:14px; }
+.ev-ticker::before { display:none; }
+.ev-ticker-label { border:0; border-right:1px solid var(--ev-folio-edge); background:none; padding:0 13px 0 0; font-size:10px; font-weight:600; letter-spacing:1px; }
+.ev-ticker-label::before { width:4px; height:4px; }
+.ev-ticker-items { font-size:12px; font-weight:500; }
+
+.ev-sound { color:var(--ev-folio-accent); border:1px solid var(--ev-folio-edge); border-radius:12px 3px; background:linear-gradient(145deg,var(--ev-ui-recess),var(--ev-folio-ground)); box-shadow:inset 0 1px var(--ev-ui-highlight),0 3px 9px var(--ev-color-scrim); }
+.ev-sound::before { inset:4px; border:1px solid var(--ev-folio-line); border-radius:8px 1px; }
+.ev-sound::after { width:10px; height:2px; bottom:3px; background:var(--ev-3d-accent); box-shadow:0 0 5px var(--ev-3d-accent); }
+.ev-sound[aria-pressed="false"]::after { background:var(--ev-folio-muted); box-shadow:none; }
+.ev-sound:hover,.ev-sound[aria-expanded="true"] { background:var(--ev-ui-panel); border-color:var(--ev-3d-accent); color:var(--ev-color-on-primary); }

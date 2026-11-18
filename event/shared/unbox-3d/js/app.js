@@ -2,8 +2,8 @@
  * 拆卡包／拆盲盒共用流程：select（挑選）→ ready（已選定）→ loading（向後台取結果）→ opening（動畫）→ reveal（揭曉）。
  * 活動差異（type、圖片槽、文案、mock 內容）全部在各活動的 assets/js/config.js；本檔不放活動專屬內容。
  */
-import { createAtmosphere } from './atmosphere.js?v=20261118-art4';
-import { createScene } from './scene.js?v=20261118-art4';
+import { createAtmosphere } from './atmosphere.js?v=20261118-folio1';
+import { createScene } from './scene.js?v=20261118-folio1';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -180,8 +180,12 @@ function renderRecords() {
   player.records.slice().reverse().forEach(function (r) {
     var li = document.createElement('li');
     li.className = 'ev-record';
-    li.innerHTML = '<span class="ev-record-name"><span class="ev-rarity-tag" data-rarity="' + esc(r.rarity) + '">' +
-      esc(t('rarity.' + r.rarity)) + '</span>' + esc(pick(r.name)) + '</span><time>' + esc(r.time) + '</time>';
+    var matchingPrize = content.prizes.find(function (p) { return pick(p.name) === pick(r.name); });
+    var icon = r.icon || (matchingPrize && matchingPrize.icon);
+    li.setAttribute('data-rarity', rarityOf(r));
+    li.innerHTML = '<span class="ev-record-art" aria-hidden="true">' + (icon ? '<img src="' + esc(icon) + '" alt="" loading="lazy" />' : '<span>✦</span>') + '</span>' +
+      '<span class="ev-record-detail"><span class="ev-record-name">' + esc(pick(r.name)) + '</span><time>' + esc(r.time) + '</time></span>' +
+      '<span class="ev-rarity-tag" data-rarity="' + esc(rarityOf(r)) + '">' + esc(t('rarity.' + rarityOf(r))) + '</span>';
     list.appendChild(li);
   });
 }
@@ -269,7 +273,7 @@ function open() {
   Store.resolve(content, { type: cfg.type, selection: selection, count: perOpen }).then(function (list) {
     rewards = list;
     var stamp = now();
-    list.forEach(function (r) { player.records.push({ name: r.name, rarity: rarityOf(r), time: stamp }); });
+    list.forEach(function (r) { player.records.push({ name: r.name, icon: r.icon || '', rarity: rarityOf(r), time: stamp }); });
     savePlayer();
     renderRecords();
     setState('opening');
