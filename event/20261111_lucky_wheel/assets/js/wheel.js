@@ -547,7 +547,7 @@
   function runLoading() {
     var overlay = $('loading');
     var urls = {};
-    var keys = ['stageBg', 'title', 'stageFloor', 'spotlight', 'lightPool',
+    var keys = ['loadingEmblem', 'stageBg', 'title', 'stageFloor', 'spotlight', 'lightPool',
       'stageVignette', 'wheelFrame', 'wheelStand', 'wheelGloss', 'pointer',
       'btnGo', 'bulbOn', 'bulbOff', 'periodBadge', 'chancesBadge', 'tickerBar',
       'share', 'soundOn'];
@@ -563,6 +563,7 @@
       var pct = list.length ? Math.round(done / list.length * 100) : 100;
       $('loadingFill').style.width = pct + '%';
       $('loadingPct').textContent = pct + '%';
+      $('loadingProgress').setAttribute('aria-valuenow', pct);
     }
     function finish() {
       if (finished) return;

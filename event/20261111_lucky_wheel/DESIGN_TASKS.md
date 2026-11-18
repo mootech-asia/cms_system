@@ -250,3 +250,13 @@
 - [ ] 後台輸出 `window.EVENT_CONTENT`（或 API），格式見 `assets/js/store.js`；en / ko / th 欄位不得含中文，需由後台儲存時把關
 - [ ] 抽獎次數、中獎紀錄改接會員資料
 - [ ] 移除內部面板（連點三下；獎項數／重設次數／換圖標籤）
+
+## 主題進站畫面（20261118-loading1）
+
+百老匯：天鵝絨幕布、皇冠黃銅燈泡徽章、中央百分比、雙層鍍金進度槽。
+
+| 素材 | 尺寸 | 用途 |
+|---|---|---|
+| `assets/img/loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/loading/emblem-original.png` |
+
+共用樣式位於 `event/shared/loading/loading.css`，HTML 的 `data-theme` 在應用程式啟動前指定主題。實際圖片完成數驅動進度；失敗仍計為已處理，維持10秒截止退場，不用假進度或強迫等待。三語文案獨立於圖片，減少動態模式停止裝飾動畫。

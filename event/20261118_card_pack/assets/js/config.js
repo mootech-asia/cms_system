@@ -22,9 +22,10 @@ window.EVENT_CONFIG = {
 
   carouselCount: 20,
   images: {
+    loadingEmblem: 'assets/img/ui/loading-emblem.webp?v=20261118-loading1',
     panelFrame: 'assets/img/ui/panel-frame.webp?v=20261118-refine2',
     starSprite: 'assets/img/ui/star-glint.webp?v=20261118-refine2',
-    packContents: 'assets/img/3d/pack-contents.webp?v=20261118-refine2',
+    packContents: 'assets/img/3d/pack-contents.webp?v=20261118-loading1',
     toolMedallion: 'assets/img/ui/tool-medallion.webp?v=20261118-refine2',
     atmosphereSprite: 'assets/img/scene/atmosphere.webp?v=20261118-refine2',
     folioHeader: 'assets/img/ui/folio-header.webp?v=20261118-refine2',
@@ -55,7 +56,7 @@ window.EVENT_CONFIG = {
     packCrimp: 'assets/img/3d/pack-crimp.webp?v=20261118-refine2',
     /* 揭曉 */
     revealRays: 'assets/img/reveal/reveal-rays.svg?v=20261118-refine2',
-    rewardBack: 'assets/img/reveal/reward-back.webp?v=20261118-refine2',
+    rewardBack: 'assets/img/reveal/reward-back.webp?v=20261118-loading1',
     rewardFrameCommon: 'assets/img/reveal/reward-front.webp?v=20261118-refine2',
     rewardFrameRare: 'assets/img/reveal/reward-front.webp?v=20261118-refine2',
     rewardFrameEpic: 'assets/img/reveal/reward-front.webp?v=20261118-refine2',
@@ -63,7 +64,7 @@ window.EVENT_CONFIG = {
   },
 
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
-  loadingImages: ['toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
+  loadingImages: ['loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
 
   /* 音效：名稱與規格見 AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
      音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
@@ -72,6 +73,7 @@ window.EVENT_CONFIG = {
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
+    loadingEmblem: 'loading-emblem · 480×480',
     panelFrame: 'panel-frame · 768×768',
     starSprite: 'star-glint · 192×192',
     packContents: 'pack-contents · 256×384',
@@ -104,6 +106,7 @@ window.EVENT_CONFIG = {
 
   /* 活動文案（en/ko/th 必填；zh 只供內部預覽） */
   strings: {
+    'loading.scene': {"en": "Awakening the cosmic relic", "ko": "우주의 유물을 깨우는 중", "th": "กำลังปลุกวัตถุแห่งจักรวาล", "zh": "正在喚醒宇宙聖物"},
     'title.alt': { en: 'Cosmic Magic Card Pack', ko: '신비한 우주 마법 카드팩', th: 'ซองการ์ดเวทมนตร์มหัศจรรย์จักรวาล', zh: '宇宙神奇魔幻卡包' },
     'scene.aria': { en: 'Card packs. Drag to rotate.', ko: '카드팩. 드래그해서 돌려 보세요.', th: 'ซองการ์ด ลากเพื่อหมุน', zh: '可拖曳旋轉的 3D 選擇區' },
     'pick.label': { en: 'Pack {n}', ko: '팩 {n}', th: 'ซอง {n}', zh: '卡包 {n}' },

@@ -18,6 +18,7 @@ window.EventI18n = (function () {
   var URL_LOCALE = null;
 
   var STRINGS = {
+    'loading.scene': {"en": "The stage is coming to life", "ko": "무대가 준비되고 있어요", "th": "เวทีกำลังเปิดม่าน", "zh": "舞台即將揭幕"},
     'lang.aria': { en: 'Language', ko: '언어', th: 'ภาษา', zh: '語言' },
     'sound.off': { en: 'Turn sound off', ko: '사운드 끄기', th: 'ปิดเสียง', zh: '關閉音效' },
     'sound.on': { en: 'Turn sound on', ko: '사운드 켜기', th: 'เปิดเสียง', zh: '開啟音效' },

@@ -64,29 +64,6 @@ button { font: inherit; -webkit-tap-highlight-color: transparent; }
 .ev-asset--reveal { position: static; margin: var(--ev-space-3) auto 0; width: max-content; }
 .ev-asset--rotate { right: var(--ev-space-4); bottom: var(--ev-space-4); }
 
-/* ---------- 進站 loading ---------- */
-.ev-loading {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--ev-color-backdrop);
-  color: var(--ev-color-on-primary);
-}
-.ev-loading-box { width: min(70vw, 260px); text-align: center; }
-.ev-loading-title { margin: 0 0 var(--ev-space-3); font-size: 16px; font-weight: 800; }
-.ev-loading-bar { height: 10px; border-radius: var(--ev-radius-pill); background: var(--ev-color-loading-track); overflow: hidden; }
-.ev-loading-fill {
-  width: 0;
-  height: 100%;
-  border-radius: var(--ev-radius-pill);
-  background: linear-gradient(90deg, var(--ev-color-primary), var(--ev-color-accent));
-  transition: width 0.2s ease-out;
-}
-.ev-loading-pct { margin: var(--ev-space-2) 0 0; font-size: 13px; font-weight: 700; opacity: 0.85; }
-
 /* ---------- 上半：舞台（背景圖貼齊底部、等比填滿） ---------- */
 .ev-stage {
   position: relative;

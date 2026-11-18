@@ -71,7 +71,7 @@ window.EVENT_CONFIG = {
     }
   },
 
-  images: {},
+  images: { loadingEmblem: 'img/loading-emblem.webp?v=20261118-loading1', },
 
   /* 吉祥物：每個狀態一個循環 GIF，全部共用同一張基準幀（頭尾）且長度相同（loopMs），
      程式在一輪結束時才切換，動作可以隨時無縫替換。idle 會在多張之間輪播。 */
@@ -106,6 +106,7 @@ window.EVENT_CONFIG = {
 
   /* 換圖標籤（mock 用）：顯示在元素旁的檔名與交付尺寸，可由 mock 工具列關閉。 */
   assetSpecs: {
+    loadingEmblem: 'loading-emblem · 480×480',
     stageBg: 'stage-bg · 750×1000',
     infoBg: 'info-bg · 750×750 tile',
     share: 'icon-share · 64×64',

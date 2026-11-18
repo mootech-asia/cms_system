@@ -2,8 +2,8 @@
  * 拆卡包／拆盲盒共用流程：select（挑選）→ ready（已選定）→ loading（向後台取結果）→ opening（動畫）→ reveal（揭曉）。
  * 活動差異（type、圖片槽、文案、mock 內容）全部在各活動的 assets/js/config.js；本檔不放活動專屬內容。
  */
-import { createAtmosphere } from './atmosphere.js?v=20261118-refine2';
-import { createScene } from './scene.js?v=20261118-refine2';
+import { createAtmosphere } from './atmosphere.js?v=20261118-loading1';
+import { createScene } from './scene.js?v=20261118-loading1';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -603,6 +603,7 @@ function runLoading() {
     var pct = total ? Math.round(done / total * 100) : 100;
     $('loadingFill').style.width = pct + '%';
     $('loadingPct').textContent = pct + '%';
+    $('loadingProgress').setAttribute('aria-valuenow', pct);
   }
   function step() { done += 1; render(); if (done >= total) finish(); }
   function finish() {

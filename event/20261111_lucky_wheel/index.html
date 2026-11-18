@@ -29,14 +29,19 @@
     <meta name="twitter:image" content="https://mootech-asia.github.io/cms_system/event/20261111_lucky_wheel/assets/img/share-preview.jpg" />
     <link rel="preload" as="image" href="assets/img/stage-bg.webp?v=20261118-perf1" fetchpriority="high" />
     <link rel="preload" as="image" href="assets/img/mascot/optimized/poster.webp" />
-    <link rel="stylesheet" href="assets/css/event.css?v=led-fluid-italic" />
+    <link rel="stylesheet" href="assets/css/event.css?v=20261118-loading1" />
+    <link rel="preload" as="image" href="assets/img/loading-emblem.webp?v=20261118-loading1" fetchpriority="high" />
+    <link rel="stylesheet" href="../shared/loading/loading.css?v=20261118-loading1" />
   </head>
   <body>
-    <div class="ev-loading" id="loading" role="status" aria-live="polite">
+    <div class="ev-loading" id="loading" data-theme="broadway" role="status" aria-live="polite">
       <div class="ev-loading-box">
-        <p class="ev-loading-title" data-i18n="loading.title">Loading…</p>
-        <div class="ev-loading-bar"><div class="ev-loading-fill" id="loadingFill"></div></div>
-        <p class="ev-loading-pct" id="loadingPct">0%</p>
+        <div class="ev-loading-art" aria-hidden="true"><span class="ev-loading-aura"></span><img src="assets/img/loading-emblem.webp?v=20261118-loading1" data-img="loadingEmblem" alt="" width="480" height="480" fetchpriority="high" /></div>
+        <p id="loadingTitle" class="ev-loading-title" data-i18n="loading.title">Loading…</p>
+        <p class="ev-loading-subtitle" data-i18n="loading.scene">The stage is coming to life</p>
+        <div class="ev-loading-bar" id="loadingProgress" role="progressbar" aria-labelledby="loadingTitle" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="ev-loading-fill" id="loadingFill"></div></div>
+        <p class="ev-loading-pct" id="loadingPct" aria-hidden="true">0%</p>
+        <span class="ev-loading-signature" aria-hidden="true"></span>
       </div>
     </div>
     <section class="ev-stage" id="stage" data-img="stageBg" data-i18n-aria="stage.aria">
@@ -190,12 +195,12 @@
       <span class="ev-asset ev-asset--rotate" data-asset="rotateHint" aria-hidden="true"></span>
     </div>
 
-    <script defer src="assets/js/config.js?v=shared-active-fail-v2"></script>
-    <script defer src="assets/js/skin.js?v=fast-entry"></script>
-    <script defer src="assets/js/i18n.js?v=fast-entry"></script>
-    <script defer src="assets/js/store.js?v=fast-entry"></script>
-    <script defer src="assets/js/sound.js?v=provided-audio"></script>
-    <script defer src="assets/js/share.js?v=fast-entry"></script>
-    <script defer src="assets/js/wheel.js?v=provided-audio"></script>
+    <script defer src="assets/js/config.js?v=20261118-loading1"></script>
+    <script defer src="assets/js/skin.js?v=20261118-loading1"></script>
+    <script defer src="assets/js/i18n.js?v=20261118-loading1"></script>
+    <script defer src="assets/js/store.js?v=20261118-loading1"></script>
+    <script defer src="assets/js/sound.js?v=20261118-loading1"></script>
+    <script defer src="assets/js/share.js?v=20261118-loading1"></script>
+    <script defer src="assets/js/wheel.js?v=20261118-loading1"></script>
   </body>
 </html>

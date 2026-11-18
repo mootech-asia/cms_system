@@ -22,6 +22,7 @@ window.EVENT_CONFIG = {
   skins: {},
 
   images: {
+    loadingEmblem: 'assets/img/loading-emblem.webp?v=20261118-loading1',
     stageBg: 'assets/img/stage-bg.webp?v=20261118-perf1',
     infoBg: 'assets/img/info-bg.webp?v=20261118-perf1',
     stageFloor: 'assets/img/stage-floor.webp',
@@ -87,6 +88,7 @@ window.EVENT_CONFIG = {
 
   /* 換圖標籤（mock 用）：顯示在元素旁的檔名與交付尺寸，可由 mock 工具列關閉。 */
   assetSpecs: {
+    loadingEmblem: 'loading-emblem · 480×480',
     stageBg: 'stage-bg · 750×1000',
     infoBg: 'info-bg · 750×750 tile',
     share: 'icon-share · 64×64',

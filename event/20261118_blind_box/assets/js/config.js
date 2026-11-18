@@ -22,6 +22,7 @@ window.EVENT_CONFIG = {
   skins: {},
 
   images: {
+    loadingEmblem: 'assets/img/ui/loading-emblem.webp?v=20261118-loading1',
     toolMedallion: 'assets/img/ui/tool-medallion.webp?v=20261118-refine2',
     atmosphereSprite: 'assets/img/scene/atmosphere.webp?v=20261118-refine2',
     folioHeader: 'assets/img/ui/panel-crown.webp?v=20261118-refine2',
@@ -63,7 +64,7 @@ window.EVENT_CONFIG = {
   },
 
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
-  loadingImages: ['toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
+  loadingImages: ['loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
 
   /* 音效：名稱與規格見 AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
      音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
@@ -72,6 +73,7 @@ window.EVENT_CONFIG = {
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
+    loadingEmblem: 'loading-emblem · 480×480',
     boxInterior: 'chest-interior · 512×352',
     toolMedallion: 'tool-medallion · 160×160',
     atmosphereSprite: 'atmosphere · 900×300',
@@ -103,6 +105,7 @@ window.EVENT_CONFIG = {
 
   /* 活動文案（en/ko/th 必填；zh 只供內部預覽） */
   strings: {
+    'loading.scene': {"en": "Unveiling the desert treasure", "ko": "사막의 보물을 준비하고 있어요", "th": "กำลังเผยขุมทรัพย์แห่งทะเลทราย", "zh": "沙漠寶藏即將揭曉"},
     'title.alt': { en: 'Desert Genie’s Gift', ko: '사막 정령의 선물', th: 'ของขวัญจากภูตทะเลทราย', zh: '沙漠精靈的贈禮' },
     'scene.aria': { en: 'Blind boxes. Drag to rotate.', ko: '랜덤박스. 드래그해서 돌려 보세요.', th: 'กล่องสุ่ม ลากเพื่อหมุน', zh: '可拖曳旋轉的 3D 選擇區' },
     'pick.label': { en: 'Box {n}', ko: '박스 {n}', th: 'กล่อง {n}', zh: '盲盒 {n}' },

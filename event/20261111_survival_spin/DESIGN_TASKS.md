@@ -76,3 +76,13 @@
 3. commit → 在 `DELIVERY_CHECKLIST.md` 打勾填 commit → 執行
    `python3 scripts/check_delivery.py event/20261111_survival_spin/DELIVERY_CHECKLIST.md`，已打勾的列必須全部 OK。
 4. 附上 `?skin=survival` 的待機／轉動／開獎三張截圖，以及三語主標並排圖。
+
+## 主題進站畫面（20261118-loading1）
+
+生存輪盤：墨綠機械虹膜閘門、桃紅掃描光、分段式進度、等寬百分比。
+
+| 素材 | 尺寸 | 用途 |
+|---|---|---|
+| `img/loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/loading/emblem-original.png` |
+
+共用樣式位於 `event/shared/loading/loading.css`，HTML 的 `data-theme` 在應用程式啟動前指定主題。實際圖片完成數驅動進度；失敗仍計為已處理，維持10秒截止退場，不用假進度或強迫等待。三語文案獨立於圖片，減少動態模式停止裝飾動畫。
