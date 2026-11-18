@@ -52,14 +52,14 @@
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
 | ☑ | B30 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 2a36ceb | ☐ | P0 |
-| ☑ | B31 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | bc5fb9b | ☐ | P3 |
-| ☑ | B32 | 音效 move：切換選項（≤0.15 秒） | 選配 | `assets/audio/move.mp3` | bc5fb9b | ☐ | P3 |
-| ☑ | B33 | 音效 tear：撕封條／開箱（約 0.5 秒） | 選配 | `assets/audio/tear.mp3` | bc5fb9b | ☐ | P3 |
+| ☑ | B31 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | 4dc5bce | ☐ | P3 |
+| ☑ | B32 | 音效 move：切換選項（0.25 秒） | 選配 | `assets/audio/move.mp3` | 4dc5bce | ☐ | P3 |
+| ☑ | B33 | 音效 tear：開箱（open.mp3，1.1 秒） | 選配 | `assets/audio/open.mp3` | 4dc5bce | ☐ | P3 |
 | ☑ | B34 | 音效 flip：翻卡（≤0.25 秒） | 選配 | `assets/audio/flip.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B35 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `assets/audio/reveal.mp3` | bc5fb9b | ☐ | P3 |
-| ☑ | B36 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | bc5fb9b | ☐ | P3 |
+| ☑ | B36 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | 4dc5bce | ☐ | P3 |
 | ☑ | B37 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | 5844c7b | ☐ | P3 |
-| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 2a36ceb | ☐ | P2 |
+| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 4dc5bce | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -74,15 +74,15 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B50 | 背景音樂 bgm（60–90 秒無縫循環） | （人工） | `assets/audio/bgm.mp3` | 8e26e5e | ☐ | P3 |
-| ☐ | B51 | 特效音 select：點選一個寶箱＝選定（≤0.4 秒） | 選配 | `assets/audio/select.mp3` |  | ☐ | P3 |
-| ☐ | B52 | 特效音 reveal-common：揭曉：{r}（0.5–0.8 秒） | 選配 | `assets/audio/reveal-common.mp3` |  | ☐ | P3 |
-| ☐ | B53 | 特效音 reveal-rare：揭曉：稀有（寶物出現在台座上）（0.7–1.0 秒） | 選配 | `assets/audio/reveal-rare.mp3` |  | ☐ | P3 |
-| ☐ | B54 | 特效音 reveal-epic：揭曉：超稀有（寶物出現在台座上）（0.9–1.3 秒） | 選配 | `assets/audio/reveal-epic.mp3` |  | ☐ | P3 |
-| ☐ | B55 | 特效音 reveal-legendary：揭曉：最高級（Secret 隱藏款，寶物出現在台座上）（1.5–2.0 秒） | 選配 | `assets/audio/reveal-legendary.mp3` |  | ☐ | P3 |
-| ☐ | B56 | 特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒） | 選配 | `assets/audio/collect.mp3` |  | ☐ | P3 |
-| ☐ | B57 | 特效音 error：次數用完、尚無獎項（≤0.3 秒） | 選配 | `assets/audio/error.mp3` |  | ☐ | P3 |
-| ☑ | B58 | 依 AUDIO_REQUEST.md 重做既有 6 個特效音（同名覆蓋 click／move／tear／flip／reveal／reward） | （人工） | `source/audio/README.md` | 8e26e5e | ☐ | P3 |
+| ☑ | B50 | 背景音樂 bgm（60–90 秒無縫循環） | （人工） | `assets/audio/bgm.mp3` | 4dc5bce | ☐ | P3 |
+| ☑ | B51 | 特效音 select：點選一個寶箱＝選定（≤0.4 秒） | 選配 | `assets/audio/select.mp3` | 4dc5bce | ☐ | P3 |
+| ☑ | B52 | 特效音 reveal-common：揭曉：{r}（0.5–0.8 秒） | 選配 | `assets/audio/reveal-common.mp3` | 4dc5bce | ☐ | P3 |
+| ☑ | B53 | 特效音 reveal-rare：揭曉：稀有（寶物出現在台座上）（0.7–1.0 秒） | 選配 | `assets/audio/reveal-rare.mp3` | 4dc5bce | ☐ | P3 |
+| ☑ | B54 | 特效音 reveal-epic：揭曉：超稀有（寶物出現在台座上）（0.9–1.3 秒） | 選配 | `assets/audio/reveal-epic.mp3` | 4dc5bce | ☐ | P3 |
+| ☑ | B55 | 特效音 reveal-legendary：揭曉：最高級（Secret 隱藏款，寶物出現在台座上）（1.5–2.0 秒） | 選配 | `assets/audio/reveal-legendary.mp3` | 4dc5bce | ☐ | P3 |
+| ☑ | B56 | 特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒） | 選配 | `assets/audio/collect.mp3` | 4dc5bce | ☐ | P3 |
+| ☑ | B57 | 特效音 error：次數用完、尚無獎項（≤0.3 秒） | 選配 | `assets/audio/error.mp3` | 4dc5bce | ☐ | P3 |
+| ☑ | B58 | 本批音訊母帶與製作說明（11 個特效音及 BGM） | （人工） | `source/audio/README.md` | 4dc5bce | ☐ | P3 |
 
 ## 紀錄
 
@@ -186,3 +186,5 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 | 提交 | ID | 圖片槽 | 尺寸 | 交付路徑 | commit | 審核 | 優先級 |
 |---|---|---|---|---|---|---|---|
 | ☑ | B85 | 舊版 renderer 沙塵退回圖 | 320×320 | `assets/img/reveal/sand-vortex-poster.webp` | 2a36ceb | ☐ | P3 |
+
+- 2026-11-18：套用使用者上傳音訊包（4dc5bce）；MP3 原檔與 WAV 母帶均保留。四級揭曉使用獨立音檔，舊 reveal 不再預載。卡包 hover 與隱藏包提示音維持既有版本；提交不代表主觀聽感終審。

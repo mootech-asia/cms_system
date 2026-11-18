@@ -7,7 +7,9 @@ fs.mkdirSync(out, { recursive: true });
 
 async function instrument(page) {
   await page.addInitScript(() => {
-    window.audioEvidence = { decoded: [], starts: [], stops: 0, media: [] };
+    window.audioEvidence = { decoded: [], starts: [], stops: 0, media: [], pauses: [] };
+    const pause = HTMLMediaElement.prototype.pause;
+    HTMLMediaElement.prototype.pause = function (...args) { audioEvidence.pauses.push({ src:this.src, hidden:document.hidden, stack:new Error().stack }); return pause.apply(this,args); };
     const fetchOriginal = window.fetch;
     window.fetch = async (...args) => {
       const response = await fetchOriginal(...args);
@@ -63,9 +65,10 @@ async function instrument(page) {
       await page.goto(`${base}/event/20261118_${type}/`);
       await page.locator('#loading').waitFor({ state: 'hidden' });
       assert.equal(await page.evaluate(() => audioEvidence.media.length), 0);
+      await page.bringToFront();
       await page.mouse.click(5, 5);
       await page.waitForFunction(() => Object.values(EVENT_CONFIG.sounds).filter(Boolean).filter(s => s !== EVENT_CONFIG.sounds.bgm).every(s => audioEvidence.decoded.includes(s)));
-      await page.waitForFunction(() => audioEvidence.media.some(m => m.src.includes('/bgm.mp3') && m.currentTime > .1 && !m.paused)).catch(async e => { console.log(await page.evaluate(() => audioEvidence.media.map(m => ({src:m.src,paused:m.paused,ready:m.readyState,error:m.error?.message,time:m.currentTime})))); throw e; });
+      await page.waitForFunction(() => audioEvidence.media.some(m => m.src.includes('/bgm.mp3') && m.currentTime > .1 && !m.paused)).catch(async e => { console.log(await page.evaluate(() => ({hidden:document.hidden, enabled:EventSound.isEnabled(), pauses:audioEvidence.pauses}))); console.log(await page.evaluate(() => audioEvidence.media.map(m => ({src:m.src,paused:m.paused,ready:m.readyState,error:m.error?.message,time:m.currentTime})))); throw e; });
       const cues = ['click', 'move', 'select', 'tear', 'collect', 'reward', 'error'];
       if (type === 'card_pack') cues.push('flip', 'secret');
       const samples = [];

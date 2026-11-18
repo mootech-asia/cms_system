@@ -1,0 +1,260 @@
+[
+  {
+    "type": "blind_box",
+    "samples": [
+      {
+        "name": "click",
+        "clip": {
+          "url": "assets/audio/click.mp3?v=20261118-audio2",
+          "duration": 0.14,
+          "rate": 1
+        },
+        "rms": 0.16922516167787655
+      },
+      {
+        "name": "move",
+        "clip": {
+          "url": "assets/audio/move.mp3?v=20261118-audio2",
+          "duration": 0.25,
+          "rate": 1
+        },
+        "rms": 0.035220143916607445
+      },
+      {
+        "name": "select",
+        "clip": {
+          "url": "assets/audio/select.mp3?v=20261118-audio2",
+          "duration": 0.4,
+          "rate": 1
+        },
+        "rms": 0.2198437212554084
+      },
+      {
+        "name": "tear",
+        "arg": 900,
+        "clip": {
+          "url": "assets/audio/open.mp3?v=20261118-audio2",
+          "duration": 1.1,
+          "rate": 1
+        },
+        "rms": 0.15863845591485753
+      },
+      {
+        "name": "collect",
+        "clip": {
+          "url": "assets/audio/collect.mp3?v=20261118-audio2",
+          "duration": 0.75,
+          "rate": 1
+        },
+        "rms": 0.11614866306128185
+      },
+      {
+        "name": "reward",
+        "clip": {
+          "url": "assets/audio/reward.mp3?v=20261118-audio2",
+          "duration": 1.1,
+          "rate": 1
+        },
+        "rms": 0.2544553672104289
+      },
+      {
+        "name": "error",
+        "clip": {
+          "url": "assets/audio/error.mp3?v=20261118-audio2",
+          "duration": 0.3,
+          "rate": 1
+        },
+        "rms": 0.23198783459410569
+      },
+      {
+        "name": "reveal",
+        "arg": 0,
+        "clip": {
+          "url": "assets/audio/reveal-common.mp3?v=20261118-audio2",
+          "duration": 0.75,
+          "rate": 1
+        },
+        "rms": 0.2818964025852671
+      },
+      {
+        "name": "reveal",
+        "arg": 1,
+        "clip": {
+          "url": "assets/audio/reveal-rare.mp3?v=20261118-audio2",
+          "duration": 0.95,
+          "rate": 1
+        },
+        "rms": 0.21515127847082813
+      },
+      {
+        "name": "reveal",
+        "arg": 2,
+        "clip": {
+          "url": "assets/audio/reveal-epic.mp3?v=20261118-audio2",
+          "duration": 1.2,
+          "rate": 1
+        },
+        "rms": 0.1636718273421661
+      },
+      {
+        "name": "reveal",
+        "arg": 3,
+        "clip": {
+          "url": "assets/audio/reveal-legendary.mp3?v=20261118-audio2",
+          "duration": 1.9,
+          "rate": 1
+        },
+        "rms": 0.15557808947005772
+      }
+    ],
+    "noAutoplay": true,
+    "looped": true,
+    "muteStops": true,
+    "fastSlowTear": false,
+    "openedAndCollected": true,
+    "duckRestored": true,
+    "errors": []
+  },
+  {
+    "type": "blind_box",
+    "allAudioBlockedStillCollects": true
+  },
+  {
+    "type": "card_pack",
+    "samples": [
+      {
+        "name": "click",
+        "clip": {
+          "url": "assets/audio/click.mp3?v=20261118-audio2",
+          "duration": 0.14,
+          "rate": 1
+        },
+        "rms": 0.13486480639333812
+      },
+      {
+        "name": "move",
+        "clip": {
+          "url": "assets/audio/move.mp3?v=20261118-audio2",
+          "duration": 0.25,
+          "rate": 1
+        },
+        "rms": 0.03685986462073972
+      },
+      {
+        "name": "select",
+        "clip": {
+          "url": "assets/audio/select.mp3?v=20261118-audio2",
+          "duration": 0.4,
+          "rate": 1
+        },
+        "rms": 0.2642270089194671
+      },
+      {
+        "name": "tear",
+        "arg": 900,
+        "clip": {
+          "url": "assets/audio/tear.mp3?v=20261118-audio2",
+          "duration": 0.8,
+          "rate": 0.8888888955116272
+        },
+        "rms": 0.1671722447585843
+      },
+      {
+        "name": "collect",
+        "clip": {
+          "url": "assets/audio/collect.mp3?v=20261118-audio2",
+          "duration": 0.8,
+          "rate": 1
+        },
+        "rms": 0.07924505157675482
+      },
+      {
+        "name": "reward",
+        "clip": {
+          "url": "assets/audio/reward.mp3?v=20261118-audio2",
+          "duration": 1.1,
+          "rate": 1
+        },
+        "rms": 0.2651128580186744
+      },
+      {
+        "name": "error",
+        "clip": {
+          "url": "assets/audio/error.mp3?v=20261118-audio2",
+          "duration": 0.3,
+          "rate": 1
+        },
+        "rms": 0.27771497512664267
+      },
+      {
+        "name": "flip",
+        "clip": {
+          "url": "assets/audio/flip.mp3?v=20261118-audio2",
+          "duration": 0.3,
+          "rate": 1
+        },
+        "rms": 0.15240831942782676
+      },
+      {
+        "name": "secret",
+        "clip": {
+          "url": "assets/audio/secret.mp3?v=20261118-vortex1",
+          "duration": 2.5,
+          "rate": 1
+        },
+        "rms": 0.2321925430904995
+      },
+      {
+        "name": "reveal",
+        "arg": 0,
+        "clip": {
+          "url": "assets/audio/reveal-common.mp3?v=20261118-audio2",
+          "duration": 0.6999773242630386,
+          "rate": 1
+        },
+        "rms": 0.37102929118316164
+      },
+      {
+        "name": "reveal",
+        "arg": 1,
+        "clip": {
+          "url": "assets/audio/reveal-rare.mp3?v=20261118-audio2",
+          "duration": 0.95,
+          "rate": 1
+        },
+        "rms": 0.30022796846009275
+      },
+      {
+        "name": "reveal",
+        "arg": 2,
+        "clip": {
+          "url": "assets/audio/reveal-epic.mp3?v=20261118-audio2",
+          "duration": 1.25,
+          "rate": 1
+        },
+        "rms": 0.23368966001813318
+      },
+      {
+        "name": "reveal",
+        "arg": 3,
+        "clip": {
+          "url": "assets/audio/reveal-legendary.mp3?v=20261118-audio2",
+          "duration": 1.9,
+          "rate": 1
+        },
+        "rms": 0.16171558111012901
+      }
+    ],
+    "noAutoplay": true,
+    "looped": true,
+    "muteStops": true,
+    "fastSlowTear": true,
+    "openedAndCollected": true,
+    "duckRestored": true,
+    "errors": []
+  },
+  {
+    "type": "card_pack",
+    "allAudioBlockedStillCollects": true
+  }
+]

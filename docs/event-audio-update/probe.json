@@ -1,0 +1,177 @@
+[
+  {
+    "event": "blind_box",
+    "file": "reveal-legendary.mp3",
+    "bytes": 31391,
+    "duration": "1.933061",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "blind_box",
+    "file": "click.mp3",
+    "bytes": 3387,
+    "duration": "0.182857",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "blind_box",
+    "file": "move.mp3",
+    "bytes": 5059,
+    "duration": "0.287347",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "blind_box",
+    "file": "bgm.mp3",
+    "bytes": 1249220,
+    "duration": "62.432653",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "blind_box",
+    "file": "reveal-common.mp3",
+    "bytes": 13000,
+    "duration": "0.783673",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "blind_box",
+    "file": "select.mp3",
+    "bytes": 7567,
+    "duration": "0.444082",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "blind_box",
+    "file": "reveal-epic.mp3",
+    "bytes": 20106,
+    "duration": "1.227755",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "blind_box",
+    "file": "reward.mp3",
+    "bytes": 18852,
+    "duration": "1.149388",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "blind_box",
+    "file": "reveal-rare.mp3",
+    "bytes": 16344,
+    "duration": "0.992653",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "blind_box",
+    "file": "open.mp3",
+    "bytes": 18852,
+    "duration": "1.149388",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "blind_box",
+    "file": "collect.mp3",
+    "bytes": 13000,
+    "duration": "0.783673",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "blind_box",
+    "file": "error.mp3",
+    "bytes": 5895,
+    "duration": "0.339592",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "card_pack",
+    "file": "reveal-legendary.mp3",
+    "bytes": 31391,
+    "duration": "1.933061",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "card_pack",
+    "file": "click.mp3",
+    "bytes": 3387,
+    "duration": "0.182857",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "card_pack",
+    "file": "move.mp3",
+    "bytes": 5059,
+    "duration": "0.287347",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "card_pack",
+    "file": "tear.mp3",
+    "bytes": 13836,
+    "duration": "0.835918",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "card_pack",
+    "file": "flip.mp3",
+    "bytes": 5895,
+    "duration": "0.339592",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "card_pack",
+    "file": "bgm.mp3",
+    "bytes": 1293628,
+    "duration": "64.653061",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "card_pack",
+    "file": "reveal-common.mp3",
+    "bytes": 12164,
+    "duration": "0.731429",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "card_pack",
+    "file": "select.mp3",
+    "bytes": 7567,
+    "duration": "0.444082",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "card_pack",
+    "file": "reveal-epic.mp3",
+    "bytes": 20942,
+    "duration": "1.280000",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "card_pack",
+    "file": "reward.mp3",
+    "bytes": 18852,
+    "duration": "1.149388",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "card_pack",
+    "file": "reveal-rare.mp3",
+    "bytes": 16344,
+    "duration": "0.992653",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "card_pack",
+    "file": "collect.mp3",
+    "bytes": 13836,
+    "duration": "0.835918",
+    "sample_rate": "44100"
+  },
+  {
+    "event": "card_pack",
+    "file": "error.mp3",
+    "bytes": 5895,
+    "duration": "0.339592",
+    "sample_rate": "44100"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    name: '20261118_card_pack',
+    loadMs: 13286,
+    taskMs: 669.943,
+    revealTaskMs: 625.5400000000009,
+    frame: { frames: 102, meanMs: 19.63921568624529, maxMs: 150 },
+    offscreenWebGLPaused: true,
+    opened: true,
+    errors: [],
+    loadedBytes: 2315742
+  },
+  {
+    name: '20261118_blind_box',
+    loadMs: 14504,
+    taskMs: 921.0959999999994,
+    revealTaskMs: 1141.3270000000023,
+    frame: { frames: 17, meanMs: 121.458823529587, maxMs: 150 },
+    offscreenWebGLPaused: true,
+    opened: true,
+    errors: [],
+    loadedBytes: 2456283
+  }
+]

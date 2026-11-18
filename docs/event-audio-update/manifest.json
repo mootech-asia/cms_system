@@ -1,0 +1,14 @@
+[
+  {
+    "event": "card_pack",
+    "mp3_count": 13,
+    "mp3_bytes": 1448796,
+    "wav_bytes": 21170868
+  },
+  {
+    "event": "blind_box",
+    "mp3_count": 12,
+    "mp3_bytes": 1402673,
+    "wav_bytes": 20518344
+  }
+]
