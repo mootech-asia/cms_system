@@ -3,7 +3,7 @@
  * 包裝表面全部是圖片槽（config.images），側面色與燈光色讀 theme.css 的 --ev-3d-* 色票，
  * 換主題只要換圖或換色票，不用改程式。WebGL 無法啟動時回傳 null，由 app.js 改用 2D 圖片。
  */
-import * as THREE from '../vendor/three.min.js';
+import * as THREE from '../vendor/three.min.js?v=20261118c';
 
 var STEP = Math.PI / 3;
 var RADIUS = 2.65;
@@ -32,12 +32,19 @@ function shadowTexture() {
 export function createScene(stage, opts) {
   var box = opts.type === 'blind-box';
   // 先用測試畫布確認有 WebGL，避免 Three.js 建立失敗時在 console 印錯誤
+  // 失敗原因寫在 console.info，回報「3D 無法啟用」時用來判斷是瀏覽器不支援 WebGL2、完全沒有 WebGL 還是建立時出錯
   var probe = document.createElement('canvas');
-  if (!window.WebGLRenderingContext || !(probe.getContext('webgl2') || probe.getContext('webgl'))) return null;
+  var gl2 = !!(window.WebGL2RenderingContext && probe.getContext('webgl2'));
+  if (!gl2) {
+    var gl1 = !!(window.WebGLRenderingContext && document.createElement('canvas').getContext('webgl'));
+    console.info('[unbox-3d] 2D fallback: ' + (gl1 ? 'WebGL2 unavailable (WebGL1 only)' : 'WebGL unavailable'));
+    return null;
+  }
   var renderer;
   try {
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   } catch (e) {
+    console.info('[unbox-3d] 2D fallback: renderer failed: ' + (e && e.message));
     return null;
   }
 

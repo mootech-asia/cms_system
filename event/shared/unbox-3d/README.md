@@ -55,3 +55,9 @@ cd tools/event-3d && npm ci && npm run build
 - 串接後台：`window.EVENT_CONTENT`（內容）＋ `window.EVENT_RESOLVE`（後端開獎、扣次數、冪等請求 ID）；
   次數與紀錄目前存 localStorage，只是 mock。
 - mock 獎項圖示借用 `../20261111_lucky_wheel/assets/img/icon-*.svg`，正式由後台提供。
+
+## 版本號（避免瀏覽器用到舊檔）
+
+正式站快取 10 分鐘，活動頁的 JS／CSS 網址都帶 `?v=<版本>`。改了共用程式或活動的 config／theme 後，同時把
+兩個活動 `index.html` 的 `?v=`、`js/app.js` 匯入 `scene.js` 的 `?v=`、`js/scene.js` 匯入 vendor 的 `?v=` 換成新字串
+（三處一起改，`modulepreload` 的網址要和匯入的網址完全相同）。

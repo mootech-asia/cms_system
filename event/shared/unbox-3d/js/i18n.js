@@ -29,7 +29,7 @@ window.EventI18n = (function () {
     'status.select': { en: 'Drag left or right to choose, or use the arrows.', ko: '좌우로 드래그하거나 화살표로 고르세요.', th: 'ลากซ้ายขวาเพื่อเลือก หรือใช้ปุ่มลูกศร', zh: '左右拖曳挑選，也可以使用箭頭按鈕' },
     'status.loading': { en: 'Getting your result…', ko: '결과를 불러오는 중…', th: 'กำลังรับผลลัพธ์…', zh: '正在取得獎品結果…' },
     'status.error': { en: 'Could not get a result. Please try again later.', ko: '결과를 받지 못했습니다. 잠시 후 다시 시도해 주세요.', th: 'ไม่สามารถรับผลลัพธ์ได้ กรุณาลองใหม่ภายหลัง', zh: '暫時無法取得結果，請稍後再試。' },
-    'status.no3d': { en: '3D is not available on this device. You can still play with the buttons below.', ko: '이 기기에서는 3D를 사용할 수 없습니다. 아래 버튼으로 계속 참여할 수 있습니다.', th: 'อุปกรณ์นี้ไม่รองรับ 3D แต่ยังเล่นได้ด้วยปุ่มด้านล่าง', zh: '此裝置無法啟用 3D，仍可使用下方按鈕完成體驗。' },
+    'status.no3d': { en: '3D is not available on this device. You can still tap to play.', ko: '이 기기에서는 3D를 사용할 수 없지만, 눌러서 계속 참여할 수 있습니다.', th: 'อุปกรณ์นี้ไม่รองรับ 3D แต่ยังแตะเพื่อเล่นต่อได้', zh: '此裝置無法啟用 3D，仍可點選完成體驗。' },
     'action.back': { en: 'Choose another', ko: '다른 것 고르기', th: 'เลือกอันอื่น', zh: '換一個' },
     'action.skip': { en: 'Skip animation', ko: '애니메이션 건너뛰기', th: 'ข้ามแอนิเมชัน', zh: '跳過動畫' },
     'reveal.tap': { en: 'Tap the card to reveal', ko: '카드를 눌러 확인하세요', th: 'แตะการ์ดเพื่อเปิด', zh: '點擊卡片揭曉' },
