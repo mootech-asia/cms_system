@@ -133,6 +133,7 @@ function setMascot(next) {
 }
 // 揭曉層蓋住舞台，所以慶祝／失望在關閉揭曉後演兩輪再回到待機
 function mascotReact(list) {
+  if (!M) return;
   var best = Math.max.apply(null, list.map(Store.rarityRank));
   setMascot(best >= 1 ? 'celebrate' : 'lose');
   mascotAfter = setTimeout(function () { if (state === 'select') setMascot('idle'); }, Math.max(2, Math.ceil(3000 / (M.loopMs || 3000))) * (M.loopMs || 1500));

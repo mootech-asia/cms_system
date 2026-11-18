@@ -72,7 +72,7 @@ STYLE LOCK — apply to every image in this conversation:
 | `icon-rotate` | 160×160 | `Upright smartphone outline with a curved rotation arrow, white lines, transparent background.` |
 | `footer-deco` | 750×160 | `Soft pearl-lavender wave with scattered sparkles, transparent top, for the bottom of a page.` |
 
-## 6. 吉祥物 兔比 Moo Rabbit（P3，最後做）
+## 6. 吉祥物 兔比 Moo Rabbit（暫緩：目前頁面不放，先不要做）
 
 規格見 `DESIGN_TASKS.md` 第四節。角色形象以品牌包為準：`brand/moo-rabbit/`（cms_system 事業部品牌包）；現有動態參考 `event/20261111_lucky_wheel/assets/img/mascot/`；每次生成都附上三視圖／設定圖，並附官方 MOOTECH logo。
 製作流程沿用 `event/20261111_lucky_wheel/GPT_ASSET_BRIEF.md` 的吉祥物章節（sprite sheet 3×4 → 組 48 幀 GIF、共用 base-frame、交付前檢查），只換成下表的動作：

@@ -15,7 +15,7 @@
 
 ## 製作優先級
 
-P0 主標三語＋背景＋包裝貼圖＋主按鈕＋色票 → P1 揭曉與版面元件 → P2 圖示與裝飾 → P3 吉祥物、音效與原始檔（最後）。分類資料夾規則見 `DESIGN_TASKS.md` 第二節。
+P0 主標三語＋背景＋包裝貼圖＋主按鈕＋色票 → P1 揭曉與版面元件 → P2 圖示與裝飾 → P3 音效與原始檔（最後）。吉祥物各列標「暫緩」，目前不做、不計入進度。分類資料夾規則見 `DESIGN_TASKS.md` 第二節。
 
 ## A. 靜態圖（28）
 
@@ -61,15 +61,15 @@ P0 主標三語＋背景＋包裝貼圖＋主按鈕＋色票 → P1 揭曉與版
 | ☐ | B33 | 音效 flip：翻卡（≤0.25 秒） | 選配 | `assets/audio/flip.mp3` |  | ☐ | P3 |
 | ☐ | B34 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `assets/audio/reveal.mp3` |  | ☐ | P3 |
 | ☐ | B35 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` |  | ☐ | P3 |
-| ☐ | B36 | 吉祥物 idle：待機（挑選中，循環） | 400×500 gif≥48 | `assets/img/mascot/idle.gif` |  | ☐ | P3 |
-| ☐ | B37 | 吉祥物 anticipate：期待（已選定、撕封條／開蓋中，緊張搓手、探頭） | 400×500 gif≥48 | `assets/img/mascot/anticipate.gif` |  | ☐ | P3 |
-| ☐ | B38 | 吉祥物 celebrate：慶祝（開到稀有以上；關閉揭曉後演兩輪） | 400×500 gif≥48 | `assets/img/mascot/celebrate.gif` |  | ☐ | P3 |
-| ☐ | B39 | 吉祥物 lose：小失望（只開到普通，仍然可愛、不沮喪） | 400×500 gif≥48 | `assets/img/mascot/lose.gif` |  | ☐ | P3 |
-| ☐ | B40 | 吉祥物基準幀（所有動態的頭尾） | 400×500 | `assets/img/mascot/base-frame.png` |  | ☐ | P3 |
-| ☐ | B41 | 吉祥物 idle PNG 序列幀 | 400×500 frames≥48 | `source/mascot/idle/` |  | ☐ | P3 |
-| ☐ | B42 | 吉祥物 anticipate PNG 序列幀 | 400×500 frames≥48 | `source/mascot/anticipate/` |  | ☐ | P3 |
-| ☐ | B43 | 吉祥物 celebrate PNG 序列幀 | 400×500 frames≥48 | `source/mascot/celebrate/` |  | ☐ | P3 |
-| ☐ | B44 | 吉祥物 lose PNG 序列幀 | 400×500 frames≥48 | `source/mascot/lose/` |  | ☐ | P3 |
+| ☐ | B36 | 吉祥物 idle：待機（挑選中，循環） | 400×500 gif≥48 暫緩 | `assets/img/mascot/idle.gif` |  | ☐ | P3 |
+| ☐ | B37 | 吉祥物 anticipate：期待（已選定、撕封條／開蓋中，緊張搓手、探頭） | 400×500 gif≥48 暫緩 | `assets/img/mascot/anticipate.gif` |  | ☐ | P3 |
+| ☐ | B38 | 吉祥物 celebrate：慶祝（開到稀有以上；關閉揭曉後演兩輪） | 400×500 gif≥48 暫緩 | `assets/img/mascot/celebrate.gif` |  | ☐ | P3 |
+| ☐ | B39 | 吉祥物 lose：小失望（只開到普通，仍然可愛、不沮喪） | 400×500 gif≥48 暫緩 | `assets/img/mascot/lose.gif` |  | ☐ | P3 |
+| ☐ | B40 | 吉祥物基準幀（所有動態的頭尾） | 400×500 暫緩 | `assets/img/mascot/base-frame.png` |  | ☐ | P3 |
+| ☐ | B41 | 吉祥物 idle PNG 序列幀 | 400×500 frames≥48 暫緩 | `source/mascot/idle/` |  | ☐ | P3 |
+| ☐ | B42 | 吉祥物 anticipate PNG 序列幀 | 400×500 frames≥48 暫緩 | `source/mascot/anticipate/` |  | ☐ | P3 |
+| ☐ | B43 | 吉祥物 celebrate PNG 序列幀 | 400×500 frames≥48 暫緩 | `source/mascot/celebrate/` |  | ☐ | P3 |
+| ☐ | B44 | 吉祥物 lose PNG 序列幀 | 400×500 frames≥48 暫緩 | `source/mascot/lose/` |  | ☐ | P3 |
 | ☐ | B45 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` |  | ☐ | P3 |
 | ☐ | B46 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` |  | ☐ | P2 |
 

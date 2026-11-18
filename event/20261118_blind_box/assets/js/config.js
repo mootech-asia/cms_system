@@ -54,21 +54,6 @@ window.EVENT_CONFIG = {
     rewardFrameLegendary: 'assets/img/reveal/reward-frame-legendary.svg'
   },
 
-  /* 吉祥物（兔比）：站在環形正中央（圓心），包裝繞著它轉；轉到前排的包裝擋住它，轉到後排的被它擋住。
-     每個狀態一段循環動態，全部共用同一張基準幀且長度相同（loopMs），程式在一輪結束時才切換。
-     poster 同時當 3D 遮擋剪影（必須是 base-frame 站姿）；height 為角色在 3D 場景的高度（未乘 sceneScale）。
-     mock 暫借轉盤活動的兔比動態（idle／spinning／result／lose），開包專用動作交付後改這裡。
-     狀態：idle（挑選）、anticipate（已選定／開封中）、celebrate（揭曉有稀有以上）、lose（只開到普通）。 */
-  mascot: {
-    poster: '../20261111_lucky_wheel/assets/img/mascot/optimized/poster.webp',
-    height: 4.4,
-    loopMs: 2000,
-    idle: ['../20261111_lucky_wheel/assets/img/mascot/optimized/idle-1.webp'],
-    anticipate: '../20261111_lucky_wheel/assets/img/mascot/optimized/spinning.webp',
-    celebrate: '../20261111_lucky_wheel/assets/img/mascot/optimized/result.webp',
-    lose: '../20261111_lucky_wheel/assets/img/mascot/optimized/lose.webp'
-  },
-
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
   loadingImages: ['stageBg', 'title', 'periodBadge', 'chancesBadge', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
 
@@ -99,7 +84,6 @@ window.EVENT_CONFIG = {
     revealRays: 'reveal-rays · 750×750',
     rewardBack: 'reward-back · 600×900',
     rewardFrame: 'reward-frame-{common,rare,epic,legendary} · 600×900',
-    mascot: 'mascot-{state} · 400×500 (2000ms loop)',
     sharePreview: 'share-preview.png · 1200×630 (og:image)'
   },
 

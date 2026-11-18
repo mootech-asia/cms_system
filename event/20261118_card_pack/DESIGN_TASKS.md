@@ -20,7 +20,7 @@
 | **P0 全局視覺** | 面積大、決定第一眼 | `title-en`、`title-ko`、`title-th`、`stage-bg`、`btn-primary`、`pack-front-1`、`pack-back`、`pack-crimp`、色票 `theme.css` → **全部到位後先整頁截圖確認方向** |
 | **P1 版面元件** | 主要元件與揭曉 | `reward-back`、`reward-frame-common`、`reward-frame-rare`、`reward-frame-epic`、`reward-frame-legendary`、`reveal-rays`、`period-badge`、`chances-badge`、`ticker-bar`、`card-frame`、`card-title`、`info-bg`、`share-preview`、`pack-front-2`、`pack-front-3` |
 | **P2 細節** | 小圖示與裝飾 | `btn-arrow`、`icon-sound-on`、`icon-sound-off`、`icon-share`、`icon-rotate`、`footer-deco`、config 路徑 |
-| **P3 精修** | 需要時間打磨 | 吉祥物（兔比 Moo Rabbit）動態 ×4＋基準幀、音效 ×6、主標可編輯原始檔、3D 材質微調 |
+| **P3 精修** | 需要時間打磨 | 音效 ×6、主標可編輯原始檔、3D 材質微調（吉祥物暫緩） |
 
 ## 一、美術方向
 
@@ -31,7 +31,7 @@
 | 3D 包裝 | 卡包是程式做的 3D 薄盒：正面＝`pack-front-*`、背面＝`pack-back`、上下封條＝`pack-crimp`；側邊（厚度約 1mm）只用色票上色。 立體、打光、透視都由程式負責，**交付的是「攤平的平面貼圖」**，不要畫成立體照片。 |
 | 揭曉 | 深色遮罩上，一張獎品卡從卡背翻到正面，後方放射光＋依稀有度變色的光暈；最高稀有度要明顯更華麗。 |
 | 版面（第一屏） | 主標 → 活動期間 → 3D 選擇區（左右箭頭）→ 剩餘次數 → 主按鈕 → 提示文字 → 跑馬燈。手機 360×640 起第一屏就看得到主按鈕；只用 H5 寬度（480px 置中）。 |
-| 吉祥物 | **兔比 Moo Rabbit**站在環形的**正中央（圓心）**，卡包繞著它轉：轉到前排的卡包擋住它的身體、轉到後排的被它擋住，靜止時臉從前排卡包上方露出（2026-11-18 使用者定案）。規格見第四節。 |
+| 吉祥物 | **暫緩**：目前頁面不放吉祥物（2026-11-18 決定先移除）。第四節保留規格，之後要加回時再開工，現在不要做。 |
 
 ### 語系規則（嚴格）
 
@@ -115,7 +115,7 @@
 - `--ev-3d-item-1`～`6`：六個包裝的側邊／封條／盒蓋色（相鄰要能分辨）；`--ev-3d-accent` 補光色；`--ev-3d-shadow` 接地陰影色。
 - `--ev-rarity-common` / `rare` / `epic` / `legendary`：稀有度標籤與揭曉光暈。
 
-## 四、吉祥物（P3，最後做）
+## 四、吉祥物（暫緩：目前頁面不放，先不要做）
 
 - 角色：**兔比 Moo Rabbit**。形象一律以品牌包為準：`brand/moo-rabbit/`（cms_system 事業部品牌包）；現有動態參考 `event/20261111_lucky_wheel/assets/img/mascot/`。目前暫借轉盤活動的兔比動態（待機／轉動／中獎／未中獎）。
 - 位置：站在環形**正中央（圓心）**的地板上，六個卡包繞著它轉。靜止時前排卡包擋住角色的身體、只露出頭與肩膀；轉動中會從卡包之間露出全身。所以**頭部與臉的表情要最清楚**，全身動作也要完整（轉動時看得到）。程式依 3D 投影擺放角色，不會擋到左右箭頭與主按鈕。
