@@ -175,7 +175,8 @@ window.EventSound = (function () {
     if (r && r.catch) r.catch(function () { /* 尚未取得使用者操作時瀏覽器會拒絕，下一次操作再試 */ });
   }
   function bgmPause() { if (bgmEl) bgmEl.pause(); }
-  ['pointerdown', 'keydown'].forEach(function (type) {
+  // Mouse activation may only become available on pointerup; retry a rejected first play then.
+  ['pointerdown', 'pointerup', 'keydown'].forEach(function (type) {
     document.addEventListener(type, function () { if (bgmEl ? bgmEl.paused : true) bgmPlay(); }, { capture: true });
   });
   document.addEventListener('visibilitychange', function () { if (document.hidden) bgmPause(); else bgmPlay(); });
