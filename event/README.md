@@ -56,3 +56,7 @@ event/
 ## 主題 loading
 
 四個活動入口均使用專屬進站設計：百老匯燈泡徽章、生存機械閘門、宇宙紫晶星儀、沙漠神燈。共用樣式在 `shared/loading/loading.css`；`source/` 下的美術審閱頁不屬於活動入口。
+
+## 桌機捲軸
+
+四個活動入口共用 `shared/css/desktop-scrollbars.css`。桌機（hover + fine pointer）隱藏頁面與內部捲動區的捲軸外觀，保留 wheel／觸控板／鍵盤捲動；不使用 overflow:hidden 鎖住內容。新增活動入口應引用同一份樣式。
