@@ -2,7 +2,7 @@
  * 拆卡包／拆盲盒共用流程：select（挑選）→ ready（已選定）→ loading（向後台取結果）→ opening（動畫）→ reveal（揭曉）。
  * 活動差異（type、圖片槽、文案、mock 內容）全部在各活動的 assets/js/config.js；本檔不放活動專屬內容。
  */
-import { createScene } from './scene.js?v=20261118e';
+import { createScene } from './scene.js?v=20261118f';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -248,9 +248,11 @@ function press() {
 }
 
 function choose() {
-  if (!valid) { showToast(t('empty.prizes')); return; }
-  if (player.chances <= 0) { showToast(t('toast.noChances')); return; }
-  press();
+  if (!valid) { Sound.play('error'); showToast(t('empty.prizes')); return; }
+  if (player.chances <= 0) { Sound.play('error'); showToast(t('toast.noChances')); return; }
+  Sound.play('select');
+  btnAction.classList.add('is-pressing');
+  setTimeout(function () { btnAction.classList.remove('is-pressing'); }, 140);
   if (scene) scene.setMode('ready');
   setState('ready');
 }
@@ -271,6 +273,7 @@ function open() {
     savePlayer();
     renderRecords();
     setState('opening');
+    Sound.duck(true);
     Sound.play('tear');
     stage.classList.add('is-opening');
     var done = scene ? scene.open(cfg.openMs) : new Promise(function (ok) { fallbackTimer = setTimeout(ok, 600); });
@@ -279,6 +282,7 @@ function open() {
       showReveal();
     });
   }).catch(function () {
+    Sound.play('error');
     player.chances += 1;
     savePlayer();
     renderChances();
@@ -297,8 +301,8 @@ function skip() {
 var pickTimer = null;
 function pickItem(i) {
   if (state !== 'select' || pickTimer) return;
-  if (!valid) { showToast(t('empty.prizes')); return; }
-  if (player.chances <= 0) { showToast(t('toast.noChances')); return; }
+  if (!valid) { Sound.play('error'); showToast(t('empty.prizes')); return; }
+  if (player.chances <= 0) { Sound.play('error'); showToast(t('toast.noChances')); return; }
   var turned = scene.goTo(i);
   pickTimer = setTimeout(function () {
     pickTimer = null;
@@ -393,6 +397,8 @@ function revealStep() {
 
 function closeReveal() {
   reveal.hidden = true;
+  Sound.play('collect');
+  Sound.duck(false);
   if (rewards.length) mascotReact(rewards);
   rewards = [];
   if (scene) scene.setMode('select');

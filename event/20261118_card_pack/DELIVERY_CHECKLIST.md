@@ -60,23 +60,31 @@
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
 | ☐ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` |  | ☐ | P0 |
-| ☐ | C34 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` |  | ☐ | P3 |
-| ☐ | C35 | 音效 move：切換選項（≤0.15 秒） | 選配 | `assets/audio/move.mp3` |  | ☐ | P3 |
-| ☐ | C36 | 音效 tear：撕封條／開箱（約 0.5 秒） | 選配 | `assets/audio/tear.mp3` |  | ☐ | P3 |
-| ☐ | C37 | 音效 flip：翻卡（≤0.25 秒） | 選配 | `assets/audio/flip.mp3` |  | ☐ | P3 |
-| ☐ | C38 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `assets/audio/reveal.mp3` |  | ☐ | P3 |
-| ☐ | C39 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` |  | ☐ | P3 |
-| ☐ | C40 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` |  | ☐ | P3 |
-| ☐ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` |  | ☐ | P2 |
+| ☐ | C34 | 背景音樂 bgm（60–90 秒無縫循環，見 AUDIO_REQUEST.md） | 選配 | `assets/audio/bgm.mp3` |  | ☐ | P3 |
+| ☐ | C35 | 特效音 click：一般按鈕（≤0.15 秒） | 選配 | `assets/audio/click.mp3` |  | ☐ | P3 |
+| ☐ | C36 | 特效音 move：環形轉一格（拖曳、箭頭）（≤0.25 秒） | 選配 | `assets/audio/move.mp3` |  | ☐ | P3 |
+| ☐ | C37 | 特效音 select：點選一包＝選定（≤0.4 秒） | 選配 | `assets/audio/select.mp3` |  | ☐ | P3 |
+| ☐ | C38 | 特效音 tear：撕開卡包（0.6–0.9 秒） | 選配 | `assets/audio/tear.mp3` |  | ☐ | P3 |
+| ☐ | C39 | 特效音 flip：翻卡（≤0.3 秒） | 選配 | `assets/audio/flip.mp3` |  | ☐ | P3 |
+| ☐ | C40 | 特效音 reveal-common：揭曉：普通（0.5–0.8 秒） | 選配 | `assets/audio/reveal-common.mp3` |  | ☐ | P3 |
+| ☐ | C41 | 特效音 reveal-rare：揭曉：稀有（0.7–1.0 秒） | 選配 | `assets/audio/reveal-rare.mp3` |  | ☐ | P3 |
+| ☐ | C42 | 特效音 reveal-epic：揭曉：超稀有（0.9–1.3 秒） | 選配 | `assets/audio/reveal-epic.mp3` |  | ☐ | P3 |
+| ☐ | C43 | 特效音 reveal-legendary：揭曉：最高級（Legendary）（1.5–2.0 秒） | 選配 | `assets/audio/reveal-legendary.mp3` |  | ☐ | P3 |
+| ☐ | C44 | 特效音 reward：多張總覽（後台設定每包多張時才會用到）（0.8–1.2 秒） | 選配 | `assets/audio/reward.mp3` |  | ☐ | P3 |
+| ☐ | C45 | 特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒） | 選配 | `assets/audio/collect.mp3` |  | ☐ | P3 |
+| ☐ | C46 | 特效音 error：次數用完、尚無獎項（≤0.3 秒） | 選配 | `assets/audio/error.mp3` |  | ☐ | P3 |
+| ☐ | C47 | 音訊原始 WAV 與授權說明 | （人工） | `source/audio/README.md` |  | ☐ | P3 |
+| ☐ | C48 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` |  | ☐ | P3 |
+| ☐ | C49 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` |  | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | C42 | 吉祥物 idle（待機） | 400×500 gif≥48 暫緩 | `assets/img/mascot/idle.gif` |  | ☐ | P3 |
-| ☐ | C43 | 吉祥物 anticipate（期待） | 400×500 gif≥48 暫緩 | `assets/img/mascot/anticipate.gif` |  | ☐ | P3 |
-| ☐ | C44 | 吉祥物 celebrate（慶祝） | 400×500 gif≥48 暫緩 | `assets/img/mascot/celebrate.gif` |  | ☐ | P3 |
-| ☐ | C45 | 吉祥物 lose（小失望） | 400×500 gif≥48 暫緩 | `assets/img/mascot/lose.gif` |  | ☐ | P3 |
+| ☐ | C50 | 吉祥物 idle（待機） | 400×500 gif≥48 暫緩 | `assets/img/mascot/idle.gif` |  | ☐ | P3 |
+| ☐ | C51 | 吉祥物 anticipate（期待） | 400×500 gif≥48 暫緩 | `assets/img/mascot/anticipate.gif` |  | ☐ | P3 |
+| ☐ | C52 | 吉祥物 celebrate（慶祝） | 400×500 gif≥48 暫緩 | `assets/img/mascot/celebrate.gif` |  | ☐ | P3 |
+| ☐ | C53 | 吉祥物 lose（小失望） | 400×500 gif≥48 暫緩 | `assets/img/mascot/lose.gif` |  | ☐ | P3 |
 
 ## 紀錄
 
