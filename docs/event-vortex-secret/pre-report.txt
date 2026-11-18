@@ -1,0 +1,13 @@
+PASS  工作樹沒有未提交的改動
+PASS  HEAD a3cd46a 已在 origin/main（正式站來源）
+PASS  npm run build 後 tailwind.css 沒有差異（建置結果已提交）
+
+main 上實際存在的版本資料夾（回報「所有版本」時逐一對照這份清單）：
+  v1.5/  Nuxt site 
+  v2/  site-mobile site studio 
+  v3/  site-mobile site studio 
+  v4/  site studio 
+  v5/  site studio 
+  v6/  site studio 
+
+機器檢查全數通過。仍須在回報中逐條列出：使用者原話 → 證據 → 驗證範圍 → 未驗證項目。
