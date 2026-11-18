@@ -226,6 +226,30 @@ export function createScene(stage, opts) {
     if (opts.onSelect) opts.onSelect(selected);
   }
 
+  // 點選：用射線找出指到的是哪一包（看得見的包裝才算），回傳索引；沒點到回傳 -1
+  var raycaster = new THREE.Raycaster();
+  var pointer = new THREE.Vector2();
+  function pick(clientX, clientY) {
+    var r = renderer.domElement.getBoundingClientRect();
+    pointer.set((clientX - r.left) / r.width * 2 - 1, -((clientY - r.top) / r.height) * 2 + 1);
+    raycaster.setFromCamera(pointer, camera);
+    var hit = raycaster.intersectObjects(items.filter(function (it) { return it.group.visible; }).map(function (it) { return it.body; }), true)[0];
+    if (!hit) return -1;
+    for (var k = 0; k < items.length; k++) {
+      var o = hit.object;
+      while (o && o !== items[k].body) o = o.parent;
+      if (o) return k;
+    }
+    return -1;
+  }
+  // 轉到指定的那一包（走最短方向）
+  function goTo(i) {
+    var k = ((i - selected) % COUNT + COUNT) % COUNT;
+    if (k > COUNT / 2) k -= COUNT;
+    if (k) move(-k);
+    return k !== 0;
+  }
+
   on(stage, 'pointerdown', function (e) {
     if (mode !== 'select' && mode !== 'ready') return;
     if (e.target !== renderer.domElement) return;
@@ -234,14 +258,25 @@ export function createScene(stage, opts) {
     stage.setPointerCapture(e.pointerId);
   });
   on(stage, 'pointermove', function (e) {
-    if (startX === null) return;
+    if (startX === null) {
+      // 滑鼠移到包裝上顯示手指游標，表示可以點選
+      if (e.pointerType === 'mouse' && mode === 'select' && e.target === renderer.domElement) {
+        renderer.domElement.style.cursor = pick(e.clientX, e.clientY) >= 0 ? 'pointer' : '';
+      }
+      return;
+    }
     drag = e.clientX - startX;
     if (mode === 'select') angle = target + drag * 0.004;
   });
-  on(stage, 'pointerup', function () {
+  on(stage, 'pointerup', function (e) {
     if (startX === null) return;
     if (mode === 'select' && Math.abs(drag) > 25) move(drag > 0 ? 1 : -1);
     else if (mode === 'ready' && Math.abs(drag) > 55 && opts.onSwipeOpen) opts.onSwipeOpen();
+    else if (mode === 'select' && Math.abs(drag) < 8 && opts.onPick) {
+      // 沒有拖曳＝點選：點到哪一包就選哪一包
+      var i = pick(e.clientX, e.clientY);
+      if (i >= 0) opts.onPick(i);
+    }
     startX = null;
   });
   on(stage, 'pointercancel', function () { startX = null; });
@@ -294,6 +329,7 @@ export function createScene(stage, opts) {
     ready: Promise.all(pending),
     selected: function () { return selected; },
     move: move,
+    goTo: goTo,
     setMode: function (m) {
       mode = m;
       if (m === 'select') { progress = 0; openDone = null; }

@@ -47,7 +47,7 @@
         </h1>
         <p class="ev-period-wrap"><span class="ev-period" id="period"></span><span class="ev-asset ev-asset--period" data-asset="periodBadge" aria-hidden="true"></span></p>
 
-        <div class="ev-scene" id="scene" role="group" data-i18n-aria="scene.aria">
+        <div class="ev-scene" id="scene" role="group" tabindex="0" data-i18n-aria="scene.aria">
           <img class="ev-mascot" id="mascot" alt="" aria-hidden="true" />
           <img class="ev-scene-fallback" id="sceneFallback" alt="" hidden />
           <p class="ev-scene-note" id="sceneNote" data-i18n="status.no3d" hidden></p>
@@ -76,7 +76,8 @@
             <strong id="chances">0</strong>
             <span data-i18n="chances.after"></span>
           </p>
-          <button type="button" class="ev-action" id="btnAction"><span id="actionText"></span></button>
+          <p class="ev-pick-hint" id="pickHint"><img class="ev-pick-hint-icon" data-img="tapHint" alt="" aria-hidden="true" /><span id="pickHintText"></span></p>
+          <button type="button" class="ev-action" id="btnAction" hidden><span id="actionText"></span></button>
           <p class="ev-status" id="status" role="status" aria-live="polite"></p>
           <div class="ev-console-links">
             <button type="button" class="ev-link" id="btnBack" data-i18n="action.back" hidden></button>
@@ -87,7 +88,7 @@
             <div class="ev-ticker-track"><div class="ev-ticker-items" id="tickerItems"></div></div>
             <span class="ev-asset ev-asset--ticker" data-asset="tickerBar" aria-hidden="true"></span>
           </div>
-          <span class="ev-asset ev-asset--console" data-asset="chancesBadge btnPrimary" aria-hidden="true"></span>
+          <span class="ev-asset ev-asset--console" data-asset="chancesBadge btnPrimary tapHint" aria-hidden="true"></span>
         </div>
       </div>
     </section>

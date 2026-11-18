@@ -69,6 +69,7 @@ STYLE LOCK — apply to every image in this conversation:
 |---|---|---|
 | `btn-arrow` | 96×96 | `Round button with a right-pointing chevron, pearl white with navy chevron, soft shadow inside the circle only, transparent background.` |
 | `icon-sound-on` / `icon-sound-off` / `icon-share` | 64×64 ×3 | 同一套圓形小按鈕：喇叭＋聲波／喇叭＋叉號／分享三點，navy 線條、珍珠白底。 |
+| `icon-tap` | 160×160 | `A friendly hand with the index finger tapping down, white with a navy outline, a small lavender tap ripple, transparent background. No text.` |
 | `icon-rotate` | 160×160 | `Upright smartphone outline with a curved rotation arrow, white lines, transparent background.` |
 | `footer-deco` | 750×160 | `Soft pearl-lavender wave with scattered sparkles, transparent top, for the bottom of a page.` |
 

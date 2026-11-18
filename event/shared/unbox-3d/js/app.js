@@ -186,6 +186,7 @@ function renderRecords() {
 
 function renderChances() {
   $('chances').textContent = player.chances;
+  if (state === 'select') renderState();
 }
 
 // ---------- 操作台 ----------
@@ -195,6 +196,13 @@ var statusOverride = null;
 
 function renderState() {
   stage.setAttribute('data-state', state);
+  // 挑選階段沒有主按鈕：點選 3D 區的任意一包就是選擇，按鈕位置改顯示提示
+  var picking = state === 'select';
+  btnAction.hidden = picking;
+  $('pickHint').hidden = !picking;
+  var empty = !valid ? 'empty.prizes' : player.chances <= 0 ? 'toast.noChances' : null;
+  $('pickHintText').textContent = t(empty || 'hint.pick');
+  $('pickHint').classList.toggle('is-empty', !!empty);
   $('actionText').textContent = t(ACTION_TEXT[state]);
   btnAction.disabled = state === 'loading' || state === 'opening';
   btnAction.classList.toggle('is-empty', state === 'select' && (player.chances <= 0 || !valid));
@@ -283,6 +291,19 @@ function skip() {
   if (state !== 'opening') return;
   if (scene) scene.skip();
   else { clearTimeout(fallbackTimer); stage.classList.remove('is-opening'); showReveal(); }
+}
+
+// 點選 3D 區的某一包＝選擇它：不在正前方就先轉過來，轉完再進入已選定
+var pickTimer = null;
+function pickItem(i) {
+  if (state !== 'select' || pickTimer) return;
+  if (!valid) { showToast(t('empty.prizes')); return; }
+  if (player.chances <= 0) { showToast(t('toast.noChances')); return; }
+  var turned = scene.goTo(i);
+  pickTimer = setTimeout(function () {
+    pickTimer = null;
+    if (state === 'select') choose();
+  }, turned ? 350 : 0);
 }
 
 function backToSelect() {
@@ -376,7 +397,7 @@ function closeReveal() {
   rewards = [];
   if (scene) scene.setMode('select');
   setState('select');
-  btnAction.focus();
+  sceneEl.focus();
 }
 
 // ---------- 音效／語系 ----------
@@ -424,7 +445,8 @@ scene = createScene(sceneEl, {
   scale: cfg.sceneScale,
   mascot: cfg.mascot ? { img: $('mascot'), poster: cfg.mascot.poster, height: cfg.mascot.height } : null,
   onSelect: function () { Sound.play('move'); renderPickLabel(); },
-  onSwipeOpen: open
+  onSwipeOpen: open,
+  onPick: pickItem
 });
 if (!scene) {
   // WebGL 不可用：顯示 2D 正面圖，流程照樣用按鈕完成
@@ -432,12 +454,18 @@ if (!scene) {
   $('sceneFallback').hidden = false;
   $('sceneFallback').setAttribute('data-img', cfg.type === 'blind-box' ? 'boxFront' : 'packFront');
   $('sceneNote').hidden = false;
+  $('sceneFallback').addEventListener('click', function () { if (state === 'select') choose(); });
 }
 
 // ---------- 事件 ----------
 btnAction.addEventListener('click', function () {
   if (state === 'select') choose();
   else if (state === 'ready') open();
+});
+sceneEl.addEventListener('keydown', function (e) {
+  if (state !== 'select' || e.target !== sceneEl || (e.key !== 'Enter' && e.key !== ' ')) return;
+  e.preventDefault();
+  choose();
 });
 $('btnBack').addEventListener('click', backToSelect);
 $('btnSkip').addEventListener('click', skip);
@@ -472,7 +500,7 @@ function setPanel(openPanel) {
 try { panel.hidden = sessionStorage.getItem(MOCK_KEY) !== 'on'; } catch (e) { /* 預設隱藏 */ }
 var taps = [];
 document.addEventListener('pointerup', function (e) {
-  if (e.target.closest('button, a, input, select, textarea, label, [role="button"], #mockPanel')) { taps = []; return; }
+  if (e.target.closest('button, a, input, select, textarea, label, [role="button"], #mockPanel, #scene')) { taps = []; return; }
   var t0 = performance.now();
   var lastTap = taps[taps.length - 1];
   if (!lastTap || t0 - lastTap.t > 500 || Math.abs(lastTap.x - e.clientX) > 40 || Math.abs(lastTap.y - e.clientY) > 40) taps = [];

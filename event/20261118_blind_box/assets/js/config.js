@@ -40,6 +40,7 @@ window.EVENT_CONFIG = {
     soundOff: 'assets/img/icon/icon-sound-off.svg',
     share: 'assets/img/icon/icon-share.svg',
     rotateHint: 'assets/img/icon/icon-rotate.svg',
+    tapHint: 'assets/img/icon/icon-tap.svg',
     /* 3D 盲盒：正面可給 1～6 張（盲盒通常同一款）；側面與盒蓋側邊會乘上 --ev-3d-item-N 色票 */
     boxFront: ['assets/img/3d/box-front.svg'],
     boxSide: 'assets/img/3d/box-side.svg',
@@ -55,7 +56,7 @@ window.EVENT_CONFIG = {
   },
 
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
-  loadingImages: ['stageBg', 'title', 'periodBadge', 'chancesBadge', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
+  loadingImages: ['stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
 
   /* 音效：留空時用 Web Audio 合成；交付音檔後填路徑即改播音檔 */
   soundLevels: { click: 0.9, move: 0.6, tear: 1, flip: 0.9, reveal: 1.2, reward: 1.4 },
@@ -77,6 +78,7 @@ window.EVENT_CONFIG = {
     sound: 'icon-sound-on/off · 64×64',
     share: 'icon-share · 64×64',
     rotateHint: 'icon-rotate · 160×160',
+    tapHint: 'icon-tap · 160×160',
     boxFront: 'box-front · 512×512',
     boxSide: 'box-side · 512×512',
     boxLid: 'box-lid · 512×512',
@@ -96,6 +98,8 @@ window.EVENT_CONFIG = {
     'chances.after': { en: '', ko: '개', th: 'กล่อง', zh: '個' },
     'action.choose': { en: 'Choose this box', ko: '이 박스 선택', th: 'เลือกกล่องนี้', zh: '選擇這個盲盒' },
     'action.open': { en: 'Open the box', ko: '박스 열기', th: 'เปิดกล่อง', zh: '打開盲盒' },
+    'hint.pick': { en: 'Tap any box to choose it', ko: '박스를 눌러 선택하세요', th: 'แตะกล่องไหนก็ได้เพื่อเลือก', zh: '點選任意一個盲盒' },
+    'status.select': { en: 'Drag left or right to browse the other boxes.', ko: '좌우로 드래그해서 다른 박스도 둘러보세요.', th: 'ลากซ้ายขวาเพื่อดูกล่องอื่น', zh: '左右拖曳可以瀏覽其他盲盒' },
     'status.ready': { en: 'Ready to reveal your surprise?', ko: '서프라이즈를 확인할 준비가 되셨나요?', th: 'พร้อมเปิดดูเซอร์ไพรส์หรือยัง?', zh: '準備好揭開驚喜了嗎？' },
     'status.opening': { en: 'Your surprise is coming…', ko: '곧 서프라이즈가 공개됩니다…', th: 'เซอร์ไพรส์กำลังจะเผยแล้ว…', zh: '驚喜即將揭曉…' },
     'reveal.title': { en: 'Box opened!', ko: '박스 오픈!', th: 'เปิดกล่องแล้ว!', zh: '盲盒打開了！' },

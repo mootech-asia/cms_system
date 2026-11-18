@@ -19,7 +19,7 @@
 |---|---|---|
 | **P0 全局視覺** | 面積大、決定第一眼 | `title-en`、`title-ko`、`title-th`、`stage-bg`、`btn-primary`、`pack-front-1`、`pack-back`、`pack-crimp`、色票 `theme.css` → **全部到位後先整頁截圖確認方向** |
 | **P1 版面元件** | 主要元件與揭曉 | `reward-back`、`reward-frame-common`、`reward-frame-rare`、`reward-frame-epic`、`reward-frame-legendary`、`reveal-rays`、`period-badge`、`chances-badge`、`ticker-bar`、`card-frame`、`card-title`、`info-bg`、`share-preview`、`pack-front-2`、`pack-front-3` |
-| **P2 細節** | 小圖示與裝飾 | `btn-arrow`、`icon-sound-on`、`icon-sound-off`、`icon-share`、`icon-rotate`、`footer-deco`、config 路徑 |
+| **P2 細節** | 小圖示與裝飾 | `btn-arrow`、`icon-sound-on`、`icon-sound-off`、`icon-share`、`icon-rotate`、`icon-tap`、`footer-deco`、config 路徑 |
 | **P3 精修** | 需要時間打磨 | 音效 ×6、主標可編輯原始檔、3D 材質微調（吉祥物暫緩） |
 
 ## 一、美術方向
@@ -30,7 +30,7 @@
 | 空間 | **有角度、有透視的 3D 展示空間**：背牆＋往前延伸的地板（透視線、縱深），光源統一「前上方偏左」，地板中央有柔和光圈；六個包裝浮在光圈上方緩慢擺動，接地陰影由程式畫，**素材不畫地面陰影**。 |
 | 3D 包裝 | 卡包是程式做的 3D 薄盒：正面＝`pack-front-*`、背面＝`pack-back`、上下封條＝`pack-crimp`；側邊（厚度約 1mm）只用色票上色。 立體、打光、透視都由程式負責，**交付的是「攤平的平面貼圖」**，不要畫成立體照片。 |
 | 揭曉 | 深色遮罩上，一張獎品卡從卡背翻到正面，後方放射光＋依稀有度變色的光暈；最高稀有度要明顯更華麗。 |
-| 版面（第一屏） | 主標 → 活動期間 → 3D 選擇區（左右箭頭）→ 剩餘次數 → 主按鈕 → 提示文字 → 跑馬燈。手機 360×640 起第一屏就看得到主按鈕；只用 H5 寬度（480px 置中）。 |
+| 版面（第一屏） | 主標 → 活動期間 → 3D 選擇區（左右箭頭；**直接點選任意一包就是選擇**，一次只能選一包撕開）→ 剩餘次數 → 點選提示（選定後變成主按鈕）→ 提示文字 → 跑馬燈。手機 360×640 起第一屏就看得到主按鈕；只用 H5 寬度（480px 置中）。 |
 | 吉祥物 | **暫緩**：目前頁面不放吉祥物（2026-11-18 決定先移除）。第四節保留規格，之後要加回時再開工，現在不要做。 |
 
 ### 語系規則（嚴格）
@@ -56,7 +56,7 @@
 | `assets/img/3d/` | 貼在 3D 包裝上的平面貼圖（滿版、不透明、無陰影無透視） | `pack-front-1`、`pack-front-2`、`pack-front-3`、`pack-back`、`pack-crimp` |
 | `assets/img/reveal/` | 揭曉畫面：放射光、獎品卡背、四種稀有度外框 | `reward-back`、`reward-frame-common`、`reward-frame-rare`、`reward-frame-epic`、`reward-frame-legendary`、`reveal-rays` |
 | `assets/img/ui/` | 可重複使用的介面元件：按鈕、緞帶、徽章、跑馬燈條、卡片框 | `btn-primary`、`period-badge`、`chances-badge`、`ticker-bar`、`card-frame`、`card-title`、`btn-arrow` |
-| `assets/img/icon/` | 小圖示（64×64／160×160） | `icon-sound-on`、`icon-sound-off`、`icon-share`、`icon-rotate` |
+| `assets/img/icon/` | 小圖示（64×64／160×160） | `icon-sound-on`、`icon-sound-off`、`icon-share`、`icon-rotate`、`icon-tap` |
 | `assets/img/mascot/` | 吉祥物網頁用動態（GIF 預覽、轉好的 WebP）與 base-frame.png | `idle`、`anticipate`、`celebrate`、`lose`、`base-frame` |
 | `assets/img/share/` | 社群分享預覽圖（PNG／JPG） | `share-preview` |
 | `assets/audio/` | 音效 mp3 | `click`、`move`、`tear`、`flip`、`reveal`、`reward` |
@@ -80,7 +80,7 @@
 | `pack-front-3` | 512×768 | P1 | **卡包正面（第 3 款）**，同上。 |
 | `pack-back` | 512×768 | P0 | **卡包背面**。轉動挑選時會看到側面與背面；可放條碼、說明框的「圖形」，**不可有任何可讀文字**。 |
 | `pack-crimp` | 512×64 | P0 | **封條（鋸齒壓紋）**。上下各一條，撕開時上方那條會飛出。橫向鋸齒／壓紋，可帶一條撕開虛線。程式會乘上 `--ev-3d-item-N` 色票，**請用淺灰白為主**，顏色交給色票。 |
-| `btn-primary` | 400×110 | P0 | **主按鈕底圖**（Choose／Tear it open／Reveal／Collect 都用這張），膠囊形，中間留給白字。**不畫文字**。停用時程式自動降透明度、次數用完自動轉灰階。 |
+| `btn-primary` | 400×110 | P0 | **主按鈕底圖**（Tear it open／Open the box／Reveal／Collect 都用這張；挑選階段不顯示按鈕，改顯示點選提示），膠囊形，中間留給白字。**不畫文字**。停用時程式自動降透明度、次數用完自動轉灰階。 |
 | `reward-back` | 600×900 | P1 | **獎品卡背面**：揭曉前看到的卡背，2:3 直式，可做圓角（圓角外透明）。卡背要「讓人想翻開」：中央徽記＋光澤。不放文字。 |
 | `reward-frame-common` | 600×900 | P1 | **獎品卡外框（普通）**：疊在卡片正面最上層，**中間必須透明**（下方是程式畫的淺色卡面、獎品圖示 y 160–420、稀有度標籤與名稱 y 640–820）。四個稀有度同構圖、不同材質：普通＝銀灰。 |
 | `reward-frame-rare` | 600×900 | P1 | 稀有＝藍色金屬＋少量光點（色相參考 `--ev-rarity-rare`）。 |
@@ -99,6 +99,7 @@
 | `icon-sound-off` | 64×64 | P2 | 音效關。 |
 | `icon-share` | 64×64 | P2 | 分享，與音效同一套風格。 |
 | `icon-rotate` | 160×160 | P2 | 「請轉直向」提示圖示（手機直立＋旋轉箭頭，淺色線條，放在深色底上）。 |
+| `icon-tap` | 160×160 | P2 | **點選提示手勢**：挑選階段主按鈕位置改成提示框「Tap any pack／box to choose it」，左邊放這個手勢圖示（約 36px 顯示，程式做點按動畫）。食指朝下點擊的手，白色或奶油色＋深色描邊，可加一圈點擊波紋；去背、不放文字。 |
 | `footer-deco` | 750×160 | P2 | 頁尾收尾裝飾，不放文字。 |
 
 ### 主視覺文字（`title-en` / `title-ko` / `title-th`）

@@ -126,6 +126,11 @@ def icon_rotate():
                '<path d="M84 140 l8 10 l-12 4" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>')
 
 
+def icon_tap():
+    return svg(160, 160, f'<path d="M64 70V30a12 12 0 0 1 24 0v44l4-3a12 12 0 0 1 16 2l2 3 2-1a12 12 0 0 1 16 6l2 4a12 12 0 0 1 12 12v13c0 22-16 38-38 38h-6c-14 0-24-6-32-18L44 104a11 11 0 0 1 18-12z" fill="#ffffff" stroke="{NAVY}" stroke-width="6" stroke-linejoin="round"/>'
+               f'<path d="M50 30a26 26 0 0 1 52 0" fill="none" stroke="{VIOLET}" stroke-width="5" stroke-linecap="round"/>')
+
+
 def rays():
     rs = ''.join(f'<path d="M375 375 L{375 + 520 * __import__("math").cos(a):.1f} {375 + 520 * __import__("math").sin(a):.1f} '
                  f'L{375 + 520 * __import__("math").cos(a + 0.12):.1f} {375 + 520 * __import__("math").sin(a + 0.12):.1f}Z" fill="#ffffff"/>'
@@ -243,7 +248,7 @@ def main():
         'btn-primary.svg': btn_primary(), 'btn-arrow.svg': btn_arrow(), 'ticker-bar.svg': ticker_bar(),
         'card-frame.svg': card_frame(), 'card-title.svg': card_title(), 'footer-deco.svg': footer_deco(),
         'icon-sound-on.svg': icon('sound-on'), 'icon-sound-off.svg': icon('sound-off'), 'icon-share.svg': icon('share'),
-        'icon-rotate.svg': icon_rotate(), 'reveal-rays.svg': rays(), 'reward-back.svg': reward_back(),
+        'icon-rotate.svg': icon_rotate(), 'icon-tap.svg': icon_tap(), 'reveal-rays.svg': rays(), 'reward-back.svg': reward_back(),
     }
     for r, c in RARITY.items():
         files[f'reward-frame-{r}.svg'] = reward_frame(c)

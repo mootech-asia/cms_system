@@ -40,6 +40,7 @@ window.EVENT_CONFIG = {
     soundOff: 'assets/img/icon/icon-sound-off.svg',
     share: 'assets/img/icon/icon-share.svg',
     rotateHint: 'assets/img/icon/icon-rotate.svg',
+    tapHint: 'assets/img/icon/icon-tap.svg',
     /* 3D 卡包：正面可給 1～6 張不同設計，環上六包依序輪流；側邊與封條會乘上 --ev-3d-item-N 色票 */
     packFront: ['assets/img/3d/pack-front-1.svg', 'assets/img/3d/pack-front-2.svg', 'assets/img/3d/pack-front-3.svg'],
     packBack: 'assets/img/3d/pack-back.svg',
@@ -54,7 +55,7 @@ window.EVENT_CONFIG = {
   },
 
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
-  loadingImages: ['stageBg', 'title', 'periodBadge', 'chancesBadge', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
+  loadingImages: ['stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
 
   /* 音效：留空時用 Web Audio 合成；交付音檔後填路徑即改播音檔 */
   soundLevels: { click: 0.9, move: 0.6, tear: 1, flip: 0.9, reveal: 1.2, reward: 1.4 },
@@ -76,6 +77,7 @@ window.EVENT_CONFIG = {
     sound: 'icon-sound-on/off · 64×64',
     share: 'icon-share · 64×64',
     rotateHint: 'icon-rotate · 160×160',
+    tapHint: 'icon-tap · 160×160',
     packFront: 'pack-front-1~3 · 512×768',
     packBack: 'pack-back · 512×768',
     packCrimp: 'pack-crimp · 512×64',
@@ -94,6 +96,8 @@ window.EVENT_CONFIG = {
     'chances.after': { en: '', ko: '개', th: 'ซอง', zh: '包' },
     'action.choose': { en: 'Choose this pack', ko: '이 카드팩 선택', th: 'เลือกซองนี้', zh: '選擇這包卡片' },
     'action.open': { en: 'Tear it open', ko: '카드팩 뜯기', th: 'ฉีกซอง', zh: '撕開卡包' },
+    'hint.pick': { en: 'Tap any pack to choose it', ko: '카드팩을 눌러 선택하세요', th: 'แตะซองไหนก็ได้เพื่อเลือก', zh: '點選任意一包卡包' },
+    'status.select': { en: 'Drag left or right to browse the other packs.', ko: '좌우로 드래그해서 다른 카드팩도 둘러보세요.', th: 'ลากซ้ายขวาเพื่อดูซองอื่น', zh: '左右拖曳可以瀏覽其他卡包' },
     'status.ready': { en: 'Swipe across the seal, or tap the button to tear it open.', ko: '봉인을 좌우로 밀거나 버튼을 눌러 뜯으세요.', th: 'ปัดผ่านรอยปิดผนึก หรือแตะปุ่มเพื่อฉีกซอง', zh: '沿著封條左右滑動，或按下方按鈕拆開' },
     'status.opening': { en: 'Seal torn. Let\'s see what you got…', ko: '봉인을 뜯었습니다. 무엇이 나왔을까요…', th: 'ฉีกซองแล้ว มาดูกันว่าได้อะไร…', zh: '封條已撕開，看看你的收藏…' },
     'reveal.title': { en: 'Pack opened!', ko: '카드팩 오픈!', th: 'เปิดซองแล้ว!', zh: '卡包打開了！' },

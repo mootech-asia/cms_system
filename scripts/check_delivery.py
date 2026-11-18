@@ -103,6 +103,7 @@ PLACEHOLDERS = {
     'f4cf3c4861664d01',
     'f644e3678cf0184e',
     'fdf1fb27ec7749af',
+    '9f8ade3a0fc9b157',  # 20261118_*/icon/icon-tap.svg
     # event/20261118_card_pack、20261118_blind_box mock 佔位圖（event/shared/unbox-3d/tools/make_placeholders.py 產生）
     '79f55ed94e49a6ae',  # 20261118_card_pack/btn-arrow.svg
     'c0172a5e423b7227',  # 20261118_card_pack/btn-primary.svg
