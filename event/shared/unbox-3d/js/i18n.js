@@ -32,6 +32,7 @@ window.EventI18n = (function () {
     'status.no3d': { en: '3D is not available on this device. You can still tap to play.', ko: '이 기기에서는 3D를 사용할 수 없지만, 눌러서 계속 참여할 수 있습니다.', th: 'อุปกรณ์นี้ไม่รองรับ 3D แต่ยังแตะเพื่อเล่นต่อได้', zh: '此裝置無法啟用 3D，仍可點選完成體驗。' },
     'action.back': { en: 'Choose another', ko: '다른 것 고르기', th: 'เลือกอันอื่น', zh: '換一個' },
     'action.skip': { en: 'Skip animation', ko: '애니메이션 건너뛰기', th: 'ข้ามแอนิเมชัน', zh: '跳過動畫' },
+    'treasure.count': { en: 'Treasure discovered · {n} / {total}', ko: '보물 발견 · {n} / {total}', th: 'ค้นพบสมบัติ · {n} / {total}', zh: '發現寶物 · {n} / {total}' },
     'reveal.tap': { en: 'Tap the card to reveal', ko: '카드를 눌러 확인하세요', th: 'แตะการ์ดเพื่อเปิด', zh: '點擊卡片揭曉' },
     'reveal.count': { en: 'Revealed {n} / {total}', ko: '{n} / {total} 공개', th: 'เปิดแล้ว {n} / {total}', zh: '已揭曉 {n} / {total}' },
     'reveal.flip': { en: 'Reveal', ko: '공개하기', th: 'เปิดดู', zh: '揭曉' },

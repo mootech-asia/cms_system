@@ -60,3 +60,24 @@
   --ev-ui-base: #201822;
   --ev-ui-trim: rgb(232 196 138 / .42);
 }
+
+/* Desert interface: engraved brass, turquoise inlays and parchment scrolls. */
+.ev-lang { border:2px solid var(--ev-color-gold); background:#FFF2CF; box-shadow:0 2px 0 #63421C; }
+.ev-lang-btn[aria-pressed="true"] { background:#75501E; }
+.ev-period,.ev-chances { border:2px solid var(--ev-color-gold); border-radius:50px 10px; background:linear-gradient(180deg,#FFF4CF,#EACE91); box-shadow:inset 0 0 0 2px #FFF3D0,0 3px 0 #795526; color:#51371B; }
+.ev-chances strong { color:#176F68; }
+.ev-pick-hint,.ev-action { border:3px double #F0D99B; border-radius:26px 8px; background:radial-gradient(ellipse at 50% 0,#92703A,transparent 70%),linear-gradient(120deg,#49301F,#765222 50%,#35231E); box-shadow:inset 0 0 0 2px #55391D,inset 0 -4px #36241D,0 5px 0 #3D2A1E,0 9px 18px var(--ev-color-scrim); }
+.ev-pick-hint::before,.ev-action::before { border-radius:20px 5px; border-color:#B69B62; }
+.ev-pick-hint::after,.ev-action::after { color:#62D2B8; bottom:-10px; text-shadow:0 1px 0 #1C514E,0 0 0 transparent; }
+.ev-pick-hint-icon { border:2px solid #E8C48A; border-radius:50%; background:radial-gradient(circle,#318E7E,#123F3E); box-shadow:0 0 0 2px #58401F; }
+.ev-ticker { border:3px double #F0D99B; border-radius:24px 8px; background:linear-gradient(180deg,#4B3429,#2B211F); box-shadow:inset 0 0 0 2px #74582F,0 5px 0 #36241D; }
+.ev-ticker::before { border-radius:17px 4px; border-color:#8E7041; }
+.ev-ticker-label { border:1px solid #D9B971; border-radius:14px 3px; background:linear-gradient(130deg,#86652C,#493622); color:#FFF0BB; box-shadow:inset 0 1px #F5D68F; }
+.ev-ticker-label::before { content:'❖'; color:#67C9B6; }
+.ev-info { background-color:#FAEBCB; background-blend-mode:multiply; }
+.ev-card { border:3px double #B18A48; border-image:none; border-radius:22px 5px; padding:24px 20px; background:linear-gradient(135deg,#FFF4DA,#F0DFB8); box-shadow:inset 0 0 0 4px #FFF5DD,0 8px 20px rgb(79 51 25 / .12); }
+.ev-card-title { border:2px solid #D7B46D; border-radius:50% 50% 8px 8px / 18px 18px 8px 8px; background:linear-gradient(180deg,#A58041,#5C3E22); color:#FFF1C7; box-shadow:inset 0 0 0 2px #75572C; }
+.ev-rules li::marker { color:#98712E; font-weight:800; }.ev-record { border-color:#CFB783; }
+.ev-arrow { border:3px double var(--ev-color-gold); background:var(--ev-ui-panel); box-shadow:0 3px 0 var(--ev-ui-base); }
+:root { --ev-color-reveal-bg:rgb(30 23 13 / .95); }
+.ev-arrow { color:var(--ev-color-gold); }

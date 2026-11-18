@@ -60,3 +60,42 @@
   --ev-ui-base: #100D2A;
   --ev-ui-trim: rgb(141 211 255 / .42);
 }
+
+/* Cosmic interface: angular glass instruments and illuminated star-map panels. */
+.ev-lang { border-radius:6px; background:var(--ev-color-bg); border-color:var(--ev-3d-accent); }
+.ev-lang-btn { border-radius:3px; color:var(--ev-color-on-primary); }
+.ev-lang-btn[aria-pressed="true"] { background:linear-gradient(125deg,var(--ev-color-primary),var(--ev-color-accent)); }
+.ev-period,.ev-chances { color:var(--ev-color-on-primary); border:1px solid var(--ev-3d-accent); border-radius:3px; background:linear-gradient(115deg,var(--ev-color-bg),#252044); box-shadow:inset 3px 0 var(--ev-3d-accent); }
+.ev-chances strong { color:var(--ev-3d-accent); }
+.ev-pick-hint,.ev-action { border-radius:2px; border-color:var(--ev-3d-accent); clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px); background:linear-gradient(110deg,#29245B,#101A37 70%); box-shadow:inset 4px 0 var(--ev-3d-accent),inset 0 -3px #5B2A86; }
+.ev-pick-hint::before,.ev-action::before { border-radius:0; border-color:var(--ev-ui-trim); clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px); }
+.ev-pick-hint::after,.ev-action::after { content:''; bottom:4px; left:auto; right:16px; width:25px; height:2px; background:var(--ev-3d-accent); box-shadow:-30px 0 var(--ev-color-accent); }
+.ev-pick-hint-icon { border-radius:4px; border-color:var(--ev-3d-accent); }
+.ev-ticker { border-radius:2px; border-color:var(--ev-3d-accent); background:linear-gradient(100deg,#22204B,#0A142B); box-shadow:inset 0 3px #343064,0 6px 20px var(--ev-color-scrim); }
+.ev-ticker::before { border-radius:0; border-width:0 0 1px; }
+.ev-ticker-label { border-radius:0; border:0; border-right:1px solid var(--ev-3d-accent); background:none; color:var(--ev-3d-accent); letter-spacing:.5px; }
+.ev-ticker-label::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--ev-3d-accent); box-shadow:0 0 6px var(--ev-3d-accent); }
+.ev-info { background-color:var(--ev-color-bg); background-blend-mode:multiply; }
+.ev-card { border:1px solid var(--ev-ui-trim); border-image:none; border-radius:2px; padding:24px 20px; background:linear-gradient(135deg,#1E1B40,#10152D); color:var(--ev-color-on-primary); box-shadow:inset 3px 0 var(--ev-color-primary),0 10px 24px var(--ev-color-scrim); }
+.ev-card-title { border:1px solid var(--ev-3d-accent); background:linear-gradient(110deg,#33235F,#142C47); clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px); color:var(--ev-color-on-primary); }
+.ev-empty,.ev-slot,.ev-record time { color:#B6BAD8; }.ev-record { border-color:var(--ev-ui-trim); }
+
+/* Printed celestial artwork, dynamic prize labels and a one-pass foil reflection. */
+.ev-prize-face { --card-foil:var(--ev-rarity-common); overflow:hidden; border-radius:12px; box-shadow:0 0 0 1px var(--card-foil),2px 3px 0 var(--ev-ui-edge),5px 8px 20px var(--ev-color-scrim); }
+.ev-prize-face[data-rarity="rare"] { --card-foil:var(--ev-rarity-rare); }
+.ev-prize-face[data-rarity="epic"] { --card-foil:var(--ev-rarity-epic); }
+.ev-prize-face[data-rarity="legendary"] { --card-foil:var(--ev-rarity-legendary); }
+.ev-prize-front { background:var(--ev-color-bg); color:var(--ev-color-on-primary); }
+.ev-prize-frame { z-index:0; }
+.ev-prize-front::before { content:''; position:absolute; z-index:1; top:21%; left:16%; width:68%; aspect-ratio:1; border-radius:50%; background:radial-gradient(circle,color-mix(in srgb,var(--card-foil) 28%,transparent),transparent 70%); }
+.ev-prize-face::after { content:''; position:absolute; z-index:4; inset:0; pointer-events:none; border:1px solid var(--card-foil); border-radius:inherit; background:linear-gradient(120deg,transparent 25%,rgb(115 226 255 / .12) 40%,rgb(255 255 255 / .26) 48%,rgb(229 129 255 / .15) 54%,transparent 70%); background-size:300% 100%; background-position:100% 0; }
+.ev-prize-card.is-flipped .ev-prize-front::after { animation:ev-foil-pass 1.4s .25s ease-out both; }
+.ev-prize-icon { z-index:2; top:23%; width:52%; height:34%; object-fit:contain; filter:drop-shadow(0 9px 8px var(--ev-color-bg)); }
+.ev-prize-front .ev-rarity-tag { position:absolute; z-index:2; top:3.4%; left:22%; width:56%; padding:0; border:0; border-radius:0; line-height:1.3; background:none; color:var(--card-foil); font-size:10px; letter-spacing:1.5px; }
+.ev-prize-name { position:absolute; z-index:2; left:13%; width:74%; bottom:16%; min-height:2.5em; display:grid; place-items:center; color:var(--ev-color-on-primary); text-shadow:0 2px 6px var(--ev-color-bg); font-size:19px; }
+.ev-card-stars { position:absolute; z-index:2; bottom:10%; left:12%; width:76%; color:var(--card-foil); letter-spacing:5px; font-size:12px; text-shadow:0 0 8px var(--card-foil); }
+.ev-prize-card.is-small .ev-card-stars,.ev-reveal-grid .ev-card-stars { font-size:7px; letter-spacing:2px; }
+@keyframes ev-foil-pass { from { background-position:100% 0; } to { background-position:0 0; } }
+@media(prefers-reduced-motion:reduce) { .ev-prize-card.is-flipped .ev-prize-front::after { animation:none; } }
+.ev-arrow { border:1px solid var(--ev-3d-accent); border-radius:3px; background:var(--ev-color-bg); box-shadow:inset 0 0 10px var(--ev-ui-glint); }
+.ev-arrow { color:var(--ev-3d-accent); }

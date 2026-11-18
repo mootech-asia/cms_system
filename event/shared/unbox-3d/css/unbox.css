@@ -423,14 +423,7 @@ button { font: inherit; -webkit-tap-highlight-color: transparent; }
 .ev-record time { flex-shrink: 0; color: var(--ev-color-text-2); font-variant-numeric: tabular-nums; }
 .ev-record .ev-rarity-tag { margin-right: var(--ev-space-2); }
 .ev-empty { margin: 0; color: var(--ev-color-text-2); font-size: 14px; }
-.ev-footer-deco {
-  position: relative;
-  display: flex;
-  height: 0;
-  padding-top: 21.33%;
-  margin: 0 calc(var(--ev-space-4) * -1) calc(var(--ev-space-10) * -1);
-  background: var(--ev-img-footerDeco) center / 100% 100% no-repeat;
-}
+
 
 /* ---------- 稀有度標籤：顏色取 --ev-rarity-* ---------- */
 .ev-rarity-tag {
@@ -684,3 +677,24 @@ button { font: inherit; -webkit-tap-highlight-color: transparent; }
 }
 .ev-ticker-label::before { content: '✦'; color: var(--ev-color-accent); font-size: 11px; }
 .ev-ticker-track { mask-image: linear-gradient(90deg, transparent, black 8px, black calc(100% - 10px), transparent); }
+
+.ev-atmosphere { position:absolute; inset:0; width:100%; height:100%; z-index:2; pointer-events:none; }
+.ev-treasure { position:relative; display:block; width:min(78vw,320px,calc(100svh - 280px)); aspect-ratio:1/1.08; margin:auto; list-style:none; }
+.ev-treasure-object { position:absolute; top:0; left:15%; width:70%; height:70%; display:grid; place-items:center; animation:ev-treasure-rise .65s cubic-bezier(.16,.8,.3,1) both; }
+.ev-treasure-object img { display:block; width:100%; height:100%; object-fit:contain; filter:drop-shadow(8px 12px 5px var(--ev-color-scrim)); }
+.ev-treasure-plinth { position:absolute; left:9%; top:63%; width:82%; height:18%; border-radius:50%; border:2px solid var(--ev-color-gold); background:radial-gradient(ellipse at 50% 35%,var(--ev-color-gold),var(--ev-color-primary) 55%,var(--ev-ui-base) 90%); box-shadow:0 7px 0 var(--ev-ui-base),0 9px 0 var(--ev-color-gold),0 18px 22px var(--ev-color-scrim),inset 0 0 0 5px var(--ev-ui-trim); }
+.ev-treasure-plinth::after { content:''; position:absolute; inset:15% 22%; border-radius:50%; background:radial-gradient(ellipse,var(--ev-color-scrim),transparent 70%); }
+.ev-treasure-caption { position:absolute; top:85%; left:0; width:100%; display:flex; flex-direction:column; align-items:center; gap:8px; color:var(--ev-color-on-primary); }
+.ev-treasure-caption strong { font-size:21px; line-height:1.2; text-shadow:0 2px 5px var(--ev-ui-base); }
+.ev-treasure-gem { color:var(--ev-color-accent); font-size:110px; text-shadow:4px 8px 0 var(--ev-color-primary),0 0 30px var(--ev-color-gold); }
+.ev-treasure.is-small { width:100%; }.ev-treasure.is-small strong { font-size:12px; }.ev-treasure.is-small .ev-rarity-tag { font-size:8px; }
+.ev-reveal-grid:has(.ev-treasure) { grid-template-columns:repeat(auto-fit,minmax(120px,150px)); gap:24px; }
+@keyframes ev-treasure-rise { from { opacity:0; transform:translateY(45px) scale(.6) rotate(-8deg); } to { opacity:1; transform:none; } }
+
+.ev-pick-hint-icon img { display:block; width:100%; height:100%; rotate:180deg; }
+@media (prefers-reduced-motion: reduce) {
+  .ev-treasure-object { animation:none; }
+}
+.ev-arrow img { opacity:0; }
+.ev-arrow::after { content:''; position:absolute; width:12px; height:12px; top:50%; left:46%; border:solid currentColor; border-width:2px 2px 0 0; transform:translate(-50%,-50%) rotate(45deg); }
+.ev-arrow--prev::after { left:54%; transform:translate(-50%,-50%) rotate(-135deg); }

@@ -2,7 +2,8 @@
  * 拆卡包／拆盲盒共用流程：select（挑選）→ ready（已選定）→ loading（向後台取結果）→ opening（動畫）→ reveal（揭曉）。
  * 活動差異（type、圖片槽、文案、mock 內容）全部在各活動的 assets/js/config.js；本檔不放活動專屬內容。
  */
-import { createScene } from './scene.js?v=20261118-art3';
+import { createAtmosphere } from './atmosphere.js?v=20261118-art4';
+import { createScene } from './scene.js?v=20261118-art4';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -19,6 +20,7 @@ var PER_OPEN_KEY = cfg.storageKey + '_per_open_preview';
 
 var $ = function (id) { return document.getElementById(id); };
 var stage = $('stage');
+createAtmosphere(stage, cfg.type);
 var sceneEl = $('scene');
 var btnAction = $('btnAction');
 var reveal = $('reveal');
@@ -319,11 +321,21 @@ function cardHtml(r, small) {
   var rarity = rarityOf(r);
   return '<span class="ev-prize-face ev-prize-front" data-rarity="' + rarity + '">' +
     '<span class="ev-prize-frame" aria-hidden="true"></span>' +
+    '<span class="ev-card-stars" aria-hidden="true">' + '✦'.repeat(Store.rarityRank(r) + 1) + '</span>' +
     (r.icon ? '<img class="ev-prize-icon" src="' + esc(r.icon) + '" alt="" />' : '') +
     '<span class="ev-rarity-tag" data-rarity="' + rarity + '">' + esc(t('rarity.' + rarity)) + '</span>' +
     '<span class="ev-prize-name' + (small ? ' is-small' : '') + '">' + esc(pick(r.name)) + '</span></span>';
 }
 
+function treasureHtml(r) {
+  var rarity = rarityOf(r);
+  return '<span class="ev-treasure-plinth" aria-hidden="true"></span>' +
+    '<span class="ev-treasure-object">' + (r.icon ? '<img src="' + esc(r.icon) + '" alt="" />' : '<span class="ev-treasure-gem" aria-hidden="true">◆</span>') + '</span>' +
+    '<span class="ev-treasure-caption"><span class="ev-rarity-tag" data-rarity="' + rarity + '">' + esc(t('rarity.' + rarity)) + '</span>' +
+    '<strong>' + esc(pick(r.name)) + '</strong></span>';
+}
+
+var treasureMode = cfg.type === 'blind-box';
 var revealView = 'card';
 function showReveal() {
   setState('reveal');
@@ -331,12 +343,23 @@ function showReveal() {
   revealView = 'card';
   reveal.hidden = false;
   renderRevealCard();
-  $('revealCard').focus();
+  (treasureMode ? $('btnReveal') : $('revealCard')).focus();
 }
 
 function renderRevealCard() {
   var r = rewards[revealed];
   var card = $('revealCard');
+  card.hidden = treasureMode;
+  $('treasureDisplay').hidden = !treasureMode;
+  if (treasureMode) {
+    $('treasureDisplay').innerHTML = treasureHtml(r);
+    $('treasureDisplay').setAttribute('aria-label', pick(r.name));
+    $('treasureDisplay').setAttribute('data-rarity', rarityOf(r));
+    $('revealGlow').setAttribute('data-rarity', rarityOf(r));
+    Sound.play('reveal', Store.rarityRank(r));
+    renderRevealText();
+    return;
+  }
   card.classList.remove('is-flipped');
   card.setAttribute('data-rarity', rarityOf(r));
   $('revealGlow').setAttribute('data-rarity', 'common');
@@ -347,7 +370,7 @@ function renderRevealCard() {
   renderRevealText();
 }
 
-function flipped() { return $('revealCard').classList.contains('is-flipped'); }
+function flipped() { return treasureMode || $('revealCard').classList.contains('is-flipped'); }
 
 function renderRevealText() {
   var total = rewards.length;
@@ -356,7 +379,7 @@ function renderRevealText() {
   $('revealSingle').hidden = summary;
   $('revealGrid').hidden = !summary;
   var shown = revealed + (flipped() ? 1 : 0);
-  $('revealCount').textContent = summary ? '' : flipped() ? t('reveal.count', { n: shown, total: total }) : t('reveal.tap');
+  $('revealCount').textContent = summary ? '' : treasureMode ? t('treasure.count', { n: shown, total: total }) : flipped() ? t('reveal.count', { n: shown, total: total }) : t('reveal.tap');
   $('revealCard').setAttribute('aria-label', flipped() ? pick(rewards[revealed].name) : t('reveal.flip'));
   var last = revealed === total - 1;
   var key = summary || (flipped() && last && total === 1) ? 'reveal.done'
@@ -378,7 +401,7 @@ function flip() {
 
 function showSummary() {
   revealView = 'summary';
-  $('revealGrid').innerHTML = rewards.map(function (r) { return '<li class="ev-prize-card is-static">' + cardHtml(r, true) + '</li>'; }).join('');
+  $('revealGrid').innerHTML = rewards.map(function (r) { return '<li class="' + (treasureMode ? 'ev-treasure is-small' : 'ev-prize-card is-static') + '">' + (treasureMode ? treasureHtml(r) : cardHtml(r, true)) + '</li>'; }).join('');
   Sound.play('reward');
   renderRevealText();
 }
@@ -427,7 +450,8 @@ function renderLocale() {
     if (revealView === 'summary') showSummary();
     else {
       var r = rewards[revealed];
-      $('revealCard').querySelector('.ev-prize-front').outerHTML = cardHtml(r);
+      if (treasureMode) { $('treasureDisplay').innerHTML = treasureHtml(r); $('treasureDisplay').setAttribute('aria-label', pick(r.name)); }
+      else $('revealCard').querySelector('.ev-prize-front').outerHTML = cardHtml(r);
       renderRevealText();
     }
   }

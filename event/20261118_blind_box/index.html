@@ -3,23 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>沙漠精靈的贈禮</title>
+    <title>Desert Genie’s Gift</title>
     <meta name="description" content="Pick a blind box and reveal your surprise!" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="沙漠精靈的贈禮" />
+    <meta property="og:title" content="Desert Genie’s Gift" />
     <meta property="og:description" content="Pick a blind box and reveal your surprise!" />
     <meta property="og:url" content="https://mootech-asia.github.io/cms_system/event/20261118_blind_box/" />
     <meta property="og:image" content="https://mootech-asia.github.io/cms_system/event/20261118_blind_box/assets/img/share/share-preview.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="沙漠精靈的贈禮" />
+    <meta name="twitter:title" content="Desert Genie’s Gift" />
     <meta name="twitter:description" content="Pick a blind box and reveal your surprise!" />
     <meta name="twitter:image" content="https://mootech-asia.github.io/cms_system/event/20261118_blind_box/assets/img/share/share-preview.jpg" />
-    <link rel="preload" as="image" href="assets/img/scene/stage-bg.webp?v=20261118-art3" fetchpriority="high" />
-    <link rel="modulepreload" href="../shared/unbox-3d/vendor/three.min.js?v=20261118-art3" />
-    <link rel="stylesheet" href="../shared/unbox-3d/css/unbox.css?v=20261118-art3" />
-    <link rel="stylesheet" href="assets/css/theme.css?v=20261118-art3" />
+    <link rel="preload" as="image" href="assets/img/scene/stage-bg.webp?v=20261118-art4" fetchpriority="high" />
+    <link rel="modulepreload" href="../shared/unbox-3d/vendor/three.min.js?v=20261118-art4" />
+    <link rel="stylesheet" href="../shared/unbox-3d/css/unbox.css?v=20261118-art4" />
+    <link rel="stylesheet" href="assets/css/theme.css?v=20261118-art4" />
   </head>
   <body>
     <div class="ev-loading" id="loading" role="status" aria-live="polite">
@@ -76,7 +76,7 @@
             <strong id="chances">0</strong>
             <span data-i18n="chances.after"></span>
           </p>
-          <p class="ev-pick-hint" id="pickHint"><img class="ev-pick-hint-icon" data-img="tapHint" alt="" aria-hidden="true" /><span id="pickHintText"></span></p>
+          <p class="ev-pick-hint" id="pickHint"><span class="ev-pick-hint-icon" aria-hidden="true"><img data-img="tapHint" alt="" /></span><span id="pickHintText"></span></p>
           <button type="button" class="ev-action" id="btnAction" hidden><span id="actionText"></span></button>
           <p class="ev-status" id="status" role="status" aria-live="polite"></p>
           <div class="ev-console-links">
@@ -107,9 +107,6 @@
             <li class="ev-empty" id="recordEmpty" data-i18n="records.empty"></li>
           </ul>
         </article>
-        <div class="ev-footer-deco" aria-hidden="true">
-          <span class="ev-asset ev-asset--floor" data-asset="footerDeco"></span>
-        </div>
       </div>
     </section>
 
@@ -121,6 +118,7 @@
           <div class="ev-reveal-glow" id="revealGlow" aria-hidden="true"></div>
           <img class="ev-reveal-rays" data-img="revealRays" alt="" />
           <button type="button" class="ev-prize-card" id="revealCard"></button>
+          <div class="ev-treasure" id="treasureDisplay" role="img" hidden></div>
         </div>
         <ul class="ev-reveal-grid" id="revealGrid" hidden></ul>
         <div class="ev-reveal-actions">
@@ -154,12 +152,12 @@
       <span class="ev-asset ev-asset--rotate" data-asset="rotateHint" aria-hidden="true"></span>
     </div>
 
-    <script defer src="assets/js/config.js?v=20261118-art3"></script>
-    <script defer src="../shared/unbox-3d/js/skin.js?v=20261118-art3"></script>
-    <script defer src="../shared/unbox-3d/js/i18n.js?v=20261118-art3"></script>
-    <script defer src="../shared/unbox-3d/js/store.js?v=20261118-art3"></script>
-    <script defer src="../shared/unbox-3d/js/sound.js?v=20261118-art3"></script>
-    <script defer src="../shared/unbox-3d/js/share.js?v=20261118-art3"></script>
-    <script type="module" src="../shared/unbox-3d/js/app.js?v=20261118-art3"></script>
+    <script defer src="assets/js/config.js?v=20261118-art4"></script>
+    <script defer src="../shared/unbox-3d/js/skin.js?v=20261118-art4"></script>
+    <script defer src="../shared/unbox-3d/js/i18n.js?v=20261118-art4"></script>
+    <script defer src="../shared/unbox-3d/js/store.js?v=20261118-art4"></script>
+    <script defer src="../shared/unbox-3d/js/sound.js?v=20261118-art4"></script>
+    <script defer src="../shared/unbox-3d/js/share.js?v=20261118-art4"></script>
+    <script type="module" src="../shared/unbox-3d/js/app.js?v=20261118-art4"></script>
   </body>
 </html>

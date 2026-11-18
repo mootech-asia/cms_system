@@ -22,40 +22,40 @@ window.EVENT_CONFIG = {
   skins: {},
 
   images: {
-    stageBg: 'assets/img/scene/stage-bg.webp?v=20261118-art3',
-    infoBg: 'assets/img/scene/info-bg.svg?v=20261118-art3',
+    stageBg: 'assets/img/scene/stage-bg.webp?v=20261118-art4',
+    infoBg: 'assets/img/scene/info-bg.svg?v=20261118-art4',
     title: {
-      en: 'assets/img/title/title-main.webp?v=20261118-art3',
-      ko: 'assets/img/title/title-main.webp?v=20261118-art3',
-      th: 'assets/img/title/title-main.webp?v=20261118-art3',
-      zh: 'assets/img/title/title-main.webp?v=20261118-art3'
+      en: 'assets/img/title/title-en.webp?v=20261118-art4',
+      ko: 'assets/img/title/title-ko.webp?v=20261118-art4',
+      th: 'assets/img/title/title-th.webp?v=20261118-art4',
+      zh: 'assets/img/title/title-main.webp?v=20261118-art4'
     },
-    periodBadge: 'assets/img/ui/period-badge.svg?v=20261118-art3',
-    chancesBadge: 'assets/img/ui/chances-badge.svg?v=20261118-art3',
-    btnPrimary: 'assets/img/ui/btn-primary.svg?v=20261118-art3',
-    btnArrow: 'assets/img/ui/btn-arrow.svg?v=20261118-art3',
-    tickerBar: 'assets/img/ui/ticker-bar.svg?v=20261118-art3',
-    cardFrame: 'assets/img/ui/card-frame.svg?v=20261118-art3',
-    cardTitle: 'assets/img/ui/card-title.svg?v=20261118-art3',
-    footerDeco: 'assets/img/scene/footer-deco.svg?v=20261118-art3',
-    soundOn: 'assets/img/icon/icon-sound-on.svg?v=20261118-art3',
-    soundOff: 'assets/img/icon/icon-sound-off.svg?v=20261118-art3',
-    share: 'assets/img/icon/icon-share.svg?v=20261118-art3',
-    rotateHint: 'assets/img/icon/icon-rotate.svg?v=20261118-art3',
-    tapHint: 'assets/img/icon/icon-tap.svg?v=20261118-art3',
+    periodBadge: 'assets/img/ui/period-badge.svg?v=20261118-art4',
+    chancesBadge: 'assets/img/ui/chances-badge.svg?v=20261118-art4',
+    btnPrimary: 'assets/img/ui/btn-primary.svg?v=20261118-art4',
+    btnArrow: 'assets/img/ui/btn-arrow.svg?v=20261118-art4',
+    tickerBar: 'assets/img/ui/ticker-bar.svg?v=20261118-art4',
+    cardFrame: 'assets/img/ui/card-frame.svg?v=20261118-art4',
+    cardTitle: 'assets/img/ui/card-title.svg?v=20261118-art4',
+    footerDeco: 'assets/img/scene/footer-deco.svg?v=20261118-art4',
+    soundOn: 'assets/img/icon/icon-sound-on.svg?v=20261118-art4',
+    soundOff: 'assets/img/icon/icon-sound-off.svg?v=20261118-art4',
+    share: 'assets/img/icon/icon-share.svg?v=20261118-art4',
+    rotateHint: 'assets/img/icon/icon-rotate.svg?v=20261118-art4',
+    tapHint: 'assets/img/icon/icon-tap.svg?v=20261118-art4',
     /* 3D 寶箱（shape: 'chest'）：正面可給 1～6 張（環上六箱依序輪流）；側面／背面會乘上 --ev-3d-item-N 色票，
        拱蓋與兩端半圓保留原色。 */
-    boxFront: ['assets/img/3d/chest-front.webp?v=20261118-art3'],
-    boxSide: 'assets/img/3d/chest-side.webp?v=20261118-art3',
-    boxLid: 'assets/img/3d/chest-lid.webp?v=20261118-art3',
-    boxLidSide: 'assets/img/3d/chest-lid-end.svg?v=20261118-art3',
+    boxFront: ['assets/img/3d/chest-front.webp?v=20261118-art4'],
+    boxSide: 'assets/img/3d/chest-side.webp?v=20261118-art4',
+    boxLid: 'assets/img/3d/chest-lid.webp?v=20261118-art4',
+    boxLidSide: 'assets/img/3d/chest-lid-end.svg?v=20261118-art4',
     /* 揭曉 */
-    revealRays: 'assets/img/reveal/reveal-rays.svg?v=20261118-art3',
-    rewardBack: 'assets/img/reveal/reward-back.svg?v=20261118-art3',
-    rewardFrameCommon: 'assets/img/reveal/reward-frame-common.svg?v=20261118-art3',
-    rewardFrameRare: 'assets/img/reveal/reward-frame-rare.svg?v=20261118-art3',
-    rewardFrameEpic: 'assets/img/reveal/reward-frame-epic.svg?v=20261118-art3',
-    rewardFrameLegendary: 'assets/img/reveal/reward-frame-legendary.svg?v=20261118-art3'
+    revealRays: 'assets/img/reveal/reveal-rays.svg?v=20261118-art4',
+    rewardBack: 'assets/img/reveal/reward-back.svg?v=20261118-art4',
+    rewardFrameCommon: 'assets/img/reveal/reward-frame-common.svg?v=20261118-art4',
+    rewardFrameRare: 'assets/img/reveal/reward-frame-rare.svg?v=20261118-art4',
+    rewardFrameEpic: 'assets/img/reveal/reward-frame-epic.svg?v=20261118-art4',
+    rewardFrameLegendary: 'assets/img/reveal/reward-frame-legendary.svg?v=20261118-art4'
   },
 
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
@@ -69,7 +69,7 @@ window.EVENT_CONFIG = {
   assetSpecs: {
     stageBg: 'stage-bg · 750×1000',
     infoBg: 'info-bg · 750×750 tile',
-    title: 'title-main · 690×240',
+    title: 'title-{locale} · 690×240',
     periodBadge: 'period-badge · 480×64',
     chancesBadge: 'chances-badge · 360×88',
     btnPrimary: 'btn-primary · 400×110',
@@ -94,7 +94,7 @@ window.EVENT_CONFIG = {
 
   /* 活動文案（en/ko/th 必填；zh 只供內部預覽） */
   strings: {
-    'title.alt': { en: '沙漠精靈的贈禮', ko: '沙漠精靈的贈禮', th: '沙漠精靈的贈禮', zh: '沙漠精靈的贈禮' },
+    'title.alt': { en: 'Desert Genie’s Gift', ko: '사막 정령의 선물', th: 'ของขวัญจากภูตทะเลทราย', zh: '沙漠精靈的贈禮' },
     'scene.aria': { en: 'Blind boxes. Drag to rotate.', ko: '랜덤박스. 드래그해서 돌려 보세요.', th: 'กล่องสุ่ม ลากเพื่อหมุน', zh: '可拖曳旋轉的 3D 選擇區' },
     'pick.label': { en: 'Box {n}', ko: '박스 {n}', th: 'กล่อง {n}', zh: '盲盒 {n}' },
     'chances.before': { en: 'Boxes left', ko: '남은 박스', th: 'กล่องคงเหลือ', zh: '剩餘盲盒' },
@@ -105,6 +105,7 @@ window.EVENT_CONFIG = {
     'status.select': { en: 'Drag left or right to browse the other boxes.', ko: '좌우로 드래그해서 다른 박스도 둘러보세요.', th: 'ลากซ้ายขวาเพื่อดูกล่องอื่น', zh: '左右拖曳可以瀏覽其他盲盒' },
     'status.ready': { en: 'Ready to reveal your surprise?', ko: '서프라이즈를 확인할 준비가 되셨나요?', th: 'พร้อมเปิดดูเซอร์ไพรส์หรือยัง?', zh: '準備好揭開驚喜了嗎？' },
     'status.opening': { en: 'Your surprise is coming…', ko: '곧 서프라이즈가 공개됩니다…', th: 'เซอร์ไพรส์กำลังจะเผยแล้ว…', zh: '驚喜即將揭曉…' },
+    'reveal.next': { en: 'Next treasure', ko: '다음 보물', th: 'สมบัติชิ้นถัดไป', zh: '下一件寶物' },
     'reveal.title': { en: 'Box opened!', ko: '박스 오픈!', th: 'เปิดกล่องแล้ว!', zh: '盲盒打開了！' },
     'rarity.legendary': { en: 'Secret', ko: '시크릿', th: 'ซีเคร็ต', zh: '隱藏款' },
     'toast.noChances': { en: 'No boxes left', ko: '남은 박스가 없습니다', th: 'ไม่มีกล่องเหลือแล้ว', zh: '盲盒已用完' },

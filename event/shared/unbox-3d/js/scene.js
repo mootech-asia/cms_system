@@ -3,7 +3,7 @@
  * 包裝表面全部是圖片槽（config.images），側面色與燈光色讀 theme.css 的 --ev-3d-* 色票，
  * 換主題只要換圖或換色票，不用改程式。WebGL 無法啟動時回傳 null，由 app.js 改用 2D 圖片。
  */
-import * as THREE from '../vendor/three.min.js?v=20261118-art3';
+import * as THREE from '../vendor/three.min.js?v=20261118-art4';
 
 var STEP = Math.PI / 3;
 var RADIUS = 2.65;
@@ -163,7 +163,9 @@ export function createScene(stage, opts) {
       base = new THREE.Mesh(geo(CW, CH, CD), [side, side, side, side, cFront, side]);
       var arc = chestLidGeometry();
       var lidTopC = art(images.lid);
+      lidTopC.side = THREE.DoubleSide;
       var lidEnd = art(images.lidSide);
+      lidEnd.side = THREE.DoubleSide;
       lid = new THREE.Mesh(arc, [lidTopC, lidEnd, lidEnd]);
       lid.rotation.z = Math.PI / 2;
       // 轉軸在箱身後上緣，蓋子中心距軸 CD/2
@@ -171,6 +173,10 @@ export function createScene(stage, opts) {
       pivot.position.set(0, CH / 2, -CD / 2);
       lid.position.set(0, 0, CD / 2);
       pivot.add(lid);
+      // The half-cylinder has no underside; a solid inner board remains visible as the lid opens.
+      var innerBoard = new THREE.Mesh(geo(CW, 0.035, CD), side);
+      innerBoard.position.set(0, -0.018, CD / 2);
+      pivot.add(innerBoard);
     } else if (box) {
       var front = art(images.front && fronts[i % fronts.length]);
       base = new THREE.Mesh(geo(1.55, 1.55, 1.55), [side, side, side, side, front, side]);
