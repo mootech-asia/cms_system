@@ -57,3 +57,9 @@ STYLE LOCK — apply to every image in this conversation:
 - 有沒有任何字（主標以外）、中文？主標拼字正確、泰文上下標沒被裁？
 - 有沒有出現第一節「禁止元素」？
 - `reward-frame-*` 中間是真的透明，不是棋盤格？放進頁面截圖：第一屏（360×640、390×844）＋揭曉畫面（四種稀有度）。
+
+## Refinement delivery 20261118
+
+Use the existing 750×1000 stage as registration reference. Deliver separate full-canvas RGBA curtain/lantern, arcade/columns, and foreground tiled floor images, plus a full opaque night desert background. Keep the original camera, horizon, lighting and object anchors. No UI or prize chests in these layers. Preserve source PNGs in source/scene/layers and resize once to 750×1000 WebP.
+
+Reward vortex: warm volumetric gold sand from the approved dust material, transparent 4×4 sheet of 16 evolving frames, fixed camera and consistent center; no white wire arcs or opaque grey background. Source sheet and extracted frames retained under source/reveal; 1280×1280 WebP atlas, 320px per frame, alpha crossfade between frames.

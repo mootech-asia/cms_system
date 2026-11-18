@@ -3,7 +3,7 @@
  * 包裝表面全部是圖片槽（config.images），側面色與燈光色讀 theme.css 的 --ev-3d-* 色票，
  * 換主題只要換圖或換色票，不用改程式。WebGL 無法啟動時回傳 null，由 app.js 改用 2D 圖片。
  */
-import * as THREE from '../vendor/three.min.js?v=20261118-carousel2';
+import * as THREE from '../vendor/three.min.js?v=20261118-vortex1';
 
 
 
@@ -64,7 +64,7 @@ export function createScene(stage, opts) {
   var keep = function (x) { disposables.push(x); return x; };
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
-  camera.position.set(0, 2.3, 7.6);
+  camera.position.set(0, box ? 2.3 : 2.5, 7.6);
   camera.lookAt(0, 0.3, 0);
   if (chest) scene.fog = { isFog: true, color: new THREE.Color(token('--ev-3d-haze', '#b58a65')), near: 8.5, far: 20 };
 
@@ -105,7 +105,7 @@ export function createScene(stage, opts) {
     else cache[src].cbs.push(onLoad);
   }
   function mapped(material, src) {
-    texture(src, function (tex) { material.map = tex; material.needsUpdate = true; });
+    texture(src, function (tex) { material.map = tex; material.needsUpdate = true; dirty = true; });
     return material;
   }
 
@@ -274,7 +274,7 @@ export function createScene(stage, opts) {
     group.position.set(Math.sin(a) * RADIUS, 0, Math.cos(a) * RADIUS - RADIUS);
     group.rotation.y = a;
     ring.add(group);
-    items.push({ group: group, body: body, lid: lid, pivot: pivot, contents: contents, base: base, sealRest: !box ? lid.geometry.attributes.position.array.slice() : null, shadow: shadowMat, contact: contactMat });
+    items.push({ group: group, body: body, lid: lid, pivot: pivot, contents: contents, base: base, normalMaterials: !box ? base.material : null, normalContent: !box ? contents[0].material[4] : null, secret:false, sealRest: !box ? lid.geometry.attributes.position.array.slice() : null, shadow: shadowMat, contact: contactMat });
   }
 
   // 吉祥物站在環形圓心（世界座標 0, 地板, -RADIUS）。角色本身是 <img>（動態 WebP），放在透明畫布後層；
@@ -347,12 +347,29 @@ export function createScene(stage, opts) {
   resize.observe(stage);
   if (box) resize.observe(stage.closest('.ev-stage'));
 
+  var secretActive = false, secretMaterials = null;
+  function setSecret(active) {
+    if (box || !opts.secretImages) return;
+    secretActive = active; dirty = true;
+    if (active && !secretMaterials) secretMaterials = {front:art(opts.secretImages.front),side:art(opts.secretImages.side),back:art(opts.secretImages.back)};
+  }
   var mode = 'select';
   var zoom = 0, zoomTarget = 0, focusDone = null;
   var selected = 0;
+  var hovered = -1, jellyIndex = -1, jellyStart = 0;
+  var jellyDuration = 520 / 3;
   var angle = 0;
   var target = 0;
-  var startX = null, startY = null;
+  var startX = null, startY = null, gestureStart = 0;
+  var inspectAngle = 0, inspectStart = 0, gestureMode = '';
+  var sealCue = stage.querySelector('#packSealCue');
+  function onSeal(x,y) {
+    var r = renderer.domElement.getBoundingClientRect();
+    pointer.set((x-r.left)/r.width*2-1,-(y-r.top)/r.height*2+1);
+    raycaster.setFromCamera(pointer,camera);
+    var hit = raycaster.intersectObjects([items[selected].body],true)[0];
+    return !!hit && items[selected].body.worldToLocal(hit.point.clone()).y > .86;
+  }
   var drag = 0, dragY = 0;
   var progress = 0;
   var openMs = 1800;
@@ -396,7 +413,10 @@ export function createScene(stage, opts) {
   on(stage, 'pointerdown', function (e) {
     if (mode !== 'select' && mode !== 'ready') return;
     if (e.target !== renderer.domElement) return;
-    startX = e.clientX; startY = e.clientY;
+    gestureMode = !box && mode === 'ready' ? (onSeal(e.clientX,e.clientY) ? 'tear' : 'rotate') : '';
+    inspectStart = inspectAngle;
+    jellyIndex = -1; hovered = -1; dirty = true;
+    startX = e.clientX; startY = e.clientY; gestureStart = performance.now();
     drag = 0; dragY = 0;
     stage.setPointerCapture(e.pointerId);
   });
@@ -404,17 +424,23 @@ export function createScene(stage, opts) {
     if (startX === null) {
       // 滑鼠移到包裝上顯示手指游標，表示可以點選
       if (e.pointerType === 'mouse' && mode === 'select' && e.target === renderer.domElement) {
-        renderer.domElement.style.cursor = pick(e.clientX, e.clientY) >= 0 ? 'pointer' : '';
+        var hit = pick(e.clientX, e.clientY);
+        renderer.domElement.style.cursor = hit >= 0 ? 'pointer' : '';
+        if (!box && hit !== hovered && hit >= 0 && !reduced.matches) {
+          jellyIndex = hit; jellyStart = performance.now(); dirty = true;
+        }
+        hovered = hit;
       }
       return;
     }
     drag = e.clientX - startX; dragY = e.clientY - startY;
     if (mode === 'select') angle = target + drag * 0.004;
+    else if (!box && mode === 'ready' && gestureMode === 'rotate') { inspectAngle = inspectStart + drag*.018; dirty = true; }
   });
   on(stage, 'pointerup', function (e) {
     if (startX === null) return;
     if (mode === 'select' && Math.abs(drag) > 25) move(drag > 0 ? 1 : -1);
-    else if (mode === 'ready' && (box ? dragY < -55 && Math.abs(dragY) > Math.abs(drag) : Math.abs(drag) > 55) && opts.onSwipeOpen) opts.onSwipeOpen();
+    else if (mode === 'ready' && (box ? dragY < -55 && Math.abs(dragY) > Math.abs(drag) : gestureMode === 'tear' && Math.abs(drag) > 55 && Math.abs(drag) > Math.abs(dragY)*1.2) && opts.onSwipeOpen) opts.onSwipeOpen({ speed: Math.abs(drag) / Math.max(16, performance.now()-gestureStart) });
     else if (mode === 'select' && Math.abs(drag) < 8 && opts.onPick) {
       // 沒有拖曳＝點選：點到哪一包就選哪一包
       var i = pick(e.clientX, e.clientY);
@@ -422,6 +448,7 @@ export function createScene(stage, opts) {
     }
     startX = null; startY = null;
   });
+  on(stage, 'pointerleave', function () { hovered = -1; renderer.domElement.style.cursor = ''; });
   on(stage, 'pointercancel', function () { startX = null; startY = null; });
   on(document, 'ev:skin', applyTokens);
 
@@ -460,7 +487,9 @@ export function createScene(stage, opts) {
     raf = 0;
     if (disposed || !visible || document.hidden) return;
     if (now - last < 1000 / 30) { raf = requestAnimationFrame(frame); return; }
-    var changing = mode === 'opening' || Math.abs(zoomTarget - zoom) > .001 || Math.abs(target - angle) > .0001 || startX !== null;
+    var jellyActive = !box && mode === 'select' && !reduced.matches && jellyIndex >= 0 && now - jellyStart < jellyDuration;
+    if (!jellyActive && jellyIndex >= 0) { jellyIndex = -1; dirty = true; }
+    var changing = jellyActive || mode === 'opening' || Math.abs(zoomTarget - zoom) > .001 || Math.abs(target - angle) > .0001 || startX !== null;
     var animate = changing;
     if (!dirty && !animate) { last = now; raf = requestAnimationFrame(frame); return; }
     dirty = false;
@@ -471,6 +500,7 @@ export function createScene(stage, opts) {
       zoom = zoomTarget;
       if (focusDone) { var focused = focusDone; focusDone = null; focused(); }
     }
+    if (!box && mode === 'opening') inspectAngle *= Math.max(0,1-dt*12);
     if (mode === 'opening') {
       progress += dt / ((reduced.matches ? 300 : openMs) / 1000);
       if (progress >= 1) finishOpen();
@@ -490,9 +520,25 @@ export function createScene(stage, opts) {
       }
       var mine = k === selected;
       if (!box) {
+        var isSecret = secretActive && mine && !!(secretMaterials && secretMaterials.front.map && secretMaterials.side.map && secretMaterials.back.map);
+        if (it.secret !== isSecret) {
+          it.secret = isSecret;
+          it.base.material = isSecret ? [secretMaterials.side,secretMaterials.side,secretMaterials.side,secretMaterials.side,secretMaterials.front,secretMaterials.back] : it.normalMaterials;
+          it.contents.forEach(function(card) {card.material[4] = card.material[5] = isSecret ? secretMaterials.back : it.normalContent;});
+        }
         it.base.geometry = foilGeometry(!mine);
-        it.group.scale.setScalar(1 + (mine ? zoom * .14 : 0));
-        it.group.position.y = mine ? zoom * .08 : 0;
+        var focusScale = 1 + (mine ? zoom * .14 : 0), sx = 1, sy = 1;
+        if (jellyActive && k === jellyIndex) {
+          var t = (now - jellyStart) / jellyDuration;
+          var keys = [[0,1,1],[.35,1.10,.94],[.68,.98,1.05],[1,1,1]];
+          var segment = t < .35 ? 0 : t < .68 ? 1 : 2;
+          var a = keys[segment], b = keys[segment + 1];
+          var u = (t - a[0]) / (b[0] - a[0]);
+          u = segment === 1 ? u*u*(3-2*u) : 1-(1-u)*(1-u);
+          sx = a[1] + (b[1]-a[1])*u; sy = a[2] + (b[2]-a[2])*u;
+        }
+        it.group.scale.set(focusScale*sx, focusScale*sy, focusScale);
+        it.group.position.y = (mine ? zoom * .08 : 0) + (sy-1)*1.11;
       }
       it.group.visible = mode === 'select' || mine;
       var p = mine ? Math.min(progress, 1) : 0;
@@ -513,7 +559,7 @@ export function createScene(stage, opts) {
       var fly = Math.max(0, (p - 0.2) / 0.8);
       var ease = 1 - Math.pow(1 - fly, 3);
       it.body.rotation.z = chest ? 0 : shake;
-      it.body.rotation.y = mode !== 'select' && box && mine ? 0.15 : 0;
+      it.body.rotation.y = box ? (mode !== 'select' && mine ? 0.15 : 0) : (mine ? inspectAngle : 0);
       if (it.pivot) {
         it.pivot.rotation.x = -ease * 1.7;
       } else if (!box && it.lastTear !== p && (mine || it.lastTear)) {
@@ -537,7 +583,17 @@ export function createScene(stage, opts) {
         it.lid.rotation.z = ease * -.4;
       }
     });
-    if (!document.hidden && stage.offsetParent !== null) renderer.render(scene, camera);
+    if (!document.hidden && stage.offsetParent !== null) {
+      renderer.render(scene, camera);
+      if (sealCue) {
+        sealCue.hidden = mode !== 'ready';
+        if (!sealCue.hidden) {
+          var sealPoint = new THREE.Vector3(0, LID_Y, 0).applyMatrix4(items[selected].body.matrixWorld).project(camera);
+          sealCue.style.left = ((sealPoint.x + 1) * stage.clientWidth / 2) + 'px';
+          sealCue.style.top = ((1 - sealPoint.y) * stage.clientHeight / 2) + 'px';
+        }
+      }
+    }
     if (!disposed) raf = requestAnimationFrame(frame);
   }
   raf = requestAnimationFrame(frame);
@@ -547,14 +603,15 @@ export function createScene(stage, opts) {
     selected: function () { return selected; },
     move: move,
     goTo: goTo,
+    setSecret: setSecret,
     focus: function () {
-      mode = 'focusing'; zoomTarget = 1; dirty = true;
+      mode = 'focusing'; inspectAngle = 0; zoomTarget = 1; dirty = true;
       return new Promise(function (done) { focusDone = done; });
     },
     setMode: function (m) {
       dirty = true;
       mode = m;
-      if (m === 'select') { progress = 0; openDone = null; zoomTarget = 0; focusDone = null; }
+      if (m === 'select') { inspectAngle = 0; progress = 0; openDone = null; zoomTarget = 0; focusDone = null; }
     },
     open: function (ms) {
       openMs = ms || openMs;

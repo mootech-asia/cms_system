@@ -6,7 +6,8 @@
 window.EVENT_CONFIG = {
   type: 'card-pack',
   storageKey: 'event_20261118_card_pack',
-  openMs: 4200,
+  openMs: 1700,
+  tearSpeed: { fastMs: 900, slowMs: 2600, fastVelocity: 1, slowVelocity: .12 },
   /* 每包開出幾張卡：一次只拆一包、每包 1 張 */
   perOpenLimits: { min: 1, max: 1 },
   mockResetOpens: 10,
@@ -21,8 +22,14 @@ window.EVENT_CONFIG = {
   skins: {},
 
   carouselCount: 20,
+  secretEvery: 50,
+  tearSoundMs: 1700,
   images: {
-    magicCircle: 'assets/img/scene/magic-circle.webp?v=20261118-carousel2',
+    secretPack: 'assets/img/3d/secret-pack.webp?v=20261118-vortex1',
+    secretSide: 'assets/img/3d/secret-side.webp?v=20261118-vortex1',
+    secretBack: 'assets/img/reveal/secret-back.webp?v=20261118-vortex1',
+    secretFront: 'assets/img/reveal/secret-front.webp?v=20261118-vortex1',
+    magicCircle: 'assets/img/scene/magic-circle.webp?v=20261118-vortex1',
     loadingEmblem: 'assets/img/ui/loading-emblem.webp?v=20261118-loading1',
     panelFrame: 'assets/img/ui/panel-frame.webp?v=20261118-refine2',
     starSprite: 'assets/img/ui/star-glint.webp?v=20261118-refine2',
@@ -53,7 +60,7 @@ window.EVENT_CONFIG = {
     tapHint: 'assets/img/icon/icon-tap.svg?v=20261118-refine2',
     /* 20 個完整卡包共用環形軌道，正面設計依序重複；側封邊保留原材質色。 */
     packFront: ['assets/img/3d/pack-front-1.webp?v=20261118-refine2', 'assets/img/3d/pack-front-2.webp?v=20261118-refine2', 'assets/img/3d/pack-front-3.webp?v=20261118-refine2'],
-    packSide: 'assets/img/3d/pack-side.webp?v=20261118-carousel2',
+    packSide: 'assets/img/3d/pack-side.webp?v=20261118-vortex1',
     packBack: 'assets/img/3d/pack-back.webp?v=20261118-refine2',
     packCrimp: 'assets/img/3d/pack-crimp.webp?v=20261118-refine2',
     /* 揭曉 */
@@ -71,10 +78,15 @@ window.EVENT_CONFIG = {
   /* 音效：名稱與規格見 AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
      音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
   soundLevels: { bgm: 0.35, bgmDuck: 0.1, click: 0.9, move: 0.6, select: 1, tear: 1, flip: 0.9, reveal: 1.2, 'reveal-common': 1, 'reveal-rare': 1, 'reveal-epic': 1, 'reveal-legendary': 1, reward: 1.4, collect: 1, error: 0.8 },
-  sounds: { click: 'assets/audio/click.mp3', move: 'assets/audio/move.mp3', tear: 'assets/audio/tear.mp3', flip: 'assets/audio/flip.mp3', reveal: 'assets/audio/reveal.mp3', reward: 'assets/audio/reward.mp3', bgm: 'assets/audio/bgm.mp3?v=20261118-refine2', select: '', 'reveal-common': '', 'reveal-rare': '', 'reveal-epic': '', 'reveal-legendary': '', collect: '', error: '' },
+  sounds: {
+    secret: 'assets/audio/secret.mp3?v=20261118-vortex1', click: 'assets/audio/click.mp3', move: 'assets/audio/move.mp3', tear: 'assets/audio/foil-tear.mp3', flip: 'assets/audio/flip.mp3', reveal: 'assets/audio/reveal.mp3', reward: 'assets/audio/reward.mp3', bgm: 'assets/audio/bgm.mp3?v=20261118-refine2', select: '', 'reveal-common': '', 'reveal-rare': '', 'reveal-epic': '', 'reveal-legendary': '', collect: '', error: '' },
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
+    secretPack: 'secret-pack · 512×768',
+    secretSide: 'secret-side · 128×512',
+    secretBack: 'secret-back · 600×900',
+    secretFront: 'secret-front · 600×900',
     magicCircle: 'magic-circle · 640×640',
     packSide: 'pack-side · 128×512',
     loadingEmblem: 'loading-emblem · 480×480',
@@ -110,6 +122,8 @@ window.EVENT_CONFIG = {
 
   /* 活動文案（en/ko/th 必填；zh 只供內部預覽） */
   strings: {
+    'edition.secret': { en:'Secret Edition', ko:'시크릿 에디션', th:'รุ่นลับ', zh:'隱藏珍藏版' },
+    'edition.discovered': { en:'A secret edition awaits', ko:'시크릿 에디션이 나타났어요', th:'รุ่นลับปรากฏแล้ว', zh:'隱藏珍藏版現身' },
     'status.focusing': { en: 'Preparing your chosen pack…', ko: '선택한 팩을 준비하는 중…', th: 'กำลังเตรียมซองที่เลือก…', zh: '正在準備選定的卡包…' },
     'loading.scene': {"en": "Awakening the cosmic relic", "ko": "우주의 유물을 깨우는 중", "th": "กำลังปลุกวัตถุแห่งจักรวาล", "zh": "正在喚醒宇宙聖物"},
     'title.alt': { en: 'Cosmic Magic Card Pack', ko: '신비한 우주 마법 카드팩', th: 'ซองการ์ดเวทมนตร์มหัศจรรย์จักรวาล', zh: '宇宙神奇魔幻卡包' },
@@ -121,7 +135,7 @@ window.EVENT_CONFIG = {
     'action.open': { en: 'Tear it open', ko: '카드팩 뜯기', th: 'ฉีกซอง', zh: '撕開卡包' },
     'hint.pick': { en: 'Tap any pack to choose it', ko: '카드팩을 눌러 선택하세요', th: 'แตะซองไหนก็ได้เพื่อเลือก', zh: '點選任意一包卡包' },
     'status.select': { en: 'Drag left or right to browse the other packs.', ko: '좌우로 드래그해서 다른 카드팩도 둘러보세요.', th: 'ลากซ้ายขวาเพื่อดูซองอื่น', zh: '左右拖曳可以瀏覽其他卡包' },
-    'status.ready': { en: 'Swipe across the seal, or tap the button to tear it open.', ko: '봉인을 좌우로 밀거나 버튼을 눌러 뜯으세요.', th: 'ปัดผ่านรอยปิดผนึก หรือแตะปุ่มเพื่อฉีกซอง', zh: '沿著封條左右滑動，或按下方按鈕拆開' },
+    'status.ready': { en: 'Drag the pack to rotate. Swipe across the top seal to tear it open.', ko: '팩을 드래그하여 돌려 보세요. 위쪽 봉인을 좌우로 밀면 뜯을 수 있어요.', th: 'ลากซองเพื่อหมุนดู ปัดผ่านรอยปิดผนึกด้านบนเพื่อฉีกซอง', zh: '拖曳卡包可旋轉查看，沿頂部封條左右滑動即可撕開。' },
     'status.opening': { en: 'Seal torn. Let\'s see what you got…', ko: '봉인을 뜯었습니다. 무엇이 나왔을까요…', th: 'ฉีกซองแล้ว มาดูกันว่าได้อะไร…', zh: '封條已撕開，看看你的收藏…' },
     'reveal.title': { en: 'Pack opened!', ko: '카드팩 오픈!', th: 'เปิดซองแล้ว!', zh: '卡包打開了！' },
     'toast.noChances': { en: 'No packs left', ko: '남은 카드팩이 없습니다', th: 'ไม่มีซองเหลือแล้ว', zh: '卡包已用完' },

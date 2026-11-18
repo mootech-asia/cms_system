@@ -1,3 +1,4 @@
+import { createDesertDepth } from './desert-depth.js?v=20261118-vortex1';
 export function createAtmosphere(stage, type, spriteUrl, starUrl, scenery = {}) {
   const canvas = document.createElement('canvas');
   canvas.className = 'ev-atmosphere';
@@ -6,6 +7,7 @@ export function createAtmosphere(stage, type, spriteUrl, starUrl, scenery = {}) 
   const ctx = canvas.getContext('2d');
   if (!ctx) { canvas.remove(); return; }
   const desert = type === 'blind-box';
+  const depth = desert ? createDesertDepth(stage, scenery.depthLayers) : null;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let width = 1, height = 1, visible = true, raf = 0, last = 0, phase = 0;
   const particles = Array.from({ length: desert ? 240 : 170 }, (_, i) => ({
@@ -17,16 +19,16 @@ export function createAtmosphere(stage, type, spriteUrl, starUrl, scenery = {}) 
   }));
   const sprite = new Image();
   let spriteReady = false;
-  sprite.onload = () => { spriteReady = true; draw(reduced.matches ? 0 : phase); };
+  sprite.onload = () => { spriteReady = true; if (visible && !document.hidden) draw(reduced.matches ? 0 : phase); };
   if (spriteUrl) sprite.src = spriteUrl;
   const star = new Image();
   let starReady = false;
-  star.onload = () => { starReady = true; draw(phase); };
+  star.onload = () => { starReady = true; if (visible && !document.hidden) draw(phase); };
   if (starUrl) star.src = starUrl;
   const layers = {};
   ['flowers', 'palm', 'circle'].forEach(key => {
     if (!scenery[key]) return;
-    const img = new Image(); img.onload = () => { layers[key] = img; draw(phase); }; img.src = scenery[key];
+    const img = new Image(); img.onload = () => { layers[key] = img; if (visible && !document.hidden) draw(phase); }; img.src = scenery[key];
   });
   const petals = ['#e797bd', '#ffd5d9', '#f7ca98'].map(color => {
     const tile = document.createElement('canvas'); tile.width = tile.height = 48;
@@ -52,6 +54,7 @@ export function createAtmosphere(stage, type, spriteUrl, starUrl, scenery = {}) 
     ctx.drawImage(tile, x - radius, y - radius);
   }
   function desertScene(t) {
+    if (depth) depth.update(t);
     const scale = Math.max(width / 750, height / 1000);
     const ox = (width - 750 * scale) / 2, oy = height - 1000 * scale;
     const wind = Math.sin(t * .75) * .035 + Math.sin(t * 1.7) * .012;
@@ -139,7 +142,7 @@ export function createAtmosphere(stage, type, spriteUrl, starUrl, scenery = {}) 
     const ratio = Math.min(devicePixelRatio || 1, 1.5);
     glowCache.clear();
     canvas.width = width * ratio; canvas.height = height * ratio;
-    ctx.setTransform(ratio, 0, 0, ratio, 0, 0); draw(phase);
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0); if (visible && !document.hidden) draw(phase);
   });
   resize.observe(stage);
   const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; resume(); });
@@ -153,13 +156,13 @@ export function createAtmosphere(stage, type, spriteUrl, starUrl, scenery = {}) 
   function resume() {
     if (raf) cancelAnimationFrame(raf);
     raf = 0; last = performance.now();
-    if (reduced.matches) { draw(0); return; }
+    if (reduced.matches) { if (visible && !document.hidden) draw(0); return; }
     if (!document.hidden && visible) raf = requestAnimationFrame(frame);
   }
   document.addEventListener('visibilitychange', resume);
   reduced.addEventListener('change', resume); resume();
   return () => {
     cancelAnimationFrame(raf); resize.disconnect(); observer.disconnect();
-    document.removeEventListener('visibilitychange', resume); reduced.removeEventListener('change', resume); canvas.remove();
+    document.removeEventListener('visibilitychange', resume); reduced.removeEventListener('change', resume); canvas.remove(); if (depth) depth.destroy();
   };
 }

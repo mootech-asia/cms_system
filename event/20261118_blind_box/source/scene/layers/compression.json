@@ -1,0 +1,38 @@
+[
+  {
+    "layer": "columns",
+    "sourceBytes": 896206,
+    "webBytes": 101432,
+    "size": [
+      750,
+      1000
+    ]
+  },
+  {
+    "layer": "curtain",
+    "sourceBytes": 371356,
+    "webBytes": 48268,
+    "size": [
+      750,
+      1000
+    ]
+  },
+  {
+    "layer": "desert",
+    "sourceBytes": 2061409,
+    "webBytes": 85902,
+    "size": [
+      750,
+      1000
+    ]
+  },
+  {
+    "layer": "floor",
+    "sourceBytes": 1567200,
+    "webBytes": 133532,
+    "size": [
+      750,
+      1000
+    ]
+  }
+]

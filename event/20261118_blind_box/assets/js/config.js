@@ -22,13 +22,17 @@ window.EVENT_CONFIG = {
   skins: {},
 
   images: {
-    windFlowers: 'assets/img/scene/wind-flowers.webp?v=20261118-carousel2',
-    windPalm: 'assets/img/scene/wind-palm.webp?v=20261118-carousel2',
+    windFlowers: 'assets/img/scene/wind-flowers.webp?v=20261118-vortex1',
+    windPalm: 'assets/img/scene/wind-palm.webp?v=20261118-vortex1',
     loadingEmblem: 'assets/img/ui/loading-emblem.webp?v=20261118-loading1',
     toolMedallion: 'assets/img/ui/tool-medallion.webp?v=20261118-refine2',
     atmosphereSprite: 'assets/img/scene/atmosphere.webp?v=20261118-refine2',
     folioHeader: 'assets/img/ui/panel-crown.webp?v=20261118-refine2',
-    stageBg: 'assets/img/scene/stage-bg.webp?v=20261118-carousel2',
+    depthDesert: 'assets/img/scene/layers/desert.webp',
+    depthFloor: 'assets/img/scene/layers/floor.webp',
+    depthColumns: 'assets/img/scene/layers/columns.webp',
+    depthCurtain: 'assets/img/scene/layers/curtain.webp',
+    stageBg: 'assets/img/scene/stage-bg.webp?v=20261118-vortex1',
     infoBg: 'assets/img/scene/info-bg.svg?v=20261118-refine2',
     title: {
       en: 'assets/img/title/title-en.webp?v=20261118-refine2',
@@ -57,7 +61,7 @@ window.EVENT_CONFIG = {
     boxLid: 'assets/img/3d/chest-lid.webp?v=20261118-refine2',
     boxLidSide: 'assets/img/3d/chest-lid.webp?v=20261118-refine2',
     /* 揭曉 */
-    revealRays: 'assets/img/reveal/reveal-rays.svg?v=20261118-refine2',
+    revealVortex: 'assets/img/reveal/sand-vortex-atlas.webp?v=20261118-vortex1',
     rewardBack: 'assets/img/reveal/reward-back.svg?v=20261118-refine2',
     rewardFrameCommon: 'assets/img/reveal/reward-frame-common.svg?v=20261118-refine2',
     rewardFrameRare: 'assets/img/reveal/reward-frame-rare.svg?v=20261118-refine2',
@@ -66,7 +70,7 @@ window.EVENT_CONFIG = {
   },
 
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
-  loadingImages: ['windFlowers', 'windPalm', 'loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
+  loadingImages: ['depthDesert', 'depthFloor', 'depthColumns', 'depthCurtain', 'windFlowers', 'windPalm', 'loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
 
   /* 音效：名稱與規格見 AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
      音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
@@ -75,6 +79,10 @@ window.EVENT_CONFIG = {
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
+    depthDesert: 'depth-desert · 750×1000',
+    depthFloor: 'depth-floor · 750×1000',
+    depthColumns: 'depth-columns · 750×1000',
+    depthCurtain: 'depth-curtain · 750×1000',
     windFlowers: 'wind-flowers · 450×450',
     windPalm: 'wind-palm · 400×320',
     loadingEmblem: 'loading-emblem · 480×480',
@@ -101,7 +109,7 @@ window.EVENT_CONFIG = {
     boxSide: 'chest-side · 512×320',
     boxLid: 'chest-lid · 512×512',
     boxLidSide: 'chest-lid · 512×512',
-    revealRays: 'reveal-rays · 750×750',
+    revealVortex: 'sand-vortex-atlas · 1280×1280 / 16 frames',
     rewardBack: 'reward-back · 600×900',
     rewardFrame: 'reward-frame-{common,rare,epic,legendary} · 600×900',
     sharePreview: 'share-preview.jpg · 1200×630 (og:image)'

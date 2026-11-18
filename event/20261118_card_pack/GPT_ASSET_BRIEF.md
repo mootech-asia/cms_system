@@ -72,3 +72,7 @@ gloves and hair clip; a colour palette strip. No text other than none at all.
 - 有沒有任何字（主標以外）、中文？主標拼字正確、泰文上下標沒被裁？
 - 有沒有出現第一節「禁止元素」？
 - `reward-frame-*` 中間是真的透明，不是棋盤格？放進頁面截圖：第一屏（360×640、390×844）＋揭曉畫面（四種稀有度）。
+
+## Refinement delivery 20261118
+
+Preserve the approved rabbit identity. Create an obsidian, platinum and moonstone secret foil pack, matching sealed side texture, a mysterious rabbit card back, and a clean reward card front. Keep variable prize names and rarity text out of artwork. Source PNGs are retained under source/secret; web delivery uses separate WebP files. Synthesized foil and secret chime masters live under source/audio; MP3 is used on the page.

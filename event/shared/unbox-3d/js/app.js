@@ -2,8 +2,10 @@
  * 拆卡包／拆盲盒共用流程：select（挑選）→ ready（已選定）→ loading（向後台取結果）→ opening（動畫）→ reveal（揭曉）。
  * 活動差異（type、圖片槽、文案、mock 內容）全部在各活動的 assets/js/config.js；本檔不放活動專屬內容。
  */
-import { createAtmosphere } from './atmosphere.js?v=20261118-carousel2';
-import { createScene } from './scene.js?v=20261118-carousel2';
+import { createAtmosphere } from './atmosphere.js?v=20261118-vortex1';
+import { createRevealVortex } from './reveal-vortex.js?v=20261118-vortex1';
+import { createSecretCycle } from './secret-cycle.js?v=20261118-vortex1';
+import { createScene } from './scene.js?v=20261118-vortex1';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -20,10 +22,11 @@ var PER_OPEN_KEY = cfg.storageKey + '_per_open_preview';
 
 var $ = function (id) { return document.getElementById(id); };
 var stage = $('stage');
-createAtmosphere(stage, cfg.type, cfg.images.atmosphereSprite, cfg.images.starSprite, { flowers:cfg.images.windFlowers, palm:cfg.images.windPalm, circle:cfg.images.magicCircle });
+createAtmosphere(stage, cfg.type, cfg.images.atmosphereSprite, cfg.images.starSprite, { flowers:cfg.images.windFlowers, palm:cfg.images.windPalm, circle:cfg.images.magicCircle, depthLayers:cfg.type === 'blind-box' ? {desert:cfg.images.depthDesert, floor:cfg.images.depthFloor, columns:cfg.images.depthColumns, curtain:cfg.images.depthCurtain} : null });
 var sceneEl = $('scene');
 var btnAction = $('btnAction');
 var reveal = $('reveal');
+createRevealVortex($('revealVortex'), reveal, $('revealSingle'), stage, cfg.images.revealVortex);
 var toast = $('toast');
 
 // iframe 嵌入時（CMS 各站）視窗只剩約 500px 高，3D 區與主標設最小尺寸，放不下就在 iframe 內捲動
@@ -50,6 +53,23 @@ function esc(s) {
 
 // ---------- 玩家狀態（mock；正式由後台回傳次數與紀錄） ----------
 var player = loadPlayer();
+var secretCycle = cfg.secretEvery ? createSecretCycle(cfg.storageKey + '_secret_cycle', cfg.secretEvery, null, Math.random, player.records.length) : null;
+function notifySecret() {
+  if (secretCycle && secretCycle.needsNotice() && Sound.isEnabled() && Sound.isUnlocked()) {
+    Sound.play('secret'); secretCycle.notified();
+  }
+}
+function syncSecret() {
+  var active = !!(secretCycle && secretCycle.due());
+  stage.dataset.secret = String(active);
+  if (scene) scene.setSecret(active);
+  if (cfg.secretEvery) {
+    var notice = $('secretNotice'); notice.hidden = !active; notice.textContent = t('edition.discovered');
+    if (!scene) { $('sceneFallback').src = active ? cfg.images.secretPack : pick(cfg.images.packFront); $('sceneFallback').setAttribute('data-img',active?'secretPack':'packFront'); }
+  }
+  notifySecret();
+}
+document.addEventListener('ev:audio-ready',notifySecret);
 function loadPlayer() {
   try {
     var s = JSON.parse(localStorage.getItem(PLAYER_KEY));
@@ -185,7 +205,7 @@ function renderRecords() {
     li.setAttribute('data-rarity', rarityOf(r));
     li.innerHTML = '<span class="ev-record-art" aria-hidden="true">' + (icon ? '<img src="' + esc(icon) + '" alt="" loading="lazy" />' : '<span>✦</span>') + '</span>' +
       '<span class="ev-record-detail"><span class="ev-record-name">' + esc(pick(r.name)) + '</span><time>' + esc(r.time) + '</time></span>' +
-      '<span class="ev-rarity-tag" data-rarity="' + esc(rarityOf(r)) + '">' + esc(t('rarity.' + rarityOf(r))) + '</span>';
+      '<span class="ev-rarity-tag" data-rarity="' + esc(rarityOf(r)) + '">' + esc(t(r.edition === 'secret' ? 'edition.secret' : 'rarity.' + rarityOf(r))) + '</span>';
     list.appendChild(li);
   });
 }
@@ -271,26 +291,34 @@ function choose() {
   }
 }
 
-function open() {
+function open(gesture) {
   if (state !== 'ready') return;
   if (player.chances <= 0) { showToast(t('toast.noChances')); return; }
+  var duration = cfg.openMs;
+  if (cfg.tearSpeed && gesture && Number.isFinite(gesture.speed)) {
+    var speed = cfg.tearSpeed;
+    var amount = Math.max(0, Math.min(1, (gesture.speed-speed.slowVelocity)/(speed.fastVelocity-speed.slowVelocity)));
+    duration = Math.round(speed.slowMs + (speed.fastMs-speed.slowMs)*amount);
+  }
   press();
   player.chances -= 1;
   savePlayer();
   renderChances();
   setState('loading');
   var selection = scene ? scene.selected() : 0;
-  Store.resolve(content, { type: cfg.type, selection: selection, count: perOpen }).then(function (list) {
-    rewards = list;
+  var secretDraw = !!(secretCycle && secretCycle.due());
+  Store.resolve(content, { type: cfg.type, selection: selection, count: perOpen, edition:secretDraw?'secret':'standard', drawNumber:secretCycle?secretCycle.total()+1:undefined }).then(function (list) {
+    var edition = secretCycle ? secretCycle.commit() : {};
+    rewards = list.map(function (r) { return Object.assign({},r,edition); });
     var stamp = now();
-    list.forEach(function (r) { player.records.push({ name: r.name, icon: r.icon || '', rarity: rarityOf(r), time: stamp }); });
+    rewards.forEach(function (r) { player.records.push({ edition:r.edition, drawNumber:r.drawNumber, name: r.name, icon: r.icon || '', rarity: rarityOf(r), time: stamp }); });
     savePlayer();
     renderRecords();
     setState('opening');
     Sound.duck(true);
-    Sound.play('tear');
+    Sound.play('tear',duration);
     stage.classList.add('is-opening');
-    var done = scene ? scene.open(cfg.openMs) : new Promise(function (ok) { fallbackTimer = setTimeout(ok, 600); });
+    var done = scene ? scene.open(duration) : new Promise(function (ok) { fallbackTimer = setTimeout(ok, 600); });
     return done.then(function () {
       stage.classList.remove('is-opening');
       showReveal();
@@ -335,11 +363,11 @@ function backToSelect() {
 // ---------- 揭曉 ----------
 function cardHtml(r, small) {
   var rarity = rarityOf(r);
-  return '<span class="ev-prize-face ev-prize-front" data-rarity="' + rarity + '">' +
+  return '<span class="ev-prize-face ev-prize-front" data-rarity="' + rarity + '" data-edition="' + (r.edition || 'standard') + '">' +
     '<span class="ev-prize-frame" aria-hidden="true"></span>' +
     '<span class="ev-card-stars" aria-hidden="true">' + '✦'.repeat(Store.rarityRank(r) + 1) + '</span>' +
     (r.icon ? '<img class="ev-prize-icon" src="' + esc(r.icon) + '" alt="" />' : '') +
-    '<span class="ev-rarity-tag" data-rarity="' + rarity + '">' + esc(t('rarity.' + rarity)) + '</span>' +
+    '<span class="ev-rarity-tag" data-rarity="' + rarity + '">' + esc(t(r.edition === 'secret' ? 'edition.secret' : 'rarity.' + rarity)) + '</span>' +
     '<span class="ev-prize-name' + (small ? ' is-small' : '') + '">' + esc(pick(r.name)) + '</span></span>';
 }
 
@@ -378,6 +406,7 @@ function renderRevealCard() {
   }
   card.classList.remove('is-flipped');
   card.setAttribute('data-rarity', rarityOf(r));
+  card.setAttribute('data-edition',r.edition || 'standard');
   $('revealGlow').setAttribute('data-rarity', 'common');
   card.innerHTML = '<span class="ev-prize-face ev-prize-back" aria-hidden="true"></span>' + cardHtml(r);
   card.classList.remove('is-enter');
@@ -438,6 +467,7 @@ function closeReveal() {
   rewards = [];
   if (scene) scene.setMode('select');
   setState('select');
+  syncSecret();
   sceneEl.focus();
 }
 
@@ -447,6 +477,7 @@ function renderSound() {
   $('btnSound').setAttribute('aria-pressed', String(on));
   $('btnSound').setAttribute('aria-label', t(on ? 'sound.off' : 'sound.on'));
   $('soundIcon').src = on ? cfg.images.soundOn : cfg.images.soundOff;
+  notifySecret();
 }
 
 function renderLabelToggle() {
@@ -464,6 +495,7 @@ function renderLocale() {
   renderState();
   renderLabelToggle();
   renderAssetLabels();
+  if (state === 'select' || state === 'ready') syncSecret();
   if (!reveal.hidden) {
     if (revealView === 'summary') showSummary();
     else {
@@ -487,6 +519,7 @@ scene = createScene(sceneEl, {
   material: cfg.material,
   scale: cfg.sceneScale,
   shape: cfg.shape,
+  secretImages: cfg.secretEvery ? {front:cfg.images.secretPack,side:cfg.images.secretSide,back:cfg.images.secretBack} : null,
   mascot: cfg.mascot ? { img: $('mascot'), poster: cfg.mascot.poster, height: cfg.mascot.height } : null,
   onSelect: function () { Sound.play('move'); renderPickLabel(); },
   onSwipeOpen: open,
@@ -502,14 +535,15 @@ if (!scene) {
   var fallbackStart = null;
   $('sceneFallback').addEventListener('pointerdown', function (event) {
     if (state !== 'ready') return;
-    fallbackStart = { x:event.clientX, y:event.clientY };
+    fallbackStart = { x:event.clientX, y:event.clientY, time:performance.now() };
     event.currentTarget.setPointerCapture(event.pointerId);
   });
   $('sceneFallback').addEventListener('pointerup', function (event) {
     if (!fallbackStart) return;
     var dx = event.clientX - fallbackStart.x, dy = event.clientY - fallbackStart.y;
+    var speed = Math.abs(dx) / Math.max(16, performance.now()-fallbackStart.time);
     fallbackStart = null;
-    if (state === 'ready' && (cfg.type === 'blind-box' ? dy < -55 && Math.abs(dy) > Math.abs(dx) : Math.abs(dx) > 55)) open();
+    if (state === 'ready' && (cfg.type === 'blind-box' ? dy < -55 && Math.abs(dy) > Math.abs(dx) : Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)*1.2)) open({speed:speed});
   });
   $('sceneFallback').addEventListener('pointercancel', function () { fallbackStart = null; });
 }
@@ -573,6 +607,7 @@ $('btnReset').addEventListener('click', function () {
   renderChances();
   renderRecords();
   renderState();
+  syncSecret();
   showToast(t('toast.reset', { n: player.chances }));
 });
 function setPerOpen(n) {

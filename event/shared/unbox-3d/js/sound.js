@@ -17,6 +17,8 @@ window.EventSound = (function () {
   var ctx = null;
   var buffers = {};
   var unlocked = false;
+  var activeSources = new Set();
+  function track(source) { activeSources.add(source); source.onended = function () { activeSources.delete(source); }; }
 
   function audio() {
     if (!ctx) {
@@ -37,6 +39,7 @@ window.EventSound = (function () {
       el.play().catch(function () {});
     } catch (e) { /* 不支援時略過 */ }
     audio();
+    document.dispatchEvent(new Event('ev:audio-ready'));
     Object.keys(cfg.sounds).forEach(function (k) { if (k !== 'bgm') loadFile(k); });
   }
   ['pointerdown', 'keydown'].forEach(function (type) {
@@ -64,6 +67,7 @@ window.EventSound = (function () {
     src.playbackRate.value = rate || 1;
     gain.gain.value = levels[name] != null ? levels[name] : 1;
     src.connect(gain).connect(c.destination);
+    track(src);
     src.start();
     return true;
   }
@@ -81,6 +85,7 @@ window.EventSound = (function () {
     gain.gain.exponentialRampToValueAtTime(vol, t0 + 0.012);
     gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
     osc.connect(gain).connect(c.destination);
+    track(osc);
     osc.start(t0);
     osc.stop(t0 + dur + 0.05);
   }
@@ -104,10 +109,12 @@ window.EventSound = (function () {
     gain.gain.setValueAtTime(vol, t0);
     gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
     src.connect(filter).connect(gain).connect(c.destination);
+    track(src);
     src.start(t0);
   }
 
   var SYNTH = {
+    secret: function () { tone(196,0,1.4,'sine',.16); [784,987.77,1174.66,1568].forEach(function(f,i){tone(f,.12+i*.18,1.25,'sine',.13);}); },
     click: function () { tone(880, 0, 0.08, 'triangle', 0.25, 520); },
     move: function () { tone(640, 0, 0.06, 'sine', 0.16, 760); },
     tear: function () { noise(0, 0.45, 0.55, 900, 4200); noise(0.08, 0.3, 0.3, 2400, 6000); },
@@ -133,7 +140,7 @@ window.EventSound = (function () {
     }
     if (cfg.sounds[name]) {
       loadFile(name);
-      if (playFile(name, name === 'reveal' ? 1 + (arg || 0) * 0.06 : 1)) return;
+      if (playFile(name, name === 'reveal' ? 1 + (arg || 0) * 0.06 : name === 'tear' && cfg.tearSoundMs && arg > 0 ? cfg.tearSoundMs/arg : 1)) return;
     }
     if (SYNTH[name]) SYNTH[name](arg);
   }
@@ -163,11 +170,12 @@ window.EventSound = (function () {
   return {
     play: play,
     duck: function (on) { ducked = on; if (bgmEl) bgmEl.volume = bgmVolume(); },
+    isUnlocked: function () { return unlocked; },
     isEnabled: function () { return enabled; },
     setEnabled: function (on) {
       enabled = on;
       try { localStorage.setItem(KEY, on ? 'on' : 'off'); } catch (e) { /* 只在本次頁面生效 */ }
-      if (on) bgmPlay(); else bgmPause();
+      if (on) bgmPlay(); else { bgmPause(); activeSources.forEach(function (source) { try { source.stop(); } catch (_) {} }); activeSources.clear(); }
     }
   };
 })();

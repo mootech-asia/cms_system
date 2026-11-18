@@ -154,3 +154,11 @@
 
 .ev-info::after { z-index:0; background:linear-gradient(180deg,var(--ev-folio-ground),transparent); }
 .ev-info-inner { position:relative; z-index:1; }
+:root { --ev-depth-sand: #e6c28a; --ev-depth-blur: 2.8px; }
+.ev-stage::before { content:''; position:absolute; inset:0; z-index:1; pointer-events:none; opacity:var(--ev-depth-mist,.07); background:radial-gradient(ellipse at 70% 46%,var(--ev-depth-sand),transparent 65%); }
+.ev-reveal-vortex { position:absolute; width:min(116%,76svh); aspect-ratio:1; opacity:.62; pointer-events:none; mask-image:radial-gradient(circle,#000 0 59%,transparent 72%); }
+
+.ev-depth-scene { position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+.ev-stage.has-depth-scene { background-image:none !important; }
+.ev-depth-layer, .ev-depth-soft { position:absolute; inset:0; background-position:center bottom; background-size:cover; background-repeat:no-repeat; }
+.ev-depth-soft { will-change:opacity; }
