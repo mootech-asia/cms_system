@@ -3,7 +3,7 @@
  * 包裝表面全部是圖片槽（config.images），側面色與燈光色讀 theme.css 的 --ev-3d-* 色票，
  * 換主題只要換圖或換色票，不用改程式。WebGL 無法啟動時回傳 null，由 app.js 改用 2D 圖片。
  */
-import * as THREE from '../vendor/three.min.js?v=20261118-art2';
+import * as THREE from '../vendor/three.min.js?v=20261118-art3';
 
 var STEP = Math.PI / 3;
 var RADIUS = 2.65;
@@ -15,11 +15,20 @@ function token(name, fallback) {
 }
 
 // 接地陰影由程式畫（素材不畫地面陰影），顏色取 --ev-3d-shadow。
-function shadowTexture() {
+function shadowTexture(grounded) {
   var c = document.createElement('canvas');
   c.width = 256;
-  c.height = 128;
+  c.height = grounded ? 256 : 128;
   var g = c.getContext('2d');
+  if (grounded) {
+    var contact = g.createRadialGradient(128, 128, 22, 128, 128, 128);
+    contact.addColorStop(0, 'rgba(255,255,255,1)');
+    contact.addColorStop(0.52, 'rgba(255,255,255,0.85)');
+    contact.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = contact;
+    g.fillRect(0, 0, 256, 256);
+    return new THREE.CanvasTexture(c);
+  }
   var grad = g.createRadialGradient(128, 64, 4, 128, 64, 124);
   grad.addColorStop(0, 'rgba(255,255,255,1)');
   grad.addColorStop(1, 'rgba(255,255,255,0)');
@@ -31,6 +40,7 @@ function shadowTexture() {
 
 export function createScene(stage, opts) {
   var box = opts.type === 'blind-box';
+  var chest = box && opts.shape === 'chest';
   // 先用測試畫布確認有 WebGL，避免 Three.js 建立失敗時在 console 印錯誤
   // 失敗原因寫在 console.info，回報「3D 無法啟用」時用來判斷是瀏覽器不支援 WebGL2、完全沒有 WebGL 還是建立時出錯
   var probe = document.createElement('canvas');
@@ -106,17 +116,17 @@ export function createScene(stage, opts) {
 
   var images = opts.images;
   var fronts = [].concat(images.front).filter(Boolean);
-  var shadowTex = keep(shadowTexture());
-  var shadowGeo = keep(new THREE.PlaneGeometry(box ? 2.6 : 2.2, box ? 1.3 : 0.9));
+  var shadowTex = keep(shadowTexture(chest));
+  var shadowGeo = keep(new THREE.PlaneGeometry(chest ? 3.0 : box ? 2.6 : 2.2, chest ? 2.0 : box ? 1.3 : 0.9));
   var tinted = [];
   var items = [];
   // 尺寸對應設計稿比例：卡包正面 2:3（512×768）、盲盒正立方（512×512），封條 512×64、盒蓋側邊 512×80
   // 寶箱（opts.shape === 'chest'）：箱身 1.6×1.0×1.1（正面 chest-front 512×320），半圓拱蓋沿寬度方向，
   // 蓋子以後上緣為軸掀開；拱面貼 chest-lid（512×512，由前緣繞到後緣），兩端半圓貼 chest-lid-end。
-  var chest = box && opts.shape === 'chest';
   var CW = 1.6, CH = 1.0, CD = 1.1;
   var LID_Y = chest ? CH / 2 : box ? 0.895 : 1.2;
-  var FLOOR_Y = chest ? -0.75 : box ? -1.05 : -1.45;
+  world.position.y = chest ? -0.85 : 0;
+  var FLOOR_Y = chest ? -CH / 2 + 0.008 : box ? -1.05 : -1.45;
 
   // 半圓拱蓋：圓柱 θ 0～π（旋轉後在上方）。貼圖座標改寫成設計稿好畫的方向——
   // 拱面 chest-lid：u 沿箱子寬度（左→右）、v 由前緣（下緣 0）繞到後緣（上緣 1）；
@@ -184,17 +194,26 @@ export function createScene(stage, opts) {
       body.add(base, lid);
     }
 
-    var shadowMat = keep(new THREE.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false, opacity: 0.35 }));
+    var shadowMat = keep(new THREE.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false, opacity: chest ? 0.68 : 0.35 }));
     var shadow = new THREE.Mesh(shadowGeo, shadowMat);
     shadow.rotation.x = -Math.PI / 2;
     shadow.position.y = FLOOR_Y;
+    if (chest) { shadow.position.x = 0.2; shadow.position.z = 0.12; }
     group.add(shadow);
+    var contactMat = null;
+    if (chest) {
+      contactMat = keep(new THREE.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false, opacity: 0.85 }));
+      var contact = new THREE.Mesh(keep(new THREE.PlaneGeometry(CW * 1.05, CD * 1.1)), contactMat);
+      contact.rotation.x = -Math.PI / 2;
+      contact.position.y = FLOOR_Y + 0.002;
+      group.add(contact);
+    }
 
     var a = i * STEP;
     group.position.set(Math.sin(a) * RADIUS, 0, Math.cos(a) * RADIUS - RADIUS);
     group.rotation.y = a;
     ring.add(group);
-    items.push({ group: group, body: body, lid: lid, pivot: pivot, shadow: shadowMat });
+    items.push({ group: group, body: body, lid: lid, pivot: pivot, shadow: shadowMat, contact: contactMat });
   }
 
   // 吉祥物站在環形圓心（世界座標 0, 地板, -RADIUS）。角色本身是 <img>（動態 WebP），放在透明畫布後層；
@@ -239,7 +258,7 @@ export function createScene(stage, opts) {
     accent.color.set(token('--ev-3d-accent', '#d4aaff'));
     hemi.groundColor.set(token('--ev-3d-ground', '#8589af'));
     var shadowColor = token('--ev-3d-shadow', '#27364a');
-    items.forEach(function (it) { it.shadow.color.set(shadowColor); });
+    items.forEach(function (it) { it.shadow.color.set(shadowColor); if (it.contact) it.contact.color.set(shadowColor); });
   }
   applyTokens();
 
@@ -352,10 +371,18 @@ export function createScene(stage, opts) {
       if (progress >= 1) finishOpen();
     }
     if (startX === null || mode !== 'select') angle += (target - angle) * (reduced.matches ? 1 : Math.min(1, dt * 8));
-    ring.rotation.y = angle;
-    ring.position.x = RADIUS * Math.sin(angle);
-    ring.position.z = RADIUS * (Math.cos(angle) - 1);
+    if (!chest) {
+      ring.rotation.y = angle;
+      ring.position.x = RADIUS * Math.sin(angle);
+      ring.position.z = RADIUS * (Math.cos(angle) - 1);
+    }
     items.forEach(function (it, k) {
+      if (chest) {
+        // Compress the carousel depth, not the meshes, to keep every chest on the visible floor.
+        var orbit = k * STEP + angle;
+        it.group.position.set(Math.sin(orbit) * RADIUS, 0, (Math.cos(orbit) - 1) * RADIUS * 0.4);
+        it.group.rotation.y = orbit;
+      }
       var mine = k === selected;
       it.group.visible = mode === 'select' || mine;
       var p = mine ? Math.min(progress, 1) : 0;
@@ -363,7 +390,7 @@ export function createScene(stage, opts) {
       var shake = mine && mode === 'opening' && p < 0.2 && !reduced.matches ? Math.sin(now * 0.08) * 0.04 : 0;
       var fly = Math.max(0, (p - 0.2) / 0.8);
       var ease = 1 - Math.pow(1 - fly, 3);
-      it.body.rotation.z = (mode === 'select' && !reduced.matches ? Math.sin(now * 0.0008 + k) * 0.025 : 0) + shake;
+      it.body.rotation.z = (mode === 'select' && !chest && !reduced.matches ? Math.sin(now * 0.0008 + k) * 0.025 : 0) + (chest ? 0 : shake);
       it.body.rotation.y = mode !== 'select' && box && mine ? 0.15 : 0;
       if (it.pivot) {
         it.pivot.rotation.x = -ease * 1.7;

@@ -46,6 +46,17 @@
 }
 
 .ev-status, .ev-pick-label, .ev-stage .ev-link, .ev-scene-note { color: var(--ev-color-on-primary); text-shadow: 0 1px 4px var(--ev-color-bg); }
-.ev-pick-hint { background: var(--ev-color-primary); color: var(--ev-color-on-primary); }
+
 
 .ev-rarity-tag { color: var(--ev-color-text); }
+
+:root {
+  --ev-ui-panel: linear-gradient(145deg, #51348D 0%, #271A54 48%, #102D4B 100%);
+  --ev-ui-feed: linear-gradient(100deg, #251447, #10112D 60%, #152A43);
+  --ev-ui-edge: #BAA5F2;
+  --ev-ui-highlight: rgb(210 249 255 / .65);
+  --ev-ui-glint: rgb(97 227 255 / .2);
+  --ev-ui-recess: #14102F;
+  --ev-ui-base: #100D2A;
+  --ev-ui-trim: rgb(141 211 255 / .42);
+}

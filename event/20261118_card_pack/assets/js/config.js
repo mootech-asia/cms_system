@@ -21,38 +21,38 @@ window.EVENT_CONFIG = {
   skins: {},
 
   images: {
-    stageBg: 'assets/img/scene/stage-bg.webp?v=20261118-art2',
-    infoBg: 'assets/img/scene/info-bg.svg?v=20261118-art2',
+    stageBg: 'assets/img/scene/stage-bg.webp?v=20261118-art3',
+    infoBg: 'assets/img/scene/info-bg.svg?v=20261118-art3',
     title: {
-      en: 'assets/img/title/title-en.svg?v=20261118-art2',
-      ko: 'assets/img/title/title-ko.svg?v=20261118-art2',
-      th: 'assets/img/title/title-th.svg?v=20261118-art2',
-      zh: 'assets/img/title/title-zh.svg?v=20261118-art2'
+      en: 'assets/img/title/title-main.webp?v=20261118-art3',
+      ko: 'assets/img/title/title-main.webp?v=20261118-art3',
+      th: 'assets/img/title/title-main.webp?v=20261118-art3',
+      zh: 'assets/img/title/title-main.webp?v=20261118-art3'
     },
-    periodBadge: 'assets/img/ui/period-badge.svg?v=20261118-art2',
-    chancesBadge: 'assets/img/ui/chances-badge.svg?v=20261118-art2',
-    btnPrimary: 'assets/img/ui/btn-primary.svg?v=20261118-art2',
-    btnArrow: 'assets/img/ui/btn-arrow.svg?v=20261118-art2',
-    tickerBar: 'assets/img/ui/ticker-bar.svg?v=20261118-art2',
-    cardFrame: 'assets/img/ui/card-frame.svg?v=20261118-art2',
-    cardTitle: 'assets/img/ui/card-title.svg?v=20261118-art2',
-    footerDeco: 'assets/img/scene/footer-deco.svg?v=20261118-art2',
-    soundOn: 'assets/img/icon/icon-sound-on.svg?v=20261118-art2',
-    soundOff: 'assets/img/icon/icon-sound-off.svg?v=20261118-art2',
-    share: 'assets/img/icon/icon-share.svg?v=20261118-art2',
-    rotateHint: 'assets/img/icon/icon-rotate.svg?v=20261118-art2',
-    tapHint: 'assets/img/icon/icon-tap.svg?v=20261118-art2',
+    periodBadge: 'assets/img/ui/period-badge.svg?v=20261118-art3',
+    chancesBadge: 'assets/img/ui/chances-badge.svg?v=20261118-art3',
+    btnPrimary: 'assets/img/ui/btn-primary.svg?v=20261118-art3',
+    btnArrow: 'assets/img/ui/btn-arrow.svg?v=20261118-art3',
+    tickerBar: 'assets/img/ui/ticker-bar.svg?v=20261118-art3',
+    cardFrame: 'assets/img/ui/card-frame.svg?v=20261118-art3',
+    cardTitle: 'assets/img/ui/card-title.svg?v=20261118-art3',
+    footerDeco: 'assets/img/scene/footer-deco.svg?v=20261118-art3',
+    soundOn: 'assets/img/icon/icon-sound-on.svg?v=20261118-art3',
+    soundOff: 'assets/img/icon/icon-sound-off.svg?v=20261118-art3',
+    share: 'assets/img/icon/icon-share.svg?v=20261118-art3',
+    rotateHint: 'assets/img/icon/icon-rotate.svg?v=20261118-art3',
+    tapHint: 'assets/img/icon/icon-tap.svg?v=20261118-art3',
     /* 3D 卡包：正面可給 1～6 張不同設計，環上六包依序輪流；側邊與封條會乘上 --ev-3d-item-N 色票 */
-    packFront: ['assets/img/3d/pack-front-1.webp?v=20261118-art2', 'assets/img/3d/pack-front-2.webp?v=20261118-art2', 'assets/img/3d/pack-front-3.webp?v=20261118-art2'],
-    packBack: 'assets/img/3d/pack-back.webp?v=20261118-art2',
-    packCrimp: 'assets/img/3d/pack-crimp.svg?v=20261118-art2',
+    packFront: ['assets/img/3d/pack-front-1.webp?v=20261118-art3', 'assets/img/3d/pack-front-2.webp?v=20261118-art3', 'assets/img/3d/pack-front-3.webp?v=20261118-art3'],
+    packBack: 'assets/img/3d/pack-back.webp?v=20261118-art3',
+    packCrimp: 'assets/img/3d/pack-crimp.svg?v=20261118-art3',
     /* 揭曉 */
-    revealRays: 'assets/img/reveal/reveal-rays.svg?v=20261118-art2',
-    rewardBack: 'assets/img/reveal/reward-back.svg?v=20261118-art2',
-    rewardFrameCommon: 'assets/img/reveal/reward-frame-common.svg?v=20261118-art2',
-    rewardFrameRare: 'assets/img/reveal/reward-frame-rare.svg?v=20261118-art2',
-    rewardFrameEpic: 'assets/img/reveal/reward-frame-epic.svg?v=20261118-art2',
-    rewardFrameLegendary: 'assets/img/reveal/reward-frame-legendary.svg?v=20261118-art2'
+    revealRays: 'assets/img/reveal/reveal-rays.svg?v=20261118-art3',
+    rewardBack: 'assets/img/reveal/reward-back.svg?v=20261118-art3',
+    rewardFrameCommon: 'assets/img/reveal/reward-frame-common.svg?v=20261118-art3',
+    rewardFrameRare: 'assets/img/reveal/reward-frame-rare.svg?v=20261118-art3',
+    rewardFrameEpic: 'assets/img/reveal/reward-frame-epic.svg?v=20261118-art3',
+    rewardFrameLegendary: 'assets/img/reveal/reward-frame-legendary.svg?v=20261118-art3'
   },
 
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
@@ -66,7 +66,7 @@ window.EVENT_CONFIG = {
   assetSpecs: {
     stageBg: 'stage-bg · 750×1000',
     infoBg: 'info-bg · 750×750 tile',
-    title: 'title-{locale} · 690×240',
+    title: 'title-main · 690×240',
     periodBadge: 'period-badge · 480×64',
     chancesBadge: 'chances-badge · 360×88',
     btnPrimary: 'btn-primary · 400×110',
@@ -90,7 +90,7 @@ window.EVENT_CONFIG = {
 
   /* 活動文案（en/ko/th 必填；zh 只供內部預覽） */
   strings: {
-    'title.alt': { en: 'Card Pack Opening', ko: '카드팩 오픈', th: 'เปิดซองการ์ด', zh: '拆卡包' },
+    'title.alt': { en: '宇宙神奇魔幻卡包', ko: '宇宙神奇魔幻卡包', th: '宇宙神奇魔幻卡包', zh: '宇宙神奇魔幻卡包' },
     'scene.aria': { en: 'Card packs. Drag to rotate.', ko: '카드팩. 드래그해서 돌려 보세요.', th: 'ซองการ์ด ลากเพื่อหมุน', zh: '可拖曳旋轉的 3D 選擇區' },
     'pick.label': { en: 'Pack {n}', ko: '팩 {n}', th: 'ซอง {n}', zh: '卡包 {n}' },
     'chances.before': { en: 'Packs left', ko: '남은 카드팩', th: 'ซองคงเหลือ', zh: '剩餘卡包' },
