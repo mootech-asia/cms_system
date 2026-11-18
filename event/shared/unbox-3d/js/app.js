@@ -3,7 +3,7 @@
  * 活動差異（type、圖片槽、文案、mock 內容）全部在各活動的 assets/js/config.js；本檔不放活動專屬內容。
  */
 import { createAtmosphere } from './atmosphere.js?v=20261118-hover1';
-import { createRevealVortex } from './reveal-vortex.js?v=20261118-vortex1';
+import { createRevealVortex } from './reveal-vortex.js?v=20261118-vortex2';
 import { createSecretCycle } from './secret-cycle.js?v=20261118-vortex1';
 import { createScene } from './scene.js?v=20261118-hover1';
 

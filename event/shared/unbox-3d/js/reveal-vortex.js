@@ -11,11 +11,14 @@ export function createRevealVortex(canvas, dialog, single, stage, source) {
     const frame = (phase / 200) % 16, index = Math.floor(frame), mix = frame-index;
     const cell = image.naturalWidth / 4;
     ctx.clearRect(0,0,480,480);
+    // Weighted premultiplied frames must add: source-over dims their overlap mid-fade.
+    ctx.globalCompositeOperation = 'lighter';
     for (const [i, alpha] of [[index,1-mix],[(index+1)%16,mix]]) {
       ctx.globalAlpha = alpha;
       ctx.drawImage(image,(i%4)*cell,Math.floor(i/4)*cell,cell,cell,0,0,480,480);
     }
     ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
   }
   function load() {
     if (requested) return;
