@@ -3,7 +3,7 @@
  * 包裝表面全部是圖片槽（config.images），側面色與燈光色讀 theme.css 的 --ev-3d-* 色票，
  * 換主題只要換圖或換色票，不用改程式。WebGL 無法啟動時回傳 null，由 app.js 改用 2D 圖片。
  */
-import * as THREE from '../vendor/three.min.js?v=20261118-folio1';
+import * as THREE from '../vendor/three.min.js?v=20261118-jewel1';
 
 var STEP = Math.PI / 3;
 var RADIUS = 2.65;
@@ -257,6 +257,7 @@ export function createScene(stage, opts) {
   }
 
   function applyTokens() {
+    dirty = true;
     tinted.forEach(function (m, k) {
       var slot = box && !chest ? Math.floor(k / 2) : k;
       m.color.set(token('--ev-3d-item-' + (slot % COUNT + 1), '#b8b4f3'));
@@ -268,7 +269,7 @@ export function createScene(stage, opts) {
   }
   applyTokens();
 
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.setClearColor(0x000000, 0);
   stage.prepend(renderer.domElement);
   var resize = new ResizeObserver(function () {
@@ -278,6 +279,7 @@ export function createScene(stage, opts) {
     camera.aspect = r.width / r.height;
     camera.updateProjectionMatrix();
     placeMascot();
+    dirty = true;
   });
   resize.observe(stage);
 
@@ -295,6 +297,7 @@ export function createScene(stage, opts) {
 
   function move(n) {
     if (mode !== 'select') return;
+    dirty = true;
     target += n * STEP;
     selected = ((Math.round(-target / STEP) % COUNT) + COUNT) % COUNT;
     if (opts.onSelect) opts.onSelect(selected);
@@ -318,6 +321,7 @@ export function createScene(stage, opts) {
   }
   // 轉到指定的那一包（走最短方向）
   function goTo(i) {
+    dirty = true;
     var k = ((i - selected) % COUNT + COUNT) % COUNT;
     if (k > COUNT / 2) k -= COUNT;
     if (k) move(-k);
@@ -360,16 +364,41 @@ export function createScene(stage, opts) {
   var last = performance.now();
   var raf = 0;
   var disposed = false;
+  var visible = true;
+  var dirty = true;
+  var observer = new IntersectionObserver(function (entries) {
+    visible = entries[0].isIntersecting;
+    resume();
+  });
+  observer.observe(stage);
+  on(document, 'visibilitychange', resume);
+  on(reduced, 'change', function () { dirty = true; resume(); });
+  Promise.all(pending).then(function () { dirty = true; });
+
+  function resume() {
+    cancelAnimationFrame(raf);
+    raf = 0;
+    last = performance.now();
+    if (!disposed && visible && !document.hidden) { dirty = true; raf = requestAnimationFrame(frame); }
+  }
 
   function finishOpen() {
     progress = 1;
     mode = 'opened';
+    dirty = true;
     var cb = openDone;
     openDone = null;
     if (cb) cb();
   }
 
   function frame(now) {
+    raf = 0;
+    if (disposed || !visible || document.hidden) return;
+    if (now - last < 1000 / 30) { raf = requestAnimationFrame(frame); return; }
+    var changing = mode === 'opening' || Math.abs(target - angle) > .0001 || startX !== null;
+    var animate = changing || (!chest && mode === 'select' && !reduced.matches);
+    if (!dirty && !animate) { last = now; raf = requestAnimationFrame(frame); return; }
+    dirty = false;
     var dt = Math.min((now - last) / 1000, 0.05);
     last = now;
     if (mode === 'opening') {
@@ -417,11 +446,13 @@ export function createScene(stage, opts) {
     move: move,
     goTo: goTo,
     setMode: function (m) {
+      dirty = true;
       mode = m;
       if (m === 'select') { progress = 0; openDone = null; }
     },
     open: function (ms) {
       openMs = ms || openMs;
+      dirty = true;
       mode = 'opening';
       progress = 0;
       return new Promise(function (done) { openDone = done; });
@@ -432,6 +463,7 @@ export function createScene(stage, opts) {
       cancelAnimationFrame(raf);
       abort.abort();
       resize.disconnect();
+      observer.disconnect();
       disposables.forEach(function (d) { d.dispose(); });
       renderer.dispose();
       renderer.domElement.remove();

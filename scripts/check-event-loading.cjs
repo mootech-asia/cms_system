@@ -30,7 +30,7 @@ const base = process.env.EVENT_TEST_BASE || 'http://127.0.0.1:8000/';
         await page.close();
       }
       const page = await browser.newPage();
-      await page.route('**/stage-bg.webp', () => {});
+      await page.route('**/stage-bg.webp*', () => {});
       await page.goto(`${base}event/${event}/`, { waitUntil: 'domcontentloaded' });
       await page.locator('#loading').waitFor({ state: 'hidden', timeout: 12000 });
       assert(await page.locator('#btnSpin').isVisible());

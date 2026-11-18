@@ -2,8 +2,8 @@
  * 拆卡包／拆盲盒共用流程：select（挑選）→ ready（已選定）→ loading（向後台取結果）→ opening（動畫）→ reveal（揭曉）。
  * 活動差異（type、圖片槽、文案、mock 內容）全部在各活動的 assets/js/config.js；本檔不放活動專屬內容。
  */
-import { createAtmosphere } from './atmosphere.js?v=20261118-folio1';
-import { createScene } from './scene.js?v=20261118-folio1';
+import { createAtmosphere } from './atmosphere.js?v=20261118-jewel1';
+import { createScene } from './scene.js?v=20261118-jewel1';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -20,7 +20,7 @@ var PER_OPEN_KEY = cfg.storageKey + '_per_open_preview';
 
 var $ = function (id) { return document.getElementById(id); };
 var stage = $('stage');
-createAtmosphere(stage, cfg.type);
+createAtmosphere(stage, cfg.type, cfg.images.atmosphereSprite);
 var sceneEl = $('scene');
 var btnAction = $('btnAction');
 var reveal = $('reveal');
@@ -590,6 +590,15 @@ function runLoading() {
     finished = true;
     overlay.hidden = true;
     setMascot('idle');
+    // Warm reveal artwork only after the interactive stage is ready.
+    var warm = function () {
+      ['rewardBack', 'rewardFrameCommon'].forEach(function (key) {
+        var src = pick(cfg.images[key]);
+        if (typeof src === 'string') { var img = new Image(); img.decoding = 'async'; img.fetchPriority = 'low'; img.src = src; }
+      });
+    };
+    if ('requestIdleCallback' in window) requestIdleCallback(warm, { timeout: 1500 });
+    else setTimeout(warm, 300);
   }
   render();
   setTimeout(finish, 10000);

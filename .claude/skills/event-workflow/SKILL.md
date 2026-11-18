@@ -8,6 +8,10 @@ description: "在 cms_system 的 event/ 底下新增或修改任何活動頁（�
 範本：`event/20261111_lucky_wheel/`。新活動先讀它的 `DESIGN_TASKS.md`、`GPT_ASSET_BRIEF.md`、
 `DELIVERY_CHECKLIST.md`、`assets/js/*.js`，照同樣結構做，不要重新發明。
 
+## 美術品質前置檢查
+
+開始任何介面製作或品質修正前，必須套用 `CLAUDE.md` 的「主題美術與設計品質鐵則」。套圖後先按真實手機尺寸做視覺驗收；不得用功能通過代替美術驗收，也不得以換色、細框或重複花邊貼圖充數。動態需求要檢查連續畫面的可辨識效果。
+
 ## 第 0 步：開資料夾
 
 - 命名 `event/YYYYMMDD_event_name[_N]`（英文小寫底線；同日同名才加 `_2` 起的編號），並在 `event/README.md` 活動列表加一列。
@@ -116,6 +120,9 @@ description: "在 cms_system 的 event/ 底下新增或修改任何活動頁（�
    結論；回報附正式站網址與 pre-report-check 輸出，未驗證項目照實寫。
 
 ## 效能（手機慢網路／低階機，每個活動都要檢查）
+
+- 遵守根目錄設計鐵則第 10 項。使用 `scripts/optimize_event_images.py` 比較靜態交付圖，預設只分析；`--write --report <path>` 才套用。不得反覆重壓已壓縮素材來追求數字；後續修圖應從保留原稿重新輸出。尺寸與 alpha 不變、PSNR 門檻只是工程篩選，仍須目視套圖驗收。
+- 量測正式頁面實際請求，不以含原稿／歷史檔的資料夾容量冒充首屏下載量。載入、互動和離屏暫停都要驗證；報告標示 CPU／網速／瀏覽器與實機未驗證範圍。
 
 - **吉祥物動態圖**：交付 GIF（每段約 1.2MB）→ 用 `tools/gif_to_webp.py` 轉動態 WebP（約 1/3）給網頁載入；
   頁面 load 後背景預載所有狀態（先 spinning／result 再 idle），切換時目標還沒下載完就保留目前動作——

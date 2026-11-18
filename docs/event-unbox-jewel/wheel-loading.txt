@@ -1,0 +1,8 @@
+PASS 20261111_lucky_wheel en: localized entry, failed-animation fallback, spin
+PASS 20261111_lucky_wheel ko: localized entry, failed-animation fallback, spin
+PASS 20261111_lucky_wheel th: localized entry, failed-animation fallback, spin
+PASS 20261111_lucky_wheel: stalled critical image releases loader
+PASS 20261111_survival_spin en: localized entry, failed-animation fallback, spin
+PASS 20261111_survival_spin ko: localized entry, failed-animation fallback, spin
+PASS 20261111_survival_spin th: localized entry, failed-animation fallback, spin
+PASS 20261111_survival_spin: stalled critical image releases loader

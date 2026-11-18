@@ -1,0 +1,981 @@
+[
+  {
+    "path": "event/20261118_card_pack/assets/img/3d/pack-back.webp",
+    "before": 154232,
+    "after": 137008,
+    "psnr": 37.46,
+    "changed": true,
+    "size": [
+      512,
+      768
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/3d/pack-front-1.webp",
+    "before": 140944,
+    "after": 140944,
+    "psnr": 35.5,
+    "changed": false,
+    "size": [
+      512,
+      768
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/3d/pack-front-2.webp",
+    "before": 119570,
+    "after": 105356,
+    "psnr": 38.17,
+    "changed": true,
+    "size": [
+      512,
+      768
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/3d/pack-front-3.webp",
+    "before": 174270,
+    "after": 174270,
+    "psnr": 34.37,
+    "changed": false,
+    "size": [
+      512,
+      768
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/reveal/reward-back.webp",
+    "before": 279172,
+    "after": 279172,
+    "psnr": 34.93,
+    "changed": false,
+    "size": [
+      600,
+      900
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/reveal/reward-front.webp",
+    "before": 145726,
+    "after": 101824,
+    "psnr": 37.62,
+    "changed": true,
+    "size": [
+      600,
+      900
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/scene/atmosphere.webp",
+    "before": 133712,
+    "after": 117538,
+    "psnr": 39.65,
+    "changed": true,
+    "size": [
+      640,
+      454
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/scene/stage-bg.webp",
+    "before": 88244,
+    "after": 75532,
+    "psnr": 41.97,
+    "changed": true,
+    "size": [
+      750,
+      1000
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/share/share-preview.jpg",
+    "before": 204402,
+    "after": 204402,
+    "psnr": 37.88,
+    "changed": false,
+    "size": [
+      1200,
+      630
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/title/title-en.webp",
+    "before": 85012,
+    "after": 85012,
+    "psnr": 34.14,
+    "changed": false,
+    "size": [
+      690,
+      240
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/title/title-ko.webp",
+    "before": 82338,
+    "after": 82338,
+    "psnr": 34.93,
+    "changed": false,
+    "size": [
+      690,
+      240
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/title/title-main.webp",
+    "before": 99694,
+    "after": 89018,
+    "psnr": 36.17,
+    "changed": true,
+    "size": [
+      690,
+      240
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/title/title-th.webp",
+    "before": 85386,
+    "after": 85386,
+    "psnr": 34.2,
+    "changed": false,
+    "size": [
+      690,
+      240
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/ui/btn-arrow.webp",
+    "before": 21618,
+    "after": 17988,
+    "psnr": 37.38,
+    "changed": true,
+    "size": [
+      192,
+      192
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/ui/btn-primary.webp",
+    "before": 72110,
+    "after": 59116,
+    "psnr": 40.82,
+    "changed": true,
+    "size": [
+      900,
+      270
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/ui/chances-badge.webp",
+    "before": 52388,
+    "after": 42310,
+    "psnr": 39.74,
+    "changed": true,
+    "size": [
+      630,
+      210
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/ui/folio-header.webp",
+    "before": 19150,
+    "after": 17024,
+    "psnr": 48.08,
+    "changed": true,
+    "size": [
+      900,
+      300
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/ui/ticker-bar.webp",
+    "before": 63562,
+    "after": 53184,
+    "psnr": 41.75,
+    "changed": true,
+    "size": [
+      1000,
+      180
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/3d/chest-front.webp",
+    "before": 78886,
+    "after": 78886,
+    "psnr": 36.48,
+    "changed": false,
+    "size": [
+      512,
+      320
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/3d/chest-lid.webp",
+    "before": 115858,
+    "after": 115858,
+    "psnr": 36.97,
+    "changed": false,
+    "size": [
+      512,
+      512
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/3d/chest-side.webp",
+    "before": 45612,
+    "after": 39876,
+    "psnr": 40.01,
+    "changed": true,
+    "size": [
+      512,
+      320
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/scene/atmosphere.webp",
+    "before": 137576,
+    "after": 117960,
+    "psnr": 41.52,
+    "changed": true,
+    "size": [
+      900,
+      300
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/scene/stage-bg.webp",
+    "before": 206514,
+    "after": 206514,
+    "psnr": 37.21,
+    "changed": false,
+    "size": [
+      750,
+      1000
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/share/share-preview.jpg",
+    "before": 264634,
+    "after": 264634,
+    "psnr": 35.66,
+    "changed": false,
+    "size": [
+      1200,
+      630
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/title/title-en.webp",
+    "before": 101626,
+    "after": 101626,
+    "psnr": 34.8,
+    "changed": false,
+    "size": [
+      690,
+      240
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/title/title-ko.webp",
+    "before": 94908,
+    "after": 94908,
+    "psnr": 34.92,
+    "changed": false,
+    "size": [
+      690,
+      240
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/title/title-main.webp",
+    "before": 110280,
+    "after": 99090,
+    "psnr": 36.71,
+    "changed": true,
+    "size": [
+      690,
+      240
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/title/title-th.webp",
+    "before": 100138,
+    "after": 100138,
+    "psnr": 35.05,
+    "changed": false,
+    "size": [
+      690,
+      240
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/ui/btn-arrow.webp",
+    "before": 18902,
+    "after": 18902,
+    "psnr": 34.26,
+    "changed": false,
+    "size": [
+      192,
+      192
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/ui/btn-primary.webp",
+    "before": 80928,
+    "after": 63808,
+    "psnr": 37.73,
+    "changed": true,
+    "size": [
+      900,
+      270
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/ui/chances-badge.webp",
+    "before": 57394,
+    "after": 46298,
+    "psnr": 37.35,
+    "changed": true,
+    "size": [
+      630,
+      210
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/ui/folio-header.webp",
+    "before": 62542,
+    "after": 49632,
+    "psnr": 41.06,
+    "changed": true,
+    "size": [
+      900,
+      300
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/ui/panel-crown.webp",
+    "before": 70436,
+    "after": 70436,
+    "psnr": 33.35,
+    "changed": false,
+    "size": [
+      900,
+      300
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/ui/ticker-bar.webp",
+    "before": 67094,
+    "after": 56238,
+    "psnr": 38.56,
+    "changed": true,
+    "size": [
+      1000,
+      180
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/btn-go.webp",
+    "before": 15600,
+    "after": 13308,
+    "psnr": 38.59,
+    "changed": true,
+    "size": [
+      200,
+      200
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/btn-primary.webp",
+    "before": 13462,
+    "after": 11624,
+    "psnr": 40.44,
+    "changed": true,
+    "size": [
+      400,
+      110
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/card-frame.webp",
+    "before": 6416,
+    "after": 6416,
+    "psnr": 31.44,
+    "changed": false,
+    "size": [
+      120,
+      120
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/card-title.webp",
+    "before": 11066,
+    "after": 9454,
+    "psnr": 40.21,
+    "changed": true,
+    "size": [
+      400,
+      72
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/chances-badge.webp",
+    "before": 5214,
+    "after": 4442,
+    "psnr": 41.91,
+    "changed": true,
+    "size": [
+      360,
+      88
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/footer-deco.webp",
+    "before": 16842,
+    "after": 16842,
+    "psnr": 34.74,
+    "changed": false,
+    "size": [
+      750,
+      160
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/icon-rotate.webp",
+    "before": 7494,
+    "after": 6638,
+    "psnr": 36.13,
+    "changed": true,
+    "size": [
+      160,
+      160
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/icon-share.webp",
+    "before": 3548,
+    "after": 3548,
+    "psnr": 35.77,
+    "changed": false,
+    "size": [
+      64,
+      64
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/icon-sound-off.webp",
+    "before": 3996,
+    "after": 3996,
+    "psnr": 35.39,
+    "changed": false,
+    "size": [
+      64,
+      64
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/icon-sound-on.webp",
+    "before": 3630,
+    "after": 3630,
+    "psnr": 35.77,
+    "changed": false,
+    "size": [
+      64,
+      64
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/info-bg.webp",
+    "before": 17792,
+    "after": 14802,
+    "psnr": 48.97,
+    "changed": true,
+    "size": [
+      750,
+      750
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/light-pool.webp",
+    "before": 13092,
+    "after": 11528,
+    "psnr": 50.75,
+    "changed": true,
+    "size": [
+      600,
+      220
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/modal-bg.webp",
+    "before": 44224,
+    "after": 30164,
+    "psnr": 42.6,
+    "changed": true,
+    "size": [
+      600,
+      760
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/period-badge.webp",
+    "before": 11020,
+    "after": 9738,
+    "psnr": 40.98,
+    "changed": true,
+    "size": [
+      480,
+      64
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/pointer.webp",
+    "before": 7048,
+    "after": 7048,
+    "psnr": 35.89,
+    "changed": false,
+    "size": [
+      120,
+      160
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/share-preview.jpg",
+    "before": 252181,
+    "after": 252181,
+    "psnr": 34.98,
+    "changed": false,
+    "size": [
+      1200,
+      630
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/spotlight.webp",
+    "before": 21924,
+    "after": 21924,
+    "psnr": 50.4,
+    "changed": false,
+    "size": [
+      260,
+      900
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/stage-bg-desktop.webp",
+    "before": 301368,
+    "after": 197558,
+    "psnr": 40.14,
+    "changed": true,
+    "size": [
+      1920,
+      1000
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/stage-bg.webp",
+    "before": 145336,
+    "after": 91134,
+    "psnr": 39.36,
+    "changed": true,
+    "size": [
+      750,
+      1000
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/stage-floor.webp",
+    "before": 18090,
+    "after": 18090,
+    "psnr": 40.07,
+    "changed": false,
+    "size": [
+      750,
+      140
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/stage-vignette.webp",
+    "before": 58594,
+    "after": 49098,
+    "psnr": 65.17,
+    "changed": true,
+    "size": [
+      750,
+      1000
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/ticker-bar.webp",
+    "before": 8784,
+    "after": 7264,
+    "psnr": 40.92,
+    "changed": true,
+    "size": [
+      690,
+      64
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/title-en.webp",
+    "before": 46488,
+    "after": 46488,
+    "psnr": 37.36,
+    "changed": false,
+    "size": [
+      690,
+      240
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/title-ko.webp",
+    "before": 47298,
+    "after": 42946,
+    "psnr": 36.04,
+    "changed": true,
+    "size": [
+      690,
+      240
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/title-th.webp",
+    "before": 48354,
+    "after": 44254,
+    "psnr": 36.61,
+    "changed": true,
+    "size": [
+      690,
+      240
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/wheel-frame.webp",
+    "before": 45478,
+    "after": 34260,
+    "psnr": 36.42,
+    "changed": true,
+    "size": [
+      680,
+      680
+    ]
+  },
+  {
+    "path": "event/20261111_lucky_wheel/assets/img/wheel-stand.webp",
+    "before": 26660,
+    "after": 22102,
+    "psnr": 37.8,
+    "changed": true,
+    "size": [
+      400,
+      600
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/btn-go.webp",
+    "before": 10132,
+    "after": 10132,
+    "psnr": 42.03,
+    "changed": false,
+    "size": [
+      200,
+      200
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/btn-primary.webp",
+    "before": 14216,
+    "after": 14216,
+    "psnr": 41.05,
+    "changed": false,
+    "size": [
+      400,
+      110
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/bulb-off.webp",
+    "before": 1560,
+    "after": 1560,
+    "psnr": 26.62,
+    "changed": false,
+    "size": [
+      48,
+      48
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/bulb-on.webp",
+    "before": 2270,
+    "after": 2270,
+    "psnr": 26.23,
+    "changed": false,
+    "size": [
+      48,
+      48
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/card-frame.webp",
+    "before": 9428,
+    "after": 9428,
+    "psnr": 32.59,
+    "changed": false,
+    "size": [
+      120,
+      120
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/card-title.webp",
+    "before": 8008,
+    "after": 6572,
+    "psnr": 37.03,
+    "changed": true,
+    "size": [
+      400,
+      72
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/chances-badge.webp",
+    "before": 11058,
+    "after": 9384,
+    "psnr": 37.72,
+    "changed": true,
+    "size": [
+      360,
+      88
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/footer-deco.webp",
+    "before": 23692,
+    "after": 21474,
+    "psnr": 40.07,
+    "changed": true,
+    "size": [
+      750,
+      160
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/icon-rotate.webp",
+    "before": 8200,
+    "after": 7504,
+    "psnr": 41.07,
+    "changed": true,
+    "size": [
+      160,
+      160
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/icon-share.webp",
+    "before": 6372,
+    "after": 6372,
+    "psnr": 25.94,
+    "changed": false,
+    "size": [
+      64,
+      64
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/icon-sound-off.webp",
+    "before": 6114,
+    "after": 6114,
+    "psnr": 27.09,
+    "changed": false,
+    "size": [
+      64,
+      64
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/icon-sound-on.webp",
+    "before": 6408,
+    "after": 6408,
+    "psnr": 26.87,
+    "changed": false,
+    "size": [
+      64,
+      64
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/info-bg.webp",
+    "before": 2058,
+    "after": 2058,
+    "psnr": 54.56,
+    "changed": false,
+    "size": [
+      750,
+      750
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/light-pool.webp",
+    "before": 12976,
+    "after": 11376,
+    "psnr": 48.97,
+    "changed": true,
+    "size": [
+      600,
+      220
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/modal-bg.webp",
+    "before": 18014,
+    "after": 16140,
+    "psnr": 43.89,
+    "changed": true,
+    "size": [
+      600,
+      760
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/period-badge.webp",
+    "before": 6452,
+    "after": 5128,
+    "psnr": 39.46,
+    "changed": true,
+    "size": [
+      480,
+      64
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/pointer.webp",
+    "before": 5088,
+    "after": 5088,
+    "psnr": 39.6,
+    "changed": false,
+    "size": [
+      120,
+      160
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/share-preview.jpg",
+    "before": 378509,
+    "after": 378509,
+    "psnr": 33.55,
+    "changed": false,
+    "size": [
+      1200,
+      630
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/spotlight.webp",
+    "before": 20378,
+    "after": 20378,
+    "psnr": 52.62,
+    "changed": false,
+    "size": [
+      260,
+      900
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/stage-bg.webp",
+    "before": 49596,
+    "after": 49596,
+    "psnr": 43.66,
+    "changed": false,
+    "size": [
+      750,
+      1000
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/stage-floor.webp",
+    "before": 16524,
+    "after": 16524,
+    "psnr": 42.2,
+    "changed": false,
+    "size": [
+      750,
+      140
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/stage-vignette.webp",
+    "before": 53408,
+    "after": 44132,
+    "psnr": 61.5,
+    "changed": true,
+    "size": [
+      750,
+      1000
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/ticker-bar.webp",
+    "before": 10066,
+    "after": 8568,
+    "psnr": 36.45,
+    "changed": true,
+    "size": [
+      690,
+      64
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/title-en.webp",
+    "before": 42970,
+    "after": 42970,
+    "psnr": 38.99,
+    "changed": false,
+    "size": [
+      690,
+      240
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/title-ko.webp",
+    "before": 42116,
+    "after": 38518,
+    "psnr": 38.23,
+    "changed": true,
+    "size": [
+      690,
+      240
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/title-th.webp",
+    "before": 39574,
+    "after": 36404,
+    "psnr": 37.75,
+    "changed": true,
+    "size": [
+      690,
+      240
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/wheel-frame.webp",
+    "before": 29698,
+    "after": 27016,
+    "psnr": 39.31,
+    "changed": true,
+    "size": [
+      680,
+      680
+    ]
+  },
+  {
+    "path": "event/20261111_survival_spin/img/wheel-stand.webp",
+    "before": 18682,
+    "after": 16616,
+    "psnr": 40.85,
+    "changed": true,
+    "size": [
+      400,
+      600
+    ]
+  }
+]

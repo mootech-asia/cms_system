@@ -1,0 +1,28 @@
+[
+  {
+    "type": "card_pack",
+    "pointerSelectedAllSix": true,
+    "languageSwitch": true,
+    "ui": {
+      "hintArt": "url(\"http://127.0.0.1:8895/event/20261118_card_pack/assets/img/ui/btn-primary.webp?v=20261118-jewel1\")",
+      "tickerHeight": 64,
+      "title": [
+        690,
+        240
+      ]
+    }
+  },
+  {
+    "type": "blind_box",
+    "pointerSelectedAllSix": true,
+    "languageSwitch": true,
+    "ui": {
+      "hintArt": "url(\"http://127.0.0.1:8895/event/20261118_blind_box/assets/img/ui/btn-primary.webp?v=20261118-jewel1\")",
+      "tickerHeight": 64,
+      "title": [
+        690,
+        240
+      ]
+    }
+  }
+]
