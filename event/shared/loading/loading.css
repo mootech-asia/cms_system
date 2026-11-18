@@ -45,3 +45,9 @@
 @keyframes loading-scan { 50% { transform:translateY(120px); opacity:.35; } }
 @media(max-height:560px) { .ev-loading-art { width:170px!important; height:170px!important; margin-bottom:12px; }.ev-loading-box { padding-block:18px; }.ev-loading[data-theme="broadway"] .ev-loading-pct { top:87px; }.ev-loading-title { font-size:19px; }.ev-loading-subtitle { margin-bottom:16px; } }
 @media(prefers-reduced-motion:reduce) { .ev-loading *, .ev-loading *::before,.ev-loading *::after { animation:none!important; transition:none!important; } }
+.ev-lamp-smoke { position:absolute; inset:0; width:100%; height:100%; z-index:2; overflow:visible; pointer-events:none; }
+.ev-lamp-smoke path { stroke-width:8; opacity:0; transform-origin:16px 96px; animation:lamp-smoke-rise 4.8s ease-out infinite; }
+.ev-lamp-smoke path:nth-child(2) { animation-delay:-1.6s; stroke-width:5; }
+.ev-lamp-smoke path:nth-child(3) { animation-delay:-3.2s; stroke-width:11; }
+@keyframes lamp-smoke-rise { 0% { opacity:0; transform:scale(.55,.35); } 25% { opacity:.7; } 65% { opacity:.45; } 100% { opacity:0; transform:translate(8px,-34px) scale(1.2,1.2); } }
+@media(prefers-reduced-motion:reduce) { .ev-lamp-smoke path { animation:none; opacity:.25; } }

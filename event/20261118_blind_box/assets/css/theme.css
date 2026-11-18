@@ -140,3 +140,17 @@
 :root { --ev-tool-ink:var(--ev-vault-shine); --ev-tool-glint:var(--ev-color-accent); }
 /* Capture vertical opening gestures only after choosing a chest. */
 .ev-stage[data-state="ready"] .ev-scene { touch-action:none; }
+
+/* Lower the chest display while retaining space for the grounded contact shadow. */
+.ev-scene { height:calc(var(--ev-scene-size) * 1.32 + 24px); }
+.ev-scene .ev-arrow { top:calc(50% + 30px); }
+@media(max-height:700px) { .ev-scene { height:calc(var(--ev-scene-size) * 1.32 + 12px); } }
+
+:root { --ev-3d-haze:#b58a65; }
+/* Warm reflected floor light dissolves into the emerald archive. */
+.ev-stage::after { content:''; position:absolute; z-index:1; pointer-events:none; inset:auto 0 0; height:78px; background:linear-gradient(0deg,var(--ev-folio-ground),color-mix(in srgb,var(--ev-folio-ground) 70%,transparent) 28%,transparent); }
+.ev-info { border-top:0; }
+.ev-info::after { content:''; position:absolute; pointer-events:none; inset:0 0 auto; height:90px; background:radial-gradient(ellipse at 50% 0,color-mix(in srgb,var(--ev-folio-edge) 16%,transparent),transparent 68%); }
+
+.ev-info::after { z-index:0; background:linear-gradient(180deg,var(--ev-folio-ground),transparent); }
+.ev-info-inner { position:relative; z-index:1; }

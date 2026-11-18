@@ -1,0 +1,32 @@
+[
+  {
+    "event": "card_pack",
+    "asset": "3d/pack-side",
+    "sourceBytes": 2548516,
+    "webBytes": 12988
+  },
+  {
+    "event": "card_pack",
+    "asset": "scene/magic-circle",
+    "sourceBytes": 1789844,
+    "webBytes": 179294
+  },
+  {
+    "event": "blind_box",
+    "asset": "scene/stage-bg",
+    "sourceBytes": 2617176,
+    "webBytes": 195524
+  },
+  {
+    "event": "blind_box",
+    "asset": "scene/wind-flowers",
+    "sourceBytes": 2133317,
+    "webBytes": 52916
+  },
+  {
+    "event": "blind_box",
+    "asset": "scene/wind-palm",
+    "sourceBytes": 2203910,
+    "webBytes": 59948
+  }
+]

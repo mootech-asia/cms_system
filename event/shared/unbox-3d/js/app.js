@@ -2,8 +2,8 @@
  * 拆卡包／拆盲盒共用流程：select（挑選）→ ready（已選定）→ loading（向後台取結果）→ opening（動畫）→ reveal（揭曉）。
  * 活動差異（type、圖片槽、文案、mock 內容）全部在各活動的 assets/js/config.js；本檔不放活動專屬內容。
  */
-import { createAtmosphere } from './atmosphere.js?v=20261118-loading1';
-import { createScene } from './scene.js?v=20261118-loading1';
+import { createAtmosphere } from './atmosphere.js?v=20261118-carousel2';
+import { createScene } from './scene.js?v=20261118-carousel2';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -20,7 +20,7 @@ var PER_OPEN_KEY = cfg.storageKey + '_per_open_preview';
 
 var $ = function (id) { return document.getElementById(id); };
 var stage = $('stage');
-createAtmosphere(stage, cfg.type, cfg.images.atmosphereSprite, cfg.images.starSprite);
+createAtmosphere(stage, cfg.type, cfg.images.atmosphereSprite, cfg.images.starSprite, { flowers:cfg.images.windFlowers, palm:cfg.images.windPalm, circle:cfg.images.magicCircle });
 var sceneEl = $('scene');
 var btnAction = $('btnAction');
 var reveal = $('reveal');
@@ -196,8 +196,8 @@ function renderChances() {
 }
 
 // ---------- 操作台 ----------
-var ACTION_TEXT = { select: 'action.choose', ready: 'action.open', loading: 'action.open', opening: 'action.open', reveal: 'action.open' };
-var STATUS_TEXT = { select: 'status.select', ready: 'status.ready', loading: 'status.loading', opening: 'status.opening' };
+var ACTION_TEXT = { select: 'action.choose', focusing: 'action.choose', ready: 'action.open', loading: 'action.open', opening: 'action.open', reveal: 'action.open' };
+var STATUS_TEXT = { select: 'status.select', focusing: 'status.focusing', ready: 'status.ready', loading: 'status.loading', opening: 'status.opening' };
 var statusOverride = null;
 
 function renderState() {
@@ -210,7 +210,7 @@ function renderState() {
   $('pickHintText').textContent = t(empty || 'hint.pick');
   $('pickHint').classList.toggle('is-empty', !!empty);
   $('actionText').textContent = t(ACTION_TEXT[state]);
-  btnAction.disabled = state === 'loading' || state === 'opening';
+  btnAction.disabled = state === 'focusing' || state === 'loading' || state === 'opening';
   btnAction.classList.toggle('is-empty', state === 'select' && (player.chances <= 0 || !valid));
   $('btnBack').hidden = state !== 'ready';
   $('btnSkip').hidden = state !== 'opening';
@@ -259,8 +259,16 @@ function choose() {
   Sound.play('select');
   btnAction.classList.add('is-pressing');
   setTimeout(function () { btnAction.classList.remove('is-pressing'); }, 140);
-  if (scene) scene.setMode('ready');
-  setState('ready');
+  if (scene && cfg.type === 'card-pack') {
+    setState('focusing');
+    scene.focus().then(function () {
+      if (state !== 'focusing') return;
+      scene.setMode('ready'); setState('ready');
+    });
+  } else {
+    if (scene) scene.setMode('ready');
+    setState('ready');
+  }
 }
 
 function open() {

@@ -22,11 +22,13 @@ window.EVENT_CONFIG = {
   skins: {},
 
   images: {
+    windFlowers: 'assets/img/scene/wind-flowers.webp?v=20261118-carousel2',
+    windPalm: 'assets/img/scene/wind-palm.webp?v=20261118-carousel2',
     loadingEmblem: 'assets/img/ui/loading-emblem.webp?v=20261118-loading1',
     toolMedallion: 'assets/img/ui/tool-medallion.webp?v=20261118-refine2',
     atmosphereSprite: 'assets/img/scene/atmosphere.webp?v=20261118-refine2',
     folioHeader: 'assets/img/ui/panel-crown.webp?v=20261118-refine2',
-    stageBg: 'assets/img/scene/stage-bg.webp?v=20261118-refine2',
+    stageBg: 'assets/img/scene/stage-bg.webp?v=20261118-carousel2',
     infoBg: 'assets/img/scene/info-bg.svg?v=20261118-refine2',
     title: {
       en: 'assets/img/title/title-en.webp?v=20261118-refine2',
@@ -64,7 +66,7 @@ window.EVENT_CONFIG = {
   },
 
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
-  loadingImages: ['loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
+  loadingImages: ['windFlowers', 'windPalm', 'loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
 
   /* 音效：名稱與規格見 AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
      音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
@@ -73,6 +75,8 @@ window.EVENT_CONFIG = {
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
+    windFlowers: 'wind-flowers · 450×450',
+    windPalm: 'wind-palm · 400×320',
     loadingEmblem: 'loading-emblem · 480×480',
     boxInterior: 'chest-interior · 512×352',
     toolMedallion: 'tool-medallion · 160×160',

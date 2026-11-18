@@ -1,0 +1,33 @@
+
+> cms-system-tailwind-build@1.0.0 build
+> vite build && node scripts/publish.mjs
+
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 10 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/assets/NanumGothicLight-C7Y-lcoy.woff        239.13 kB
+dist/assets/NanumGothic-DY9pU2p2.woff           1,645.98 kB
+dist/assets/NanumGothicExtraBold-mHCP0YaF.woff  1,725.91 kB
+dist/assets/NanumGothicBold-pGfObSYw.woff       1,780.74 kB
+dist/assets/v2-studio-BM5InJqt.css                 13.87 kB │ gzip:  3.75 kB
+dist/assets/v2-mobile-lrv4eAL4.css                 61.36 kB │ gzip: 11.85 kB
+dist/assets/v3-studio-DUFHEajE.css                101.41 kB │ gzip: 15.29 kB
+dist/assets/v4-AMgvNn-V.css                       110.47 kB │ gzip: 20.32 kB
+dist/assets/v5-BT6Wzk5D.css                       116.05 kB │ gzip: 20.97 kB
+dist/assets/v15-site-nFJRQzcL.css                 130.71 kB │ gzip: 23.91 kB
+dist/assets/v6-DWi2BYGh.css                       134.65 kB │ gzip: 23.65 kB
+dist/assets/v2-site-DGQZ5GRq.css                  169.29 kB │ gzip: 28.84 kB
+dist/assets/v3-site-BrSfhva6.css                  289.49 kB │ gzip: 46.54 kB
+
+✓ built in 2.35s
+v15-site-nFJRQzcL.css -> v1.5/site/assets/css/tailwind.css
+v2-mobile-lrv4eAL4.css -> v2/site-mobile/assets/css/tailwind.css
+v2-site-DGQZ5GRq.css -> v2/site/assets/css/tailwind.css
+v2-studio-BM5InJqt.css -> v2/studio/tailwind.css
+v3-site-BrSfhva6.css -> v3/site/assets/css/tailwind.css
+v3-studio-DUFHEajE.css -> v3/studio/tailwind.css
+v4-AMgvNn-V.css -> v4/site/assets/css/tailwind.css
+v5-BT6Wzk5D.css -> v5/site/assets/css/tailwind.css
+v6-DWi2BYGh.css -> v6/site/assets/css/tailwind.css

@@ -3,7 +3,7 @@
  * 包裝表面全部是圖片槽（config.images），側面色與燈光色讀 theme.css 的 --ev-3d-* 色票，
  * 換主題只要換圖或換色票，不用改程式。WebGL 無法啟動時回傳 null，由 app.js 改用 2D 圖片。
  */
-import * as THREE from '../vendor/three.min.js?v=20261118-loading1';
+import * as THREE from '../vendor/three.min.js?v=20261118-carousel2';
 
 
 
@@ -40,8 +40,9 @@ export function createScene(stage, opts) {
   var box = opts.type === 'blind-box';
   var chest = box && opts.shape === 'chest';
   var COUNT = Math.max(6, Math.min(40, Number(opts.count) || 6));
-  var STEP = Math.PI * 2 / COUNT, RADIUS = 2.65;
-  var shelf = !box && COUNT >= 12, shelfPhase = 0;
+  var STEP = Math.PI * 2 / COUNT;
+  // Keep foil faces separated on the expanded, single carousel ring.
+  var RADIUS = !box ? 5.2 : 2.65;
   // 先用測試畫布確認有 WebGL，避免 Three.js 建立失敗時在 console 印錯誤
   // 失敗原因寫在 console.info，回報「3D 無法啟用」時用來判斷是瀏覽器不支援 WebGL2、完全沒有 WebGL 還是建立時出錯
   var probe = document.createElement('canvas');
@@ -65,6 +66,7 @@ export function createScene(stage, opts) {
   var camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
   camera.position.set(0, 2.3, 7.6);
   camera.lookAt(0, 0.3, 0);
+  if (chest) scene.fog = { isFog: true, color: new THREE.Color(token('--ev-3d-haze', '#b58a65')), near: 8.5, far: 20 };
 
   var hemi = new THREE.HemisphereLight(0xffffff, 0x8589af, 2);
   var key = new THREE.DirectionalLight(0xffffff, 3);
@@ -115,16 +117,17 @@ export function createScene(stage, opts) {
   }
   function geo(w, h, d) { return keep(new THREE.BoxGeometry(w, h, d)); }
 
-  var foilGeo = null;
-  function foilGeometry() {
-    if (foilGeo) return foilGeo;
-    var foil = foilGeo = keep(new THREE.BoxGeometry(1.48, 2.22, .065, 18, 26, 2));
+  var foilGeos = {};
+  function foilGeometry(low) {
+    var detail = low ? "far" : "near";
+    if (foilGeos[detail]) return foilGeos[detail];
+    var foil = foilGeos[detail] = keep(new THREE.BoxGeometry(1.48, 2.22, .13, low ? 4 : 18, low ? 6 : 26, 2));
     var position = foil.attributes.position;
     for (var vertex = 0; vertex < position.count; vertex++) {
       var x = position.getX(vertex), y = position.getY(vertex), z = position.getZ(vertex);
       var fullness = Math.pow(Math.max(0, Math.cos(x / 1.48 * Math.PI)), .65) * Math.pow(Math.max(0, Math.cos(y / 2.22 * Math.PI)), .55);
       position.setX(vertex, x * (1 + .06 * Math.pow(Math.cos(y / 2.22 * Math.PI), 2)));
-      position.setZ(vertex, z + Math.sign(z) * .12 * fullness);
+      position.setZ(vertex, z + Math.sign(z) * .1 * fullness);
     }
     position.needsUpdate = true;
     foil.computeVertexNormals();
@@ -155,7 +158,7 @@ export function createScene(stage, opts) {
   // 蓋子以後上緣為軸掀開；拱面貼 chest-lid（512×512，由前緣繞到後緣），兩端半圓貼 chest-lid-end。
   var CW = 1.6, CH = 1.0, CD = 1.1;
   var LID_Y = chest ? CH / 2 : box ? 0.895 : 1.2;
-  world.position.y = chest ? -1.02 : 0;
+  world.position.y = chest ? -1.32 : 0;
   var FLOOR_Y = chest ? -CH / 2 + 0.008 : box ? -1.05 : -1.45;
 
   // 半圓拱蓋：圓柱 θ 0～π（旋轉後在上方）。貼圖座標改寫成設計稿好畫的方向——
@@ -185,8 +188,8 @@ export function createScene(stage, opts) {
     var body = new THREE.Group();
     group.add(body);
     // Foil packs may be tinted; chest surfaces retain one consistent gold finish.
-    var side = chest ? art(images.side) : mapped(keep(new THREE.MeshStandardMaterial({ metalness: 0.48, roughness: 0.3 })), images.side);
-    if (!chest) tinted.push(side);
+    var side = (chest || !box) ? art(images.side) : mapped(keep(new THREE.MeshStandardMaterial({ metalness: 0.48, roughness: 0.3 })), images.side);
+    if (box && !chest) tinted.push(side);
     var base, lid, pivot = null, contents = null;
     if (chest) {
       var cFront = art(images.front && fronts[i % fronts.length]);
@@ -241,7 +244,7 @@ export function createScene(stage, opts) {
         body.add(card); contents.push(card);
       }
       var crimp = art(images.crimp);
-      lid = new THREE.Mesh(sealGeometry(), [side, side, side, side, crimp, crimp]);
+      lid = new THREE.Mesh(keep(sealGeometry().clone()), [side, side, side, side, crimp, crimp]);
       var bottom = new THREE.Mesh(sealGeometry(), [side, side, side, side, crimp, crimp]);
       bottom.position.y = -LID_Y;
       body.add(bottom);
@@ -267,24 +270,11 @@ export function createScene(stage, opts) {
       group.add(contact);
     }
 
-    // Distant packs use three simple surfaces; only the foreground needs dense foil folds.
-    var mini = null;
-    if (shelf) {
-      mini = new THREE.Group();
-      var miniEdge = keep(new THREE.MeshBasicMaterial({ color:token('--ev-3d-card-edge', '#e8d9b8') }));
-      mini.add(new THREE.Mesh(geo(1.48, 2.4, .07), miniEdge));
-      var plane = keep(new THREE.PlaneGeometry(1.48, 2.4));
-      var miniFront = new THREE.Mesh(plane, mapped(keep(new THREE.MeshBasicMaterial()), fronts[i % fronts.length]));
-      miniFront.position.z = .038;
-      var miniBack = new THREE.Mesh(plane, mapped(keep(new THREE.MeshBasicMaterial()), images.back));
-      miniBack.position.z = -.038; miniBack.rotation.y = Math.PI;
-      mini.add(miniFront, miniBack); group.add(mini);
-    }
     var a = i * STEP;
     group.position.set(Math.sin(a) * RADIUS, 0, Math.cos(a) * RADIUS - RADIUS);
     group.rotation.y = a;
     ring.add(group);
-    items.push({ group: group, body: body, lid: lid, pivot: pivot, contents: contents, mini: mini, shadowMesh: shadow, shadow: shadowMat, contact: contactMat });
+    items.push({ group: group, body: body, lid: lid, pivot: pivot, contents: contents, base: base, sealRest: !box ? lid.geometry.attributes.position.array.slice() : null, shadow: shadowMat, contact: contactMat });
   }
 
   // 吉祥物站在環形圓心（世界座標 0, 地板, -RADIUS）。角色本身是 <img>（動態 WebP），放在透明畫布後層；
@@ -342,13 +332,23 @@ export function createScene(stage, opts) {
     if (!r.width || !r.height) return;
     renderer.setSize(r.width, r.height);
     camera.aspect = r.width / r.height;
+    if (chest) {
+      const backdrop = stage.closest('.ev-stage').getBoundingClientRect();
+      const cover = Math.max(backdrop.width / 750, backdrop.height / 1000);
+      const horizon = backdrop.top + backdrop.height - 535 * cover - r.top;
+      const focal = r.height / (2 * Math.tan(camera.fov * Math.PI / 360));
+      camera.position.y = .05;
+      camera.lookAt(0, .05 - (r.height / 2 - horizon) / focal * 7.6, 0);
+    }
     camera.updateProjectionMatrix();
     placeMascot();
     dirty = true;
   });
   resize.observe(stage);
+  if (box) resize.observe(stage.closest('.ev-stage'));
 
   var mode = 'select';
+  var zoom = 0, zoomTarget = 0, focusDone = null;
   var selected = 0;
   var angle = 0;
   var target = 0;
@@ -460,19 +460,23 @@ export function createScene(stage, opts) {
     raf = 0;
     if (disposed || !visible || document.hidden) return;
     if (now - last < 1000 / 30) { raf = requestAnimationFrame(frame); return; }
-    var changing = mode === 'opening' || Math.abs(target - angle) > .0001 || startX !== null;
-    var animate = changing || (!chest && mode === 'select' && !reduced.matches);
+    var changing = mode === 'opening' || Math.abs(zoomTarget - zoom) > .001 || Math.abs(target - angle) > .0001 || startX !== null;
+    var animate = changing;
     if (!dirty && !animate) { last = now; raf = requestAnimationFrame(frame); return; }
     dirty = false;
     var dt = Math.min((now - last) / 1000, 0.05);
     last = now;
+    zoom += (zoomTarget - zoom) * (reduced.matches ? 1 : Math.min(1, dt * 9));
+    if (Math.abs(zoomTarget - zoom) < .002) {
+      zoom = zoomTarget;
+      if (focusDone) { var focused = focusDone; focusDone = null; focused(); }
+    }
     if (mode === 'opening') {
       progress += dt / ((reduced.matches ? 300 : openMs) / 1000);
       if (progress >= 1) finishOpen();
     }
     if (startX === null || mode !== 'select') angle += (target - angle) * (reduced.matches ? 1 : Math.min(1, dt * 8));
-    if (shelf && mode === 'select' && !reduced.matches && startX === null) shelfPhase += dt * .12;
-    if (!chest && !shelf) {
+    if (!chest) {
       ring.rotation.y = angle;
       ring.position.x = RADIUS * Math.sin(angle);
       ring.position.z = RADIUS * (Math.cos(angle) - 1);
@@ -481,26 +485,24 @@ export function createScene(stage, opts) {
       if (chest) {
         // Compress the carousel depth, not the meshes, to keep every chest on the visible floor.
         var orbit = k * STEP + angle;
-        it.group.position.set(Math.sin(orbit) * RADIUS, 0, (Math.cos(orbit) - 1) * RADIUS * 0.4);
+        it.group.position.set(Math.sin(orbit) * RADIUS, 0, (Math.cos(orbit) - 1) * RADIUS * .85);
         it.group.rotation.y = orbit;
       }
       var mine = k === selected;
-      if (shelf) {
-        it.body.visible = mine; it.mini.visible = !mine; it.shadowMesh.visible = mine;
-        var a = k * STEP + angle + shelfPhase;
-        it.group.scale.setScalar(mine ? .86 : .24);
-        it.group.position.set(mine ? 0 : Math.sin(a) * 1.48, mine ? -.25 : 1.28 + (1 - Math.cos(a)) * .18, mine ? .1 : (Math.cos(a) - 1) * .8 - .25);
-        it.group.rotation.y = mine ? k * STEP + angle : a;
+      if (!box) {
+        it.base.geometry = foilGeometry(!mine);
+        it.group.scale.setScalar(1 + (mine ? zoom * .14 : 0));
+        it.group.position.y = mine ? zoom * .08 : 0;
       }
       it.group.visible = mode === 'select' || mine;
       var p = mine ? Math.min(progress, 1) : 0;
       if (it.contents) {
-        var stageOpen = Math.max(0, Math.min(1, (p - .16) / .62));
+        var stageOpen = Math.max(0, Math.min(1, (p - .64) / .32));
         var lift = stageOpen * stageOpen * (3 - 2 * stageOpen);
         it.body.scale.setScalar(1 - lift * .32);
         it.body.position.y = -lift * .55;
         it.contents.forEach(function (card, index) {
-          card.visible = p > .16;
+          card.visible = p > .64;
           card.position.y = lift * (index === 2 ? 2.1 : .35 - index * .035);
           card.position.z = -.015 + index * .022 + (index === 2 ? lift * .24 : 0);
           card.rotation.y = index === 2 ? Math.sin(lift * Math.PI) * -.15 : 0;
@@ -510,14 +512,29 @@ export function createScene(stage, opts) {
       var shake = mine && mode === 'opening' && p < 0.2 && !reduced.matches ? Math.sin(now * 0.08) * 0.04 : 0;
       var fly = Math.max(0, (p - 0.2) / 0.8);
       var ease = 1 - Math.pow(1 - fly, 3);
-      it.body.rotation.z = (mode === 'select' && !chest && !reduced.matches ? Math.sin(now * 0.0008 + k) * 0.025 : 0) + (chest ? 0 : shake);
+      it.body.rotation.z = chest ? 0 : shake;
       it.body.rotation.y = mode !== 'select' && box && mine ? 0.15 : 0;
       if (it.pivot) {
         it.pivot.rotation.x = -ease * 1.7;
-      } else {
+      } else if (!box && it.lastTear !== p && (mine || it.lastTear)) {
+        it.lastTear = p;
+        var tear = Math.min(1, p / .64);
+        var release = Math.max(0, Math.min(1, (p - .64) / .22));
+        var attr = it.lid.geometry.attributes.position;
+        for (var vertex = 0; vertex < attr.count; vertex++) {
+          var offset = vertex * 3, sx = it.sealRest[offset], sy = it.sealRest[offset + 1], sz = it.sealRest[offset + 2];
+          var u = (sx + .74) / 1.48;
+          var peeled = Math.pow(Math.max(0, (tear - u) / Math.max(tear, .001)), .7);
+          attr.setXYZ(vertex, sx + peeled * .06, sy + peeled * .46, sz + Math.sin(peeled * Math.PI) * .22);
+        }
+        attr.needsUpdate = true;
+        it.lid.geometry.computeVertexNormals();
+        it.lid.position.set(release * .8, LID_Y + release * 1.2, release * .15);
+        it.lid.rotation.z = -release * .65;
+      } else if (box) {
         it.lid.position.y = LID_Y + ease * 2;
-        it.lid.position.x = box ? 0 : ease * 1.5;
-        it.lid.rotation.z = ease * (box ? -0.4 : -1);
+        it.lid.position.x = 0;
+        it.lid.rotation.z = ease * -.4;
       }
     });
     if (!document.hidden && stage.offsetParent !== null) renderer.render(scene, camera);
@@ -530,10 +547,14 @@ export function createScene(stage, opts) {
     selected: function () { return selected; },
     move: move,
     goTo: goTo,
+    focus: function () {
+      mode = 'focusing'; zoomTarget = 1; dirty = true;
+      return new Promise(function (done) { focusDone = done; });
+    },
     setMode: function (m) {
       dirty = true;
       mode = m;
-      if (m === 'select') { progress = 0; openDone = null; }
+      if (m === 'select') { progress = 0; openDone = null; zoomTarget = 0; focusDone = null; }
     },
     open: function (ms) {
       openMs = ms || openMs;

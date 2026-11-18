@@ -1,0 +1,112 @@
+[
+  {
+    "version": "v1.5/site",
+    "links": []
+  },
+  {
+    "version": "v2/site",
+    "links": [
+      {
+        "text": "Cosmic Magic Card Pack",
+        "visible": true,
+        "width": 223,
+        "scroll": 223
+      },
+      {
+        "text": "Desert Genie’s Gift",
+        "visible": true,
+        "width": 223,
+        "scroll": 223
+      }
+    ]
+  },
+  {
+    "version": "v2/site-mobile",
+    "links": []
+  },
+  {
+    "version": "v3/site",
+    "links": [
+      {
+        "text": "Cosmic Magic Card Pack",
+        "visible": true,
+        "width": 229,
+        "scroll": 229
+      },
+      {
+        "text": "Desert Genie’s Gift",
+        "visible": true,
+        "width": 229,
+        "scroll": 229
+      }
+    ]
+  },
+  {
+    "version": "v3/site-mobile",
+    "links": [
+      {
+        "text": "Cosmic Magic Card Pack",
+        "visible": true,
+        "width": 229,
+        "scroll": 229
+      },
+      {
+        "text": "Desert Genie’s Gift",
+        "visible": true,
+        "width": 229,
+        "scroll": 229
+      }
+    ]
+  },
+  {
+    "version": "v4/site",
+    "links": [
+      {
+        "text": "Cosmic Magic Card Pack",
+        "visible": true,
+        "width": 186,
+        "scroll": 186
+      },
+      {
+        "text": "Desert Genie’s Gift",
+        "visible": true,
+        "width": 186,
+        "scroll": 186
+      }
+    ]
+  },
+  {
+    "version": "v5/site",
+    "links": [
+      {
+        "text": "Cosmic Magic Card Pack",
+        "visible": true,
+        "width": 198,
+        "scroll": 198
+      },
+      {
+        "text": "Desert Genie’s Gift",
+        "visible": true,
+        "width": 198,
+        "scroll": 198
+      }
+    ]
+  },
+  {
+    "version": "v6/site",
+    "links": [
+      {
+        "text": "Cosmic Magic Card Pack",
+        "visible": true,
+        "width": 203,
+        "scroll": 203
+      },
+      {
+        "text": "Desert Genie’s Gift",
+        "visible": true,
+        "width": 203,
+        "scroll": 203
+      }
+    ]
+  }
+]

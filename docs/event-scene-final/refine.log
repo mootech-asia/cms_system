@@ -1,0 +1,22 @@
+[
+  {
+    type: 'card_pack',
+    duration: 76.8,
+    deferredUntilGesture: true,
+    muteResume: true,
+    loopWrapped: true,
+    duckAndRestore: true,
+    visibilityHandler: true,
+    carouselCount: 20
+  },
+  {
+    type: 'blind_box',
+    duration: 60,
+    deferredUntilGesture: true,
+    muteResume: true,
+    loopWrapped: true,
+    duckAndRestore: true,
+    visibilityHandler: true,
+    carouselCount: 6
+  }
+]

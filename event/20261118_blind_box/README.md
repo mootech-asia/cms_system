@@ -42,3 +42,8 @@
 | `assets/img/ui/loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/loading/emblem-original.png` |
 
 共用樣式位於 `event/shared/loading/loading.css`，HTML 的 `data-theme` 在應用程式啟動前指定主題。實際圖片完成數驅動進度；失敗仍計為已處理，維持10秒截止退場，不用假進度或強迫等待。三語文案獨立於圖片，減少動態模式停止裝飾動畫。
+
+
+### 場景與交界修正
+
+最新實作與逐項視覺／功能證據見 [場景驗證](../../docs/event-scene-final/README.md)。原稿保留在 source/；交付 WebP 容量記錄於該報告 compression.json。

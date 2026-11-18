@@ -126,3 +126,9 @@
 @media(max-width:375px) { .ev-card { padding-inline:6px; border-width:22px; }.ev-card-title { font-size:23px; } }
 .ev-reveal-single { isolation:isolate; }
 .ev-reveal-single > .ev-prize-card { z-index:1; }
+/* Carry the nebula into the folio without covering the ticker. */
+.ev-stage::after { content:''; position:absolute; z-index:1; pointer-events:none; inset:auto 0 0; height:74px; background:linear-gradient(0deg,var(--ev-folio-ground),transparent); }
+.ev-info::before { content:''; position:absolute; pointer-events:none; inset:0 0 auto; height:96px; background:radial-gradient(ellipse at 32% 0,color-mix(in srgb,var(--ev-color-primary) 22%,transparent),transparent 66%),radial-gradient(ellipse at 78% 0,color-mix(in srgb,var(--ev-color-focus) 10%,transparent),transparent 58%); }
+
+.ev-info::before { z-index:0; background:linear-gradient(180deg,var(--ev-folio-ground),transparent); }
+.ev-info-inner { position:relative; z-index:1; }

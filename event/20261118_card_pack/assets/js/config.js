@@ -6,7 +6,7 @@
 window.EVENT_CONFIG = {
   type: 'card-pack',
   storageKey: 'event_20261118_card_pack',
-  openMs: 2800,
+  openMs: 4200,
   /* 每包開出幾張卡：一次只拆一包、每包 1 張 */
   perOpenLimits: { min: 1, max: 1 },
   mockResetOpens: 10,
@@ -22,6 +22,7 @@ window.EVENT_CONFIG = {
 
   carouselCount: 20,
   images: {
+    magicCircle: 'assets/img/scene/magic-circle.webp?v=20261118-carousel2',
     loadingEmblem: 'assets/img/ui/loading-emblem.webp?v=20261118-loading1',
     panelFrame: 'assets/img/ui/panel-frame.webp?v=20261118-refine2',
     starSprite: 'assets/img/ui/star-glint.webp?v=20261118-refine2',
@@ -50,8 +51,9 @@ window.EVENT_CONFIG = {
     share: 'assets/img/icon/icon-share.svg?v=20261118-refine2',
     rotateHint: 'assets/img/icon/icon-rotate.svg?v=20261118-refine2',
     tapHint: 'assets/img/icon/icon-tap.svg?v=20261118-refine2',
-    /* 3D 卡包：正面可給 1～6 張不同設計，環上六包依序輪流；側邊與封條會乘上 --ev-3d-item-N 色票 */
+    /* 20 個完整卡包共用環形軌道，正面設計依序重複；側封邊保留原材質色。 */
     packFront: ['assets/img/3d/pack-front-1.webp?v=20261118-refine2', 'assets/img/3d/pack-front-2.webp?v=20261118-refine2', 'assets/img/3d/pack-front-3.webp?v=20261118-refine2'],
+    packSide: 'assets/img/3d/pack-side.webp?v=20261118-carousel2',
     packBack: 'assets/img/3d/pack-back.webp?v=20261118-refine2',
     packCrimp: 'assets/img/3d/pack-crimp.webp?v=20261118-refine2',
     /* 揭曉 */
@@ -64,7 +66,7 @@ window.EVENT_CONFIG = {
   },
 
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
-  loadingImages: ['loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
+  loadingImages: ['magicCircle', 'loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
 
   /* 音效：名稱與規格見 AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
      音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
@@ -73,6 +75,8 @@ window.EVENT_CONFIG = {
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
+    magicCircle: 'magic-circle · 640×640',
+    packSide: 'pack-side · 128×512',
     loadingEmblem: 'loading-emblem · 480×480',
     panelFrame: 'panel-frame · 768×768',
     starSprite: 'star-glint · 192×192',
@@ -106,6 +110,7 @@ window.EVENT_CONFIG = {
 
   /* 活動文案（en/ko/th 必填；zh 只供內部預覽） */
   strings: {
+    'status.focusing': { en: 'Preparing your chosen pack…', ko: '선택한 팩을 준비하는 중…', th: 'กำลังเตรียมซองที่เลือก…', zh: '正在準備選定的卡包…' },
     'loading.scene': {"en": "Awakening the cosmic relic", "ko": "우주의 유물을 깨우는 중", "th": "กำลังปลุกวัตถุแห่งจักรวาล", "zh": "正在喚醒宇宙聖物"},
     'title.alt': { en: 'Cosmic Magic Card Pack', ko: '신비한 우주 마법 카드팩', th: 'ซองการ์ดเวทมนตร์มหัศจรรย์จักรวาล', zh: '宇宙神奇魔幻卡包' },
     'scene.aria': { en: 'Card packs. Drag to rotate.', ko: '카드팩. 드래그해서 돌려 보세요.', th: 'ซองการ์ด ลากเพื่อหมุน', zh: '可拖曳旋轉的 3D 選擇區' },

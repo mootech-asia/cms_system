@@ -1,4 +1,4 @@
-export function createAtmosphere(stage, type, spriteUrl, starUrl) {
+export function createAtmosphere(stage, type, spriteUrl, starUrl, scenery = {}) {
   const canvas = document.createElement('canvas');
   canvas.className = 'ev-atmosphere';
   canvas.setAttribute('aria-hidden', 'true');
@@ -8,7 +8,7 @@ export function createAtmosphere(stage, type, spriteUrl, starUrl) {
   const desert = type === 'blind-box';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let width = 1, height = 1, visible = true, raf = 0, last = 0, phase = 0;
-  const particles = Array.from({ length: desert ? 126 : 170 }, (_, i) => ({
+  const particles = Array.from({ length: desert ? 240 : 170 }, (_, i) => ({
     x: ((i * 73 + 19) % 137) / 137,
     y: ((i * 47 + 31) % 131) / 131,
     size: 1 + (i % 5) * .5,
@@ -23,6 +23,19 @@ export function createAtmosphere(stage, type, spriteUrl, starUrl) {
   let starReady = false;
   star.onload = () => { starReady = true; draw(phase); };
   if (starUrl) star.src = starUrl;
+  const layers = {};
+  ['flowers', 'palm', 'circle'].forEach(key => {
+    if (!scenery[key]) return;
+    const img = new Image(); img.onload = () => { layers[key] = img; draw(phase); }; img.src = scenery[key];
+  });
+  const petals = ['#e797bd', '#ffd5d9', '#f7ca98'].map(color => {
+    const tile = document.createElement('canvas'); tile.width = tile.height = 48;
+    const g = tile.getContext('2d'); g.translate(24,24);
+    const fill = g.createLinearGradient(-20,-20,20,20);
+    fill.addColorStop(0,'#ffe5d5'); fill.addColorStop(.45,color); fill.addColorStop(1,'#a84374');
+    g.fillStyle=fill; g.beginPath(); g.moveTo(-20,0); g.bezierCurveTo(-12,-20,20,-12,20,0); g.bezierCurveTo(10,20,-10,14,-20,0); g.fill();
+    g.strokeStyle='rgba(255,240,222,.45)';g.lineWidth=1;g.beginPath();g.moveTo(-14,0);g.quadraticCurveTo(0,-4,14,0);g.stroke();return tile;
+  });
   const glowCache = new Map();
   function glow(x, y, radius, color) {
     const key = radius + color;
@@ -39,11 +52,23 @@ export function createAtmosphere(stage, type, spriteUrl, starUrl) {
     ctx.drawImage(tile, x - radius, y - radius);
   }
   function desertScene(t) {
-    // Low drifting dust follows the floor; larger petals occupy the near plane.
+    const scale = Math.max(width / 750, height / 1000);
+    const ox = (width - 750 * scale) / 2, oy = height - 1000 * scale;
+    const wind = Math.sin(t * .75) * .035 + Math.sin(t * 1.7) * .012;
+    if (layers.flowers) {
+      ctx.save(); ctx.translate(-35 * scale, oy + 248 * scale); ctx.rotate(wind);
+      ctx.transform(1, 0, Math.sin(t * .75) * .035, 1, 0, 0);
+      ctx.drawImage(layers.flowers, -16 * scale, -65 * scale, 225 * scale, 225 * scale); ctx.restore();
+    }
+    if (layers.palm) {
+      ctx.save(); ctx.translate(-25 * scale, oy + 500 * scale); ctx.rotate(wind * 1.3);
+      ctx.drawImage(layers.palm, -35 * scale, -115 * scale, 175 * scale, 140 * scale); ctx.restore();
+    }
+    // Keep dust near the ground; petal gusts cross the scene at several depths.
     if (spriteReady) {
       for (let layer = 0; layer < 2; layer++) {
         ctx.save();
-        ctx.globalAlpha = layer ? .16 : .24;
+        ctx.globalAlpha = layer ? .2 : .32;
         const w = width * (layer ? 1.7 : 1.3), h = w / 3;
         const x = -width * .2 + Math.sin(t * .5 + layer * 2) * width * .25;
         const y = height * (layer ? .64 : .54) + Math.sin(t * .8 + layer) * 12;
@@ -51,35 +76,35 @@ export function createAtmosphere(stage, type, spriteUrl, starUrl) {
         ctx.restore();
       }
     }
+    const gustTime = t * 1.5 + Math.sin(t * .7) * .45;
     particles.forEach((p, i) => {
-      const x = ((p.x + t * p.speed * (i < 36 ? .75 : 1.8)) % 1.3 - .15) * width;
-      if (i < 36) {
-        const y = (.24 + (p.y + t * p.speed * .12) % .48) * height + Math.sin(t * 1.1 + p.phase) * 23;
-        const size = 3.5 + p.size * 1.6;
-        ctx.save(); ctx.translate(x, y); ctx.rotate(p.phase + t * 1.3);
-        ctx.scale(1, .28 + Math.abs(Math.cos(t + p.phase)) * .72);
-        const fill = ctx.createLinearGradient(-size, -size, size, size);
-        fill.addColorStop(0, i % 3 ? '#ffdfdc' : '#fff2d0');
-        fill.addColorStop(.55, i % 3 ? '#ee98bb' : '#f4ca9d');
-        fill.addColorStop(1, i % 3 ? '#ad416e' : '#c87c68');
-        ctx.globalAlpha = i < 12 ? .9 : .65;
-        ctx.fillStyle = fill; ctx.beginPath(); ctx.moveTo(-size, 0);
-        ctx.bezierCurveTo(-size * .6, -size, size, -size * .6, size, 0);
-        ctx.bezierCurveTo(size * .5, size, -size * .5, size * .7, -size, 0); ctx.fill();
-        ctx.strokeStyle = 'rgba(255,240,222,.7)'; ctx.lineWidth = .6;
-        ctx.beginPath(); ctx.moveTo(-size * .7, 0); ctx.quadraticCurveTo(0, -size * .2, size * .7, 0); ctx.stroke(); ctx.restore();
+      const x = ((p.x + gustTime * p.speed * (i < 104 ? 1.3 : 1.8)) % 1.3 - .15) * width;
+      if (i < 104) {
+        const y = (.18 + (p.y + t * p.speed * .1) % .58) * height + Math.sin(t * 1.5 + p.phase) * (i < 28 ? 45 : 24);
+        const size = i < 18 ? 7 + p.size * 1.8 : 2.4 + p.size * 1.3;
+        const inFocus = x > width * .28 && x < width * .72 && y > height * .44 && y < height * .73;
+        ctx.save();ctx.translate(x,y);ctx.rotate(p.phase+t*(i%2?1.7:-1.1));
+        ctx.scale(1,.25+Math.abs(Math.cos(t*1.3+p.phase))*.75);
+        ctx.globalAlpha = inFocus ? .38 : i < 18 ? .85 : .66;
+        ctx.drawImage(petals[i%3],-size,-size,size*2,size*2);ctx.restore();
       } else {
-        const y = (.36 + p.y * .4) * height + Math.sin(t + p.phase) * 14;
+        const y = (.48 + p.y * .25) * height + Math.sin(t + p.phase) * 12;
         ctx.fillStyle = `rgba(222,169,85,${.12 + (i % 3) * .07})`;
-        ctx.beginPath(); ctx.arc(x, y, .35 + p.size * .2, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(x,y,.35+p.size*.2,0,Math.PI*2);ctx.fill();
       }
     });
   }
+
   function cosmicScene(t) {
     ctx.save(); ctx.globalCompositeOperation = 'screen';
     // Match the ellipse in the 750×1000 background after center-bottom cover scaling.
     const scale = Math.max(width / 750, height / 1000);
     const cx = width / 2, cy = height - 340 * scale;
+    if (layers.circle) {
+      ctx.save(); ctx.translate(cx,cy); ctx.scale(1,.19);ctx.rotate(t*.055);
+      ctx.globalAlpha = .68 + Math.sin(t*1.4)*.13;
+      const diameter=730*scale;ctx.drawImage(layers.circle,-diameter/2,-diameter/2,diameter,diameter);ctx.restore();
+    }
     if (spriteReady) {
       ctx.save(); ctx.beginPath(); ctx.ellipse(cx, cy, 307 * scale, 48 * scale, 0, 0, Math.PI * 2); ctx.clip();
       for (let layer = 0; layer < 2; layer++) {
