@@ -24,9 +24,9 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C03 | title-en | 690×240 | `assets/img/title/title-en.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
-| ☑ | C04 | title-ko | 690×240 | `assets/img/title/title-ko.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
-| ☑ | C05 | title-th | 690×240 | `assets/img/title/title-th.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
+| ☑ | C03 | title-en | 690×240 | `assets/img/title/title-en.{png,webp,svg}` | 5844c7b | ☐ | P0 |
+| ☑ | C04 | title-ko | 690×240 | `assets/img/title/title-ko.{png,webp,svg}` | 5844c7b | ☐ | P0 |
+| ☑ | C05 | title-th | 690×240 | `assets/img/title/title-th.{png,webp,svg}` | 5844c7b | ☐ | P0 |
 | ☑ | C06 | stage-bg | 750×1000 | `assets/img/scene/stage-bg.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
 | ☑ | C07 | pack-back | 512×768 | `assets/img/3d/pack-back.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
 | ☑ | C08 | pack-crimp | 512×64 | `assets/img/3d/pack-crimp.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
@@ -34,7 +34,7 @@
 | ☑ | C10 | pack-front-1 | 512×768 | `assets/img/3d/pack-front-1.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
 | ☑ | C11 | pack-front-2 | 512×768 | `assets/img/3d/pack-front-2.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
 | ☑ | C12 | pack-front-3 | 512×768 | `assets/img/3d/pack-front-3.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
-| ☑ | C13 | reward-back | 600×900 | `assets/img/reveal/reward-back.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
+| ☑ | C13 | reward-back | 600×900 | `assets/img/reveal/reward-back.{png,webp,svg}` | 5844c7b | ☐ | P1 |
 | ☑ | C14 | reward-frame-common | 600×900 | `assets/img/reveal/reward-frame-common.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
 | ☑ | C15 | reward-frame-rare | 600×900 | `assets/img/reveal/reward-frame-rare.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
 | ☑ | C16 | reward-frame-epic | 600×900 | `assets/img/reveal/reward-frame-epic.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
@@ -59,15 +59,15 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 3554392 | ☐ | P0 |
+| ☑ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 5844c7b | ☐ | P0 |
 | ☑ | C34 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C35 | 音效 move：切換選項（≤0.15 秒） | 選配 | `assets/audio/move.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C36 | 音效 tear：撕封條／開箱（約 0.5 秒） | 選配 | `assets/audio/tear.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C37 | 音效 flip：翻卡（≤0.25 秒） | 選配 | `assets/audio/flip.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C38 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `assets/audio/reveal.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C39 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | bc5fb9b | ☐ | P3 |
-| ☑ | C40 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | 3554392 | ☐ | P3 |
-| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 3554392 | ☐ | P2 |
+| ☑ | C40 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | 5844c7b | ☐ | P3 |
+| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 5844c7b | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -86,9 +86,22 @@
 
 ## 主視覺強化版
 
-本次指定中文主標，各語系共用；先前三語 SVG 保留為舊版素材。新藝術字為透明點陣圖，原始 PNG 並非可編輯文字或分層檔。
+英／韓／泰使用各自藝術字，中文僅內部預覽；舊版可編輯 SVG 保留於 source/title。新藝術字為透明點陣圖，原始 PNG 並非可編輯文字或分層檔。
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
 | ☑ | C46 | 宇宙神奇魔幻卡包 | 690×240 | `assets/img/title/title-main.webp` | 3554392 | ☐ | P0 |
 | ☑ | C47 | 新主標原圖 | 2126×740 | `source/title/title-main-original.png` | 3554392 | ☐ | P3 |
+
+## 三語藝術字與卡片精緻化
+
+| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☑ | C48 | 主標 en 點陣原圖 | （人工） | `source/title/title-en-original.png` | 5844c7b | ☐ | P1 |
+| ☑ | C49 | 主標 ko 點陣原圖 | （人工） | `source/title/title-ko-original.png` | 5844c7b | ☐ | P1 |
+| ☑ | C50 | 主標 th 點陣原圖 | （人工） | `source/title/title-th-original.png` | 5844c7b | ☐ | P1 |
+| ☑ | C51 | 星雲雕花卡面 | 600×900 | `assets/img/reveal/reward-front.webp` | 5844c7b | ☐ | P1 |
+| ☑ | C52 | 卡面點陣原圖 | （人工） | `source/reveal/reward-front-original.png` | 5844c7b | ☐ | P1 |
+| ☑ | C53 | 卡背點陣原圖 | （人工） | `source/reveal/reward-back-original.png` | 5844c7b | ☐ | P1 |
+
+footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS 呈現面板並停用波浪頁尾。卡片舊 reward-frame 圖片留存但目前改用 reward-front 與程式稀有度光色。

@@ -17,9 +17,9 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B01 | title-en | 690×240 | `assets/img/title/title-en.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
-| ☑ | B02 | title-ko | 690×240 | `assets/img/title/title-ko.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
-| ☑ | B03 | title-th | 690×240 | `assets/img/title/title-th.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
+| ☑ | B01 | title-en | 690×240 | `assets/img/title/title-en.{png,webp,svg}` | 5844c7b | ☐ | P0 |
+| ☑ | B02 | title-ko | 690×240 | `assets/img/title/title-ko.{png,webp,svg}` | 5844c7b | ☐ | P0 |
+| ☑ | B03 | title-th | 690×240 | `assets/img/title/title-th.{png,webp,svg}` | 5844c7b | ☐ | P0 |
 | ☑ | B04 | stage-bg | 750×1000 | `assets/img/scene/stage-bg.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
 | ☑ | B05 | chest-front | 512×320 | `assets/img/3d/chest-front.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
 | ☑ | B06 | chest-side | 512×320 | `assets/img/3d/chest-side.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
@@ -51,15 +51,15 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B30 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 3554392 | ☐ | P0 |
+| ☑ | B30 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 5844c7b | ☐ | P0 |
 | ☑ | B31 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B32 | 音效 move：切換選項（≤0.15 秒） | 選配 | `assets/audio/move.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B33 | 音效 tear：撕封條／開箱（約 0.5 秒） | 選配 | `assets/audio/tear.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B34 | 音效 flip：翻卡（≤0.25 秒） | 選配 | `assets/audio/flip.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B35 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `assets/audio/reveal.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B36 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | bc5fb9b | ☐ | P3 |
-| ☑ | B37 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | 3554392 | ☐ | P3 |
-| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 3554392 | ☐ | P2 |
+| ☑ | B37 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | 5844c7b | ☐ | P3 |
+| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 5844c7b | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -78,9 +78,19 @@
 
 ## 主視覺強化版
 
-本次指定中文主標，各語系共用；先前三語 SVG 保留為舊版素材。新藝術字為透明點陣圖，原始 PNG 並非可編輯文字或分層檔。
+英／韓／泰使用各自藝術字，中文僅內部預覽；舊版可編輯 SVG 保留於 source/title。新藝術字為透明點陣圖，原始 PNG 並非可編輯文字或分層檔。
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
 | ☑ | B43 | 沙漠精靈的贈禮 | 690×240 | `assets/img/title/title-main.webp` | 3554392 | ☐ | P0 |
 | ☑ | B44 | 新主標原圖 | 2128×739 | `source/title/title-main-original.png` | 3554392 | ☐ | P3 |
+
+## 三語藝術字與卡片精緻化
+
+| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☑ | B45 | 主標 en 點陣原圖 | （人工） | `source/title/title-en-original.png` | 5844c7b | ☐ | P1 |
+| ☑ | B46 | 主標 ko 點陣原圖 | （人工） | `source/title/title-ko-original.png` | 5844c7b | ☐ | P1 |
+| ☑ | B47 | 主標 th 點陣原圖 | （人工） | `source/title/title-th-original.png` | 5844c7b | ☐ | P1 |
+
+footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS 呈現面板並停用波浪頁尾。卡片舊 reward-frame 圖片留存但目前改用 reward-front 與程式稀有度光色。
