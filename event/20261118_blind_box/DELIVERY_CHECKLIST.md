@@ -20,7 +20,7 @@
 | ☑ | B01 | title-en | 690×240 | `assets/img/title/title-en.{png,webp,svg}` | 5844c7b | ☐ | P0 |
 | ☑ | B02 | title-ko | 690×240 | `assets/img/title/title-ko.{png,webp,svg}` | 5844c7b | ☐ | P0 |
 | ☑ | B03 | title-th | 690×240 | `assets/img/title/title-th.{png,webp,svg}` | 5844c7b | ☐ | P0 |
-| ☑ | B04 | stage-bg | 750×1000 | `assets/img/scene/stage-bg.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
+| ☑ | B04 | stage-bg | 750×1000 | `assets/img/scene/stage-bg.{png,webp,svg}` | 8fc24f9 | ☐ | P0 |
 | ☑ | B05 | chest-front | 640×400 | `assets/img/3d/chest-front.{png,webp,svg}` | 8e26e5e | ☐ | P0 |
 | ☑ | B06 | chest-side | 512×320 | `assets/img/3d/chest-side.{png,webp,svg}` | 8e26e5e | ☐ | P0 |
 | ☑ | B07 | chest-lid | 512×512 | `assets/img/3d/chest-lid.{png,webp,svg}` | 8e26e5e | ☐ | P0 |
@@ -51,7 +51,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B30 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 8e26e5e | ☐ | P0 |
+| ☑ | B30 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 8fc24f9 | ☐ | P0 |
 | ☑ | B31 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B32 | 音效 move：切換選項（≤0.15 秒） | 選配 | `assets/audio/move.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B33 | 音效 tear：撕封條／開箱（約 0.5 秒） | 選配 | `assets/audio/tear.mp3` | bc5fb9b | ☐ | P3 |
@@ -59,7 +59,7 @@
 | ☑ | B35 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `assets/audio/reveal.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B36 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B37 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | 5844c7b | ☐ | P3 |
-| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 84ae6d5 | ☐ | P2 |
+| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 8fc24f9 | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -155,3 +155,11 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 |---|---|---|---|---|---|---|---|
 | ☑ | L01 | 主題 loading 器物 | 480×480 | `assets/img/ui/loading-emblem.webp` | 84ae6d5 | ☐ | P1 |
 | ☑ | L02 | Loading 原稿 | （人工） | `source/loading/emblem-original.png` | 84ae6d5 | ☐ | P1 |
+
+
+## 場景分層交付
+
+| 提交 | ID | 圖片槽 | 尺寸 | 交付路徑 | commit | 審核 | 優先級 |
+|---|---|---|---|---|---|---|---|
+| ☑ | B73 | wind-flowers | 450×450 | `assets/img/scene/wind-flowers.webp` | 8fc24f9 | ☐ | P3 |
+| ☑ | B74 | wind-palm | 400×320 | `assets/img/scene/wind-palm.webp` | 8fc24f9 | ☐ | P3 |
