@@ -1,0 +1,14 @@
+[
+  {
+    "fallback": false,
+    "upwardOpened": true,
+    "downHorizontalShortIgnored": true,
+    "collected": true
+  },
+  {
+    "fallback": true,
+    "upwardOpened": true,
+    "downHorizontalShortIgnored": true,
+    "collected": true
+  }
+]

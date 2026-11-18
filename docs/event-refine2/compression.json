@@ -1,0 +1,145 @@
+[
+  {
+    "event": "card_pack",
+    "source": "event/20261118_card_pack/source/reveal/reward-back-refined-original.png",
+    "web": "event/20261118_card_pack/assets/img/reveal/reward-back.webp",
+    "sourceBytes": 2507543,
+    "webBytes": 92526,
+    "webSize": [
+      600,
+      900
+    ]
+  },
+  {
+    "event": "card_pack",
+    "source": "event/20261118_card_pack/source/ui/tool-medallion-refined-original.png",
+    "web": "event/20261118_card_pack/assets/img/ui/tool-medallion.webp",
+    "sourceBytes": 2009635,
+    "webBytes": 9858,
+    "webSize": [
+      160,
+      160
+    ]
+  },
+  {
+    "event": "card_pack",
+    "source": "event/20261118_card_pack/source/ui/period-badge-refined-original.png",
+    "web": "event/20261118_card_pack/assets/img/ui/period-badge.webp",
+    "sourceBytes": 1110614,
+    "webBytes": 26466,
+    "webSize": [
+      900,
+      150
+    ]
+  },
+  {
+    "event": "card_pack",
+    "source": "event/20261118_card_pack/source/ui/star-glint-refined-original.png",
+    "web": "event/20261118_card_pack/assets/img/ui/star-glint.webp",
+    "sourceBytes": 912556,
+    "webBytes": 8800,
+    "webSize": [
+      192,
+      192
+    ]
+  },
+  {
+    "event": "card_pack",
+    "source": "event/20261118_card_pack/source/ui/panel-frame-refined-original.png",
+    "web": "event/20261118_card_pack/assets/img/ui/panel-frame.webp",
+    "sourceBytes": 1249468,
+    "webBytes": 112184,
+    "webSize": [
+      768,
+      768
+    ]
+  },
+  {
+    "event": "card_pack",
+    "source": "event/20261118_card_pack/source/3d/pack-contents-refined-original.png",
+    "web": "event/20261118_card_pack/assets/img/3d/pack-contents.webp",
+    "sourceBytes": 2507543,
+    "webBytes": 17768,
+    "webSize": [
+      256,
+      384
+    ]
+  },
+  {
+    "event": "card_pack",
+    "source": "event/20261118_card_pack/source/3d/pack-crimp-refined-original.png",
+    "web": "event/20261118_card_pack/assets/img/3d/pack-crimp.webp",
+    "sourceBytes": 2602773,
+    "webBytes": 11252,
+    "webSize": [
+      512,
+      64
+    ]
+  },
+  {
+    "event": "blind_box",
+    "source": "event/20261118_blind_box/source/ui/tool-medallion-refined-original.png",
+    "web": "event/20261118_blind_box/assets/img/ui/tool-medallion.webp",
+    "sourceBytes": 1692450,
+    "webBytes": 8428,
+    "webSize": [
+      160,
+      160
+    ]
+  },
+  {
+    "event": "blind_box",
+    "source": "event/20261118_blind_box/source/ui/period-badge-refined-original.png",
+    "web": "event/20261118_blind_box/assets/img/ui/period-badge.webp",
+    "sourceBytes": 1155076,
+    "webBytes": 31800,
+    "webSize": [
+      900,
+      150
+    ]
+  },
+  {
+    "event": "blind_box",
+    "source": "event/20261118_blind_box/source/3d/chest-lid-refined-original.png",
+    "web": "event/20261118_blind_box/assets/img/3d/chest-lid.webp",
+    "sourceBytes": 3667905,
+    "webBytes": 144826,
+    "webSize": [
+      512,
+      512
+    ]
+  },
+  {
+    "event": "blind_box",
+    "source": "event/20261118_blind_box/source/3d/chest-side-refined-original.png",
+    "web": "event/20261118_blind_box/assets/img/3d/chest-side.webp",
+    "sourceBytes": 3192716,
+    "webBytes": 65652,
+    "webSize": [
+      512,
+      320
+    ]
+  },
+  {
+    "event": "blind_box",
+    "source": "event/20261118_blind_box/source/3d/chest-interior-refined-original.png",
+    "web": "event/20261118_blind_box/assets/img/3d/chest-interior.webp",
+    "sourceBytes": 3237576,
+    "webBytes": 50664,
+    "webSize": [
+      512,
+      352
+    ]
+  },
+  {
+    "event": "blind_box",
+    "source": "event/20261118_blind_box/source/3d/chest-front-refined-original.png",
+    "web": "event/20261118_blind_box/assets/img/3d/chest-front.webp",
+    "sourceBytes": 3784853,
+    "webBytes": 130986,
+    "webSize": [
+      640,
+      400
+    ]
+  }
+]

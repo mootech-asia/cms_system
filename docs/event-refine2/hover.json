@@ -1,0 +1,35 @@
+{
+  "rows": [
+    {
+      "width": 360,
+      "hoverDistinct": true,
+      "pressDistinct": true,
+      "stableGeometry": true,
+      "threeLocales": true,
+      "keyboard": true,
+      "reducedMotion": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "hoverDistinct": true,
+      "pressDistinct": true,
+      "stableGeometry": true,
+      "threeLocales": true,
+      "keyboard": true,
+      "reducedMotion": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "hoverDistinct": true,
+      "pressDistinct": true,
+      "stableGeometry": true,
+      "threeLocales": true,
+      "keyboard": true,
+      "reducedMotion": true,
+      "errors": []
+    }
+  ],
+  "touch": true
+}

@@ -21,9 +21,9 @@
 | ☑ | B02 | title-ko | 690×240 | `assets/img/title/title-ko.{png,webp,svg}` | 5844c7b | ☐ | P0 |
 | ☑ | B03 | title-th | 690×240 | `assets/img/title/title-th.{png,webp,svg}` | 5844c7b | ☐ | P0 |
 | ☑ | B04 | stage-bg | 750×1000 | `assets/img/scene/stage-bg.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
-| ☑ | B05 | chest-front | 512×320 | `assets/img/3d/chest-front.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
-| ☑ | B06 | chest-side | 512×320 | `assets/img/3d/chest-side.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | B07 | chest-lid | 512×512 | `assets/img/3d/chest-lid.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
+| ☑ | B05 | chest-front | 640×400 | `assets/img/3d/chest-front.{png,webp,svg}` | 8e26e5e | ☐ | P0 |
+| ☑ | B06 | chest-side | 512×320 | `assets/img/3d/chest-side.{png,webp,svg}` | 8e26e5e | ☐ | P0 |
+| ☑ | B07 | chest-lid | 512×512 | `assets/img/3d/chest-lid.{png,webp,svg}` | 8e26e5e | ☐ | P0 |
 | ☑ | B08 | chest-lid-end | 512×256 | `assets/img/3d/chest-lid-end.{png,webp,svg}` | bc5fb9b | ☐ | P0 |
 | ☑ | B09 | btn-primary | 900×270 | `assets/img/ui/btn-primary.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
 | ☑ | B10 | reward-back | 600×900 | `assets/img/reveal/reward-back.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
@@ -32,7 +32,7 @@
 | ☑ | B13 | reward-frame-epic | 600×900 | `assets/img/reveal/reward-frame-epic.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
 | ☑ | B14 | reward-frame-legendary | 600×900 | `assets/img/reveal/reward-frame-legendary.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
 | ☑ | B15 | reveal-rays | 750×750 | `assets/img/reveal/reveal-rays.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
-| ☑ | B16 | period-badge | 480×64 | `assets/img/ui/period-badge.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
+| ☑ | B16 | period-badge | 900×150 | `assets/img/ui/period-badge.{png,webp,svg}` | 8e26e5e | ☐ | P1 |
 | ☑ | B17 | chances-badge | 630×210 | `assets/img/ui/chances-badge.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
 | ☑ | B18 | ticker-bar | 1000×180 | `assets/img/ui/ticker-bar.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
 | ☑ | B19 | card-frame | 120×120 | `assets/img/ui/card-frame.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
@@ -51,7 +51,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B30 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | aaa6c24 | ☐ | P0 |
+| ☑ | B30 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 8e26e5e | ☐ | P0 |
 | ☑ | B31 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B32 | 音效 move：切換選項（≤0.15 秒） | 選配 | `assets/audio/move.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B33 | 音效 tear：撕封條／開箱（約 0.5 秒） | 選配 | `assets/audio/tear.mp3` | bc5fb9b | ☐ | P3 |
@@ -59,7 +59,7 @@
 | ☑ | B35 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `assets/audio/reveal.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B36 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B37 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | 5844c7b | ☐ | P3 |
-| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 7d77f8f | ☐ | P2 |
+| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 8e26e5e | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -74,7 +74,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | B50 | 背景音樂 bgm（60–90 秒無縫循環） | 選配 | `assets/audio/bgm.mp3` |  | ☐ | P3 |
+| ☑ | B50 | 背景音樂 bgm（60–90 秒無縫循環） | （人工） | `assets/audio/bgm.mp3` | 8e26e5e | ☐ | P3 |
 | ☐ | B51 | 特效音 select：點選一個寶箱＝選定（≤0.4 秒） | 選配 | `assets/audio/select.mp3` |  | ☐ | P3 |
 | ☐ | B52 | 特效音 reveal-common：揭曉：{r}（0.5–0.8 秒） | 選配 | `assets/audio/reveal-common.mp3` |  | ☐ | P3 |
 | ☐ | B53 | 特效音 reveal-rare：揭曉：稀有（寶物出現在台座上）（0.7–1.0 秒） | 選配 | `assets/audio/reveal-rare.mp3` |  | ☐ | P3 |
@@ -82,7 +82,7 @@
 | ☐ | B55 | 特效音 reveal-legendary：揭曉：最高級（Secret 隱藏款，寶物出現在台座上）（1.5–2.0 秒） | 選配 | `assets/audio/reveal-legendary.mp3` |  | ☐ | P3 |
 | ☐ | B56 | 特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒） | 選配 | `assets/audio/collect.mp3` |  | ☐ | P3 |
 | ☐ | B57 | 特效音 error：次數用完、尚無獎項（≤0.3 秒） | 選配 | `assets/audio/error.mp3` |  | ☐ | P3 |
-| ☐ | B58 | 依 AUDIO_REQUEST.md 重做既有 6 個特效音（同名覆蓋 click／move／tear／flip／reveal／reward） | （人工） | `source/audio/README.md` |  | ☐ | P3 |
+| ☑ | B58 | 依 AUDIO_REQUEST.md 重做既有 6 個特效音（同名覆蓋 click／move／tear／flip／reveal／reward） | （人工） | `source/audio/README.md` | 8e26e5e | ☐ | P3 |
 
 ## 紀錄
 
@@ -131,3 +131,20 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 
 壓縮與主題新版提交於 aaa6c24；原稿保留，交付 WebP 的尺寸／alpha 維持，審核欄尚未由品牌確認。
 - 2026-11-18：新增 D 節（背景音樂、選定／四種稀有度揭曉／收下／錯誤特效音），依 `AUDIO_REQUEST.md` 製作；B 節既有 6 個特效音之後依同一份需求重做覆蓋。
+
+## refine2 新素材與可編輯原稿
+
+| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☑ | B67 | chest-interior | 512×352 | `assets/img/3d/chest-interior.webp` | 8e26e5e | ☐ | P1 |
+| ☑ | B68 | tool-medallion | 160×160 | `assets/img/ui/tool-medallion.webp` | 8e26e5e | ☐ | P1 |
+| ☑ | B69 | chest-front-refined-original | （人工） | `source/3d/chest-front-refined-original.png` | 8e26e5e | ☐ | P1 |
+| ☑ | B70 | chest-interior-refined-original | （人工） | `source/3d/chest-interior-refined-original.png` | 8e26e5e | ☐ | P1 |
+| ☑ | B71 | chest-lid-refined-original | （人工） | `source/3d/chest-lid-refined-original.png` | 8e26e5e | ☐ | P1 |
+| ☑ | B72 | chest-side-refined-original | （人工） | `source/3d/chest-side-refined-original.png` | 8e26e5e | ☐ | P1 |
+| ☑ | B73 | bgm-score | （人工） | `source/audio/bgm-score.json` | 8e26e5e | ☐ | P1 |
+| ☑ | B74 | bgm | （人工） | `source/audio/bgm.wav` | 8e26e5e | ☐ | P1 |
+| ☑ | B75 | loudness | （人工） | `source/audio/loudness.json` | 8e26e5e | ☐ | P1 |
+| ☑ | B76 | soundfont-copyright | （人工） | `source/audio/soundfont-copyright.txt` | 8e26e5e | ☐ | P1 |
+| ☑ | B77 | period-badge-refined-original | （人工） | `source/ui/period-badge-refined-original.png` | 8e26e5e | ☐ | P1 |
+| ☑ | B78 | tool-medallion-refined-original | （人工） | `source/ui/tool-medallion-refined-original.png` | 8e26e5e | ☐ | P1 |
