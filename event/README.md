@@ -8,8 +8,8 @@
 |---|---|---|---|
 | Lucky Wheel 原版轉盤 | [20261111_lucky_wheel](./20261111_lucky_wheel/) · [開啟活動](./20261111_lucky_wheel/index.html) | 百老匯舞台、兔比；已有主視覺、介面與可操作轉盤，仍有美術項目待交付 | [交付清單](./20261111_lucky_wheel/DELIVERY_CHECKLIST.md) |
 | Survival Spin 生存輪盤 | [20261111_survival_spin](./20261111_survival_spin/) · [開啟活動](./20261111_survival_spin/index.html) | 墨綠／桃紅舞台、桃紅面具人物；目前使用第一版人物動態，已有專屬社群圖 | [交付清單](./20261111_survival_spin/DELIVERY_CHECKLIST.md) |
-| 3D 拆卡包 | [20261118_card_pack](./20261118_card_pack/) · [開啟活動](./20261118_card_pack/index.html) | 中文展示模組；環形選包、撕封條、逐張揭曉，暫代素材 | 待製作 |
-| 3D 拆盲盒 | [20261118_blind_box](./20261118_blind_box/) · [開啟活動](./20261118_blind_box/index.html) | 中文展示模組；立體選盒、開蓋、獎品揭曉，暫代素材 | 待製作 |
+| 3D 拆卡包 | [20261118_card_pack](./20261118_card_pack/) · [開啟活動](./20261118_card_pack/index.html) | 珍珠薰衣草 mock；環形選包、撕封條、逐張翻卡；en/ko/th、次數、規則、紀錄、分享已比照轉盤；全部佔位圖 | [交付清單](./20261118_card_pack/DELIVERY_CHECKLIST.md) |
+| 3D 拆盲盒 | [20261118_blind_box](./20261118_blind_box/) · [開啟活動](./20261118_blind_box/index.html) | 珍珠薰衣草 mock；環形選盒、開蓋、翻開獎品卡；en/ko/th、次數、規則、紀錄、分享已比照轉盤；全部佔位圖 | [交付清單](./20261118_blind_box/DELIVERY_CHECKLIST.md) |
 
 「已有素材」不等於所有交付與人工審核完成；各活動以自己的交付清單與檢查結果為準。正式站仍使用 mock 獎項資料，不代表已串接後台。
 
@@ -24,14 +24,19 @@ event/
 │   ├── reference/
 │   ├── source/
 │   └── tools/
-└── 20261111_survival_spin/     # 生存輪盤、桃紅人物素材
-    ├── index.html
-    ├── assets/{css,js}/
-    ├── img/
-    ├── skin.css
-    ├── source/
-    └── tools/
+├── 20261111_survival_spin/     # 生存輪盤、桃紅人物素材
+│   ├── index.html
+│   ├── assets/{css,js}/
+│   ├── img/
+│   ├── skin.css
+│   ├── source/
+│   └── tools/
+├── 20261118_card_pack/         # 拆卡包：index.html、assets/{css/theme.css,js/config.js,img}
+├── 20261118_blind_box/         # 拆盲盒：同上
+└── shared/unbox-3d/            # 拆卡包／拆盲盒共用程式（3D 場景、流程、i18n、分享、音效、版面）
 ```
+
+拆卡包與拆盲盒共用 `shared/unbox-3d/` 的程式與版面，各活動只放自己的設定、色票與素材；換主題＝換圖＋色票（或 `skins/<名稱>/`），說明見 [shared/unbox-3d/README.md](./shared/unbox-3d/README.md)。修改共用程式時兩個活動都要驗證。
 
 兩個活動各自包含 `DESIGN_TASKS.md`（美術需求）、`GPT_ASSET_BRIEF.md`（製作規格）、`DELIVERY_CHECKLIST.md`（提交與審核）。生存輪盤沿用已驗證的轉盤程式與 CSS，存放在自己的 `assets/`，可獨立載入；後續共同行為修正需同步檢查兩個活動。
 

@@ -1,0 +1,2 @@
+# Minified Three.js output keeps GLSL template whitespace.
+three.min.js -whitespace

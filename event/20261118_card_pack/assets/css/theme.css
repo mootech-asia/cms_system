@@ -1,0 +1,47 @@
+/*
+ * 拆卡包色票（延續 Codex 版的珍珠薰衣草配色）。換主題：新皮在 skins/<名稱>/skin.css 只覆寫這些變數。
+ * --ev-3d-* 給 3D 場景讀（包裝側邊、補光、接地陰影），--ev-rarity-* 給揭曉卡與紀錄標籤。
+ */
+:root {
+  --ev-color-backdrop: #202737;
+  --ev-color-bg: #eef1f8;
+  --ev-color-surface: #ffffff;
+  --ev-color-surface-2: #e2e1fb;
+  --ev-color-border: #d3d9e8;
+  --ev-color-text: #27364a;
+  --ev-color-text-2: #6f7c92;
+  --ev-color-primary: #29394f;
+  --ev-color-accent: #7765bb;
+  --ev-color-on-primary: #ffffff;
+  --ev-color-on-accent: #ffffff;
+  --ev-color-focus: #7765bb;
+  --ev-color-scrim: rgb(24 30 46 / 0.78);
+  --ev-color-reveal-bg: rgb(20 26 40 / 0.94);
+  --ev-color-drop: rgb(61 76 122 / 0.16);
+  --ev-color-tag-bg: rgb(20 26 40 / 0.78);
+  --ev-color-tag-text: #ffffff;
+  --ev-color-loading-track: rgb(255 255 255 / 0.18);
+  --ev-shadow-btn: 0 8px 20px rgb(52 67 94 / 0.18);
+  --ev-shadow-card: 0 15px 30px rgb(61 76 122 / 0.2);
+
+  --ev-rarity-common: #8490a2;
+  --ev-rarity-rare: #4f8fd8;
+  --ev-rarity-epic: #8d5fd3;
+  --ev-rarity-legendary: #e0a23a;
+
+  --ev-3d-item-1: #a5b8ff;
+  --ev-3d-item-2: #c9a5ef;
+  --ev-3d-item-3: #8ed6c5;
+  --ev-3d-item-4: #f2c18f;
+  --ev-3d-item-5: #b8b4f3;
+  --ev-3d-item-6: #9ecce9;
+  --ev-3d-accent: #d4aaff;
+  --ev-3d-ground: #8589af;
+  --ev-3d-shadow: #27364a;
+
+  --ev-share-line: #06c755;
+  --ev-share-facebook: #1877f2;
+  --ev-share-x: #14171a;
+  --ev-share-whatsapp: #25d366;
+  --ev-share-telegram: #229ed9;
+}

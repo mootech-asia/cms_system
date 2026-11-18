@@ -1,2 +1,0 @@
-# Generated HTML contains vendored GLSL template literals; preserve shader whitespace.
-index.html -whitespace
