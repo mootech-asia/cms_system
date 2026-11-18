@@ -15,43 +15,43 @@
 
 ## 製作優先級
 
-P0 主標三語＋背景＋包裝貼圖＋主按鈕＋色票 → P1 揭曉與版面元件 → P2 圖示與裝飾 → P3 音效與原始檔（最後）。
+P0 主標三語＋背景＋包裝貼圖＋主按鈕＋色票 → P1 揭曉與版面元件 → P2 圖示與裝飾 → P3 吉祥物、音效與原始檔（最後）。分類資料夾規則見 `DESIGN_TASKS.md` 第二節。
 
 ## A. 靜態圖（29）
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | C01 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` |  | ☐ | P0 |
-| ☐ | C02 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` |  | ☐ | P0 |
-| ☐ | C03 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` |  | ☐ | P0 |
-| ☐ | C04 | stage-bg | 750×1000 | `assets/img/stage-bg.{png,webp,svg}` |  | ☐ | P0 |
-| ☐ | C05 | pack-front-1 | 512×768 | `assets/img/pack-front-1.{png,webp,svg}` |  | ☐ | P0 |
-| ☐ | C06 | pack-back | 512×768 | `assets/img/pack-back.{png,webp,svg}` |  | ☐ | P0 |
-| ☐ | C07 | pack-crimp | 512×64 | `assets/img/pack-crimp.{png,webp,svg}` |  | ☐ | P0 |
-| ☐ | C08 | btn-primary | 400×110 | `assets/img/btn-primary.{png,webp,svg}` |  | ☐ | P0 |
-| ☐ | C09 | pack-front-2 | 512×768 | `assets/img/pack-front-2.{png,webp,svg}` |  | ☐ | P1 |
-| ☐ | C10 | pack-front-3 | 512×768 | `assets/img/pack-front-3.{png,webp,svg}` |  | ☐ | P1 |
-| ☐ | C11 | reward-back | 600×900 | `assets/img/reward-back.{png,webp,svg}` |  | ☐ | P1 |
-| ☐ | C12 | reward-frame-common | 600×900 | `assets/img/reward-frame-common.{png,webp,svg}` |  | ☐ | P1 |
-| ☐ | C13 | reward-frame-rare | 600×900 | `assets/img/reward-frame-rare.{png,webp,svg}` |  | ☐ | P1 |
-| ☐ | C14 | reward-frame-epic | 600×900 | `assets/img/reward-frame-epic.{png,webp,svg}` |  | ☐ | P1 |
-| ☐ | C15 | reward-frame-legendary | 600×900 | `assets/img/reward-frame-legendary.{png,webp,svg}` |  | ☐ | P1 |
-| ☐ | C16 | reveal-rays | 750×750 | `assets/img/reveal-rays.{png,webp,svg}` |  | ☐ | P1 |
-| ☐ | C17 | period-badge | 480×64 | `assets/img/period-badge.{png,webp,svg}` |  | ☐ | P1 |
-| ☐ | C18 | chances-badge | 360×88 | `assets/img/chances-badge.{png,webp,svg}` |  | ☐ | P1 |
-| ☐ | C19 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` |  | ☐ | P1 |
-| ☐ | C20 | card-frame | 120×120 | `assets/img/card-frame.{png,webp,svg}` |  | ☐ | P1 |
-| ☐ | C21 | card-title | 400×72 | `assets/img/card-title.{png,webp,svg}` |  | ☐ | P1 |
-| ☐ | C22 | info-bg | 750×750 | `assets/img/info-bg.{png,webp,svg}` |  | ☐ | P1 |
-| ☐ | C23 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` |  | ☐ | P1 |
-| ☐ | C24 | btn-arrow | 96×96 | `assets/img/btn-arrow.{png,webp,svg}` |  | ☐ | P2 |
-| ☐ | C25 | icon-sound-on | 64×64 | `assets/img/icon-sound-on.{png,webp,svg}` |  | ☐ | P2 |
-| ☐ | C26 | icon-sound-off | 64×64 | `assets/img/icon-sound-off.{png,webp,svg}` |  | ☐ | P2 |
-| ☐ | C27 | icon-share | 64×64 | `assets/img/icon-share.{png,webp,svg}` |  | ☐ | P2 |
-| ☐ | C28 | icon-rotate | 160×160 | `assets/img/icon-rotate.{png,webp,svg}` |  | ☐ | P2 |
-| ☐ | C29 | footer-deco | 750×160 | `assets/img/footer-deco.{png,webp,svg}` |  | ☐ | P2 |
+| ☐ | C01 | title-en | 690×240 | `assets/img/title/title-en.{png,webp,svg}` |  | ☐ | P0 |
+| ☐ | C02 | title-ko | 690×240 | `assets/img/title/title-ko.{png,webp,svg}` |  | ☐ | P0 |
+| ☐ | C03 | title-th | 690×240 | `assets/img/title/title-th.{png,webp,svg}` |  | ☐ | P0 |
+| ☐ | C04 | stage-bg | 750×1000 | `assets/img/scene/stage-bg.{png,webp,svg}` |  | ☐ | P0 |
+| ☐ | C05 | pack-front-1 | 512×768 | `assets/img/3d/pack-front-1.{png,webp,svg}` |  | ☐ | P0 |
+| ☐ | C06 | pack-back | 512×768 | `assets/img/3d/pack-back.{png,webp,svg}` |  | ☐ | P0 |
+| ☐ | C07 | pack-crimp | 512×64 | `assets/img/3d/pack-crimp.{png,webp,svg}` |  | ☐ | P0 |
+| ☐ | C08 | btn-primary | 400×110 | `assets/img/ui/btn-primary.{png,webp,svg}` |  | ☐ | P0 |
+| ☐ | C09 | pack-front-2 | 512×768 | `assets/img/3d/pack-front-2.{png,webp,svg}` |  | ☐ | P1 |
+| ☐ | C10 | pack-front-3 | 512×768 | `assets/img/3d/pack-front-3.{png,webp,svg}` |  | ☐ | P1 |
+| ☐ | C11 | reward-back | 600×900 | `assets/img/reveal/reward-back.{png,webp,svg}` |  | ☐ | P1 |
+| ☐ | C12 | reward-frame-common | 600×900 | `assets/img/reveal/reward-frame-common.{png,webp,svg}` |  | ☐ | P1 |
+| ☐ | C13 | reward-frame-rare | 600×900 | `assets/img/reveal/reward-frame-rare.{png,webp,svg}` |  | ☐ | P1 |
+| ☐ | C14 | reward-frame-epic | 600×900 | `assets/img/reveal/reward-frame-epic.{png,webp,svg}` |  | ☐ | P1 |
+| ☐ | C15 | reward-frame-legendary | 600×900 | `assets/img/reveal/reward-frame-legendary.{png,webp,svg}` |  | ☐ | P1 |
+| ☐ | C16 | reveal-rays | 750×750 | `assets/img/reveal/reveal-rays.{png,webp,svg}` |  | ☐ | P1 |
+| ☐ | C17 | period-badge | 480×64 | `assets/img/ui/period-badge.{png,webp,svg}` |  | ☐ | P1 |
+| ☐ | C18 | chances-badge | 360×88 | `assets/img/ui/chances-badge.{png,webp,svg}` |  | ☐ | P1 |
+| ☐ | C19 | ticker-bar | 690×64 | `assets/img/ui/ticker-bar.{png,webp,svg}` |  | ☐ | P1 |
+| ☐ | C20 | card-frame | 120×120 | `assets/img/ui/card-frame.{png,webp,svg}` |  | ☐ | P1 |
+| ☐ | C21 | card-title | 400×72 | `assets/img/ui/card-title.{png,webp,svg}` |  | ☐ | P1 |
+| ☐ | C22 | info-bg | 750×750 | `assets/img/scene/info-bg.{png,webp,svg}` |  | ☐ | P1 |
+| ☐ | C23 | share-preview | 1200×630 | `assets/img/share/share-preview.{png,jpg}` |  | ☐ | P1 |
+| ☐ | C24 | btn-arrow | 96×96 | `assets/img/ui/btn-arrow.{png,webp,svg}` |  | ☐ | P2 |
+| ☐ | C25 | icon-sound-on | 64×64 | `assets/img/icon/icon-sound-on.{png,webp,svg}` |  | ☐ | P2 |
+| ☐ | C26 | icon-sound-off | 64×64 | `assets/img/icon/icon-sound-off.{png,webp,svg}` |  | ☐ | P2 |
+| ☐ | C27 | icon-share | 64×64 | `assets/img/icon/icon-share.{png,webp,svg}` |  | ☐ | P2 |
+| ☐ | C28 | icon-rotate | 160×160 | `assets/img/icon/icon-rotate.{png,webp,svg}` |  | ☐ | P2 |
+| ☐ | C29 | footer-deco | 750×160 | `assets/img/scene/footer-deco.{png,webp,svg}` |  | ☐ | P2 |
 
-## B. 色票、音效、原始檔、設定
+## B. 色票、吉祥物、音效、原始檔、設定
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
@@ -62,8 +62,17 @@ P0 主標三語＋背景＋包裝貼圖＋主按鈕＋色票 → P1 揭曉與版
 | ☐ | C34 | 音效 flip：翻卡（≤0.25 秒） | 選配 | `assets/audio/flip.mp3` |  | ☐ | P3 |
 | ☐ | C35 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `assets/audio/reveal.mp3` |  | ☐ | P3 |
 | ☐ | C36 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` |  | ☐ | P3 |
-| ☐ | C37 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/README.md` |  | ☐ | P3 |
-| ☐ | C38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` |  | ☐ | P2 |
+| ☐ | C37 | 吉祥物 idle：待機（挑選中，循環） | 400×500 gif≥48 | `assets/img/mascot/idle.gif` |  | ☐ | P3 |
+| ☐ | C38 | 吉祥物 anticipate：期待（已選定、撕封條／開蓋中，緊張搓手、探頭） | 400×500 gif≥48 | `assets/img/mascot/anticipate.gif` |  | ☐ | P3 |
+| ☐ | C39 | 吉祥物 celebrate：慶祝（開到稀有以上；關閉揭曉後演兩輪） | 400×500 gif≥48 | `assets/img/mascot/celebrate.gif` |  | ☐ | P3 |
+| ☐ | C40 | 吉祥物 lose：小失望（只開到普通，仍然可愛、不沮喪） | 400×500 gif≥48 | `assets/img/mascot/lose.gif` |  | ☐ | P3 |
+| ☐ | C41 | 吉祥物基準幀（所有動態的頭尾） | 400×500 | `assets/img/mascot/base-frame.png` |  | ☐ | P3 |
+| ☐ | C42 | 吉祥物 idle PNG 序列幀 | 400×500 frames≥48 | `source/mascot/idle/` |  | ☐ | P3 |
+| ☐ | C43 | 吉祥物 anticipate PNG 序列幀 | 400×500 frames≥48 | `source/mascot/anticipate/` |  | ☐ | P3 |
+| ☐ | C44 | 吉祥物 celebrate PNG 序列幀 | 400×500 frames≥48 | `source/mascot/celebrate/` |  | ☐ | P3 |
+| ☐ | C45 | 吉祥物 lose PNG 序列幀 | 400×500 frames≥48 | `source/mascot/lose/` |  | ☐ | P3 |
+| ☐ | C46 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` |  | ☐ | P3 |
+| ☐ | C47 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` |  | ☐ | P2 |
 
 ## 紀錄
 

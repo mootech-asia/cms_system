@@ -9,14 +9,14 @@
     <meta property="og:title" content="Card Pack Opening" />
     <meta property="og:description" content="Open a card pack and collect rare cards!" />
     <meta property="og:url" content="https://mootech-asia.github.io/cms_system/event/20261118_card_pack/" />
-    <meta property="og:image" content="https://mootech-asia.github.io/cms_system/event/20261118_card_pack/assets/img/share-preview.png" />
+    <meta property="og:image" content="https://mootech-asia.github.io/cms_system/event/20261118_card_pack/assets/img/share/share-preview.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Card Pack Opening" />
     <meta name="twitter:description" content="Open a card pack and collect rare cards!" />
-    <meta name="twitter:image" content="https://mootech-asia.github.io/cms_system/event/20261118_card_pack/assets/img/share-preview.png" />
-    <link rel="preload" as="image" href="assets/img/stage-bg.svg" fetchpriority="high" />
+    <meta name="twitter:image" content="https://mootech-asia.github.io/cms_system/event/20261118_card_pack/assets/img/share/share-preview.png" />
+    <link rel="preload" as="image" href="assets/img/scene/stage-bg.svg" fetchpriority="high" />
     <link rel="modulepreload" href="../shared/unbox-3d/vendor/three.min.js" />
     <link rel="stylesheet" href="../shared/unbox-3d/css/unbox.css" />
     <link rel="stylesheet" href="assets/css/theme.css" />
@@ -48,6 +48,7 @@
         <p class="ev-period-wrap"><span class="ev-period" id="period"></span><span class="ev-asset ev-asset--period" data-asset="periodBadge" aria-hidden="true"></span></p>
 
         <div class="ev-scene" id="scene" role="group" data-i18n-aria="scene.aria">
+          <img class="ev-mascot" id="mascot" alt="" aria-hidden="true" />
           <img class="ev-scene-fallback" id="sceneFallback" alt="" hidden />
           <p class="ev-scene-note" id="sceneNote" data-i18n="status.no3d" hidden></p>
           <button type="button" class="ev-arrow ev-arrow--prev" id="btnPrev" data-i18n-aria="prev"><img data-img="btnArrow" alt="" /></button>
@@ -66,7 +67,7 @@
             </div>
             <button type="button" class="ev-panel-close" id="panelClose" aria-label="×">×</button>
           </div>
-          <span class="ev-asset ev-asset--scene" data-asset="packFront packBack packCrimp btnArrow stageBg" aria-hidden="true"></span>
+          <span class="ev-asset ev-asset--scene" data-asset="packFront packBack packCrimp btnArrow stageBg mascot" aria-hidden="true"></span>
         </div>
 
         <div class="ev-console">

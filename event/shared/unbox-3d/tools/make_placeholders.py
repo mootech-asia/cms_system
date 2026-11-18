@@ -213,6 +213,24 @@ def share_preview(path, kind):
     im.save(path, 'PNG', optimize=True)
 
 
+# 素材分類（與 DESIGN_TASKS.md「素材分類規則」一致）：assets/img/<分類>/<檔名>
+CATEGORY = {
+    'scene': ('stage-bg', 'info-bg', 'footer-deco'),
+    'title': ('title-',),
+    '3d': ('pack-', 'box-'),
+    'reveal': ('reveal-', 'reward-'),
+    'ui': ('btn-', 'period-badge', 'chances-badge', 'ticker-bar', 'card-frame', 'card-title'),
+    'icon': ('icon-',),
+}
+
+
+def category(name):
+    for cat, prefixes in CATEGORY.items():
+        if name.startswith(prefixes):
+            return cat
+    raise SystemExit('未分類的素材：' + name)
+
+
 def main():
     if len(sys.argv) != 3 or sys.argv[2] not in TITLES:
         sys.exit(__doc__)
@@ -242,11 +260,16 @@ def main():
         files['box-side.svg'] = box_side()
         files['box-lid.svg'] = box_lid()
         files['box-lid-side.svg'] = box_lid_side()
+    files = {f'{category(n)}/{n}': d for n, d in files.items()}
+    files['share/share-preview.png'] = None
     for name, data in files.items():
+        os.makedirs(os.path.join(out, os.path.dirname(name)), exist_ok=True)
+        if data is None:
+            share_preview(os.path.join(out, name), kind)
+            continue
         with open(os.path.join(out, name), 'w', encoding='utf-8') as f:
             f.write(data)
-    share_preview(os.path.join(out, 'share-preview.png'), kind)
-    for name in sorted(list(files) + ['share-preview.png']):
+    for name in sorted(files):
         digest = hashlib.sha256(open(os.path.join(out, name), 'rb').read()).hexdigest()[:16]
         print(f"    '{digest}',  # {os.path.basename(root)}/{name}")
 

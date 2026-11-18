@@ -82,9 +82,69 @@ function applyImages() {
 function renderAssetLabels() {
   document.querySelectorAll('[data-asset]').forEach(function (el) {
     el.textContent = el.getAttribute('data-asset').split(' ').map(function (k) {
-      return (cfg.assetSpecs[k] || k).replace('{locale}', I18n.getLocale());
+      return (cfg.assetSpecs[k] || k).replace('{locale}', I18n.getLocale()).replace('{state}', mascotState);
     }).join('\n');
   });
+}
+
+// ---------- 吉祥物：站在選中包裝後方中央（畫布在上層，前排包裝擋住下半身） ----------
+// 所有動態共用同一張基準幀、長度相同（config.mascot.loopMs），切換時等目前這段播完一輪再換，畫面不會跳；
+// loopMs 為 0（靜態圖）時立即切換。目標動態還沒下載完就保留目前動作，慢網路下角色不會消失。
+var M = cfg.mascot || null;
+var mascotEl = $('mascot');
+var mascotCache = {};
+var mascotWant = null;
+var mascotShownAt = 0;
+var mascotTimer = null;
+var mascotAfter = null;
+var mascotState = 'idle';
+function loadMascot(src, done) {
+  var entry = mascotCache[src];
+  if (!entry || entry.failed) {
+    entry = mascotCache[src] = { ready: false, failed: false, cbs: [] };
+    var img = new Image();
+    img.decoding = 'async';
+    img.onload = function () { entry.ready = true; entry.cbs.splice(0).forEach(function (cb) { cb(true); }); };
+    img.onerror = function () { entry.failed = true; entry.cbs.splice(0).forEach(function (cb) { cb(false); }); };
+    img.src = src;
+  }
+  if (entry.ready) done(true); else entry.cbs.push(done);
+}
+function setMascot(next) {
+  if (!M) return;
+  clearTimeout(mascotAfter);
+  var src = next === 'idle' ? M.idle[0] : (M[next] || M.idle[0]);
+  if (!src) return;
+  mascotWant = src;
+  loadMascot(src, function (ok) {
+    if (!ok || mascotWant !== src) return;
+    clearTimeout(mascotTimer);
+    var swap = function () {
+      if (mascotWant !== src) return;
+      mascotEl.src = src;
+      mascotShownAt = performance.now();
+      mascotState = next;
+      renderAssetLabels();
+    };
+    var loop = M.loopMs;
+    if (!mascotShownAt || !loop) { swap(); return; }
+    mascotTimer = setTimeout(swap, (loop - (performance.now() - mascotShownAt) % loop) % loop);
+  });
+}
+// 揭曉層蓋住舞台，所以慶祝／失望在關閉揭曉後演兩輪再回到待機
+function mascotReact(list) {
+  var best = Math.max.apply(null, list.map(Store.rarityRank));
+  setMascot(best >= 1 ? 'celebrate' : 'lose');
+  mascotAfter = setTimeout(function () { if (state === 'select') setMascot('idle'); }, Math.max(2, Math.ceil(3000 / (M.loopMs || 3000))) * (M.loopMs || 1500));
+}
+if (M) {
+  if (M.poster) mascotEl.src = M.poster;
+  window.addEventListener('load', function () {
+    var list = [M.anticipate, M.celebrate, M.lose].concat(M.idle).filter(Boolean);
+    (function next(i) { if (i < list.length) loadMascot(list[i], function () { next(i + 1); }); })(0);
+  });
+} else {
+  mascotEl.hidden = true;
 }
 
 // ---------- 內容 ----------
@@ -151,9 +211,11 @@ function renderPickLabel() {
 }
 
 function setState(next, status) {
+  var prev = state;
   state = next;
   statusOverride = status || null;
   renderState();
+  if (next === 'ready' && prev !== 'ready') setMascot('anticipate');
 }
 
 function showToast(text) {
@@ -227,6 +289,7 @@ function backToSelect() {
   Sound.play('move');
   if (scene) scene.setMode('select');
   setState('select');
+  setMascot('idle');
 }
 
 // ---------- 揭曉 ----------
@@ -308,6 +371,7 @@ function revealStep() {
 
 function closeReveal() {
   reveal.hidden = true;
+  if (rewards.length) mascotReact(rewards);
   rewards = [];
   if (scene) scene.setMode('select');
   setState('select');
@@ -465,6 +529,7 @@ function runLoading() {
     if (finished) return;
     finished = true;
     overlay.hidden = true;
+    setMascot('idle');
   }
   render();
   setTimeout(finish, 10000);

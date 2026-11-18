@@ -20,7 +20,7 @@
 | **P0 全局視覺** | 面積大、決定第一眼 | `title-en`、`title-ko`、`title-th`、`stage-bg`、`btn-primary`、`box-front`、`box-side`、`box-lid`、`box-lid-side`、色票 `theme.css` → **全部到位後先整頁截圖確認方向** |
 | **P1 版面元件** | 主要元件與揭曉 | `reward-back`、`reward-frame-common`、`reward-frame-rare`、`reward-frame-epic`、`reward-frame-legendary`、`reveal-rays`、`period-badge`、`chances-badge`、`ticker-bar`、`card-frame`、`card-title`、`info-bg`、`share-preview` |
 | **P2 細節** | 小圖示與裝飾 | `btn-arrow`、`icon-sound-on`、`icon-sound-off`、`icon-share`、`icon-rotate`、`footer-deco`、config 路徑 |
-| **P3 精修** | 需要時間打磨 | 音效 ×6、主標可編輯原始檔、3D 材質微調 |
+| **P3 精修** | 需要時間打磨 | 吉祥物（熊北 Moo Bear）動態 ×4＋基準幀、音效 ×6、主標可編輯原始檔、3D 材質微調 |
 
 ## 一、美術方向
 
@@ -31,7 +31,7 @@
 | 3D 包裝 | 盲盒是程式做的 3D 立方體＋盒蓋：正面＝`box-front`、其他三面＝`box-side`、盒蓋頂＝`box-lid`、盒蓋四邊＝`box-lid-side`。 立體、打光、透視都由程式負責，**交付的是「攤平的平面貼圖」**，不要畫成立體照片。 |
 | 揭曉 | 深色遮罩上，一張獎品卡從卡背翻到正面，後方放射光＋依稀有度變色的光暈；最高稀有度要明顯更華麗。 |
 | 版面（第一屏） | 主標 → 活動期間 → 3D 選擇區（左右箭頭）→ 剩餘次數 → 主按鈕 → 提示文字 → 跑馬燈。手機 360×640 起第一屏就看得到主按鈕；只用 H5 寬度（480px 置中）。 |
-| 吉祥物 | **本版沒有吉祥物**（Codex 原型沒有，版面也沒預留）。要不要加、加哪一隻，等使用者決定後再開需求。 |
+| 吉祥物 | **熊北 Moo Bear**站在選中包裝**後方中央**，包裝擋住下半身、只露出上半身探頭（2026-11-18 使用者定案）。規格見第四節。 |
 
 ### 語系規則（嚴格）
 
@@ -44,6 +44,28 @@
 - 除背景與 3D 貼圖外全部去背。PNG／WebP／SVG 皆可（分享預覽只能 PNG／JPG）。單張建議 ≤300KB，背景 ≤500KB。
 - 3D 貼圖（包裝各面）**滿版不透明**、不留白邊、不畫陰影與透視。
 - 換副檔名時：刪掉同名 `.svg` 佔位檔，改 `assets/js/config.js` 的路徑；`stage-bg` 另外改 `index.html` 的 `<link rel="preload">`。
+
+### 素材分類規則（嚴格，放錯資料夾檢查腳本會判定找不到檔案）
+
+所有路徑以活動資料夾 `event/20261118_blind_box/` 為基準。**一個圖片槽只對應一個檔案**；同名不同副檔名只能留一個（換格式時刪掉舊的 `.svg` 佔位檔）。
+
+| 分類資料夾 | 放什麼 | 本活動檔案 |
+|---|---|---|
+| `assets/img/scene/` | 場景與大面積底圖：舞台背景、下半部底紋、頁尾裝飾 | `stage-bg`、`info-bg`、`footer-deco` |
+| `assets/img/title/` | 活動主標（每個語系一張） | `title-en`、`title-ko`、`title-th` |
+| `assets/img/3d/` | 貼在 3D 包裝上的平面貼圖（滿版、不透明、無陰影無透視） | `box-front`、`box-side`、`box-lid`、`box-lid-side` |
+| `assets/img/reveal/` | 揭曉畫面：放射光、獎品卡背、四種稀有度外框 | `reward-back`、`reward-frame-common`、`reward-frame-rare`、`reward-frame-epic`、`reward-frame-legendary`、`reveal-rays` |
+| `assets/img/ui/` | 可重複使用的介面元件：按鈕、緞帶、徽章、跑馬燈條、卡片框 | `btn-primary`、`period-badge`、`chances-badge`、`ticker-bar`、`card-frame`、`card-title`、`btn-arrow` |
+| `assets/img/icon/` | 小圖示（64×64／160×160） | `icon-sound-on`、`icon-sound-off`、`icon-share`、`icon-rotate` |
+| `assets/img/mascot/` | 吉祥物網頁用動態（GIF 預覽、轉好的 WebP）與 base-frame.png | `idle`、`anticipate`、`celebrate`、`lose`、`base-frame` |
+| `assets/img/share/` | 社群分享預覽圖（PNG／JPG） | `share-preview` |
+| `assets/audio/` | 音效 mp3 | `click`、`move`、`tear`、`flip`、`reveal`、`reward` |
+| `source/` | 原始檔與序列幀（不會被網頁載入）：`source/title/`（主標 PSD／AI／Figma 連結說明）、`source/mascot/<狀態>/`（PNG 序列幀） | — |
+
+- **檔名**：英文小寫＋連字號，照下表檔名，不加日期、版本號、中文或空白（`stage-bg.webp` ✅、`舞台背景_v2.png` ❌）。改版直接覆蓋同檔名，舊版靠 git 歷史回溯。
+- **格式**：照片質感或大面積漸層用 WebP／PNG；純向量可用 SVG；分享預覽只能 PNG／JPG；吉祥物動態交 GIF＋PNG 序列幀。
+- **換主題（皮）**：新皮放在 `skins/<皮名>/img/`，底下用**同一套分類資料夾**（例：`skins/xmas/img/3d/pack-front-1.webp`），只放跟預設不同的圖。
+- **不要放進 assets 的東西**：參考圖、比對圖、草稿、截圖 → 放 `reference/` 或直接附在對話，不進 `assets/`。
 
 ## 三、靜態圖清單
 
@@ -92,7 +114,26 @@
 - `--ev-3d-item-1`～`6`：六個包裝的側邊／封條／盒蓋色（相鄰要能分辨）；`--ev-3d-accent` 補光色；`--ev-3d-shadow` 接地陰影色。
 - `--ev-rarity-common` / `rare` / `epic` / `legendary`：稀有度標籤與揭曉光暈。
 
-## 四、音效（選配，P3；未交付時程式用合成音）
+## 四、吉祥物（P3，最後做）
+
+- 角色：**熊北 Moo Bear**。形象一律以品牌包為準：官方 `mootech-asia/mootech_website` 的 `brand/moo-bear/`；本 repo 參考圖 `event/20261111_lucky_wheel/reference/bear-*`（三視圖＋貼圖）。目前是官方參考靜態圖縮成 400×500 的佔位（不會動，姿勢大小不一）。
+- 位置：站在 3D 選擇區正中央、選中包裝的**後方**；畫面上包裝會擋住角色腰部以下，所以**表演集中在頭、臉、手與上半身**（探頭、雙手扶在包裝上緣也可以）。程式把角色放在畫布後層，不會擋到左右箭頭與主按鈕。
+- 畫布 **400×500**，角色寬約畫布 80%，腳底固定在離下緣約 12px 的基準線；**鏡頭固定**，角色不可忽大忽小（逐幀外框寬度變化 ≤10%）。
+- 影子畫在素材裡（腳底接觸影＋往右後方的柔和投影），程式不加影子。任何一幀都不可貼到畫布邊緣（四邊 ≥8px）。
+- 每段 **48 幀、24fps、共 2000ms**，無縫循環；**所有段的第一幀＝最後一幀＝同一張 `base-frame.png`**，程式在一輪結束時切換動作才不會跳。
+- 主交付：每段一個 RGBA PNG 序列幀資料夾（`source/mascot/<狀態>/0001.png`…，保留半透明影子）＋一個 GIF 預覽（`assets/img/mascot/<狀態>.gif`）；網頁用的動態 WebP 由我們轉。
+
+| 狀態 | 用途 | 交付 |
+|---|---|---|
+| `idle` | 待機（挑選中，循環） | `assets/img/mascot/idle.gif`＋`source/mascot/idle/` |
+| `anticipate` | 期待（已選定、撕封條／開蓋中，緊張搓手、探頭） | `assets/img/mascot/anticipate.gif`＋`source/mascot/anticipate/` |
+| `celebrate` | 慶祝（開到稀有以上；關閉揭曉後演兩輪） | `assets/img/mascot/celebrate.gif`＋`source/mascot/celebrate/` |
+| `lose` | 小失望（只開到普通，仍然可愛、不沮喪） | `assets/img/mascot/lose.gif`＋`source/mascot/lose/` |
+| `base-frame` | 所有動態共用的第一幀／最後一幀（站姿） | `assets/img/mascot/base-frame.png` |
+
+驗收：放大檢查背心字樣拼字與 MOOTECH logo（藍綠→黃綠漸層的「不可能 M」，不是橘色 M）；四段動作都要一眼看得出情緒；在頁面上截圖確認只露出上半身時仍然可辨識。
+
+## 五、音效（選配，P3；未交付時程式用合成音）
 
 | 名稱 | 用途 | 交付路徑 |
 |---|---|---|
@@ -103,18 +144,18 @@
 | `reveal` | 揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | `assets/audio/reveal.mp3`，再把路徑填進 config `sounds.reveal` |
 | `reward` | 全部揭曉（約 1 秒） | `assets/audio/reward.mp3`，再把路徑填進 config `sounds.reward` |
 
-## 五、不屬於美術的部分（由後台提供，請勿做成圖）
+## 六、不屬於美術的部分（由後台提供，請勿做成圖）
 
 - 獎項名稱、圖示、稀有度、機率、每次開出幾個（`perOpen`）、可開次數、活動期間、規則、中獎名單。
 - 獎項圖示由後台上傳（mock 暫借轉盤活動的 `icon-*.svg`）；如需一套本活動專用的獎項圖示庫，另開需求。
 
-## 六、換主題（之後的活動直接換圖）
+## 七、換主題（之後的活動直接換圖）
 
 1. 只換圖：同檔名覆蓋 `assets/img/`。
 2. 保留原版、另做一套：建 `skins/<名稱>/`（`skin.css` 只覆寫色票、`img/` 只放不同的圖），在 config `skins` 登記，網址 `?skin=<名稱>` 預覽。
    新皮照本單第三節的檔名與尺寸交付即可，勾選表另開一份在皮資料夾。
 3. 新主題同樣要做：主標三語、背景、包裝貼圖、色票（P0）→ 揭曉與元件（P1）→ 圖示（P2）。
 
-## 七、上線前（工程，非美術）
+## 八、上線前（工程，非美術）
 
 - 拿掉內部面板與換圖標籤；串接後台內容與後端開獎（`window.EVENT_CONTENT`／`window.EVENT_RESOLVE`）；次數改由後台回傳。

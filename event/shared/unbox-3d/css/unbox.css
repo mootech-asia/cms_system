@@ -174,7 +174,18 @@ button { font: inherit; -webkit-tap-highlight-color: transparent; }
   cursor: grab;
 }
 .ev-scene:active { cursor: grabbing; }
-.ev-scene canvas { display: block; width: 100%; height: 100%; }
+.ev-scene canvas { position: relative; z-index: 1; display: block; width: 100%; height: 100%; }
+/* 吉祥物 400×500：站在選中包裝後方中央，腳與下半身藏在包裝後面（畫布在上層）；影子畫在素材裡，程式不加 */
+.ev-mascot {
+  position: absolute;
+  left: 50%;
+  bottom: 22%;
+  z-index: 0;
+  width: calc(var(--ev-scene-size) * 0.72);
+  max-width: none;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
 .ev-scene-fallback {
   position: absolute;
   left: 50%;

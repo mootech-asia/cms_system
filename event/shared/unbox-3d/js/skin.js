@@ -15,6 +15,7 @@
   if (!skin) return;
 
   Object.keys(skin.images || {}).forEach(function (k) { cfg.images[k] = skin.images[k]; });
+  Object.keys(skin.mascot || {}).forEach(function (k) { if (cfg.mascot) cfg.mascot[k] = skin.mascot[k]; });
   Object.keys(skin.sounds || {}).forEach(function (k) { cfg.sounds[k] = skin.sounds[k]; });
   if (skin.css) {
     var link = document.createElement('link');

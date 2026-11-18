@@ -18,38 +18,50 @@ window.EVENT_CONFIG = {
   skins: {},
 
   images: {
-    stageBg: 'assets/img/stage-bg.svg',
-    infoBg: 'assets/img/info-bg.svg',
+    stageBg: 'assets/img/scene/stage-bg.svg',
+    infoBg: 'assets/img/scene/info-bg.svg',
     title: {
-      en: 'assets/img/title-en.svg',
-      ko: 'assets/img/title-ko.svg',
-      th: 'assets/img/title-th.svg',
-      zh: 'assets/img/title-zh.svg'
+      en: 'assets/img/title/title-en.svg',
+      ko: 'assets/img/title/title-ko.svg',
+      th: 'assets/img/title/title-th.svg',
+      zh: 'assets/img/title/title-zh.svg'
     },
-    periodBadge: 'assets/img/period-badge.svg',
-    chancesBadge: 'assets/img/chances-badge.svg',
-    btnPrimary: 'assets/img/btn-primary.svg',
-    btnArrow: 'assets/img/btn-arrow.svg',
-    tickerBar: 'assets/img/ticker-bar.svg',
-    cardFrame: 'assets/img/card-frame.svg',
-    cardTitle: 'assets/img/card-title.svg',
-    footerDeco: 'assets/img/footer-deco.svg',
-    soundOn: 'assets/img/icon-sound-on.svg',
-    soundOff: 'assets/img/icon-sound-off.svg',
-    share: 'assets/img/icon-share.svg',
-    rotateHint: 'assets/img/icon-rotate.svg',
+    periodBadge: 'assets/img/ui/period-badge.svg',
+    chancesBadge: 'assets/img/ui/chances-badge.svg',
+    btnPrimary: 'assets/img/ui/btn-primary.svg',
+    btnArrow: 'assets/img/ui/btn-arrow.svg',
+    tickerBar: 'assets/img/ui/ticker-bar.svg',
+    cardFrame: 'assets/img/ui/card-frame.svg',
+    cardTitle: 'assets/img/ui/card-title.svg',
+    footerDeco: 'assets/img/scene/footer-deco.svg',
+    soundOn: 'assets/img/icon/icon-sound-on.svg',
+    soundOff: 'assets/img/icon/icon-sound-off.svg',
+    share: 'assets/img/icon/icon-share.svg',
+    rotateHint: 'assets/img/icon/icon-rotate.svg',
     /* 3D 盲盒：正面可給 1～6 張（盲盒通常同一款）；側面與盒蓋側邊會乘上 --ev-3d-item-N 色票 */
-    boxFront: ['assets/img/box-front.svg'],
-    boxSide: 'assets/img/box-side.svg',
-    boxLid: 'assets/img/box-lid.svg',
-    boxLidSide: 'assets/img/box-lid-side.svg',
+    boxFront: ['assets/img/3d/box-front.svg'],
+    boxSide: 'assets/img/3d/box-side.svg',
+    boxLid: 'assets/img/3d/box-lid.svg',
+    boxLidSide: 'assets/img/3d/box-lid-side.svg',
     /* 揭曉 */
-    revealRays: 'assets/img/reveal-rays.svg',
-    rewardBack: 'assets/img/reward-back.svg',
-    rewardFrameCommon: 'assets/img/reward-frame-common.svg',
-    rewardFrameRare: 'assets/img/reward-frame-rare.svg',
-    rewardFrameEpic: 'assets/img/reward-frame-epic.svg',
-    rewardFrameLegendary: 'assets/img/reward-frame-legendary.svg'
+    revealRays: 'assets/img/reveal/reveal-rays.svg',
+    rewardBack: 'assets/img/reveal/reward-back.svg',
+    rewardFrameCommon: 'assets/img/reveal/reward-frame-common.svg',
+    rewardFrameRare: 'assets/img/reveal/reward-frame-rare.svg',
+    rewardFrameEpic: 'assets/img/reveal/reward-frame-epic.svg',
+    rewardFrameLegendary: 'assets/img/reveal/reward-frame-legendary.svg'
+  },
+
+  /* 吉祥物（熊北）：站在選中盒子後方中央，下半身被盒子擋住。每個狀態一段循環動態，全部共用同一張基準幀且長度相同（loopMs），
+     程式在一輪結束時才切換。mock 暫用官方參考靜態圖縮成 400×500（loopMs 0＝立即切換），動態交付後改這裡。
+     狀態：idle（挑選）、anticipate（已選定／開封中）、celebrate（揭曉有稀有以上）、lose（只開到普通）。 */
+  mascot: {
+    poster: 'assets/img/mascot/mock-idle.webp',
+    loopMs: 0,
+    idle: ['assets/img/mascot/mock-idle.webp'],
+    anticipate: 'assets/img/mascot/mock-anticipate.webp',
+    celebrate: 'assets/img/mascot/mock-celebrate.webp',
+    lose: 'assets/img/mascot/mock-lose.webp'
   },
 
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
@@ -82,6 +94,7 @@ window.EVENT_CONFIG = {
     revealRays: 'reveal-rays · 750×750',
     rewardBack: 'reward-back · 600×900',
     rewardFrame: 'reward-frame-{common,rare,epic,legendary} · 600×900',
+    mascot: 'mascot-{state} · 400×500 (2000ms loop)',
     sharePreview: 'share-preview.png · 1200×630 (og:image)'
   },
 

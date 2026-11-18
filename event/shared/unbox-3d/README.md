@@ -23,12 +23,12 @@
 
 1. **只換圖**：同檔名覆蓋 `assets/img/` 的檔案；副檔名不同就改 `config.js` 的 `images` 路徑。
 2. **整套新主題但保留原版**：在活動資料夾建立 `skins/<名稱>/`，放 `skin.css`（只覆寫 theme.css 的變數）與 `img/`
-   （只放跟預設不同的圖），在 `config.js` 加：
+   （只放跟預設不同的圖，子資料夾分類與 `assets/img/` 相同），在 `config.js` 加：
    ```js
    skins: {
      xmas: {
        css: 'skins/xmas/skin.css',
-       images: { stageBg: 'skins/xmas/img/stage-bg.webp', packFront: ['skins/xmas/img/pack-front-1.webp'] },
+       images: { stageBg: 'skins/xmas/img/scene/stage-bg.webp', packFront: ['skins/xmas/img/3d/pack-front-1.webp'] },
        strings: { 'title.alt': { en: 'Holiday Packs', ko: '…', th: '…', zh: '…' } }
      }
    }
