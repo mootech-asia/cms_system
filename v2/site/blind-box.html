@@ -1,0 +1,185 @@
+<!doctype html>
+<html data-theme="win100">
+  <head>
+    <meta charset="utf-8" />
+    <!-- 手機裝置判斷：只認實機手機 UA(不含平板)，符合就在畫面畫出來之前
+         轉往獨立的手機版 ../site-mobile/（比照 v3/site 的既有做法）。
+         桌機／平板不受影響。 -->
+    <script>
+      (function () {
+        var ua = navigator.userAgent || '';
+        if (/iPhone|iPod|Android.*Mobile|Windows Phone|BlackBerry|Opera Mini|IEMobile/i.test(ua)) {
+          location.replace('../site-mobile/blind-box.html' + location.search + location.hash);
+        }
+      })();
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CMS_Frontend_v2</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <link rel="stylesheet" href="themes/win100.css" />
+    <link rel="stylesheet" href="assets/css/tailwind.css" />
+  </head>
+  <body>
+    <div class="min-h-screen overflow-x-clip bg-bg">
+      <header class="bg-surface border-b border-border-soft sticky top-0 z-50">
+        <div class="px-4">
+          <div data-site-header-row class="flex items-center h-16">
+            <a href="index.html" class="flex items-center gap-3 text-text-2 hover:text-text transition-colors"
+              ><img src="logo.png" alt="Casino Logo" class="h-10 mix-blend-lighten"
+            /></a>
+            <div data-header-mobile-controls class="hidden max-md:flex max-md:ml-auto max-md:items-center max-md:gap-3">
+              <div data-dd-trigger-wrap class="relative">
+                <button class="text-text-2 bg-transparent p-0 hover:text-text flex items-center gap-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewbox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-4 h-4"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                    <path d="M2 12h20"></path></svg
+                  ><span>中文</span
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewbox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-3 h-3"
+                  >
+                    <path d="m6 9 6 6 6-6"></path>
+                  </svg>
+                </button>
+              </div>
+              <button class="text-text-2 bg-transparent p-0 hover:text-text" aria-label="Menu">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewbox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-6 h-6"
+                >
+                  <line x1="4" x2="20" y1="12" y2="12"></line>
+                  <line x1="4" x2="20" y1="6" y2="6"></line>
+                  <line x1="4" x2="20" y1="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="min-h-[calc(100vh-4rem)]">
+        <aside class="hidden md:block fixed top-16 bottom-0 left-0 z-40 w-64 overflow-y-auto border-r border-border-soft bg-surface"><nav class="p-4 space-y-2" data-member-nav></nav></aside>
+        <main class="min-w-0 pt-4 pr-4 pb-24 pl-4 md:ml-64 md:pt-8 md:pr-8 md:pb-24 md:pl-8"><div class="py-4">
+            <iframe id="luckyWheelFrame" class="block w-full max-w-120 mx-auto border-0" data-src="../../event/20261118_blind_box/index.html" title="Blind Box" allow="clipboard-write; web-share; autoplay"></iframe>
+          </div>
+          <script>
+            /* 拆盲盒活動（event/20261118_blind_box）以 H5 寬 iframe 嵌入：
+               語系跟著本站 <html lang>（活動只有 en/ko/th，其他語系一律帶 en），
+               高度填滿視窗扣掉頂部列與底部固定列，活動在 iframe 內自己捲動 */
+            (function () {
+              var frame = document.getElementById('luckyWheelFrame');
+              var base = frame.getAttribute('data-src');
+              function lang() {
+                var l = (document.documentElement.getAttribute('lang') || 'en').slice(0, 2).toLowerCase();
+                return l === 'ko' || l === 'th' ? l : 'en';
+              }
+              function load() {
+                if (frame.contentWindow && frame.contentWindow.EventI18n) {
+                  frame.contentWindow.EventI18n.applyLocale();
+                  return;
+                }
+                var target = new URL(base, location.href);
+                target.searchParams.set('lang', lang());
+                var url = target.href;
+                if (frame.getAttribute('src') !== url) frame.setAttribute('src', url);
+              }
+              function bottomBar() {
+                var h = 0;
+                document.querySelectorAll('body *').forEach(function (el) {
+                  if (el === frame || el.contains(frame)) return;
+                  var cs = getComputedStyle(el);
+                  if (cs.position !== 'fixed' || cs.display === 'none' || cs.visibility === 'hidden') return;
+                  var r = el.getBoundingClientRect();
+                  if (r.height > 0 && r.height < 140 && r.bottom >= window.innerHeight - 1 && r.top > window.innerHeight / 2 && r.width > window.innerWidth / 2) h = Math.max(h, r.height);
+                });
+                return h;
+              }
+              // 手機寬度時撐滿螢幕左右（有些站的內容區在右側預留浮動客服欄的位置），桌機維持置中 H5 寬
+              function bleed() {
+                var wrap = frame.parentElement;
+                wrap.style.marginLeft = wrap.style.marginRight = '';
+                if (window.innerWidth > 768) return;
+                var w = wrap.getBoundingClientRect();
+                var vw = document.documentElement.clientWidth;
+                wrap.style.marginLeft = (-w.left) + 'px';
+                wrap.style.marginRight = (w.right - vw) + 'px';
+              }
+              function fit() {
+                bleed();
+                var top = frame.getBoundingClientRect().top + window.pageYOffset;
+                frame.style.height = Math.max(520, window.innerHeight - top - bottomBar() - 16) + 'px';
+              }
+              load();
+              fit();
+              window.addEventListener('resize', fit);
+              window.addEventListener('load', fit);
+              new MutationObserver(load).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+            })();
+          </script>
+</main>
+      </div>
+    </div>
+    <div id="teleports"></div>
+    <div class="fixed right-3.5 max-md:right-2.5 top-1/2 -translate-y-[58%] max-md:-translate-y-1/2 z-[9000] flex flex-col items-center gap-3.5 max-md:gap-3 py-3 px-2 max-md:py-2.25 max-md:px-1.5 rounded-[44px] bg-surface/90 backdrop-blur-[6px] border border-white/8 shadow-[0_10px_30px_#0006]">
+      <a href="#" class="group bg-surface-2 text-primary relative w-14 h-14 max-md:w-12 max-md:h-12 rounded-full flex items-center justify-center shadow-[0_6px_18px_#00000059] [transition:transform_0.15s_ease,background_0.15s_ease] no-underline hover:scale-[1.06] hover:bg-border max-md:hover:scale-100 max-md:hover:bg-surface-2" aria-label="Live Chat" data-chat-open
+        ><img src="logo.png" alt class="w-10 h-10 max-md:w-8.5 max-md:h-8.5 object-contain" /><span class="absolute right-[calc(100%+14px)] top-1/2 -translate-y-1/2 translate-x-2.5 bg-bg text-text whitespace-nowrap font-bold text-base max-md:text-sm py-3 px-5.5 max-md:py-2.5 max-md:px-4 rounded-[14px] opacity-0 pointer-events-none [transition:opacity_0.18s_ease,transform_0.18s_ease] shadow-[0_10px_28px_#00000073] group-hover:opacity-100 group-hover:translate-x-0 max-md:group-hover:opacity-0 max-md:group-hover:translate-x-2.5 group-focus-visible:opacity-100 group-focus-visible:translate-x-0">Live Chat</span></a
+      ><a href="https://t.me/win10096cs" target="_blank" rel="noopener noreferrer" class="group bg-surface-2 text-primary relative w-14 h-14 max-md:w-12 max-md:h-12 rounded-full flex items-center justify-center shadow-[0_6px_18px_#00000059] [transition:transform_0.15s_ease,background_0.15s_ease] no-underline hover:scale-[1.06] hover:bg-border max-md:hover:scale-100 max-md:hover:bg-surface-2" aria-label="Promo Channel"
+        ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="w-6.5 h-6.5 max-md:w-5.5 max-md:h-5.5"
+            >
+              <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path>
+            </svg
+            ><span class="absolute right-[calc(100%+14px)] top-1/2 -translate-y-1/2 translate-x-2.5 bg-bg text-text whitespace-nowrap font-bold text-base max-md:text-sm py-3 px-5.5 max-md:py-2.5 max-md:px-4 rounded-[14px] opacity-0 pointer-events-none [transition:opacity_0.18s_ease,transform_0.18s_ease] shadow-[0_10px_28px_#00000073] group-hover:opacity-100 group-hover:translate-x-0 max-md:group-hover:opacity-0 max-md:group-hover:translate-x-2.5 group-focus-visible:opacity-100 group-focus-visible:translate-x-0">Promo Channel</span></a
+      ><a href="about.html?tab=faq" class="group bg-surface-2 text-primary relative w-14 h-14 max-md:w-12 max-md:h-12 rounded-full flex items-center justify-center shadow-[0_6px_18px_#00000059] [transition:transform_0.15s_ease,background_0.15s_ease] no-underline hover:scale-[1.06] hover:bg-border max-md:hover:scale-100 max-md:hover:bg-surface-2" aria-label="FAQ"
+        ><svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="w-6.5 h-6.5 max-md:w-5.5 max-md:h-5.5"
+        >
+          <circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path>
+        </svg
+        ><span class="absolute right-[calc(100%+14px)] top-1/2 -translate-y-1/2 translate-x-2.5 bg-bg text-text whitespace-nowrap font-bold text-base max-md:text-sm py-3 px-5.5 max-md:py-2.5 max-md:px-4 rounded-[14px] opacity-0 pointer-events-none [transition:opacity_0.18s_ease,transform_0.18s_ease] shadow-[0_10px_28px_#00000073] group-hover:opacity-100 group-hover:translate-x-0 max-md:group-hover:opacity-0 max-md:group-hover:translate-x-2.5 group-focus-visible:opacity-100 group-focus-visible:translate-x-0">FAQ</span></a
+      >
+    </div>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>

@@ -1,6 +1,1 @@
 node_modules/
-dist/
-test-results/
-playwright-report/
-standalone/
-preview-mobile.png

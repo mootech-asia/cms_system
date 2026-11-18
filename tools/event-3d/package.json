@@ -1,25 +1,16 @@
 {
-  "name": "cms-event",
+  "name": "event-3d-vendor",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
+  "description": "Builds the Three.js subset used by event/shared/unbox-3d",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
-    "test": "playwright test"
+    "build": "vite build"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
     "three": "^0.187.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.65.1",
     "vite": "^8.3.8"
   },
   "private": true

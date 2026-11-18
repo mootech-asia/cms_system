@@ -103,6 +103,46 @@ PLACEHOLDERS = {
     'f4cf3c4861664d01',
     'f644e3678cf0184e',
     'fdf1fb27ec7749af',
+    # event/20261118_card_pack、20261118_blind_box mock 佔位圖（event/shared/unbox-3d/tools/make_placeholders.py 產生）
+    '79f55ed94e49a6ae',  # 20261118_card_pack/btn-arrow.svg
+    'c0172a5e423b7227',  # 20261118_card_pack/btn-primary.svg
+    '149a95d1927c97bf',  # 20261118_card_pack/card-frame.svg
+    '25bfaf11263186c9',  # 20261118_card_pack/card-title.svg
+    '5d2a3a4488138f7b',  # 20261118_card_pack/chances-badge.svg
+    '4e7d66f4e1abda0c',  # 20261118_card_pack/footer-deco.svg
+    '1440082cbce91b87',  # 20261118_card_pack/icon-rotate.svg
+    '33b0bed112fc348e',  # 20261118_card_pack/icon-share.svg
+    '162c0e6f0cab222a',  # 20261118_card_pack/icon-sound-off.svg
+    'be5d712b81788f91',  # 20261118_card_pack/icon-sound-on.svg
+    '01f72b92513fd928',  # 20261118_card_pack/info-bg.svg
+    'fedd169cdb1590d6',  # 20261118_card_pack/pack-back.svg
+    'cd1e6ba8279edcc0',  # 20261118_card_pack/pack-crimp.svg
+    '24cc5d9a18122aec',  # 20261118_card_pack/pack-front-1.svg
+    'e6b74dff57029301',  # 20261118_card_pack/pack-front-2.svg
+    '381a2d564a6e7c19',  # 20261118_card_pack/pack-front-3.svg
+    '67e166a56326e915',  # 20261118_card_pack/period-badge.svg
+    '5ae78e26e7df149b',  # 20261118_card_pack/reveal-rays.svg
+    'b7e8c492af996a6c',  # 20261118_card_pack/reward-back.svg
+    '764e3e476de74950',  # 20261118_card_pack/reward-frame-common.svg
+    '95c174d42156a968',  # 20261118_card_pack/reward-frame-epic.svg
+    '35e130bcf5f39e50',  # 20261118_card_pack/reward-frame-legendary.svg
+    'aa5933b8b17b8065',  # 20261118_card_pack/reward-frame-rare.svg
+    'dea0844618653db6',  # 20261118_card_pack/share-preview.png
+    '3dea937d48abf418',  # 20261118_card_pack/stage-bg.svg
+    '404b10e5941a33ca',  # 20261118_card_pack/ticker-bar.svg
+    '34c04d4106bb12d6',  # 20261118_card_pack/title-en.svg
+    'c49047d0489bf1e4',  # 20261118_card_pack/title-ko.svg
+    'a1a99cc9459d280e',  # 20261118_card_pack/title-th.svg
+    '1e5a8583a254d0e1',  # 20261118_card_pack/title-zh.svg
+    '643ced3109484779',  # 20261118_blind_box/box-front.svg
+    '89984f29cd2ac3fb',  # 20261118_blind_box/box-lid-side.svg
+    '8b4df7cb71e84efb',  # 20261118_blind_box/box-lid.svg
+    '49e39851fe977fae',  # 20261118_blind_box/box-side.svg
+    '08fad0723cd94320',  # 20261118_blind_box/share-preview.png
+    '9879a0231d727106',  # 20261118_blind_box/title-en.svg
+    '89f5bd8ac2951907',  # 20261118_blind_box/title-ko.svg
+    'eb2596cc9e591611',  # 20261118_blind_box/title-th.svg
+    'f3613780700d36ab',  # 20261118_blind_box/title-zh.svg
 }
 ROW = re.compile(r'^\|\s*(☐|☑)\s*\|\s*([A-Z]\d{2})\s*\|([^|]*)\|([^|]*)\|\s*`([^`]+)`[^|]*\|([^|]*)\|')
 PRIO = re.compile(r'\|\s*(P\d)\s*\|\s*$')

@@ -1,0 +1,279 @@
+/*
+ * 3D 選擇區：六個包裝排成環形，可拖曳或用箭頭切換；選定後播放撕封條／開蓋動畫。
+ * 包裝表面全部是圖片槽（config.images），側面色與燈光色讀 theme.css 的 --ev-3d-* 色票，
+ * 換主題只要換圖或換色票，不用改程式。WebGL 無法啟動時回傳 null，由 app.js 改用 2D 圖片。
+ */
+import * as THREE from '../vendor/three.min.js';
+
+var STEP = Math.PI / 3;
+var RADIUS = 2.65;
+var COUNT = 6;
+
+function token(name, fallback) {
+  var v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return v || fallback;
+}
+
+// 接地陰影由程式畫（素材不畫地面陰影），顏色取 --ev-3d-shadow。
+function shadowTexture() {
+  var c = document.createElement('canvas');
+  c.width = 256;
+  c.height = 128;
+  var g = c.getContext('2d');
+  var grad = g.createRadialGradient(128, 64, 4, 128, 64, 124);
+  grad.addColorStop(0, 'rgba(255,255,255,1)');
+  grad.addColorStop(1, 'rgba(255,255,255,0)');
+  g.fillStyle = grad;
+  g.setTransform(1, 0, 0, 0.5, 0, 32);
+  g.fillRect(0, 0, 256, 256);
+  return new THREE.CanvasTexture(c);
+}
+
+export function createScene(stage, opts) {
+  var box = opts.type === 'blind-box';
+  // 先用測試畫布確認有 WebGL，避免 Three.js 建立失敗時在 console 印錯誤
+  var probe = document.createElement('canvas');
+  if (!window.WebGLRenderingContext || !(probe.getContext('webgl2') || probe.getContext('webgl'))) return null;
+  var renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  } catch (e) {
+    return null;
+  }
+
+  var disposables = [];
+  var keep = function (x) { disposables.push(x); return x; };
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+  camera.position.set(0, 2.3, 7.6);
+  camera.lookAt(0, 0.3, 0);
+
+  var hemi = new THREE.HemisphereLight(0xffffff, 0x8589af, 2);
+  var key = new THREE.DirectionalLight(0xffffff, 3);
+  key.position.set(-3, 6, 5);
+  var accent = new THREE.PointLight(0xd4aaff, 35);
+  accent.position.set(4, 2, 1);
+  scene.add(hemi, key, accent);
+
+  var ring = new THREE.Group();
+  scene.add(ring);
+
+  // 同一張圖只載一次；全部載完（成功或失敗）時 ready 才 resolve，給 loading 畫面計算進度。
+  var loader = new THREE.TextureLoader();
+  var cache = {};
+  var pending = [];
+  function texture(src, onLoad) {
+    if (!src) return;
+    if (!cache[src]) {
+      cache[src] = { tex: null, cbs: [] };
+      pending.push(new Promise(function (done) {
+        loader.load(src, function (tex) {
+          tex.colorSpace = THREE.SRGBColorSpace;
+          tex.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
+          keep(tex);
+          cache[src].tex = tex;
+          cache[src].cbs.splice(0).forEach(function (cb) { cb(tex); });
+          done(true);
+        }, undefined, function () { done(false); });
+      }));
+    }
+    if (cache[src].tex) onLoad(cache[src].tex);
+    else cache[src].cbs.push(onLoad);
+  }
+  function mapped(material, src) {
+    texture(src, function (tex) { material.map = tex; material.needsUpdate = true; });
+    return material;
+  }
+
+  var surface = opts.material || {};
+  function art(src) {
+    return mapped(keep(new THREE.MeshStandardMaterial({
+      color: 0xffffff, metalness: surface.metalness != null ? surface.metalness : 0.2, roughness: surface.roughness != null ? surface.roughness : 0.35
+    })), src);
+  }
+  function geo(w, h, d) { return keep(new THREE.BoxGeometry(w, h, d)); }
+
+  var images = opts.images;
+  var fronts = [].concat(images.front).filter(Boolean);
+  var shadowTex = keep(shadowTexture());
+  var shadowGeo = keep(new THREE.PlaneGeometry(box ? 2.6 : 2.2, box ? 1.3 : 0.9));
+  var tinted = [];
+  var items = [];
+  // 尺寸對應設計稿比例：卡包正面 2:3（512×768）、盲盒正立方（512×512），封條 512×64、盒蓋側邊 512×80
+  var LID_Y = box ? 0.895 : 1.2;
+  var FLOOR_Y = box ? -1.05 : -1.45;
+
+  for (var i = 0; i < COUNT; i++) {
+    var group = new THREE.Group();
+    var body = new THREE.Group();
+    group.add(body);
+    // 側面貼圖乘上該位置的色票，讓六個包裝顏色不同；正面圖保留原色
+    var side = mapped(keep(new THREE.MeshStandardMaterial({ metalness: 0.48, roughness: 0.3 })), images.side);
+    tinted.push(side);
+    var base, lid;
+    if (box) {
+      var front = art(images.front && fronts[i % fronts.length]);
+      base = new THREE.Mesh(geo(1.55, 1.55, 1.55), [side, side, side, side, front, side]);
+      var lidTop = art(images.lid);
+      var lidSide = mapped(keep(new THREE.MeshStandardMaterial({ metalness: 0.48, roughness: 0.3 })), images.lidSide);
+      tinted.push(lidSide);
+      lid = new THREE.Mesh(geo(1.65, 0.24, 1.65), [lidSide, lidSide, lidTop, lidSide, lidSide, lidSide]);
+    } else {
+      var face = art(fronts[i % fronts.length]);
+      var back = art(images.back);
+      base = new THREE.Mesh(geo(1.48, 2.22, 0.065), [side, side, side, side, face, back]);
+      var crimp = art(images.crimp);
+      lid = new THREE.Mesh(geo(1.48, 0.18, 0.07), [side, side, side, side, crimp, crimp]);
+      var bottom = new THREE.Mesh(geo(1.48, 0.18, 0.07), [side, side, side, side, crimp, crimp]);
+      bottom.position.y = -LID_Y;
+      body.add(bottom);
+    }
+    lid.position.y = LID_Y;
+    body.add(base, lid);
+
+    var shadowMat = keep(new THREE.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false, opacity: 0.35 }));
+    var shadow = new THREE.Mesh(shadowGeo, shadowMat);
+    shadow.rotation.x = -Math.PI / 2;
+    shadow.position.y = FLOOR_Y;
+    group.add(shadow);
+
+    var a = i * STEP;
+    group.position.set(Math.sin(a) * RADIUS, 0, Math.cos(a) * RADIUS - RADIUS);
+    group.rotation.y = a;
+    ring.add(group);
+    items.push({ group: group, body: body, lid: lid, shadow: shadowMat });
+  }
+
+  function applyTokens() {
+    tinted.forEach(function (m, k) {
+      var slot = box ? Math.floor(k / 2) : k;
+      m.color.set(token('--ev-3d-item-' + (slot % COUNT + 1), '#b8b4f3'));
+    });
+    accent.color.set(token('--ev-3d-accent', '#d4aaff'));
+    hemi.groundColor.set(token('--ev-3d-ground', '#8589af'));
+    var shadowColor = token('--ev-3d-shadow', '#27364a');
+    items.forEach(function (it) { it.shadow.color.set(shadowColor); });
+  }
+  applyTokens();
+
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x000000, 0);
+  stage.prepend(renderer.domElement);
+  var resize = new ResizeObserver(function () {
+    var r = stage.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    renderer.setSize(r.width, r.height);
+    camera.aspect = r.width / r.height;
+    camera.updateProjectionMatrix();
+  });
+  resize.observe(stage);
+
+  var mode = 'select';
+  var selected = 0;
+  var angle = 0;
+  var target = 0;
+  var startX = null;
+  var drag = 0;
+  var progress = 0;
+  var openMs = 1800;
+  var openDone = null;
+  var abort = new AbortController();
+  var on = function (el, name, fn) { el.addEventListener(name, fn, { signal: abort.signal }); };
+
+  function move(n) {
+    if (mode !== 'select') return;
+    target += n * STEP;
+    selected = ((Math.round(-target / STEP) % COUNT) + COUNT) % COUNT;
+    if (opts.onSelect) opts.onSelect(selected);
+  }
+
+  on(stage, 'pointerdown', function (e) {
+    if (mode !== 'select' && mode !== 'ready') return;
+    if (e.target !== renderer.domElement) return;
+    startX = e.clientX;
+    drag = 0;
+    stage.setPointerCapture(e.pointerId);
+  });
+  on(stage, 'pointermove', function (e) {
+    if (startX === null) return;
+    drag = e.clientX - startX;
+    if (mode === 'select') angle = target + drag * 0.004;
+  });
+  on(stage, 'pointerup', function () {
+    if (startX === null) return;
+    if (mode === 'select' && Math.abs(drag) > 25) move(drag > 0 ? 1 : -1);
+    else if (mode === 'ready' && Math.abs(drag) > 55 && opts.onSwipeOpen) opts.onSwipeOpen();
+    startX = null;
+  });
+  on(stage, 'pointercancel', function () { startX = null; });
+  on(document, 'ev:skin', applyTokens);
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var last = performance.now();
+  var raf = 0;
+  var disposed = false;
+
+  function finishOpen() {
+    progress = 1;
+    mode = 'opened';
+    var cb = openDone;
+    openDone = null;
+    if (cb) cb();
+  }
+
+  function frame(now) {
+    var dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+    if (mode === 'opening') {
+      progress += dt / ((reduced.matches ? 300 : openMs) / 1000);
+      if (progress >= 1) finishOpen();
+    }
+    if (startX === null || mode !== 'select') angle += (target - angle) * (reduced.matches ? 1 : Math.min(1, dt * 8));
+    ring.rotation.y = angle;
+    ring.position.x = RADIUS * Math.sin(angle);
+    ring.position.z = RADIUS * (Math.cos(angle) - 1);
+    items.forEach(function (it, k) {
+      var mine = k === selected;
+      it.group.visible = mode === 'select' || mine;
+      var p = mine ? Math.min(progress, 1) : 0;
+      // 前 20%：包裝抖動蓄力；之後封條／盒蓋飛出
+      var shake = mine && mode === 'opening' && p < 0.2 && !reduced.matches ? Math.sin(now * 0.08) * 0.04 : 0;
+      var fly = Math.max(0, (p - 0.2) / 0.8);
+      var ease = 1 - Math.pow(1 - fly, 3);
+      it.body.rotation.z = (mode === 'select' && !reduced.matches ? Math.sin(now * 0.0008 + k) * 0.025 : 0) + shake;
+      it.body.rotation.y = mode !== 'select' && box && mine ? 0.15 : 0;
+      it.lid.position.y = LID_Y + ease * 2;
+      it.lid.position.x = box ? 0 : ease * 1.5;
+      it.lid.rotation.z = ease * (box ? -0.4 : -1);
+    });
+    if (!document.hidden && stage.offsetParent !== null) renderer.render(scene, camera);
+    if (!disposed) raf = requestAnimationFrame(frame);
+  }
+  raf = requestAnimationFrame(frame);
+
+  return {
+    ready: Promise.all(pending),
+    selected: function () { return selected; },
+    move: move,
+    setMode: function (m) {
+      mode = m;
+      if (m === 'select') { progress = 0; openDone = null; }
+    },
+    open: function (ms) {
+      openMs = ms || openMs;
+      mode = 'opening';
+      progress = 0;
+      return new Promise(function (done) { openDone = done; });
+    },
+    skip: function () { if (mode === 'opening') finishOpen(); },
+    destroy: function () {
+      disposed = true;
+      cancelAnimationFrame(raf);
+      abort.abort();
+      resize.disconnect();
+      disposables.forEach(function (d) { d.dispose(); });
+      renderer.dispose();
+      renderer.domElement.remove();
+    }
+  };
+}
