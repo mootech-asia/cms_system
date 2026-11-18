@@ -1,13 +1,18 @@
 ---
 name: ui-craft
-description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、版面構成/變化性(不對稱分欄/留白集中/鏡子測試)、動效/轉場時長、hover微互動/scroll動效、換膚 skin 色板、無障礙(ARIA/鍵盤操作)、表單設計、多語言排版(韓文/泰文字長撐版面)、投注/交易記錄這類資料表格、新寫錯誤訊息/空狀態/通知文案、loading/骨架載入畫面、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓/每個區塊都長一樣」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '視覺排列/版面構成', '變化性不夠/每頁都一樣', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', '互動能力/手勢/hover效果', '無障礙/ARIA/鍵盤操作', '表單怎麼設計/驗證', '多語言版面會不會爆/文字被裁切', '記錄表格/table 怎麼設計', '錯誤訊息/空狀態文案怎麼寫', 'loading/skeleton 載入畫面怎麼做', 'improve this UI', 'visual hierarchy', 'layout composition', 'design tokens', 'diagnose UI', 'motion/transition', 'micro-interaction', 'accessibility', 'form validation', 'i18n layout', 'data table', 'ux writing', 'error message copy', 'skeleton loading', 'loading state', '設計要有突破/新意'。整合十一份公開分享的 Claude skill 方法論（改編，非原文照搬），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」與「內容逐字保留」的鐵則做了覆寫。"
+description: "在本 repo 新增或修改任何頁面的視覺呈現時使用——排版、間距、顏色、陰影、視覺層級、版面構成/變化性(不對稱分欄/留白集中/鏡子測試)、動效/轉場時長、hover微互動/scroll動效、換膚 skin 色板、無障礙(ARIA/鍵盤操作)、表單設計、多語言排版(韓文/泰文字長撐版面)、投注/交易記錄這類資料表格、新寫錯誤訊息/空狀態/通知文案、loading/骨架載入畫面、響應式斷點與流體字級(clamp/container query/觸控熱區)、感知效能與圖片字型載入(LCP/CLS/首屏圖別lazy)、儲值提款註冊這類金融頁的信任感與安全信號、深色主題深度與博弈視覺語言、v1.5~v3 轉 Tailwind 時挑值怎麼挑，或是被要求「這個畫面看起來很業餘/雜亂/沒重點/廉價/普通/卡頓/每個區塊都長一樣」時的診斷與修正。Triggers include: 'UI 看起來不對', '幫這個頁面/元件做設計', '視覺層級', '視覺排列/版面構成', '變化性不夠/每頁都一樣', '間距/圓角/陰影怎麼抓', '這個組件看起來很普通/AI 感很重', '動效/轉場怎麼做', '互動能力/手勢/hover效果', '無障礙/ARIA/鍵盤操作', '表單怎麼設計/驗證', '多語言版面會不會爆/文字被裁切', '記錄表格/table 怎麼設計', '錯誤訊息/空狀態文案怎麼寫', 'loading/skeleton 載入畫面怎麼做', 'improve this UI', 'visual hierarchy', 'layout composition', 'design tokens', 'diagnose UI', 'motion/transition', 'micro-interaction', 'accessibility', 'form validation', 'i18n layout', 'data table', 'ux writing', 'error message copy', 'skeleton loading', 'loading state', 'responsive', 'fluid typography', 'clamp', 'breakpoint', 'container query', 'touch target', 'performance', 'LCP', 'CLS', 'image loading', 'lazy load', 'font loading', 'fintech trust', 'payment form', 'deposit/withdrawal UX', 'security signal', 'dark theme', 'dark mode depth', 'casino/game UI', '設計要有突破/新意', '設計能力迭代'。整合十五份公開來源（第1~11項為公開 Claude skill，部分檔案照搬；第12~15項為 Utopia／Google web.dev／Material 等公開官方文件或方法論，只取通用原則改寫、不照搬檔案、不宣稱授權），並針對本 repo「每個版本已有完整 token 系統、不得發明新任意值」與「內容逐字保留」的鐵則做了覆寫。第14項金融信任感與第15項博弈視覺語言查無權威來源，已於參考檔標明為自身綜合。"
 ---
 
 # UI 製作與視覺突破技能
 
 ## 來源與改編說明
 
-這份技能整合十一個外部方法論，都是上網搜尋找到、口碑良好的公開分享：
+這份技能整合十五個外部來源，都是上網搜尋找到、口碑良好的公開分享。
+**第 1~11 項是公開的 Claude skill（多為 MIT/Apache，部分檔案照搬）；第 12~15 項
+是公開的官方文件／方法論（Utopia、Google web.dev、Google Material），不是 skill
+檔案，只取跟框架無關的通用原則改寫，沒有照搬檔案，也不宣稱授權（引用公開文件之
+原則）。第 14 項「金融信任感」與第 15 項的「博弈視覺語言」半段查不到權威來源，
+已在對應參考檔標明是我自己的綜合、非引用定論。**
 
 1. **[s0xDk/refactoring-ui-skill](https://github.com/s0xDk/refactoring-ui-skill)**（MIT
    license）——把 Adam Wathan／Steve Schoger《Refactoring UI》濃縮成可執行規則的 Claude
@@ -96,6 +101,34 @@ description: "在本 repo 新增或修改任何頁面的視覺呈現時使用—
     以及幾個補充的生成式介面通病（箭頭黏在連結文字後面、手繪瀏覽器外框包裝截圖）。
     hallmark 的 hero 文案字數建議（≤7 字標題這類）一樣只適用新寫文案，跟第七層
     同一條界線。
+12. **[Utopia](https://utopia.fyi)（Trys Mudford／James Gilyead 的公開方法論）
+    ＋ [web.dev fluid typography](https://web.dev/articles/baseline-in-action-fluid-type)**
+    ——不是 skill 檔，只取「斷點管版面重排、clamp 管尺寸連續縮放」「clamp 中間項
+    要混 rem 才不會踩死縮放無障礙」這類跟框架無關的通用原則，重寫進
+    `references/responsive-fluid.md`，補第五層只碰「文字變長」、卻從沒講過的
+    斷點策略/流體字級/container query/觸控人體工學。clamp 端點值仍受第一層 token
+    鐵則約束，不新增任意 px。本 repo `site/`／`site-mobile/` 雙版本用得到。
+13. **[Google web.dev Core Web Vitals](https://web.dev/articles/vitals)**（公開
+    官方文件）——不是 skill 檔，`references/perceived-performance.md` 的門檻數值
+    （LCP ≤ 2.5s、INP ≤ 200ms、CLS ≤ 0.1，真實使用者第 75 百分位）已於該頁親自
+    核實。補前面只提過一句「loading 不能省」「CLS 要 0」、卻沒給圖片/字型載入
+    具體做法的部分：首屏主圖別 lazy、`<img>` 要寫 width/height、`font-display:
+    swap` ＋ preload。本 repo event 頁/吉祥物素材/大量美術圖吃得到。
+14. **金融介面信任感（無權威來源，誠實標示）**——搜到的多是實務部落格/廠商內容
+    （uxdesign.cc、[phenomenonstudio](https://phenomenonstudio.com/article/fintech-ux-design-patterns-that-build-trust-and-credibility/)、sennalabs 等），
+    背後共通原則可對照 Nielsen Norman 一向的「錯誤預防＋即時回饋」。
+    `references/trust-fintech.md` 只收多來源互相印證、且不牴觸本 repo 鐵則的原則
+    （送出前 review、金額回顯、新帳號雙重確認、狀態即時、送出鍵請求中 disable），
+    廠商單方面宣稱的轉換率數字一律不收（查不到原始研究）。**特別畫紅線：禁止為了
+    「看起來安全」擺任何無真實憑證支撐的安全標章**（跟第二層「禁止編造/冒充」同一
+    條，也是本環境系統規則明訂）。
+15. **[Google Material Design 深色主題](https://m2.material.io/design/color/dark-theme)**
+    （公開官方文件）＋**博弈/電玩視覺語言（無權威來源）**——`references/dark-casino.md`
+    誠實切成兩半：(A) 深色主題取 Material 跟框架無關的原則（底色深灰非純黑、分層靠
+    越上層越亮而非陰影、強調色去飽和避免視覺震動），接回本 repo 各深色 skin 既有
+    token；(B) 博弈視覺語言搜不到任何權威公開來源，整段標明是**我自己的綜合**
+    （一般視覺原則＋既有 skin 做法），當可被推翻的建議，不是引用定論。金屬/光感一律
+    用既有金色色階疊階做，不新增寫死色碼；賠率/金額/條款逐字保留。
 
 ## 第一層：基本功（不能先跳過）——覆寫原技能的「自建 scale」前提
 
@@ -335,6 +368,69 @@ footnote/版權這類，正文絕不用最淺那階）。
   10s 給使用者可以做的動作（重試/取消/轉背景）→ 錯誤就撤掉骨架換成具體失敗原因
   +重試（文案部分適用第七層的只限新寫文案規則）。
 
+## 第九層：響應式／流體排版——斷點與尺寸的分工
+
+第五層只碰「文字變長版面撐不撐得住」，沒碰「跨裝置寬度的系統化策略」。這層補上，
+見 `references/responsive-fluid.md`：
+
+- **分工**：版面骨架重排（單欄↔雙欄、側欄收合、tabbar 出現）用離散斷點；字級/間距/
+  圓角這類連續尺寸用 `clamp()` 流體縮放，省掉一堆中間斷點各調一次。判斷法：這個值
+  「跨斷點突然變」還是「跟著視窗連續變」。
+- **clamp 中間項一定要有 `rem` 成分，不能純 `vw`**——純 vw 的文字在使用者放大瀏覽器
+  字級時完全不變大，直接踩死無障礙。最小/最大端點用既有 type scale 既有階，不新增
+  任意 px（受第一層 token 鐵則約束）。
+- **mobile-first**：基礎寫窄螢幕、用 `min-width` 往上疊桌機，不要反過來 `max-width`
+  往下砍。
+- **container query**：同時出現在寬主欄和窄側欄的元件，依自己容器寬決定佈局（`@container`）
+  而非視窗寬，才能到處重用不出錯。
+- **觸控人體工學**：點擊熱區 ≥44px、相鄰可點元素留 ≥8px；手機輸入框字級 ≥16px 避免
+  iOS 自動放大跳版；桌機 hover 功能手機要有 tap 版本。
+
+## 第十層：感知效能／資源載入
+
+前面只提過一句「loading 不能省」「CLS 要 0」，沒給圖片/字型的具體載入做法。這層
+補上（數值已於 web.dev 核實），見 `references/perceived-performance.md`：
+
+- 三個目標（真實使用者第 75 百分位）：**LCP ≤ 2.5s、INP ≤ 200ms、CLS ≤ 0.1**。
+- **圖片最常見自傷**：首屏主圖（hero/banner）千萬**不要** `loading="lazy"`——會延後
+  LCP；首屏圖用 eager ＋ `fetchpriority="high"`。要捲動才看到的圖才掛 lazy（event 頁
+  長圖、記錄頁下方內容）。
+- **每張 `<img>` 要寫 `width`/`height`（或 `aspect-ratio`）**先占位，圖到不把下面內容
+  往下推（CLS），跟第八層骨架同一個目標。
+- **字型**：`font-display: swap`（先用系統字，別讓文字整段隱形）＋關鍵字型 preload；
+  CJK/泰文字型檔巨大，子集化＋`unicode-range` 分檔尤其重要，CJK 常直接優先系統字。
+- 只對 `transform`/`opacity` 做動畫（第三層同一條），兼顧流暢與 INP。
+
+## 第十一層：金融介面信任感——儲值/提款/註冊專用
+
+本 repo 的存款/提款/註冊頁需要「看起來可信、安全」。這層講**版面/狀態/互動**層面的
+信任感，見 `references/trust-fintech.md`（文案的既有內容仍逐字保留，不碰）：
+
+- **金額動作：確認 > 速度**。送出前給 review 畫面（金額＋方式＋手續費＋實收/實扣）；
+  **金額原樣回顯**讓使用者看到小數點沒按錯；新提款帳號雙重確認；手續費/到帳時間
+  先講清楚。
+- **狀態即時且不自打臉**：送出後立刻給處理中/成功狀態，延遲或前後不一致的確認反而
+  摧毀信任；成功用具體過去式（接第七層），失敗給原因＋下一步。
+- **送出鍵請求中 disable**，防重複送出（重複出款是真災難）。
+- **安全信號要真材實料**：鎖頭/加密/已驗證標籤只能在真的成立時放；**禁止為了「看
+  起來安全」擺任何無真實憑證支撐的安全標章**——跟第二層「禁止編造/冒充」同一條紅線，
+  也是本環境系統規則明訂不得產生的內容。缺真實後端行為的標「佔位」。
+
+## 第十二層：深色主題深度 ＋ 博弈視覺語言
+
+本 repo 多版本有多套深色系 `data-skin`。這層講深色怎麼做出深度、博弈題材的視覺語言
+怎麼接回既有 token，見 `references/dark-casino.md`（來源誠實切兩半）：
+
+- **(A) 深色主題（Material 公開指南改寫）**：底色用深灰不用純黑（純黑對比過猛、看不到
+  陰影分層全失）；深色沒法用陰影做深度，改用**越上層越亮**的亮度階差分層；強調色要
+  **去飽和**避免在深底上視覺震動；正文對比拉高。全部用該 skin 既有 token，不自己塞
+  `#000`/高飽和色，不機械式反轉淺色 ramp（接第一層 `systems.md`）。
+- **(B) 博弈/電玩視覺語言（我的綜合，非權威來源，可被推翻）**：金屬/光感用既有金色
+  色階多階層次（暗金→亮金→高光）＋多層陰影做，**不新增寫死金色碼**；獎項/金額/CTA
+  靠對比節奏頂成焦點（第二層「一次放大一件事」），不是整頁每塊都一樣亮一樣滿；特效
+  題材上站得住腳但單頁限一到兩個、要能被 `prefers-reduced-motion` 關掉；「貴/興奮」
+  靠對比與克制高光，不是堆到滿版（瞇眼測試還能看出重點才過）。賠率/金額/條款逐字保留。
+
 ## 驗收時的自我檢查
 
 - 記憶點是否真的體現在畫面上，還是只停留在描述？互換/瞇眼/記憶點/token 四個測試
@@ -359,5 +455,17 @@ footnote/版權這類，正文絕不用最淺那階）。
   頁面的既有文字？後者直接違反驗收標準，要改回原文。
 - 有加 loading/骨架畫面嗎？200ms 才掛載了嗎？shimmer 是單一方向單一時間軸，不是
   靜態方塊或各自閃爍的 pulse？`prefers-reduced-motion` 時有沒有改成純文字狀態？
+- 響應式：版面只在設計好的斷點重排、中間尺寸不破版嗎？放大瀏覽器到 200% 文字有
+  跟著變大嗎（clamp 中間項有 rem 成分）？流體字級端點是既有 token 階，沒新增 px？
+  點擊熱區 ≥44px、手機輸入框字級 ≥16px？
+- 效能：首屏主圖是 eager 不是 lazy？所有 `<img>` 有 width/height 或 aspect-ratio？
+  用 web 字的有 `font-display: swap` ＋ 關鍵字型 preload？本機量過 LCP/CLS 沒明顯惡化
+  （正式站未親眼確認要寫明）？
+- 金融頁：金額動作有 review/確認＋原樣回顯金額嗎？送出後狀態即時、成功具體、失敗給
+  原因＋下一步？送出鍵請求中有 disable 防重複？有沒有擺任何無真實憑證支撐的安全標章
+  （有＝違規，拔掉）？
+- 深色/博弈：分層靠亮度階差不是陰影？強調色去飽和不震動？金屬/光感用既有金色 token
+  疊階、沒新增寫死金色碼？重點（獎項/金額/CTA）有靠對比頂出來？特效限量、能被
+  reduced-motion 關掉？賠率/金額/條款有沒有被動到？
 - Hard rules 七條有沒有踩到任何一條？
 - 是否符合本 repo 驗收標準（視覺 pixel-diff、功能互動點、內容逐字保留、console 不變多）？
