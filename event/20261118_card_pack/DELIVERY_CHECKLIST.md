@@ -78,6 +78,20 @@
 | ☐ | C44 | 吉祥物 celebrate（慶祝） | 400×500 gif≥48 暫緩 | `assets/img/mascot/celebrate.gif` |  | ☐ | P3 |
 | ☐ | C45 | 吉祥物 lose（小失望） | 400×500 gif≥48 暫緩 | `assets/img/mascot/lose.gif` |  | ☐ | P3 |
 
+## D. 背景音樂與新增特效音（規格見 `AUDIO_REQUEST.md`，風格嚴格對齊本主題）
+
+| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☐ | C56 | 背景音樂 bgm（60–90 秒無縫循環） | 選配 | `assets/audio/bgm.mp3` |  | ☐ | P3 |
+| ☐ | C57 | 特效音 select：點選一包＝選定（≤0.4 秒） | 選配 | `assets/audio/select.mp3` |  | ☐ | P3 |
+| ☐ | C58 | 特效音 reveal-common：揭曉：普通（0.5–0.8 秒） | 選配 | `assets/audio/reveal-common.mp3` |  | ☐ | P3 |
+| ☐ | C59 | 特效音 reveal-rare：揭曉：稀有（0.7–1.0 秒） | 選配 | `assets/audio/reveal-rare.mp3` |  | ☐ | P3 |
+| ☐ | C60 | 特效音 reveal-epic：揭曉：超稀有（0.9–1.3 秒） | 選配 | `assets/audio/reveal-epic.mp3` |  | ☐ | P3 |
+| ☐ | C61 | 特效音 reveal-legendary：揭曉：最高級（Legendary）（1.5–2.0 秒） | 選配 | `assets/audio/reveal-legendary.mp3` |  | ☐ | P3 |
+| ☐ | C62 | 特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒） | 選配 | `assets/audio/collect.mp3` |  | ☐ | P3 |
+| ☐ | C63 | 特效音 error：次數用完、尚無獎項（≤0.3 秒） | 選配 | `assets/audio/error.mp3` |  | ☐ | P3 |
+| ☐ | C64 | 依 AUDIO_REQUEST.md 重做既有 6 個特效音（同名覆蓋 click／move／tear／flip／reveal／reward） | （人工） | `source/audio/README.md` |  | ☐ | P3 |
+
 ## 紀錄
 
 - 2026-11-18：第 2 版，主題改為「宇宙幻象（Cosmic Illusion）」、角色改用兔比宇宙兔女郎造型。全部為 mock 佔位圖，尚無任何交付。
@@ -112,3 +126,4 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 |---|---|---|---|---|---|---|---|
 | ☑ | C54 | 神燈／星盤冊頁裝飾 | 900×300 | `assets/img/ui/folio-header.webp` | 483b784 | ☐ | P1 |
 | ☑ | C55 | 冊頁裝飾點陣原稿 | （人工） | `source/ui/folio-header-original.png` | 483b784 | ☐ | P1 |
+- 2026-11-18：新增 D 節（背景音樂、選定／四種稀有度揭曉／收下／錯誤特效音），依 `AUDIO_REQUEST.md` 製作；B 節既有 6 個特效音之後依同一份需求重做覆蓋。

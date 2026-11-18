@@ -62,9 +62,10 @@ window.EVENT_CONFIG = {
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
   loadingImages: ['stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
 
-  /* 音效：留空時用 Web Audio 合成；交付音檔後填路徑即改播音檔 */
-  soundLevels: { click: 0.9, move: 0.6, tear: 1, flip: 0.9, reveal: 1.2, reward: 1.4 },
-  sounds: { click: 'assets/audio/click.mp3', move: 'assets/audio/move.mp3', tear: 'assets/audio/tear.mp3', flip: 'assets/audio/flip.mp3', reveal: 'assets/audio/reveal.mp3', reward: 'assets/audio/reward.mp3' },
+  /* 音效：名稱與規格見 AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
+     音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
+  soundLevels: { bgm: 0.35, bgmDuck: 0.1, click: 0.9, move: 0.6, select: 1, tear: 1, flip: 0.9, reveal: 1.2, 'reveal-common': 1, 'reveal-rare': 1, 'reveal-epic': 1, 'reveal-legendary': 1, reward: 1.4, collect: 1, error: 0.8 },
+  sounds: { click: 'assets/audio/click.mp3', move: 'assets/audio/move.mp3', tear: 'assets/audio/tear.mp3', flip: 'assets/audio/flip.mp3', reveal: 'assets/audio/reveal.mp3', reward: 'assets/audio/reward.mp3', bgm: '', select: '', 'reveal-common': '', 'reveal-rare': '', 'reveal-epic': '', 'reveal-legendary': '', collect: '', error: '' },
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
