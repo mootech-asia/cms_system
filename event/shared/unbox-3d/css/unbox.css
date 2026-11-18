@@ -150,6 +150,8 @@ button { font: inherit; -webkit-tap-highlight-color: transparent; }
 }
 .ev-title { position: relative; margin: 0 auto; max-width: min(400px, 92%, calc((100svh - 430px) * 1.6)); }
 .ev-title img { width: 100%; height: auto; }
+.is-embedded { --ev-scene-size: min(84vw, 380px, max(calc((100svh - 330px) / 1.08), 66vw)); }
+.is-embedded .ev-title { max-width: min(400px, 92%, max(calc((100svh - 430px) * 1.6), 58vw)); }
 .ev-period-wrap { position: relative; margin: var(--ev-space-2) 0 0; }
 .ev-period-wrap:has(.ev-period:empty) { display: none; }
 .ev-period {

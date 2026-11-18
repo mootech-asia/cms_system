@@ -24,6 +24,10 @@ var btnAction = $('btnAction');
 var reveal = $('reveal');
 var toast = $('toast');
 
+// iframe 嵌入時（CMS 各站）視窗只剩約 500px 高，3D 區與主標設最小尺寸，放不下就在 iframe 內捲動
+var embedded = (function () { try { return window.self !== window.top; } catch (e) { return true; } })();
+document.documentElement.classList.toggle('is-embedded', embedded);
+
 var state = 'select';
 var rewards = [];
 var revealed = 0;
