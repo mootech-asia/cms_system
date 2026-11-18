@@ -1,0 +1,231 @@
+{
+  "conditions": "Chromium SwiftShader, 390x844, CPU 6x, cold cache, 1.6 Mbps / 150 ms; not physical-device FPS",
+  "report": [
+    {
+      "name": "20261118_blind_box",
+      "loadMs": 13627,
+      "taskMs": 1396.3929999999998,
+      "revealTaskMs": 1046.990000000001,
+      "frame": {
+        "frames": 25,
+        "meanMs": 80.75599999999999,
+        "maxMs": 150
+      },
+      "offscreenWebGLPaused": true,
+      "opened": true,
+      "resources": [
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/stage-bg.webp",
+          "bytes": 195524,
+          "duration": 3313
+        },
+        {
+          "name": "/event/shared/unbox-3d/vendor/three.min.js",
+          "bytes": 633270,
+          "duration": 5522
+        },
+        {
+          "name": "/event/shared/unbox-3d/css/unbox.css",
+          "bytes": 35681,
+          "duration": 1143
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/css/theme.css",
+          "bytes": 10179,
+          "duration": 454
+        },
+        {
+          "name": "/event/shared/loading/loading.css",
+          "bytes": 8966,
+          "duration": 438
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/loading-emblem.webp",
+          "bytes": 56938,
+          "duration": 1652
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/js/config.js",
+          "bytes": 14557,
+          "duration": 1052
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/skin.js",
+          "bytes": 1211,
+          "duration": 1241
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/store.js",
+          "bytes": 3575,
+          "duration": 1512
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/i18n.js",
+          "bytes": 13713,
+          "duration": 1660
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/sound.js",
+          "bytes": 8424,
+          "duration": 1772
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/app.js",
+          "bytes": 30601,
+          "duration": 1422
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/share.js",
+          "bytes": 3994,
+          "duration": 2087
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/atmosphere.js",
+          "bytes": 8235,
+          "duration": 397
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/reveal-vortex.js",
+          "bytes": 2430,
+          "duration": 427
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/secret-cycle.js",
+          "bytes": 1282,
+          "duration": 410
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/scene.js",
+          "bytes": 30040,
+          "duration": 995
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/desert-depth.js",
+          "bytes": 2292,
+          "duration": 227
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/layers/desert.webp",
+          "bytes": 85902,
+          "duration": 2627
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/layers/columns.webp",
+          "bytes": 101432,
+          "duration": 3027
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/layers/floor.webp",
+          "bytes": 133532,
+          "duration": 3857
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/layers/curtain.webp",
+          "bytes": 48268,
+          "duration": 1623
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/atmosphere.webp",
+          "bytes": 117960,
+          "duration": 3519
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/wind-flowers.webp",
+          "bytes": 52916,
+          "duration": 1750
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/wind-palm.webp",
+          "bytes": 59948,
+          "duration": 5529
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/3d/chest-side.webp",
+          "bytes": 65652,
+          "duration": 5819
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/3d/chest-front.webp",
+          "bytes": 130986,
+          "duration": 6929
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/3d/chest-interior.webp",
+          "bytes": 50664,
+          "duration": 5617
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/3d/chest-lid.webp",
+          "bytes": 144826,
+          "duration": 7236
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/icon/icon-share.svg",
+          "bytes": 1294,
+          "duration": 5714
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/title/title-en.webp",
+          "bytes": 101626,
+          "duration": 6340
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/btn-arrow.webp",
+          "bytes": 18902,
+          "duration": 2573
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/icon/icon-tap.svg",
+          "bytes": 1423,
+          "duration": 1836
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/icon/icon-rotate.svg",
+          "bytes": 1331,
+          "duration": 5832
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/icon/icon-sound-on.svg",
+          "bytes": 1253,
+          "duration": 5880
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/tool-medallion.webp",
+          "bytes": 8428,
+          "duration": 3845
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/period-badge.webp",
+          "bytes": 31800,
+          "duration": 3626
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/chances-badge.webp",
+          "bytes": 46298,
+          "duration": 3964
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/btn-primary.webp",
+          "bytes": 63808,
+          "duration": 3657
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/ticker-bar.webp",
+          "bytes": 56238,
+          "duration": 4666
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/panel-crown.webp",
+          "bytes": 70436,
+          "duration": 7010
+        },
+        {
+          "name": "/favicon.ico",
+          "bytes": 335,
+          "duration": 163
+        }
+      ],
+      "errors": []
+    }
+  ]
+}
