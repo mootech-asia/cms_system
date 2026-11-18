@@ -7,7 +7,8 @@ window.EVENT_CONFIG = {
   type: 'card-pack',
   storageKey: 'event_20261118_card_pack',
   openMs: 1800,
-  perOpenLimits: { min: 1, max: 5 },
+  /* 每包開出幾張卡：一次只拆一包、每包 1 張 */
+  perOpenLimits: { min: 1, max: 1 },
   mockResetOpens: 10,
   /* 3D 正面貼圖的材質：金屬感越高顏色越暗，交付正式圖後依實際效果微調 */
   material: { metalness: 0.2, roughness: 0.35 },
@@ -111,7 +112,7 @@ window.EVENT_CONFIG = {
     updatedAt: 'mock-2026-11-18',
     period: '2026/11/18 – 2026/12/31',
     freeOpens: 5,
-    perOpen: 3,
+    perOpen: 1,
     prizes: [
       { name: { en: '50 Points', ko: '50 포인트', th: '50 คะแนน', zh: '積分 ×50' }, icon: '../20261111_lucky_wheel/assets/img/icon-points.svg', rarity: 'common', weight: 40 },
       { name: { en: '20 Coins', ko: '코인 20개', th: '20 เหรียญ', zh: '金幣 ×20' }, icon: '../20261111_lucky_wheel/assets/img/icon-coin.svg', rarity: 'common', weight: 30 },
@@ -129,28 +130,28 @@ window.EVENT_CONFIG = {
       en: [
         'Event period: 2026/11/18 – 2026/12/31.',
         'Each member gets 5 free card packs during the event period.',
-        'Each pack contains 3 cards. Prizes are credited within 24 hours.',
+        'Each pack contains 1 card. Prizes are credited within 24 hours.',
         'Bonus prizes require 5x turnover before withdrawal.',
         'The organizer reserves the right to modify, suspend, or interpret this event.'
       ],
       ko: [
         '이벤트 기간: 2026/11/18 – 2026/12/31.',
         '이벤트 기간 동안 회원당 무료 카드팩 5개를 받을 수 있습니다.',
-        '카드팩 1개에 카드 3장이 들어 있으며, 상품은 24시간 이내에 지급됩니다.',
+        '카드팩 1개에 카드 1장이 들어 있으며, 상품은 24시간 이내에 지급됩니다.',
         '보너스 상품은 출금 전 5배 롤링이 필요합니다.',
         '주최 측은 이벤트를 변경, 중단 및 최종 해석할 권리를 보유합니다.'
       ],
       th: [
         'ระยะเวลากิจกรรม: 2026/11/18 – 2026/12/31',
         'สมาชิกแต่ละท่านได้รับซองการ์ดฟรี 5 ซองตลอดระยะเวลากิจกรรม',
-        'แต่ละซองมีการ์ด 3 ใบ รางวัลจะถูกโอนเข้าบัญชีภายใน 24 ชั่วโมง',
+        'แต่ละซองมีการ์ด 1 ใบ รางวัลจะถูกโอนเข้าบัญชีภายใน 24 ชั่วโมง',
         'รางวัลโบนัสต้องทำยอดเทิร์นโอเวอร์ 5 เท่าก่อนถอน',
         'ผู้จัดขอสงวนสิทธิ์ในการแก้ไข ระงับ และตีความกิจกรรมนี้'
       ],
       zh: [
         '活動期間：2026/11/18 – 2026/12/31。',
         '活動期間每位會員可獲得 5 包免費卡包。',
-        '每包含 3 張卡，獎項於 24 小時內發放至會員帳戶。',
+        '每包含 1 張卡，獎項於 24 小時內發放至會員帳戶。',
         '加碼類獎項需完成 5 倍流水方可提領。',
         '主辦方保留活動修改、暫停及最終解釋之權利。'
       ]
