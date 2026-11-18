@@ -55,8 +55,12 @@ export function createScene(stage, opts) {
   accent.position.set(4, 2, 1);
   scene.add(hemi, key, accent);
 
+  // world：整個環形（含吉祥物遮擋面）一起縮放，config.sceneScale 調整包裝在畫面上的大小
+  var world = new THREE.Group();
+  world.scale.setScalar(opts.scale || 1);
+  scene.add(world);
   var ring = new THREE.Group();
-  scene.add(ring);
+  world.add(ring);
 
   // 同一張圖只載一次；全部載完（成功或失敗）時 ready 才 resolve，給 loading 畫面計算進度。
   var loader = new THREE.TextureLoader();
@@ -144,6 +148,40 @@ export function createScene(stage, opts) {
     items.push({ group: group, body: body, lid: lid, shadow: shadowMat });
   }
 
+  // 吉祥物站在環形圓心（世界座標 0, 地板, -RADIUS）。角色本身是 <img>（動態 WebP），放在透明畫布後層；
+  // 這裡在圓心放一片只寫深度、不畫顏色的剪影面（用 poster 的透明度裁切），轉到後排的包裝會被它擋住，
+  // 前排包裝照常畫在角色前面。剪影固定用 poster，動作幅度大的手腳邊緣可能有少許誤差。
+  var mascotPlane = null;
+  var mascotImg = opts.mascot && opts.mascot.img;
+  if (mascotImg && opts.mascot.poster) {
+    var MH = opts.mascot.height || 3.2;
+    var mGeo = keep(new THREE.PlaneGeometry(MH * 0.8, MH));
+    var mMat = keep(new THREE.MeshBasicMaterial({ transparent: false, alphaTest: 0.5, colorWrite: false }));
+    texture(opts.mascot.poster, function (tex) { mMat.map = tex; mMat.needsUpdate = true; });
+    mascotPlane = new THREE.Mesh(mGeo, mMat);
+    // 素材腳底在畫布下緣上方 12/500
+    mascotPlane.position.set(0, FLOOR_Y + MH / 2 - MH * 0.024, -RADIUS);
+    world.add(mascotPlane);
+  }
+  function placeMascot() {
+    if (!mascotPlane) return;
+    scene.updateMatrixWorld(true);
+    var w = mGeo.parameters.width / 2, h = mGeo.parameters.height / 2;
+    var pts = [[-w, -h], [w, -h], [-w, h], [w, h]].map(function (c) {
+      var v = new THREE.Vector3(c[0], c[1], 0);
+      mascotPlane.localToWorld(v);
+      return v.project(camera);
+    });
+    var r = stage.getBoundingClientRect();
+    var xs = pts.map(function (v) { return (v.x + 1) / 2 * r.width; });
+    var ys = pts.map(function (v) { return (1 - v.y) / 2 * r.height; });
+    var left = Math.min.apply(null, xs), top = Math.min.apply(null, ys);
+    mascotImg.style.left = left + 'px';
+    mascotImg.style.top = top + 'px';
+    mascotImg.style.width = (Math.max.apply(null, xs) - left) + 'px';
+    mascotImg.style.height = (Math.max.apply(null, ys) - top) + 'px';
+  }
+
   function applyTokens() {
     tinted.forEach(function (m, k) {
       var slot = box ? Math.floor(k / 2) : k;
@@ -165,6 +203,7 @@ export function createScene(stage, opts) {
     renderer.setSize(r.width, r.height);
     camera.aspect = r.width / r.height;
     camera.updateProjectionMatrix();
+    placeMascot();
   });
   resize.observe(stage);
 

@@ -420,6 +420,8 @@ scene = createScene(sceneEl, {
   type: cfg.type,
   images: imagesFor,
   material: cfg.material,
+  scale: cfg.sceneScale,
+  mascot: cfg.mascot ? { img: $('mascot'), poster: cfg.mascot.poster, height: cfg.mascot.height } : null,
   onSelect: function () { Sound.play('move'); renderPickLabel(); },
   onSwipeOpen: open
 });

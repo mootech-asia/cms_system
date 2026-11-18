@@ -8,8 +8,8 @@
 |---|---|---|---|
 | Lucky Wheel 原版轉盤 | [20261111_lucky_wheel](./20261111_lucky_wheel/) · [開啟活動](./20261111_lucky_wheel/index.html) | 百老匯舞台、兔比；已有主視覺、介面與可操作轉盤，仍有美術項目待交付 | [交付清單](./20261111_lucky_wheel/DELIVERY_CHECKLIST.md) |
 | Survival Spin 生存輪盤 | [20261111_survival_spin](./20261111_survival_spin/) · [開啟活動](./20261111_survival_spin/index.html) | 墨綠／桃紅舞台、桃紅面具人物；目前使用第一版人物動態，已有專屬社群圖 | [交付清單](./20261111_survival_spin/DELIVERY_CHECKLIST.md) |
-| 3D 拆卡包 | [20261118_card_pack](./20261118_card_pack/) · [開啟活動](./20261118_card_pack/index.html) | 珍珠薰衣草 mock；兔比站在選中卡包後方；環形選包、撕封條、逐張翻卡；en/ko/th、次數、規則、紀錄、分享已比照轉盤；全部佔位圖（兔比暫借轉盤動態） | [交付清單](./20261118_card_pack/DELIVERY_CHECKLIST.md) |
-| 3D 拆盲盒 | [20261118_blind_box](./20261118_blind_box/) · [開啟活動](./20261118_blind_box/index.html) | 珍珠薰衣草 mock；熊北站在選中盲盒後方；環形選盒、開蓋、翻開獎品卡；en/ko/th、次數、規則、紀錄、分享已比照轉盤；全部佔位圖（熊北為靜態參考圖） | [交付清單](./20261118_blind_box/DELIVERY_CHECKLIST.md) |
+| 3D 拆卡包 | [20261118_card_pack](./20261118_card_pack/) · [開啟活動](./20261118_card_pack/index.html) | 珍珠薰衣草 mock；兔比站在環形正中央、卡包（1.5 倍）繞著它轉；環形選包、撕封條、逐張翻卡；en/ko/th、次數、規則、紀錄、分享已比照轉盤；全部佔位圖（兔比暫借轉盤動態） | [交付清單](./20261118_card_pack/DELIVERY_CHECKLIST.md) |
+| 3D 拆盲盒 | [20261118_blind_box](./20261118_blind_box/) · [開啟活動](./20261118_blind_box/index.html) | 珍珠薰衣草 mock；兔比站在環形正中央、盲盒繞著它轉；環形選盒、開蓋、翻開獎品卡；en/ko/th、次數、規則、紀錄、分享已比照轉盤；全部佔位圖（兔比暫借轉盤動態） | [交付清單](./20261118_blind_box/DELIVERY_CHECKLIST.md) |
 
 「已有素材」不等於所有交付與人工審核完成；各活動以自己的交付清單與檢查結果為準。正式站仍使用 mock 獎項資料，不代表已串接後台。
 

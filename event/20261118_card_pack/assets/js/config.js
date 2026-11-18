@@ -11,6 +11,8 @@ window.EVENT_CONFIG = {
   mockResetOpens: 10,
   /* 3D 正面貼圖的材質：金屬感越高顏色越暗，交付正式圖後依實際效果微調 */
   material: { metalness: 0.2, roughness: 0.35 },
+  /* 整個 3D 環形（包裝、間距、吉祥物）的縮放倍率 */
+  sceneScale: 1.5,
 
   /* 換皮：skins.<名稱> = { css: '色票覆寫檔', images: { 只列跟預設不同的圖片槽 }, sounds: {}, strings: {} }，
      網址 ?skin=<名稱> 臨時切換，skin 決定預設皮。交付路徑以 skins/<名稱>/ 為基準。 */
@@ -51,11 +53,14 @@ window.EVENT_CONFIG = {
     rewardFrameLegendary: 'assets/img/reveal/reward-frame-legendary.svg'
   },
 
-  /* 吉祥物（兔比）：站在選中包裝後方中央，下半身被包裝擋住。每個狀態一段循環動態，全部共用同一張基準幀且長度相同（loopMs），
-     程式在一輪結束時才切換。mock 暫借轉盤活動的兔比動態（idle／spinning／result／lose），開包專用動作交付後改這裡。
+  /* 吉祥物（兔比）：站在環形正中央（圓心），包裝繞著它轉；轉到前排的包裝擋住它，轉到後排的被它擋住。
+     每個狀態一段循環動態，全部共用同一張基準幀且長度相同（loopMs），程式在一輪結束時才切換。
+     poster 同時當 3D 遮擋剪影（必須是 base-frame 站姿）；height 為角色在 3D 場景的高度（未乘 sceneScale）。
+     mock 暫借轉盤活動的兔比動態（idle／spinning／result／lose），開包專用動作交付後改這裡。
      狀態：idle（挑選）、anticipate（已選定／開封中）、celebrate（揭曉有稀有以上）、lose（只開到普通）。 */
   mascot: {
     poster: '../20261111_lucky_wheel/assets/img/mascot/optimized/poster.webp',
+    height: 4.2,
     loopMs: 2000,
     idle: ['../20261111_lucky_wheel/assets/img/mascot/optimized/idle-1.webp'],
     anticipate: '../20261111_lucky_wheel/assets/img/mascot/optimized/spinning.webp',

@@ -17,7 +17,7 @@
   --ev-space-10: 40px;
   --ev-page-max: 480px;
   /* 3D 選擇區同時受寬與高限制：矮螢幕也要在第一屏看到包裝＋主按鈕 */
-  --ev-scene-size: min(84vw, 380px, calc((100svh - 330px) / 1.08));
+  --ev-scene-size: min(84vw, 380px, calc((100svh - 340px) / 1.32));
   --ev-font: -apple-system, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Leelawadee UI", "Noto Sans Thai", "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
 }
 
@@ -148,11 +148,11 @@ button { font: inherit; -webkit-tap-highlight-color: transparent; }
   padding: 48px var(--ev-space-4) var(--ev-space-4);
   text-align: center;
 }
-.ev-title { position: relative; margin: 0 auto; max-width: min(400px, 92%, calc((100svh - 430px) * 1.6)); }
+.ev-title { position: relative; z-index: 2; margin: 0 auto; max-width: min(400px, 92%, calc((100svh - 430px) * 1.6)); }
 .ev-title img { width: 100%; height: auto; }
-.is-embedded { --ev-scene-size: min(84vw, 380px, max(calc((100svh - 330px) / 1.08), 66vw)); }
+.is-embedded { --ev-scene-size: min(84vw, 380px, max(calc((100svh - 340px) / 1.32), 66vw)); }
 .is-embedded .ev-title { max-width: min(400px, 92%, max(calc((100svh - 430px) * 1.6), 58vw)); }
-.ev-period-wrap { position: relative; margin: var(--ev-space-2) 0 0; }
+.ev-period-wrap { position: relative; z-index: 2; margin: var(--ev-space-2) 0 0; }
 .ev-period-wrap:has(.ev-period:empty) { display: none; }
 .ev-period {
   display: inline-block;
@@ -165,27 +165,24 @@ button { font: inherit; -webkit-tap-highlight-color: transparent; }
   font-weight: 700;
 }
 
-/* 3D 選擇區：畫布高為基準的 1.08 倍，上方保留封條／盒蓋飛出的空間 */
+/* 3D 選擇區：畫布高為基準的 1.32 倍（與轉盤活動相同的尺寸規則），上方保留封條／盒蓋飛出的空間 */
 .ev-scene {
   position: relative;
-  height: calc(var(--ev-scene-size) * 1.08);
+  height: calc(var(--ev-scene-size) * 1.32);
   margin: var(--ev-space-2) calc(var(--ev-space-4) * -1) 0;
   touch-action: pan-y;
   cursor: grab;
 }
 .ev-scene:active { cursor: grabbing; }
 .ev-scene canvas { position: relative; z-index: 1; display: block; width: 100%; height: 100%; }
-/* 吉祥物 400×500：站在選中包裝後方中央，腳與下半身藏在包裝後面（畫布在上層）；影子畫在素材裡，程式不加 */
+/* 吉祥物 400×500：站在環形圓心，位置與大小由 scene.js 依 3D 投影寫入（前排包裝畫在上層畫布）；影子畫在素材裡，程式不加 */
 .ev-mascot {
   position: absolute;
-  left: 50%;
-  bottom: 22%;
   z-index: 0;
-  width: calc(var(--ev-scene-size) * 0.72);
   max-width: none;
-  transform: translateX(-50%);
   pointer-events: none;
 }
+.ev-scene.is-flat .ev-mascot { display: none; }
 .ev-scene-fallback {
   position: absolute;
   left: 50%;
