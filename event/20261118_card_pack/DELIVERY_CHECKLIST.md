@@ -67,7 +67,7 @@
 | ☑ | C38 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `assets/audio/reveal.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C39 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C40 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | 5844c7b | ☐ | P3 |
-| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | aaa6c24 | ☐ | P2 |
+| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 7d77f8f | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -131,12 +131,12 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C56 | 環境體積貼圖 | 640×454 | `assets/img/scene/atmosphere.webp` | aaa6c24 | ☐ | P1 |
-| ☑ | C57 | 環境體積原稿 | （人工） | `source/scene/atmosphere-original.png` | aaa6c24 | ☐ | P1 |
-| ☑ | C58 | btn-primary 控制元件原稿 | （人工） | `source/ui/btn-primary-original.png` | aaa6c24 | ☐ | P1 |
-| ☑ | C59 | chances-badge 控制元件原稿 | （人工） | `source/ui/chances-badge-original.png` | aaa6c24 | ☐ | P1 |
-| ☑ | C60 | btn-arrow 控制元件原稿 | （人工） | `source/ui/btn-arrow-original.png` | aaa6c24 | ☐ | P1 |
-| ☑ | C61 | ticker-bar 控制元件原稿 | （人工） | `source/ui/ticker-bar-original.png` | aaa6c24 | ☐ | P1 |
+| ☑ | C65 | 環境體積貼圖 | 640×454 | `assets/img/scene/atmosphere.webp` | aaa6c24 | ☐ | P1 |
+| ☑ | C66 | 環境體積原稿 | （人工） | `source/scene/atmosphere-original.png` | aaa6c24 | ☐ | P1 |
+| ☑ | C67 | btn-primary 控制元件原稿 | （人工） | `source/ui/btn-primary-original.png` | aaa6c24 | ☐ | P1 |
+| ☑ | C68 | chances-badge 控制元件原稿 | （人工） | `source/ui/chances-badge-original.png` | aaa6c24 | ☐ | P1 |
+| ☑ | C69 | btn-arrow 控制元件原稿 | （人工） | `source/ui/btn-arrow-original.png` | aaa6c24 | ☐ | P1 |
+| ☑ | C70 | ticker-bar 控制元件原稿 | （人工） | `source/ui/ticker-bar-original.png` | aaa6c24 | ☐ | P1 |
 
 壓縮與主題新版提交於 aaa6c24；原稿保留，交付 WebP 的尺寸／alpha 維持，審核欄尚未由品牌確認。
 - 2026-11-18：新增 D 節（背景音樂、選定／四種稀有度揭曉／收下／錯誤特效音），依 `AUDIO_REQUEST.md` 製作；B 節既有 6 個特效音之後依同一份需求重做覆蓋。
