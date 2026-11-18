@@ -34,7 +34,7 @@
 | ☑ | C10 | pack-front-1 | 512×768 | `assets/img/3d/pack-front-1.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
 | ☑ | C11 | pack-front-2 | 512×768 | `assets/img/3d/pack-front-2.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
 | ☑ | C12 | pack-front-3 | 512×768 | `assets/img/3d/pack-front-3.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
-| ☑ | C13 | reward-back | 600×900 | `assets/img/reveal/reward-back.{png,webp,svg}` | 8e26e5e | ☐ | P1 |
+| ☑ | C13 | reward-back | 600×900 | `assets/img/reveal/reward-back.{png,webp,svg}` | 84ae6d5 | ☐ | P1 |
 | ☑ | C14 | reward-frame-common | 600×900 | `assets/img/reveal/reward-frame-common.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
 | ☑ | C15 | reward-frame-rare | 600×900 | `assets/img/reveal/reward-frame-rare.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
 | ☑ | C16 | reward-frame-epic | 600×900 | `assets/img/reveal/reward-frame-epic.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
@@ -67,7 +67,7 @@
 | ☑ | C38 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `assets/audio/reveal.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C39 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C40 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | 5844c7b | ☐ | P3 |
-| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 8e26e5e | ☐ | P2 |
+| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 84ae6d5 | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -145,7 +145,7 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C71 | pack-contents | 256×384 | `assets/img/3d/pack-contents.webp` | 8e26e5e | ☐ | P1 |
+| ☑ | C71 | pack-contents | 256×384 | `assets/img/3d/pack-contents.webp` | 84ae6d5 | ☐ | P1 |
 | ☑ | C72 | panel-frame | 768×768 | `assets/img/ui/panel-frame.webp` | 8e26e5e | ☐ | P1 |
 | ☑ | C73 | star-glint | 192×192 | `assets/img/ui/star-glint.webp` | 8e26e5e | ☐ | P1 |
 | ☑ | C74 | tool-medallion | 160×160 | `assets/img/ui/tool-medallion.webp` | 8e26e5e | ☐ | P1 |
@@ -160,3 +160,11 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 | ☑ | C83 | period-badge-refined-original | （人工） | `source/ui/period-badge-refined-original.png` | 8e26e5e | ☐ | P1 |
 | ☑ | C84 | star-glint-refined-original | （人工） | `source/ui/star-glint-refined-original.png` | 8e26e5e | ☐ | P1 |
 | ☑ | C85 | tool-medallion-refined-original | （人工） | `source/ui/tool-medallion-refined-original.png` | 8e26e5e | ☐ | P1 |
+
+## 主題 loading（20261118-loading1）
+
+| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☑ | L01 | 主題 loading 器物 | 480×480 | `assets/img/ui/loading-emblem.webp` | 84ae6d5 | ☐ | P1 |
+| ☑ | L02 | Loading 原稿 | （人工） | `source/loading/emblem-original.png` | 84ae6d5 | ☐ | P1 |
+| ☑ | L03 | 月兔卡背原稿 | （人工） | `source/reveal/reward-back-rabbit-original.png` | 84ae6d5 | ☐ | P1 |

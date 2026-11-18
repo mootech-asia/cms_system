@@ -1,0 +1,840 @@
+{
+  "conditions": "Chromium SwiftShader, 390x844, CPU 6x, cold cache, 1.6 Mbps / 150 ms; not physical-device FPS",
+  "report": [
+    {
+      "name": "20261118_card_pack",
+      "loadMs": 12125,
+      "taskMs": 947.9069999999998,
+      "frame": {
+        "frames": 119,
+        "meanMs": 16.894117647065087,
+        "maxMs": 33.30000000000109
+      },
+      "offscreenWebGLPaused": true,
+      "opened": true,
+      "resources": [
+        {
+          "name": "/event/20261118_card_pack/assets/img/scene/stage-bg.webp",
+          "bytes": 75532,
+          "duration": 1987
+        },
+        {
+          "name": "/event/shared/unbox-3d/vendor/three.min.js",
+          "bytes": 633270,
+          "duration": 5056
+        },
+        {
+          "name": "/event/shared/unbox-3d/css/unbox.css",
+          "bytes": 35681,
+          "duration": 1122
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/css/theme.css",
+          "bytes": 8234,
+          "duration": 402
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/loading-emblem.webp",
+          "bytes": 108168,
+          "duration": 2428
+        },
+        {
+          "name": "/event/shared/loading/loading.css",
+          "bytes": 8284,
+          "duration": 421
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/js/config.js",
+          "bytes": 13517,
+          "duration": 1021
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/skin.js",
+          "bytes": 1211,
+          "duration": 1208
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/i18n.js",
+          "bytes": 13713,
+          "duration": 1636
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/store.js",
+          "bytes": 3575,
+          "duration": 1476
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/sound.js",
+          "bytes": 7222,
+          "duration": 1619
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/share.js",
+          "bytes": 3994,
+          "duration": 1896
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/app.js",
+          "bytes": 26776,
+          "duration": 1274
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/atmosphere.js",
+          "bytes": 6413,
+          "duration": 455
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/scene.js",
+          "bytes": 24732,
+          "duration": 897
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/scene/atmosphere.webp",
+          "bytes": 117538,
+          "duration": 3423
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/star-glint.webp",
+          "bytes": 8800,
+          "duration": 385
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/3d/pack-back.webp",
+          "bytes": 137008,
+          "duration": 3955
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/3d/pack-front-1.webp",
+          "bytes": 140944,
+          "duration": 4030
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/3d/pack-contents.webp",
+          "bytes": 19612,
+          "duration": 715
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/3d/pack-crimp.webp",
+          "bytes": 11252,
+          "duration": 499
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/3d/pack-front-2.webp",
+          "bytes": 105356,
+          "duration": 5335
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/icon/icon-share.svg",
+          "bytes": 1294,
+          "duration": 3933
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/3d/pack-front-3.webp",
+          "bytes": 174270,
+          "duration": 5898
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/title/title-en.webp",
+          "bytes": 85012,
+          "duration": 4098
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/btn-arrow.webp",
+          "bytes": 17988,
+          "duration": 1202
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/icon/icon-tap.svg",
+          "bytes": 1423,
+          "duration": 3379
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/reveal/reveal-rays.svg",
+          "bytes": 3114,
+          "duration": 4166
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/icon/icon-rotate.svg",
+          "bytes": 1331,
+          "duration": 4158
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/icon/icon-sound-on.svg",
+          "bytes": 1253,
+          "duration": 4195
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/tool-medallion.webp",
+          "bytes": 9858,
+          "duration": 1657
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/period-badge.webp",
+          "bytes": 26466,
+          "duration": 3134
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/chances-badge.webp",
+          "bytes": 42310,
+          "duration": 3724
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/btn-primary.webp",
+          "bytes": 59116,
+          "duration": 2200
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/ticker-bar.webp",
+          "bytes": 53184,
+          "duration": 2380
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/panel-frame.webp",
+          "bytes": 112184,
+          "duration": 5692
+        },
+        {
+          "name": "/favicon.ico",
+          "bytes": 335,
+          "duration": 156
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "20261118_blind_box",
+      "loadMs": 11194,
+      "taskMs": 551.6979999999995,
+      "frame": {
+        "frames": 122,
+        "meanMs": 16.5221311475593,
+        "maxMs": 16.80000000000109
+      },
+      "offscreenWebGLPaused": true,
+      "opened": true,
+      "resources": [
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/stage-bg.webp",
+          "bytes": 206514,
+          "duration": 3319
+        },
+        {
+          "name": "/event/shared/unbox-3d/vendor/three.min.js",
+          "bytes": 633270,
+          "duration": 5466
+        },
+        {
+          "name": "/event/shared/unbox-3d/css/unbox.css",
+          "bytes": 35681,
+          "duration": 1114
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/css/theme.css",
+          "bytes": 8247,
+          "duration": 409
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/loading-emblem.webp",
+          "bytes": 56938,
+          "duration": 1645
+        },
+        {
+          "name": "/event/shared/loading/loading.css",
+          "bytes": 8284,
+          "duration": 414
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/js/config.js",
+          "bytes": 13739,
+          "duration": 1012
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/skin.js",
+          "bytes": 1211,
+          "duration": 1200
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/i18n.js",
+          "bytes": 13713,
+          "duration": 1628
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/store.js",
+          "bytes": 3575,
+          "duration": 1463
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/sound.js",
+          "bytes": 7222,
+          "duration": 1619
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/share.js",
+          "bytes": 3994,
+          "duration": 1865
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/app.js",
+          "bytes": 26776,
+          "duration": 1271
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/atmosphere.js",
+          "bytes": 6413,
+          "duration": 469
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/scene.js",
+          "bytes": 24732,
+          "duration": 892
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/atmosphere.webp",
+          "bytes": 117960,
+          "duration": 3526
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/3d/chest-side.webp",
+          "bytes": 65652,
+          "duration": 2040
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/3d/chest-front.webp",
+          "bytes": 130986,
+          "duration": 3862
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/3d/chest-interior.webp",
+          "bytes": 50664,
+          "duration": 1650
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/3d/chest-lid.webp",
+          "bytes": 144826,
+          "duration": 4200
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/icon/icon-share.svg",
+          "bytes": 1294,
+          "duration": 195
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/title/title-en.webp",
+          "bytes": 101626,
+          "duration": 3307
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/btn-arrow.webp",
+          "bytes": 18902,
+          "duration": 2774
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/icon/icon-tap.svg",
+          "bytes": 1423,
+          "duration": 4087
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/reveal/reveal-rays.svg",
+          "bytes": 4314,
+          "duration": 4301
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/icon/icon-rotate.svg",
+          "bytes": 1331,
+          "duration": 4306
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/icon/icon-sound-on.svg",
+          "bytes": 1253,
+          "duration": 4358
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/tool-medallion.webp",
+          "bytes": 8428,
+          "duration": 4012
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/period-badge.webp",
+          "bytes": 31800,
+          "duration": 4274
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/chances-badge.webp",
+          "bytes": 46298,
+          "duration": 4445
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/btn-primary.webp",
+          "bytes": 63808,
+          "duration": 3619
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/ticker-bar.webp",
+          "bytes": 56238,
+          "duration": 4338
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/panel-crown.webp",
+          "bytes": 70436,
+          "duration": 4797
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/reveal/reward-back.svg",
+          "bytes": 1998,
+          "duration": 188
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/reveal/reward-frame-common.svg",
+          "bytes": 1820,
+          "duration": 196
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "20261111_lucky_wheel",
+      "loadMs": 4259,
+      "taskMs": 978.0629999999999,
+      "frame": {
+        "frames": 116,
+        "meanMs": 17.255172413780254,
+        "maxMs": 51.699999998510066
+      },
+      "offscreenWebGLPaused": null,
+      "opened": true,
+      "resources": [
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/stage-bg.webp",
+          "bytes": 91134,
+          "duration": 1673
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/mascot/optimized/poster.webp",
+          "bytes": 34144,
+          "duration": 1042
+        },
+        {
+          "name": "/event/shared/loading/loading.css",
+          "bytes": 8284,
+          "duration": 382
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/css/event.css",
+          "bytes": 33619,
+          "duration": 1019
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/loading-emblem.webp",
+          "bytes": 51348,
+          "duration": 1379
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/js/config.js",
+          "bytes": 9348,
+          "duration": 461
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/js/skin.js",
+          "bytes": 1193,
+          "duration": 567
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/js/i18n.js",
+          "bytes": 14509,
+          "duration": 1009
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/js/store.js",
+          "bytes": 2239,
+          "duration": 806
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/js/share.js",
+          "bytes": 4051,
+          "duration": 1263
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/js/sound.js",
+          "bytes": 22106,
+          "duration": 1408
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/js/wheel.js",
+          "bytes": 25167,
+          "duration": 1556
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/stage-vignette.webp",
+          "bytes": 49098,
+          "duration": 1092
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/chances-badge.webp",
+          "bytes": 4442,
+          "duration": 267
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/bulb-off.png",
+          "bytes": 1859,
+          "duration": 209
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/bulb-on.png",
+          "bytes": 2601,
+          "duration": 221
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/ticker-bar.webp",
+          "bytes": 7264,
+          "duration": 302
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/info-bg.webp",
+          "bytes": 14802,
+          "duration": 409
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/card-frame.webp",
+          "bytes": 6416,
+          "duration": 479
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/card-title.webp",
+          "bytes": 9454,
+          "duration": 560
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/footer-deco.webp",
+          "bytes": 16842,
+          "duration": 1804
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/icon-cash.svg",
+          "bytes": 1834,
+          "duration": 1299
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/icon-spin.svg",
+          "bytes": 1747,
+          "duration": 1050
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/icon-bonus.svg",
+          "bytes": 1642,
+          "duration": 1379
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/icon-coin.svg",
+          "bytes": 1896,
+          "duration": 1200
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/icon-points.svg",
+          "bytes": 1611,
+          "duration": 1251
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/icon-gift.svg",
+          "bytes": 1662,
+          "duration": 1401
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/icon-thanks.svg",
+          "bytes": 1718,
+          "duration": 1219
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/spotlight.webp",
+          "bytes": 21924,
+          "duration": 1835
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/icon-share.webp",
+          "bytes": 3548,
+          "duration": 994
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/title-en.webp",
+          "bytes": 46488,
+          "duration": 1826
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/light-pool.webp",
+          "bytes": 11528,
+          "duration": 1750
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/wheel-stand.webp",
+          "bytes": 22102,
+          "duration": 1323
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/wheel-gloss.svg",
+          "bytes": 1898,
+          "duration": 446
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/wheel-frame.webp",
+          "bytes": 34260,
+          "duration": 1008
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/pointer.webp",
+          "bytes": 7048,
+          "duration": 1098
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/btn-go.webp",
+          "bytes": 13308,
+          "duration": 903
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/stage-floor.webp",
+          "bytes": 18090,
+          "duration": 926
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/icon-rotate.webp",
+          "bytes": 6638,
+          "duration": 1713
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/icon-sound-on.webp",
+          "bytes": 3630,
+          "duration": 768
+        },
+        {
+          "name": "/event/20261111_lucky_wheel/assets/img/period-badge.webp",
+          "bytes": 9738,
+          "duration": 883
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "20261111_survival_spin",
+      "loadMs": 3863,
+      "taskMs": 1043.6860000000001,
+      "frame": {
+        "frames": 122,
+        "meanMs": 16.523770491815494,
+        "maxMs": 16.800000000000182
+      },
+      "offscreenWebGLPaused": null,
+      "opened": true,
+      "resources": [
+        {
+          "name": "/event/20261111_survival_spin/img/stage-bg.webp",
+          "bytes": 49596,
+          "duration": 1282
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/mascot/rifle-v1/optimized/poster.webp",
+          "bytes": 32294,
+          "duration": 970
+        },
+        {
+          "name": "/event/shared/loading/loading.css",
+          "bytes": 8284,
+          "duration": 407
+        },
+        {
+          "name": "/event/20261111_survival_spin/assets/css/event.css",
+          "bytes": 33619,
+          "duration": 1029
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/loading-emblem.webp",
+          "bytes": 39622,
+          "duration": 1126
+        },
+        {
+          "name": "/event/20261111_survival_spin/assets/js/config.js",
+          "bytes": 9867,
+          "duration": 471
+        },
+        {
+          "name": "/event/20261111_survival_spin/assets/js/skin.js",
+          "bytes": 1193,
+          "duration": 591
+        },
+        {
+          "name": "/event/20261111_survival_spin/assets/js/i18n.js",
+          "bytes": 14566,
+          "duration": 1004
+        },
+        {
+          "name": "/event/20261111_survival_spin/assets/js/store.js",
+          "bytes": 2239,
+          "duration": 829
+        },
+        {
+          "name": "/event/20261111_survival_spin/assets/js/share.js",
+          "bytes": 3897,
+          "duration": 1197
+        },
+        {
+          "name": "/event/20261111_survival_spin/assets/js/sound.js",
+          "bytes": 22106,
+          "duration": 1331
+        },
+        {
+          "name": "/event/20261111_survival_spin/assets/js/wheel.js",
+          "bytes": 25167,
+          "duration": 1407
+        },
+        {
+          "name": "/event/20261111_survival_spin/skin.css",
+          "bytes": 1286,
+          "duration": 175
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/stage-vignette.webp",
+          "bytes": 44132,
+          "duration": 762
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/chances-badge.webp",
+          "bytes": 9384,
+          "duration": 317
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/bulb-off.webp",
+          "bytes": 1560,
+          "duration": 212
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/bulb-on.webp",
+          "bytes": 2270,
+          "duration": 226
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/ticker-bar.webp",
+          "bytes": 8568,
+          "duration": 302
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/info-bg.webp",
+          "bytes": 2058,
+          "duration": 231
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/card-frame.webp",
+          "bytes": 9428,
+          "duration": 543
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/card-title.webp",
+          "bytes": 6572,
+          "duration": 504
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/footer-deco.webp",
+          "bytes": 21474,
+          "duration": 1670
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/icon-cash.svg",
+          "bytes": 1834,
+          "duration": 1002
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/icon-spin.svg",
+          "bytes": 1747,
+          "duration": 1083
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/icon-bonus.svg",
+          "bytes": 1642,
+          "duration": 791
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/icon-points.svg",
+          "bytes": 1611,
+          "duration": 984
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/icon-coin.svg",
+          "bytes": 1896,
+          "duration": 743
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/icon-gift.svg",
+          "bytes": 1662,
+          "duration": 1095
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/icon-thanks.svg",
+          "bytes": 1718,
+          "duration": 1191
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/spotlight.webp",
+          "bytes": 20378,
+          "duration": 1595
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/icon-share.webp",
+          "bytes": 6372,
+          "duration": 1219
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/title-en.webp",
+          "bytes": 42970,
+          "duration": 1353
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/light-pool.webp",
+          "bytes": 11376,
+          "duration": 1518
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/wheel-stand.webp",
+          "bytes": 16616,
+          "duration": 1127
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/wheel-frame.webp",
+          "bytes": 27016,
+          "duration": 871
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/wheel-gloss.svg",
+          "bytes": 1898,
+          "duration": 637
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/pointer.webp",
+          "bytes": 5088,
+          "duration": 876
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/btn-go.webp",
+          "bytes": 10132,
+          "duration": 545
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/stage-floor.webp",
+          "bytes": 16524,
+          "duration": 628
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/icon-rotate.webp",
+          "bytes": 7504,
+          "duration": 1520
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/icon-sound-on.webp",
+          "bytes": 6408,
+          "duration": 536
+        },
+        {
+          "name": "/event/20261111_survival_spin/img/period-badge.webp",
+          "bytes": 5128,
+          "duration": 768
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

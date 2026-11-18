@@ -83,7 +83,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | aaa6c24 | ☐ | P0 |
+| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | 84ae6d5 | ☐ | P0 |
 
 ## C. 吉祥物角色設定圖（1，第一階段）
 
@@ -131,7 +131,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | aaa6c24 | ☐ | P2 |
+| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | 84ae6d5 | ☐ | P2 |
 
 ## G. 音效（選配 5）
 
@@ -177,3 +177,10 @@
 - 2026-11-13：144304b 提交 A39 金紅轉直向圖示、A30 新版立體主標分享圖（移除未定稿兔比），F01 同步路徑。三語觸控橫向顯示／直向隱藏通過，見 `source/remaining-review/`；審核欄維持原記錄。
 
 2026-11-18：此淺層工作副本缺少部分早期 commit；這些已提交素材的檢查指標改指向包含相同檔案的 aaa6c24 快照，不代表原稿於本次新製。
+
+## 主題 loading（20261118-loading1）
+
+| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☑ | L01 | 主題 loading 器物 | 480×480 | `assets/img/loading-emblem.webp` | 84ae6d5 | ☐ | P1 |
+| ☑ | L02 | Loading 原稿 | （人工） | `source/loading/emblem-original.png` | 84ae6d5 | ☐ | P1 |

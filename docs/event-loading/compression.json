@@ -1,0 +1,42 @@
+[
+  {
+    "event": "20261111_lucky_wheel",
+    "web": "event/20261111_lucky_wheel/assets/img/loading-emblem.webp",
+    "sourceBytes": 2015658,
+    "webBytes": 51348,
+    "size": [
+      480,
+      480
+    ]
+  },
+  {
+    "event": "20261111_survival_spin",
+    "web": "event/20261111_survival_spin/img/loading-emblem.webp",
+    "sourceBytes": 1929566,
+    "webBytes": 39622,
+    "size": [
+      480,
+      480
+    ]
+  },
+  {
+    "event": "20261118_card_pack",
+    "web": "event/20261118_card_pack/assets/img/ui/loading-emblem.webp",
+    "sourceBytes": 2295822,
+    "webBytes": 108168,
+    "size": [
+      480,
+      480
+    ]
+  },
+  {
+    "event": "20261118_blind_box",
+    "web": "event/20261118_blind_box/assets/img/ui/loading-emblem.webp",
+    "sourceBytes": 1264575,
+    "webBytes": 56938,
+    "size": [
+      480,
+      480
+    ]
+  }
+]

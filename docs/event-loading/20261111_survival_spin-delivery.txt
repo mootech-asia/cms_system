@@ -1,0 +1,50 @@
+已提交且通過檢查：32 / 47 項；打勾但不符：0 項
+依優先級（P0 全局視覺 → P3 精修與動態）：P0 15/15　P1 12/12　P2 5/6　P3 0/14
+
+OK      P0  S01  title-en  — img/title-en.webp
+OK      P0  S02  title-ko  — img/title-ko.webp
+OK      P0  S03  title-th  — img/title-th.webp
+OK      P0  S04  stage-bg  — img/stage-bg.webp
+OK      P0  S05  stage-floor  — img/stage-floor.webp
+OK      P0  S06  wheel-frame  — img/wheel-frame.webp
+OK      P0  S07  wheel-stand  — img/wheel-stand.webp
+OK      P0  S08  pointer  — img/pointer.webp
+OK      P0  S09  btn-go  — img/btn-go.webp
+OK      P0  S10  spotlight  — img/spotlight.webp
+OK      P0  S11  light-pool  — img/light-pool.webp
+OK      P0  S12  stage-vignette  — img/stage-vignette.webp
+OK      P0  S13  bulb-on  — img/bulb-on.webp
+OK      P0  S14  bulb-off  — img/bulb-off.webp
+MANUAL  P0  S29  扇區色 6 組（底色＋文字色）  — 色票需人工審核
+OK      P1  S15  modal-bg  — img/modal-bg.webp
+OK      P1  S16  btn-primary  — img/btn-primary.webp
+OK      P1  S17  period-badge  — img/period-badge.webp
+OK      P1  S18  chances-badge  — img/chances-badge.webp
+OK      P1  S19  ticker-bar  — img/ticker-bar.webp
+OK      P1  S20  card-frame  — img/card-frame.webp
+OK      P1  S21  card-title  — img/card-title.webp
+OK      P1  S22  info-bg  — img/info-bg.webp
+OK      P1  S23  footer-deco  — img/footer-deco.webp
+OK      P1  S28  share-preview  — img/share-preview.jpg
+OK      P1  L01  主題 loading 器物  — img/loading-emblem.webp
+MANUAL  P1  L02  Loading 原稿  — 需人工審核
+OK      P2  S24  icon-sound-on  — img/icon-sound-on.webp
+OK      P2  S25  icon-sound-off  — img/icon-sound-off.webp
+OK      P2  S26  icon-share  — img/icon-share.webp
+OK      P2  S27  icon-rotate  — img/icon-rotate.webp
+TODO    P2  S45  icon-tap
+OK      P2  S44  `assets/js/config.js` 的 skins.survival 圖片／吉祥物路徑改成實際交付的檔名，新活動入口無破圖  — config.js 所有路徑都存在
+TODO    P3  S30  兔比工作人員造型四視圖
+TODO    P3  S31  base-frame（含影子）
+TODO    P3  S32  idle-1（待機1）
+TODO    P3  S33  idle-2（待機2）
+TODO    P3  S34  idle-3（待機3）
+TODO    P3  S35  spinning（期待）
+TODO    P3  S36  result（慶祝）
+TODO    P3  S37  lose（失望）
+TODO    P3  S38  idle-1 PNG 序列幀（RGBA）
+TODO    P3  S39  idle-2 PNG 序列幀（RGBA）
+TODO    P3  S40  idle-3 PNG 序列幀（RGBA）
+TODO    P3  S41  spinning PNG 序列幀（RGBA）
+TODO    P3  S42  result PNG 序列幀（RGBA）
+TODO    P3  S43  lose PNG 序列幀（RGBA）
