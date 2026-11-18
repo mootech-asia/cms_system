@@ -1,0 +1,1 @@
+The two PNG raster masters are generated, text-free cosmic card artwork. Web delivery is 600×900 WebP. Prize text, icons, rarity and foil effects remain runtime layers. These files are not layered vector documents.

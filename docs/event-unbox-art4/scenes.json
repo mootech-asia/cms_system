@@ -1,0 +1,22 @@
+{
+  "rows": [
+    {
+      "type": "card_pack",
+      "atmosphereAnimated": true,
+      "reducedMotionStatic": true,
+      "offscreenPaused": true,
+      "footerRemoved": true,
+      "handRotation": 180
+    },
+    {
+      "type": "blind_box",
+      "atmosphereAnimated": true,
+      "reducedMotionStatic": true,
+      "offscreenPaused": true,
+      "footerRemoved": true,
+      "handRotation": 180
+    }
+  ],
+  "multipleTreasures": 3,
+  "localeDuringReveal": true
+}

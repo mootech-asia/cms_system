@@ -3,23 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Card Pack Opening</title>
+    <title>Cosmic Magic Card Pack</title>
     <meta name="description" content="Open a card pack and collect rare cards!" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Card Pack Opening" />
+    <meta property="og:title" content="Cosmic Magic Card Pack" />
     <meta property="og:description" content="Open a card pack and collect rare cards!" />
     <meta property="og:url" content="https://mootech-asia.github.io/cms_system/event/20261118_card_pack/" />
-    <meta property="og:image" content="https://mootech-asia.github.io/cms_system/event/20261118_card_pack/assets/img/share/share-preview.png" />
+    <meta property="og:image" content="https://mootech-asia.github.io/cms_system/event/20261118_card_pack/assets/img/share/share-preview.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Card Pack Opening" />
+    <meta name="twitter:title" content="Cosmic Magic Card Pack" />
     <meta name="twitter:description" content="Open a card pack and collect rare cards!" />
-    <meta name="twitter:image" content="https://mootech-asia.github.io/cms_system/event/20261118_card_pack/assets/img/share/share-preview.png" />
-    <link rel="preload" as="image" href="assets/img/scene/stage-bg.svg" fetchpriority="high" />
-    <link rel="modulepreload" href="../shared/unbox-3d/vendor/three.min.js?v=20261118f" />
-    <link rel="stylesheet" href="../shared/unbox-3d/css/unbox.css?v=20261118f" />
-    <link rel="stylesheet" href="assets/css/theme.css?v=20261118f" />
+    <meta name="twitter:image" content="https://mootech-asia.github.io/cms_system/event/20261118_card_pack/assets/img/share/share-preview.jpg" />
+    <link rel="preload" as="image" href="assets/img/scene/stage-bg.webp?v=20261118-folio1" fetchpriority="high" />
+    <link rel="modulepreload" href="../shared/unbox-3d/vendor/three.min.js?v=20261118-audio1" />
+    <link rel="stylesheet" href="../shared/unbox-3d/css/unbox.css?v=20261118-audio1" />
+    <link rel="stylesheet" href="assets/css/theme.css?v=20261118-audio1" />
   </head>
   <body>
     <div class="ev-loading" id="loading" role="status" aria-live="polite">
@@ -34,8 +34,8 @@
       <div class="ev-topbar">
         <div class="ev-lang" id="langSwitch"></div>
         <div class="ev-sound-wrap">
-          <button type="button" class="ev-sound" id="btnShare" data-i18n-aria="share.button"><img data-img="share" alt="" /></button>
-          <button type="button" class="ev-sound" id="btnSound" aria-pressed="true"><img id="soundIcon" alt="" /></button>
+          <button type="button" class="ev-sound" id="btnShare" aria-expanded="false" aria-haspopup="dialog" aria-controls="shareSheet" data-i18n-aria="share.button"><img data-img="share" alt="" hidden /><svg class="ev-tool-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 10.5 16 6.5M9 13.5l7 4"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="5" r="3"/><circle cx="18" cy="19" r="3"/></svg></button>
+          <button type="button" class="ev-sound" id="btnSound" aria-pressed="true"><img id="soundIcon" alt="" hidden /><svg class="ev-tool-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4 6 8H3v8h3l5 4z"/><g class="ev-tool-waves"><path d="M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></g><path class="ev-tool-muted" d="m16 9 6 6m0-6-6 6"/></svg></button>
           <span class="ev-asset ev-asset--sound" data-asset="share sound" aria-hidden="true"></span>
         </div>
       </div>
@@ -76,7 +76,7 @@
             <strong id="chances">0</strong>
             <span data-i18n="chances.after"></span>
           </p>
-          <p class="ev-pick-hint" id="pickHint"><img class="ev-pick-hint-icon" data-img="tapHint" alt="" aria-hidden="true" /><span id="pickHintText"></span></p>
+          <p class="ev-pick-hint" id="pickHint"><span class="ev-pick-hint-icon" aria-hidden="true"><img data-img="tapHint" alt="" /></span><span id="pickHintText"></span></p>
           <button type="button" class="ev-action" id="btnAction" hidden><span id="actionText"></span></button>
           <p class="ev-status" id="status" role="status" aria-live="polite"></p>
           <div class="ev-console-links">
@@ -93,23 +93,20 @@
       </div>
     </section>
 
-    <section class="ev-info" data-img="infoBg" data-i18n-aria="info.aria">
+    <section id="eventInfo" class="ev-info" data-i18n-aria="info.aria">
       <div class="ev-info-inner">
-        <article class="ev-card">
-          <span class="ev-asset ev-asset--card" data-asset="cardFrame cardTitle infoBg" aria-hidden="true"></span>
-          <h2 class="ev-card-title" id="rulesTitle"></h2>
+        <article class="ev-card ev-card--rules">
+          <span class="ev-asset ev-asset--card" data-asset="folioHeader" aria-hidden="true"></span>
+          <header class="ev-section-heading"><div class="ev-section-art" data-img="folioHeader" aria-hidden="true"></div><span class="ev-section-index" aria-hidden="true">01</span><h2 class="ev-card-title" id="rulesTitle"></h2><span class="ev-section-rule" aria-hidden="true"></span></header>
           <ol class="ev-rules" id="rulesList"></ol>
           <p class="ev-slot" id="rulesEmpty" data-i18n="rules.empty" hidden></p>
         </article>
-        <article class="ev-card">
-          <h2 class="ev-card-title" data-i18n="records.title"></h2>
+        <article class="ev-card ev-card--collection">
+          <header class="ev-section-heading"><div class="ev-section-art" data-img="folioHeader" aria-hidden="true"></div><span class="ev-section-index" aria-hidden="true">02</span><h2 class="ev-card-title" data-i18n="records.title"></h2><span class="ev-section-rule" aria-hidden="true"></span></header>
           <ul class="ev-record-list" id="recordList">
             <li class="ev-empty" id="recordEmpty" data-i18n="records.empty"></li>
           </ul>
         </article>
-        <div class="ev-footer-deco" aria-hidden="true">
-          <span class="ev-asset ev-asset--floor" data-asset="footerDeco"></span>
-        </div>
       </div>
     </section>
 
@@ -121,6 +118,7 @@
           <div class="ev-reveal-glow" id="revealGlow" aria-hidden="true"></div>
           <img class="ev-reveal-rays" data-img="revealRays" alt="" />
           <button type="button" class="ev-prize-card" id="revealCard"></button>
+          <div class="ev-treasure" id="treasureDisplay" role="img" hidden></div>
         </div>
         <ul class="ev-reveal-grid" id="revealGrid" hidden></ul>
         <div class="ev-reveal-actions">
@@ -154,12 +152,12 @@
       <span class="ev-asset ev-asset--rotate" data-asset="rotateHint" aria-hidden="true"></span>
     </div>
 
-    <script defer src="assets/js/config.js?v=20261118f"></script>
-    <script defer src="../shared/unbox-3d/js/skin.js?v=20261118f"></script>
-    <script defer src="../shared/unbox-3d/js/i18n.js?v=20261118f"></script>
-    <script defer src="../shared/unbox-3d/js/store.js?v=20261118f"></script>
-    <script defer src="../shared/unbox-3d/js/sound.js?v=20261118f"></script>
-    <script defer src="../shared/unbox-3d/js/share.js?v=20261118f"></script>
-    <script type="module" src="../shared/unbox-3d/js/app.js?v=20261118f"></script>
+    <script defer src="assets/js/config.js?v=20261118-audio1"></script>
+    <script defer src="../shared/unbox-3d/js/skin.js?v=20261118-audio1"></script>
+    <script defer src="../shared/unbox-3d/js/i18n.js?v=20261118-audio1"></script>
+    <script defer src="../shared/unbox-3d/js/store.js?v=20261118-audio1"></script>
+    <script defer src="../shared/unbox-3d/js/sound.js?v=20261118-audio1"></script>
+    <script defer src="../shared/unbox-3d/js/share.js?v=20261118-audio1"></script>
+    <script type="module" src="../shared/unbox-3d/js/app.js?v=20261118-audio1"></script>
   </body>
 </html>

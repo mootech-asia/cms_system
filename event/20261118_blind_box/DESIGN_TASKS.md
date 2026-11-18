@@ -127,3 +127,12 @@
 ## 六、上線前（工程，非美術）
 
 - 拿掉內部面板與換圖標籤；串接後台內容與後端開獎（`window.EVENT_CONTENT`／`window.EVENT_RESOLVE`）；次數改由後台回傳。
+
+## 2026-11-18 本次調整
+
+
+主視覺依 en／ko／th 切換各自 690×240 藝術字圖；中文藝術字僅供內部預覽。宇宙使用切角科技面板，沙漠使用黃銅與羊皮紙圓弧框飾。頁尾波浪裝飾已停用。
+
+### 資訊冊頁與頂部工具列
+
+`assets/img/ui/folio-header.webp`：900×300，不含文字；神燈雕花或銀色星盤裝飾。PNG 原稿置於 `source/ui/folio-header-original.png`，屬點陣原稿。頁面標題仍由程式依語系呈現。前版 card-frame／card-title／info-bg 不再用於資訊區，保留歷史交付。頂部圖示為內嵌可編輯 SVG，按鈕材質與狀態在 theme.css。

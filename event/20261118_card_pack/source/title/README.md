@@ -1,0 +1,1 @@
+Current title artwork: title-en-original.png, title-ko-original.png, title-th-original.png and title-main-original.png (internal Chinese preview). These are generated RGBA raster masters, not editable glyph layers. Distribution WebP files are 690×240. Earlier editable SVG compositions and their font licenses are retained as previous-version artwork.

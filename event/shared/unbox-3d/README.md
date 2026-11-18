@@ -61,3 +61,9 @@ cd tools/event-3d && npm ci && npm run build
 正式站快取 10 分鐘，活動頁的 JS／CSS 網址都帶 `?v=<版本>`。改了共用程式或活動的 config／theme 後，同時把
 兩個活動 `index.html` 的 `?v=`、`js/app.js` 匯入 `scene.js` 的 `?v=`、`js/scene.js` 匯入 vendor 的 `?v=` 換成新字串
 （三處一起改，`modulepreload` 的網址要和匯入的網址完全相同）。
+
+## Theme-specific reveal and atmosphere
+
+Card packs retain back → flip → prize → collect. Blind boxes render the treasure icon on a metallic pedestal directly, with next/summary navigation for multiple treasures. No card back or flip step is used by blind boxes.
+
+`atmosphere.js` draws bounded decorative particles on a separate pointer-transparent canvas: stars/vortices for cosmic packs, petals/sand for desert chests. It caps redraws at 25fps, limits pixel ratio to 1.5, pauses while hidden/offscreen, and draws a still composition for reduced motion. The chest lid has double-sided curved surfaces and a solid inner board attached to its hinge.

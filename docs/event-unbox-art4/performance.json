@@ -1,0 +1,24 @@
+[
+  {
+    "type": "card_pack",
+    "loadMs": 9793,
+    "taskMs": 830.6099999999992,
+    "frame": {
+      "frames": 34,
+      "meanMs": 59.58235294111075,
+      "maxMs": 166.60000000000036
+    },
+    "opened": true
+  },
+  {
+    "type": "blind_box",
+    "loadMs": 8587,
+    "taskMs": 1251.939,
+    "frame": {
+      "frames": 40,
+      "meanMs": 51.420000000018625,
+      "maxMs": 133.39999999999964
+    },
+    "opened": true
+  }
+]

@@ -19,6 +19,7 @@ import re
 import signal
 import subprocess
 import sys
+from urllib.parse import unquote, urlsplit
 
 signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
@@ -292,7 +293,7 @@ def check_config(rel='assets/js/config.js'):
     cfg_path = os.path.normpath(os.path.join(ROOT, rel))
     base = os.path.dirname(os.path.dirname(os.path.dirname(cfg_path)))
     src = open(cfg_path, encoding='utf-8').read()
-    missing = [p for p in re.findall(r"'((?:assets|skins)/[^']+)'", src) if not os.path.isfile(os.path.join(base, p))]
+    missing = [p for p in re.findall(r"'((?:assets|skins)/[^']+)'", src) if not os.path.isfile(os.path.join(base, unquote(urlsplit(p).path)))]
     if missing:
         return False, 'config.js 指向不存在的檔案：' + ', '.join(missing)
     return True, 'config.js 所有路徑都存在'
