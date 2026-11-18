@@ -3,7 +3,7 @@
  * 包裝表面全部是圖片槽（config.images），側面色與燈光色讀 theme.css 的 --ev-3d-* 色票，
  * 換主題只要換圖或換色票，不用改程式。WebGL 無法啟動時回傳 null，由 app.js 改用 2D 圖片。
  */
-import * as THREE from '../vendor/three.min.js?v=20261118c';
+import * as THREE from '../vendor/three.min.js?v=20261118d';
 
 var STEP = Math.PI / 3;
 var RADIUS = 2.65;
@@ -111,8 +111,34 @@ export function createScene(stage, opts) {
   var tinted = [];
   var items = [];
   // 尺寸對應設計稿比例：卡包正面 2:3（512×768）、盲盒正立方（512×512），封條 512×64、盒蓋側邊 512×80
-  var LID_Y = box ? 0.895 : 1.2;
-  var FLOOR_Y = box ? -1.05 : -1.45;
+  // 寶箱（opts.shape === 'chest'）：箱身 1.6×1.0×1.1（正面 chest-front 512×320），半圓拱蓋沿寬度方向，
+  // 蓋子以後上緣為軸掀開；拱面貼 chest-lid（512×512，由前緣繞到後緣），兩端半圓貼 chest-lid-end。
+  var chest = box && opts.shape === 'chest';
+  var CW = 1.6, CH = 1.0, CD = 1.1;
+  var LID_Y = chest ? CH / 2 : box ? 0.895 : 1.2;
+  var FLOOR_Y = chest ? -0.75 : box ? -1.05 : -1.45;
+
+  // 半圓拱蓋：圓柱 θ 0～π（旋轉後在上方）。貼圖座標改寫成設計稿好畫的方向——
+  // 拱面 chest-lid：u 沿箱子寬度（左→右）、v 由前緣（下緣 0）繞到後緣（上緣 1）；
+  // 兩端 chest-lid-end（512×256）：半圓平邊在下緣、圓頂在上緣，兩端共用同一張圖。
+  var lidGeo = null;
+  function chestLidGeometry() {
+    if (lidGeo) return lidGeo;
+    var r = CD / 2;
+    lidGeo = keep(new THREE.CylinderGeometry(r, r, CW, 32, 1, false, 0, Math.PI));
+    var pos = lidGeo.attributes.position, nor = lidGeo.attributes.normal, uv = lidGeo.attributes.uv;
+    for (var v = 0; v < pos.count; v++) {
+      var x = pos.getX(v), y = pos.getY(v), z = pos.getZ(v), ny = nor.getY(v);
+      if (Math.abs(ny) > 0.99) {
+        var u = (z / r + 1) / 2;
+        uv.setXY(v, ny > 0 ? 1 - u : u, Math.max(0, x / r));
+      } else {
+        uv.setXY(v, 0.5 - y / CW, Math.atan2(Math.max(0, x), z) / Math.PI);
+      }
+    }
+    uv.needsUpdate = true;
+    return lidGeo;
+  }
 
   for (var i = 0; i < COUNT; i++) {
     var group = new THREE.Group();
@@ -121,8 +147,21 @@ export function createScene(stage, opts) {
     // 側面貼圖乘上該位置的色票，讓六個包裝顏色不同；正面圖保留原色
     var side = mapped(keep(new THREE.MeshStandardMaterial({ metalness: 0.48, roughness: 0.3 })), images.side);
     tinted.push(side);
-    var base, lid;
-    if (box) {
+    var base, lid, pivot = null;
+    if (chest) {
+      var cFront = art(images.front && fronts[i % fronts.length]);
+      base = new THREE.Mesh(geo(CW, CH, CD), [side, side, side, side, cFront, side]);
+      var arc = chestLidGeometry();
+      var lidTopC = art(images.lid);
+      var lidEnd = art(images.lidSide);
+      lid = new THREE.Mesh(arc, [lidTopC, lidEnd, lidEnd]);
+      lid.rotation.z = Math.PI / 2;
+      // 轉軸在箱身後上緣，蓋子中心距軸 CD/2
+      pivot = new THREE.Group();
+      pivot.position.set(0, CH / 2, -CD / 2);
+      lid.position.set(0, 0, CD / 2);
+      pivot.add(lid);
+    } else if (box) {
       var front = art(images.front && fronts[i % fronts.length]);
       base = new THREE.Mesh(geo(1.55, 1.55, 1.55), [side, side, side, side, front, side]);
       var lidTop = art(images.lid);
@@ -139,8 +178,11 @@ export function createScene(stage, opts) {
       bottom.position.y = -LID_Y;
       body.add(bottom);
     }
-    lid.position.y = LID_Y;
-    body.add(base, lid);
+    if (pivot) body.add(base, pivot);
+    else {
+      lid.position.y = LID_Y;
+      body.add(base, lid);
+    }
 
     var shadowMat = keep(new THREE.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false, opacity: 0.35 }));
     var shadow = new THREE.Mesh(shadowGeo, shadowMat);
@@ -152,7 +194,7 @@ export function createScene(stage, opts) {
     group.position.set(Math.sin(a) * RADIUS, 0, Math.cos(a) * RADIUS - RADIUS);
     group.rotation.y = a;
     ring.add(group);
-    items.push({ group: group, body: body, lid: lid, shadow: shadowMat });
+    items.push({ group: group, body: body, lid: lid, pivot: pivot, shadow: shadowMat });
   }
 
   // 吉祥物站在環形圓心（世界座標 0, 地板, -RADIUS）。角色本身是 <img>（動態 WebP），放在透明畫布後層；
@@ -191,7 +233,7 @@ export function createScene(stage, opts) {
 
   function applyTokens() {
     tinted.forEach(function (m, k) {
-      var slot = box ? Math.floor(k / 2) : k;
+      var slot = box && !chest ? Math.floor(k / 2) : k;
       m.color.set(token('--ev-3d-item-' + (slot % COUNT + 1), '#b8b4f3'));
     });
     accent.color.set(token('--ev-3d-accent', '#d4aaff'));
@@ -323,9 +365,13 @@ export function createScene(stage, opts) {
       var ease = 1 - Math.pow(1 - fly, 3);
       it.body.rotation.z = (mode === 'select' && !reduced.matches ? Math.sin(now * 0.0008 + k) * 0.025 : 0) + shake;
       it.body.rotation.y = mode !== 'select' && box && mine ? 0.15 : 0;
-      it.lid.position.y = LID_Y + ease * 2;
-      it.lid.position.x = box ? 0 : ease * 1.5;
-      it.lid.rotation.z = ease * (box ? -0.4 : -1);
+      if (it.pivot) {
+        it.pivot.rotation.x = -ease * 1.7;
+      } else {
+        it.lid.position.y = LID_Y + ease * 2;
+        it.lid.position.x = box ? 0 : ease * 1.5;
+        it.lid.rotation.z = ease * (box ? -0.4 : -1);
+      }
     });
     if (!document.hidden && stage.offsetParent !== null) renderer.render(scene, camera);
     if (!disposed) raf = requestAnimationFrame(frame);

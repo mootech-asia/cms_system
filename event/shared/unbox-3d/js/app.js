@@ -2,7 +2,7 @@
  * 拆卡包／拆盲盒共用流程：select（挑選）→ ready（已選定）→ loading（向後台取結果）→ opening（動畫）→ reveal（揭曉）。
  * 活動差異（type、圖片槽、文案、mock 內容）全部在各活動的 assets/js/config.js；本檔不放活動專屬內容。
  */
-import { createScene } from './scene.js?v=20261118c';
+import { createScene } from './scene.js?v=20261118d';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -443,6 +443,7 @@ scene = createScene(sceneEl, {
   images: imagesFor,
   material: cfg.material,
   scale: cfg.sceneScale,
+  shape: cfg.shape,
   mascot: cfg.mascot ? { img: $('mascot'), poster: cfg.mascot.poster, height: cfg.mascot.height } : null,
   onSelect: function () { Sound.play('move'); renderPickLabel(); },
   onSwipeOpen: open,

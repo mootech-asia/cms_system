@@ -13,6 +13,8 @@ window.EVENT_CONFIG = {
   material: { metalness: 0.2, roughness: 0.35 },
   /* 整個 3D 環形（包裝、間距、吉祥物）的縮放倍率 */
   sceneScale: 1,
+  /* 3D 外型：'chest'＝圓拱蓋寶箱（蓋子沿後緣掀開）；不填＝方盒 */
+  shape: 'chest',
 
   /* 換皮：skins.<名稱> = { css: '色票覆寫檔', images: { 只列跟預設不同的圖片槽 }, sounds: {}, strings: {} }，
      網址 ?skin=<名稱> 臨時切換，skin 決定預設皮。交付路徑以 skins/<名稱>/ 為基準。 */
@@ -41,11 +43,12 @@ window.EVENT_CONFIG = {
     share: 'assets/img/icon/icon-share.svg',
     rotateHint: 'assets/img/icon/icon-rotate.svg',
     tapHint: 'assets/img/icon/icon-tap.svg',
-    /* 3D 盲盒：正面可給 1～6 張（盲盒通常同一款）；側面與盒蓋側邊會乘上 --ev-3d-item-N 色票 */
-    boxFront: ['assets/img/3d/box-front.svg'],
-    boxSide: 'assets/img/3d/box-side.svg',
-    boxLid: 'assets/img/3d/box-lid.svg',
-    boxLidSide: 'assets/img/3d/box-lid-side.svg',
+    /* 3D 寶箱（shape: 'chest'）：正面可給 1～6 張（環上六箱依序輪流）；側面／背面會乘上 --ev-3d-item-N 色票，
+       拱蓋與兩端半圓保留原色。 */
+    boxFront: ['assets/img/3d/chest-front.svg'],
+    boxSide: 'assets/img/3d/chest-side.svg',
+    boxLid: 'assets/img/3d/chest-lid.svg',
+    boxLidSide: 'assets/img/3d/chest-lid-end.svg',
     /* 揭曉 */
     revealRays: 'assets/img/reveal/reveal-rays.svg',
     rewardBack: 'assets/img/reveal/reward-back.svg',
@@ -79,10 +82,10 @@ window.EVENT_CONFIG = {
     share: 'icon-share · 64×64',
     rotateHint: 'icon-rotate · 160×160',
     tapHint: 'icon-tap · 160×160',
-    boxFront: 'box-front · 512×512',
-    boxSide: 'box-side · 512×512',
-    boxLid: 'box-lid · 512×512',
-    boxLidSide: 'box-lid-side · 512×80',
+    boxFront: 'chest-front · 512×320',
+    boxSide: 'chest-side · 512×320',
+    boxLid: 'chest-lid · 512×512',
+    boxLidSide: 'chest-lid-end · 512×256',
     revealRays: 'reveal-rays · 750×750',
     rewardBack: 'reward-back · 600×900',
     rewardFrame: 'reward-frame-{common,rare,epic,legendary} · 600×900',

@@ -104,6 +104,10 @@ PLACEHOLDERS = {
     'f644e3678cf0184e',
     'fdf1fb27ec7749af',
     '9f8ade3a0fc9b157',  # 20261118_*/icon/icon-tap.svg
+    '682a17e027981244',  # regen3/3d/chest-front.svg
+    '9eb4647ec2ec4a5d',  # regen3/3d/chest-lid-end.svg
+    '45fbb7a79581e7c9',  # regen3/3d/chest-lid.svg
+    'd8ab76d92fd8c4ea',  # regen3/3d/chest-side.svg
     # event/20261118_card_pack、20261118_blind_box mock 佔位圖（event/shared/unbox-3d/tools/make_placeholders.py 產生）
     '79f55ed94e49a6ae',  # 20261118_card_pack/btn-arrow.svg
     'c0172a5e423b7227',  # 20261118_card_pack/btn-primary.svg

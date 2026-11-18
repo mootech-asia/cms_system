@@ -172,6 +172,32 @@ def pack_crimp():
     return svg(512, 64, f'<rect width="512" height="64" fill="#cfd5ec"/>{teeth}')
 
 
+def chest_front():
+    defs = grad('cf', [(0, '#8a5a2b'), (1, '#5b3716')])
+    body = ('<rect width="512" height="320" fill="url(#cf)"/>'
+            '<rect x="0" y="0" width="512" height="26" fill="#d4a537"/><rect x="0" y="294" width="512" height="26" fill="#d4a537"/>'
+            '<rect x="0" y="0" width="34" height="320" fill="#d4a537"/><rect x="478" y="0" width="34" height="320" fill="#d4a537"/>'
+            '<rect x="206" y="96" width="100" height="128" rx="18" fill="#e8c48a" stroke="#9a6a1c" stroke-width="6"/>'
+            '<path d="M226 186 q30 -34 64 -8 q12 10 22 -4 l-6 22 q-30 18 -62 6 z" fill="#9a6a1c"/>'
+            '<circle cx="256" cy="140" r="12" fill="#2bb5a7"/><circle cx="120" cy="160" r="10" fill="#c2334d"/><circle cx="392" cy="160" r="10" fill="#c2334d"/>')
+    return svg(512, 320, body, defs)
+
+
+def chest_side():
+    planks = ''.join(f'<rect x="0" y="{y}" width="512" height="3" fill="#b88a55"/>' for y in (80, 160, 240))
+    return svg(512, 320, f'<rect width="512" height="320" fill="#efe2c8"/>{planks}<rect width="40" height="320" fill="#d9c08e"/><rect x="472" width="40" height="320" fill="#d9c08e"/>')
+
+
+def chest_lid():
+    straps = ''.join(f'<rect x="{x}" y="0" width="34" height="512" fill="#d4a537"/>' for x in (60, 239, 418))
+    return svg(512, 512, f'<rect width="512" height="512" fill="#7a4e24"/>{straps}<circle cx="256" cy="440" r="18" fill="#2bb5a7"/><circle cx="150" cy="440" r="12" fill="#c2334d"/><circle cx="362" cy="440" r="12" fill="#c2334d"/>')
+
+
+def chest_lid_end():
+    rays = ''.join(f'<line x1="256" y1="256" x2="{256 + 220 * __import__("math").cos(a):.1f}" y2="{256 - 220 * __import__("math").sin(a):.1f}" stroke="#9a6a1c" stroke-width="4"/>' for a in [i * 0.3927 for i in range(1, 8)])
+    return svg(512, 256, f'<path d="M0 256 A256 256 0 0 1 512 256 Z" fill="#7a4e24" stroke="#d4a537" stroke-width="20"/>{rays}<circle cx="256" cy="256" r="40" fill="#d4a537"/>')
+
+
 def box_front():
     defs = grad('bf', [(0, LAV), (0.55, '#edf5ff'), (1, LILAC)], x2='1', y2='1')
     return svg(512, 512, f'<rect width="512" height="512" fill="url(#bf)"/>'
@@ -222,7 +248,7 @@ def share_preview(path, kind):
 CATEGORY = {
     'scene': ('stage-bg', 'info-bg', 'footer-deco'),
     'title': ('title-',),
-    '3d': ('pack-', 'box-'),
+    '3d': ('pack-', 'box-', 'chest-'),
     'reveal': ('reveal-', 'reward-'),
     'ui': ('btn-', 'period-badge', 'chances-badge', 'ticker-bar', 'card-frame', 'card-title'),
     'icon': ('icon-',),
@@ -261,10 +287,10 @@ def main():
         files['pack-back.svg'] = pack_back()
         files['pack-crimp.svg'] = pack_crimp()
     else:
-        files['box-front.svg'] = box_front()
-        files['box-side.svg'] = box_side()
-        files['box-lid.svg'] = box_lid()
-        files['box-lid-side.svg'] = box_lid_side()
+        files['chest-front.svg'] = chest_front()
+        files['chest-side.svg'] = chest_side()
+        files['chest-lid.svg'] = chest_lid()
+        files['chest-lid-end.svg'] = chest_lid_end()
     files = {f'{category(n)}/{n}': d for n, d in files.items()}
     files['share/share-preview.png'] = None
     for name, data in files.items():
