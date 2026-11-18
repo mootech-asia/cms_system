@@ -1,4 +1,4 @@
-export function createAtmosphere(stage, type, spriteUrl) {
+export function createAtmosphere(stage, type, spriteUrl, starUrl) {
   const canvas = document.createElement('canvas');
   canvas.className = 'ev-atmosphere';
   canvas.setAttribute('aria-hidden', 'true');
@@ -8,7 +8,7 @@ export function createAtmosphere(stage, type, spriteUrl) {
   const desert = type === 'blind-box';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let width = 1, height = 1, visible = true, raf = 0, last = 0, phase = 0;
-  const particles = Array.from({ length: desert ? 126 : 82 }, (_, i) => ({
+  const particles = Array.from({ length: desert ? 126 : 170 }, (_, i) => ({
     x: ((i * 73 + 19) % 137) / 137,
     y: ((i * 47 + 31) % 131) / 131,
     size: 1 + (i % 5) * .5,
@@ -19,6 +19,10 @@ export function createAtmosphere(stage, type, spriteUrl) {
   let spriteReady = false;
   sprite.onload = () => { spriteReady = true; draw(reduced.matches ? 0 : phase); };
   if (spriteUrl) sprite.src = spriteUrl;
+  const star = new Image();
+  let starReady = false;
+  star.onload = () => { starReady = true; draw(phase); };
+  if (starUrl) star.src = starUrl;
   const glowCache = new Map();
   function glow(x, y, radius, color) {
     const key = radius + color;
@@ -39,10 +43,10 @@ export function createAtmosphere(stage, type, spriteUrl) {
     if (spriteReady) {
       for (let layer = 0; layer < 2; layer++) {
         ctx.save();
-        ctx.globalAlpha = layer ? .28 : .38;
+        ctx.globalAlpha = layer ? .16 : .24;
         const w = width * (layer ? 1.7 : 1.3), h = w / 3;
         const x = -width * .2 + Math.sin(t * .5 + layer * 2) * width * .25;
-        const y = height * (layer ? .62 : .48) + Math.sin(t * .8 + layer) * 12;
+        const y = height * (layer ? .64 : .54) + Math.sin(t * .8 + layer) * 12;
         ctx.drawImage(sprite, x, y, w, h);
         ctx.restore();
       }
@@ -66,39 +70,37 @@ export function createAtmosphere(stage, type, spriteUrl) {
         ctx.beginPath(); ctx.moveTo(-size * .7, 0); ctx.quadraticCurveTo(0, -size * .2, size * .7, 0); ctx.stroke(); ctx.restore();
       } else {
         const y = (.36 + p.y * .4) * height + Math.sin(t + p.phase) * 14;
-        ctx.strokeStyle = `rgba(255,224,166,${.25 + (i % 3) * .1})`; ctx.lineWidth = .6 + p.size * .2;
-        ctx.beginPath(); ctx.moveTo(x, y); ctx.quadraticCurveTo(x + 12, y - 6, x + 20 + p.size * 8, y - 4); ctx.stroke();
+        ctx.fillStyle = `rgba(222,169,85,${.12 + (i % 3) * .07})`;
+        ctx.beginPath(); ctx.arc(x, y, .35 + p.size * .2, 0, Math.PI * 2); ctx.fill();
       }
     });
   }
   function cosmicScene(t) {
     ctx.save(); ctx.globalCompositeOperation = 'screen';
-    glow(width * .13, height * .4, width * .35, 'rgba(98,85,240,.25)');
-    glow(width * .88, height * .57, width * .38, 'rgba(139,52,238,.28)');
+    // Match the ellipse in the 750×1000 background after center-bottom cover scaling.
+    const scale = Math.max(width / 750, height / 1000);
+    const cx = width / 2, cy = height - 340 * scale;
     if (spriteReady) {
-      for (let v = 0; v < 2; v++) {
-        ctx.save(); ctx.globalAlpha = v ? .65 : .75;
-        ctx.translate(width * (v ? .9 : .11), height * (v ? .57 : .4));
-        ctx.rotate(t * (v ? -.12 : .15));
-        const w = width * (v ? .8 : .7), h = w * .71;
-        ctx.drawImage(sprite, -w / 2, -h / 2, w, h);
+      ctx.save(); ctx.beginPath(); ctx.ellipse(cx, cy, 307 * scale, 48 * scale, 0, 0, Math.PI * 2); ctx.clip();
+      for (let layer = 0; layer < 2; layer++) {
+        ctx.save(); ctx.globalAlpha = layer ? .28 : .78;
+        ctx.translate(cx, cy); ctx.scale(1, .22);
+        ctx.rotate(t * (layer ? -.09 : .13));
+        const diameter = (layer ? 420 : 630) * scale;
+        ctx.drawImage(sprite, -diameter / 2, -diameter / 2, diameter, diameter);
         ctx.restore();
       }
+      ctx.restore();
     }
     particles.forEach((p, i) => {
       const a = .22 + (Math.sin(t * (1 + i % 3 * .2) + p.phase) + 1) * .36;
-      const x = p.x * width, y = (.24 + p.y * .5) * height;
+      const x = p.x * width, y = (.12 + p.y * .64) * height;
       ctx.globalAlpha = a;
-      if (i % 4 === 0) {
-        glow(x, y, 10 + p.size * 3, i % 3 ? 'rgba(193,202,255,.55)' : 'rgba(255,223,169,.55)');
-        const r = 5 + p.size * 3;
-        ctx.fillStyle = '#f3f0ff'; ctx.beginPath();
-        ctx.moveTo(x, y - r); ctx.quadraticCurveTo(x + 1.5, y - 1.5, x + r * .7, y);
-        ctx.quadraticCurveTo(x + 1.5, y + 1.5, x, y + r);
-        ctx.quadraticCurveTo(x - 1.5, y + 1.5, x - r * .7, y);
-        ctx.quadraticCurveTo(x - 1.5, y - 1.5, x, y - r); ctx.fill();
+      if (i % 9 === 0 && starReady) {
+        const size = 21 + p.size * 7;
+        ctx.drawImage(star, x - size / 2, y - size / 2, size, size);
       } else {
-        ctx.fillStyle = i % 2 ? '#c0ddff' : '#f0dbff'; ctx.beginPath(); ctx.arc(x, y, .5 + p.size * .45, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = i % 2 ? '#c0ddff' : '#f0dbff'; ctx.beginPath(); ctx.arc(x, y, .3 + p.size * .23, 0, Math.PI * 2); ctx.fill();
       }
     });
     ctx.restore();

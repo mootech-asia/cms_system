@@ -2,8 +2,8 @@
  * 拆卡包／拆盲盒共用流程：select（挑選）→ ready（已選定）→ loading（向後台取結果）→ opening（動畫）→ reveal（揭曉）。
  * 活動差異（type、圖片槽、文案、mock 內容）全部在各活動的 assets/js/config.js；本檔不放活動專屬內容。
  */
-import { createAtmosphere } from './atmosphere.js?v=20261118-jewel1';
-import { createScene } from './scene.js?v=20261118-jewel1';
+import { createAtmosphere } from './atmosphere.js?v=20261118-refine2';
+import { createScene } from './scene.js?v=20261118-refine2';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -20,7 +20,7 @@ var PER_OPEN_KEY = cfg.storageKey + '_per_open_preview';
 
 var $ = function (id) { return document.getElementById(id); };
 var stage = $('stage');
-createAtmosphere(stage, cfg.type, cfg.images.atmosphereSprite);
+createAtmosphere(stage, cfg.type, cfg.images.atmosphereSprite, cfg.images.starSprite);
 var sceneEl = $('scene');
 var btnAction = $('btnAction');
 var reveal = $('reveal');
@@ -222,7 +222,7 @@ function renderState() {
 
 function renderPickLabel() {
   var i = scene ? scene.selected() : 0;
-  $('pickLabel').textContent = t('pick.label', { n: String(i + 1).padStart(2, '0') });
+  $('pickLabel').textContent = t('pick.label', { n: String(i + 1).padStart(2, '0') }) + (scene && cfg.carouselCount ? ' / ' + cfg.carouselCount : '');
 }
 
 function setState(next, status) {
@@ -470,10 +470,11 @@ function renderLocale() {
 // ---------- 3D ----------
 var scene = null;
 var imagesFor = cfg.type === 'blind-box'
-  ? { front: cfg.images.boxFront, side: cfg.images.boxSide, lid: cfg.images.boxLid, lidSide: cfg.images.boxLidSide }
-  : { front: cfg.images.packFront, back: cfg.images.packBack, side: cfg.images.packSide, crimp: cfg.images.packCrimp };
+  ? { front: cfg.images.boxFront, side: cfg.images.boxSide, lid: cfg.images.boxLid, lidSide: cfg.images.boxLidSide, interior: cfg.images.boxInterior }
+  : { front: cfg.images.packFront, back: cfg.images.packBack, side: cfg.images.packSide, crimp: cfg.images.packCrimp, rewardBack: cfg.images.packContents || cfg.images.rewardBack };
 scene = createScene(sceneEl, {
   type: cfg.type,
+  count: cfg.carouselCount,
   images: imagesFor,
   material: cfg.material,
   scale: cfg.sceneScale,
@@ -490,6 +491,19 @@ if (!scene) {
   $('sceneFallback').setAttribute('data-img', cfg.type === 'blind-box' ? 'boxFront' : 'packFront');
   $('sceneNote').hidden = false;
   $('sceneFallback').addEventListener('click', function () { if (state === 'select') choose(); });
+  var fallbackStart = null;
+  $('sceneFallback').addEventListener('pointerdown', function (event) {
+    if (state !== 'ready') return;
+    fallbackStart = { x:event.clientX, y:event.clientY };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  });
+  $('sceneFallback').addEventListener('pointerup', function (event) {
+    if (!fallbackStart) return;
+    var dx = event.clientX - fallbackStart.x, dy = event.clientY - fallbackStart.y;
+    fallbackStart = null;
+    if (state === 'ready' && (cfg.type === 'blind-box' ? dy < -55 && Math.abs(dy) > Math.abs(dx) : Math.abs(dx) > 55)) open();
+  });
+  $('sceneFallback').addEventListener('pointercancel', function () { fallbackStart = null; });
 }
 
 // ---------- 事件 ----------

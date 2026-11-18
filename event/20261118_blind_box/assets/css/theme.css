@@ -34,6 +34,7 @@
   --ev-3d-item-4: #D4A537;
   --ev-3d-item-5: #79531B;
   --ev-3d-item-6: #FFF5DF;
+  --ev-3d-rim: #d9a647;
   --ev-3d-accent: #2BB5A7;
   --ev-3d-ground: #E8C48A;
   --ev-3d-shadow: #1B1446;
@@ -62,9 +63,34 @@
 }
 
 /* Desert interface: engraved brass, turquoise inlays and parchment scrolls. */
-.ev-lang { border:2px solid var(--ev-color-gold); background:#FFF2CF; box-shadow:0 2px 0 #63421C; }
-.ev-lang-btn[aria-pressed="true"] { background:#75501E; }
-.ev-period { border:2px solid var(--ev-color-gold); border-radius:50px 10px; background:linear-gradient(180deg,#FFF4CF,#EACE91); box-shadow:inset 0 0 0 2px #FFF3D0,0 3px 0 #795526; color:#51371B; }
+.ev-lang { border:2px solid var(--ev-color-gold); background:var(--ev-folio-paper); box-shadow:0 2px 0 var(--ev-folio-ink); }
+.ev-lang-btn {
+  color:var(--ev-folio-ink);
+  transition:background-color 180ms ease,color 180ms ease,box-shadow 180ms ease;
+}
+.ev-lang-btn[aria-pressed="true"] {
+  color:var(--ev-folio-paper);
+  background:var(--ev-color-primary);
+  box-shadow:inset 0 1px 0 var(--ev-ui-highlight),inset 0 0 0 1px var(--ev-vault-metal);
+}
+@media (hover:hover) and (pointer:fine) {
+  .ev-lang-btn[aria-pressed="false"]:hover {
+    color:var(--ev-vault-base);
+    background:var(--ev-vault-shine);
+    box-shadow:inset 0 1px 0 var(--ev-folio-paper),inset 0 0 0 1px var(--ev-vault-metal),0 1px 3px var(--ev-ui-trim);
+  }
+  .ev-lang-btn[aria-pressed="true"]:hover {
+    background:var(--ev-folio-ink);
+    box-shadow:inset 0 1px 0 var(--ev-vault-shine),inset 0 0 0 1px var(--ev-color-gold),0 0 5px var(--ev-ui-glint);
+  }
+}
+.ev-lang .ev-lang-btn:active {
+  background:var(--ev-vault-base);
+  color:var(--ev-folio-paper);
+  box-shadow:inset 0 2px 4px var(--ev-ui-recess),inset 0 0 0 1px var(--ev-folio-edge);
+}
+.ev-lang-btn:focus-visible { outline:2px solid var(--ev-color-focus); outline-offset:2px; }
+@media (prefers-reduced-motion:reduce) { .ev-lang-btn { transition:none; } }
 :root { --ev-color-reveal-bg:rgb(30 23 13 / .95); }
 
 :root {
@@ -85,11 +111,6 @@
 .ev-record[data-rarity="epic"] .ev-rarity-tag { color:#a73651; }
 .ev-record[data-rarity="legendary"] .ev-rarity-tag { color:#92621b; }
 
-.ev-sound { color:var(--ev-ui-edge); border:1px solid var(--ev-folio-edge); border-radius:15px; background:radial-gradient(circle at 35% 20%,var(--ev-3d-accent),var(--ev-folio-ground) 65%); box-shadow:inset 0 0 0 2px var(--ev-ui-base),inset 0 0 0 3px var(--ev-folio-accent),0 3px 0 var(--ev-ui-base),0 5px 10px var(--ev-color-scrim); }
-.ev-sound::before { inset:5px; border:1px solid var(--ev-folio-edge); border-radius:9px; opacity:.6; }
-.ev-sound::after { width:4px; height:4px; bottom:1px; background:var(--ev-ui-edge); transform:rotate(45deg); box-shadow:0 0 0 1px var(--ev-folio-accent); }
-.ev-sound:hover,.ev-sound[aria-expanded="true"] { color:var(--ev-color-on-primary); background:var(--ev-folio-ground); box-shadow:inset 0 0 0 2px var(--ev-folio-accent),0 0 8px var(--ev-ui-glint); }
-.ev-sound[aria-pressed="false"] { background:var(--ev-ui-panel); }
 
 /* The arched metal cap joins the panel's side rails rather than floating above it. */
 :root { --ev-vault-base:#102c2d; --ev-vault-face:#183d3b; --ev-vault-ink:#f5e6c8; --ev-vault-muted:#bda786; --ev-vault-metal:#b98538; --ev-vault-shine:#efd092; }
@@ -115,3 +136,7 @@
 .ev-pick-hint,.ev-action { padding-top:29px; padding-bottom:19px; }
 .ev-chances { padding-left:55px; }
 .ev-chances strong { color:var(--ev-vault-shine); }
+
+:root { --ev-tool-ink:var(--ev-vault-shine); --ev-tool-glint:var(--ev-color-accent); }
+/* Capture vertical opening gestures only after choosing a chest. */
+.ev-stage[data-state="ready"] .ev-scene { touch-action:none; }

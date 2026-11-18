@@ -1,13 +1,11 @@
 /*
- * 3D 選擇區：六個包裝排成環形，可拖曳或用箭頭切換；選定後播放撕封條／開蓋動畫。
+ * 3D 選擇區：可配置數量的包裝排成環形，可拖曳或用箭頭切換；選定後播放撕封條／開蓋動畫。
  * 包裝表面全部是圖片槽（config.images），側面色與燈光色讀 theme.css 的 --ev-3d-* 色票，
  * 換主題只要換圖或換色票，不用改程式。WebGL 無法啟動時回傳 null，由 app.js 改用 2D 圖片。
  */
-import * as THREE from '../vendor/three.min.js?v=20261118-jewel1';
+import * as THREE from '../vendor/three.min.js?v=20261118-refine2';
 
-var STEP = Math.PI / 3;
-var RADIUS = 2.65;
-var COUNT = 6;
+
 
 function token(name, fallback) {
   var v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -41,6 +39,9 @@ function shadowTexture(grounded) {
 export function createScene(stage, opts) {
   var box = opts.type === 'blind-box';
   var chest = box && opts.shape === 'chest';
+  var COUNT = Math.max(6, Math.min(40, Number(opts.count) || 6));
+  var STEP = Math.PI * 2 / COUNT, RADIUS = 2.65;
+  var shelf = !box && COUNT >= 12, shelfPhase = 0;
   // 先用測試畫布確認有 WebGL，避免 Three.js 建立失敗時在 console 印錯誤
   // 失敗原因寫在 console.info，回報「3D 無法啟用」時用來判斷是瀏覽器不支援 WebGL2、完全沒有 WebGL 還是建立時出錯
   var probe = document.createElement('canvas');
@@ -114,6 +115,35 @@ export function createScene(stage, opts) {
   }
   function geo(w, h, d) { return keep(new THREE.BoxGeometry(w, h, d)); }
 
+  var foilGeo = null;
+  function foilGeometry() {
+    if (foilGeo) return foilGeo;
+    var foil = foilGeo = keep(new THREE.BoxGeometry(1.48, 2.22, .065, 18, 26, 2));
+    var position = foil.attributes.position;
+    for (var vertex = 0; vertex < position.count; vertex++) {
+      var x = position.getX(vertex), y = position.getY(vertex), z = position.getZ(vertex);
+      var fullness = Math.pow(Math.max(0, Math.cos(x / 1.48 * Math.PI)), .65) * Math.pow(Math.max(0, Math.cos(y / 2.22 * Math.PI)), .55);
+      position.setX(vertex, x * (1 + .06 * Math.pow(Math.cos(y / 2.22 * Math.PI), 2)));
+      position.setZ(vertex, z + Math.sign(z) * .12 * fullness);
+    }
+    position.needsUpdate = true;
+    foil.computeVertexNormals();
+    return foil;
+  }
+
+  var sealGeo;
+  function sealGeometry() {
+    if (sealGeo) return sealGeo;
+    sealGeo = keep(new THREE.BoxGeometry(1.48, .18, .07, 80, 2, 1));
+    var points = sealGeo.attributes.position;
+    for (var v = 0; v < points.count; v++) {
+      var x = points.getX(v), y = points.getY(v), z = points.getZ(v);
+      var fold = Math.cos((x / 1.48 + .5) * Math.PI * 80);
+      points.setZ(v, z + Math.sign(z) * (.004 + .004 * fold));
+      if (Math.abs(y) > .08) points.setY(v, y + Math.sign(y) * .004 * fold);
+    }
+    points.needsUpdate = true; sealGeo.computeVertexNormals(); return sealGeo;
+  }
   var images = opts.images;
   var fronts = [].concat(images.front).filter(Boolean);
   var shadowTex = keep(shadowTexture(chest));
@@ -125,7 +155,7 @@ export function createScene(stage, opts) {
   // 蓋子以後上緣為軸掀開；拱面貼 chest-lid（512×512，由前緣繞到後緣），兩端半圓貼 chest-lid-end。
   var CW = 1.6, CH = 1.0, CD = 1.1;
   var LID_Y = chest ? CH / 2 : box ? 0.895 : 1.2;
-  world.position.y = chest ? -0.85 : 0;
+  world.position.y = chest ? -1.02 : 0;
   var FLOOR_Y = chest ? -CH / 2 + 0.008 : box ? -1.05 : -1.45;
 
   // 半圓拱蓋：圓柱 θ 0～π（旋轉後在上方）。貼圖座標改寫成設計稿好畫的方向——
@@ -154,13 +184,27 @@ export function createScene(stage, opts) {
     var group = new THREE.Group();
     var body = new THREE.Group();
     group.add(body);
-    // 側面貼圖乘上該位置的色票，讓六個包裝顏色不同；正面圖保留原色
-    var side = mapped(keep(new THREE.MeshStandardMaterial({ metalness: 0.48, roughness: 0.3 })), images.side);
-    tinted.push(side);
-    var base, lid, pivot = null;
+    // Foil packs may be tinted; chest surfaces retain one consistent gold finish.
+    var side = chest ? art(images.side) : mapped(keep(new THREE.MeshStandardMaterial({ metalness: 0.48, roughness: 0.3 })), images.side);
+    if (!chest) tinted.push(side);
+    var base, lid, pivot = null, contents = null;
     if (chest) {
       var cFront = art(images.front && fronts[i % fronts.length]);
-      base = new THREE.Mesh(geo(CW, CH, CD), [side, side, side, side, cFront, side]);
+      var lining = mapped(keep(new THREE.MeshStandardMaterial({ color:0xffffff, metalness:.06, roughness:.85 })), images.interior || images.side);
+      var rim = keep(new THREE.MeshStandardMaterial({ color:token('--ev-3d-rim', '#d9a647'), metalness:.65, roughness:.32 }));
+      var wall = .065;
+      base = new THREE.Group();
+      var frontWall = new THREE.Mesh(geo(CW, CH, wall), [side, side, rim, rim, cFront, lining]);
+      frontWall.position.z = (CD - wall) / 2;
+      var rearWall = new THREE.Mesh(geo(CW, CH, wall), [side, side, rim, rim, lining, side]);
+      rearWall.position.z = -(CD - wall) / 2;
+      var leftWall = new THREE.Mesh(geo(wall, CH, CD - wall * 2), [lining, side, rim, rim, rim, rim]);
+      leftWall.position.x = -(CW - wall) / 2;
+      var rightWall = new THREE.Mesh(geo(wall, CH, CD - wall * 2), [side, lining, rim, rim, rim, rim]);
+      rightWall.position.x = (CW - wall) / 2;
+      var floor = new THREE.Mesh(geo(CW - wall * 2, wall, CD - wall * 2), [rim, rim, lining, side, rim, rim]);
+      floor.position.y = -CH / 2 + wall / 2;
+      base.add(frontWall, rearWall, leftWall, rightWall, floor);
       var arc = chestLidGeometry();
       var lidTopC = art(images.lid);
       lidTopC.side = THREE.DoubleSide;
@@ -174,7 +218,7 @@ export function createScene(stage, opts) {
       lid.position.set(0, 0, CD / 2);
       pivot.add(lid);
       // The half-cylinder has no underside; a solid inner board remains visible as the lid opens.
-      var innerBoard = new THREE.Mesh(geo(CW, 0.035, CD), side);
+      var innerBoard = new THREE.Mesh(geo(CW, 0.035, CD), [rim, rim, lining, lining, rim, rim]);
       innerBoard.position.set(0, -0.018, CD / 2);
       pivot.add(innerBoard);
     } else if (box) {
@@ -187,10 +231,18 @@ export function createScene(stage, opts) {
     } else {
       var face = art(fronts[i % fronts.length]);
       var back = art(images.back);
-      base = new THREE.Mesh(geo(1.48, 2.22, 0.065), [side, side, side, side, face, back]);
+      base = new THREE.Mesh(foilGeometry(), [side, side, side, side, face, back]);
+      contents = [];
+      var cardArt = art(images.rewardBack || images.back);
+      var cardEdge = keep(new THREE.MeshStandardMaterial({ color:token('--ev-3d-card-edge', '#e8d9b8'), metalness:.15, roughness:.6 }));
+      for (var n = 0; n < 3; n++) {
+        var card = new THREE.Mesh(geo(1.28, 1.9, .018), [cardEdge, cardEdge, cardEdge, cardEdge, cardArt, cardArt]);
+        card.position.set((n - 1) * .012, 0, -.015 + n * .022);
+        body.add(card); contents.push(card);
+      }
       var crimp = art(images.crimp);
-      lid = new THREE.Mesh(geo(1.48, 0.18, 0.07), [side, side, side, side, crimp, crimp]);
-      var bottom = new THREE.Mesh(geo(1.48, 0.18, 0.07), [side, side, side, side, crimp, crimp]);
+      lid = new THREE.Mesh(sealGeometry(), [side, side, side, side, crimp, crimp]);
+      var bottom = new THREE.Mesh(sealGeometry(), [side, side, side, side, crimp, crimp]);
       bottom.position.y = -LID_Y;
       body.add(bottom);
     }
@@ -215,11 +267,24 @@ export function createScene(stage, opts) {
       group.add(contact);
     }
 
+    // Distant packs use three simple surfaces; only the foreground needs dense foil folds.
+    var mini = null;
+    if (shelf) {
+      mini = new THREE.Group();
+      var miniEdge = keep(new THREE.MeshBasicMaterial({ color:token('--ev-3d-card-edge', '#e8d9b8') }));
+      mini.add(new THREE.Mesh(geo(1.48, 2.4, .07), miniEdge));
+      var plane = keep(new THREE.PlaneGeometry(1.48, 2.4));
+      var miniFront = new THREE.Mesh(plane, mapped(keep(new THREE.MeshBasicMaterial()), fronts[i % fronts.length]));
+      miniFront.position.z = .038;
+      var miniBack = new THREE.Mesh(plane, mapped(keep(new THREE.MeshBasicMaterial()), images.back));
+      miniBack.position.z = -.038; miniBack.rotation.y = Math.PI;
+      mini.add(miniFront, miniBack); group.add(mini);
+    }
     var a = i * STEP;
     group.position.set(Math.sin(a) * RADIUS, 0, Math.cos(a) * RADIUS - RADIUS);
     group.rotation.y = a;
     ring.add(group);
-    items.push({ group: group, body: body, lid: lid, pivot: pivot, shadow: shadowMat, contact: contactMat });
+    items.push({ group: group, body: body, lid: lid, pivot: pivot, contents: contents, mini: mini, shadowMesh: shadow, shadow: shadowMat, contact: contactMat });
   }
 
   // 吉祥物站在環形圓心（世界座標 0, 地板, -RADIUS）。角色本身是 <img>（動態 WebP），放在透明畫布後層；
@@ -287,8 +352,8 @@ export function createScene(stage, opts) {
   var selected = 0;
   var angle = 0;
   var target = 0;
-  var startX = null;
-  var drag = 0;
+  var startX = null, startY = null;
+  var drag = 0, dragY = 0;
   var progress = 0;
   var openMs = 1800;
   var openDone = null;
@@ -331,8 +396,8 @@ export function createScene(stage, opts) {
   on(stage, 'pointerdown', function (e) {
     if (mode !== 'select' && mode !== 'ready') return;
     if (e.target !== renderer.domElement) return;
-    startX = e.clientX;
-    drag = 0;
+    startX = e.clientX; startY = e.clientY;
+    drag = 0; dragY = 0;
     stage.setPointerCapture(e.pointerId);
   });
   on(stage, 'pointermove', function (e) {
@@ -343,21 +408,21 @@ export function createScene(stage, opts) {
       }
       return;
     }
-    drag = e.clientX - startX;
+    drag = e.clientX - startX; dragY = e.clientY - startY;
     if (mode === 'select') angle = target + drag * 0.004;
   });
   on(stage, 'pointerup', function (e) {
     if (startX === null) return;
     if (mode === 'select' && Math.abs(drag) > 25) move(drag > 0 ? 1 : -1);
-    else if (mode === 'ready' && Math.abs(drag) > 55 && opts.onSwipeOpen) opts.onSwipeOpen();
+    else if (mode === 'ready' && (box ? dragY < -55 && Math.abs(dragY) > Math.abs(drag) : Math.abs(drag) > 55) && opts.onSwipeOpen) opts.onSwipeOpen();
     else if (mode === 'select' && Math.abs(drag) < 8 && opts.onPick) {
       // 沒有拖曳＝點選：點到哪一包就選哪一包
       var i = pick(e.clientX, e.clientY);
       if (i >= 0) opts.onPick(i);
     }
-    startX = null;
+    startX = null; startY = null;
   });
-  on(stage, 'pointercancel', function () { startX = null; });
+  on(stage, 'pointercancel', function () { startX = null; startY = null; });
   on(document, 'ev:skin', applyTokens);
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -406,7 +471,8 @@ export function createScene(stage, opts) {
       if (progress >= 1) finishOpen();
     }
     if (startX === null || mode !== 'select') angle += (target - angle) * (reduced.matches ? 1 : Math.min(1, dt * 8));
-    if (!chest) {
+    if (shelf && mode === 'select' && !reduced.matches && startX === null) shelfPhase += dt * .12;
+    if (!chest && !shelf) {
       ring.rotation.y = angle;
       ring.position.x = RADIUS * Math.sin(angle);
       ring.position.z = RADIUS * (Math.cos(angle) - 1);
@@ -419,8 +485,27 @@ export function createScene(stage, opts) {
         it.group.rotation.y = orbit;
       }
       var mine = k === selected;
+      if (shelf) {
+        it.body.visible = mine; it.mini.visible = !mine; it.shadowMesh.visible = mine;
+        var a = k * STEP + angle + shelfPhase;
+        it.group.scale.setScalar(mine ? .86 : .24);
+        it.group.position.set(mine ? 0 : Math.sin(a) * 1.48, mine ? -.25 : 1.28 + (1 - Math.cos(a)) * .18, mine ? .1 : (Math.cos(a) - 1) * .8 - .25);
+        it.group.rotation.y = mine ? k * STEP + angle : a;
+      }
       it.group.visible = mode === 'select' || mine;
       var p = mine ? Math.min(progress, 1) : 0;
+      if (it.contents) {
+        var stageOpen = Math.max(0, Math.min(1, (p - .16) / .62));
+        var lift = stageOpen * stageOpen * (3 - 2 * stageOpen);
+        it.body.scale.setScalar(1 - lift * .32);
+        it.body.position.y = -lift * .55;
+        it.contents.forEach(function (card, index) {
+          card.visible = p > .16;
+          card.position.y = lift * (index === 2 ? 2.1 : .35 - index * .035);
+          card.position.z = -.015 + index * .022 + (index === 2 ? lift * .24 : 0);
+          card.rotation.y = index === 2 ? Math.sin(lift * Math.PI) * -.15 : 0;
+        });
+      }
       // 前 20%：包裝抖動蓄力；之後封條／盒蓋飛出
       var shake = mine && mode === 'opening' && p < 0.2 && !reduced.matches ? Math.sin(now * 0.08) * 0.04 : 0;
       var fly = Math.max(0, (p - 0.2) / 0.8);

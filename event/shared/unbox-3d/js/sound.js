@@ -143,7 +143,7 @@ window.EventSound = (function () {
   var ducked = false;
   function bgmVolume() { return ducked ? (levels.bgmDuck != null ? levels.bgmDuck : 0.1) : (levels.bgm != null ? levels.bgm : 0.35); }
   function bgmPlay() {
-    if (!enabled || !cfg.sounds.bgm || document.hidden) return;
+    if (!unlocked || !enabled || !cfg.sounds.bgm || document.hidden) return;
     if (!bgmEl) {
       bgmEl = new Audio(cfg.sounds.bgm);
       bgmEl.loop = true;
