@@ -22,7 +22,7 @@ window.EVENT_CONFIG = {
   skins: {},
 
   images: {
-    stageBg: 'assets/img/scene/stage-bg.svg',
+    stageBg: 'assets/img/scene/stage-bg.webp',
     infoBg: 'assets/img/scene/info-bg.svg',
     title: {
       en: 'assets/img/title/title-en.svg',
@@ -45,9 +45,9 @@ window.EVENT_CONFIG = {
     tapHint: 'assets/img/icon/icon-tap.svg',
     /* 3D 寶箱（shape: 'chest'）：正面可給 1～6 張（環上六箱依序輪流）；側面／背面會乘上 --ev-3d-item-N 色票，
        拱蓋與兩端半圓保留原色。 */
-    boxFront: ['assets/img/3d/chest-front.svg'],
-    boxSide: 'assets/img/3d/chest-side.svg',
-    boxLid: 'assets/img/3d/chest-lid.svg',
+    boxFront: ['assets/img/3d/chest-front.webp'],
+    boxSide: 'assets/img/3d/chest-side.webp',
+    boxLid: 'assets/img/3d/chest-lid.webp',
     boxLidSide: 'assets/img/3d/chest-lid-end.svg',
     /* 揭曉 */
     revealRays: 'assets/img/reveal/reveal-rays.svg',
@@ -63,7 +63,7 @@ window.EVENT_CONFIG = {
 
   /* 音效：留空時用 Web Audio 合成；交付音檔後填路徑即改播音檔 */
   soundLevels: { click: 0.9, move: 0.6, tear: 1, flip: 0.9, reveal: 1.2, reward: 1.4 },
-  sounds: { click: '', move: '', tear: '', flip: '', reveal: '', reward: '' },
+  sounds: { click: 'assets/audio/click.mp3', move: 'assets/audio/move.mp3', tear: 'assets/audio/tear.mp3', flip: 'assets/audio/flip.mp3', reveal: 'assets/audio/reveal.mp3', reward: 'assets/audio/reward.mp3' },
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
@@ -89,7 +89,7 @@ window.EVENT_CONFIG = {
     revealRays: 'reveal-rays · 750×750',
     rewardBack: 'reward-back · 600×900',
     rewardFrame: 'reward-frame-{common,rare,epic,legendary} · 600×900',
-    sharePreview: 'share-preview.png · 1200×630 (og:image)'
+    sharePreview: 'share-preview.jpg · 1200×630 (og:image)'
   },
 
   /* 活動文案（en/ko/th 必填；zh 只供內部預覽） */

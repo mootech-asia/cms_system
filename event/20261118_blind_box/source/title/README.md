@@ -1,0 +1,1 @@
+Editable SVG title compositions use Noto Sans CJK KR, Noto Sans Thai and DejaVu fonts. Distribution SVGs are outlined, with metallic layers and orbit/filigree ornaments. Source contains editable text for future language corrections. Typeface licenses are packaged under licenses/.

@@ -21,7 +21,7 @@ window.EVENT_CONFIG = {
   skins: {},
 
   images: {
-    stageBg: 'assets/img/scene/stage-bg.svg',
+    stageBg: 'assets/img/scene/stage-bg.webp',
     infoBg: 'assets/img/scene/info-bg.svg',
     title: {
       en: 'assets/img/title/title-en.svg',
@@ -43,8 +43,8 @@ window.EVENT_CONFIG = {
     rotateHint: 'assets/img/icon/icon-rotate.svg',
     tapHint: 'assets/img/icon/icon-tap.svg',
     /* 3D 卡包：正面可給 1～6 張不同設計，環上六包依序輪流；側邊與封條會乘上 --ev-3d-item-N 色票 */
-    packFront: ['assets/img/3d/pack-front-1.svg', 'assets/img/3d/pack-front-2.svg', 'assets/img/3d/pack-front-3.svg'],
-    packBack: 'assets/img/3d/pack-back.svg',
+    packFront: ['assets/img/3d/pack-front-1.webp', 'assets/img/3d/pack-front-2.webp', 'assets/img/3d/pack-front-3.webp'],
+    packBack: 'assets/img/3d/pack-back.webp',
     packCrimp: 'assets/img/3d/pack-crimp.svg',
     /* 揭曉 */
     revealRays: 'assets/img/reveal/reveal-rays.svg',
@@ -60,7 +60,7 @@ window.EVENT_CONFIG = {
 
   /* 音效：留空時用 Web Audio 合成；交付音檔後填路徑即改播音檔 */
   soundLevels: { click: 0.9, move: 0.6, tear: 1, flip: 0.9, reveal: 1.2, reward: 1.4 },
-  sounds: { click: '', move: '', tear: '', flip: '', reveal: '', reward: '' },
+  sounds: { click: 'assets/audio/click.mp3', move: 'assets/audio/move.mp3', tear: 'assets/audio/tear.mp3', flip: 'assets/audio/flip.mp3', reveal: 'assets/audio/reveal.mp3', reward: 'assets/audio/reward.mp3' },
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
@@ -85,7 +85,7 @@ window.EVENT_CONFIG = {
     revealRays: 'reveal-rays · 750×750',
     rewardBack: 'reward-back · 600×900',
     rewardFrame: 'reward-frame-{common,rare,epic,legendary} · 600×900',
-    sharePreview: 'share-preview.png · 1200×630 (og:image)'
+    sharePreview: 'share-preview.jpg · 1200×630 (og:image)'
   },
 
   /* 活動文案（en/ko/th 必填；zh 只供內部預覽） */
