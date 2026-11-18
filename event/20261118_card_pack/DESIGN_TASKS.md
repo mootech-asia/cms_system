@@ -20,7 +20,7 @@
 | **P0 全局視覺** | `title-en`、`title-ko`、`title-th`、`stage-bg`、`pack-back`、`pack-crimp`、`btn-primary`、色票 `theme.css` → 全部到位先整頁截圖確認方向 |
 | **P1 版面元件與揭曉** | `pack-front-1`、`pack-front-2`、`pack-front-3`、`reward-back`、`reward-frame-common`、`reward-frame-rare`、`reward-frame-epic`、`reward-frame-legendary`、`reveal-rays`、`period-badge`、`chances-badge`、`ticker-bar`、`card-frame`、`card-title`、`info-bg`、`share-preview` |
 | **P2 細節** | `btn-arrow`、`icon-sound-on`、`icon-sound-off`、`icon-share`、`icon-rotate`、`icon-tap`、`footer-deco`、config 路徑 |
-| **P3 精修** | 音效 ×6、主標可編輯原始檔、3D 材質微調（吉祥物動態暫緩） |
+| **P3 精修** | 背景音樂＋特效音（`AUDIO_REQUEST.md`）、主標可編輯原始檔、3D 材質微調（吉祥物動態暫緩） |
 
 ## 一、美術方向
 
@@ -63,7 +63,7 @@
 | `assets/img/ui/` | 介面元件：按鈕、緞帶、徽章、跑馬燈條、卡片框 | `btn-primary`、`period-badge`、`chances-badge`、`ticker-bar`、`card-frame`、`card-title`、`btn-arrow` |
 | `assets/img/icon/` | 小圖示 | `icon-sound-on`、`icon-sound-off`、`icon-share`、`icon-rotate`、`icon-tap` |
 | `assets/img/share/` | 社群分享預覽圖（PNG／JPG） | `share-preview` |
-| `assets/audio/` | 音效 mp3（選配） | `click`、`move`、`tear`、`flip`、`reveal`、`reward` |
+| `assets/audio/` | 背景音樂與特效音 mp3（見 AUDIO_REQUEST.md） | `bgm`、`click`、`move`、`select`、`tear`、`flip`、`reveal-common`、`reveal-rare`、`reveal-epic`、`reveal-legendary`、`reward`、`collect`、`error` |
 | `source/character/` | 角色設定圖與說明（不會被網頁載入） | `cosmic-bunny-sheet`、`README.md` |
 | `source/title/` | 主標可編輯原始檔或連結說明 | `README.md` |
 
@@ -129,16 +129,9 @@
 - **設定圖內容**（一張 2400×1350，`source/character/cosmic-bunny-sheet.png`）：正面／四分之三側／側面／背面四視圖、與原版兔比並排的身高比例、表情 ×4（開心、驚喜、眨眼、期待）、服裝材質特寫（披風、領結、手套、髮飾）、色票。`source/character/README.md` 寫明服裝構成與色碼。
 - 驗收：與原版兔比並排一眼認得出是同一隻；縮到卡包正面大小（約 200px 寬）仍辨識得出；放大檢查背心標誌與配件拼字。
 
-## 五、音效（選配，P3；未交付時程式用合成音）
+## 五、背景音樂與特效音（P3）
 
-| 名稱 | 用途 | 交付路徑 |
-|---|---|---|
-| `click` | 按鈕（≤0.2 秒） | `assets/audio/click.mp3`，再填進 config `sounds.click` |
-| `move` | 切換選項（≤0.15 秒） | `assets/audio/move.mp3`，再填進 config `sounds.move` |
-| `tear` | 撕封條／開箱（約 0.5 秒） | `assets/audio/tear.mp3`，再填進 config `sounds.tear` |
-| `flip` | 翻卡（≤0.25 秒） | `assets/audio/flip.mp3`，再填進 config `sounds.flip` |
-| `reveal` | 揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | `assets/audio/reveal.mp3`，再填進 config `sounds.reveal` |
-| `reward` | 全部揭曉（約 1 秒） | `assets/audio/reward.mp3`，再填進 config `sounds.reward` |
+**完整規格見同資料夾 `AUDIO_REQUEST.md`**（風格嚴格對齊本主題）。交付：背景音樂 `assets/audio/bgm.mp3`＋特效音 12 個（`click`、`move`、`select`、開封、`flip`、四種稀有度揭曉、`reward`、`collect`、`error`），原始 WAV 放 `source/audio/`。
 
 ## 六、不屬於美術的部分（由後台提供，請勿做成圖）
 
