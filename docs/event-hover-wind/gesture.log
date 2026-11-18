@@ -1,0 +1,11 @@
+[
+  {
+    hiddenOnDraw: 9,
+    refillPreserved: true,
+    reloadPreserved: true,
+    failedDrawNotCounted: true,
+    nextAt: 35
+  },
+  { dragDelay: 15, tearMs: 1434 },
+  { dragDelay: 140, tearMs: 2600 }
+]

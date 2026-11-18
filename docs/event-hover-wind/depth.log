@@ -1,0 +1,27 @@
+[
+  {
+    width: 360,
+    independentLayers: 4,
+    animated: true,
+    reducedStatic: true,
+    near: [ '0.697838', '0.211421', '0.829187', '0.147822' ],
+    far: [ '0.94339', '0.138424', '0.491511', '0.106009' ]
+  },
+  {
+    width: 390,
+    independentLayers: 4,
+    animated: true,
+    reducedStatic: true,
+    near: [ '0.673998', '0.2147', '0.8247', '0.171466' ],
+    far: [ '0.94982', '0.121497', '0.373926', '0.17414' ]
+  },
+  {
+    width: 1440,
+    independentLayers: 4,
+    animated: true,
+    reducedStatic: true,
+    near: [ '0.697838', '0.211421', '0.829187', '0.147822' ],
+    far: [ '0.942551', '0.139331', '0.497748', '0.102914' ]
+  },
+  { failedLayerOriginalBackground: true, failedLayerCollects: true }
+]

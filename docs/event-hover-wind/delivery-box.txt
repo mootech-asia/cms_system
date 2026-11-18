@@ -1,0 +1,96 @@
+已提交且通過檢查：82 / 89 項；打勾但不符：0 項
+依優先級（P0 全局視覺 → P3 精修與動態）：P0 11/11　P1 40/40　P2 8/8　P3 23/30
+
+OK      P0  B01  title-en  — assets/img/title/title-en.webp
+OK      P0  B02  title-ko  — assets/img/title/title-ko.webp
+OK      P0  B03  title-th  — assets/img/title/title-th.webp
+OK      P0  B04  stage-bg  — assets/img/scene/stage-bg.webp
+OK      P0  B05  chest-front  — assets/img/3d/chest-front.webp
+OK      P0  B06  chest-side  — assets/img/3d/chest-side.webp
+OK      P0  B07  chest-lid  — assets/img/3d/chest-lid.webp
+OK      P0  B08  chest-lid-end  — assets/img/3d/chest-lid-end.svg
+OK      P0  B09  btn-primary  — assets/img/ui/btn-primary.webp
+MANUAL  P0  B30  色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`）  — 色票需人工審核
+OK      P0  B43  沙漠精靈的贈禮  — assets/img/title/title-main.webp
+OK      P1  B10  reward-back  — assets/img/reveal/reward-back.svg
+OK      P1  B11  reward-frame-common  — assets/img/reveal/reward-frame-common.svg
+OK      P1  B12  reward-frame-rare  — assets/img/reveal/reward-frame-rare.svg
+OK      P1  B13  reward-frame-epic  — assets/img/reveal/reward-frame-epic.svg
+OK      P1  B14  reward-frame-legendary  — assets/img/reveal/reward-frame-legendary.svg
+OK      P1  B15  reveal-rays  — assets/img/reveal/reveal-rays.svg
+OK      P1  B16  period-badge  — assets/img/ui/period-badge.webp
+OK      P1  B17  chances-badge  — assets/img/ui/chances-badge.webp
+OK      P1  B18  ticker-bar  — assets/img/ui/ticker-bar.webp
+OK      P1  B19  card-frame  — assets/img/ui/card-frame.svg
+OK      P1  B20  card-title  — assets/img/ui/card-title.svg
+OK      P1  B21  info-bg  — assets/img/scene/info-bg.svg
+OK      P1  B22  share-preview  — assets/img/share/share-preview.jpg
+MANUAL  P1  B45  主標 en 點陣原圖  — 需人工審核
+MANUAL  P1  B46  主標 ko 點陣原圖  — 需人工審核
+MANUAL  P1  B47  主標 th 點陣原圖  — 需人工審核
+OK      P1  B48  神燈／星盤冊頁裝飾  — assets/img/ui/folio-header.webp
+MANUAL  P1  B49  冊頁裝飾點陣原稿  — 需人工審核
+OK      P1  B59  環境體積貼圖  — assets/img/scene/atmosphere.webp
+MANUAL  P1  B60  環境體積原稿  — 需人工審核
+OK      P1  B61  連續黃銅拱頂  — assets/img/ui/panel-crown.webp
+MANUAL  P1  B62  黃銅拱頂原稿  — 需人工審核
+MANUAL  P1  B63  btn-primary 控制元件原稿  — 需人工審核
+MANUAL  P1  B64  chances-badge 控制元件原稿  — 需人工審核
+MANUAL  P1  B65  btn-arrow 控制元件原稿  — 需人工審核
+MANUAL  P1  B66  ticker-bar 控制元件原稿  — 需人工審核
+OK      P1  B67  chest-interior  — assets/img/3d/chest-interior.webp
+OK      P1  B68  tool-medallion  — assets/img/ui/tool-medallion.webp
+MANUAL  P1  B69  chest-front-refined-original  — 需人工審核
+MANUAL  P1  B70  chest-interior-refined-original  — 需人工審核
+MANUAL  P1  B71  chest-lid-refined-original  — 需人工審核
+MANUAL  P1  B72  chest-side-refined-original  — 需人工審核
+MANUAL  P1  B73  bgm-score  — 需人工審核
+MANUAL  P1  B74  bgm  — 需人工審核
+MANUAL  P1  B75  loudness  — 需人工審核
+MANUAL  P1  B76  soundfont-copyright  — 需人工審核
+MANUAL  P1  B77  period-badge-refined-original  — 需人工審核
+MANUAL  P1  B78  tool-medallion-refined-original  — 需人工審核
+OK      P1  L01  主題 loading 器物  — assets/img/ui/loading-emblem.webp
+MANUAL  P1  L02  Loading 原稿  — 需人工審核
+OK      P2  B23  btn-arrow  — assets/img/ui/btn-arrow.webp
+OK      P2  B24  icon-sound-on  — assets/img/icon/icon-sound-on.svg
+OK      P2  B25  icon-sound-off  — assets/img/icon/icon-sound-off.svg
+OK      P2  B26  icon-share  — assets/img/icon/icon-share.svg
+OK      P2  B27  icon-rotate  — assets/img/icon/icon-rotate.svg
+OK      P2  B28  icon-tap  — assets/img/icon/icon-tap.svg
+OK      P2  B29  footer-deco  — assets/img/scene/footer-deco.svg
+OK      P2  B38  `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖  — config.js 所有路徑都存在
+OK      P3  B31  音效 click：按鈕（≤0.2 秒）  — assets/audio/click.mp3（長度／內容需人工確認）
+OK      P3  B32  音效 move：切換選項（≤0.15 秒）  — assets/audio/move.mp3（長度／內容需人工確認）
+OK      P3  B33  音效 tear：撕封條／開箱（約 0.5 秒）  — assets/audio/tear.mp3（長度／內容需人工確認）
+OK      P3  B34  音效 flip：翻卡（≤0.25 秒）  — assets/audio/flip.mp3（長度／內容需人工確認）
+OK      P3  B35  音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高）  — assets/audio/reveal.mp3（長度／內容需人工確認）
+OK      P3  B36  音效 reward：全部揭曉（約 1 秒）  — assets/audio/reward.mp3（長度／內容需人工確認）
+MANUAL  P3  B37  主標可編輯原始檔（三語）連結或檔案說明  — 需人工審核
+SKIP    P3  B39  吉祥物 idle（待機）  — 暫緩，不計入
+SKIP    P3  B40  吉祥物 anticipate（期待）  — 暫緩，不計入
+SKIP    P3  B41  吉祥物 celebrate（慶祝）  — 暫緩，不計入
+SKIP    P3  B42  吉祥物 lose（小失望）  — 暫緩，不計入
+MANUAL  P3  B50  背景音樂 bgm（60–90 秒無縫循環）  — 需人工審核
+TODO    P3  B51  特效音 select：點選一個寶箱＝選定（≤0.4 秒）
+TODO    P3  B52  特效音 reveal-common：揭曉：{r}（0.5–0.8 秒）
+TODO    P3  B53  特效音 reveal-rare：揭曉：稀有（寶物出現在台座上）（0.7–1.0 秒）
+TODO    P3  B54  特效音 reveal-epic：揭曉：超稀有（寶物出現在台座上）（0.9–1.3 秒）
+TODO    P3  B55  特效音 reveal-legendary：揭曉：最高級（Secret 隱藏款，寶物出現在台座上）（1.5–2.0 秒）
+TODO    P3  B56  特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒）
+TODO    P3  B57  特效音 error：次數用完、尚無獎項（≤0.3 秒）
+MANUAL  P3  B58  依 AUDIO_REQUEST.md 重做既有 6 個特效音（同名覆蓋 click／move／tear／flip／reveal／reward）  — 需人工審核
+OK      P3  B44  新主標原圖  — source/title/title-main-original.png
+OK      P3  B73  wind-flowers  — assets/img/scene/wind-flowers.webp
+OK      P3  B74  wind-palm  — assets/img/scene/wind-palm.webp
+OK      P3  B75  沙塵連續圖集  — assets/img/reveal/sand-vortex-atlas.webp
+MANUAL  P3  B76  沙塵圖集原稿  — 需人工審核
+OK      P3  B77  desert 景深圖層  — assets/img/scene/layers/desert.webp
+OK      P3  B78  floor 景深圖層  — assets/img/scene/layers/floor.webp
+OK      P3  B79  columns 景深圖層  — assets/img/scene/layers/columns.webp
+OK      P3  B80  curtain 景深圖層  — assets/img/scene/layers/curtain.webp
+MANUAL  P3  B81  desert 原稿  — 需人工審核
+MANUAL  P3  B82  floor 原稿  — 需人工審核
+MANUAL  P3  B83  columns 原稿  — 需人工審核
+MANUAL  P3  B84  curtain 原稿  — 需人工審核
+OK      P3  B85  舊版 renderer 沙塵退回圖  — assets/img/reveal/sand-vortex-poster.webp

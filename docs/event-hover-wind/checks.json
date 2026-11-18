@@ -1,0 +1,44 @@
+[
+  {
+    "hover": true,
+    "fallback": false,
+    "lockedSilent": true,
+    "oncePerEnter": true,
+    "debounce": true,
+    "replacesPriorVoice": true,
+    "mute": true,
+    "path": "../20261111_survival_spin/assets/audio/hover.mp3",
+    "volume": 0.7
+  },
+  {
+    "hover": true,
+    "fallback": true,
+    "lockedSilent": true,
+    "oncePerEnter": true,
+    "debounce": true,
+    "replacesPriorVoice": true,
+    "mute": true,
+    "path": "../20261111_survival_spin/assets/audio/hover.mp3",
+    "volume": 0.7
+  },
+  {
+    "touch": false,
+    "sideTopTears": true,
+    "bodyRotates": true,
+    "topDoesNotRotate": true
+  },
+  {
+    "touch": true,
+    "sideTopTears": true,
+    "bodyRotates": true,
+    "topDoesNotRotate": true
+  },
+  {
+    "curtainMoves": true,
+    "columnsStill": true,
+    "reducedStatic": true,
+    "offscreenPaused": true,
+    "a": "translateX(1.93848px) rotate(1.11463deg) skewX(2.61183deg) scale(1.05036, 1.02436)",
+    "z": "translateX(3.53767px) rotate(2.03416deg) skewX(-1.24763deg) scale(1.02766, 1.02796)"
+  }
+]

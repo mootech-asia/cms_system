@@ -1,0 +1,103 @@
+已提交且通過檢查：89 / 96 項；打勾但不符：0 項
+依優先級（P0 全局視覺 → P3 精修與動態）：P0 11/11　P1 48/48　P2 8/8　P3 22/29
+
+OK      P0  C01  兔比宇宙兔女郎設定圖（四視圖、比例、表情 ×4、材質、色票）  — source/character/cosmic-bunny-sheet.png
+MANUAL  P0  C02  角色說明（服裝構成、色碼）  — 需人工審核
+OK      P0  C03  title-en  — assets/img/title/title-en.webp
+OK      P0  C04  title-ko  — assets/img/title/title-ko.webp
+OK      P0  C05  title-th  — assets/img/title/title-th.webp
+OK      P0  C06  stage-bg  — assets/img/scene/stage-bg.webp
+OK      P0  C07  pack-back  — assets/img/3d/pack-back.webp
+OK      P0  C08  pack-crimp  — assets/img/3d/pack-crimp.webp
+OK      P0  C09  btn-primary  — assets/img/ui/btn-primary.webp
+MANUAL  P0  C33  色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`）  — 色票需人工審核
+OK      P0  C46  宇宙神奇魔幻卡包  — assets/img/title/title-main.webp
+OK      P1  C10  pack-front-1  — assets/img/3d/pack-front-1.webp
+OK      P1  C11  pack-front-2  — assets/img/3d/pack-front-2.webp
+OK      P1  C12  pack-front-3  — assets/img/3d/pack-front-3.webp
+OK      P1  C13  reward-back  — assets/img/reveal/reward-back.webp
+OK      P1  C14  reward-frame-common  — assets/img/reveal/reward-frame-common.svg
+OK      P1  C15  reward-frame-rare  — assets/img/reveal/reward-frame-rare.svg
+OK      P1  C16  reward-frame-epic  — assets/img/reveal/reward-frame-epic.svg
+OK      P1  C17  reward-frame-legendary  — assets/img/reveal/reward-frame-legendary.svg
+OK      P1  C18  reveal-rays  — assets/img/reveal/reveal-rays.svg
+OK      P1  C19  period-badge  — assets/img/ui/period-badge.webp
+OK      P1  C20  chances-badge  — assets/img/ui/chances-badge.webp
+OK      P1  C21  ticker-bar  — assets/img/ui/ticker-bar.webp
+OK      P1  C22  card-frame  — assets/img/ui/card-frame.svg
+OK      P1  C23  card-title  — assets/img/ui/card-title.svg
+OK      P1  C24  info-bg  — assets/img/scene/info-bg.svg
+OK      P1  C25  share-preview  — assets/img/share/share-preview.jpg
+MANUAL  P1  C48  主標 en 點陣原圖  — 需人工審核
+MANUAL  P1  C49  主標 ko 點陣原圖  — 需人工審核
+MANUAL  P1  C50  主標 th 點陣原圖  — 需人工審核
+OK      P1  C51  星雲雕花卡面  — assets/img/reveal/reward-front.webp
+MANUAL  P1  C52  卡面點陣原圖  — 需人工審核
+MANUAL  P1  C53  卡背點陣原圖  — 需人工審核
+OK      P1  C54  神燈／星盤冊頁裝飾  — assets/img/ui/folio-header.webp
+MANUAL  P1  C55  冊頁裝飾點陣原稿  — 需人工審核
+OK      P1  C65  環境體積貼圖  — assets/img/scene/atmosphere.webp
+MANUAL  P1  C66  環境體積原稿  — 需人工審核
+MANUAL  P1  C67  btn-primary 控制元件原稿  — 需人工審核
+MANUAL  P1  C68  chances-badge 控制元件原稿  — 需人工審核
+MANUAL  P1  C69  btn-arrow 控制元件原稿  — 需人工審核
+MANUAL  P1  C70  ticker-bar 控制元件原稿  — 需人工審核
+OK      P1  C71  pack-contents  — assets/img/3d/pack-contents.webp
+OK      P1  C72  panel-frame  — assets/img/ui/panel-frame.webp
+OK      P1  C73  star-glint  — assets/img/ui/star-glint.webp
+OK      P1  C74  tool-medallion  — assets/img/ui/tool-medallion.webp
+MANUAL  P1  C75  pack-contents-refined-original  — 需人工審核
+MANUAL  P1  C76  pack-crimp-refined-original  — 需人工審核
+MANUAL  P1  C77  bgm-score  — 需人工審核
+MANUAL  P1  C78  bgm  — 需人工審核
+MANUAL  P1  C79  loudness  — 需人工審核
+MANUAL  P1  C80  soundfont-copyright  — 需人工審核
+MANUAL  P1  C81  reward-back-refined-original  — 需人工審核
+MANUAL  P1  C82  panel-frame-refined-original  — 需人工審核
+MANUAL  P1  C83  period-badge-refined-original  — 需人工審核
+MANUAL  P1  C84  star-glint-refined-original  — 需人工審核
+MANUAL  P1  C85  tool-medallion-refined-original  — 需人工審核
+OK      P1  L01  主題 loading 器物  — assets/img/ui/loading-emblem.webp
+MANUAL  P1  L02  Loading 原稿  — 需人工審核
+MANUAL  P1  L03  月兔卡背原稿  — 需人工審核
+OK      P2  C26  btn-arrow  — assets/img/ui/btn-arrow.webp
+OK      P2  C27  icon-sound-on  — assets/img/icon/icon-sound-on.svg
+OK      P2  C28  icon-sound-off  — assets/img/icon/icon-sound-off.svg
+OK      P2  C29  icon-share  — assets/img/icon/icon-share.svg
+OK      P2  C30  icon-rotate  — assets/img/icon/icon-rotate.svg
+OK      P2  C31  icon-tap  — assets/img/icon/icon-tap.svg
+OK      P2  C32  footer-deco  — assets/img/scene/footer-deco.svg
+OK      P2  C41  `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖  — config.js 所有路徑都存在
+OK      P3  C34  音效 click：按鈕（≤0.2 秒）  — assets/audio/click.mp3（長度／內容需人工確認）
+OK      P3  C35  音效 move：切換選項（≤0.15 秒）  — assets/audio/move.mp3（長度／內容需人工確認）
+OK      P3  C36  音效 tear：撕封條／開箱（約 0.5 秒）  — assets/audio/tear.mp3（長度／內容需人工確認）
+OK      P3  C37  音效 flip：翻卡（≤0.25 秒）  — assets/audio/flip.mp3（長度／內容需人工確認）
+OK      P3  C38  音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高）  — assets/audio/reveal.mp3（長度／內容需人工確認）
+OK      P3  C39  音效 reward：全部揭曉（約 1 秒）  — assets/audio/reward.mp3（長度／內容需人工確認）
+MANUAL  P3  C40  主標可編輯原始檔（三語）連結或檔案說明  — 需人工審核
+SKIP    P3  C42  吉祥物 idle（待機）  — 暫緩，不計入
+SKIP    P3  C43  吉祥物 anticipate（期待）  — 暫緩，不計入
+SKIP    P3  C44  吉祥物 celebrate（慶祝）  — 暫緩，不計入
+SKIP    P3  C45  吉祥物 lose（小失望）  — 暫緩，不計入
+MANUAL  P3  C56  背景音樂 bgm（60–90 秒無縫循環）  — 需人工審核
+TODO    P3  C57  特效音 select：點選一包＝選定（≤0.4 秒）
+TODO    P3  C58  特效音 reveal-common：揭曉：普通（0.5–0.8 秒）
+TODO    P3  C59  特效音 reveal-rare：揭曉：稀有（0.7–1.0 秒）
+TODO    P3  C60  特效音 reveal-epic：揭曉：超稀有（0.9–1.3 秒）
+TODO    P3  C61  特效音 reveal-legendary：揭曉：最高級（Legendary）（1.5–2.0 秒）
+TODO    P3  C62  特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒）
+TODO    P3  C63  特效音 error：次數用完、尚無獎項（≤0.3 秒）
+MANUAL  P3  C64  依 AUDIO_REQUEST.md 重做既有 6 個特效音（同名覆蓋 click／move／tear／flip／reveal／reward）  — 需人工審核
+OK      P3  C47  新主標原圖  — source/title/title-main-original.png
+OK      P3  C73  pack-side  — assets/img/3d/pack-side.webp
+OK      P3  C74  magic-circle  — assets/img/scene/magic-circle.webp
+OK      P3  C75  隱藏包裝正面  — assets/img/3d/secret-pack.webp
+OK      P3  C76  隱藏包裝側面  — assets/img/3d/secret-side.webp
+OK      P3  C77  隱藏卡背  — assets/img/reveal/secret-back.webp
+OK      P3  C78  隱藏卡正面  — assets/img/reveal/secret-front.webp
+MANUAL  P3  C79  鋁箔撕裂音效  — 需人工審核
+MANUAL  P3  C80  隱藏提示音效  — 需人工審核
+MANUAL  P3  C81  secret-pack 原稿  — 需人工審核
+MANUAL  P3  C82  secret-back 原稿  — 需人工審核
+MANUAL  P3  C83  secret-front 原稿  — 需人工審核
+MANUAL  P3  C84  Spin 共用 hover 音效  — 需人工審核
