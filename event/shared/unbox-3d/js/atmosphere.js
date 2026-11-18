@@ -1,4 +1,4 @@
-import { createDesertDepth } from './desert-depth.js?v=20261118-vortex1';
+import { createDesertDepth } from './desert-depth.js?v=20261118-hover1';
 export function createAtmosphere(stage, type, spriteUrl, starUrl, scenery = {}) {
   const canvas = document.createElement('canvas');
   canvas.className = 'ev-atmosphere';

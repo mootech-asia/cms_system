@@ -61,6 +61,7 @@ window.EVENT_CONFIG = {
     boxLid: 'assets/img/3d/chest-lid.webp?v=20261118-refine2',
     boxLidSide: 'assets/img/3d/chest-lid.webp?v=20261118-refine2',
     /* 揭曉 */
+    revealRays: 'assets/img/reveal/sand-vortex-poster.webp',
     revealVortex: 'assets/img/reveal/sand-vortex-atlas.webp?v=20261118-vortex1',
     rewardBack: 'assets/img/reveal/reward-back.svg?v=20261118-refine2',
     rewardFrameCommon: 'assets/img/reveal/reward-frame-common.svg?v=20261118-refine2',

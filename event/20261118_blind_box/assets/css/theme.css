@@ -162,3 +162,5 @@
 .ev-stage.has-depth-scene { background-image:none !important; }
 .ev-depth-layer, .ev-depth-soft { position:absolute; inset:0; background-position:center bottom; background-size:cover; background-repeat:no-repeat; }
 .ev-depth-soft { will-change:opacity; }
+
+.ev-depth-curtain { left:-24px; right:-24px; transform-origin:24px top; will-change:transform; }

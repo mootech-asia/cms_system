@@ -18,7 +18,7 @@ export function createDesertDepth(stage, sources) {
     layer.style.backgroundImage = soft.style.backgroundImage = 'url(' + JSON.stringify(url) + ')';
     soft.style.filter = 'blur(' + blur + 'px)';
     layer.append(soft); root.append(layer);
-    return { name, soft, speed, phase, min, range, url };
+    return { name, layer, soft, speed, phase, min, range, url };
   });
   stage.prepend(root);
   Promise.all(layers.map(({url}) => new Promise((resolve, reject) => {
@@ -29,9 +29,14 @@ export function createDesertDepth(stage, sources) {
   }).catch(() => { root.remove(); });
   return {
     update(t) {
-      layers.forEach(({soft, speed, phase, min, range}) => {
+      layers.forEach(({name, layer, soft, speed, phase, min, range}) => {
         const focus = .5 + .5 * Math.sin(t * speed + phase + Math.sin(t * .17) * .65);
         soft.style.opacity = String(min + range * focus);
+        if (name === 'curtain') {
+          const gust = Math.sin(t * .8) * .75 + Math.sin(t * 1.7) * .25;
+          const ripple = Math.sin(t * 1.15 + .6);
+          layer.style.transform = `translateX(${gust * 8}px) rotate(${gust * 4.6}deg) skewX(${ripple * 3.4}deg) scale(${1.035 + ripple * .02},${1.02 + gust * .018})`;
+        }
       });
       stage.style.setProperty('--ev-depth-mist', String(.035 + (.5 + .5 * Math.sin(t * .48)) * .1));
     },

@@ -365,10 +365,21 @@ export function createScene(stage, opts) {
   var sealCue = stage.querySelector('#packSealCue');
   function onSeal(x,y) {
     var r = renderer.domElement.getBoundingClientRect();
-    pointer.set((x-r.left)/r.width*2-1,-(y-r.top)/r.height*2+1);
-    raycaster.setFromCamera(pointer,camera);
-    var hit = raycaster.intersectObjects([items[selected].body],true)[0];
-    return !!hit && items[selected].body.worldToLocal(hit.point.clone()).y > .86;
+    var body = items[selected].body;
+    body.updateWorldMatrix(true, false);
+    var points = [-.74,.74].flatMap(function (edge) {
+      return [-.14,.14].map(function (z) {
+        var p = new THREE.Vector3(edge,LID_Y,z).applyMatrix4(body.matrixWorld).project(camera);
+        return { x:r.left+(p.x+1)*r.width/2, y:r.top+(1-p.y)*r.height/2 };
+      });
+    });
+    // A generous screen-space seal band remains usable when the foil is edge-on.
+    var minX = Math.min.apply(null,points.map(function(p){return p.x;}));
+    var maxX = Math.max.apply(null,points.map(function(p){return p.x;}));
+    var minY = Math.min.apply(null,points.map(function(p){return p.y;}));
+    var maxY = Math.max.apply(null,points.map(function(p){return p.y;}));
+    var below = Math.max(44,Math.min(76,r.height*.17));
+    return x >= minX-32 && x <= maxX+32 && y >= minY-26 && y <= maxY+below;
   }
   var drag = 0, dragY = 0;
   var progress = 0;
@@ -426,8 +437,9 @@ export function createScene(stage, opts) {
       if (e.pointerType === 'mouse' && mode === 'select' && e.target === renderer.domElement) {
         var hit = pick(e.clientX, e.clientY);
         renderer.domElement.style.cursor = hit >= 0 ? 'pointer' : '';
-        if (!box && hit !== hovered && hit >= 0 && !reduced.matches) {
-          jellyIndex = hit; jellyStart = performance.now(); dirty = true;
+        if (!box && hit !== hovered && hit >= 0) {
+          if (opts.onHover) opts.onHover();
+          if (!reduced.matches) { jellyIndex = hit; jellyStart = performance.now(); dirty = true; }
         }
         hovered = hit;
       }

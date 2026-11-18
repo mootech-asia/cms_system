@@ -17,8 +17,10 @@ window.EventSound = (function () {
   var ctx = null;
   var buffers = {};
   var unlocked = false;
+  var lastHover = -Infinity;
+  var hoverSource = null;
   var activeSources = new Set();
-  function track(source) { activeSources.add(source); source.onended = function () { activeSources.delete(source); }; }
+  function track(source) { activeSources.add(source); source.onended = function () { activeSources.delete(source); if (hoverSource === source) hoverSource = null; }; }
 
   function audio() {
     if (!ctx) {
@@ -64,6 +66,10 @@ window.EventSound = (function () {
     var src = c.createBufferSource();
     var gain = c.createGain();
     src.buffer = buf;
+    if (name === 'hover') {
+      if (hoverSource) { try { hoverSource.stop(); } catch (_) {} }
+      hoverSource = src;
+    }
     src.playbackRate.value = rate || 1;
     gain.gain.value = levels[name] != null ? levels[name] : 1;
     src.connect(gain).connect(c.destination);
@@ -145,6 +151,13 @@ window.EventSound = (function () {
     if (SYNTH[name]) SYNTH[name](arg);
   }
 
+  // Hover follows Spin: the same clip/level and a 180ms retrigger guard.
+  function hover() {
+    if (!enabled || !unlocked || !ctx || ctx.state !== 'running' || document.hidden || !cfg.sounds.hover) return;
+    if (ctx.currentTime - lastHover < .18) return;
+    if (playFile('hover', 1)) lastHover = ctx.currentTime;
+  }
+
   // 背景音樂：用 <audio> 循環（長檔不必整段解碼），音量由 soundLevels.bgm／bgmDuck 控制
   var bgmEl = null;
   var ducked = false;
@@ -169,6 +182,7 @@ window.EventSound = (function () {
 
   return {
     play: play,
+    hover: hover,
     duck: function (on) { ducked = on; if (bgmEl) bgmEl.volume = bgmVolume(); },
     isUnlocked: function () { return unlocked; },
     isEnabled: function () { return enabled; },

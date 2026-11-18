@@ -2,10 +2,10 @@
  * 拆卡包／拆盲盒共用流程：select（挑選）→ ready（已選定）→ loading（向後台取結果）→ opening（動畫）→ reveal（揭曉）。
  * 活動差異（type、圖片槽、文案、mock 內容）全部在各活動的 assets/js/config.js；本檔不放活動專屬內容。
  */
-import { createAtmosphere } from './atmosphere.js?v=20261118-vortex1';
+import { createAtmosphere } from './atmosphere.js?v=20261118-hover1';
 import { createRevealVortex } from './reveal-vortex.js?v=20261118-vortex1';
 import { createSecretCycle } from './secret-cycle.js?v=20261118-vortex1';
-import { createScene } from './scene.js?v=20261118-vortex1';
+import { createScene } from './scene.js?v=20261118-hover1';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -26,6 +26,17 @@ createAtmosphere(stage, cfg.type, cfg.images.atmosphereSprite, cfg.images.starSp
 var sceneEl = $('scene');
 var btnAction = $('btnAction');
 var reveal = $('reveal');
+// Older embedded markup can survive a script/config refresh.
+if (cfg.type === 'blind-box' && cfg.images.revealVortex && !$('revealVortex')) {
+  var legacyRays = reveal.querySelector('.ev-reveal-rays');
+  if (legacyRays) {
+    var vortexCanvas = document.createElement('canvas');
+    vortexCanvas.id = 'revealVortex'; vortexCanvas.className = 'ev-reveal-vortex';
+    vortexCanvas.setAttribute('aria-hidden', 'true');
+    vortexCanvas.style.cssText = 'position:absolute;width:min(116%,76svh);aspect-ratio:1;opacity:.62;pointer-events:none;mask-image:radial-gradient(circle,#000 0 59%,transparent 72%)';
+    legacyRays.replaceWith(vortexCanvas);
+  }
+}
 createRevealVortex($('revealVortex'), reveal, $('revealSingle'), stage, cfg.images.revealVortex);
 var toast = $('toast');
 
@@ -523,6 +534,7 @@ scene = createScene(sceneEl, {
   mascot: cfg.mascot ? { img: $('mascot'), poster: cfg.mascot.poster, height: cfg.mascot.height } : null,
   onSelect: function () { Sound.play('move'); renderPickLabel(); },
   onSwipeOpen: open,
+  onHover: function () { if (Sound.hover) Sound.hover(); },
   onPick: pickItem
 });
 if (!scene) {
@@ -531,6 +543,7 @@ if (!scene) {
   $('sceneFallback').hidden = false;
   $('sceneFallback').setAttribute('data-img', cfg.type === 'blind-box' ? 'boxFront' : 'packFront');
   $('sceneNote').hidden = false;
+  $('sceneFallback').addEventListener('pointerenter', function (e) { if (cfg.type === 'card-pack' && state === 'select' && e.pointerType === 'mouse') Sound.hover(); });
   $('sceneFallback').addEventListener('click', function () { if (state === 'select') choose(); });
   var fallbackStart = null;
   $('sceneFallback').addEventListener('pointerdown', function (event) {
