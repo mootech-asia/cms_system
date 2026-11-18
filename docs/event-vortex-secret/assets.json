@@ -1,0 +1,82 @@
+[
+  {
+    "path": "event/20261118_card_pack/assets/img/3d/secret-side.webp",
+    "bytes": 14060,
+    "size": [
+      128,
+      512
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/3d/secret-pack.webp",
+    "bytes": 125780,
+    "size": [
+      512,
+      768
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/reveal/secret-back.webp",
+    "bytes": 198274,
+    "size": [
+      600,
+      900
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/img/reveal/secret-front.webp",
+    "bytes": 112530,
+    "size": [
+      600,
+      900
+    ]
+  },
+  {
+    "path": "event/20261118_card_pack/assets/audio/foil-tear.mp3",
+    "bytes": 28464
+  },
+  {
+    "path": "event/20261118_card_pack/assets/audio/secret.mp3",
+    "bytes": 41003
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/scene/layers/curtain.webp",
+    "bytes": 48268,
+    "size": [
+      750,
+      1000
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/scene/layers/columns.webp",
+    "bytes": 101432,
+    "size": [
+      750,
+      1000
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/scene/layers/desert.webp",
+    "bytes": 85902,
+    "size": [
+      750,
+      1000
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/scene/layers/floor.webp",
+    "bytes": 133532,
+    "size": [
+      750,
+      1000
+    ]
+  },
+  {
+    "path": "event/20261118_blind_box/assets/img/reveal/sand-vortex-atlas.webp",
+    "bytes": 884654,
+    "size": [
+      1280,
+      1280
+    ]
+  }
+]

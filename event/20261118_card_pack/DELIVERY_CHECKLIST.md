@@ -59,7 +59,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 8fc24f9 | ☐ | P0 |
+| ☑ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | c6f8443 | ☐ | P0 |
 | ☑ | C34 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C35 | 音效 move：切換選項（≤0.15 秒） | 選配 | `assets/audio/move.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C36 | 音效 tear：撕封條／開箱（約 0.5 秒） | 選配 | `assets/audio/tear.mp3` | bc5fb9b | ☐ | P3 |
@@ -67,7 +67,7 @@
 | ☑ | C38 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `assets/audio/reveal.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C39 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | C40 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | 5844c7b | ☐ | P3 |
-| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 8fc24f9 | ☐ | P2 |
+| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | c6f8443 | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -176,3 +176,18 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 |---|---|---|---|---|---|---|---|
 | ☑ | C73 | pack-side | 128×512 | `assets/img/3d/pack-side.webp` | 8fc24f9 | ☐ | P3 |
 | ☑ | C74 | magic-circle | 640×640 | `assets/img/scene/magic-circle.webp` | 8fc24f9 | ☐ | P3 |
+
+
+## 互動與環境精修交付
+
+| 提交 | ID | 圖片槽 | 尺寸 | 交付路徑 | commit | 審核 | 優先級 |
+|---|---|---|---|---|---|---|---|
+| ☑ | C75 | 隱藏包裝正面 | 512×768 | `assets/img/3d/secret-pack.webp` | c6f8443 | ☐ | P3 |
+| ☑ | C76 | 隱藏包裝側面 | 128×512 | `assets/img/3d/secret-side.webp` | c6f8443 | ☐ | P3 |
+| ☑ | C77 | 隱藏卡背 | 600×900 | `assets/img/reveal/secret-back.webp` | c6f8443 | ☐ | P3 |
+| ☑ | C78 | 隱藏卡正面 | 600×900 | `assets/img/reveal/secret-front.webp` | c6f8443 | ☐ | P3 |
+| ☑ | C79 | 鋁箔撕裂音效 | （人工） | `assets/audio/foil-tear.mp3` | c6f8443 | ☐ | P3 |
+| ☑ | C80 | 隱藏提示音效 | （人工） | `assets/audio/secret.mp3` | c6f8443 | ☐ | P3 |
+| ☑ | C81 | secret-pack 原稿 | （人工） | `source/secret/secret-pack-original.png` | c6f8443 | ☐ | P3 |
+| ☑ | C82 | secret-back 原稿 | （人工） | `source/secret/secret-back-original.png` | c6f8443 | ☐ | P3 |
+| ☑ | C83 | secret-front 原稿 | （人工） | `source/secret/secret-front-original.png` | c6f8443 | ☐ | P3 |

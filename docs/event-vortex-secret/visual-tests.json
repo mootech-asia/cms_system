@@ -1,0 +1,64 @@
+[
+  {
+    "lang": "en",
+    "width": 360,
+    "secret": true,
+    "centered": true
+  },
+  {
+    "lang": "en",
+    "width": 390,
+    "secret": true,
+    "centered": true
+  },
+  {
+    "lang": "en",
+    "width": 1440,
+    "secret": true,
+    "centered": true
+  },
+  {
+    "lang": "ko",
+    "width": 360,
+    "secret": true,
+    "centered": true
+  },
+  {
+    "lang": "ko",
+    "width": 390,
+    "secret": true,
+    "centered": true
+  },
+  {
+    "lang": "ko",
+    "width": 1440,
+    "secret": true,
+    "centered": true
+  },
+  {
+    "lang": "th",
+    "width": 360,
+    "secret": true,
+    "centered": true
+  },
+  {
+    "lang": "th",
+    "width": 390,
+    "secret": true,
+    "centered": true
+  },
+  {
+    "lang": "th",
+    "width": 1440,
+    "secret": true,
+    "centered": true
+  },
+  {
+    "atlasAnimated": true,
+    "reducedMotionFrozen": true,
+    "closedFrozen": true
+  },
+  {
+    "atlasFailureCollects": true
+  }
+]

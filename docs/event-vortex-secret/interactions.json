@@ -1,0 +1,17 @@
+[
+  {
+    "hiddenOnDraw": 9,
+    "refillPreserved": true,
+    "reloadPreserved": true,
+    "failedDrawNotCounted": true,
+    "nextAt": 35
+  },
+  {
+    "dragDelay": 15,
+    "tearMs": 900
+  },
+  {
+    "dragDelay": 140,
+    "tearMs": 2574
+  }
+]

@@ -51,7 +51,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B30 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 8fc24f9 | ☐ | P0 |
+| ☑ | B30 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | c6f8443 | ☐ | P0 |
 | ☑ | B31 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B32 | 音效 move：切換選項（≤0.15 秒） | 選配 | `assets/audio/move.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B33 | 音效 tear：撕封條／開箱（約 0.5 秒） | 選配 | `assets/audio/tear.mp3` | bc5fb9b | ☐ | P3 |
@@ -59,7 +59,7 @@
 | ☑ | B35 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `assets/audio/reveal.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B36 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B37 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | 5844c7b | ☐ | P3 |
-| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 8fc24f9 | ☐ | P2 |
+| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | c6f8443 | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -163,3 +163,19 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 |---|---|---|---|---|---|---|---|
 | ☑ | B73 | wind-flowers | 450×450 | `assets/img/scene/wind-flowers.webp` | 8fc24f9 | ☐ | P3 |
 | ☑ | B74 | wind-palm | 400×320 | `assets/img/scene/wind-palm.webp` | 8fc24f9 | ☐ | P3 |
+
+
+## 互動與環境精修交付
+
+| 提交 | ID | 圖片槽 | 尺寸 | 交付路徑 | commit | 審核 | 優先級 |
+|---|---|---|---|---|---|---|---|
+| ☑ | B75 | 沙塵連續圖集 | 1280×1280 | `assets/img/reveal/sand-vortex-atlas.webp` | c6f8443 | ☐ | P3 |
+| ☑ | B76 | 沙塵圖集原稿 | （人工） | `source/reveal/sand-vortex-sheet-original.png` | c6f8443 | ☐ | P3 |
+| ☑ | B77 | desert 景深圖層 | 750×1000 | `assets/img/scene/layers/desert.webp` | c6f8443 | ☐ | P3 |
+| ☑ | B78 | floor 景深圖層 | 750×1000 | `assets/img/scene/layers/floor.webp` | c6f8443 | ☐ | P3 |
+| ☑ | B79 | columns 景深圖層 | 750×1000 | `assets/img/scene/layers/columns.webp` | c6f8443 | ☐ | P3 |
+| ☑ | B80 | curtain 景深圖層 | 750×1000 | `assets/img/scene/layers/curtain.webp` | c6f8443 | ☐ | P3 |
+| ☑ | B81 | desert 原稿 | （人工） | `source/scene/layers/desert-original.png` | c6f8443 | ☐ | P3 |
+| ☑ | B82 | floor 原稿 | （人工） | `source/scene/layers/floor-original.png` | c6f8443 | ☐ | P3 |
+| ☑ | B83 | columns 原稿 | （人工） | `source/scene/layers/columns-original.png` | c6f8443 | ☐ | P3 |
+| ☑ | B84 | curtain 原稿 | （人工） | `source/scene/layers/curtain-original.png` | c6f8443 | ☐ | P3 |

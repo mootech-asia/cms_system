@@ -1,0 +1,60 @@
+[
+  {
+    "width": 360,
+    "independentLayers": 4,
+    "animated": true,
+    "reducedStatic": true,
+    "near": [
+      "0.694129",
+      "0.211952",
+      "0.828744",
+      "0.15142"
+    ],
+    "far": [
+      "0.907682",
+      "0.0895989",
+      "0.168849",
+      "0.337104"
+    ]
+  },
+  {
+    "width": 390,
+    "independentLayers": 4,
+    "animated": true,
+    "reducedStatic": true,
+    "near": [
+      "0.685947",
+      "0.213096",
+      "0.827433",
+      "0.159467"
+    ],
+    "far": [
+      "0.924495",
+      "0.0968116",
+      "0.21066",
+      "0.298527"
+    ]
+  },
+  {
+    "width": 1440,
+    "independentLayers": 4,
+    "animated": true,
+    "reducedStatic": true,
+    "near": [
+      "0.673998",
+      "0.2147",
+      "0.8247",
+      "0.171466"
+    ],
+    "far": [
+      "0.945776",
+      "0.135477",
+      "0.471158",
+      "0.116492"
+    ]
+  },
+  {
+    "failedLayerOriginalBackground": true,
+    "failedLayerCollects": true
+  }
+]

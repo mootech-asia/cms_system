@@ -1,0 +1,9 @@
+AssertionError [ERR_ASSERTION]: offscreen canvas changed
+    at /workspace/cms_system/scripts/verify-unbox-scenes.cjs:11:305 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

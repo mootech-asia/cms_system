@@ -1,0 +1,452 @@
+{
+  "conditions": "Chromium SwiftShader, 390x844, CPU 6x, cold cache, 1.6 Mbps / 150 ms; not physical-device FPS",
+  "report": [
+    {
+      "name": "20261118_card_pack",
+      "loadMs": 13397,
+      "taskMs": 487.32600000000036,
+      "revealTaskMs": 684.432000000001,
+      "frame": {
+        "frames": 118,
+        "meanMs": 16.9516949152353,
+        "maxMs": 50
+      },
+      "offscreenWebGLPaused": true,
+      "opened": true,
+      "resources": [
+        {
+          "name": "/event/20261118_card_pack/assets/img/scene/stage-bg.webp",
+          "bytes": 75532,
+          "duration": 2008
+        },
+        {
+          "name": "/event/shared/unbox-3d/vendor/three.min.js",
+          "bytes": 633270,
+          "duration": 5181
+        },
+        {
+          "name": "/event/shared/unbox-3d/css/unbox.css",
+          "bytes": 35681,
+          "duration": 1130
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/css/theme.css",
+          "bytes": 11168,
+          "duration": 500
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/loading-emblem.webp",
+          "bytes": 108168,
+          "duration": 2548
+        },
+        {
+          "name": "/event/shared/loading/loading.css",
+          "bytes": 8966,
+          "duration": 467
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/js/config.js",
+          "bytes": 15009,
+          "duration": 1141
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/skin.js",
+          "bytes": 1211,
+          "duration": 1315
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/i18n.js",
+          "bytes": 13713,
+          "duration": 1659
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/store.js",
+          "bytes": 3575,
+          "duration": 1577
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/sound.js",
+          "bytes": 7852,
+          "duration": 1787
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/share.js",
+          "bytes": 3994,
+          "duration": 2184
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/app.js",
+          "bytes": 29724,
+          "duration": 1421
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/atmosphere.js",
+          "bytes": 8236,
+          "duration": 504
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/reveal-vortex.js",
+          "bytes": 2246,
+          "duration": 450
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/secret-cycle.js",
+          "bytes": 1282,
+          "duration": 533
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/scene.js",
+          "bytes": 29382,
+          "duration": 1078
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/desert-depth.js",
+          "bytes": 1938,
+          "duration": 241
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/scene/atmosphere.webp",
+          "bytes": 117538,
+          "duration": 3477
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/star-glint.webp",
+          "bytes": 8800,
+          "duration": 400
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/scene/magic-circle.webp",
+          "bytes": 179294,
+          "duration": 5001
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/3d/pack-side.webp",
+          "bytes": 12988,
+          "duration": 511
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/3d/pack-front-1.webp",
+          "bytes": 140944,
+          "duration": 4199
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/3d/pack-back.webp",
+          "bytes": 137008,
+          "duration": 4109
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/3d/pack-contents.webp",
+          "bytes": 19612,
+          "duration": 4836
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/3d/pack-crimp.webp",
+          "bytes": 11252,
+          "duration": 4769
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/3d/pack-front-2.webp",
+          "bytes": 105356,
+          "duration": 6305
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/icon/icon-share.svg",
+          "bytes": 1294,
+          "duration": 4904
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/3d/pack-front-3.webp",
+          "bytes": 174270,
+          "duration": 6854
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/title/title-en.webp",
+          "bytes": 85012,
+          "duration": 3044
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/icon/icon-tap.svg",
+          "bytes": 1423,
+          "duration": 4333
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/btn-arrow.webp",
+          "bytes": 17988,
+          "duration": 3169
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/reveal/reveal-rays.svg",
+          "bytes": 3114,
+          "duration": 5002
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/icon/icon-rotate.svg",
+          "bytes": 1331,
+          "duration": 5031
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/icon/icon-sound-on.svg",
+          "bytes": 1253,
+          "duration": 5069
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/tool-medallion.webp",
+          "bytes": 9858,
+          "duration": 4487
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/period-badge.webp",
+          "bytes": 26466,
+          "duration": 4084
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/chances-badge.webp",
+          "bytes": 42310,
+          "duration": 4711
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/btn-primary.webp",
+          "bytes": 59116,
+          "duration": 2445
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/ticker-bar.webp",
+          "bytes": 53184,
+          "duration": 4583
+        },
+        {
+          "name": "/event/20261118_card_pack/assets/img/ui/panel-frame.webp",
+          "bytes": 112184,
+          "duration": 6616
+        },
+        {
+          "name": "/favicon.ico",
+          "bytes": 335,
+          "duration": 161
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "20261118_blind_box",
+      "loadMs": 13932,
+      "taskMs": 1175.3780000000002,
+      "revealTaskMs": 974.0470000000006,
+      "frame": {
+        "frames": 38,
+        "meanMs": 53.94473684210525,
+        "maxMs": 83.39999999999964
+      },
+      "offscreenWebGLPaused": true,
+      "opened": true,
+      "resources": [
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/stage-bg.webp",
+          "bytes": 195524,
+          "duration": 3308
+        },
+        {
+          "name": "/event/shared/unbox-3d/vendor/three.min.js",
+          "bytes": 633270,
+          "duration": 5509
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/css/theme.css",
+          "bytes": 10081,
+          "duration": 473
+        },
+        {
+          "name": "/event/shared/unbox-3d/css/unbox.css",
+          "bytes": 35681,
+          "duration": 1121
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/loading-emblem.webp",
+          "bytes": 56938,
+          "duration": 1662
+        },
+        {
+          "name": "/event/shared/loading/loading.css",
+          "bytes": 8966,
+          "duration": 472
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/js/config.js",
+          "bytes": 14496,
+          "duration": 1069
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/skin.js",
+          "bytes": 1211,
+          "duration": 1257
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/i18n.js",
+          "bytes": 13713,
+          "duration": 1631
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/store.js",
+          "bytes": 3575,
+          "duration": 1527
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/sound.js",
+          "bytes": 7852,
+          "duration": 1752
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/share.js",
+          "bytes": 3994,
+          "duration": 2096
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/app.js",
+          "bytes": 29724,
+          "duration": 1414
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/atmosphere.js",
+          "bytes": 8236,
+          "duration": 443
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/reveal-vortex.js",
+          "bytes": 2246,
+          "duration": 422
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/secret-cycle.js",
+          "bytes": 1282,
+          "duration": 429
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/scene.js",
+          "bytes": 29382,
+          "duration": 969
+        },
+        {
+          "name": "/event/shared/unbox-3d/js/desert-depth.js",
+          "bytes": 1938,
+          "duration": 221
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/layers/desert.webp",
+          "bytes": 85902,
+          "duration": 2637
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/layers/floor.webp",
+          "bytes": 133532,
+          "duration": 3881
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/layers/curtain.webp",
+          "bytes": 48268,
+          "duration": 1622
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/layers/columns.webp",
+          "bytes": 101432,
+          "duration": 3075
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/atmosphere.webp",
+          "bytes": 117960,
+          "duration": 3548
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/wind-flowers.webp",
+          "bytes": 52916,
+          "duration": 1750
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/scene/wind-palm.webp",
+          "bytes": 59948,
+          "duration": 5674
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/3d/chest-side.webp",
+          "bytes": 65652,
+          "duration": 5836
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/3d/chest-interior.webp",
+          "bytes": 50664,
+          "duration": 5889
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/3d/chest-front.webp",
+          "bytes": 130986,
+          "duration": 6848
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/3d/chest-lid.webp",
+          "bytes": 144826,
+          "duration": 7223
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/title/title-en.webp",
+          "bytes": 101626,
+          "duration": 5506
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/icon/icon-share.svg",
+          "bytes": 1294,
+          "duration": 5694
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/btn-arrow.webp",
+          "bytes": 18902,
+          "duration": 2483
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/icon/icon-tap.svg",
+          "bytes": 1423,
+          "duration": 3803
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/icon/icon-rotate.svg",
+          "bytes": 1331,
+          "duration": 5895
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/icon/icon-sound-on.svg",
+          "bytes": 1253,
+          "duration": 5881
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/tool-medallion.webp",
+          "bytes": 8428,
+          "duration": 3946
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/period-badge.webp",
+          "bytes": 31800,
+          "duration": 3574
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/chances-badge.webp",
+          "bytes": 46298,
+          "duration": 4357
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/btn-primary.webp",
+          "bytes": 63808,
+          "duration": 3573
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/ticker-bar.webp",
+          "bytes": 56238,
+          "duration": 5250
+        },
+        {
+          "name": "/event/20261118_blind_box/assets/img/ui/panel-crown.webp",
+          "bytes": 70436,
+          "duration": 6979
+        }
+      ],
+      "errors": []
+    }
+  ]
+}
