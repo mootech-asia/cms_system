@@ -1,0 +1,122 @@
+[
+  {
+    "type": "card_pack",
+    "lang": "en",
+    "width": 360,
+    "legacyRecords": 6,
+    "icons": 7,
+    "shareAndMute": true,
+    "collected": true,
+    "errors": []
+  },
+  {
+    "type": "card_pack",
+    "lang": "en",
+    "width": 1440,
+    "legacyRecords": 6,
+    "icons": 7,
+    "shareAndMute": true,
+    "collected": true,
+    "errors": []
+  },
+  {
+    "type": "card_pack",
+    "lang": "ko",
+    "width": 360,
+    "legacyRecords": 6,
+    "icons": 7,
+    "shareAndMute": true,
+    "collected": true,
+    "errors": []
+  },
+  {
+    "type": "card_pack",
+    "lang": "ko",
+    "width": 1440,
+    "legacyRecords": 6,
+    "icons": 7,
+    "shareAndMute": true,
+    "collected": true,
+    "errors": []
+  },
+  {
+    "type": "card_pack",
+    "lang": "th",
+    "width": 360,
+    "legacyRecords": 6,
+    "icons": 7,
+    "shareAndMute": true,
+    "collected": true,
+    "errors": []
+  },
+  {
+    "type": "card_pack",
+    "lang": "th",
+    "width": 1440,
+    "legacyRecords": 6,
+    "icons": 7,
+    "shareAndMute": true,
+    "collected": true,
+    "errors": []
+  },
+  {
+    "type": "blind_box",
+    "lang": "en",
+    "width": 360,
+    "legacyRecords": 6,
+    "icons": 7,
+    "shareAndMute": true,
+    "collected": true,
+    "errors": []
+  },
+  {
+    "type": "blind_box",
+    "lang": "en",
+    "width": 1440,
+    "legacyRecords": 6,
+    "icons": 7,
+    "shareAndMute": true,
+    "collected": true,
+    "errors": []
+  },
+  {
+    "type": "blind_box",
+    "lang": "ko",
+    "width": 360,
+    "legacyRecords": 6,
+    "icons": 7,
+    "shareAndMute": true,
+    "collected": true,
+    "errors": []
+  },
+  {
+    "type": "blind_box",
+    "lang": "ko",
+    "width": 1440,
+    "legacyRecords": 6,
+    "icons": 7,
+    "shareAndMute": true,
+    "collected": true,
+    "errors": []
+  },
+  {
+    "type": "blind_box",
+    "lang": "th",
+    "width": 360,
+    "legacyRecords": 6,
+    "icons": 7,
+    "shareAndMute": true,
+    "collected": true,
+    "errors": []
+  },
+  {
+    "type": "blind_box",
+    "lang": "th",
+    "width": 1440,
+    "legacyRecords": 6,
+    "icons": 7,
+    "shareAndMute": true,
+    "collected": true,
+    "errors": []
+  }
+]
