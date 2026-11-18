@@ -1,0 +1,24 @@
+[
+  {
+    "event": "blind_box",
+    "sourceCommit": "eb48514",
+    "sha256": "53b4847729b9c03e1a5bc613482b6a798ae223d94248369611c3757d03b9a752",
+    "bytes": 960931,
+    "src": "http://127.0.0.1:8895/event/20261118_blind_box/assets/audio/bgm.mp3?v=20261118-bgm-restore1",
+    "duration": 60,
+    "looped": true,
+    "muted": true,
+    "resumed": true
+  },
+  {
+    "event": "card_pack",
+    "sourceCommit": "eb48514",
+    "sha256": "9c61bfcd9032c07c30d6b881748d492c87a8c3c5d24002d2435f2f2a03db23f0",
+    "bytes": 1229678,
+    "src": "http://127.0.0.1:8895/event/20261118_card_pack/assets/audio/bgm.mp3?v=20261118-bgm-restore1",
+    "duration": 76.8,
+    "looped": true,
+    "muted": true,
+    "resumed": true
+  }
+]
