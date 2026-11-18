@@ -1,0 +1,34 @@
+[
+  {
+    "name": "20261111_lucky_wheel",
+    "desktop": true,
+    "narrowDesktop": true,
+    "wheel": 515,
+    "keyboard": 515,
+    "scrollables": []
+  },
+  {
+    "name": "20261111_survival_spin",
+    "desktop": true,
+    "narrowDesktop": true,
+    "wheel": 515,
+    "keyboard": 515,
+    "scrollables": []
+  },
+  {
+    "name": "20261118_card_pack",
+    "desktop": true,
+    "narrowDesktop": true,
+    "wheel": 650,
+    "keyboard": 787,
+    "scrollables": []
+  },
+  {
+    "name": "20261118_blind_box",
+    "desktop": true,
+    "narrowDesktop": true,
+    "wheel": 650,
+    "keyboard": 787,
+    "scrollables": []
+  }
+]
