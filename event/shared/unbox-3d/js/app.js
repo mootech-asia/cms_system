@@ -186,7 +186,7 @@ function setMascot(next) {
       renderAssetLabels();
     };
     var loop = M.loopMs;
-    if (!mascotShownAt || !loop || (M.motion && next === 'anticipate')) { swap(); return; }
+    if (!mascotShownAt || !loop || (M.motion && next !== 'idle')) { swap(); return; }
     mascotTimer = setTimeout(swap, (loop - (performance.now() - mascotShownAt) % loop) % loop);
   });
 }
@@ -619,14 +619,19 @@ function closeReveal() {
   reveal.hidden = true;
   if (!treasureMode) Sound.play(rewards.every(Store.isEmpty) ? 'click' : 'collect');
   Sound.duck(false);
-  var emptyResult = rewards.length && rewards.every(Store.isEmpty);
-  if (rewards.length) mascotReact(rewards);
+  var result = rewards;
   rewards = [];
   if (scene) scene.setMode('select');
   setState('select');
   syncSecret();
-  sceneEl.focus();
-  if (treasureMode && emptyResult) sceneEl.scrollIntoView({ block: 'center', behavior: 'instant' });
+  sceneEl.focus({ preventScroll: treasureMode });
+  if (treasureMode) {
+    var sceneTop = sceneEl.getBoundingClientRect().top;
+    if (sceneTop < 24 || sceneTop > innerHeight * 0.45) {
+      window.scrollTo({ top: scrollY + sceneTop - 24, behavior: 'instant' });
+    }
+  }
+  if (result.length) mascotReact(result);
 }
 
 // ---------- 音效／語系 ----------

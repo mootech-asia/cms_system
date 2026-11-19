@@ -19,7 +19,7 @@ window.EVENT_CONFIG = {
   atmosphereMode: 'petals-and-sand',
   mascot: {
     poster: 'assets/img/mascot/spirit/poster.webp?v=20261119-hd-motion',
-    motion: 'assets/js/spirit-motion.js?v=20261119-four-poses',
+    motion: 'assets/js/spirit-motion.js?v=20261119-readable-poses',
     loopMs: 2000, layout: 'hero'
   },
   shape: 'chest',

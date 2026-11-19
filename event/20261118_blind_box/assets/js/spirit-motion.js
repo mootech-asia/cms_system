@@ -7,37 +7,63 @@ function createSpiritRig(canvas, source) {
   vec2 turn(vec2 p,vec2 pivot,float a){float c=cos(a),s=sin(a);p-=pivot;return pivot+mat2(c,s,-s,c)*p;}
   void main(){
     uv=(point+vec2(161.,450.))/vec2(1500.,1875.); vec2 p=point;
-    float wave=sin(phase), pulse=(1.-cos(phase))*.5;
-    float torso=gate(260.,370.,p.y)*(1.-gate(560.,670.,p.y));
-    float core=gate(330.,475.,p.x)*(1.-gate(755.,885.,p.x));
-    p.x+=(p.x-625.)*.014*pulse*torso*core;
-    p.y-=7.*pulse*core*(1.-gate(600.,760.,p.y));
-    float armBand=gate(270.,360.,point.y)*(1.-gate(580.,660.,point.y));
-    float left=(1.-gate(380.,500.,point.x))*armBand;
-    float right=gate(745.,875.,point.x)*armBand;
-    // Expectation leans toward the chest; celebration opens both arms with two lifts.
-    bool anticipating = mood > 2.5;
-    float cheer = pulse * (.72 + .28 * cos(phase * 2.));
-    float leftLift = mood < .5 ? .025 * wave : mood < 1.5 ? .25 * cheer : -.044 * pulse;
-    float rightLift = mood < 1.5 ? -leftLift : -.12 * pulse;
-    if (anticipating) {
-      leftLift = -.12 * pulse;
-      rightLift = .10 * pulse;
-      p.x += (625. - point.x) * .14 * pulse * max(left, right);
-      p.y += torso * core * 12. * pulse;
+    float time = phase / 6.2831853;
+    float wave = sin(phase);
+    float breath = (1. - cos(phase)) * .5;
+    float gesture = smoothstep(.02, .27, time) * (1. - smoothstep(.61, .98, time));
+    float torso = gate(260., 370., point.y) * (1. - gate(560., 670., point.y));
+    float core = gate(330., 475., point.x) * (1. - gate(755., 885., point.x));
+    float head = (1. - gate(265., 335., point.y)) * gate(350., 430., point.x)
+                 * (1. - gate(755., 825., point.x));
+    float armBand = gate(270., 369., point.y) * (1. - gate(626., 696., point.y));
+    float left = (1. - gate(390., 505., point.x)) * armBand;
+    float right = gate(738., 860., point.x) * armBand;
+    float leftLift = .045 * wave;
+    float rightLift = -.045 * wave;
+    float nod = .023 * wave;
+    vec2 shift = vec2(5. * wave, -13. * breath);
+    float smokeTravel = 27.;
+    float mouthMove = 0.;
+
+    if (mood > 2.5) {
+      // Lean toward the chest and draw both hands inward.
+      leftLift = -.29 * gesture;
+      rightLift = .28 * gesture;
+      p.x += (625. - point.x) * .19 * gesture * max(left, right);
+      nod = .20 * gesture;
+      shift = vec2(32., 33.) * gesture;
+      smokeTravel = 37.;
+      mouthMove = -.26;
+    } else if (mood > 1.5) {
+      // Tilt the head and beckon twice with one hand.
+      leftLift = -.17 * gesture;
+      rightLift = (-.49 + .16 * sin(phase * 3.)) * gesture;
+      nod = (-.17 + .045 * sin(phase * 2.)) * gesture;
+      shift = vec2(-39., 13.) * gesture;
+      smokeTravel = 36.;
+      mouthMove = -.21;
+    } else if (mood > .5) {
+      // Raise both hands, with a second upward bounce before landing.
+      float bounce = gesture * (.8 + .2 * cos(phase * 2.));
+      leftLift = .52 * bounce;
+      rightLift = -.55 * bounce;
+      nod = -.11 * bounce;
+      shift = vec2(2., -43.) * bounce;
+      smokeTravel = 49.;
+      mouthMove = .18;
     }
-    p=mix(p,turn(p,vec2(445.,355.),leftLift),left);
-    p=mix(p,turn(p,vec2(785.,355.),rightLift),right);
-    float head=(1.-gate(270.,335.,point.y))*gate(350.,430.,point.x)*(1.-gate(755.,825.,point.x));
-    float nod=mood<.5?.018*wave:mood<1.5?-.052*cheer:.075*pulse;
-    if (anticipating) nod = .115 * pulse;
-    p=mix(p,turn(p,vec2(625.,305.),nod),head);
-    p.y+=head*(mood<.5?-5.*pulse:mood<1.5?-24.*cheer:anticipating?19.*pulse:7.*pulse);
-    float mouth=gate(575.,607.,point.x)*(1.-gate(660.,678.,point.x))*gate(178.,197.,point.y)*(1.-gate(220.,245.,point.y));
-    p.y+=(point.y-204.)*mouth*pulse*(mood<.5?0.:mood<1.5?.12:-.30);
-    float smoke=gate(590.,710.,point.y)*(1.-gate(990.,1110.,point.y));
-    p.x+=smoke*(22.*sin(phase+point.y*.006)-22.*sin(point.y*.006));
-    p.y+=smoke*9.*(cos(phase+point.x*.004)-cos(point.x*.004));
+
+    p.x += (point.x - 625.) * .022 * breath * torso * core;
+    p = mix(p, turn(p, vec2(445., 355.), leftLift), left);
+    p = mix(p, turn(p, vec2(785., 355.), rightLift), right);
+    p = mix(p, turn(p, vec2(625., 305.), nod), head);
+    p += shift * (1. - gate(571., 782., point.y));
+    float mouth = gate(575., 607., point.x) * (1. - gate(660., 678., point.x))
+                  * gate(178., 197., point.y) * (1. - gate(220., 245., point.y));
+    p.y += (point.y - 204.) * mouth * gesture * mouthMove;
+    float smoke = gate(599., 710., point.y) * (1. - gate(990., 1104., point.y));
+    p.x += smoke * smokeTravel * (sin(phase + point.y * .006) - sin(point.y * .006));
+    p.y += smoke * 12. * (cos(phase + point.x * .004) - cos(point.x * .004));
     vec2 outp=(p+vec2(161.,450.))/vec2(1500.,1875.);
     gl_Position=vec4(outp.x*2.-1.,1.-outp.y*2.,0.,1.);
   }`;
