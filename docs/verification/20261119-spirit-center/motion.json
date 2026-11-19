@@ -1,0 +1,23 @@
+[
+  {
+    "rarity": "common",
+    "idle": true,
+    "anticipate": true,
+    "reaction": "lose",
+    "reduced": true,
+    "offscreen": true,
+    "independentDesertLayers": 2
+  },
+  {
+    "rarity": "rare",
+    "idle": true,
+    "anticipate": true,
+    "reaction": "celebrate",
+    "reduced": true,
+    "offscreen": true,
+    "independentDesertLayers": 2
+  },
+  {
+    "animationFailureKeepsPoster": true
+  }
+]
