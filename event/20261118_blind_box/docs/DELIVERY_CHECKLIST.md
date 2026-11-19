@@ -59,7 +59,7 @@
 | ☑ | B35 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `alternatives/assets/audio/reveal.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B36 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `alternatives/assets/audio/pre-minimal/reward.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B37 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | d5de138 | ☐ | P3 |
-| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 66f3940 | ☐ | P2 |
+| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 0914a85 | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -212,6 +212,6 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 | 提交 | ID | 素材 | 尺寸 | 路徑 | commit | 審核 | 優先級 |
 |---|---|---|---|---|---|---|---|
 | ☑ | N07 | 高解析精靈原稿 | 1254×1254 | `source/desert-spirit-hd/master.png` | 608c225 | ☐ | P3 |
-| ☑ | N08 | 精靈動畫 | （人工） | `assets/js/spirit-motion.js` | 66f3940 | ☐ | P3 |
+| ☑ | N08 | 精靈動畫 | （人工） | `assets/js/spirit-motion.js` | 0914a85 | ☐ | P3 |
 | ☑ | N09 | 沙塵流場貼圖 | 1254×1254 | `assets/img/reveal/sand-vortex.webp` | 608c225 | ☐ | P3 |
 | ☑ | N10 | 沙塵原稿 | 1254×1254 | `source/reveal/sand-vortex-original.png` | 608c225 | ☐ | P3 |
