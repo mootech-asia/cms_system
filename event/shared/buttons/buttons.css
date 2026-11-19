@@ -1,5 +1,5 @@
 /* Shared utility artwork; hit areas and placement remain owned by each event. */
-:root { --ev-control-tint: hue-rotate(0deg); --ev-control-ink: #fff4cd; }
+:root { --ev-control-size: 36px; --ev-control-tint: hue-rotate(0deg); --ev-control-ink: #fff4cd; }
 body[data-event-controls="cosmic"] { --ev-control-tint: hue-rotate(305deg); }
 body[data-event-controls="desert"] { --ev-control-tint: hue-rotate(175deg); }
 body[data-event-controls="gold"] { --ev-control-tint: hue-rotate(85deg); }
@@ -9,7 +9,8 @@ body :is(#btnShare,#btnSound,#btnPrev,#btnNext) {
 }
 body :is(#btnShare,#btnSound,#btnPrev,#btnNext) > :is(img,svg) { display: none; }
 body :is(#btnShare,#btnSound,#btnPrev,#btnNext)::before {
-  content: ""; display: block; position: absolute; inset: 0;
+  content: ""; display: block; position: absolute; inset: 50% auto auto 50%;
+  width: var(--ev-control-size); height: var(--ev-control-size); translate: -50% -50%;
   border: 0; border-radius: 0; opacity: 1; pointer-events: none;
   background: var(--ev-control-art) center / contain no-repeat;
   filter: var(--ev-control-tint); transform: none;
@@ -21,13 +22,13 @@ body #btnSound[aria-pressed="false"] { --ev-control-art: url("img/icon-sound-off
 body :is(#btnPrev,#btnNext) { --ev-control-art: url("img/arrow-frame.webp"); }
 body :is(#btnShare,#btnSound)::after { display: none; }
 body :is(#btnPrev,#btnNext)::after {
-  content: ""; display: block; position: absolute; width: 26%; height: 26%;
-  top: 50%; left: 46%; border: 0; border-top: 5px solid var(--ev-control-ink);
-  border-right: 5px solid var(--ev-control-ink); border-radius: 2px;
+  content: ""; display: block; position: absolute; width: calc(var(--ev-control-size) * .26); height: calc(var(--ev-control-size) * .26);
+  top: 50%; left: calc(50% - var(--ev-control-size) * .04); border: 0; border-top: calc(var(--ev-control-size) * .093) solid var(--ev-control-ink);
+  border-right: calc(var(--ev-control-size) * .093) solid var(--ev-control-ink); border-radius: 2px;
   background: none; box-shadow: 1px -1px 1px #60312a;
   transform: translate(-50%,-50%) rotate(45deg); pointer-events: none;
 }
-body #btnPrev::after { left: 54%; transform: translate(-50%,-50%) rotate(-135deg); }
+body #btnPrev::after { left: calc(50% + var(--ev-control-size) * .04); transform: translate(-50%,-50%) rotate(-135deg); }
 @media (hover: hover) {
   body :is(#btnShare,#btnSound,#btnPrev,#btnNext):hover::before {
     opacity: 1; filter: var(--ev-control-tint) brightness(1.14); scale: 1.04;
