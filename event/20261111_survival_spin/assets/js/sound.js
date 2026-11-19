@@ -536,12 +536,22 @@ window.EventSound = (function () {
     } catch (e) { /* Audio restrictions must not block the draw. */ }
   }
 
+  var spinNodes = [];
+  function stopSpin() {
+    spinNodes.forEach(function (node) {
+      try { if (node.pause) node.pause(); else node.stop(); } catch (e) { /* Already ended. */ }
+    });
+    spinNodes = [];
+  }
+
   function drumroll(ms) {
     if (!enabled) return;
     bgmDuck(true);
-    if (cfg.sounds.drumroll) { playFile(cfg.sounds.drumroll); return; }
-    if (!ensure()) return;
-    profile().drumroll(ms);
+    stopSpin();
+    var first = playing.length;
+    if (cfg.sounds.drumroll) playFile(cfg.sounds.drumroll);
+    else if (ensure()) profile().drumroll(ms);
+    spinNodes = playing.slice(first);
   }
 
   function finale(isLose) {
@@ -588,6 +598,7 @@ window.EventSound = (function () {
     hover: hover,
     click: click,
     drumroll: drumroll,
+    stopSpin: stopSpin,
     finale: finale,
     reward: reward,
     bgmDuck: bgmDuck,

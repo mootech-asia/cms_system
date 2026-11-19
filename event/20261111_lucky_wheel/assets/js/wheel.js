@@ -55,6 +55,7 @@
 
   function skipSpin() {
     if (!spinning) return;
+    Sound.stopSpin();
     if (autoResults) autoFast = true;
     if (spinFinish) spinFinish();
     if (resultFinish) resultFinish();

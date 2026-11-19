@@ -17,6 +17,11 @@ async function pageFor(browser, event, { chances=20, lose=false, duration=80, lo
   },{chances,lose,duration,empty});
   await page.goto(`${base}/event/${event}/?lang=${locale}`);
   await page.locator('#loading').waitFor({state:'hidden'});
+  await page.evaluate(()=>{
+    const stop=EventSound.stopSpin;
+    window.skipSoundStops=0;
+    EventSound.stopSpin=()=>{ window.skipSoundStops++; stop(); };
+  });
   return {page,errors};
 }
 
@@ -36,6 +41,7 @@ async function pageFor(browser, event, { chances=20, lose=false, duration=80, lo
    await p.locator('#btnClose').click();
    await p.locator('#btnSpin').click();
    await p.locator('#btnSkipSpin').click();
+   assert.equal(await p.evaluate(()=>skipSoundStops),1);
    await p.locator('#resultModal').waitFor({state:'visible'});
    assert(await p.locator('#autoResults').isHidden());
    await p.waitForTimeout(200);
