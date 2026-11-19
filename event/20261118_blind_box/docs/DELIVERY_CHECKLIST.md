@@ -59,7 +59,7 @@
 | ☑ | B35 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `alternatives/assets/audio/reveal.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B36 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `alternatives/assets/audio/pre-minimal/reward.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B37 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | d5de138 | ☐ | P3 |
-| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 74b3d48 | ☐ | P2 |
+| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 608c225 | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -169,8 +169,8 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 
 | 提交 | ID | 圖片槽 | 尺寸 | 交付路徑 | commit | 審核 | 優先級 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B75 | 沙塵連續圖集 | 1280×1280 | `assets/img/reveal/sand-vortex-atlas.webp` | d5de138 | ☐ | P3 |
-| ☑ | B76 | 沙塵圖集原稿 | （人工） | `source/reveal/sand-vortex-sheet-original.png` | d5de138 | ☐ | P3 |
+| ☑ | B75 | 沙塵連續圖集 | 1280×1280 | `alternatives/assets/img/reveal/pre-hd-motion/sand-vortex-atlas.webp` | 608c225 | ☐ | P3 |
+| ☑ | B76 | 沙塵圖集原稿 | （人工） | `alternatives/source/reveal/pre-hd-motion/sand-vortex-sheet-original.png` | 608c225 | ☐ | P3 |
 | ☑ | B77 | desert 景深圖層 | 750×1000 | `alternatives/assets/img/scene/layers/desert.webp` | d5de138 | ☐ | P3 |
 | ☑ | B78 | floor 景深圖層 | 750×1000 | `alternatives/assets/img/scene/layers/floor.webp` | d5de138 | ☐ | P3 |
 | ☑ | B79 | columns 景深圖層 | 750×1000 | `alternatives/assets/img/scene/layers/columns.webp` | d5de138 | ☐ | P3 |
@@ -185,7 +185,7 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 
 | 提交 | ID | 圖片槽 | 尺寸 | 交付路徑 | commit | 審核 | 優先級 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B85 | 舊版 renderer 沙塵退回圖 | 320×320 | `assets/img/reveal/sand-vortex-poster.webp` | d5de138 | ☐ | P3 |
+| ☑ | B85 | 舊版 renderer 沙塵退回圖 | 320×320 | `alternatives/assets/img/reveal/pre-hd-motion/sand-vortex-poster.webp` | 608c225 | ☐ | P3 |
 
 - 2026-11-18：套用使用者上傳音訊包（4dc5bce）；MP3 原檔與 WAV 母帶均保留。四級揭曉使用獨立音檔，舊 reveal 不再預載。卡包 hover 與隱藏包提示音維持既有版本；提交不代表主觀聽感終審。
 
@@ -195,16 +195,23 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
 | ☑ | N01 | open-desert | 750×1125 | `assets/img/scene/open-desert.webp` | d5de138 | ☐ | P0 |
-| ☑ | N02 | spirit-poster | 400×500 | `assets/img/mascot/spirit/poster.webp` | 2897d34 | ☐ | P3 |
-| ☑ | N03 | spirit-idle | 400×500 | `assets/img/mascot/spirit/idle.webp` | 2897d34 | ☐ | P3 |
-| ☑ | N04 | spirit-excited | 400×500 | `assets/img/mascot/spirit/excited.webp` | 2897d34 | ☐ | P3 |
-| ☑ | N05 | spirit-encourage | 400×500 | `assets/img/mascot/spirit/encourage.webp` | 2897d34 | ☐ | P3 |
-| ☑ | N06 | character-sheet | 1536×1024 | `source/desert-spirit/character-sheet.png` | d5de138 | ☐ | P0 |
+| ☑ | N02 | spirit-poster | 1500×1875 | `assets/img/mascot/spirit/poster.webp` | 608c225 | ☐ | P3 |
+| ☑ | N03 | spirit-idle | 400×500 | `alternatives/assets/img/mascot/spirit-pre-hd/idle.webp` | 608c225 | ☐ | P3 |
+| ☑ | N04 | spirit-excited | 400×500 | `alternatives/assets/img/mascot/spirit-pre-hd/excited.webp` | 608c225 | ☐ | P3 |
+| ☑ | N05 | spirit-encourage | 400×500 | `alternatives/assets/img/mascot/spirit-pre-hd/encourage.webp` | 608c225 | ☐ | P3 |
+| ☑ | N06 | character-sheet | 1536×1024 | `alternatives/source/desert-spirit-pre-hd/character-sheet.png` | 608c225 | ☐ | P0 |
 
-舊柱廊／布簾／宮殿地磚保留為歷史原稿，當前 config 不再載入。動態原始幀、2 秒循環與透明邊界驗證見 `source/desert-spirit/motion-checks.json`。
+舊版精靈影格及沙塵圖集移至備選。新版精靈由原稿繪製待機、興奮與再接再厲三種姿勢，每秒 12 幀、各循環 2 秒。沙塵以每秒 12 幀連續流動，循環 12 秒。
 
 | ☑ | N07 | 寶藏展示底座 | 900×291 | `assets/img/ui/treasure-plinth.webp` | d5de138 | ☐ | P1 |
 
 | 提交 | ID | 素材 | 尺寸 | 路徑 | commit | 審核 | 優先級 |
 |---|---|---|---|---|---|---|---|
 | ☑ | N08 | 主題狀態徽章 | 1536×1024 | `../shared/unbox-3d/img/status-badges.webp` | d5de138 | ☐ | P1 |
+
+| 提交 | ID | 素材 | 尺寸 | 路徑 | commit | 審核 | 優先級 |
+|---|---|---|---|---|---|---|---|
+| ☑ | N07 | 高解析精靈原稿 | 1254×1254 | `source/desert-spirit-hd/master.png` | 608c225 | ☐ | P3 |
+| ☑ | N08 | 精靈動畫 | （人工） | `assets/js/spirit-motion.js` | 608c225 | ☐ | P3 |
+| ☑ | N09 | 沙塵流場貼圖 | 1254×1254 | `assets/img/reveal/sand-vortex.webp` | 608c225 | ☐ | P3 |
+| ☑ | N10 | 沙塵原稿 | 1254×1254 | `source/reveal/sand-vortex-original.png` | 608c225 | ☐ | P3 |
