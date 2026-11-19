@@ -336,7 +336,7 @@ export function createScene(stage, opts) {
     if (chest) {
       const backdrop = stage.closest('.ev-stage').getBoundingClientRect();
       const cover = Math.max(backdrop.width / 750, backdrop.height / (opts.sceneArt?.height || 1000));
-      const horizon = backdrop.top + backdrop.height - (opts.sceneArt?.horizonFromBottom || 535) * cover - r.top;
+      const horizon = opts.sceneArt?.horizonFraction != null ? r.height * opts.sceneArt.horizonFraction : backdrop.top + backdrop.height - (opts.sceneArt?.horizonFromBottom || 535) * cover - r.top;
       const focal = r.height / (2 * Math.tan(camera.fov * Math.PI / 360));
       camera.position.y = .05;
       camera.lookAt(0, .05 - (r.height / 2 - horizon) / focal * 7.6, 0);

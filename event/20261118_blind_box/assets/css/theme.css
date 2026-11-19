@@ -114,9 +114,9 @@
 
 /* The arched metal cap joins the panel's side rails rather than floating above it. */
 :root { --ev-vault-base:#102c2d; --ev-vault-face:#183d3b; --ev-vault-ink:#f5e6c8; --ev-vault-muted:#bda786; --ev-vault-metal:#b98538; --ev-vault-shine:#efd092; }
-.ev-ticker { height:64px; border:0; border-radius:0; padding:12px 28px 12px 43px; gap:12px; background:var(--ev-img-tickerBar) center / 100% 100% no-repeat; box-shadow:none; }
+.ev-ticker { height:64px; border:0; border-radius:0; padding:12px 8% 12px 16%; gap:14px; background:var(--ev-img-tickerBar) center / 100% 100% no-repeat; box-shadow:none; }
 .ev-ticker::before { display:none; }
-.ev-ticker-label { width:auto; max-width:30%; height:auto; border:0; border-right:1px solid var(--ev-folio-edge); border-radius:0; background:none; box-shadow:none; padding:0 12px 0 0; color:var(--ev-vault-shine); font-family:Georgia,serif; font-size:13px; font-weight:400; }
+.ev-ticker-label { width:auto; max-width:38%; height:auto; border:0; border-right:1px solid var(--ev-folio-edge); border-radius:0; background:none; box-shadow:none; padding:0 14px 0 0; color:var(--ev-vault-shine); font-family:Georgia,serif; font-size:13px; font-weight:400; }
 .ev-ticker-label::before { display:none; }
 .ev-ticker-items { font-size:11px; font-weight:500; color:var(--ev-vault-ink); }
 .ev-card { isolation:isolate; padding:0 24px 26px; border:0; border-radius:0; background:none; color:var(--ev-vault-ink); box-shadow:none; --ev-folio-line:rgb(239 208 146 / .2); --ev-folio-accent:var(--ev-vault-shine); --ev-folio-muted:var(--ev-vault-muted); }
@@ -167,4 +167,14 @@
 
 /* Near sand stays more defined while distant dunes drift in and out of focus. */
 .ev-depth-floor { mask-image:linear-gradient(transparent 0 48%,#000 66%); }
-.ev-scene.is-flat .ev-mascot { display:block; width:180px; height:225px; left:52%; top:-65px; }
+/* Oversized character art is fitted to the H5 width with its transparent margins intact. */
+.ev-spirit-stage { position:relative; height:min(90vw,432px); margin:0 calc(var(--ev-space-4) * -1); pointer-events:none; }
+.ev-spirit-stage .ev-mascot { width:min(100vw,480px); height:auto; left:50%; top:-18%; transform:translateX(-50%); }
+.ev-spirit-stage + .ev-scene { margin-top:-72px; margin-bottom:-100px; height:min(108vw,480px); clip-path:inset(0 0 100px); }
+.ev-swipe-cue { left:50%; top:30%; transform:translateX(-50%); }
+.ev-ticker-label { flex-shrink:0; white-space:nowrap; letter-spacing:.02em; }
+.ev-ticker-track { mask-image:linear-gradient(90deg,transparent,#000 14px,#000 calc(100% - 14px),transparent); }
+
+
+.ev-spirit-stage + .ev-scene .ev-pick-label { bottom:110px; }
+.ev-spirit-stage + .ev-scene .ev-arrow { top:35%; }

@@ -14,7 +14,7 @@ window.EVENT_CONFIG = {
   /* 整個 3D 環形（包裝、間距、吉祥物）的縮放倍率 */
   sceneScale: 1,
   /* 3D 外型：'chest'＝圓拱蓋寶箱（蓋子沿後緣掀開）；不填＝方盒 */
-  sceneArt: { height: 1125, horizonFromBottom: 660 },
+  sceneArt: { height: 1125, horizonFromBottom: 660, horizonFraction: .12 },
   atmosphereMode: 'sand',
   mascot: {
     poster: 'assets/img/mascot/spirit/poster.webp?v=20261119-desert1',
@@ -22,7 +22,7 @@ window.EVENT_CONFIG = {
     anticipate: 'assets/img/mascot/spirit/excited.webp?v=20261119-desert1',
     celebrate: 'assets/img/mascot/spirit/excited.webp?v=20261119-desert1',
     lose: 'assets/img/mascot/spirit/encourage.webp?v=20261119-desert1',
-    loopMs: 2000, height: 4.1, offsetX: 1.0, offsetZ: -1.5
+    loopMs: 2000, layout: 'hero'
   },
   shape: 'chest',
 

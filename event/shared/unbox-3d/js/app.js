@@ -5,7 +5,7 @@
 import { createAtmosphere } from './atmosphere.js?v=20261119-desert1';
 import { createRevealVortex } from './reveal-vortex.js?v=20261118-vortex2';
 import { createSecretCycle } from './secret-cycle.js?v=20261118-vortex1';
-import { createScene } from './scene.js?v=20261119-desert1';
+import { createScene } from './scene.js?v=20261119-center1';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -189,7 +189,7 @@ if (M) {
   new IntersectionObserver(function (entries) {
     mascotVisible = entries[0].isIntersecting;
     syncMascotMotion();
-  }).observe(sceneEl);
+  }).observe($('spiritStage') || sceneEl);
   if (M.poster) mascotEl.src = M.poster;
   window.addEventListener('load', function () {
     var list = [M.anticipate, M.celebrate, M.lose].concat(M.idle).filter(Boolean);
@@ -552,7 +552,7 @@ scene = createScene(sceneEl, {
   shape: cfg.shape,
   sceneArt: cfg.sceneArt,
   secretImages: cfg.secretEvery ? {front:cfg.images.secretPack,side:cfg.images.secretSide,back:cfg.images.secretBack} : null,
-  mascot: cfg.mascot ? { img: $('mascot'), poster: cfg.mascot.poster, height: cfg.mascot.height, offsetX: cfg.mascot.offsetX, offsetZ: cfg.mascot.offsetZ } : null,
+  mascot: cfg.mascot && cfg.mascot.layout !== 'hero' ? { img: $('mascot'), poster: cfg.mascot.poster, height: cfg.mascot.height, offsetX: cfg.mascot.offsetX, offsetZ: cfg.mascot.offsetZ } : null,
   onSelect: function () { Sound.play('move'); renderPickLabel(); },
   onSwipeOpen: open,
   onHover: function () { if (Sound.hover) Sound.hover(); },
