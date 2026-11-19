@@ -62,12 +62,12 @@
 | ☑ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 88637c0 | ☐ | P0 |
 | ☑ | C34 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | d5de138 | ☐ | P3 |
 | ☑ | C35 | 音效 move：切換選項（0.25 秒） | 選配 | `assets/audio/move.mp3` | d5de138 | ☐ | P3 |
-| ☑ | C36 | 音效 tear：撕封條（1.60 秒，錄影原音軌） | 選配 | `assets/audio/tear.m4a` | 790910c | ☐ | P3 |
+| ☑ | C36 | 音效 tear：撕封條（0.54 秒，擷取撕裂聲） | 選配 | `assets/audio/tear.wav` | aea74ef | ☐ | P3 |
 | ☑ | C37 | 音效 flip：翻卡（0.3 秒） | 選配 | `assets/audio/flip.mp3` | d5de138 | ☐ | P3 |
 | ☑ | C38 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `alternatives/assets/audio/reveal.mp3` | d5de138 | ☐ | P3 |
 | ☑ | C39 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | d5de138 | ☐ | P3 |
 | ☑ | C40 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | d5de138 | ☐ | P3 |
-| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 790910c | ☐ | P2 |
+| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | aea74ef | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
