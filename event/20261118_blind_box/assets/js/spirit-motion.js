@@ -5,6 +5,16 @@ function createSpiritRig(canvas, source) {
   const vs = `attribute vec2 point; varying vec2 uv; uniform float phase; uniform float mood;
   float gate(float a,float b,float v){return smoothstep(a,b,v);}
   vec2 turn(vec2 p,vec2 pivot,float a){float c=cos(a),s=sin(a);p-=pivot;return pivot+mat2(c,s,-s,c)*p;}
+  float featureMask(vec2 local, vec2 inner, vec2 outer) {
+    vec2 d = abs(local);
+    return (1. - smoothstep(inner.x, outer.x, d.x))
+         * (1. - smoothstep(inner.y, outer.y, d.y));
+  }
+  float eyeShape(vec2 point, vec2 center, float width, float amount) {
+    vec2 eye = point - center;
+    eye.y += .31 * eye.x;
+    return eye.y * amount * featureMask(eye, vec2(width - 6., 8.), vec2(width, 20.));
+  }
   void main(){
     uv=(point+vec2(161.,450.))/vec2(1500.,1875.); vec2 p=point;
     float time = phase / 6.2831853;
@@ -23,7 +33,13 @@ function createSpiritRig(canvas, source) {
     float nod = .023 * wave;
     vec2 shift = vec2(5. * wave, -13. * breath);
     float smokeTravel = 27.;
-    float mouthMove = 0.;
+    float blink = smoothstep(.49, .56, time) * (1. - smoothstep(.56, .63, time));
+    float leftEye = -.93 * blink;
+    float rightEye = leftEye;
+    float browLift = 1.5 * breath;
+    float mouthOpen = -.16 * breath;
+    float smileWidth = 0.;
+    float smileCorner = 0.;
 
     if (mood > 2.5) {
       // Lean toward the chest and draw both hands inward.
@@ -33,7 +49,11 @@ function createSpiritRig(canvas, source) {
       nod = .20 * gesture;
       shift = vec2(32., 33.) * gesture;
       smokeTravel = 37.;
-      mouthMove = -.26;
+      leftEye = .35 * gesture;
+      rightEye = .33 * gesture;
+      browLift = 7.5 * gesture;
+      mouthOpen = -.62 * gesture;
+      smileWidth = -.08 * gesture;
     } else if (mood > 1.5) {
       // Tilt the head and beckon twice with one hand.
       leftLift = -.17 * gesture;
@@ -41,7 +61,12 @@ function createSpiritRig(canvas, source) {
       nod = (-.17 + .045 * sin(phase * 2.)) * gesture;
       shift = vec2(-39., 13.) * gesture;
       smokeTravel = 36.;
-      mouthMove = -.21;
+      float wink = smoothstep(.20, .32, time) * (1. - smoothstep(.49, .60, time));
+      leftEye = -.93 * wink;
+      rightEye = -.13 * gesture;
+      browLift = 3. * gesture;
+      mouthOpen = -.42 * gesture;
+      smileCorner = 5. * gesture;
     } else if (mood > .5) {
       // Raise both hands, with a second upward bounce before landing.
       float bounce = gesture * (.8 + .2 * cos(phase * 2.));
@@ -50,17 +75,32 @@ function createSpiritRig(canvas, source) {
       nod = -.11 * bounce;
       shift = vec2(2., -43.) * bounce;
       smokeTravel = 49.;
-      mouthMove = .18;
+      leftEye = -.37 * bounce;
+      rightEye = -.35 * bounce;
+      browLift = 4. * bounce;
+      mouthOpen = .30 * bounce;
+      smileWidth = .18 * bounce;
     }
 
     p.x += (point.x - 625.) * .022 * breath * torso * core;
     p = mix(p, turn(p, vec2(445., 355.), leftLift), left);
     p = mix(p, turn(p, vec2(785., 355.), rightLift), right);
+    // Apply face deformation in the original portrait coordinates before the head turn.
+    p.y += eyeShape(point, vec2(571., 132.), 25., leftEye)
+         + eyeShape(point, vec2(622., 117.), 18., rightEye);
+    vec2 leftBrow = point - vec2(559., 111.);
+    leftBrow.y += .45 * leftBrow.x;
+    vec2 rightBrow = point - vec2(615., 91.);
+    rightBrow.y += .28 * rightBrow.x;
+    p.y -= browLift * max(featureMask(leftBrow, vec2(18., 5.), vec2(28., 16.)),
+                          featureMask(rightBrow, vec2(12., 5.), vec2(20., 14.)));
+    vec2 lip = point - vec2(615., 175.);
+    lip.y += .27 * lip.x;
+    float lipMask = featureMask(lip, vec2(24., 14.), vec2(36., 30.));
+    p.x += lip.x * lipMask * smileWidth;
+    p.y += lipMask * (lip.y * mouthOpen - smileCorner * smoothstep(6., 25., lip.x));
     p = mix(p, turn(p, vec2(625., 305.), nod), head);
     p += shift * (1. - gate(571., 782., point.y));
-    float mouth = gate(575., 607., point.x) * (1. - gate(660., 678., point.x))
-                  * gate(178., 197., point.y) * (1. - gate(220., 245., point.y));
-    p.y += (point.y - 204.) * mouth * gesture * mouthMove;
     float smoke = gate(599., 710., point.y) * (1. - gate(990., 1104., point.y));
     p.x += smoke * smokeTravel * (sin(phase + point.y * .006) - sin(point.y * .006));
     p.y += smoke * 12. * (cos(phase + point.x * .004) - cos(point.x * .004));
@@ -86,14 +126,24 @@ function createSpiritRig(canvas, source) {
   if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program));
   gl.useProgram(program);
 
-  const cells = 96;
-  const stride = cells + 1;
+  // Use smaller triangles around the eyes and lips without increasing the whole mesh density.
+  function gridAxis(faceStart, faceEnd) {
+    const marks = [];
+    for (let v = 0; v < faceStart; v += 14) marks.push(v);
+    for (let v = faceStart; v < faceEnd; v += 3) marks.push(v);
+    for (let v = faceEnd; v < 1254; v += 14) marks.push(v);
+    marks.push(1254);
+    return marks;
+  }
+  const columns = gridAxis(523, 675);
+  const rows = gridAxis(70, 218);
+  const stride = columns.length;
   const vertices = [];
   const indices = [];
-  for (let y = 0; y <= cells; y++) {
-    for (let x = 0; x <= cells; x++) {
-      vertices.push(x * 1254 / cells, y * 1254 / cells);
-      if (x === cells || y === cells) continue;
+  for (let y = 0; y < rows.length; y++) {
+    for (let x = 0; x < stride; x++) {
+      vertices.push(columns[x], rows[y]);
+      if (x === stride - 1 || y === rows.length - 1) continue;
       const i = y * stride + x;
       indices.push(i, i + 1, i + stride, i + 1, i + stride + 1, i + stride);
     }
