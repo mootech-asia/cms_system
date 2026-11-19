@@ -37,9 +37,9 @@ window.EVENT_CONFIG = {
       },
       images: {
         wheelGloss: 'assets/img/wheel-gloss.svg',
-        soundOn: 'assets/img/icon-sound-on.webp',
-        soundOff: 'assets/img/icon-sound-off.webp',
-        share: 'assets/img/icon-share.webp',
+        soundOn: '../shared/buttons/img/icon-sound-on.webp',
+        soundOff: '../shared/buttons/img/icon-sound-off.webp',
+        share: '../shared/buttons/img/icon-share.webp',
         rotateHint: 'assets/img/icon-rotate.webp?v=20261118-perf1',
         title: {
           en: 'assets/img/title-en.webp',
@@ -109,7 +109,7 @@ window.EVENT_CONFIG = {
     loadingEmblem: 'loading-emblem · 480×480',
     stageBg: 'stage-bg · 750×1000',
     infoBg: 'info-bg · 750×750 tile',
-    share: 'icon-share · 64×64',
+    share: '../shared/buttons/img/icon-share.webp',
     periodBadge: 'period-badge · 480×64',
     chancesBadge: 'chances-badge · 360×88',
     cardFrame: 'card-frame · 120×120 (9-slice 40)',

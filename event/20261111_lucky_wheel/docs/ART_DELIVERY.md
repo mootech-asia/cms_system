@@ -11,10 +11,10 @@
 - 21 張靜態 SVG、三語標題與六組盤面色票：`6a34f07`。
 - 角色設定圖：`source/reference/rabbit-turnaround.png`，`6a34f07`；使用者已採用此設定。
 - 5 個透明循環 GIF，均 400×500、48 幀、2 秒；實測檔案 1.19–1.40MB。
-- 240 張含 alpha 的 PNG：`source/mascot-frames/`。
-- 10 張 1024×1536、3×4 原始序列圖：`source/mascot-sheets/`。
-- 5 張關鍵幀與角色設定圖並排比對：`source/mascot-compare/`。
-- 個別動態預覽：`source/mascot-preview.html`。
+- 240 張含 alpha 的 PNG：`alternatives/source/mascot-frames/`。
+- 10 張 1024×1536、3×4 原始序列圖：`alternatives/source/mascot-sheets/`。
+- 5 張關鍵幀與角色設定圖並排比對：`alternatives/source/mascot-compare/`。
+- 個別動態預覽：`alternatives/source/mascot-preview.html`。
 
 | 動作 | GIF／PNG／比對圖 commit |
 |---|---|
@@ -34,7 +34,7 @@
 |---|---|---|---|
 | 用新版設定 | 以上五筆 commit；五張角色比對圖 | 官方配色、羽絨背心、左胸徽記、耳麥、裸兔掌目視比對 | 使用者對逐幀美術的最終審核 |
 | 美術製作清單已更新，並給了確認提交方式。請更新 | docs/DELIVERY_CHECKLIST.md 提交欄及逐項 commit | check_assets.py；不改業主審核欄 | 遠端發布 |
-| 每個gif都要讓我看預覽效果 | source/mascot-preview.html 與五個 GIF | Chromium 五個圖皆可播放；兩次取樣畫面不同 | Safari、真實手機 |
+| 每個gif都要讓我看預覽效果 | alternatives/source/mascot-preview.html 與五個 GIF | Chromium 五個圖皆可播放；兩次取樣畫面不同 | Safari、真實手機 |
 
 ## 驗證紀錄
 

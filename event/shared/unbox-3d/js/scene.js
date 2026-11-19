@@ -105,7 +105,7 @@ export function createScene(stage, opts) {
     else cache[src].cbs.push(onLoad);
   }
   function mapped(material, src) {
-    texture(src, function (tex) { material.map = tex; material.needsUpdate = true; dirty = true; });
+    texture(src, function (tex) { material.map = tex; material.needsUpdate = true; invalidate(); });
     return material;
   }
 
@@ -328,7 +328,7 @@ export function createScene(stage, opts) {
   }
 
   function applyTokens() {
-    dirty = true;
+    invalidate();
     tinted.forEach(function (m, k) {
       var slot = box && !chest ? Math.floor(k / 2) : k;
       m.color.set(token('--ev-3d-item-' + (slot % COUNT + 1), '#b8b4f3'));
@@ -358,7 +358,7 @@ export function createScene(stage, opts) {
     }
     camera.updateProjectionMatrix();
     placeMascot();
-    dirty = true;
+    invalidate();
   });
   resize.observe(stage);
   if (box) resize.observe(stage.closest('.ev-stage'));
@@ -366,7 +366,7 @@ export function createScene(stage, opts) {
   var secretActive = false, secretMaterials = null;
   function setSecret(active) {
     if (box || !opts.secretImages) return;
-    secretActive = active; dirty = true;
+    secretActive = active; invalidate();
     if (active && !secretMaterials) secretMaterials = {front:art(opts.secretImages.front),side:art(opts.secretImages.side),back:art(opts.secretImages.back)};
   }
   var mode = 'select';
@@ -406,7 +406,7 @@ export function createScene(stage, opts) {
 
   function move(n) {
     if (mode !== 'select') return;
-    dirty = true;
+    invalidate();
     target += n * STEP;
     selected = ((Math.round(-target / STEP) % COUNT) + COUNT) % COUNT;
     if (opts.onSelect) opts.onSelect(selected);
@@ -430,7 +430,7 @@ export function createScene(stage, opts) {
   }
   // 轉到指定的那一包（走最短方向）
   function goTo(i) {
-    dirty = true;
+    invalidate();
     var k = ((i - selected) % COUNT + COUNT) % COUNT;
     if (k > COUNT / 2) k -= COUNT;
     if (k) move(-k);
@@ -442,7 +442,7 @@ export function createScene(stage, opts) {
     if (e.target !== renderer.domElement) return;
     gestureMode = !box && mode === 'ready' ? (onSeal(e.clientX,e.clientY) ? 'tear' : 'rotate') : '';
     inspectStart = inspectAngle;
-    jellyIndex = -1; hovered = -1; dirty = true;
+    jellyIndex = -1; hovered = -1; invalidate();
     startX = e.clientX; startY = e.clientY; gestureStart = performance.now();
     drag = 0; dragY = 0;
     stage.setPointerCapture(e.pointerId);
@@ -455,7 +455,7 @@ export function createScene(stage, opts) {
         renderer.domElement.style.cursor = hit >= 0 ? 'pointer' : '';
         if (!box && hit !== hovered && hit >= 0) {
           if (opts.onHover) opts.onHover();
-          if (!reduced.matches) { jellyIndex = hit; jellyStart = performance.now(); dirty = true; }
+          if (!reduced.matches) { jellyIndex = hit; jellyStart = performance.now(); invalidate(); }
         }
         hovered = hit;
       }
@@ -463,7 +463,7 @@ export function createScene(stage, opts) {
     }
     drag = e.clientX - startX; dragY = e.clientY - startY;
     if (mode === 'select') angle = target + drag * 0.004;
-    else if (!box && mode === 'ready' && gestureMode === 'rotate') { inspectAngle = inspectStart + drag*.018; dirty = true; }
+    else if (!box && mode === 'ready' && gestureMode === 'rotate') { inspectAngle = inspectStart + drag*.018; invalidate(); }
   });
   on(stage, 'pointerup', function (e) {
     if (startX === null) return;
@@ -486,26 +486,34 @@ export function createScene(stage, opts) {
   var disposed = false;
   var visible = true;
   var dirty = true;
+  var renderReady = false, rendering = false;
+  function invalidate() {
+    dirty = true;
+    if (renderReady && !rendering && !raf && !disposed && visible && !document.hidden) {
+      last = performance.now();
+      raf = requestAnimationFrame(frame);
+    }
+  }
   var observer = new IntersectionObserver(function (entries) {
     visible = entries[0].isIntersecting;
     resume();
   });
   observer.observe(stage);
   on(document, 'visibilitychange', resume);
-  on(reduced, 'change', function () { dirty = true; resume(); });
-  Promise.all(pending).then(function () { dirty = true; });
+  on(reduced, 'change', function () { invalidate(); resume(); });
+  Promise.all(pending).then(function () { invalidate(); });
 
   function resume() {
     cancelAnimationFrame(raf);
     raf = 0;
     last = performance.now();
-    if (!disposed && visible && !document.hidden) { dirty = true; raf = requestAnimationFrame(frame); }
+    if (!disposed && visible && !document.hidden) invalidate();
   }
 
   function finishOpen() {
     progress = 1;
     mode = 'opened';
-    dirty = true;
+    invalidate();
     var cb = openDone;
     openDone = null;
     if (cb) cb();
@@ -515,11 +523,12 @@ export function createScene(stage, opts) {
     raf = 0;
     if (disposed || !visible || document.hidden) return;
     if (now - last < 1000 / 30) { raf = requestAnimationFrame(frame); return; }
+    rendering = true;
     var jellyActive = !box && mode === 'select' && !reduced.matches && jellyIndex >= 0 && now - jellyStart < jellyDuration;
-    if (!jellyActive && jellyIndex >= 0) { jellyIndex = -1; dirty = true; }
+    if (!jellyActive && jellyIndex >= 0) { jellyIndex = -1; invalidate(); }
     var changing = jellyActive || mode === 'opening' || Math.abs(zoomTarget - zoom) > .001 || Math.abs(target - angle) > .0001 || startX !== null;
     var animate = changing;
-    if (!dirty && !animate) { last = now; raf = requestAnimationFrame(frame); return; }
+    if (!dirty && !animate) { last = now; rendering = false; return; }
     dirty = false;
     var dt = Math.min((now - last) / 1000, 0.05);
     last = now;
@@ -622,8 +631,10 @@ export function createScene(stage, opts) {
         }
       }
     }
+    rendering = false;
     if (!disposed) raf = requestAnimationFrame(frame);
   }
+  renderReady = true;
   raf = requestAnimationFrame(frame);
 
   return {
@@ -633,17 +644,17 @@ export function createScene(stage, opts) {
     goTo: goTo,
     setSecret: setSecret,
     focus: function () {
-      mode = 'focusing'; inspectAngle = 0; zoomTarget = 1; dirty = true;
+      mode = 'focusing'; inspectAngle = 0; zoomTarget = 1; invalidate();
       return new Promise(function (done) { focusDone = done; });
     },
     setMode: function (m) {
-      dirty = true;
+      invalidate();
       mode = m;
       if (m === 'select') { inspectAngle = 0; progress = 0; openDone = null; zoomTarget = 0; focusDone = null; }
     },
     open: function (ms) {
       openMs = ms || openMs;
-      dirty = true;
+      invalidate();
       mode = 'opening';
       progress = 0;
       return new Promise(function (done) { openDone = done; });

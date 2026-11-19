@@ -188,3 +188,9 @@
 @media (max-width: 600px) {
   .ev-spirit-stage .ev-mascot { --ev-spirit-width: min(120vw, 576px, calc(var(--ev-scene-size) * 1.4)); width: var(--ev-spirit-width); top: calc(12px - var(--ev-spirit-width) / 3); }
 }
+
+/* Engraved status plaques share the treasure materials, with live localized text. */
+.ev-treasure { margin-bottom:38px; }
+.ev-treasure-caption { top:85%; gap:3px; }
+.ev-treasure-caption .ev-rarity-tag { display:grid; place-items:center; width:168px; height:56px; padding:0 28px; box-sizing:border-box; border-radius:0; background:var(--ev-img-statusBadges) center top / 100% 200% no-repeat; color:var(--ev-vault-ink); font-size:11px; letter-spacing:.7px; text-shadow:none; }
+.ev-treasure.is-small .ev-rarity-tag { width:120px; height:40px; padding-inline:20px; font-size:8px; letter-spacing:.2px; }

@@ -6,14 +6,15 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1] / 'event'
 GROUPS = [
-    ('20261111_lucky_wheel', 'assets/img/mascot', ['idle-1', 'spinning', 'result', 'lose']),
-    ('20261111_survival_spin', 'img/mascot/rifle-v1', ['idle', 'anticipation', 'disappointment']),
+    ('20261111_lucky_wheel', 'source/mascot', ['idle-1', 'spinning', 'result', 'lose']),
+    ('20261111_survival_spin', 'source/mascot/rifle-v1', ['idle', 'anticipation', 'disappointment']),
 ]
 
 
 def export_animation(base, name):
     source = base / (name + '.webp')
-    destination = base / 'optimized' / source.name
+    relative = base.relative_to(ROOT)
+    destination = ROOT / relative.parts[0] / 'assets/img' / Path(*relative.parts[2:]) / 'optimized' / source.name
     destination.parent.mkdir(exist_ok=True)
     with Image.open(source) as image:
         size = image.size

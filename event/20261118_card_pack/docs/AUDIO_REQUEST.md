@@ -64,10 +64,10 @@
 | 檔案 | 路徑 |
 |---|---|
 | 背景音樂（網頁） | `assets/audio/bgm.mp3` |
-| 背景音樂（原始） | `source/audio/bgm-master.wav` |
+| 背景音樂（原始） | `alternatives/source/audio/pre-seal-update/bgm-master.wav` |
 | 特效音（網頁） | `assets/audio/<交付檔名>`（見第三節） |
 | 特效音（原始） | `source/audio/<同名>.wav` |
-| 授權與製作說明 | `source/audio/README.md`：作者／工具、授權方式、BPM、調性、循環點 |
+| 授權與製作說明 | `alternatives/source/audio/pre-seal-update/README.md`：作者／工具、授權方式、BPM、調性、循環點 |
 
 ## 六、授權
 

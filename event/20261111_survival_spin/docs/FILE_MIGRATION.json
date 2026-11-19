@@ -29,7 +29,7 @@
   },
   {
     "from": "img/icon-tap.svg",
-    "to": "alternatives/img/icon-tap.svg"
+    "to": "alternatives/assets/img/icon-tap.svg"
   },
   {
     "from": "img/spotlight.webp",
@@ -177,11 +177,11 @@
   },
   {
     "from": "img/mascot/spinning.webp",
-    "to": "alternatives/img/mascot/spinning.webp"
+    "to": "alternatives/assets/img/mascot/spinning.webp"
   },
   {
     "from": "img/mascot/base-frame.png",
-    "to": "alternatives/img/mascot/base-frame.png"
+    "to": "alternatives/assets/img/mascot/base-frame.png"
   },
   {
     "from": "img/mascot/idle-1.webp",
@@ -193,15 +193,15 @@
   },
   {
     "from": "img/mascot/result.webp",
-    "to": "alternatives/img/mascot/result.webp"
+    "to": "alternatives/assets/img/mascot/result.webp"
   },
   {
     "from": "img/mascot/lose.webp",
-    "to": "alternatives/img/mascot/lose.webp"
+    "to": "alternatives/assets/img/mascot/lose.webp"
   },
   {
     "from": "img/mascot/rifle-v1/celebration.webp",
-    "to": "alternatives/img/mascot/rifle-v1/celebration.webp"
+    "to": "alternatives/assets/img/mascot/rifle-v1/celebration.webp"
   },
   {
     "from": "img/mascot/rifle-v1/disappointment.webp",
@@ -225,7 +225,7 @@
   },
   {
     "from": "img/mascot/rifle-v1/celebration-v4-fixed.webp",
-    "to": "alternatives/img/mascot/rifle-v1/celebration-v4-fixed.webp"
+    "to": "alternatives/assets/img/mascot/rifle-v1/celebration-v4-fixed.webp"
   },
   {
     "from": "img/mascot/rifle-v1/optimized/disappointment.webp",

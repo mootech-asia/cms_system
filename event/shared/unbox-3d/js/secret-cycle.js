@@ -10,6 +10,7 @@ export function createSecretCycle(key, limit = 50, storage = null, random = Math
   const save = () => { try { storage.setItem(key,JSON.stringify(value)); } catch (_) {} };
   save();
   return {
+    forceNext: () => { value.nextAt = value.total + 1; value.notifiedAt = 0; save(); },
     due: () => value.total+1 === value.nextAt,
     total: () => value.total,
     needsNotice: () => value.total+1 === value.nextAt && value.notifiedAt !== value.nextAt,

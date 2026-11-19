@@ -4,8 +4,8 @@
  */
 import { createAtmosphere } from './atmosphere.js?v=20261119-desert1';
 import { createRevealVortex } from './reveal-vortex.js?v=20261118-vortex2';
-import { createSecretCycle } from './secret-cycle.js?v=20261118-vortex1';
-import { createScene } from './scene.js?v=20261119-mobile1';
+import { createSecretCycle } from './secret-cycle.js?v=20261119-secretfix1';
+import { createScene } from './scene.js?v=20261119-perf1';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -297,13 +297,13 @@ function now() {
 }
 
 function press() {
-  Sound.play('click');
+  if (cfg.type !== 'blind-box') Sound.play('click');
   btnAction.classList.add('is-pressing');
   setTimeout(function () { btnAction.classList.remove('is-pressing'); }, 140);
   try { if (typeof navigator.vibrate === 'function') navigator.vibrate(18); } catch (e) { /* 震動為選配 */ }
 }
 
-function choose() {
+function choose(autoOpen) {
   if (!valid) { Sound.play('error'); showToast(t('empty.prizes')); return; }
   if (player.chances <= 0) { Sound.play('error'); showToast(t('toast.noChances')); return; }
   Sound.play('select');
@@ -314,10 +314,12 @@ function choose() {
     scene.focus().then(function () {
       if (state !== 'focusing') return;
       scene.setMode('ready'); setState('ready');
+      if (autoOpen === true) open();
     });
   } else {
     if (scene) scene.setMode('ready');
     setState('ready');
+    if (autoOpen === true) open();
     if (cfg.type === 'blind-box' && matchMedia('(max-width: 600px)').matches) {
       requestAnimationFrame(function () {
         var overflow = btnAction.getBoundingClientRect().bottom - innerHeight;
@@ -352,6 +354,7 @@ function open(gesture) {
     renderRecords();
     setState('opening');
     Sound.duck(true);
+    if (cfg.type === 'blind-box') Sound.stopEffects();
     Sound.play('tear',duration);
     stage.classList.add('is-opening');
     var done = scene ? scene.open(duration) : new Promise(function (ok) { fallbackTimer = setTimeout(ok, 600); });
@@ -399,7 +402,7 @@ function backToSelect() {
 // ---------- 揭曉 ----------
 function cardHtml(r, small) {
   var rarity = rarityOf(r);
-  return '<span class="ev-prize-face ev-prize-front" data-rarity="' + rarity + '" data-edition="' + (r.edition || 'standard') + '">' +
+  return '<span class="ev-prize-face ev-prize-front" data-outcome="' + (Store.isEmpty(r) ? 'empty' : 'prize') + '" data-rarity="' + rarity + '" data-edition="' + (r.edition || 'standard') + '">' +
     '<span class="ev-prize-frame" aria-hidden="true"></span>' +
     '<span class="ev-card-stars" aria-hidden="true">' + (Store.isEmpty(r) ? '' : '✦'.repeat(Store.rarityRank(r) + 1)) + '</span>' +
     (r.icon ? '<img class="ev-prize-icon" src="' + esc(r.icon) + '" alt="" />' : '') +
@@ -417,7 +420,9 @@ function treasureHtml(r) {
 
 var treasureMode = cfg.type === 'blind-box';
 var revealView = 'card';
+var treasureCuePlayed = false;
 function showReveal() {
+  treasureCuePlayed = false;
   setState('reveal');
   revealed = 0;
   revealView = 'card';
@@ -436,7 +441,11 @@ function renderRevealCard() {
     $('treasureDisplay').setAttribute('aria-label', pick(r.name));
     $('treasureDisplay').setAttribute('data-rarity', rarityOf(r));
     $('revealGlow').setAttribute('data-rarity', rarityOf(r));
-    Sound.play(Store.isEmpty(r) ? 'empty' : 'reveal', Store.rarityRank(r));
+    if (!treasureCuePlayed) {
+      Sound.stopEffects();
+      Sound.play(Store.isEmpty(r) ? 'empty' : 'reveal', Store.rarityRank(r));
+      treasureCuePlayed = true;
+    }
     renderRevealText();
     return;
   }
@@ -483,7 +492,7 @@ function flip() {
 function showSummary() {
   revealView = 'summary';
   $('revealGrid').innerHTML = rewards.map(function (r) { return '<li class="' + (treasureMode ? 'ev-treasure is-small' : 'ev-prize-card is-static') + '">' + (treasureMode ? treasureHtml(r) : cardHtml(r, true)) + '</li>'; }).join('');
-  Sound.play(rewards.every(Store.isEmpty) ? 'empty' : 'reward');
+  if (!treasureMode) Sound.play(rewards.every(Store.isEmpty) ? 'empty' : 'reward');
   renderRevealText();
 }
 
@@ -497,7 +506,7 @@ function revealStep() {
 
 function closeReveal() {
   reveal.hidden = true;
-  Sound.play(rewards.every(Store.isEmpty) ? 'click' : 'collect');
+  if (!treasureMode) Sound.play(rewards.every(Store.isEmpty) ? 'click' : 'collect');
   Sound.duck(false);
   var emptyResult = rewards.length && rewards.every(Store.isEmpty);
   if (rewards.length) mascotReact(rewards);
@@ -652,6 +661,15 @@ $('btnReset').addEventListener('click', function () {
   syncSecret();
   showToast(t('toast.reset', { n: player.chances }));
 });
+if ($('btnSecret')) $('btnSecret').addEventListener('click', function () {
+  if (!secretCycle || (state !== 'select' && state !== 'ready')) return;
+  if (!valid) { showToast(t('empty.prizes')); return; }
+  secretCycle.forceNext();
+  player.chances = Math.max(1, player.chances);
+  savePlayer(); renderChances(); syncSecret(); setPanel(false);
+  sceneEl.scrollIntoView({ block: 'center', behavior: 'instant' });
+  if (state === 'select') choose(true); else open();
+});
 function setPerOpen(n) {
   var next = clampPerOpen(n);
   if (next === perOpen) return;
@@ -698,7 +716,7 @@ function runLoading() {
     setMascot('idle');
     // Warm reveal artwork only after the interactive stage is ready.
     var warm = function () {
-      ['rewardBack', 'rewardFrameCommon'].forEach(function (key) {
+      ['rewardBack', 'rewardFrameCommon', 'statusBadges'].forEach(function (key) {
         var src = pick(cfg.images[key]);
         if (typeof src === 'string') { var img = new Image(); img.decoding = 'async'; img.fetchPriority = 'low'; img.src = src; }
       });

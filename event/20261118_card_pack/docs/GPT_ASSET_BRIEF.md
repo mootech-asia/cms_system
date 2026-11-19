@@ -79,4 +79,4 @@ Preserve the approved rabbit identity. Create an obsidian, platinum and moonston
 
 
 ## 2026-11-19 production sources
-`source/ui-20261119/utility-frame.png`: transparent horizontal medallion matching the main CTA, carved champagne-silver structure, purple enamel well, amethyst crown and turquoise lower jewel. No icon or text baked into artwork.
+`alternatives/source/ui-20261119/utility-frame.png`: transparent horizontal medallion matching the main CTA, carved champagne-silver structure, purple enamel well, amethyst crown and turquoise lower jewel. No icon or text baked into artwork.

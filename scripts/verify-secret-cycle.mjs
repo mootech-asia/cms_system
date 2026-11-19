@@ -12,5 +12,6 @@ for(let n=1;n<=500;n++) {
 }
 assert(secrets.some(n=>n%50!==0));assert(c.total()-last<50);
 const before=storage.getItem('player');storage.setItem('refillable-player',JSON.stringify({chances:10,records:[]}));assert.equal(storage.getItem('player'),before);
+const totalBeforeForce=c.total();c.forceNext();assert(c.due());assert.equal(c.total(),totalBeforeForce);assert.equal(c.commit().edition,'secret');
 const bad={getItem(){throw Error('denied')},setItem(){throw Error('denied')}};assert.equal(createSecretCycle('x',50,bad,()=>0).commit().edition,'secret');
 console.log('PASS: 500 draws, randomized gaps 1–50, reload persistence, refill isolation, denied storage; secret draws:',secrets.join(','));

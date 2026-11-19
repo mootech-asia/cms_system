@@ -63,12 +63,15 @@ window.EventStore = (function () {
   // 回傳獎項物件陣列，依稀有度由低到高排序，最好的留到最後揭曉。
   function resolve(content, request) {
     var prizes = content.prizes;
+    var secret = request.edition === 'secret';
+    var secretPrizes = secret ? prizes.filter(function (p) { return !isEmpty(p) && Number(p.weight) > 0; }) : [];
+    if (secret && typeof window.EVENT_RESOLVE !== 'function' && !secretPrizes.length) return Promise.reject(new Error('No eligible secret reward'));
     var run = typeof window.EVENT_RESOLVE === 'function'
-      ? Promise.resolve(window.EVENT_RESOLVE(request))
+      ? Promise.resolve().then(function () { return window.EVENT_RESOLVE(request); })
       : new Promise(function (done) {
         setTimeout(function () {
           var out = [];
-          for (var i = 0; i < request.count; i++) out.push(pickIndex(prizes));
+          for (var i = 0; i < request.count; i++) out.push(secret ? secretPrizes[pickIndex(secretPrizes)] : pickIndex(prizes));
           done(out);
         }, 300);
       });
@@ -76,6 +79,7 @@ window.EventStore = (function () {
       if (!Array.isArray(list) || !list.length) throw new Error('Invalid reward response');
       var rewards = list.map(function (x) { return typeof x === 'number' ? prizes[x] : x; });
       if (rewards.some(function (r) { return !r || !r.name; })) throw new Error('Invalid reward response');
+      if (secret && rewards.some(isEmpty)) throw new Error('Secret packs must contain a prize');
       return rewards.slice().sort(function (a, b) { return rarityRank(a) - rarityRank(b); });
     });
   }

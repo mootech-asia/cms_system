@@ -55,6 +55,7 @@ window.EventI18n = (function () {
     'ticker.label': { en: 'Winners', ko: '당첨자', th: 'ผู้โชคดี', zh: '中獎名單' },
     'ticker.item': { en: '{name} got {prize}', ko: '{name}님 {prize} 획득', th: '{name} ได้รับ {prize}', zh: '{name} 獲得 {prize}' },
     'empty.prizes': { en: 'No prizes have been set up yet', ko: '아직 상품이 설정되지 않았습니다', th: 'ยังไม่ได้ตั้งค่ารางวัล', zh: '活動尚未設定獎項' },
+    'mock.secret': { en: 'Open secret pack', ko: '시크릿 팩 열기', th: 'เปิดซองลับ', zh: '開啟隱藏卡包' },
     'mock.reset': { en: 'Reset chances', ko: '횟수 초기화', th: 'รีเซ็ตสิทธิ์', zh: '重設次數' },
     'mock.perOpen': { en: 'Prizes per open', ko: '회당 상품 수', th: 'รางวัลต่อครั้ง', zh: '每次獎品數' },
     'mock.labels': { en: 'Asset labels', ko: '에셋 라벨', th: 'ป้ายภาพ', zh: '換圖標籤' },

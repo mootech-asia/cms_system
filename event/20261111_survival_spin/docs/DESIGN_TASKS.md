@@ -64,7 +64,7 @@
 - **品質與一致性**：與 `../20261111_lucky_wheel/reference/` 的熊北四視圖、`brand/moo-rabbit/` 的兔比設定同一套渲染品質；背心換成連身服，其餘臉型、毛色、配件不變。
 - **動態 6 段**（規格同預設皮的 2026-11-12 重做要求：48 幀、2000ms、頭尾＝基準幀、任何一幀不可貼邊、影子畫進角色、主交付為 RGBA PNG 序列幀）：
   待機 ×3、期待（轉動中）、慶祝（中獎）、失望（未中獎）。
-- 交付位置：`alternatives/img/mascot/base-frame.png`、`assets/img/mascot/<狀態>.gif`、`source/mascot-frames/<狀態>/frame_001.png`～`frame_048.png`。
+- 交付位置：`alternatives/assets/img/mascot/base-frame.png`、`assets/img/mascot/<狀態>.gif`、`source/mascot-frames/<狀態>/frame_001.png`～`frame_048.png`。
 - 未交付前頁面暫用預設皮的兔比（穿背心），這是佔位，不代表定稿。
 
 ---

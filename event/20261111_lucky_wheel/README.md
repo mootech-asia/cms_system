@@ -5,8 +5,8 @@
 這個資料夾管理百老匯舞台風格的原版轉盤與兔比活動素材。生存輪盤已獨立到 [../20261111_survival_spin/](../20261111_survival_spin/)，桃紅人物與相關來源檔在該處維護。
 
 - `assets/`：本活動的程式、樣式與遊戲使用圖片。
-- `source/`、`tools/`：原圖、製作工具、動態與歷史檢查資料。
-- `reference/`：官方品牌參考與已採用的兔比設定。
+- `source/`、`tools/`：現行原圖、製作工具與動態序列。
+- `source/reference/`：官方品牌參考與已採用的兔比設定。
 - [docs/DESIGN_TASKS.md](docs/DESIGN_TASKS.md)、[docs/GPT_ASSET_BRIEF.md](docs/GPT_ASSET_BRIEF.md)：美術需求與製作規格。
 - [docs/DELIVERY_CHECKLIST.md](docs/DELIVERY_CHECKLIST.md)：提交狀態與人工審核；已有素材不等於全部通過審核。
 
@@ -39,3 +39,5 @@
 - `source`：原稿、分層檔與 reference 參考資料。
 - `tools`：此活動的素材製作工具。
 - `alternatives`：目前未引用的備選／舊版素材，保留原路徑結構。
+
+目前圖片及音效放 `assets/img/`、`assets/audio/`；未採用或廢棄版本統一放 `alternatives/`，詳見 [搬移索引](docs/ARCHIVE_20261119.json)。共用素材可由其他活動或 `event/shared/` 引用，不複製。

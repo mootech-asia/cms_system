@@ -52,12 +52,12 @@
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
 | ☑ | B30 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 3fb2c5f | ☐ | P0 |
-| ☑ | B31 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | dbd5a98 | ☐ | P3 |
+| ☑ | B31 | 音效 click：按鈕（≤0.2 秒） | 選配 | `alternatives/assets/audio/pre-minimal/click.mp3` | dbd5a98 | ☐ | P3 |
 | ☑ | B32 | 音效 move：切換選項（0.25 秒） | 選配 | `assets/audio/move.mp3` | dbd5a98 | ☐ | P3 |
 | ☑ | B33 | 音效 tear：開箱（open.mp3，1.1 秒） | 選配 | `assets/audio/open.mp3` | dbd5a98 | ☐ | P3 |
 | ☑ | B34 | 音效 flip：翻卡（≤0.25 秒） | 選配 | `alternatives/assets/audio/flip.mp3` | c91aeeb | ☐ | P3 |
 | ☑ | B35 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `alternatives/assets/audio/reveal.mp3` | c91aeeb | ☐ | P3 |
-| ☑ | B36 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | dbd5a98 | ☐ | P3 |
+| ☑ | B36 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `alternatives/assets/audio/pre-minimal/reward.mp3` | dbd5a98 | ☐ | P3 |
 | ☑ | B37 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | c91aeeb | ☐ | P3 |
 | ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | dbd5a98 | ☐ | P2 |
 
@@ -80,9 +80,9 @@
 | ☑ | B53 | 特效音 reveal-rare：揭曉：稀有（寶物出現在台座上）（0.7–1.0 秒） | 選配 | `assets/audio/reveal-rare.mp3` | dbd5a98 | ☐ | P3 |
 | ☑ | B54 | 特效音 reveal-epic：揭曉：超稀有（寶物出現在台座上）（0.9–1.3 秒） | 選配 | `assets/audio/reveal-epic.mp3` | dbd5a98 | ☐ | P3 |
 | ☑ | B55 | 特效音 reveal-legendary：揭曉：最高級（Secret 隱藏款，寶物出現在台座上）（1.5–2.0 秒） | 選配 | `assets/audio/reveal-legendary.mp3` | dbd5a98 | ☐ | P3 |
-| ☑ | B56 | 特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒） | 選配 | `assets/audio/collect.mp3` | dbd5a98 | ☐ | P3 |
+| ☑ | B56 | 特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒） | 選配 | `alternatives/assets/audio/pre-minimal/collect.mp3` | dbd5a98 | ☐ | P3 |
 | ☑ | B57 | 特效音 error：次數用完、尚無獎項（≤0.3 秒） | 選配 | `assets/audio/error.mp3` | dbd5a98 | ☐ | P3 |
-| ☑ | B58 | 本批音訊母帶與製作說明（11 個特效音及 BGM） | （人工） | `source/audio/README.md` | c91aeeb | ☐ | P3 |
+| ☑ | B58 | 本批音訊母帶與製作說明（11 個特效音及 BGM） | （人工） | `alternatives/source/audio/pre-seal-update/README.md` | c91aeeb | ☐ | P3 |
 
 ## 紀錄
 
@@ -126,7 +126,7 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 | ☑ | B62 | 黃銅拱頂原稿 | （人工） | `source/ui/panel-crown-original.png` | c91aeeb | ☐ | P1 |
 | ☑ | B63 | btn-primary 控制元件原稿 | （人工） | `source/ui/btn-primary-original.png` | c91aeeb | ☐ | P1 |
 | ☑ | B64 | chances-badge 控制元件原稿 | （人工） | `source/ui/chances-badge-original.png` | c91aeeb | ☐ | P1 |
-| ☑ | B65 | btn-arrow 控制元件原稿 | （人工） | `source/ui/btn-arrow-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | B65 | btn-arrow 控制元件原稿 | （人工） | `alternatives/source/ui/btn-arrow-original.png` | c91aeeb | ☐ | P1 |
 | ☑ | B66 | ticker-bar 控制元件原稿 | （人工） | `source/ui/ticker-bar-original.png` | c91aeeb | ☐ | P1 |
 
 壓縮與主題新版提交於 aaa6c24；原稿保留，交付 WebP 的尺寸／alpha 維持，審核欄尚未由品牌確認。
@@ -142,10 +142,10 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 | ☑ | B70 | chest-interior-refined-original | （人工） | `source/3d/chest-interior-refined-original.png` | c91aeeb | ☐ | P1 |
 | ☑ | B71 | chest-lid-refined-original | （人工） | `source/3d/chest-lid-refined-original.png` | c91aeeb | ☐ | P1 |
 | ☑ | B72 | chest-side-refined-original | （人工） | `source/3d/chest-side-refined-original.png` | c91aeeb | ☐ | P1 |
-| ☑ | B73 | bgm-score | （人工） | `source/audio/bgm-score.json` | c91aeeb | ☐ | P1 |
-| ☑ | B74 | bgm | （人工） | `source/audio/bgm.wav` | c91aeeb | ☐ | P1 |
-| ☑ | B75 | loudness | （人工） | `source/audio/loudness.json` | c91aeeb | ☐ | P1 |
-| ☑ | B76 | soundfont-copyright | （人工） | `source/audio/soundfont-copyright.txt` | c91aeeb | ☐ | P1 |
+| ☑ | B73 | bgm-score | （人工） | `alternatives/source/audio/pre-seal-update/bgm-score.json` | c91aeeb | ☐ | P1 |
+| ☑ | B74 | bgm | （人工） | `alternatives/source/audio/pre-seal-update/bgm.wav` | c91aeeb | ☐ | P1 |
+| ☑ | B75 | loudness | （人工） | `alternatives/source/audio/pre-seal-update/loudness.json` | c91aeeb | ☐ | P1 |
+| ☑ | B76 | soundfont-copyright | （人工） | `alternatives/source/audio/pre-seal-update/soundfont-copyright.txt` | c91aeeb | ☐ | P1 |
 | ☑ | B77 | period-badge-refined-original | （人工） | `source/ui/period-badge-refined-original.png` | c91aeeb | ☐ | P1 |
 | ☑ | B78 | tool-medallion-refined-original | （人工） | `source/ui/tool-medallion-refined-original.png` | c91aeeb | ☐ | P1 |
 
@@ -204,3 +204,7 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 舊柱廊／布簾／宮殿地磚保留為歷史原稿，當前 config 不再載入。動態原始幀、2 秒循環與透明邊界驗證見 `source/desert-spirit/motion-checks.json`。
 
 | ☑ | N06 | 寶藏展示底座 | 900×291 | `assets/img/ui/treasure-plinth.webp` | c91aeeb | ☐ | P1 |
+
+| 提交 | ID | 素材 | 尺寸 | 路徑 | commit | 審核 | 優先級 |
+|---|---|---|---|---|---|---|---|
+| ☑ | STATUS12 | 主題狀態徽章 | 1536×1024 | `../shared/unbox-3d/img/status-badges.webp` | PENDING | ☐ | P1 |

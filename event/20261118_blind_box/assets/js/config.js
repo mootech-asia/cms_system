@@ -17,11 +17,11 @@ window.EVENT_CONFIG = {
   sceneArt: { height: 1125, horizonFromBottom: 660, horizonFraction: .5 },
   atmosphereMode: 'petals-and-sand',
   mascot: {
-    poster: 'assets/img/mascot/spirit/poster.webp?v=20261119-desert1',
-    idle: ['assets/img/mascot/spirit/idle.webp?v=20261119-desert1'],
-    anticipate: 'assets/img/mascot/spirit/excited.webp?v=20261119-desert1',
-    celebrate: 'assets/img/mascot/spirit/excited.webp?v=20261119-desert1',
-    lose: 'assets/img/mascot/spirit/encourage.webp?v=20261119-desert1',
+    poster: 'assets/img/mascot/spirit/poster.webp?v=20261119-motion12',
+    idle: ['assets/img/mascot/spirit/idle.webp?v=20261119-motion12'],
+    anticipate: 'assets/img/mascot/spirit/excited.webp?v=20261119-motion12',
+    celebrate: 'assets/img/mascot/spirit/excited.webp?v=20261119-motion12',
+    lose: 'assets/img/mascot/spirit/encourage.webp?v=20261119-motion12',
     loopMs: 2000, layout: 'hero'
   },
   shape: 'chest',
@@ -32,14 +32,15 @@ window.EVENT_CONFIG = {
   skins: {},
 
   images: {
+    statusBadges: '../shared/unbox-3d/img/status-badges.webp?v=20261119-badge1',
     treasurePlinth: 'assets/img/ui/treasure-plinth.webp?v=20261119-plinth1',
     loadingEmblem: 'assets/img/ui/loading-emblem.webp?v=20261118-loading1',
     toolMedallion: 'assets/img/ui/tool-medallion.webp?v=20261118-refine2',
     atmosphereSprite: 'assets/img/scene/atmosphere.webp?v=20261118-refine2',
     folioHeader: 'assets/img/ui/panel-crown.webp?v=20261118-refine2',
-    depthDesert: 'assets/img/scene/open-desert.webp?v=20261119-desert1',
-    depthFloor: 'assets/img/scene/open-desert.webp?v=20261119-desert1',
-    stageBg: 'assets/img/scene/open-desert.webp?v=20261119-desert1',
+    depthDesert: 'assets/img/scene/open-desert.webp?v=20261119-motion12',
+    depthFloor: 'assets/img/scene/open-desert.webp?v=20261119-motion12',
+    stageBg: 'assets/img/scene/open-desert.webp?v=20261119-motion12',
     infoBg: 'assets/img/scene/info-bg.svg?v=20261118-refine2',
     title: {
       en: 'assets/img/title/title-en.webp?v=20261118-refine2',
@@ -50,14 +51,14 @@ window.EVENT_CONFIG = {
     periodBadge: 'assets/img/ui/period-badge.webp?v=20261118-refine2',
     chancesBadge: 'assets/img/ui/chances-badge.webp?v=20261118-refine2',
     btnPrimary: 'assets/img/ui/btn-primary.webp?v=20261118-refine2',
-    btnArrow: 'assets/img/ui/btn-arrow.webp?v=20261118-refine2',
+    btnArrow: '../shared/buttons/img/arrow-frame.webp',
     tickerBar: 'assets/img/ui/ticker-bar.webp?v=20261118-refine2',
     cardFrame: 'assets/img/ui/card-frame.svg?v=20261118-refine2',
     cardTitle: 'assets/img/ui/card-title.svg?v=20261118-refine2',
     footerDeco: 'assets/img/scene/footer-deco.svg?v=20261118-refine2',
-    soundOn: 'assets/img/icon/icon-sound-on.svg?v=20261118-refine2',
-    soundOff: 'assets/img/icon/icon-sound-off.svg?v=20261118-refine2',
-    share: 'assets/img/icon/icon-share.svg?v=20261118-refine2',
+    soundOn: '../shared/buttons/img/icon-sound-on.webp',
+    soundOff: '../shared/buttons/img/icon-sound-off.webp',
+    share: '../shared/buttons/img/icon-share.webp',
     rotateHint: 'assets/img/icon/icon-rotate.svg?v=20261118-refine2',
     tapHint: 'assets/img/icon/icon-tap.svg?v=20261118-refine2',
     /* 3D 寶箱（shape: 'chest'）：正面可給 1～6 張（環上六箱依序輪流）；側面／背面保留原始黃金材質，
@@ -82,11 +83,12 @@ window.EVENT_CONFIG = {
 
   /* 音效：名稱與規格見 docs/AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
      音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
-  soundLevels: { bgm: 0.35, bgmDuck: 0.1, empty: 0.85, click: 0.6, move: 0.45, select: 0.8, tear: 0.8, flip: 0.9, reveal: 1.2, 'reveal-common': 1, 'reveal-rare': 1, 'reveal-epic': 1, 'reveal-legendary': 1, reward: 1, collect: 1, error: 0.8 },
-  sounds: { empty: 'assets/audio/empty.mp3?v=20261119-seal1', click: 'assets/audio/click.mp3?v=20261119-seal1', move: 'assets/audio/move.mp3?v=20261119-seal1', tear: 'assets/audio/open.mp3?v=20261119-seal1', flip: '', reveal: '', reward: 'assets/audio/reward.mp3?v=20261119-seal1', bgm: 'assets/audio/bgm.mp3?v=20261119-seal1', select: 'assets/audio/select.mp3?v=20261119-seal1', 'reveal-common': 'assets/audio/reveal-common.mp3?v=20261119-seal1', 'reveal-rare': 'assets/audio/reveal-rare.mp3?v=20261119-seal1', 'reveal-epic': 'assets/audio/reveal-epic.mp3?v=20261119-seal1', 'reveal-legendary': 'assets/audio/reveal-legendary.mp3?v=20261119-seal1', collect: 'assets/audio/collect.mp3?v=20261119-seal1', error: 'assets/audio/error.mp3?v=20261119-seal1' },
+  soundLevels: { bgm: 0.35, bgmDuck: 0.1, empty: 0.85, move: 0.45, select: 0.8, tear: 0.8, flip: 0.9, reveal: 1.2, 'reveal-common': 1, 'reveal-rare': 1, 'reveal-epic': 1, 'reveal-legendary': 1, error: 0.8 },
+  sounds: { empty: 'assets/audio/empty.mp3?v=20261119-seal1', move: 'assets/audio/move.mp3?v=20261119-seal1', tear: 'assets/audio/open.mp3?v=20261119-seal1', flip: '', reveal: '', bgm: 'assets/audio/bgm.mp3?v=20261119-seal1', select: 'assets/audio/select.mp3?v=20261119-seal1', 'reveal-common': 'assets/audio/reveal-common.mp3?v=20261119-seal1', 'reveal-rare': 'assets/audio/reveal-rare.mp3?v=20261119-seal1', 'reveal-epic': 'assets/audio/reveal-epic.mp3?v=20261119-seal1', 'reveal-legendary': 'assets/audio/reveal-legendary.mp3?v=20261119-seal1', error: 'assets/audio/error.mp3?v=20261119-seal1' },
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
+    statusBadges: 'status-badges · 1536×1024 / 2 themes',
     depthDesert: 'depth-desert · 750×1125',
     depthFloor: 'depth-floor · 750×1125',
     loadingEmblem: 'loading-emblem · 480×480',
@@ -100,13 +102,13 @@ window.EVENT_CONFIG = {
     periodBadge: 'period-badge · 900×150',
     chancesBadge: 'chances-badge · 630×210',
     btnPrimary: 'btn-primary · 900×270',
-    btnArrow: 'btn-arrow · 192×192',
+    btnArrow: '../shared/buttons/img/arrow-frame.webp',
     tickerBar: 'ticker-bar · 1000×180',
     cardFrame: 'card-frame · 120×120 (9-slice 40)',
     cardTitle: 'card-title · 400×72',
     footerDeco: 'footer-deco · 750×160',
     sound: 'icon-sound-on/off · 64×64',
-    share: 'icon-share · 64×64',
+    share: '../shared/buttons/img/icon-share.webp',
     rotateHint: 'icon-rotate · 160×160',
     tapHint: 'icon-tap · 160×160',
     boxFront: 'chest-front · 640×400',

@@ -1,0 +1,47 @@
+{
+  "files": [
+    {
+      "path": "event/20261111_lucky_wheel/assets/img/bulb-on.png",
+      "before": 2601,
+      "after": 2505,
+      "rgbaIdentical": true
+    },
+    {
+      "path": "event/20261111_lucky_wheel/assets/img/card-frame.webp",
+      "before": 6416,
+      "after": 6402,
+      "rgbaIdentical": true
+    },
+    {
+      "path": "event/20261111_survival_spin/assets/img/bulb-on.webp",
+      "before": 2270,
+      "after": 1938,
+      "rgbaIdentical": true
+    },
+    {
+      "path": "event/20261111_survival_spin/assets/img/card-frame.webp",
+      "before": 9428,
+      "after": 9040,
+      "rgbaIdentical": true
+    },
+    {
+      "path": "event/20261111_survival_spin/assets/img/icon-share.webp",
+      "before": 6372,
+      "after": 5914,
+      "rgbaIdentical": true
+    },
+    {
+      "path": "event/20261111_survival_spin/assets/img/icon-sound-off.webp",
+      "before": 6114,
+      "after": 5606,
+      "rgbaIdentical": true
+    },
+    {
+      "path": "event/20261111_survival_spin/assets/img/icon-sound-on.webp",
+      "before": 6408,
+      "after": 5818,
+      "rgbaIdentical": true
+    }
+  ],
+  "savedBytes": 2386
+}

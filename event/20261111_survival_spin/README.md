@@ -9,8 +9,8 @@
 | `index.html` | 遊戲與專屬 OG / Twitter 分享 metadata |
 | `assets/js/` | 設定、轉盤、語系、分享、音效與資料介面 |
 | `assets/css/event.css`、`assets/css/skin.css` | 沿用的共用版型與生存輪盤色票 |
-| `img/` | 遊戲正在使用的主視覺、介面、角色與社群圖 |
-| `source/` | 原圖、歷史提案、動態序列與檢查資料；不代表全數已採用 |
+| `assets/img/` | 遊戲正在使用的主視覺、介面、角色與社群圖 |
+| `source/` | 現行素材原稿與動態序列；歷史提案移至 alternatives/source/ |
 | `tools/` | 素材組裝與輸出工具 |
 | `docs/DESIGN_TASKS.md`、`docs/GPT_ASSET_BRIEF.md` | 美術需求與製作規格 |
 | `docs/DELIVERY_CHECKLIST.md` | 提交紀錄；人工審核與素材可用性仍須分別確認 |
@@ -18,7 +18,7 @@
 ## 目前採用版本
 
 - 舞台：墨綠大廳、桃紅階梯與轉盤。
-- 人物：`img/mascot/` 使用第一版桃紅面具人物（還原來源 `ba4675c`，還原提交 `e3f2143`）。六段新版分段姿勢留在 `source/guard-fullpose-v3/`，已因流暢度與邊緣問題退回，不作為遊戲使用版。
+- 人物：`assets/img/mascot/` 使用第一版桃紅面具人物（還原來源 `ba4675c`，還原提交 `e3f2143`）。六段新版分段姿勢留在 `alternatives/source/guard-fullpose-v3/`，已因流暢度與邊緣問題退回，不作為遊戲使用版。
 - 社群圖：[assets/img/share-preview.jpg](assets/img/share-preview.jpg)，1200×630。新入口的 HTML 原始碼直接引用此圖。
 - 舊文件中的「兔比工作人員造型」是先前方向；目前遊戲角色為桃紅面具人物。原交付表保留歷史審核欄，不冒填舊項目。
 
@@ -45,3 +45,5 @@
 - `source`：原稿、分層檔與 reference 參考資料。
 - `tools`：此活動的素材製作工具。
 - `alternatives`：目前未引用的備選／舊版素材，保留原路徑結構。
+
+目前圖片及音效放 `assets/img/`、`assets/audio/`；未採用或廢棄版本統一放 `alternatives/`，詳見 [搬移索引](docs/ARCHIVE_20261119.json)。共用素材可由其他活動或 `event/shared/` 引用，不複製。

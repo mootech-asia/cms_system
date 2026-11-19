@@ -59,3 +59,5 @@
 - `source`：原稿、分層檔與 reference 參考資料。
 - `tools`：此活動的素材製作工具。
 - `alternatives`：目前未引用的備選／舊版素材，保留原路徑結構。
+
+目前圖片及音效放 `assets/img/`、`assets/audio/`；未採用或廢棄版本統一放 `alternatives/`，詳見 [搬移索引](docs/ARCHIVE_20261119.json)。共用素材可由其他活動或 `event/shared/` 引用，不複製。

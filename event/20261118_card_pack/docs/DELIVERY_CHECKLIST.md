@@ -84,13 +84,13 @@
 |---|---|---|---|---|---|---|---|
 | ☑ | C56 | 背景音樂 bgm（完整曲目、頭尾交叉淡化循環） | （人工） | `assets/audio/bgm.mp3` | dbd5a98 | ☐ | P3 |
 | ☑ | C57 | 特效音 select：點選一包＝選定（≤0.4 秒） | 選配 | `assets/audio/select.mp3` | dbd5a98 | ☐ | P3 |
-| ☑ | C58 | 特效音 reveal-common：揭曉：普通（0.5–0.8 秒） | 選配 | `assets/audio/reveal-common.mp3` | dbd5a98 | ☐ | P3 |
-| ☑ | C59 | 特效音 reveal-rare：揭曉：稀有（0.7–1.0 秒） | 選配 | `assets/audio/reveal-rare.mp3` | dbd5a98 | ☐ | P3 |
-| ☑ | C60 | 特效音 reveal-epic：揭曉：超稀有（0.9–1.3 秒） | 選配 | `assets/audio/reveal-epic.mp3` | dbd5a98 | ☐ | P3 |
-| ☑ | C61 | 特效音 reveal-legendary：揭曉：最高級（Legendary）（1.5–2.0 秒） | 選配 | `assets/audio/reveal-legendary.mp3` | dbd5a98 | ☐ | P3 |
+| ☑ | C58 | 特效音 reveal-common：揭曉：普通（0.5–0.8 秒） | 選配 | `assets/audio/reveal-3026.wav` | dbd5a98 | ☐ | P3 |
+| ☑ | C59 | 特效音 reveal-rare：揭曉：稀有（0.7–1.0 秒） | 選配 | `assets/audio/reveal-3026.wav` | dbd5a98 | ☐ | P3 |
+| ☑ | C60 | 特效音 reveal-epic：揭曉：超稀有（0.9–1.3 秒） | 選配 | `assets/audio/reveal-3026.wav` | dbd5a98 | ☐ | P3 |
+| ☑ | C61 | 特效音 reveal-legendary：揭曉：最高級（Legendary）（1.5–2.0 秒） | 選配 | `assets/audio/reveal-3026.wav` | dbd5a98 | ☐ | P3 |
 | ☑ | C62 | 特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒） | 選配 | `assets/audio/collect.mp3` | dbd5a98 | ☐ | P3 |
 | ☑ | C63 | 特效音 error：次數用完、尚無獎項（≤0.3 秒） | 選配 | `assets/audio/error.mp3` | dbd5a98 | ☐ | P3 |
-| ☑ | C64 | 本批音訊母帶與製作說明（12 個特效音及 BGM） | （人工） | `source/audio/README.md` | c91aeeb | ☐ | P3 |
+| ☑ | C64 | 本批音訊母帶與製作說明（12 個特效音及 BGM） | （人工） | `alternatives/source/audio/pre-seal-update/README.md` | c91aeeb | ☐ | P3 |
 
 ## 紀錄
 
@@ -151,10 +151,10 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 | ☑ | C74 | tool-medallion | 160×160 | `assets/img/ui/tool-medallion.webp` | c91aeeb | ☐ | P1 |
 | ☑ | C75 | pack-contents-refined-original | （人工） | `source/3d/pack-contents-refined-original.png` | c91aeeb | ☐ | P1 |
 | ☑ | C76 | pack-crimp-refined-original | （人工） | `source/3d/pack-crimp-refined-original.png` | c91aeeb | ☐ | P1 |
-| ☑ | C77 | bgm-score | （人工） | `source/audio/bgm-score.json` | c91aeeb | ☐ | P1 |
-| ☑ | C78 | bgm | （人工） | `source/audio/bgm.wav` | c91aeeb | ☐ | P1 |
-| ☑ | C79 | loudness | （人工） | `source/audio/loudness.json` | c91aeeb | ☐ | P1 |
-| ☑ | C80 | soundfont-copyright | （人工） | `source/audio/soundfont-copyright.txt` | c91aeeb | ☐ | P1 |
+| ☑ | C77 | bgm-score | （人工） | `alternatives/source/audio/pre-seal-update/bgm-score.json` | c91aeeb | ☐ | P1 |
+| ☑ | C78 | bgm | （人工） | `alternatives/source/audio/pre-seal-update/bgm.wav` | c91aeeb | ☐ | P1 |
+| ☑ | C79 | loudness | （人工） | `alternatives/source/audio/pre-seal-update/loudness.json` | c91aeeb | ☐ | P1 |
+| ☑ | C80 | soundfont-copyright | （人工） | `alternatives/source/audio/pre-seal-update/soundfont-copyright.txt` | c91aeeb | ☐ | P1 |
 | ☑ | C81 | reward-back-refined-original | （人工） | `source/reveal/reward-back-refined-original.png` | c91aeeb | ☐ | P1 |
 | ☑ | C82 | panel-frame-refined-original | （人工） | `source/ui/panel-frame-refined-original.png` | c91aeeb | ☐ | P1 |
 | ☑ | C83 | period-badge-refined-original | （人工） | `source/ui/period-badge-refined-original.png` | c91aeeb | ☐ | P1 |
@@ -206,6 +206,10 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | N01 | utility-frame | 240×152 | `assets/img/ui/utility-frame.webp` | c91aeeb | ☐ | P1 |
+| ☑ | N01 | utility-frame | 240×152 | `alternatives/assets/img/ui/utility-frame.webp` | c91aeeb | ☐ | P1 |
 
 | ☑ | N02 | 星雲揭曉光暈 | 900×900 | `assets/img/ui/reveal-aura.webp` | c91aeeb | ☐ | P1 |
+
+| 提交 | ID | 素材 | 尺寸 | 路徑 | commit | 審核 | 優先級 |
+|---|---|---|---|---|---|---|---|
+| ☑ | STATUS12 | 主題狀態徽章 | 1536×1024 | `../shared/unbox-3d/img/status-badges.webp` | PENDING | ☐ | P1 |

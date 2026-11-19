@@ -1,0 +1,121 @@
+{
+  "reason": "superseded artwork and audio; current runtime assets retained",
+  "moves": [
+    {
+      "from": "source/audio/secret.wav",
+      "to": "alternatives/source/audio/pre-seal-update/secret.wav"
+    },
+    {
+      "from": "source/audio/collect.wav",
+      "to": "alternatives/source/audio/pre-seal-update/collect.wav"
+    },
+    {
+      "from": "source/audio/foil-tear.wav",
+      "to": "alternatives/source/audio/pre-seal-update/foil-tear.wav"
+    },
+    {
+      "from": "source/audio/reveal-epic.wav",
+      "to": "alternatives/source/audio/pre-seal-update/reveal-epic.wav"
+    },
+    {
+      "from": "source/audio/select.wav",
+      "to": "alternatives/source/audio/pre-seal-update/select.wav"
+    },
+    {
+      "from": "source/audio/bgm-master.wav",
+      "to": "alternatives/source/audio/pre-seal-update/bgm-master.wav"
+    },
+    {
+      "from": "source/audio/reveal-common.wav",
+      "to": "alternatives/source/audio/pre-seal-update/reveal-common.wav"
+    },
+    {
+      "from": "source/audio/reward.wav",
+      "to": "alternatives/source/audio/pre-seal-update/reward.wav"
+    },
+    {
+      "from": "source/audio/click.wav",
+      "to": "alternatives/source/audio/pre-seal-update/click.wav"
+    },
+    {
+      "from": "source/audio/loudness.json",
+      "to": "alternatives/source/audio/pre-seal-update/loudness.json"
+    },
+    {
+      "from": "source/audio/error.wav",
+      "to": "alternatives/source/audio/pre-seal-update/error.wav"
+    },
+    {
+      "from": "source/audio/bgm-score.json",
+      "to": "alternatives/source/audio/pre-seal-update/bgm-score.json"
+    },
+    {
+      "from": "source/audio/move.wav",
+      "to": "alternatives/source/audio/pre-seal-update/move.wav"
+    },
+    {
+      "from": "source/audio/new-cues.json",
+      "to": "alternatives/source/audio/pre-seal-update/new-cues.json"
+    },
+    {
+      "from": "source/audio/generate-sfx.py",
+      "to": "alternatives/source/audio/pre-seal-update/generate-sfx.py"
+    },
+    {
+      "from": "source/audio/reveal-rare.wav",
+      "to": "alternatives/source/audio/pre-seal-update/reveal-rare.wav"
+    },
+    {
+      "from": "source/audio/flip.wav",
+      "to": "alternatives/source/audio/pre-seal-update/flip.wav"
+    },
+    {
+      "from": "source/audio/README.md",
+      "to": "alternatives/source/audio/pre-seal-update/README.md"
+    },
+    {
+      "from": "source/audio/soundfont-copyright.txt",
+      "to": "alternatives/source/audio/pre-seal-update/soundfont-copyright.txt"
+    },
+    {
+      "from": "source/audio/reveal-legendary.wav",
+      "to": "alternatives/source/audio/pre-seal-update/reveal-legendary.wav"
+    },
+    {
+      "from": "source/audio/bgm.wav",
+      "to": "alternatives/source/audio/pre-seal-update/bgm.wav"
+    },
+    {
+      "from": "assets/audio/SEAL_SOURCES.md",
+      "to": "docs/AUDIO_SOURCES.md"
+    },
+    {
+      "from": "assets/img/icon/icon-share.svg",
+      "to": "alternatives/assets/img/icon/icon-share.svg",
+      "reason": "replaced by shared controls"
+    },
+    {
+      "from": "assets/img/icon/icon-sound-on.svg",
+      "to": "alternatives/assets/img/icon/icon-sound-on.svg",
+      "reason": "replaced by shared controls"
+    },
+    {
+      "from": "assets/img/icon/icon-sound-off.svg",
+      "to": "alternatives/assets/img/icon/icon-sound-off.svg",
+      "reason": "replaced by shared controls"
+    },
+    {
+      "from": "assets/img/ui/btn-arrow.webp",
+      "to": "alternatives/assets/img/ui/btn-arrow.webp",
+      "reason": "replaced by shared controls"
+    },
+    {
+      "from": "assets/img/ui/utility-frame.webp",
+      "to": "alternatives/assets/img/ui/utility-frame.webp"
+    },
+    {
+      "from": "source/ui-20261119",
+      "to": "alternatives/source/ui-20261119"
+    }
+  ]
+}

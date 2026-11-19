@@ -26,7 +26,7 @@ window.EVENT_CONFIG = {
   secretEvery: 50,
   tearSoundMs: 800,
   images: {
-    utilityFrame: 'assets/img/ui/utility-frame.webp?v=20261119-desert1',
+    statusBadges: '../shared/unbox-3d/img/status-badges.webp?v=20261119-badge1',
     secretPack: 'assets/img/3d/secret-pack.webp?v=20261118-vortex1',
     secretSide: 'assets/img/3d/secret-side.webp?v=20261118-vortex1',
     secretBack: 'assets/img/reveal/secret-back.webp?v=20261118-vortex1',
@@ -50,18 +50,18 @@ window.EVENT_CONFIG = {
     periodBadge: 'assets/img/ui/period-badge.webp?v=20261118-refine2',
     chancesBadge: 'assets/img/ui/chances-badge.webp?v=20261118-refine2',
     btnPrimary: 'assets/img/ui/btn-primary.webp?v=20261118-refine2',
-    btnArrow: 'assets/img/ui/btn-arrow.webp?v=20261118-refine2',
+    btnArrow: '../shared/buttons/img/arrow-frame.webp',
     tickerBar: 'assets/img/ui/ticker-bar.webp?v=20261118-refine2',
     cardFrame: 'assets/img/ui/card-frame.svg?v=20261118-refine2',
     cardTitle: 'assets/img/ui/card-title.svg?v=20261118-refine2',
     footerDeco: 'assets/img/scene/footer-deco.svg?v=20261118-refine2',
-    soundOn: 'assets/img/icon/icon-sound-on.svg?v=20261118-refine2',
-    soundOff: 'assets/img/icon/icon-sound-off.svg?v=20261118-refine2',
-    share: 'assets/img/icon/icon-share.svg?v=20261118-refine2',
+    soundOn: '../shared/buttons/img/icon-sound-on.webp',
+    soundOff: '../shared/buttons/img/icon-sound-off.webp',
+    share: '../shared/buttons/img/icon-share.webp',
     rotateHint: 'assets/img/icon/icon-rotate.svg?v=20261118-refine2',
     tapHint: 'assets/img/icon/icon-tap.svg?v=20261118-refine2',
     /* 20 個完整卡包共用環形軌道，正面設計依序重複；側封邊保留原材質色。 */
-    packFront: ['assets/img/3d/pack-front-1.webp?v=20261118-refine2', 'assets/img/3d/pack-front-2.webp?v=20261118-refine2', 'assets/img/3d/pack-front-3.webp?v=20261118-refine2'],
+    packFront: ['assets/img/3d/pack-front-1.webp?v=20261118-refine2', 'assets/img/3d/pack-front-2.webp?v=20261118-refine2', 'assets/img/3d/pack-front-3.webp?v=20261119-palette1'],
     packSide: 'assets/img/3d/pack-side.webp?v=20261118-vortex1',
     packBack: 'assets/img/3d/pack-back.webp?v=20261118-refine2',
     packCrimp: 'assets/img/3d/pack-crimp.webp?v=20261118-refine2',
@@ -75,18 +75,18 @@ window.EVENT_CONFIG = {
   },
 
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
-  loadingImages: ['utilityFrame', 'magicCircle', 'loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
+  loadingImages: ['magicCircle', 'loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
 
   /* 音效：名稱與規格見 docs/AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
      音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
-  soundLevels: { hover: 0.7, bgm: 0.35, bgmDuck: 0.1, empty: 0.85, click: 0.6, move: 0.45, select: 0.8, tear: 0.8, flip: 0.9, reveal: 1.2, 'reveal-common': 1, 'reveal-rare': 1, 'reveal-epic': 1, 'reveal-legendary': 1, reward: 1, collect: 1, error: 0.8 },
+  soundLevels: { hover: 0.7, bgm: 0.35, bgmDuck: 0.1, empty: 0.85, click: 0.6, move: 0.45, select: 0.8, tear: 1, flip: 0.9, reveal: 1.2, 'reveal-common': 1, 'reveal-rare': 1, 'reveal-epic': 1, 'reveal-legendary': 1, reward: 1, collect: 1, error: 0.8 },
   sounds: { empty: 'assets/audio/empty.mp3?v=20261119-seal1',
     hover: '../20261111_survival_spin/assets/audio/hover.mp3',
-    secret: 'assets/audio/secret.mp3?v=20261119-seal1', click: 'assets/audio/click.mp3?v=20261119-seal1', move: 'assets/audio/move.mp3?v=20261119-seal1', tear: 'assets/audio/tear.mp3?v=20261119-seal1', flip: 'assets/audio/flip.mp3?v=20261119-seal1', reveal: '', reward: 'assets/audio/reward.mp3?v=20261119-seal1', bgm: 'assets/audio/bgm.mp3?v=20261119-seal1', select: 'assets/audio/select.mp3?v=20261119-seal1', 'reveal-common': 'assets/audio/reveal-common.mp3?v=20261119-seal1', 'reveal-rare': 'assets/audio/reveal-rare.mp3?v=20261119-seal1', 'reveal-epic': 'assets/audio/reveal-epic.mp3?v=20261119-seal1', 'reveal-legendary': 'assets/audio/reveal-legendary.mp3?v=20261119-seal1', collect: 'assets/audio/collect.mp3?v=20261119-seal1', error: 'assets/audio/error.mp3?v=20261119-seal1' },
+    secret: 'assets/audio/secret.mp3?v=20261119-seal1', click: 'assets/audio/click.mp3?v=20261119-seal1', move: 'assets/audio/move.mp3?v=20261119-seal1', tear: 'assets/audio/tear.mp3?v=20261119-restore1', flip: 'assets/audio/flip.mp3?v=20261119-seal1', reveal: '', reward: 'assets/audio/reward.mp3?v=20261119-seal1', bgm: 'assets/audio/bgm.mp3?v=20261119-seal1', select: 'assets/audio/select.mp3?v=20261119-seal1', 'reveal-common': 'assets/audio/reveal-3026.wav?v=20261119-user1', 'reveal-rare': 'assets/audio/reveal-3026.wav?v=20261119-user1', 'reveal-epic': 'assets/audio/reveal-3026.wav?v=20261119-user1', 'reveal-legendary': 'assets/audio/reveal-3026.wav?v=20261119-user1', collect: 'assets/audio/collect.mp3?v=20261119-seal1', error: 'assets/audio/error.mp3?v=20261119-seal1' },
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
-    utilityFrame: 'utility-frame · 240×152',
+    statusBadges: 'status-badges · 1536×1024 / 2 themes',
     secretPack: 'secret-pack · 512×768',
     secretSide: 'secret-side · 128×512',
     secretBack: 'secret-back · 600×900',
@@ -106,13 +106,13 @@ window.EVENT_CONFIG = {
     periodBadge: 'period-badge · 900×150',
     chancesBadge: 'chances-badge · 630×210',
     btnPrimary: 'btn-primary · 900×270',
-    btnArrow: 'btn-arrow · 192×192',
+    btnArrow: '../shared/buttons/img/arrow-frame.webp',
     tickerBar: 'ticker-bar · 1000×180',
     cardFrame: 'card-frame · 120×120 (9-slice 40)',
     cardTitle: 'card-title · 400×72',
     footerDeco: 'footer-deco · 750×160',
     sound: 'icon-sound-on/off · 64×64',
-    share: 'icon-share · 64×64',
+    share: '../shared/buttons/img/icon-share.webp',
     rotateHint: 'icon-rotate · 160×160',
     tapHint: 'icon-tap · 160×160',
     packFront: 'pack-front-1~3 · 512×768',

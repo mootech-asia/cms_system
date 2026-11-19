@@ -8,8 +8,8 @@
 |---|---|---|---|
 | Lucky Wheel 原版轉盤 | [20261111_lucky_wheel](./20261111_lucky_wheel/) · [開啟活動](./20261111_lucky_wheel/index.html) | 百老匯舞台、兔比；已有主視覺、介面與可操作轉盤，仍有美術項目待交付 | [交付清單](20261111_lucky_wheel/docs/DELIVERY_CHECKLIST.md) |
 | Survival Spin 生存輪盤 | [20261111_survival_spin](./20261111_survival_spin/) · [開啟活動](./20261111_survival_spin/index.html) | 墨綠／桃紅舞台、桃紅面具人物；目前使用第一版人物動態，已有專屬社群圖 | [交付清單](20261111_survival_spin/docs/DELIVERY_CHECKLIST.md) |
-| 3D 拆卡包 | [20261118_card_pack](./20261118_card_pack/) · [開啟活動](./20261118_card_pack/index.html) | mock（美術主題：宇宙幻象＋兔比宇宙兔女郎）；六包環形可拖曳轉圈、點選任一包即選擇、卡包 1.5 倍；環形選包、撕封條、逐張翻卡；en/ko/th、次數、規則、紀錄、分享已比照轉盤；全部佔位圖；吉祥物暫緩 | [交付清單](20261118_card_pack/docs/DELIVERY_CHECKLIST.md) |
-| 3D 拆盲盒 | [20261118_blind_box](./20261118_blind_box/) · [開啟活動](./20261118_blind_box/index.html) | mock（美術主題：中東神燈寶藏）；六個圓拱蓋寶箱環形可拖曳轉圈、點選任一箱即選擇、開箱為掀蓋；環形選盒、開蓋、翻開獎品卡；en/ko/th、次數、規則、紀錄、分享已比照轉盤；全部佔位圖；吉祥物暫緩 | [交付清單](20261118_blind_box/docs/DELIVERY_CHECKLIST.md) |
+| 3D 拆卡包 | [20261118_card_pack](./20261118_card_pack/) · [開啟活動](./20261118_card_pack/index.html) | mock（美術主題：宇宙魔法卡包）；20 包環形可拖曳轉圈、點選任一包即選擇、卡包 1.5 倍；環形選包、撕封條、逐張翻卡；en/ko/th、次數、規則、紀錄、分享已比照轉盤；已套用主題美術 | [交付清單](20261118_card_pack/docs/DELIVERY_CHECKLIST.md) |
+| 3D 拆盲盒 | [20261118_blind_box](./20261118_blind_box/) · [開啟活動](./20261118_blind_box/index.html) | mock（美術主題：奇幻沙漠與神燈精靈）；六個圓拱蓋寶箱環形可拖曳轉圈、點選任一箱即選擇、開箱為掀蓋；環形選盒、開蓋、翻開獎品卡；en/ko/th、次數、規則、紀錄、分享已比照轉盤；已套用主題美術 | [交付清單](20261118_blind_box/docs/DELIVERY_CHECKLIST.md) |
 
 「已有素材」不等於所有交付與人工審核完成；各活動以自己的交付清單與檢查結果為準。正式站仍使用 mock 獎項資料，不代表已串接後台。
 
@@ -17,23 +17,20 @@
 
 ```text
 event/
+├── 20261111_lucky_wheel/
+├── 20261111_survival_spin/
+├── 20261118_card_pack/
+├── 20261118_blind_box/
+└── shared/  共用程式、樣式與素材
+
+每個活動統一：
+├── index.html
 ├── README.md
-├── 20261111_lucky_wheel/       # 原版轉盤、兔比活動素材
-│   ├── index.html
-│   ├── assets/{css,js,img}/
-│   ├── reference/
-│   ├── source/
-│   └── tools/
-├── 20261111_survival_spin/     # 生存輪盤、桃紅人物素材
-│   ├── index.html
-│   ├── assets/{css,js}/
-│   ├── img/
-│   ├── skin.css
-│   ├── source/
-│   └── tools/
-├── 20261118_card_pack/         # 拆卡包：index.html、assets/{css/theme.css,js/config.js,img}
-├── 20261118_blind_box/         # 拆盲盒：同上
-└── shared/unbox-3d/            # 拆卡包／拆盲盒共用程式（3D 場景、流程、i18n、分享、音效、版面）
+├── assets/{css,js,img,audio}/  僅目前使用的交付檔
+├── docs/                     規格、交付表、搬移索引
+├── source/                   現行原稿
+├── tools/                    現行製作工具
+└── alternatives/             未使用與廢棄版本，保留原相對層級
 ```
 
 拆卡包與拆盲盒共用 `shared/unbox-3d/` 的程式與版面，各活動只放自己的設定、色票與素材；換主題＝換圖＋色票（或 `skins/<名稱>/`），說明見 [shared/unbox-3d/README.md](./shared/unbox-3d/README.md)。修改共用程式時兩個活動都要驗證。
@@ -46,7 +43,7 @@ event/
 - 前台語系為 en / ko / th，預設 en；中文僅供 Ctrl+Alt+L 內部預覽，不列入分享語系。
 - 獎項、規則與次數由後台提供，活動程式保留資料介面與 mock 資料。
 - 素材移動或換名時同步更新 config、入口、分享 metadata、文件與交付 commit；人工審核欄不可代填。
-- 核對提交：`python3 scripts/check_delivery.py event/<活動資料夾>/DELIVERY_CHECKLIST.md`。
+- 核對提交：`python3 scripts/check_delivery.py event/<活動資料夾>/docs/DELIVERY_CHECKLIST.md`。
 - 新活動命名：`YYYYMMDD_event_name[_N]`，英文小寫與底線；相同日期與名稱才加 `_2` 等序號。
 
 ### 轉盤角色換圖規格
@@ -68,3 +65,5 @@ event/
 ## 統一目錄規格
 
 每款活動使用 `index.html`、`README.md`、`assets/{css,js,img,audio}`、`docs`、`source`、`tools`、`alternatives`。未使用資源移至 alternatives（備選），原稿維持 source；每次搬移記錄於該活動 `docs/FILE_MIGRATION.json`。`shared/` 為跨活動共用模組。原版轉盤的 `survival.html` 與舊社群預覽圖保留作公開網址相容入口。
+
+舊版 Lucky Wheel 的 `survival.html` 與 `skins/survival/img/share-preview.jpg` 是既有公開分享連結的相容入口，仍有用途，保留於原路徑。

@@ -216,9 +216,9 @@
 - 畫布 **400 × 500 px**，每幀同尺寸；角色腳底位置固定，**鏡頭固定**（不可整體縮放、不可忽大忽小）。
 - 每段 **48 幀、24fps、合計 2000ms**；第一幀＝最後一幀＝ `base-frame.png`。
 - 角色佔畫布寬約七～八成，但以「整段動作最大範圍＋影子＋四邊 8px 留白」能放進畫布為上限。
-- **PNG 序列幀（RGBA，含半透明影子）是主交付**：`source/mascot-frames/<狀態>/frame_001.png`～`frame_048.png`；
+- **PNG 序列幀（RGBA，含半透明影子）是主交付**：`alternatives/source/mascot-frames/<狀態>/frame_001.png`～`frame_048.png`；
   GIF（`assets/img/mascot/<狀態>.gif`）用舞台暖色 `#FFE6CC` 當 matte 輸出，作為預覽。
-- 每段附一張「關鍵幀 vs 熊北參考」並排比對圖（`source/mascot-compare/<狀態>.png`）。
+- 每段附一張「關鍵幀 vs 熊北參考」並排比對圖（`alternatives/source/mascot-compare/<狀態>.png`）。
 - 顯示位置：站在轉盤右前方的舞台地板上、中獎跑馬燈後方，畫布顯示寬度約為頁面內容欄的 81%（手機 390 寬約 290px）。
   **注意：目前版面跑馬燈會蓋住兔比的腳與腳下影子**，影子在手機上可能大半看不到（是否調整站位另行決定）。
 - 光源與舞台一致：前上方偏左。

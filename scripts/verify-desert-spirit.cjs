@@ -1,8 +1,8 @@
 const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=require('fs');
 const base=process.env.CHECK_BASE||'http://127.0.0.1:8896',out=process.env.CHECK_OUTPUT||'/tmp/desert-spirit';fs.mkdirSync(out,{recursive:true});
 (async()=>{const b=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});const results=[];try{
-for(const rarity of ['common','rare']){
- const p=await b.newPage({viewport:{width:390,height:844}});await p.addInitScript(r=>{window.EVENT_CONTENT={freeOpens:3,prizes:[{name:{en:'Test treasure'},rarity:r,weight:1}],rules:{en:[]}}},rarity);
+for(const rarity of ['empty','rare']){
+ const p=await b.newPage({viewport:{width:390,height:844}});await p.addInitScript(r=>{window.EVENT_CONTENT={freeOpens:3,prizes:[{name:{en:'Test treasure'},rarity:r,type:r==='empty'?'empty':'prize',weight:1}],rules:{en:[]}}},rarity);
  await p.goto(base+'/event/20261118_blind_box/');await p.locator('#loading').waitFor({state:'hidden'});await p.waitForFunction(()=>document.querySelector('#mascot').dataset.state==='idle');
  assert.equal(await p.locator('.ev-depth-layer').count(),2);assert.equal(await p.locator('.ev-depth-columns,.ev-depth-curtain').count(),0);
  const a=await p.locator('.ev-depth-soft').evaluateAll(es=>es.map(e=>e.style.opacity));await p.waitForTimeout(900);const z=await p.locator('.ev-depth-soft').evaluateAll(es=>es.map(e=>e.style.opacity));assert(z.every((v,i)=>v!==a[i]));assert.notEqual(z[0],z[1]);

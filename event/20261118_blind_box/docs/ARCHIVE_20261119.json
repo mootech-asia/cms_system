@@ -1,0 +1,130 @@
+{
+  "reason": "superseded artwork and audio; current runtime assets retained",
+  "moves": [
+    {
+      "from": "source/scene/stage-bg-original.png",
+      "to": "alternatives/source/scene/stage-bg-original.png"
+    },
+    {
+      "from": "source/scene/wind-palm-original.png",
+      "to": "alternatives/source/scene/wind-palm-original.png"
+    },
+    {
+      "from": "source/scene/wind-flowers-original.png",
+      "to": "alternatives/source/scene/wind-flowers-original.png"
+    },
+    {
+      "from": "source/ui/btn-arrow-original.png",
+      "to": "alternatives/source/ui/btn-arrow-original.png"
+    },
+    {
+      "from": "source/audio/collect.wav",
+      "to": "alternatives/source/audio/pre-seal-update/collect.wav"
+    },
+    {
+      "from": "source/audio/reveal-epic.wav",
+      "to": "alternatives/source/audio/pre-seal-update/reveal-epic.wav"
+    },
+    {
+      "from": "source/audio/select.wav",
+      "to": "alternatives/source/audio/pre-seal-update/select.wav"
+    },
+    {
+      "from": "source/audio/bgm-master.wav",
+      "to": "alternatives/source/audio/pre-seal-update/bgm-master.wav"
+    },
+    {
+      "from": "source/audio/reveal-common.wav",
+      "to": "alternatives/source/audio/pre-seal-update/reveal-common.wav"
+    },
+    {
+      "from": "source/audio/reward.wav",
+      "to": "alternatives/source/audio/pre-seal-update/reward.wav"
+    },
+    {
+      "from": "source/audio/click.wav",
+      "to": "alternatives/source/audio/pre-seal-update/click.wav"
+    },
+    {
+      "from": "source/audio/loudness.json",
+      "to": "alternatives/source/audio/pre-seal-update/loudness.json"
+    },
+    {
+      "from": "source/audio/error.wav",
+      "to": "alternatives/source/audio/pre-seal-update/error.wav"
+    },
+    {
+      "from": "source/audio/bgm-score.json",
+      "to": "alternatives/source/audio/pre-seal-update/bgm-score.json"
+    },
+    {
+      "from": "source/audio/move.wav",
+      "to": "alternatives/source/audio/pre-seal-update/move.wav"
+    },
+    {
+      "from": "source/audio/reveal-rare.wav",
+      "to": "alternatives/source/audio/pre-seal-update/reveal-rare.wav"
+    },
+    {
+      "from": "source/audio/open.wav",
+      "to": "alternatives/source/audio/pre-seal-update/open.wav"
+    },
+    {
+      "from": "source/audio/README.md",
+      "to": "alternatives/source/audio/pre-seal-update/README.md"
+    },
+    {
+      "from": "source/audio/soundfont-copyright.txt",
+      "to": "alternatives/source/audio/pre-seal-update/soundfont-copyright.txt"
+    },
+    {
+      "from": "source/audio/reveal-legendary.wav",
+      "to": "alternatives/source/audio/pre-seal-update/reveal-legendary.wav"
+    },
+    {
+      "from": "source/audio/bgm.wav",
+      "to": "alternatives/source/audio/pre-seal-update/bgm.wav"
+    },
+    {
+      "from": "assets/audio/SEAL_SOURCES.md",
+      "to": "docs/AUDIO_SOURCES.md"
+    },
+    {
+      "from": "assets/audio/click.mp3",
+      "to": "alternatives/assets/audio/pre-minimal/click.mp3"
+    },
+    {
+      "from": "assets/audio/reward.mp3",
+      "to": "alternatives/assets/audio/pre-minimal/reward.mp3"
+    },
+    {
+      "from": "assets/audio/collect.mp3",
+      "to": "alternatives/assets/audio/pre-minimal/collect.mp3"
+    },
+    {
+      "from": "source/desert-spirit (old 48-frame motion)",
+      "to": "alternatives/source/desert-spirit",
+      "reason": "replaced with newly authored 24-frame motion"
+    },
+    {
+      "from": "assets/img/icon/icon-share.svg",
+      "to": "alternatives/assets/img/icon/icon-share.svg",
+      "reason": "replaced by shared controls"
+    },
+    {
+      "from": "assets/img/icon/icon-sound-on.svg",
+      "to": "alternatives/assets/img/icon/icon-sound-on.svg",
+      "reason": "replaced by shared controls"
+    },
+    {
+      "from": "assets/img/icon/icon-sound-off.svg",
+      "to": "alternatives/assets/img/icon/icon-sound-off.svg",
+      "reason": "replaced by shared controls"
+    },
+    {
+      "from": "assets/img/ui/btn-arrow.webp",
+      "to": "alternatives/assets/img/ui/btn-arrow.webp",
+      "reason": "replaced by shared controls"
+    }
+  ]
+}

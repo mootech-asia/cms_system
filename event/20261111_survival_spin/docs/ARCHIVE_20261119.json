@@ -1,0 +1,123 @@
+{
+  "reason": "superseded artwork and audio; current runtime assets retained",
+  "moves": [
+    {
+      "from": "source/guard-celebration-v3",
+      "to": "alternatives/source/guard-celebration-v3"
+    },
+    {
+      "from": "source/guard-celebration-v4",
+      "to": "alternatives/source/guard-celebration-v4"
+    },
+    {
+      "from": "source/guard-celebration-v4-fixed",
+      "to": "alternatives/source/guard-celebration-v4-fixed"
+    },
+    {
+      "from": "source/guard-character-v2",
+      "to": "alternatives/source/guard-character-v2"
+    },
+    {
+      "from": "source/guard-fullpose-study",
+      "to": "alternatives/source/guard-fullpose-study"
+    },
+    {
+      "from": "source/guard-fullpose-v3",
+      "to": "alternatives/source/guard-fullpose-v3"
+    },
+    {
+      "from": "source/guard-fullpose-v4",
+      "to": "alternatives/source/guard-fullpose-v4"
+    },
+    {
+      "from": "source/guard-motion",
+      "to": "alternatives/source/guard-motion"
+    },
+    {
+      "from": "source/guard-motion-v2",
+      "to": "alternatives/source/guard-motion-v2"
+    },
+    {
+      "from": "source/guard-review",
+      "to": "alternatives/source/guard-review"
+    },
+    {
+      "from": "source/review",
+      "to": "alternatives/source/review"
+    },
+    {
+      "from": "source/ui-review",
+      "to": "alternatives/source/ui-review"
+    },
+    {
+      "from": "tools/build_actions_v2.py",
+      "to": "alternatives/tools/build_actions_v2.py"
+    },
+    {
+      "from": "tools/build_breath_v2.py",
+      "to": "alternatives/tools/build_breath_v2.py"
+    },
+    {
+      "from": "tools/build_guard_v4.py",
+      "to": "alternatives/tools/build_guard_v4.py"
+    },
+    {
+      "from": "tools/build_fullpose_study.py",
+      "to": "alternatives/tools/build_fullpose_study.py"
+    },
+    {
+      "from": "tools/build_guard_celebration_v4.py",
+      "to": "alternatives/tools/build_guard_celebration_v4.py"
+    },
+    {
+      "from": "tools/build_fullpose_loops.py",
+      "to": "alternatives/tools/build_fullpose_loops.py"
+    },
+    {
+      "from": "tools/build_guard_celebration_v3.py",
+      "to": "alternatives/tools/build_guard_celebration_v3.py"
+    },
+    {
+      "from": "tools/build_guard.py",
+      "to": "alternatives/tools/build_guard.py"
+    },
+    {
+      "from": "tools/build_guard_celebration_v4_fixed.py",
+      "to": "alternatives/tools/build_guard_celebration_v4_fixed.py"
+    },
+    {
+      "from": "alternatives/assets/img/mascot/rifle-v1/idle.webp",
+      "to": "source/mascot/rifle-v1/idle.webp",
+      "reason": "current animation master"
+    },
+    {
+      "from": "alternatives/assets/img/mascot/rifle-v1/anticipation.webp",
+      "to": "source/mascot/rifle-v1/anticipation.webp",
+      "reason": "current animation master"
+    },
+    {
+      "from": "alternatives/assets/img/mascot/rifle-v1/disappointment.webp",
+      "to": "source/mascot/rifle-v1/disappointment.webp",
+      "reason": "current animation master"
+    },
+    {
+      "from": "source/audio/active.wav",
+      "to": "alternatives/source/audio/active.wav"
+    },
+    {
+      "from": "assets/img/icon-share.webp",
+      "to": "alternatives/assets/img/icon-share.webp",
+      "reason": "replaced by shared controls"
+    },
+    {
+      "from": "assets/img/icon-sound-on.webp",
+      "to": "alternatives/assets/img/icon-sound-on.webp",
+      "reason": "replaced by shared controls"
+    },
+    {
+      "from": "assets/img/icon-sound-off.webp",
+      "to": "alternatives/assets/img/icon-sound-off.webp",
+      "reason": "replaced by shared controls"
+    }
+  ]
+}

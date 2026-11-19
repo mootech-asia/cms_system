@@ -16,11 +16,17 @@ window.EventSound = (function () {
   try { enabled = localStorage.getItem(KEY) !== 'off'; } catch (e) { /* 預設開啟 */ }
   var ctx = null;
   var buffers = {};
+  var bufferLoads = {};
   var unlocked = false;
   var lastHover = -Infinity;
   var hoverSource = null;
   var activeSources = new Set();
   function track(source) { activeSources.add(source); source.onended = function () { activeSources.delete(source); if (hoverSource === source) hoverSource = null; }; }
+
+  function stopEffects() {
+    activeSources.forEach(function (source) { try { source.stop(); } catch (_) {} });
+    activeSources.clear();
+  }
 
   function audio() {
     if (!ctx) {
@@ -54,9 +60,15 @@ window.EventSound = (function () {
     var c = audio();
     if (!c) return;
     buffers[name] = 'loading';
-    fetch(src).then(function (r) { return r.arrayBuffer(); })
-      .then(function (data) { return new Promise(function (ok, fail) { c.decodeAudioData(data, ok, fail); }); })
-      .then(function (buf) { buffers[name] = buf; }, function () { delete buffers[name]; });
+    var url = new URL(src, document.baseURI).href;
+    if (!bufferLoads[url]) {
+      bufferLoads[url] = fetch(url).then(function (r) {
+        if (!r.ok) throw new Error('Audio request failed');
+        return r.arrayBuffer();
+      }).then(function (data) { return new Promise(function (ok, fail) { c.decodeAudioData(data, ok, fail); }); });
+      bufferLoads[url].catch(function () { delete bufferLoads[url]; });
+    }
+    bufferLoads[url].then(function (buf) { buffers[name] = buf; }, function () { delete buffers[name]; });
   }
 
   function playFile(name, rate) {
@@ -184,6 +196,7 @@ window.EventSound = (function () {
 
   return {
     play: play,
+    stopEffects: stopEffects,
     hover: hover,
     duck: function (on) { ducked = on; if (bgmEl) bgmEl.volume = bgmVolume(); },
     isUnlocked: function () { return unlocked; },
@@ -191,7 +204,7 @@ window.EventSound = (function () {
     setEnabled: function (on) {
       enabled = on;
       try { localStorage.setItem(KEY, on ? 'on' : 'off'); } catch (e) { /* 只在本次頁面生效 */ }
-      if (on) bgmPlay(); else { bgmPause(); activeSources.forEach(function (source) { try { source.stop(); } catch (_) {} }); activeSources.clear(); }
+      if (on) bgmPlay(); else { bgmPause(); stopEffects(); }
     }
   };
 })();

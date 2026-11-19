@@ -114,18 +114,18 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☐ | E01 | idle-1 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-1/` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
-| ☐ | E02 | idle-2 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-2/` | | ☐ | P3 |
-| ☐ | E03 | idle-3 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-3/` | | ☐ | P3 |
-| ☐ | E04 | spinning PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/spinning/` | | ☐ | P3 |
-| ☐ | E05 | result PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/result/` | | ☐ | P3 |
-| ☐ | E11 | lose PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/lose/` | | ☐ | P3 |
-| ☐ | E06 | idle-1 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-1.{png,webp}` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
-| ☐ | E07 | idle-2 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-2.{png,webp}` | | ☐ | P3 |
-| ☐ | E08 | idle-3 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-3.{png,webp}` | | ☐ | P3 |
-| ☐ | E09 | spinning 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/spinning.{png,webp}` | | ☐ | P3 |
-| ☐ | E10 | result 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/result.{png,webp}` | | ☐ | P3 |
-| ☐ | E12 | lose 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/lose.{png,webp}` | | ☐ | P3 |
+| ☐ | E01 | idle-1 PNG 序列幀 | 400×500 frames≥24 | `alternatives/source/mascot-frames/idle-1/` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | E02 | idle-2 PNG 序列幀 | 400×500 frames≥24 | `alternatives/source/mascot-frames/idle-2/` | | ☐ | P3 |
+| ☐ | E03 | idle-3 PNG 序列幀 | 400×500 frames≥24 | `alternatives/source/mascot-frames/idle-3/` | | ☐ | P3 |
+| ☐ | E04 | spinning PNG 序列幀 | 400×500 frames≥24 | `alternatives/source/mascot-frames/spinning/` | | ☐ | P3 |
+| ☐ | E05 | result PNG 序列幀 | 400×500 frames≥24 | `alternatives/source/mascot-frames/result/` | | ☐ | P3 |
+| ☐ | E11 | lose PNG 序列幀 | 400×500 frames≥24 | `alternatives/source/mascot-frames/lose/` | | ☐ | P3 |
+| ☐ | E06 | idle-1 關鍵幀 vs 熊北參考 | — | `alternatives/source/mascot-compare/idle-1.{png,webp}` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | E07 | idle-2 關鍵幀 vs 熊北參考 | — | `alternatives/source/mascot-compare/idle-2.{png,webp}` | | ☐ | P3 |
+| ☐ | E08 | idle-3 關鍵幀 vs 熊北參考 | — | `alternatives/source/mascot-compare/idle-3.{png,webp}` | | ☐ | P3 |
+| ☐ | E09 | spinning 關鍵幀 vs 熊北參考 | — | `alternatives/source/mascot-compare/spinning.{png,webp}` | | ☐ | P3 |
+| ☐ | E10 | result 關鍵幀 vs 熊北參考 | — | `alternatives/source/mascot-compare/result.{png,webp}` | | ☐ | P3 |
+| ☐ | E12 | lose 關鍵幀 vs 熊北參考 | — | `alternatives/source/mascot-compare/lose.{png,webp}` | | ☐ | P3 |
 
 ## F. 程式路徑（1）
 
@@ -168,13 +168,13 @@
 
 - `8349b85`：A33 跑馬燈；A11 中心 alpha 改為255；合併新版操作台並移除重複角色定位，依螢幕高度調整轉盤，三語360/390×640、1280/1440×720操作台完整入第一屏。
 - `ccc0982`：D00 共用基準幀、D01 待機1新稿、E01序列48幀、E06品牌比對。D01沿用原退回審核欄，待審核者確認新稿後更新；提交勾不代表已審過。
-- 新待機1為48幀、2000ms、113244 bytes、無限循環，首尾完全相同，整段透明輪廓變更像素為0，只移動背心內部紋理與眨眼；見 source/mascot-v3/preview.html。
+- 新待機1為48幀、2000ms、113244 bytes、無限循環，首尾完全相同，整段透明輪廓變更像素為0，只移動背心內部紋理與眨眼；見 alternatives/source/mascot-v3/preview.html。
 - 其餘四段尚未共用新基準，頁面暫不把新待機1加入輪播；先單獨提供GIF預覽。
 
 - 2026-11-12：A03–A06、A34、A35、A37、A38 已以 b577931 重新提交；主標為三語客製立體 Logo，燈光含半透明體積光與同位亮暗燈泡。審核欄維持原記錄，待重新審核。B01／F01 同步最新 CSS／config commit。
 - 2026-11-12：效能優化重新壓縮（6e95855），畫面內容不變：A02／A03–A05／A23 由無損 WebP 改有損（主標 q92、其餘 q86），A06／A34／A35 由 PNG 轉 WebP；B01／F01 同步最新 CSS／config commit。審核欄維持原記錄。
 
-- 2026-11-13：144304b 提交 A39 金紅轉直向圖示、A30 新版立體主標分享圖（移除未定稿兔比），F01 同步路徑。三語觸控橫向顯示／直向隱藏通過，見 `source/remaining-review/`；審核欄維持原記錄。
+- 2026-11-13：144304b 提交 A39 金紅轉直向圖示、A30 新版立體主標分享圖（移除未定稿兔比），F01 同步路徑。三語觸控橫向顯示／直向隱藏通過，見 `alternatives/source/remaining-review/`；審核欄維持原記錄。
 
 2026-11-18：此淺層工作副本缺少部分早期 commit；這些已提交素材的檢查指標改指向包含相同檔案的 aaa6c24 快照，不代表原稿於本次新製。
 
