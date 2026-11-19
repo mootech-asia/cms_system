@@ -20,7 +20,7 @@ const base=process.env.CHECK_BASE||'http://127.0.0.1:8895';
   let offscreenWebGLPaused=null;
   if(name.includes('20261118')){
     await p.evaluate(()=>{const spacer=document.createElement('div');spacer.id='perfSpacer';spacer.style.height='1500px';document.body.append(spacer);window.scrollTo(0,document.body.scrollHeight)});await p.waitForTimeout(500);const draws=await p.evaluate(()=>window.__drawCalls);await p.waitForTimeout(750);assert.equal(await p.evaluate(()=>window.__drawCalls),draws);offscreenWebGLPaused=true;
-    await p.evaluate(()=>{document.querySelector('#perfSpacer').remove();window.scrollTo(0,0)});await p.locator('#scene').press('Enter');await p.locator('#btnAction').click();await p.locator('#reveal').waitFor({timeout:30000});
+    await p.evaluate(()=>{document.querySelector('#perfSpacer').remove();window.scrollTo(0,0)});await p.locator('#scene').press('Enter');await p.waitForFunction(()=>document.querySelector('#stage').dataset.state==='ready');await p.locator('#btnAction').click();await p.locator('#reveal').waitFor({timeout:30000});
   }else{await p.locator('#btnSpin').click();await p.locator('#resultModal').waitFor({timeout:30000})}
   if(name.endsWith('blind_box')) await p.waitForFunction(()=>document.querySelector('#revealVortex').dataset.ready==='true',{},{timeout:30000});
   const revealBefore=await metric();await p.waitForTimeout(2000);const revealTaskMs=((await metric())-revealBefore)*1000;

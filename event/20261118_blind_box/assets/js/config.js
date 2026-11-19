@@ -14,6 +14,16 @@ window.EVENT_CONFIG = {
   /* 整個 3D 環形（包裝、間距、吉祥物）的縮放倍率 */
   sceneScale: 1,
   /* 3D 外型：'chest'＝圓拱蓋寶箱（蓋子沿後緣掀開）；不填＝方盒 */
+  sceneArt: { height: 1125, horizonFromBottom: 660 },
+  atmosphereMode: 'sand',
+  mascot: {
+    poster: 'assets/img/mascot/spirit/poster.webp?v=20261119-desert1',
+    idle: ['assets/img/mascot/spirit/idle.webp?v=20261119-desert1'],
+    anticipate: 'assets/img/mascot/spirit/excited.webp?v=20261119-desert1',
+    celebrate: 'assets/img/mascot/spirit/excited.webp?v=20261119-desert1',
+    lose: 'assets/img/mascot/spirit/encourage.webp?v=20261119-desert1',
+    loopMs: 2000, height: 4.1, offsetX: 1.0, offsetZ: -1.5
+  },
   shape: 'chest',
 
   /* 換皮：skins.<名稱> = { css: '色票覆寫檔', images: { 只列跟預設不同的圖片槽 }, sounds: {}, strings: {} }，
@@ -22,17 +32,13 @@ window.EVENT_CONFIG = {
   skins: {},
 
   images: {
-    windFlowers: 'assets/img/scene/wind-flowers.webp?v=20261118-vortex1',
-    windPalm: 'assets/img/scene/wind-palm.webp?v=20261118-vortex1',
     loadingEmblem: 'assets/img/ui/loading-emblem.webp?v=20261118-loading1',
     toolMedallion: 'assets/img/ui/tool-medallion.webp?v=20261118-refine2',
     atmosphereSprite: 'assets/img/scene/atmosphere.webp?v=20261118-refine2',
     folioHeader: 'assets/img/ui/panel-crown.webp?v=20261118-refine2',
-    depthDesert: 'assets/img/scene/layers/desert.webp',
-    depthFloor: 'assets/img/scene/layers/floor.webp',
-    depthColumns: 'assets/img/scene/layers/columns.webp',
-    depthCurtain: 'assets/img/scene/layers/curtain.webp',
-    stageBg: 'assets/img/scene/stage-bg.webp?v=20261118-vortex1',
+    depthDesert: 'assets/img/scene/open-desert.webp?v=20261119-desert1',
+    depthFloor: 'assets/img/scene/open-desert.webp?v=20261119-desert1',
+    stageBg: 'assets/img/scene/open-desert.webp?v=20261119-desert1',
     infoBg: 'assets/img/scene/info-bg.svg?v=20261118-refine2',
     title: {
       en: 'assets/img/title/title-en.webp?v=20261118-refine2',
@@ -71,7 +77,7 @@ window.EVENT_CONFIG = {
   },
 
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
-  loadingImages: ['depthDesert', 'depthFloor', 'depthColumns', 'depthCurtain', 'windFlowers', 'windPalm', 'loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
+  loadingImages: ['depthDesert', 'depthFloor', 'loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
 
   /* 音效：名稱與規格見 AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
      音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
@@ -80,12 +86,8 @@ window.EVENT_CONFIG = {
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
-    depthDesert: 'depth-desert · 750×1000',
-    depthFloor: 'depth-floor · 750×1000',
-    depthColumns: 'depth-columns · 750×1000',
-    depthCurtain: 'depth-curtain · 750×1000',
-    windFlowers: 'wind-flowers · 450×450',
-    windPalm: 'wind-palm · 400×320',
+    depthDesert: 'depth-desert · 750×1125',
+    depthFloor: 'depth-floor · 750×1125',
     loadingEmblem: 'loading-emblem · 480×480',
     boxInterior: 'chest-interior · 512×352',
     toolMedallion: 'tool-medallion · 160×160',

@@ -158,3 +158,8 @@
 .ev-pack-seal-cue img { width:100%; height:100%; opacity:.8; animation:pack-seal-hand 1.8s ease-in-out infinite; }
 @keyframes pack-seal-hand { 0%,100% { transform:translateX(-26px) rotate(-90deg); opacity:.25; } 35%,65% { opacity:.9; } 80% { transform:translateX(26px) rotate(-90deg); opacity:.25; } }
 @media(prefers-reduced-motion:reduce) { .ev-pack-seal-cue img { animation:none; transform:rotate(-90deg); } }
+
+/* Utility cartouches share the main action's carved frame and crystal accents. */
+.ev-sound { width:68px; height:48px; border-radius:0; background-image:var(--ev-img-utilityFrame); }
+.ev-sound::before { inset:24% 26%; }
+.ev-tool-glyph { width:19px; height:19px; }

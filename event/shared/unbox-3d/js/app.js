@@ -2,10 +2,10 @@
  * 拆卡包／拆盲盒共用流程：select（挑選）→ ready（已選定）→ loading（向後台取結果）→ opening（動畫）→ reveal（揭曉）。
  * 活動差異（type、圖片槽、文案、mock 內容）全部在各活動的 assets/js/config.js；本檔不放活動專屬內容。
  */
-import { createAtmosphere } from './atmosphere.js?v=20261118-hover1';
+import { createAtmosphere } from './atmosphere.js?v=20261119-desert1';
 import { createRevealVortex } from './reveal-vortex.js?v=20261118-vortex2';
 import { createSecretCycle } from './secret-cycle.js?v=20261118-vortex1';
-import { createScene } from './scene.js?v=20261118-hover1';
+import { createScene } from './scene.js?v=20261119-desert1';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -22,7 +22,7 @@ var PER_OPEN_KEY = cfg.storageKey + '_per_open_preview';
 
 var $ = function (id) { return document.getElementById(id); };
 var stage = $('stage');
-createAtmosphere(stage, cfg.type, cfg.images.atmosphereSprite, cfg.images.starSprite, { flowers:cfg.images.windFlowers, palm:cfg.images.windPalm, circle:cfg.images.magicCircle, depthLayers:cfg.type === 'blind-box' ? {desert:cfg.images.depthDesert, floor:cfg.images.depthFloor, columns:cfg.images.depthColumns, curtain:cfg.images.depthCurtain} : null });
+createAtmosphere(stage, cfg.type, cfg.images.atmosphereSprite, cfg.images.starSprite, { mode:cfg.atmosphereMode, flowers:cfg.images.windFlowers, palm:cfg.images.windPalm, circle:cfg.images.magicCircle, depthLayers:cfg.type === 'blind-box' ? {desert:cfg.images.depthDesert, floor:cfg.images.depthFloor, columns:cfg.images.depthColumns, curtain:cfg.images.depthCurtain} : null });
 var sceneEl = $('scene');
 var btnAction = $('btnAction');
 var reveal = $('reveal');
@@ -131,6 +131,17 @@ var mascotShownAt = 0;
 var mascotTimer = null;
 var mascotAfter = null;
 var mascotState = 'idle';
+var mascotVisible = true;
+var mascotReduced = matchMedia('(prefers-reduced-motion: reduce)');
+function syncMascotMotion() {
+  if (!M) return;
+  var paused = mascotReduced.matches || document.hidden || !mascotVisible || state === 'reveal';
+  var wanted = paused ? M.poster : mascotWant;
+  if (wanted && (wanted === M.poster || mascotCache[wanted]?.ready)) {
+    if (mascotEl.getAttribute('src') !== wanted) mascotEl.src = wanted;
+  }
+  mascotEl.dataset.motion = paused ? 'paused' : 'playing';
+}
 function loadMascot(src, done) {
   var entry = mascotCache[src];
   if (!entry || entry.failed) {
@@ -154,7 +165,8 @@ function setMascot(next) {
     clearTimeout(mascotTimer);
     var swap = function () {
       if (mascotWant !== src) return;
-      mascotEl.src = src;
+      syncMascotMotion();
+      mascotEl.dataset.state = next;
       mascotShownAt = performance.now();
       mascotState = next;
       renderAssetLabels();
@@ -172,6 +184,12 @@ function mascotReact(list) {
   mascotAfter = setTimeout(function () { if (state === 'select') setMascot('idle'); }, Math.max(2, Math.ceil(3000 / (M.loopMs || 3000))) * (M.loopMs || 1500));
 }
 if (M) {
+  mascotReduced.addEventListener('change', syncMascotMotion);
+  document.addEventListener('visibilitychange', syncMascotMotion);
+  new IntersectionObserver(function (entries) {
+    mascotVisible = entries[0].isIntersecting;
+    syncMascotMotion();
+  }).observe(sceneEl);
   if (M.poster) mascotEl.src = M.poster;
   window.addEventListener('load', function () {
     var list = [M.anticipate, M.celebrate, M.lose].concat(M.idle).filter(Boolean);
@@ -261,6 +279,7 @@ function setState(next, status) {
   state = next;
   statusOverride = status || null;
   renderState();
+  syncMascotMotion();
   if (next === 'ready' && prev !== 'ready') setMascot('anticipate');
 }
 
@@ -529,9 +548,11 @@ scene = createScene(sceneEl, {
   images: imagesFor,
   material: cfg.material,
   scale: cfg.sceneScale,
+  carouselCameraY: cfg.carouselCameraY,
   shape: cfg.shape,
+  sceneArt: cfg.sceneArt,
   secretImages: cfg.secretEvery ? {front:cfg.images.secretPack,side:cfg.images.secretSide,back:cfg.images.secretBack} : null,
-  mascot: cfg.mascot ? { img: $('mascot'), poster: cfg.mascot.poster, height: cfg.mascot.height } : null,
+  mascot: cfg.mascot ? { img: $('mascot'), poster: cfg.mascot.poster, height: cfg.mascot.height, offsetX: cfg.mascot.offsetX, offsetZ: cfg.mascot.offsetZ } : null,
   onSelect: function () { Sound.play('move'); renderPickLabel(); },
   onSwipeOpen: open,
   onHover: function () { if (Sound.hover) Sound.hover(); },

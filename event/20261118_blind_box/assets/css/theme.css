@@ -163,4 +163,8 @@
 .ev-depth-layer, .ev-depth-soft { position:absolute; inset:0; background-position:center bottom; background-size:cover; background-repeat:no-repeat; }
 .ev-depth-soft { will-change:opacity; }
 
-.ev-depth-curtain { left:-24px; right:-24px; transform-origin:24px top; will-change:transform; }
+
+
+/* Near sand stays more defined while distant dunes drift in and out of focus. */
+.ev-depth-floor { mask-image:linear-gradient(transparent 0 48%,#000 66%); }
+.ev-scene.is-flat .ev-mascot { display:block; width:180px; height:225px; left:52%; top:-65px; }

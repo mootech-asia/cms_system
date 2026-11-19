@@ -64,7 +64,7 @@ export function createScene(stage, opts) {
   var keep = function (x) { disposables.push(x); return x; };
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
-  camera.position.set(0, box ? 2.3 : 2.5, 7.6);
+  camera.position.set(0, box ? 2.3 : (opts.carouselCameraY || 2.5), 7.6);
   camera.lookAt(0, 0.3, 0);
   if (chest) scene.fog = { isFog: true, color: new THREE.Color(token('--ev-3d-haze', '#b58a65')), near: 8.5, far: 20 };
 
@@ -289,12 +289,13 @@ export function createScene(stage, opts) {
     texture(opts.mascot.poster, function (tex) { mMat.map = tex; mMat.needsUpdate = true; });
     mascotPlane = new THREE.Mesh(mGeo, mMat);
     // 素材腳底在畫布下緣上方 12/500
-    mascotPlane.position.set(0, FLOOR_Y + MH / 2 - MH * 0.024, -RADIUS);
+    mascotPlane.position.set(opts.mascot.offsetX || 0, FLOOR_Y + MH / 2 - MH * 0.024, opts.mascot.offsetZ ?? -RADIUS);
     world.add(mascotPlane);
   }
   function placeMascot() {
     if (!mascotPlane) return;
     scene.updateMatrixWorld(true);
+    camera.updateMatrixWorld(true);
     var w = mGeo.parameters.width / 2, h = mGeo.parameters.height / 2;
     var pts = [[-w, -h], [w, -h], [-w, h], [w, h]].map(function (c) {
       var v = new THREE.Vector3(c[0], c[1], 0);
@@ -334,8 +335,8 @@ export function createScene(stage, opts) {
     camera.aspect = r.width / r.height;
     if (chest) {
       const backdrop = stage.closest('.ev-stage').getBoundingClientRect();
-      const cover = Math.max(backdrop.width / 750, backdrop.height / 1000);
-      const horizon = backdrop.top + backdrop.height - 535 * cover - r.top;
+      const cover = Math.max(backdrop.width / 750, backdrop.height / (opts.sceneArt?.height || 1000));
+      const horizon = backdrop.top + backdrop.height - (opts.sceneArt?.horizonFromBottom || 535) * cover - r.top;
       const focal = r.height / (2 * Math.tan(camera.fov * Math.PI / 360));
       camera.position.y = .05;
       camera.lookAt(0, .05 - (r.height / 2 - horizon) / focal * 7.6, 0);

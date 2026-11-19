@@ -1,6 +1,6 @@
 // Registered artwork layers share the same bottom-aligned projection as the stage.
 export function createDesertDepth(stage, sources) {
-  if (!sources || Object.values(sources).some(src => !src)) return null;
+  if (!sources || !sources.desert) return null;
   const root = document.createElement('div');
   root.className = 'ev-depth-scene'; root.hidden = true;
   root.setAttribute('aria-hidden', 'true');
@@ -11,7 +11,7 @@ export function createDesertDepth(stage, sources) {
     ['curtain', 1.15, .67, 3.4, .04, .42]
   ];
   let disposed = false;
-  const layers = settings.map(([name, blur, speed, phase, min, range]) => {
+  const layers = settings.filter(([name]) => sources[name]).map(([name, blur, speed, phase, min, range]) => {
     const layer = document.createElement('span'); layer.className = 'ev-depth-layer ev-depth-' + name;
     const soft = document.createElement('span'); soft.className = 'ev-depth-soft';
     const url = new URL(sources[name], document.baseURI).href;

@@ -1,4 +1,4 @@
-import { createDesertDepth } from './desert-depth.js?v=20261118-hover1';
+import { createDesertDepth } from './desert-depth.js?v=20261119-desert1';
 export function createAtmosphere(stage, type, spriteUrl, starUrl, scenery = {}) {
   const canvas = document.createElement('canvas');
   canvas.className = 'ev-atmosphere';
@@ -82,7 +82,7 @@ export function createAtmosphere(stage, type, spriteUrl, starUrl, scenery = {}) 
     const gustTime = t * 1.5 + Math.sin(t * .7) * .45;
     particles.forEach((p, i) => {
       const x = ((p.x + gustTime * p.speed * (i < 104 ? 1.3 : 1.8)) % 1.3 - .15) * width;
-      if (i < 104) {
+      if (i < 104 && scenery.mode !== 'sand') {
         const y = (.18 + (p.y + t * p.speed * .1) % .58) * height + Math.sin(t * 1.5 + p.phase) * (i < 28 ? 45 : 24);
         const size = i < 18 ? 7 + p.size * 1.8 : 2.4 + p.size * 1.3;
         const inFocus = x > width * .28 && x < width * .72 && y > height * .44 && y < height * .73;
@@ -91,7 +91,7 @@ export function createAtmosphere(stage, type, spriteUrl, starUrl, scenery = {}) 
         ctx.globalAlpha = inFocus ? .38 : i < 18 ? .85 : .66;
         ctx.drawImage(petals[i%3],-size,-size,size*2,size*2);ctx.restore();
       } else {
-        const y = (.48 + p.y * .25) * height + Math.sin(t + p.phase) * 12;
+        const y = (.32 + p.y * .45) * height + Math.sin(t + p.phase) * 12;
         ctx.fillStyle = `rgba(222,169,85,${.12 + (i % 3) * .07})`;
         ctx.beginPath(); ctx.arc(x,y,.35+p.size*.2,0,Math.PI*2);ctx.fill();
       }

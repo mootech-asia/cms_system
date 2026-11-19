@@ -22,9 +22,11 @@ window.EVENT_CONFIG = {
   skins: {},
 
   carouselCount: 20,
+  carouselCameraY: 3.05,
   secretEvery: 50,
   tearSoundMs: 800,
   images: {
+    utilityFrame: 'assets/img/ui/utility-frame.webp?v=20261119-desert1',
     secretPack: 'assets/img/3d/secret-pack.webp?v=20261118-vortex1',
     secretSide: 'assets/img/3d/secret-side.webp?v=20261118-vortex1',
     secretBack: 'assets/img/reveal/secret-back.webp?v=20261118-vortex1',
@@ -73,7 +75,7 @@ window.EVENT_CONFIG = {
   },
 
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
-  loadingImages: ['magicCircle', 'loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
+  loadingImages: ['utilityFrame', 'magicCircle', 'loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
 
   /* 音效：名稱與規格見 AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
      音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
@@ -84,6 +86,7 @@ window.EVENT_CONFIG = {
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
+    utilityFrame: 'utility-frame · 240×152',
     secretPack: 'secret-pack · 512×768',
     secretSide: 'secret-side · 128×512',
     secretBack: 'secret-back · 600×900',
