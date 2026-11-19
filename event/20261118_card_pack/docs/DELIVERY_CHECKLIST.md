@@ -59,15 +59,15 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 2897d34 | ☐ | P0 |
+| ☑ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 88637c0 | ☐ | P0 |
 | ☑ | C34 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | d5de138 | ☐ | P3 |
 | ☑ | C35 | 音效 move：切換選項（0.25 秒） | 選配 | `assets/audio/move.mp3` | d5de138 | ☐ | P3 |
-| ☑ | C36 | 音效 tear：撕封條（0.8 秒，隨手勢調速） | 選配 | `assets/audio/tear.mp3` | d5de138 | ☐ | P3 |
+| ☑ | C36 | 音效 tear：撕封條（1.55 秒，隨手勢調速） | 選配 | `assets/audio/tear.wav` | b599985 | ☐ | P3 |
 | ☑ | C37 | 音效 flip：翻卡（0.3 秒） | 選配 | `assets/audio/flip.mp3` | d5de138 | ☐ | P3 |
 | ☑ | C38 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `alternatives/assets/audio/reveal.mp3` | d5de138 | ☐ | P3 |
 | ☑ | C39 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | d5de138 | ☐ | P3 |
 | ☑ | C40 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | d5de138 | ☐ | P3 |
-| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 2897d34 | ☐ | P2 |
+| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | b599985 | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -82,10 +82,10 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C56 | 背景音樂 bgm（完整曲目、頭尾交叉淡化循環） | （人工） | `assets/audio/bgm.mp3` | 3c20391 | ☐ | P3 |
+| ☑ | C56 | 背景音樂 bgm（使用者上傳原檔、循環播放） | （人工） | `assets/audio/bgm.wav` | b599985 | ☐ | P3 |
 | ☑ | C57 | 特效音 select：點選一包＝選定（≤0.4 秒） | 選配 | `assets/audio/select.mp3` | d5de138 | ☐ | P3 |
-| ☑ | C58 | 特效音 reveal-common：揭曉：普通（0.5–0.8 秒） | 選配 | `assets/audio/reveal-3026.wav` | d5de138 | ☐ | P3 |
-| ☑ | C59 | 特效音 reveal-rare：揭曉：稀有（0.7–1.0 秒） | 選配 | `assets/audio/reveal-3026.wav` | d5de138 | ☐ | P3 |
+| ☑ | C58 | 特效音 reveal-common：揭曉：普通（0.5–0.8 秒） | 選配 | `assets/audio/reveal-basic.wav` | b599985 | ☐ | P3 |
+| ☑ | C59 | 特效音 reveal-rare：揭曉：稀有（0.7–1.0 秒） | 選配 | `assets/audio/reveal-basic.wav` | b599985 | ☐ | P3 |
 | ☑ | C60 | 特效音 reveal-epic：揭曉：超稀有（0.9–1.3 秒） | 選配 | `assets/audio/reveal-3026.wav` | d5de138 | ☐ | P3 |
 | ☑ | C61 | 特效音 reveal-legendary：揭曉：最高級（Legendary）（1.5–2.0 秒） | 選配 | `assets/audio/reveal-3026.wav` | d5de138 | ☐ | P3 |
 | ☑ | C62 | 特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒） | 選配 | `assets/audio/collect.mp3` | d5de138 | ☐ | P3 |

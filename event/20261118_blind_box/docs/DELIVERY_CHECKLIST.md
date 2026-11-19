@@ -54,12 +54,12 @@
 | ☑ | B30 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 2897d34 | ☐ | P0 |
 | ☑ | B31 | 音效 click：按鈕（≤0.2 秒） | 選配 | `alternatives/assets/audio/pre-minimal/click.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B32 | 音效 move：切換選項（0.25 秒） | 選配 | `assets/audio/move.mp3` | d5de138 | ☐ | P3 |
-| ☑ | B33 | 音效 tear：開箱（open.mp3，1.1 秒） | 選配 | `assets/audio/open.mp3` | d5de138 | ☐ | P3 |
+| ☑ | B33 | 音效 tear：開箱（11677.wav 原檔） | 選配 | `assets/audio/open.wav` | b599985 | ☐ | P3 |
 | ☑ | B34 | 音效 flip：翻卡（≤0.25 秒） | 選配 | `alternatives/assets/audio/flip.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B35 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `alternatives/assets/audio/reveal.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B36 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `alternatives/assets/audio/pre-minimal/reward.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B37 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | d5de138 | ☐ | P3 |
-| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 88637c0 | ☐ | P2 |
+| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | b599985 | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -76,8 +76,8 @@
 |---|---|---|---|---|---|---|---|
 | ☑ | B50 | 背景音樂 bgm（完整曲目、頭尾交叉淡化循環） | （人工） | `assets/audio/bgm.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B51 | 特效音 select：點選一個寶箱＝選定（≤0.4 秒） | 選配 | `assets/audio/select.mp3` | 88637c0 | ☐ | P3 |
-| ☑ | B52 | 特效音 reveal-common：揭曉：{r}（0.5–0.8 秒） | 選配 | `assets/audio/reveal-common.mp3` | d5de138 | ☐ | P3 |
-| ☑ | B53 | 特效音 reveal-rare：揭曉：稀有（寶物出現在台座上）（0.7–1.0 秒） | 選配 | `assets/audio/reveal-rare.mp3` | d5de138 | ☐ | P3 |
+| ☑ | B52 | 特效音 reveal-common：揭曉：{r}（0.5–0.8 秒） | 選配 | `assets/audio/reveal-basic.wav` | b599985 | ☐ | P3 |
+| ☑ | B53 | 特效音 reveal-rare：揭曉：稀有（寶物出現在台座上）（0.7–1.0 秒） | 選配 | `assets/audio/reveal-basic.wav` | b599985 | ☐ | P3 |
 | ☑ | B54 | 特效音 reveal-epic：揭曉：超稀有（寶物出現在台座上）（0.9–1.3 秒） | 選配 | `assets/audio/reveal-epic.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B55 | 特效音 reveal-legendary：揭曉：最高級（Secret 隱藏款，寶物出現在台座上）（1.5–2.0 秒） | 選配 | `assets/audio/reveal-legendary.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B56 | 特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒） | 選配 | `alternatives/assets/audio/pre-minimal/collect.mp3` | d5de138 | ☐ | P3 |
