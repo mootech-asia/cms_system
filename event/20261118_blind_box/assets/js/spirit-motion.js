@@ -15,13 +15,24 @@ function createSpiritRig(canvas, source) {
     float armBand=gate(270.,360.,point.y)*(1.-gate(580.,660.,point.y));
     float left=(1.-gate(380.,500.,point.x))*armBand;
     float right=gate(745.,875.,point.x)*armBand;
-    float lift=mood<.5?.025*wave:mood<1.5?.21*pulse:-.044*pulse;
-    p=mix(p,turn(p,vec2(445.,355.),lift),left);
-    p=mix(p,turn(p,vec2(785.,355.),mood>1.5?-.12*pulse:-lift),right);
+    // Expectation leans toward the chest; celebration opens both arms with two lifts.
+    bool anticipating = mood > 2.5;
+    float cheer = pulse * (.72 + .28 * cos(phase * 2.));
+    float leftLift = mood < .5 ? .025 * wave : mood < 1.5 ? .25 * cheer : -.044 * pulse;
+    float rightLift = mood < 1.5 ? -leftLift : -.12 * pulse;
+    if (anticipating) {
+      leftLift = -.12 * pulse;
+      rightLift = .10 * pulse;
+      p.x += (625. - point.x) * .14 * pulse * max(left, right);
+      p.y += torso * core * 12. * pulse;
+    }
+    p=mix(p,turn(p,vec2(445.,355.),leftLift),left);
+    p=mix(p,turn(p,vec2(785.,355.),rightLift),right);
     float head=(1.-gate(270.,335.,point.y))*gate(350.,430.,point.x)*(1.-gate(755.,825.,point.x));
-    float nod=mood<.5?.018*wave:mood<1.5?-.052*pulse:.075*pulse;
+    float nod=mood<.5?.018*wave:mood<1.5?-.052*cheer:.075*pulse;
+    if (anticipating) nod = .115 * pulse;
     p=mix(p,turn(p,vec2(625.,305.),nod),head);
-    p.y+=head*(mood<.5?-5.:mood<1.5?-15.:7.)*pulse;
+    p.y+=head*(mood<.5?-5.*pulse:mood<1.5?-24.*cheer:anticipating?19.*pulse:7.*pulse);
     float mouth=gate(575.,607.,point.x)*(1.-gate(660.,678.,point.x))*gate(178.,197.,point.y)*(1.-gate(220.,245.,point.y));
     p.y+=(point.y-204.)*mouth*pulse*(mood<.5?0.:mood<1.5?.12:-.30);
     float smoke=gate(590.,710.,point.y)*(1.-gate(990.,1110.,point.y));
@@ -79,7 +90,7 @@ function createSpiritRig(canvas, source) {
 
   const phase = gl.getUniformLocation(program, 'phase');
   const mood = gl.getUniformLocation(program, 'mood');
-  const poses = {idle: 0, excited: 1, encourage: 2};
+  const poses = {idle: 0, celebrate: 1, encourage: 2, anticipate: 3};
   return function draw(frame, pose) {
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.clear(gl.COLOR_BUFFER_BIT);
@@ -114,7 +125,8 @@ export async function mountSpiritMotion(image) {
   function sync() {
     clearTimeout(timer);
     const state = image.dataset.state;
-    pose = state === 'lose' ? 'encourage' : state === 'celebrate' || state === 'anticipate' ? 'excited' : 'idle';
+    pose = state === 'lose' ? 'encourage' : state || 'idle';
+    canvas.dataset.pose = pose;
     const playing = image.dataset.motion === 'playing';
     image.style.visibility = playing ? 'hidden' : '';
     canvas.hidden = !playing;

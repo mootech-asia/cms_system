@@ -5,7 +5,7 @@
 import { createAtmosphere } from './atmosphere.js?v=20261119-desert1';
 import { createRevealVortex } from './reveal-vortex.js?v=20261119-hd-motion';
 import { createSecretCycle } from './secret-cycle.js?v=20261119-secretfix1';
-import { createScene } from './scene.js?v=20261119-boxhover';
+import { createScene } from './scene.js?v=20261119-pack-count';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -18,6 +18,19 @@ var valid = Store.isValid(content);
 var PLAYER_KEY = cfg.storageKey + '_player';
 var LABELS_KEY = cfg.storageKey + '_labels';
 var MOCK_KEY = 'event-mock-tools';
+var PACK_COUNT_KEY = cfg.storageKey + '_pack_count_preview';
+var packLimit = cfg.carouselCountLimit;
+function clampPackCount(n) {
+  var count = Number(n);
+  return Number.isFinite(count) ? Math.max(1, Math.min(packLimit, Math.trunc(count))) : cfg.carouselCount;
+}
+var packCount = packLimit ? clampPackCount(content.packCount ?? cfg.carouselCount) : cfg.carouselCount;
+if (packLimit) {
+  try {
+    var previewPackCount = sessionStorage.getItem(PACK_COUNT_KEY);
+    if (previewPackCount !== null) packCount = clampPackCount(previewPackCount);
+  } catch (e) { /* Use the configured count when storage is unavailable. */ }
+}
 var PER_OPEN_KEY = cfg.storageKey + '_per_open_preview';
 
 var $ = function (id) { return document.getElementById(id); };
@@ -173,7 +186,7 @@ function setMascot(next) {
       renderAssetLabels();
     };
     var loop = M.loopMs;
-    if (!mascotShownAt || !loop) { swap(); return; }
+    if (!mascotShownAt || !loop || (M.motion && next === 'anticipate')) { swap(); return; }
     mascotTimer = setTimeout(swap, (loop - (performance.now() - mascotShownAt) % loop) % loop);
   });
 }
@@ -270,7 +283,7 @@ function renderState() {
   btnAction.classList.toggle('is-empty', state === 'select' && (player.chances <= 0 || !valid));
   $('btnBack').hidden = state !== 'ready';
   $('btnSkip').hidden = state !== 'opening';
-  $('btnPrev').hidden = $('btnNext').hidden = state !== 'select' || !scene;
+  $('btnPrev').hidden = $('btnNext').hidden = state !== 'select' || !scene || packCount === 1;
   var key = statusOverride || STATUS_TEXT[state];
   $('status').textContent = !valid ? t('empty.prizes') : key ? t(key) : '';
   renderPickLabel();
@@ -278,7 +291,7 @@ function renderState() {
 
 function renderPickLabel() {
   var i = scene ? scene.selected() : 0;
-  $('pickLabel').textContent = t('pick.label', { n: String(i + 1).padStart(2, '0') }) + (scene && cfg.carouselCount ? ' / ' + cfg.carouselCount : '');
+  $('pickLabel').textContent = t('pick.label', { n: String(i + 1).padStart(2, '0') }) + ((packLimit || scene) && packCount ? ' / ' + packCount : '');
 }
 
 function setState(next, status) {
@@ -355,6 +368,11 @@ function open(gesture) {
     var list = results[0];
     var edition = secretCycle ? secretCycle.commit() : {};
     rewards = list.map(function (r) { return Object.assign({},r,edition); });
+    if (cfg.retryEmpty && rewards.length && rewards.every(Store.isEmpty)) {
+      player.chances += 1;
+      rewards.forEach(function (reward) { reward.name = cfg.retryEmpty; });
+      renderChances();
+    }
     var stamp = now();
     rewards.forEach(function (r) { player.records.push({ type:r.type, edition:r.edition, drawNumber:r.drawNumber, name: r.name, icon: r.icon || '', rarity: rarityOf(r), time: stamp }); });
     savePlayer();
@@ -545,7 +563,7 @@ function renderRevealText() {
   if (secretFanMode) { renderSecretFanText(); return; }
   var total = rewards.length;
   var summary = revealView === 'summary';
-  $('revealTitle').textContent = !summary && flipped() && Store.isEmpty(rewards[revealed]) ? t('result.empty') : summary ? t('reveal.summary') : t('reveal.title');
+  $('revealTitle').textContent = !summary && flipped() && Store.isEmpty(rewards[revealed]) ? t(cfg.retryEmpty ? 'result.extraChance' : 'result.empty') : summary ? t('reveal.summary') : t('reveal.title');
   $('revealSingle').hidden = summary;
   $('revealGrid').hidden = !summary;
   var shown = revealed + (flipped() ? 1 : 0);
@@ -654,7 +672,8 @@ var imagesFor = cfg.type === 'blind-box'
   : { front: cfg.images.packFront, back: cfg.images.packBack, side: cfg.images.packSide, crimp: cfg.images.packCrimp, rewardBack: cfg.images.packContents || cfg.images.rewardBack };
 scene = createScene(sceneEl, {
   type: cfg.type,
-  count: cfg.carouselCount,
+  count: packCount,
+  capacity: packLimit,
   images: imagesFor,
   material: cfg.material,
   scale: cfg.sceneScale,
@@ -771,9 +790,30 @@ function setPerOpen(n) {
   try { sessionStorage.setItem(PER_OPEN_KEY, String(perOpen)); } catch (e) { /* 只在本次頁面生效 */ }
   showToast(t('toast.perOpen', { n: perOpen }));
 }
-$('panelPerOpen').textContent = perOpen;
-$('panelLess').addEventListener('click', function () { setPerOpen(perOpen - 1); });
-$('panelMore').addEventListener('click', function () { setPerOpen(perOpen + 1); });
+function changePackCount(delta) {
+  if (state !== 'select' || pickTimer) return;
+  var next = clampPackCount(packCount + delta);
+  if (next === packCount) return;
+  packCount = next;
+  if (scene) scene.setCount(packCount);
+  $('panelPerOpen').textContent = packCount;
+  try { sessionStorage.setItem(PACK_COUNT_KEY, String(packCount)); } catch (e) { /* Preview still works for this page. */ }
+  renderState();
+}
+$('panelPerOpen').textContent = packLimit ? packCount : perOpen;
+$('panelLess').addEventListener('click', function () {
+  if (packLimit) changePackCount(-1); else setPerOpen(perOpen - 1);
+});
+$('panelMore').addEventListener('click', function () {
+  if (packLimit) changePackCount(1); else setPerOpen(perOpen + 1);
+});
+if (packLimit) document.addEventListener('keydown', function (event) {
+  if (!event.ctrlKey || !event.altKey || event.metaKey || event.shiftKey) return;
+  if (event.code !== 'ArrowUp' && event.code !== 'ArrowDown') return;
+  if (event.target.closest?.('input, textarea, select, [contenteditable]')) return;
+  event.preventDefault();
+  changePackCount(event.code === 'ArrowUp' ? 1 : -1);
+});
 $('btnLabels').addEventListener('click', function () {
   var on = !document.body.classList.contains('show-asset-labels');
   document.body.classList.toggle('show-asset-labels', on);

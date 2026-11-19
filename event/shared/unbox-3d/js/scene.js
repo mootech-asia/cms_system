@@ -39,10 +39,12 @@ function shadowTexture(grounded) {
 export function createScene(stage, opts) {
   var box = opts.type === 'blind-box';
   var chest = box && opts.shape === 'chest';
-  var COUNT = Math.max(6, Math.min(40, Number(opts.count) || 6));
+  var capacity = Math.max(6, Math.min(40, Number(opts.capacity || opts.count) || 6));
+  var COUNT = opts.capacity ? Math.max(1, Math.min(capacity, opts.count)) : capacity;
   var STEP = Math.PI * 2 / COUNT;
   // Keep foil faces separated on the expanded, single carousel ring.
-  var RADIUS = !box ? 5.2 : 2.65;
+  function carouselRadius(count) { return box ? 2.65 : Math.max(1.8, 5.2 * count / capacity); }
+  var RADIUS = carouselRadius(COUNT);
   // 先用測試畫布確認有 WebGL，避免 Three.js 建立失敗時在 console 印錯誤
   // 失敗原因寫在 console.info，回報「3D 無法啟用」時用來判斷是瀏覽器不支援 WebGL2、完全沒有 WebGL 還是建立時出錯
   var probe = document.createElement('canvas');
@@ -198,7 +200,7 @@ export function createScene(stage, opts) {
     return lidGeo;
   }
 
-  for (var i = 0; i < COUNT; i++) {
+  for (var i = 0; i < capacity; i++) {
     var group = new THREE.Group();
     var body = new THREE.Group();
     group.add(body);
@@ -288,6 +290,7 @@ export function createScene(stage, opts) {
     var a = i * STEP;
     group.position.set(Math.sin(a) * RADIUS, 0, Math.cos(a) * RADIUS - RADIUS);
     group.rotation.y = a;
+    group.visible = i < COUNT;
     ring.add(group);
     items.push({ group: group, body: body, lid: lid, pivot: pivot, contents: contents, base: base, normalMaterials: !box ? base.material : null, normalContent: !box ? contents[0].material[4] : null, secret:false, sealRest: !box ? lid.geometry.attributes.position.array.slice() : null, shadow: shadowMat, contact: contactMat });
   }
@@ -405,7 +408,7 @@ export function createScene(stage, opts) {
   var on = function (el, name, fn) { el.addEventListener(name, fn, { signal: abort.signal }); };
 
   function move(n) {
-    if (mode !== 'select') return;
+    if (mode !== 'select' || COUNT < 2) return;
     invalidate();
     target += n * STEP;
     selected = ((Math.round(-target / STEP) % COUNT) + COUNT) % COUNT;
@@ -462,7 +465,7 @@ export function createScene(stage, opts) {
       return;
     }
     drag = e.clientX - startX; dragY = e.clientY - startY;
-    if (mode === 'select') angle = target + drag * 0.004;
+    if (mode === 'select' && COUNT > 1) angle = target + drag * 0.004;
     else if (!box && mode === 'ready' && gestureMode === 'rotate') { inspectAngle = inspectStart + drag*.018; invalidate(); }
   });
   on(stage, 'pointerup', function (e) {
@@ -549,6 +552,7 @@ export function createScene(stage, opts) {
       ring.position.z = RADIUS * (Math.cos(angle) - 1);
     }
     items.forEach(function (it, k) {
+      if (k >= COUNT) return;
       if (chest) {
         // Compress the carousel depth, not the meshes, to keep every chest on the visible floor.
         var orbit = k * STEP + angle;
@@ -646,6 +650,21 @@ export function createScene(stage, opts) {
     ready: Promise.all(pending),
     selected: function () { return selected; },
     move: move,
+    setCount: function (count) {
+      if (!opts.capacity || mode !== 'select') return;
+      COUNT = Math.max(1, Math.min(capacity, count));
+      STEP = Math.PI * 2 / COUNT;
+      RADIUS = carouselRadius(COUNT);
+      angle = target = selected = 0;
+      hovered = jellyIndex = -1;
+      items.forEach(function (item, i) {
+        var orbit = i * STEP;
+        item.group.visible = i < COUNT;
+        item.group.position.set(Math.sin(orbit) * RADIUS, 0, Math.cos(orbit) * RADIUS - RADIUS);
+        item.group.rotation.y = orbit;
+      });
+      invalidate();
+    },
     goTo: goTo,
     setSecret: setSecret,
     focus: function () {

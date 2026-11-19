@@ -147,7 +147,7 @@ window.EVENT_CONFIG = {
       { name: { en: '500 Points', ko: '500 포인트', th: '500 คะแนน', zh: '積分 ×500' }, icon: 'assets/img/icon-points.svg', weight: 20, isLose: false },
       { name: { en: '100 Coins', ko: '코인 100개', th: '100 เหรียญ', zh: '金幣 ×100' }, icon: 'assets/img/icon-coin.svg', weight: 15, isLose: false },
       { name: { en: 'Mystery Gift', ko: '미스터리 선물', th: 'ของขวัญปริศนา', zh: '神秘禮物' }, icon: 'assets/img/icon-gift.svg', weight: 5, isLose: false },
-      { name: { en: 'Try Again', ko: '꽝', th: 'ลองใหม่อีกครั้ง', zh: '銘謝惠顧' }, icon: 'assets/img/icon-thanks.svg', weight: 25, isLose: true }
+      { name: { en: 'Try Again', ko: '다시 도전', th: 'ลองใหม่อีกครั้ง', zh: '再轉一次' }, icon: 'assets/img/icon-thanks.svg', weight: 25, isLose: true }
     ],
     winners: [
       { name: 'pl***88', prize: 0 }, { name: 'ka***21', prize: 3 }, { name: 'so***07', prize: 1 },

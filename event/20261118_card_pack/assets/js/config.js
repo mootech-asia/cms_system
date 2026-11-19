@@ -22,6 +22,8 @@ window.EVENT_CONFIG = {
   skins: {},
 
   carouselCount: 20,
+  carouselCountLimit: 20,
+  retryEmpty: { en: 'Try Again', ko: '다시 도전', th: 'ลองอีกครั้ง', zh: '再玩一次' },
   carouselCameraY: 3.05,
   secretEvery: 50,
   tearSoundMs: 0,

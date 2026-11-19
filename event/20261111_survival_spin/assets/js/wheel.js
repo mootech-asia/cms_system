@@ -342,6 +342,10 @@
       setStage('result');
       setMascot(prize.isLose ? 'lose' : 'result');
       Sound.finale(prize.isLose);
+      if (prize.isLose) {
+        player.chances += 1;
+        renderChances();
+      }
       player.records.push({ name: prize.name, time: now() });
       savePlayer();
       renderRecords();

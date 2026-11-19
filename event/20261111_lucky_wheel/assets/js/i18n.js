@@ -54,7 +54,7 @@ window.EventI18n = (function () {
     'ticker.label': { en: 'Winners', ko: '당첨자', th: 'ผู้โชคดี', zh: '中獎名單' },
     'ticker.item': { en: '{name} won {prize}', ko: '{name}님 {prize} 당첨', th: '{name} ได้รับ {prize}', zh: '{name} 抽中 {prize}' },
     'modal.win': { en: 'Congratulations!', ko: '축하합니다!', th: 'ยินดีด้วย!', zh: '恭喜中獎' },
-    'modal.lose': { en: 'Better luck next time', ko: '다음 기회에', th: 'โชคดีครั้งหน้า', zh: '再接再厲' },
+    'modal.lose': { en: 'One more spin!', ko: '스핀 1회 추가!', th: 'ได้รับสิทธิ์หมุนเพิ่ม 1 ครั้ง!', zh: '多一次轉盤機會！' },
     'modal.claim': { en: 'Claim Prize', ko: '상품 받기', th: 'รับรางวัล', zh: '收下獎勵' },
     'modal.ok': { en: 'Got it', ko: '확인', th: 'ตกลง', zh: '知道了' },
     'toast.noPrizes': { en: 'No prizes have been set up yet', ko: '아직 상품이 설정되지 않았습니다', th: 'ยังไม่ได้ตั้งค่ารางวัล', zh: '活動尚未設定獎項' },
