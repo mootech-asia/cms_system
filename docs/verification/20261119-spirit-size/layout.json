@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "width": 360,
+      "height": 640,
+      "embedded": false,
+      "lang": "en",
+      "select": true,
+      "ready": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "embedded": false,
+      "lang": "en",
+      "select": true,
+      "ready": true
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "embedded": false,
+      "lang": "en",
+      "select": true,
+      "ready": true
+    }
+  ],
+  "failures": []
+}
