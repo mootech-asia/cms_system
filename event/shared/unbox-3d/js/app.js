@@ -5,7 +5,7 @@
 import { createAtmosphere } from './atmosphere.js?v=20261119-desert1';
 import { createRevealVortex } from './reveal-vortex.js?v=20261118-vortex2';
 import { createSecretCycle } from './secret-cycle.js?v=20261119-secretfix1';
-import { createScene } from './scene.js?v=20261119-perf1';
+import { createScene } from './scene.js?v=20261119-boxhover';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -651,7 +651,7 @@ scene = createScene(sceneEl, {
   sceneArt: cfg.sceneArt,
   secretImages: cfg.secretEvery ? {front:cfg.images.secretPack,side:cfg.images.secretSide,back:cfg.images.secretBack} : null,
   mascot: cfg.mascot && cfg.mascot.layout !== 'hero' ? { img: $('mascot'), poster: cfg.mascot.poster, height: cfg.mascot.height, offsetX: cfg.mascot.offsetX, offsetZ: cfg.mascot.offsetZ } : null,
-  onSelect: function () { if (cfg.type !== 'blind-box') Sound.play('move'); renderPickLabel(); },
+  onSelect: function () { Sound.play('move'); renderPickLabel(); },
   onSwipeOpen: open,
   onHover: function () { if (Sound.hover) Sound.hover(); },
   onPick: pickItem
@@ -662,7 +662,7 @@ if (!scene) {
   $('sceneFallback').hidden = false;
   $('sceneFallback').setAttribute('data-img', cfg.type === 'blind-box' ? 'boxFront' : 'packFront');
   $('sceneNote').hidden = false;
-  $('sceneFallback').addEventListener('pointerenter', function (e) { if (cfg.type === 'card-pack' && state === 'select' && e.pointerType === 'mouse') Sound.hover(); });
+  $('sceneFallback').addEventListener('pointerenter', function (e) { if (state === 'select' && e.pointerType === 'mouse') Sound.hover(); });
   $('sceneFallback').addEventListener('click', function () { if (state === 'select') choose(); });
   var fallbackStart = null;
   $('sceneFallback').addEventListener('pointerdown', function (event) {

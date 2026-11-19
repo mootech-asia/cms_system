@@ -23,3 +23,7 @@ BGM: seal_online/bgm/13.mp3; full track with 2s tail/head crossfade, -22 LUFS / 
 Current overrides: tear.mp3 restored byte-for-byte from pre-seal-update; all four prize reveals use the uploaded button3026.wav unchanged as reveal-3026.wav. BUTTON3018.wav is not applied. Previous reveal clips are retained under alternatives/assets/audio/pre-user-reveal.
 
 BGM override: user-uploaded 13.mp3 is copied byte-for-byte to assets/audio/bgm.mp3; existing volume, ducking and looping controls remain. Previously processed BGM is archived under alternatives/assets/audio/pre-uploaded-bgm/.
+
+2026-11-19 rarity refresh: tear.wav uses Dropbox seal_online/sound/BUTTON3017.wav unchanged (single continuous envelope). Common/Rare use itemget.wav unchanged as reveal-basic.wav; Epic/Legendary retain their existing clips. Old runtime files moved to alternatives/assets/audio/pre-rarity-refresh. Candidate timbre still requires user listening; waveform structure and playback timing were checked.
+
+Current BGM: user-uploaded 13671650.wav copied byte-for-byte as assets/audio/bgm.wav; 13.mp3 archived under alternatives/assets/audio/pre-rarity-refresh/bgm.mp3.

@@ -21,3 +21,5 @@ BGM: seal_online/bgm/47.mp3; full track with 2s tail/head crossfade, -22 LUFS / 
 Opening sequence: one open cue, one prize/empty reveal cue. Summary and collect add no further cues; prior SFX is stopped before the next cue. Retired click/reward/collect files are under alternatives/assets/audio/pre-minimal/.
 
 Selection and carousel movement cues are disabled for blind boxes. End-to-end verification starts before selecting a box and counts exactly two cues through collection. The retired select clip is under alternatives/assets/audio/pre-minimal/.
+
+2026-11-19 rarity refresh: open.wav uses user-uploaded 11677.wav byte-for-byte. Common/Rare use itemget.wav unchanged as reveal-basic.wav; Epic/Legendary retain their existing clips. Old runtime files moved to alternatives/assets/audio/pre-rarity-refresh. Candidate timbre still requires user listening; waveform structure and playback timing were checked.

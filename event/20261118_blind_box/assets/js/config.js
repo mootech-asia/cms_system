@@ -26,7 +26,7 @@ window.EVENT_CONFIG = {
   },
   shape: 'chest',
 
-  /* 換皮：skins.<名稱> = { css: '色票覆寫檔', images: { 只列跟預設不同的圖片槽 }, sounds: {}, strings: {} }，
+  /* 換皮：skins.<名稱> = { css: '色票覆寫檔', images: { 只列跟預設不同的圖片槽 }, sounds: { hover: '../20261111_survival_spin/assets/audio/hover.mp3',}, strings: {} }，
      網址 ?skin=<名稱> 臨時切換，skin 決定預設皮。交付路徑以 skins/<名稱>/ 為基準。 */
   skin: 'default',
   skins: {},
@@ -83,8 +83,8 @@ window.EVENT_CONFIG = {
 
   /* 音效：名稱與規格見 docs/AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
      音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
-  soundLevels: { select: 0.8, bgm: 0.35, bgmDuck: 0.1, empty: 0.85, move: 0.45, tear: 0.8, flip: 0.9, reveal: 1.2, 'reveal-common': 1, 'reveal-rare': 1, 'reveal-epic': 1, 'reveal-legendary': 1, error: 0.8 },
-  sounds: { select: 'assets/audio/select.mp3?v=20261119-select-cue', empty: 'assets/audio/empty.mp3?v=20261119-seal1', move: 'assets/audio/move.mp3?v=20261119-seal1', tear: 'assets/audio/open.mp3?v=20261119-seal1', flip: '', reveal: '', bgm: 'assets/audio/bgm.mp3?v=20261119-seal1', 'reveal-common': 'assets/audio/reveal-common.mp3?v=20261119-seal1', 'reveal-rare': 'assets/audio/reveal-rare.mp3?v=20261119-seal1', 'reveal-epic': 'assets/audio/reveal-epic.mp3?v=20261119-seal1', 'reveal-legendary': 'assets/audio/reveal-legendary.mp3?v=20261119-seal1', error: 'assets/audio/error.mp3?v=20261119-seal1' },
+  soundLevels: { hover: 0.7, select: 0.8, bgm: 0.35, bgmDuck: 0.1, empty: 0.85, move: 0.45, tear: 0.8, flip: 0.9, reveal: 1.2, 'reveal-common': 1, 'reveal-rare': 1, 'reveal-epic': 1, 'reveal-legendary': 1, error: 0.8 },
+  sounds: { hover: '../20261111_survival_spin/assets/audio/hover.mp3', select: 'assets/audio/select.mp3?v=20261119-select-cue', empty: 'assets/audio/empty.mp3?v=20261119-seal1', move: 'assets/audio/move.mp3?v=20261119-seal1', tear: 'assets/audio/open.wav?v=20261119-rarity2', flip: '', reveal: '', bgm: 'assets/audio/bgm.mp3?v=20261119-seal1', 'reveal-common': 'assets/audio/reveal-basic.wav?v=20261119-rarity2', 'reveal-rare': 'assets/audio/reveal-basic.wav?v=20261119-rarity2', 'reveal-epic': 'assets/audio/reveal-epic.mp3?v=20261119-seal1', 'reveal-legendary': 'assets/audio/reveal-legendary.mp3?v=20261119-seal1', error: 'assets/audio/error.mp3?v=20261119-seal1' },
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {

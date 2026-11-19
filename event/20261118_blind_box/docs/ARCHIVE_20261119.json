@@ -125,6 +125,18 @@
       "from": "assets/img/ui/btn-arrow.webp",
       "to": "alternatives/assets/img/ui/btn-arrow.webp",
       "reason": "replaced by shared controls"
+    },
+    {
+      "from": "assets/audio/open.mp3",
+      "to": "alternatives/assets/audio/pre-rarity-refresh/open.mp3"
+    },
+    {
+      "from": "assets/audio/reveal-common.mp3",
+      "to": "alternatives/assets/audio/pre-rarity-refresh/reveal-common.mp3"
+    },
+    {
+      "from": "assets/audio/reveal-rare.mp3",
+      "to": "alternatives/assets/audio/pre-rarity-refresh/reveal-rare.mp3"
     }
   ]
 }

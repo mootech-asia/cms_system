@@ -373,7 +373,7 @@ export function createScene(stage, opts) {
   var zoom = 0, zoomTarget = 0, focusDone = null;
   var selected = 0;
   var hovered = -1, jellyIndex = -1, jellyStart = 0;
-  var jellyDuration = 520 / 3;
+  var jellyDuration = box ? 520 : 520 / 3;
   var angle = 0;
   var target = 0;
   var startX = null, startY = null, gestureStart = 0;
@@ -453,7 +453,7 @@ export function createScene(stage, opts) {
       if (e.pointerType === 'mouse' && mode === 'select' && e.target === renderer.domElement) {
         var hit = pick(e.clientX, e.clientY);
         renderer.domElement.style.cursor = hit >= 0 ? 'pointer' : '';
-        if (!box && hit !== hovered && hit >= 0) {
+        if (hit !== hovered && hit >= 0) {
           if (opts.onHover) opts.onHover();
           if (!reduced.matches) { jellyIndex = hit; jellyStart = performance.now(); invalidate(); }
         }
@@ -524,7 +524,7 @@ export function createScene(stage, opts) {
     if (disposed || !visible || document.hidden) return;
     if (now - last < 1000 / 30) { raf = requestAnimationFrame(frame); return; }
     rendering = true;
-    var jellyActive = !box && mode === 'select' && !reduced.matches && jellyIndex >= 0 && now - jellyStart < jellyDuration;
+    var jellyActive = mode === 'select' && !reduced.matches && jellyIndex >= 0 && now - jellyStart < jellyDuration;
     if (!jellyActive && jellyIndex >= 0) { jellyIndex = -1; invalidate(); }
     var changing = jellyActive || mode === 'opening' || Math.abs(zoomTarget - zoom) > .001 || Math.abs(target - angle) > .0001 || startX !== null;
     var animate = changing;
@@ -555,7 +555,17 @@ export function createScene(stage, opts) {
         it.group.position.set(Math.sin(orbit) * RADIUS, 0, (Math.cos(orbit) - 1) * RADIUS * .85);
         it.group.rotation.y = orbit;
       }
-      var mine = k === selected;
+      var mine = k === selected, sx = 1, sy = 1;
+      if (jellyActive && k === jellyIndex) {
+        var t = (now - jellyStart) / jellyDuration;
+        var keys = [[0,1,1],[.35,1.10,.94],[.68,.98,1.05],[1,1,1]];
+        var segment = t < .35 ? 0 : t < .68 ? 1 : 2;
+        var a = keys[segment], b = keys[segment + 1];
+        var u = (t - a[0]) / (b[0] - a[0]);
+        u = segment === 1 ? u*u*(3-2*u) : 1-(1-u)*(1-u);
+        sx = a[1] + (b[1]-a[1])*u; sy = a[2] + (b[2]-a[2])*u;
+      }
+
       if (!box) {
         var isSecret = secretActive && mine && !!(secretMaterials && secretMaterials.front.map && secretMaterials.side.map && secretMaterials.back.map);
         if (it.secret !== isSecret) {
@@ -564,18 +574,13 @@ export function createScene(stage, opts) {
           it.contents.forEach(function(card) {card.material[4] = card.material[5] = isSecret ? secretMaterials.back : it.normalContent;});
         }
         it.base.geometry = foilGeometry(!mine);
-        var focusScale = 1 + (mine ? zoom * .14 : 0), sx = 1, sy = 1;
-        if (jellyActive && k === jellyIndex) {
-          var t = (now - jellyStart) / jellyDuration;
-          var keys = [[0,1,1],[.35,1.10,.94],[.68,.98,1.05],[1,1,1]];
-          var segment = t < .35 ? 0 : t < .68 ? 1 : 2;
-          var a = keys[segment], b = keys[segment + 1];
-          var u = (t - a[0]) / (b[0] - a[0]);
-          u = segment === 1 ? u*u*(3-2*u) : 1-(1-u)*(1-u);
-          sx = a[1] + (b[1]-a[1])*u; sy = a[2] + (b[2]-a[2])*u;
-        }
+        var focusScale = 1 + (mine ? zoom * .14 : 0);
         it.group.scale.set(focusScale*sx, focusScale*sy, focusScale);
         it.group.position.y = (mine ? zoom * .08 : 0) + (sy-1)*1.11;
+      }
+      if (box) {
+        it.body.scale.set(sx, sy, 1);
+        it.body.position.y = (sy - 1) * (chest ? CH / 2 : .775);
       }
       it.group.visible = mode === 'select' || mine;
       var p = mine ? Math.min(progress, 1) : 0;
