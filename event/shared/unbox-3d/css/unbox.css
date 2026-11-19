@@ -729,3 +729,17 @@ button { font: inherit; -webkit-tap-highlight-color: transparent; }
 @media (max-width: 600px) {
   html:root { --ev-scene-size: min(84vw, 380px, max(calc((100svh - 400px) / 1.32), 66vw)); }
 }
+
+/* Secret editions reveal three cards from the same fan, one at a time. */
+.ev-secret-fan { position:relative; width:100%; height:min(92vw,400px); isolation:isolate; }
+.ev-secret-fan .ev-prize-card { position:absolute; left:50%; top:32px; width:46%; max-width:206px; aspect-ratio:2/3; transform:translateX(-50%); transform-origin:50% 100%; transition:transform .45s ease, left .45s ease; animation:ev-fan-in .48s ease-out backwards; }
+.ev-secret-fan [data-fan-index="0"] { left:32%; top:50px; --fan-angle:-11deg; transform:translateX(-50%) rotate(-11deg); z-index:1; }
+.ev-secret-fan [data-fan-index="1"] { --fan-angle:0deg; z-index:3; }
+.ev-secret-fan [data-fan-index="2"] { left:68%; top:50px; --fan-angle:11deg; transform:translateX(-50%) rotate(11deg); z-index:2; }
+.ev-secret-fan .is-presenting { left:50%; z-index:5; transform:translate(-50%,-12px) scale(1.12); }
+.ev-secret-fan .ev-prize-name { font-size:clamp(11px,3vw,14px); }
+.ev-secret-fan .ev-rarity-tag { font-size:9px; }
+.ev-secret-fan .ev-card-stars { font-size:9px; letter-spacing:2px; }
+.ev-secret-fan button:disabled { opacity:1; cursor:default; }
+@keyframes ev-fan-in { from { opacity:0; transform:translate(-50%,35px) rotate(0) scale(.85); } to { opacity:1; transform:translateX(-50%) rotate(var(--fan-angle,0deg)); } }
+@media(prefers-reduced-motion:reduce) { .ev-secret-fan .ev-prize-card { animation:none; transition:none; } .ev-secret-fan .ev-prize-face { transition:none; } }

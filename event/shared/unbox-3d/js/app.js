@@ -420,12 +420,80 @@ function treasureHtml(r) {
 var treasureMode = cfg.type === 'blind-box';
 var revealView = 'card';
 var treasureCuePlayed = false;
+var secretFanMode = false;
+var secretFanRevealed = 0;
+var secretFanBusy = false;
+var secretFanTimer = null;
+
+function renderSecretFanText() {
+  $('revealTitle').textContent = t('reveal.title');
+  $('revealCount').textContent = t('reveal.count', { n:secretFanRevealed, total:3 });
+  $('revealActionText').textContent = t(secretFanRevealed === 3 ? 'reveal.done' : 'reveal.flip');
+  $('btnRevealAll').hidden = true;
+  $('btnReveal').disabled = secretFanBusy;
+  Array.from($('secretFan').children).forEach(function (card, i) {
+    card.setAttribute('aria-label', i < secretFanRevealed ? pick(rewards[i].name) : t('reveal.flip'));
+    card.disabled = secretFanBusy || i > secretFanRevealed;
+  });
+}
+
+function showSecretFan() {
+  var fan = $('secretFan');
+  fan.innerHTML = rewards.map(function (r, i) {
+    return '<button type="button" class="ev-prize-card" data-edition="secret" data-rarity="' + rarityOf(r) + '" data-fan-index="' + i + '"><span class="ev-prize-face ev-prize-back" aria-hidden="true"></span>' + cardHtml(r) + '</button>';
+  }).join('');
+  fan.hidden = false;
+  $('revealCard').hidden = true;
+  $('treasureDisplay').hidden = true;
+  $('revealSingle').hidden = false;
+  $('revealGrid').hidden = true;
+  secretFanRevealed = 0;
+  secretFanBusy = true;
+  clearTimeout(secretFanTimer);
+  renderSecretFanText();
+  secretFanTimer = setTimeout(function () { secretFanBusy = false; renderSecretFanText(); }, mascotReduced.matches ? 0 : 480);
+}
+
+function flipSecretFan() {
+  if (secretFanBusy || secretFanRevealed >= 3) return;
+  var cards = Array.from($('secretFan').children);
+  cards.forEach(function (card) { card.classList.remove('is-presenting'); });
+  var r = rewards[secretFanRevealed], card = cards[secretFanRevealed];
+  card.classList.add('is-presenting', 'is-flipped');
+  $('revealGlow').setAttribute('data-rarity', rarityOf(r));
+  secretFanRevealed += 1;
+  secretFanBusy = true;
+  Sound.play('flip');
+  renderSecretFanText();
+  secretFanTimer = setTimeout(function () {
+    if (reveal.hidden || !secretFanMode) return;
+    Sound.play('reveal', Store.rarityRank(r));
+    secretFanTimer = setTimeout(function () {
+      if (secretFanRevealed === 3) cards.forEach(function (item) { item.classList.remove('is-presenting'); });
+      secretFanBusy = false; renderSecretFanText();
+    }, mascotReduced.matches ? 0 : secretFanRevealed === 3 ? 900 : 420);
+  }, mascotReduced.matches ? 0 : 180);
+}
+
+if ($('secretFan')) $('secretFan').addEventListener('click', function (event) {
+  var card = event.target.closest('[data-fan-index]');
+  if (!card || secretFanBusy) return;
+  var i = Number(card.dataset.fanIndex);
+  if (i === secretFanRevealed) flipSecretFan();
+  else if (i < secretFanRevealed) {
+    Array.from($('secretFan').children).forEach(function (other) { other.classList.toggle('is-presenting', other === card); });
+  }
+});
 function showReveal() {
   treasureCuePlayed = false;
   setState('reveal');
   revealed = 0;
   revealView = 'card';
   reveal.hidden = false;
+  secretFanMode = cfg.type === 'card-pack' && rewards.length === 3 && rewards.every(function (r) { return r.edition === 'secret'; });
+  if ($('secretFan')) $('secretFan').hidden = !secretFanMode;
+  if (secretFanMode) { showSecretFan(); $('btnReveal').focus(); return; }
+  $('btnReveal').disabled = false;
   renderRevealCard();
   (treasureMode ? $('btnReveal') : $('revealCard')).focus();
 }
@@ -462,6 +530,7 @@ function renderRevealCard() {
 function flipped() { return treasureMode || $('revealCard').classList.contains('is-flipped'); }
 
 function renderRevealText() {
+  if (secretFanMode) { renderSecretFanText(); return; }
   var total = rewards.length;
   var summary = revealView === 'summary';
   $('revealTitle').textContent = !summary && flipped() && Store.isEmpty(rewards[revealed]) ? t('result.empty') : summary ? t('reveal.summary') : t('reveal.title');
@@ -496,6 +565,11 @@ function showSummary() {
 }
 
 function revealStep() {
+  if (secretFanMode) {
+    if (secretFanBusy) return;
+    if (secretFanRevealed < 3) flipSecretFan(); else closeReveal();
+    return;
+  }
   if (revealView === 'summary') { closeReveal(); return; }
   if (!flipped()) { flip(); return; }
   if (revealed < rewards.length - 1) { revealed += 1; renderRevealCard(); return; }
@@ -504,6 +578,10 @@ function revealStep() {
 }
 
 function closeReveal() {
+  clearTimeout(secretFanTimer);
+  secretFanMode = false; secretFanBusy = false;
+  $('btnReveal').disabled = false;
+  if ($('secretFan')) $('secretFan').hidden = true;
   reveal.hidden = true;
   if (!treasureMode) Sound.play(rewards.every(Store.isEmpty) ? 'click' : 'collect');
   Sound.duck(false);
@@ -543,6 +621,10 @@ function renderLocale() {
   renderAssetLabels();
   if (state === 'select' || state === 'ready') syncSecret();
   if (!reveal.hidden) {
+    if (secretFanMode) {
+      Array.from($('secretFan').children).forEach(function (card, i) { card.querySelector('.ev-prize-front').outerHTML = cardHtml(rewards[i]); });
+      renderSecretFanText(); return;
+    }
     if (revealView === 'summary') showSummary();
     else {
       var r = rewards[revealed];
