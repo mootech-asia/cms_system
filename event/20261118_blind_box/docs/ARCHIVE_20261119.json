@@ -161,6 +161,14 @@
     {
       "from": "source/reveal/sand-vortex-sheet-original.png",
       "to": "alternatives/source/reveal/pre-hd-motion/sand-vortex-sheet-original.png"
+    },
+    {
+      "from": "assets/img/mascot/spirit/poster.webp",
+      "to": "alternatives/assets/img/mascot/spirit-side-gaze/poster.webp"
+    },
+    {
+      "from": "source/desert-spirit-hd/master.png",
+      "to": "alternatives/source/desert-spirit-side-gaze/master.png"
     }
   ]
 }

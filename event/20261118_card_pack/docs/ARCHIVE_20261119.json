@@ -149,6 +149,10 @@
     {
       "from": "assets/audio/tear.m4a",
       "to": "alternatives/assets/audio/pre-isolated-tear/tear.m4a"
+    },
+    {
+      "from": "assets/audio/tear.wav",
+      "to": "alternatives/assets/audio/pre-music-separation/tear.wav"
     }
   ]
 }

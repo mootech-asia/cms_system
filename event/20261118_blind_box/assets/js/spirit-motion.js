@@ -2,118 +2,83 @@
 function createSpiritRig(canvas, source) {
   const gl = canvas.getContext('webgl', {alpha:true, premultipliedAlpha:true, antialias:true});
   if (!gl) throw new Error('WebGL unavailable');
-  const vs = `attribute vec2 point; varying vec2 uv; uniform float phase; uniform float mood;
-  float gate(float a,float b,float v){return smoothstep(a,b,v);}
-  vec2 turn(vec2 p,vec2 pivot,float a){float c=cos(a),s=sin(a);p-=pivot;return pivot+mat2(c,s,-s,c)*p;}
-  float featureMask(vec2 local, vec2 inner, vec2 outer) {
-    vec2 d = abs(local);
-    return (1. - smoothstep(inner.x, outer.x, d.x))
-         * (1. - smoothstep(inner.y, outer.y, d.y));
-  }
-  float eyeShape(vec2 point, vec2 center, float width, float amount) {
-    vec2 eye = point - center;
-    eye.y += .31 * eye.x;
-    return eye.y * amount * featureMask(eye, vec2(width - 6., 8.), vec2(width, 20.));
-  }
-  void main(){
-    uv=(point+vec2(161.,450.))/vec2(1500.,1875.); vec2 p=point;
-    float time = phase / 6.2831853;
-    float wave = sin(phase);
-    float breath = (1. - cos(phase)) * .5;
-    float gesture = smoothstep(.02, .27, time) * (1. - smoothstep(.61, .98, time));
-    float torso = gate(260., 370., point.y) * (1. - gate(560., 670., point.y));
-    float core = gate(330., 475., point.x) * (1. - gate(755., 885., point.x));
-    float head = (1. - gate(265., 335., point.y)) * gate(350., 430., point.x)
-                 * (1. - gate(755., 825., point.x));
-    float armBand = gate(270., 369., point.y) * (1. - gate(626., 696., point.y));
-    float left = (1. - gate(390., 505., point.x)) * armBand;
-    float right = gate(738., 860., point.x) * armBand;
-    float leftLift = .045 * wave;
-    float rightLift = -.045 * wave;
-    float nod = .023 * wave;
-    vec2 shift = vec2(5. * wave, -13. * breath);
-    float smokeTravel = 27.;
-    float blink = smoothstep(.49, .56, time) * (1. - smoothstep(.56, .63, time));
-    float leftEye = -.93 * blink;
-    float rightEye = leftEye;
-    float browLift = 1.5 * breath;
-    float mouthOpen = -.16 * breath;
-    float smileWidth = 0.;
-    float smileCorner = 0.;
+  const vs = `attribute vec2 point;
+uniform float phase;
+uniform float mood;
+const vec2 leftShoulder = vec2(458., 355.);
+const vec2 rightShoulder = vec2(794., 355.);
+const vec2 leftEye = vec2(597., 162.);
+const vec2 rightEye = vec2(659., 162.);
+const vec2 leftBrow = vec2(596., 140.);
+const vec2 rightBrow = vec2(661., 140.);
+const vec2 mouth = vec2(628., 215.);
+const float waist = 651.;
+const float smokeEnd = 1049.;
+varying vec2 uv;
 
-    if (mood > 2.5) {
-      // Lean toward the chest and draw both hands inward.
-      leftLift = -.29 * gesture;
-      rightLift = .28 * gesture;
-      p.x += (625. - point.x) * .19 * gesture * max(left, right);
-      nod = .20 * gesture;
-      shift = vec2(32., 33.) * gesture;
-      smokeTravel = 37.;
-      leftEye = .35 * gesture;
-      rightEye = .33 * gesture;
-      browLift = 7.5 * gesture;
-      mouthOpen = -.62 * gesture;
-      smileWidth = -.08 * gesture;
-    } else if (mood > 1.5) {
-      // Tilt the head and beckon twice with one hand.
-      leftLift = -.17 * gesture;
-      rightLift = (-.49 + .16 * sin(phase * 3.)) * gesture;
-      nod = (-.17 + .045 * sin(phase * 2.)) * gesture;
-      shift = vec2(-39., 13.) * gesture;
-      smokeTravel = 36.;
-      float wink = smoothstep(.20, .32, time) * (1. - smoothstep(.49, .60, time));
-      leftEye = -.93 * wink;
-      rightEye = -.13 * gesture;
-      browLift = 3. * gesture;
-      mouthOpen = -.42 * gesture;
-      smileCorner = 5. * gesture;
-    } else if (mood > .5) {
-      // Raise both hands, with a second upward bounce before landing.
-      float bounce = gesture * (.8 + .2 * cos(phase * 2.));
-      leftLift = .52 * bounce;
-      rightLift = -.55 * bounce;
-      nod = -.11 * bounce;
-      shift = vec2(2., -43.) * bounce;
-      smokeTravel = 49.;
-      leftEye = -.37 * bounce;
-      rightEye = -.35 * bounce;
-      browLift = 4. * bounce;
-      mouthOpen = .30 * bounce;
-      smileWidth = .18 * bounce;
-    }
+float mask(vec2 p, vec2 center, vec2 core, vec2 spread) {
+  vec2 d = abs(p - center);
+  return (1. - smoothstep(core.x, spread.x, d.x)) *
+         (1. - smoothstep(core.y, spread.y, d.y));
+}
+vec2 turn(vec2 p, vec2 pivot, float angle) {
+  float c = cos(angle), s = sin(angle);
+  return pivot + mat2(c, s, -s, c) * (p - pivot);
+}
 
-    p.x += (point.x - 625.) * .022 * breath * torso * core;
-    p = mix(p, turn(p, vec2(445., 355.), leftLift), left);
-    p = mix(p, turn(p, vec2(785., 355.), rightLift), right);
-    // Apply face deformation in the original portrait coordinates before the head turn.
-    // Keep the eyelid contours anchored while both irises follow the same target.
-    vec2 gaze = vec2(-7., 2.);
-    if (mood > 2.5) gaze += vec2(1., 5.) * gesture;
-    float nearIris = featureMask(point - vec2(573., 132.), vec2(8., 6.), vec2(19., 12.));
-    float farIris = featureMask(point - vec2(622., 117.), vec2(6., 5.), vec2(11., 10.));
-    p += gaze * nearIris * (1. + min(0., leftEye));
-    p += gaze * .65 * farIris * (1. + min(0., rightEye));
-    p.y += eyeShape(point, vec2(571., 132.), 25., leftEye)
-         + eyeShape(point, vec2(622., 117.), 18., rightEye);
-    vec2 leftBrow = point - vec2(559., 111.);
-    leftBrow.y += .45 * leftBrow.x;
-    vec2 rightBrow = point - vec2(615., 91.);
-    rightBrow.y += .28 * rightBrow.x;
-    p.y -= browLift * max(featureMask(leftBrow, vec2(18., 5.), vec2(28., 16.)),
-                          featureMask(rightBrow, vec2(12., 5.), vec2(20., 14.)));
-    vec2 lip = point - vec2(615., 175.);
-    lip.y += .27 * lip.x;
-    float lipMask = featureMask(lip, vec2(24., 14.), vec2(36., 30.));
-    p.x += lip.x * lipMask * smileWidth;
-    p.y += lipMask * (lip.y * mouthOpen - smileCorner * smoothstep(6., 25., lip.x));
-    p = mix(p, turn(p, vec2(625., 305.), nod), head);
-    p += shift * (1. - gate(571., 782., point.y));
-    float smoke = gate(599., 710., point.y) * (1. - gate(990., 1104., point.y));
-    p.x += smoke * smokeTravel * (sin(phase + point.y * .006) - sin(point.y * .006));
-    p.y += smoke * 12. * (cos(phase + point.x * .004) - cos(point.x * .004));
-    vec2 outp=(p+vec2(161.,450.))/vec2(1500.,1875.);
-    gl_Position=vec4(outp.x*2.-1.,1.-outp.y*2.,0.,1.);
-  }`;
+void main() {
+  uv = (point + vec2(161.,450.)) / vec2(1500.,1875.);
+  vec2 p = point;
+  float excited = step(2.5, mood);
+  float celebration = step(.5, mood) * (1. - step(1.5, mood));
+  float encourage = step(1.5, mood) * (1. - step(2.5, mood));
+  float time = phase / 6.283185307;
+  float breath = .5 - .5 * cos(phase);
+  float ready = excited * smoothstep(.02, .25, time) * (1. - smoothstep(.71, .98, time));
+  float gesture = smoothstep(.02, .24, time) * (1. - smoothstep(.69, .98, time));
+  float cheer = celebration * gesture * (.8 + .2 * cos(phase * 2.));
+  float waveHand = encourage * gesture * (.36 + .12 * sin(phase * 3.));
+  float arms = smoothstep(leftShoulder.y - 65., leftShoulder.y + 50., point.y)
+    * (1. - smoothstep(waist + 25., waist + 100., point.y));
+  float left = (1. - smoothstep(leftShoulder.x - 50., leftShoulder.x + 53., point.x)) * arms;
+  float right = smoothstep(rightShoulder.x - 53., rightShoulder.x + 50., point.x) * arms;
+  float upper = 1. - smoothstep(waist - 65., waist + 125., point.y);
+  float center = (leftShoulder.x + rightShoulder.x) * .5;
+  float chest = smoothstep(leftShoulder.y - 75., leftShoulder.y + 35., point.y) * upper;
+  float sway = sin(phase) * (1. - excited);
+  p.x += (point.x - center) * chest * (.022 * breath + .037 * ready);
+  p.y -= upper * (11. * breath + 12. * ready + 37. * cheer);
+  p.x += upper * 8. * sway;
+  p = mix(p, turn(p, leftShoulder, .034 * sway - .23 * ready + .46 * cheer), left);
+  p = mix(p, turn(p, rightShoulder, .034 * sway + .23 * ready - .46 * cheer - waveHand), right);
+  p.x += (center - point.x) * .12 * ready * max(left, right);
+  p.y += 10. * ready * max(left, right);
+
+  float head = 1. - smoothstep(240., 302., point.y);
+  vec2 faceCenter = (leftEye + rightEye) * .5;
+  p += (point - faceCenter) * (.042 * ready) * head;
+  float blink = smoothstep(.47, .53, time) * (1. - smoothstep(.53, .59, time));
+  blink *= 1. - excited;
+  float eyeOpen = .28 * ready - .92 * blink;
+  float wink = encourage * smoothstep(.2, .34, time) * (1. - smoothstep(.49, .63, time));
+  // Center the lid movements on each iris to retain eye contact.
+  p.y += (point.y - leftEye.y) * (eyeOpen - .92 * wink - .24 * cheer) * mask(point,leftEye,vec2(11.,7.),vec2(24.,18.));
+  p.y += (point.y - rightEye.y) * (eyeOpen - .25 * cheer) * mask(point,rightEye,vec2(11.,7.),vec2(24.,18.));
+  p.y -= (7.5 * ready + 1.7 * breath + 5. * cheer) * max(
+    mask(point,leftBrow,vec2(15.,4.),vec2(29.,13.)),
+    mask(point,rightBrow,vec2(15.,4.),vec2(29.,13.))
+  );
+  float lip = mask(point,mouth,vec2(32.,12.),vec2(51.,31.));
+  p.x += (point.x - mouth.x) * (.14 * ready + .12 * cheer) * lip;
+  p.y += (point.y - mouth.y) * (.28 * ready - .10 * breath + .42 * cheer - .16 * encourage * gesture) * lip;
+  float hum = smoothstep(waist + 10., waist + 100., point.y) *
+    (1. - smoothstep(smokeEnd - 145., smokeEnd, point.y));
+  float strand = point.y * .012;
+  p.x += hum * (17. + 18. * ready + 30. * cheer) * (sin(strand + phase) - sin(strand));
+  p.y += hum * 10. * (cos(strand + phase) - cos(strand));
+  vec2 outp = (p + vec2(161., 450.)) / vec2(1500., 1875.);
+  gl_Position = vec4(outp.x * 2. - 1., 1. - outp.y * 2., 0., 1.);
+}`;
   const fs=`precision mediump float; varying vec2 uv; uniform sampler2D art;
   void main(){vec4 c=texture2D(art,uv);gl_FragColor=c;}`;
   function compile(type, code) {
@@ -142,8 +107,8 @@ function createSpiritRig(canvas, source) {
     marks.push(1254);
     return marks;
   }
-  const columns = gridAxis(523, 675);
-  const rows = gridAxis(70, 218);
+  const columns = gridAxis(552, 707);
+  const rows = gridAxis(123, 248);
   const stride = columns.length;
   const vertices = [];
   const indices = [];
