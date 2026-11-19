@@ -59,7 +59,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 6e974c2 | ☐ | P0 |
+| ☑ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 12a243f | ☐ | P0 |
 | ☑ | C34 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | d5de138 | ☐ | P3 |
 | ☑ | C35 | 音效 move：切換選項（0.25 秒） | 選配 | `assets/audio/move.mp3` | d5de138 | ☐ | P3 |
 | ☑ | C36 | 音效 tear：撕封條（0.54 秒，擷取撕裂聲） | 選配 | `assets/audio/tear.wav` | aea74ef | ☐ | P3 |
