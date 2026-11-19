@@ -112,7 +112,7 @@
     'referral.statusPending': { zh: '尚未完成', en: 'Not completed', ko: '미완료', th: 'ยังไม่สำเร็จ' },
     'nav.Event': { zh: '活動', en: 'Event', ko: '이벤트', th: 'กิจกรรม' },
     'nav.Check-in': { zh: '每日簽到', en: 'Daily Check-in', ko: '출석 체크', th: 'เช็คอินรายวัน' },
-    'nav.CardPack': { zh: '宇宙神奇魔幻卡包', en: 'Cosmic Magic Card Pack', ko: '신비한 우주 마법 카드팩', th: 'ซองการ์ดเวทมนตร์มหัศจรรย์จักรวาล' },
+    'nav.CardPack': { zh: '宇宙神奇魔幻卡包', en: 'Magic Card Pack', ko: '신비한 우주 마법 카드팩', th: 'ซองการ์ดเวทมนตร์มหัศจรรย์จักรวาล' },
     'nav.BlindBox': { zh: '沙漠精靈的贈禮', en: 'Desert Genie’s Gift', ko: '사막 정령의 선물', th: 'ของขวัญจากภูตทะเลทราย' },
     'nav.SurvivalSpin': { zh: '生存轉盤', en: 'Survival Spin', ko: '서바이벌 스핀', th: 'สปินเอาตัวรอด' },
     'nav.LuckyWheel': { zh: '幸運轉盤', en: 'Lucky Wheel', ko: '행운의 룰렛', th: 'วงล้อนำโชค' },

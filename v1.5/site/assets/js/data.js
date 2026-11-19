@@ -890,7 +890,7 @@
       'referral.statusPending': 'Not completed',
       'nav.Event': 'Event',
       'nav.Check-in': 'Daily Check-in',
-      'nav.CardPack': 'Cosmic Magic Card Pack',
+      'nav.CardPack': 'Magic Card Pack',
       'nav.BlindBox': 'Desert Genie’s Gift',
       'nav.SurvivalSpin': 'Survival Spin',
       'nav.LuckyWheel': 'Lucky Wheel',

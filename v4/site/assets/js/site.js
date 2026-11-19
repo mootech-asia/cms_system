@@ -639,7 +639,7 @@
       ] },
       { key: 'nav.Event', fb: '活動', items: [
       { href: 'check-in.html', key: 'nav.Check-in', fb: 'Daily Check-in', icon: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="m9 15 2 2 4-4"/>' },
-      { href: 'card-pack.html', key: 'nav.CardPack', fb: 'Cosmic Magic Card Pack', icon: '<rect x="4" y="3" width="11" height="16" rx="2"></rect><path d="M8 21h9a2 2 0 0 0 2-2V7"></path><path d="M9.5 8l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"></path>' },
+      { href: 'card-pack.html', key: 'nav.CardPack', fb: 'Magic Card Pack', icon: '<rect x="4" y="3" width="11" height="16" rx="2"></rect><path d="M8 21h9a2 2 0 0 0 2-2V7"></path><path d="M9.5 8l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"></path>' },
       { href: 'blind-box.html', key: 'nav.BlindBox', fb: 'Desert Genie’s Gift', icon: '<rect x="3" y="7" width="18" height="4" rx="1"></rect><path d="M5 11v9h14v-9"></path><path d="M10 14.2a2 2 0 1 1 2.6 1.9c-.4.1-.6.5-.6.9v.3"></path><path d="M12 19.2h.01"></path>' },
       { href: 'survival-spin.html', key: 'nav.SurvivalSpin', fb: 'Survival Spin', icon: '<circle cx="12" cy="13" r="8"></circle><circle cx="12" cy="13" r="2"></circle><path d="M12 5v6M12 15v6M4 13h6M14 13h6M9.5 1.5h5L12 4.5z"></path>' },
       { href: 'lucky-wheel.html', key: 'nav.LuckyWheel', fb: 'Lucky Wheel', icon: '<circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="2.5"></circle><path d="M12 3v6.5M12 14.5V21M3 12h6.5M14.5 12H21M5.6 5.6l4.6 4.6M13.8 13.8l4.6 4.6M18.4 5.6l-4.6 4.6M10.2 13.8l-4.6 4.6"></path>' }

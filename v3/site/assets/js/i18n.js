@@ -681,7 +681,7 @@ const TRANSLATIONS = Object.freeze({
       Skin: 'Skin',
       'Event': 'Event',
       'Check-in': 'Daily Check-in',
-      'CardPack': 'Cosmic Magic Card Pack',
+      'CardPack': 'Magic Card Pack',
       'BlindBox': 'Desert Genie’s Gift',
       'SurvivalSpin': 'Survival Spin',
       'LuckyWheel': 'Lucky Wheel',
