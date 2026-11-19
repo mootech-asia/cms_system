@@ -59,3 +59,5 @@
 目前圖片及音效放 `assets/img/`、`assets/audio/`；未採用或廢棄版本統一放 `alternatives/`，詳見 [搬移索引](docs/ARCHIVE_20261119.json)。共用素材可由其他活動或 `event/shared/` 引用，不複製。
 
 人物暫時恢復重製前的既有素材（48 幀／2 秒）。低解析度 12fps 版本已退回 alternatives/source/spirit-lowres-12fps；新版高解析度人物暫緩，尚未交付，未來製作仍遵守 12fps 新規格。
+
+現行精靈為飛機頭肌肉版：敞開青金繡背心、正面直視玩家；保留待機、期待、慶祝與再接再厲四段動作。網頁貼圖 317,540 bytes（原稿 1,260,794 bytes），沿用 1500×1875 舞台畫布與控制項位置。舊正裝版保存在 alternatives，搬移索引見 docs/ARCHIVE_20261119.json。

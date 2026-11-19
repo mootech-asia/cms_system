@@ -18,8 +18,8 @@ window.EVENT_CONFIG = {
   sceneArt: { height: 1125, horizonFromBottom: 660, horizonFraction: .5 },
   atmosphereMode: 'petals-and-sand',
   mascot: {
-    poster: 'assets/img/mascot/spirit/poster.webp?v=20261119-frontal-genie',
-    motion: 'assets/js/spirit-motion.js?v=20261119-frontal-genie',
+    poster: 'assets/img/mascot/spirit/poster.webp?v=20261119-muscle-genie',
+    motion: 'assets/js/spirit-motion.js?v=20261119-muscle-genie',
     loopMs: 2000, layout: 'hero'
   },
   shape: 'chest',

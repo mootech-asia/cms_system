@@ -5,15 +5,15 @@ function createSpiritRig(canvas, source) {
   const vs = `attribute vec2 point;
 uniform float phase;
 uniform float mood;
-const vec2 leftShoulder = vec2(458., 355.);
-const vec2 rightShoulder = vec2(794., 355.);
-const vec2 leftEye = vec2(597., 162.);
-const vec2 rightEye = vec2(659., 162.);
-const vec2 leftBrow = vec2(596., 140.);
-const vec2 rightBrow = vec2(661., 140.);
-const vec2 mouth = vec2(628., 215.);
-const float waist = 651.;
-const float smokeEnd = 1049.;
+const vec2 leftShoulder = vec2(434., 354.);
+const vec2 rightShoulder = vec2(820., 354.);
+const vec2 leftEye = vec2(601., 174.);
+const vec2 rightEye = vec2(662., 173.);
+const vec2 leftBrow = vec2(600., 152.);
+const vec2 rightBrow = vec2(662., 148.);
+const vec2 mouth = vec2(630., 221.);
+const float waist = 673.;
+const float smokeEnd = 1048.;
 varying vec2 uv;
 
 float mask(vec2 p, vec2 center, vec2 core, vec2 spread) {
@@ -64,13 +64,11 @@ void main() {
   // Center the lid movements on each iris to retain eye contact.
   p.y += (point.y - leftEye.y) * (eyeOpen - .92 * wink - .24 * cheer) * mask(point,leftEye,vec2(11.,7.),vec2(24.,18.));
   p.y += (point.y - rightEye.y) * (eyeOpen - .25 * cheer) * mask(point,rightEye,vec2(11.,7.),vec2(24.,18.));
-  p.y -= (7.5 * ready + 1.7 * breath + 5. * cheer) * max(
-    mask(point,leftBrow,vec2(15.,4.),vec2(29.,13.)),
-    mask(point,rightBrow,vec2(15.,4.),vec2(29.,13.))
-  );
+  p.y -= (5. * ready + 1.7 * breath + 5. * cheer) * mask(point,leftBrow,vec2(15.,4.),vec2(29.,13.));
+  p.y -= (9. * ready + 1.7 * breath + 5. * cheer) * mask(point,rightBrow,vec2(15.,4.),vec2(29.,13.));
   float lip = mask(point,mouth,vec2(32.,12.),vec2(51.,31.));
   p.x += (point.x - mouth.x) * (.14 * ready + .12 * cheer) * lip;
-  p.y += (point.y - mouth.y) * (.28 * ready - .10 * breath + .42 * cheer - .16 * encourage * gesture) * lip;
+  p.y += (point.y - mouth.y) * (.28 * ready - .10 * breath + .42 * cheer - .16 * encourage * gesture) * lip - 4. * ready * lip * smoothstep(5., 30., point.x - mouth.x);
   float hum = smoothstep(waist + 10., waist + 100., point.y) *
     (1. - smoothstep(smokeEnd - 145., smokeEnd, point.y));
   float strand = point.y * .012;
@@ -107,8 +105,8 @@ void main() {
     marks.push(1254);
     return marks;
   }
-  const columns = gridAxis(552, 707);
-  const rows = gridAxis(123, 248);
+  const columns = gridAxis(548, 720);
+  const rows = gridAxis(126, 256);
   const stride = columns.length;
   const vertices = [];
   const indices = [];
