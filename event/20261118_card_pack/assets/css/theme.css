@@ -166,5 +166,3 @@
 .ev-reveal-rays { width: min(150%, 90svh); opacity: .85; animation: ev-celestial-aura 12s ease-in-out infinite alternate; }
 .ev-reveal-glow { opacity: .18; }
 @keyframes ev-celestial-aura { from { transform: rotate(-5deg) scale(.97); opacity: .65; } to { transform: rotate(5deg) scale(1.04); opacity: .9; } }
-
-.ev-prize-front[data-outcome="empty"] .ev-rarity-tag { top:32%; left:15%; width:70%; aspect-ratio:3; height:auto; display:grid; place-items:center; padding:0 10%; box-sizing:border-box; background:var(--ev-img-statusBadges) center bottom / 100% 200% no-repeat; color:var(--card-foil); font-size:10px; letter-spacing:.6px; }

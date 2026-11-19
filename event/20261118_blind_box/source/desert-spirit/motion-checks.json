@@ -1,29 +1,26 @@
 [
   {
     "state": "idle",
-    "frames": 24,
-    "fps": 12,
+    "frames": 48,
     "durationMs": 2000,
-    "sameEndpoint": true,
-    "lossless": true,
-    "bytes": 2081374
+    "minMargin": 16,
+    "bytes": 2389972,
+    "sameEndpoint": true
   },
   {
     "state": "excited",
-    "frames": 24,
-    "fps": 12,
+    "frames": 48,
     "durationMs": 2000,
-    "sameEndpoint": true,
-    "lossless": true,
-    "bytes": 2147228
+    "minMargin": 8,
+    "bytes": 2097266,
+    "sameEndpoint": true
   },
   {
     "state": "encourage",
-    "frames": 24,
-    "fps": 12,
+    "frames": 48,
     "durationMs": 2000,
-    "sameEndpoint": true,
-    "lossless": true,
-    "bytes": 1853110
+    "minMargin": 16,
+    "bytes": 2142326,
+    "sameEndpoint": true
   }
 ]

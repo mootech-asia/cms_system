@@ -26,7 +26,6 @@ window.EVENT_CONFIG = {
   secretEvery: 50,
   tearSoundMs: 800,
   images: {
-    statusBadges: '../shared/unbox-3d/img/status-badges.webp?v=20261119-badge1',
     secretPack: 'assets/img/3d/secret-pack.webp?v=20261118-vortex1',
     secretSide: 'assets/img/3d/secret-side.webp?v=20261118-vortex1',
     secretBack: 'assets/img/reveal/secret-back.webp?v=20261118-vortex1',
@@ -86,7 +85,6 @@ window.EVENT_CONFIG = {
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
-    statusBadges: 'status-badges · 1536×1024 / 2 themes',
     secretPack: 'secret-pack · 512×768',
     secretSide: 'secret-side · 128×512',
     secretBack: 'secret-back · 600×900',

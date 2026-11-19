@@ -297,7 +297,6 @@ function now() {
 }
 
 function press() {
-  if (cfg.type !== 'blind-box') Sound.play('click');
   btnAction.classList.add('is-pressing');
   setTimeout(function () { btnAction.classList.remove('is-pressing'); }, 140);
   try { if (typeof navigator.vibrate === 'function') navigator.vibrate(18); } catch (e) { /* 震動為選配 */ }
@@ -354,7 +353,7 @@ function open(gesture) {
     renderRecords();
     setState('opening');
     Sound.duck(true);
-    if (cfg.type === 'blind-box') Sound.stopEffects();
+    Sound.stopEffects();
     Sound.play('tear',duration);
     stage.classList.add('is-opening');
     var done = scene ? scene.open(duration) : new Promise(function (ok) { fallbackTimer = setTimeout(ok, 600); });
@@ -406,7 +405,7 @@ function cardHtml(r, small) {
     '<span class="ev-prize-frame" aria-hidden="true"></span>' +
     '<span class="ev-card-stars" aria-hidden="true">' + (Store.isEmpty(r) ? '' : '✦'.repeat(Store.rarityRank(r) + 1)) + '</span>' +
     (r.icon ? '<img class="ev-prize-icon" src="' + esc(r.icon) + '" alt="" />' : '') +
-    '<span class="ev-rarity-tag" data-rarity="' + rarity + '">' + esc(t(Store.isEmpty(r) ? 'result.emptyTag' : r.edition === 'secret' ? 'edition.secret' : 'rarity.' + rarity)) + '</span>' +
+    (Store.isEmpty(r) ? '' : '<span class="ev-rarity-tag" data-rarity="' + rarity + '">' + esc(t(r.edition === 'secret' ? 'edition.secret' : 'rarity.' + rarity)) + '</span>') +
     '<span class="ev-prize-name' + (small ? ' is-small' : '') + '">' + esc(pick(r.name)) + '</span></span>';
 }
 
@@ -414,7 +413,7 @@ function treasureHtml(r) {
   var rarity = rarityOf(r);
   return '<span class="ev-treasure-plinth" aria-hidden="true"></span>' +
     '<span class="ev-treasure-object">' + (r.icon ? '<img src="' + esc(r.icon) + '" alt="" />' : Store.isEmpty(r) ? '' : '<span class="ev-treasure-gem" aria-hidden="true">◆</span>') + '</span>' +
-    '<span class="ev-treasure-caption"><span class="ev-rarity-tag" data-rarity="' + rarity + '">' + esc(t(Store.isEmpty(r) ? 'result.emptyTag' : 'rarity.' + rarity)) + '</span>' +
+    '<span class="ev-treasure-caption">' + (Store.isEmpty(r) ? '' : '<span class="ev-rarity-tag" data-rarity="' + rarity + '">' + esc(t('rarity.' + rarity)) + '</span>') +
     '<strong>' + esc(pick(r.name)) + '</strong></span>';
 }
 

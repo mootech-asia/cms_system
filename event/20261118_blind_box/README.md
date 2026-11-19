@@ -57,3 +57,5 @@
 - `alternatives`：目前未引用的備選／舊版素材，保留原路徑結構。
 
 目前圖片及音效放 `assets/img/`、`assets/audio/`；未採用或廢棄版本統一放 `alternatives/`，詳見 [搬移索引](docs/ARCHIVE_20261119.json)。共用素材可由其他活動或 `event/shared/` 引用，不複製。
+
+人物暫時恢復重製前的既有素材（48 幀／2 秒）。低解析度 12fps 版本已退回 alternatives/source/spirit-lowres-12fps；新版高解析度人物暫緩，尚未交付，未來製作仍遵守 12fps 新規格。
