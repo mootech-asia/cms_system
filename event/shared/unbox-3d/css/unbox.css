@@ -81,12 +81,18 @@ button { font: inherit; -webkit-tap-highlight-color: transparent; }
   padding: var(--ev-space-2) var(--ev-space-4) 0;
 }
 .ev-lang {
+  --ev-lang-paper: #fff2d5;
+  --ev-lang-ink: #503e2c;
+  --ev-lang-gold: #d4a537;
+  --ev-lang-metal: #b98538;
+  --ev-lang-selected: #79531b;
+  --ev-lang-highlight: #efd092;
   display: inline-flex;
   padding: 3px;
-  border: 1px solid var(--ev-color-border);
+  border: 2px solid var(--ev-lang-gold);
   border-radius: var(--ev-radius-pill);
-  background: var(--ev-color-surface);
-  box-shadow: var(--ev-shadow-btn);
+  background: var(--ev-lang-paper);
+  box-shadow: 0 2px 0 var(--ev-lang-ink);
 }
 .ev-lang-btn {
   min-width: 44px;
@@ -95,13 +101,32 @@ button { font: inherit; -webkit-tap-highlight-color: transparent; }
   border: 0;
   border-radius: var(--ev-radius-pill);
   background: none;
-  color: var(--ev-color-text-2);
+  color: var(--ev-lang-ink);
   font-size: 13px;
   font-weight: 700;
   line-height: 1;
   cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
 }
-.ev-lang-btn[aria-pressed="true"] { background: var(--ev-color-primary); color: var(--ev-color-on-primary); }
+.ev-lang-btn[aria-pressed="true"] {
+  background: var(--ev-lang-selected);
+  color: var(--ev-lang-paper);
+  box-shadow: inset 0 1px 0 rgb(255 245 207 / .65), inset 0 0 0 1px var(--ev-lang-metal);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ev-lang-btn[aria-pressed="false"]:hover {
+    background: var(--ev-lang-highlight);
+    box-shadow: inset 0 0 0 1px var(--ev-lang-metal);
+  }
+  .ev-lang-btn[aria-pressed="true"]:hover { background: var(--ev-lang-ink); }
+}
+.ev-lang .ev-lang-btn:active {
+  background: var(--ev-lang-ink);
+  color: var(--ev-lang-paper);
+  box-shadow: inset 0 1px 4px var(--ev-color-scrim);
+}
+.ev-lang-btn:focus-visible { outline: 2px solid var(--ev-lang-selected); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .ev-lang-btn { transition: none; } }
 .ev-sound-wrap { position: relative; display: flex; gap: var(--ev-space-2); }
 .ev-sound {
   width: 36px;

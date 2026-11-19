@@ -63,34 +63,6 @@
 }
 
 /* Desert interface: engraved brass, turquoise inlays and parchment scrolls. */
-.ev-lang { border:2px solid var(--ev-color-gold); background:var(--ev-folio-paper); box-shadow:0 2px 0 var(--ev-folio-ink); }
-.ev-lang-btn {
-  color:var(--ev-folio-ink);
-  transition:background-color 180ms ease,color 180ms ease,box-shadow 180ms ease;
-}
-.ev-lang-btn[aria-pressed="true"] {
-  color:var(--ev-folio-paper);
-  background:var(--ev-color-primary);
-  box-shadow:inset 0 1px 0 var(--ev-ui-highlight),inset 0 0 0 1px var(--ev-vault-metal);
-}
-@media (hover:hover) and (pointer:fine) {
-  .ev-lang-btn[aria-pressed="false"]:hover {
-    color:var(--ev-vault-base);
-    background:var(--ev-vault-shine);
-    box-shadow:inset 0 1px 0 var(--ev-folio-paper),inset 0 0 0 1px var(--ev-vault-metal),0 1px 3px var(--ev-ui-trim);
-  }
-  .ev-lang-btn[aria-pressed="true"]:hover {
-    background:var(--ev-folio-ink);
-    box-shadow:inset 0 1px 0 var(--ev-vault-shine),inset 0 0 0 1px var(--ev-color-gold),0 0 5px var(--ev-ui-glint);
-  }
-}
-.ev-lang .ev-lang-btn:active {
-  background:var(--ev-vault-base);
-  color:var(--ev-folio-paper);
-  box-shadow:inset 0 2px 4px var(--ev-ui-recess),inset 0 0 0 1px var(--ev-folio-edge);
-}
-.ev-lang-btn:focus-visible { outline:2px solid var(--ev-color-focus); outline-offset:2px; }
-@media (prefers-reduced-motion:reduce) { .ev-lang-btn { transition:none; } }
 :root { --ev-color-reveal-bg:rgb(30 23 13 / .95); }
 
 :root {
