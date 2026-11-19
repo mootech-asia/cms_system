@@ -891,7 +891,7 @@
       'nav.Event': 'Event',
       'nav.Check-in': 'Daily Check-in',
       'nav.CardPack': 'Magic Card Pack',
-      'nav.BlindBox': 'Desert Genie’s Gift',
+      'nav.BlindBox': 'Genie’s Gift',
       'nav.SurvivalSpin': 'Survival Spin',
       'nav.LuckyWheel': 'Lucky Wheel',
       'nav.Referral': 'Referral Center',

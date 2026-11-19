@@ -682,7 +682,7 @@ const TRANSLATIONS = Object.freeze({
       'Event': 'Event',
       'Check-in': 'Daily Check-in',
       'CardPack': 'Magic Card Pack',
-      'BlindBox': 'Desert Genie’s Gift',
+      'BlindBox': 'Genie’s Gift',
       'SurvivalSpin': 'Survival Spin',
       'LuckyWheel': 'Lucky Wheel',
       'My Account': 'My Account',
