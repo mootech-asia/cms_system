@@ -3,7 +3,7 @@ from pathlib import Path
 from PIL import Image,ImageOps,ImageDraw
 from scipy.ndimage import binary_fill_holes
 import numpy as np,json
-R=Path(__file__).resolve().parents[1];S=R/'source/ui';O=R/'img'
+R=Path(__file__).resolve().parents[1];S=R/'source/ui';O=R/'assets/img'
 sizes={'modal-bg':(600,760),'btn-primary':(400,110),'period-badge':(480,64),'chances-badge':(360,88),'ticker-bar':(690,64),'card-frame':(120,120),'card-title':(400,72),'footer-deco':(750,160),'icon-sound-on':(64,64),'icon-sound-off':(64,64),'icon-share':(64,64),'icon-rotate':(160,160)}
 updated=[]
 SHARP={'ticker-bar','chances-badge','card-title','period-badge'}
@@ -27,10 +27,10 @@ for n,size in sizes.items():
   canvas=Image.new('RGBA',size);canvas.alpha_composite(im,((size[0]-im.width)//2,(size[1]-im.height)//2));im=canvas
  save(n,im)
 q=Image.open(S/'info-bg-original.png').convert('RGB').resize((375,375),Image.Resampling.LANCZOS);q=Image.blend(Image.new('RGB',q.size,'#F3ECE0'),q,.35);im=Image.new('RGB',(750,750));im.paste(q,(0,0));im.paste(ImageOps.mirror(q),(375,0));im.paste(ImageOps.flip(q),(0,375));im.paste(ImageOps.flip(ImageOps.mirror(q)),(375,375));save('info-bg',im)
-p=R.parents[1]/'assets/js/config.js';s=p.read_text()
-for n in updated:s=s.replace('skins/survival/img/'+n+'.svg','skins/survival/img/'+n+'.webp')
-if "share: 'skins/survival/img/icon-share.webp'" not in s:
- s=s.replace("css: 'skins/survival/skin.css',\n      images: {", "css: 'skins/survival/skin.css',\n      images: {\n        soundOn: 'skins/survival/img/icon-sound-on.webp',\n        soundOff: 'skins/survival/img/icon-sound-off.webp',\n        share: 'skins/survival/img/icon-share.webp',\n        rotateHint: 'skins/survival/img/icon-rotate.webp',")
+p=R/'assets/js/config.js';s=p.read_text()
+for n in updated:s=s.replace('assets/img/'+n+'.svg','assets/img/'+n+'.webp')
+if "share: 'assets/img/icon-share.webp'" not in s:
+ s=s.replace("css: 'assets/css/skin.css',\n      images: {", "css: 'assets/css/skin.css',\n      images: {\n        soundOn: 'assets/img/icon-sound-on.webp',\n        soundOff: 'assets/img/icon-sound-off.webp',\n        share: 'assets/img/icon-share.webp',\n        rotateHint: 'assets/img/icon-rotate.webp',")
 p.write_text(s)
 checks={}
 a=np.array(Image.open(O/'modal-bg.webp').convert('RGBA'));checks['modalInteriorOpaque']=bool((a[130:700,45:555,3]==255).all())

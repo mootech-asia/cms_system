@@ -1,0 +1,36 @@
+[
+  {
+    "hover": true,
+    "fallback": false,
+    "lockedSilent": true,
+    "oncePerEnter": true,
+    "debounce": true,
+    "replacesPriorVoice": true,
+    "mute": true,
+    "path": "../20261111_survival_spin/assets/audio/hover.mp3",
+    "volume": 0.7
+  },
+  {
+    "hover": true,
+    "fallback": true,
+    "lockedSilent": true,
+    "oncePerEnter": true,
+    "debounce": true,
+    "replacesPriorVoice": true,
+    "mute": true,
+    "path": "../20261111_survival_spin/assets/audio/hover.mp3",
+    "volume": 0.7
+  },
+  {
+    "touch": false,
+    "sideTopTears": true,
+    "bodyRotates": true,
+    "topDoesNotRotate": true
+  },
+  {
+    "touch": true,
+    "sideTopTears": true,
+    "bodyRotates": true,
+    "topDoesNotRotate": true
+  }
+]

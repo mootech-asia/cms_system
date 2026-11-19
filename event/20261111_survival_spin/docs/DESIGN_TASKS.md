@@ -64,14 +64,14 @@
 - **品質與一致性**：與 `../20261111_lucky_wheel/reference/` 的熊北四視圖、`brand/moo-rabbit/` 的兔比設定同一套渲染品質；背心換成連身服，其餘臉型、毛色、配件不變。
 - **動態 6 段**（規格同預設皮的 2026-11-12 重做要求：48 幀、2000ms、頭尾＝基準幀、任何一幀不可貼邊、影子畫進角色、主交付為 RGBA PNG 序列幀）：
   待機 ×3、期待（轉動中）、慶祝（中獎）、失望（未中獎）。
-- 交付位置：`alternatives/img/mascot/base-frame.png`、`img/mascot/<狀態>.gif`、`source/mascot-frames/<狀態>/frame_001.png`～`frame_048.png`。
+- 交付位置：`alternatives/img/mascot/base-frame.png`、`assets/img/mascot/<狀態>.gif`、`source/mascot-frames/<狀態>/frame_001.png`～`frame_048.png`。
 - 未交付前頁面暫用預設皮的兔比（穿背心），這是佔位，不代表定稿。
 
 ---
 
 ## 五、交付方式
 
-1. 檔案放到本資料夾 `img/`（吉祥物放 `img/mascot/`），**同檔名覆蓋並刪掉 `.svg` 佔位檔**；副檔名不同時改 `assets/js/config.js` 的 `skins.survival.images` 路徑。
+1. 檔案放到本資料夾 `assets/img/`（吉祥物放 `assets/img/mascot/`），**同檔名覆蓋並刪掉 `.svg` 佔位檔**；副檔名不同時改 `assets/js/config.js` 的 `skins.survival.images` 路徑。
 2. 色票改 `assets/css/skin.css`。
 3. commit → 在 `docs/DELIVERY_CHECKLIST.md` 打勾填 commit → 執行
    `python3 scripts/check_delivery.py event/20261111_survival_spin/docs/DELIVERY_CHECKLIST.md`，已打勾的列必須全部 OK。

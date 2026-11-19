@@ -16,10 +16,10 @@
   Object.keys(skin.images || {}).forEach(function (k) { cfg.images[k] = skin.images[k]; });
   if (skin.mascot) Object.keys(skin.mascot).forEach(function (k) { cfg.mascot[k] = skin.mascot[k]; });
   if (skin.sounds) Object.keys(skin.sounds).forEach(function (k) { cfg.sounds[k] = skin.sounds[k]; });
-  if (assets/css/skin.css) {
+  if (skin.css) {
     var link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = assets/css/skin.css;
+    link.href = skin.css;
     // 盤面扇區顏色是程式讀色票畫的，色票檔載入完要通知 wheel.js 重畫
     link.onload = function () { document.dispatchEvent(new Event('ev:skin')); };
     document.head.appendChild(link);

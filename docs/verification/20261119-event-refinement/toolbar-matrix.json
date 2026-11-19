@@ -1,0 +1,482 @@
+[
+  {
+    "name": "20261111_lucky_wheel",
+    "width": 360,
+    "embedded": false,
+    "rects": [
+      [
+        264,
+        8,
+        36,
+        36
+      ],
+      [
+        308,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261111_survival_spin",
+    "width": 360,
+    "embedded": false,
+    "rects": [
+      [
+        264,
+        8,
+        36,
+        36
+      ],
+      [
+        308,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261118_card_pack",
+    "width": 360,
+    "embedded": false,
+    "rects": [
+      [
+        264,
+        8,
+        36,
+        36
+      ],
+      [
+        308,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261118_blind_box",
+    "width": 360,
+    "embedded": false,
+    "rects": [
+      [
+        264,
+        8,
+        36,
+        36
+      ],
+      [
+        308,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261111_lucky_wheel",
+    "width": 360,
+    "embedded": true,
+    "rects": [
+      [
+        16,
+        8,
+        36,
+        36
+      ],
+      [
+        60,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261111_survival_spin",
+    "width": 360,
+    "embedded": true,
+    "rects": [
+      [
+        16,
+        8,
+        36,
+        36
+      ],
+      [
+        60,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261118_card_pack",
+    "width": 360,
+    "embedded": true,
+    "rects": [
+      [
+        16,
+        8,
+        36,
+        36
+      ],
+      [
+        60,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261118_blind_box",
+    "width": 360,
+    "embedded": true,
+    "rects": [
+      [
+        16,
+        8,
+        36,
+        36
+      ],
+      [
+        60,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261111_lucky_wheel",
+    "width": 390,
+    "embedded": false,
+    "rects": [
+      [
+        294,
+        8,
+        36,
+        36
+      ],
+      [
+        338,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261111_survival_spin",
+    "width": 390,
+    "embedded": false,
+    "rects": [
+      [
+        294,
+        8,
+        36,
+        36
+      ],
+      [
+        338,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261118_card_pack",
+    "width": 390,
+    "embedded": false,
+    "rects": [
+      [
+        294,
+        8,
+        36,
+        36
+      ],
+      [
+        338,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261118_blind_box",
+    "width": 390,
+    "embedded": false,
+    "rects": [
+      [
+        294,
+        8,
+        36,
+        36
+      ],
+      [
+        338,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261111_lucky_wheel",
+    "width": 390,
+    "embedded": true,
+    "rects": [
+      [
+        16,
+        8,
+        36,
+        36
+      ],
+      [
+        60,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261111_survival_spin",
+    "width": 390,
+    "embedded": true,
+    "rects": [
+      [
+        16,
+        8,
+        36,
+        36
+      ],
+      [
+        60,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261118_card_pack",
+    "width": 390,
+    "embedded": true,
+    "rects": [
+      [
+        16,
+        8,
+        36,
+        36
+      ],
+      [
+        60,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261118_blind_box",
+    "width": 390,
+    "embedded": true,
+    "rects": [
+      [
+        16,
+        8,
+        36,
+        36
+      ],
+      [
+        60,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261111_lucky_wheel",
+    "width": 1440,
+    "embedded": false,
+    "rects": [
+      [
+        864,
+        8,
+        36,
+        36
+      ],
+      [
+        908,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261111_survival_spin",
+    "width": 1440,
+    "embedded": false,
+    "rects": [
+      [
+        864,
+        8,
+        36,
+        36
+      ],
+      [
+        908,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261118_card_pack",
+    "width": 1440,
+    "embedded": false,
+    "rects": [
+      [
+        864,
+        8,
+        36,
+        36
+      ],
+      [
+        908,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261118_blind_box",
+    "width": 1440,
+    "embedded": false,
+    "rects": [
+      [
+        864,
+        8,
+        36,
+        36
+      ],
+      [
+        908,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261111_lucky_wheel",
+    "width": 1440,
+    "embedded": true,
+    "rects": [
+      [
+        496,
+        8,
+        36,
+        36
+      ],
+      [
+        540,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261111_survival_spin",
+    "width": 1440,
+    "embedded": true,
+    "rects": [
+      [
+        496,
+        8,
+        36,
+        36
+      ],
+      [
+        540,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261118_card_pack",
+    "width": 1440,
+    "embedded": true,
+    "rects": [
+      [
+        496,
+        8,
+        36,
+        36
+      ],
+      [
+        540,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "name": "20261118_blind_box",
+    "width": 1440,
+    "embedded": true,
+    "rects": [
+      [
+        496,
+        8,
+        36,
+        36
+      ],
+      [
+        540,
+        8,
+        36,
+        36
+      ]
+    ],
+    "errors": []
+  }
+]

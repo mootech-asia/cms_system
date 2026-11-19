@@ -49,7 +49,7 @@
 | 活動 | 目前版本 | 檔案 |
 |---|---|---|
 | Lucky Wheel | 兔比（Moo Rabbit）四段核准動態：待機、期待、慶祝、鼓勵 | `event/20261111_lucky_wheel/assets/img/mascot/`（idle-1、spinning、result、lose；400×500） |
-| Survival Spin | **第一版**桃紅面具人物六段（待機 ×3、期待、慶祝、失望） | `event/20261111_survival_spin/img/mascot/`；Figma 靜態圖用 `base-frame.png` |
+| Survival Spin | **第一版**桃紅面具人物六段（待機 ×3、期待、慶祝、失望） | `event/20261111_survival_spin/assets/img/mascot/`；Figma 靜態圖用 `base-frame.png` |
 
 - 之後的 V2、V3 面具人物動態已退回，不要用；設定圖 V2（`source/guard-character-v2/`）仍只是參考。
 - 位置同 11/12 交接：手機 390 寬 x=213 y=334、290×362，站在轉盤右前方；生存版再往右一點（`9d87e42`，約 +10px）。

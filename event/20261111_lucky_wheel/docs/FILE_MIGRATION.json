@@ -25,7 +25,7 @@
   },
   {
     "from": "art-source/build_static.py",
-    "to": "source/production/build_static.py"
+    "to": "tools/build_static.py"
   },
   {
     "from": "reference/mootech-logo-mark.png",

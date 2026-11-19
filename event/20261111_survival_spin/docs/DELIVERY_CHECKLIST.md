@@ -22,41 +22,41 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | S01 | title-en | 690×240 | `img/title-en.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | S02 | title-ko | 690×240 | `img/title-ko.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | S03 | title-th | 690×240 | `img/title-th.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | S04 | stage-bg | 750×1000 | `img/stage-bg.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | S05 | stage-floor | 750×140 | `img/stage-floor.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | S06 | wheel-frame | 680×680 | `img/wheel-frame.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | S07 | wheel-stand | 400×600 | `img/wheel-stand.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | S08 | pointer | 120×160 | `img/pointer.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | S09 | btn-go | 200×200 | `img/btn-go.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | S10 | spotlight | 260×900 | `img/spotlight.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | S11 | light-pool | 600×220 | `img/light-pool.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | S12 | stage-vignette | 750×1000 | `img/stage-vignette.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | S13 | bulb-on | 48×48 | `img/bulb-on.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | S14 | bulb-off | 48×48 | `img/bulb-off.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | S15 | modal-bg | 600×760 | `img/modal-bg.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
-| ☑ | S16 | btn-primary | 400×110 | `img/btn-primary.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
-| ☑ | S17 | period-badge | 480×64 | `img/period-badge.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
-| ☑ | S18 | chances-badge | 360×88 | `img/chances-badge.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
-| ☑ | S19 | ticker-bar | 690×64 | `img/ticker-bar.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
-| ☑ | S20 | card-frame | 120×120 | `img/card-frame.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
-| ☑ | S21 | card-title | 400×72 | `img/card-title.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
-| ☑ | S22 | info-bg | 750×750 | `img/info-bg.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
-| ☑ | S23 | footer-deco | 750×160 | `img/footer-deco.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
-| ☑ | S24 | icon-sound-on | 64×64 | `img/icon-sound-on.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
-| ☑ | S25 | icon-sound-off | 64×64 | `img/icon-sound-off.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
-| ☑ | S26 | icon-share | 64×64 | `img/icon-share.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
-| ☑ | S27 | icon-rotate | 160×160 | `img/icon-rotate.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
+| ☑ | S01 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | S02 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | S03 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | S04 | stage-bg | 750×1000 | `assets/img/stage-bg.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | S05 | stage-floor | 750×140 | `assets/img/stage-floor.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | S06 | wheel-frame | 680×680 | `assets/img/wheel-frame.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | S07 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | S08 | pointer | 120×160 | `assets/img/pointer.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | S09 | btn-go | 200×200 | `assets/img/btn-go.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | S10 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | S11 | light-pool | 600×220 | `assets/img/light-pool.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | S12 | stage-vignette | 750×1000 | `assets/img/stage-vignette.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | S13 | bulb-on | 48×48 | `assets/img/bulb-on.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | S14 | bulb-off | 48×48 | `assets/img/bulb-off.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | S15 | modal-bg | 600×760 | `assets/img/modal-bg.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | S16 | btn-primary | 400×110 | `assets/img/btn-primary.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | S17 | period-badge | 480×64 | `assets/img/period-badge.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | S18 | chances-badge | 360×88 | `assets/img/chances-badge.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | S19 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | S20 | card-frame | 120×120 | `assets/img/card-frame.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | S21 | card-title | 400×72 | `assets/img/card-title.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | S22 | info-bg | 750×750 | `assets/img/info-bg.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | S23 | footer-deco | 750×160 | `assets/img/footer-deco.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | S24 | icon-sound-on | 64×64 | `assets/img/icon-sound-on.{png,webp,svg}` | c91aeeb | ☐ | P2 |
+| ☑ | S25 | icon-sound-off | 64×64 | `assets/img/icon-sound-off.{png,webp,svg}` | c91aeeb | ☐ | P2 |
+| ☑ | S26 | icon-share | 64×64 | `assets/img/icon-share.{png,webp,svg}` | c91aeeb | ☐ | P2 |
+| ☑ | S27 | icon-rotate | 160×160 | `assets/img/icon-rotate.{png,webp,svg}` | c91aeeb | ☐ | P2 |
 | ☐ | S45 | icon-tap | 160×160 | `alternatives/img/icon-tap.{png,webp,svg}` | | ☐ | P2 |
-| ☑ | S28 | share-preview | 1200×630 | `img/share-preview.{png,jpg}` | aaa6c24 | ☐ | P1 |
+| ☑ | S28 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | c91aeeb | ☐ | P1 |
 
 ## B. 色票（1）
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | S29 | 扇區色 6 組（底色＋文字色） | — | `assets/css/skin.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | aaa6c24 | ☐ | P0 |
+| ☑ | S29 | 扇區色 6 組（底色＋文字色） | — | `assets/css/skin.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | c91aeeb | ☐ | P0 |
 
 ## C. 兔比工作人員造型與動態（14）
 
@@ -64,12 +64,12 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 |---|---|---|---|---|---|---|---|
 | ☐ | S30 | 兔比工作人員造型四視圖 | —（人工） | `source/rabbit-staff-turnaround.{png,webp}` | | ☐ | P3 |
 | ☐ | S31 | base-frame（含影子） | 400×500 | `alternatives/img/mascot/base-frame.png` | | ☐ | P3 |
-| ☐ | S32 | idle-1（待機1） | 400×500 gif≥24 | `img/mascot/idle-1.gif` | | ☐ | P3 |
-| ☐ | S33 | idle-2（待機2） | 400×500 gif≥24 | `img/mascot/idle-2.gif` | | ☐ | P3 |
-| ☐ | S34 | idle-3（待機3） | 400×500 gif≥24 | `img/mascot/idle-3.gif` | | ☐ | P3 |
-| ☐ | S35 | spinning（期待） | 400×500 gif≥24 | `img/mascot/spinning.gif` | | ☐ | P3 |
-| ☐ | S36 | result（慶祝） | 400×500 gif≥24 | `img/mascot/result.gif` | | ☐ | P3 |
-| ☐ | S37 | lose（失望） | 400×500 gif≥24 | `img/mascot/lose.gif` | | ☐ | P3 |
+| ☐ | S32 | idle-1（待機1） | 400×500 gif≥24 | `assets/img/mascot/idle-1.gif` | | ☐ | P3 |
+| ☐ | S33 | idle-2（待機2） | 400×500 gif≥24 | `assets/img/mascot/idle-2.gif` | | ☐ | P3 |
+| ☐ | S34 | idle-3（待機3） | 400×500 gif≥24 | `assets/img/mascot/idle-3.gif` | | ☐ | P3 |
+| ☐ | S35 | spinning（期待） | 400×500 gif≥24 | `assets/img/mascot/spinning.gif` | | ☐ | P3 |
+| ☐ | S36 | result（慶祝） | 400×500 gif≥24 | `assets/img/mascot/result.gif` | | ☐ | P3 |
+| ☐ | S37 | lose（失望） | 400×500 gif≥24 | `assets/img/mascot/lose.gif` | | ☐ | P3 |
 | ☐ | S38 | idle-1 PNG 序列幀（RGBA） | 400×500 frames≥24 | `source/mascot-frames/idle-1/` | | ☐ | P3 |
 | ☐ | S39 | idle-2 PNG 序列幀（RGBA） | 400×500 frames≥24 | `source/mascot-frames/idle-2/` | | ☐ | P3 |
 | ☐ | S40 | idle-3 PNG 序列幀（RGBA） | 400×500 frames≥24 | `source/mascot-frames/idle-3/` | | ☐ | P3 |
@@ -81,7 +81,7 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | S44 | `assets/js/config.js` 的 skins.survival 圖片／吉祥物路徑改成實際交付的檔名，新活動入口無破圖 | — | `assets/js/config.js` | 84ae6d5 | ☐ | P2 |
+| ☑ | S44 | `assets/js/config.js` 的 skins.survival 圖片／吉祥物路徑改成實際交付的檔名，新活動入口無破圖 | — | `assets/js/config.js` | c91aeeb | ☐ | P2 |
 
 ## 備註
 
@@ -107,5 +107,5 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | L01 | 主題 loading 器物 | 480×480 | `assets/img/loading-emblem.webp` | 84ae6d5 | ☐ | P1 |
-| ☑ | L02 | Loading 原稿 | （人工） | `source/loading/emblem-original.png` | 84ae6d5 | ☐ | P1 |
+| ☑ | L01 | 主題 loading 器物 | 480×480 | `assets/img/loading-emblem.webp` | c91aeeb | ☐ | P1 |
+| ☑ | L02 | Loading 原稿 | （人工） | `source/loading/emblem-original.png` | c91aeeb | ☐ | P1 |

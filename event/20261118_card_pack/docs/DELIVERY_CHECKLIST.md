@@ -17,57 +17,57 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C01 | 兔比宇宙兔女郎設定圖（四視圖、比例、表情 ×4、材質、色票） | 2400×1350 | `source/character/cosmic-bunny-sheet.{png,webp}` | bc5fb9b | ☐ | P0 |
-| ☑ | C02 | 角色說明（服裝構成、色碼） | （人工） | `source/character/README.md` | bc5fb9b | ☐ | P0 |
+| ☑ | C01 | 兔比宇宙兔女郎設定圖（四視圖、比例、表情 ×4、材質、色票） | 2400×1350 | `source/character/cosmic-bunny-sheet.{png,webp}` | c91aeeb | ☐ | P0 |
+| ☑ | C02 | 角色說明（服裝構成、色碼） | （人工） | `source/character/README.md` | c91aeeb | ☐ | P0 |
 
 ## A. 靜態圖（30）
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C03 | title-en | 690×240 | `assets/img/title/title-en.{png,webp,svg}` | 5844c7b | ☐ | P0 |
-| ☑ | C04 | title-ko | 690×240 | `assets/img/title/title-ko.{png,webp,svg}` | 5844c7b | ☐ | P0 |
-| ☑ | C05 | title-th | 690×240 | `assets/img/title/title-th.{png,webp,svg}` | 5844c7b | ☐ | P0 |
-| ☑ | C06 | stage-bg | 750×1000 | `assets/img/scene/stage-bg.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | C07 | pack-back | 512×768 | `assets/img/3d/pack-back.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | C08 | pack-crimp | 512×64 | `assets/img/3d/pack-crimp.{png,webp,svg}` | 8e26e5e | ☐ | P0 |
-| ☑ | C09 | btn-primary | 900×270 | `assets/img/ui/btn-primary.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
-| ☑ | C10 | pack-front-1 | 512×768 | `assets/img/3d/pack-front-1.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
-| ☑ | C11 | pack-front-2 | 512×768 | `assets/img/3d/pack-front-2.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
-| ☑ | C12 | pack-front-3 | 512×768 | `assets/img/3d/pack-front-3.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
-| ☑ | C13 | reward-back | 600×900 | `assets/img/reveal/reward-back.{png,webp,svg}` | 84ae6d5 | ☐ | P1 |
-| ☑ | C14 | reward-frame-common | 600×900 | `alternatives/assets/img/reveal/reward-frame-common.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
-| ☑ | C15 | reward-frame-rare | 600×900 | `alternatives/assets/img/reveal/reward-frame-rare.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
-| ☑ | C16 | reward-frame-epic | 600×900 | `alternatives/assets/img/reveal/reward-frame-epic.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
-| ☑ | C17 | reward-frame-legendary | 600×900 | `alternatives/assets/img/reveal/reward-frame-legendary.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
-| ☑ | C18 | reveal-rays | 750×750 | `alternatives/assets/img/reveal/reveal-rays.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
-| ☑ | C19 | period-badge | 900×150 | `assets/img/ui/period-badge.{png,webp,svg}` | 8e26e5e | ☐ | P1 |
-| ☑ | C20 | chances-badge | 630×210 | `assets/img/ui/chances-badge.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
-| ☑ | C21 | ticker-bar | 1000×180 | `assets/img/ui/ticker-bar.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
-| ☑ | C22 | card-frame | 120×120 | `assets/img/ui/card-frame.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
-| ☑ | C23 | card-title | 400×72 | `assets/img/ui/card-title.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
-| ☑ | C24 | info-bg | 750×750 | `assets/img/scene/info-bg.{png,webp,svg}` | bc5fb9b | ☐ | P1 |
-| ☑ | C25 | share-preview | 1200×630 | `assets/img/share/share-preview.{png,jpg}` | bc5fb9b | ☐ | P1 |
-| ☑ | C26 | btn-arrow | 192×192 | `assets/img/ui/btn-arrow.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
-| ☑ | C27 | icon-sound-on | 64×64 | `assets/img/icon/icon-sound-on.{png,webp,svg}` | bc5fb9b | ☐ | P2 |
-| ☑ | C28 | icon-sound-off | 64×64 | `assets/img/icon/icon-sound-off.{png,webp,svg}` | bc5fb9b | ☐ | P2 |
-| ☑ | C29 | icon-share | 64×64 | `assets/img/icon/icon-share.{png,webp,svg}` | bc5fb9b | ☐ | P2 |
-| ☑ | C30 | icon-rotate | 160×160 | `assets/img/icon/icon-rotate.{png,webp,svg}` | bc5fb9b | ☐ | P2 |
-| ☑ | C31 | icon-tap | 160×160 | `assets/img/icon/icon-tap.{png,webp,svg}` | bc5fb9b | ☐ | P2 |
-| ☑ | C32 | footer-deco | 750×160 | `assets/img/scene/footer-deco.{png,webp,svg}` | bc5fb9b | ☐ | P2 |
+| ☑ | C03 | title-en | 690×240 | `assets/img/title/title-en.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | C04 | title-ko | 690×240 | `assets/img/title/title-ko.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | C05 | title-th | 690×240 | `assets/img/title/title-th.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | C06 | stage-bg | 750×1000 | `assets/img/scene/stage-bg.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | C07 | pack-back | 512×768 | `assets/img/3d/pack-back.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | C08 | pack-crimp | 512×64 | `assets/img/3d/pack-crimp.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | C09 | btn-primary | 900×270 | `assets/img/ui/btn-primary.{png,webp,svg}` | c91aeeb | ☐ | P0 |
+| ☑ | C10 | pack-front-1 | 512×768 | `assets/img/3d/pack-front-1.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C11 | pack-front-2 | 512×768 | `assets/img/3d/pack-front-2.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C12 | pack-front-3 | 512×768 | `assets/img/3d/pack-front-3.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C13 | reward-back | 600×900 | `assets/img/reveal/reward-back.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C14 | reward-frame-common | 600×900 | `alternatives/assets/img/reveal/reward-frame-common.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C15 | reward-frame-rare | 600×900 | `alternatives/assets/img/reveal/reward-frame-rare.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C16 | reward-frame-epic | 600×900 | `alternatives/assets/img/reveal/reward-frame-epic.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C17 | reward-frame-legendary | 600×900 | `alternatives/assets/img/reveal/reward-frame-legendary.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C18 | reveal-rays | 750×750 | `alternatives/assets/img/reveal/reveal-rays.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C19 | period-badge | 900×150 | `assets/img/ui/period-badge.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C20 | chances-badge | 630×210 | `assets/img/ui/chances-badge.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C21 | ticker-bar | 1000×180 | `assets/img/ui/ticker-bar.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C22 | card-frame | 120×120 | `assets/img/ui/card-frame.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C23 | card-title | 400×72 | `assets/img/ui/card-title.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C24 | info-bg | 750×750 | `assets/img/scene/info-bg.{png,webp,svg}` | c91aeeb | ☐ | P1 |
+| ☑ | C25 | share-preview | 1200×630 | `assets/img/share/share-preview.{png,jpg}` | c91aeeb | ☐ | P1 |
+| ☑ | C26 | btn-arrow | 192×192 | `assets/img/ui/btn-arrow.{png,webp,svg}` | c91aeeb | ☐ | P2 |
+| ☑ | C27 | icon-sound-on | 64×64 | `assets/img/icon/icon-sound-on.{png,webp,svg}` | c91aeeb | ☐ | P2 |
+| ☑ | C28 | icon-sound-off | 64×64 | `assets/img/icon/icon-sound-off.{png,webp,svg}` | c91aeeb | ☐ | P2 |
+| ☑ | C29 | icon-share | 64×64 | `assets/img/icon/icon-share.{png,webp,svg}` | c91aeeb | ☐ | P2 |
+| ☑ | C30 | icon-rotate | 160×160 | `assets/img/icon/icon-rotate.{png,webp,svg}` | c91aeeb | ☐ | P2 |
+| ☑ | C31 | icon-tap | 160×160 | `assets/img/icon/icon-tap.{png,webp,svg}` | c91aeeb | ☐ | P2 |
+| ☑ | C32 | footer-deco | 750×160 | `assets/img/scene/footer-deco.{png,webp,svg}` | c91aeeb | ☐ | P2 |
 
 ## B. 色票、音效、原始檔、設定
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | adb54b9 | ☐ | P0 |
-| ☑ | C34 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | 4dc5bce | ☐ | P3 |
-| ☑ | C35 | 音效 move：切換選項（0.25 秒） | 選配 | `assets/audio/move.mp3` | 4dc5bce | ☐ | P3 |
-| ☑ | C36 | 音效 tear：撕封條（0.8 秒，隨手勢調速） | 選配 | `assets/audio/tear.mp3` | 4dc5bce | ☐ | P3 |
-| ☑ | C37 | 音效 flip：翻卡（0.3 秒） | 選配 | `assets/audio/flip.mp3` | 4dc5bce | ☐ | P3 |
-| ☑ | C38 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `alternatives/assets/audio/reveal.mp3` | bc5fb9b | ☐ | P3 |
-| ☑ | C39 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | 4dc5bce | ☐ | P3 |
-| ☑ | C40 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | 5844c7b | ☐ | P3 |
-| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | adb54b9 | ☐ | P2 |
+| ☑ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | c91aeeb | ☐ | P0 |
+| ☑ | C34 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C35 | 音效 move：切換選項（0.25 秒） | 選配 | `assets/audio/move.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C36 | 音效 tear：撕封條（0.8 秒，隨手勢調速） | 選配 | `assets/audio/tear.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C37 | 音效 flip：翻卡（0.3 秒） | 選配 | `assets/audio/flip.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C38 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `alternatives/assets/audio/reveal.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C39 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C40 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | c91aeeb | ☐ | P3 |
+| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | c91aeeb | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -82,15 +82,15 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C56 | 背景音樂 bgm（60–90 秒無縫循環） | （人工） | `assets/audio/bgm.mp3` | 2d65268 | ☐ | P3 |
-| ☑ | C57 | 特效音 select：點選一包＝選定（≤0.4 秒） | 選配 | `assets/audio/select.mp3` | 4dc5bce | ☐ | P3 |
-| ☑ | C58 | 特效音 reveal-common：揭曉：普通（0.5–0.8 秒） | 選配 | `assets/audio/reveal-common.mp3` | 4dc5bce | ☐ | P3 |
-| ☑ | C59 | 特效音 reveal-rare：揭曉：稀有（0.7–1.0 秒） | 選配 | `assets/audio/reveal-rare.mp3` | 4dc5bce | ☐ | P3 |
-| ☑ | C60 | 特效音 reveal-epic：揭曉：超稀有（0.9–1.3 秒） | 選配 | `assets/audio/reveal-epic.mp3` | 4dc5bce | ☐ | P3 |
-| ☑ | C61 | 特效音 reveal-legendary：揭曉：最高級（Legendary）（1.5–2.0 秒） | 選配 | `assets/audio/reveal-legendary.mp3` | 4dc5bce | ☐ | P3 |
-| ☑ | C62 | 特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒） | 選配 | `assets/audio/collect.mp3` | 4dc5bce | ☐ | P3 |
-| ☑ | C63 | 特效音 error：次數用完、尚無獎項（≤0.3 秒） | 選配 | `assets/audio/error.mp3` | 4dc5bce | ☐ | P3 |
-| ☑ | C64 | 本批音訊母帶與製作說明（12 個特效音及 BGM） | （人工） | `source/audio/README.md` | 4dc5bce | ☐ | P3 |
+| ☑ | C56 | 背景音樂 bgm（60–90 秒無縫循環） | （人工） | `assets/audio/bgm.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C57 | 特效音 select：點選一包＝選定（≤0.4 秒） | 選配 | `assets/audio/select.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C58 | 特效音 reveal-common：揭曉：普通（0.5–0.8 秒） | 選配 | `assets/audio/reveal-common.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C59 | 特效音 reveal-rare：揭曉：稀有（0.7–1.0 秒） | 選配 | `assets/audio/reveal-rare.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C60 | 特效音 reveal-epic：揭曉：超稀有（0.9–1.3 秒） | 選配 | `assets/audio/reveal-epic.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C61 | 特效音 reveal-legendary：揭曉：最高級（Legendary）（1.5–2.0 秒） | 選配 | `assets/audio/reveal-legendary.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C62 | 特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒） | 選配 | `assets/audio/collect.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C63 | 特效音 error：次數用完、尚無獎項（≤0.3 秒） | 選配 | `assets/audio/error.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C64 | 本批音訊母帶與製作說明（12 個特效音及 BGM） | （人工） | `source/audio/README.md` | c91aeeb | ☐ | P3 |
 
 ## 紀錄
 
@@ -104,19 +104,19 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C46 | 宇宙神奇魔幻卡包 | 690×240 | `assets/img/title/title-main.webp` | aaa6c24 | ☐ | P0 |
-| ☑ | C47 | 新主標原圖 | 2126×740 | `source/title/title-main-original.png` | 3554392 | ☐ | P3 |
+| ☑ | C46 | 宇宙神奇魔幻卡包 | 690×240 | `assets/img/title/title-main.webp` | c91aeeb | ☐ | P0 |
+| ☑ | C47 | 新主標原圖 | 2126×740 | `source/title/title-main-original.png` | c91aeeb | ☐ | P3 |
 
 ## 三語藝術字與卡片精緻化
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C48 | 主標 en 點陣原圖 | （人工） | `source/title/title-en-original.png` | 5844c7b | ☐ | P1 |
-| ☑ | C49 | 主標 ko 點陣原圖 | （人工） | `source/title/title-ko-original.png` | 5844c7b | ☐ | P1 |
-| ☑ | C50 | 主標 th 點陣原圖 | （人工） | `source/title/title-th-original.png` | 5844c7b | ☐ | P1 |
-| ☑ | C51 | 星雲雕花卡面 | 600×900 | `assets/img/reveal/reward-front.webp` | aaa6c24 | ☐ | P1 |
-| ☑ | C52 | 卡面點陣原圖 | （人工） | `source/reveal/reward-front-original.png` | 5844c7b | ☐ | P1 |
-| ☑ | C53 | 卡背點陣原圖 | （人工） | `source/reveal/reward-back-original.png` | 5844c7b | ☐ | P1 |
+| ☑ | C48 | 主標 en 點陣原圖 | （人工） | `source/title/title-en-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | C49 | 主標 ko 點陣原圖 | （人工） | `source/title/title-ko-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | C50 | 主標 th 點陣原圖 | （人工） | `source/title/title-th-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | C51 | 星雲雕花卡面 | 600×900 | `assets/img/reveal/reward-front.webp` | c91aeeb | ☐ | P1 |
+| ☑ | C52 | 卡面點陣原圖 | （人工） | `source/reveal/reward-front-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | C53 | 卡背點陣原圖 | （人工） | `source/reveal/reward-back-original.png` | c91aeeb | ☐ | P1 |
 
 footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS 呈現面板並停用波浪頁尾。卡片舊 reward-frame 圖片留存但目前改用 reward-front 與程式稀有度光色。
 
@@ -124,19 +124,19 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C54 | 神燈／星盤冊頁裝飾 | 900×300 | `assets/img/ui/folio-header.webp` | aaa6c24 | ☐ | P1 |
-| ☑ | C55 | 冊頁裝飾點陣原稿 | （人工） | `source/ui/folio-header-original.png` | 483b784 | ☐ | P1 |
+| ☑ | C54 | 神燈／星盤冊頁裝飾 | 900×300 | `assets/img/ui/folio-header.webp` | c91aeeb | ☐ | P1 |
+| ☑ | C55 | 冊頁裝飾點陣原稿 | （人工） | `source/ui/folio-header-original.png` | c91aeeb | ☐ | P1 |
 
 ## 主題雕刻控制與環境效果
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C65 | 環境體積貼圖 | 640×454 | `assets/img/scene/atmosphere.webp` | aaa6c24 | ☐ | P1 |
-| ☑ | C66 | 環境體積原稿 | （人工） | `source/scene/atmosphere-original.png` | aaa6c24 | ☐ | P1 |
-| ☑ | C67 | btn-primary 控制元件原稿 | （人工） | `source/ui/btn-primary-original.png` | aaa6c24 | ☐ | P1 |
-| ☑ | C68 | chances-badge 控制元件原稿 | （人工） | `source/ui/chances-badge-original.png` | aaa6c24 | ☐ | P1 |
-| ☑ | C69 | btn-arrow 控制元件原稿 | （人工） | `source/ui/btn-arrow-original.png` | aaa6c24 | ☐ | P1 |
-| ☑ | C70 | ticker-bar 控制元件原稿 | （人工） | `source/ui/ticker-bar-original.png` | aaa6c24 | ☐ | P1 |
+| ☑ | C65 | 環境體積貼圖 | 640×454 | `assets/img/scene/atmosphere.webp` | c91aeeb | ☐ | P1 |
+| ☑ | C66 | 環境體積原稿 | （人工） | `source/scene/atmosphere-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | C67 | btn-primary 控制元件原稿 | （人工） | `source/ui/btn-primary-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | C68 | chances-badge 控制元件原稿 | （人工） | `source/ui/chances-badge-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | C69 | btn-arrow 控制元件原稿 | （人工） | `source/ui/btn-arrow-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | C70 | ticker-bar 控制元件原稿 | （人工） | `source/ui/ticker-bar-original.png` | c91aeeb | ☐ | P1 |
 
 壓縮與主題新版提交於 aaa6c24；原稿保留，交付 WebP 的尺寸／alpha 維持，審核欄尚未由品牌確認。
 - 2026-11-18：新增 D 節（背景音樂、選定／四種稀有度揭曉／收下／錯誤特效音），依 `docs/AUDIO_REQUEST.md` 製作；B 節既有 6 個特效音之後依同一份需求重做覆蓋。
@@ -145,59 +145,59 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C71 | pack-contents | 256×384 | `assets/img/3d/pack-contents.webp` | 84ae6d5 | ☐ | P1 |
-| ☑ | C72 | panel-frame | 768×768 | `assets/img/ui/panel-frame.webp` | 8e26e5e | ☐ | P1 |
-| ☑ | C73 | star-glint | 192×192 | `assets/img/ui/star-glint.webp` | 8e26e5e | ☐ | P1 |
-| ☑ | C74 | tool-medallion | 160×160 | `assets/img/ui/tool-medallion.webp` | 8e26e5e | ☐ | P1 |
-| ☑ | C75 | pack-contents-refined-original | （人工） | `source/3d/pack-contents-refined-original.png` | 8e26e5e | ☐ | P1 |
-| ☑ | C76 | pack-crimp-refined-original | （人工） | `source/3d/pack-crimp-refined-original.png` | 8e26e5e | ☐ | P1 |
-| ☑ | C77 | bgm-score | （人工） | `source/audio/bgm-score.json` | 8e26e5e | ☐ | P1 |
-| ☑ | C78 | bgm | （人工） | `source/audio/bgm.wav` | 8e26e5e | ☐ | P1 |
-| ☑ | C79 | loudness | （人工） | `source/audio/loudness.json` | 8e26e5e | ☐ | P1 |
-| ☑ | C80 | soundfont-copyright | （人工） | `source/audio/soundfont-copyright.txt` | 8e26e5e | ☐ | P1 |
-| ☑ | C81 | reward-back-refined-original | （人工） | `source/reveal/reward-back-refined-original.png` | 8e26e5e | ☐ | P1 |
-| ☑ | C82 | panel-frame-refined-original | （人工） | `source/ui/panel-frame-refined-original.png` | 8e26e5e | ☐ | P1 |
-| ☑ | C83 | period-badge-refined-original | （人工） | `source/ui/period-badge-refined-original.png` | 8e26e5e | ☐ | P1 |
-| ☑ | C84 | star-glint-refined-original | （人工） | `source/ui/star-glint-refined-original.png` | 8e26e5e | ☐ | P1 |
-| ☑ | C85 | tool-medallion-refined-original | （人工） | `source/ui/tool-medallion-refined-original.png` | 8e26e5e | ☐ | P1 |
+| ☑ | C71 | pack-contents | 256×384 | `assets/img/3d/pack-contents.webp` | c91aeeb | ☐ | P1 |
+| ☑ | C72 | panel-frame | 768×768 | `assets/img/ui/panel-frame.webp` | c91aeeb | ☐ | P1 |
+| ☑ | C73 | star-glint | 192×192 | `assets/img/ui/star-glint.webp` | c91aeeb | ☐ | P1 |
+| ☑ | C74 | tool-medallion | 160×160 | `assets/img/ui/tool-medallion.webp` | c91aeeb | ☐ | P1 |
+| ☑ | C75 | pack-contents-refined-original | （人工） | `source/3d/pack-contents-refined-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | C76 | pack-crimp-refined-original | （人工） | `source/3d/pack-crimp-refined-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | C77 | bgm-score | （人工） | `source/audio/bgm-score.json` | c91aeeb | ☐ | P1 |
+| ☑ | C78 | bgm | （人工） | `source/audio/bgm.wav` | c91aeeb | ☐ | P1 |
+| ☑ | C79 | loudness | （人工） | `source/audio/loudness.json` | c91aeeb | ☐ | P1 |
+| ☑ | C80 | soundfont-copyright | （人工） | `source/audio/soundfont-copyright.txt` | c91aeeb | ☐ | P1 |
+| ☑ | C81 | reward-back-refined-original | （人工） | `source/reveal/reward-back-refined-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | C82 | panel-frame-refined-original | （人工） | `source/ui/panel-frame-refined-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | C83 | period-badge-refined-original | （人工） | `source/ui/period-badge-refined-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | C84 | star-glint-refined-original | （人工） | `source/ui/star-glint-refined-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | C85 | tool-medallion-refined-original | （人工） | `source/ui/tool-medallion-refined-original.png` | c91aeeb | ☐ | P1 |
 
 ## 主題 loading（20261118-loading1）
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | L01 | 主題 loading 器物 | 480×480 | `assets/img/ui/loading-emblem.webp` | 84ae6d5 | ☐ | P1 |
-| ☑ | L02 | Loading 原稿 | （人工） | `source/loading/emblem-original.png` | 84ae6d5 | ☐ | P1 |
-| ☑ | L03 | 月兔卡背原稿 | （人工） | `source/reveal/reward-back-rabbit-original.png` | 84ae6d5 | ☐ | P1 |
+| ☑ | L01 | 主題 loading 器物 | 480×480 | `assets/img/ui/loading-emblem.webp` | c91aeeb | ☐ | P1 |
+| ☑ | L02 | Loading 原稿 | （人工） | `source/loading/emblem-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | L03 | 月兔卡背原稿 | （人工） | `source/reveal/reward-back-rabbit-original.png` | c91aeeb | ☐ | P1 |
 
 
 ## 場景分層交付
 
 | 提交 | ID | 圖片槽 | 尺寸 | 交付路徑 | commit | 審核 | 優先級 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C73 | pack-side | 128×512 | `assets/img/3d/pack-side.webp` | 8fc24f9 | ☐ | P3 |
-| ☑ | C74 | magic-circle | 640×640 | `assets/img/scene/magic-circle.webp` | 8fc24f9 | ☐ | P3 |
+| ☑ | C73 | pack-side | 128×512 | `assets/img/3d/pack-side.webp` | c91aeeb | ☐ | P3 |
+| ☑ | C74 | magic-circle | 640×640 | `assets/img/scene/magic-circle.webp` | c91aeeb | ☐ | P3 |
 
 
 ## 互動與環境精修交付
 
 | 提交 | ID | 圖片槽 | 尺寸 | 交付路徑 | commit | 審核 | 優先級 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C75 | 隱藏包裝正面 | 512×768 | `assets/img/3d/secret-pack.webp` | c6f8443 | ☐ | P3 |
-| ☑ | C76 | 隱藏包裝側面 | 128×512 | `assets/img/3d/secret-side.webp` | c6f8443 | ☐ | P3 |
-| ☑ | C77 | 隱藏卡背 | 600×900 | `assets/img/reveal/secret-back.webp` | c6f8443 | ☐ | P3 |
-| ☑ | C78 | 隱藏卡正面 | 600×900 | `assets/img/reveal/secret-front.webp` | c6f8443 | ☐ | P3 |
-| ☑ | C79 | 鋁箔撕裂音效 | （人工） | `alternatives/assets/audio/foil-tear.mp3` | c6f8443 | ☐ | P3 |
-| ☑ | C80 | 隱藏提示音效 | （人工） | `assets/audio/secret.mp3` | c6f8443 | ☐ | P3 |
-| ☑ | C81 | secret-pack 原稿 | （人工） | `source/secret/secret-pack-original.png` | c6f8443 | ☐ | P3 |
-| ☑ | C82 | secret-back 原稿 | （人工） | `source/secret/secret-back-original.png` | c6f8443 | ☐ | P3 |
-| ☑ | C83 | secret-front 原稿 | （人工） | `source/secret/secret-front-original.png` | c6f8443 | ☐ | P3 |
+| ☑ | C75 | 隱藏包裝正面 | 512×768 | `assets/img/3d/secret-pack.webp` | c91aeeb | ☐ | P3 |
+| ☑ | C76 | 隱藏包裝側面 | 128×512 | `assets/img/3d/secret-side.webp` | c91aeeb | ☐ | P3 |
+| ☑ | C77 | 隱藏卡背 | 600×900 | `assets/img/reveal/secret-back.webp` | c91aeeb | ☐ | P3 |
+| ☑ | C78 | 隱藏卡正面 | 600×900 | `assets/img/reveal/secret-front.webp` | c91aeeb | ☐ | P3 |
+| ☑ | C79 | 鋁箔撕裂音效 | （人工） | `alternatives/assets/audio/foil-tear.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C80 | 隱藏提示音效 | （人工） | `assets/audio/secret.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C81 | secret-pack 原稿 | （人工） | `source/secret/secret-pack-original.png` | c91aeeb | ☐ | P3 |
+| ☑ | C82 | secret-back 原稿 | （人工） | `source/secret/secret-back-original.png` | c91aeeb | ☐ | P3 |
+| ☑ | C83 | secret-front 原稿 | （人工） | `source/secret/secret-front-original.png` | c91aeeb | ☐ | P3 |
 
 
 ## Hover／風動／舊版開獎相容
 
 | 提交 | ID | 圖片槽 | 尺寸 | 交付路徑 | commit | 審核 | 優先級 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C84 | Spin 共用 hover 音效 | （人工） | `../20261111_survival_spin/assets/audio/hover.mp3` | 2a36ceb | ☐ | P3 |
+| ☑ | C84 | Spin 共用 hover 音效 | （人工） | `../20261111_survival_spin/assets/audio/hover.mp3` | c91aeeb | ☐ | P3 |
 
 - 2026-11-18：套用使用者上傳音訊包（4dc5bce）；MP3 原檔與 WAV 母帶均保留。四級揭曉使用獨立音檔，舊 reveal 不再預載。卡包 hover 與隱藏包提示音維持既有版本；提交不代表主觀聽感終審。
 
@@ -206,4 +206,6 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | N01 | utility-frame | 240×152 | `assets/img/ui/utility-frame.webp` | 578aa12 | ☐ | P1 |
+| ☑ | N01 | utility-frame | 240×152 | `assets/img/ui/utility-frame.webp` | c91aeeb | ☐ | P1 |
+
+| ☑ | N02 | 星雲揭曉光暈 | 900×900 | `assets/img/ui/reveal-aura.webp` | c91aeeb | ☐ | P1 |

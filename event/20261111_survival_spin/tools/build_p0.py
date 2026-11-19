@@ -4,7 +4,7 @@ from PIL import Image,ImageDraw
 import numpy as np
 from scipy.ndimage import map_coordinates
 import json
-R=Path(__file__).resolve().parents[1];S=R/'source/p0';O=R/'img';updated=[]
+R=Path(__file__).resolve().parents[1];S=R/'source/p0';O=R/'assets/img';updated=[]
 def src(n):return Image.open(S/(n+'-original.png')).convert('RGBA')
 def save(n,im,q=86):
  im.save(O/(n+'.webp'),quality=q,method=6,alpha_quality=95);(O/(n+'.svg')).unlink(missing_ok=True);updated.append(n)
@@ -37,8 +37,8 @@ for n in ['bulb-off','bulb-on']:
  if n=='bulb-on':
   yy,xx=np.mgrid[0:48,0:48];rr=np.hypot(xx-23.5,yy-23.5);g=np.zeros((48,48,4));g[:,:,:3]=[255,185,217];g[:,:,3]=135*np.exp(-(rr/15)**2)*(1-smooth(18,23,rr));o=Image.fromarray(g.astype('uint8'))
  o.alpha_composite(im,(12,12));save(n,o)
-p=R.parents[1]/'assets/js/config.js';s=p.read_text()
-for n in updated:s=s.replace('skins/survival/img/'+n+'.svg','skins/survival/img/'+n+'.webp')
+p=R/'assets/js/config.js';s=p.read_text()
+for n in updated:s=s.replace('assets/img/'+n+'.svg','assets/img/'+n+'.webp')
 p.write_text(s)
 board=Image.new('RGB',(1035,190),'#06231f');d=ImageDraw.Draw(board)
 for i,l in enumerate(['en','ko','th']):

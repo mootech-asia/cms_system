@@ -170,7 +170,7 @@
 ### 07_motion 活動動態
 
 目前的轉盤活動 GIF（待機 ×3、抽獎中、發表結果）由活動資料夾管理：
-規格見 `event/20261111_lucky_wheel/DESIGN_TASKS.md` 第四節，勾選見 `event/20261111_lucky_wheel/DELIVERY_CHECKLIST.md` 的 D、E 區。
+規格見 `event/20261111_lucky_wheel/docs/DESIGN_TASKS.md` 第四節，勾選見 `event/20261111_lucky_wheel/docs/DELIVERY_CHECKLIST.md` 的 D、E 區。
 日後新活動的動態也照「活動資料夾管理、品牌包只列索引」的方式。
 
 ---
@@ -291,7 +291,7 @@ full body front view, arms relaxed at the sides, confident smile, ears upright, 
   a square video-call screen with glowing blue tech UI: top-left the MOOTECH logo and "● Video Call", top-right signal and camera icons,
   a left panel with a headset icon, the text "Connecting..." and an animated progress bar, a bottom call bar (mic, camera, more, red hang-up).
   Moo Rabbit upper body on the right, one paw on the headphone, ears swaying, one blink. Only these exact English words. Seamless loop.
-  Assemble with the GIF script in event/20261111_lucky_wheel/GPT_ASSET_BRIEF.md 4.3 using size=(720, 720).
+  Assemble with the GIF script in event/20261111_lucky_wheel/docs/GPT_ASSET_BRIEF.md 4.3 using size=(720, 720).
 (CHARACTER LOCK) [R3 profile.jpg] 1024x1024 then upscale to 2000x2000: deep blue tech background with floating holographic website
   layout cards and a glowing globe with small "EN" "KO" "TH" tags; Moo Rabbit upper body on the right, waving toward the upper left,
   the official MOOTECH logo on the vest clearly visible. No other text.
