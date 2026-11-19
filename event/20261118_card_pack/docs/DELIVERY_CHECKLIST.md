@@ -60,14 +60,14 @@
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
 | ☑ | C33 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | c91aeeb | ☐ | P0 |
-| ☑ | C34 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | c91aeeb | ☐ | P3 |
-| ☑ | C35 | 音效 move：切換選項（0.25 秒） | 選配 | `assets/audio/move.mp3` | c91aeeb | ☐ | P3 |
-| ☑ | C36 | 音效 tear：撕封條（0.8 秒，隨手勢調速） | 選配 | `assets/audio/tear.mp3` | c91aeeb | ☐ | P3 |
-| ☑ | C37 | 音效 flip：翻卡（0.3 秒） | 選配 | `assets/audio/flip.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C34 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | dbd5a98 | ☐ | P3 |
+| ☑ | C35 | 音效 move：切換選項（0.25 秒） | 選配 | `assets/audio/move.mp3` | dbd5a98 | ☐ | P3 |
+| ☑ | C36 | 音效 tear：撕封條（0.8 秒，隨手勢調速） | 選配 | `assets/audio/tear.mp3` | dbd5a98 | ☐ | P3 |
+| ☑ | C37 | 音效 flip：翻卡（0.3 秒） | 選配 | `assets/audio/flip.mp3` | dbd5a98 | ☐ | P3 |
 | ☑ | C38 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `alternatives/assets/audio/reveal.mp3` | c91aeeb | ☐ | P3 |
-| ☑ | C39 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C39 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | dbd5a98 | ☐ | P3 |
 | ☑ | C40 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | c91aeeb | ☐ | P3 |
-| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 13c30c0 | ☐ | P2 |
+| ☑ | C41 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | dbd5a98 | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -82,14 +82,14 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C56 | 背景音樂 bgm（60–90 秒無縫循環） | （人工） | `assets/audio/bgm.mp3` | c91aeeb | ☐ | P3 |
-| ☑ | C57 | 特效音 select：點選一包＝選定（≤0.4 秒） | 選配 | `assets/audio/select.mp3` | c91aeeb | ☐ | P3 |
-| ☑ | C58 | 特效音 reveal-common：揭曉：普通（0.5–0.8 秒） | 選配 | `assets/audio/reveal-common.mp3` | c91aeeb | ☐ | P3 |
-| ☑ | C59 | 特效音 reveal-rare：揭曉：稀有（0.7–1.0 秒） | 選配 | `assets/audio/reveal-rare.mp3` | c91aeeb | ☐ | P3 |
-| ☑ | C60 | 特效音 reveal-epic：揭曉：超稀有（0.9–1.3 秒） | 選配 | `assets/audio/reveal-epic.mp3` | c91aeeb | ☐ | P3 |
-| ☑ | C61 | 特效音 reveal-legendary：揭曉：最高級（Legendary）（1.5–2.0 秒） | 選配 | `assets/audio/reveal-legendary.mp3` | c91aeeb | ☐ | P3 |
-| ☑ | C62 | 特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒） | 選配 | `assets/audio/collect.mp3` | c91aeeb | ☐ | P3 |
-| ☑ | C63 | 特效音 error：次數用完、尚無獎項（≤0.3 秒） | 選配 | `assets/audio/error.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C56 | 背景音樂 bgm（完整曲目、頭尾交叉淡化循環） | （人工） | `assets/audio/bgm.mp3` | dbd5a98 | ☐ | P3 |
+| ☑ | C57 | 特效音 select：點選一包＝選定（≤0.4 秒） | 選配 | `assets/audio/select.mp3` | dbd5a98 | ☐ | P3 |
+| ☑ | C58 | 特效音 reveal-common：揭曉：普通（0.5–0.8 秒） | 選配 | `assets/audio/reveal-common.mp3` | dbd5a98 | ☐ | P3 |
+| ☑ | C59 | 特效音 reveal-rare：揭曉：稀有（0.7–1.0 秒） | 選配 | `assets/audio/reveal-rare.mp3` | dbd5a98 | ☐ | P3 |
+| ☑ | C60 | 特效音 reveal-epic：揭曉：超稀有（0.9–1.3 秒） | 選配 | `assets/audio/reveal-epic.mp3` | dbd5a98 | ☐ | P3 |
+| ☑ | C61 | 特效音 reveal-legendary：揭曉：最高級（Legendary）（1.5–2.0 秒） | 選配 | `assets/audio/reveal-legendary.mp3` | dbd5a98 | ☐ | P3 |
+| ☑ | C62 | 特效音 collect：收下獎勵（關閉揭曉）（≤0.8 秒） | 選配 | `assets/audio/collect.mp3` | dbd5a98 | ☐ | P3 |
+| ☑ | C63 | 特效音 error：次數用完、尚無獎項（≤0.3 秒） | 選配 | `assets/audio/error.mp3` | dbd5a98 | ☐ | P3 |
 | ☑ | C64 | 本批音訊母帶與製作說明（12 個特效音及 BGM） | （人工） | `source/audio/README.md` | c91aeeb | ☐ | P3 |
 
 ## 紀錄
@@ -187,7 +187,7 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 | ☑ | C77 | 隱藏卡背 | 600×900 | `assets/img/reveal/secret-back.webp` | c91aeeb | ☐ | P3 |
 | ☑ | C78 | 隱藏卡正面 | 600×900 | `assets/img/reveal/secret-front.webp` | c91aeeb | ☐ | P3 |
 | ☑ | C79 | 鋁箔撕裂音效 | （人工） | `alternatives/assets/audio/foil-tear.mp3` | c91aeeb | ☐ | P3 |
-| ☑ | C80 | 隱藏提示音效 | （人工） | `assets/audio/secret.mp3` | c91aeeb | ☐ | P3 |
+| ☑ | C80 | 隱藏提示音效 | （人工） | `assets/audio/secret.mp3` | dbd5a98 | ☐ | P3 |
 | ☑ | C81 | secret-pack 原稿 | （人工） | `source/secret/secret-pack-original.png` | c91aeeb | ☐ | P3 |
 | ☑ | C82 | secret-back 原稿 | （人工） | `source/secret/secret-back-original.png` | c91aeeb | ☐ | P3 |
 | ☑ | C83 | secret-front 原稿 | （人工） | `source/secret/secret-front-original.png` | c91aeeb | ☐ | P3 |
