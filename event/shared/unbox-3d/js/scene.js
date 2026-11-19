@@ -40,8 +40,8 @@ export function createScene(stage, opts) {
   var box = opts.type === 'blind-box';
   var chest = box && opts.shape === 'chest';
   var capacity = Math.max(6, Math.min(40, Number(opts.capacity || opts.count) || 6));
-  var COUNT = opts.capacity ? Math.max(1, Math.min(capacity, opts.count)) : capacity;
-  var STEP = Math.PI * 2 / COUNT;
+  var COUNT = opts.slots ? opts.slots.length : capacity;
+  var STEP = COUNT ? Math.PI * 2 / COUNT : 0;
   // Keep foil faces separated on the expanded, single carousel ring.
   function carouselRadius(count) { return box ? 2.65 : Math.max(1.8, 5.2 * count / capacity); }
   var RADIUS = carouselRadius(COUNT);
@@ -68,7 +68,12 @@ export function createScene(stage, opts) {
   var camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
   camera.position.set(0, box ? 2.3 : (opts.carouselCameraY || 2.5), 7.6);
   camera.lookAt(0, 0.3, 0);
-  if (chest) scene.fog = { isFog: true, color: new THREE.Color(token('--ev-3d-haze', '#b58a65')), near: 8.5, far: 20 };
+  var batchCamera = new THREE.PerspectiveCamera(28, 1, .1, 50);
+  batchCamera.position.set(0, 2.4, 16);
+  batchCamera.lookAt(0, 0, 0);
+  var batch = null;
+  var groundFog = chest ? { isFog: true, color: new THREE.Color(token('--ev-3d-haze', '#b58a65')), near: 8.5, far: 20 } : null;
+  scene.fog = groundFog;
 
   var hemi = new THREE.HemisphereLight(0xffffff, 0x8589af, 2);
   var key = new THREE.DirectionalLight(0xffffff, 3);
@@ -167,6 +172,7 @@ export function createScene(stage, opts) {
     contactCtx.beginPath(); contactCtx.roundRect(18, 18, 220, 220, 12); contactCtx.fill();
     contactTex = keep(new THREE.CanvasTexture(contactCanvas));
   }
+  var batchLightGeo = box ? keep(new THREE.PlaneGeometry(1.3, 1.3)) : null;
   var shadowGeo = keep(new THREE.PlaneGeometry(chest ? 3.0 : box ? 2.6 : 2.2, chest ? 2.0 : box ? 1.3 : 0.9));
   var tinted = [];
   var items = [];
@@ -287,13 +293,27 @@ export function createScene(stage, opts) {
       group.add(contact);
     }
 
+    var batchLight = null;
+    if (box) {
+      var lightMaterial = keep(new THREE.MeshBasicMaterial({
+        color: new THREE.Color(token('--ev-color-gold', '#edc079')),
+        map: shadowTex, transparent: true, depthWrite: false, opacity: 0
+      }));
+      batchLight = new THREE.Mesh(batchLightGeo, lightMaterial);
+      batchLight.position.set(0, .42, .57);
+      batchLight.visible = false;
+      body.add(batchLight);
+    }
     var a = i * STEP;
     group.position.set(Math.sin(a) * RADIUS, 0, Math.cos(a) * RADIUS - RADIUS);
     group.rotation.y = a;
     group.visible = i < COUNT;
     ring.add(group);
-    items.push({ group: group, body: body, lid: lid, pivot: pivot, contents: contents, base: base, normalMaterials: !box ? base.material : null, normalContent: !box ? contents[0].material[4] : null, secret:false, sealRest: !box ? lid.geometry.attributes.position.array.slice() : null, shadow: shadowMat, contact: contactMat });
+    items.push({ id:i, batchLight:batchLight, group: group, body: body, lid: lid, pivot: pivot, contents: contents, base: base, normalMaterials: !box ? base.material : null, normalContent: !box ? contents[0].material[4] : null, secret:false, sealRest: !box ? lid.geometry.attributes.position.array.slice() : null, shadow: shadowMat, contact: contactMat });
   }
+
+  var pool = items;
+  items = opts.slots ? opts.slots.map(function (id) { return pool[id]; }) : pool;
 
   // 吉祥物站在環形圓心（世界座標 0, 地板, -RADIUS）。角色本身是 <img>（動態 WebP），放在透明畫布後層；
   // 這裡在圓心放一片只寫深度、不畫顏色的剪影面（用 poster 的透明度裁切），轉到後排的包裝會被它擋住，
@@ -334,12 +354,12 @@ export function createScene(stage, opts) {
     invalidate();
     tinted.forEach(function (m, k) {
       var slot = box && !chest ? Math.floor(k / 2) : k;
-      m.color.set(token('--ev-3d-item-' + (slot % COUNT + 1), '#b8b4f3'));
+      m.color.set(token('--ev-3d-item-' + (slot % capacity + 1), '#b8b4f3'));
     });
     accent.color.set(token('--ev-3d-accent', '#d4aaff'));
     hemi.groundColor.set(token('--ev-3d-ground', '#8589af'));
     var shadowColor = token('--ev-3d-shadow', '#27364a');
-    items.forEach(function (it) { it.shadow.color.set(shadowColor); if (it.contact) it.contact.color.set(shadowColor); });
+    pool.forEach(function (it) { it.shadow.color.set(shadowColor); if (it.contact) it.contact.color.set(shadowColor); });
   }
   applyTokens();
 
@@ -441,7 +461,7 @@ export function createScene(stage, opts) {
   }
 
   on(stage, 'pointerdown', function (e) {
-    if (mode !== 'select' && mode !== 'ready') return;
+    if (!COUNT || (mode !== 'select' && mode !== 'ready')) return;
     if (e.target !== renderer.domElement) return;
     gestureMode = !box && mode === 'ready' ? (onSeal(e.clientX,e.clientY) ? 'tear' : 'rotate') : '';
     inspectStart = inspectAngle;
@@ -546,14 +566,26 @@ export function createScene(stage, opts) {
       if (progress >= 1) finishOpen();
     }
     if (startX === null || mode !== 'select') angle += (target - angle) * (reduced.matches ? 1 : Math.min(1, dt * 8));
-    if (!chest) {
+    if (batch) {
+      ring.rotation.y = 0;
+      ring.position.set(0, 0, 0);
+    } else if (!chest) {
       ring.rotation.y = angle;
       ring.position.x = RADIUS * Math.sin(angle);
       ring.position.z = RADIUS * (Math.cos(angle) - 1);
     }
     items.forEach(function (it, k) {
-      if (k >= COUNT) return;
-      if (chest) {
+      var entry = batch && batch.byId.get(it.id);
+      if (batch && !entry) { it.group.visible = false; return; }
+      if (entry) {
+        var row = Math.floor(entry.index / batch.columns);
+        var rowSize = Math.min(batch.columns, batch.count - row * batch.columns);
+        var x = (entry.index % batch.columns - (rowSize - 1) / 2) * batch.spacing;
+        var y = ((batch.rows - 1) / 2 - row) * batch.rowSpacing;
+        it.group.position.set(x, y, 0);
+        it.group.rotation.y = 0;
+        it.group.scale.setScalar(batch.scale);
+      } else if (chest) {
         // Compress the carousel depth, not the meshes, to keep every chest on the visible floor.
         var orbit = k * STEP + angle;
         it.group.position.set(Math.sin(orbit) * RADIUS, 0, (Math.cos(orbit) - 1) * RADIUS * .85);
@@ -571,23 +603,26 @@ export function createScene(stage, opts) {
       }
 
       if (!box) {
-        var isSecret = secretActive && mine && !!(secretMaterials && secretMaterials.front.map && secretMaterials.side.map && secretMaterials.back.map);
+        var isSecret = (batch ? entry.secret : secretActive && mine) && !!(secretMaterials && secretMaterials.front.map && secretMaterials.side.map && secretMaterials.back.map);
         if (it.secret !== isSecret) {
           it.secret = isSecret;
           it.base.material = isSecret ? [secretMaterials.side,secretMaterials.side,secretMaterials.side,secretMaterials.side,secretMaterials.front,secretMaterials.back] : it.normalMaterials;
           it.contents.forEach(function(card) {card.material[4] = card.material[5] = isSecret ? secretMaterials.back : it.normalContent;});
         }
-        it.base.geometry = foilGeometry(!mine);
-        var focusScale = 1 + (mine ? zoom * .14 : 0);
-        it.group.scale.set(focusScale*sx, focusScale*sy, focusScale);
-        it.group.position.y = (mine ? zoom * .08 : 0) + (sy-1)*1.11;
+        it.base.geometry = foilGeometry(!mine && !batch);
+        if (!batch) {
+          var focusScale = 1 + (mine ? zoom * .14 : 0);
+          it.group.scale.set(focusScale*sx, focusScale*sy, focusScale);
+          it.group.position.y = (mine ? zoom * .08 : 0) + (sy-1)*1.11;
+        }
       }
       if (box) {
         it.body.scale.set(sx, sy, 1);
         it.body.position.y = (sy - 1) * (chest ? CH / 2 : .775);
       }
-      it.group.visible = mode === 'select' || mine;
-      var p = mine ? Math.min(progress, 1) : 0;
+      it.group.visible = !!batch || mode === 'select' || mine;
+      var delay = entry ? (reduced.matches ? 0 : entry.index * .022) : 0;
+      var p = entry ? Math.max(0, Math.min(1, (progress - delay) / (1 - delay))) : mine ? Math.min(progress, 1) : 0;
       if (it.contents) {
         var stageOpen = Math.max(0, Math.min(1, (p - .64) / .32));
         var lift = stageOpen * stageOpen * (3 - 2 * stageOpen);
@@ -605,10 +640,16 @@ export function createScene(stage, opts) {
       var fly = Math.max(0, (p - 0.2) / 0.8);
       var ease = 1 - Math.pow(1 - fly, 3);
       it.body.rotation.z = chest ? 0 : shake;
-      it.body.rotation.y = box ? (mode !== 'select' && mine ? 0.15 : 0) : (mine ? inspectAngle : 0);
+      it.body.rotation.y = batch ? 0 : box ? (mode !== 'select' && mine ? 0.15 : 0) : (mine ? inspectAngle : 0);
+      if (it.batchLight) {
+        var flash = entry && !reduced.matches ? Math.sin(Math.PI * Math.min(1, Math.max(0, (p - .23) / .75))) : 0;
+        it.batchLight.visible = flash > .01;
+        it.batchLight.material.opacity = flash * .85;
+        it.batchLight.position.y = .47 + .46 * p;
+      }
       if (it.pivot) {
         it.pivot.rotation.x = -ease * 1.7;
-      } else if (!box && it.lastTear !== p && (mine || it.lastTear)) {
+      } else if (!box && it.lastTear !== p && (batch || mine || it.lastTear)) {
         it.lastTear = p;
         var tear = Math.min(1, p / .64);
         var release = Math.max(0, Math.min(1, (p - .64) / .22));
@@ -630,7 +671,13 @@ export function createScene(stage, opts) {
       }
     });
     if (!document.hidden && stage.offsetParent !== null) {
-      renderer.render(scene, camera);
+      if (batch) {
+        var halfHeight = Math.max(batch.rows * 1.55, ((batch.columns * batch.spacing + .4) / 2) / camera.aspect) * (opts.scale || 1);
+        batchCamera.aspect = camera.aspect;
+        batchCamera.fov = 2 * Math.atan(halfHeight / 16) * 180 / Math.PI;
+        batchCamera.updateProjectionMatrix();
+      }
+      renderer.render(scene, batch ? batchCamera : camera);
       if (sealCue) {
         sealCue.hidden = mode !== 'ready';
         if (!sealCue.hidden) {
@@ -643,28 +690,42 @@ export function createScene(stage, opts) {
     rendering = false;
     if (!disposed) raf = requestAnimationFrame(frame);
   }
+  function arrangeSlots(ids) {
+    pool.forEach(function (item) { item.group.visible = false; });
+    items = ids.map(function (id) { return pool[id]; });
+    COUNT = items.length;
+    STEP = COUNT ? Math.PI * 2 / COUNT : 0;
+    RADIUS = carouselRadius(COUNT);
+    angle = target = selected = 0;
+    hovered = jellyIndex = -1;
+    items.forEach(function (item, i) {
+      var orbit = i * STEP;
+      item.group.visible = true;
+      item.group.scale.setScalar(1);
+      item.group.position.set(Math.sin(orbit) * RADIUS, 0, Math.cos(orbit) * RADIUS - RADIUS);
+      item.group.rotation.y = orbit;
+    });
+    invalidate();
+  }
+
+  arrangeSlots(items.map(function (item) { return item.id; }));
   renderReady = true;
   raf = requestAnimationFrame(frame);
+
+  function startOpening(ms) {
+    openMs = ms || openMs;
+    mode = 'opening';
+    scene.fog = batch ? null : groundFog;
+    progress = 0;
+    invalidate();
+    return new Promise(function (done) { openDone = done; });
+  }
 
   return {
     ready: Promise.all(pending),
     selected: function () { return selected; },
     move: move,
-    setCount: function (count) {
-      if (!opts.capacity || mode !== 'select') return;
-      COUNT = Math.max(1, Math.min(capacity, count));
-      STEP = Math.PI * 2 / COUNT;
-      RADIUS = carouselRadius(COUNT);
-      angle = target = selected = 0;
-      hovered = jellyIndex = -1;
-      items.forEach(function (item, i) {
-        var orbit = i * STEP;
-        item.group.visible = i < COUNT;
-        item.group.position.set(Math.sin(orbit) * RADIUS, 0, Math.cos(orbit) * RADIUS - RADIUS);
-        item.group.rotation.y = orbit;
-      });
-      invalidate();
-    },
+    setItems: function (ids) { if (mode === 'select') arrangeSlots(ids); },
     goTo: goTo,
     setSecret: setSecret,
     focus: function () {
@@ -674,14 +735,22 @@ export function createScene(stage, opts) {
     setMode: function (m) {
       invalidate();
       mode = m;
-      if (m === 'select') { inspectAngle = 0; progress = 0; openDone = null; zoomTarget = 0; focusDone = null; }
+      if (m === 'select') { batch = null; scene.fog = groundFog; inspectAngle = 0; progress = 0; openDone = null; zoomTarget = 0; focusDone = null; }
     },
-    open: function (ms) {
-      openMs = ms || openMs;
-      invalidate();
-      mode = 'opening';
-      progress = 0;
-      return new Promise(function (done) { openDone = done; });
+    open: startOpening,
+    openBatch: function (draws, ms) {
+      var columns = Math.min(5, draws.length);
+      batch = {
+        count: draws.length,
+        columns: columns,
+        rows: Math.ceil(draws.length / columns),
+        spacing: box ? 1.54 : 1.31,
+        rowSpacing: box ? 2.05 : 2.78,
+        scale: box ? .79 : .74,
+        byId: new Map(draws.map(function (draw, i) { return [draw.id, {index:i, secret:draw.secret}]; }))
+      };
+      if (draws.some(function (draw) { return draw.secret; })) setSecret(true);
+      return startOpening(ms);
     },
     skip: function () { if (mode === 'opening') finishOpen(); },
     destroy: function () {

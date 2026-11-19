@@ -86,6 +86,13 @@ function createSpiritRig(canvas, source) {
     p = mix(p, turn(p, vec2(445., 355.), leftLift), left);
     p = mix(p, turn(p, vec2(785., 355.), rightLift), right);
     // Apply face deformation in the original portrait coordinates before the head turn.
+    // Keep the eyelid contours anchored while both irises follow the same target.
+    vec2 gaze = vec2(-7., 2.);
+    if (mood > 2.5) gaze += vec2(1., 5.) * gesture;
+    float nearIris = featureMask(point - vec2(573., 132.), vec2(8., 6.), vec2(19., 12.));
+    float farIris = featureMask(point - vec2(622., 117.), vec2(6., 5.), vec2(11., 10.));
+    p += gaze * nearIris * (1. + min(0., leftEye));
+    p += gaze * .65 * farIris * (1. + min(0., rightEye));
     p.y += eyeShape(point, vec2(571., 132.), 25., leftEye)
          + eyeShape(point, vec2(622., 117.), 18., rightEye);
     vec2 leftBrow = point - vec2(559., 111.);

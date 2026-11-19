@@ -18,7 +18,7 @@
     <meta name="twitter:image" content="https://mootech-asia.github.io/cms_system/event/20261118_card_pack/assets/img/share/share-preview.jpg" />
     <link rel="preload" as="image" href="assets/img/scene/stage-bg.webp?v=20261118-refine2" fetchpriority="high" />
     <link rel="modulepreload" href="../shared/unbox-3d/vendor/three.min.js?v=20261118-vortex1" />
-    <link rel="stylesheet" href="../shared/unbox-3d/css/unbox.css?v=20261119-panel-rows" />
+    <link rel="stylesheet" href="../shared/unbox-3d/css/unbox.css?v=20261119-batch-open" />
     <link rel="stylesheet" href="assets/css/theme.css?v=20261119-arrow-contrast" />
     <link rel="preload" as="image" href="assets/img/ui/loading-emblem.webp?v=20261118-loading1" fetchpriority="high" />
     <link rel="stylesheet" href="../shared/loading/loading.css?v=20261118-vortex1" />
@@ -62,10 +62,12 @@
           <p class="ev-scene-note" id="sceneNote" data-i18n="status.no3d" hidden></p>
           <button type="button" class="ev-arrow ev-arrow--prev" id="btnPrev" data-i18n-aria="prev"><img data-img="btnArrow" alt="" /></button>
           <button type="button" class="ev-arrow ev-arrow--next" id="btnNext" data-i18n-aria="next"><img data-img="btnArrow" alt="" /></button>
+          <p class="ev-pick-hint" id="pickHint"><span class="ev-pick-hint-icon" aria-hidden="true"><img data-img="tapHint" alt="" /></span><span id="pickHintText"></span></p>
+          <div class="ev-batch-fallback" id="batchFallback" aria-hidden="true" hidden></div>
           <p class="ev-pick-label" id="pickLabel" aria-live="polite"></p>
           <div class="ev-panel" id="mockPanel" hidden>
             <div class="ev-panel-row">
-              <span class="ev-panel-label" data-i18n="mock.packCount"></span>
+              <span class="ev-panel-label" data-i18n="mock.inventory"></span>
               <button type="button" id="panelLess" aria-label="−">−</button>
               <b id="panelPerOpen"></b>
               <button type="button" id="panelMore" aria-label="+">+</button>
@@ -88,8 +90,7 @@
             <strong id="chances">0</strong>
             <span data-i18n="chances.after"></span>
           </p>
-          <p class="ev-pick-hint" id="pickHint"><span class="ev-pick-hint-icon" aria-hidden="true"><img data-img="tapHint" alt="" /></span><span id="pickHintText"></span></p>
-          <button type="button" class="ev-action" id="btnAction" hidden><span id="actionText"></span></button>
+          <button type="button" class="ev-action" id="btnAction"><span id="actionText"></span></button>
           <p class="ev-status" id="status" role="status" aria-live="polite"></p>
           <div class="ev-console-links">
             <button type="button" class="ev-link" id="btnBack" data-i18n="action.back" hidden></button>
@@ -136,6 +137,7 @@
         <ul class="ev-reveal-grid" id="revealGrid" hidden></ul>
         <div class="ev-reveal-actions">
           <button type="button" class="ev-action" id="btnReveal"><span id="revealActionText"></span></button>
+          <button type="button" class="ev-link" id="btnPrevPage" data-i18n="batch.prevPage" hidden></button>
           <button type="button" class="ev-link" id="btnRevealAll" data-i18n="reveal.all"></button>
         </div>
         <span class="ev-asset ev-asset--reveal" data-asset="revealRays rewardBack rewardFrame" aria-hidden="true"></span>
@@ -165,12 +167,12 @@
       <span class="ev-asset ev-asset--rotate" data-asset="rotateHint" aria-hidden="true"></span>
     </div>
 
-    <script defer src="assets/js/config.js?v=20261119-event-controls"></script>
+    <script defer src="assets/js/config.js?v=20261119-batch-open"></script>
     <script defer src="../shared/unbox-3d/js/skin.js?v=20261118-vortex1"></script>
-    <script defer src="../shared/unbox-3d/js/i18n.js?v=20261119-event-controls"></script>
+    <script defer src="../shared/unbox-3d/js/i18n.js?v=20261119-batch-open"></script>
     <script defer src="../shared/unbox-3d/js/store.js?v=20261119-event-controls"></script>
     <script defer src="../shared/unbox-3d/js/sound.js?v=20261119-isolated-tear"></script>
     <script defer src="../shared/unbox-3d/js/share.js?v=20261118-vortex1"></script>
-    <script type="module" src="../shared/unbox-3d/js/app.js?v=20261119-retry-result"></script>
+    <script type="module" src="../shared/unbox-3d/js/app.js?v=20261119-batch-open"></script>
   </body>
 </html>

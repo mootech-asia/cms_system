@@ -10,7 +10,7 @@ window.EVENT_CONFIG = {
   tearSpeed: { fastMs: 900, slowMs: 2600, fastVelocity: 1, slowVelocity: .12 },
   /* 每包開出幾張卡：一次只拆一包、每包 1 張 */
   perOpenLimits: { min: 1, max: 1 },
-  mockResetOpens: 10,
+  mockResetOpens: 20,
   /* 3D 正面貼圖的材質：金屬感越高顏色越暗，交付正式圖後依實際效果微調 */
   material: { metalness: 0.2, roughness: 0.35 },
   /* 整個 3D 環形（包裝、間距、吉祥物）的縮放倍率 */
@@ -21,8 +21,6 @@ window.EVENT_CONFIG = {
   skin: 'default',
   skins: {},
 
-  carouselCount: 20,
-  carouselCountLimit: 20,
   retryEmpty: { en: 'Try Again', ko: '다시 도전', th: 'ลองอีกครั้ง', zh: '再玩一次' },
   carouselCameraY: 3.05,
   secretEvery: 50,
@@ -81,7 +79,7 @@ window.EVENT_CONFIG = {
   /* 音效：名稱與規格見 docs/AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
      音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
   soundLevels: { hover: 0.7, bgm: 0.35, bgmDuck: 0.1, bgmOpening: 0, empty: 0.85, click: 0.6, move: 0.45, select: 0.8, tear: 1, flip: 0.9, reveal: 1.2, 'reveal-common': 1, 'reveal-rare': 1, 'reveal-epic': 1, 'reveal-legendary': 1, reward: 1, collect: 1, error: 0.8 },
-  sounds: { empty: 'assets/audio/empty.mp3?v=20261119-seal1',
+  sounds: { count: '../shared/unbox-3d/audio/click01.wav', empty: 'assets/audio/empty.mp3?v=20261119-seal1',
     hover: '../20261111_survival_spin/assets/audio/hover.mp3',
     secret: 'assets/audio/secret.mp3?v=20261119-seal1', click: 'assets/audio/click.mp3?v=20261119-seal1', move: 'assets/audio/move.mp3?v=20261119-seal1', tear: 'assets/audio/tear.wav?v=20261119-isolated-tear', flip: 'assets/audio/flip.mp3?v=20261119-seal1', reveal: '', reward: 'assets/audio/reward.mp3?v=20261119-seal1', bgm: 'assets/audio/bgm.wav?v=20261119-upload13671650', select: 'assets/audio/select.mp3?v=20261119-seal1', 'reveal-common': 'assets/audio/reveal-basic.wav?v=20261119-rarity2', 'reveal-rare': 'assets/audio/reveal-basic.wav?v=20261119-rarity2', 'reveal-epic': 'assets/audio/reveal-3026.wav?v=20261119-user1', 'reveal-legendary': 'assets/audio/reveal-3026.wav?v=20261119-user1', collect: 'assets/audio/collect.mp3?v=20261119-seal1', error: 'assets/audio/error.mp3?v=20261119-seal1' },
 
@@ -137,6 +135,8 @@ window.EVENT_CONFIG = {
     'chances.after': { en: '', ko: '개', th: 'ซอง', zh: '包' },
     'action.choose': { en: 'Choose this pack', ko: '이 카드팩 선택', th: 'เลือกซองนี้', zh: '選擇這包卡片' },
     'action.open': { en: 'Tear it open', ko: '카드팩 뜯기', th: 'ฉีกซอง', zh: '撕開卡包' },
+    'batch.openCount': { en: 'Open {n} packs', ko: '카드팩 {n}개 열기', th: 'เปิด {n} ซอง', zh: '一次開 {n} 包' },
+    'batch.openAll': { en: 'Open all ({n})', ko: '모두 열기 ({n})', th: 'เปิดทั้งหมด ({n})', zh: '一次全抽（{n}）' },
     'hint.pick': { en: 'Tap any pack to choose it', ko: '카드팩을 눌러 선택하세요', th: 'แตะซองไหนก็ได้เพื่อเลือก', zh: '點選任意一包卡包' },
     'status.select': { en: 'Drag left or right to browse the other packs.', ko: '좌우로 드래그해서 다른 카드팩도 둘러보세요.', th: 'ลากซ้ายขวาเพื่อดูซองอื่น', zh: '左右拖曳可以瀏覽其他卡包' },
     'status.ready': { en: 'Drag the pack to rotate. Swipe across the top seal to tear it open.', ko: '팩을 드래그하여 돌려 보세요. 위쪽 봉인을 좌우로 밀면 뜯을 수 있어요.', th: 'ลากซองเพื่อหมุนดู ปัดผ่านรอยปิดผนึกด้านบนเพื่อฉีกซอง', zh: '拖曳卡包可旋轉查看，沿頂部封條左右滑動即可撕開。' },
@@ -151,7 +151,7 @@ window.EVENT_CONFIG = {
   defaultContent: {
     updatedAt: 'mock-2026-11-18',
     period: '2026/11/18 – 2026/12/31',
-    freeOpens: 5,
+    freeOpens: 20,
     perOpen: 1,
     prizes: [
       { name: { en: '50 Points', ko: '50 포인트', th: '50 คะแนน', zh: '積分 ×50' }, icon: '../20261111_lucky_wheel/assets/img/icon-points.svg', rarity: 'common', weight: 40 },
@@ -170,28 +170,28 @@ window.EVENT_CONFIG = {
     rules: {
       en: [
         'Event period: 2026/11/18 – 2026/12/31.',
-        'Each member gets 5 free card packs during the event period.',
+        'Each member can receive up to 20 card packs. You can open up to 10 at once.',
         'Each pack contains 1 card. Prizes are credited within 24 hours.',
         'Bonus prizes require 5x turnover before withdrawal.',
         'The organizer reserves the right to modify, suspend, or interpret this event.'
       ],
       ko: [
         '이벤트 기간: 2026/11/18 – 2026/12/31.',
-        '이벤트 기간 동안 회원당 무료 카드팩 5개를 받을 수 있습니다.',
+        '회원당 카드팩을 최대 20개 받을 수 있으며, 한 번에 최대 10개를 열 수 있습니다.',
         '카드팩 1개에 카드 1장이 들어 있으며, 상품은 24시간 이내에 지급됩니다.',
         '보너스 상품은 출금 전 5배 롤링이 필요합니다.',
         '주최 측은 이벤트를 변경, 중단 및 최종 해석할 권리를 보유합니다.'
       ],
       th: [
         'ระยะเวลากิจกรรม: 2026/11/18 – 2026/12/31',
-        'สมาชิกแต่ละท่านได้รับซองการ์ดฟรี 5 ซองตลอดระยะเวลากิจกรรม',
+        'สมาชิกแต่ละท่านรับซองการ์ดได้สูงสุด 20 ซอง และเปิดพร้อมกันได้สูงสุด 10 ซอง',
         'แต่ละซองมีการ์ด 1 ใบ รางวัลจะถูกโอนเข้าบัญชีภายใน 24 ชั่วโมง',
         'รางวัลโบนัสต้องทำยอดเทิร์นโอเวอร์ 5 เท่าก่อนถอน',
         'ผู้จัดขอสงวนสิทธิ์ในการแก้ไข ระงับ และตีความกิจกรรมนี้'
       ],
       zh: [
         '活動期間：2026/11/18 – 2026/12/31。',
-        '活動期間每位會員可獲得 5 包免費卡包。',
+        '活動期間每位會員最多可獲得 20 包卡包，每次最多開 10 包。',
         '每包含 1 張卡，獎項於 24 小時內發放至會員帳戶。',
         '加碼類獎項需完成 5 倍流水方可提領。',
         '主辦方保留活動修改、暫停及最終解釋之權利。'

@@ -9,7 +9,7 @@ window.EVENT_CONFIG = {
   openMs: 1800,
   retryEmpty: { en: 'Try Again', ko: '다시 도전', th: 'ลองอีกครั้ง', zh: '再來一次' },
   perOpenLimits: { min: 1, max: 5 },
-  mockResetOpens: 10,
+  mockResetOpens: 20,
   /* 3D 正面與盒蓋貼圖的材質：金屬感越高顏色越暗，交付正式圖後依實際效果微調 */
   material: { metalness: 0.2, roughness: 0.35 },
   /* 整個 3D 環形（包裝、間距、吉祥物）的縮放倍率 */
@@ -19,7 +19,7 @@ window.EVENT_CONFIG = {
   atmosphereMode: 'petals-and-sand',
   mascot: {
     poster: 'assets/img/mascot/spirit/poster.webp?v=20261119-hd-motion',
-    motion: 'assets/js/spirit-motion.js?v=20261119-facial-motion',
+    motion: 'assets/js/spirit-motion.js?v=20261119-player-gaze',
     loopMs: 2000, layout: 'hero'
   },
   shape: 'chest',
@@ -82,7 +82,7 @@ window.EVENT_CONFIG = {
   /* 音效：名稱與規格見 docs/AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
      音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
   soundLevels: { hover: 0.7, select: 0.8, bgm: 0.35, bgmDuck: 0.1, empty: 0.85, move: 0.45, tear: 0.8, flip: 0.9, reveal: 1.2, 'reveal-common': 1, 'reveal-rare': 1, 'reveal-epic': 1, 'reveal-legendary': 1, error: 0.8 },
-  sounds: { hover: '../20261111_survival_spin/assets/audio/hover.mp3', select: 'assets/audio/select.mp3?v=20261119-select-cue', empty: 'assets/audio/empty.mp3?v=20261119-seal1', move: 'assets/audio/move.mp3?v=20261119-seal1', tear: 'assets/audio/open.wav?v=20261119-rarity2', flip: '', reveal: '', bgm: 'assets/audio/bgm.mp3?v=20261119-seal1', 'reveal-common': 'assets/audio/reveal-basic.wav?v=20261119-rarity2', 'reveal-rare': 'assets/audio/reveal-basic.wav?v=20261119-rarity2', 'reveal-epic': 'assets/audio/reveal-epic.mp3?v=20261119-seal1', 'reveal-legendary': 'assets/audio/reveal-legendary.mp3?v=20261119-seal1', error: 'assets/audio/error.mp3?v=20261119-seal1' },
+  sounds: { count: '../shared/unbox-3d/audio/click01.wav', hover: '../20261111_survival_spin/assets/audio/hover.mp3', select: 'assets/audio/select.mp3?v=20261119-select-cue', empty: 'assets/audio/empty.mp3?v=20261119-seal1', move: 'assets/audio/move.mp3?v=20261119-seal1', tear: 'assets/audio/open.wav?v=20261119-rarity2', flip: '', reveal: '', bgm: 'assets/audio/bgm.mp3?v=20261119-seal1', 'reveal-common': 'assets/audio/reveal-basic.wav?v=20261119-rarity2', 'reveal-rare': 'assets/audio/reveal-basic.wav?v=20261119-rarity2', 'reveal-epic': 'assets/audio/reveal-epic.mp3?v=20261119-seal1', 'reveal-legendary': 'assets/audio/reveal-legendary.mp3?v=20261119-seal1', error: 'assets/audio/error.mp3?v=20261119-seal1' },
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {
@@ -130,6 +130,9 @@ window.EVENT_CONFIG = {
     'action.choose': { en: 'Choose this box', ko: '이 박스 선택', th: 'เลือกกล่องนี้', zh: '選擇這個盲盒' },
     'action.open': { en: 'Open the box', ko: '박스 열기', th: 'เปิดกล่อง', zh: '打開盲盒' },
     'hint.swipeUp': { en: 'Swipe up', ko: '위로 밀기', th: 'ปัดขึ้น', zh: '向上滑動' },
+    'batch.openCount': { en: 'Open {n} boxes', ko: '상자 {n}개 열기', th: 'เปิด {n} กล่อง', zh: '一次開 {n} 盒' },
+    'batch.openWave': { en: 'Open these {n} boxes', ko: '이번 상자 {n}개 열기', th: 'เปิด {n} กล่องชุดนี้', zh: '開完這批 {n} 盒' },
+    'batch.openAll': { en: 'Open all ({n})', ko: '모두 열기 ({n})', th: 'เปิดทั้งหมด ({n})', zh: '一次全抽（{n}）' },
     'hint.pick': { en: 'Tap any box to choose it', ko: '박스를 눌러 선택하세요', th: 'แตะกล่องไหนก็ได้เพื่อเลือก', zh: '點選任意一個盲盒' },
     'status.select': { en: 'Drag left or right to browse the other boxes.', ko: '좌우로 드래그해서 다른 박스도 둘러보세요.', th: 'ลากซ้ายขวาเพื่อดูกล่องอื่น', zh: '左右拖曳可以瀏覽其他盲盒' },
     'status.ready': { en: 'Swipe up on the chest, or tap below to open it.', ko: '상자를 위로 밀거나 아래 버튼을 눌러 여세요.', th: 'ปัดหีบขึ้น หรือแตะปุ่มด้านล่างเพื่อเปิด', zh: '在寶箱上向上滑動，或點下方按鈕開啟。' },
@@ -146,7 +149,7 @@ window.EVENT_CONFIG = {
   defaultContent: {
     updatedAt: 'mock-2026-11-18',
     period: '2026/11/18 – 2026/12/31',
-    freeOpens: 3,
+    freeOpens: 20,
     perOpen: 1,
     prizes: [
       { name: { en: '50 Points', ko: '50 포인트', th: '50 คะแนน', zh: '積分 ×50' }, icon: '../20261111_lucky_wheel/assets/img/icon-points.svg', rarity: 'common', weight: 40 },
@@ -165,28 +168,28 @@ window.EVENT_CONFIG = {
     rules: {
       en: [
         'Event period: 2026/11/18 – 2026/12/31.',
-        'Each member gets 3 free blind boxes during the event period.',
+        'Each member can receive up to 20 boxes. Open up to 10 at once.',
         'Each box contains 1 prize. Prizes are credited within 24 hours.',
         'Bonus prizes require 5x turnover before withdrawal.',
         'The organizer reserves the right to modify, suspend, or interpret this event.'
       ],
       ko: [
         '이벤트 기간: 2026/11/18 – 2026/12/31.',
-        '이벤트 기간 동안 회원당 무료 랜덤박스 3개를 받을 수 있습니다.',
+        '회원당 랜덤박스를 최대 20개 받을 수 있으며, 한 번에 최대 10개를 열 수 있습니다.',
         '박스 1개에 상품 1개가 들어 있으며, 상품은 24시간 이내에 지급됩니다.',
         '보너스 상품은 출금 전 5배 롤링이 필요합니다.',
         '주최 측은 이벤트를 변경, 중단 및 최종 해석할 권리를 보유합니다.'
       ],
       th: [
         'ระยะเวลากิจกรรม: 2026/11/18 – 2026/12/31',
-        'สมาชิกแต่ละท่านได้รับกล่องสุ่มฟรี 3 กล่องตลอดระยะเวลากิจกรรม',
+        'สมาชิกแต่ละท่านรับกล่องสุ่มได้สูงสุด 20 กล่อง และเปิดพร้อมกันได้สูงสุด 10 กล่อง',
         'แต่ละกล่องมีรางวัล 1 ชิ้น รางวัลจะถูกโอนเข้าบัญชีภายใน 24 ชั่วโมง',
         'รางวัลโบนัสต้องทำยอดเทิร์นโอเวอร์ 5 เท่าก่อนถอน',
         'ผู้จัดขอสงวนสิทธิ์ในการแก้ไข ระงับ และตีความกิจกรรมนี้'
       ],
       zh: [
         '活動期間：2026/11/18 – 2026/12/31。',
-        '活動期間每位會員可獲得 3 個免費盲盒。',
+        '活動期間每位會員最多可獲得 20 個盲盒，每次最多開 10 個。',
         '每盒含 1 個獎品，獎項於 24 小時內發放至會員帳戶。',
         '加碼類獎項需完成 5 倍流水方可提領。',
         '主辦方保留活動修改、暫停及最終解釋之權利。'

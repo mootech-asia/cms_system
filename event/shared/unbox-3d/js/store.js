@@ -4,7 +4,7 @@
  *   {
  *     period: '2026/11/18 – 2026/12/31',
  *     freeOpens: 5,                    // 可開次數
- *     packCount: 20,                   // 卡包輪播數量 1～20，不影響剩餘次數
+ *     packCount: 20,                   // 卡包可開啟數量（最多 20）；盲盒使用 boxCount
  *     perOpen: 3,                      // 每次開出幾個獎品（卡包 1～5；盲盒通常 1）
  *     prizes: [ { name: { en, ko, th, zh }, icon: '圖片網址', rarity: 'common|rare|epic|legendary', weight: 10 }, ... ],
  *     // 空獎：{ type: 'empty', name: { en: 'Better luck next time', ko, th, zh }, weight: 15 }；仍消耗一次。

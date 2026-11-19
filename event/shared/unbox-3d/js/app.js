@@ -5,7 +5,7 @@
 import { createAtmosphere } from './atmosphere.js?v=20261119-desert1';
 import { createRevealVortex } from './reveal-vortex.js?v=20261119-hd-motion';
 import { createSecretCycle } from './secret-cycle.js?v=20261119-secretfix1';
-import { createScene } from './scene.js?v=20261119-pack-count';
+import { createScene } from './scene.js?v=20261119-batch-open';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -18,20 +18,20 @@ var valid = Store.isValid(content);
 var PLAYER_KEY = cfg.storageKey + '_player';
 var LABELS_KEY = cfg.storageKey + '_labels';
 var MOCK_KEY = 'event-mock-tools';
-var PACK_COUNT_KEY = cfg.storageKey + '_pack_count_preview';
-var packLimit = cfg.carouselCountLimit;
-function clampPackCount(n) {
-  var count = Number(n);
-  return Number.isFinite(count) ? Math.max(1, Math.min(packLimit, Math.trunc(count))) : cfg.carouselCount;
+var inventoryLimit = 20;
+var batchLimit = 10;
+var isBox = cfg.type === 'blind-box';
+
+function clampInventory(value) {
+  var count = Number(value);
+  return Number.isFinite(count) ? Math.max(0, Math.min(inventoryLimit, Math.trunc(count))) : 0;
 }
-var packCount = packLimit ? clampPackCount(content.packCount ?? cfg.carouselCount) : cfg.carouselCount;
-if (packLimit) {
-  try {
-    var previewPackCount = sessionStorage.getItem(PACK_COUNT_KEY);
-    if (previewPackCount !== null) packCount = clampPackCount(previewPackCount);
-  } catch (e) { /* Use the configured count when storage is unavailable. */ }
+
+function initialInventory() {
+  var limit = content.freeOpens ?? inventoryLimit;
+  var supplied = (isBox ? content.boxCount : content.packCount) ?? limit;
+  return Math.min(clampInventory(supplied), clampInventory(limit));
 }
-var PER_OPEN_KEY = cfg.storageKey + '_per_open_preview';
 
 var $ = function (id) { return document.getElementById(id); };
 var stage = $('stage');
@@ -61,13 +61,13 @@ var state = 'select';
 var rewards = [];
 var revealed = 0;
 var toastTimer = null;
-var perOpen = clampPerOpen(Number(content.perOpen) || 1);
-try {
-  var savedPerOpen = Number(sessionStorage.getItem(PER_OPEN_KEY));
-  if (savedPerOpen) perOpen = clampPerOpen(savedPerOpen);
-} catch (e) { /* 用後台數量 */ }
-
-function clampPerOpen(n) { return Math.max(cfg.perOpenLimits.min, Math.min(cfg.perOpenLimits.max, n)); }
+var perOpen = Math.trunc(Number(content.perOpen)) || 1;
+perOpen = Math.max(cfg.perOpenLimits.min, Math.min(cfg.perOpenLimits.max, perOpen));
+var batchResults = null;
+var summaryPage = 0;
+var resultPageSize = 10;
+var pendingAnimation = null;
+var openingCount = 0;
 
 function esc(s) {
   return String(s).replace(/[&<>"']/g, function (c) {
@@ -79,29 +79,74 @@ function esc(s) {
 var player = loadPlayer();
 var secretCycle = cfg.secretEvery ? createSecretCycle(cfg.storageKey + '_secret_cycle', cfg.secretEvery, null, Math.random, player.records.length) : null;
 function notifySecret() {
-  if (secretCycle && secretCycle.needsNotice() && Sound.isEnabled() && Sound.isUnlocked()) {
+  if (player.chances && secretCycle && secretCycle.needsNotice() && Sound.isEnabled() && Sound.isUnlocked()) {
     Sound.play('secret'); secretCycle.notified();
   }
 }
 function syncSecret() {
-  var active = !!(secretCycle && secretCycle.due());
+  var active = !!(player.chances && secretCycle && secretCycle.due());
   stage.dataset.secret = String(active);
   if (scene) scene.setSecret(active);
   if (cfg.secretEvery) {
     var notice = $('secretNotice'); notice.hidden = !active; notice.textContent = t('edition.discovered');
-    if (!scene) { $('sceneFallback').src = active ? cfg.images.secretPack : pick(cfg.images.packFront); $('sceneFallback').setAttribute('data-img',active?'secretPack':'packFront'); }
+    if (!scene) { $('sceneFallback').src = active ? cfg.images.secretPack : cfg.images.packFront[(player.slots[0] || 0) % cfg.images.packFront.length]; $('sceneFallback').setAttribute('data-img',active?'secretPack':'packFront'); }
   }
   notifySecret();
 }
 document.addEventListener('ev:audio-ready',notifySecret);
+function resetInventory(target, count) {
+  target.slots = Array.from({length: clampInventory(count)}, function (_, i) { return i; });
+  target.chances = target.slots.length;
+  target.wave = Math.min(batchLimit, target.chances);
+}
 function loadPlayer() {
   try {
-    var s = JSON.parse(localStorage.getItem(PLAYER_KEY));
-    if (s && s.version === content.updatedAt && typeof s.chances === 'number' && Array.isArray(s.records)) return s;
+    var saved = JSON.parse(localStorage.getItem(PLAYER_KEY));
+    if (saved && saved.version === content.updatedAt && Array.isArray(saved.records)) {
+      if (!Array.isArray(saved.slots)) resetInventory(saved, saved.chances);
+      else {
+        saved.slots = Array.from(new Set(saved.slots.filter(function (id) {
+          return Number.isInteger(id) && id >= 0 && id < inventoryLimit;
+        })));
+        saved.chances = saved.slots.length;
+        saved.wave = Math.min(batchLimit, saved.chances, Math.trunc(saved.wave) > 0 ? Math.trunc(saved.wave) : batchLimit);
+      }
+      return saved;
+    }
   } catch (e) { /* localStorage 不可用時退回記憶體狀態 */ }
   return freshPlayer();
 }
-function freshPlayer() { return { version: content.updatedAt, chances: Number(content.freeOpens) || 0, records: [] }; }
+function freshPlayer() {
+  var fresh = { version: content.updatedAt, records: [] };
+  resetInventory(fresh, initialInventory());
+  return fresh;
+}
+function visibleSlots() {
+  return isBox ? player.slots.slice(0, player.wave) : player.slots.slice();
+}
+function refreshInventory() {
+  var slots = visibleSlots();
+  if (scene) scene.setItems(slots);
+  $('panelPerOpen').textContent = player.chances;
+  $('panelLess').disabled = player.chances <= 1;
+  $('panelMore').disabled = player.chances >= inventoryLimit;
+  if (!scene) {
+    $('sceneFallback').hidden = !slots.length;
+    if (!isBox && slots.length && !(secretCycle && secretCycle.due())) {
+      $('sceneFallback').src = cfg.images.packFront[slots[0] % cfg.images.packFront.length];
+    }
+  }
+  renderChances();
+}
+function consumeSlot(id, retry) {
+  player.slots.splice(player.slots.indexOf(id), 1);
+  if (retry) player.slots.push(id);
+  player.chances = player.slots.length;
+  if (isBox) {
+    player.wave -= 1;
+    if (player.wave === 0) player.wave = Math.min(batchLimit, player.chances);
+  }
+}
 function savePlayer() {
   try { localStorage.setItem(PLAYER_KEY, JSON.stringify(player)); } catch (e) { /* 同上 */ }
 }
@@ -271,27 +316,38 @@ var statusOverride = null;
 
 function renderState() {
   stage.setAttribute('data-state', state);
-  // 挑選階段沒有主按鈕：點選 3D 區的任意一包就是選擇，按鈕位置改顯示提示
   var picking = state === 'select';
-  btnAction.hidden = picking;
-  $('pickHint').hidden = !picking;
+  var visibleCount = visibleSlots().length;
+  var quantity = Math.min(batchLimit, visibleCount);
+  btnAction.hidden = false;
   var empty = !valid ? 'empty.prizes' : player.chances <= 0 ? 'toast.noChances' : null;
+  $('pickHint').hidden = !picking || !!empty;
   $('pickHintText').textContent = t(empty || 'hint.pick');
   $('pickHint').classList.toggle('is-empty', !!empty);
-  $('actionText').textContent = t(ACTION_TEXT[state]);
-  btnAction.disabled = state === 'focusing' || state === 'loading' || state === 'opening';
+  var action = ACTION_TEXT[state];
+  if (picking) {
+    if (empty) action = empty;
+    else if (quantity === player.chances) action = 'batch.openAll';
+    else action = quantity === batchLimit ? 'batch.openCount' : 'batch.openWave';
+  } else if (openingCount && (state === 'loading' || state === 'opening')) action = 'batch.opening';
+  $('actionText').textContent = t(action, { n: openingCount && !picking ? openingCount : quantity });
+  btnAction.disabled = (picking && !!empty) || state === 'focusing' || state === 'loading' || state === 'opening';
   btnAction.classList.toggle('is-empty', state === 'select' && (player.chances <= 0 || !valid));
   $('btnBack').hidden = state !== 'ready';
   $('btnSkip').hidden = state !== 'opening';
-  $('btnPrev').hidden = $('btnNext').hidden = state !== 'select' || !scene || packCount === 1;
-  var key = statusOverride || STATUS_TEXT[state];
+  $('btnPrev').hidden = $('btnNext').hidden = state !== 'select' || !scene || visibleCount < 2;
+  var key = statusOverride || (picking && visibleCount < 2 ? null : STATUS_TEXT[state]);
   $('status').textContent = !valid ? t('empty.prizes') : key ? t(key) : '';
   renderPickLabel();
 }
 
 function renderPickLabel() {
   var i = scene ? scene.selected() : 0;
-  $('pickLabel').textContent = t('pick.label', { n: String(i + 1).padStart(2, '0') }) + ((packLimit || scene) && packCount ? ' / ' + packCount : '');
+  var slots = visibleSlots();
+  $('pickLabel').textContent = slots.length
+    ? t('pick.label', { n: String(i + 1).padStart(2, '0') }) + ' / ' + slots.length
+    : '';
+  $('pickLabel').hidden = !slots.length || stage.classList.contains('is-batch-opening');
 }
 
 function setState(next, status) {
@@ -350,61 +406,124 @@ function choose(autoOpen) {
 
 function open(gesture) {
   if (state !== 'ready') return;
-  if (player.chances <= 0) { showToast(t('toast.noChances')); return; }
+  var selected = visibleSlots()[scene ? scene.selected() : 0];
+  if (selected == null) return;
   var duration = cfg.openMs;
   if (cfg.tearSpeed && gesture && Number.isFinite(gesture.speed)) {
     var speed = cfg.tearSpeed;
     var amount = Math.max(0, Math.min(1, (gesture.speed-speed.slowVelocity)/(speed.fastVelocity-speed.slowVelocity)));
     duration = Math.round(speed.slowMs + (speed.fastMs-speed.slowMs)*amount);
   }
-  press();
-  player.chances -= 1;
-  savePlayer();
-  renderChances();
-  setState('loading');
-  var selection = scene ? scene.selected() : 0;
-  var secretDraw = !!(secretCycle && secretCycle.due());
-  Promise.all([Store.resolve(content, { type: cfg.type, selection: selection, count: secretDraw ? 3 : perOpen, edition:secretDraw?'secret':'standard', drawNumber:secretCycle?secretCycle.total()+1:undefined }), Sound.prepare('tear')]).then(function (results) {
-    var list = results[0];
-    var edition = secretCycle ? secretCycle.commit() : {};
-    rewards = list.map(function (r) { return Object.assign({},r,edition); });
-    var retries = cfg.retryEmpty ? rewards.filter(Store.isEmpty) : [];
-    if (retries.length) {
-      player.chances += 1;
-      retries.forEach(function (reward) {
-        reward.name = cfg.retryEmpty;
-        reward.retry = true;
-      });
-      renderChances();
-    }
-    var stamp = now();
-    rewards.forEach(function (r) { player.records.push({ type:r.type, retry:r.retry, edition:r.edition, drawNumber:r.drawNumber, name: r.name, icon: r.icon || '', rarity: rarityOf(r), time: stamp }); });
-    savePlayer();
-    renderRecords();
-    setState('opening');
-    Sound.duck('opening');
-    Sound.stopEffects();
-    Sound.play('tear',duration);
-    stage.classList.add('is-opening');
-    var done = scene ? scene.open(duration) : new Promise(function (ok) { fallbackTimer = setTimeout(ok, 600); });
-    return done.then(function () {
-      stage.classList.remove('is-opening');
-      showReveal();
-    });
-  }).catch(function () {
-    Sound.play('error');
-    player.chances += 1;
-    savePlayer();
-    renderChances();
-    setState('ready', 'status.error');
-  });
+  openSlots([selected], duration, false);
 }
 
-var fallbackTimer = null;
+function openBatch() {
+  if (state !== 'select' || pickTimer || !valid) return;
+  var slots = visibleSlots();
+  var index = scene ? scene.selected() : 0;
+  var batch = slots.slice(index).concat(slots.slice(0, index)).slice(0, batchLimit);
+  if (batch.length) openSlots(batch, 1700, true);
+}
+
+async function openSlots(slots, duration, batch) {
+  press();
+  openingCount = batch ? slots.length : 0;
+  setState('loading');
+  summaryPage = 0;
+  var opened = [];
+  var failed = false;
+  var audioReady = Sound.prepare('tear');
+  // Each item is a separate draw. Commit successful draws before asking for the next one.
+  for (var id of slots) {
+    var secret = !!(secretCycle && secretCycle.due());
+    var list;
+    try {
+      list = await Store.resolve(content, {
+        type: cfg.type, selection: id, count: secret ? 3 : perOpen,
+        edition: secret ? 'secret' : 'standard',
+        drawNumber: secretCycle ? secretCycle.total() + 1 : undefined
+      });
+    } catch (e) {
+      failed = true;
+      break;
+    }
+    var edition = secretCycle ? secretCycle.commit() : {};
+    var drawRewards = list.map(function (item) { return Object.assign({}, item, edition); });
+    var retries = cfg.retryEmpty ? drawRewards.filter(Store.isEmpty) : [];
+    retries.forEach(function (item) { item.name = cfg.retryEmpty; item.retry = true; });
+    consumeSlot(id, !!retries.length);
+    var stamp = now();
+    drawRewards.forEach(function (r) {
+      player.records.push({type:r.type, retry:r.retry, edition:r.edition, drawNumber:r.drawNumber, name:r.name, icon:r.icon || '', rarity:rarityOf(r), time:stamp});
+    });
+    opened.push({ id:id, secret:secret, rewards:drawRewards });
+    savePlayer();
+  }
+  if (!opened.length) {
+    Sound.play('error');
+    openingCount = 0;
+    setState(batch ? 'select' : 'ready', 'status.error');
+    return;
+  }
+  await audioReady;
+  rewards = opened.flatMap(function (draw) { return draw.rewards; });
+  batchResults = batch && (opened.length > 1 || failed) ? {
+    rewards: rewards,
+    secretGroups: opened.filter(function (draw) { return draw.secret; }).map(function (draw) { return draw.rewards; }),
+    failed: failed,
+    opened: opened.length
+  } : null;
+  renderChances();
+  renderRecords();
+  if (batch) {
+    openingCount = opened.length;
+    stage.classList.add('is-batch-opening');
+    sceneEl.scrollIntoView({block:'center', behavior:'instant'});
+  }
+  setState('opening');
+  Sound.duck('opening');
+  Sound.stopEffects();
+  Sound.play('tear', duration);
+  stage.classList.add('is-opening');
+  if (scene) {
+    var deadline = batch ? setTimeout(function () { scene.skip(); }, duration + 1400) : null;
+    await (batch ? scene.openBatch(opened, duration) : scene.open(duration));
+    clearTimeout(deadline);
+  } else await showFlatOpening(opened, batch, duration);
+  openingCount = 0;
+  stage.classList.remove('is-opening', 'is-batch-opening');
+  showReveal();
+}
+
+function showFlatOpening(opened, batch, duration) {
+  var display = $('batchFallback');
+  if (batch) {
+    display.replaceChildren();
+    opened.forEach(function (draw, i) {
+      var img = document.createElement('img');
+      var fronts = isBox ? cfg.images.boxFront : cfg.images.packFront;
+      img.src = draw.secret ? cfg.images.secretPack : fronts[draw.id % fronts.length];
+      img.alt = '';
+      img.style.setProperty('--batch-delay', Math.min(i, 9) * 45 + 'ms');
+      display.appendChild(img);
+    });
+    display.hidden = false;
+  }
+  return new Promise(function (finish) {
+    var timer = setTimeout(end, mascotReduced.matches ? 250 : batch ? duration : 600);
+    function end() {
+      clearTimeout(timer);
+      pendingAnimation = null;
+      display.hidden = true;
+      finish();
+    }
+    pendingAnimation = end;
+  });
+}
 function skip() {
   if (state !== 'opening') return;
   if (scene) scene.skip();
-  else { clearTimeout(fallbackTimer); stage.classList.remove('is-opening'); showReveal(); }
+  else if (pendingAnimation) pendingAnimation();
 }
 
 // 點選 3D 區的某一包＝選擇它：不在正前方就先轉過來，轉完再進入已選定
@@ -456,9 +575,10 @@ var secretFanBusy = false;
 var secretFanTimer = null;
 
 function renderSecretFanText() {
+  $('btnPrevPage').hidden = true;
   $('revealTitle').textContent = t('reveal.title');
   $('revealCount').textContent = t('reveal.count', { n:secretFanRevealed, total:3 });
-  $('revealActionText').textContent = t(secretFanRevealed === 3 ? 'reveal.done' : 'reveal.flip');
+  $('revealActionText').textContent = t(secretFanRevealed === 3 ? batchResults ? 'batch.results' : 'reveal.done' : 'reveal.flip');
   $('btnRevealAll').hidden = true;
   $('btnReveal').disabled = secretFanBusy;
   Array.from($('secretFan').children).forEach(function (card, i) {
@@ -524,6 +644,11 @@ function showReveal() {
   revealed = 0;
   revealView = 'card';
   reveal.hidden = false;
+  if (batchResults) {
+    advanceBatchResult();
+    reveal.scrollTop = 0;
+    return;
+  }
   secretFanMode = cfg.type === 'card-pack' && rewards.length === 3 && rewards.every(function (r) { return r.edition === 'secret'; });
   if ($('secretFan')) $('secretFan').hidden = !secretFanMode;
   if (secretFanMode) { showSecretFan(); $('btnReveal').focus(); return; }
@@ -571,12 +696,18 @@ function renderRevealText() {
   $('revealSingle').hidden = summary;
   $('revealGrid').hidden = !summary;
   var shown = revealed + (flipped() ? 1 : 0);
-  $('revealCount').textContent = summary ? '' : treasureMode && !Store.isEmpty(rewards[revealed]) ? t('treasure.count', { n: shown, total: total }) : flipped() ? t('reveal.count', { n: shown, total: total }) : t('reveal.tap');
+  var pages = Math.ceil(total / resultPageSize);
+  var summaryInfo = [];
+  if (pages > 1) summaryInfo.push(t('batch.page', { n:summaryPage + 1, total:pages }));
+  if (batchResults?.failed) summaryInfo.push(t('batch.partial', { n:batchResults.opened }));
+  $('revealCount').textContent = summary ? summaryInfo.join(' · ') : treasureMode && !Store.isEmpty(rewards[revealed]) ? t('treasure.count', { n: shown, total: total }) : flipped() ? t('reveal.count', { n: shown, total: total }) : t('reveal.tap');
   $('revealCard').setAttribute('aria-label', flipped() ? pick(rewards[revealed].name) : t('reveal.flip'));
   var last = revealed === total - 1;
   var key = summary || (flipped() && last && total === 1) ? 'reveal.done'
     : !flipped() ? 'reveal.flip'
     : last ? 'reveal.seeAll' : 'reveal.next';
+  if (summary && (summaryPage + 1) * resultPageSize < total) key = 'batch.nextPage';
+  $('btnPrevPage').hidden = !summary || summaryPage === 0;
   $('revealActionText').textContent = t(key === 'reveal.done' && rewards.every(Store.isEmpty) ? 'result.continue' : key);
   $('btnRevealAll').hidden = summary || total < 2 || (last && flipped());
 }
@@ -591,20 +722,53 @@ function flip() {
   renderRevealText();
 }
 
-function showSummary() {
+function showSummary(playCue) {
   revealView = 'summary';
-  $('revealGrid').innerHTML = rewards.map(function (r) { return '<li class="' + (treasureMode ? 'ev-treasure is-small' : 'ev-prize-card is-static') + '">' + (treasureMode ? treasureHtml(r) : cardHtml(r, true)) + '</li>'; }).join('');
-  if (!treasureMode) Sound.play(rewards.every(Store.isEmpty) ? 'empty' : 'reward');
+  var start = summaryPage * resultPageSize;
+  $('revealGrid').classList.toggle('is-batch-grid', rewards.length >= 5);
+  $('revealGrid').innerHTML = rewards.slice(start, start + resultPageSize).map(function (r) { return '<li class="' + (treasureMode ? 'ev-treasure is-small' : 'ev-prize-card is-static') + '">' + (treasureMode ? treasureHtml(r) : cardHtml(r, true)) + '</li>'; }).join('');
+  if (playCue !== false) {
+    if (batchResults) {
+      var best = rewards.reduce(function (a, b) { return Store.rarityRank(a) >= Store.rarityRank(b) ? a : b; });
+      Sound.stopEffects();
+      Sound.play(rewards.every(Store.isEmpty) ? 'empty' : 'reveal', Store.rarityRank(best));
+    } else if (!treasureMode) Sound.play(rewards.every(Store.isEmpty) ? 'empty' : 'reward');
+  }
   renderRevealText();
+}
+
+function advanceBatchResult() {
+  var group = batchResults.secretGroups.shift();
+  if (group) {
+    rewards = group;
+    secretFanMode = true;
+    Sound.play('secret');
+    showSecretFan();
+  } else {
+    secretFanMode = false;
+    if ($('secretFan')) $('secretFan').hidden = true;
+    rewards = batchResults.rewards;
+    showSummary();
+  }
+  $('btnReveal').focus();
 }
 
 function revealStep() {
   if (secretFanMode) {
     if (secretFanBusy) return;
-    if (secretFanRevealed < 3) flipSecretFan(); else closeReveal();
+    if (secretFanRevealed < 3) flipSecretFan();
+    else if (batchResults) advanceBatchResult();
+    else closeReveal();
     return;
   }
-  if (revealView === 'summary') { closeReveal(); return; }
+  if (revealView === 'summary') {
+    if ((summaryPage + 1) * resultPageSize < rewards.length) {
+      summaryPage += 1;
+      showSummary(false);
+      reveal.scrollTop = 0;
+    } else closeReveal();
+    return;
+  }
   if (!flipped()) { flip(); return; }
   if (revealed < rewards.length - 1) { revealed += 1; renderRevealCard(); return; }
   if (rewards.length > 1) showSummary();
@@ -619,10 +783,12 @@ function closeReveal() {
   reveal.hidden = true;
   if (!treasureMode) Sound.play(rewards.every(Store.isEmpty) ? 'click' : 'collect');
   Sound.duck(false);
-  var result = rewards;
+  var result = batchResults ? batchResults.rewards : rewards;
+  batchResults = null;
   rewards = [];
   if (scene) scene.setMode('select');
   setState('select');
+  refreshInventory();
   syncSecret();
   sceneEl.focus({ preventScroll: treasureMode });
   if (treasureMode) {
@@ -664,7 +830,7 @@ function renderLocale() {
       Array.from($('secretFan').children).forEach(function (card, i) { card.querySelector('.ev-prize-front').outerHTML = cardHtml(rewards[i]); });
       renderSecretFanText(); return;
     }
-    if (revealView === 'summary') showSummary();
+    if (revealView === 'summary') showSummary(false);
     else {
       var r = rewards[revealed];
       if (treasureMode) { $('treasureDisplay').innerHTML = treasureHtml(r); $('treasureDisplay').setAttribute('aria-label', pick(r.name)); }
@@ -681,8 +847,8 @@ var imagesFor = cfg.type === 'blind-box'
   : { front: cfg.images.packFront, back: cfg.images.packBack, side: cfg.images.packSide, crimp: cfg.images.packCrimp, rewardBack: cfg.images.packContents || cfg.images.rewardBack };
 scene = createScene(sceneEl, {
   type: cfg.type,
-  count: packCount,
-  capacity: packLimit,
+  slots: visibleSlots(),
+  capacity: inventoryLimit,
   images: imagesFor,
   material: cfg.material,
   scale: cfg.sceneScale,
@@ -722,7 +888,7 @@ if (!scene) {
 
 // ---------- 事件 ----------
 btnAction.addEventListener('click', function () {
-  if (state === 'select') choose();
+  if (state === 'select') openBatch();
   else if (state === 'ready') open();
 });
 sceneEl.addEventListener('keydown', function (e) {
@@ -736,6 +902,14 @@ $('btnPrev').addEventListener('click', function () { if (scene) scene.move(1); }
 $('btnNext').addEventListener('click', function () { if (scene) scene.move(-1); });
 $('revealCard').addEventListener('click', function () { if (!flipped()) flip(); });
 $('btnReveal').addEventListener('click', revealStep);
+$('btnPrevPage').addEventListener('click', function () {
+  if (revealView !== 'summary' || summaryPage === 0) return;
+  summaryPage -= 1;
+  showSummary(false);
+  reveal.scrollTop = 0;
+  if (!$('btnPrevPage').hidden) $('btnPrevPage').focus();
+  else $('btnReveal').focus();
+});
 $('btnRevealAll').addEventListener('click', function () {
   if (!flipped()) $('revealCard').classList.add('is-flipped');
   if (rewards.length > 1) showSummary(); else closeReveal();
@@ -774,9 +948,11 @@ $('panelClose').addEventListener('click', function () { setPanel(false); });
 $('btnReset').addEventListener('click', function () {
   if (state !== 'select' && state !== 'ready') return;
   player = freshPlayer();
-  player.chances = cfg.mockResetOpens;
+  resetInventory(player, cfg.mockResetOpens);
+  if (scene) scene.setMode('select');
+  setState('select');
   savePlayer();
-  renderChances();
+  refreshInventory();
   renderRecords();
   renderState();
   syncSecret();
@@ -786,42 +962,38 @@ if ($('btnSecret')) $('btnSecret').addEventListener('click', function () {
   if (!secretCycle || (state !== 'select' && state !== 'ready')) return;
   if (!valid) { showToast(t('empty.prizes')); return; }
   secretCycle.forceNext();
-  player.chances = Math.max(1, player.chances);
-  savePlayer(); renderChances(); syncSecret(); setPanel(false);
+  if (!player.chances) resetInventory(player, 1);
+  savePlayer(); refreshInventory(); syncSecret(); setPanel(false);
   sceneEl.scrollIntoView({ block: 'center', behavior: 'instant' });
   if (state === 'select') choose(true); else open();
 });
-function setPerOpen(n) {
-  var next = clampPerOpen(n);
-  if (next === perOpen) return;
-  perOpen = next;
-  $('panelPerOpen').textContent = perOpen;
-  try { sessionStorage.setItem(PER_OPEN_KEY, String(perOpen)); } catch (e) { /* 只在本次頁面生效 */ }
-  showToast(t('toast.perOpen', { n: perOpen }));
-}
-function changePackCount(delta) {
+function changeInventory(delta) {
   if (state !== 'select' || pickTimer) return;
-  var next = clampPackCount(packCount + delta);
-  if (next === packCount) return;
-  packCount = next;
-  if (scene) scene.setCount(packCount);
-  $('panelPerOpen').textContent = packCount;
-  try { sessionStorage.setItem(PACK_COUNT_KEY, String(packCount)); } catch (e) { /* Preview still works for this page. */ }
-  renderState();
+  var before = player.chances;
+  if ((delta > 0 && before >= inventoryLimit) || (delta < 0 && before <= 1)) return;
+  if (delta > 0) {
+    var free = Array.from({length:inventoryLimit}, function (_, i) { return i; })
+      .find(function (id) { return !player.slots.includes(id); });
+    player.slots.push(free);
+    if (isBox && player.wave === before && before < batchLimit) player.wave += 1;
+  } else {
+    player.slots.pop();
+    if (isBox) player.wave = Math.min(player.wave, player.slots.length);
+  }
+  player.chances = player.slots.length;
+  savePlayer();
+  refreshInventory();
+  syncSecret();
+  Sound.play('count');
 }
-$('panelPerOpen').textContent = packLimit ? packCount : perOpen;
-$('panelLess').addEventListener('click', function () {
-  if (packLimit) changePackCount(-1); else setPerOpen(perOpen - 1);
-});
-$('panelMore').addEventListener('click', function () {
-  if (packLimit) changePackCount(1); else setPerOpen(perOpen + 1);
-});
-if (packLimit) document.addEventListener('keydown', function (event) {
+$('panelLess').addEventListener('click', function () { changeInventory(-1); });
+$('panelMore').addEventListener('click', function () { changeInventory(1); });
+document.addEventListener('keydown', function (event) {
   if (!event.ctrlKey || !event.altKey || event.metaKey || event.shiftKey) return;
   if (event.code !== 'ArrowUp' && event.code !== 'ArrowDown') return;
   if (event.target.closest?.('input, textarea, select, [contenteditable]')) return;
   event.preventDefault();
-  changePackCount(event.code === 'ArrowUp' ? 1 : -1);
+  changeInventory(event.code === 'ArrowUp' ? 1 : -1);
 });
 $('btnLabels').addEventListener('click', function () {
   var on = !document.body.classList.contains('show-asset-labels');
@@ -884,6 +1056,6 @@ try {
 document.addEventListener('ev:locale', renderLocale);
 window.EventShare.init(showToast);
 I18n.renderSwitcher($('langSwitch'));
-renderChances();
+refreshInventory();
 I18n.applyLocale();
 runLoading();
