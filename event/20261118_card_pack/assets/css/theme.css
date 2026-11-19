@@ -63,6 +63,14 @@
 }
 
 /* Cosmic interface: angular glass instruments and illuminated star-map panels. */
+.ev-lang {
+  --ev-lang-paper: var(--ev-color-surface-2);
+  --ev-lang-ink: var(--ev-color-text);
+  --ev-lang-gold: var(--ev-rarity-common);
+  --ev-lang-metal: var(--ev-rarity-epic);
+  --ev-lang-selected: var(--ev-color-primary);
+  --ev-lang-highlight: color-mix(in srgb, var(--ev-rarity-epic) 23%, var(--ev-color-surface));
+}
 
 /* Printed celestial artwork, dynamic prize labels and a one-pass foil reflection. */
 .ev-prize-face { --card-foil:var(--ev-rarity-common); overflow:hidden; border-radius:12px; box-shadow:0 0 0 1px var(--card-foil),2px 3px 0 var(--ev-ui-edge),5px 8px 20px var(--ev-color-scrim); }
