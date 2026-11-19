@@ -1,0 +1,48 @@
+[
+  {
+    "width": 360,
+    "independentLayers": 2,
+    "animated": true,
+    "reducedStatic": true,
+    "near": [
+      "0.673998",
+      "0.2147"
+    ],
+    "far": [
+      "0.938304",
+      "0.105243"
+    ]
+  },
+  {
+    "width": 390,
+    "independentLayers": 2,
+    "animated": true,
+    "reducedStatic": true,
+    "near": [
+      "0.685947",
+      "0.213096"
+    ],
+    "far": [
+      "0.945187",
+      "0.11179"
+    ]
+  },
+  {
+    "width": 1440,
+    "independentLayers": 2,
+    "animated": true,
+    "reducedStatic": true,
+    "near": [
+      "0.685947",
+      "0.213096"
+    ],
+    "far": [
+      "0.949157",
+      "0.118761"
+    ]
+  },
+  {
+    "failedLayerOriginalBackground": true,
+    "failedLayerCollects": true
+  }
+]

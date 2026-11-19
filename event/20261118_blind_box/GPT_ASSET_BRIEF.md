@@ -63,3 +63,9 @@ STYLE LOCK — apply to every image in this conversation:
 Use the existing 750×1000 stage as registration reference. Deliver separate full-canvas RGBA curtain/lantern, arcade/columns, and foreground tiled floor images, plus a full opaque night desert background. Keep the original camera, horizon, lighting and object anchors. No UI or prize chests in these layers. Preserve source PNGs in source/scene/layers and resize once to 750×1000 WebP.
 
 Reward vortex: warm volumetric gold sand from the approved dust material, transparent 4×4 sheet of 16 evolving frames, fixed camera and consistent center; no white wire arcs or opaque grey background. Source sheet and extracted frames retained under source/reveal; 1280×1280 WebP atlas, 320px per frame, alpha crossfade between frames.
+
+
+## 2026-11-19 production sources
+`source/desert-spirit/character-sheet.png`: original youthful muscular turquoise lamp spirit, expressive clean-shaven face, dark swept hair, engraved gold wrist cuffs, emerald vest, swirling smoke lower body. Animated fantasy film material and lighting.
+`*-keyposes.png`: 3×2 full-body keyposes, fixed camera, generous transparent margins, lamp anchored. Three performances: breathing idle, exuberant celebration, playful encouragement.
+`desert-scene.png`: open sand dunes, twilight indigo sky, warm light, sandy foreground, no buildings, columns, curtains or tiled flooring.

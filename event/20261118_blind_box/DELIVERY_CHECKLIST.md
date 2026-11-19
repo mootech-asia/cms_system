@@ -51,7 +51,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B30 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | 2a36ceb | ☐ | P0 |
+| ☑ | B30 | 色票（`--ev-color-*`、`--ev-3d-*`、`--ev-rarity-*`） | — | `assets/css/theme.css` | adb54b9 | ☐ | P0 |
 | ☑ | B31 | 音效 click：按鈕（≤0.2 秒） | 選配 | `assets/audio/click.mp3` | 4dc5bce | ☐ | P3 |
 | ☑ | B32 | 音效 move：切換選項（0.25 秒） | 選配 | `assets/audio/move.mp3` | 4dc5bce | ☐ | P3 |
 | ☑ | B33 | 音效 tear：開箱（open.mp3，1.1 秒） | 選配 | `assets/audio/open.mp3` | 4dc5bce | ☐ | P3 |
@@ -59,7 +59,7 @@
 | ☑ | B35 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `assets/audio/reveal.mp3` | bc5fb9b | ☐ | P3 |
 | ☑ | B36 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `assets/audio/reward.mp3` | 4dc5bce | ☐ | P3 |
 | ☑ | B37 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | 5844c7b | ☐ | P3 |
-| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 2d65268 | ☐ | P2 |
+| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | adb54b9 | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -188,3 +188,17 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 | ☑ | B85 | 舊版 renderer 沙塵退回圖 | 320×320 | `assets/img/reveal/sand-vortex-poster.webp` | 2a36ceb | ☐ | P3 |
 
 - 2026-11-18：套用使用者上傳音訊包（4dc5bce）；MP3 原檔與 WAV 母帶均保留。四級揭曉使用獨立音檔，舊 reveal 不再預載。卡包 hover 與隱藏包提示音維持既有版本；提交不代表主觀聽感終審。
+
+
+## 2026-11-19 主題改版交付
+
+| 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☑ | N01 | open-desert | 750×1125 | `assets/img/scene/open-desert.webp` | 578aa12 | ☐ | P0 |
+| ☑ | N02 | spirit-poster | 400×500 | `assets/img/mascot/spirit/poster.webp` | 578aa12 | ☐ | P3 |
+| ☑ | N03 | spirit-idle | 400×500 | `assets/img/mascot/spirit/idle.webp` | 578aa12 | ☐ | P3 |
+| ☑ | N04 | spirit-excited | 400×500 | `assets/img/mascot/spirit/excited.webp` | 578aa12 | ☐ | P3 |
+| ☑ | N05 | spirit-encourage | 400×500 | `assets/img/mascot/spirit/encourage.webp` | 578aa12 | ☐ | P3 |
+| ☑ | N06 | character-sheet | 1536×1024 | `source/desert-spirit/character-sheet.png` | 578aa12 | ☐ | P0 |
+
+舊柱廊／布簾／宮殿地磚保留為歷史原稿，當前 config 不再載入。動態原始幀、2 秒循環與透明邊界驗證見 `source/desert-spirit/motion-checks.json`。
