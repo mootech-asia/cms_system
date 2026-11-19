@@ -21,3 +21,5 @@ Trimmed to interaction duration, short fades, normalized to -20 LUFS / -2 dBTP. 
 BGM: seal_online/bgm/13.mp3; full track with 2s tail/head crossfade, -22 LUFS / -2 dBTP. Selection is provisional for in-event listening; timbre has not been directly auditioned in this environment.
 
 Current overrides: tear.mp3 restored byte-for-byte from pre-seal-update; all four prize reveals use the uploaded button3026.wav unchanged as reveal-3026.wav. BUTTON3018.wav is not applied. Previous reveal clips are retained under alternatives/assets/audio/pre-user-reveal.
+
+BGM override: user-uploaded 13.mp3 is copied byte-for-byte to assets/audio/bgm.mp3; existing volume, ducking and looping controls remain. Previously processed BGM is archived under alternatives/assets/audio/pre-uploaded-bgm/.

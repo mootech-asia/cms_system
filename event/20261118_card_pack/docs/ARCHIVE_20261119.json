@@ -116,6 +116,11 @@
     {
       "from": "source/ui-20261119",
       "to": "alternatives/source/ui-20261119"
+    },
+    {
+      "from": "assets/audio/bgm.mp3",
+      "to": "alternatives/assets/audio/pre-uploaded-bgm/bgm.mp3",
+      "reason": "replaced by user-uploaded 13.mp3"
     }
   ]
 }
