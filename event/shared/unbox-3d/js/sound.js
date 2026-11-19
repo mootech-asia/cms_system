@@ -130,6 +130,7 @@ window.EventSound = (function () {
       [1, 1.25, 1.5, 2].slice(0, 2 + rank).forEach(function (m, i) { tone(base * m, i * 0.07, 0.5, 'triangle', 0.22); });
       if (rank >= 2) tone(base * 3, 0.3, 0.9, 'sine', 0.12);
     },
+    empty: function () { [523.25, 440, 392].forEach(function (f, i) { tone(f, i * 0.12, 0.4, 'sine', 0.16); }); },
     reward: function () { [523.25, 659.25, 783.99, 1046.5].forEach(function (f, i) { tone(f, i * 0.09, 0.6, 'triangle', 0.24); }); },
     select: function () { tone(988, 0, 0.12, 'triangle', 0.22); tone(1318.5, 0.06, 0.2, 'sine', 0.14); },
     collect: function () { [783.99, 1046.5].forEach(function (f, i) { tone(f, i * 0.08, 0.4, 'triangle', 0.2); }); },

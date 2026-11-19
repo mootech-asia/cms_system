@@ -179,8 +179,7 @@ function setMascot(next) {
 // 揭曉層蓋住舞台，所以慶祝／失望在關閉揭曉後演兩輪再回到待機
 function mascotReact(list) {
   if (!M) return;
-  var best = Math.max.apply(null, list.map(Store.rarityRank));
-  setMascot(best >= 1 ? 'celebrate' : 'lose');
+  setMascot(list.some(function (r) { return !Store.isEmpty(r); }) ? 'celebrate' : 'lose');
   mascotAfter = setTimeout(function () { if (state === 'select') setMascot('idle'); }, Math.max(2, Math.ceil(3000 / (M.loopMs || 3000))) * (M.loopMs || 1500));
 }
 if (M) {
@@ -214,6 +213,7 @@ function renderContent() {
 function renderTicker() {
   var prizes = content.prizes || [];
   var list = (content.winners || []).map(function (w) {
+    if (typeof w.prize === 'number' && Store.isEmpty(prizes[w.prize])) return '';
     var prize = typeof w.prize === 'number' ? (prizes[w.prize] || {}).name : w.prize;
     return prize ? t('ticker.item', { name: esc(w.name), prize: esc(pick(prize)) }) : '';
   }).filter(Boolean);
@@ -234,7 +234,7 @@ function renderRecords() {
     li.setAttribute('data-rarity', rarityOf(r));
     li.innerHTML = '<span class="ev-record-art" aria-hidden="true">' + (icon ? '<img src="' + esc(icon) + '" alt="" loading="lazy" />' : '<span>✦</span>') + '</span>' +
       '<span class="ev-record-detail"><span class="ev-record-name">' + esc(pick(r.name)) + '</span><time>' + esc(r.time) + '</time></span>' +
-      '<span class="ev-rarity-tag" data-rarity="' + esc(rarityOf(r)) + '">' + esc(t(r.edition === 'secret' ? 'edition.secret' : 'rarity.' + rarityOf(r))) + '</span>';
+      '<span class="ev-rarity-tag" data-rarity="' + esc(rarityOf(r)) + '">' + esc(t(Store.isEmpty(r) ? 'result.emptyTag' : r.edition === 'secret' ? 'edition.secret' : 'rarity.' + rarityOf(r))) + '</span>';
     list.appendChild(li);
   });
 }
@@ -347,7 +347,7 @@ function open(gesture) {
     var edition = secretCycle ? secretCycle.commit() : {};
     rewards = list.map(function (r) { return Object.assign({},r,edition); });
     var stamp = now();
-    rewards.forEach(function (r) { player.records.push({ edition:r.edition, drawNumber:r.drawNumber, name: r.name, icon: r.icon || '', rarity: rarityOf(r), time: stamp }); });
+    rewards.forEach(function (r) { player.records.push({ type:r.type, edition:r.edition, drawNumber:r.drawNumber, name: r.name, icon: r.icon || '', rarity: rarityOf(r), time: stamp }); });
     savePlayer();
     renderRecords();
     setState('opening');
@@ -401,17 +401,17 @@ function cardHtml(r, small) {
   var rarity = rarityOf(r);
   return '<span class="ev-prize-face ev-prize-front" data-rarity="' + rarity + '" data-edition="' + (r.edition || 'standard') + '">' +
     '<span class="ev-prize-frame" aria-hidden="true"></span>' +
-    '<span class="ev-card-stars" aria-hidden="true">' + '✦'.repeat(Store.rarityRank(r) + 1) + '</span>' +
+    '<span class="ev-card-stars" aria-hidden="true">' + (Store.isEmpty(r) ? '' : '✦'.repeat(Store.rarityRank(r) + 1)) + '</span>' +
     (r.icon ? '<img class="ev-prize-icon" src="' + esc(r.icon) + '" alt="" />' : '') +
-    '<span class="ev-rarity-tag" data-rarity="' + rarity + '">' + esc(t(r.edition === 'secret' ? 'edition.secret' : 'rarity.' + rarity)) + '</span>' +
+    '<span class="ev-rarity-tag" data-rarity="' + rarity + '">' + esc(t(Store.isEmpty(r) ? 'result.emptyTag' : r.edition === 'secret' ? 'edition.secret' : 'rarity.' + rarity)) + '</span>' +
     '<span class="ev-prize-name' + (small ? ' is-small' : '') + '">' + esc(pick(r.name)) + '</span></span>';
 }
 
 function treasureHtml(r) {
   var rarity = rarityOf(r);
   return '<span class="ev-treasure-plinth" aria-hidden="true"></span>' +
-    '<span class="ev-treasure-object">' + (r.icon ? '<img src="' + esc(r.icon) + '" alt="" />' : '<span class="ev-treasure-gem" aria-hidden="true">◆</span>') + '</span>' +
-    '<span class="ev-treasure-caption"><span class="ev-rarity-tag" data-rarity="' + rarity + '">' + esc(t('rarity.' + rarity)) + '</span>' +
+    '<span class="ev-treasure-object">' + (r.icon ? '<img src="' + esc(r.icon) + '" alt="" />' : Store.isEmpty(r) ? '' : '<span class="ev-treasure-gem" aria-hidden="true">◆</span>') + '</span>' +
+    '<span class="ev-treasure-caption"><span class="ev-rarity-tag" data-rarity="' + rarity + '">' + esc(t(Store.isEmpty(r) ? 'result.emptyTag' : 'rarity.' + rarity)) + '</span>' +
     '<strong>' + esc(pick(r.name)) + '</strong></span>';
 }
 
@@ -436,7 +436,7 @@ function renderRevealCard() {
     $('treasureDisplay').setAttribute('aria-label', pick(r.name));
     $('treasureDisplay').setAttribute('data-rarity', rarityOf(r));
     $('revealGlow').setAttribute('data-rarity', rarityOf(r));
-    Sound.play('reveal', Store.rarityRank(r));
+    Sound.play(Store.isEmpty(r) ? 'empty' : 'reveal', Store.rarityRank(r));
     renderRevealText();
     return;
   }
@@ -456,17 +456,17 @@ function flipped() { return treasureMode || $('revealCard').classList.contains('
 function renderRevealText() {
   var total = rewards.length;
   var summary = revealView === 'summary';
-  $('revealTitle').textContent = summary ? t('reveal.summary') : t('reveal.title');
+  $('revealTitle').textContent = !summary && flipped() && Store.isEmpty(rewards[revealed]) ? t('result.empty') : summary ? t('reveal.summary') : t('reveal.title');
   $('revealSingle').hidden = summary;
   $('revealGrid').hidden = !summary;
   var shown = revealed + (flipped() ? 1 : 0);
-  $('revealCount').textContent = summary ? '' : treasureMode ? t('treasure.count', { n: shown, total: total }) : flipped() ? t('reveal.count', { n: shown, total: total }) : t('reveal.tap');
+  $('revealCount').textContent = summary ? '' : treasureMode && !Store.isEmpty(rewards[revealed]) ? t('treasure.count', { n: shown, total: total }) : flipped() ? t('reveal.count', { n: shown, total: total }) : t('reveal.tap');
   $('revealCard').setAttribute('aria-label', flipped() ? pick(rewards[revealed].name) : t('reveal.flip'));
   var last = revealed === total - 1;
   var key = summary || (flipped() && last && total === 1) ? 'reveal.done'
     : !flipped() ? 'reveal.flip'
     : last ? 'reveal.seeAll' : 'reveal.next';
-  $('revealActionText').textContent = t(key);
+  $('revealActionText').textContent = t(key === 'reveal.done' && rewards.every(Store.isEmpty) ? 'result.continue' : key);
   $('btnRevealAll').hidden = summary || total < 2 || (last && flipped());
 }
 
@@ -476,14 +476,14 @@ function flip() {
   $('revealCard').classList.add('is-flipped');
   $('revealGlow').setAttribute('data-rarity', rarityOf(r));
   Sound.play('flip');
-  setTimeout(function () { Sound.play('reveal', Store.rarityRank(r)); }, 180);
+  setTimeout(function () { Sound.play(Store.isEmpty(r) ? 'empty' : 'reveal', Store.rarityRank(r)); }, 180);
   renderRevealText();
 }
 
 function showSummary() {
   revealView = 'summary';
   $('revealGrid').innerHTML = rewards.map(function (r) { return '<li class="' + (treasureMode ? 'ev-treasure is-small' : 'ev-prize-card is-static') + '">' + (treasureMode ? treasureHtml(r) : cardHtml(r, true)) + '</li>'; }).join('');
-  Sound.play('reward');
+  Sound.play(rewards.every(Store.isEmpty) ? 'empty' : 'reward');
   renderRevealText();
 }
 
@@ -497,14 +497,16 @@ function revealStep() {
 
 function closeReveal() {
   reveal.hidden = true;
-  Sound.play('collect');
+  Sound.play(rewards.every(Store.isEmpty) ? 'click' : 'collect');
   Sound.duck(false);
+  var emptyResult = rewards.length && rewards.every(Store.isEmpty);
   if (rewards.length) mascotReact(rewards);
   rewards = [];
   if (scene) scene.setMode('select');
   setState('select');
   syncSecret();
   sceneEl.focus();
+  if (treasureMode && emptyResult) sceneEl.scrollIntoView({ block: 'center', behavior: 'instant' });
 }
 
 // ---------- 音效／語系 ----------

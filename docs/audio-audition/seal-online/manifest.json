@@ -1,0 +1,127 @@
+[
+  {
+    "name": "BUTTON3001.wav",
+    "file": "audio/BUTTON3001.mp3",
+    "duration": 0.46
+  },
+  {
+    "name": "BUTTON3003.wav",
+    "file": "audio/BUTTON3003.mp3",
+    "duration": 0.55
+  },
+  {
+    "name": "BUTTON3004.wav",
+    "file": "audio/BUTTON3004.mp3",
+    "duration": 0.31
+  },
+  {
+    "name": "BUTTON3005.wav",
+    "file": "audio/BUTTON3005.mp3",
+    "duration": 0.53
+  },
+  {
+    "name": "BUTTON3013.wav",
+    "file": "audio/BUTTON3013.mp3",
+    "duration": 0.43
+  },
+  {
+    "name": "BUTTON3033.wav",
+    "file": "audio/BUTTON3033.mp3",
+    "duration": 0.41
+  },
+  {
+    "name": "BUTTON3034.wav",
+    "file": "audio/BUTTON3034.mp3",
+    "duration": 1.25
+  },
+  {
+    "name": "R_Fail.wav",
+    "file": "audio/R_Fail.mp3",
+    "duration": 2.74
+  },
+  {
+    "name": "R_Success.wav",
+    "file": "audio/R_Success.mp3",
+    "duration": 3.62
+  },
+  {
+    "name": "button3007.wav",
+    "file": "audio/button3007.mp3",
+    "duration": 0.26
+  },
+  {
+    "name": "button3008.wav",
+    "file": "audio/button3008.mp3",
+    "duration": 0.24
+  },
+  {
+    "name": "button3009.wav",
+    "file": "audio/button3009.mp3",
+    "duration": 0.22
+  },
+  {
+    "name": "button3010.wav",
+    "file": "audio/button3010.mp3",
+    "duration": 0.29
+  },
+  {
+    "name": "button3011.wav",
+    "file": "audio/button3011.mp3",
+    "duration": 0.26
+  },
+  {
+    "name": "button3012.wav",
+    "file": "audio/button3012.mp3",
+    "duration": 0.38
+  },
+  {
+    "name": "button3020.wav",
+    "file": "audio/button3020.mp3",
+    "duration": 1.37
+  },
+  {
+    "name": "button3021.wav",
+    "file": "audio/button3021.mp3",
+    "duration": 1.42
+  },
+  {
+    "name": "button3022.wav",
+    "file": "audio/button3022.mp3",
+    "duration": 1.8
+  },
+  {
+    "name": "button3023.wav",
+    "file": "audio/button3023.mp3",
+    "duration": 1.82
+  },
+  {
+    "name": "button3024.wav",
+    "file": "audio/button3024.mp3",
+    "duration": 1.61
+  },
+  {
+    "name": "button3025.wav",
+    "file": "audio/button3025.mp3",
+    "duration": 2.23
+  },
+  {
+    "name": "button3026.wav",
+    "file": "audio/button3026.mp3",
+    "duration": 2.23
+  },
+  {
+    "name": "itemget.wav",
+    "file": "audio/itemget.mp3",
+    "duration": 0.62
+  },
+  {
+    "name": "level_up.wav",
+    "file": "audio/level_up.mp3",
+    "duration": 2.23
+  },
+  {
+    "name": "levelup.wav",
+    "file": "audio/levelup.mp3",
+    "duration": 4.56
+  }
+]

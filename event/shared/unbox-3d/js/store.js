@@ -6,6 +6,7 @@
  *     freeOpens: 5,                    // 可開次數
  *     perOpen: 3,                      // 每次開出幾個獎品（卡包 1～5；盲盒通常 1）
  *     prizes: [ { name: { en, ko, th, zh }, icon: '圖片網址', rarity: 'common|rare|epic|legendary', weight: 10 }, ... ],
+ *     // 空獎：{ type: 'empty', name: { en: 'Better luck next time', ko, th, zh }, weight: 15 }；仍消耗一次。
  *     winners: [ { name: 'pl***88', prize: 0 }, ... ],   // 跑馬燈；prize 為獎項索引或 { en, ko, th, zh }，名字請先遮罩
  *     rulesTitle: { en, ko, th, zh },
  *     rules: { en: ['…'], ko: ['…'], th: ['…'], zh: ['…'] },
@@ -42,6 +43,8 @@ window.EventStore = (function () {
     return total > 0;
   }
 
+  function isEmpty(p) { return !!p && p.type === 'empty'; }
+
   function rarityRank(p) {
     var r = RARITIES.indexOf(p && p.rarity);
     return r < 0 ? 0 : r;
@@ -77,5 +80,5 @@ window.EventStore = (function () {
     });
   }
 
-  return { RARITIES: RARITIES, load: load, isValid: isValid, resolve: resolve, rarityRank: rarityRank };
+  return { RARITIES: RARITIES, load: load, isValid: isValid, resolve: resolve, rarityRank: rarityRank, isEmpty: isEmpty };
 })();
