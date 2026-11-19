@@ -313,6 +313,21 @@ function renderChances() {
 var ACTION_TEXT = { select: 'action.choose', focusing: 'action.choose', ready: 'action.open', loading: 'action.open', opening: 'action.open', reveal: 'action.open' };
 var STATUS_TEXT = { select: 'status.select', focusing: 'status.focusing', ready: 'status.ready', loading: 'status.loading', opening: 'status.opening' };
 var statusOverride = null;
+var pickHintTimer = null;
+
+function renderPickHint(show) {
+  var hint = $('pickHint');
+  if (!show) {
+    clearInterval(pickHintTimer);
+    pickHintTimer = null;
+    hint.hidden = !show;
+  } else if (pickHintTimer === null) {
+    hint.hidden = false;
+    pickHintTimer = setInterval(function () {
+      hint.hidden = !hint.hidden;
+    }, 10000);
+  }
+}
 
 function renderState() {
   stage.setAttribute('data-state', state);
@@ -321,7 +336,7 @@ function renderState() {
   var quantity = Math.min(batchLimit, visibleCount);
   btnAction.hidden = false;
   var empty = !valid ? 'empty.prizes' : player.chances <= 0 ? 'toast.noChances' : null;
-  $('pickHint').hidden = !picking || !!empty;
+  renderPickHint(picking && !empty);
   $('pickHintText').textContent = t(empty || 'hint.pick');
   $('pickHint').classList.toggle('is-empty', !!empty);
   var action = ACTION_TEXT[state];
