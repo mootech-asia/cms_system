@@ -8,7 +8,11 @@ async function createPage(browser, type, secretAt = 50) {
   const page = await browser.newPage({viewport:{width:390,height:844}});
   await page.addInitScript(({type, secretAt, packCycle}) => {
     sessionStorage.setItem('event-mock-tools', 'on');
-    if (type === 'card_pack') localStorage.setItem(packCycle, JSON.stringify({total:0,nextAt:secretAt}));
+    if (type === 'card_pack') {
+      localStorage.setItem(packCycle, JSON.stringify({total:0,nextAt:secretAt}));
+      // Keep the next secret draw outside this wave's pagination fixture.
+      Math.random = () => .99;
+    }
     window.requests = [];
     window.EVENT_RESOLVE = request => {
       requests.push(request);

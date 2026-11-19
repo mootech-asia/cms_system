@@ -437,7 +437,7 @@ function openBatch() {
   var slots = visibleSlots();
   var index = scene ? scene.selected() : 0;
   var batch = slots.slice(index).concat(slots.slice(0, index)).slice(0, batchLimit);
-  if (batch.length) openSlots(batch, 1700, true);
+  if (batch.length) openSlots(batch, 900, true);
 }
 
 async function openSlots(slots, duration, batch) {
@@ -457,7 +457,7 @@ async function openSlots(slots, duration, batch) {
         type: cfg.type, selection: id, count: secret ? 3 : perOpen,
         edition: secret ? 'secret' : 'standard',
         drawNumber: secretCycle ? secretCycle.total() + 1 : undefined
-      });
+      }, batch ? 0 : undefined);
     } catch (e) {
       failed = true;
       break;

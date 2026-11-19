@@ -62,7 +62,7 @@ window.EventStore = (function () {
   }
 
   // 回傳獎項物件陣列，依稀有度由低到高排序，最好的留到最後揭曉。
-  function resolve(content, request) {
+  function resolve(content, request, mockDelay) {
     var prizes = content.prizes;
     var secret = request.edition === 'secret';
     if (secret) request = Object.assign({}, request, { count: 3 });
@@ -75,7 +75,7 @@ window.EventStore = (function () {
           var out = [];
           for (var i = 0; i < request.count; i++) out.push(secret ? secretPrizes[pickIndex(secretPrizes)] : pickIndex(prizes));
           done(out);
-        }, 300);
+        }, mockDelay ?? 300);
       });
     return run.then(function (list) {
       if (!Array.isArray(list) || !list.length) throw new Error('Invalid reward response');
