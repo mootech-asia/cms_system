@@ -1,0 +1,122 @@
+[
+  {
+    "type": "blind_box",
+    "width": 320,
+    "height": 568,
+    "sceneHeight": 278.78125,
+    "noOverflow": true,
+    "errors": []
+  },
+  {
+    "type": "card_pack",
+    "width": 320,
+    "height": 568,
+    "sceneHeight": 278.78125,
+    "noOverflow": true,
+    "errors": []
+  },
+  {
+    "type": "blind_box",
+    "width": 360,
+    "height": 640,
+    "sceneHeight": 313.625,
+    "noOverflow": true,
+    "errors": []
+  },
+  {
+    "type": "card_pack",
+    "width": 360,
+    "height": 640,
+    "sceneHeight": 313.625,
+    "noOverflow": true,
+    "errors": []
+  },
+  {
+    "type": "blind_box",
+    "width": 375,
+    "height": 583,
+    "sceneHeight": 326.6875,
+    "noOverflow": true,
+    "errors": []
+  },
+  {
+    "type": "card_pack",
+    "width": 375,
+    "height": 583,
+    "sceneHeight": 326.6875,
+    "noOverflow": true,
+    "errors": []
+  },
+  {
+    "type": "blind_box",
+    "width": 390,
+    "height": 844,
+    "sceneHeight": 432.421875,
+    "noOverflow": true,
+    "errors": []
+  },
+  {
+    "type": "card_pack",
+    "width": 390,
+    "height": 844,
+    "sceneHeight": 432.421875,
+    "noOverflow": true,
+    "errors": []
+  },
+  {
+    "type": "blind_box",
+    "width": 414,
+    "height": 896,
+    "sceneHeight": 459.03125,
+    "noOverflow": true,
+    "errors": []
+  },
+  {
+    "type": "card_pack",
+    "width": 414,
+    "height": 896,
+    "sceneHeight": 459.03125,
+    "noOverflow": true,
+    "errors": []
+  },
+  {
+    "host": "v1.5/site",
+    "sceneHeight": 326.6875,
+    "customerServiceCollapsed": true
+  },
+  {
+    "host": "v2/site",
+    "sceneHeight": 326.6875,
+    "customerServiceCollapsed": null
+  },
+  {
+    "host": "v2/site-mobile",
+    "sceneHeight": 326.6875,
+    "customerServiceCollapsed": null
+  },
+  {
+    "host": "v3/site",
+    "sceneHeight": 326.6875,
+    "customerServiceCollapsed": true
+  },
+  {
+    "host": "v3/site-mobile",
+    "sceneHeight": 326.6875,
+    "customerServiceCollapsed": true
+  },
+  {
+    "host": "v4/site",
+    "sceneHeight": 326.6875,
+    "customerServiceCollapsed": true
+  },
+  {
+    "host": "v5/site",
+    "sceneHeight": 326.6875,
+    "customerServiceCollapsed": true
+  },
+  {
+    "host": "v6/site",
+    "sceneHeight": 326.6875,
+    "customerServiceCollapsed": true
+  }
+]
