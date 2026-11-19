@@ -39,51 +39,51 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | A01 | stage-bg | 750×1000 | `assets/img/stage-bg.{png,webp,svg}` | c91aeeb | ☐ | P0 |
-| ☑ | A02 | stage-floor | 750×140 | `assets/img/stage-floor.{png,webp,svg}` | c91aeeb | ☐ | P0 |
-| ☑ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | c91aeeb | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
-| ☑ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | c91aeeb | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
-| ☑ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | c91aeeb | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
-| ☑ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | c91aeeb | ✗ 退回重做：硬邊平面楔形，要做有煙霧體積感的光束（見需求單「舞台燈光」） | P0 |
-| ☑ | A07 | wheel-frame | 680×680 | `assets/img/wheel-frame.{png,webp,svg}` | c91aeeb | ☐ | P0 |
-| ☑ | A08 | wheel-gloss | 600×600 | `assets/img/wheel-gloss.{png,webp,svg}` | c91aeeb | ☐ | P1 |
-| ☑ | A09 | pointer | 120×160 | `assets/img/pointer.{png,webp,svg}` | c91aeeb | ☐ | P0 |
-| ☑ | A10 | btn-go | 200×200 | `assets/img/btn-go.{png,webp,svg}` | c91aeeb | ☐ | P0 |
-| ☑ | A11 | modal-bg | 600×760 | `assets/img/modal-bg.{png,webp,svg}` | c91aeeb | ☐ | P1 |
-| ☑ | A12 | btn-primary | 400×110 | `assets/img/btn-primary.{png,webp,svg}` | c91aeeb | ☐ | P1 |
-| ☑ | A13 | icon-sound-on | 64×64 | `assets/img/icon-sound-on.{png,webp,svg}` | c91aeeb | ☐ | P2 |
-| ☑ | A14 | icon-sound-off | 64×64 | `assets/img/icon-sound-off.{png,webp,svg}` | c91aeeb | ☐ | P2 |
-| ☑ | A15 | icon-cash | 160×160 | `assets/img/icon-cash.{png,webp,svg}` | c91aeeb | ☐ | P2 |
-| ☑ | A16 | icon-coin | 160×160 | `assets/img/icon-coin.{png,webp,svg}` | c91aeeb | ☐ | P2 |
-| ☑ | A17 | icon-gift | 160×160 | `assets/img/icon-gift.{png,webp,svg}` | c91aeeb | ☐ | P2 |
-| ☑ | A18 | icon-spin | 160×160 | `assets/img/icon-spin.{png,webp,svg}` | c91aeeb | ☐ | P2 |
-| ☑ | A19 | icon-bonus | 160×160 | `assets/img/icon-bonus.{png,webp,svg}` | c91aeeb | ☐ | P2 |
-| ☑ | A20 | icon-points | 160×160 | `assets/img/icon-points.{png,webp,svg}` | c91aeeb | ☐ | P2 |
-| ☑ | A21 | icon-thanks | 160×160 | `assets/img/icon-thanks.{png,webp,svg}` | c91aeeb | ☐ | P2 |
-| ☑ | A22 | stage-bg-desktop | 1920×1000 | `alternatives/assets/img/stage-bg-desktop.{png,webp,svg}` | c91aeeb | 已停用（只用 H5 寬度），不再需要 | P0 |
-| ☑ | A23 | info-bg | 750×750 | `assets/img/info-bg.{png,webp,svg}` | c91aeeb | ☐ | P1 |
-| ☑ | A24 | period-badge | 480×64 | `assets/img/period-badge.{png,webp,svg}` | c91aeeb | ☐ | P1 |
-| ☑ | A25 | chances-badge | 360×88 | `assets/img/chances-badge.{png,webp,svg}` | c91aeeb | ☐ | P1 |
-| ☑ | A26 | card-frame | 120×120 | `assets/img/card-frame.{png,webp,svg}` | c91aeeb | ☐ | P1 |
-| ☑ | A27 | card-title | 400×72 | `assets/img/card-title.{png,webp,svg}` | c91aeeb | ☐ | P1 |
-| ☑ | A28 | footer-deco | 750×160 | `assets/img/footer-deco.{png,webp,svg}` | c91aeeb | ☐ | P2 |
-| ☑ | A29 | icon-share | 64×64 | `assets/img/icon-share.{png,webp,svg}` | c91aeeb | ☐ | P2 |
-| ☑ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | c91aeeb | 主標定稿後要換新主標重出 | P1 |
+| ☑ | A01 | stage-bg | 750×1000 | `assets/img/stage-bg.{png,webp,svg}` | d5de138 | ☐ | P0 |
+| ☑ | A02 | stage-floor | 750×140 | `assets/img/stage-floor.{png,webp,svg}` | d5de138 | ☐ | P0 |
+| ☑ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | d5de138 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | d5de138 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | d5de138 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | d5de138 | ✗ 退回重做：硬邊平面楔形，要做有煙霧體積感的光束（見需求單「舞台燈光」） | P0 |
+| ☑ | A07 | wheel-frame | 680×680 | `assets/img/wheel-frame.{png,webp,svg}` | d5de138 | ☐ | P0 |
+| ☑ | A08 | wheel-gloss | 600×600 | `assets/img/wheel-gloss.{png,webp,svg}` | d5de138 | ☐ | P1 |
+| ☑ | A09 | pointer | 120×160 | `assets/img/pointer.{png,webp,svg}` | d5de138 | ☐ | P0 |
+| ☑ | A10 | btn-go | 200×200 | `assets/img/btn-go.{png,webp,svg}` | d5de138 | ☐ | P0 |
+| ☑ | A11 | modal-bg | 600×760 | `assets/img/modal-bg.{png,webp,svg}` | d5de138 | ☐ | P1 |
+| ☑ | A12 | btn-primary | 400×110 | `assets/img/btn-primary.{png,webp,svg}` | d5de138 | ☐ | P1 |
+| ☑ | A13 | icon-sound-on | 64×64 | `alternatives/assets/img/icon-sound-on.webp` | d5de138 | ☐ | P2 |
+| ☑ | A14 | icon-sound-off | 64×64 | `alternatives/assets/img/icon-sound-off.webp` | d5de138 | ☐ | P2 |
+| ☑ | A15 | icon-cash | 160×160 | `assets/img/icon-cash.{png,webp,svg}` | d5de138 | ☐ | P2 |
+| ☑ | A16 | icon-coin | 160×160 | `assets/img/icon-coin.{png,webp,svg}` | d5de138 | ☐ | P2 |
+| ☑ | A17 | icon-gift | 160×160 | `assets/img/icon-gift.{png,webp,svg}` | d5de138 | ☐ | P2 |
+| ☑ | A18 | icon-spin | 160×160 | `assets/img/icon-spin.{png,webp,svg}` | d5de138 | ☐ | P2 |
+| ☑ | A19 | icon-bonus | 160×160 | `assets/img/icon-bonus.{png,webp,svg}` | d5de138 | ☐ | P2 |
+| ☑ | A20 | icon-points | 160×160 | `assets/img/icon-points.{png,webp,svg}` | d5de138 | ☐ | P2 |
+| ☑ | A21 | icon-thanks | 160×160 | `assets/img/icon-thanks.{png,webp,svg}` | d5de138 | ☐ | P2 |
+| ☑ | A22 | stage-bg-desktop | 1920×1000 | `alternatives/assets/img/stage-bg-desktop.{png,webp,svg}` | d5de138 | 已停用（只用 H5 寬度），不再需要 | P0 |
+| ☑ | A23 | info-bg | 750×750 | `assets/img/info-bg.{png,webp,svg}` | d5de138 | ☐ | P1 |
+| ☑ | A24 | period-badge | 480×64 | `assets/img/period-badge.{png,webp,svg}` | d5de138 | ☐ | P1 |
+| ☑ | A25 | chances-badge | 360×88 | `assets/img/chances-badge.{png,webp,svg}` | d5de138 | ☐ | P1 |
+| ☑ | A26 | card-frame | 120×120 | `assets/img/card-frame.{png,webp,svg}` | d5de138 | ☐ | P1 |
+| ☑ | A27 | card-title | 400×72 | `assets/img/card-title.{png,webp,svg}` | d5de138 | ☐ | P1 |
+| ☑ | A28 | footer-deco | 750×160 | `assets/img/footer-deco.{png,webp,svg}` | d5de138 | ☐ | P2 |
+| ☑ | A29 | icon-share | 64×64 | `alternatives/assets/img/icon-share.webp` | d5de138 | ☐ | P2 |
+| ☑ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | d5de138 | 主標定稿後要換新主標重出 | P1 |
 | ☐ | A31 | title 原始檔（PSD／AI／Figma） | 暫緩：目前忽略不做，不列待辦 | `source/title-source.md` | | ☐ | P3 |
-| ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | c91aeeb | ☐ | P0 |
-| ☑ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | c91aeeb | ☐ | P1 |
-| ☑ | A34 | light-pool | 600×220 | `assets/img/light-pool.{png,webp,svg}` | c91aeeb | ☐ | P0 |
-| ☑ | A35 | stage-vignette | 750×1000 | `assets/img/stage-vignette.{png,webp,svg}` | c91aeeb | ☐ | P0 |
-| ☑ | A37 | bulb-on | 48×48 | `assets/img/bulb-on.{png,webp,svg}` | c91aeeb | ☐ | P0 |
-| ☑ | A38 | bulb-off | 48×48 | `assets/img/bulb-off.{png,webp,svg}` | c91aeeb | ☐ | P0 |
-| ☑ | A39 | icon-rotate | 160×160 | `assets/img/icon-rotate.{png,webp,svg}` | c91aeeb | ☐ | P2 |
+| ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | d5de138 | ☐ | P0 |
+| ☑ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | d5de138 | ☐ | P1 |
+| ☑ | A34 | light-pool | 600×220 | `assets/img/light-pool.{png,webp,svg}` | d5de138 | ☐ | P0 |
+| ☑ | A35 | stage-vignette | 750×1000 | `assets/img/stage-vignette.{png,webp,svg}` | d5de138 | ☐ | P0 |
+| ☑ | A37 | bulb-on | 48×48 | `assets/img/bulb-on.{png,webp,svg}` | d5de138 | ☐ | P0 |
+| ☑ | A38 | bulb-off | 48×48 | `assets/img/bulb-off.{png,webp,svg}` | d5de138 | ☐ | P0 |
+| ☑ | A39 | icon-rotate | 160×160 | `assets/img/icon-rotate.{png,webp,svg}` | d5de138 | ☐ | P2 |
 | ☐ | A40 | icon-tap | 160×160 | `alternatives/assets/img/icon-tap.{png,webp,svg}` | | ☐ | P2 |
 
 ## B. 色票（1）
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | c91aeeb | ☐ | P0 |
+| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | d5de138 | ☐ | P0 |
 
 ## C. 吉祥物角色設定圖（1，第一階段）
 
@@ -131,7 +131,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | c91aeeb | ☐ | P2 |
+| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | d5de138 | ☐ | P2 |
 
 ## G. 音效（選配 5）
 
@@ -182,5 +182,5 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | L01 | 主題 loading 器物 | 480×480 | `assets/img/loading-emblem.webp` | c91aeeb | ☐ | P1 |
-| ☑ | L02 | Loading 原稿 | （人工） | `source/loading/emblem-original.png` | c91aeeb | ☐ | P1 |
+| ☑ | L01 | 主題 loading 器物 | 480×480 | `assets/img/loading-emblem.webp` | d5de138 | ☐ | P1 |
+| ☑ | L02 | Loading 原稿 | （人工） | `source/loading/emblem-original.png` | d5de138 | ☐ | P1 |

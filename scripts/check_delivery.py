@@ -199,7 +199,7 @@ def check_file(rel, spec):
     p = os.path.join(ROOT, found[0])
     if hashlib.sha256(open(p, 'rb').read()).hexdigest()[:16] in PLACEHOLDERS:
         return False, found[0] + ' 仍是 mock 佔位圖，尚未換成正式素材'
-    if p.endswith(('.mp3', '.mp4')):
+    if p.endswith(('.mp3', '.mp4', '.wav', '.ogg', '.m4a', '.flac')):
         return os.path.getsize(p) > 0, found[0] + '（長度／內容需人工確認）'
     got = image_size(p)
     if size and got != size:
@@ -231,7 +231,7 @@ def check_file(rel, spec):
             return True, '%s %d 幀，%dms，頭尾一致' % (found[0], frames, total_ms)
         # 所有動作同長度，程式才能在一輪結束（回到基準幀）時切換；長度要等於 config.mascot.loopMs
         if abs(total_ms - MASCOT_LOOP_MS) > 20:
-            return False, '%s 一輪 %dms，所有動作必須是 %dms（48 幀）' % (found[0], total_ms, MASCOT_LOOP_MS)
+            return False, '%s 一輪 %dms，所有動作必須是 %dms（依目前角色幀率規格）' % (found[0], total_ms, MASCOT_LOOP_MS)
         # 任何一幀的角色（含耳朵、手、跳起、影子、特效）都不能碰到畫布邊緣，否則會被裁切
         if union and min(union[0], union[1], w - union[2], h - union[3]) < EDGE_MARGIN:
             return False, '%s 角色或影子貼到畫布邊緣（全部幀的外框 %s，四邊至少要留 %dpx），會被裁切' % (found[0], union, EDGE_MARGIN)
