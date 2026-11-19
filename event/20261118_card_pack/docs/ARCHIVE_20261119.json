@@ -133,6 +133,10 @@
     {
       "from": "source/audio/tear.wav",
       "to": "alternatives/source/audio/pre-rarity-refresh/tear.wav"
+    },
+    {
+      "from": "assets/audio/tear.wav",
+      "to": "alternatives/assets/audio/rejected-opening/BUTTON3017.wav"
     }
   ]
 }
