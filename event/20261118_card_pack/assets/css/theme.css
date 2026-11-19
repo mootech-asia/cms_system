@@ -166,3 +166,12 @@
 .ev-reveal-rays { width: min(150%, 90svh); opacity: .85; animation: ev-celestial-aura 12s ease-in-out infinite alternate; }
 .ev-reveal-glow { opacity: .18; }
 @keyframes ev-celestial-aura { from { transform: rotate(-5deg) scale(.97); opacity: .65; } to { transform: rotate(5deg) scale(1.04); opacity: .9; } }
+
+/* Isolate navigation from the bright pack artwork without moving the controls. */
+body[data-event-controls="cosmic"] :is(#btnPrev,#btnNext) {
+  background: radial-gradient(ellipse, var(--ev-color-backdrop) 28%, transparent 72%);
+}
+body[data-event-controls="cosmic"] :is(#btnPrev,#btnNext)::before {
+  border-radius: 10px;
+  box-shadow: 0 0 0 2px var(--ev-color-backdrop), 0 0 0 3px var(--ev-color-surface-2), 0 3px 10px 4px var(--ev-color-backdrop);
+}

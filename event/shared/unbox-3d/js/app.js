@@ -305,7 +305,7 @@ function press() {
 function choose(autoOpen) {
   if (!valid) { Sound.play('error'); showToast(t('empty.prizes')); return; }
   if (player.chances <= 0) { Sound.play('error'); showToast(t('toast.noChances')); return; }
-  if (cfg.type !== 'blind-box') Sound.play('select');
+  Sound.play('select');
   btnAction.classList.add('is-pressing');
   setTimeout(function () { btnAction.classList.remove('is-pressing'); }, 140);
   if (scene && cfg.type === 'card-pack') {
