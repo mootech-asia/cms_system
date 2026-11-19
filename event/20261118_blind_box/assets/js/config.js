@@ -26,7 +26,7 @@ window.EVENT_CONFIG = {
   },
   shape: 'chest',
 
-  /* 換皮：skins.<名稱> = { css: '色票覆寫檔', images: { 只列跟預設不同的圖片槽 }, sounds: { hover: '../20261111_survival_spin/assets/audio/hover.mp3',}, strings: {} }，
+  /* 換皮：skins.<名稱> = { css: '色票覆寫檔', images: { 只列跟預設不同的圖片槽 }, sounds: {}, strings: {} }，
      網址 ?skin=<名稱> 臨時切換，skin 決定預設皮。交付路徑以 skins/<名稱>/ 為基準。 */
   skin: 'default',
   skins: {},

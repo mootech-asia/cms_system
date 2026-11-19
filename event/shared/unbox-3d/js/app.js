@@ -344,7 +344,8 @@ function open(gesture) {
   setState('loading');
   var selection = scene ? scene.selected() : 0;
   var secretDraw = !!(secretCycle && secretCycle.due());
-  Store.resolve(content, { type: cfg.type, selection: selection, count: secretDraw ? 3 : perOpen, edition:secretDraw?'secret':'standard', drawNumber:secretCycle?secretCycle.total()+1:undefined }).then(function (list) {
+  Promise.all([Store.resolve(content, { type: cfg.type, selection: selection, count: secretDraw ? 3 : perOpen, edition:secretDraw?'secret':'standard', drawNumber:secretCycle?secretCycle.total()+1:undefined }), Sound.prepare('tear')]).then(function (results) {
+    var list = results[0];
     var edition = secretCycle ? secretCycle.commit() : {};
     rewards = list.map(function (r) { return Object.assign({},r,edition); });
     var stamp = now();

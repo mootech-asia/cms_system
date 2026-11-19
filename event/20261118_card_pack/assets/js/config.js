@@ -24,7 +24,7 @@ window.EVENT_CONFIG = {
   carouselCount: 20,
   carouselCameraY: 3.05,
   secretEvery: 50,
-  tearSoundMs: 1547,
+  tearSoundMs: 800,
   images: {
     secretPack: 'assets/img/3d/secret-pack.webp?v=20261118-vortex1',
     secretSide: 'assets/img/3d/secret-side.webp?v=20261118-vortex1',
@@ -81,7 +81,7 @@ window.EVENT_CONFIG = {
   soundLevels: { hover: 0.7, bgm: 0.35, bgmDuck: 0.1, empty: 0.85, click: 0.6, move: 0.45, select: 0.8, tear: 1, flip: 0.9, reveal: 1.2, 'reveal-common': 1, 'reveal-rare': 1, 'reveal-epic': 1, 'reveal-legendary': 1, reward: 1, collect: 1, error: 0.8 },
   sounds: { empty: 'assets/audio/empty.mp3?v=20261119-seal1',
     hover: '../20261111_survival_spin/assets/audio/hover.mp3',
-    secret: 'assets/audio/secret.mp3?v=20261119-seal1', click: 'assets/audio/click.mp3?v=20261119-seal1', move: 'assets/audio/move.mp3?v=20261119-seal1', tear: 'assets/audio/tear.wav?v=20261119-rarity2', flip: 'assets/audio/flip.mp3?v=20261119-seal1', reveal: '', reward: 'assets/audio/reward.mp3?v=20261119-seal1', bgm: 'assets/audio/bgm.wav?v=20261119-upload13671650', select: 'assets/audio/select.mp3?v=20261119-seal1', 'reveal-common': 'assets/audio/reveal-basic.wav?v=20261119-rarity2', 'reveal-rare': 'assets/audio/reveal-basic.wav?v=20261119-rarity2', 'reveal-epic': 'assets/audio/reveal-3026.wav?v=20261119-user1', 'reveal-legendary': 'assets/audio/reveal-3026.wav?v=20261119-user1', collect: 'assets/audio/collect.mp3?v=20261119-seal1', error: 'assets/audio/error.mp3?v=20261119-seal1' },
+    secret: 'assets/audio/secret.mp3?v=20261119-seal1', click: 'assets/audio/click.mp3?v=20261119-seal1', move: 'assets/audio/move.mp3?v=20261119-seal1', tear: 'assets/audio/tear.mp3?v=20261119-restored-tear', flip: 'assets/audio/flip.mp3?v=20261119-seal1', reveal: '', reward: 'assets/audio/reward.mp3?v=20261119-seal1', bgm: 'assets/audio/bgm.wav?v=20261119-upload13671650', select: 'assets/audio/select.mp3?v=20261119-seal1', 'reveal-common': 'assets/audio/reveal-basic.wav?v=20261119-rarity2', 'reveal-rare': 'assets/audio/reveal-basic.wav?v=20261119-rarity2', 'reveal-epic': 'assets/audio/reveal-3026.wav?v=20261119-user1', 'reveal-legendary': 'assets/audio/reveal-3026.wav?v=20261119-user1', collect: 'assets/audio/collect.mp3?v=20261119-seal1', error: 'assets/audio/error.mp3?v=20261119-seal1' },
 
   /* 換圖標籤（mock）：檔名與交付尺寸 */
   assetSpecs: {

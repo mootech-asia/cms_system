@@ -27,3 +27,5 @@ BGM override: user-uploaded 13.mp3 is copied byte-for-byte to assets/audio/bgm.m
 2026-11-19 rarity refresh: tear.wav uses Dropbox seal_online/sound/BUTTON3017.wav unchanged (single continuous envelope). Common/Rare use itemget.wav unchanged as reveal-basic.wav; Epic/Legendary retain their existing clips. Old runtime files moved to alternatives/assets/audio/pre-rarity-refresh. Candidate timbre still requires user listening; waveform structure and playback timing were checked.
 
 Current BGM: user-uploaded 13671650.wav copied byte-for-byte as assets/audio/bgm.wav; 13.mp3 archived under alternatives/assets/audio/pre-rarity-refresh/bgm.mp3.
+
+Rejected opening selection: BUTTON3017.wav moved to alternatives/assets/audio/rejected-opening/. Active tear.mp3 restored byte-for-byte from pre-rarity-refresh; tear timing restored to 800ms. Configured effects now wait for their source instead of substituting synthesis; opening waits for its audio before animation.

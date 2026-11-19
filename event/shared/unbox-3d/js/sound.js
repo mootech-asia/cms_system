@@ -21,9 +21,11 @@ window.EventSound = (function () {
   var lastHover = -Infinity;
   var hoverSource = null;
   var activeSources = new Set();
+  var effectEpoch = 0;
   function track(source) { activeSources.add(source); source.onended = function () { activeSources.delete(source); if (hoverSource === source) hoverSource = null; }; }
 
   function stopEffects() {
+    effectEpoch += 1;
     activeSources.forEach(function (source) { try { source.stop(); } catch (_) {} });
     activeSources.clear();
   }
@@ -150,16 +152,24 @@ window.EventSound = (function () {
   };
   var RARITY = ['common', 'rare', 'epic', 'legendary'];
 
+  function prepare(name) {
+    if (!enabled || !cfg.sounds[name]) return Promise.resolve();
+    loadFile(name);
+    var url = new URL(cfg.sounds[name], document.baseURI).href;
+    return (bufferLoads[url] || Promise.resolve()).catch(function () {});
+  }
+
   function play(name, arg) {
     if (!enabled) return;
-    if (name === 'reveal' && cfg.sounds['reveal-' + RARITY[arg || 0]]) {
-      var own = 'reveal-' + RARITY[arg || 0];
-      loadFile(own);
-      if (playFile(own, 1)) return;
-    }
-    if (cfg.sounds[name]) {
-      loadFile(name);
-      if (playFile(name, name === 'reveal' ? 1 + (arg || 0) * 0.06 : name === 'tear' && cfg.tearSoundMs && arg > 0 ? cfg.tearSoundMs/arg : 1)) return;
+    var own = name === 'reveal' && cfg.sounds['reveal-' + RARITY[arg || 0]] ? 'reveal-' + RARITY[arg || 0] : name;
+    if (cfg.sounds[own]) {
+      var rate = own !== name ? 1 : name === 'reveal' ? 1 + (arg || 0) * 0.06 : name === 'tear' && cfg.tearSoundMs && arg > 0 ? cfg.tearSoundMs / arg : 1;
+      if (playFile(own, rate)) return;
+      var epoch = effectEpoch;
+      prepare(own).then(function () {
+        if (enabled && !document.hidden && epoch === effectEpoch) playFile(own, rate);
+      });
+      return;
     }
     if (SYNTH[name]) SYNTH[name](arg);
   }
@@ -196,6 +206,7 @@ window.EventSound = (function () {
 
   return {
     play: play,
+    prepare: prepare,
     stopEffects: stopEffects,
     hover: hover,
     duck: function (on) { ducked = on; if (bgmEl) bgmEl.volume = bgmVolume(); },
