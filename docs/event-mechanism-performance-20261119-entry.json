@@ -1,0 +1,46 @@
+{
+  "conditions": {
+    "viewport": "390x844",
+    "cpuSlowdown": 6,
+    "latencyMs": 150,
+    "downloadBitsPerSecond": 1600000,
+    "uploadBitsPerSecond": 750000,
+    "coldCache": true,
+    "reducedMotion": true,
+    "note": "Measures loading-mask dismissal, not proof that every background asset has finished downloading; browser simulation is not a device guarantee."
+  },
+  "rows": [
+    {
+      "domReadyMs": 2491,
+      "loadingMaskClearedMs": 4697,
+      "resourceBytesAtMaskClear": 653617,
+      "resourcesAtMaskClear": 47,
+      "taskMsAtMaskClear": 2231,
+      "event": "20261111_lucky_wheel"
+    },
+    {
+      "domReadyMs": 2213,
+      "loadingMaskClearedMs": 3871,
+      "resourceBytesAtMaskClear": 566809,
+      "resourcesAtMaskClear": 48,
+      "taskMsAtMaskClear": 1632,
+      "event": "20261111_survival_spin"
+    },
+    {
+      "domReadyMs": 6322,
+      "loadingMaskClearedMs": 16731,
+      "resourceBytesAtMaskClear": 2457643,
+      "resourcesAtMaskClear": 45,
+      "taskMsAtMaskClear": 3002,
+      "event": "20261118_card_pack"
+    },
+    {
+      "domReadyMs": 6303,
+      "loadingMaskClearedMs": 14635,
+      "resourceBytesAtMaskClear": 2404164,
+      "resourcesAtMaskClear": 45,
+      "taskMsAtMaskClear": 4363,
+      "event": "20261118_blind_box"
+    }
+  ]
+}

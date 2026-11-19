@@ -3,12 +3,12 @@
 body[data-event-controls="cosmic"] { --ev-control-tint: hue-rotate(305deg); }
 body[data-event-controls="desert"] { --ev-control-tint: hue-rotate(175deg); }
 body[data-event-controls="gold"] { --ev-control-tint: hue-rotate(85deg); }
-body :is(#btnShare,#btnSound,#btnPrev,#btnNext) {
+body :is(#btnShare,#btnSound,#btnPrev,#btnNext,#btnBackTop) {
   border: 0; padding: 0; border-radius: 12px;
   background: none; box-shadow: none; isolation: isolate;
 }
-body :is(#btnShare,#btnSound,#btnPrev,#btnNext) > :is(img,svg) { display: none; }
-body :is(#btnShare,#btnSound,#btnPrev,#btnNext)::before {
+body :is(#btnShare,#btnSound,#btnPrev,#btnNext,#btnBackTop) > :is(img,svg) { display: none; }
+body :is(#btnShare,#btnSound,#btnPrev,#btnNext,#btnBackTop)::before {
   content: ""; display: block; position: absolute; inset: 50% auto auto 50%;
   width: var(--ev-control-size); height: var(--ev-control-size); translate: -50% -50%;
   border: 0; border-radius: 0; opacity: 1; pointer-events: none;
@@ -19,9 +19,9 @@ body :is(#btnShare,#btnSound,#btnPrev,#btnNext)::before {
 body #btnShare { --ev-control-art: url("img/icon-share.webp"); }
 body #btnSound { --ev-control-art: url("img/icon-sound-on.webp"); }
 body #btnSound[aria-pressed="false"] { --ev-control-art: url("img/icon-sound-off.webp"); }
-body :is(#btnPrev,#btnNext) { --ev-control-art: url("img/arrow-frame.webp"); }
+body :is(#btnPrev,#btnNext,#btnBackTop) { --ev-control-art: url("img/arrow-frame.webp"); }
 body :is(#btnShare,#btnSound)::after { display: none; }
-body :is(#btnPrev,#btnNext)::after {
+body :is(#btnPrev,#btnNext,#btnBackTop)::after {
   content: ""; display: block; position: absolute; width: calc(var(--ev-control-size) * .26); height: calc(var(--ev-control-size) * .26);
   top: 50%; left: calc(50% - var(--ev-control-size) * .04); border: 0; border-top: calc(var(--ev-control-size) * .093) solid var(--ev-control-ink);
   border-right: calc(var(--ev-control-size) * .093) solid var(--ev-control-ink); border-radius: 2px;
@@ -30,17 +30,20 @@ body :is(#btnPrev,#btnNext)::after {
 }
 body #btnPrev::after { left: calc(50% + var(--ev-control-size) * .04); transform: translate(-50%,-50%) rotate(-135deg); }
 @media (hover: hover) {
-  body :is(#btnShare,#btnSound,#btnPrev,#btnNext):hover::before {
+  body :is(#btnShare,#btnSound,#btnPrev,#btnNext,#btnBackTop):hover::before {
     opacity: 1; filter: var(--ev-control-tint) brightness(1.14); scale: 1.04;
   }
 }
-body :is(#btnShare,#btnSound,#btnPrev,#btnNext):active::before { scale: .94; }
-body :is(#btnShare,#btnSound,#btnPrev,#btnNext):focus-visible { outline: 2px solid var(--ev-control-ink); outline-offset: 2px; }
+body :is(#btnShare,#btnSound,#btnPrev,#btnNext,#btnBackTop):active::before { scale: .94; }
+body :is(#btnShare,#btnSound,#btnPrev,#btnNext,#btnBackTop):focus-visible { outline: 2px solid var(--ev-control-ink); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) {
-  body :is(#btnShare,#btnSound,#btnPrev,#btnNext)::before { transition: none; }
+  body :is(#btnShare,#btnSound,#btnPrev,#btnNext,#btnBackTop)::before { transition: none; }
 }
 body :is(#btnShare,#btnSound) { position: relative; }
 
 body .ev-topbar { align-items: flex-start; padding: 8px 16px 0; gap: 12px; }
 body .ev-sound-wrap { display: flex; gap: 8px; }
 body :is(#btnShare,#btnSound) { width: var(--ev-control-size); height: var(--ev-control-size); flex: 0 0 var(--ev-control-size); }
+
+body #btnBackTop { position:fixed; z-index:20; right:max(12px, calc((100vw - var(--ev-page-max, 480px)) / 2 + 12px)); bottom:calc(16px + env(safe-area-inset-bottom, 0px)); width:44px; height:44px; cursor:pointer; --ev-control-art:url("img/arrow-frame.webp"); }
+body #btnBackTop::after { left:50%; top:calc(50% + var(--ev-control-size) * .04); transform:translate(-50%,-50%) rotate(-45deg); }

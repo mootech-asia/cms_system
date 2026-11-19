@@ -16,7 +16,11 @@ await p.goto(base+'/'+route);const frame=p.frameLocator('#luckyWheelFrame');awai
 assert.equal(await frame.locator('.ev-record').count(),10);
 await frame.locator('[data-records-page="next"]').click();assert.equal(await frame.locator('.ev-record').count(),10);
 await frame.locator('[data-records-page="next"]').click();assert.equal(await frame.locator('.ev-record').count(),3);
-console.log('PASS 10/10/3 embedded records',route);
+const top=frame.locator('#btnBackTop');await top.waitFor({state:'visible'});
+await top.click();
+const inner=p.frames().find(f=>f.url().includes('/event/'));
+await inner.waitForFunction(()=>scrollY===0);await top.waitFor({state:'hidden'});
+console.log('PASS 10/10/3 records and Back to top',route);
 }finally{await p.close()}
 }));
 }finally{await b.close()}})().catch(e=>{console.error(e);process.exitCode=1});

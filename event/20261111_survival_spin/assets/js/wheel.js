@@ -22,6 +22,7 @@
   var toast = $('toast');
   var mascot = $('mascot');
 
+  var encodePlayer = window.createPlayerEncoder();
   var player = loadPlayer();
   var recordPager = window.createRecordPager($('recordList'), t, renderRecords);
   var rotation = 0;
@@ -83,7 +84,7 @@
   }
 
   function savePlayer() {
-    try { localStorage.setItem(PLAYER_KEY, JSON.stringify(player)); } catch (e) { /* 同上 */ }
+    try { localStorage.setItem(PLAYER_KEY, encodePlayer(player)); } catch (e) { /* 同上 */ }
   }
 
   // 版面元件圖（徽章、卡片框…）以 CSS 變數 --ev-img-<key> 提供給 event.css；沒設定的 key 走 CSS 預設樣式
@@ -191,14 +192,15 @@
 
   function renderRecords() {
     var list = $('recordList');
-    list.querySelectorAll('.ev-record').forEach(function (li) { li.remove(); });
+    var fragment = document.createDocumentFragment();
     $('recordEmpty').hidden = player.records.length > 0;
-    recordPager.slice(player.records.slice().reverse()).forEach(function (r) {
+    recordPager.slice(player.records).forEach(function (r) {
       var li = document.createElement('li');
       li.className = 'ev-record';
       li.innerHTML = '<span>' + esc(pick(r.name)) + '</span><time>' + esc(r.time) + '</time>';
-      list.appendChild(li);
+      fragment.appendChild(li);
     });
+    list.replaceChildren($('recordEmpty'), fragment);
   }
 
   function renderChances() {
@@ -363,8 +365,7 @@
     savePlayer();
     renderChances();
     btnSpin.setAttribute('aria-busy', 'true');
-    setStage('spinning');
-    setMascot('spinning');
+    if (!autoFast) { setStage('spinning'); setMascot('spinning'); }
     if (!autoFast) Sound.drumroll(duration);
 
     disc.style.transitionDuration = duration + 'ms';
@@ -378,14 +379,13 @@
       disc.style.transitionDuration = '0ms';
       disc.style.transform = 'rotate(' + rotation + 'deg)';
       var prize = prizes[idx];
-      setStage('result');
-      setMascot(prize.isLose ? 'lose' : 'result');
+      if (!autoFast) { setStage('result'); setMascot(prize.isLose ? 'lose' : 'result'); }
       if (!autoFast) Sound.finale(prize.isLose);
       if (prize.isLose) player.chances += 1;
       player.records.push({ name: prize.name, time: now() });
       savePlayer();
       renderChances();
-      renderRecords();
+      if (!autoFast) renderRecords();
       resultFinish = function () {
         if (!resultFinish) return;
         resultFinish = null;
@@ -400,10 +400,12 @@
             return;
           }
         }
+        if (autoFast) { renderRecords(); setStage('result'); setMascot(prize.isLose ? 'lose' : 'result'); }
         openModal(prize);
         renderAutoControls();
       };
-      resultTimer = setTimeout(resultFinish, autoFast ? 0 : autoResults ? 180 : cfg.resultHoldMs);
+      if (autoFast) resultFinish();
+      else resultTimer = setTimeout(resultFinish, autoResults ? 180 : cfg.resultHoldMs);
     };
     spinTimer = setTimeout(spinFinish, duration ? duration + 50 : 0);
   }

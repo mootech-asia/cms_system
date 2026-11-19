@@ -19,6 +19,8 @@ window.EventI18n = (function () {
   var URL_LOCALE = null;
 
   var STRINGS = {
+    'navigation.top': { en: 'Back to top', ko: '맨 위로', th: 'กลับด้านบน', zh: '回到頂部' },
+
     'records.previous': { en: 'Previous', ko: '이전', th: 'ก่อนหน้า', zh: '上一頁' },
     'records.next': { en: 'Next', ko: '다음', th: 'ถัดไป', zh: '下一頁' },
 

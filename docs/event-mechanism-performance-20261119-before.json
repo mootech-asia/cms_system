@@ -1,0 +1,55 @@
+{
+  "conditions": {
+    "viewport": "390x844",
+    "cpuSlowdown": 6,
+    "history": 10000,
+    "network": "local HTTP; no network throttling",
+    "note": "Audio node retention measured after 12 scheduled rolls, stop and forced GC; not a real-device guarantee."
+  },
+  "rows": [
+    {
+      "event": "20261111_lucky_wheel",
+      "paging20Ms": 261,
+      "pagingTaskMs": 265,
+      "reversedElements": 200000,
+      "skipBatchMs": 3302,
+      "recordAdds": 100,
+      "recordRemoves": 100,
+      "totalRecords": 10010,
+      "skipTaskMs": 3381
+    },
+    {
+      "event": "20261111_survival_spin",
+      "paging20Ms": 218,
+      "pagingTaskMs": 305,
+      "reversedElements": 200000,
+      "skipBatchMs": 2886,
+      "recordAdds": 100,
+      "recordRemoves": 100,
+      "totalRecords": 10010,
+      "skipTaskMs": 2894
+    },
+    {
+      "event": "20261118_card_pack",
+      "paging20Ms": 443,
+      "pagingTaskMs": 461,
+      "reversedElements": 200000
+    },
+    {
+      "event": "20261118_blind_box",
+      "paging20Ms": 448,
+      "pagingTaskMs": 461,
+      "reversedElements": 200000
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "audioNodesCreated": 600,
+      "audioNodesRetained": 600
+    },
+    {
+      "event": "20261111_survival_spin",
+      "audioNodesCreated": 288,
+      "audioNodesRetained": 288
+    }
+  ]
+}

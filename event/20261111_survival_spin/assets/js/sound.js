@@ -19,7 +19,7 @@ window.EventSound = (function () {
   var bgmBus = null;
   var enabled = true;
   var clickUntil = 0;
-  var playing = [];
+  var playing = new Set();
   var BGM_LEVEL = 0.22;
   var BGM_DUCK = 0.06;
 
@@ -72,7 +72,13 @@ window.EventSound = (function () {
     return profiles[cfg.activeSkin] || profiles.broadway;
   }
 
-  function track(node) { playing.push(node); return node; }
+  function track(node) {
+    playing.add(node);
+    function release() { playing.delete(node); }
+    node.addEventListener('ended', release, {once:true});
+    node.addEventListener('error', release, {once:true});
+    return node;
+  }
 
   /* ---------- 共用合成元件（out 省略時進音效匯流排） ---------- */
 
@@ -212,7 +218,7 @@ window.EventSound = (function () {
   function playFile(src, loop) {
     var a = new Audio(src);
     if (loop) a.loop = true;
-    playing.push(a);
+    track(a);
     a.play().catch(function () { /* 被瀏覽器擋下時靜默略過 */ });
     return a;
   }
@@ -540,6 +546,7 @@ window.EventSound = (function () {
   function stopSpin() {
     spinNodes.forEach(function (node) {
       try { if (node.pause) node.pause(); else node.stop(); } catch (e) { /* Already ended. */ }
+      playing.delete(node);
     });
     spinNodes = [];
   }
@@ -548,10 +555,10 @@ window.EventSound = (function () {
     if (!enabled) return;
     bgmDuck(true);
     stopSpin();
-    var first = playing.length;
+    var before = new Set(playing);
     if (cfg.sounds.drumroll) playFile(cfg.sounds.drumroll);
     else if (ensure()) profile().drumroll(ms);
-    spinNodes = playing.slice(first);
+    spinNodes = Array.from(playing).filter(function (node) { return !before.has(node); });
   }
 
   function finale(isLose) {
@@ -583,7 +590,7 @@ window.EventSound = (function () {
     playing.forEach(function (n) {
       try { if (n.pause) n.pause(); else n.stop(); } catch (e) { /* 已停止的節點 */ }
     });
-    playing = [];
+    playing.clear();
   }
 
   function setEnabled(v) {

@@ -28,7 +28,8 @@
         previous.disabled = page === 0;
         next.disabled = page === pages - 1;
         label.textContent = (page + 1) + ' / ' + pages;
-        return records.slice(page * 10, (page + 1) * 10);
+        var end = count - page * 10;
+        return records.slice(Math.max(0, end - 10), end).reverse();
       }
     };
   };

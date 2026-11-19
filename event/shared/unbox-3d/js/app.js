@@ -76,6 +76,7 @@ function esc(s) {
 }
 
 // ---------- 玩家狀態（mock；正式由後台回傳次數與紀錄） ----------
+var encodePlayer = window.createPlayerEncoder();
 var player = loadPlayer();
 var recordPager = window.createRecordPager($('recordList'), t, renderRecords);
 var recordedDraws = player.records.reduce(function (total, record) {
@@ -153,7 +154,7 @@ function consumeSlot(id, retry) {
   }
 }
 function savePlayer() {
-  try { localStorage.setItem(PLAYER_KEY, JSON.stringify(player)); } catch (e) { /* 同上 */ }
+  try { localStorage.setItem(PLAYER_KEY, encodePlayer(player)); } catch (e) { /* 同上 */ }
 }
 
 // ---------- 圖片槽 ----------
@@ -294,19 +295,20 @@ function renderTicker() {
 
 function renderRecords() {
   var list = $('recordList');
-  list.querySelectorAll('.ev-record').forEach(function (li) { li.remove(); });
+  var fragment = document.createDocumentFragment();
   $('recordEmpty').hidden = player.records.length > 0;
-  recordPager.slice(player.records.slice().reverse()).forEach(function (r) {
+  recordPager.slice(player.records).forEach(function (r) {
     var li = document.createElement('li');
     li.className = 'ev-record';
-    var matchingPrize = content.prizes.find(function (p) { return pick(p.name) === pick(r.name); });
+    var matchingPrize = !r.icon && content.prizes.find(function (p) { return pick(p.name) === pick(r.name); });
     var icon = r.icon || (matchingPrize && matchingPrize.icon);
     li.setAttribute('data-rarity', rarityOf(r));
     li.innerHTML = '<span class="ev-record-art" aria-hidden="true">' + (icon ? '<img src="' + esc(icon) + '" alt="" loading="lazy" />' : '<span>✦</span>') + '</span>' +
       '<span class="ev-record-detail"><span class="ev-record-name">' + esc(pick(r.name)) + '</span><time>' + esc(r.time) + '</time></span>' +
       (r.retry ? '' : '<span class="ev-rarity-tag" data-rarity="' + esc(rarityOf(r)) + '">' + esc(t(Store.isEmpty(r) ? 'result.emptyTag' : r.edition === 'secret' ? 'edition.secret' : 'rarity.' + rarityOf(r))) + '</span>');
-    list.appendChild(li);
+    fragment.appendChild(li);
   });
+  list.replaceChildren($('recordEmpty'), fragment);
 }
 
 function renderChances() {
@@ -319,23 +321,42 @@ var ACTION_TEXT = { select: 'action.choose', focusing: 'action.choose', ready: '
 var STATUS_TEXT = { select: 'status.select', focusing: 'status.focusing', ready: 'status.ready', loading: 'status.loading', opening: 'status.opening' };
 var statusOverride = null;
 var pickHintTimer = null;
+var pickHintVisible = true;
+var pickHintWanted = false;
+var pickHintPersistent = false;
 
-function renderPickHint(show, persistent) {
+function syncPickHintCycle() {
   var hint = $('pickHint');
-  if (!show || persistent) {
+  if (!pickHintWanted || pickHintPersistent) {
     clearInterval(pickHintTimer);
     pickHintTimer = null;
-    hint.hidden = !show;
+    hint.hidden = !pickHintWanted;
     hint.classList.remove('is-faded');
     hint.removeAttribute('aria-hidden');
+  } else if (document.hidden || !pickHintVisible) {
+    clearInterval(pickHintTimer);
+    pickHintTimer = null;
   } else if (pickHintTimer === null) {
     hint.hidden = false;
+    hint.classList.remove('is-faded');
+    hint.removeAttribute('aria-hidden');
     pickHintTimer = setInterval(function () {
       var faded = hint.classList.toggle('is-faded');
       hint.setAttribute('aria-hidden', String(faded));
     }, 10000);
   }
 }
+
+function renderPickHint(show, persistent) {
+  pickHintWanted = show;
+  pickHintPersistent = !!persistent;
+  syncPickHintCycle();
+}
+document.addEventListener('visibilitychange', syncPickHintCycle);
+new IntersectionObserver(function (entries) {
+  pickHintVisible = entries[0].isIntersecting;
+  syncPickHintCycle();
+}).observe(sceneEl);
 
 function renderState() {
   stage.setAttribute('data-state', state);
@@ -509,7 +530,8 @@ async function openSlots(slots, duration, batch) {
   Sound.play('tear', duration);
   stage.classList.add('is-opening');
   if (scene) {
-    var deadline = batch ? setTimeout(function () { scene.skip(); }, duration + 1400) : null;
+    // Off-screen rendering may pause; settlement must still reach the result.
+    var deadline = setTimeout(function () { scene.skip(); }, duration + 1400);
     await (batch ? scene.openBatch(opened, duration) : scene.open(duration));
     clearTimeout(deadline);
   } else await showFlatOpening(opened, batch, duration);
