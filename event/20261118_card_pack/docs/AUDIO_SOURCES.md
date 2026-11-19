@@ -30,4 +30,4 @@ Current BGM: user-uploaded 13671650.wav copied byte-for-byte as assets/audio/bgm
 
 Rejected opening selection: BUTTON3017.wav moved to alternatives/assets/audio/rejected-opening/. Active tear.mp3 restored byte-for-byte from pre-rarity-refresh; tear timing restored to 800ms. Configured effects now wait for their source instead of substituting synthesis; opening waits for its audio before animation.
 
-Active tear: user screen recording, source/audio/tear-recording.mov. AAC track copied without re-encoding to assets/audio/tear.m4a, original pitch/playback speed retained. Previous tear.mp3 remains archived in pre-rarity-refresh.
+Active tear: user recording ScreenRecording_11-19-2026 15-23-02_1.mov, retained as source/audio/tear-recording.mov. Original 1.60-second AAC track copied unchanged to assets/audio/tear.m4a (24,586 bytes). Previous recording and extracted track archived under pre-corrected-recording.

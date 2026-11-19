@@ -137,6 +137,14 @@
     {
       "from": "assets/audio/tear.wav",
       "to": "alternatives/assets/audio/rejected-opening/BUTTON3017.wav"
+    },
+    {
+      "from": "assets/audio/tear.m4a",
+      "to": "alternatives/assets/audio/pre-corrected-recording/tear.m4a"
+    },
+    {
+      "from": "source/audio/tear-recording.mov",
+      "to": "alternatives/source/audio/pre-corrected-recording/tear-recording.mov"
     }
   ]
 }
