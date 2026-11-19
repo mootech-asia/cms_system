@@ -254,7 +254,7 @@ function renderRecords() {
     li.setAttribute('data-rarity', rarityOf(r));
     li.innerHTML = '<span class="ev-record-art" aria-hidden="true">' + (icon ? '<img src="' + esc(icon) + '" alt="" loading="lazy" />' : '<span>✦</span>') + '</span>' +
       '<span class="ev-record-detail"><span class="ev-record-name">' + esc(pick(r.name)) + '</span><time>' + esc(r.time) + '</time></span>' +
-      '<span class="ev-rarity-tag" data-rarity="' + esc(rarityOf(r)) + '">' + esc(t(Store.isEmpty(r) ? 'result.emptyTag' : r.edition === 'secret' ? 'edition.secret' : 'rarity.' + rarityOf(r))) + '</span>';
+      (r.retry ? '' : '<span class="ev-rarity-tag" data-rarity="' + esc(rarityOf(r)) + '">' + esc(t(Store.isEmpty(r) ? 'result.emptyTag' : r.edition === 'secret' ? 'edition.secret' : 'rarity.' + rarityOf(r))) + '</span>');
     list.appendChild(li);
   });
 }
@@ -368,13 +368,17 @@ function open(gesture) {
     var list = results[0];
     var edition = secretCycle ? secretCycle.commit() : {};
     rewards = list.map(function (r) { return Object.assign({},r,edition); });
-    if (cfg.retryEmpty && rewards.length && rewards.every(Store.isEmpty)) {
+    var retries = cfg.retryEmpty ? rewards.filter(Store.isEmpty) : [];
+    if (retries.length) {
       player.chances += 1;
-      rewards.forEach(function (reward) { reward.name = cfg.retryEmpty; });
+      retries.forEach(function (reward) {
+        reward.name = cfg.retryEmpty;
+        reward.retry = true;
+      });
       renderChances();
     }
     var stamp = now();
-    rewards.forEach(function (r) { player.records.push({ type:r.type, edition:r.edition, drawNumber:r.drawNumber, name: r.name, icon: r.icon || '', rarity: rarityOf(r), time: stamp }); });
+    rewards.forEach(function (r) { player.records.push({ type:r.type, retry:r.retry, edition:r.edition, drawNumber:r.drawNumber, name: r.name, icon: r.icon || '', rarity: rarityOf(r), time: stamp }); });
     savePlayer();
     renderRecords();
     setState('opening');

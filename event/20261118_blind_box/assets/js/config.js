@@ -7,6 +7,7 @@ window.EVENT_CONFIG = {
   type: 'blind-box',
   storageKey: 'event_20261118_blind_box',
   openMs: 1800,
+  retryEmpty: { en: 'Try Again', ko: '다시 도전', th: 'ลองอีกครั้ง', zh: '再來一次' },
   perOpenLimits: { min: 1, max: 5 },
   mockResetOpens: 10,
   /* 3D 正面與盒蓋貼圖的材質：金屬感越高顏色越暗，交付正式圖後依實際效果微調 */
@@ -154,7 +155,7 @@ window.EVENT_CONFIG = {
       { name: { en: '10% Deposit Bonus', ko: '충전 보너스 10%', th: 'โบนัสเติมเงิน 10%', zh: '儲值加碼 10%' }, icon: '../20261111_lucky_wheel/assets/img/icon-bonus.svg', rarity: 'rare', weight: 8 },
       { name: { en: 'Mystery Gift', ko: '미스터리 선물', th: 'ของขวัญปริศนา', zh: '神秘禮物' }, icon: '../20261111_lucky_wheel/assets/img/icon-gift.svg', rarity: 'epic', weight: 5 },
       { name: { en: 'Cash 888', ko: '현금 888', th: 'เงินสด 888', zh: '現金 888 元' }, icon: '../20261111_lucky_wheel/assets/img/icon-cash.svg', rarity: 'legendary', weight: 2 },
-      { type: 'empty', name: { en: 'Better luck next time', ko: '다음 기회에 도전하세요', th: 'ลองใหม่ครั้งหน้า', zh: '再接再厲' }, icon: '', weight: 15 }
+      { type: 'empty', name: { en: 'Try Again', ko: '다시 도전', th: 'ลองอีกครั้ง', zh: '再來一次' }, icon: '', weight: 15 }
     ],
     winners: [
       { name: 'pl***88', prize: 5 }, { name: 'ka***21', prize: 4 }, { name: 'so***07', prize: 3 },
