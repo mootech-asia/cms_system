@@ -360,7 +360,7 @@ function open(gesture) {
     savePlayer();
     renderRecords();
     setState('opening');
-    Sound.duck(true);
+    Sound.duck('opening');
     Sound.stopEffects();
     Sound.play('tear',duration);
     stage.classList.add('is-opening');
@@ -493,6 +493,10 @@ if ($('secretFan')) $('secretFan').addEventListener('click', function (event) {
   }
 });
 function showReveal() {
+  if (cfg.type === 'card-pack') {
+    Sound.stopEffects();
+    Sound.duck(true);
+  }
   treasureCuePlayed = false;
   setState('reveal');
   revealed = 0;

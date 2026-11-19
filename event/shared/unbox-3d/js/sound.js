@@ -184,7 +184,10 @@ window.EventSound = (function () {
   // 背景音樂：用 <audio> 循環（長檔不必整段解碼），音量由 soundLevels.bgm／bgmDuck 控制
   var bgmEl = null;
   var ducked = false;
-  function bgmVolume() { return ducked ? (levels.bgmDuck != null ? levels.bgmDuck : 0.1) : (levels.bgm != null ? levels.bgm : 0.35); }
+  function bgmVolume() {
+    if (ducked === 'opening' && levels.bgmOpening != null) return levels.bgmOpening;
+    return ducked ? (levels.bgmDuck != null ? levels.bgmDuck : 0.1) : (levels.bgm != null ? levels.bgm : 0.35);
+  }
   function bgmPlay() {
     if (!unlocked || !enabled || !cfg.sounds.bgm || document.hidden) return;
     if (!bgmEl) {

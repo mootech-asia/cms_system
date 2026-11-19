@@ -145,6 +145,10 @@
     {
       "from": "source/audio/tear-recording.mov",
       "to": "alternatives/source/audio/pre-corrected-recording/tear-recording.mov"
+    },
+    {
+      "from": "assets/audio/tear.m4a",
+      "to": "alternatives/assets/audio/pre-isolated-tear/tear.m4a"
     }
   ]
 }
