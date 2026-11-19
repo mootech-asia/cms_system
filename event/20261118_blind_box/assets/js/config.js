@@ -14,7 +14,7 @@ window.EVENT_CONFIG = {
   /* 整個 3D 環形（包裝、間距、吉祥物）的縮放倍率 */
   sceneScale: 1,
   /* 3D 外型：'chest'＝圓拱蓋寶箱（蓋子沿後緣掀開）；不填＝方盒 */
-  sceneArt: { height: 1125, horizonFromBottom: 660, horizonFraction: .12 },
+  sceneArt: { height: 1125, horizonFromBottom: 660, horizonFraction: .5 },
   atmosphereMode: 'petals-and-sand',
   mascot: {
     poster: 'assets/img/mascot/spirit/poster.webp?v=20261119-desert1',
