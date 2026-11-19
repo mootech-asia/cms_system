@@ -203,8 +203,8 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 
 舊柱廊／布簾／宮殿地磚保留為歷史原稿，當前 config 不再載入。動態原始幀、2 秒循環與透明邊界驗證見 `source/desert-spirit/motion-checks.json`。
 
-| ☑ | N06 | 寶藏展示底座 | 900×291 | `assets/img/ui/treasure-plinth.webp` | d5de138 | ☐ | P1 |
+| ☑ | N07 | 寶藏展示底座 | 900×291 | `assets/img/ui/treasure-plinth.webp` | d5de138 | ☐ | P1 |
 
 | 提交 | ID | 素材 | 尺寸 | 路徑 | commit | 審核 | 優先級 |
 |---|---|---|---|---|---|---|---|
-| ☑ | STATUS12 | 主題狀態徽章 | 1536×1024 | `../shared/unbox-3d/img/status-badges.webp` | d5de138 | ☐ | P1 |
+| ☑ | N08 | 主題狀態徽章 | 1536×1024 | `../shared/unbox-3d/img/status-badges.webp` | d5de138 | ☐ | P1 |
