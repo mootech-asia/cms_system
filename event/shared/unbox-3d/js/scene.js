@@ -786,6 +786,7 @@ export function createScene(stage, opts) {
     setSecret: setSecret,
     focus: function () {
       angularVelocity = 0;
+      if (COUNT) target = Math.round(target / STEP) * STEP;
       mode = 'focusing'; inspectAngle = 0; zoomTarget = 1; invalidate();
       return new Promise(function (done) { focusDone = done; });
     },
@@ -793,6 +794,7 @@ export function createScene(stage, opts) {
       invalidate();
       mode = m;
       angularVelocity = 0;
+      if (COUNT) target = Math.round(target / STEP) * STEP;
       if (m === 'select') { batch = null; scene.fog = groundFog; inspectAngle = 0; progress = 0; openDone = null; zoomTarget = 0; focusDone = null; }
     },
     open: startOpening,
