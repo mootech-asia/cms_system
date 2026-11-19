@@ -19,3 +19,5 @@ Trimmed to interaction duration, short fades, normalized to -20 LUFS / -2 dBTP. 
 BGM: seal_online/bgm/47.mp3; full track with 2s tail/head crossfade, -22 LUFS / -2 dBTP. Selection is provisional for in-event listening; timbre has not been directly auditioned in this environment.
 
 Opening sequence: one open cue, one prize/empty reveal cue. Summary and collect add no further cues; prior SFX is stopped before the next cue. Retired click/reward/collect files are under alternatives/assets/audio/pre-minimal/.
+
+Selection and carousel movement cues are disabled for blind boxes. End-to-end verification starts before selecting a box and counts exactly two cues through collection. The retired select clip is under alternatives/assets/audio/pre-minimal/.

@@ -64,7 +64,8 @@ window.EventStore = (function () {
   function resolve(content, request) {
     var prizes = content.prizes;
     var secret = request.edition === 'secret';
-    var secretPrizes = secret ? prizes.filter(function (p) { return !isEmpty(p) && Number(p.weight) > 0; }) : [];
+    if (secret) request = Object.assign({}, request, { count: 3 });
+    var secretPrizes = secret ? prizes.filter(function (p) { return !isEmpty(p) && rarityRank(p) >= 2 && Number(p.weight) > 0; }) : [];
     if (secret && typeof window.EVENT_RESOLVE !== 'function' && !secretPrizes.length) return Promise.reject(new Error('No eligible secret reward'));
     var run = typeof window.EVENT_RESOLVE === 'function'
       ? Promise.resolve().then(function () { return window.EVENT_RESOLVE(request); })
@@ -79,7 +80,7 @@ window.EventStore = (function () {
       if (!Array.isArray(list) || !list.length) throw new Error('Invalid reward response');
       var rewards = list.map(function (x) { return typeof x === 'number' ? prizes[x] : x; });
       if (rewards.some(function (r) { return !r || !r.name; })) throw new Error('Invalid reward response');
-      if (secret && rewards.some(isEmpty)) throw new Error('Secret packs must contain a prize');
+      if (secret && (rewards.length !== 3 || rewards.some(function (r) { return isEmpty(r) || rarityRank(r) < 2; }))) throw new Error('Secret packs require three EPIC or better prizes');
       return rewards.slice().sort(function (a, b) { return rarityRank(a) - rarityRank(b); });
     });
   }

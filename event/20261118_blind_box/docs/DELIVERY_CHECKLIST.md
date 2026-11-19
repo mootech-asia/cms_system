@@ -75,7 +75,7 @@
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
 | ☑ | B50 | 背景音樂 bgm（完整曲目、頭尾交叉淡化循環） | （人工） | `assets/audio/bgm.mp3` | d5de138 | ☐ | P3 |
-| ☑ | B51 | 特效音 select：點選一個寶箱＝選定（≤0.4 秒） | 選配 | `assets/audio/select.mp3` | d5de138 | ☐ | P3 |
+| ☑ | B51 | 特效音 select：點選一個寶箱＝選定（≤0.4 秒） | 選配 | `alternatives/assets/audio/pre-minimal/select.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B52 | 特效音 reveal-common：揭曉：{r}（0.5–0.8 秒） | 選配 | `assets/audio/reveal-common.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B53 | 特效音 reveal-rare：揭曉：稀有（寶物出現在台座上）（0.7–1.0 秒） | 選配 | `assets/audio/reveal-rare.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B54 | 特效音 reveal-epic：揭曉：超稀有（寶物出現在台座上）（0.9–1.3 秒） | 選配 | `assets/audio/reveal-epic.mp3` | d5de138 | ☐ | P3 |

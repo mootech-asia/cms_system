@@ -305,7 +305,7 @@ function press() {
 function choose(autoOpen) {
   if (!valid) { Sound.play('error'); showToast(t('empty.prizes')); return; }
   if (player.chances <= 0) { Sound.play('error'); showToast(t('toast.noChances')); return; }
-  Sound.play('select');
+  if (cfg.type !== 'blind-box') Sound.play('select');
   btnAction.classList.add('is-pressing');
   setTimeout(function () { btnAction.classList.remove('is-pressing'); }, 140);
   if (scene && cfg.type === 'card-pack') {
@@ -344,7 +344,7 @@ function open(gesture) {
   setState('loading');
   var selection = scene ? scene.selected() : 0;
   var secretDraw = !!(secretCycle && secretCycle.due());
-  Store.resolve(content, { type: cfg.type, selection: selection, count: perOpen, edition:secretDraw?'secret':'standard', drawNumber:secretCycle?secretCycle.total()+1:undefined }).then(function (list) {
+  Store.resolve(content, { type: cfg.type, selection: selection, count: secretDraw ? 3 : perOpen, edition:secretDraw?'secret':'standard', drawNumber:secretCycle?secretCycle.total()+1:undefined }).then(function (list) {
     var edition = secretCycle ? secretCycle.commit() : {};
     rewards = list.map(function (r) { return Object.assign({},r,edition); });
     var stamp = now();
@@ -569,7 +569,7 @@ scene = createScene(sceneEl, {
   sceneArt: cfg.sceneArt,
   secretImages: cfg.secretEvery ? {front:cfg.images.secretPack,side:cfg.images.secretSide,back:cfg.images.secretBack} : null,
   mascot: cfg.mascot && cfg.mascot.layout !== 'hero' ? { img: $('mascot'), poster: cfg.mascot.poster, height: cfg.mascot.height, offsetX: cfg.mascot.offsetX, offsetZ: cfg.mascot.offsetZ } : null,
-  onSelect: function () { Sound.play('move'); renderPickLabel(); },
+  onSelect: function () { if (cfg.type !== 'blind-box') Sound.play('move'); renderPickLabel(); },
   onSwipeOpen: open,
   onHover: function () { if (Sound.hover) Sound.hover(); },
   onPick: pickItem
