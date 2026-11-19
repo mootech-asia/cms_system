@@ -1,0 +1,35 @@
+[
+  {
+    "width": 360,
+    "scale": 1.5,
+    "centered": true,
+    "effects": {
+      "petal": 4160,
+      "dust": 78
+    },
+    "reducedStatic": true,
+    "collect": true
+  },
+  {
+    "width": 390,
+    "scale": 1.5,
+    "centered": true,
+    "effects": {
+      "petal": 5408,
+      "dust": 102
+    },
+    "reducedStatic": true,
+    "collect": true
+  },
+  {
+    "width": 1440,
+    "scale": 1.5,
+    "centered": true,
+    "effects": {
+      "petal": 4576,
+      "dust": 84
+    },
+    "reducedStatic": true,
+    "collect": true
+  }
+]
