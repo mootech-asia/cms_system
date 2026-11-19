@@ -18,7 +18,7 @@
     <meta name="twitter:image" content="https://mootech-asia.github.io/cms_system/event/20261111_survival_spin/assets/img/share-preview.jpg" />
     <link rel="preload" as="image" href="assets/img/stage-bg.webp" fetchpriority="high" />
     <link rel="preload" as="image" href="assets/img/mascot/rifle-v1/optimized/poster.webp" />
-    <link rel="stylesheet" href="assets/css/event.css?v=20261118-loading1" />
+    <link rel="stylesheet" href="assets/css/event.css?v=20261119-auto-spin" />
     <link rel="preload" as="image" href="assets/img/loading-emblem.webp?v=20261118-loading1" fetchpriority="high" />
     <link rel="stylesheet" href="../shared/loading/loading.css?v=20261118-loading1" />
     <link rel="stylesheet" href="../shared/css/desktop-scrollbars.css?v=20261118-scroll1" />
@@ -124,6 +124,10 @@
       </div>
 
       <div class="ev-stage-floor-wrap">
+        <div class="ev-auto-controls">
+          <button type="button" class="ev-btn" id="btnAutoSpin" data-img="btnPrimary"></button>
+          <button type="button" class="ev-btn" id="btnSkipSpin" data-img="btnPrimary" data-i18n="auto.skip" hidden></button>
+        </div>
         <img class="ev-stage-floor" data-img="stageFloor" alt="" />
       </div>
     </section>
@@ -157,6 +161,7 @@
           <h2 class="ev-modal-title" id="resultTitle"></h2>
           <img class="ev-modal-icon" id="resultIcon" alt="" />
           <p class="ev-modal-prize" id="resultName"></p>
+          <ol class="ev-auto-results" id="autoResults" tabindex="0" hidden></ol>
           <button type="button" class="ev-btn" id="btnClose" data-img="btnPrimary"></button>
         </div>
         <span class="ev-asset ev-asset--modal" data-asset="modalBg btnPrimary" aria-hidden="true"></span>
@@ -188,10 +193,10 @@
 
     <script defer src="assets/js/config.js?v=20261119-event-controls"></script>
     <script defer src="assets/js/skin.js?v=20261119-structure1"></script>
-    <script defer src="assets/js/i18n.js?v=20261119-event-controls"></script>
+    <script defer src="assets/js/i18n.js?v=20261119-auto-spin"></script>
     <script defer src="assets/js/store.js?v=20261118-loading1"></script>
     <script defer src="assets/js/sound.js?v=20261118-loading1"></script>
     <script defer src="assets/js/share.js?v=20261118-loading1"></script>
-    <script defer src="assets/js/wheel.js?v=20261119-event-controls"></script>
+    <script defer src="assets/js/wheel.js?v=20261119-auto-spin"></script>
   </body>
 </html>

@@ -1026,3 +1026,9 @@ html { touch-action: manipulation; }
   .ev-wheel-go::after { animation: none !important; }
   .ev-led-sweep { opacity: 0 !important; }
 }
+
+.ev-auto-controls { position:absolute; inset:0; z-index:3; display:flex; justify-content:center; align-items:center; gap:var(--ev-space-2); pointer-events:none; }
+.ev-auto-controls .ev-btn { position:static; transform:none; width:44%; max-width:200px; height:52px; padding:0 var(--ev-space-2); line-height:1.2; font-size:14px; pointer-events:auto; }
+.ev-auto-controls .ev-btn:disabled { opacity:.6; cursor:default; }
+.ev-auto-results { position:absolute; inset:29% 12% 29%; overflow:auto; margin:0; padding:0 0 0 1.8em; text-align:start; color:var(--ev-color-text); font-size:14px; line-height:1.5; }
+.ev-auto-results li { padding:var(--ev-space-1); overflow-wrap:anywhere; }

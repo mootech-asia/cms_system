@@ -30,6 +30,35 @@
   var idleIndex = 0;
   var mascotState = 'idle';
   var lastPrize = null;
+  var autoResults = null;
+  var autoRemaining = 0;
+  var autoFast = false;
+  var spinFinish = null;
+  var resultFinish = null;
+  var spinTimer = null;
+  var resultTimer = null;
+
+  function renderAutoControls() {
+    $('btnAutoSpin').disabled = spinning || !modal.hidden || player.chances <= 0 || !n;
+    $('btnAutoSpin').textContent = autoResults && spinning
+      ? t('auto.progress', { n: autoResults.length + 1 }) : t('auto.start');
+    $('btnSkipSpin').hidden = !spinning;
+  }
+
+  function autoSpin() {
+    if (spinning || !modal.hidden || player.chances <= 0 || !n) return;
+    autoResults = [];
+    autoRemaining = 10;
+    autoFast = false;
+    spin(true);
+  }
+
+  function skipSpin() {
+    if (!spinning) return;
+    if (autoResults) autoFast = true;
+    if (spinFinish) spinFinish();
+    if (resultFinish) resultFinish();
+  }
 
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
@@ -171,6 +200,7 @@
 
   function renderChances() {
     $('chances').textContent = player.chances;
+    renderAutoControls();
     btnSpin.classList.toggle('is-disabled', player.chances <= 0 || !n);
   }
 
@@ -309,15 +339,15 @@
     } catch (e) { /* The draw must not depend on device haptics. */ }
   }
 
-  function spin() {
-    if (spinning) return;
+  function spin(fromAuto) {
+    if (spinning || !modal.hidden || (autoResults && fromAuto !== true)) return;
     if (!n) { showToast(t('toast.noPrizes')); return; }
     if (player.chances <= 0) { showToast(t('toast.noChances')); return; }
 
-    pressFeedback();
+    if (!autoFast) pressFeedback();
     var idx = pickIndex();
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var duration = reduced ? 600 : cfg.spinDurationMs;
+    var duration = autoFast ? 0 : reduced ? 600 : cfg.spinDurationMs;
 
     // 落點留 15% 邊界避免停在分隔線上；以「目前角度取模後」補齊，連續抽獎才不會偏移。
     var jitter = (Math.random() - 0.5) * seg * 0.7;
@@ -332,33 +362,65 @@
     btnSpin.setAttribute('aria-busy', 'true');
     setStage('spinning');
     setMascot('spinning');
-    Sound.drumroll(duration);
+    if (!autoFast) Sound.drumroll(duration);
 
     disc.style.transitionDuration = duration + 'ms';
     disc.style.transform = 'rotate(' + rotation + 'deg)';
 
-    setTimeout(function () {
+    // Completion callbacks are cleared before settling so Skip cannot award twice.
+    spinFinish = function () {
+      if (!spinFinish) return;
+      spinFinish = null;
+      clearTimeout(spinTimer);
+      disc.style.transitionDuration = '0ms';
+      disc.style.transform = 'rotate(' + rotation + 'deg)';
       var prize = prizes[idx];
       setStage('result');
       setMascot(prize.isLose ? 'lose' : 'result');
-      Sound.finale(prize.isLose);
-      if (prize.isLose) {
-        player.chances += 1;
-        renderChances();
-      }
+      if (!autoFast) Sound.finale(prize.isLose);
+      if (prize.isLose) player.chances += 1;
       player.records.push({ name: prize.name, time: now() });
       savePlayer();
+      renderChances();
       renderRecords();
-      setTimeout(function () {
+      resultFinish = function () {
+        if (!resultFinish) return;
+        resultFinish = null;
+        clearTimeout(resultTimer);
         spinning = false;
         btnSpin.removeAttribute('aria-busy');
+        if (autoResults) {
+          autoResults.push(prize);
+          autoRemaining -= 1;
+          if (autoRemaining > 0 && player.chances > 0) {
+            spin(true);
+            return;
+          }
+        }
         openModal(prize);
-      }, cfg.resultHoldMs);
-    }, duration + 50);
+        renderAutoControls();
+      };
+      resultTimer = setTimeout(resultFinish, autoFast ? 0 : autoResults ? 180 : cfg.resultHoldMs);
+    };
+    spinTimer = setTimeout(spinFinish, duration ? duration + 50 : 0);
   }
 
   function renderModal() {
     if (!lastPrize) return;
+    var summary = $('autoResults');
+    summary.hidden = !autoResults;
+    $('resultName').hidden = !!autoResults;
+    if (autoResults) {
+      $('resultTitle').textContent = t('auto.results', { n: autoResults.length });
+      $('btnClose').textContent = t('modal.claim');
+      summary.replaceChildren();
+      autoResults.forEach(function (prize) {
+        var li = document.createElement('li');
+        li.textContent = pick(prize.name);
+        summary.appendChild(li);
+      });
+      return;
+    }
     $('resultTitle').textContent = t(lastPrize.isLose ? 'modal.lose' : 'modal.win');
     $('btnClose').textContent = t(lastPrize.isLose ? 'modal.ok' : 'modal.claim');
     $('resultName').textContent = pick(lastPrize.name);
@@ -367,16 +429,20 @@
   function openModal(prize) {
     lastPrize = prize;
     var icon = $('resultIcon');
-    icon.hidden = !prize.icon;
+    icon.hidden = !!autoResults || !prize.icon;
     if (prize.icon) icon.src = prize.icon;
     renderModal();
     modal.hidden = false;
+    renderAutoControls();
     Sound.reward(prize.isLose);
     $('btnClose').focus();
   }
 
   function closeModal() {
     modal.hidden = true;
+    autoResults = null;
+    autoFast = false;
+    renderAutoControls();
     setStage('idle');
     setMascot('idle');
     Sound.stopReward();
@@ -400,6 +466,7 @@
     renderTicker();
     renderRecords();
     renderSound();
+    renderAutoControls();
     renderModal();
     renderLabelToggle();
     renderAssetLabels();
@@ -452,6 +519,8 @@
     if (!motionPreference.matches) startHoverMotion();
   });
   btnSpin.addEventListener('click', spin);
+  $('btnAutoSpin').addEventListener('click', autoSpin);
+  $('btnSkipSpin').addEventListener('click', skipSpin);
   $('btnClose').addEventListener('click', closeModal);
   modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
