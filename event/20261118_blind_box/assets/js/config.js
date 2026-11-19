@@ -140,7 +140,7 @@ window.EVENT_CONFIG = {
     'reveal.next': { en: 'Next treasure', ko: '다음 보물', th: 'สมบัติชิ้นถัดไป', zh: '下一件寶物' },
     'reveal.title': { en: 'Box opened!', ko: '박스 오픈!', th: 'เปิดกล่องแล้ว!', zh: '盲盒打開了！' },
     'rarity.legendary': { en: 'Secret', ko: '시크릿', th: 'ซีเคร็ต', zh: '隱藏款' },
-    'toast.noChances': { en: 'No boxes left', ko: '남은 박스가 없습니다', th: 'ไม่มีกล่องเหลือแล้ว', zh: '盲盒已用完' },
+    'toast.noChances': { en: 'No boxes left', ko: '남은 박스가 없습니다', th: 'ไม่มีกล่องเหลือแล้ว', zh: '已無寶箱' },
     'records.empty': { en: 'No boxes opened yet. Give it a try!', ko: '아직 기록이 없습니다. 박스를 열어 보세요!', th: 'ยังไม่มีประวัติ ลองเปิดกล่องดูสิ!', zh: '還沒有紀錄，開一盒試試手氣。' },
     'share.text': { en: 'Pick a blind box and reveal your surprise!', ko: '랜덤박스를 골라 서프라이즈를 확인하세요!', th: 'เลือกกล่องสุ่มแล้วเปิดดูเซอร์ไพรส์กันเลย!', zh: '來拆盲盒揭開驚喜！' }
   },

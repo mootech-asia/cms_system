@@ -142,7 +142,7 @@ window.EVENT_CONFIG = {
     'status.ready': { en: 'Drag the pack to rotate. Swipe across the top seal to tear it open.', ko: '팩을 드래그하여 돌려 보세요. 위쪽 봉인을 좌우로 밀면 뜯을 수 있어요.', th: 'ลากซองเพื่อหมุนดู ปัดผ่านรอยปิดผนึกด้านบนเพื่อฉีกซอง', zh: '拖曳卡包可旋轉查看，沿頂部封條左右滑動即可撕開。' },
     'status.opening': { en: 'Seal torn. Let\'s see what you got…', ko: '봉인을 뜯었습니다. 무엇이 나왔을까요…', th: 'ฉีกซองแล้ว มาดูกันว่าได้อะไร…', zh: '封條已撕開，看看你的收藏…' },
     'reveal.title': { en: 'Pack opened!', ko: '카드팩 오픈!', th: 'เปิดซองแล้ว!', zh: '卡包打開了！' },
-    'toast.noChances': { en: 'No packs left', ko: '남은 카드팩이 없습니다', th: 'ไม่มีซองเหลือแล้ว', zh: '卡包已用完' },
+    'toast.noChances': { en: 'No packs left', ko: '남은 카드팩이 없습니다', th: 'ไม่มีซองเหลือแล้ว', zh: '已無卡包' },
     'records.empty': { en: 'No packs opened yet. Give it a try!', ko: '아직 기록이 없습니다. 카드팩을 열어 보세요!', th: 'ยังไม่มีประวัติ ลองเปิดซองดูสิ!', zh: '還沒有紀錄，拆一包試試手氣。' },
     'share.text': { en: 'Open a card pack and collect rare cards!', ko: '카드팩을 열고 레어 카드를 모아 보세요!', th: 'เปิดซองการ์ดแล้วสะสมการ์ดหายากกันเลย!', zh: '來拆卡包收集稀有卡！' }
   },

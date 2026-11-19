@@ -315,9 +315,9 @@ var STATUS_TEXT = { select: 'status.select', focusing: 'status.focusing', ready:
 var statusOverride = null;
 var pickHintTimer = null;
 
-function renderPickHint(show) {
+function renderPickHint(show, persistent) {
   var hint = $('pickHint');
-  if (!show) {
+  if (!show || persistent) {
     clearInterval(pickHintTimer);
     pickHintTimer = null;
     hint.hidden = !show;
@@ -339,7 +339,7 @@ function renderState() {
   var quantity = Math.min(batchLimit, visibleCount);
   btnAction.hidden = false;
   var empty = !valid ? 'empty.prizes' : player.chances <= 0 ? 'toast.noChances' : null;
-  renderPickHint(picking && !empty);
+  renderPickHint(picking, !!empty);
   $('pickHintText').textContent = t(empty || 'hint.pick');
   $('pickHint').classList.toggle('is-empty', !!empty);
   var action = ACTION_TEXT[state];
