@@ -15,7 +15,7 @@ window.EVENT_CONFIG = {
   sceneScale: 1,
   /* 3D 外型：'chest'＝圓拱蓋寶箱（蓋子沿後緣掀開）；不填＝方盒 */
   sceneArt: { height: 1125, horizonFromBottom: 660, horizonFraction: .12 },
-  atmosphereMode: 'sand',
+  atmosphereMode: 'petals-and-sand',
   mascot: {
     poster: 'assets/img/mascot/spirit/poster.webp?v=20261119-desert1',
     idle: ['assets/img/mascot/spirit/idle.webp?v=20261119-desert1'],

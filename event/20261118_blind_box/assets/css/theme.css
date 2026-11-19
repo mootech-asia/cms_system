@@ -167,9 +167,9 @@
 
 /* Near sand stays more defined while distant dunes drift in and out of focus. */
 .ev-depth-floor { mask-image:linear-gradient(transparent 0 48%,#000 66%); }
-/* Oversized character art is fitted to the H5 width with its transparent margins intact. */
-.ev-spirit-stage { position:relative; height:min(90vw,432px); margin:0 calc(var(--ev-space-4) * -1); pointer-events:none; }
-.ev-spirit-stage .ev-mascot { width:min(100vw,480px); height:auto; left:50%; top:-18%; transform:translateX(-50%); }
+/* Hero artwork scales independently of the interactive controls. */
+.ev-spirit-stage { position:relative; height:min(135vw,648px); margin:0 calc(var(--ev-space-4) * -1); pointer-events:none; }
+.ev-spirit-stage .ev-mascot { width:min(150vw,720px); height:auto; left:50%; top:-18%; transform:translateX(-50%); }
 .ev-spirit-stage + .ev-scene { margin-top:-72px; margin-bottom:-100px; height:min(108vw,480px); clip-path:inset(0 0 100px); }
 .ev-swipe-cue { left:50%; top:30%; transform:translateX(-50%); }
 .ev-ticker-label { flex-shrink:0; white-space:nowrap; letter-spacing:.02em; }
