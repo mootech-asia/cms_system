@@ -23,7 +23,8 @@ window.EVENT_CONFIG = {
 
   retryEmpty: { en: 'Try Again', ko: '다시 도전', th: 'ลองอีกครั้ง', zh: '再玩一次' },
   carouselCameraY: 3.05,
-  secretEvery: 50,
+  secretEvery: 100,
+  secretFixed: true,
   tearSoundMs: 0,
   images: {
     secretPack: 'assets/img/3d/secret-pack.webp?v=20261118-vortex1',

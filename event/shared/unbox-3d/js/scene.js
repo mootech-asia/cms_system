@@ -421,6 +421,21 @@ export function createScene(stage, opts) {
     return x >= minX-32 && x <= maxX+32 && y >= minY-26 && y <= maxY+below;
   }
   var drag = 0, dragY = 0;
+  var dragStartAngle = 0, dragScale = .004;
+  var angularVelocity = 0, activePointer = null;
+  var swipeSamples = [];
+  function sampleSwipe(x, eventTime) {
+    var now = Number.isFinite(eventTime) ? eventTime : performance.now();
+    swipeSamples.push({x:x, time:now});
+    while (swipeSamples.length > 2 && swipeSamples[0].time < now - 100) swipeSamples.shift();
+  }
+  function selectAngle() {
+    var next = ((Math.round(-target / STEP) % COUNT) + COUNT) % COUNT;
+    if (next !== selected) {
+      selected = next;
+      if (opts.onSelect) opts.onSelect(selected);
+    }
+  }
   var progress = 0;
   var openMs = 1800;
   var openDone = null;
@@ -430,9 +445,10 @@ export function createScene(stage, opts) {
   function move(n) {
     if (mode !== 'select' || COUNT < 2) return;
     invalidate();
-    target += n * STEP;
-    selected = ((Math.round(-target / STEP) % COUNT) + COUNT) % COUNT;
-    if (opts.onSelect) opts.onSelect(selected);
+    var base = angularVelocity ? Math.round(angle / STEP) * STEP : Math.round(target / STEP) * STEP;
+    angularVelocity = 0;
+    target = base + n * STEP;
+    selectAngle();
   }
 
   // 點選：用射線找出指到的是哪一包（看得見的包裝才算），回傳索引；沒點到回傳 -1
@@ -454,6 +470,8 @@ export function createScene(stage, opts) {
   // 轉到指定的那一包（走最短方向）
   function goTo(i) {
     invalidate();
+    if (angularVelocity) target = Math.round(angle / STEP) * STEP;
+    angularVelocity = 0;
     var k = ((i - selected) % COUNT + COUNT) % COUNT;
     if (k > COUNT / 2) k -= COUNT;
     if (k) move(-k);
@@ -462,7 +480,14 @@ export function createScene(stage, opts) {
 
   on(stage, 'pointerdown', function (e) {
     if (!COUNT || (mode !== 'select' && mode !== 'ready')) return;
-    if (e.target !== renderer.domElement) return;
+    if (e.target !== renderer.domElement || e.isPrimary === false || activePointer !== null) return;
+    activePointer = e.pointerId;
+    angularVelocity = 0;
+    if (mode === 'select') { target = Math.round(angle / STEP) * STEP; selectAngle(); }
+    dragStartAngle = angle;
+    dragScale = 2.4 / Math.max(240, renderer.domElement.clientWidth);
+    swipeSamples = [];
+    sampleSwipe(e.clientX, e.timeStamp);
     gestureMode = !box && mode === 'ready' ? (onSeal(e.clientX,e.clientY) ? 'tear' : 'rotate') : '';
     inspectStart = inspectAngle;
     jellyIndex = -1; hovered = -1; invalidate();
@@ -484,23 +509,43 @@ export function createScene(stage, opts) {
       }
       return;
     }
+    if (e.pointerId !== activePointer) return;
+    sampleSwipe(e.clientX, e.timeStamp);
     drag = e.clientX - startX; dragY = e.clientY - startY;
-    if (mode === 'select' && COUNT > 1) angle = target + drag * 0.004;
+    if (mode === 'select' && COUNT > 1 && Math.abs(drag) > Math.abs(dragY)) {
+      angle = target = dragStartAngle + drag * dragScale;
+      selectAngle(); invalidate();
+    }
     else if (!box && mode === 'ready' && gestureMode === 'rotate') { inspectAngle = inspectStart + drag*.018; invalidate(); }
   });
   on(stage, 'pointerup', function (e) {
-    if (startX === null) return;
-    if (mode === 'select' && Math.abs(drag) > 25) move(drag > 0 ? 1 : -1);
+    if (startX === null || e.pointerId !== activePointer) return;
+    if (mode === 'select' && COUNT > 1 && Math.abs(drag) > 25 && Math.abs(drag) > Math.abs(dragY)) {
+      sampleSwipe(e.clientX, e.timeStamp);
+      var first = swipeSamples[0], lastSample = swipeSamples[swipeSamples.length - 1];
+      var speed = (lastSample.x - first.x) / Math.max(16, lastSample.time - first.time);
+      angularVelocity = reduced.matches ? 0 : Math.max(-14, Math.min(14, speed * dragScale * 1000));
+      if (Math.abs(angularVelocity) < .25) angularVelocity = 0;
+      target = angularVelocity ? angle : Math.round(angle / STEP) * STEP;
+      selectAngle(); invalidate();
+    }
     else if (mode === 'ready' && (box ? dragY < -55 && Math.abs(dragY) > Math.abs(drag) : gestureMode === 'tear' && Math.abs(drag) > 55 && Math.abs(drag) > Math.abs(dragY)*1.2) && opts.onSwipeOpen) opts.onSwipeOpen({ speed: Math.abs(drag) / Math.max(16, performance.now()-gestureStart) });
     else if (mode === 'select' && Math.abs(drag) < 8 && opts.onPick) {
       // 沒有拖曳＝點選：點到哪一包就選哪一包
       var i = pick(e.clientX, e.clientY);
       if (i >= 0) opts.onPick(i);
     }
-    startX = null; startY = null;
+    startX = null; startY = null; activePointer = null;
   });
   on(stage, 'pointerleave', function () { hovered = -1; renderer.domElement.style.cursor = ''; });
-  on(stage, 'pointercancel', function () { startX = null; startY = null; });
+  function cancelSwipe() {
+    startX = startY = activePointer = null;
+    angularVelocity = 0;
+    if (COUNT) { target = Math.round(angle / STEP) * STEP; selectAngle(); }
+    invalidate();
+  }
+  on(stage, 'pointercancel', cancelSwipe);
+  on(stage, 'lostpointercapture', function () { if (startX !== null) cancelSwipe(); });
   on(document, 'ev:skin', applyTokens);
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -549,7 +594,7 @@ export function createScene(stage, opts) {
     rendering = true;
     var jellyActive = mode === 'select' && !reduced.matches && jellyIndex >= 0 && now - jellyStart < jellyDuration;
     if (!jellyActive && jellyIndex >= 0) { jellyIndex = -1; invalidate(); }
-    var changing = jellyActive || mode === 'opening' || Math.abs(zoomTarget - zoom) > .001 || Math.abs(target - angle) > .0001 || startX !== null;
+    var changing = Math.abs(angularVelocity) > 0 || jellyActive || mode === 'opening' || Math.abs(zoomTarget - zoom) > .001 || Math.abs(target - angle) > .0001 || startX !== null;
     var animate = changing;
     if (!dirty && !animate) { last = now; rendering = false; return; }
     dirty = false;
@@ -565,7 +610,17 @@ export function createScene(stage, opts) {
       progress += dt / ((reduced.matches ? 300 : openMs) / 1000);
       if (progress >= 1) finishOpen();
     }
-    if (startX === null || mode !== 'select') angle += (target - angle) * (reduced.matches ? 1 : Math.min(1, dt * 8));
+    if (startX === null && mode === 'select' && angularVelocity) {
+      angle += angularVelocity * dt;
+      angularVelocity *= Math.exp(-6 * dt);
+      target = angle;
+      if (Math.abs(angularVelocity) < .08) {
+        angularVelocity = 0;
+        target = Math.round(angle / STEP) * STEP;
+      }
+      selectAngle();
+    }
+    if ((startX === null && !angularVelocity) || mode !== 'select') angle += (target - angle) * (reduced.matches ? 1 : Math.min(1, dt * 8));
     if (batch) {
       ring.rotation.y = 0;
       ring.position.set(0, 0, 0);
@@ -697,6 +752,7 @@ export function createScene(stage, opts) {
     STEP = COUNT ? Math.PI * 2 / COUNT : 0;
     RADIUS = carouselRadius(COUNT);
     angle = target = selected = 0;
+    angularVelocity = 0;
     hovered = jellyIndex = -1;
     items.forEach(function (item, i) {
       var orbit = i * STEP;
@@ -729,12 +785,14 @@ export function createScene(stage, opts) {
     goTo: goTo,
     setSecret: setSecret,
     focus: function () {
+      angularVelocity = 0;
       mode = 'focusing'; inspectAngle = 0; zoomTarget = 1; invalidate();
       return new Promise(function (done) { focusDone = done; });
     },
     setMode: function (m) {
       invalidate();
       mode = m;
+      angularVelocity = 0;
       if (m === 'select') { batch = null; scene.fog = groundFog; inspectAngle = 0; progress = 0; openDone = null; zoomTarget = 0; focusDone = null; }
     },
     open: startOpening,

@@ -4,14 +4,12 @@ const assert = require('node:assert/strict');
 const base = process.env.CHECK_BASE || 'http://127.0.0.1:8900';
 const packCycle = 'event_20261118_card_pack_secret_cycle';
 
-async function createPage(browser, type, secretAt = 50) {
+async function createPage(browser, type, secretAt = 100) {
   const page = await browser.newPage({viewport:{width:390,height:844}});
   await page.addInitScript(({type, secretAt, packCycle}) => {
     sessionStorage.setItem('event-mock-tools', 'on');
     if (type === 'card_pack') {
-      localStorage.setItem(packCycle, JSON.stringify({total:0,nextAt:secretAt}));
-      // Keep the next secret draw outside this wave's pagination fixture.
-      Math.random = () => .99;
+      localStorage.setItem(packCycle, JSON.stringify({total:0,nextAt:secretAt,fixedEvery:100}));
     }
     window.requests = [];
     window.EVENT_RESOLVE = request => {

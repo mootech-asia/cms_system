@@ -18,6 +18,9 @@ window.EventI18n = (function () {
   var URL_LOCALE = null;
 
   var STRINGS = {
+    'records.previous': { en: 'Previous', ko: '이전', th: 'ก่อนหน้า', zh: '上一頁' },
+    'records.next': { en: 'Next', ko: '다음', th: 'ถัดไป', zh: '下一頁' },
+
     'auto.start': { en: 'Auto ×10', ko: '자동 ×10', th: 'อัตโนมัติ ×10', zh: '自動轉 10 次' },
     'auto.skip': { en: 'Skip', ko: '건너뛰기', th: 'ข้าม', zh: '略過動畫' },
     'auto.progress': { en: 'Auto {n} / 10', ko: '자동 {n} / 10', th: 'อัตโนมัติ {n} / 10', zh: '自動轉 {n} / 10' },

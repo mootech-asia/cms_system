@@ -23,6 +23,7 @@
   var mascot = $('mascot');
 
   var player = loadPlayer();
+  var recordPager = window.createRecordPager($('recordList'), t, renderRecords);
   var rotation = 0;
   var spinning = false;
   var toastTimer = null;
@@ -42,7 +43,8 @@
     $('btnAutoSpin').disabled = spinning || !modal.hidden || player.chances <= 0 || !n;
     $('btnAutoSpin').textContent = autoResults && spinning
       ? t('auto.progress', { n: autoResults.length + 1 }) : t('auto.start');
-    $('btnSkipSpin').hidden = !spinning;
+    $('btnSkipSpin').hidden = false;
+    $('btnSkipSpin').disabled = !spinning;
   }
 
   function autoSpin() {
@@ -191,7 +193,7 @@
     var list = $('recordList');
     list.querySelectorAll('.ev-record').forEach(function (li) { li.remove(); });
     $('recordEmpty').hidden = player.records.length > 0;
-    player.records.slice().reverse().forEach(function (r) {
+    recordPager.slice(player.records.slice().reverse()).forEach(function (r) {
       var li = document.createElement('li');
       li.className = 'ev-record';
       li.innerHTML = '<span>' + esc(pick(r.name)) + '</span><time>' + esc(r.time) + '</time>';
@@ -435,7 +437,7 @@
     renderModal();
     modal.hidden = false;
     renderAutoControls();
-    Sound.reward(prize.isLose);
+    Sound.reward(autoResults ? !autoResults.some(function (result) { return !result.isLose; }) : prize.isLose);
     $('btnClose').focus();
   }
 

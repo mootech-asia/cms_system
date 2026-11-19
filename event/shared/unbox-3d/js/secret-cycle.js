@@ -1,11 +1,16 @@
 // Preview persistence is separate from the refillable chance/record data.
-export function createSecretCycle(key, limit = 50, storage = null, random = Math.random, initialTotal = 0) {
+export function createSecretCycle(key, limit = 50, storage = null, random = Math.random, initialTotal = 0, fixed = false) {
   if (!storage) { try { storage = window.localStorage; } catch (_) {} }
-  const nextGap = () => 1 + Math.min(limit-1, Math.floor(Math.max(0,random())*limit));
+  const nextGap = () => fixed ? limit : 1 + Math.min(limit-1, Math.floor(Math.max(0,random())*limit));
   let value;
   try { value = JSON.parse(storage.getItem(key)); } catch (_) {}
   if (!value || !Number.isSafeInteger(value.total) || value.total < 0 || !Number.isSafeInteger(value.nextAt) || value.nextAt <= value.total || value.nextAt > value.total+limit) {
     value = { total:initialTotal, nextAt:initialTotal+nextGap(), notifiedAt:0 };
+  }
+  if (fixed && value.fixedEvery !== limit) {
+    value.nextAt = (Math.floor(value.total / limit) + 1) * limit;
+    value.notifiedAt = 0;
+    value.fixedEvery = limit;
   }
   const save = () => { try { storage.setItem(key,JSON.stringify(value)); } catch (_) {} };
   save();
@@ -18,7 +23,7 @@ export function createSecretCycle(key, limit = 50, storage = null, random = Math
     commit: () => {
       const secret = value.total+1 === value.nextAt;
       value.total++;
-      if (secret) value.nextAt=value.total+nextGap();
+      if (secret) value.nextAt=fixed ? (Math.floor(value.total / limit) + 1) * limit : value.total+nextGap();
       save();
       return { edition:secret?'secret':'standard', drawNumber:value.total };
     }

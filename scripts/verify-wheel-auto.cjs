@@ -36,7 +36,7 @@ async function pageFor(browser, event, { chances=20, lose=false, duration=80, lo
    assert.equal(await p.locator('#autoResults li').count(),10);
    assert.equal(await p.locator('#chances').innerText(),'10');
    assert.equal(await p.locator('.ev-record').count(),10);
-   assert(await p.locator('#btnSkipSpin').isHidden());
+   assert(await p.locator('#btnSkipSpin').isDisabled());
    await p.screenshot({path:`/tmp/${event}-auto-results.png`});
    await p.locator('#btnClose').click();
    await p.locator('#btnSpin').click();
@@ -45,7 +45,8 @@ async function pageFor(browser, event, { chances=20, lose=false, duration=80, lo
    await p.locator('#resultModal').waitFor({state:'visible'});
    assert(await p.locator('#autoResults').isHidden());
    await p.waitForTimeout(200);
-   assert.equal(await p.locator('.ev-record').count(),11);
+   assert.equal(await p.locator('.ev-record').count(),10);
+   assert.equal(await p.evaluate(()=>JSON.parse(localStorage.getItem('event_20261111_lucky_wheel_player')).records.length),11);
    assert.deepEqual(errors,[]); await p.close();
    console.log('PASS',event,'10 automatic spins, summary, single Skip and records');
 

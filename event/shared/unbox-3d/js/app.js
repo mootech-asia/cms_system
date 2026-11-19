@@ -4,8 +4,8 @@
  */
 import { createAtmosphere } from './atmosphere.js?v=20261119-desert1';
 import { createRevealVortex } from './reveal-vortex.js?v=20261119-hd-motion';
-import { createSecretCycle } from './secret-cycle.js?v=20261119-secretfix1';
-import { createScene } from './scene.js?v=20261119-batch-open';
+import { createSecretCycle } from './secret-cycle.js?v=20261119-fixed100';
+import { createScene } from './scene.js?v=20261119-inertia';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -77,7 +77,12 @@ function esc(s) {
 
 // ---------- 玩家狀態（mock；正式由後台回傳次數與紀錄） ----------
 var player = loadPlayer();
-var secretCycle = cfg.secretEvery ? createSecretCycle(cfg.storageKey + '_secret_cycle', cfg.secretEvery, null, Math.random, player.records.length) : null;
+var recordPager = window.createRecordPager($('recordList'), t, renderRecords);
+var recordedDraws = player.records.reduce(function (total, record) {
+  var drawNumber = Number(record.drawNumber);
+  return Number.isSafeInteger(drawNumber) && drawNumber >= 0 ? Math.max(total, drawNumber) : total;
+}, 0);
+var secretCycle = cfg.secretEvery ? createSecretCycle(cfg.storageKey + '_secret_cycle', cfg.secretEvery, null, Math.random, recordedDraws || player.records.length, !!cfg.secretFixed) : null;
 function notifySecret() {
   if (player.chances && secretCycle && secretCycle.needsNotice() && Sound.isEnabled() && Sound.isUnlocked()) {
     Sound.play('secret'); secretCycle.notified();
@@ -291,7 +296,7 @@ function renderRecords() {
   var list = $('recordList');
   list.querySelectorAll('.ev-record').forEach(function (li) { li.remove(); });
   $('recordEmpty').hidden = player.records.length > 0;
-  player.records.slice().reverse().forEach(function (r) {
+  recordPager.slice(player.records.slice().reverse()).forEach(function (r) {
     var li = document.createElement('li');
     li.className = 'ev-record';
     var matchingPrize = content.prizes.find(function (p) { return pick(p.name) === pick(r.name); });
