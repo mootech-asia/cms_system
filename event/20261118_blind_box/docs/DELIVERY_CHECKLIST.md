@@ -59,7 +59,7 @@
 | ☑ | B35 | 音效 reveal：揭曉提示音（約 0.6 秒，程式依稀有度提高音高） | 選配 | `alternatives/assets/audio/reveal.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B36 | 音效 reward：全部揭曉（約 1 秒） | 選配 | `alternatives/assets/audio/pre-minimal/reward.mp3` | d5de138 | ☐ | P3 |
 | ☑ | B37 | 主標可編輯原始檔（三語）連結或檔案說明 | （人工） | `source/title/README.md` | d5de138 | ☐ | P3 |
-| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | 608c225 | ☐ | P2 |
+| ☑ | B38 | `assets/js/config.js` 圖片路徑改成實際交付的檔名，頁面無破圖 | — | `assets/js/config.js` | ecfc9c9 | ☐ | P2 |
 
 ## C. 吉祥物動態（暫緩：目前頁面不放，先不要做）
 
@@ -201,17 +201,17 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 | ☑ | N05 | spirit-encourage | 400×500 | `alternatives/assets/img/mascot/spirit-pre-hd/encourage.webp` | 608c225 | ☐ | P3 |
 | ☑ | N06 | character-sheet | 1536×1024 | `alternatives/source/desert-spirit-pre-hd/character-sheet.png` | 608c225 | ☐ | P0 |
 
-舊版精靈影格及沙塵圖集移至備選。新版精靈由原稿繪製待機、興奮與再接再厲三種姿勢，每秒 12 幀、各循環 2 秒。沙塵以每秒 12 幀連續流動，循環 12 秒。
+舊版精靈影格及沙塵圖集移至備選。新版精靈由原稿繪製待機、開箱前期待、中獎慶祝與再接再厲四段動作，每秒 12 幀、各循環 2 秒。沙塵以每秒 12 幀連續流動，循環 12 秒。
 
 | ☑ | N07 | 寶藏展示底座 | 900×291 | `assets/img/ui/treasure-plinth.webp` | d5de138 | ☐ | P1 |
 
 | 提交 | ID | 素材 | 尺寸 | 路徑 | commit | 審核 | 優先級 |
 |---|---|---|---|---|---|---|---|
-| ☑ | N08 | 主題狀態徽章 | 1536×1024 | `../shared/unbox-3d/img/status-badges.webp` | d5de138 | ☐ | P1 |
+| ☑ | N08 | 主題狀態徽章 | 1536×1024 | `../shared/unbox-3d/img/status-badges.webp` | ecfc9c9 | ☐ | P1 |
 
 | 提交 | ID | 素材 | 尺寸 | 路徑 | commit | 審核 | 優先級 |
 |---|---|---|---|---|---|---|---|
 | ☑ | N07 | 高解析精靈原稿 | 1254×1254 | `source/desert-spirit-hd/master.png` | 608c225 | ☐ | P3 |
-| ☑ | N08 | 精靈動畫 | （人工） | `assets/js/spirit-motion.js` | 608c225 | ☐ | P3 |
+| ☑ | N08 | 精靈動畫 | （人工） | `assets/js/spirit-motion.js` | ecfc9c9 | ☐ | P3 |
 | ☑ | N09 | 沙塵流場貼圖 | 1254×1254 | `assets/img/reveal/sand-vortex.webp` | 608c225 | ☐ | P3 |
 | ☑ | N10 | 沙塵原稿 | 1254×1254 | `source/reveal/sand-vortex-original.png` | 608c225 | ☐ | P3 |

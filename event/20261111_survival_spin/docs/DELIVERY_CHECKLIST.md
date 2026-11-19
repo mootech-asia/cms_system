@@ -81,7 +81,7 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | S44 | `assets/js/config.js` 的 skins.survival 圖片／吉祥物路徑改成實際交付的檔名，新活動入口無破圖 | — | `assets/js/config.js` | d5de138 | ☐ | P2 |
+| ☑ | S44 | `assets/js/config.js` 的 skins.survival 圖片／吉祥物路徑改成實際交付的檔名，新活動入口無破圖 | — | `assets/js/config.js` | ecfc9c9 | ☐ | P2 |
 
 ## 備註
 
