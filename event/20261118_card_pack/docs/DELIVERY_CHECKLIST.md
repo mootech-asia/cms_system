@@ -212,4 +212,4 @@ footer-deco 與前版 UI 圖片留存交付紀錄；目前頁面由各主題 CSS
 
 | 提交 | ID | 素材 | 尺寸 | 路徑 | commit | 審核 | 優先級 |
 |---|---|---|---|---|---|---|---|
-| ☑ | C85 | 主題狀態徽章 | 1536×1024 | `../shared/unbox-3d/img/status-badges.webp` | d5de138 | ☐ | P1 |
+| ☑ | C86 | 主題狀態徽章 | 1536×1024 | `../shared/unbox-3d/img/status-badges.webp` | d5de138 | ☐ | P1 |
