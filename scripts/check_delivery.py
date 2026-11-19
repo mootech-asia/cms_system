@@ -6,7 +6,7 @@
   python3 scripts/check_delivery.py <勾選表路徑>          只檢查已打勾的列
   python3 scripts/check_delivery.py <勾選表路徑> --all    未打勾的列也檢查（看目前檔案離規格多遠）
 
-例：python3 scripts/check_delivery.py event/20261111_lucky_wheel/DELIVERY_CHECKLIST.md
+例：python3 scripts/check_delivery.py event/20261111_lucky_wheel/docs/DELIVERY_CHECKLIST.md
     python3 scripts/check_delivery.py brand/moo-rabbit/DELIVERY_CHECKLIST.md
 
 結果：OK＝符合；FAIL＝已打勾但不符（仍是佔位圖、尺寸／幀數錯、commit 裡沒有這個檔案…，exit code 1）；TODO＝未打勾；
@@ -28,6 +28,8 @@ if not _args:
     sys.exit(__doc__)
 CHECKLIST = os.path.abspath(_args[0])
 ROOT = os.path.dirname(CHECKLIST)
+if os.path.basename(ROOT) == "docs" and os.path.isfile(os.path.join(ROOT, "..", "index.html")):
+    ROOT = os.path.dirname(ROOT)
 # event/20261111_lucky_wheel mock 階段的佔位圖指紋（sha256 前 16 碼）：交付檔若仍是這些檔案，代表沒有真的換圖。
 PLACEHOLDERS = {
     '3f16928fa15311b8',  # survival/btn-go.svg

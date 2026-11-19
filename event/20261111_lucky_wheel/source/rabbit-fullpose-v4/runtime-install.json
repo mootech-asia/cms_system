@@ -1,7 +1,7 @@
 [
   {
     "source": "idle",
-    "runtime": "assets/img/mascot/idle-1.webp",
+    "runtime": "alternatives/assets/img/mascot/idle-1.webp",
     "bytes": 1568108,
     "duration_ms": 2000,
     "quality": 90,
@@ -9,7 +9,7 @@
   },
   {
     "source": "excited",
-    "runtime": "assets/img/mascot/spinning.webp",
+    "runtime": "alternatives/assets/img/mascot/spinning.webp",
     "bytes": 1473988,
     "duration_ms": 2000,
     "quality": 90,
@@ -17,7 +17,7 @@
   },
   {
     "source": "celebration",
-    "runtime": "assets/img/mascot/result.webp",
+    "runtime": "alternatives/assets/img/mascot/result.webp",
     "bytes": 1553462,
     "duration_ms": 2000,
     "quality": 90,
@@ -25,7 +25,7 @@
   },
   {
     "source": "recover",
-    "runtime": "assets/img/mascot/lose.webp",
+    "runtime": "alternatives/assets/img/mascot/lose.webp",
     "bytes": 1468086,
     "duration_ms": 2000,
     "quality": 90,

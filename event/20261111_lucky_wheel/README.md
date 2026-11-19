@@ -7,8 +7,8 @@
 - `assets/`：本活動的程式、樣式與遊戲使用圖片。
 - `source/`、`tools/`：原圖、製作工具、動態與歷史檢查資料。
 - `reference/`：官方品牌參考與已採用的兔比設定。
-- [DESIGN_TASKS.md](./DESIGN_TASKS.md)、[GPT_ASSET_BRIEF.md](./GPT_ASSET_BRIEF.md)：美術需求與製作規格。
-- [DELIVERY_CHECKLIST.md](./DELIVERY_CHECKLIST.md)：提交狀態與人工審核；已有素材不等於全部通過審核。
+- [docs/DESIGN_TASKS.md](docs/DESIGN_TASKS.md)、[docs/GPT_ASSET_BRIEF.md](docs/GPT_ASSET_BRIEF.md)：美術需求與製作規格。
+- [docs/DELIVERY_CHECKLIST.md](docs/DELIVERY_CHECKLIST.md)：提交狀態與人工審核；已有素材不等於全部通過審核。
 
 主視覺與介面素材已套用，活動仍使用 mock 資料。兔比下一輪先優化四段：待機、興奮、慶祝、再接再厲；每段需有足夠中間姿勢、透明邊緣檢查與 GIF 預覽。四段之後再做完整吉祥物設定；15 秒影片不做。
 
@@ -31,3 +31,11 @@
 | `assets/img/loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/loading/emblem-original.png` |
 
 共用樣式位於 `event/shared/loading/loading.css`，HTML 的 `data-theme` 在應用程式啟動前指定主題。實際圖片完成數驅動進度；失敗仍計為已處理，維持10秒截止退場，不用假進度或強迫等待。三語文案獨立於圖片，減少動態模式停止裝飾動畫。
+
+## 標準目錄
+
+- `assets/css`、`assets/js`、`assets/img`、`assets/audio`：正式樣式、程式、圖片與音訊。
+- `docs`：需求、交付清單與 FILE_MIGRATION.json 搬移索引；交付表路徑以活動根目錄為基準。
+- `source`：原稿、分層檔與 reference 參考資料。
+- `tools`：此活動的素材製作工具。
+- `alternatives`：目前未引用的備選／舊版素材，保留原路徑結構。

@@ -1,0 +1,50 @@
+[
+  {
+    "from": "DESIGN_TASKS.md",
+    "to": "docs/DESIGN_TASKS.md"
+  },
+  {
+    "from": "AUDIO_REQUEST.md",
+    "to": "docs/AUDIO_REQUEST.md"
+  },
+  {
+    "from": "DELIVERY_CHECKLIST.md",
+    "to": "docs/DELIVERY_CHECKLIST.md"
+  },
+  {
+    "from": "GPT_ASSET_BRIEF.md",
+    "to": "docs/GPT_ASSET_BRIEF.md"
+  },
+  {
+    "from": "assets/audio/foil-tear.mp3",
+    "to": "alternatives/assets/audio/foil-tear.mp3"
+  },
+  {
+    "from": "assets/audio/reveal.mp3",
+    "to": "alternatives/assets/audio/reveal.mp3"
+  },
+  {
+    "from": "assets/img/title/title-zh.svg",
+    "to": "alternatives/assets/img/title/title-zh.svg"
+  },
+  {
+    "from": "assets/img/reveal/reward-frame-epic.svg",
+    "to": "alternatives/assets/img/reveal/reward-frame-epic.svg"
+  },
+  {
+    "from": "assets/img/reveal/reward-frame-common.svg",
+    "to": "alternatives/assets/img/reveal/reward-frame-common.svg"
+  },
+  {
+    "from": "assets/img/reveal/reveal-rays.svg",
+    "to": "alternatives/assets/img/reveal/reveal-rays.svg"
+  },
+  {
+    "from": "assets/img/reveal/reward-frame-legendary.svg",
+    "to": "alternatives/assets/img/reveal/reward-frame-legendary.svg"
+  },
+  {
+    "from": "assets/img/reveal/reward-frame-rare.svg",
+    "to": "alternatives/assets/img/reveal/reward-frame-rare.svg"
+  }
+]

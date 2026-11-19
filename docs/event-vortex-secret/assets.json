@@ -32,7 +32,7 @@
     ]
   },
   {
-    "path": "event/20261118_card_pack/assets/audio/foil-tear.mp3",
+    "path": "event/20261118_card_pack/alternatives/assets/audio/foil-tear.mp3",
     "bytes": 28464
   },
   {
@@ -40,7 +40,7 @@
     "bytes": 41003
   },
   {
-    "path": "event/20261118_blind_box/assets/img/scene/layers/curtain.webp",
+    "path": "event/20261118_blind_box/alternatives/assets/img/scene/layers/curtain.webp",
     "bytes": 48268,
     "size": [
       750,
@@ -48,7 +48,7 @@
     ]
   },
   {
-    "path": "event/20261118_blind_box/assets/img/scene/layers/columns.webp",
+    "path": "event/20261118_blind_box/alternatives/assets/img/scene/layers/columns.webp",
     "bytes": 101432,
     "size": [
       750,
@@ -56,7 +56,7 @@
     ]
   },
   {
-    "path": "event/20261118_blind_box/assets/img/scene/layers/desert.webp",
+    "path": "event/20261118_blind_box/alternatives/assets/img/scene/layers/desert.webp",
     "bytes": 85902,
     "size": [
       750,
@@ -64,7 +64,7 @@
     ]
   },
   {
-    "path": "event/20261118_blind_box/assets/img/scene/layers/floor.webp",
+    "path": "event/20261118_blind_box/alternatives/assets/img/scene/layers/floor.webp",
     "bytes": 133532,
     "size": [
       750,

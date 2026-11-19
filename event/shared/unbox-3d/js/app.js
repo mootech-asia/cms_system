@@ -5,7 +5,7 @@
 import { createAtmosphere } from './atmosphere.js?v=20261119-desert1';
 import { createRevealVortex } from './reveal-vortex.js?v=20261118-vortex2';
 import { createSecretCycle } from './secret-cycle.js?v=20261118-vortex1';
-import { createScene } from './scene.js?v=20261119-center1';
+import { createScene } from './scene.js?v=20261119-pouch1';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;

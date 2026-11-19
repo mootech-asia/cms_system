@@ -6,10 +6,10 @@
 
 | 活動 | 資料夾與入口 | 主題與目前狀態 | 美術清單 |
 |---|---|---|---|
-| Lucky Wheel 原版轉盤 | [20261111_lucky_wheel](./20261111_lucky_wheel/) · [開啟活動](./20261111_lucky_wheel/index.html) | 百老匯舞台、兔比；已有主視覺、介面與可操作轉盤，仍有美術項目待交付 | [交付清單](./20261111_lucky_wheel/DELIVERY_CHECKLIST.md) |
-| Survival Spin 生存輪盤 | [20261111_survival_spin](./20261111_survival_spin/) · [開啟活動](./20261111_survival_spin/index.html) | 墨綠／桃紅舞台、桃紅面具人物；目前使用第一版人物動態，已有專屬社群圖 | [交付清單](./20261111_survival_spin/DELIVERY_CHECKLIST.md) |
-| 3D 拆卡包 | [20261118_card_pack](./20261118_card_pack/) · [開啟活動](./20261118_card_pack/index.html) | mock（美術主題：宇宙幻象＋兔比宇宙兔女郎）；六包環形可拖曳轉圈、點選任一包即選擇、卡包 1.5 倍；環形選包、撕封條、逐張翻卡；en/ko/th、次數、規則、紀錄、分享已比照轉盤；全部佔位圖；吉祥物暫緩 | [交付清單](./20261118_card_pack/DELIVERY_CHECKLIST.md) |
-| 3D 拆盲盒 | [20261118_blind_box](./20261118_blind_box/) · [開啟活動](./20261118_blind_box/index.html) | mock（美術主題：中東神燈寶藏）；六個圓拱蓋寶箱環形可拖曳轉圈、點選任一箱即選擇、開箱為掀蓋；環形選盒、開蓋、翻開獎品卡；en/ko/th、次數、規則、紀錄、分享已比照轉盤；全部佔位圖；吉祥物暫緩 | [交付清單](./20261118_blind_box/DELIVERY_CHECKLIST.md) |
+| Lucky Wheel 原版轉盤 | [20261111_lucky_wheel](./20261111_lucky_wheel/) · [開啟活動](./20261111_lucky_wheel/index.html) | 百老匯舞台、兔比；已有主視覺、介面與可操作轉盤，仍有美術項目待交付 | [交付清單](20261111_lucky_wheel/docs/DELIVERY_CHECKLIST.md) |
+| Survival Spin 生存輪盤 | [20261111_survival_spin](./20261111_survival_spin/) · [開啟活動](./20261111_survival_spin/index.html) | 墨綠／桃紅舞台、桃紅面具人物；目前使用第一版人物動態，已有專屬社群圖 | [交付清單](20261111_survival_spin/docs/DELIVERY_CHECKLIST.md) |
+| 3D 拆卡包 | [20261118_card_pack](./20261118_card_pack/) · [開啟活動](./20261118_card_pack/index.html) | mock（美術主題：宇宙幻象＋兔比宇宙兔女郎）；六包環形可拖曳轉圈、點選任一包即選擇、卡包 1.5 倍；環形選包、撕封條、逐張翻卡；en/ko/th、次數、規則、紀錄、分享已比照轉盤；全部佔位圖；吉祥物暫緩 | [交付清單](20261118_card_pack/docs/DELIVERY_CHECKLIST.md) |
+| 3D 拆盲盒 | [20261118_blind_box](./20261118_blind_box/) · [開啟活動](./20261118_blind_box/index.html) | mock（美術主題：中東神燈寶藏）；六個圓拱蓋寶箱環形可拖曳轉圈、點選任一箱即選擇、開箱為掀蓋；環形選盒、開蓋、翻開獎品卡；en/ko/th、次數、規則、紀錄、分享已比照轉盤；全部佔位圖；吉祥物暫緩 | [交付清單](20261118_blind_box/docs/DELIVERY_CHECKLIST.md) |
 
 「已有素材」不等於所有交付與人工審核完成；各活動以自己的交付清單與檢查結果為準。正式站仍使用 mock 獎項資料，不代表已串接後台。
 
@@ -64,3 +64,7 @@ event/
 ### 共用輔助按鈕
 
 所有活動的分享、音效與左右切換使用 [共用亮面圓角按鈕](shared/buttons/README.md)，主題只換色；既定位置與點擊區保留。只有明確指定額外設計時才例外。
+
+## 統一目錄規格
+
+每款活動使用 `index.html`、`README.md`、`assets/{css,js,img,audio}`、`docs`、`source`、`tools`、`alternatives`。未使用資源移至 alternatives（備選），原稿維持 source；每次搬移記錄於該活動 `docs/FILE_MIGRATION.json`。`shared/` 為跨活動共用模組。原版轉盤的 `survival.html` 與舊社群預覽圖保留作公開網址相容入口。

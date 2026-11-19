@@ -174,3 +174,9 @@ localStorage 為同源同步（不受資料夾路徑影響），改動路徑時�
 所有 event 的分享、音效開關與左右方向鍵，預設必須引用 `event/shared/buttons/buttons.css` 的同一套亮面圓角方形美術。換主題只透過 `data-event-controls`／`--ev-control-tint` 換色，不另畫輪廓、雕花或圓形框。只有使用者明確要求額外設計時才能例外。此規則優先於主題元件需不同造型的一般規則。保留各活動既定的座標、排列、點擊區與功能，主行動按鈕不屬於此輔助按鈕系列。
 
 輔助按鈕的可見美術尺寸統一為 36 × 36 CSS px（Lucky Wheel／Survival Spin 基準），由共用 `--ev-control-size` 控制；分享、音效、方向鍵皆適用。可見美術置於原點擊區中央，不因各主題點擊區不同而放大，保留既定排列與操作範圍。
+
+分享／音效列的位置與間距同樣共用 Lucky Wheel／Survival Spin 基準：頂部 8px、左右內距 16px、按鈕間距 8px、容器 36×36px、頂端對齊。獨立頁有語系列時靠右，嵌入頁隱藏語系列時靠左；不得以不同寬高的透明容器造成主題間錯位。此共用配置取代舊的各主題分享／音效容器尺寸；其他介面位置不變。
+
+## Event 目錄標準
+
+每個 `event/YYYYMMDD_name/` 統一保留 `index.html`、`README.md`、`assets/{css,js,img,audio}/`、`docs/`、`source/`、`tools/`、`alternatives/`。正式頁面只載入 assets 與 shared；美術需求、交付清單、驗證／搬移紀錄放 docs，原稿與參考放 source，未使用替代素材放 alternatives 並記錄原路徑。搬移前必須檢查程式動態引用，序列幀不能僅靠檔名搜尋判定未使用。歷史公開入口可保留相容轉址；shared 是共用基礎設施，不複製到各活動。

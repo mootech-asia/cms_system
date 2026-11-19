@@ -121,13 +121,18 @@ export function createScene(stage, opts) {
   function foilGeometry(low) {
     var detail = low ? "far" : "near";
     if (foilGeos[detail]) return foilGeos[detail];
-    var foil = foilGeos[detail] = keep(new THREE.BoxGeometry(1.48, 2.22, .13, low ? 4 : 18, low ? 6 : 26, 2));
+    var foil = foilGeos[detail] = keep(new THREE.BoxGeometry(1.48, 2.22, .028, low ? 12 : 32, low ? 16 : 40, 2));
     var position = foil.attributes.position;
     for (var vertex = 0; vertex < position.count; vertex++) {
       var x = position.getX(vertex), y = position.getY(vertex), z = position.getZ(vertex);
-      var fullness = Math.pow(Math.max(0, Math.cos(x / 1.48 * Math.PI)), .65) * Math.pow(Math.max(0, Math.cos(y / 2.22 * Math.PI)), .55);
-      position.setX(vertex, x * (1 + .06 * Math.pow(Math.cos(y / 2.22 * Math.PI), 2)));
-      position.setZ(vertex, z + Math.sign(z) * .1 * fullness);
+      var nx = x / .74, ny = y / 1.11;
+      // The filled pouch tapers into a thin welded perimeter, including both seals.
+      var across = Math.pow(Math.max(0, Math.cos(nx * Math.PI / 2)), .65);
+      var along = Math.pow(Math.max(0, Math.cos(ny * Math.PI / 2)), .55);
+      var fullness = across * along;
+      var pleat = .004 * Math.sin(ny * Math.PI * 7 + Math.abs(nx) * 9) * Math.pow(Math.abs(nx), 6) * along * across;
+      position.setX(vertex, x * (1 + .018 * along - .012 * Math.pow(Math.abs(ny), 12)));
+      position.setZ(vertex, z + Math.sign(z) * (.125 * fullness + pleat));
     }
     position.needsUpdate = true;
     foil.computeVertexNormals();
@@ -137,12 +142,12 @@ export function createScene(stage, opts) {
   var sealGeo;
   function sealGeometry() {
     if (sealGeo) return sealGeo;
-    sealGeo = keep(new THREE.BoxGeometry(1.48, .18, .07, 80, 2, 1));
+    sealGeo = keep(new THREE.BoxGeometry(1.462, .18, .028, 80, 4, 1));
     var points = sealGeo.attributes.position;
     for (var v = 0; v < points.count; v++) {
       var x = points.getX(v), y = points.getY(v), z = points.getZ(v);
       var fold = Math.cos((x / 1.48 + .5) * Math.PI * 80);
-      points.setZ(v, z + Math.sign(z) * (.004 + .004 * fold));
+      points.setZ(v, z + Math.sign(z) * (.002 + .002 * fold));
       if (Math.abs(y) > .08) points.setY(v, y + Math.sign(y) * .004 * fold);
     }
     points.needsUpdate = true; sealGeo.computeVertexNormals(); return sealGeo;

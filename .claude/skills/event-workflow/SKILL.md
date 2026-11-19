@@ -5,8 +5,8 @@ description: "在 cms_system 的 event/ 底下新增或修改任何活動頁（�
 
 # 活動頁工作流（mock up → 製作美術圖 → 套用）
 
-範本：`event/20261111_lucky_wheel/`。新活動先讀它的 `DESIGN_TASKS.md`、`GPT_ASSET_BRIEF.md`、
-`DELIVERY_CHECKLIST.md`、`assets/js/*.js`，照同樣結構做，不要重新發明。
+範本：`event/20261111_lucky_wheel/`。新活動先讀它的 `docs/DESIGN_TASKS.md`、`docs/GPT_ASSET_BRIEF.md`、
+`docs/DELIVERY_CHECKLIST.md`、`assets/js/*.js`，照同樣結構做，不要重新發明。
 
 ## 美術品質前置檢查
 
@@ -15,8 +15,8 @@ description: "在 cms_system 的 event/ 底下新增或修改任何活動頁（�
 ## 第 0 步：開資料夾
 
 - 命名 `event/YYYYMMDD_event_name[_N]`（英文小寫底線；同日同名才加 `_2` 起的編號），並在 `event/README.md` 活動列表加一列。
-- 結構：`index.html`、`DESIGN_TASKS.md`（美術需求）、`GPT_ASSET_BRIEF.md`（給 GPT 的步驟與提示詞）、
-  `DELIVERY_CHECKLIST.md`（交付勾選表）、`reference/`、`assets/{css,js,img}`。
+- 結構：`index.html`、`docs/DESIGN_TASKS.md`（美術需求）、`docs/GPT_ASSET_BRIEF.md`（給 GPT 的步驟與提示詞）、
+  `docs/DELIVERY_CHECKLIST.md`（交付勾選表）、`source/`、`tools/`、`alternatives/`、`assets/{css,js,img,audio}`。
 - 免建置純 HTML/CSS/JS；CSS 用 token（`:root` 變數），不寫死任意色碼。
 
 ## 第 1 步：mock up（先能玩、先能看）
@@ -72,7 +72,7 @@ description: "在 cms_system 的 event/ 底下新增或修改任何活動頁（�
 ## 換皮（同一個活動程式做不同主題）
 
 - 活動建好後，新主題＝新皮：`skins/<名稱>/` 放 `skin.css`（只覆寫色票）、`img/`（只放跟預設不同的圖片槽）、
-  `DESIGN_TASKS.md`／`GPT_ASSET_BRIEF.md`／`DELIVERY_CHECKLIST.md`（交付路徑以皮資料夾為基準）。
+  `docs/DESIGN_TASKS.md`／`docs/GPT_ASSET_BRIEF.md`／`docs/DELIVERY_CHECKLIST.md`（交付路徑以皮資料夾為基準）。
 - `config.js` 的 `skins.<名稱>` 列出圖片槽覆蓋與 css；`assets/js/skin.js` 依 `config.skin` 或網址 `?skin=` 套用，
   色票載入後發 `ev:skin` 讓轉盤重畫扇區顏色；分享連結會帶上非預設的 skin。
 - 新皮先做 mock（佔位 SVG＋色票，指紋加進 `check_delivery.py`），再開需求、交 GPT。
@@ -89,10 +89,10 @@ description: "在 cms_system 的 event/ 底下新增或修改任何活動頁（�
      可先交靜態假圖讓頁面成形（假圖不打勾）。
    - 需求單開頭放「製作優先級」表與本案順序；勾選表每列最後一欄寫 P0～P3，`check_delivery.py` 會分級顯示進度。
 
-1. `DESIGN_TASKS.md`：美術方向、語系規則、共通規格、**每個圖片槽一列**（檔名、外框尺寸、構圖與可放字區域、
+1. `docs/DESIGN_TASKS.md`：美術方向、語系規則、共通規格、**每個圖片槽一列**（檔名、外框尺寸、構圖與可放字區域、
    透明區、九宮格切法）、主視覺文字專節（三語文案、字體方向、手機可讀性、泰文上下標留白、交可編輯原始檔）、
    吉祥物比對驗收表、音效（選配）、哪些是後台內容不要做成圖。
-2. `GPT_ASSET_BRIEF.md`：STYLE LOCK 共通段落＋每項英文提示詞；GPT 原生尺寸（1024²/1536×1024/1024×1536）
+2. `docs/GPT_ASSET_BRIEF.md`：STYLE LOCK 共通段落＋每項英文提示詞；GPT 原生尺寸（1024²/1536×1024/1024×1536）
    與目標尺寸不同時寫明縮放裁切；吉祥物動態用 sprite sheet 3×4 + 組 GIF 腳本（400×500、24fps、≥24 幀、無縫循環、
    GIF 1-bit 透明用舞台暖色 matte）。
    **共用基準幀**：所有吉祥物 GIF 第一幀＝最後一幀＝同一張 `base-frame.png`，且每段長度相同（48 幀、2 秒）→
@@ -100,7 +100,7 @@ description: "在 cms_system 的 event/ 底下新增或修改任何活動頁（�
 3. 吉祥物形象一律以品牌包為準：Moo Rabbit `brand/moo-rabbit/`（cms_system 事業部）、熊北官方
    `mootech-asia/mootech_website` 的 `brand/moo-bear/`。生成時附四視圖＋官方 MOOTECH logo
    （藍綠→黃綠漸層的「不可能 M」，不是橘色 M）。驗收時放大檢查**背心字樣拼字**（AI 常拼錯）。
-4. `DELIVERY_CHECKLIST.md`：每個交付物一列（提交☐/☑、尺寸、交付路徑、commit、審核）。GPT 只能打「提交」勾並填
+4. `docs/DELIVERY_CHECKLIST.md`：路徑以活動根目錄為基準；每個交付物一列（提交☐/☑、尺寸、交付路徑、commit、審核）。GPT 只能打「提交」勾並填
    commit；「審核」欄由我們填。進度與真偽一律用腳本：
    `python3 scripts/check_delivery.py <勾選表>`（`--all` 看全部）。腳本會擋：仍是佔位圖（sha256 指紋，
    新增佔位圖後要把指紋加進 `PLACEHOLDERS`）、尺寸錯、GIF 幀數/循環、commit 裡沒有該檔或之後又改過、

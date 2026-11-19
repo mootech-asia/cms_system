@@ -21,72 +21,72 @@ window.EVENT_CONFIG = {
   skin: 'survival',
   skins: {
     survival: {
-      css: 'skin.css?v=led-spin',
+      css: 'assets/css/skin.css?v=led-spin',
       strings: {
         'title.alt': { en: 'Survival Spin', ko: '서바이벌 스핀', th: 'สปินเอาตัวรอด', zh: '生存轉盤' }
       },
       sounds: {},
       mascot: {
-        poster: 'img/mascot/rifle-v1/optimized/poster.webp',
+        poster: 'assets/img/mascot/rifle-v1/optimized/poster.webp',
         idle: [
-          'img/mascot/rifle-v1/optimized/idle.webp'
+          'assets/img/mascot/rifle-v1/optimized/idle.webp'
         ],
-        spinning: 'img/mascot/rifle-v1/optimized/anticipation.webp',
-        result: 'img/mascot/rifle-v1/optimized/anticipation.webp',
-        lose: 'img/mascot/rifle-v1/optimized/disappointment.webp'
+        spinning: 'assets/img/mascot/rifle-v1/optimized/anticipation.webp',
+        result: 'assets/img/mascot/rifle-v1/optimized/anticipation.webp',
+        lose: 'assets/img/mascot/rifle-v1/optimized/disappointment.webp'
       },
       images: {
-        wheelGloss: 'img/wheel-gloss.svg',
-        soundOn: 'img/icon-sound-on.webp',
-        soundOff: 'img/icon-sound-off.webp',
-        share: 'img/icon-share.webp',
-        rotateHint: 'img/icon-rotate.webp?v=20261118-perf1',
+        wheelGloss: 'assets/img/wheel-gloss.svg',
+        soundOn: 'assets/img/icon-sound-on.webp',
+        soundOff: 'assets/img/icon-sound-off.webp',
+        share: 'assets/img/icon-share.webp',
+        rotateHint: 'assets/img/icon-rotate.webp?v=20261118-perf1',
         title: {
-          en: 'img/title-en.webp',
-          ko: 'img/title-ko.webp?v=20261118-perf1',
-          th: 'img/title-th.webp?v=20261118-perf1',
-          zh: 'img/title-en.webp'
+          en: 'assets/img/title-en.webp',
+          ko: 'assets/img/title-ko.webp?v=20261118-perf1',
+          th: 'assets/img/title-th.webp?v=20261118-perf1',
+          zh: 'assets/img/title-en.webp'
         },
-        stageBg: 'img/stage-bg.webp',
-        infoBg: 'img/info-bg.webp',
-        stageFloor: 'img/stage-floor.webp',
-        spotlight: 'img/spotlight.webp',
-        lightPool: 'img/light-pool.webp?v=20261118-perf1',
-        stageVignette: 'img/stage-vignette.webp?v=20261118-perf1',
-        bulbOn: 'img/bulb-on.webp',
-        bulbOff: 'img/bulb-off.webp',
-        wheelFrame: 'img/wheel-frame.webp?v=20261118-perf1',
-        wheelStand: 'img/wheel-stand.webp?v=20261118-perf1',
-        pointer: 'img/pointer.webp',
-        btnGo: 'img/btn-go.webp',
-        btnPrimary: 'img/btn-primary.webp',
-        modalBg: 'img/modal-bg.webp?v=20261118-perf1',
-        periodBadge: 'img/period-badge.webp?v=20261118-perf1',
-        chancesBadge: 'img/chances-badge.webp?v=20261118-perf1',
-        cardFrame: 'img/card-frame.webp',
-        cardTitle: 'img/card-title.webp?v=20261118-perf1',
-        tickerBar: 'img/ticker-bar.webp?v=20261118-perf1',
-        footerDeco: 'img/footer-deco.webp?v=20261118-perf1'
+        stageBg: 'assets/img/stage-bg.webp',
+        infoBg: 'assets/img/info-bg.webp',
+        stageFloor: 'assets/img/stage-floor.webp',
+        spotlight: 'assets/img/spotlight.webp',
+        lightPool: 'assets/img/light-pool.webp?v=20261118-perf1',
+        stageVignette: 'assets/img/stage-vignette.webp?v=20261118-perf1',
+        bulbOn: 'assets/img/bulb-on.webp',
+        bulbOff: 'assets/img/bulb-off.webp',
+        wheelFrame: 'assets/img/wheel-frame.webp?v=20261118-perf1',
+        wheelStand: 'assets/img/wheel-stand.webp?v=20261118-perf1',
+        pointer: 'assets/img/pointer.webp',
+        btnGo: 'assets/img/btn-go.webp',
+        btnPrimary: 'assets/img/btn-primary.webp',
+        modalBg: 'assets/img/modal-bg.webp?v=20261118-perf1',
+        periodBadge: 'assets/img/period-badge.webp?v=20261118-perf1',
+        chancesBadge: 'assets/img/chances-badge.webp?v=20261118-perf1',
+        cardFrame: 'assets/img/card-frame.webp',
+        cardTitle: 'assets/img/card-title.webp?v=20261118-perf1',
+        tickerBar: 'assets/img/ticker-bar.webp?v=20261118-perf1',
+        footerDeco: 'assets/img/footer-deco.webp?v=20261118-perf1'
       }
     }
   },
 
-  images: { loadingEmblem: 'img/loading-emblem.webp?v=20261118-loading1', },
+  images: { loadingEmblem: 'assets/img/loading-emblem.webp?v=20261118-loading1', },
 
   /* 吉祥物：每個狀態一個循環 GIF，全部共用同一張基準幀（頭尾）且長度相同（loopMs），
      程式在一輪結束時才切換，動作可以隨時無縫替換。idle 會在多張之間輪播。 */
   /* 網頁載入的是 tools/gif_to_webp.py 由交付 GIF 轉出的動態 WebP（同內容、約 1/3 大小）；
      換新素材後重跑該腳本（有 PNG 序列幀時優先用序列幀，保留半透明影子）。loopMs 必須等於 GIF 每幀時長總和（目前 48 幀 = 2000ms）。 */
   mascot: {
-    poster: 'img/mascot/rifle-v1/optimized/poster.webp',
+    poster: 'assets/img/mascot/rifle-v1/optimized/poster.webp',
     loopMs: 2000,
     idle: [
-      'img/mascot/rifle-v1/optimized/idle.webp'
+      'assets/img/mascot/rifle-v1/optimized/idle.webp'
     ],
-    spinning: 'img/mascot/rifle-v1/optimized/anticipation.webp',
-    result: 'img/mascot/rifle-v1/optimized/anticipation.webp',
+    spinning: 'assets/img/mascot/rifle-v1/optimized/anticipation.webp',
+    result: 'assets/img/mascot/rifle-v1/optimized/anticipation.webp',
     // 未中獎的「失望」動作：交付後填 mascot 資料夾裡的 lose 動態檔；留空時用 result
-    lose: 'img/mascot/rifle-v1/optimized/disappointment.webp'
+    lose: 'assets/img/mascot/rifle-v1/optimized/disappointment.webp'
   },
 
   /* 音效與 BGM：留空時用 Web Audio 即時合成（sound.js 依皮選音色）；交付音檔後填路徑即改播音檔。
@@ -141,13 +141,13 @@ window.EVENT_CONFIG = {
     period: '2026/11/11 – 2026/11/30',
     freeSpins: 10,
     prizes: [
-      { name: { en: 'Cash 888', ko: '현금 888', th: 'เงินสด 888', zh: '現金 888 元' }, icon: 'img/icon-cash.svg', weight: 2, isLose: false },
-      { name: { en: '10 Free Spins', ko: '무료 스핀 10회', th: 'ฟรีสปิน 10 ครั้ง', zh: '免費旋轉 ×10' }, icon: 'img/icon-spin.svg', weight: 15, isLose: false },
-      { name: { en: '20% Deposit Bonus', ko: '충전 보너스 20%', th: 'โบนัสเติมเงิน 20%', zh: '儲值加碼 20%' }, icon: 'img/icon-bonus.svg', weight: 18, isLose: false },
-      { name: { en: '500 Points', ko: '500 포인트', th: '500 คะแนน', zh: '積分 ×500' }, icon: 'img/icon-points.svg', weight: 20, isLose: false },
-      { name: { en: '100 Coins', ko: '코인 100개', th: '100 เหรียญ', zh: '金幣 ×100' }, icon: 'img/icon-coin.svg', weight: 15, isLose: false },
-      { name: { en: 'Mystery Gift', ko: '미스터리 선물', th: 'ของขวัญปริศนา', zh: '神秘禮物' }, icon: 'img/icon-gift.svg', weight: 5, isLose: false },
-      { name: { en: 'Try Again', ko: '꽝', th: 'ลองใหม่อีกครั้ง', zh: '銘謝惠顧' }, icon: 'img/icon-thanks.svg', weight: 25, isLose: true }
+      { name: { en: 'Cash 888', ko: '현금 888', th: 'เงินสด 888', zh: '現金 888 元' }, icon: 'assets/img/icon-cash.svg', weight: 2, isLose: false },
+      { name: { en: '10 Free Spins', ko: '무료 스핀 10회', th: 'ฟรีสปิน 10 ครั้ง', zh: '免費旋轉 ×10' }, icon: 'assets/img/icon-spin.svg', weight: 15, isLose: false },
+      { name: { en: '20% Deposit Bonus', ko: '충전 보너스 20%', th: 'โบนัสเติมเงิน 20%', zh: '儲值加碼 20%' }, icon: 'assets/img/icon-bonus.svg', weight: 18, isLose: false },
+      { name: { en: '500 Points', ko: '500 포인트', th: '500 คะแนน', zh: '積分 ×500' }, icon: 'assets/img/icon-points.svg', weight: 20, isLose: false },
+      { name: { en: '100 Coins', ko: '코인 100개', th: '100 เหรียญ', zh: '金幣 ×100' }, icon: 'assets/img/icon-coin.svg', weight: 15, isLose: false },
+      { name: { en: 'Mystery Gift', ko: '미스터리 선물', th: 'ของขวัญปริศนา', zh: '神秘禮物' }, icon: 'assets/img/icon-gift.svg', weight: 5, isLose: false },
+      { name: { en: 'Try Again', ko: '꽝', th: 'ลองใหม่อีกครั้ง', zh: '銘謝惠顧' }, icon: 'assets/img/icon-thanks.svg', weight: 25, isLose: true }
     ],
     winners: [
       { name: 'pl***88', prize: 0 }, { name: 'ka***21', prize: 3 }, { name: 'so***07', prize: 1 },

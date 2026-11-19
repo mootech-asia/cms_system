@@ -341,7 +341,7 @@
     ]
   },
   {
-    "path": "event/20261118_blind_box/assets/img/ui/folio-header.webp",
+    "path": "event/20261118_blind_box/alternatives/assets/img/ui/folio-header.webp",
     "before": 62542,
     "after": 49632,
     "psnr": 41.06,
@@ -561,7 +561,7 @@
     ]
   },
   {
-    "path": "event/20261111_lucky_wheel/assets/img/stage-bg-desktop.webp",
+    "path": "event/20261111_lucky_wheel/alternatives/assets/img/stage-bg-desktop.webp",
     "before": 301368,
     "after": 197558,
     "psnr": 40.14,
@@ -671,7 +671,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/btn-go.webp",
+    "path": "event/20261111_survival_spin/assets/img/btn-go.webp",
     "before": 10132,
     "after": 10132,
     "psnr": 42.03,
@@ -682,7 +682,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/btn-primary.webp",
+    "path": "event/20261111_survival_spin/assets/img/btn-primary.webp",
     "before": 14216,
     "after": 14216,
     "psnr": 41.05,
@@ -693,7 +693,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/bulb-off.webp",
+    "path": "event/20261111_survival_spin/assets/img/bulb-off.webp",
     "before": 1560,
     "after": 1560,
     "psnr": 26.62,
@@ -704,7 +704,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/bulb-on.webp",
+    "path": "event/20261111_survival_spin/assets/img/bulb-on.webp",
     "before": 2270,
     "after": 2270,
     "psnr": 26.23,
@@ -715,7 +715,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/card-frame.webp",
+    "path": "event/20261111_survival_spin/assets/img/card-frame.webp",
     "before": 9428,
     "after": 9428,
     "psnr": 32.59,
@@ -726,7 +726,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/card-title.webp",
+    "path": "event/20261111_survival_spin/assets/img/card-title.webp",
     "before": 8008,
     "after": 6572,
     "psnr": 37.03,
@@ -737,7 +737,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/chances-badge.webp",
+    "path": "event/20261111_survival_spin/assets/img/chances-badge.webp",
     "before": 11058,
     "after": 9384,
     "psnr": 37.72,
@@ -748,7 +748,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/footer-deco.webp",
+    "path": "event/20261111_survival_spin/assets/img/footer-deco.webp",
     "before": 23692,
     "after": 21474,
     "psnr": 40.07,
@@ -759,7 +759,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/icon-rotate.webp",
+    "path": "event/20261111_survival_spin/assets/img/icon-rotate.webp",
     "before": 8200,
     "after": 7504,
     "psnr": 41.07,
@@ -770,7 +770,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/icon-share.webp",
+    "path": "event/20261111_survival_spin/assets/img/icon-share.webp",
     "before": 6372,
     "after": 6372,
     "psnr": 25.94,
@@ -781,7 +781,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/icon-sound-off.webp",
+    "path": "event/20261111_survival_spin/assets/img/icon-sound-off.webp",
     "before": 6114,
     "after": 6114,
     "psnr": 27.09,
@@ -792,7 +792,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/icon-sound-on.webp",
+    "path": "event/20261111_survival_spin/assets/img/icon-sound-on.webp",
     "before": 6408,
     "after": 6408,
     "psnr": 26.87,
@@ -803,7 +803,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/info-bg.webp",
+    "path": "event/20261111_survival_spin/assets/img/info-bg.webp",
     "before": 2058,
     "after": 2058,
     "psnr": 54.56,
@@ -814,7 +814,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/light-pool.webp",
+    "path": "event/20261111_survival_spin/assets/img/light-pool.webp",
     "before": 12976,
     "after": 11376,
     "psnr": 48.97,
@@ -825,7 +825,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/modal-bg.webp",
+    "path": "event/20261111_survival_spin/assets/img/modal-bg.webp",
     "before": 18014,
     "after": 16140,
     "psnr": 43.89,
@@ -836,7 +836,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/period-badge.webp",
+    "path": "event/20261111_survival_spin/assets/img/period-badge.webp",
     "before": 6452,
     "after": 5128,
     "psnr": 39.46,
@@ -847,7 +847,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/pointer.webp",
+    "path": "event/20261111_survival_spin/assets/img/pointer.webp",
     "before": 5088,
     "after": 5088,
     "psnr": 39.6,
@@ -858,7 +858,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/share-preview.jpg",
+    "path": "event/20261111_survival_spin/assets/img/share-preview.jpg",
     "before": 378509,
     "after": 378509,
     "psnr": 33.55,
@@ -869,7 +869,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/spotlight.webp",
+    "path": "event/20261111_survival_spin/assets/img/spotlight.webp",
     "before": 20378,
     "after": 20378,
     "psnr": 52.62,
@@ -880,7 +880,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/stage-bg.webp",
+    "path": "event/20261111_survival_spin/assets/img/stage-bg.webp",
     "before": 49596,
     "after": 49596,
     "psnr": 43.66,
@@ -891,7 +891,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/stage-floor.webp",
+    "path": "event/20261111_survival_spin/assets/img/stage-floor.webp",
     "before": 16524,
     "after": 16524,
     "psnr": 42.2,
@@ -902,7 +902,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/stage-vignette.webp",
+    "path": "event/20261111_survival_spin/assets/img/stage-vignette.webp",
     "before": 53408,
     "after": 44132,
     "psnr": 61.5,
@@ -913,7 +913,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/ticker-bar.webp",
+    "path": "event/20261111_survival_spin/assets/img/ticker-bar.webp",
     "before": 10066,
     "after": 8568,
     "psnr": 36.45,
@@ -924,7 +924,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/title-en.webp",
+    "path": "event/20261111_survival_spin/assets/img/title-en.webp",
     "before": 42970,
     "after": 42970,
     "psnr": 38.99,
@@ -935,7 +935,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/title-ko.webp",
+    "path": "event/20261111_survival_spin/assets/img/title-ko.webp",
     "before": 42116,
     "after": 38518,
     "psnr": 38.23,
@@ -946,7 +946,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/title-th.webp",
+    "path": "event/20261111_survival_spin/assets/img/title-th.webp",
     "before": 39574,
     "after": 36404,
     "psnr": 37.75,
@@ -957,7 +957,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/wheel-frame.webp",
+    "path": "event/20261111_survival_spin/assets/img/wheel-frame.webp",
     "before": 29698,
     "after": 27016,
     "psnr": 39.31,
@@ -968,7 +968,7 @@
     ]
   },
   {
-    "path": "event/20261111_survival_spin/img/wheel-stand.webp",
+    "path": "event/20261111_survival_spin/assets/img/wheel-stand.webp",
     "before": 18682,
     "after": 16616,
     "psnr": 40.85,

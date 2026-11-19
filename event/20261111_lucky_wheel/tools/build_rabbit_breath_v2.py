@@ -7,7 +7,7 @@ import json, math
 R=Path(__file__).resolve().parents[1]
 O=R/'source/rabbit-motion-v2';O.mkdir(exist_ok=True)
 F=O/'idle-breathe-frames';F.mkdir(exist_ok=True)
-original=Image.open(R/'assets/img/mascot/base-frame.png').convert('RGBA')
+original=Image.open(R/'alternatives/assets/img/mascot/base-frame.png').convert('RGBA')
 base=Image.new('RGBA',(400,500));ImageDraw.Draw(base).ellipse((100,465,300,478),fill=(25,14,9,70))
 base=base.filter(ImageFilter.GaussianBlur(3));base.alpha_composite(original.resize((384,480),Image.Resampling.LANCZOS),(8,8))
 base.save(O/'base-frame.png')

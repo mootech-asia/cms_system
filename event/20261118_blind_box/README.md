@@ -6,7 +6,7 @@
 - 入口：`index.html`（免建置）
 - 設定與換圖：`assets/js/config.js`；色票：`assets/css/theme.css`
 - 共用程式：`../shared/unbox-3d/`（與拆卡包共用，說明見該資料夾 README）
-- 美術：`DESIGN_TASKS.md`（需求）、`GPT_ASSET_BRIEF.md`（製作步驟與提示詞）、`DELIVERY_CHECKLIST.md`（交付勾選）
+- 美術：`docs/DESIGN_TASKS.md`（需求）、`docs/GPT_ASSET_BRIEF.md`（製作步驟與提示詞）、`docs/DELIVERY_CHECKLIST.md`（交付勾選）
 - 內部面板：畫面同一位置連點三下（每下間隔 ≤0.5 秒，點在按鈕上不算）：每次獎品數預覽、重設次數（10）、換圖標籤開關
 - 中文預覽：Ctrl+Alt+L（Mac：Control+Option+L）
 
@@ -47,3 +47,11 @@
 ### 場景與交界修正
 
 最新實作與逐項視覺／功能證據見 [場景驗證](../../docs/event-scene-final/README.md)。原稿保留在 source/；交付 WebP 容量記錄於該報告 compression.json。
+
+## 標準目錄
+
+- `assets/css`、`assets/js`、`assets/img`、`assets/audio`：正式樣式、程式、圖片與音訊。
+- `docs`：需求、交付清單與 FILE_MIGRATION.json 搬移索引；交付表路徑以活動根目錄為基準。
+- `source`：原稿、分層檔與 reference 參考資料。
+- `tools`：此活動的素材製作工具。
+- `alternatives`：目前未引用的備選／舊版素材，保留原路徑結構。

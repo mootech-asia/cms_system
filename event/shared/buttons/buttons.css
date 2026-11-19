@@ -1,4 +1,4 @@
-/* Shared utility artwork; hit areas and placement remain owned by each event. */
+/* Shared utility artwork and toolbar geometry. */
 :root { --ev-control-size: 36px; --ev-control-tint: hue-rotate(0deg); --ev-control-ink: #fff4cd; }
 body[data-event-controls="cosmic"] { --ev-control-tint: hue-rotate(305deg); }
 body[data-event-controls="desert"] { --ev-control-tint: hue-rotate(175deg); }
@@ -40,3 +40,7 @@ body :is(#btnShare,#btnSound,#btnPrev,#btnNext):focus-visible { outline: 2px sol
   body :is(#btnShare,#btnSound,#btnPrev,#btnNext)::before { transition: none; }
 }
 body :is(#btnShare,#btnSound) { position: relative; }
+
+body .ev-topbar { align-items: flex-start; padding: 8px 16px 0; gap: 12px; }
+body .ev-sound-wrap { display: flex; gap: 8px; }
+body :is(#btnShare,#btnSound) { width: var(--ev-control-size); height: var(--ev-control-size); flex: 0 0 var(--ev-control-size); }

@@ -1,0 +1,186 @@
+# 美術交付勾選表（20261111_lucky_wheel）
+
+> ## 🔴 本批最優先（2026-11-12 指定，先做完這兩項再做其他任何項目）
+>
+> | 順序 | 項目 | 檔案（勾選表編號） | 規格 |
+> |---|---|---|---|
+> | 1 | **幸運轉盤主視覺文字（三語）** | `title-en`（A03）、`title-ko`（A04）、`title-th`（A05） | `docs/DESIGN_TASKS.md`「主視覺文字」：客製 Logo 字、融入轉盤元素，不是字型打在招牌上；690×240 去背；三語各自設計字形 |
+> | 2 | **舞台燈光** | `spotlight` 重做（A06）、`light-pool`（A34）、`stage-vignette`（A35）、`bulb-on`（A37）、`bulb-off`（A38） | `docs/DESIGN_TASKS.md`「舞台燈光」：暖白 3200K、體積光、地板光圈、轉動時四周壓暗、燈泡亮暗一對 |
+>
+> 交付：放到交付路徑、刪掉同名 `.svg` 佔位檔、改 `assets/js/config.js` 路徑 → commit → 勾選表打勾填 commit → `python3 scripts/check_delivery.py event/20261111_lucky_wheel/docs/DELIVERY_CHECKLIST.md` 已打勾列全部 OK。
+> 另附：三語主標並排比對圖、主標縮到 345 寬放在舞台上的效果圖、待機／轉動／開獎三種狀態的燈光截圖。
+
+**提交狀態以這份表為準；是否屬實以 `scripts/check_delivery.py`（repo 根目錄） 的結果為準。** 規格看 `docs/DESIGN_TASKS.md`，製作步驟看 `docs/GPT_ASSET_BRIEF.md`。
+
+## 打勾規則（GPT 必讀）
+
+1. 檔案**已放到「交付路徑」並 commit** 之後，才能把「提交」欄的 `☐` 改成 `☑`，並在「commit」欄填上 commit hash（前 7 碼）。
+2. 打勾前先執行檢查腳本，**所有已打勾的列都必須是 `OK`**：
+   ```bash
+   python3 scripts/check_delivery.py event/20261111_lucky_wheel/docs/DELIVERY_CHECKLIST.md
+   ```
+   腳本會實際檢查：檔案存在、不是 mock 佔位圖、像素尺寸、GIF 幀數與循環、填的 commit 裡確實包含這份檔案且之後沒再改過。打了勾但不符會列為 `FAIL`；第一行會印出「已提交且通過檢查 x / 總項數」。
+3. 交付路徑中的 `{png,webp,svg}` 代表三選一的副檔名。**換副檔名時要刪掉舊的 `.svg` 佔位檔**（同名多副檔名會被判 FAIL），並一併修改 `assets/js/config.js` 的路徑（第 F 區有一列專門勾這件事）。
+4. 「審核」欄由我們填寫（`☐` 待審／`☑` 通過／`✗` 退回＋原因），**GPT 不要改審核欄**。
+5. 不要刪除或新增列；有疑問寫在最下方「備註」。
+
+## 製作優先級（照順序做，先快速掌握整體設計質感）
+
+| 級別 | 定義 | 做法 |
+|---|---|---|
+| **P0 全局視覺** | 面積大、決定第一眼的整體質感，且製作相對直接 | **最先做**。全部 P0 到位後先整頁截圖確認整體方向，再往下做 |
+| **P1 版面元件** | 主要版面與互動元件 | P0 確認後接著做 |
+| **P2 細節** | 小圖示、裝飾、設定調整 | P1 之後 |
+| **P3 精修與動態** | 複雜、需要時間打磨的項目（吉祥物動態、角色設定圖、原始檔、音效、影片） | **放最後慢慢雕出品質**；需要時可先交靜態「假圖」讓頁面先成形（假圖不打勾，正式版交付才打勾） |
+
+勾選表每列最後一欄是優先級；檢查腳本會顯示各級進度（例：`P0 3/11`）。
+
+## A. 靜態圖（37）＋主標原始檔（1）
+
+| 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☑ | A01 | stage-bg | 750×1000 | `assets/img/stage-bg.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
+| ☑ | A02 | stage-floor | 750×140 | `assets/img/stage-floor.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
+| ☑ | A03 | title-en | 690×240 | `assets/img/title-en.{png,webp,svg}` | aaa6c24 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A04 | title-ko | 690×240 | `assets/img/title-ko.{png,webp,svg}` | aaa6c24 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A05 | title-th | 690×240 | `assets/img/title-th.{png,webp,svg}` | aaa6c24 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A06 | spotlight | 260×900 | `assets/img/spotlight.{png,webp,svg}` | aaa6c24 | ✗ 退回重做：硬邊平面楔形，要做有煙霧體積感的光束（見需求單「舞台燈光」） | P0 |
+| ☑ | A07 | wheel-frame | 680×680 | `assets/img/wheel-frame.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
+| ☑ | A08 | wheel-gloss | 600×600 | `assets/img/wheel-gloss.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
+| ☑ | A09 | pointer | 120×160 | `assets/img/pointer.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
+| ☑ | A10 | btn-go | 200×200 | `assets/img/btn-go.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
+| ☑ | A11 | modal-bg | 600×760 | `assets/img/modal-bg.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
+| ☑ | A12 | btn-primary | 400×110 | `assets/img/btn-primary.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
+| ☑ | A13 | icon-sound-on | 64×64 | `assets/img/icon-sound-on.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
+| ☑ | A14 | icon-sound-off | 64×64 | `assets/img/icon-sound-off.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
+| ☑ | A15 | icon-cash | 160×160 | `assets/img/icon-cash.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
+| ☑ | A16 | icon-coin | 160×160 | `assets/img/icon-coin.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
+| ☑ | A17 | icon-gift | 160×160 | `assets/img/icon-gift.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
+| ☑ | A18 | icon-spin | 160×160 | `assets/img/icon-spin.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
+| ☑ | A19 | icon-bonus | 160×160 | `assets/img/icon-bonus.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
+| ☑ | A20 | icon-points | 160×160 | `assets/img/icon-points.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
+| ☑ | A21 | icon-thanks | 160×160 | `assets/img/icon-thanks.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
+| ☑ | A22 | stage-bg-desktop | 1920×1000 | `alternatives/assets/img/stage-bg-desktop.{png,webp,svg}` | aaa6c24 | 已停用（只用 H5 寬度），不再需要 | P0 |
+| ☑ | A23 | info-bg | 750×750 | `assets/img/info-bg.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
+| ☑ | A24 | period-badge | 480×64 | `assets/img/period-badge.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
+| ☑ | A25 | chances-badge | 360×88 | `assets/img/chances-badge.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
+| ☑ | A26 | card-frame | 120×120 | `assets/img/card-frame.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
+| ☑ | A27 | card-title | 400×72 | `assets/img/card-title.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
+| ☑ | A28 | footer-deco | 750×160 | `assets/img/footer-deco.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
+| ☑ | A29 | icon-share | 64×64 | `assets/img/icon-share.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
+| ☑ | A30 | share-preview | 1200×630 | `assets/img/share-preview.{png,jpg}` | aaa6c24 | 主標定稿後要換新主標重出 | P1 |
+| ☐ | A31 | title 原始檔（PSD／AI／Figma） | 暫緩：目前忽略不做，不列待辦 | `source/title-source.md` | | ☐ | P3 |
+| ☑ | A32 | wheel-stand | 400×600 | `assets/img/wheel-stand.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
+| ☑ | A33 | ticker-bar | 690×64 | `assets/img/ticker-bar.{png,webp,svg}` | aaa6c24 | ☐ | P1 |
+| ☑ | A34 | light-pool | 600×220 | `assets/img/light-pool.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
+| ☑ | A35 | stage-vignette | 750×1000 | `assets/img/stage-vignette.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
+| ☑ | A37 | bulb-on | 48×48 | `assets/img/bulb-on.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
+| ☑ | A38 | bulb-off | 48×48 | `assets/img/bulb-off.{png,webp,svg}` | aaa6c24 | ☐ | P0 |
+| ☑ | A39 | icon-rotate | 160×160 | `assets/img/icon-rotate.{png,webp,svg}` | aaa6c24 | ☐ | P2 |
+| ☐ | A40 | icon-tap | 160×160 | `alternatives/assets/img/icon-tap.{png,webp,svg}` | | ☐ | P2 |
+
+## B. 色票（1）
+
+| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | 84ae6d5 | ☐ | P0 |
+
+## C. 吉祥物角色設定圖（1，第一階段）
+
+> 由品牌包 `brand/moo-rabbit/` 製作，這裡只追蹤同一個檔案；品牌包勾選表 A01 打勾時，這列可填同一個 commit。
+
+> 兔比完整設定排在轉盤活動完成之後，C01 暫緩、不計入本活動進度；D 區（動態）不必等 C01，但排在 P0～P2 之後。
+> **D 區規則**：先交 D00 基準幀；每個 GIF 第一幀＝最後一幀＝D00，且每段長度相同（48 幀、2 秒），檢查腳本會逐一驗證。
+
+| 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☐ | C01 | turnaround-sheet（品牌包同一檔案） | 1536×1024（暫緩：兔比完整設定排在轉盤活動之後） | `../../brand/moo-rabbit/01_character/turnaround-sheet.png` | | ☐ | P3 |
+
+## D. 吉祥物動態（基準幀＋6 段，P3 最後做）
+
+| 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☐ | D00 | base-frame（所有動態共用的基準幀，含影子） | 400×500 | `alternatives/assets/img/mascot/base-frame.png` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | D01 | idle-1 | 400×500 gif≥24 | `alternatives/assets/img/mascot/idle-1.gif` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | D02 | idle-2 | 400×500 gif≥24 | `alternatives/assets/img/mascot/idle-2.gif` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | D03 | idle-3 | 400×500 gif≥24 | `alternatives/assets/img/mascot/idle-3.gif` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | D04 | spinning（期待） | 400×500 gif≥24 | `alternatives/assets/img/mascot/spinning.gif` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | D05 | result（慶祝，中獎） | 400×500 gif≥24 | `alternatives/assets/img/mascot/result.gif` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | D06 | lose（失望，未中獎，新增） | 400×500 gif≥24 | `assets/img/mascot/lose.gif` | | ☐ | P3 |
+
+## E. 吉祥物附件（12，PNG 序列幀為主交付）
+
+序列幀與比對圖不會上線，放在 `source/`。
+
+| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☐ | E01 | idle-1 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-1/` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | E02 | idle-2 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-2/` | | ☐ | P3 |
+| ☐ | E03 | idle-3 PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/idle-3/` | | ☐ | P3 |
+| ☐ | E04 | spinning PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/spinning/` | | ☐ | P3 |
+| ☐ | E05 | result PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/result/` | | ☐ | P3 |
+| ☐ | E11 | lose PNG 序列幀 | 400×500 frames≥24 | `source/mascot-frames/lose/` | | ☐ | P3 |
+| ☐ | E06 | idle-1 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-1.{png,webp}` | | ✗ 需重做（2026-11-12）：品質不佳；影子要畫進角色；全部重做 | P3 |
+| ☐ | E07 | idle-2 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-2.{png,webp}` | | ☐ | P3 |
+| ☐ | E08 | idle-3 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/idle-3.{png,webp}` | | ☐ | P3 |
+| ☐ | E09 | spinning 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/spinning.{png,webp}` | | ☐ | P3 |
+| ☐ | E10 | result 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/result.{png,webp}` | | ☐ | P3 |
+| ☐ | E12 | lose 關鍵幀 vs 熊北參考 | — | `source/mascot-compare/lose.{png,webp}` | | ☐ | P3 |
+
+## F. 程式路徑（1）
+
+| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | 84ae6d5 | ☐ | P2 |
+
+## G. 音效（選配 5）
+
+| 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☐ | G01 | drumroll | 約 5 秒 | `assets/audio/drumroll.mp3` | | ☐ | P3 |
+| ☐ | G02 | win | 1～2 秒 | `assets/audio/win.mp3` | | ☐ | P3 |
+| ☐ | G03 | lose | 1 秒內 | `assets/audio/lose.mp3` | | ☐ | P3 |
+| ☐ | G04 | reward | 1～1.5 秒 | `assets/audio/reward.mp3` | | ☐ | P3 |
+| ☐ | G05 | reward-lose | 1 秒內 | `alternatives/assets/audio/reward-lose.mp3` | | ☐ | P3 |
+
+## 備註
+
+（GPT 有疑問或無法照規格交付時寫在這裡，附列號）
+
+- A11 modal-bg（2026-11-11 檢查）：卡片中央 alpha 約 244/255（96%），彈窗打開時後方轉盤的「SPIN」字樣會透出來；中央內容區應為 100% 不透明。
+
+- A31：目前忽略不做，不列入待辦與交付缺件；保留列號供追蹤，不需提供 PSD／AI／Figma 或原始檔連結。
+
+- D01～D05（2026-11-11 收檔）：5 個 GIF 規格符合（400×500、48 幀、24fps、無限循環），已套用到前台。待審核注意：背心字樣放大後有拼錯（讀起來像 WOOTECH／MADTECH 等），logo 圖形為橘藍配色而非官方藍綠→黃綠漸層（`docs/DESIGN_TASKS.md` 驗收表第 6 項）。E01～E10（PNG 序列幀、比對圖）尚未交付。
+
+### P0 本機交付 2026-11-11
+
+- d913f7f：10 張正式靜態圖＋扇區色票；三語主標、手機／桌機透視舞台、外框、底座、指針與主按鈕。
+- 預覽及三語雙寬檢查：`art-source/verification/p0/`。P1/P2 尚未按新版清單完成驗收。
+- D01～D05 沿用退回紀錄；頁面目前的 GIF 是待精修示意，不算正式交付。
+### 靜態元件提交 2026-11-11
+
+- P1/P2 靜態素材與程式路徑：`e5e2f55`；P0～P2 共 33 項提交，審核欄保持待審。
+- 分享圖採規格允許的 JPEG（1200×630，217,485 bytes），保留漸層，OG/Twitter metadata 同步改指 `.jpg`。
+- 尺寸、檔案大小、底紋四邊無縫已核對；en/ko/th × 390/1440 初始、轉動、結果、次數用完與分享面板見 `art-source/verification/static-final/`。
+- P3 不在本批完成範圍：GIF、共用基準幀、主標編輯原始檔等保留未提交與退回狀態。
+### 新增跑馬燈與待機 1 重交
+
+- `8349b85`：A33 跑馬燈；A11 中心 alpha 改為255；合併新版操作台並移除重複角色定位，依螢幕高度調整轉盤，三語360/390×640、1280/1440×720操作台完整入第一屏。
+- `ccc0982`：D00 共用基準幀、D01 待機1新稿、E01序列48幀、E06品牌比對。D01沿用原退回審核欄，待審核者確認新稿後更新；提交勾不代表已審過。
+- 新待機1為48幀、2000ms、113244 bytes、無限循環，首尾完全相同，整段透明輪廓變更像素為0，只移動背心內部紋理與眨眼；見 source/mascot-v3/preview.html。
+- 其餘四段尚未共用新基準，頁面暫不把新待機1加入輪播；先單獨提供GIF預覽。
+
+- 2026-11-12：A03–A06、A34、A35、A37、A38 已以 b577931 重新提交；主標為三語客製立體 Logo，燈光含半透明體積光與同位亮暗燈泡。審核欄維持原記錄，待重新審核。B01／F01 同步最新 CSS／config commit。
+- 2026-11-12：效能優化重新壓縮（6e95855），畫面內容不變：A02／A03–A05／A23 由無損 WebP 改有損（主標 q92、其餘 q86），A06／A34／A35 由 PNG 轉 WebP；B01／F01 同步最新 CSS／config commit。審核欄維持原記錄。
+
+- 2026-11-13：144304b 提交 A39 金紅轉直向圖示、A30 新版立體主標分享圖（移除未定稿兔比），F01 同步路徑。三語觸控橫向顯示／直向隱藏通過，見 `source/remaining-review/`；審核欄維持原記錄。
+
+2026-11-18：此淺層工作副本缺少部分早期 commit；這些已提交素材的檢查指標改指向包含相同檔案的 aaa6c24 快照，不代表原稿於本次新製。
+
+## 主題 loading（20261118-loading1）
+
+| 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
+|---|---|---|---|---|---|---|---|
+| ☑ | L01 | 主題 loading 器物 | 480×480 | `assets/img/loading-emblem.webp` | 84ae6d5 | ☐ | P1 |
+| ☑ | L02 | Loading 原稿 | （人工） | `source/loading/emblem-original.png` | 84ae6d5 | ☐ | P1 |

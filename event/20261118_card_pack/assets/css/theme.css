@@ -163,3 +163,7 @@
 .ev-sound { width:68px; height:48px; border-radius:0; background-image:var(--ev-img-utilityFrame); }
 .ev-sound::before { inset:24% 26%; }
 .ev-tool-glyph { width:19px; height:19px; }
+
+.ev-reveal-rays { width: min(150%, 90svh); opacity: .85; animation: ev-celestial-aura 12s ease-in-out infinite alternate; }
+.ev-reveal-glow { opacity: .18; }
+@keyframes ev-celestial-aura { from { transform: rotate(-5deg) scale(.97); opacity: .65; } to { transform: rotate(5deg) scale(1.04); opacity: .9; } }

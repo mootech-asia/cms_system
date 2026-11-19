@@ -5,7 +5,7 @@ from PIL import Image,ImageDraw,ImageFilter,GifImagePlugin,ImageChops
 from scipy.ndimage import map_coordinates
 import numpy as np,json,math
 ROOT=Path(__file__).resolve().parents[1];SRC=ROOT/'source/mascot-v3';OUT=ROOT/'source/mascot-frames/idle-1';OUT.mkdir(exist_ok=True)
-base=Image.open(SRC/'base-frame.png').convert('RGBA');base.save(ROOT/'assets/img/mascot/base-frame.png');closed=Image.open(SRC/'blink-aligned-draft.png').convert('RGBA')
+base=Image.open(SRC/'base-frame.png').convert('RGBA');base.save(ROOT/'alternatives/assets/img/mascot/base-frame.png');closed=Image.open(SRC/'blink-aligned-draft.png').convert('RGBA')
 mask=Image.new('L',base.size);d=ImageDraw.Draw(mask)
 d.ellipse((157,128,189,147),fill=255);d.ellipse((205,127,236,146),fill=255);mask=mask.filter(ImageFilter.GaussianBlur(1.2))
 blink=Image.composite(closed,base,mask);blink.putalpha(base.getchannel('A'));blink.save(SRC/'blink-keyframe.png')
@@ -26,7 +26,7 @@ matte=Image.new('RGBA',base.size,(255,230,204,255));samples=Image.new('RGB',(800
 indexed=[]
 for im in frames:
  p=Image.alpha_composite(matte,im).convert('RGB').quantize(palette=palette,dither=Image.Dither.NONE);p.paste(255,mask=im.getchannel('A').point(lambda v:255 if v<128 else 0));indexed.append(p)
-path=ROOT/'assets/img/mascot/idle-1.gif'
+path=ROOT/'alternatives/assets/img/mascot/idle-1.gif'
 with path.open('wb') as f:
  header,_=GifImagePlugin.getheader(indexed[0],info={'loop':0,'transparency':255})
  for block in header:f.write(block)

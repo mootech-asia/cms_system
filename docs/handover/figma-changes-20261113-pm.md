@@ -26,7 +26,7 @@
 | 活動 | 獨立網址 | 社群分享圖（og:image，1200×630） |
 |---|---|---|
 | Lucky Wheel（百老匯） | https://mootech-asia.github.io/cms_system/event/20261111_lucky_wheel/ | `event/20261111_lucky_wheel/assets/img/share-preview.jpg` |
-| Survival Spin（生存） | https://mootech-asia.github.io/cms_system/event/20261111_survival_spin/ | `event/20261111_survival_spin/img/share-preview.jpg`（美術新交付：生存主標＋桃紅轉盤＋面具人物比讚＋墨綠階梯大廳） |
+| Survival Spin（生存） | https://mootech-asia.github.io/cms_system/event/20261111_survival_spin/ | `event/20261111_survival_spin/assets/img/share-preview.jpg`（美術新交付：生存主標＋桃紅轉盤＋面具人物比讚＋墨綠階梯大廳） |
 
 - 生存輪盤不再是「Lucky Wheel 加 `?skin=survival`」，而是自己的目錄與入口頁，社群平台抓得到自己的分享圖。
 - 語系：`?lang=en|ko|th`。**嵌在 CMS 裡時跟隨網站語系**（網站切韓文，轉盤同步韓文），此時轉盤右上角自己的語言切換鈕隱藏；獨立開啟時才顯示語言鈕。

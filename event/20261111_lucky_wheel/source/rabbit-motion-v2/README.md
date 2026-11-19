@@ -1,6 +1,6 @@
 # 兔比動態優化 V2：呼吸首段
 
-沿用 reference/rabbit-turnaround.png 已採用的角色方向與 assets/img/mascot/base-frame.png，對照 reference/RABBIT_REVIEW.md。先前完整品牌包的正式多視圖仍另行追蹤，本段不代表品牌包已交付。
+沿用 source/reference/rabbit-turnaround.png 已採用的角色方向與 alternatives/assets/img/mascot/base-frame.png，對照 source/reference/RABBIT_REVIEW.md。先前完整品牌包的正式多視圖仍另行追蹤，本段不代表品牌包已交付。
 
 既有角色以固定 96% 比例置入 400×500 畫布，只在輸出基準幀時處理一次留白；動畫過程不做整體縮放。胸肩局部起伏、頭部跟隨，y≥365 的下半身保持逐像素固定。保留官方配色標記、眼鏡、耳機與服裝；影子烘焙在每張 RGBA 幀。
 

@@ -55,7 +55,7 @@ def build(name):
  compare=ROOT/'source/mascot-compare';compare.mkdir(exist_ok=True)
  board=Image.new('RGB',(1600,680),(15,27,46));d=ImageDraw.Draw(board);font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',24)
  d.text((35,20),f'MOOTECH BUNNY / {name.upper()} / CHARACTER CONSISTENCY',font=font,fill='white')
- ref=Image.open(ROOT/'reference/rabbit-turnaround.png').crop((248,65,540,462));ref.thumbnail((330,450));board.paste(ref,(35,85))
+ ref=Image.open(ROOT/'source/reference/rabbit-turnaround.png').crop((248,65,540,462));ref.thumbnail((330,450));board.paste(ref,(35,85))
  d.text((35,590),'Approved reference',font=font,fill='#92d7ee')
  for j,k in enumerate([0,22,36]):
   x=410+j*390;bg=Image.new('RGBA',(360,450),MATTE+(255,));f=frames[k].resize((360,450),Image.Resampling.LANCZOS);bg.alpha_composite(f);board.paste(bg.convert('RGB'),(x,85));d.text((x,590),f'Frame {k+1:02d} / 48',font=font,fill='#92d7ee')

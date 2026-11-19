@@ -66,7 +66,7 @@ window.EVENT_CONFIG = {
     packBack: 'assets/img/3d/pack-back.webp?v=20261118-refine2',
     packCrimp: 'assets/img/3d/pack-crimp.webp?v=20261118-refine2',
     /* 揭曉 */
-    revealRays: 'assets/img/reveal/reveal-rays.svg?v=20261118-refine2',
+    revealRays: 'assets/img/ui/reveal-aura.webp?v=20261119-aura1',
     rewardBack: 'assets/img/reveal/reward-back.webp?v=20261118-loading1',
     rewardFrameCommon: 'assets/img/reveal/reward-front.webp?v=20261118-refine2',
     rewardFrameRare: 'assets/img/reveal/reward-front.webp?v=20261118-refine2',
@@ -77,7 +77,7 @@ window.EVENT_CONFIG = {
   /* 進站 loading 等這些圖（第一屏）載完；3D 貼圖另外等 */
   loadingImages: ['utilityFrame', 'magicCircle', 'loadingEmblem', 'toolMedallion', 'atmosphereSprite', 'stageBg', 'title', 'periodBadge', 'chancesBadge', 'tapHint', 'btnPrimary', 'btnArrow', 'tickerBar', 'share', 'soundOn'],
 
-  /* 音效：名稱與規格見 AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
+  /* 音效：名稱與規格見 docs/AUDIO_REQUEST.md；留空的用 Web Audio 合成（背景音樂沒有合成版，未交付就不播）。
      音量 0～1（bgmDuck＝開封與揭曉期間的背景音樂音量）。 */
   soundLevels: { hover: 0.7, bgm: 0.35, bgmDuck: 0.1, click: 0.9, move: 0.6, select: 1, tear: 1, flip: 0.9, reveal: 1.2, 'reveal-common': 1, 'reveal-rare': 1, 'reveal-epic': 1, 'reveal-legendary': 1, reward: 1, collect: 1, error: 0.8 },
   sounds: {
@@ -118,7 +118,7 @@ window.EVENT_CONFIG = {
     packFront: 'pack-front-1~3 · 512×768',
     packBack: 'pack-back · 512×768',
     packCrimp: 'pack-crimp · 512×64',
-    revealRays: 'reveal-rays · 750×750',
+    revealRays: 'assets/img/ui/reveal-aura.webp?v=20261119-aura1',
     rewardBack: 'reward-back · 600×900',
     rewardFrame: 'reward-frame-{common,rare,epic,legendary} · 600×900',
     sharePreview: 'share-preview.jpg · 1200×630 (og:image)'
