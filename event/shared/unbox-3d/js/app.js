@@ -199,7 +199,7 @@ var mascotVisible = true;
 var mascotReduced = matchMedia('(prefers-reduced-motion: reduce)');
 function syncMascotMotion() {
   if (!M) return;
-  var paused = mascotReduced.matches || document.hidden || !mascotVisible || state === 'reveal';
+  var paused = mascotReduced.matches || document.hidden || !$('loading').hidden || !mascotVisible || state === 'reveal';
   var wanted = paused ? M.poster : mascotWant;
   if (!M.motion && wanted && (wanted === M.poster || mascotCache[wanted]?.ready)) {
     if (mascotEl.getAttribute('src') !== wanted) mascotEl.src = wanted;
@@ -333,7 +333,7 @@ function syncPickHintCycle() {
     hint.hidden = !pickHintWanted;
     hint.classList.remove('is-faded');
     hint.removeAttribute('aria-hidden');
-  } else if (document.hidden || !pickHintVisible) {
+  } else if (document.hidden || !pickHintVisible || !$('loading').hidden) {
     clearInterval(pickHintTimer);
     pickHintTimer = null;
   } else if (pickHintTimer === null) {
@@ -1072,6 +1072,7 @@ function runLoading() {
     if (finished) return;
     finished = true;
     overlay.hidden = true;
+    syncPickHintCycle();
     setMascot('idle');
     // Warm reveal artwork only after the interactive stage is ready.
     var warm = function () {
