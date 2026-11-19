@@ -1,0 +1,159 @@
+{
+  "matrix": [
+    {
+      "type": "card_pack",
+      "lang": "en",
+      "width": 390,
+      "openAndReveal": true,
+      "rewardCount": 1,
+      "chances": 4,
+      "records": 1,
+      "mute": true,
+      "share": true,
+      "errors": []
+    },
+    {
+      "type": "card_pack",
+      "lang": "en",
+      "width": 1440,
+      "openAndReveal": true,
+      "rewardCount": 1,
+      "chances": 4,
+      "records": 1,
+      "mute": true,
+      "share": true,
+      "errors": []
+    },
+    {
+      "type": "card_pack",
+      "lang": "ko",
+      "width": 390,
+      "openAndReveal": true,
+      "rewardCount": 1,
+      "chances": 4,
+      "records": 1,
+      "mute": true,
+      "share": true,
+      "errors": []
+    },
+    {
+      "type": "card_pack",
+      "lang": "ko",
+      "width": 1440,
+      "openAndReveal": true,
+      "rewardCount": 1,
+      "chances": 4,
+      "records": 1,
+      "mute": true,
+      "share": true,
+      "errors": []
+    },
+    {
+      "type": "card_pack",
+      "lang": "th",
+      "width": 390,
+      "openAndReveal": true,
+      "rewardCount": 1,
+      "chances": 4,
+      "records": 1,
+      "mute": true,
+      "share": true,
+      "errors": []
+    },
+    {
+      "type": "card_pack",
+      "lang": "th",
+      "width": 1440,
+      "openAndReveal": true,
+      "rewardCount": 1,
+      "chances": 4,
+      "records": 1,
+      "mute": true,
+      "share": true,
+      "errors": []
+    },
+    {
+      "type": "blind_box",
+      "lang": "en",
+      "width": 390,
+      "openAndReveal": true,
+      "rewardCount": 1,
+      "chances": 2,
+      "records": 1,
+      "mute": true,
+      "share": true,
+      "errors": []
+    },
+    {
+      "type": "blind_box",
+      "lang": "en",
+      "width": 1440,
+      "openAndReveal": true,
+      "rewardCount": 1,
+      "chances": 2,
+      "records": 1,
+      "mute": true,
+      "share": true,
+      "errors": []
+    },
+    {
+      "type": "blind_box",
+      "lang": "ko",
+      "width": 390,
+      "openAndReveal": true,
+      "rewardCount": 1,
+      "chances": 2,
+      "records": 1,
+      "mute": true,
+      "share": true,
+      "errors": []
+    },
+    {
+      "type": "blind_box",
+      "lang": "ko",
+      "width": 1440,
+      "openAndReveal": true,
+      "rewardCount": 1,
+      "chances": 2,
+      "records": 1,
+      "mute": true,
+      "share": true,
+      "errors": []
+    },
+    {
+      "type": "blind_box",
+      "lang": "th",
+      "width": 390,
+      "openAndReveal": true,
+      "rewardCount": 1,
+      "chances": 2,
+      "records": 1,
+      "mute": true,
+      "share": true,
+      "errors": []
+    },
+    {
+      "type": "blind_box",
+      "lang": "th",
+      "width": 1440,
+      "openAndReveal": true,
+      "rewardCount": 1,
+      "chances": 2,
+      "records": 1,
+      "mute": true,
+      "share": true,
+      "errors": []
+    }
+  ],
+  "compact360": true,
+  "storageDenied": true,
+  "clipboardDenied": true,
+  "emptyContent": true,
+  "zeroChances": true,
+  "rewardErrorRetry": true,
+  "webglFallback": true,
+  "unverified": [
+    "Native physical iOS/Android GPU and speaker output",
+    "Real account/backend prize issuance"
+  ]
+}
