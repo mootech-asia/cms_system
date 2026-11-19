@@ -321,10 +321,13 @@ function renderPickHint(show) {
     clearInterval(pickHintTimer);
     pickHintTimer = null;
     hint.hidden = !show;
+    hint.classList.remove('is-faded');
+    hint.removeAttribute('aria-hidden');
   } else if (pickHintTimer === null) {
     hint.hidden = false;
     pickHintTimer = setInterval(function () {
-      hint.hidden = !hint.hidden;
+      var faded = hint.classList.toggle('is-faded');
+      hint.setAttribute('aria-hidden', String(faded));
     }, 10000);
   }
 }

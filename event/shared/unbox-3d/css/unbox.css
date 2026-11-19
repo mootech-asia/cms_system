@@ -786,6 +786,20 @@ button { font: inherit; -webkit-tap-highlight-color: transparent; }
   pointer-events: none;
 }
 .ev-scene .ev-pick-hint .ev-pick-hint-icon { width: 18px; height: 20px; }
+.ev-scene .ev-pick-hint {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .6s ease, visibility 0s linear;
+}
+.ev-scene .ev-pick-hint.is-faded {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .6s ease, visibility 0s linear .6s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ev-scene .ev-pick-hint,
+  .ev-scene .ev-pick-hint.is-faded { transition: none; }
+}
 .ev-batch-fallback {
   position: absolute;
   z-index: 2;
