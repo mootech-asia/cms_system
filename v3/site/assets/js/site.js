@@ -762,6 +762,28 @@
     btn.setAttribute('title', csLabel);
     btn.setAttribute('data-action', 'open-cs');
     btn.innerHTML = MENU_ICONS.cs;
+    if (document.getElementById('luckyWheelFrame') && location.pathname.indexOf('/site-mobile/') === -1) {
+      var dock = document.createElement('div');
+      dock.className = 'fixed right-0 top-1/2 -translate-y-1/2 z-[900] flex items-center rounded-l-xl border border-r-0 border-line bg-bg-card min-[769px]:hidden';
+      var handle = document.createElement('button');
+      handle.type = 'button';
+      handle.className = 'grid grid-cols-1! p-0! w-5 h-12 place-items-center text-text-mid';
+      handle.setAttribute('data-qr-dock-toggle', '');
+      handle.setAttribute('aria-label', csLabel);
+      handle.setAttribute('aria-expanded', 'false');
+      handle.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>';
+      var items = document.createElement('div');
+      items.hidden = true;
+      items.className = 'p-2';
+      btn.className += ' static! w-10! h-10!';
+      items.appendChild(btn); dock.appendChild(handle); dock.appendChild(items);
+      handle.addEventListener('click', function () {
+        items.hidden = !items.hidden;
+        handle.setAttribute('aria-expanded', String(!items.hidden));
+      });
+      document.body.appendChild(dock);
+      return;
+    }
     document.body.appendChild(btn);
     makeFabDraggable(btn);
   }

@@ -37,7 +37,7 @@
   --ev-3d-rim: #d9a647;
   --ev-3d-accent: #2BB5A7;
   --ev-3d-ground: #E8C48A;
-  --ev-3d-shadow: #1B1446;
+  --ev-3d-shadow: #3b2114;
 
   --ev-share-line: #06c755;
   --ev-share-facebook: #1877f2;
@@ -179,3 +179,12 @@
 .ev-treasure-plinth { left: 5%; top: 60%; width: 90%; height: 26%; border: 0; border-radius: 0; background: var(--ev-img-treasurePlinth) center / contain no-repeat; box-shadow: none; }
 .ev-treasure-plinth::after { display: none; }
 .ev-treasure-caption { top: 88%; }
+
+.ev-chances, .ev-chances strong { text-shadow: none; }
+.ev-chances strong { font-weight: 700; font-variant-numeric: tabular-nums; }
+.ev-pick-hint, .ev-action { text-shadow: none; }
+.ev-status, .ev-pick-label, .ev-stage .ev-link, .ev-scene-note { text-shadow: 0 1px 1px var(--ev-vault-base); }
+
+@media (max-width: 600px) {
+  .ev-spirit-stage .ev-mascot { --ev-spirit-width: min(120vw, 576px, calc(var(--ev-scene-size) * 1.4)); width: var(--ev-spirit-width); top: calc(12px - var(--ev-spirit-width) / 3); }
+}

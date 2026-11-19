@@ -3526,6 +3526,10 @@
     handle.setAttribute('aria-label', 'Customer Service');
     handle.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="rotate-180 transition-transform group-[.is-collapsed]/qrd:rotate-0" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>';
     rail.parentElement.insertBefore(dock, rail);
+    if (document.getElementById('luckyWheelFrame')) {
+      dock.classList.add('is-collapsed');
+      handle.setAttribute('aria-expanded', 'false');
+    }
     dock.appendChild(handle);
     dock.appendChild(rail);
     rail.className += ' max-[768px]:static! max-[768px]:translate-y-0! max-[768px]:[transform:none]! max-[768px]:gap-2.5! max-[768px]:p-1.5! max-[768px]:rounded-[27px_0_0_27px]! max-[768px]:border-r-0! max-[768px]:group-[.is-collapsed]/qrd:hidden! max-[768px]:[&_.qr-btn]:w-10! max-[768px]:[&_.qr-btn]:h-10! max-[768px]:[&_.qr-btn_img]:w-7! max-[768px]:[&_.qr-btn_img]:h-7! max-[768px]:[&_.qr-btn_svg]:w-4.5! max-[768px]:[&_.qr-btn_svg]:h-4.5!';

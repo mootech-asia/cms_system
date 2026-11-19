@@ -687,7 +687,7 @@ button { font: inherit; -webkit-tap-highlight-color: transparent; }
 .ev-arrow::after { display:none; }
 .ev-arrow:hover { transform:translateY(-50%) scale(1.07); }
 .ev-arrow:active { transform:translateY(-50%) scale(.96); }
-@media(max-height:700px) { .ev-chances { height:50px; width:180px; padding-left:42px; }.ev-chances strong { font-size:23px; }.ev-pick-hint,.ev-action { min-height:82px; width:min(100%,300px); padding-block:20px; } }
+@media(max-height:700px) { .ev-chances { height:50px; width:210px; padding-left:42px; }.ev-chances strong { font-size:23px; }.ev-pick-hint,.ev-action { min-height:82px; width:min(100%,300px); padding-block:20px; } }
 
 /* Artwork-backed utility controls keep icon states independent of their metal frames. */
 .ev-sound {
@@ -722,3 +722,8 @@ button { font: inherit; -webkit-tap-highlight-color: transparent; }
 .ev-swipe-hand img { width:34px; height:42px; rotate:180deg; }
 @keyframes ev-swipe-up { 0%,15% { transform:translateY(18px); opacity:0; } 28% { opacity:1; } 72% { transform:translateY(-23px); opacity:1; } 88%,100% { transform:translateY(-23px); opacity:0; } }
 @media (prefers-reduced-motion:reduce) { .ev-swipe-hand { animation:none; } }
+
+/* A short CMS iframe must scroll rather than flatten the 3D scene. */
+@media (max-width: 600px) {
+  html:root { --ev-scene-size: min(84vw, 380px, max(calc((100svh - 400px) / 1.32), 66vw)); }
+}

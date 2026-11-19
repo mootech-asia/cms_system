@@ -155,6 +155,16 @@ export function createScene(stage, opts) {
   var images = opts.images;
   var fronts = [].concat(images.front).filter(Boolean);
   var shadowTex = keep(shadowTexture(chest));
+  var contactTex = null;
+  if (chest) {
+    var contactCanvas = document.createElement('canvas');
+    contactCanvas.width = contactCanvas.height = 256;
+    var contactCtx = contactCanvas.getContext('2d');
+    contactCtx.shadowColor = 'white'; contactCtx.shadowBlur = 12;
+    contactCtx.fillStyle = 'white';
+    contactCtx.beginPath(); contactCtx.roundRect(18, 18, 220, 220, 12); contactCtx.fill();
+    contactTex = keep(new THREE.CanvasTexture(contactCanvas));
+  }
   var shadowGeo = keep(new THREE.PlaneGeometry(chest ? 3.0 : box ? 2.6 : 2.2, chest ? 2.0 : box ? 1.3 : 0.9));
   var tinted = [];
   var items = [];
@@ -260,15 +270,15 @@ export function createScene(stage, opts) {
       body.add(base, lid);
     }
 
-    var shadowMat = keep(new THREE.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false, opacity: chest ? 0.68 : 0.35 }));
+    var shadowMat = keep(new THREE.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false, opacity: chest ? 0.32 : 0.35 }));
     var shadow = new THREE.Mesh(shadowGeo, shadowMat);
     shadow.rotation.x = -Math.PI / 2;
     shadow.position.y = FLOOR_Y;
-    if (chest) { shadow.position.x = 0.2; shadow.position.z = 0.12; }
+    if (chest) { shadow.position.x = 0.18; shadow.position.z = -0.22; }
     group.add(shadow);
     var contactMat = null;
     if (chest) {
-      contactMat = keep(new THREE.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false, opacity: 0.85 }));
+      contactMat = keep(new THREE.MeshBasicMaterial({ map: contactTex, transparent: true, depthWrite: false, opacity: 0.7 }));
       var contact = new THREE.Mesh(keep(new THREE.PlaneGeometry(CW * 1.05, CD * 1.1)), contactMat);
       contact.rotation.x = -Math.PI / 2;
       contact.position.y = FLOOR_Y + 0.002;

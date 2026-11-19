@@ -5,7 +5,7 @@
 import { createAtmosphere } from './atmosphere.js?v=20261119-desert1';
 import { createRevealVortex } from './reveal-vortex.js?v=20261118-vortex2';
 import { createSecretCycle } from './secret-cycle.js?v=20261118-vortex1';
-import { createScene } from './scene.js?v=20261119-pouch1';
+import { createScene } from './scene.js?v=20261119-mobile1';
 
 var cfg = window.EVENT_CONFIG;
 var I18n = window.EventI18n;
@@ -318,6 +318,12 @@ function choose() {
   } else {
     if (scene) scene.setMode('ready');
     setState('ready');
+    if (cfg.type === 'blind-box' && matchMedia('(max-width: 600px)').matches) {
+      requestAnimationFrame(function () {
+        var overflow = btnAction.getBoundingClientRect().bottom - innerHeight;
+        if (overflow > 0) window.scrollTo({ top: scrollY + overflow + 16, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      });
+    }
   }
 }
 

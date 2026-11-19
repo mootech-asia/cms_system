@@ -580,6 +580,10 @@
     items.className = 'm-qr-items';
     items.appendChild(fab.cloneNode(true));
     fab.remove();
+    if (document.getElementById('luckyWheelFrame')) {
+      rail.classList.remove('is-open');
+      handle.setAttribute('aria-expanded', 'false');
+    }
     rail.appendChild(handle);
     rail.appendChild(items);
     document.body.appendChild(rail);
