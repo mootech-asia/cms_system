@@ -3,7 +3,7 @@
  * 活動差異（type、圖片槽、文案、mock 內容）全部在各活動的 assets/js/config.js；本檔不放活動專屬內容。
  */
 import { createAtmosphere } from './atmosphere.js?v=20261119-desert1';
-import { createRevealVortex } from './reveal-vortex.js?v=20261118-vortex2';
+import { createRevealVortex } from './reveal-vortex.js?v=20261119-hd-motion';
 import { createSecretCycle } from './secret-cycle.js?v=20261119-secretfix1';
 import { createScene } from './scene.js?v=20261119-boxhover';
 
@@ -137,10 +137,11 @@ function syncMascotMotion() {
   if (!M) return;
   var paused = mascotReduced.matches || document.hidden || !mascotVisible || state === 'reveal';
   var wanted = paused ? M.poster : mascotWant;
-  if (wanted && (wanted === M.poster || mascotCache[wanted]?.ready)) {
+  if (!M.motion && wanted && (wanted === M.poster || mascotCache[wanted]?.ready)) {
     if (mascotEl.getAttribute('src') !== wanted) mascotEl.src = wanted;
   }
-  mascotEl.dataset.motion = paused ? 'paused' : 'playing';
+  var motion = paused ? 'paused' : 'playing';
+  if (mascotEl.dataset.motion !== motion) mascotEl.dataset.motion = motion;
 }
 function loadMascot(src, done) {
   var entry = mascotCache[src];
@@ -157,7 +158,7 @@ function loadMascot(src, done) {
 function setMascot(next) {
   if (!M) return;
   clearTimeout(mascotAfter);
-  var src = next === 'idle' ? M.idle[0] : (M[next] || M.idle[0]);
+  var src = M.motion ? M.poster : next === 'idle' ? M.idle[0] : (M[next] || M.idle[0]);
   if (!src) return;
   mascotWant = src;
   loadMascot(src, function (ok) {
@@ -190,7 +191,13 @@ if (M) {
     syncMascotMotion();
   }).observe($('spiritStage') || sceneEl);
   if (M.poster) mascotEl.src = M.poster;
+  if (M.motion) {
+    import(new URL(M.motion, document.baseURI)).then(function (module) {
+      return module.mountSpiritMotion(mascotEl);
+    }).catch(function () { /* The lossless poster remains visible without WebGL. */ });
+  }
   window.addEventListener('load', function () {
+    if (M.motion) return;
     var list = [M.anticipate, M.celebrate, M.lose].concat(M.idle).filter(Boolean);
     (function next(i) { if (i < list.length) loadMascot(list[i], function () { next(i + 1); }); })(0);
   });

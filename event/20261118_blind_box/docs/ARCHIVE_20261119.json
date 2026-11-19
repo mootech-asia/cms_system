@@ -137,6 +137,30 @@
     {
       "from": "assets/audio/reveal-rare.mp3",
       "to": "alternatives/assets/audio/pre-rarity-refresh/reveal-rare.mp3"
+    },
+    {
+      "from": "assets/img/mascot/spirit/",
+      "to": "alternatives/assets/img/mascot/spirit-pre-hd/"
+    },
+    {
+      "from": "source/desert-spirit/",
+      "to": "alternatives/source/desert-spirit-pre-hd/"
+    },
+    {
+      "from": "assets/img/reveal/sand-vortex-atlas.webp",
+      "to": "alternatives/assets/img/reveal/pre-hd-motion/sand-vortex-atlas.webp"
+    },
+    {
+      "from": "assets/img/reveal/sand-vortex-poster.webp",
+      "to": "alternatives/assets/img/reveal/pre-hd-motion/sand-vortex-poster.webp"
+    },
+    {
+      "from": "source/reveal/frames/",
+      "to": "alternatives/source/reveal/pre-hd-motion/frames/"
+    },
+    {
+      "from": "source/reveal/sand-vortex-sheet-original.png",
+      "to": "alternatives/source/reveal/pre-hd-motion/sand-vortex-sheet-original.png"
     }
   ]
 }

@@ -1,3 +1,43 @@
-const{chromium}=require('playwright'),fs=require('fs'),assert=require('node:assert/strict'),{execFileSync}=require('child_process');
-const path=require('path'),root=path.resolve(__dirname,'..'),out=process.env.CHECK_OUTPUT||'/tmp/vortex-flicker-check';fs.mkdirSync(out,{recursive:true});
-(async()=>{const b=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});try{const rows=[];for(const before of [true,false]){const p=await b.newPage({viewport:{width:480,height:480}});if(before)await p.route('**/reveal-vortex.js*',r=>r.fulfill({contentType:'text/javascript',body:execFileSync('git',['show','691230d:event/shared/unbox-3d/js/reveal-vortex.js'],{cwd:root,encoding:'utf8'})}));await p.goto('http://127.0.0.1:8895/');await p.evaluate(async()=>{document.body.innerHTML='<div id="d"><div id="s"><canvas id="v"></canvas></div></div><div id="stage"></div>';document.body.style.cssText='margin:0;background:#21190c';document.querySelector('#v').style.cssText='width:480px;height:480px';window.queue=[];window.nativeRAF=window.requestAnimationFrame;window.nativeCancel=window.cancelAnimationFrame;window.requestAnimationFrame=f=>{queue.push(f);return queue.length};window.cancelAnimationFrame=()=>{};const{createRevealVortex}=await import('/event/shared/unbox-3d/js/reveal-vortex.js?v=20261118-vortex2');createRevealVortex(document.querySelector('#v'),document.querySelector('#d'),document.querySelector('#s'),document.querySelector('#stage'),'/event/20261118_blind_box/assets/img/reveal/sand-vortex-atlas.webp');});await p.waitForFunction(()=>document.querySelector('#v').dataset.ready==='true',null,{polling:50});await p.waitForTimeout(100);const samples=await p.evaluate(()=>{const cv=document.querySelector('#v'),ctx=cv.getContext('2d'),rows=[];let now=performance.now();for(let n=0;n<81;n++){now+=50;const f=queue.pop();queue=[];if(f)f(now);const d=ctx.getImageData(0,0,480,480).data;let l=0;for(let i=0;i<d.length;i+=4)l+=(.2126*d[i]+.7152*d[i+1]+.0722*d[i+2])*d[i+3]/255;rows.push(l/(480*480));}return rows});const low=Math.min(...samples),high=Math.max(...samples),range=(high-low)/high;rows.push({before,samples,low,high,range});if(before)assert(range>.20);else assert(range<.065);await p.evaluate(()=>{window.requestAnimationFrame=window.nativeRAF;window.cancelAnimationFrame=window.nativeCancel});await p.screenshot({path:out+'/'+(before?'before':'after')+'.png'});await p.close();}fs.writeFileSync(out+'/actual-renderer.json',JSON.stringify(rows,null,2));console.log(rows.map(({samples,...r})=>r))}finally{await b.close()}})().catch(e=>{console.error(e);process.exitCode=1});
+const {chromium}=require('playwright');
+const assert=require('node:assert/strict');
+(async()=>{
+ const b=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+ try {
+ for(const [outcome,width,reduce] of [['rare',390,false],['empty',360,false],['rare',1440,true]]){
+  const p=await b.newPage({viewport:{width,height:844},deviceScaleFactor:width<500?2:1,reducedMotion:reduce?'reduce':'no-preference'});
+  const errors=[];
+  p.on('pageerror',e=>errors.push(e.message));
+  await p.addInitScript(kind=>{window.EVENT_RESOLVE=()=>[EVENT_CONFIG.defaultContent.prizes.find(p=>kind==='empty'?p.type==='empty':p.rarity==='rare')]},outcome);
+  await p.goto((process.env.CHECK_BASE||'http://localhost:8900')+'/event/20261118_blind_box/');
+  await p.locator('#loading').waitFor({state:'hidden'});
+  const spirit=p.locator('canvas.ev-mascot');
+  if(!reduce){
+   await spirit.waitFor({state:'visible'});
+   await p.waitForFunction(()=>Number(document.querySelector('canvas.ev-mascot')?.dataset.frame)>2);
+   if(width===390) await p.screenshot({path:'/tmp/genie-live-390.png'});
+  }
+  await p.locator('#scene').press('Enter');
+  await p.locator('#btnAction').click();
+  await p.locator('#btnSkip').click();
+  await p.locator('#reveal').waitFor({state:'visible'});
+  await spirit.waitFor({state:'hidden'});
+  const vortex=p.locator('#revealVortex');
+  if(outcome==='rare'){
+   await p.waitForFunction(()=>document.querySelector('#revealVortex')?.dataset.frame!==undefined);
+   if(reduce) assert.equal(await vortex.getAttribute('data-frame'),'0');
+   else{
+    await p.waitForFunction(()=>Number(document.querySelector('#revealVortex')?.dataset.frame)>3);
+    await p.screenshot({path:'/tmp/vortex-live-390.png'});
+    const frame=await vortex.getAttribute('data-frame');
+    await p.waitForFunction(frame=>document.querySelector('#revealVortex').dataset.frame!==frame,frame);
+   }
+  }
+  await p.locator('#btnReveal').click();
+  await p.waitForFunction(name=>document.querySelector('#mascot').dataset.state===name,outcome==='empty'?'lose':'celebrate');
+  if(!reduce) await spirit.waitFor({state:'visible'});
+  assert.deepEqual(errors,[]);
+  console.log('PASS',outcome,width,reduce?'reduced motion':'12 fps renderer resumes after reveal');
+  await p.close();
+ }
+ }finally{await b.close()}
+})().catch(e=>{console.error(e);process.exitCode=1});

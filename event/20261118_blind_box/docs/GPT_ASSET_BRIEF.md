@@ -66,6 +66,6 @@ Reward vortex: warm volumetric gold sand from the approved dust material, transp
 
 
 ## 2026-11-19 production sources
-`source/desert-spirit/character-sheet.png`: original youthful muscular turquoise lamp spirit, expressive clean-shaven face, dark swept hair, engraved gold wrist cuffs, emerald vest, swirling smoke lower body. Animated fantasy film material and lighting.
+`alternatives/source/desert-spirit-pre-hd/character-sheet.png`: original youthful muscular turquoise lamp spirit, expressive clean-shaven face, dark swept hair, engraved gold wrist cuffs, emerald vest, swirling smoke lower body. Animated fantasy film material and lighting.
 `*-keyposes.png`: 3×2 full-body keyposes, fixed camera, generous transparent margins, lamp anchored. Three performances: breathing idle, exuberant celebration, playful encouragement.
 `desert-scene.png`: open sand dunes, twilight indigo sky, warm light, sandy foreground, no buildings, columns, curtains or tiled flooring.

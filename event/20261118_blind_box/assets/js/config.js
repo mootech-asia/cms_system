@@ -17,11 +17,8 @@ window.EVENT_CONFIG = {
   sceneArt: { height: 1125, horizonFromBottom: 660, horizonFraction: .5 },
   atmosphereMode: 'petals-and-sand',
   mascot: {
-    poster: 'assets/img/mascot/spirit/poster.webp?v=20261119-restore-spirit',
-    idle: ['assets/img/mascot/spirit/idle.webp?v=20261119-restore-spirit'],
-    anticipate: 'assets/img/mascot/spirit/excited.webp?v=20261119-restore-spirit',
-    celebrate: 'assets/img/mascot/spirit/excited.webp?v=20261119-restore-spirit',
-    lose: 'assets/img/mascot/spirit/encourage.webp?v=20261119-restore-spirit',
+    poster: 'assets/img/mascot/spirit/poster.webp?v=20261119-hd-motion',
+    motion: 'assets/js/spirit-motion.js?v=20261119-hd-motion',
     loopMs: 2000, layout: 'hero'
   },
   shape: 'chest',
@@ -69,8 +66,8 @@ window.EVENT_CONFIG = {
     boxLid: 'assets/img/3d/chest-lid.webp?v=20261118-refine2',
     boxLidSide: 'assets/img/3d/chest-lid.webp?v=20261118-refine2',
     /* 揭曉 */
-    revealRays: 'assets/img/reveal/sand-vortex-poster.webp',
-    revealVortex: 'assets/img/reveal/sand-vortex-atlas.webp?v=20261118-vortex1',
+    revealRays: 'assets/img/reveal/sand-vortex.webp?v=20261119-hd-motion',
+    revealVortex: 'assets/img/reveal/sand-vortex.webp?v=20261119-hd-motion',
     rewardBack: 'assets/img/reveal/reward-back.svg?v=20261118-refine2',
     rewardFrameCommon: 'assets/img/reveal/reward-frame-common.svg?v=20261118-refine2',
     rewardFrameRare: 'assets/img/reveal/reward-frame-rare.svg?v=20261118-refine2',
@@ -115,7 +112,7 @@ window.EVENT_CONFIG = {
     boxSide: 'chest-side · 512×320',
     boxLid: 'chest-lid · 512×512',
     boxLidSide: 'chest-lid · 512×512',
-    revealVortex: 'sand-vortex-atlas · 1280×1280 / 16 frames',
+    revealVortex: 'sand-vortex · 1254×1254 / 12 fps',
     rewardBack: 'reward-back · 600×900',
     rewardFrame: 'reward-frame-{common,rare,epic,legendary} · 600×900',
     sharePreview: 'share-preview.jpg · 1200×630 (og:image)'
