@@ -36,7 +36,7 @@ bow tie + cotton tail combination, no rabbit-head logo). Include: front, three-q
 comparison next to the original Moo Rabbit; four expressions (happy, surprised, wink, excited); close-ups of cape, bow tie,
 gloves and hair clip; a colour palette strip. No text other than none at all.
 ```
-交付 `source/character/cosmic-bunny-sheet.png`＋`source/character/README.md`（服裝構成、色碼），**等我們審核通過再往下做**。
+交付 `source/images/card_pack_SRC001_character/cosmic-bunny-sheet.png`＋`source/images/card_pack_SRC001_character/README.md`（服裝構成、色碼），**等我們審核通過再往下做**。
 
 ## 3. 3D 貼圖（攤平的平面圖，滿版、不留白邊、不畫陰影）
 
@@ -75,8 +75,8 @@ gloves and hair clip; a colour palette strip. No text other than none at all.
 
 ## Refinement delivery 20261118
 
-Preserve the approved rabbit identity. Create an obsidian, platinum and moonstone secret foil pack, matching sealed side texture, a mysterious rabbit card back, and a clean reward card front. Keep variable prize names and rarity text out of artwork. Source PNGs are retained under source/secret; web delivery uses separate WebP files. Synthesized foil and secret chime masters live under source/audio; MP3 is used on the page.
+Preserve the approved rabbit identity. Create an obsidian, platinum and moonstone secret foil pack, matching sealed side texture, a mysterious rabbit card back, and a clean reward card front. Keep variable prize names and rarity text out of artwork. Source PNGs are retained under source/images/card_pack_SRC005_secret; web delivery uses separate WebP files. Synthesized foil and secret chime masters live under source/sounds/card_pack_SRC001_audio; MP3 is used on the page.
 
 
 ## 2026-11-19 production sources
-`alternatives/source/ui-20261119/utility-frame.png`: transparent horizontal medallion matching the main CTA, carved champagne-silver structure, purple enamel well, amethyst crown and turquoise lower jewel. No icon or text baked into artwork.
+`alternatives/source/images/card_pack_SRC007_ui-20261119/utility-frame.png`: transparent horizontal medallion matching the main CTA, carved champagne-silver structure, purple enamel well, amethyst crown and turquoise lower jewel. No icon or text baked into artwork.

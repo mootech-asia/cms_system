@@ -1,5 +1,9 @@
 # 拆卡包（20261118_card_pack）
 
+素材分類、編號、用途與尺寸請以 [素材製作清單](docs/ASSETS.md) 為準；分類規範與新活動建立方式見 [統一範本](../_template/README.md)。
+
+正式素材統一放 `assets/images/`（圖片）、`assets/music/`（背景音樂）、`assets/sounds/`（音效）、`assets/effects/`（視覺特效）、`assets/3d/`（貼圖／模型）。`source/` 保留依同分類分組的製作原稿；淘汰提案、快取與舊測試輸出已移除，由 Git 歷史回溯。
+
 六包卡包環形排列，左右拖曳或用箭頭挑選 → 選定後沿封條橫滑或按按鈕撕開 → 每包一張卡，點擊翻開 → 返回挑選。
 次數、規則、紀錄、跑馬燈、分享、音效、三語系、換圖標籤與內部面板比照 `20261111_lucky_wheel`。
 
@@ -10,7 +14,7 @@
 - 內部面板：畫面同一位置連點三下（每下間隔 ≤0.5 秒，點在按鈕上不算）：每次獎品數預覽、重設次數（10）、換圖標籤開關
 - 中文預覽：Ctrl+Alt+L（Mac：Control+Option+L）
 
-已套用宇宙卡包／神燈寶箱美術、三語主標、UI、分享圖與六種音效。獎項、次數與紀錄仍為 mock，尚未串接正式後台。可編輯主標與字型授權位於 `source/title/`。
+已套用宇宙卡包／神燈寶箱美術、三語主標、UI、分享圖與六種音效。獎項、次數與紀錄仍為 mock，尚未串接正式後台。可編輯主標與字型授權位於 `source/images/card_pack_SRC006_title/`。
 
 
 主視覺依 en／ko／th 切換各自 690×240 藝術字圖；中文藝術字僅供內部預覽。宇宙使用切角科技面板，沙漠使用黃銅與羊皮紙圓弧框飾。頁尾波浪裝飾已停用。
@@ -21,13 +25,13 @@
 
 ## 主題控制元件與效能交付（2026-11-18）
 
-控制圖皆為透明 WebP，動態文案維持 DOM 多語系。主按鈕 900×270、次數銘牌 630×210、左右導覽 192×192、跑馬燈 1000×180；原稿保留於 `source/ui/`。宇宙以銀金星盤、紫水晶琺瑯為主，場景使用 640×454 星雲氣旋貼圖及 82 顆分層星光。
+控制圖皆為透明 WebP，動態文案維持 DOM 多語系。主按鈕 900×270、次數銘牌 630×210、左右導覽 192×192、跑馬燈 1000×180；原稿保留於 `source/images/card_pack_SRC007_ui/`。宇宙以銀金星盤、紫水晶琺瑯為主，場景使用 640×454 星雲氣旋貼圖及 82 顆分層星光。
 
 動畫在離屏／背景分頁暫停；3D 上限 30 fps、DPR 上限 1.5，靜止寶箱不持續重繪，減少動態偏好保留靜態環境。首屏完成後才預載揭曉卡圖。靜態交付圖經尺寸與 alpha 驗證、容量比較及實際畫面檢查；不可把 `source/` 當成網頁載入資源。測試證據與限制見 `../../docs/event-unbox-jewel/README.md`。
 
 ## 2026-11-18 材質與互動精修
 
-日期牌改為獨立 WebP（900×150），分享／音效使用專屬金屬飾框（160×160）與 HTML 圖示疊合；保留三語、靜音、分享及鍵盤操作。原稿位於 `source/ui/*-refined-original.png`。
+日期牌改為獨立 WebP（900×150），分享／音效使用專屬金屬飾框（160×160）與 HTML 圖示疊合；保留三語、靜音、分享及鍵盤操作。原稿位於 `source/images/card_pack_SRC007_ui/*-refined-original.png`。
 
 包裝改為中段鼓起、上下封邊收薄的分段立體網格；袋內三張卡片隨封口打開露出，上層獎勵卡抽出後進入原有翻卡揭曉流程。3D 內卡使用從卡背原稿輸出的 256×384 貼圖（約 49 KiB），避免首次載入額外要求高解析揭曉圖。氣旋依 750×1000 場景底圖的 cover 縮放計算光圈中心，採地面透視旋轉，非固定螢幕座標。
 
@@ -41,11 +45,11 @@
 
 | 素材 | 尺寸 | 用途 |
 |---|---|---|
-| `assets/img/ui/loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/loading/emblem-original.png` |
+| `assets/images/ui/card_pack_IMG020_loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/images/card_pack_SRC002_loading/emblem-original.png` |
 
 共用樣式位於 `event/shared/loading/loading.css`，HTML 的 `data-theme` 在應用程式啟動前指定主題。實際圖片完成數驅動進度；失敗仍計為已處理，維持10秒截止退場，不用假進度或強迫等待。三語文案獨立於圖片，減少動態模式停止裝飾動畫。
 
-卡背中央改成神秘長耳月兔金屬雕紋，保留既有外框與月蝕。來源 `source/reveal/reward-back-rabbit-original.png`，交付 `reward-back.webp` 600×900 與 `pack-contents.webp` 256×384，開包與翻卡共用同一圖案。
+卡背中央改成神秘長耳月兔金屬雕紋，保留既有外框與月蝕。來源 `source/images/card_pack_SRC003_reveal/reward-back-rabbit-original.png`，交付 `reward-back.webp` 600×900 與 `pack-contents.webp` 256×384，開包與翻卡共用同一圖案。
 
 
 ### 場景與交界修正
@@ -54,13 +58,8 @@
 
 ## 標準目錄
 
-- `assets/css`、`assets/js`、`assets/img`、`assets/audio`：正式樣式、程式、圖片與音訊。
-- `docs`：需求、交付清單與 FILE_MIGRATION.json 搬移索引；交付表路徑以活動根目錄為基準。
 - `source`：原稿、分層檔與 reference 參考資料。
-- `tools`：此活動的素材製作工具。
-- `alternatives`：目前未引用的備選／舊版素材，保留原路徑結構。
 
-目前圖片及音效放 `assets/img/`、`assets/audio/`；未採用或廢棄版本統一放 `alternatives/`，詳見 [搬移索引](docs/ARCHIVE_20261119.json)。共用素材可由其他活動或 `event/shared/` 引用，不複製。
 
 隱藏版固定出現在第 100、200、300…次成功開包；補回次數或重新載入不重設累計。獎項紀錄每頁 10 筆，上一頁／下一頁切換，不刪除歷史資料。
 

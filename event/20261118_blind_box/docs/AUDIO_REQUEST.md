@@ -62,7 +62,7 @@
 
 | 檔案 | 路徑 |
 |---|---|
-| 背景音樂（網頁） | `assets/audio/bgm.mp3` |
+| 背景音樂（網頁） | `assets/music/blind_box_BGM001_bgm.mp3` |
 | 背景音樂（原始） | `alternatives/source/audio/pre-seal-update/bgm-master.wav` |
 | 特效音（網頁） | `assets/audio/<交付檔名>`（見第三節） |
 | 特效音（原始） | `source/audio/<同名>.wav` |
@@ -82,4 +82,4 @@
 
 ## BGM 交付狀態（refine2）
 
-`assets/audio/bgm.mp3` 已提供原創循環配樂；可編輯音符與 WAV 在 `source/audio/`。其餘分項音效仍依本文件原狀態。瀏覽器播放與音量控制已驗證，實機喇叭聽感尚未驗證。
+`assets/music/blind_box_BGM001_bgm.mp3` 已提供原創循環配樂；可編輯音符與 WAV 在 `source/audio/`。其餘分項音效仍依本文件原狀態。瀏覽器播放與音量控制已驗證，實機喇叭聽感尚未驗證。

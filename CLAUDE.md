@@ -179,7 +179,7 @@ localStorage 為同源同步（不受資料夾路徑影響），改動路徑時�
 
 ## Event 目錄標準
 
-每個 `event/YYYYMMDD_name/` 統一保留 `index.html`、`README.md`、`assets/{css,js,img,audio}/`、`docs/`、`source/`、`tools/`、`alternatives/`。正式頁面只載入 assets 與 shared；美術需求、交付清單、驗證／搬移紀錄放 docs，原稿與參考放 source，未使用替代素材放 alternatives 並記錄原路徑。搬移前必須檢查程式動態引用，序列幀不能僅靠檔名搜尋判定未使用。歷史公開入口可保留相容轉址；shared 是共用基礎設施，不複製到各活動。
+每個 `event/YYYYMMDD_name/` 統一使用 `index.html`、`README.md`、`assets/{css,js,images,music,sounds,effects,3d}/`、`source/`、`docs/`。五類素材均附製作指引；原稿依相同五類分類，正式檔以活動名稱＋固定分類編號為前綴。唯一登錄資料為 `event/ASSET_MANIFEST.json`，用 `scripts/event-assets.py catalog` 產生用途／規格清單、`check` 核對缺項與額外檔案。新活動用 `init --from <現有玩法> --name YYYYMMDD_name`，依 `event/_template/README.md` 的規格製作，禁止複製舊圖冒充新交付。舊版本由 Git 回溯，不再建立 alternatives、快取、一次性測試輸出或空模型。歷史公開入口保留相容用途；shared 共用資源不複製到各活動。
 
 ## 短視窗活動場景
 
@@ -203,4 +203,4 @@ localStorage 為同源同步（不受資料夾路徑影響），改動路徑時�
 
 隱藏卡包固定 3 個獎品，每個最低 EPIC（僅 EPIC／LEGENDARY），一次只扣一次開包機會、累計一次抽數。抽獎池排除 COMMON／RARE／空獎；後端若回傳數量不等於 3 或低於 EPIC 的獎品，須拒收並退回次數、保留隱藏資格，不得自行更換後端獎品。
 
-活動標準目錄中 `assets/img/` 與 `assets/audio/` 只留目前引用的交付檔；`source/` 只留現行原稿，歷史原稿與廢棄版本移入 `alternatives/`，保持原相對分類並記錄搬移索引。清理前必須檢查跨活動引用、CSS、設定、序列幀與動態路徑；不得刪除原稿或誤搬仍在使用的共用音效。
+活動正式素材依圖片、背景音樂、音效、視覺特效、3D 分類，僅保留已登錄且被引用的交付檔；source 保留現行可編輯原稿、母帶與授權。清理前檢查跨活動引用、CSS、設定、序列幀與動態路徑；確認淘汰的產物直接移除，Git 保留歷史，不誤刪現行原稿及共用素材。搬移素材同步更新 config、metadata、CSS、交付清單與測試路徑；換圖時維持畫布、透明、定位錨點、UV 與動畫時間。

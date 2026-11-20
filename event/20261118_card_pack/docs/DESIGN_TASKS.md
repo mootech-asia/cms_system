@@ -64,8 +64,8 @@
 | `assets/img/icon/` | 小圖示 | `icon-sound-on`、`icon-sound-off`、`icon-share`、`icon-rotate`、`icon-tap` |
 | `assets/img/share/` | 社群分享預覽圖（PNG／JPG） | `share-preview` |
 | `assets/audio/` | 背景音樂與特效音 mp3（見 docs/AUDIO_REQUEST.md） | `bgm`、`click`、`move`、`select`、`tear`、`flip`、`reveal-common`、`reveal-rare`、`reveal-epic`、`reveal-legendary`、`reward`、`collect`、`error` |
-| `source/character/` | 角色設定圖與說明（不會被網頁載入） | `cosmic-bunny-sheet`、`README.md` |
-| `source/title/` | 主標可編輯原始檔或連結說明 | `README.md` |
+| `source/images/card_pack_SRC001_character/` | 角色設定圖與說明（不會被網頁載入） | `cosmic-bunny-sheet`、`README.md` |
+| `source/images/card_pack_SRC006_title/` | 主標可編輯原始檔或連結說明 | `README.md` |
 
 - **檔名**：英文小寫＋連字號，照表命名，不加日期、版本號、中文或空白。改版直接覆蓋同檔名。
 - **換主題（皮）**：放在 `skins/<皮名>/img/`，底下用同一套分類資料夾，只放跟預設不同的圖。
@@ -126,12 +126,12 @@
 - **基礎**：官方兔比（`brand/moo-rabbit/` 品牌包；現有 3D 形象參考 `event/20261111_lucky_wheel/assets/img/mascot/`）。臉、耳朵、毛色、Q 版比例、毛絨質感、招牌配件（科技墨鏡、耳機、MOOTECH 背心標誌的品牌規則）**不可改**，只換服裝與道具。
 - **造型方向**：宇宙舞台的**主持人／魔術師助手**——星雲漸層的短披風或燕尾外套、發光領結（星雲色）、耳朵上的星星髮飾、全息手套、一扇發光卡牌或星星魔杖；服裝上有星座點綴與行星光環元素。可愛、自信、帶一點舞台魅力。
 - **不可**：見第一節「禁止元素」（不性感化、不用特定雜誌兔女郎的招牌組合）。
-- **設定圖內容**（一張 2400×1350，`source/character/cosmic-bunny-sheet.png`）：正面／四分之三側／側面／背面四視圖、與原版兔比並排的身高比例、表情 ×4（開心、驚喜、眨眼、期待）、服裝材質特寫（披風、領結、手套、髮飾）、色票。`source/character/README.md` 寫明服裝構成與色碼。
+- **設定圖內容**（一張 2400×1350，`source/images/card_pack_SRC001_character/cosmic-bunny-sheet.png`）：正面／四分之三側／側面／背面四視圖、與原版兔比並排的身高比例、表情 ×4（開心、驚喜、眨眼、期待）、服裝材質特寫（披風、領結、手套、髮飾）、色票。`source/images/card_pack_SRC001_character/README.md` 寫明服裝構成與色碼。
 - 驗收：與原版兔比並排一眼認得出是同一隻；縮到卡包正面大小（約 200px 寬）仍辨識得出；放大檢查背心標誌與配件拼字。
 
 ## 五、背景音樂與特效音（P3）
 
-**完整規格見同資料夾 `docs/AUDIO_REQUEST.md`**（風格嚴格對齊本主題）。交付：背景音樂 `assets/audio/bgm.mp3`＋特效音 12 個（`click`、`move`、`select`、開封、`flip`、四種稀有度揭曉、`reward`、`collect`、`error`），原始 WAV 放 `source/audio/`。
+**完整規格見同資料夾 `docs/AUDIO_REQUEST.md`**（風格嚴格對齊本主題）。交付：背景音樂 `assets/audio/bgm.mp3`＋特效音 12 個（`click`、`move`、`select`、開封、`flip`、四種稀有度揭曉、`reward`、`collect`、`error`），原始 WAV 放 `source/sounds/card_pack_SRC001_audio/`。
 
 ## 六、不屬於美術的部分（由後台提供，請勿做成圖）
 
@@ -148,17 +148,17 @@
 
 ### 資訊冊頁與頂部工具列
 
-`assets/img/ui/folio-header.webp`：900×300，不含文字；神燈雕花或銀色星盤裝飾。PNG 原稿置於 `source/ui/folio-header-original.png`，屬點陣原稿。頁面標題仍由程式依語系呈現。前版 card-frame／card-title／info-bg 不再用於資訊區，保留歷史交付。頂部圖示為內嵌可編輯 SVG，按鈕材質與狀態在 theme.css。
+`assets/images/ui/card_pack_IMG019_folio-header.webp`：900×300，不含文字；神燈雕花或銀色星盤裝飾。PNG 原稿置於 `source/images/card_pack_SRC007_ui/folio-header-original.png`，屬點陣原稿。頁面標題仍由程式依語系呈現。前版 card-frame／card-title／info-bg 不再用於資訊區，保留歷史交付。頂部圖示為內嵌可編輯 SVG，按鈕材質與狀態在 theme.css。
 
 ## 主題控制元件與效能交付（2026-11-18）
 
-控制圖皆為透明 WebP，動態文案維持 DOM 多語系。主按鈕 900×270、次數銘牌 630×210、左右導覽 192×192、跑馬燈 1000×180；原稿保留於 `source/ui/`。宇宙以銀金星盤、紫水晶琺瑯為主，場景使用 640×454 星雲氣旋貼圖及 82 顆分層星光。
+控制圖皆為透明 WebP，動態文案維持 DOM 多語系。主按鈕 900×270、次數銘牌 630×210、左右導覽 192×192、跑馬燈 1000×180；原稿保留於 `source/images/card_pack_SRC007_ui/`。宇宙以銀金星盤、紫水晶琺瑯為主，場景使用 640×454 星雲氣旋貼圖及 82 顆分層星光。
 
 動畫在離屏／背景分頁暫停；3D 上限 30 fps、DPR 上限 1.5，靜止寶箱不持續重繪，減少動態偏好保留靜態環境。首屏完成後才預載揭曉卡圖。靜態交付圖經尺寸與 alpha 驗證、容量比較及實際畫面檢查；不可把 `source/` 當成網頁載入資源。測試證據與限制見 `../../docs/event-unbox-jewel/README.md`。
 
 ## 2026-11-18 材質與互動精修
 
-日期牌改為獨立 WebP（900×150），分享／音效使用專屬金屬飾框（160×160）與 HTML 圖示疊合；保留三語、靜音、分享及鍵盤操作。原稿位於 `source/ui/*-refined-original.png`。
+日期牌改為獨立 WebP（900×150），分享／音效使用專屬金屬飾框（160×160）與 HTML 圖示疊合；保留三語、靜音、分享及鍵盤操作。原稿位於 `source/images/card_pack_SRC007_ui/*-refined-original.png`。
 
 包裝改為中段鼓起、上下封邊收薄的分段立體網格；袋內三張卡片隨封口打開露出，上層獎勵卡抽出後進入原有翻卡揭曉流程。3D 內卡使用從卡背原稿輸出的 256×384 貼圖（約 49 KiB），避免首次載入額外要求高解析揭曉圖。氣旋依 750×1000 場景底圖的 cover 縮放計算光圈中心，採地面透視旋轉，非固定螢幕座標。
 
@@ -172,11 +172,11 @@
 
 | 素材 | 尺寸 | 用途 |
 |---|---|---|
-| `assets/img/ui/loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/loading/emblem-original.png` |
+| `assets/images/ui/card_pack_IMG020_loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/images/card_pack_SRC002_loading/emblem-original.png` |
 
 共用樣式位於 `event/shared/loading/loading.css`，HTML 的 `data-theme` 在應用程式啟動前指定主題。實際圖片完成數驅動進度；失敗仍計為已處理，維持10秒截止退場，不用假進度或強迫等待。三語文案獨立於圖片，減少動態模式停止裝飾動畫。
 
-卡背中央改成神秘長耳月兔金屬雕紋，保留既有外框與月蝕。來源 `source/reveal/reward-back-rabbit-original.png`，交付 `reward-back.webp` 600×900 與 `pack-contents.webp` 256×384，開包與翻卡共用同一圖案。
+卡背中央改成神秘長耳月兔金屬雕紋，保留既有外框與月蝕。來源 `source/images/card_pack_SRC003_reveal/reward-back-rabbit-original.png`，交付 `reward-back.webp` 600×900 與 `pack-contents.webp` 256×384，開包與翻卡共用同一圖案。
 
 
 ### 場景與交界修正

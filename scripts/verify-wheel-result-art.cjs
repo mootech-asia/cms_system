@@ -5,7 +5,7 @@ const base=process.env.CHECK_BASE||'http://127.0.0.1:8902';
 for(const event of ['20261111_lucky_wheel','20261111_survival_spin'])for(const auto of [false,true]){
 const p=await b.newPage({ignoreHTTPSErrors:true,viewport:{width:390,height:844},reducedMotion:'reduce'});let release,requested=false;
 try{
-await p.route('**/modal-bg.webp*',async r=>{requested=true;await new Promise(resolve=>release=resolve);await r.continue().catch(()=>{})});
+await p.route('**/*_modal-bg.webp*',async r=>{requested=true;await new Promise(resolve=>release=resolve);await r.continue().catch(()=>{})});
 await p.goto(`${base}/event/${event}/`,{waitUntil:'domcontentloaded'});await p.locator('#loading').waitFor({state:'hidden'});
 await p.waitForFunction(()=>document.getElementById('btnAutoSpin').textContent.length>0);
 for(let i=0;i<30&&!requested;i++)await p.waitForTimeout(20);assert(requested,'preloads result background before any spin');
@@ -24,7 +24,7 @@ console.log('PASS prefetch without blocking entry; waits for decoded art; no dup
 }
 for(const event of ['20261111_lucky_wheel','20261111_survival_spin']){
 const p=await b.newPage({ignoreHTTPSErrors:true,viewport:{width:390,height:844},reducedMotion:'reduce'});
-await p.route('**/modal-bg.webp*',r=>r.abort());await p.goto(`${base}/event/${event}/`);await p.locator('#loading').waitFor({state:'hidden'});
+await p.route('**/*_modal-bg.webp*',r=>r.abort());await p.goto(`${base}/event/${event}/`);await p.locator('#loading').waitFor({state:'hidden'});
 await p.locator('#btnSpin').click();await p.locator('#btnSkipSpin').click();await p.locator('#resultModal').waitFor({state:'visible'});
 assert((await p.locator('.ev-modal-box').getAttribute('class')).includes('is-art-fallback'));assert(await p.locator('#btnClose').isVisible());await p.screenshot({path:'/tmp/result-art-fallback-'+event+'.png'});await p.locator('#btnClose').click();
 assert.equal(await p.locator('.ev-record').count(),1);console.log('PASS failed image uses complete readable fallback and preserves draw',event);await p.close();

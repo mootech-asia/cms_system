@@ -1,7 +1,7 @@
 # unbox-3d：拆卡包／拆盲盒共用引擎
 
 `event/20261118_card_pack` 與 `event/20261118_blind_box` 共用的程式與版面。兩個活動只差各自的
-`assets/js/config.js`（type、圖片槽、文案、mock 內容）、`assets/css/theme.css`（色票）與 `assets/img/`（素材）。
+`assets/js/config.js`（type、圖片槽、文案、mock 內容）、`assets/css/theme.css`（色票）與 `assets/images/`（素材）。
 免建置：直接開 `index.html` 或放上 GitHub Pages 即可，改圖、改文案、改程式都不用跑 npm。
 
 ## 目錄
@@ -17,13 +17,12 @@
 | `js/share.js` | 分享面板（同轉盤） |
 | `css/unbox.css` | 版面與元件（只用 token；色票在各活動 theme.css） |
 | `vendor/three.min.js` | Three.js r187 子集（只含用到的類別），由 `tools/event-3d` 產生 |
-| `tools/make_placeholders.py` | 產生 mock 佔位圖與分享預覽 PNG |
 
 ## 換主題（換皮）
 
-1. **只換圖**：同檔名覆蓋 `assets/img/` 的檔案；副檔名不同就改 `config.js` 的 `images` 路徑。
+1. **只換圖**：同檔名覆蓋 `assets/images/` 的檔案；副檔名不同就改 `config.js` 的 `images` 路徑。
 2. **整套新主題但保留原版**：在活動資料夾建立 `skins/<名稱>/`，放 `skin.css`（只覆寫 theme.css 的變數）與 `img/`
-   （只放跟預設不同的圖，子資料夾分類與 `assets/img/` 相同），在 `config.js` 加：
+   （只放跟預設不同的圖，子資料夾分類與 `assets/images/` 相同），在 `config.js` 加：
    ```js
    skins: {
      xmas: {
@@ -54,7 +53,7 @@ cd tools/event-3d && npm ci && npm run build
 - 拿掉內部面板（`#mockPanel` 與 app.js 的連點三下）與換圖標籤。
 - 串接後台：`window.EVENT_CONTENT`（內容）＋ `window.EVENT_RESOLVE`（後端開獎、扣次數、冪等請求 ID）；
   次數與紀錄目前存 localStorage，只是 mock。
-- mock 獎項圖示借用 `../20261111_lucky_wheel/assets/img/icon-*.svg`，正式由後台提供。
+- mock 獎項圖示借用 config 的跨活動獎項圖示槽位，正式由後台提供。
 
 ## 版本號（避免瀏覽器用到舊檔）
 
@@ -67,3 +66,5 @@ cd tools/event-3d && npm ci && npm run build
 Card packs retain back → flip → prize → collect. Blind boxes render the treasure icon on a metallic pedestal directly, with next/summary navigation for multiple treasures. No card back or flip step is used by blind boxes.
 
 `atmosphere.js` draws bounded decorative particles on a separate pointer-transparent canvas: stars/vortices for cosmic packs, petals/sand for desert chests. It caps redraws at 25fps, limits pixel ratio to 1.5, pauses while hidden/offscreen, and draws a still composition for reduced motion. The chest lid has double-sided curved surfaces and a solid inner board attached to its hinge.
+
+新活動目錄與素材槽位以 [統一範本](../../_template/README.md) 為準，使用 event-assets.py init 建立；不再產生舊目錄的佔位圖。

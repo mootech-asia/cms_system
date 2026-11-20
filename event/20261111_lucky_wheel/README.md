@@ -1,12 +1,15 @@
 # Lucky Wheel — 原版轉盤
 
+素材分類、編號、用途與尺寸請以 [素材製作清單](docs/ASSETS.md) 為準；分類規範與新活動建立方式見 [統一範本](../_template/README.md)。
+
+正式素材統一放 `assets/images/`（圖片）、`assets/music/`（背景音樂）、`assets/sounds/`（音效）、`assets/effects/`（視覺特效）、`assets/3d/`（貼圖／模型）。`source/` 保留依同分類分組的製作原稿；淘汰提案、快取與舊測試輸出已移除，由 Git 歷史回溯。
+
 活動入口：[index.html](./index.html)。語系：`?lang=en`、`?lang=ko`、`?lang=th`。
 
 這個資料夾管理百老匯舞台風格的原版轉盤與兔比活動素材。生存輪盤已獨立到 [../20261111_survival_spin/](../20261111_survival_spin/)，桃紅人物與相關來源檔在該處維護。
 
 - `assets/`：本活動的程式、樣式與遊戲使用圖片。
-- `source/`、`tools/`：現行原圖、製作工具與動態序列。
-- `source/reference/`：官方品牌參考與已採用的兔比設定。
+- `source/images/lucky_wheel_SRC005_reference/`：官方品牌參考與已採用的兔比設定。
 - [docs/DESIGN_TASKS.md](docs/DESIGN_TASKS.md)、[docs/GPT_ASSET_BRIEF.md](docs/GPT_ASSET_BRIEF.md)：美術需求與製作規格。
 - [docs/DELIVERY_CHECKLIST.md](docs/DELIVERY_CHECKLIST.md)：提交狀態與人工審核；已有素材不等於全部通過審核。
 
@@ -16,7 +19,7 @@
 
 ## 兔比動態優化進度
 
-[四段動態預覽與透明素材](./source/rabbit-fullpose-v4/README.md)：待機、興奮、慶祝、再接再厲。已套用原版轉盤，胸前字標仍需修整。
+[四段動態預覽與透明素材](./source/images/lucky_wheel_SRC004_rabbit-fullpose-v4/README.md)：待機、興奮、慶祝、再接再厲。已套用原版轉盤，胸前字標仍需修整。
 
 ## 載入與動畫交付
 
@@ -28,19 +31,14 @@
 
 | 素材 | 尺寸 | 用途 |
 |---|---|---|
-| `assets/img/loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/loading/emblem-original.png` |
+| `assets/images/ui/lucky_wheel_IMG016_loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/images/lucky_wheel_SRC001_loading/emblem-original.png` |
 
 共用樣式位於 `event/shared/loading/loading.css`，HTML 的 `data-theme` 在應用程式啟動前指定主題。實際圖片完成數驅動進度；失敗仍計為已處理，維持10秒截止退場，不用假進度或強迫等待。三語文案獨立於圖片，減少動態模式停止裝飾動畫。
 
 ## 標準目錄
 
-- `assets/css`、`assets/js`、`assets/img`、`assets/audio`：正式樣式、程式、圖片與音訊。
-- `docs`：需求、交付清單與 FILE_MIGRATION.json 搬移索引；交付表路徑以活動根目錄為基準。
 - `source`：原稿、分層檔與 reference 參考資料。
-- `tools`：此活動的素材製作工具。
-- `alternatives`：目前未引用的備選／舊版素材，保留原路徑結構。
 
-目前圖片及音效放 `assets/img/`、`assets/audio/`；未採用或廢棄版本統一放 `alternatives/`，詳見 [搬移索引](docs/ARCHIVE_20261119.json)。共用素材可由其他活動或 `event/shared/` 引用，不複製。
 
 ## 自動轉動與略過動畫
 

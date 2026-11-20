@@ -5,7 +5,7 @@
 | 使用者要求 | 對應交付與驗證 | 尚未完成 |
 |---|---|---|
 | 繼續完成，好的素材也要推上去 | 新增690×64跑馬燈、彈窗內容alpha255；三語四尺寸實際點Spin now、結果、次數用完與分享測試85筆，12組第一屏幾何核對通過，見 art-source/verification/ticker/ | 人工美術審核待確認 |
-| 每個gif都要讓我看預覽效果 | [待機1動態預覽](../alternatives/source/mascot-v3/preview.html)，48幀／2秒，首尾與基準一致，0輪廓像素變動；瀏覽器連續取樣確認動圖確實在播放 | 其他四段仍待重做共同起訖姿勢；新待機1暫不混入舊輪播 |
+| 每個gif都要讓我看預覽效果 | [待機1動態預覽](../alternatives/source/images/lucky_wheel_SRC003_mascot-v3/preview.html)，48幀／2秒，首尾與基準一致，0輪廓像素變動；瀏覽器連續取樣確認動圖確實在播放 | 其他四段仍待重做共同起訖姿勢；新待機1暫不混入舊輪播 |
 
 彈窗中心的少量透底是我上一批去背輸出造成，這次以不透明奶油色內襯修正，保留外框外側透明。第一屏整理清除重複角色定位，縮小場景中角色避免遮住盤面文字，保留腳下陰影與操作台前後層次。程式建置與部署於提交後另核對。
 
@@ -29,7 +29,7 @@ P0 `d913f7f`；P1/P2 `de2370c`；分享圖 JPEG 與對應路徑 `e5e2f55`。
 - P0 階段另驗 localStorage 被拒與後台空資料，既有行為未改動。
 - 新靜態素材尺寸符合清單，單張 <300 KB；分享圖為 JPEG 217,485 bytes，避免索引色 PNG 的漸層色階斷裂；底紋左右／上下邊界逐像素一致。
 - 卡片採120×120、40px九宮格；中心不透明，直邊可延伸；徽章、彈窗及按鈕不把翻譯文字燒入底圖。
-- 生成源圖：source/ui-components/；輸出程式：tools/build_ui_components.py、tools/build_share_preview.cjs。
+- 生成源圖：source/images/lucky_wheel_SRC007_ui-components/；輸出程式：tools/build_ui_components.py、tools/build_share_preview.cjs。
 
 P3 後續：固定鏡頭與角色尺寸、共用頭尾基準幀、五段動態逐一預覽與驗收。現有 GIF 仍是待精修示意，idle-1 維持不參與頁面輪播。主標可編輯 PSD/AI/Figma 亦尚未提交。
 

@@ -12,12 +12,12 @@ const base = process.env.EVENT_TEST_BASE || 'http://127.0.0.1:8000/';
         page.on('pageerror', error => errors.push(error.message));
         page.on('request', request => requested.push(request.url()));
         // Failed animation downloads must not block entry or replace the visible poster.
-        await page.route('**/optimized/*.webp', route => route.request().url().endsWith('/poster.webp') ? route.continue() : route.abort());
+        await page.route('**/images/mascot/*.webp', route => route.request().url().includes('_poster.webp') ? route.continue() : route.abort());
         await page.goto(`${base}event/${event}/?lang=${lang}`, { waitUntil: 'domcontentloaded' });
         await page.locator('#loading').waitFor({ state: 'hidden', timeout: 5000 });
         await page.waitForFunction(() => {
           const image = document.getElementById('mascot');
-          return image.complete && image.naturalWidth > 0 && image.src.endsWith('/poster.webp');
+          return image.complete && image.naturalWidth > 0 && image.src.includes('_poster.webp');
         });
         const titles = requested.filter(url => /\/title-(en|ko|th|zh)\./.test(url));
         assert(titles.length > 0 && titles.every(url => url.includes(`title-${lang}.`)));

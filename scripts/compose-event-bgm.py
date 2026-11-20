@@ -92,7 +92,7 @@ def render(name,desert):
         else:off(synth,n['channel'],n['pitch'])
     audio_until(length*2);delete(synth);delete_settings(settings)
     mix=np.column_stack((left[length:],right[length:]))
-    root=ROOT/f'event/20261118_{name}';source=root/'source/audio';source.mkdir(parents=True,exist_ok=True)
+    root=ROOT/f'event/20261118_{name}';source=root/'source/music'/f'{name}_composed';source.mkdir(parents=True,exist_ok=True)
     data.update(durationSeconds=seconds,sampleRate=RATE,soundfont='TimGM6mb.sf2; Tim Brechbill / David Bolton, GPL-2',loop='Exact full-bar cycle; previous cycle rendered to retain reverb tails')
     (source/'bgm-score.json').write_text(json.dumps(data,indent=2))
     with tempfile.TemporaryDirectory() as tmp:
@@ -103,8 +103,8 @@ def render(name,desert):
         norm=f"loudnorm=I=-20:TP=-1:LRA=8:measured_I={stats['input_i']}:measured_TP={stats['input_tp']}:measured_LRA={stats['input_lra']}:measured_thresh={stats['input_thresh']}:offset={stats['target_offset']}:linear=true"
         master=source/'bgm.wav'
         subprocess.run(args+['-af',norm,'-ar','48000','-c:a','pcm_s24le',str(master)],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
-        subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(master),'-ar','44100','-c:a','libmp3lame','-b:a','128k',str(root/'assets/audio/bgm.mp3')],check=True)
-    print(name,seconds,'seconds', (root/'assets/audio/bgm.mp3').stat().st_size,'bytes',flush=True)
+        subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(master),'-ar','44100','-c:a','libmp3lame','-b:a','128k',str(source/'preview.mp3')],check=True)
+    print(name,seconds,'seconds', (source/'preview.mp3').stat().st_size,'bytes',flush=True)
 
 if __name__=='__main__':
     render('card_pack',False)

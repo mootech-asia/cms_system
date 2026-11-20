@@ -64,10 +64,10 @@
 | 檔案 | 路徑 |
 |---|---|
 | 背景音樂（網頁） | `assets/audio/bgm.mp3` |
-| 背景音樂（原始） | `alternatives/source/audio/pre-seal-update/bgm-master.wav` |
+| 背景音樂（原始） | `alternatives/source/sounds/card_pack_SRC001_audio/pre-seal-update/bgm-master.wav` |
 | 特效音（網頁） | `assets/audio/<交付檔名>`（見第三節） |
-| 特效音（原始） | `source/audio/<同名>.wav` |
-| 授權與製作說明 | `alternatives/source/audio/pre-seal-update/README.md`：作者／工具、授權方式、BPM、調性、循環點 |
+| 特效音（原始） | `source/sounds/card_pack_SRC001_audio/<同名>.wav` |
+| 授權與製作說明 | `alternatives/source/sounds/card_pack_SRC001_audio/pre-seal-update/README.md`：作者／工具、授權方式、BPM、調性、循環點 |
 
 ## 六、授權
 
@@ -83,4 +83,4 @@
 
 ## BGM 交付狀態（refine2）
 
-`assets/audio/bgm.mp3` 已提供原創循環配樂；可編輯音符與 WAV 在 `source/audio/`。其餘分項音效仍依本文件原狀態。瀏覽器播放與音量控制已驗證，實機喇叭聽感尚未驗證。
+`assets/audio/bgm.mp3` 已提供原創循環配樂；可編輯音符與 WAV 在 `source/sounds/card_pack_SRC001_audio/`。其餘分項音效仍依本文件原狀態。瀏覽器播放與音量控制已驗證，實機喇叭聽感尚未驗證。

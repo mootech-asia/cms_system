@@ -155,7 +155,7 @@
 
 > 兔比是 MOOTECH cms_system 事業部吉祥物，整套形象（角色設定、姿勢、貼圖、主視覺、客服、社群）見 `brand/moo-rabbit/`；本節只管本活動的 6 段動態。角色設定圖由品牌包製作。
 
-> **必須比對角色設計參考圖製作。** 參考圖已歸檔在 `reference/`（來源：官網 repo `mootech-asia/mootech_website` 的 `brand/moo-bear/`，說明見 `source/reference/README.md`）：
+> **必須比對角色設計參考圖製作。** 參考圖已歸檔在 `reference/`（來源：官網 repo `mootech-asia/mootech_website` 的 `brand/moo-bear/`，說明見 `source/images/lucky_wheel_SRC005_reference/README.md`）：
 > 四張三視圖 `bear-view-1-front` / `2-three-quarter` / `3-side` / `4-back`（官方「唯一依據」），以及揮手、眨眼比讚、思考貼圖與全身姿勢各一張。
 > 用 GPT 生成時請照 `docs/GPT_ASSET_BRIEF.md` 的步驟與提示詞，並附上這些參考圖。
 
@@ -216,9 +216,9 @@
 - 畫布 **400 × 500 px**，每幀同尺寸；角色腳底位置固定，**鏡頭固定**（不可整體縮放、不可忽大忽小）。
 - 每段 **48 幀、24fps、合計 2000ms**；第一幀＝最後一幀＝ `base-frame.png`。
 - 角色佔畫布寬約七～八成，但以「整段動作最大範圍＋影子＋四邊 8px 留白」能放進畫布為上限。
-- **PNG 序列幀（RGBA，含半透明影子）是主交付**：`alternatives/source/mascot-frames/<狀態>/frame_001.png`～`frame_048.png`；
+- **PNG 序列幀（RGBA，含半透明影子）是主交付**：`alternatives/source/images/lucky_wheel_SRC003_mascot-frames/<狀態>/frame_001.png`～`frame_048.png`；
   GIF（`assets/img/mascot/<狀態>.gif`）用舞台暖色 `#FFE6CC` 當 matte 輸出，作為預覽。
-- 每段附一張「關鍵幀 vs 熊北參考」並排比對圖（`alternatives/source/mascot-compare/<狀態>.png`）。
+- 每段附一張「關鍵幀 vs 熊北參考」並排比對圖（`alternatives/source/images/lucky_wheel_SRC003_mascot-compare/<狀態>.png`）。
 - 顯示位置：站在轉盤右前方的舞台地板上、中獎跑馬燈後方，畫布顯示寬度約為頁面內容欄的 81%（手機 390 寬約 290px）。
   **注意：目前版面跑馬燈會蓋住兔比的腳與腳下影子**，影子在手機上可能大半看不到（是否調整站位另行決定）。
 - 光源與舞台一致：前上方偏左。
@@ -257,6 +257,6 @@
 
 | 素材 | 尺寸 | 用途 |
 |---|---|---|
-| `assets/img/loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/loading/emblem-original.png` |
+| `assets/images/ui/lucky_wheel_IMG016_loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/images/lucky_wheel_SRC001_loading/emblem-original.png` |
 
 共用樣式位於 `event/shared/loading/loading.css`，HTML 的 `data-theme` 在應用程式啟動前指定主題。實際圖片完成數驅動進度；失敗仍計為已處理，維持10秒截止退場，不用假進度或強迫等待。三語文案獨立於圖片，減少動態模式停止裝飾動畫。

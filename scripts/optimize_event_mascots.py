@@ -5,17 +5,23 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1] / 'event'
-GROUPS = [
-    ('20261111_lucky_wheel', 'source/mascot', ['idle-1', 'spinning', 'result', 'lose']),
-    ('20261111_survival_spin', 'source/mascot/rifle-v1', ['idle', 'anticipation', 'disappointment']),
-]
+MANIFEST = json.loads((ROOT / 'ASSET_MANIFEST.json').read_text())
+GROUPS = []
+for event, names in [('20261111_lucky_wheel', ['idle-1', 'spinning', 'result', 'lose']),
+                     ('20261111_survival_spin', ['idle', 'anticipation', 'disappointment'])]:
+    folder = next(g['path'] for g in MANIFEST['sources'] if g['event'] == event and g['path'].endswith('_mascot'))
+    if event.endswith('survival_spin'):
+        folder += '/rifle-v1'
+    GROUPS.append((event, folder, names))
 
 
 def export_animation(base, name):
     source = base / (name + '.webp')
     relative = base.relative_to(ROOT)
-    destination = ROOT / relative.parts[0] / 'assets/img' / Path(*relative.parts[2:]) / 'optimized' / source.name
-    destination.parent.mkdir(exist_ok=True)
+    event = relative.parts[0]
+    delivery = next(a['path'] for a in MANIFEST['assets'] if a['event'] == event and a['category'] == 'images' and '/mascot/' in a['path'] and a['previousPath'].endswith('/' + source.name))
+    destination = ROOT / event / delivery
+    destination.parent.mkdir(parents=True, exist_ok=True)
     with Image.open(source) as image:
         size = image.size
         loop = image.info.get('loop', 0)

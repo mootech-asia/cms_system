@@ -1,6 +1,6 @@
 # 生存遊戲秀皮（survival）美術製作需求單
 
-> 最新角色方向：桃紅連帽服、單一白圓黑面具、黑色步槍與槍帶。四段為待機、期待、慶祝、失望，設定與預覽見 `source/guard-rifle-v1/`，四段已套用遊戲，製作來源與 GIF 預覽保留於該資料夾。此方向取代下文歷史需求中的兔比角色、黑面罩與槍械禁用條件；不包含射擊、血腥或死亡表演。空手 V4 與六段研究僅留歷史稿。
+> 最新角色方向：桃紅連帽服、單一白圓黑面具、黑色步槍與槍帶。四段為待機、期待、慶祝、失望，設定與預覽見 `source/images/survival_spin_SRC001_guard-rifle-v1/`，四段已套用遊戲，製作來源與 GIF 預覽保留於該資料夾。此方向取代下文歷史需求中的兔比角色、黑面罩與槍械禁用條件；不包含射擊、血腥或死亡表演。空手 V4 與六段研究僅留歷史稿。
 
 > 版本：2026-11-12 第 1 版。同一個幸運轉盤活動程式，換這一套圖＋色票就是新活動。
 > 預覽：直接開啟獨立活動入口（例：`event/20261111_survival_spin/index.html`）。主要視覺與介面素材已套用，剩餘提交狀態以交付清單為準。
@@ -64,7 +64,7 @@
 - **品質與一致性**：與 `../20261111_lucky_wheel/reference/` 的熊北四視圖、`brand/moo-rabbit/` 的兔比設定同一套渲染品質；背心換成連身服，其餘臉型、毛色、配件不變。
 - **動態 6 段**（規格同預設皮的 2026-11-12 重做要求：48 幀、2000ms、頭尾＝基準幀、任何一幀不可貼邊、影子畫進角色、主交付為 RGBA PNG 序列幀）：
   待機 ×3、期待（轉動中）、慶祝（中獎）、失望（未中獎）。
-- 交付位置：`alternatives/assets/img/mascot/base-frame.png`、`assets/img/mascot/<狀態>.gif`、`source/mascot-frames/<狀態>/frame_001.png`～`frame_048.png`。
+- 交付位置：`alternatives/assets/img/mascot/base-frame.png`、`assets/img/mascot/<狀態>.gif`、`source/images/survival_spin_SRC003_mascot-frames/<狀態>/frame_001.png`～`frame_048.png`。
 - 未交付前頁面暫用預設皮的兔比（穿背心），這是佔位，不代表定稿。
 
 ---
@@ -83,6 +83,6 @@
 
 | 素材 | 尺寸 | 用途 |
 |---|---|---|
-| `assets/img/loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/loading/emblem-original.png` |
+| `assets/images/ui/survival_spin_IMG016_loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/images/survival_spin_SRC002_loading/emblem-original.png` |
 
 共用樣式位於 `event/shared/loading/loading.css`，HTML 的 `data-theme` 在應用程式啟動前指定主題。實際圖片完成數驅動進度；失敗仍計為已處理，維持10秒截止退場，不用假進度或強迫等待。三語文案獨立於圖片，減少動態模式停止裝飾動畫。

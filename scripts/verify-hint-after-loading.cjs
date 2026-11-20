@@ -6,7 +6,7 @@ for(const type of ['card_pack','blind_box']){
  try{
  await p.clock.install();
  await p.route('**/slow-ready-test.webp',async r=>{await new Promise(resolve=>release=resolve);await r.fulfill({status:404,body:''}).catch(()=>{})});
- await p.addInitScript(()=>Object.defineProperty(window,'EVENT_CONFIG',{configurable:true,set(cfg){Object.defineProperty(window,'EVENT_CONFIG',{value:cfg});cfg.images.readyProbe='assets/img/slow-ready-test.webp';cfg.loadingImages.push('readyProbe')}}));
+ await p.addInitScript(()=>Object.defineProperty(window,'EVENT_CONFIG',{configurable:true,set(cfg){Object.defineProperty(window,'EVENT_CONFIG',{value:cfg});cfg.images.readyProbe='assets/images/slow-ready-test.webp';cfg.loadingImages.push('readyProbe')}}));
  await p.goto('http://127.0.0.1:8900/event/20261118_'+type+'/',{waitUntil:'domcontentloaded'});
  assert(await p.locator('#loading').isVisible());
  if(type==='blind_box')assert.equal(await p.locator('#mascot').getAttribute('data-motion'),'paused');

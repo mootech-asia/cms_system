@@ -60,9 +60,9 @@ STYLE LOCK — apply to every image in this conversation:
 
 ## Refinement delivery 20261118
 
-Use the existing 750×1000 stage as registration reference. Deliver separate full-canvas RGBA curtain/lantern, arcade/columns, and foreground tiled floor images, plus a full opaque night desert background. Keep the original camera, horizon, lighting and object anchors. No UI or prize chests in these layers. Preserve source PNGs in source/scene/layers and resize once to 750×1000 WebP.
+Use the existing 750×1000 stage as registration reference. Deliver separate full-canvas RGBA curtain/lantern, arcade/columns, and foreground tiled floor images, plus a full opaque night desert background. Keep the original camera, horizon, lighting and object anchors. No UI or prize chests in these layers. Preserve source PNGs in source/images/blind_box_SRC004_scene/layers and resize once to 750×1000 WebP.
 
-Reward vortex: warm volumetric gold sand from the approved dust material, transparent 4×4 sheet of 16 evolving frames, fixed camera and consistent center; no white wire arcs or opaque grey background. Source sheet and extracted frames retained under source/reveal; 1280×1280 WebP atlas, 320px per frame, alpha crossfade between frames.
+Reward vortex: warm volumetric gold sand from the approved dust material, transparent 4×4 sheet of 16 evolving frames, fixed camera and consistent center; no white wire arcs or opaque grey background. Source sheet and extracted frames retained under source/images/blind_box_SRC003_reveal; 1280×1280 WebP atlas, 320px per frame, alpha crossfade between frames.
 
 
 ## 2026-11-19 production sources

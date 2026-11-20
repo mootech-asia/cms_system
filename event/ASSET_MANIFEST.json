@@ -1,0 +1,3319 @@
+{
+  "schemaVersion": 1,
+  "naming": "{event_name}_{category_id}_{description}.{ext}",
+  "categories": {
+    "images": "圖片",
+    "music": "背景音樂",
+    "sounds": "音效",
+    "effects": "視覺特效",
+    "3d": "3D 物件與貼圖"
+  },
+  "assets": [
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "SFX001",
+      "category": "sounds",
+      "path": "assets/sounds/lucky_wheel_SFX001_reward.mp3",
+      "previousPath": "assets/audio/reward.mp3",
+      "purpose": "得獎音效",
+      "bytes": 111360,
+      "sha256": "dca6e83df8d9508e22b334e634a1db1e0749494a9c4ec35b5adbf2d4a21dd57f",
+      "durationSeconds": 5.224,
+      "slots": [
+        "sounds.reward"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG001",
+      "category": "images",
+      "path": "assets/images/ui/lucky_wheel_IMG001_btn-go.webp",
+      "previousPath": "assets/img/btn-go.webp",
+      "purpose": "轉盤中央 SPIN 按鈕",
+      "bytes": 13308,
+      "sha256": "db9e1420c1cadcd426b33bb8ccc7044e2a4bc094fa95a5c2e0f889e94f3768d1",
+      "width": 200,
+      "height": 200,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.btnGo"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG002",
+      "category": "images",
+      "path": "assets/images/ui/lucky_wheel_IMG002_btn-primary.webp",
+      "previousPath": "assets/img/btn-primary.webp",
+      "purpose": "主要操作及領獎按鈕底圖",
+      "bytes": 11624,
+      "sha256": "7a5c7ec43fae84b860e62084e0819d8227485d844453631db19be372e04f8b3f",
+      "width": 400,
+      "height": 110,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.btnPrimary"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "VFX001",
+      "category": "effects",
+      "path": "assets/effects/lucky_wheel_VFX001_bulb-off.png",
+      "previousPath": "assets/img/bulb-off.png",
+      "purpose": "轉盤燈泡暗態",
+      "bytes": 1859,
+      "sha256": "d7d4a314476f05b9481c8bd2b7230237c83de8e497b516f850412f90f48a42ab",
+      "width": 48,
+      "height": 48,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.bulbOff"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "VFX002",
+      "category": "effects",
+      "path": "assets/effects/lucky_wheel_VFX002_bulb-on.png",
+      "previousPath": "assets/img/bulb-on.png",
+      "purpose": "轉盤燈泡亮態",
+      "bytes": 2505,
+      "sha256": "5c240e4c11f47278942ffb2b35a4bedab3de876452ea4d91de3697eb05cfacc7",
+      "width": 48,
+      "height": 48,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.bulbOn"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG003",
+      "category": "images",
+      "path": "assets/images/ui/lucky_wheel_IMG003_card-frame.webp",
+      "previousPath": "assets/img/card-frame.webp",
+      "purpose": "資訊卡外框",
+      "bytes": 6402,
+      "sha256": "b56d93f3a7ade93a005a1adc48ee3d0ccd01e35c7a92da7ace1129e53874fc61",
+      "width": 120,
+      "height": 120,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.cardFrame"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG004",
+      "category": "images",
+      "path": "assets/images/ui/lucky_wheel_IMG004_card-title.webp",
+      "previousPath": "assets/img/card-title.webp",
+      "purpose": "規則／紀錄標題底圖",
+      "bytes": 9454,
+      "sha256": "b2bfd0040ca4579ab08e844c2230d8c1deb9a881382f9a3dc094954c5c0ec9b1",
+      "width": 400,
+      "height": 72,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.cardTitle"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG005",
+      "category": "images",
+      "path": "assets/images/ui/lucky_wheel_IMG005_chances-badge.webp",
+      "previousPath": "assets/img/chances-badge.webp",
+      "purpose": "剩餘次數銘牌",
+      "bytes": 4442,
+      "sha256": "02e677b0307ec9f9b999031638b3495835de91095241e5d3a7011edb0da0e548",
+      "width": 360,
+      "height": 88,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.chancesBadge"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG006",
+      "category": "images",
+      "path": "assets/images/scene/lucky_wheel_IMG006_footer-deco.webp",
+      "previousPath": "assets/img/footer-deco.webp",
+      "purpose": "頁尾裝飾",
+      "bytes": 16842,
+      "sha256": "b0f9269a54a69ab1da5ea87b1c4bcab526184fd556b52616059524d9b30aa985",
+      "width": 750,
+      "height": 160,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.footerDeco"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG007",
+      "category": "images",
+      "path": "assets/images/icons/lucky_wheel_IMG007_icon-bonus.svg",
+      "previousPath": "assets/img/icon-bonus.svg",
+      "purpose": "獎項／操作圖示：bonus",
+      "bytes": 1642,
+      "sha256": "cda1fdbe2f06280932ffb7213de2b81faf4446b5ab2bf45619c5bab57877cec9",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "defaultContent.prizes.2.icon",
+        "20261118_blind_box:defaultContent.prizes.3.icon",
+        "20261118_card_pack:defaultContent.prizes.3.icon"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG008",
+      "category": "images",
+      "path": "assets/images/icons/lucky_wheel_IMG008_icon-cash.svg",
+      "previousPath": "assets/img/icon-cash.svg",
+      "purpose": "獎項／操作圖示：cash",
+      "bytes": 1834,
+      "sha256": "72184da3fb0fc7731ce10eb8016902d0757920262bfe6a7f642f419f30e26aca",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "defaultContent.prizes.0.icon",
+        "20261118_blind_box:defaultContent.prizes.5.icon",
+        "20261118_card_pack:defaultContent.prizes.5.icon"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG009",
+      "category": "images",
+      "path": "assets/images/icons/lucky_wheel_IMG009_icon-coin.svg",
+      "previousPath": "assets/img/icon-coin.svg",
+      "purpose": "獎項／操作圖示：coin",
+      "bytes": 1896,
+      "sha256": "5db269e6885eef28d60fc2974de7cbf5e8b41a2323eb8902e58f99b5d1344ace",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "defaultContent.prizes.4.icon",
+        "20261118_blind_box:defaultContent.prizes.1.icon",
+        "20261118_card_pack:defaultContent.prizes.1.icon"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG010",
+      "category": "images",
+      "path": "assets/images/icons/lucky_wheel_IMG010_icon-gift.svg",
+      "previousPath": "assets/img/icon-gift.svg",
+      "purpose": "獎項／操作圖示：gift",
+      "bytes": 1662,
+      "sha256": "c627b6f1300ca0890c2169eb6430ab32106d2bc6e325b0ce3c0fa4d6e26e1417",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "defaultContent.prizes.5.icon",
+        "20261118_blind_box:defaultContent.prizes.4.icon",
+        "20261118_card_pack:defaultContent.prizes.4.icon"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG011",
+      "category": "images",
+      "path": "assets/images/icons/lucky_wheel_IMG011_icon-points.svg",
+      "previousPath": "assets/img/icon-points.svg",
+      "purpose": "獎項／操作圖示：points",
+      "bytes": 1611,
+      "sha256": "65afeae1f2e18a785895c1ccfda6aea504704d18c0872bd744ecfd34d773b4f9",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "defaultContent.prizes.3.icon",
+        "20261118_blind_box:defaultContent.prizes.0.icon",
+        "20261118_card_pack:defaultContent.prizes.0.icon"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG012",
+      "category": "images",
+      "path": "assets/images/icons/lucky_wheel_IMG012_icon-rotate.webp",
+      "previousPath": "assets/img/icon-rotate.webp",
+      "purpose": "獎項／操作圖示：rotate",
+      "bytes": 6638,
+      "sha256": "5a414d675810e8bd9347a76bdf6ab99a59863b08f98a95598ec48db2c0b3eeb3",
+      "width": 160,
+      "height": 160,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.rotateHint"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG013",
+      "category": "images",
+      "path": "assets/images/icons/lucky_wheel_IMG013_icon-spin.svg",
+      "previousPath": "assets/img/icon-spin.svg",
+      "purpose": "獎項／操作圖示：spin",
+      "bytes": 1747,
+      "sha256": "c1d79518eb57a859e6a72f6709a91827673d8c586fa8fbd1cf29810e38d68eac",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "defaultContent.prizes.1.icon",
+        "20261118_blind_box:defaultContent.prizes.2.icon",
+        "20261118_card_pack:defaultContent.prizes.2.icon"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG014",
+      "category": "images",
+      "path": "assets/images/icons/lucky_wheel_IMG014_icon-thanks.svg",
+      "previousPath": "assets/img/icon-thanks.svg",
+      "purpose": "獎項／操作圖示：thanks",
+      "bytes": 1718,
+      "sha256": "b25b8eead0c250832dc217b03b8df388ac111c61af0430b21b39e15054ee2ec5",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "defaultContent.prizes.6.icon"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG015",
+      "category": "images",
+      "path": "assets/images/scene/lucky_wheel_IMG015_info-bg.webp",
+      "previousPath": "assets/img/info-bg.webp",
+      "purpose": "規則與紀錄區底圖",
+      "bytes": 14802,
+      "sha256": "d59b3c04f4ad02a19419b4e4b5059d578ca4ca0ec7998334fe81ddca4e547f4f",
+      "width": 750,
+      "height": 750,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.infoBg"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "VFX003",
+      "category": "effects",
+      "path": "assets/effects/lucky_wheel_VFX003_light-pool.webp",
+      "previousPath": "assets/img/light-pool.webp",
+      "purpose": "地面光池",
+      "bytes": 11528,
+      "sha256": "ccd3e994ce2d73f6f29a8d39fa6ea4b0a2651cc415cd8e784da32b2b7f8ceef2",
+      "width": 600,
+      "height": 220,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.lightPool"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG016",
+      "category": "images",
+      "path": "assets/images/ui/lucky_wheel_IMG016_loading-emblem.webp",
+      "previousPath": "assets/img/loading-emblem.webp",
+      "purpose": "進站 loading 主題徽章",
+      "bytes": 51348,
+      "sha256": "4ef95c45bc542d78373e1fd8c4efbfa07a5068304403bde2d5cd44f2336d1909",
+      "width": 480,
+      "height": 480,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.loadingEmblem"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG017",
+      "category": "images",
+      "path": "assets/images/mascot/lucky_wheel_IMG017_idle-1.webp",
+      "previousPath": "assets/img/mascot/optimized/idle-1.webp",
+      "purpose": "角色待機動畫",
+      "bytes": 1314504,
+      "sha256": "f25a953fef7912785cf3a708b531bc58b0d5ce648f5e17e78df220e2bf004c11",
+      "width": 400,
+      "height": 500,
+      "frames": 47,
+      "transparency": "保留 alpha",
+      "durationMs": 2000,
+      "slots": [
+        "mascot.idle.0"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG018",
+      "category": "images",
+      "path": "assets/images/mascot/lucky_wheel_IMG018_lose.webp",
+      "previousPath": "assets/img/mascot/optimized/lose.webp",
+      "purpose": "角色未中獎動畫",
+      "bytes": 1232248,
+      "sha256": "9b16afaf3832376bd16033f5b3a8430d35f769f2c320d06b712e800048414e7a",
+      "width": 400,
+      "height": 500,
+      "frames": 47,
+      "transparency": "保留 alpha",
+      "durationMs": 2000,
+      "slots": [
+        "mascot.lose"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG019",
+      "category": "images",
+      "path": "assets/images/mascot/lucky_wheel_IMG019_poster.webp",
+      "previousPath": "assets/img/mascot/optimized/poster.webp",
+      "purpose": "角色靜態首幀／減少動態備用",
+      "bytes": 34144,
+      "sha256": "58546aef7216fe7cac82e4ec35b1c7a12d1da7f2ebb0b07e859714e5713fa04f",
+      "width": 400,
+      "height": 500,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "mascot.poster"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG020",
+      "category": "images",
+      "path": "assets/images/mascot/lucky_wheel_IMG020_result.webp",
+      "previousPath": "assets/img/mascot/optimized/result.webp",
+      "purpose": "角色中獎動畫",
+      "bytes": 1306202,
+      "sha256": "b726a714bbd4db2fb67a9b3c34b6bee9fb454a52e9044e1f60a1a05bda3c239a",
+      "width": 400,
+      "height": 500,
+      "frames": 47,
+      "transparency": "保留 alpha",
+      "durationMs": 2000,
+      "slots": [
+        "mascot.result"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG021",
+      "category": "images",
+      "path": "assets/images/mascot/lucky_wheel_IMG021_spinning.webp",
+      "previousPath": "assets/img/mascot/optimized/spinning.webp",
+      "purpose": "角色期待／轉動動畫",
+      "bytes": 1242148,
+      "sha256": "20aafab1fcccfd70b436b6b9e9174d36d79004117a314a3ce66e5ae0fffa76a2",
+      "width": 400,
+      "height": 500,
+      "frames": 47,
+      "transparency": "保留 alpha",
+      "durationMs": 2000,
+      "slots": [
+        "mascot.spinning"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG022",
+      "category": "images",
+      "path": "assets/images/ui/lucky_wheel_IMG022_modal-bg.webp",
+      "previousPath": "assets/img/modal-bg.webp",
+      "purpose": "開獎彈窗完整底圖",
+      "bytes": 30164,
+      "sha256": "98c30b3bc8357a1ef18ffe8635025230930f3f976a15f3e66466bcf779c2411f",
+      "width": 600,
+      "height": 760,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.modalBg"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG023",
+      "category": "images",
+      "path": "assets/images/ui/lucky_wheel_IMG023_period-badge.webp",
+      "previousPath": "assets/img/period-badge.webp",
+      "purpose": "活動期間底牌",
+      "bytes": 9738,
+      "sha256": "f5321fc23032b0a73cc5a7be59cc991c0bd470729ef90ebd839fd54e49e3ace6",
+      "width": 480,
+      "height": 64,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.periodBadge"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG024",
+      "category": "images",
+      "path": "assets/images/ui/lucky_wheel_IMG024_pointer.webp",
+      "previousPath": "assets/img/pointer.webp",
+      "purpose": "轉盤指針",
+      "bytes": 7048,
+      "sha256": "b4f666583f4c7cf3677e3ded9ce719b2cc2837155ef02a197bec1a64cffa64b7",
+      "width": 120,
+      "height": 160,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.pointer"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG025",
+      "category": "images",
+      "path": "assets/images/share/lucky_wheel_IMG025_share-preview.jpg",
+      "previousPath": "assets/img/share-preview.jpg",
+      "purpose": "社群分享預覽圖",
+      "bytes": 252181,
+      "sha256": "9d3e41663c6e0658850d49ae2d1c542658e35ff8e96ef1cb2ad4f117bd65a460",
+      "width": 1200,
+      "height": 630,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": []
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "VFX004",
+      "category": "effects",
+      "path": "assets/effects/lucky_wheel_VFX004_spotlight.webp",
+      "previousPath": "assets/img/spotlight.webp",
+      "purpose": "舞台體積聚光",
+      "bytes": 21924,
+      "sha256": "c84dff9871650b0e036732a76aab4f0ccee872f8c61f37659e4332d9ecb97936",
+      "width": 260,
+      "height": 900,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.spotlight"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG026",
+      "category": "images",
+      "path": "assets/images/scene/lucky_wheel_IMG026_stage-bg.webp",
+      "previousPath": "assets/img/stage-bg.webp",
+      "purpose": "主舞台背景",
+      "bytes": 91134,
+      "sha256": "9f107f0863a4f319ea764c65b2d51f26df942fa69ccd621b2fba59aad2e89387",
+      "width": 750,
+      "height": 1000,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.stageBg"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG027",
+      "category": "images",
+      "path": "assets/images/scene/lucky_wheel_IMG027_stage-floor.webp",
+      "previousPath": "assets/img/stage-floor.webp",
+      "purpose": "舞台地板",
+      "bytes": 18090,
+      "sha256": "f4912415cf9c3169fb938f52324b3226213a4a6a8faa04864ff635af7654fe16",
+      "width": 750,
+      "height": 140,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.stageFloor"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "VFX005",
+      "category": "effects",
+      "path": "assets/effects/lucky_wheel_VFX005_stage-vignette.webp",
+      "previousPath": "assets/img/stage-vignette.webp",
+      "purpose": "舞台暗角",
+      "bytes": 49098,
+      "sha256": "2935cb9a12f32073e0720c9f56e15b63c72b2000dceee1d8139886761607ccf8",
+      "width": 750,
+      "height": 1000,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.stageVignette"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG028",
+      "category": "images",
+      "path": "assets/images/ui/lucky_wheel_IMG028_ticker-bar.webp",
+      "previousPath": "assets/img/ticker-bar.webp",
+      "purpose": "中獎跑馬燈底圖",
+      "bytes": 7264,
+      "sha256": "4df0617d369f1a7d3668b5be409e9c1c5c1bf8e57224136ce5b86a642e403e64",
+      "width": 690,
+      "height": 64,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.tickerBar"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG029",
+      "category": "images",
+      "path": "assets/images/title/lucky_wheel_IMG029_title-en.webp",
+      "previousPath": "assets/img/title-en.webp",
+      "purpose": "英文活動主標",
+      "bytes": 46488,
+      "sha256": "34dfc262828e15332cad897cfac1f2efb58ac44f0fcf9a32e736056810fe5368",
+      "width": 690,
+      "height": 240,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.title.en"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG030",
+      "category": "images",
+      "path": "assets/images/title/lucky_wheel_IMG030_title-ko.webp",
+      "previousPath": "assets/img/title-ko.webp",
+      "purpose": "韓文活動主標",
+      "bytes": 42946,
+      "sha256": "a4120edef2fd9b6882b5e1c1b8e0518d41acf86eaef619e619213d4a855719ff",
+      "width": 690,
+      "height": 240,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.title.ko"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG031",
+      "category": "images",
+      "path": "assets/images/title/lucky_wheel_IMG031_title-th.webp",
+      "previousPath": "assets/img/title-th.webp",
+      "purpose": "泰文活動主標",
+      "bytes": 44254,
+      "sha256": "ddcfd76d838c9be4de759eeb1838008e55ed2aee578b08598646e5c3b7ed1265",
+      "width": 690,
+      "height": 240,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.title.th"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG032",
+      "category": "images",
+      "path": "assets/images/title/lucky_wheel_IMG032_title-zh.svg",
+      "previousPath": "assets/img/title-zh.svg",
+      "purpose": "內部預覽主標",
+      "bytes": 1978,
+      "sha256": "897e6a0c48bb9c9fa14609137a01266ad1f5fa82be650a765fe3ff26cda59d87",
+      "width": 690,
+      "height": 240,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.title.zh"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG033",
+      "category": "images",
+      "path": "assets/images/ui/lucky_wheel_IMG033_wheel-frame.webp",
+      "previousPath": "assets/img/wheel-frame.webp",
+      "purpose": "轉盤外框",
+      "bytes": 34260,
+      "sha256": "7cb4ff2406bd0cceab256f6795b94654525c7736c5a85225a31e8e53aac89d01",
+      "width": 680,
+      "height": 680,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.wheelFrame"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "VFX006",
+      "category": "effects",
+      "path": "assets/effects/lucky_wheel_VFX006_wheel-gloss.svg",
+      "previousPath": "assets/img/wheel-gloss.svg",
+      "purpose": "轉盤表面反光",
+      "bytes": 1898,
+      "sha256": "438161fc2447c512449f3c1757fbfcc9d6f0caac581b5a05b82441a3b6aae34c",
+      "width": 600,
+      "height": 600,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.wheelGloss"
+      ]
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "IMG034",
+      "category": "images",
+      "path": "assets/images/ui/lucky_wheel_IMG034_wheel-stand.webp",
+      "previousPath": "assets/img/wheel-stand.webp",
+      "purpose": "轉盤立柱與底座",
+      "bytes": 22102,
+      "sha256": "205cfc033502f9f9c267e7db1865854dc35c5ebb29c34a092fb446b463e50d6b",
+      "width": 400,
+      "height": 600,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.wheelStand"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "SFX001",
+      "category": "sounds",
+      "path": "assets/sounds/survival_spin_SFX001_click.mp3",
+      "previousPath": "assets/audio/click.mp3",
+      "purpose": "點擊音效",
+      "bytes": 16892,
+      "sha256": "955c2beba8857c932af9963935ede30d0ae8e90a76719a819b6b453904157d6d",
+      "durationSeconds": 1.202,
+      "slots": [
+        "20261111_lucky_wheel:sounds.click",
+        "sounds.click"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "SFX002",
+      "category": "sounds",
+      "path": "assets/sounds/survival_spin_SFX002_hover.mp3",
+      "previousPath": "assets/audio/hover.mp3",
+      "purpose": "滑過音效",
+      "bytes": 6292,
+      "sha256": "beb2624448a255dd703307b05f36bc5ece519600e58080cf73674e41979ef674",
+      "durationSeconds": 1.045,
+      "slots": [
+        "20261111_lucky_wheel:sounds.hover",
+        "sounds.hover",
+        "20261118_blind_box:sounds.hover",
+        "20261118_card_pack:sounds.hover"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "SFX003",
+      "category": "sounds",
+      "path": "assets/sounds/survival_spin_SFX003_reward-lose.mp3",
+      "previousPath": "assets/audio/reward-lose.mp3",
+      "purpose": "未中獎提示音",
+      "bytes": 12096,
+      "sha256": "db187f0bcef4fdab293b97949d05ffd67c2485172950b9c31b276cc37552a2d7",
+      "durationSeconds": 0.549,
+      "slots": [
+        "20261111_lucky_wheel:sounds.rewardLose",
+        "sounds.rewardLose"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "SFX004",
+      "category": "sounds",
+      "path": "assets/sounds/survival_spin_SFX004_reward.mp3",
+      "previousPath": "assets/audio/reward.mp3",
+      "purpose": "得獎音效",
+      "bytes": 9789,
+      "sha256": "0971d944365976128d123d95e60bda36ee116bf8b9ae7660e47876205a27012e",
+      "durationSeconds": 1.071,
+      "slots": [
+        "sounds.reward"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG001",
+      "category": "images",
+      "path": "assets/images/ui/survival_spin_IMG001_btn-go.webp",
+      "previousPath": "assets/img/btn-go.webp",
+      "purpose": "轉盤中央 SPIN 按鈕",
+      "bytes": 10132,
+      "sha256": "d92f9fd7ed7d6df67e0d5d23d6fda74cd07a987f1051fd246093118617d950b8",
+      "width": 200,
+      "height": 200,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.btnGo"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG002",
+      "category": "images",
+      "path": "assets/images/ui/survival_spin_IMG002_btn-primary.webp",
+      "previousPath": "assets/img/btn-primary.webp",
+      "purpose": "主要操作及領獎按鈕底圖",
+      "bytes": 14216,
+      "sha256": "6d2d0c34284a95a4fa36a6f488c9e78436fbb4ba5c1052c4ca08f8245c72f22f",
+      "width": 400,
+      "height": 110,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.btnPrimary"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "VFX001",
+      "category": "effects",
+      "path": "assets/effects/survival_spin_VFX001_bulb-off.webp",
+      "previousPath": "assets/img/bulb-off.webp",
+      "purpose": "轉盤燈泡暗態",
+      "bytes": 1560,
+      "sha256": "43e9e60a010fdd1043edb24b694c15f8f1b980fd85545d8833ff57b95c95e693",
+      "width": 48,
+      "height": 48,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.bulbOff"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "VFX002",
+      "category": "effects",
+      "path": "assets/effects/survival_spin_VFX002_bulb-on.webp",
+      "previousPath": "assets/img/bulb-on.webp",
+      "purpose": "轉盤燈泡亮態",
+      "bytes": 1938,
+      "sha256": "ea320edafd3302d24213864aa215dac50306022f48850fa01c1ec7ca35b014b4",
+      "width": 48,
+      "height": 48,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.bulbOn"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG003",
+      "category": "images",
+      "path": "assets/images/ui/survival_spin_IMG003_card-frame.webp",
+      "previousPath": "assets/img/card-frame.webp",
+      "purpose": "資訊卡外框",
+      "bytes": 9040,
+      "sha256": "637976843e11840a7966742126c0e9d577c2758e31bf6f76ec64a8f68f8d2f33",
+      "width": 120,
+      "height": 120,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.cardFrame"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG004",
+      "category": "images",
+      "path": "assets/images/ui/survival_spin_IMG004_card-title.webp",
+      "previousPath": "assets/img/card-title.webp",
+      "purpose": "規則／紀錄標題底圖",
+      "bytes": 6572,
+      "sha256": "14b11f1c8c22a6a66831e274eaa56441d7dfb086a4c146c1424ca47815bb363d",
+      "width": 400,
+      "height": 72,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.cardTitle"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG005",
+      "category": "images",
+      "path": "assets/images/ui/survival_spin_IMG005_chances-badge.webp",
+      "previousPath": "assets/img/chances-badge.webp",
+      "purpose": "剩餘次數銘牌",
+      "bytes": 9384,
+      "sha256": "7d25edf6808d01fa83fee7bf77144e555156f77a019e73cabe65347d682892ef",
+      "width": 360,
+      "height": 88,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.chancesBadge"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG006",
+      "category": "images",
+      "path": "assets/images/scene/survival_spin_IMG006_footer-deco.webp",
+      "previousPath": "assets/img/footer-deco.webp",
+      "purpose": "頁尾裝飾",
+      "bytes": 21474,
+      "sha256": "0e5356b30882c6844437fbb9e86bef76cb0d79c048bb9e3a3ed5e223107f9b73",
+      "width": 750,
+      "height": 160,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.footerDeco"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG007",
+      "category": "images",
+      "path": "assets/images/icons/survival_spin_IMG007_icon-bonus.svg",
+      "previousPath": "assets/img/icon-bonus.svg",
+      "purpose": "獎項／操作圖示：bonus",
+      "bytes": 1642,
+      "sha256": "cda1fdbe2f06280932ffb7213de2b81faf4446b5ab2bf45619c5bab57877cec9",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "defaultContent.prizes.2.icon"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG008",
+      "category": "images",
+      "path": "assets/images/icons/survival_spin_IMG008_icon-cash.svg",
+      "previousPath": "assets/img/icon-cash.svg",
+      "purpose": "獎項／操作圖示：cash",
+      "bytes": 1834,
+      "sha256": "72184da3fb0fc7731ce10eb8016902d0757920262bfe6a7f642f419f30e26aca",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "defaultContent.prizes.0.icon"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG009",
+      "category": "images",
+      "path": "assets/images/icons/survival_spin_IMG009_icon-coin.svg",
+      "previousPath": "assets/img/icon-coin.svg",
+      "purpose": "獎項／操作圖示：coin",
+      "bytes": 1896,
+      "sha256": "5db269e6885eef28d60fc2974de7cbf5e8b41a2323eb8902e58f99b5d1344ace",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "defaultContent.prizes.4.icon"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG010",
+      "category": "images",
+      "path": "assets/images/icons/survival_spin_IMG010_icon-gift.svg",
+      "previousPath": "assets/img/icon-gift.svg",
+      "purpose": "獎項／操作圖示：gift",
+      "bytes": 1662,
+      "sha256": "c627b6f1300ca0890c2169eb6430ab32106d2bc6e325b0ce3c0fa4d6e26e1417",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "defaultContent.prizes.5.icon"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG011",
+      "category": "images",
+      "path": "assets/images/icons/survival_spin_IMG011_icon-points.svg",
+      "previousPath": "assets/img/icon-points.svg",
+      "purpose": "獎項／操作圖示：points",
+      "bytes": 1611,
+      "sha256": "65afeae1f2e18a785895c1ccfda6aea504704d18c0872bd744ecfd34d773b4f9",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "defaultContent.prizes.3.icon"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG012",
+      "category": "images",
+      "path": "assets/images/icons/survival_spin_IMG012_icon-rotate.webp",
+      "previousPath": "assets/img/icon-rotate.webp",
+      "purpose": "獎項／操作圖示：rotate",
+      "bytes": 7504,
+      "sha256": "473e243e520f7a76567778b610f8c31a05c5ab57a58152347bcf74c36629cd1d",
+      "width": 160,
+      "height": 160,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.rotateHint"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG013",
+      "category": "images",
+      "path": "assets/images/icons/survival_spin_IMG013_icon-spin.svg",
+      "previousPath": "assets/img/icon-spin.svg",
+      "purpose": "獎項／操作圖示：spin",
+      "bytes": 1747,
+      "sha256": "c1d79518eb57a859e6a72f6709a91827673d8c586fa8fbd1cf29810e38d68eac",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "defaultContent.prizes.1.icon"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG014",
+      "category": "images",
+      "path": "assets/images/icons/survival_spin_IMG014_icon-thanks.svg",
+      "previousPath": "assets/img/icon-thanks.svg",
+      "purpose": "獎項／操作圖示：thanks",
+      "bytes": 1718,
+      "sha256": "b25b8eead0c250832dc217b03b8df388ac111c61af0430b21b39e15054ee2ec5",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "defaultContent.prizes.6.icon"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG015",
+      "category": "images",
+      "path": "assets/images/scene/survival_spin_IMG015_info-bg.webp",
+      "previousPath": "assets/img/info-bg.webp",
+      "purpose": "規則與紀錄區底圖",
+      "bytes": 2058,
+      "sha256": "5ac2b4859fc7a0cdaf89be92cf41371e5d7dbee5b538b34e962b954a780605b6",
+      "width": 750,
+      "height": 750,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "skins.survival.images.infoBg"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "VFX003",
+      "category": "effects",
+      "path": "assets/effects/survival_spin_VFX003_light-pool.webp",
+      "previousPath": "assets/img/light-pool.webp",
+      "purpose": "地面光池",
+      "bytes": 11376,
+      "sha256": "f2fb1e10a53962866a63ee31976c7c8a3e59e6558a4015ff290adef569ae6ec7",
+      "width": 600,
+      "height": 220,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.lightPool"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG016",
+      "category": "images",
+      "path": "assets/images/ui/survival_spin_IMG016_loading-emblem.webp",
+      "previousPath": "assets/img/loading-emblem.webp",
+      "purpose": "進站 loading 主題徽章",
+      "bytes": 39622,
+      "sha256": "067c99245ccc9890bacd8f71b40ff6533db8bff71524f06a30deeb0dcfb63262",
+      "width": 480,
+      "height": 480,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.loadingEmblem"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG017",
+      "category": "images",
+      "path": "assets/images/mascot/survival_spin_IMG017_anticipation.webp",
+      "previousPath": "assets/img/mascot/rifle-v1/optimized/anticipation.webp",
+      "purpose": "角色期待／轉動動畫",
+      "bytes": 1130420,
+      "sha256": "43ac7c7f49b61af6f7a8ed03b81e28a4763281a895f3d03becf5424093a9739e",
+      "width": 400,
+      "height": 500,
+      "frames": 48,
+      "transparency": "保留 alpha",
+      "durationMs": 2000,
+      "slots": [
+        "skins.survival.mascot.spinning",
+        "skins.survival.mascot.result",
+        "mascot.spinning",
+        "mascot.result"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG018",
+      "category": "images",
+      "path": "assets/images/mascot/survival_spin_IMG018_disappointment.webp",
+      "previousPath": "assets/img/mascot/rifle-v1/optimized/disappointment.webp",
+      "purpose": "角色未中獎動畫",
+      "bytes": 1225070,
+      "sha256": "d40e6570961c27b2b25398be308c6dd3be5a247054fff8e2410449a85880b7ad",
+      "width": 400,
+      "height": 500,
+      "frames": 48,
+      "transparency": "保留 alpha",
+      "durationMs": 2000,
+      "slots": [
+        "skins.survival.mascot.lose",
+        "mascot.lose"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG019",
+      "category": "images",
+      "path": "assets/images/mascot/survival_spin_IMG019_idle.webp",
+      "previousPath": "assets/img/mascot/rifle-v1/optimized/idle.webp",
+      "purpose": "角色待機動畫",
+      "bytes": 1254758,
+      "sha256": "d0cc73aa21aa86a8cc49b8cf77c83f3bef93b7f5c1d36dd34a966f9fed8d5225",
+      "width": 400,
+      "height": 500,
+      "frames": 48,
+      "transparency": "保留 alpha",
+      "durationMs": 2000,
+      "slots": [
+        "skins.survival.mascot.idle.0",
+        "mascot.idle.0"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG020",
+      "category": "images",
+      "path": "assets/images/mascot/survival_spin_IMG020_poster.webp",
+      "previousPath": "assets/img/mascot/rifle-v1/optimized/poster.webp",
+      "purpose": "角色靜態首幀／減少動態備用",
+      "bytes": 32294,
+      "sha256": "eb337cc741885527826a7d4d029d3764346304fda305f9ad4eface765e025206",
+      "width": 400,
+      "height": 500,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.mascot.poster",
+        "mascot.poster"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG021",
+      "category": "images",
+      "path": "assets/images/ui/survival_spin_IMG021_modal-bg.webp",
+      "previousPath": "assets/img/modal-bg.webp",
+      "purpose": "開獎彈窗完整底圖",
+      "bytes": 16140,
+      "sha256": "dc8127f15b95a51db72100a8574ca1c994c7a385e35c398d340f77f2cf6198c5",
+      "width": 600,
+      "height": 760,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.modalBg"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG022",
+      "category": "images",
+      "path": "assets/images/ui/survival_spin_IMG022_period-badge.webp",
+      "previousPath": "assets/img/period-badge.webp",
+      "purpose": "活動期間底牌",
+      "bytes": 5128,
+      "sha256": "691c91546116d38198dd2dbad3351243f0a31b4ef536474742402b0f31f7dad0",
+      "width": 480,
+      "height": 64,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.periodBadge"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG023",
+      "category": "images",
+      "path": "assets/images/ui/survival_spin_IMG023_pointer.webp",
+      "previousPath": "assets/img/pointer.webp",
+      "purpose": "轉盤指針",
+      "bytes": 5088,
+      "sha256": "463d793358efab500d772c6161fcf340c3a6c12625add6049cd4d990a740daa3",
+      "width": 120,
+      "height": 160,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.pointer"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG024",
+      "category": "images",
+      "path": "assets/images/share/survival_spin_IMG024_share-preview.jpg",
+      "previousPath": "assets/img/share-preview.jpg",
+      "purpose": "社群分享預覽圖",
+      "bytes": 378509,
+      "sha256": "e2c066d36c4684bf02cb3747658b7ec85918e982c23b1fce840d41280c45ba08",
+      "width": 1200,
+      "height": 630,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": []
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "VFX004",
+      "category": "effects",
+      "path": "assets/effects/survival_spin_VFX004_spotlight.webp",
+      "previousPath": "assets/img/spotlight.webp",
+      "purpose": "舞台體積聚光",
+      "bytes": 20378,
+      "sha256": "af9442993e1c871385653b768e87845c2b5ec47a3c34ce9204a9cb20717cbd76",
+      "width": 260,
+      "height": 900,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.spotlight"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG025",
+      "category": "images",
+      "path": "assets/images/scene/survival_spin_IMG025_stage-bg.webp",
+      "previousPath": "assets/img/stage-bg.webp",
+      "purpose": "主舞台背景",
+      "bytes": 49596,
+      "sha256": "91d508ec29bb5c847c15646761bda8847eb9c1cf8d7ba0487959997014b00693",
+      "width": 750,
+      "height": 1000,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "skins.survival.images.stageBg"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG026",
+      "category": "images",
+      "path": "assets/images/scene/survival_spin_IMG026_stage-floor.webp",
+      "previousPath": "assets/img/stage-floor.webp",
+      "purpose": "舞台地板",
+      "bytes": 16524,
+      "sha256": "92ae4abb82f076bcb7abc3375b7d12ab8f22a9c681a36b1ffd739921db2a1cd8",
+      "width": 750,
+      "height": 140,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.stageFloor"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "VFX005",
+      "category": "effects",
+      "path": "assets/effects/survival_spin_VFX005_stage-vignette.webp",
+      "previousPath": "assets/img/stage-vignette.webp",
+      "purpose": "舞台暗角",
+      "bytes": 44132,
+      "sha256": "034fff7213613186ead2f74e730b7ade87fc6453c72c41e09c1dafd0572734dc",
+      "width": 750,
+      "height": 1000,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.stageVignette"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG027",
+      "category": "images",
+      "path": "assets/images/ui/survival_spin_IMG027_ticker-bar.webp",
+      "previousPath": "assets/img/ticker-bar.webp",
+      "purpose": "中獎跑馬燈底圖",
+      "bytes": 8568,
+      "sha256": "46c7bcac07b62e8b8955f5212abe432d9f90c4f2e1f372a61ded058d9afe4bb0",
+      "width": 690,
+      "height": 64,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.tickerBar"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG028",
+      "category": "images",
+      "path": "assets/images/title/survival_spin_IMG028_title-en.webp",
+      "previousPath": "assets/img/title-en.webp",
+      "purpose": "英文活動主標",
+      "bytes": 42970,
+      "sha256": "011d93648790086efc33ef9286d730d4c93423930a243f38799446034cccc8b8",
+      "width": 690,
+      "height": 240,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.title.en",
+        "skins.survival.images.title.zh"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG029",
+      "category": "images",
+      "path": "assets/images/title/survival_spin_IMG029_title-ko.webp",
+      "previousPath": "assets/img/title-ko.webp",
+      "purpose": "韓文活動主標",
+      "bytes": 38518,
+      "sha256": "6e493c8910ce79e4725735f2576ec02baa18133cf0442432a2cd306d3c2419ab",
+      "width": 690,
+      "height": 240,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.title.ko"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG030",
+      "category": "images",
+      "path": "assets/images/title/survival_spin_IMG030_title-th.webp",
+      "previousPath": "assets/img/title-th.webp",
+      "purpose": "泰文活動主標",
+      "bytes": 36404,
+      "sha256": "312117bc046b9b6e0d90cb0747ecde53827bf08754078e7b1599ab7cff82f8a7",
+      "width": 690,
+      "height": 240,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.title.th"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG031",
+      "category": "images",
+      "path": "assets/images/ui/survival_spin_IMG031_wheel-frame.webp",
+      "previousPath": "assets/img/wheel-frame.webp",
+      "purpose": "轉盤外框",
+      "bytes": 27016,
+      "sha256": "dc8672e8e70c1bcd4ae05ffac1bafa1056001d959cd0d01ed7823560c285b5d0",
+      "width": 680,
+      "height": 680,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.wheelFrame"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "VFX006",
+      "category": "effects",
+      "path": "assets/effects/survival_spin_VFX006_wheel-gloss.svg",
+      "previousPath": "assets/img/wheel-gloss.svg",
+      "purpose": "轉盤表面反光",
+      "bytes": 1898,
+      "sha256": "438161fc2447c512449f3c1757fbfcc9d6f0caac581b5a05b82441a3b6aae34c",
+      "width": 600,
+      "height": 600,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "skins.survival.images.wheelGloss"
+      ]
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "IMG032",
+      "category": "images",
+      "path": "assets/images/ui/survival_spin_IMG032_wheel-stand.webp",
+      "previousPath": "assets/img/wheel-stand.webp",
+      "purpose": "轉盤立柱與底座",
+      "bytes": 16616,
+      "sha256": "ca1660c0128600b6aabbf8b0f977fc56f445ef5442c5108d7eb522bb766b36fd",
+      "width": 400,
+      "height": 600,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "skins.survival.images.wheelStand"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "BGM001",
+      "category": "music",
+      "path": "assets/music/blind_box_BGM001_bgm.mp3",
+      "previousPath": "assets/audio/bgm.mp3",
+      "purpose": "活動背景音樂",
+      "bytes": 2881403,
+      "sha256": "a97167fddd0aea13470f9e1c3aa6867cd0f3c10b9e77c980380e1d71aad7e455",
+      "durationSeconds": 150.622,
+      "slots": [
+        "sounds.bgm"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "SFX001",
+      "category": "sounds",
+      "path": "assets/sounds/blind_box_SFX001_empty.mp3",
+      "previousPath": "assets/audio/empty.mp3",
+      "purpose": "未中獎提示音",
+      "bytes": 13013,
+      "sha256": "7287036a0a05b5153eb0e0e0d6534425639d2c9e1092a939ffff4fb81f716bce",
+      "durationSeconds": 1.437,
+      "slots": [
+        "sounds.empty"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "SFX002",
+      "category": "sounds",
+      "path": "assets/sounds/blind_box_SFX002_error.mp3",
+      "previousPath": "assets/audio/error.mp3",
+      "purpose": "無法操作提示音",
+      "bytes": 6770,
+      "sha256": "5ea6fad3f63a009065c9999b35ec540426dfae1a7889f192210560c80a990cf2",
+      "durationSeconds": 0.313,
+      "slots": [
+        "sounds.error"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "SFX003",
+      "category": "sounds",
+      "path": "assets/sounds/blind_box_SFX003_move.mp3",
+      "previousPath": "assets/audio/move.mp3",
+      "purpose": "輪播移動音效",
+      "bytes": 5732,
+      "sha256": "03de7d1bff571fd6a2c2e0563a93baeb0cf798c743aa7db2df4a54d21fe4968b",
+      "durationSeconds": 0.261,
+      "slots": [
+        "sounds.move"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "SFX004",
+      "category": "sounds",
+      "path": "assets/sounds/blind_box_SFX004_open.wav",
+      "previousPath": "assets/audio/open.wav",
+      "purpose": "寶箱掀蓋音效",
+      "bytes": 281372,
+      "sha256": "2a117bb6afe76e8965039dc90162e5afb6e8978646aee0d2173ef820b46adaa8",
+      "durationSeconds": 3.144,
+      "slots": [
+        "sounds.tear"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "SFX005",
+      "category": "sounds",
+      "path": "assets/sounds/blind_box_SFX005_reveal-basic.wav",
+      "previousPath": "assets/audio/reveal-basic.wav",
+      "purpose": "普通／稀有獎項揭曉音效",
+      "bytes": 52350,
+      "sha256": "0bddfde4a334bab59cf5746a1a9f3b9bbd31b72c365d9d0a9c2a51ab388cb397",
+      "durationSeconds": 0.588,
+      "slots": [
+        "sounds.reveal-common",
+        "sounds.reveal-rare"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "SFX006",
+      "category": "sounds",
+      "path": "assets/sounds/blind_box_SFX006_reveal-epic.mp3",
+      "previousPath": "assets/audio/reveal-epic.mp3",
+      "purpose": "史詩獎項揭曉音效",
+      "bytes": 27124,
+      "sha256": "1c37ef9ad8e9d6e3587e82050a157e55db6e763af30374a25e72ef5883377ca9",
+      "durationSeconds": 1.28,
+      "slots": [
+        "sounds.reveal-epic"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "SFX007",
+      "category": "sounds",
+      "path": "assets/sounds/blind_box_SFX007_reveal-legendary.mp3",
+      "previousPath": "assets/audio/reveal-legendary.mp3",
+      "purpose": "傳說獎項揭曉音效",
+      "bytes": 46801,
+      "sha256": "00cbf3520e7f2acac1caf9c4235b9146443aabed90d100986023d4eb25e5d70c",
+      "durationSeconds": 1.985,
+      "slots": [
+        "sounds.reveal-legendary"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "SFX008",
+      "category": "sounds",
+      "path": "assets/sounds/blind_box_SFX008_select.mp3",
+      "previousPath": "assets/audio/select.mp3",
+      "purpose": "選定物件音效",
+      "bytes": 11683,
+      "sha256": "669a6ea383482643af82ff2a36ddccc93eb042c148134bb72d8bc75d31f14cb4",
+      "durationSeconds": 0.418,
+      "slots": [
+        "sounds.select"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "3D001",
+      "category": "3d",
+      "path": "assets/3d/textures/blind_box_3D001_chest-front.webp",
+      "previousPath": "assets/img/3d/chest-front.webp",
+      "purpose": "3D 寶箱貼圖：chest-front",
+      "bytes": 130986,
+      "sha256": "4049f6ac3e9e821748fc077412b0ff0038d7c5457c5bc07ef7c41be51e028b3d",
+      "width": 640,
+      "height": 400,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.boxFront.0"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "3D002",
+      "category": "3d",
+      "path": "assets/3d/textures/blind_box_3D002_chest-interior.webp",
+      "previousPath": "assets/img/3d/chest-interior.webp",
+      "purpose": "3D 寶箱貼圖：chest-interior",
+      "bytes": 50664,
+      "sha256": "9b3ae98f1ab9bee6bdbaef16713b9c5fb60d7d1c8cc0eafbb3d93cf0ada412ce",
+      "width": 512,
+      "height": 352,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.boxInterior"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "3D003",
+      "category": "3d",
+      "path": "assets/3d/textures/blind_box_3D003_chest-lid.webp",
+      "previousPath": "assets/img/3d/chest-lid.webp",
+      "purpose": "3D 寶箱貼圖：chest-lid",
+      "bytes": 144826,
+      "sha256": "858ff974c1a78dabbc63fcb1eaddc8d606f47a54013f74a192cc920ab61e59dc",
+      "width": 512,
+      "height": 512,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.boxLid",
+        "images.boxLidSide"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "3D004",
+      "category": "3d",
+      "path": "assets/3d/textures/blind_box_3D004_chest-side.webp",
+      "previousPath": "assets/img/3d/chest-side.webp",
+      "purpose": "3D 寶箱貼圖：chest-side",
+      "bytes": 65652,
+      "sha256": "f9036fd87e39b982a7b3181f697e1493cd9fed7298ac9c709a6089fe04bc8cb2",
+      "width": 512,
+      "height": 320,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.boxSide"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG001",
+      "category": "images",
+      "path": "assets/images/icons/blind_box_IMG001_icon-rotate.svg",
+      "previousPath": "assets/img/icon/icon-rotate.svg",
+      "purpose": "獎項／操作圖示：rotate",
+      "bytes": 1331,
+      "sha256": "596fd160ea799eae4d6e1343d825a03156b106ee299766ebf843f7e7880b96e8",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.rotateHint"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG002",
+      "category": "images",
+      "path": "assets/images/icons/blind_box_IMG002_icon-tap.svg",
+      "previousPath": "assets/img/icon/icon-tap.svg",
+      "purpose": "獎項／操作圖示：tap",
+      "bytes": 1423,
+      "sha256": "9d3c1bebd17627c990f6deb70c55f27e81c38df722edeec66839f0523f0da86e",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.tapHint"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG003",
+      "category": "images",
+      "path": "assets/images/mascot/blind_box_IMG003_poster.webp",
+      "previousPath": "assets/img/mascot/spirit/poster.webp",
+      "purpose": "角色靜態首幀／減少動態備用",
+      "bytes": 317540,
+      "sha256": "d60c62c13fdc39a8402dbfa46d57ab82d8fd653e1fd673a62a5f5dd5954640d5",
+      "width": 1500,
+      "height": 1875,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "mascot.poster"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG004",
+      "category": "images",
+      "path": "assets/images/reveal/blind_box_IMG004_reward-back.svg",
+      "previousPath": "assets/img/reveal/reward-back.svg",
+      "purpose": "揭曉卡片／稀有度圖：reward-back",
+      "bytes": 1998,
+      "sha256": "664cc6a3962b247be410440d7111f11b5c9c00330fb1b2df3eab4f5d71fff9df",
+      "width": 600,
+      "height": 900,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.rewardBack"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG005",
+      "category": "images",
+      "path": "assets/images/reveal/blind_box_IMG005_reward-frame-common.svg",
+      "previousPath": "assets/img/reveal/reward-frame-common.svg",
+      "purpose": "揭曉卡片／稀有度圖：reward-frame-common",
+      "bytes": 1820,
+      "sha256": "3e05ebc830120c68fb441645ebe5312f061f69c6d3d25d3972ea0fa6429dd866",
+      "width": 600,
+      "height": 900,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.rewardFrameCommon"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG006",
+      "category": "images",
+      "path": "assets/images/reveal/blind_box_IMG006_reward-frame-epic.svg",
+      "previousPath": "assets/img/reveal/reward-frame-epic.svg",
+      "purpose": "揭曉卡片／稀有度圖：reward-frame-epic",
+      "bytes": 2146,
+      "sha256": "cf8bec508022d9f6856afe13106ef62f2cd3acb2dde7e5939f509a31236dfaa2",
+      "width": 600,
+      "height": 900,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.rewardFrameEpic"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG007",
+      "category": "images",
+      "path": "assets/images/reveal/blind_box_IMG007_reward-frame-legendary.svg",
+      "previousPath": "assets/img/reveal/reward-frame-legendary.svg",
+      "purpose": "揭曉卡片／稀有度圖：reward-frame-legendary",
+      "bytes": 3568,
+      "sha256": "37647fcdae6ea1aa1722f6c006836e3d8425d86f43ce9ad751099016dc748e75",
+      "width": 600,
+      "height": 900,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.rewardFrameLegendary"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG008",
+      "category": "images",
+      "path": "assets/images/reveal/blind_box_IMG008_reward-frame-rare.svg",
+      "previousPath": "assets/img/reveal/reward-frame-rare.svg",
+      "purpose": "揭曉卡片／稀有度圖：reward-frame-rare",
+      "bytes": 1814,
+      "sha256": "eb3ace9daca792b10806abe1c5e57653583dc094190b7873bab08bc3be1794d8",
+      "width": 600,
+      "height": 900,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.rewardFrameRare"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "VFX001",
+      "category": "effects",
+      "path": "assets/effects/blind_box_VFX001_sand-vortex.webp",
+      "previousPath": "assets/img/reveal/sand-vortex.webp",
+      "purpose": "開箱揭曉沙漠氣旋貼圖",
+      "bytes": 1802780,
+      "sha256": "fffe465e63c839df8e5f31a175b6cd7bb224905d40fe8b660187e0852a907c97",
+      "width": 1254,
+      "height": 1254,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.revealRays",
+        "images.revealVortex"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "VFX002",
+      "category": "effects",
+      "path": "assets/effects/blind_box_VFX002_atmosphere.webp",
+      "previousPath": "assets/img/scene/atmosphere.webp",
+      "purpose": "環境粒子／沙霧貼圖",
+      "bytes": 117960,
+      "sha256": "7ed68dafa9831218ae057daf995566eaea77fe3118f0dbbf27eb7acfbdee383e",
+      "width": 900,
+      "height": 300,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.atmosphereSprite"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG009",
+      "category": "images",
+      "path": "assets/images/scene/blind_box_IMG009_footer-deco.svg",
+      "previousPath": "assets/img/scene/footer-deco.svg",
+      "purpose": "頁尾裝飾",
+      "bytes": 3124,
+      "sha256": "1a1b5349e2e75535ed04f37343aff069574c2e7699608a013c6eb851de6d7cc5",
+      "width": 750,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.footerDeco"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG010",
+      "category": "images",
+      "path": "assets/images/scene/blind_box_IMG010_info-bg.svg",
+      "previousPath": "assets/img/scene/info-bg.svg",
+      "purpose": "規則與紀錄區底圖",
+      "bytes": 33186,
+      "sha256": "b90a6bc22af3df2dc49a11fdbce749ffe848821e7b8653860c8ca82e6ad0a279",
+      "width": 750,
+      "height": 750,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.infoBg"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG011",
+      "category": "images",
+      "path": "assets/images/scene/blind_box_IMG011_open-desert.webp",
+      "previousPath": "assets/img/scene/open-desert.webp",
+      "purpose": "沙漠舞台及遠景",
+      "bytes": 125922,
+      "sha256": "c003dec5c0253c71b9e629eaaa9fdbc146507d4e0342fd95ca617e746bbde13e",
+      "width": 750,
+      "height": 1125,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.depthDesert",
+        "images.depthFloor",
+        "images.stageBg"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG012",
+      "category": "images",
+      "path": "assets/images/share/blind_box_IMG012_share-preview.jpg",
+      "previousPath": "assets/img/share/share-preview.jpg",
+      "purpose": "社群分享預覽圖",
+      "bytes": 264634,
+      "sha256": "cbec17f6d8835d845edfe44c3ff6326a93df03b1a48629f59a95df69d0501a26",
+      "width": 1200,
+      "height": 630,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": []
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG013",
+      "category": "images",
+      "path": "assets/images/title/blind_box_IMG013_title-en.webp",
+      "previousPath": "assets/img/title/title-en.webp",
+      "purpose": "英文活動主標",
+      "bytes": 101626,
+      "sha256": "4704deb701a32e1b813eebe212e89a984001385e6b8d0d4912bdd89f35774035",
+      "width": 690,
+      "height": 240,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.title.en"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG014",
+      "category": "images",
+      "path": "assets/images/title/blind_box_IMG014_title-ko.webp",
+      "previousPath": "assets/img/title/title-ko.webp",
+      "purpose": "韓文活動主標",
+      "bytes": 94908,
+      "sha256": "0587be87c52e1c1f25d099cc99bbc54ba41ccbee3fc46c5ec9f1c1610d9d6a09",
+      "width": 690,
+      "height": 240,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.title.ko"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG015",
+      "category": "images",
+      "path": "assets/images/title/blind_box_IMG015_title-main.webp",
+      "previousPath": "assets/img/title/title-main.webp",
+      "purpose": "主標基底／內部預覽",
+      "bytes": 99090,
+      "sha256": "c6178b2fb82c9dfff2edefb6c63a74aab9bc29682601aac558fb9cc33d4f4c04",
+      "width": 690,
+      "height": 240,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.title.zh"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG016",
+      "category": "images",
+      "path": "assets/images/title/blind_box_IMG016_title-th.webp",
+      "previousPath": "assets/img/title/title-th.webp",
+      "purpose": "泰文活動主標",
+      "bytes": 100138,
+      "sha256": "b84dbb00cc7ed31b2f65b20d704fea5a9e71d189cdd7220ce913c25769caded2",
+      "width": 690,
+      "height": 240,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.title.th"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG017",
+      "category": "images",
+      "path": "assets/images/ui/blind_box_IMG017_btn-primary.webp",
+      "previousPath": "assets/img/ui/btn-primary.webp",
+      "purpose": "主要操作及領獎按鈕底圖",
+      "bytes": 63808,
+      "sha256": "c39d3f0face7d3e372d019ed697eb1e2bedbbf1cfa697ec084ff6003f1e8ebf3",
+      "width": 900,
+      "height": 270,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.btnPrimary"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG018",
+      "category": "images",
+      "path": "assets/images/ui/blind_box_IMG018_card-frame.svg",
+      "previousPath": "assets/img/ui/card-frame.svg",
+      "purpose": "資訊卡外框",
+      "bytes": 1627,
+      "sha256": "ea971f2b434a1e8831219186580c8cac9a2bff7034ed5a43586561fcab995bac",
+      "width": 120,
+      "height": 120,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.cardFrame"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG019",
+      "category": "images",
+      "path": "assets/images/ui/blind_box_IMG019_card-title.svg",
+      "previousPath": "assets/img/ui/card-title.svg",
+      "purpose": "規則／紀錄標題底圖",
+      "bytes": 1550,
+      "sha256": "b24ca4c63378833da3835ae195b8792256291c071c75c109b4d5636cb48f45af",
+      "width": 400,
+      "height": 72,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.cardTitle"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG020",
+      "category": "images",
+      "path": "assets/images/ui/blind_box_IMG020_chances-badge.webp",
+      "previousPath": "assets/img/ui/chances-badge.webp",
+      "purpose": "剩餘次數銘牌",
+      "bytes": 46298,
+      "sha256": "f6c24a600b351ce6cecd8a8d820791841f94839791568ad382868eca4ca21553",
+      "width": 630,
+      "height": 210,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.chancesBadge"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG021",
+      "category": "images",
+      "path": "assets/images/ui/blind_box_IMG021_loading-emblem.webp",
+      "previousPath": "assets/img/ui/loading-emblem.webp",
+      "purpose": "進站 loading 主題徽章",
+      "bytes": 56938,
+      "sha256": "4f6903f149247b3eb12180e5107c66d617a48f7f7ecab21ec6d4483439b4c3a4",
+      "width": 480,
+      "height": 480,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.loadingEmblem"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG022",
+      "category": "images",
+      "path": "assets/images/ui/blind_box_IMG022_panel-crown.webp",
+      "previousPath": "assets/img/ui/panel-crown.webp",
+      "purpose": "規則與紀錄面板冠飾",
+      "bytes": 70436,
+      "sha256": "2cac43767f05de97a4fb990543470b6248d7f3023f03a1674c1a9ff81419e761",
+      "width": 900,
+      "height": 300,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.folioHeader"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG023",
+      "category": "images",
+      "path": "assets/images/ui/blind_box_IMG023_period-badge.webp",
+      "previousPath": "assets/img/ui/period-badge.webp",
+      "purpose": "活動期間底牌",
+      "bytes": 31800,
+      "sha256": "a24b9173ff4c69b0c1679b3635bdab3ecc083a41ab81406347ee1cafceb5d16a",
+      "width": 900,
+      "height": 150,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.periodBadge"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG024",
+      "category": "images",
+      "path": "assets/images/ui/blind_box_IMG024_ticker-bar.webp",
+      "previousPath": "assets/img/ui/ticker-bar.webp",
+      "purpose": "中獎跑馬燈底圖",
+      "bytes": 56238,
+      "sha256": "2bd629d4825a28b8ed33dedbaaf11081231286d9b0868220f9c0169baaa2b334",
+      "width": 1000,
+      "height": 180,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.tickerBar"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG025",
+      "category": "images",
+      "path": "assets/images/ui/blind_box_IMG025_tool-medallion.webp",
+      "previousPath": "assets/img/ui/tool-medallion.webp",
+      "purpose": "工具列金屬底框",
+      "bytes": 8428,
+      "sha256": "fe237e9f783923d609fb6e298ab58f810de412771643c1343d52d14bc6464e03",
+      "width": 160,
+      "height": 160,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.toolMedallion"
+      ]
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "IMG026",
+      "category": "images",
+      "path": "assets/images/ui/blind_box_IMG026_treasure-plinth.webp",
+      "previousPath": "assets/img/ui/treasure-plinth.webp",
+      "purpose": "寶物展示底座",
+      "bytes": 95766,
+      "sha256": "4c299e8226ba54cba0174748f2dbebbfebeae65496d2bd2d3ccbe330fefdf228",
+      "width": 900,
+      "height": 291,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.treasurePlinth"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "BGM001",
+      "category": "music",
+      "path": "assets/music/card_pack_BGM001_bgm.wav",
+      "previousPath": "assets/audio/bgm.wav",
+      "purpose": "活動背景音樂",
+      "bytes": 1920044,
+      "sha256": "9a24abc6d793f652ac2ba74be2ac015cbea8a8103eab98f43221e31d68d91aca",
+      "durationSeconds": 30.0,
+      "slots": [
+        "sounds.bgm"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "SFX001",
+      "category": "sounds",
+      "path": "assets/sounds/card_pack_SFX001_click.mp3",
+      "previousPath": "assets/audio/click.mp3",
+      "purpose": "點擊音效",
+      "bytes": 4949,
+      "sha256": "239beb583743380a1d3a4b26428b3706a5b6ecc19fdd902e27a8a1fc87f45a65",
+      "durationSeconds": 0.209,
+      "slots": [
+        "sounds.click"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "SFX002",
+      "category": "sounds",
+      "path": "assets/sounds/card_pack_SFX002_collect.mp3",
+      "previousPath": "assets/audio/collect.mp3",
+      "purpose": "領取獎品音效",
+      "bytes": 6300,
+      "sha256": "4846d4069287c977cc087ee6bef20309a9dee1ef7c862d1658a22cfa907c308c",
+      "durationSeconds": 0.627,
+      "slots": [
+        "sounds.collect"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "SFX003",
+      "category": "sounds",
+      "path": "assets/sounds/card_pack_SFX003_empty.mp3",
+      "previousPath": "assets/audio/empty.mp3",
+      "purpose": "未中獎提示音",
+      "bytes": 13013,
+      "sha256": "7287036a0a05b5153eb0e0e0d6534425639d2c9e1092a939ffff4fb81f716bce",
+      "durationSeconds": 1.437,
+      "slots": [
+        "sounds.empty"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "SFX004",
+      "category": "sounds",
+      "path": "assets/sounds/card_pack_SFX004_error.mp3",
+      "previousPath": "assets/audio/error.mp3",
+      "purpose": "無法操作提示音",
+      "bytes": 6770,
+      "sha256": "5ea6fad3f63a009065c9999b35ec540426dfae1a7889f192210560c80a990cf2",
+      "durationSeconds": 0.313,
+      "slots": [
+        "sounds.error"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "SFX005",
+      "category": "sounds",
+      "path": "assets/sounds/card_pack_SFX005_flip.mp3",
+      "previousPath": "assets/audio/flip.mp3",
+      "purpose": "翻卡音效",
+      "bytes": 3119,
+      "sha256": "9fd11f55a2c5b225720a5abc28ce8fd819ee56a1801f67bfd68218b3758642d3",
+      "durationSeconds": 0.261,
+      "slots": [
+        "sounds.flip"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "SFX006",
+      "category": "sounds",
+      "path": "assets/sounds/card_pack_SFX006_move.mp3",
+      "previousPath": "assets/audio/move.mp3",
+      "purpose": "輪播移動音效",
+      "bytes": 5732,
+      "sha256": "03de7d1bff571fd6a2c2e0563a93baeb0cf798c743aa7db2df4a54d21fe4968b",
+      "durationSeconds": 0.261,
+      "slots": [
+        "sounds.move"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "SFX007",
+      "category": "sounds",
+      "path": "assets/sounds/card_pack_SFX007_reveal-3026.wav",
+      "previousPath": "assets/audio/reveal-3026.wav",
+      "purpose": "獎項揭曉音效",
+      "bytes": 193636,
+      "sha256": "9dfa4ea9d691b3fe2b49b0540d97542ff50537d11ad24b2ecf3ca396e2389838",
+      "durationSeconds": 2.194,
+      "slots": [
+        "sounds.reveal-epic",
+        "sounds.reveal-legendary"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "SFX008",
+      "category": "sounds",
+      "path": "assets/sounds/card_pack_SFX008_reveal-basic.wav",
+      "previousPath": "assets/audio/reveal-basic.wav",
+      "purpose": "普通／稀有獎項揭曉音效",
+      "bytes": 52350,
+      "sha256": "0bddfde4a334bab59cf5746a1a9f3b9bbd31b72c365d9d0a9c2a51ab388cb397",
+      "durationSeconds": 0.588,
+      "slots": [
+        "sounds.reveal-common",
+        "sounds.reveal-rare"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "SFX009",
+      "category": "sounds",
+      "path": "assets/sounds/card_pack_SFX009_reward.mp3",
+      "previousPath": "assets/audio/reward.mp3",
+      "purpose": "得獎音效",
+      "bytes": 10869,
+      "sha256": "5ce14a885ff1023a6784e7cd130571ae7b1893fafe32411fec0479b28773377c",
+      "durationSeconds": 1.045,
+      "slots": [
+        "sounds.reward"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "SFX010",
+      "category": "sounds",
+      "path": "assets/sounds/card_pack_SFX010_secret.mp3",
+      "previousPath": "assets/audio/secret.mp3",
+      "purpose": "隱藏卡揭曉音效",
+      "bytes": 48840,
+      "sha256": "498ac83e503dd3a3e0c9f4ed470a1647ac1f405c23b156977b00db368cba73ff",
+      "durationSeconds": 2.038,
+      "slots": [
+        "sounds.secret"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "SFX011",
+      "category": "sounds",
+      "path": "assets/sounds/card_pack_SFX011_select.mp3",
+      "previousPath": "assets/audio/select.mp3",
+      "purpose": "選定物件音效",
+      "bytes": 11683,
+      "sha256": "669a6ea383482643af82ff2a36ddccc93eb042c148134bb72d8bc75d31f14cb4",
+      "durationSeconds": 0.418,
+      "slots": [
+        "sounds.select"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "SFX012",
+      "category": "sounds",
+      "path": "assets/sounds/card_pack_SFX012_tear.wav",
+      "previousPath": "assets/audio/tear.wav",
+      "purpose": "卡包撕封音效",
+      "bytes": 34000,
+      "sha256": "97a1703face4286672fc90cb18c6095d5a8e60117431e1b960be6aea1cacf947",
+      "durationSeconds": 0.385,
+      "slots": [
+        "sounds.tear"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "3D001",
+      "category": "3d",
+      "path": "assets/3d/textures/card_pack_3D001_pack-back.webp",
+      "previousPath": "assets/img/3d/pack-back.webp",
+      "purpose": "3D 卡包貼圖：pack-back",
+      "bytes": 137008,
+      "sha256": "d9799654bb2bbfada1035cfdc8781c21918ae8b62f63ceab894612564f3b39bf",
+      "width": 512,
+      "height": 768,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.packBack"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "3D002",
+      "category": "3d",
+      "path": "assets/3d/textures/card_pack_3D002_pack-contents.webp",
+      "previousPath": "assets/img/3d/pack-contents.webp",
+      "purpose": "3D 卡包貼圖：pack-contents",
+      "bytes": 19612,
+      "sha256": "1a6c36e91b0365e0ed74cbc4c85b2576d80d055f505620994d94a75a1bf0b34a",
+      "width": 256,
+      "height": 384,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.packContents"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "3D003",
+      "category": "3d",
+      "path": "assets/3d/textures/card_pack_3D003_pack-crimp.webp",
+      "previousPath": "assets/img/3d/pack-crimp.webp",
+      "purpose": "3D 卡包貼圖：pack-crimp",
+      "bytes": 11252,
+      "sha256": "c7be77c10fb987f4956134cecda732c813285a99bc8f8e48ba969e46cc397981",
+      "width": 512,
+      "height": 64,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.packCrimp"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "3D004",
+      "category": "3d",
+      "path": "assets/3d/textures/card_pack_3D004_pack-front-1.webp",
+      "previousPath": "assets/img/3d/pack-front-1.webp",
+      "purpose": "3D 卡包貼圖：pack-front-1",
+      "bytes": 140944,
+      "sha256": "55896327cca73d540abb1912aa6f55d04ab79c2d2b283f1d58130b26aa4c92d6",
+      "width": 512,
+      "height": 768,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.packFront.0"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "3D005",
+      "category": "3d",
+      "path": "assets/3d/textures/card_pack_3D005_pack-front-2.webp",
+      "previousPath": "assets/img/3d/pack-front-2.webp",
+      "purpose": "3D 卡包貼圖：pack-front-2",
+      "bytes": 105356,
+      "sha256": "e988270b74101e62a5e779af402fbcee50c2207bf4f70af09e37ccfb9eda3efe",
+      "width": 512,
+      "height": 768,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.packFront.1"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "3D006",
+      "category": "3d",
+      "path": "assets/3d/textures/card_pack_3D006_pack-front-3.webp",
+      "previousPath": "assets/img/3d/pack-front-3.webp",
+      "purpose": "3D 卡包貼圖：pack-front-3",
+      "bytes": 701398,
+      "sha256": "9b9433c9d164ceb5a60ed82d653d9d5363b42cfd95b774732620807528080d41",
+      "width": 512,
+      "height": 768,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.packFront.2"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "3D007",
+      "category": "3d",
+      "path": "assets/3d/textures/card_pack_3D007_pack-side.webp",
+      "previousPath": "assets/img/3d/pack-side.webp",
+      "purpose": "3D 卡包貼圖：pack-side",
+      "bytes": 12988,
+      "sha256": "6914c85a43f31d063296f2ba2775ee987c4f557bfcae4bfea10d62c2f670f84c",
+      "width": 128,
+      "height": 512,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.packSide"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "3D008",
+      "category": "3d",
+      "path": "assets/3d/textures/card_pack_3D008_secret-pack.webp",
+      "previousPath": "assets/img/3d/secret-pack.webp",
+      "purpose": "3D 卡包貼圖：secret-pack",
+      "bytes": 125780,
+      "sha256": "5fe89d082f273c793a13a0b366b2c382922ca163ca56950abad51e5a71e04d99",
+      "width": 512,
+      "height": 768,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.secretPack"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "3D009",
+      "category": "3d",
+      "path": "assets/3d/textures/card_pack_3D009_secret-side.webp",
+      "previousPath": "assets/img/3d/secret-side.webp",
+      "purpose": "3D 卡包貼圖：secret-side",
+      "bytes": 14060,
+      "sha256": "3402049fdc1cdf0431fddecf822923cdd1b711bf18becd181f02937a94f1bf9c",
+      "width": 128,
+      "height": 512,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.secretSide"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG001",
+      "category": "images",
+      "path": "assets/images/icons/card_pack_IMG001_icon-rotate.svg",
+      "previousPath": "assets/img/icon/icon-rotate.svg",
+      "purpose": "獎項／操作圖示：rotate",
+      "bytes": 1331,
+      "sha256": "96e65027e4cd5b147d9ed6f9304971abafa6c8d81d1c94574c6c3dd5316fb8e6",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.rotateHint"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG002",
+      "category": "images",
+      "path": "assets/images/icons/card_pack_IMG002_icon-tap.svg",
+      "previousPath": "assets/img/icon/icon-tap.svg",
+      "purpose": "獎項／操作圖示：tap",
+      "bytes": 1423,
+      "sha256": "cea800bc967764b6606f2973d2c88a044cda3660209b448f954b43173a69f549",
+      "width": 160,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.tapHint"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG003",
+      "category": "images",
+      "path": "assets/images/reveal/card_pack_IMG003_reward-back.webp",
+      "previousPath": "assets/img/reveal/reward-back.webp",
+      "purpose": "揭曉卡片／稀有度圖：reward-back",
+      "bytes": 99096,
+      "sha256": "e217d76686b37514c3b7215f6ed76f1cef3a5868041656604930e951c74e75f3",
+      "width": 600,
+      "height": 900,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.rewardBack"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG004",
+      "category": "images",
+      "path": "assets/images/reveal/card_pack_IMG004_reward-front.webp",
+      "previousPath": "assets/img/reveal/reward-front.webp",
+      "purpose": "揭曉卡片／稀有度圖：reward-front",
+      "bytes": 101824,
+      "sha256": "8c28eae01de7ab827b23a0fa32ca3e696c806c04e13259edd996df765f93e2a9",
+      "width": 600,
+      "height": 900,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.rewardFrameCommon",
+        "images.rewardFrameRare",
+        "images.rewardFrameEpic",
+        "images.rewardFrameLegendary"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG005",
+      "category": "images",
+      "path": "assets/images/reveal/card_pack_IMG005_secret-back.webp",
+      "previousPath": "assets/img/reveal/secret-back.webp",
+      "purpose": "揭曉卡片／稀有度圖：secret-back",
+      "bytes": 198274,
+      "sha256": "2ef238670b360a901e288a866251580700acdebb48b9764067b133e36def3693",
+      "width": 600,
+      "height": 900,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.secretBack"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG006",
+      "category": "images",
+      "path": "assets/images/reveal/card_pack_IMG006_secret-front.webp",
+      "previousPath": "assets/img/reveal/secret-front.webp",
+      "purpose": "揭曉卡片／稀有度圖：secret-front",
+      "bytes": 112530,
+      "sha256": "51209778dea614e351df2ffee88c749b592b063f4f0a6c788bcab153d71fd129",
+      "width": 600,
+      "height": 900,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.secretFront"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "VFX001",
+      "category": "effects",
+      "path": "assets/effects/card_pack_VFX001_atmosphere.webp",
+      "previousPath": "assets/img/scene/atmosphere.webp",
+      "purpose": "環境粒子／沙霧貼圖",
+      "bytes": 117538,
+      "sha256": "40956b782a3e4cbf7c9df79d31146e56d95dda3418dbba7d3ecd07e39451dcfd",
+      "width": 640,
+      "height": 454,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.atmosphereSprite"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG007",
+      "category": "images",
+      "path": "assets/images/scene/card_pack_IMG007_footer-deco.svg",
+      "previousPath": "assets/img/scene/footer-deco.svg",
+      "purpose": "頁尾裝飾",
+      "bytes": 3124,
+      "sha256": "b74e2d73c45c7d7f1cd03139b8709ac44de7aaf2f7495dc8d89c2a907dc133be",
+      "width": 750,
+      "height": 160,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.footerDeco"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG008",
+      "category": "images",
+      "path": "assets/images/scene/card_pack_IMG008_info-bg.svg",
+      "previousPath": "assets/img/scene/info-bg.svg",
+      "purpose": "規則與紀錄區底圖",
+      "bytes": 33186,
+      "sha256": "eb43b8206b844917dbccaf1ddee608c9cd26a0f342bb4f2763704a00b14bf1d4",
+      "width": 750,
+      "height": 750,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.infoBg"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "VFX002",
+      "category": "effects",
+      "path": "assets/effects/card_pack_VFX002_magic-circle.webp",
+      "previousPath": "assets/img/scene/magic-circle.webp",
+      "purpose": "宇宙魔法陣",
+      "bytes": 179294,
+      "sha256": "e71c1fe826c307956c778911c58ae082ac0717799eedeb4c02264537b8e12c45",
+      "width": 640,
+      "height": 640,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.magicCircle"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG009",
+      "category": "images",
+      "path": "assets/images/scene/card_pack_IMG009_stage-bg.webp",
+      "previousPath": "assets/img/scene/stage-bg.webp",
+      "purpose": "主舞台背景",
+      "bytes": 75532,
+      "sha256": "b835ec63e790f258c8dbfd76cf947ae5560b1b3568e9f8e6e3a69458c6170f74",
+      "width": 750,
+      "height": 1000,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.stageBg"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG010",
+      "category": "images",
+      "path": "assets/images/share/card_pack_IMG010_share-preview.jpg",
+      "previousPath": "assets/img/share/share-preview.jpg",
+      "purpose": "社群分享預覽圖",
+      "bytes": 204402,
+      "sha256": "29cb365704ec57595c08486e0be6ed792f475daf065401e2776a5e6c2e42f1cd",
+      "width": 1200,
+      "height": 630,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": []
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG011",
+      "category": "images",
+      "path": "assets/images/title/card_pack_IMG011_title-en.webp",
+      "previousPath": "assets/img/title/title-en.webp",
+      "purpose": "英文活動主標",
+      "bytes": 85012,
+      "sha256": "fef38a74709b9abb80e88e19b100a562e42b5f7c445cf81f52b53db41c6311cd",
+      "width": 690,
+      "height": 240,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.title.en"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG012",
+      "category": "images",
+      "path": "assets/images/title/card_pack_IMG012_title-ko.webp",
+      "previousPath": "assets/img/title/title-ko.webp",
+      "purpose": "韓文活動主標",
+      "bytes": 82338,
+      "sha256": "1b86433df12de2011484cbdb46ca26224c3ad1ca29360419f2fc5550b2418cbc",
+      "width": 690,
+      "height": 240,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.title.ko"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG013",
+      "category": "images",
+      "path": "assets/images/title/card_pack_IMG013_title-main.webp",
+      "previousPath": "assets/img/title/title-main.webp",
+      "purpose": "主標基底／內部預覽",
+      "bytes": 89018,
+      "sha256": "c6c1383df9bc4c471ee67bd39c02a1c37f3c12325b356d7b8a35b26e65e18c9f",
+      "width": 690,
+      "height": 240,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.title.zh"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG014",
+      "category": "images",
+      "path": "assets/images/title/card_pack_IMG014_title-th.webp",
+      "previousPath": "assets/img/title/title-th.webp",
+      "purpose": "泰文活動主標",
+      "bytes": 85386,
+      "sha256": "4d585d2fd17d8a75e572ec2023972cbae7466366abb1e03f34d67e58a1972231",
+      "width": 690,
+      "height": 240,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.title.th"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG015",
+      "category": "images",
+      "path": "assets/images/ui/card_pack_IMG015_btn-primary.webp",
+      "previousPath": "assets/img/ui/btn-primary.webp",
+      "purpose": "主要操作及領獎按鈕底圖",
+      "bytes": 59116,
+      "sha256": "dcad9bbbc0daf89264233e293b47d0d36cbcd8460b0cf50261d92296b6488a76",
+      "width": 900,
+      "height": 270,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.btnPrimary"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG016",
+      "category": "images",
+      "path": "assets/images/ui/card_pack_IMG016_card-frame.svg",
+      "previousPath": "assets/img/ui/card-frame.svg",
+      "purpose": "資訊卡外框",
+      "bytes": 1627,
+      "sha256": "b791af2a93f91971048da9fb306014261ca0d569adde1471569466f722b06a48",
+      "width": 120,
+      "height": 120,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.cardFrame"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG017",
+      "category": "images",
+      "path": "assets/images/ui/card_pack_IMG017_card-title.svg",
+      "previousPath": "assets/img/ui/card-title.svg",
+      "purpose": "規則／紀錄標題底圖",
+      "bytes": 1550,
+      "sha256": "9c15bddf925259776e2fa84ac5a2d544278d99e630dacc50f902d436e3ef0ee4",
+      "width": 400,
+      "height": 72,
+      "transparency": "保留 SVG 原透明區",
+      "slots": [
+        "images.cardTitle"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG018",
+      "category": "images",
+      "path": "assets/images/ui/card_pack_IMG018_chances-badge.webp",
+      "previousPath": "assets/img/ui/chances-badge.webp",
+      "purpose": "剩餘次數銘牌",
+      "bytes": 42310,
+      "sha256": "446e0b425301fc2398441b82b3965ffb603214aa0e6d2a4547a261708e8bd5ed",
+      "width": 630,
+      "height": 210,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.chancesBadge"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG019",
+      "category": "images",
+      "path": "assets/images/ui/card_pack_IMG019_folio-header.webp",
+      "previousPath": "assets/img/ui/folio-header.webp",
+      "purpose": "規則與紀錄冊頁標頭",
+      "bytes": 17024,
+      "sha256": "77418dbbc4407f5253924029d9bcf394dc102ddd051ab867be6652fbe7d7cc79",
+      "width": 900,
+      "height": 300,
+      "frames": 1,
+      "transparency": "不透明",
+      "slots": [
+        "images.folioHeader"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG020",
+      "category": "images",
+      "path": "assets/images/ui/card_pack_IMG020_loading-emblem.webp",
+      "previousPath": "assets/img/ui/loading-emblem.webp",
+      "purpose": "進站 loading 主題徽章",
+      "bytes": 108168,
+      "sha256": "77c9bd30f8f9babce1d14eff78c3307de62d9a5ae4a6e0ad0de4c0992b01e8ce",
+      "width": 480,
+      "height": 480,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.loadingEmblem"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG021",
+      "category": "images",
+      "path": "assets/images/ui/card_pack_IMG021_panel-frame.webp",
+      "previousPath": "assets/img/ui/panel-frame.webp",
+      "purpose": "規則與紀錄面板外框",
+      "bytes": 112184,
+      "sha256": "5b0a5ded53733f54b0d24e00963c56046299988c01c5f2399a56b587bac3aa50",
+      "width": 768,
+      "height": 768,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.panelFrame"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG022",
+      "category": "images",
+      "path": "assets/images/ui/card_pack_IMG022_period-badge.webp",
+      "previousPath": "assets/img/ui/period-badge.webp",
+      "purpose": "活動期間底牌",
+      "bytes": 26466,
+      "sha256": "15e6cffe2c3f4074bafcb324c156baf6d3f8477ed96bdf71abe30bbcdd8af154",
+      "width": 900,
+      "height": 150,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.periodBadge"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "VFX003",
+      "category": "effects",
+      "path": "assets/effects/card_pack_VFX003_reveal-aura.webp",
+      "previousPath": "assets/img/ui/reveal-aura.webp",
+      "purpose": "揭曉光暈",
+      "bytes": 274964,
+      "sha256": "faeda6891315a631d893f9ccf2ec372c436aec2c9d3cc24724f979d945294bbf",
+      "width": 900,
+      "height": 900,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.revealRays",
+        "assetSpecs.revealRays"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "VFX004",
+      "category": "effects",
+      "path": "assets/effects/card_pack_VFX004_star-glint.webp",
+      "previousPath": "assets/img/ui/star-glint.webp",
+      "purpose": "星光閃耀粒子",
+      "bytes": 8800,
+      "sha256": "bff5317a32c6e56975bb456168e484140a176e9b29a45165b23493bd613d1804",
+      "width": 192,
+      "height": 192,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.starSprite"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG023",
+      "category": "images",
+      "path": "assets/images/ui/card_pack_IMG023_ticker-bar.webp",
+      "previousPath": "assets/img/ui/ticker-bar.webp",
+      "purpose": "中獎跑馬燈底圖",
+      "bytes": 53184,
+      "sha256": "3068b6b19a4e5783e9f8f7d6cfc1dfeaaad4109f20d2000eae5d0a393671cf54",
+      "width": 1000,
+      "height": 180,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.tickerBar"
+      ]
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "IMG024",
+      "category": "images",
+      "path": "assets/images/ui/card_pack_IMG024_tool-medallion.webp",
+      "previousPath": "assets/img/ui/tool-medallion.webp",
+      "purpose": "工具列金屬底框",
+      "bytes": 9858,
+      "sha256": "e01c8c3d5f195b169d9424aea9c0ff299781539b73514eafed9592532a127e1b",
+      "width": 160,
+      "height": 160,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "images.toolMedallion"
+      ]
+    },
+    {
+      "event": "shared",
+      "id": "IMG001",
+      "category": "images",
+      "path": "assets/images/shared_IMG001_arrow-frame.webp",
+      "previousPath": "buttons/img/arrow-frame.webp",
+      "purpose": "共用左右切換按鈕底框",
+      "bytes": 4684,
+      "sha256": "494d93a66cce12912374f56e02b980d80a58f6ec86bcdc0ade6791c1fe58f7f2",
+      "width": 128,
+      "height": 128,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "20261118_blind_box:images.btnArrow",
+        "20261118_blind_box:assetSpecs.btnArrow",
+        "20261118_card_pack:images.btnArrow",
+        "20261118_card_pack:assetSpecs.btnArrow"
+      ]
+    },
+    {
+      "event": "shared",
+      "id": "IMG002",
+      "category": "images",
+      "path": "assets/images/shared_IMG002_icon-share.webp",
+      "previousPath": "buttons/img/icon-share.webp",
+      "purpose": "分享按鈕圖",
+      "bytes": 6372,
+      "sha256": "6e4cefcb87ddc68513638e2f8b032bf8396fcdca09bbceb0e6cea8d19a7339a7",
+      "width": 64,
+      "height": 64,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "20261111_lucky_wheel:images.share",
+        "20261111_lucky_wheel:assetSpecs.share",
+        "20261111_survival_spin:skins.survival.images.share",
+        "20261111_survival_spin:assetSpecs.share",
+        "20261118_blind_box:images.share",
+        "20261118_blind_box:assetSpecs.share",
+        "20261118_card_pack:images.share",
+        "20261118_card_pack:assetSpecs.share"
+      ]
+    },
+    {
+      "event": "shared",
+      "id": "IMG003",
+      "category": "images",
+      "path": "assets/images/shared_IMG003_icon-sound-off.webp",
+      "previousPath": "buttons/img/icon-sound-off.webp",
+      "purpose": "音效關閉按鈕圖",
+      "bytes": 6114,
+      "sha256": "8751d7610a676b509f766a1a7af730dc3d3500d9b534e6a173bb44a34433693c",
+      "width": 64,
+      "height": 64,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "20261111_lucky_wheel:images.soundOff",
+        "20261111_survival_spin:skins.survival.images.soundOff",
+        "20261118_blind_box:images.soundOff",
+        "20261118_card_pack:images.soundOff"
+      ]
+    },
+    {
+      "event": "shared",
+      "id": "IMG004",
+      "category": "images",
+      "path": "assets/images/shared_IMG004_icon-sound-on.webp",
+      "previousPath": "buttons/img/icon-sound-on.webp",
+      "purpose": "音效開啟按鈕圖",
+      "bytes": 6408,
+      "sha256": "4d9c3572324772ba3b89e04d0159f5195027c7deff95406a98e1cb529cf731e0",
+      "width": 64,
+      "height": 64,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "20261111_lucky_wheel:images.soundOn",
+        "20261111_survival_spin:skins.survival.images.soundOn",
+        "20261118_blind_box:images.soundOn",
+        "20261118_card_pack:images.soundOn"
+      ]
+    },
+    {
+      "event": "shared",
+      "id": "SFX005",
+      "category": "sounds",
+      "path": "assets/sounds/shared_SFX005_click01.wav",
+      "previousPath": "unbox-3d/audio/click01.wav",
+      "purpose": "批次開啟倒數音效",
+      "bytes": 37048,
+      "sha256": "58851b00b54ae4442dca96932a7574a0cd440d65a6968bf7061c19364d4c986d",
+      "durationSeconds": 0.21,
+      "slots": [
+        "20261118_blind_box:sounds.count",
+        "20261118_card_pack:sounds.count"
+      ]
+    },
+    {
+      "event": "shared",
+      "id": "IMG006",
+      "category": "images",
+      "path": "assets/images/shared_IMG006_status-badges.webp",
+      "previousPath": "unbox-3d/img/status-badges.webp",
+      "purpose": "卡包／寶箱耗盡狀態徽章",
+      "bytes": 1506000,
+      "sha256": "aa87eab12fa86111fd1c42b36b7d58bfab749f227b49cf36e0ad91422f89a398",
+      "width": 1536,
+      "height": 1024,
+      "frames": 1,
+      "transparency": "保留 alpha",
+      "slots": [
+        "20261118_blind_box:images.statusBadges"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "event": "20261111_lucky_wheel",
+      "category": "sounds",
+      "path": "source/sounds/lucky_wheel_SRC001_audio",
+      "purpose": "可編輯原稿／製作來源：audio",
+      "files": 1
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "category": "effects",
+      "path": "source/effects/lucky_wheel_SRC001_lighting-v4",
+      "purpose": "可編輯原稿／製作來源：lighting-v4",
+      "files": 7
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "category": "images",
+      "path": "source/images/lucky_wheel_SRC001_loading",
+      "purpose": "可編輯原稿／製作來源：loading",
+      "files": 1
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "category": "images",
+      "path": "source/images/lucky_wheel_SRC002_main-visual",
+      "purpose": "可編輯原稿／製作來源：main-visual",
+      "files": 9
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "category": "images",
+      "path": "source/images/lucky_wheel_SRC003_mascot",
+      "purpose": "可編輯原稿／製作來源：mascot",
+      "files": 4
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "category": "images",
+      "path": "source/images/lucky_wheel_SRC004_rabbit-fullpose-v4",
+      "purpose": "可編輯原稿／製作來源：rabbit-fullpose-v4",
+      "files": 242
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "category": "images",
+      "path": "source/images/lucky_wheel_SRC005_reference",
+      "purpose": "可編輯原稿／製作來源：reference",
+      "files": 16
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "category": "images",
+      "path": "source/images/lucky_wheel_SRC006_title-v4",
+      "purpose": "可編輯原稿／製作來源：title-v4",
+      "files": 4
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "category": "images",
+      "path": "source/images/lucky_wheel_SRC007_ui-components",
+      "purpose": "可編輯原稿／製作來源：ui-components",
+      "files": 14
+    },
+    {
+      "event": "20261111_survival_spin",
+      "category": "sounds",
+      "path": "source/sounds/survival_spin_SRC001_audio",
+      "purpose": "可編輯原稿／製作來源：audio",
+      "files": 4
+    },
+    {
+      "event": "20261111_survival_spin",
+      "category": "images",
+      "path": "source/images/survival_spin_SRC001_guard-rifle-v1",
+      "purpose": "可編輯原稿／製作來源：guard-rifle-v1",
+      "files": 240
+    },
+    {
+      "event": "20261111_survival_spin",
+      "category": "images",
+      "path": "source/images/survival_spin_SRC002_loading",
+      "purpose": "可編輯原稿／製作來源：loading",
+      "files": 1
+    },
+    {
+      "event": "20261111_survival_spin",
+      "category": "images",
+      "path": "source/images/survival_spin_SRC003_mascot",
+      "purpose": "可編輯原稿／製作來源：mascot",
+      "files": 3
+    },
+    {
+      "event": "20261111_survival_spin",
+      "category": "images",
+      "path": "source/images/survival_spin_SRC004_p0",
+      "purpose": "可編輯原稿／製作來源：p0",
+      "files": 16
+    },
+    {
+      "event": "20261111_survival_spin",
+      "category": "images",
+      "path": "source/images/survival_spin_SRC005_social-promo",
+      "purpose": "可編輯原稿／製作來源：social-promo",
+      "files": 3
+    },
+    {
+      "event": "20261111_survival_spin",
+      "category": "images",
+      "path": "source/images/survival_spin_SRC006_ui",
+      "purpose": "可編輯原稿／製作來源：ui",
+      "files": 14
+    },
+    {
+      "event": "20261118_blind_box",
+      "category": "3d",
+      "path": "source/3d/blind_box_SRC001_3d",
+      "purpose": "可編輯原稿／製作來源：3d",
+      "files": 4
+    },
+    {
+      "event": "20261118_blind_box",
+      "category": "images",
+      "path": "source/images/blind_box_SRC001_desert-spirit-hd",
+      "purpose": "可編輯原稿／製作來源：desert-spirit-hd",
+      "files": 1
+    },
+    {
+      "event": "20261118_blind_box",
+      "category": "images",
+      "path": "source/images/blind_box_SRC002_loading",
+      "purpose": "可編輯原稿／製作來源：loading",
+      "files": 1
+    },
+    {
+      "event": "20261118_blind_box",
+      "category": "images",
+      "path": "source/images/blind_box_SRC003_reveal",
+      "purpose": "可編輯原稿／製作來源：reveal",
+      "files": 1
+    },
+    {
+      "event": "20261118_blind_box",
+      "category": "images",
+      "path": "source/images/blind_box_SRC004_scene",
+      "purpose": "可編輯原稿／製作來源：scene",
+      "files": 6
+    },
+    {
+      "event": "20261118_blind_box",
+      "category": "images",
+      "path": "source/images/blind_box_SRC005_status-badges.png",
+      "purpose": "可編輯原稿／製作來源：status-badges.png",
+      "files": 1
+    },
+    {
+      "event": "20261118_blind_box",
+      "category": "images",
+      "path": "source/images/blind_box_SRC006_title",
+      "purpose": "可編輯原稿／製作來源：title",
+      "files": 11
+    },
+    {
+      "event": "20261118_blind_box",
+      "category": "images",
+      "path": "source/images/blind_box_SRC007_ui",
+      "purpose": "可編輯原稿／製作來源：ui",
+      "files": 9
+    },
+    {
+      "event": "20261118_card_pack",
+      "category": "3d",
+      "path": "source/3d/card_pack_SRC001_3d",
+      "purpose": "可編輯原稿／製作來源：3d",
+      "files": 4
+    },
+    {
+      "event": "20261118_card_pack",
+      "category": "sounds",
+      "path": "source/sounds/card_pack_SRC001_audio",
+      "purpose": "可編輯原稿／製作來源：audio",
+      "files": 1
+    },
+    {
+      "event": "20261118_card_pack",
+      "category": "images",
+      "path": "source/images/card_pack_SRC001_character",
+      "purpose": "可編輯原稿／製作來源：character",
+      "files": 3
+    },
+    {
+      "event": "20261118_card_pack",
+      "category": "images",
+      "path": "source/images/card_pack_SRC002_loading",
+      "purpose": "可編輯原稿／製作來源：loading",
+      "files": 1
+    },
+    {
+      "event": "20261118_card_pack",
+      "category": "images",
+      "path": "source/images/card_pack_SRC003_reveal",
+      "purpose": "可編輯原稿／製作來源：reveal",
+      "files": 5
+    },
+    {
+      "event": "20261118_card_pack",
+      "category": "images",
+      "path": "source/images/card_pack_SRC004_scene",
+      "purpose": "可編輯原稿／製作來源：scene",
+      "files": 2
+    },
+    {
+      "event": "20261118_card_pack",
+      "category": "images",
+      "path": "source/images/card_pack_SRC005_secret",
+      "purpose": "可編輯原稿／製作來源：secret",
+      "files": 3
+    },
+    {
+      "event": "20261118_card_pack",
+      "category": "images",
+      "path": "source/images/card_pack_SRC006_title",
+      "purpose": "可編輯原稿／製作來源：title",
+      "files": 11
+    },
+    {
+      "event": "20261118_card_pack",
+      "category": "images",
+      "path": "source/images/card_pack_SRC007_ui",
+      "purpose": "可編輯原稿／製作來源：ui",
+      "files": 11
+    },
+    {
+      "event": "shared",
+      "category": "images",
+      "path": "source/images/shared_SRC001_arrow-frame-original.png",
+      "purpose": "共用方向按鈕底框可編輯原稿",
+      "files": 1
+    }
+  ],
+  "cleanup": {
+    "baselineCommit": "00789f8",
+    "removedFiles": 2411,
+    "note": "移除淘汰版本、舊驗證產物、過期一次性產圖工具與搬移舊表；原檔由 Git 歷史保留。"
+  },
+  "procedural": [
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "CODE001",
+      "path": "assets/js/wheel.js",
+      "purpose": "轉盤 Canvas 扇區、燈泡亮暗與旋轉"
+    },
+    {
+      "event": "20261111_lucky_wheel",
+      "id": "CODE002",
+      "path": "assets/css/event.css",
+      "purpose": "轉盤舞台燈光與介面狀態"
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "CODE001",
+      "path": "assets/js/wheel.js",
+      "purpose": "轉盤 Canvas 扇區、燈泡亮暗與旋轉"
+    },
+    {
+      "event": "20261111_survival_spin",
+      "id": "CODE002",
+      "path": "assets/css/event.css",
+      "purpose": "轉盤舞台燈光與介面狀態"
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "CODE001",
+      "path": "../shared/unbox-3d/js/scene.js",
+      "purpose": "3D 卡包／寶箱即時幾何、UV、開啟與拖曳動態"
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "CODE002",
+      "path": "../shared/unbox-3d/js/atmosphere.js",
+      "purpose": "Canvas 星光／風沙／花瓣環境特效"
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "CODE003",
+      "path": "assets/js/spirit-motion.js",
+      "purpose": "沙漠精靈 WebGL 網格動態"
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "CODE004",
+      "path": "../shared/unbox-3d/js/reveal-vortex.js",
+      "purpose": "揭曉風沙氣旋 WebGL 特效"
+    },
+    {
+      "event": "20261118_blind_box",
+      "id": "CODE005",
+      "path": "../shared/unbox-3d/js/desert-depth.js",
+      "purpose": "沙漠舞台景深合成"
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "CODE001",
+      "path": "../shared/unbox-3d/js/scene.js",
+      "purpose": "3D 卡包／寶箱即時幾何、UV、開啟與拖曳動態"
+    },
+    {
+      "event": "20261118_card_pack",
+      "id": "CODE002",
+      "path": "../shared/unbox-3d/js/atmosphere.js",
+      "purpose": "Canvas 星光／風沙／花瓣環境特效"
+    }
+  ]
+}

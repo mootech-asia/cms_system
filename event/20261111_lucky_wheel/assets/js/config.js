@@ -22,38 +22,38 @@ window.EVENT_CONFIG = {
   skins: {},
 
   images: {
-    loadingEmblem: 'assets/img/loading-emblem.webp?v=20261118-loading1',
-    stageBg: 'assets/img/stage-bg.webp?v=20261118-perf1',
-    infoBg: 'assets/img/info-bg.webp?v=20261118-perf1',
-    stageFloor: 'assets/img/stage-floor.webp',
+    loadingEmblem: 'assets/images/ui/lucky_wheel_IMG016_loading-emblem.webp?v=20261118-loading1',
+    stageBg: 'assets/images/scene/lucky_wheel_IMG026_stage-bg.webp?v=20261118-perf1',
+    infoBg: 'assets/images/scene/lucky_wheel_IMG015_info-bg.webp?v=20261118-perf1',
+    stageFloor: 'assets/images/scene/lucky_wheel_IMG027_stage-floor.webp',
     title: {
-      en: 'assets/img/title-en.webp',
-      ko: 'assets/img/title-ko.webp?v=20261118-perf1',
-      th: 'assets/img/title-th.webp?v=20261118-perf1',
-      zh: 'assets/img/title-zh.svg'
+      en: 'assets/images/title/lucky_wheel_IMG029_title-en.webp',
+      ko: 'assets/images/title/lucky_wheel_IMG030_title-ko.webp?v=20261118-perf1',
+      th: 'assets/images/title/lucky_wheel_IMG031_title-th.webp?v=20261118-perf1',
+      zh: 'assets/images/title/lucky_wheel_IMG032_title-zh.svg'
     },
-    spotlight: 'assets/img/spotlight.webp',
-    lightPool: 'assets/img/light-pool.webp?v=20261118-perf1',
-    stageVignette: 'assets/img/stage-vignette.webp?v=20261118-perf1',
-    bulbOn: 'assets/img/bulb-on.png',
-    bulbOff: 'assets/img/bulb-off.png',
-    wheelFrame: 'assets/img/wheel-frame.webp?v=20261118-perf1',
-    wheelGloss: 'assets/img/wheel-gloss.svg',
-    wheelStand: 'assets/img/wheel-stand.webp?v=20261118-perf1',
-    pointer: 'assets/img/pointer.webp',
-    btnGo: 'assets/img/btn-go.webp?v=20261118-perf1',
-    btnPrimary: 'assets/img/btn-primary.webp?v=20261118-perf1',
-    modalBg: 'assets/img/modal-bg.webp?v=20261118-perf1',
-    soundOn: '../shared/buttons/img/icon-sound-on.webp',
-    soundOff: '../shared/buttons/img/icon-sound-off.webp',
-    share: '../shared/buttons/img/icon-share.webp',
-    periodBadge: 'assets/img/period-badge.webp?v=20261118-perf1',
-    chancesBadge: 'assets/img/chances-badge.webp?v=20261118-perf1',
-    cardFrame: 'assets/img/card-frame.webp',
-    cardTitle: 'assets/img/card-title.webp?v=20261118-perf1',
-    tickerBar: 'assets/img/ticker-bar.webp?v=20261118-perf1',
-    footerDeco: 'assets/img/footer-deco.webp',
-    rotateHint: 'assets/img/icon-rotate.webp?v=20261118-perf1',
+    spotlight: 'assets/effects/lucky_wheel_VFX004_spotlight.webp',
+    lightPool: 'assets/effects/lucky_wheel_VFX003_light-pool.webp?v=20261118-perf1',
+    stageVignette: 'assets/effects/lucky_wheel_VFX005_stage-vignette.webp?v=20261118-perf1',
+    bulbOn: 'assets/effects/lucky_wheel_VFX002_bulb-on.png',
+    bulbOff: 'assets/effects/lucky_wheel_VFX001_bulb-off.png',
+    wheelFrame: 'assets/images/ui/lucky_wheel_IMG033_wheel-frame.webp?v=20261118-perf1',
+    wheelGloss: 'assets/effects/lucky_wheel_VFX006_wheel-gloss.svg',
+    wheelStand: 'assets/images/ui/lucky_wheel_IMG034_wheel-stand.webp?v=20261118-perf1',
+    pointer: 'assets/images/ui/lucky_wheel_IMG024_pointer.webp',
+    btnGo: 'assets/images/ui/lucky_wheel_IMG001_btn-go.webp?v=20261118-perf1',
+    btnPrimary: 'assets/images/ui/lucky_wheel_IMG002_btn-primary.webp?v=20261118-perf1',
+    modalBg: 'assets/images/ui/lucky_wheel_IMG022_modal-bg.webp?v=20261118-perf1',
+    soundOn: '../shared/assets/images/shared_IMG004_icon-sound-on.webp',
+    soundOff: '../shared/assets/images/shared_IMG003_icon-sound-off.webp',
+    share: '../shared/assets/images/shared_IMG002_icon-share.webp',
+    periodBadge: 'assets/images/ui/lucky_wheel_IMG023_period-badge.webp?v=20261118-perf1',
+    chancesBadge: 'assets/images/ui/lucky_wheel_IMG005_chances-badge.webp?v=20261118-perf1',
+    cardFrame: 'assets/images/ui/lucky_wheel_IMG003_card-frame.webp',
+    cardTitle: 'assets/images/ui/lucky_wheel_IMG004_card-title.webp?v=20261118-perf1',
+    tickerBar: 'assets/images/ui/lucky_wheel_IMG028_ticker-bar.webp?v=20261118-perf1',
+    footerDeco: 'assets/images/scene/lucky_wheel_IMG006_footer-deco.webp',
+    rotateHint: 'assets/images/icons/lucky_wheel_IMG012_icon-rotate.webp?v=20261118-perf1',
   },
 
   /* 吉祥物：每個狀態一個循環 GIF，全部共用同一張基準幀（頭尾）且長度相同（loopMs），
@@ -61,14 +61,14 @@ window.EVENT_CONFIG = {
   /* 網頁載入的是 tools/gif_to_webp.py 由交付 GIF 轉出的動態 WebP（同內容、約 1/3 大小）；
      換新素材後重跑該腳本（有 PNG 序列幀時優先用序列幀，保留半透明影子）。loopMs 必須等於 GIF 每幀時長總和（目前 48 幀 = 2000ms）。 */
   mascot: {
-    poster: 'assets/img/mascot/optimized/poster.webp',
+    poster: 'assets/images/mascot/lucky_wheel_IMG019_poster.webp',
     loopMs: 2000,
     idle: [
-      'assets/img/mascot/optimized/idle-1.webp'
+      'assets/images/mascot/lucky_wheel_IMG017_idle-1.webp'
     ],
-    spinning: 'assets/img/mascot/optimized/spinning.webp',
-    result: 'assets/img/mascot/optimized/result.webp',
-    lose: 'assets/img/mascot/optimized/lose.webp'
+    spinning: 'assets/images/mascot/lucky_wheel_IMG021_spinning.webp',
+    result: 'assets/images/mascot/lucky_wheel_IMG020_result.webp',
+    lose: 'assets/images/mascot/lucky_wheel_IMG018_lose.webp'
   },
 
   /* 音效與 BGM：留空時用 Web Audio 即時合成（sound.js 依皮選音色）；交付音檔後填路徑即改播音檔。
@@ -79,10 +79,10 @@ window.EVENT_CONFIG = {
     drumroll: '',
     win: '',
     lose: '',
-    hover: '../20261111_survival_spin/assets/audio/hover.mp3',
-    click: '../20261111_survival_spin/assets/audio/click.mp3?v=active-v2',
-    reward: 'assets/audio/reward.mp3',
-    rewardLose: '../20261111_survival_spin/assets/audio/reward-lose.mp3',
+    hover: '../20261111_survival_spin/assets/sounds/survival_spin_SFX002_hover.mp3',
+    click: '../20261111_survival_spin/assets/sounds/survival_spin_SFX001_click.mp3?v=active-v2',
+    reward: 'assets/sounds/lucky_wheel_SFX001_reward.mp3',
+    rewardLose: '../20261111_survival_spin/assets/sounds/survival_spin_SFX003_reward-lose.mp3',
     bgm: ''
   },
 
@@ -91,7 +91,7 @@ window.EVENT_CONFIG = {
     loadingEmblem: 'loading-emblem · 480×480',
     stageBg: 'stage-bg · 750×1000',
     infoBg: 'info-bg · 750×750 tile',
-    share: '../shared/buttons/img/icon-share.webp',
+    share: '../shared/assets/images/shared_IMG002_icon-share.webp',
     periodBadge: 'period-badge · 480×64',
     chancesBadge: 'chances-badge · 360×88',
     cardFrame: 'card-frame · 120×120 (9-slice 40)',
@@ -123,13 +123,13 @@ window.EVENT_CONFIG = {
     period: '2026/11/11 – 2026/11/30',
     freeSpins: 10,
     prizes: [
-      { name: { en: 'Cash 888', ko: '현금 888', th: 'เงินสด 888', zh: '現金 888 元' }, icon: 'assets/img/icon-cash.svg', weight: 2, isLose: false },
-      { name: { en: '10 Free Spins', ko: '무료 스핀 10회', th: 'ฟรีสปิน 10 ครั้ง', zh: '免費旋轉 ×10' }, icon: 'assets/img/icon-spin.svg', weight: 15, isLose: false },
-      { name: { en: '20% Deposit Bonus', ko: '충전 보너스 20%', th: 'โบนัสเติมเงิน 20%', zh: '儲值加碼 20%' }, icon: 'assets/img/icon-bonus.svg', weight: 18, isLose: false },
-      { name: { en: '500 Points', ko: '500 포인트', th: '500 คะแนน', zh: '積分 ×500' }, icon: 'assets/img/icon-points.svg', weight: 20, isLose: false },
-      { name: { en: '100 Coins', ko: '코인 100개', th: '100 เหรียญ', zh: '金幣 ×100' }, icon: 'assets/img/icon-coin.svg', weight: 15, isLose: false },
-      { name: { en: 'Mystery Gift', ko: '미스터리 선물', th: 'ของขวัญปริศนา', zh: '神秘禮物' }, icon: 'assets/img/icon-gift.svg', weight: 5, isLose: false },
-      { name: { en: 'Try Again', ko: '다시 도전', th: 'ลองใหม่อีกครั้ง', zh: '再轉一次' }, icon: 'assets/img/icon-thanks.svg', weight: 25, isLose: true }
+      { name: { en: 'Cash 888', ko: '현금 888', th: 'เงินสด 888', zh: '現金 888 元' }, icon: 'assets/images/icons/lucky_wheel_IMG008_icon-cash.svg', weight: 2, isLose: false },
+      { name: { en: '10 Free Spins', ko: '무료 스핀 10회', th: 'ฟรีสปิน 10 ครั้ง', zh: '免費旋轉 ×10' }, icon: 'assets/images/icons/lucky_wheel_IMG013_icon-spin.svg', weight: 15, isLose: false },
+      { name: { en: '20% Deposit Bonus', ko: '충전 보너스 20%', th: 'โบนัสเติมเงิน 20%', zh: '儲值加碼 20%' }, icon: 'assets/images/icons/lucky_wheel_IMG007_icon-bonus.svg', weight: 18, isLose: false },
+      { name: { en: '500 Points', ko: '500 포인트', th: '500 คะแนน', zh: '積分 ×500' }, icon: 'assets/images/icons/lucky_wheel_IMG011_icon-points.svg', weight: 20, isLose: false },
+      { name: { en: '100 Coins', ko: '코인 100개', th: '100 เหรียญ', zh: '金幣 ×100' }, icon: 'assets/images/icons/lucky_wheel_IMG009_icon-coin.svg', weight: 15, isLose: false },
+      { name: { en: 'Mystery Gift', ko: '미스터리 선물', th: 'ของขวัญปริศนา', zh: '神秘禮物' }, icon: 'assets/images/icons/lucky_wheel_IMG010_icon-gift.svg', weight: 5, isLose: false },
+      { name: { en: 'Try Again', ko: '다시 도전', th: 'ลองใหม่อีกครั้ง', zh: '再轉一次' }, icon: 'assets/images/icons/lucky_wheel_IMG014_icon-thanks.svg', weight: 25, isLose: true }
     ],
     winners: [
       { name: 'pl***88', prize: 0 }, { name: 'ka***21', prize: 3 }, { name: 'so***07', prize: 1 },

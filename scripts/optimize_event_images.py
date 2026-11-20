@@ -13,8 +13,9 @@ import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-FOLDERS = ['event/20261118_card_pack/assets/img', 'event/20261118_blind_box/assets/img',
-           'event/20261111_lucky_wheel/assets/img', 'event/20261111_survival_spin/img']
+FOLDERS = [str(path.relative_to(ROOT)) for event in (ROOT / 'event').glob('20*')
+           for category in ('images', 'effects', '3d')
+           if (path := event / 'assets' / category).is_dir()]
 
 
 def main():

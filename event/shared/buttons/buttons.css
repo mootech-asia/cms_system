@@ -16,10 +16,10 @@ body :is(#btnShare,#btnSound,#btnPrev,#btnNext,#btnBackTop)::before {
   filter: var(--ev-control-tint); transform: none;
   transition: filter .16s ease, scale .16s ease;
 }
-body #btnShare { --ev-control-art: url("img/icon-share.webp"); }
-body #btnSound { --ev-control-art: url("img/icon-sound-on.webp"); }
-body #btnSound[aria-pressed="false"] { --ev-control-art: url("img/icon-sound-off.webp"); }
-body :is(#btnPrev,#btnNext,#btnBackTop) { --ev-control-art: url("img/arrow-frame.webp"); }
+body #btnShare { --ev-control-art: url("../assets/images/shared_IMG002_icon-share.webp"); }
+body #btnSound { --ev-control-art: url("../assets/images/shared_IMG004_icon-sound-on.webp"); }
+body #btnSound[aria-pressed="false"] { --ev-control-art: url("../assets/images/shared_IMG003_icon-sound-off.webp"); }
+body :is(#btnPrev,#btnNext,#btnBackTop) { --ev-control-art: url("../assets/images/shared_IMG001_arrow-frame.webp"); }
 body :is(#btnShare,#btnSound)::after { display: none; }
 body :is(#btnPrev,#btnNext,#btnBackTop)::after {
   content: ""; display: block; position: absolute; width: calc(var(--ev-control-size) * .26); height: calc(var(--ev-control-size) * .26);
@@ -45,5 +45,5 @@ body .ev-topbar { align-items: flex-start; padding: 8px 16px 0; gap: 12px; }
 body .ev-sound-wrap { display: flex; gap: 8px; }
 body :is(#btnShare,#btnSound) { width: var(--ev-control-size); height: var(--ev-control-size); flex: 0 0 var(--ev-control-size); }
 
-body #btnBackTop { position:fixed; z-index:20; right:max(12px, calc((100vw - var(--ev-page-max, 480px)) / 2 + 12px)); bottom:calc(16px + env(safe-area-inset-bottom, 0px)); width:44px; height:44px; cursor:pointer; --ev-control-art:url("img/arrow-frame.webp"); }
+body #btnBackTop { position:fixed; z-index:20; right:max(12px, calc((100vw - var(--ev-page-max, 480px)) / 2 + 12px)); bottom:calc(16px + env(safe-area-inset-bottom, 0px)); width:44px; height:44px; cursor:pointer; --ev-control-art:url("../assets/images/shared_IMG001_arrow-frame.webp"); }
 body #btnBackTop::after { left:50%; top:calc(50% + var(--ev-control-size) * .04); transform:translate(-50%,-50%) rotate(-45deg); }

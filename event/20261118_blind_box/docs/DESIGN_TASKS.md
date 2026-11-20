@@ -63,7 +63,7 @@
 | `assets/img/icon/` | 小圖示 | `icon-sound-on`、`icon-sound-off`、`icon-share`、`icon-rotate`、`icon-tap` |
 | `assets/img/share/` | 社群分享預覽圖（PNG／JPG） | `share-preview` |
 | `assets/audio/` | 背景音樂與特效音 mp3（見 docs/AUDIO_REQUEST.md） | `bgm`、`click`、`move`、`select`、`open`、`flip`、`reveal-common`、`reveal-rare`、`reveal-epic`、`reveal-legendary`、`reward`、`collect`、`error` |
-| `source/title/` | 主標可編輯原始檔或連結說明 | `README.md` |
+| `source/images/blind_box_SRC006_title/` | 主標可編輯原始檔或連結說明 | `README.md` |
 
 - **檔名**：英文小寫＋連字號，照表命名，不加日期、版本號、中文或空白。改版直接覆蓋同檔名。
 - **換主題（皮）**：放在 `skins/<皮名>/img/`，底下用同一套分類資料夾，只放跟預設不同的圖。
@@ -118,7 +118,7 @@
 
 ## 四、背景音樂與特效音（P3）
 
-**完整規格見同資料夾 `docs/AUDIO_REQUEST.md`**（風格嚴格對齊本主題）。交付：背景音樂 `assets/audio/bgm.mp3`＋特效音 12 個（`click`、`move`、`select`、開封、`flip`、四種稀有度揭曉、`reward`、`collect`、`error`），原始 WAV 放 `source/audio/`。
+**完整規格見同資料夾 `docs/AUDIO_REQUEST.md`**（風格嚴格對齊本主題）。交付：背景音樂 `assets/music/blind_box_BGM001_bgm.mp3`＋特效音 12 個（`click`、`move`、`select`、開封、`flip`、四種稀有度揭曉、`reward`、`collect`、`error`），原始 WAV 放 `source/audio/`。
 
 ## 五、不屬於美術的部分（由後台提供，請勿做成圖）
 
@@ -135,19 +135,19 @@
 
 ### 資訊冊頁與頂部工具列
 
-`alternatives/assets/img/ui/folio-header.webp`：900×300，不含文字；神燈雕花或銀色星盤裝飾。PNG 原稿置於 `source/ui/folio-header-original.png`，屬點陣原稿。頁面標題仍由程式依語系呈現。前版 card-frame／card-title／info-bg 不再用於資訊區，保留歷史交付。頂部圖示為內嵌可編輯 SVG，按鈕材質與狀態在 theme.css。
+`alternatives/assets/img/ui/folio-header.webp`：900×300，不含文字；神燈雕花或銀色星盤裝飾。PNG 原稿置於 `source/images/blind_box_SRC007_ui/folio-header-original.png`，屬點陣原稿。頁面標題仍由程式依語系呈現。前版 card-frame／card-title／info-bg 不再用於資訊區，保留歷史交付。頂部圖示為內嵌可編輯 SVG，按鈕材質與狀態在 theme.css。
 
 ## 主題控制元件與效能交付（2026-11-18）
 
-控制圖皆為透明 WebP，動態文案維持 DOM 多語系。主按鈕 900×270、次數銘牌 630×210、左右導覽 192×192、跑馬燈 1000×180；原稿保留於 `source/ui/`。沙漠以黃銅雕刻、綠松石與翡翠琺瑯為主，面板使用 900×300 連續拱形框飾；場景使用 900×300 沙塵體積貼圖、36 片花瓣及 90 條風沙粒子。
+控制圖皆為透明 WebP，動態文案維持 DOM 多語系。主按鈕 900×270、次數銘牌 630×210、左右導覽 192×192、跑馬燈 1000×180；原稿保留於 `source/images/blind_box_SRC007_ui/`。沙漠以黃銅雕刻、綠松石與翡翠琺瑯為主，面板使用 900×300 連續拱形框飾；場景使用 900×300 沙塵體積貼圖、36 片花瓣及 90 條風沙粒子。
 
 動畫在離屏／背景分頁暫停；3D 上限 30 fps、DPR 上限 1.5，靜止寶箱不持續重繪，減少動態偏好保留靜態環境。首屏完成後才預載揭曉卡圖。靜態交付圖經尺寸與 alpha 驗證、容量比較及實際畫面檢查；不可把 `source/` 當成網頁載入資源。測試證據與限制見 `../../docs/event-unbox-jewel/README.md`。
 
 ## 2026-11-18 材質與互動精修
 
-日期牌改為獨立 WebP（900×150），分享／音效使用專屬金屬飾框（160×160）與 HTML 圖示疊合；保留三語、靜音、分享及鍵盤操作。原稿位於 `source/ui/*-refined-original.png`。
+日期牌改為獨立 WebP（900×150），分享／音效使用專屬金屬飾框（160×160）與 HTML 圖示疊合；保留三語、靜音、分享及鍵盤操作。原稿位於 `source/images/blind_box_SRC007_ui/*-refined-original.png`。
 
-寶箱正面 640×400、側面 512×320、拱蓋 512×512 全部使用一致黃金材質，不再乘上各位置色票；兩端共用拱蓋紋理，舊紫色 `chest-lid-end.svg` 僅保留交付歷史。箱身改成四面厚壁與底板、開蓋保留軸承；內蓋、內壁與底板使用 512×352 深棕絨布金線刺繡貼圖。整個寶箱及接地陰影下移 0.17 世界單位。原稿位於 `source/3d/*-refined-original.png`。風沙移除細長白線，改為低空體積沙霧與細沙粒；保留花瓣。語系按鈕新增 hover／active／focus-visible 與 reduced-motion 狀態。
+寶箱正面 640×400、側面 512×320、拱蓋 512×512 全部使用一致黃金材質，不再乘上各位置色票；兩端共用拱蓋紋理，舊紫色 `chest-lid-end.svg` 僅保留交付歷史。箱身改成四面厚壁與底板、開蓋保留軸承；內蓋、內壁與底板使用 512×352 深棕絨布金線刺繡貼圖。整個寶箱及接地陰影下移 0.17 世界單位。原稿位於 `source/3d/blind_box_SRC001_3d/*-refined-original.png`。風沙移除細長白線，改為低空體積沙霧與細沙粒；保留花瓣。語系按鈕新增 hover／active／focus-visible 與 reduced-motion 狀態。
 
 ## 20261118-refine2 整合
 
@@ -159,7 +159,7 @@
 
 | 素材 | 尺寸 | 用途 |
 |---|---|---|
-| `assets/img/ui/loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/loading/emblem-original.png` |
+| `assets/images/ui/blind_box_IMG021_loading-emblem.webp` | 480×480 RGBA | 中央專屬器物；無文字，按240px顯示；原稿保留 `source/images/blind_box_SRC002_loading/emblem-original.png` |
 
 共用樣式位於 `event/shared/loading/loading.css`，HTML 的 `data-theme` 在應用程式啟動前指定主題。實際圖片完成數驅動進度；失敗仍計為已處理，維持10秒截止退場，不用假進度或強迫等待。三語文案獨立於圖片，減少動態模式停止裝飾動畫。
 
@@ -179,4 +179,4 @@
 ## 2026-11-19 修訂
 舞台改為無建築的開闊沙漠：暖金色沙丘、暮色天空與近景沙地。移除柱廊、布簾、宮殿地磚與植物圖層，遠沙丘與近地面的焦點分別變化。
 
-神燈精靈現行造型為飛機頭、敞開青金繡背心、外露胸肌與壯碩手臂，正面直視玩家並帶俏皮壞笑；保留雕刻金腕環、青金色煙霧與神燈。沿用待機呼吸、開箱前期待、中獎慶祝與再接再厲四段動作，每秒 12 幀、各 2000ms。原稿保留於 `source/desert-spirit-hd/master.png`；網頁貼圖使用保留透明的獨立壓縮 WebP。載入失敗、減少動態、離屏與結果覆蓋時顯示同款肌肉版靜態圖。
+神燈精靈現行造型為飛機頭、敞開青金繡背心、外露胸肌與壯碩手臂，正面直視玩家並帶俏皮壞笑；保留雕刻金腕環、青金色煙霧與神燈。沿用待機呼吸、開箱前期待、中獎慶祝與再接再厲四段動作，每秒 12 幀、各 2000ms。原稿保留於 `source/images/blind_box_SRC001_desert-spirit-hd/master.png`；網頁貼圖使用保留透明的獨立壓縮 WebP。載入失敗、減少動態、離屏與結果覆蓋時顯示同款肌肉版靜態圖。

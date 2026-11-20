@@ -16,8 +16,16 @@ description: "在 cms_system 的 event/ 底下新增或修改任何活動頁（�
 
 - 命名 `event/YYYYMMDD_event_name[_N]`（英文小寫底線；同日同名才加 `_2` 起的編號），並在 `event/README.md` 活動列表加一列。
 - 結構：`index.html`、`docs/DESIGN_TASKS.md`（美術需求）、`docs/GPT_ASSET_BRIEF.md`（給 GPT 的步驟與提示詞）、
-  `docs/DELIVERY_CHECKLIST.md`（交付勾選表）、`source/`、`tools/`、`alternatives/`、`assets/{css,js,img,audio}`。
+  `docs/DELIVERY_CHECKLIST.md`（交付勾選表）、`docs/ASSETS.md`（素材製作清單）、`source/`、`assets/{css,js,images,music,sounds,effects,3d}`。
 - 免建置純 HTML/CSS/JS；CSS 用 token（`:root` 變數），不寫死任意色碼。
+
+## 素材目錄與防遺漏規格
+
+- 依 `event/_template/README.md` 執行 `python3 scripts/event-assets.py init --from <現有活動資料夾> --name YYYYMMDD_event_name`，繼承相同玩法的完整素材槽位；不要手動只複製幾張圖。
+- 圖片／音樂／音效／視覺特效／3D 分開為 `assets/images`、`music`、`sounds`、`effects`、`3d`。正式檔名為 `活動名稱_IMG001_用途.webp` 等固定分類編號；source 用相同五類收納可編輯原稿、序列幀、母帶與授權。
+- `event/ASSET_MANIFEST.json` 是唯一登錄資料；素材用途、尺寸、透明、時間與程式引用皆登記，再用 `catalog` 產生清單、`check` 檢查遺漏與額外檔案。新素材接續編號，既有編號不重排。
+- 舊版本由 Git 回溯，不保留 alternatives、測試截圖、快取及過期一次性產圖工具。無模型時不建立空 GLB，明確記錄程式建立幾何的來源。
+- 同玩法換圖必須保持尺寸、透明區、錨點、UV、動畫時間；色票另由主題 CSS 管理。改幾何、骨架或玩法不能只換圖。
 
 ## 第 1 步：mock up（先能玩、先能看）
 
