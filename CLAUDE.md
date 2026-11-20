@@ -208,3 +208,7 @@ localStorage 為同源同步（不受資料夾路徑影響），改動路徑時�
 ## 跨 repo 素材規範
 
 素材分類、前綴編號、原稿／正式交付分離、清理與相容路徑，統一遵守 `docs/ASSET_STANDARD.md`；repo 層級清單為 `ASSET_MANIFEST.json`，活動子清單仍由 event-assets.py 管理，不重複登錄。
+
+## Claude／Codex 接手與交接
+
+開工前先讀根目錄 `HANDOFF.md` 與 `AGENTS.md`，核對分支、未提交差異及遠端；依交接文件分工，避免覆蓋另一位協作者。每次工作結束必須更新 HANDOFF.md 的改動範圍、程式提交、驗證結果、發布狀態、未驗證項目及下一步；純文件工作不重跑全站 UI。

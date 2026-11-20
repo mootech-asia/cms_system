@@ -44,3 +44,7 @@ https://mootech-asia.github.io/cms_system/
 - [素材編號、用途與規格清單](docs/ASSETS.md)
 - 檢查：`python3 tools/assets.py check`；更新清單：`python3 tools/assets.py catalog`。
 - 新功能製作清單：`python3 tools/assets.py brief --name 功能英文名稱`，有既有玩法範本時優先沿用範本。
+
+## 協作與交接
+
+Codex／Claude 接手請先讀 [CLAUDE.md](CLAUDE.md)、[AGENTS.md](AGENTS.md) 與 [HANDOFF.md](HANDOFF.md)。每次工作完成後更新交接紀錄、驗證範圍、發布狀態及待辦，避免依賴個別對話記憶。
