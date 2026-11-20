@@ -40,11 +40,51 @@
   var resultFinish = null;
   var spinTimer = null;
   var resultTimer = null;
+  var resultPending = false;
+  var resultArtCache = {};
+
+  function loadResultArt(src, priority) {
+    if (!src) return Promise.resolve(true);
+    var url = new URL(src, document.baseURI).href;
+    var entry = resultArtCache[url];
+    if (!entry || entry.failed) {
+      var image = new Image();
+      entry = { image: image, failed: false };
+      resultArtCache[url] = entry;
+      entry.promise = new Promise(function (resolve) {
+        image.onload = function () {
+          var decoded = image.decode ? image.decode() : Promise.resolve();
+          decoded.then(function () { resolve(true); }, function () { entry.failed = true; resolve(false); });
+        };
+        image.onerror = function () { entry.failed = true; resolve(false); };
+      });
+      image.decoding = 'async';
+      image.fetchPriority = priority;
+      image.src = url;
+    } else entry.image.fetchPriority = priority;
+    return entry.promise;
+  }
+
+  function prepareResultArt(priority, prize) {
+    if (prize && prize.icon) loadResultArt(prize.icon, priority);
+    return Promise.all([
+      loadResultArt(pick(cfg.images.modalBg), priority),
+      loadResultArt(pick(cfg.images.btnPrimary), priority)
+    ]).then(function (ready) { return ready.every(Boolean); });
+  }
+
+  function waitForResultArt(prize) {
+    return new Promise(function (resolve) {
+      var timer = setTimeout(function () { resolve(false); }, 5000);
+      prepareResultArt('high', prize).then(function (ready) { clearTimeout(timer); resolve(ready); });
+    });
+  }
 
   function autoCount() { return Math.min(10, Math.max(0, Math.trunc(player.chances))); }
 
   function renderAutoControls() {
-    $('btnAutoSpin').disabled = spinning || !modal.hidden || player.chances <= 0 || !n;
+    btnSpin.classList.toggle('is-disabled', resultPending || player.chances <= 0 || !n);
+    $('btnAutoSpin').disabled = spinning || resultPending || !modal.hidden || player.chances <= 0 || !n;
     $('btnAutoSpin').textContent = autoResults && spinning
       ? t('auto.progress', { n: autoResults.length + 1, total: autoTotal }) : t('auto.start', { n: autoCount() });
     $('btnSkipSpin').hidden = false;
@@ -52,7 +92,7 @@
   }
 
   function autoSpin() {
-    if (spinning || !modal.hidden || player.chances <= 0 || !n) return;
+    if (spinning || resultPending || !modal.hidden || player.chances <= 0 || !n) return;
     autoResults = [];
     autoTotal = autoCount();
     autoRemaining = autoTotal;
@@ -210,7 +250,7 @@
   function renderChances() {
     $('chances').textContent = player.chances;
     renderAutoControls();
-    btnSpin.classList.toggle('is-disabled', player.chances <= 0 || !n);
+    btnSpin.classList.toggle('is-disabled', resultPending || player.chances <= 0 || !n);
   }
 
   function renderAssetLabels() {
@@ -349,10 +389,11 @@
   }
 
   function spin(fromAuto) {
-    if (spinning || !modal.hidden || (autoResults && fromAuto !== true)) return;
+    if (spinning || resultPending || !modal.hidden || (autoResults && fromAuto !== true)) return;
     if (!n) { showToast(t('toast.noPrizes')); return; }
     if (player.chances <= 0) { showToast(t('toast.noChances')); return; }
 
+    prepareResultArt('high');
     if (!autoFast) pressFeedback();
     var idx = pickIndex();
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -435,12 +476,19 @@
     $('resultName').textContent = pick(lastPrize.name);
   }
 
-  function openModal(prize) {
+  async function openModal(prize) {
+    resultPending = true;
+    btnSpin.setAttribute('aria-busy', 'true');
+    renderAutoControls();
+    var ready = await waitForResultArt(prize);
+    modal.querySelector('.ev-modal-box').classList.toggle('is-art-fallback', !ready);
     lastPrize = prize;
     var icon = $('resultIcon');
     icon.hidden = !!autoResults || !prize.icon;
     if (prize.icon) icon.src = prize.icon;
     renderModal();
+    resultPending = false;
+    btnSpin.removeAttribute('aria-busy');
     modal.hidden = false;
     renderAutoControls();
     Sound.reward(autoResults ? !autoResults.some(function (result) { return !result.isLose; }) : prize.isLose);
@@ -544,7 +592,7 @@
     renderLabelToggle();
   });
   $('btnReset').addEventListener('click', function () {
-    if (spinning) return;
+    if (spinning || resultPending) return;
     player = freshPlayer();
     player.chances = cfg.mockResetSpins;
     savePlayer();
@@ -566,7 +614,7 @@
     return list;
   }
   function setPrizeCount(count, silent) {
-    if (!basePrizes.length || spinning) return;
+    if (!basePrizes.length || spinning || resultPending) return;
     var lim = cfg.prizeLimits;
     if (count < lim.min || count > lim.max) {
       if (!silent) showToast(t('toast.prizeLimit', { min: lim.min, max: lim.max }));
@@ -653,6 +701,7 @@
       clearTimeout(deadline);
       overlay.hidden = true;
       document.body.classList.remove('is-loading');
+      prepareResultArt('low');
       if (window.requestIdleCallback) requestIdleCallback(Sound.preloadFeedback, { timeout: 3000 });
       else setTimeout(Sound.preloadFeedback, 500);
       // Start the first animation after the stage is usable, then warm later states serially.

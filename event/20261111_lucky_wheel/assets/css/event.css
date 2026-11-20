@@ -1032,3 +1032,8 @@ html { touch-action: manipulation; }
 .ev-auto-controls .ev-btn:disabled { opacity:.6; cursor:default; }
 .ev-auto-results { position:absolute; inset:29% 12% 29%; overflow:auto; margin:0; padding:0 0 0 1.8em; text-align:start; color:var(--ev-color-text); font-size:14px; line-height:1.5; }
 .ev-auto-results li { padding:var(--ev-space-1); overflow-wrap:anywhere; }
+
+/* A failed or stalled image must retain a complete, readable result panel. */
+.ev-modal-box.is-art-fallback { background-image:none !important; background-color:var(--ev-color-surface); border:2px solid var(--ev-color-border); border-radius:var(--ev-radius); }
+.ev-modal-box.is-art-fallback .ev-modal-title { color:var(--ev-color-text); }
+.ev-modal-box.is-art-fallback .ev-btn { background-color:var(--ev-color-primary); border-radius:var(--ev-radius-pill); }
