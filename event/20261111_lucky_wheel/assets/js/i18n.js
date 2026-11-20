@@ -23,9 +23,9 @@ window.EventI18n = (function () {
     'records.previous': { en: 'Previous', ko: '이전', th: 'ก่อนหน้า', zh: '上一頁' },
     'records.next': { en: 'Next', ko: '다음', th: 'ถัดไป', zh: '下一頁' },
 
-    'auto.start': { en: 'Auto ×10', ko: '자동 ×10', th: 'อัตโนมัติ ×10', zh: '自動轉 10 次' },
+    'auto.start': { en: 'Auto ×{n}', ko: '자동 ×{n}', th: 'อัตโนมัติ ×{n}', zh: '自動轉 {n} 次' },
     'auto.skip': { en: 'Skip', ko: '건너뛰기', th: 'ข้าม', zh: '略過動畫' },
-    'auto.progress': { en: 'Auto {n} / 10', ko: '자동 {n} / 10', th: 'อัตโนมัติ {n} / 10', zh: '自動轉 {n} / 10' },
+    'auto.progress': { en: 'Auto {n} / {total}', ko: '자동 {n} / {total}', th: 'อัตโนมัติ {n} / {total}', zh: '自動轉 {n} / {total}' },
     'auto.results': { en: '{n} spin results', ko: '{n}회 결과', th: 'ผลหมุน {n} ครั้ง', zh: '{n} 次抽獎結果' },
     'loading.scene': {"en": "The stage is coming to life", "ko": "무대가 준비되고 있어요", "th": "เวทีกำลังเปิดม่าน", "zh": "舞台即將揭幕"},
     'lang.aria': { en: 'Language', ko: '언어', th: 'ภาษา', zh: '語言' },

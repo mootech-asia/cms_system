@@ -34,16 +34,19 @@
   var lastPrize = null;
   var autoResults = null;
   var autoRemaining = 0;
+  var autoTotal = 0;
   var autoFast = false;
   var spinFinish = null;
   var resultFinish = null;
   var spinTimer = null;
   var resultTimer = null;
 
+  function autoCount() { return Math.min(10, Math.max(0, Math.trunc(player.chances))); }
+
   function renderAutoControls() {
     $('btnAutoSpin').disabled = spinning || !modal.hidden || player.chances <= 0 || !n;
     $('btnAutoSpin').textContent = autoResults && spinning
-      ? t('auto.progress', { n: autoResults.length + 1 }) : t('auto.start');
+      ? t('auto.progress', { n: autoResults.length + 1, total: autoTotal }) : t('auto.start', { n: autoCount() });
     $('btnSkipSpin').hidden = false;
     $('btnSkipSpin').disabled = !spinning;
   }
@@ -51,7 +54,8 @@
   function autoSpin() {
     if (spinning || !modal.hidden || player.chances <= 0 || !n) return;
     autoResults = [];
-    autoRemaining = 10;
+    autoTotal = autoCount();
+    autoRemaining = autoTotal;
     autoFast = false;
     spin(true);
   }

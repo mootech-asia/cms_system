@@ -53,21 +53,29 @@ async function pageFor(browser, event, { chances=20, lose=false, duration=80, lo
    for(const [options,count,left] of [
      [{duration:5000},10,10],
      [{duration:5000,chances:3},3,0],
-     [{duration:5000,chances:1,lose:true},10,1]
+     [{duration:5000,chances:7},7,0],
+     [{duration:5000,chances:12},10,2],
+     [{duration:5000,chances:1,lose:true},1,1]
    ]) {
      const {page:q,errors}=await pageFor(browser,event,options);
+     assert.equal(await q.locator('#btnAutoSpin').innerText(),'Auto ×'+Math.min(10,options.chances??20));
      await q.locator('#btnAutoSpin').click();
+     assert.match(await q.locator('#btnAutoSpin').innerText(),new RegExp(' / '+count+'$'));
      await q.locator('#btnSkipSpin').click();
      await q.locator('#resultModal').waitFor({state:'visible',timeout:5000});
      assert.equal(await q.locator('#autoResults li').count(),count);
      assert.equal(await q.locator('.ev-record').count(),count);
      assert.equal(await q.locator('#chances').innerText(),String(left));
+     assert.equal(await q.locator('#btnAutoSpin').innerText(),'Auto ×'+Math.min(10,left));
+     await q.locator('#btnClose').click();
+     assert.equal(await q.locator('#btnAutoSpin').isDisabled(),left===0);
      assert.deepEqual(errors,[]); await q.close();
    }
-   console.log('PASS',event,'Skip completes remaining draws; insufficient chances; Again capped at 10');
+   console.log('PASS',event,'Skip completes remaining draws; insufficient chances; Again does not extend the starting target');
    for(const chances of [0]) {
      const {page:q}=await pageFor(browser,event,{chances});
-     assert(await q.locator('#btnAutoSpin').isDisabled());await q.close();
+     assert(await q.locator('#btnAutoSpin').isDisabled());
+     assert.equal(await q.locator('#btnAutoSpin').innerText(),'Auto ×0');await q.close();
    }
    const {page:q}=await pageFor(browser,event,{empty:true});
    assert(await q.locator('#btnAutoSpin').isDisabled());await q.close();
