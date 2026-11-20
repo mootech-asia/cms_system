@@ -39,51 +39,51 @@
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | A01 | stage-bg | 750×1000 | `assets/images/scene/lucky_wheel_IMG026_stage-bg.webp` | d5de138 | ☐ | P0 |
-| ☑ | A02 | stage-floor | 750×140 | `assets/images/scene/lucky_wheel_IMG027_stage-floor.webp` | d5de138 | ☐ | P0 |
-| ☑ | A03 | title-en | 690×240 | `assets/images/title/lucky_wheel_IMG029_title-en.webp` | d5de138 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
-| ☑ | A04 | title-ko | 690×240 | `assets/images/title/lucky_wheel_IMG030_title-ko.webp` | d5de138 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
-| ☑ | A05 | title-th | 690×240 | `assets/images/title/lucky_wheel_IMG031_title-th.webp` | d5de138 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
-| ☑ | A06 | spotlight | 260×900 | `assets/effects/lucky_wheel_VFX004_spotlight.webp` | d5de138 | ✗ 退回重做：硬邊平面楔形，要做有煙霧體積感的光束（見需求單「舞台燈光」） | P0 |
-| ☑ | A07 | wheel-frame | 680×680 | `assets/images/ui/lucky_wheel_IMG033_wheel-frame.webp` | d5de138 | ☐ | P0 |
-| ☑ | A08 | wheel-gloss | 600×600 | `assets/effects/lucky_wheel_VFX006_wheel-gloss.svg` | d5de138 | ☐ | P1 |
-| ☑ | A09 | pointer | 120×160 | `assets/images/ui/lucky_wheel_IMG024_pointer.webp` | d5de138 | ☐ | P0 |
-| ☑ | A10 | btn-go | 200×200 | `assets/images/ui/lucky_wheel_IMG001_btn-go.webp` | d5de138 | ☐ | P0 |
-| ☑ | A11 | modal-bg | 600×760 | `assets/images/ui/lucky_wheel_IMG022_modal-bg.webp` | d5de138 | ☐ | P1 |
-| ☑ | A12 | btn-primary | 400×110 | `assets/images/ui/lucky_wheel_IMG002_btn-primary.webp` | d5de138 | ☐ | P1 |
+| ☑ | A01 | stage-bg | 750×1000 | `assets/images/scene/lucky_wheel_IMG026_stage-bg.webp` | afcb737 | ☐ | P0 |
+| ☑ | A02 | stage-floor | 750×140 | `assets/images/scene/lucky_wheel_IMG027_stage-floor.webp` | afcb737 | ☐ | P0 |
+| ☑ | A03 | title-en | 690×240 | `assets/images/title/lucky_wheel_IMG029_title-en.webp` | afcb737 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A04 | title-ko | 690×240 | `assets/images/title/lucky_wheel_IMG030_title-ko.webp` | afcb737 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A05 | title-th | 690×240 | `assets/images/title/lucky_wheel_IMG031_title-th.webp` | afcb737 | ✗ 退回重做：只是系統字打在招牌上，要做成主視覺 Logo 字（見需求單「主視覺文字」） | P0 |
+| ☑ | A06 | spotlight | 260×900 | `assets/effects/lucky_wheel_VFX004_spotlight.webp` | afcb737 | ✗ 退回重做：硬邊平面楔形，要做有煙霧體積感的光束（見需求單「舞台燈光」） | P0 |
+| ☑ | A07 | wheel-frame | 680×680 | `assets/images/ui/lucky_wheel_IMG033_wheel-frame.webp` | afcb737 | ☐ | P0 |
+| ☑ | A08 | wheel-gloss | 600×600 | `assets/effects/lucky_wheel_VFX006_wheel-gloss.svg` | afcb737 | ☐ | P1 |
+| ☑ | A09 | pointer | 120×160 | `assets/images/ui/lucky_wheel_IMG024_pointer.webp` | afcb737 | ☐ | P0 |
+| ☑ | A10 | btn-go | 200×200 | `assets/images/ui/lucky_wheel_IMG001_btn-go.webp` | afcb737 | ☐ | P0 |
+| ☑ | A11 | modal-bg | 600×760 | `assets/images/ui/lucky_wheel_IMG022_modal-bg.webp` | afcb737 | ☐ | P1 |
+| ☑ | A12 | btn-primary | 400×110 | `assets/images/ui/lucky_wheel_IMG002_btn-primary.webp` | afcb737 | ☐ | P1 |
 | ☐ | A13 | icon-sound-on | 已淘汰（暫緩：歷史見 Git 00789f8） | `git:00789f8` | | ☐ | P2 |
 | ☐ | A14 | icon-sound-off | 已淘汰（暫緩：歷史見 Git 00789f8） | `git:00789f8` | | ☐ | P2 |
-| ☑ | A15 | icon-cash | 160×160 | `assets/images/icons/lucky_wheel_IMG008_icon-cash.svg` | d5de138 | ☐ | P2 |
-| ☑ | A16 | icon-coin | 160×160 | `assets/images/icons/lucky_wheel_IMG009_icon-coin.svg` | d5de138 | ☐ | P2 |
-| ☑ | A17 | icon-gift | 160×160 | `assets/images/icons/lucky_wheel_IMG010_icon-gift.svg` | d5de138 | ☐ | P2 |
-| ☑ | A18 | icon-spin | 160×160 | `assets/images/icons/lucky_wheel_IMG013_icon-spin.svg` | d5de138 | ☐ | P2 |
-| ☑ | A19 | icon-bonus | 160×160 | `assets/images/icons/lucky_wheel_IMG007_icon-bonus.svg` | d5de138 | ☐ | P2 |
-| ☑ | A20 | icon-points | 160×160 | `assets/images/icons/lucky_wheel_IMG011_icon-points.svg` | d5de138 | ☐ | P2 |
-| ☑ | A21 | icon-thanks | 160×160 | `assets/images/icons/lucky_wheel_IMG014_icon-thanks.svg` | d5de138 | ☐ | P2 |
+| ☑ | A15 | icon-cash | 160×160 | `assets/images/icons/lucky_wheel_IMG008_icon-cash.svg` | afcb737 | ☐ | P2 |
+| ☑ | A16 | icon-coin | 160×160 | `assets/images/icons/lucky_wheel_IMG009_icon-coin.svg` | afcb737 | ☐ | P2 |
+| ☑ | A17 | icon-gift | 160×160 | `assets/images/icons/lucky_wheel_IMG010_icon-gift.svg` | afcb737 | ☐ | P2 |
+| ☑ | A18 | icon-spin | 160×160 | `assets/images/icons/lucky_wheel_IMG013_icon-spin.svg` | afcb737 | ☐ | P2 |
+| ☑ | A19 | icon-bonus | 160×160 | `assets/images/icons/lucky_wheel_IMG007_icon-bonus.svg` | afcb737 | ☐ | P2 |
+| ☑ | A20 | icon-points | 160×160 | `assets/images/icons/lucky_wheel_IMG011_icon-points.svg` | afcb737 | ☐ | P2 |
+| ☑ | A21 | icon-thanks | 160×160 | `assets/images/icons/lucky_wheel_IMG014_icon-thanks.svg` | afcb737 | ☐ | P2 |
 | ☐ | A22 | stage-bg-desktop | 已淘汰（暫緩：歷史見 Git 00789f8） | `git:00789f8` | | 已停用（只用 H5 寬度），不再需要 | P0 |
-| ☑ | A23 | info-bg | 750×750 | `assets/images/scene/lucky_wheel_IMG015_info-bg.webp` | d5de138 | ☐ | P1 |
-| ☑ | A24 | period-badge | 480×64 | `assets/images/ui/lucky_wheel_IMG023_period-badge.webp` | d5de138 | ☐ | P1 |
-| ☑ | A25 | chances-badge | 360×88 | `assets/images/ui/lucky_wheel_IMG005_chances-badge.webp` | d5de138 | ☐ | P1 |
-| ☑ | A26 | card-frame | 120×120 | `assets/images/ui/lucky_wheel_IMG003_card-frame.webp` | d5de138 | ☐ | P1 |
-| ☑ | A27 | card-title | 400×72 | `assets/images/ui/lucky_wheel_IMG004_card-title.webp` | d5de138 | ☐ | P1 |
-| ☑ | A28 | footer-deco | 750×160 | `assets/images/scene/lucky_wheel_IMG006_footer-deco.webp` | d5de138 | ☐ | P2 |
+| ☑ | A23 | info-bg | 750×750 | `assets/images/scene/lucky_wheel_IMG015_info-bg.webp` | afcb737 | ☐ | P1 |
+| ☑ | A24 | period-badge | 480×64 | `assets/images/ui/lucky_wheel_IMG023_period-badge.webp` | afcb737 | ☐ | P1 |
+| ☑ | A25 | chances-badge | 360×88 | `assets/images/ui/lucky_wheel_IMG005_chances-badge.webp` | afcb737 | ☐ | P1 |
+| ☑ | A26 | card-frame | 120×120 | `assets/images/ui/lucky_wheel_IMG003_card-frame.webp` | afcb737 | ☐ | P1 |
+| ☑ | A27 | card-title | 400×72 | `assets/images/ui/lucky_wheel_IMG004_card-title.webp` | afcb737 | ☐ | P1 |
+| ☑ | A28 | footer-deco | 750×160 | `assets/images/scene/lucky_wheel_IMG006_footer-deco.webp` | afcb737 | ☐ | P2 |
 | ☐ | A29 | icon-share | 已淘汰（暫緩：歷史見 Git 00789f8） | `git:00789f8` | | ☐ | P2 |
-| ☑ | A30 | share-preview | 1200×630 | `assets/images/share/lucky_wheel_IMG025_share-preview.jpg` | d5de138 | 主標定稿後要換新主標重出 | P1 |
+| ☑ | A30 | share-preview | 1200×630 | `assets/images/share/lucky_wheel_IMG025_share-preview.jpg` | afcb737 | 主標定稿後要換新主標重出 | P1 |
 | ☐ | A31 | title 原始檔（PSD／AI／Figma） | 暫緩：目前忽略不做，不列待辦 | `source/title-source.md` | | ☐ | P3 |
-| ☑ | A32 | wheel-stand | 400×600 | `assets/images/ui/lucky_wheel_IMG034_wheel-stand.webp` | d5de138 | ☐ | P0 |
-| ☑ | A33 | ticker-bar | 690×64 | `assets/images/ui/lucky_wheel_IMG028_ticker-bar.webp` | d5de138 | ☐ | P1 |
-| ☑ | A34 | light-pool | 600×220 | `assets/effects/lucky_wheel_VFX003_light-pool.webp` | d5de138 | ☐ | P0 |
-| ☑ | A35 | stage-vignette | 750×1000 | `assets/effects/lucky_wheel_VFX005_stage-vignette.webp` | d5de138 | ☐ | P0 |
-| ☑ | A37 | bulb-on | 48×48 | `assets/effects/lucky_wheel_VFX002_bulb-on.png` | d5de138 | ☐ | P0 |
-| ☑ | A38 | bulb-off | 48×48 | `assets/effects/lucky_wheel_VFX001_bulb-off.png` | d5de138 | ☐ | P0 |
-| ☑ | A39 | icon-rotate | 160×160 | `assets/images/icons/lucky_wheel_IMG012_icon-rotate.webp` | d5de138 | ☐ | P2 |
+| ☑ | A32 | wheel-stand | 400×600 | `assets/images/ui/lucky_wheel_IMG034_wheel-stand.webp` | afcb737 | ☐ | P0 |
+| ☑ | A33 | ticker-bar | 690×64 | `assets/images/ui/lucky_wheel_IMG028_ticker-bar.webp` | afcb737 | ☐ | P1 |
+| ☑ | A34 | light-pool | 600×220 | `assets/effects/lucky_wheel_VFX003_light-pool.webp` | afcb737 | ☐ | P0 |
+| ☑ | A35 | stage-vignette | 750×1000 | `assets/effects/lucky_wheel_VFX005_stage-vignette.webp` | afcb737 | ☐ | P0 |
+| ☑ | A37 | bulb-on | 48×48 | `assets/effects/lucky_wheel_VFX002_bulb-on.png` | afcb737 | ☐ | P0 |
+| ☑ | A38 | bulb-off | 48×48 | `assets/effects/lucky_wheel_VFX001_bulb-off.png` | afcb737 | ☐ | P0 |
+| ☑ | A39 | icon-rotate | 160×160 | `assets/images/icons/lucky_wheel_IMG012_icon-rotate.webp` | afcb737 | ☐ | P2 |
 | ☐ | A40 | icon-tap | 已淘汰（暫緩：歷史見 Git 00789f8） | `git:00789f8` | | ☐ | P2 |
 
 ## B. 色票（1）
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | cf1bb1a | ☐ | P0 |
+| ☑ | B01 | 扇區色 6 組（底色＋文字色）＋分隔線色 | — | `assets/css/event.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | afcb737 | ☐ | P0 |
 
 ## C. 吉祥物角色設定圖（1，第一階段）
 
@@ -131,7 +131,7 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | ecfc9c9 | ☐ | P2 |
+| ☑ | F01 | `config.js` 的 images／mascot 路徑改成實際交付的檔名，前台實際載入無破圖 | — | `assets/js/config.js` | afcb737 | ☐ | P2 |
 
 ## G. 音效（選配 5）
 
@@ -182,5 +182,5 @@
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | L01 | 主題 loading 器物 | 480×480 | `assets/images/ui/lucky_wheel_IMG016_loading-emblem.webp` | d5de138 | ☐ | P1 |
-| ☑ | L02 | Loading 原稿 | （人工） | `source/images/lucky_wheel_SRC001_loading/emblem-original.png` | d5de138 | ☐ | P1 |
+| ☑ | L01 | 主題 loading 器物 | 480×480 | `assets/images/ui/lucky_wheel_IMG016_loading-emblem.webp` | afcb737 | ☐ | P1 |
+| ☑ | L02 | Loading 原稿 | （人工） | `source/images/lucky_wheel_SRC001_loading/emblem-original.png` | afcb737 | ☐ | P1 |

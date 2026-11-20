@@ -3245,8 +3245,9 @@
   ],
   "cleanup": {
     "baselineCommit": "00789f8",
-    "removedFiles": 2411,
-    "note": "移除淘汰版本、舊驗證產物、過期一次性產圖工具與搬移舊表；原檔由 Git 歷史保留。"
+    "removedFiles": 2413,
+    "note": "移除淘汰版本、舊驗證產物、過期一次性產圖工具與搬移舊表；原檔由 Git 歷史保留。",
+    "removedBytes": 707933675
   },
   "procedural": [
     {

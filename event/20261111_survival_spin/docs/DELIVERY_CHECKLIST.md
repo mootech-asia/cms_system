@@ -22,41 +22,41 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | S01 | title-en | 690×240 | `assets/images/title/survival_spin_IMG028_title-en.webp` | d5de138 | ☐ | P0 |
-| ☑ | S02 | title-ko | 690×240 | `assets/images/title/survival_spin_IMG029_title-ko.webp` | d5de138 | ☐ | P0 |
-| ☑ | S03 | title-th | 690×240 | `assets/images/title/survival_spin_IMG030_title-th.webp` | d5de138 | ☐ | P0 |
-| ☑ | S04 | stage-bg | 750×1000 | `assets/images/scene/survival_spin_IMG025_stage-bg.webp` | d5de138 | ☐ | P0 |
-| ☑ | S05 | stage-floor | 750×140 | `assets/images/scene/survival_spin_IMG026_stage-floor.webp` | d5de138 | ☐ | P0 |
-| ☑ | S06 | wheel-frame | 680×680 | `assets/images/ui/survival_spin_IMG031_wheel-frame.webp` | d5de138 | ☐ | P0 |
-| ☑ | S07 | wheel-stand | 400×600 | `assets/images/ui/survival_spin_IMG032_wheel-stand.webp` | d5de138 | ☐ | P0 |
-| ☑ | S08 | pointer | 120×160 | `assets/images/ui/survival_spin_IMG023_pointer.webp` | d5de138 | ☐ | P0 |
-| ☑ | S09 | btn-go | 200×200 | `assets/images/ui/survival_spin_IMG001_btn-go.webp` | d5de138 | ☐ | P0 |
-| ☑ | S10 | spotlight | 260×900 | `assets/effects/survival_spin_VFX004_spotlight.webp` | d5de138 | ☐ | P0 |
-| ☑ | S11 | light-pool | 600×220 | `assets/effects/survival_spin_VFX003_light-pool.webp` | d5de138 | ☐ | P0 |
-| ☑ | S12 | stage-vignette | 750×1000 | `assets/effects/survival_spin_VFX005_stage-vignette.webp` | d5de138 | ☐ | P0 |
-| ☑ | S13 | bulb-on | 48×48 | `assets/effects/survival_spin_VFX002_bulb-on.webp` | d5de138 | ☐ | P0 |
-| ☑ | S14 | bulb-off | 48×48 | `assets/effects/survival_spin_VFX001_bulb-off.webp` | d5de138 | ☐ | P0 |
-| ☑ | S15 | modal-bg | 600×760 | `assets/images/ui/survival_spin_IMG021_modal-bg.webp` | d5de138 | ☐ | P1 |
-| ☑ | S16 | btn-primary | 400×110 | `assets/images/ui/survival_spin_IMG002_btn-primary.webp` | d5de138 | ☐ | P1 |
-| ☑ | S17 | period-badge | 480×64 | `assets/images/ui/survival_spin_IMG022_period-badge.webp` | d5de138 | ☐ | P1 |
-| ☑ | S18 | chances-badge | 360×88 | `assets/images/ui/survival_spin_IMG005_chances-badge.webp` | d5de138 | ☐ | P1 |
-| ☑ | S19 | ticker-bar | 690×64 | `assets/images/ui/survival_spin_IMG027_ticker-bar.webp` | d5de138 | ☐ | P1 |
-| ☑ | S20 | card-frame | 120×120 | `assets/images/ui/survival_spin_IMG003_card-frame.webp` | d5de138 | ☐ | P1 |
-| ☑ | S21 | card-title | 400×72 | `assets/images/ui/survival_spin_IMG004_card-title.webp` | d5de138 | ☐ | P1 |
-| ☑ | S22 | info-bg | 750×750 | `assets/images/scene/survival_spin_IMG015_info-bg.webp` | d5de138 | ☐ | P1 |
-| ☑ | S23 | footer-deco | 750×160 | `assets/images/scene/survival_spin_IMG006_footer-deco.webp` | d5de138 | ☐ | P1 |
+| ☑ | S01 | title-en | 690×240 | `assets/images/title/survival_spin_IMG028_title-en.webp` | afcb737 | ☐ | P0 |
+| ☑ | S02 | title-ko | 690×240 | `assets/images/title/survival_spin_IMG029_title-ko.webp` | afcb737 | ☐ | P0 |
+| ☑ | S03 | title-th | 690×240 | `assets/images/title/survival_spin_IMG030_title-th.webp` | afcb737 | ☐ | P0 |
+| ☑ | S04 | stage-bg | 750×1000 | `assets/images/scene/survival_spin_IMG025_stage-bg.webp` | afcb737 | ☐ | P0 |
+| ☑ | S05 | stage-floor | 750×140 | `assets/images/scene/survival_spin_IMG026_stage-floor.webp` | afcb737 | ☐ | P0 |
+| ☑ | S06 | wheel-frame | 680×680 | `assets/images/ui/survival_spin_IMG031_wheel-frame.webp` | afcb737 | ☐ | P0 |
+| ☑ | S07 | wheel-stand | 400×600 | `assets/images/ui/survival_spin_IMG032_wheel-stand.webp` | afcb737 | ☐ | P0 |
+| ☑ | S08 | pointer | 120×160 | `assets/images/ui/survival_spin_IMG023_pointer.webp` | afcb737 | ☐ | P0 |
+| ☑ | S09 | btn-go | 200×200 | `assets/images/ui/survival_spin_IMG001_btn-go.webp` | afcb737 | ☐ | P0 |
+| ☑ | S10 | spotlight | 260×900 | `assets/effects/survival_spin_VFX004_spotlight.webp` | afcb737 | ☐ | P0 |
+| ☑ | S11 | light-pool | 600×220 | `assets/effects/survival_spin_VFX003_light-pool.webp` | afcb737 | ☐ | P0 |
+| ☑ | S12 | stage-vignette | 750×1000 | `assets/effects/survival_spin_VFX005_stage-vignette.webp` | afcb737 | ☐ | P0 |
+| ☑ | S13 | bulb-on | 48×48 | `assets/effects/survival_spin_VFX002_bulb-on.webp` | afcb737 | ☐ | P0 |
+| ☑ | S14 | bulb-off | 48×48 | `assets/effects/survival_spin_VFX001_bulb-off.webp` | afcb737 | ☐ | P0 |
+| ☑ | S15 | modal-bg | 600×760 | `assets/images/ui/survival_spin_IMG021_modal-bg.webp` | afcb737 | ☐ | P1 |
+| ☑ | S16 | btn-primary | 400×110 | `assets/images/ui/survival_spin_IMG002_btn-primary.webp` | afcb737 | ☐ | P1 |
+| ☑ | S17 | period-badge | 480×64 | `assets/images/ui/survival_spin_IMG022_period-badge.webp` | afcb737 | ☐ | P1 |
+| ☑ | S18 | chances-badge | 360×88 | `assets/images/ui/survival_spin_IMG005_chances-badge.webp` | afcb737 | ☐ | P1 |
+| ☑ | S19 | ticker-bar | 690×64 | `assets/images/ui/survival_spin_IMG027_ticker-bar.webp` | afcb737 | ☐ | P1 |
+| ☑ | S20 | card-frame | 120×120 | `assets/images/ui/survival_spin_IMG003_card-frame.webp` | afcb737 | ☐ | P1 |
+| ☑ | S21 | card-title | 400×72 | `assets/images/ui/survival_spin_IMG004_card-title.webp` | afcb737 | ☐ | P1 |
+| ☑ | S22 | info-bg | 750×750 | `assets/images/scene/survival_spin_IMG015_info-bg.webp` | afcb737 | ☐ | P1 |
+| ☑ | S23 | footer-deco | 750×160 | `assets/images/scene/survival_spin_IMG006_footer-deco.webp` | afcb737 | ☐ | P1 |
 | ☐ | S24 | icon-sound-on | 已淘汰（暫緩：歷史見 Git 00789f8） | `git:00789f8` | | ☐ | P2 |
 | ☐ | S25 | icon-sound-off | 已淘汰（暫緩：歷史見 Git 00789f8） | `git:00789f8` | | ☐ | P2 |
 | ☐ | S26 | icon-share | 已淘汰（暫緩：歷史見 Git 00789f8） | `git:00789f8` | | ☐ | P2 |
-| ☑ | S27 | icon-rotate | 160×160 | `assets/images/icons/survival_spin_IMG012_icon-rotate.webp` | d5de138 | ☐ | P2 |
+| ☑ | S27 | icon-rotate | 160×160 | `assets/images/icons/survival_spin_IMG012_icon-rotate.webp` | afcb737 | ☐ | P2 |
 | ☐ | S45 | icon-tap | 已淘汰（暫緩：歷史見 Git 00789f8） | `git:00789f8` | | ☐ | P2 |
-| ☑ | S28 | share-preview | 1200×630 | `assets/images/share/survival_spin_IMG024_share-preview.jpg` | d5de138 | ☐ | P1 |
+| ☑ | S28 | share-preview | 1200×630 | `assets/images/share/survival_spin_IMG024_share-preview.jpg` | afcb737 | ☐ | P1 |
 
 ## B. 色票（1）
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | S29 | 扇區色 6 組（底色＋文字色） | — | `assets/css/skin.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | d5de138 | ☐ | P0 |
+| ☑ | S29 | 扇區色 6 組（底色＋文字色） | — | `assets/css/skin.css`（`--ev-wheel-1`～`6`、`--ev-wheel-N-text`） | afcb737 | ☐ | P0 |
 
 ## C. 兔比工作人員造型與動態（14）
 
@@ -81,7 +81,7 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 
 | 提交 | # | 檔名 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | S44 | `assets/js/config.js` 的 skins.survival 圖片／吉祥物路徑改成實際交付的檔名，新活動入口無破圖 | — | `assets/js/config.js` | ecfc9c9 | ☐ | P2 |
+| ☑ | S44 | `assets/js/config.js` 的 skins.survival 圖片／吉祥物路徑改成實際交付的檔名，新活動入口無破圖 | — | `assets/js/config.js` | afcb737 | ☐ | P2 |
 
 ## 備註
 
@@ -107,5 +107,5 @@ P0 主標三語＋舞台＋轉盤＋燈光＋色票 → P1 版面元件 → P2 �
 
 | 提交 | # | 項目 | 尺寸 | 交付路徑 | commit | 審核 | 優先 |
 |---|---|---|---|---|---|---|---|
-| ☑ | L01 | 主題 loading 器物 | 480×480 | `assets/images/ui/survival_spin_IMG016_loading-emblem.webp` | d5de138 | ☐ | P1 |
-| ☑ | L02 | Loading 原稿 | （人工） | `source/images/survival_spin_SRC002_loading/emblem-original.png` | d5de138 | ☐ | P1 |
+| ☑ | L01 | 主題 loading 器物 | 480×480 | `assets/images/ui/survival_spin_IMG016_loading-emblem.webp` | afcb737 | ☐ | P1 |
+| ☑ | L02 | Loading 原稿 | （人工） | `source/images/survival_spin_SRC002_loading/emblem-original.png` | afcb737 | ☐ | P1 |
