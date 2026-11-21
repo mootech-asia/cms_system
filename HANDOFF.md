@@ -107,3 +107,4 @@ Playwright 腳本需 npm 相依套件與 Chromium；以腳本內指定的瀏覽�
 - 已完成：跨 repo 標準、用途清單、缺檔／編號／指紋檢查與協作入口。現有 contract 路徑仍保留，沒有宣稱所有舊檔都已改名。
 - 本次交接補齊：本文件、Claude 閱讀入口及每次完工更新交接的規則；本次僅修改文件，不改 runtime 或部署保護設定。
 - 前一輪有相關手機／桌機與語系操作驗證；本次未重新跑 UI／實機或後端驗收。接手改 runtime 時依上述指令與影響範圍重測，不把舊結果當成新驗收。
+- 2026-11-21／Claude：新增本週 Figma 修改單與交接包 `docs/handover/figma-changes-20261121-week.md`、`figma-handover-20261121-week.zip`（依 main `9d1bd00` 截圖：四款活動 390 寬 en、v3／v6 選單、v6 手機兩張新頁）。純文件，未改 runtime；v1.5／v2／v4／v5 選單入口未截圖。
