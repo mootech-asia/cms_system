@@ -43,8 +43,8 @@ window.EVENT_CONFIG = {
         rotateHint: 'assets/images/icons/survival_spin_IMG012_icon-rotate.webp?v=20261118-perf1',
         title: {
           en: 'assets/images/title/survival_spin_IMG028_title-en.webp',
-          ko: 'assets/images/title/survival_spin_IMG029_title-ko.webp?v=20261118-perf1',
-          th: 'assets/images/title/survival_spin_IMG030_title-th.webp?v=20261118-perf1',
+          ko: 'assets/images/title/survival_spin_IMG028_title-en.webp',
+          th: 'assets/images/title/survival_spin_IMG028_title-en.webp',
           zh: 'assets/images/title/survival_spin_IMG028_title-en.webp'
         },
         stageBg: 'assets/images/scene/survival_spin_IMG025_stage-bg.webp',

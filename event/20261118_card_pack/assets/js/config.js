@@ -43,8 +43,8 @@ window.EVENT_CONFIG = {
     infoBg: 'assets/images/scene/card_pack_IMG008_info-bg.svg?v=20261118-refine2',
     title: {
       en: 'assets/images/title/card_pack_IMG011_title-en.webp?v=20261118-refine2',
-      ko: 'assets/images/title/card_pack_IMG012_title-ko.webp?v=20261118-refine2',
-      th: 'assets/images/title/card_pack_IMG014_title-th.webp?v=20261118-refine2',
+      ko: 'assets/images/title/card_pack_IMG011_title-en.webp?v=20261118-refine2',
+      th: 'assets/images/title/card_pack_IMG011_title-en.webp?v=20261118-refine2',
       zh: 'assets/images/title/card_pack_IMG013_title-main.webp?v=20261118-refine2'
     },
     periodBadge: 'assets/images/ui/card_pack_IMG022_period-badge.webp?v=20261118-refine2',

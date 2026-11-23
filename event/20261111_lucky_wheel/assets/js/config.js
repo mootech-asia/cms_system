@@ -28,8 +28,8 @@ window.EVENT_CONFIG = {
     stageFloor: 'assets/images/scene/lucky_wheel_IMG027_stage-floor.webp',
     title: {
       en: 'assets/images/title/lucky_wheel_IMG029_title-en.webp',
-      ko: 'assets/images/title/lucky_wheel_IMG030_title-ko.webp?v=20261118-perf1',
-      th: 'assets/images/title/lucky_wheel_IMG031_title-th.webp?v=20261118-perf1',
+      ko: 'assets/images/title/lucky_wheel_IMG029_title-en.webp',
+      th: 'assets/images/title/lucky_wheel_IMG029_title-en.webp',
       zh: 'assets/images/title/lucky_wheel_IMG032_title-zh.svg'
     },
     spotlight: 'assets/effects/lucky_wheel_VFX004_spotlight.webp',
