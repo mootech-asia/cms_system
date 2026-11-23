@@ -102,6 +102,13 @@ Playwright 腳本需 npm 相依套件與 Chromium；以腳本內指定的瀏覽�
 
 ## 工作紀錄／下一步
 
+- 2026-11-23：前台各版本新增「商城」（盲盒購買頁）＋左側選單入口。分支 `claude/hopeful-galileo-kxt06l`，並已推 `main`。
+  - 範圍：v1.5／v2／v3／v4／v5／v6 的 `site/` 皆新增 `mall.html` 與左側 menu 的 Mall 項目；v2 另補 `site-mobile/mall.html`＋手機選單（v2 site/ 會把手機 UA 轉址到 site-mobile，故需對應頁）。v3 site/ 無手機轉址（響應式），v4/v5/v6 無 site-mobile，故不另做。
+  - 每版依自身設計系統與 token 製作：v2（win100 MEMBER_NAV＋data.js i18n）、v4 金／v5 橘（site.js MEMBER_NAV＋i18n.js，data-i18n）、v6（每頁烘焙 v6-sidebar 連結＋i18n.js）、v3（新 `assets/css/mall.css` 用 v3 token＋每頁 sb-item＋巢狀 t.nav.* i18n）、v1.5（JS user-sidebar Event 群組＋pointmall.svg＋扁平 nav.* i18n）。
+  - 商城內容一致：剩餘抽獎次數／紅利餘額／我的獎勵摘要＋四款盲盒（單抽/十連/超值/VIP，含單價、每日上限、高數量額外獎勵標籤、購買鍵連到既有抽獎頁 blind-box.html）。新字串四語（部分版本 zh/ko/en）翻譯齊備，預設英文介面無中文殘留。
+  - 驗證：`npm run build` 重建各版 tailwind.css 並提交；`scripts/pre-report-check.sh` PASS（工作樹乾淨、HEAD 在 origin/main、建置無差異）；`tools/assets.py check` PASS；Playwright 無頭逐版截圖目視（桌機 1440 六版＋v2 手機 390），側欄入口到位、主題一致、console 無新增實質錯誤（file:// 下的 img CORS 非實站問題）。
+  - 發布：commit cf36ab9／b2c3fbb／933d926 已上 `main`；`Deploy GitHub Pages` 最新 run [45106603696](https://github.com/mootech-asia/cms_system/actions/runs/45106603696) 結論 success。正式站各版 `.../vN/site/mall.html`。
+  - 未驗證／下一步：購買鍵目前連到既有 blind-box 抽獎頁（原型連動，非真實下單）；數字為佔位；v3 site-mobile 既有頁未加 Mall（v3 以響應式 site/ 服務手機，站內其他活動頁同樣僅存在於 site-mobile 直接網址）；完整「購買確認→多連抽動畫→我的獎勵報表」流程未做。
 - 2026-11-20：素材整理基準 [commit 0483d8e](https://github.com/mootech-asia/cms_system/commit/0483d8e2a0a2f7925aa2181b57aa09b33b91fb6d)；分支 `main`。這是程式／素材基準，不是本文件未來的最新版本號。
 - 本 repo 層級登錄 1192 項素材；[素材 CI](https://github.com/mootech-asia/cms_system/actions/runs/44700770566) 已通過。 event 子清單另行管理，不重複計入上述數量。
 - 已完成：跨 repo 標準、用途清單、缺檔／編號／指紋檢查與協作入口。現有 contract 路徑仍保留，沒有宣稱所有舊檔都已改名。
