@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CMS_Frontend_v1.5</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css?v=15" />
+    <link rel="stylesheet" href="assets/css/tailwind.css" />
+  </head>
+  <body>
+    <div class="min-h-screen pt-[var(--header-h-mobile)] pb-24 max-xl:[body.is-usercenter_&]:pt-0 xl:pt-[var(--header-h-desktop)] xl:pb-0">
+      <div data-mount="header"></div>
+      <main class="pt-0">
+        <div data-mount="user-navbar"></div>
+        <div class="grid grid-cols-1">
+          <div data-mount="user-sidebar"></div>
+          <div class="w-full bg-white overflow-x-hidden xl:ml-[260px] xl:w-[calc(100%-260px)]">
+            <div class="bg-[#f2f2f2] min-h-[calc(100vh-var(--header-h-mobile))] flex flex-col xl:min-h-[calc(100vh-var(--header-h-desktop))]">
+              <h1 class="hidden xl:block xl:h-[62px] xl:bg-white xl:text-navy xl:text-[32px] xl:font-bold xl:leading-[64px] xl:border-b xl:border-border xl:px-8 xl:mt-0 xl:mx-0 xl:mb-4" data-i18n="nav.Mall">Mall</h1>
+              <div class="max-w-[1190px] w-full mx-auto px-4 pt-3 pb-24 flex flex-col flex-1 xl:px-8 xl:pt-6 xl:pb-10">
+                <div class="flex flex-col gap-6">
+                  <p class="text-subtitle text-sm max-w-[640px]" data-i18n="nav.mallSubtitle">購買盲盒，開啟你的幸運抽獎。單次購買數量越多，額外獎勵越豐厚。</p>
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-white border border-border rounded-xl p-5"><p class="text-subtitle text-xs font-bold uppercase tracking-wide" data-i18n="nav.mallRemaining">剩餘抽獎次數</p><p class="text-navy text-2xl font-extrabold mt-1">12</p></div>
+                    <div class="bg-white border border-border rounded-xl p-5"><p class="text-subtitle text-xs font-bold uppercase tracking-wide" data-i18n="nav.mallBonusBal">紅利餘額</p><p class="text-navy text-2xl font-extrabold mt-1">&#8361; 8,420</p></div>
+                    <a href="account.html" class="bg-[image:var(--g-primary)] rounded-xl p-5 flex items-center justify-between gap-3 text-navy no-underline"><span><span class="block text-xs font-bold uppercase tracking-wide" data-i18n="nav.mallMyRewards">我的獎勵</span><span class="block text-base font-extrabold mt-1" data-i18n="nav.mallViewRecords">查看紀錄與報表</span></span><svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+                  </div>
+                  <h2 class="text-navy text-lg font-extrabold" data-i18n="nav.mallSection">盲盒商城</h2>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+                    <div class="bg-white border border-border rounded-xl overflow-hidden flex flex-col transition-transform duration-200 hover:-translate-y-1">
+                      <div class="h-32 flex items-center justify-center relative bg-navy-soft"><span class="w-16 h-16 rounded-full bg-[image:var(--g-primary)] flex items-center justify-center text-navy"><svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"></path><path d="M12 8S10.5 3 8 3a2.5 2.5 0 0 0 0 5M12 8s1.5-5 4-5a2.5 2.5 0 0 1 0 5"></path></svg></span><span class="absolute top-2.5 left-2.5 text-[11px] font-bold py-1 px-2.5 rounded-full bg-white border border-border text-navy" data-i18n="nav.mallBadgeSingle">單抽</span></div>
+                      <div class="p-4 flex flex-col gap-2.5 flex-1">
+                        <div><h3 class="text-navy font-bold text-sm" data-i18n="nav.mallProdX1">盲盒 x1（單抽）</h3><p class="text-subtitle text-xs mt-1" data-i18n="nav.mallSubX1">每日上限 50 次 · 1 次抽獎</p></div>
+                        <div class="mt-auto flex items-center justify-between gap-2 pt-1"><span class="text-navy text-lg font-extrabold">&#8361; 100</span><a href="blind-box.html" class="py-1.5 px-4 rounded-xl bg-[image:var(--g-action)] text-navy font-bold text-sm no-underline" data-i18n="nav.mallBuy">購買</a></div>
+                      </div>
+                    </div>
+                    <div class="bg-white border border-border rounded-xl overflow-hidden flex flex-col transition-transform duration-200 hover:-translate-y-1">
+                      <div class="h-32 flex items-center justify-center relative bg-navy-soft"><span class="w-16 h-16 rounded-full bg-[image:var(--g-primary)] flex items-center justify-center text-navy"><svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"></path><path d="M12 8S10.5 3 8 3a2.5 2.5 0 0 0 0 5M12 8s1.5-5 4-5a2.5 2.5 0 0 1 0 5"></path></svg></span><span class="absolute top-2.5 left-2.5 text-[11px] font-bold py-1 px-2.5 rounded-full bg-white border border-border text-navy" data-i18n="nav.mallBadge10">十連抽</span></div>
+                      <div class="p-4 flex flex-col gap-2.5 flex-1">
+                        <div><h3 class="text-navy font-bold text-sm" data-i18n="nav.mallProdX10">盲盒 x10（十連抽）</h3><p class="text-subtitle text-xs mt-1" data-i18n="nav.mallSubX10">每日上限 20 次 · 10 次抽獎</p></div>
+                        <span class="self-start inline-flex items-center gap-1 text-[11px] font-bold py-1 px-2.5 rounded-full border border-border bg-white text-navy" data-i18n="nav.mallBonusFree2">額外獎勵：免費抽獎 +2</span>
+                        <div class="mt-auto flex items-center justify-between gap-2 pt-1"><span class="text-navy text-lg font-extrabold">&#8361; 980</span><a href="blind-box.html" class="py-1.5 px-4 rounded-xl bg-[image:var(--g-action)] text-navy font-bold text-sm no-underline" data-i18n="nav.mallBuy">購買</a></div>
+                      </div>
+                    </div>
+                    <div class="bg-white border border-border rounded-xl overflow-hidden flex flex-col transition-transform duration-200 hover:-translate-y-1">
+                      <div class="h-32 flex items-center justify-center relative bg-navy-soft"><span class="w-16 h-16 rounded-full bg-[image:var(--g-primary)] flex items-center justify-center text-navy"><svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"></path><path d="M12 8S10.5 3 8 3a2.5 2.5 0 0 0 0 5M12 8s1.5-5 4-5a2.5 2.5 0 0 1 0 5"></path></svg></span><span class="absolute top-2.5 left-2.5 text-[11px] font-bold py-1 px-2.5 rounded-full bg-white border border-border text-navy" data-i18n="nav.mallBadge30">超值包</span></div>
+                      <div class="p-4 flex flex-col gap-2.5 flex-1">
+                        <div><h3 class="text-navy font-bold text-sm" data-i18n="nav.mallProdX30">盲盒 x30（超值包）</h3><p class="text-subtitle text-xs mt-1" data-i18n="nav.mallSubX30">每日上限 10 次 · 30 次抽獎</p></div>
+                        <span class="self-start inline-flex items-center gap-1 text-[11px] font-bold py-1 px-2.5 rounded-full border border-border bg-white text-navy" data-i18n="nav.mallBonusB500">額外獎勵：紅利 +500</span>
+                        <div class="mt-auto flex items-center justify-between gap-2 pt-1"><span class="text-navy text-lg font-extrabold">&#8361; 2,800</span><a href="blind-box.html" class="py-1.5 px-4 rounded-xl bg-[image:var(--g-action)] text-navy font-bold text-sm no-underline" data-i18n="nav.mallBuy">購買</a></div>
+                      </div>
+                    </div>
+                    <div class="bg-white border border-border rounded-xl overflow-hidden flex flex-col transition-transform duration-200 hover:-translate-y-1">
+                      <div class="h-32 flex items-center justify-center relative bg-navy-soft"><span class="w-16 h-16 rounded-full bg-[image:var(--g-primary)] flex items-center justify-center text-navy"><svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"></path><path d="M12 8S10.5 3 8 3a2.5 2.5 0 0 0 0 5M12 8s1.5-5 4-5a2.5 2.5 0 0 1 0 5"></path></svg></span><span class="absolute top-2.5 left-2.5 text-[11px] font-bold py-1 px-2.5 rounded-full bg-navy text-white" data-i18n="nav.mallBadgeVip">VIP 限定</span></div>
+                      <div class="p-4 flex flex-col gap-2.5 flex-1">
+                        <div><h3 class="text-navy font-bold text-sm" data-i18n="nav.mallProdX50">VIP 限定盲盒 x50</h3><p class="text-subtitle text-xs mt-1" data-i18n="nav.mallSubX50">每日上限 5 次 · 50 次抽獎</p></div>
+                        <span class="self-start inline-flex items-center gap-1 text-[11px] font-bold py-1 px-2.5 rounded-full border border-border bg-white text-navy" data-i18n="nav.mallBonusB1500">額外獎勵：紅利 +1,500</span>
+                        <div class="mt-auto flex items-center justify-between gap-2 pt-1"><span class="text-navy text-lg font-extrabold">&#8361; 4,500</span><a href="blind-box.html" class="py-1.5 px-4 rounded-xl bg-[image:var(--g-action)] text-navy font-bold text-sm no-underline" data-i18n="nav.mallBuy">購買</a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div data-mount="footer"></div>
+      <div data-mount="bottom-nav"></div>
+      <div data-mount="quick-sidebar"></div>
+    </div>
+
+    <script src="assets/js/data.js?v=15"></script>
+    <script src="assets/js/site.js?v=20261119-mobile1"></script>
+    
+  </body>
+</html>
