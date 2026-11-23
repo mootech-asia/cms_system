@@ -42,8 +42,8 @@ window.EVENT_CONFIG = {
     infoBg: 'assets/images/scene/blind_box_IMG010_info-bg.svg?v=20261118-refine2',
     title: {
       en: 'assets/images/title/blind_box_IMG013_title-en.webp?v=20261118-refine2',
-      ko: 'assets/images/title/blind_box_IMG013_title-en.webp?v=20261118-refine2',
-      th: 'assets/images/title/blind_box_IMG013_title-en.webp?v=20261118-refine2',
+      ko: 'assets/images/title/blind_box_IMG014_title-ko.webp?v=20261118-refine2',
+      th: 'assets/images/title/blind_box_IMG016_title-th.webp?v=20261118-refine2',
       zh: 'assets/images/title/blind_box_IMG015_title-main.webp?v=20261118-refine2'
     },
     periodBadge: 'assets/images/ui/blind_box_IMG023_period-badge.webp?v=20261118-refine2',
