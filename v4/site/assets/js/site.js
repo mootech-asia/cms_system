@@ -635,10 +635,10 @@
       { href: 'sport.html', key: 'nav.sport', fb: '體育', icon: '<circle cx="12" cy="12" r="9"/><path d="m12 3 2.5 6M21 12l-6 2.5M12 21l-2.5-6M3 12l6-2.5"/>' },
       { href: 'live.html', key: 'nav.live', fb: '真人娛樂', icon: '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>' },
       { href: 'fish.html', key: 'nav.fish', fb: '捕魚達人', icon: '<path d="M4 12c3-4 8-5 12-4l4-2v12l-4-2c-4 1-9 0-12-4Z"/>' },
-      { href: 'promotion.html', key: 'nav.promotion', fb: '優惠活動', icon: '<rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M12 9v12M3 13h18"/>' }
+      { href: 'promotion.html', key: 'nav.promotion', fb: '優惠活動', icon: '<rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M12 9v12M3 13h18"/>' },
+      { href: 'mall.html', key: 'nav.Mall', fb: '商城', icon: '<circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>' },
       ] },
       { key: 'nav.Event', fb: '活動', items: [
-      { href: 'mall.html', key: 'nav.Mall', fb: '商城', icon: '<circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>' },
       { href: 'check-in.html', key: 'nav.Check-in', fb: 'Daily Check-in', icon: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="m9 15 2 2 4-4"/>' },
       { href: 'card-pack.html', key: 'nav.CardPack', fb: 'Magic Card Pack', icon: '<rect x="4" y="3" width="11" height="16" rx="2"></rect><path d="M8 21h9a2 2 0 0 0 2-2V7"></path><path d="M9.5 8l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"></path>' },
       { href: 'blind-box.html', key: 'nav.BlindBox', fb: 'Genie’s Gift', icon: '<rect x="3" y="7" width="18" height="4" rx="1"></rect><path d="M5 11v9h14v-9"></path><path d="M10 14.2a2 2 0 1 1 2.6 1.9c-.4.1-.6.5-.6.9v.3"></path><path d="M12 19.2h.01"></path>' },

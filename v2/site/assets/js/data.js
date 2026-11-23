@@ -322,9 +322,8 @@
       { label: 'Withdrawal', href: 'withdrawal.html' }
     ],
     groups: [
-      { title: 'Menu', items: ['index.html', 'hot-games.html', 'mini-games.html', 'slot.html', 'sport.html', 'live.html', 'fish.html', 'promotion.html'].map(navItem) },
+      { title: 'Menu', items: ['index.html', 'hot-games.html', 'mini-games.html', 'slot.html', 'sport.html', 'live.html', 'fish.html', 'promotion.html'].map(navItem).concat([{ label: 'Mall', href: 'mall.html', icon: 'cart' }]) },
       { title: 'Event', items: [
-        { label: 'Mall', href: 'mall.html', icon: 'cart' },
         { label: 'Daily Check-in', href: 'check-in.html', icon: 'calendarCheck' },
         { label: 'Magic Card Pack', href: 'card-pack.html', icon: 'cardPack' },
         { label: 'Genie’s Gift', href: 'blind-box.html', icon: 'blindBox' },

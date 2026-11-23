@@ -1354,11 +1354,11 @@
       { id: 'sports', tKey: 'navbar.desktop.sports', url: 'game-type.html?type=sports', iconPath: 'sports.svg' },
       { id: 'live', tKey: 'navbar.desktop.live', url: 'game-type.html?type=live', iconPath: '../index/hotGame/icon-Live2.png' },
       { id: 'fish', tKey: 'navbar.desktop.fish', url: 'game-type.html?type=fish', iconPath: 'fish.svg' },
-      { id: 'promotion', tKey: 'navbar.desktop.promotion', url: 'promotion-list.html', iconPath: 'nav-promotion-logo.svg' }
+      { id: 'promotion', tKey: 'navbar.desktop.promotion', url: 'promotion-list.html', iconPath: 'nav-promotion-logo.svg' },
+      { id: 'mall', tKey: 'nav.Mall', url: 'mall.html', iconPath: 'pointmall.svg' }
     ] },
     { tKey: 'nav.Event', items: [
       { id: 'dailyCheckin', tKey: 'nav.Check-in', url: 'check-in.html', icon: 'date.svg' },
-      { id: 'mall', tKey: 'nav.Mall', url: 'mall.html', icon: 'pointmall.svg' },
       { id: 'cardPack', tKey: 'nav.CardPack', url: 'card-pack.html', icon: 'card-pack.svg' },
       { id: 'blindBox', tKey: 'nav.BlindBox', url: 'blind-box.html', icon: 'blind-box.svg' },
       { id: 'survivalSpin', tKey: 'nav.SurvivalSpin', url: 'survival-spin.html', icon: 'survival-wheel.svg' },
